@@ -6,7 +6,7 @@ export class LogAnalyzer {
     constructor(logPath) {
         this.logPath = logPath;
         this.stats = {
-            tools: {},
+            tools: {}, // { toolName: { calls: 0, errors: 0 } }
             errors: 0,
             lines: 0,
             models: {}
@@ -35,20 +35,34 @@ export class LogAnalyzer {
     }
 
     _processLine(line) {
-        // Tool Calls (Approximate regex based on standard log format)
-        // Format often varies, looking for "call:default_api:toolname" or JSON structures
+        // Tool Calls: "call:default_api:toolname"
         const toolMatch = line.match(/call:default_api:(\w+)/);
         if (toolMatch) {
             const tool = toolMatch[1];
-            this.stats.tools[tool] = (this.stats.tools[tool] || 0) + 1;
+            if (!this.stats.tools[tool]) this.stats.tools[tool] = { calls: 0, errors: 0 };
+            this.stats.tools[tool].calls++;
         }
 
-        // Errors (generic)
+        // Tool Errors: "response:default_api:toolname{... error: ..."
+        // or generic error logs associated with tools.
+        // Simple heuristic: if line contains "error" and is a response, try to attribute it.
+        
+        // Detailed error check
         if (line.includes('"error"') || line.includes('level":"error"')) {
             this.stats.errors++;
+            
+            // Try to attribute to a tool if the line mentions it
+            // Look for response:default_api:(\w+)
+            const responseMatch = line.match(/response:default_api:(\w+)/);
+            if (responseMatch) {
+                const tool = responseMatch[1];
+                if (this.stats.tools[tool]) {
+                    this.stats.tools[tool].errors++;
+                }
+            }
         }
         
-        // Models (if logged)
+        // Models
         const modelMatch = line.match(/model[:=]"?([\w/-]+)"?/);
         if (modelMatch) {
              const model = modelMatch[1];
@@ -59,15 +73,20 @@ export class LogAnalyzer {
     report() {
         console.log('\n--- Cognition Core: Log Analysis ---');
         console.log(`Lines Processed: ${this.stats.lines}`);
-        console.log(`Errors Found: ${this.stats.errors}`);
-        console.log('\nTool Usage:');
+        console.log(`Total Errors:    ${this.stats.errors}`);
+        console.log('\nTool Performance:');
+        
         const sortedTools = Object.entries(this.stats.tools)
-            .sort(([,a], [,b]) => b - a);
+            .sort(([,a], [,b]) => b.calls - a.calls);
         
-        if (sortedTools.length === 0) console.log('  (No tool calls detected in logs)');
+        if (sortedTools.length === 0) console.log('  (No tool calls detected)');
         
-        for (const [tool, count] of sortedTools) {
-            console.log(`  ${tool.padEnd(15)}: ${count}`);
+        console.log(`  ${'TOOL'.padEnd(15)} | ${'CALLS'.padEnd(6)} | ${'ERRORS'.padEnd(6)} | ${'RATE'.padEnd(6)}`);
+        console.log('  ' + '-'.repeat(40));
+        
+        for (const [tool, data] of sortedTools) {
+            const rate = data.calls > 0 ? ((data.errors / data.calls) * 100).toFixed(1) + '%' : '0%';
+            console.log(`  ${tool.padEnd(15)} | ${String(data.calls).padEnd(6)} | ${String(data.errors).padEnd(6)} | ${rate.padEnd(6)}`);
         }
         console.log('------------------------------------');
     }
