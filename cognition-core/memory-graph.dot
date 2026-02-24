@@ -1,0 +1,5 @@
+digraph Memory {
+  rankdir=LR;
+  node [shape=box, style=filled, fillcolor="#f0f0f0", fontname="Helvetica"];
+  "skills/weekly-update/drafts/2026-02-17.md" -> "img/this-is-fine.png";
+}
