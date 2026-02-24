@@ -1,7 +1,7 @@
 # R&D Backlog
 
 ## Cognition Core
-- [x] **Log Analyzer:** Script to parse `~/.openclaw/logs/` and count tool usage frequency. (Implemented v0.1)
+- [x] **Log Analyzer:** Script to parse `~/.openclaw/logs/` and count tool usage frequency.
 - [ ] **Error Heatmap:** Identify which tools fail the most (exit codes != 0).
 - [ ] **Memory Graph:** Generate a DOT/Graphviz file showing links between `MEMORY.md` entries.
 
