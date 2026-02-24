@@ -1,0 +1,13 @@
+{
+  "name": "cognition-core",
+  "version": "0.1.0",
+  "description": "Agent introspection and telemetry analysis",
+  "main": "index.js",
+  "scripts": {
+    "analyze": "node scripts/analyze-history.mjs"
+  },
+  "keywords": ["agent", "introspection", "openclaw"],
+  "author": "Z <zach@zachwright.xyz>",
+  "license": "MIT",
+  "type": "module"
+}
