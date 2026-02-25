@@ -9,7 +9,8 @@
     "plan:tasks": "node scripts/plan-remediation-tasks.mjs --report reports/cognition-report.json --out reports/remediation-tasks.json",
     "learn:loop": "node scripts/learn-from-outcomes.mjs --store ../swarm-protocol/state/tasks.journal.jsonl --json reports/learning-loop.json --markdown reports/learning-loop.md",
     "graph": "node scripts/graph.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "build": "npm test"
   },
   "keywords": [
     "agent",
