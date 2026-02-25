@@ -70,6 +70,7 @@ Adds a resource fairness allocator to distribute scarce resources across communi
 Adds an ethical budget optimizer to pick the highest-impact initiative portfolio under fiscal and risk constraints.
 Adds a human oversight workbench to prioritize interventions and operator load balancing in real time.
 Adds an operator decision replay studio to reconstruct decision chains and audit rationale/policy evidence.
+Adds a governance rule compiler to turn policy intent into executable conflict-aware rule sets.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -687,6 +688,15 @@ import { buildOperatorDecisionReplay } from 'swarm-protocol';
 
 const replayReport = buildOperatorDecisionReplay({
   decisions
+});
+```
+
+Governance rule compiler:
+```js
+import { compileGovernanceRules } from 'swarm-protocol';
+
+const compiledPolicy = compileGovernanceRules({
+  intents
 });
 ```
 

@@ -332,6 +332,12 @@ Objective: reconstruct operator decision chains for auditability, consistency re
 - [x] Auditability scoring across rationale, policy references, evidence coverage, overrides, and confidence.
 - [x] Rationale backfill, policy audit, evidence capture, coaching, and replay-report task generation.
 
+### 54) Governance Rule Compiler
+Objective: convert governance intent into executable, conflict-aware rule sets that can be activated by policy engines.
+- [x] Intent normalization and rule compilation with deterministic fingerprints and precedence scoring.
+- [x] Conflict detection across overlapping rules with contradictory policy decisions.
+- [x] Policy activation, conflict resolution, test coverage, and changelog recommendation task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -386,3 +392,4 @@ Objective: reconstruct operator decision chains for auditability, consistency re
 51. Ethical Budget Optimizer
 52. Human Oversight Workbench
 53. Operator Decision Replay Studio
+54. Governance Rule Compiler

@@ -56,3 +56,4 @@ export * from './src/resource-fairness.js';
 export * from './src/ethical-budget.js';
 export * from './src/human-oversight-workbench.js';
 export * from './src/operator-decision-replay.js';
+export * from './src/governance-rule-compiler.js';
