@@ -29,3 +29,4 @@ export * from './src/mission-forecast.js';
 export * from './src/autonomous-approval.js';
 export * from './src/mission-launcher.js';
 export * from './src/truth-engine.js';
+export * from './src/curiosity-agenda.js';

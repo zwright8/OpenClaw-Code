@@ -170,6 +170,12 @@ Objective: maintain explicit hypotheses, update confidence from evidence, and dr
 - [x] Deterministic posterior confidence scoring with support/contradiction traces.
 - [x] Experiment/evidence recommendation tasks for uncertain and unlikely hypotheses.
 
+### 27) Curiosity Agenda Planner
+Objective: prioritize hypothesis investigations into execution lanes under experiment-capacity constraints.
+- [x] Curiosity scoring from uncertainty, contradiction pressure, criticality, and mission coupling.
+- [x] `now`/`next`/`backlog` lane assignment with capacity-aware deferral.
+- [x] Curiosity agenda + recommendation task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -197,3 +203,4 @@ Objective: maintain explicit hypotheses, update confidence from evidence, and dr
 24. Autonomous Approval Engine
 25. Autonomous Mission Launcher
 26. Truth-Seeking Hypothesis Engine
+27. Curiosity Agenda Planner
