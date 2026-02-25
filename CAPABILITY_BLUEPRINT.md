@@ -242,6 +242,12 @@ Objective: detect emerging misuse and abuse signatures early and convert them in
 - [x] Actor-level misuse risk scoring and global threat-level classification.
 - [x] Restriction/investigation/rule-hardening task generation from detected misuse patterns.
 
+### 39) Adversarial Robustness Fuzzer
+Objective: continuously stress-test agent surfaces against adversarial manipulation and quantify exposure risk.
+- [x] Multi-attack fuzz-case generation (`prompt_injection`, `policy_evasion`, `data_exfiltration`, `tool_misuse`, `social_engineering`).
+- [x] Deterministic exploitability scoring with per-target robustness summaries and threat levels.
+- [x] Guardrail patching, capability-disable, retest, and monitoring task generation from findings.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -281,3 +287,4 @@ Objective: detect emerging misuse and abuse signatures early and convert them in
 36. Public Benefit Opportunity Miner
 37. Harm Escalation Early-Warning
 38. Misuse Behavior Detector
+39. Adversarial Robustness Fuzzer

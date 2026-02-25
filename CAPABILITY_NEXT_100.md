@@ -9,7 +9,7 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 36. Public Benefit Opportunity Miner - Discover highest-leverage opportunities for social good.
 - [x] 37. Harm Escalation Early-Warning - Detect trajectories likely to cause broad social harm.
 - [x] 38. Misuse Behavior Detector - Identify emerging misuse patterns and abuse signatures.
-- [ ] 39. Adversarial Robustness Fuzzer - Continuously stress systems against adversarial manipulation.
+- [x] 39. Adversarial Robustness Fuzzer - Continuously stress systems against adversarial manipulation.
 - [ ] 40. Explainability Narrative Generator - Produce understandable reasons for complex decisions.
 - [ ] 41. Evidence Provenance Graph - Track lineage and trustworthiness of every claim.
 - [ ] 42. Counterfactual Policy Lab - Test policy alternatives against simulated outcomes.

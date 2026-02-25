@@ -55,6 +55,7 @@ Adds a community feedback harvester to turn multi-channel human feedback into ac
 Adds a public benefit opportunity miner to rank and schedule high-leverage opportunities for social good.
 Adds a harm escalation early-warning engine to detect rising broad-harm trajectories and trigger rapid response.
 Adds a misuse behavior detector to surface abuse signatures and automatically propose restrictions/investigations.
+Adds an adversarial robustness fuzzer to stress defenses and generate hardening tasks.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -516,6 +517,15 @@ import { detectMisuseBehaviors } from 'swarm-protocol';
 
 const misuse = detectMisuseBehaviors({
   events
+});
+```
+
+Adversarial robustness fuzzer:
+```js
+import { runAdversarialRobustnessFuzzer } from 'swarm-protocol';
+
+const fuzzReport = runAdversarialRobustnessFuzzer({
+  targets
 });
 ```
 
