@@ -34,6 +34,7 @@ Adds collaboration UX primitives for timelines, decision explanations, and audit
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
 Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
+Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -248,6 +249,18 @@ import { DriftSentinel } from 'swarm-protocol';
 const sentinel = new DriftSentinel();
 sentinel.setBaseline(baselineSnapshot);
 const driftReport = sentinel.evaluate(currentSnapshot);
+```
+
+Mission planner:
+```js
+import { compileMissionPlan, missionPlanToWorkflowDefinition } from 'swarm-protocol';
+
+const mission = compileMissionPlan({
+  objective: 'Deploy production migration for billing service',
+  preferredTarget: 'agent:ops'
+});
+
+const workflow = missionPlanToWorkflowDefinition(mission);
 ```
 
 Durability + live registry example:

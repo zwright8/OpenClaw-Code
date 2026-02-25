@@ -116,6 +116,12 @@ Objective: detect quality regressions across memory, routing, and skills before 
 - [x] Prioritized drift alert generation.
 - [x] Mitigation task generation for closed-loop recovery.
 
+### 18) Autonomous Mission Planner
+Objective: compile high-level goals into execution-ready workflow plans.
+- [x] Profile-aware plan decomposition (analysis, incident, change management).
+- [x] Risk, approval, and sandbox hint propagation into plan nodes.
+- [x] Conversion to schema-valid workflow and task request artifacts.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -134,3 +140,4 @@ Objective: detect quality regressions across memory, routing, and skills before 
 15. Federation & Trust Layer
 16. Autonomous Recovery Supervisor
 17. Capability Drift Sentinel
+18. Autonomous Mission Planner
