@@ -9,6 +9,7 @@
 ## Swarm Protocol
 - [x] **Standard Message Schema:** Define a JSON schema for agent-to-agent task handoff. (Implemented v0.1)
 - [x] **Handshake:** A script to verify another agent is "online" and compatible.
+- [x] **Live Test:** First successful handshake and report handoff between `main` and `nexus`. (Completed 2026-02-25)
 
 ## Infrastructure
 - [ ] **Auto-Refactor:** A script that lints my own code in this repo.
