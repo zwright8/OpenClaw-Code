@@ -12,6 +12,7 @@ A library for agent introspection. It parses execution logs, session history, an
 ### 2. `swarm-protocol`
 Typed schemas and handshake primitives for agent-to-agent coordination.
 Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
+Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, and result correlation.
 
 ## Quick Start
 
@@ -36,6 +37,30 @@ cd swarm-protocol
 npm test
 ```
 Runs unit tests for handshake negotiation/reliability plus legacy integration checks.
+
+Orchestrator demo:
+```bash
+npm run demo:orchestrator
+```
+
+Minimal orchestration usage:
+```js
+import { TaskOrchestrator } from 'swarm-protocol';
+
+const orchestrator = new TaskOrchestrator({
+  localAgentId: 'agent:main',
+  transport: { send: async (target, message) => {/* deliver message */} }
+});
+
+const task = await orchestrator.dispatchTask({
+  target: 'agent:worker',
+  task: 'Generate weekly KPI report'
+});
+
+// Later, as messages arrive:
+orchestrator.ingestReceipt(receiptMessage);
+orchestrator.ingestResult(resultMessage);
+```
 
 ### Repo Self-Lint
 ```bash
