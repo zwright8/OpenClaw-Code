@@ -35,3 +35,4 @@ export * from './src/constitution-engine.js';
 export * from './src/constitutional-controller.js';
 export * from './src/societal-outcome.js';
 export * from './src/intervention-portfolio.js';
+export * from './src/long-horizon-externality.js';

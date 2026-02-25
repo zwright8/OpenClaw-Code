@@ -206,6 +206,12 @@ Objective: choose intervention bundles under budget and risk limits to maximize 
 - [x] Feasibility gating across budget, risk, intervention-count, and humanity floor constraints.
 - [x] Portfolio recommendation task generation for adopt/review/rebalance workflows.
 
+### 33) Long-Horizon Externality Forecaster
+Objective: project second-order societal effects over multi-year horizons before committing interventions.
+- [x] Multi-year projection model combining direct intervention effects and second-order externality factors.
+- [x] Feedback-loop modeling for reinforcing and balancing long-term dynamics.
+- [x] Long-horizon mitigation/reinforcement recommendation task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -239,3 +245,4 @@ Objective: choose intervention bundles under budget and risk limits to maximize 
 30. Constitutional Execution Controller
 31. Societal Outcome Simulator
 32. Intervention Portfolio Optimizer
+33. Long-Horizon Externality Forecaster

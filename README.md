@@ -49,6 +49,7 @@ Adds a constitution alignment engine to score truth, humanity, and curiosity com
 Adds a constitutional execution controller to gate mission dispatch from alignment outcomes.
 Adds a societal outcome simulator to forecast intervention impact before execution.
 Adds an intervention portfolio optimizer to pick the highest-impact intervention bundle under constraints.
+Adds a long-horizon externality forecaster to model second-order multi-year effects.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -438,6 +439,19 @@ const portfolio = optimizeInterventionPortfolio({
     maxRiskScore: 45,
     maxInterventions: 3
   }
+});
+```
+
+Long-horizon externality forecaster:
+```js
+import { forecastLongHorizonExternalities } from 'swarm-protocol';
+
+const longRange = forecastLongHorizonExternalities({
+  baseline: { humanity: 72, truth: 68, curiosity: 61, reliability: 70 },
+  interventions,
+  externalities,
+  feedbackLoops,
+  horizonYears: [1, 3, 5, 10]
 });
 ```
 

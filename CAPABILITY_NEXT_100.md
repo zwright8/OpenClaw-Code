@@ -3,7 +3,7 @@
 This roadmap extends the core blueprint with the next 100 capabilities needed to maximize truth-seeking, pro-humanity impact, and practical execution power.
 
 - [x] 32. Intervention Portfolio Optimizer - Optimize intervention bundles under budget/risk to maximize projected societal benefit.
-- [ ] 33. Long-Horizon Externality Forecaster - Project second-order effects across multi-year horizons.
+- [x] 33. Long-Horizon Externality Forecaster - Project second-order effects across multi-year horizons.
 - [ ] 34. Equity Impact Analyzer - Quantify benefit/harm distribution across demographic and regional groups.
 - [ ] 35. Community Feedback Harvester - Ingest and structure real-world human feedback into planning loops.
 - [ ] 36. Public Benefit Opportunity Miner - Discover highest-leverage opportunities for social good.
