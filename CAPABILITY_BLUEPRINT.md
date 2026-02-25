@@ -116,6 +116,12 @@ Objective: detect quality regressions across memory, routing, and skills before 
 - [x] Prioritized drift alert generation.
 - [x] Mitigation task generation for closed-loop recovery.
 
+### 18) Rate Limiter & Backpressure Controller
+Objective: control task dispatch rate to prevent agent overload and cascade failures.
+- [x] Token-bucket rate limiting (global and per-agent).
+- [x] Backpressure signal generation with utilization levels.
+- [x] Metrics tracking and agent bucket lifecycle management.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -134,3 +140,4 @@ Objective: detect quality regressions across memory, routing, and skills before 
 15. Federation & Trust Layer
 16. Autonomous Recovery Supervisor
 17. Capability Drift Sentinel
+18. Rate Limiter & Backpressure Controller

@@ -32,6 +32,7 @@ Adds collaboration UX primitives for timelines, decision explanations, and audit
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
 Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
+Adds token-bucket rate limiting with global/per-agent quotas and backpressure signaling.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -246,6 +247,26 @@ import { DriftSentinel } from 'swarm-protocol';
 const sentinel = new DriftSentinel();
 sentinel.setBaseline(baselineSnapshot);
 const driftReport = sentinel.evaluate(currentSnapshot);
+```
+
+Rate limiter & backpressure:
+```js
+import { RateLimiter } from 'swarm-protocol';
+
+const limiter = new RateLimiter({
+  globalCapacity: 50,
+  perAgentCapacity: 10
+});
+
+const result = limiter.check('agent:worker-1');
+if (!result.allowed) {
+  console.log(`Rate limited: ${result.reason}, retry in ${result.retryAfterMs}ms`);
+}
+
+const bp = limiter.getBackpressure();
+if (bp.backpressure) {
+  console.log(`Backpressure active at level ${bp.level}`);
+}
 ```
 
 Durability + live registry example:

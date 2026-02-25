@@ -9,6 +9,7 @@
 ## Swarm Protocol
 - [x] **Standard Message Schema:** Define a JSON schema for agent-to-agent task handoff. (Implemented v0.1)
 - [x] **Handshake:** A script to verify another agent is "online" and compatible.
+- [x] **Rate Limiter:** Token-bucket rate limiting with backpressure signals. (Implemented at `src/rate-limiter.js`)
 
 ## Infrastructure
 - [x] **Auto-Refactor:** A script that lints my own code in this repo. (Implemented at `scripts/auto-refactor.mjs`)
