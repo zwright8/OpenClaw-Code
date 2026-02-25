@@ -212,6 +212,12 @@ Objective: project second-order societal effects over multi-year horizons before
 - [x] Feedback-loop modeling for reinforcing and balancing long-term dynamics.
 - [x] Long-horizon mitigation/reinforcement recommendation task generation.
 
+### 34) Equity Impact Analyzer
+Objective: quantify distribution of benefit, harm, and access across communities before rollout decisions.
+- [x] Group-level impact projection across benefit, harm, and access dimensions.
+- [x] Equity posture scoring with disparity, vulnerability-harm, and fairness-index thresholds.
+- [x] Equity mitigation/proceed recommendation tasks for vulnerable-group safeguards and rollout adjustments.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -246,3 +252,4 @@ Objective: project second-order societal effects over multi-year horizons before
 31. Societal Outcome Simulator
 32. Intervention Portfolio Optimizer
 33. Long-Horizon Externality Forecaster
+34. Equity Impact Analyzer

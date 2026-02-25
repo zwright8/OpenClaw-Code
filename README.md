@@ -50,6 +50,7 @@ Adds a constitutional execution controller to gate mission dispatch from alignme
 Adds a societal outcome simulator to forecast intervention impact before execution.
 Adds an intervention portfolio optimizer to pick the highest-impact intervention bundle under constraints.
 Adds a long-horizon externality forecaster to model second-order multi-year effects.
+Adds an equity impact analyzer to quantify benefit/harm/access distribution across communities.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -452,6 +453,21 @@ const longRange = forecastLongHorizonExternalities({
   externalities,
   feedbackLoops,
   horizonYears: [1, 3, 5, 10]
+});
+```
+
+Equity impact analyzer:
+```js
+import { evaluateEquityImpact } from 'swarm-protocol';
+
+const equity = evaluateEquityImpact({
+  groups,
+  interventions,
+  thresholds: {
+    maxDisparityGap: 28,
+    maxHighVulnerabilityHarm: 40,
+    minFairnessIndex: 55
+  }
 });
 ```
 
