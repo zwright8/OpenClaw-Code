@@ -52,3 +52,4 @@ export * from './src/consent-agency.js';
 export * from './src/vulnerable-safeguard.js';
 export * from './src/accessibility-auditor.js';
 export * from './src/environmental-impact.js';
+export * from './src/resource-fairness.js';

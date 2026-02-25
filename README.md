@@ -66,6 +66,7 @@ Adds a consent and agency mapper to enforce explicit consent scope boundaries an
 Adds a vulnerable population safeguard evaluator to block rollouts that endanger high-risk groups.
 Adds an accessibility quality auditor to score surface-level a11y readiness and prioritize remediation.
 Adds an environmental impact estimator to quantify carbon/water/waste externalities before launch.
+Adds a resource fairness allocator to distribute scarce resources across communities with equity weighting.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -642,6 +643,17 @@ const environmentalReport = estimateEnvironmentalImpact({
   activities,
   factors,
   thresholds
+});
+```
+
+Resource fairness allocator:
+```js
+import { allocateResourcesFairly } from 'swarm-protocol';
+
+const allocationReport = allocateResourcesFairly({
+  demands,
+  supply,
+  policy
 });
 ```
 

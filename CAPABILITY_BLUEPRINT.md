@@ -308,6 +308,12 @@ Objective: quantify environmental externalities before rollout and trigger mitig
 - [x] Deterministic posture classification (`sustainable`/`review_required`/`blocked`) from threshold exceedance severity.
 - [x] Carbon-reduction, water-efficiency, waste-minimization, and disclosure task generation.
 
+### 50) Resource Fairness Allocator
+Objective: distribute scarce resources equitably while prioritizing vulnerable and historically underserved groups.
+- [x] Weighted allocation engine combining minimum need, vulnerability, coverage gaps, priority, and underserved history.
+- [x] Group and portfolio posture decisions (`fair`/`review_required`/`blocked`) with fairness-index and supply-shortfall signals.
+- [x] Reallocation, capacity request, rebalance, and transparency task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -358,3 +364,4 @@ Objective: quantify environmental externalities before rollout and trigger mitig
 47. Vulnerable Population Safeguard
 48. Accessibility Quality Auditor
 49. Environmental Impact Estimator
+50. Resource Fairness Allocator
