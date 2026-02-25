@@ -32,8 +32,8 @@ Objective: allow safe human checkpoints for high-risk tasks.
 
 ### 4) Workflow DAG Executor
 Objective: run multi-step plans with dependencies and retries.
-- [ ] DAG schema (`nodes`, `edges`, `retry policy`).
-- [ ] Execution engine with failure isolation and resumability.
+- [x] DAG schema (`nodes`, `edges`, `retry policy`).
+- [x] Execution engine with failure isolation and resumability.
 - [ ] Critical path metrics + per-node telemetry.
 
 ### 5) Shared Memory Contracts

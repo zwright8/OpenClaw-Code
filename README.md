@@ -16,6 +16,7 @@ Also includes a task orchestrator for dispatch tracking, receipts, retries, time
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
+Includes a workflow DAG engine for dependency-based multi-step execution.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -107,6 +108,21 @@ const orchestrator = new TaskOrchestrator({
 });
 
 await orchestrator.hydrate(); // restore previous tasks on boot
+```
+
+Workflow DAG execution:
+```js
+import { WorkflowEngine } from 'swarm-protocol';
+
+const engine = new WorkflowEngine({ orchestrator });
+await engine.startWorkflow({
+  id: 'weekly-report',
+  nodes: [
+    { id: 'collect', task: 'Collect KPI data' },
+    { id: 'summarize', task: 'Summarize KPI trends', dependencies: ['collect'] },
+    { id: 'publish', task: 'Publish KPI brief', dependencies: ['summarize'] }
+  ]
+});
 ```
 
 ### Repo Self-Lint
