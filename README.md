@@ -72,6 +72,11 @@ Adds a human oversight workbench to prioritize interventions and operator load b
 Adds an operator decision replay studio to reconstruct decision chains and audit rationale/policy evidence.
 Adds a governance rule compiler to turn policy intent into executable conflict-aware rule sets.
 Adds a compliance standard mapper to score requirement coverage and expose mandatory control gaps.
+Adds a jurisdictional policy router to apply region-specific rules with conflict/residency checks.
+Adds an incident communication synthesizer to generate audience-specific incident updates with uncertainty controls.
+Adds a crisis coordination mesh to assign multi-team emergency roles and track coordination risk.
+Adds a reliability chaos gym to simulate failure drills and generate resilience hardening actions.
+Adds a recovery playbook synthesizer to derive repeatable recovery procedures from incident history.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -708,6 +713,55 @@ import { mapComplianceStandards } from 'swarm-protocol';
 const complianceReport = mapComplianceStandards({
   controls,
   standards
+});
+```
+
+Jurisdictional policy router:
+```js
+import { routeJurisdictionalPolicies } from 'swarm-protocol';
+
+const jurisdictionRoutes = routeJurisdictionalPolicies({
+  policies,
+  requests
+});
+```
+
+Incident communication synthesizer:
+```js
+import { synthesizeIncidentCommunications } from 'swarm-protocol';
+
+const incidentComms = synthesizeIncidentCommunications({
+  incidents,
+  audiences
+});
+```
+
+Crisis coordination mesh:
+```js
+import { coordinateCrisisMesh } from 'swarm-protocol';
+
+const crisisPlan = coordinateCrisisMesh({
+  teams,
+  crises
+});
+```
+
+Reliability chaos gym:
+```js
+import { runReliabilityChaosGym } from 'swarm-protocol';
+
+const chaosReport = runReliabilityChaosGym({
+  systems,
+  experiments
+});
+```
+
+Recovery playbook synthesizer:
+```js
+import { synthesizeRecoveryPlaybooks } from 'swarm-protocol';
+
+const playbooks = synthesizeRecoveryPlaybooks({
+  incidents
 });
 ```
 

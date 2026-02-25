@@ -344,6 +344,36 @@ Objective: map operational controls to compliance requirements and surface manda
 - [x] Requirement mapping status (`covered`/`partial`/`missing`) with mandatory-gap detection.
 - [x] Mandatory remediation, evidence collection, validation scheduling, and matrix publication task generation.
 
+### 56) Jurisdictional Policy Router
+Objective: apply the correct policy decisions per jurisdiction while detecting rule conflicts and residency violations.
+- [x] Request-level jurisdiction routing against policy conditions and precedence scoring.
+- [x] Conflict and missing-policy detection across overlapping jurisdiction rules.
+- [x] Policy-addition, conflict-resolution, residency-enforcement, and routing-brief task generation.
+
+### 57) Incident Communication Synthesizer
+Objective: generate clear, audience-specific incident updates that preserve transparency and uncertainty signaling.
+- [x] Per-audience communication synthesis for operations, customers, and executive stakeholders.
+- [x] Clarity/uncertainty scoring with update urgency and ETA-gap detection.
+- [x] Publish/fact-check/schedule/escalate communication task generation.
+
+### 58) Crisis Coordination Mesh
+Objective: coordinate multi-team crisis response with explicit role assignment, capacity awareness, and escalation.
+- [x] Team suitability ranking and role assignment (`lead`, `mitigation`, `communications`, `logistics`).
+- [x] Coordination risk scoring with role-gap and deadline-pressure detection.
+- [x] War-room, mutual-aid, timeline-sync, and coordination-plan task generation.
+
+### 59) Reliability Chaos Gym
+Objective: systematically stress reliability under controlled failure experiments and convert results into hardening work.
+- [x] Chaos experiment simulation across outages, latency, dependency loss, and rollback readiness.
+- [x] Resilience scoring from availability, latency, error-budget burn, observability, and rollback posture.
+- [x] Hardening/drill/observability/automation/report task generation from fragile surfaces.
+
+### 60) Recovery Playbook Synthesizer
+Objective: synthesize repeatable recovery playbooks from historical incident patterns and confidence signals.
+- [x] Category-level incident aggregation into structured detect/contain/restore/verify/communicate steps.
+- [x] Confidence and risk posture scoring with recurrence and telemetry-coverage signals.
+- [x] Playbook adoption, tabletop validation, automation, telemetry, and briefing task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -400,3 +430,8 @@ Objective: map operational controls to compliance requirements and surface manda
 53. Operator Decision Replay Studio
 54. Governance Rule Compiler
 55. Compliance Standard Mapper
+56. Jurisdictional Policy Router
+57. Incident Communication Synthesizer
+58. Crisis Coordination Mesh
+59. Reliability Chaos Gym
+60. Recovery Playbook Synthesizer

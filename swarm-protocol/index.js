@@ -58,3 +58,8 @@ export * from './src/human-oversight-workbench.js';
 export * from './src/operator-decision-replay.js';
 export * from './src/governance-rule-compiler.js';
 export * from './src/compliance-standard-mapper.js';
+export * from './src/jurisdictional-policy-router.js';
+export * from './src/incident-communication-synthesizer.js';
+export * from './src/crisis-coordination-mesh.js';
+export * from './src/reliability-chaos-gym.js';
+export * from './src/recovery-playbook-synthesizer.js';

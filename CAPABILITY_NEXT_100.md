@@ -26,11 +26,11 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 53. Operator Decision Replay Studio - Reconstruct and audit operator decision chains.
 - [x] 54. Governance Rule Compiler - Convert governance intent into executable policy.
 - [x] 55. Compliance Standard Mapper - Map controls to standards and obligations.
-- [ ] 56. Jurisdictional Policy Router - Apply correct rules per region/jurisdiction.
-- [ ] 57. Incident Communication Synthesizer - Generate clear incident updates for humans.
-- [ ] 58. Crisis Coordination Mesh - Coordinate multi-team response during emergencies.
-- [ ] 59. Reliability Chaos Gym - Systematically test resilience under failure.
-- [ ] 60. Recovery Playbook Synthesizer - Generate recovery procedures from incident patterns.
+- [x] 56. Jurisdictional Policy Router - Apply correct rules per region/jurisdiction.
+- [x] 57. Incident Communication Synthesizer - Generate clear incident updates for humans.
+- [x] 58. Crisis Coordination Mesh - Coordinate multi-team response during emergencies.
+- [x] 59. Reliability Chaos Gym - Systematically test resilience under failure.
+- [x] 60. Recovery Playbook Synthesizer - Generate recovery procedures from incident patterns.
 - [ ] 61. Disaster Response Mission Packager - Package executable disaster-relief missions.
 - [ ] 62. Healthcare Safety Protocol Adapter - Tailor workflows to healthcare safety norms.
 - [ ] 63. Education Support Planner - Build targeted educational support actions.
