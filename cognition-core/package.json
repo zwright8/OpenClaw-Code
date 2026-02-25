@@ -4,7 +4,10 @@
   "description": "Agent introspection and telemetry analysis",
   "main": "index.js",
   "scripts": {
-    "analyze": "node scripts/analyze-history.mjs"
+    "analyze": "node scripts/analyze-history.mjs --days 7",
+    "analyze:quick": "node scripts/analyze-history.mjs --days 1",
+    "graph": "node scripts/graph.mjs",
+    "test": "node --test"
   },
   "keywords": [
     "agent",

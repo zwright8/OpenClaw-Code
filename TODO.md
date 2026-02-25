@@ -11,4 +11,4 @@
 - [x] **Handshake:** A script to verify another agent is "online" and compatible.
 
 ## Infrastructure
-- [ ] **Auto-Refactor:** A script that lints my own code in this repo.
+- [x] **Auto-Refactor:** A script that lints my own code in this repo. (Implemented at `scripts/auto-refactor.mjs`)
