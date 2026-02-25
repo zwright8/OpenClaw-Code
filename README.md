@@ -45,6 +45,7 @@ Adds an autonomous mission launcher that compiles and executes launch batches fr
 Adds a truth-seeking hypothesis engine for evidence-based confidence updates and experiments.
 Adds a curiosity agenda planner to schedule which hypotheses to investigate now vs later.
 Adds a humanity impact guardrail to block or review work that could harm people.
+Adds a constitution alignment engine to score truth, humanity, and curiosity compliance.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -387,6 +388,17 @@ import { evaluateHumanityImpact } from 'swarm-protocol';
 
 const humanityReport = evaluateHumanityImpact({
   launchBatch: batch
+});
+```
+
+Constitution alignment engine:
+```js
+import { evaluateConstitutionAlignment } from 'swarm-protocol';
+
+const constitution = evaluateConstitutionAlignment({
+  truthReport,
+  humanityReport,
+  curiosityAgenda
 });
 ```
 

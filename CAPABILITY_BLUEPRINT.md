@@ -182,6 +182,12 @@ Objective: enforce pro-humanity execution standards by scoring likely human bene
 - [x] Deterministic `aligned`/`review_required`/`blocked` posture decisions.
 - [x] Mitigation/safeguard task generation for non-aligned items.
 
+### 29) Constitution Alignment Engine
+Objective: continuously score operations against the core constitution: truth-seeking, pro-humanity, and curiosity.
+- [x] Principle-scoring model with configurable weights.
+- [x] Compliance-tier decisions (`aligned`, `caution`, `non_compliant`) and blocking reasons.
+- [x] Constitution remediation task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -211,3 +217,4 @@ Objective: enforce pro-humanity execution standards by scoring likely human bene
 26. Truth-Seeking Hypothesis Engine
 27. Curiosity Agenda Planner
 28. Humanity Impact Guardrail
+29. Constitution Alignment Engine
