@@ -5,3 +5,4 @@ node_modules/
 
 cognition-core/reports/
 cognition-core/memory-graph.dot
+swarm-protocol/state/
