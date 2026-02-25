@@ -35,6 +35,7 @@ Adds federation trust primitives for signed envelopes, tenant boundaries, and mu
 Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
+Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -261,6 +262,21 @@ const mission = compileMissionPlan({
 });
 
 const workflow = missionPlanToWorkflowDefinition(mission);
+```
+
+Mission readiness preflight:
+```js
+import { assessMissionReadiness, buildReadinessTasks } from 'swarm-protocol';
+
+const readiness = assessMissionReadiness({
+  missionPlan: mission,
+  agents: registry.listAgents(),
+  skills: marketplace.listSkills(),
+  sandboxProfiles: sandbox.listProfiles(),
+  maxEstimatedCostUsd: 40
+});
+
+const remediationTasks = buildReadinessTasks(readiness);
 ```
 
 Durability + live registry example:

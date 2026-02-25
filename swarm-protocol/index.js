@@ -21,3 +21,4 @@ export * from './src/federation-trust.js';
 export * from './src/recovery-supervisor.js';
 export * from './src/drift-sentinel.js';
 export * from './src/mission-planner.js';
+export * from './src/mission-readiness.js';

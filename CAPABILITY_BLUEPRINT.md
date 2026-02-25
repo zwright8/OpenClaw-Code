@@ -122,6 +122,12 @@ Objective: compile high-level goals into execution-ready workflow plans.
 - [x] Risk, approval, and sandbox hint propagation into plan nodes.
 - [x] Conversion to schema-valid workflow and task request artifacts.
 
+### 19) Mission Readiness Gate
+Objective: preflight mission plans against real execution constraints before launch.
+- [x] Capability coverage analysis across healthy agents and active skills.
+- [x] Approval and sandbox policy checks per mission node.
+- [x] Readiness scoring with remediation task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -141,3 +147,4 @@ Objective: compile high-level goals into execution-ready workflow plans.
 16. Autonomous Recovery Supervisor
 17. Capability Drift Sentinel
 18. Autonomous Mission Planner
+19. Mission Readiness Gate
