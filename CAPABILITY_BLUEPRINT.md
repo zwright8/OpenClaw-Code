@@ -152,6 +152,12 @@ Objective: run what-if planning scenarios over mission portfolios and recommend 
 - [x] Comparative scoring against baseline with lane delta outputs.
 - [x] Scenario adoption and follow-up task generation.
 
+### 24) Autonomous Approval Engine
+Objective: eliminate human approval bottlenecks with machine approval decisions and auditable evidence.
+- [x] `bypass_all` and `policy_assisted` approval-bypass modes.
+- [x] Queue-level auto-approval processing and follow-up task generation.
+- [x] Deterministic autonomous approval audit payloads.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -176,3 +182,4 @@ Objective: run what-if planning scenarios over mission portfolios and recommend 
 21. Command Briefing Center
 22. Mission Portfolio Manager
 23. Mission Forecast Lab
+24. Autonomous Approval Engine

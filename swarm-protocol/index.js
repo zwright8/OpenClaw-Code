@@ -26,3 +26,4 @@ export * from './src/execution-governor.js';
 export * from './src/command-briefing.js';
 export * from './src/mission-portfolio.js';
 export * from './src/mission-forecast.js';
+export * from './src/autonomous-approval.js';

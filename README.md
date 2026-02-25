@@ -40,6 +40,7 @@ Adds an adaptive execution governor that throttles/halts dispatch based on multi
 Adds a command briefing center that generates unified ops summaries and action tasks.
 Adds a mission portfolio manager that schedules what to execute now vs next vs hold.
 Adds a mission forecast lab for what-if scenario planning over portfolio strategy.
+Adds an autonomous approval engine to bypass human review gates with auditable decisions.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -329,6 +330,15 @@ const forecast = forecastMissionPortfolioScenarios({
   missions: missionCandidates,
   scenarios: scenarioCandidates
 }, { maxConcurrentMissions: 3 });
+```
+
+Autonomous approval engine:
+```js
+import { createAutonomousApprovalPolicy } from 'swarm-protocol';
+
+const approvalPolicy = createAutonomousApprovalPolicy({
+  mode: 'bypass_all'
+});
 ```
 
 Durability + live registry example:
