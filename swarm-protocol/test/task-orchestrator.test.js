@@ -5,6 +5,7 @@ import os from 'os';
 import path from 'path';
 import {
     FileTaskStore,
+    SignedAuditLog,
     TaskOrchestrator,
     TaskOrchestratorError,
     buildTaskReceipt,
@@ -474,4 +475,43 @@ test('dispatch policy can sanitize request before dispatch', async () => {
     assert.equal(sent.message.task, 'Sanitized task content');
     assert.equal(task.request.task, 'Sanitized task content');
     assert.equal(task.policy.redactions.length, 1);
+});
+
+test('audit log records signed lifecycle entries', async () => {
+    const auditLog = new SignedAuditLog({
+        secret: 'audit-secret',
+        now: () => 77_000
+    });
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        auditLog
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-audit',
+        task: 'Track audit lifecycle'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-audit',
+        accepted: true,
+        timestamp: 77_010
+    }));
+
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-audit',
+        status: 'success',
+        output: 'done',
+        completedAt: 77_050
+    }));
+
+    const entries = auditLog.listEntries();
+    assert.ok(entries.length >= 4);
+    assert.equal(auditLog.verifyChain(entries).ok, true);
 });

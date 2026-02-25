@@ -107,6 +107,7 @@ export class TaskOrchestrator {
         routeTask = null,
         dispatchPolicy = null,
         approvalPolicy = null,
+        auditLog = null,
         store = null,
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
@@ -130,6 +131,7 @@ export class TaskOrchestrator {
         this.routeTask = typeof routeTask === 'function' ? routeTask : null;
         this.dispatchPolicy = typeof dispatchPolicy === 'function' ? dispatchPolicy : null;
         this.approvalPolicy = typeof approvalPolicy === 'function' ? approvalPolicy : null;
+        this.auditLog = auditLog && typeof auditLog.append === 'function' ? auditLog : null;
         this.store = store && typeof store === 'object' ? store : null;
         this.defaultTimeoutMs = Number.isFinite(defaultTimeoutMs) && defaultTimeoutMs > 0
             ? Number(defaultTimeoutMs)
@@ -207,6 +209,23 @@ export class TaskOrchestrator {
         );
     }
 
+    _emitAudit(eventType, payload, at = safeNow(this.now)) {
+        if (!this.auditLog) return;
+
+        try {
+            this.auditLog.append({
+                eventType,
+                at,
+                actor: this.localAgentId,
+                payload: clone(payload)
+            });
+        } catch (error) {
+            this.logger.warn?.(
+                `[Swarm] Audit append failed (${eventType}): ${error.message}`
+            );
+        }
+    }
+
     async flush() {
         await this._persistenceQueue;
     }
@@ -269,6 +288,11 @@ export class TaskOrchestrator {
         if (this.dispatchPolicy) {
             const decision = await this.dispatchPolicy(request);
             if (decision === false) {
+                this._emitAudit('task_policy_denied', {
+                    taskId: request.id,
+                    target: request.target,
+                    reasons: [{ code: 'policy_denied', reason: 'dispatch_policy_returned_false' }]
+                }, request.createdAt);
                 throw new TaskOrchestratorError(
                     'POLICY_DENIED',
                     `Task ${request.id} denied by dispatch policy`,
@@ -302,6 +326,11 @@ export class TaskOrchestrator {
                 };
 
                 if (!allowed) {
+                    this._emitAudit('task_policy_denied', {
+                        taskId: request.id,
+                        target: request.target,
+                        reasons
+                    }, request.createdAt);
                     throw new TaskOrchestratorError(
                         'POLICY_DENIED',
                         `Task ${request.id} denied by dispatch policy`,
@@ -368,8 +397,20 @@ export class TaskOrchestrator {
 
         this.tasks.set(record.taskId, record);
         this._persistRecord(record);
+        this._emitAudit('task_created', {
+            taskId: record.taskId,
+            target: record.target,
+            status: record.status,
+            priority: record.request.priority,
+            policyRedactions: record.policy?.redactions?.length || 0
+        }, record.createdAt);
 
         if (record.status === APPROVAL_PENDING_STATUS) {
+            this._emitAudit('task_awaiting_approval', {
+                taskId: record.taskId,
+                reviewerGroup: record.approval?.reviewerGroup || null,
+                reason: record.approval?.reason || null
+            }, record.updatedAt);
             return this.getTask(record.taskId);
         }
 
@@ -417,6 +458,11 @@ export class TaskOrchestrator {
                 reason: decision.reason || 'denied'
             });
             this._persistRecord(record);
+            this._emitAudit('task_approval_denied', {
+                taskId: record.taskId,
+                reviewer: record.approval.reviewer,
+                reason: record.approval.reviewReason
+            }, reviewedAt);
             return this.getTask(taskId);
         }
 
@@ -426,6 +472,11 @@ export class TaskOrchestrator {
             event: 'approval_approved'
         });
         this._persistRecord(record);
+        this._emitAudit('task_approval_approved', {
+            taskId: record.taskId,
+            reviewer: record.approval.reviewer,
+            reason: record.approval.reviewReason
+        }, reviewedAt);
 
         try {
             await this._sendTask(record, 'approval_release');
@@ -454,6 +505,12 @@ export class TaskOrchestrator {
             reason,
             attempt: record.attempts
         });
+        this._emitAudit('task_send_attempt', {
+            taskId: record.taskId,
+            target: record.target,
+            reason,
+            attempt: record.attempts
+        }, sendAt);
 
         try {
             await this.transport.send(record.target, record.request);
@@ -467,6 +524,11 @@ export class TaskOrchestrator {
                 attempt: record.attempts
             });
             this._persistRecord(record);
+            this._emitAudit('task_send_success', {
+                taskId: record.taskId,
+                target: record.target,
+                attempt: record.attempts
+            }, record.updatedAt);
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
             record.lastError = message;
@@ -478,6 +540,12 @@ export class TaskOrchestrator {
                 error: message
             });
             this._persistRecord(record);
+            this._emitAudit('task_send_failed', {
+                taskId: record.taskId,
+                target: record.target,
+                attempt: record.attempts,
+                error: message
+            }, record.updatedAt);
             throw new TaskOrchestratorError('SEND_FAILED', message, {
                 taskId: record.taskId,
                 target: record.target,
@@ -505,6 +573,11 @@ export class TaskOrchestrator {
                 reason: receipt.reason || 'rejected_by_worker'
             });
             this._persistRecord(record);
+            this._emitAudit('task_rejected', {
+                taskId: record.taskId,
+                from: receipt.from,
+                reason: receipt.reason || 'rejected_by_worker'
+            }, receipt.timestamp);
             return true;
         }
 
@@ -518,6 +591,11 @@ export class TaskOrchestrator {
             etaMs: receipt.etaMs ?? null
         });
         this._persistRecord(record);
+        this._emitAudit('task_acknowledged', {
+            taskId: record.taskId,
+            from: receipt.from,
+            etaMs: receipt.etaMs ?? null
+        }, receipt.timestamp);
         return true;
     }
 
@@ -545,6 +623,11 @@ export class TaskOrchestrator {
             resultStatus: result.status
         });
         this._persistRecord(record);
+        this._emitAudit('task_result', {
+            taskId: record.taskId,
+            from: result.from,
+            status: result.status
+        }, result.completedAt);
 
         return true;
     }
@@ -570,6 +653,11 @@ export class TaskOrchestrator {
                 record.closedAt = nowMs;
                 record.history.push({ at: nowMs, event: 'timed_out' });
                 this._persistRecord(record);
+                this._emitAudit('task_timed_out', {
+                    taskId: record.taskId,
+                    target: record.target,
+                    attempts: record.attempts
+                }, nowMs);
                 summary.timedOut++;
                 continue;
             }
@@ -584,6 +672,11 @@ export class TaskOrchestrator {
                     nextRetryAt: record.nextRetryAt
                 });
                 this._persistRecord(record);
+                this._emitAudit('task_retry_scheduled', {
+                    taskId: record.taskId,
+                    target: record.target,
+                    nextRetryAt: record.nextRetryAt
+                }, nowMs);
                 summary.scheduledRetries++;
                 continue;
             }
@@ -609,11 +702,21 @@ export class TaskOrchestrator {
                         error: record.lastError
                     });
                     this._persistRecord(record);
+                    this._emitAudit('task_transport_error', {
+                        taskId: record.taskId,
+                        target: record.target,
+                        error: record.lastError
+                    }, nowMs);
                 } else {
                     record.status = 'retry_scheduled';
                     record.nextRetryAt = nowMs + this.retryDelayMs;
                     record.updatedAt = nowMs;
                     this._persistRecord(record);
+                    this._emitAudit('task_retry_scheduled', {
+                        taskId: record.taskId,
+                        target: record.target,
+                        nextRetryAt: record.nextRetryAt
+                    }, nowMs);
                 }
             }
         }

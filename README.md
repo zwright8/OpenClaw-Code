@@ -21,6 +21,7 @@ Workflow telemetry includes per-node durations and critical path analysis.
 Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with migration helpers and read/write validation hooks.
 Adds a deterministic simulation benchmark harness for orchestration stress tests and CI regression gating.
 Adds pre-dispatch safety policies with explicit deny decisions and sensitive payload redaction.
+Adds hash-chained signed audit logging utilities for post-incident verification.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -117,6 +118,20 @@ const orchestrator = new TaskOrchestrator({
   transport,
   dispatchPolicy
 });
+```
+
+Signed audit log utilities:
+```js
+import { SignedAuditLog } from 'swarm-protocol';
+
+const auditLog = new SignedAuditLog({ secret: process.env.SWARM_AUDIT_SECRET });
+auditLog.append({
+  eventType: 'task_created',
+  actor: 'agent:main',
+  payload: { taskId: '...' }
+});
+
+const verification = auditLog.verifyChain();
 ```
 
 Durability + live registry example:

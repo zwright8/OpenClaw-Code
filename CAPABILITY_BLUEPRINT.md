@@ -54,7 +54,7 @@ Objective: stress-test routing, orchestration, and failure behavior.
 Objective: prevent unsafe or non-compliant actions by default.
 - [x] Pre-dispatch policy checks with explicit denials.
 - [x] Redaction/sanitization filters for sensitive payloads.
-- [ ] Signed audit logs for post-incident review.
+- [x] Signed audit logs for post-incident review.
 
 ### 8) Cost/Latency Optimizer
 Objective: dynamically optimize execution quality vs cost vs speed.
