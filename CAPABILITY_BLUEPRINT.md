@@ -140,6 +140,12 @@ Objective: provide unified, human-readable operational briefs with executable fo
 - [x] Severity/headline synthesis with ranked concerns.
 - [x] Markdown + task-request outputs for human and autonomous consumers.
 
+### 22) Mission Portfolio Manager
+Objective: prioritize and schedule multiple missions under capacity constraints using impact, urgency, readiness, and risk.
+- [x] Deterministic portfolio scoring with transparent breakdowns.
+- [x] Lane assignment (`now`/`next`/`hold`) with capacity-aware deferral.
+- [x] Portfolio launch + unblock task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -162,3 +168,4 @@ Objective: provide unified, human-readable operational briefs with executable fo
 19. Mission Readiness Gate
 20. Adaptive Execution Governor
 21. Command Briefing Center
+22. Mission Portfolio Manager

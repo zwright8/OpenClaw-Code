@@ -24,3 +24,4 @@ export * from './src/mission-planner.js';
 export * from './src/mission-readiness.js';
 export * from './src/execution-governor.js';
 export * from './src/command-briefing.js';
+export * from './src/mission-portfolio.js';

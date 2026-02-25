@@ -38,6 +38,7 @@ Adds an autonomous mission planner that compiles high-level goals into validated
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
 Adds an adaptive execution governor that throttles/halts dispatch based on multi-signal risk.
 Adds a command briefing center that generates unified ops summaries and action tasks.
+Adds a mission portfolio manager that schedules what to execute now vs next vs hold.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -306,6 +307,17 @@ const brief = buildCommandBrief({
 });
 
 const markdownBrief = commandBriefToMarkdown(brief);
+```
+
+Mission portfolio manager:
+```js
+import { planMissionPortfolio, portfolioToTaskRequests } from 'swarm-protocol';
+
+const portfolio = planMissionPortfolio({
+  missions: missionCandidates
+}, { maxConcurrentMissions: 3 });
+
+const launchTasks = portfolioToTaskRequests(portfolio);
 ```
 
 Durability + live registry example:
