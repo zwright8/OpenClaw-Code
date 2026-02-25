@@ -338,6 +338,12 @@ Objective: convert governance intent into executable, conflict-aware rule sets t
 - [x] Conflict detection across overlapping rules with contradictory policy decisions.
 - [x] Policy activation, conflict resolution, test coverage, and changelog recommendation task generation.
 
+### 55) Compliance Standard Mapper
+Objective: map operational controls to compliance requirements and surface mandatory obligation gaps early.
+- [x] Control/standard normalization with requirement-level coverage and effectiveness scoring.
+- [x] Requirement mapping status (`covered`/`partial`/`missing`) with mandatory-gap detection.
+- [x] Mandatory remediation, evidence collection, validation scheduling, and matrix publication task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -393,3 +399,4 @@ Objective: convert governance intent into executable, conflict-aware rule sets t
 52. Human Oversight Workbench
 53. Operator Decision Replay Studio
 54. Governance Rule Compiler
+55. Compliance Standard Mapper

@@ -71,6 +71,7 @@ Adds an ethical budget optimizer to pick the highest-impact initiative portfolio
 Adds a human oversight workbench to prioritize interventions and operator load balancing in real time.
 Adds an operator decision replay studio to reconstruct decision chains and audit rationale/policy evidence.
 Adds a governance rule compiler to turn policy intent into executable conflict-aware rule sets.
+Adds a compliance standard mapper to score requirement coverage and expose mandatory control gaps.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -697,6 +698,16 @@ import { compileGovernanceRules } from 'swarm-protocol';
 
 const compiledPolicy = compileGovernanceRules({
   intents
+});
+```
+
+Compliance standard mapper:
+```js
+import { mapComplianceStandards } from 'swarm-protocol';
+
+const complianceReport = mapComplianceStandards({
+  controls,
+  standards
 });
 ```
 

@@ -25,7 +25,7 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 52. Human Oversight Workbench - Improve operator intervention speed and clarity.
 - [x] 53. Operator Decision Replay Studio - Reconstruct and audit operator decision chains.
 - [x] 54. Governance Rule Compiler - Convert governance intent into executable policy.
-- [ ] 55. Compliance Standard Mapper - Map controls to standards and obligations.
+- [x] 55. Compliance Standard Mapper - Map controls to standards and obligations.
 - [ ] 56. Jurisdictional Policy Router - Apply correct rules per region/jurisdiction.
 - [ ] 57. Incident Communication Synthesizer - Generate clear incident updates for humans.
 - [ ] 58. Crisis Coordination Mesh - Coordinate multi-team response during emergencies.
