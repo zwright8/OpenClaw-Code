@@ -50,26 +50,26 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 77. Consensus Formation Facilitator - Accelerate consensus-building across teams.
 - [x] 78. Debate Mediator and Fact Checker - Mediate disputes with evidence grounding.
 - [x] 79. Uncertainty Communication Composer - Communicate uncertainty without distortion.
-- [ ] 80. Explainable Recommendation Layer - Make recommendations transparent and auditable.
-- [ ] 81. Goal Decomposition Superplanner - Break mega-goals into executable plans.
-- [ ] 82. Execution Autonomy Dial - Tune autonomy level dynamically by risk.
-- [ ] 83. Self-Reflection Error Taxonomy - Classify recurring reasoning failures.
-- [ ] 84. Cognitive Drift Corrector - Correct gradual strategic drift.
-- [ ] 85. Long-Term Memory Consolidator - Merge episodic memory into durable intelligence.
-- [ ] 86. Skill Discovery Auto-Installer - Discover and integrate new capabilities automatically.
-- [ ] 87. Tool Reliability Autopatcher - Repair flaky tools with automated patching loops.
-- [ ] 88. API Compatibility Adapter - Bridge breaking API changes safely.
-- [ ] 89. Workflow Template Synthesizer - Generate reusable workflow templates.
-- [ ] 90. Agent Team Topology Optimizer - Optimize team structure by mission type.
-- [ ] 91. Multi-Agent Negotiation Protocol - Resolve planning/resource conflicts across agents.
-- [ ] 92. Cross-Org Federation Coordinator - Coordinate efforts across organizations.
-- [ ] 93. Privacy-Preserving Collaboration Layer - Enable useful collaboration with strict privacy.
-- [ ] 94. Secure Data Clean Room Broker - Broker safe data exchange environments.
-- [ ] 95. Cryptographic Attestation Mesh - Attest to integrity of actions and artifacts.
-- [ ] 96. Zero-Trust Action Gatekeeper - Enforce least privilege by default.
-- [ ] 97. Economic Cost-Benefit Simulator - Forecast economic impacts of interventions.
-- [ ] 98. Funding Allocation Advisor - Recommend where funds do most good.
-- [ ] 99. Supply Chain Resilience Planner - Reduce fragility in critical supply chains.
+- [x] 80. Explainable Recommendation Layer - Make recommendations transparent and auditable.
+- [x] 81. Goal Decomposition Superplanner - Break mega-goals into executable plans.
+- [x] 82. Execution Autonomy Dial - Tune autonomy level dynamically by risk.
+- [x] 83. Self-Reflection Error Taxonomy - Classify recurring reasoning failures.
+- [x] 84. Cognitive Drift Corrector - Correct gradual strategic drift.
+- [x] 85. Long-Term Memory Consolidator - Merge episodic memory into durable intelligence.
+- [x] 86. Skill Discovery Auto-Installer - Discover and integrate new capabilities automatically.
+- [x] 87. Tool Reliability Autopatcher - Repair flaky tools with automated patching loops.
+- [x] 88. API Compatibility Adapter - Bridge breaking API changes safely.
+- [x] 89. Workflow Template Synthesizer - Generate reusable workflow templates.
+- [x] 90. Agent Team Topology Optimizer - Optimize team structure by mission type.
+- [x] 91. Multi-Agent Negotiation Protocol - Resolve planning/resource conflicts across agents.
+- [x] 92. Cross-Org Federation Coordinator - Coordinate efforts across organizations.
+- [x] 93. Privacy-Preserving Collaboration Layer - Enable useful collaboration with strict privacy.
+- [x] 94. Secure Data Clean Room Broker - Broker safe data exchange environments.
+- [x] 95. Cryptographic Attestation Mesh - Attest to integrity of actions and artifacts.
+- [x] 96. Zero-Trust Action Gatekeeper - Enforce least privilege by default.
+- [x] 97. Economic Cost-Benefit Simulator - Forecast economic impacts of interventions.
+- [x] 98. Funding Allocation Advisor - Recommend where funds do most good.
+- [x] 99. Supply Chain Resilience Planner - Reduce fragility in critical supply chains.
 - [x] 100. Infrastructure Capacity Forecaster - Anticipate infrastructure bottlenecks.
 - [x] 101. Energy Efficiency Optimizer - Reduce energy cost and waste.
 - [x] 102. Carbon and Sustainability Guard - Constrain carbon impact in decisions.
