@@ -35,7 +35,7 @@ Adds a drift sentinel for early regression detection across world-state, marketp
 
 ## Blueprint
 Long-term roadmap lives in:
-- [CAPABILITY_BLUEPRINT.md](/Users/zacharywright/Documents/GitHub/OpenClaw-Code/CAPABILITY_BLUEPRINT.md)
+- [CAPABILITY_BLUEPRINT.md](/CAPABILITY_BLUEPRINT.md)
 
 ## Quick Start
 
