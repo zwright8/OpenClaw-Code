@@ -46,10 +46,10 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 73. Bias Detection and Mitigation Loop - Detect and correct harmful bias patterns.
 - [x] 74. Red Team Auto-Challenge Engine - Auto-generate red-team probes.
 - [x] 75. Value Alignment Stress Tester - Stress-test constitutional alignment under pressure.
-- [ ] 76. Social Simulation Sandbox - Simulate social dynamics before deployment.
-- [ ] 77. Consensus Formation Facilitator - Accelerate consensus-building across teams.
-- [ ] 78. Debate Mediator and Fact Checker - Mediate disputes with evidence grounding.
-- [ ] 79. Uncertainty Communication Composer - Communicate uncertainty without distortion.
+- [x] 76. Social Simulation Sandbox - Simulate social dynamics before deployment.
+- [x] 77. Consensus Formation Facilitator - Accelerate consensus-building across teams.
+- [x] 78. Debate Mediator and Fact Checker - Mediate disputes with evidence grounding.
+- [x] 79. Uncertainty Communication Composer - Communicate uncertainty without distortion.
 - [ ] 80. Explainable Recommendation Layer - Make recommendations transparent and auditable.
 - [ ] 81. Goal Decomposition Superplanner - Break mega-goals into executable plans.
 - [ ] 82. Execution Autonomy Dial - Tune autonomy level dynamically by risk.

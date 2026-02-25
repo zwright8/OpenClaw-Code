@@ -92,6 +92,10 @@ Adds a data quality sentinel to monitor dataset freshness, validity, drift, and 
 Adds a bias mitigation loop to track disparity risk and trigger remediation before harmful model deployment.
 Adds a red-team auto-challenge engine to prioritize adversarial probe coverage across high-risk surfaces.
 Adds a value-alignment stress tester to evaluate constitutional resilience under high-pressure scenarios.
+Adds a social simulation sandbox to test intervention dynamics and emergent social risk before deployment.
+Adds a consensus formation facilitator to accelerate agreements while preserving dissent and representation quality.
+Adds a debate mediator/fact checker to ground dispute resolution in verifiable evidence.
+Adds an uncertainty communication composer to improve confidence calibration and avoid misleading certainty.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -929,6 +933,46 @@ import { runValueAlignmentStressTest } from 'swarm-protocol';
 
 const alignmentStress = runValueAlignmentStressTest({
   scenarios
+});
+```
+
+Social simulation sandbox:
+```js
+import { simulateSocialDynamicsSandbox } from 'swarm-protocol';
+
+const socialSimulation = simulateSocialDynamicsSandbox({
+  scenarios,
+  capacity
+});
+```
+
+Consensus formation facilitator:
+```js
+import { facilitateConsensusFormation } from 'swarm-protocol';
+
+const consensus = facilitateConsensusFormation({
+  proposals,
+  capacity
+});
+```
+
+Debate mediator and fact checker:
+```js
+import { mediateDebateAndFactCheck } from 'swarm-protocol';
+
+const debate = mediateDebateAndFactCheck({
+  debates,
+  capacity
+});
+```
+
+Uncertainty communication composer:
+```js
+import { composeUncertaintyCommunication } from 'swarm-protocol';
+
+const uncertaintyComms = composeUncertaintyCommunication({
+  findings,
+  capacity
 });
 ```
 

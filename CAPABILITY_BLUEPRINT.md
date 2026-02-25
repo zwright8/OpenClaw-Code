@@ -464,6 +464,30 @@ Objective: stress-test constitutional alignment under operational pressure and i
 - [x] Alignment tiering (`stable`/`strained`/`unstable`) with drift-risk posture decisions.
 - [x] Alignment drills, safeguard strengthening, override-control tightening, and stress-report task generation.
 
+### 76) Social Simulation Sandbox
+Objective: simulate social dynamics of interventions before deployment to reduce unintended harm.
+- [x] Scenario scoring across interaction density, harm risk, inclusion, trust, and model readiness signals.
+- [x] Capacity-aware simulation lane planning (`now`/`next`/`hold`) with residual risk and quality pressure tracking.
+- [x] Simulation execution, harm-mitigation, assumption validation, and sandbox briefing task generation.
+
+### 77) Consensus Formation Facilitator
+Objective: accelerate cross-stakeholder consensus while preserving dissent visibility and representation equity.
+- [x] Proposal scoring across polarization risk, cross-group trust, facilitation capacity, and agreement impact.
+- [x] Consensus lane planning with blocker detection from residual gap, risk concentration, and trust deficits.
+- [x] Consensus-cycle launch, blocker resolution, dissent capture, and consensus brief task generation.
+
+### 78) Debate Mediator and Fact Checker
+Objective: mediate high-stakes debates with evidence-grounded conflict resolution and transparent fact verification.
+- [x] Debate scoring across misinformation risk, evidence quality, participant trust, and resolution efficiency.
+- [x] Capacity-aware mediation lane planning with unresolved-risk and quality-gap detection.
+- [x] Debate mediation, fact-conflict resolution, evidence verification, and outcome report task generation.
+
+### 79) Uncertainty Communication Composer
+Objective: communicate uncertain findings clearly without overstating confidence or inducing avoidable confusion.
+- [x] Finding-level scoring across misinterpretation risk, clarity quality, audience trust, and decision impact.
+- [x] Communication lane planning with residual gap thresholds and trust/quality alerting.
+- [x] Uncertainty guidance composition, confidence calibration, risk mitigation, and digest publication task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -540,3 +564,7 @@ Objective: stress-test constitutional alignment under operational pressure and i
 73. Bias Detection and Mitigation Loop
 74. Red Team Auto-Challenge Engine
 75. Value Alignment Stress Tester
+76. Social Simulation Sandbox
+77. Consensus Formation Facilitator
+78. Debate Mediator and Fact Checker
+79. Uncertainty Communication Composer
