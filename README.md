@@ -59,6 +59,7 @@ Adds an adversarial robustness fuzzer to stress defenses and generate hardening 
 Adds an explainability narrative generator to convert complex decisions into clear human-readable reasoning.
 Adds an evidence provenance graph to score claim trust and track support/contradiction lineage.
 Adds a counterfactual policy lab to compare governance variants before rollout.
+Adds a policy diff simulator to quantify pairwise policy deltas and convergence opportunities.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -558,6 +559,17 @@ Counterfactual policy lab:
 import { runCounterfactualPolicyLab } from 'swarm-protocol';
 
 const policyLab = runCounterfactualPolicyLab({
+  baselinePolicy,
+  variants,
+  context
+});
+```
+
+Policy diff simulator:
+```js
+import { simulatePolicyDiffs } from 'swarm-protocol';
+
+const policyDiffs = simulatePolicyDiffs({
   baselinePolicy,
   variants,
   context

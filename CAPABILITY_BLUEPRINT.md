@@ -266,6 +266,12 @@ Objective: test policy alternatives against simulated outcomes before committing
 - [x] Variant ranking with baseline deltas and uncertainty-aware tradeoff analysis.
 - [x] Adopt/pilot/investigate recommendation task generation for policy decision workflows.
 
+### 43) Policy Diff Simulator
+Objective: quantify impact deltas between policy variants and expose the largest governance tradeoffs.
+- [x] Pairwise variant diff matrix across overall score, risk, safety, throughput, equity, trust, and parameter distance.
+- [x] Dominance ranking to identify top policy candidates under multi-objective scoring.
+- [x] Alignment/gap-investigation/convergence task generation from diff analysis.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -309,3 +315,4 @@ Objective: test policy alternatives against simulated outcomes before committing
 40. Explainability Narrative Generator
 41. Evidence Provenance Graph
 42. Counterfactual Policy Lab
+43. Policy Diff Simulator

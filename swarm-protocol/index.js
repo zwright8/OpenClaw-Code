@@ -45,3 +45,4 @@ export * from './src/adversarial-fuzzer.js';
 export * from './src/explainability-narrative.js';
 export * from './src/evidence-provenance.js';
 export * from './src/counterfactual-policy-lab.js';
+export * from './src/policy-diff-simulator.js';

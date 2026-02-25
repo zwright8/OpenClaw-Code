@@ -13,7 +13,7 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 40. Explainability Narrative Generator - Produce understandable reasons for complex decisions.
 - [x] 41. Evidence Provenance Graph - Track lineage and trustworthiness of every claim.
 - [x] 42. Counterfactual Policy Lab - Test policy alternatives against simulated outcomes.
-- [ ] 43. Policy Diff Simulator - Measure impact deltas between policy variants.
+- [x] 43. Policy Diff Simulator - Measure impact deltas between policy variants.
 - [ ] 44. Value Conflict Resolver - Resolve conflicts between competing ethical objectives.
 - [ ] 45. Multi-Stakeholder Preference Modeler - Model diverse stakeholder priorities.
 - [ ] 46. Consent and Agency Mapper - Ensure plans respect human consent boundaries.
