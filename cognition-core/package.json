@@ -4,6 +4,7 @@
   "description": "Agent introspection and telemetry analysis",
   "main": "index.js",
   "scripts": {
+    "build": "node --test",
     "analyze": "node scripts/analyze-history.mjs --days 7",
     "analyze:quick": "node scripts/analyze-history.mjs --days 1",
     "plan:tasks": "node scripts/plan-remediation-tasks.mjs --report reports/cognition-report.json --out reports/remediation-tasks.json",
