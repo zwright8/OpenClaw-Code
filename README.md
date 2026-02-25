@@ -39,6 +39,7 @@ Adds a mission readiness gate that preflights plans and emits actionable remedia
 Adds an adaptive execution governor that throttles/halts dispatch based on multi-signal risk.
 Adds a command briefing center that generates unified ops summaries and action tasks.
 Adds a mission portfolio manager that schedules what to execute now vs next vs hold.
+Adds a mission forecast lab for what-if scenario planning over portfolio strategy.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -318,6 +319,16 @@ const portfolio = planMissionPortfolio({
 }, { maxConcurrentMissions: 3 });
 
 const launchTasks = portfolioToTaskRequests(portfolio);
+```
+
+Mission forecast lab:
+```js
+import { forecastMissionPortfolioScenarios } from 'swarm-protocol';
+
+const forecast = forecastMissionPortfolioScenarios({
+  missions: missionCandidates,
+  scenarios: scenarioCandidates
+}, { maxConcurrentMissions: 3 });
 ```
 
 Durability + live registry example:

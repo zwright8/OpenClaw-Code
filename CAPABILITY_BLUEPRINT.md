@@ -146,6 +146,12 @@ Objective: prioritize and schedule multiple missions under capacity constraints 
 - [x] Lane assignment (`now`/`next`/`hold`) with capacity-aware deferral.
 - [x] Portfolio launch + unblock task generation.
 
+### 23) Mission Forecast Lab
+Objective: run what-if planning scenarios over mission portfolios and recommend the best operating configuration.
+- [x] Scenario override engine (readiness/risk/priority/capacity).
+- [x] Comparative scoring against baseline with lane delta outputs.
+- [x] Scenario adoption and follow-up task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -169,3 +175,4 @@ Objective: prioritize and schedule multiple missions under capacity constraints 
 20. Adaptive Execution Governor
 21. Command Briefing Center
 22. Mission Portfolio Manager
+23. Mission Forecast Lab
