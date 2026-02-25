@@ -116,6 +116,18 @@ Objective: detect quality regressions across memory, routing, and skills before 
 - [x] Prioritized drift alert generation.
 - [x] Mitigation task generation for closed-loop recovery.
 
+### 18) Circuit Breaker
+Objective: prevent cascading failures by isolating degraded agents.
+- [x] Per-agent circuit state (closed → open → half-open → closed).
+- [x] Configurable failure thresholds and reset timeouts.
+- [x] Route filter integration for automatic agent exclusion.
+
+### 19) Event Bus
+Objective: decouple swarm components with typed pub-sub messaging.
+- [x] Channel-based subscriptions with wildcard matching.
+- [x] Sync and async event delivery with error isolation.
+- [x] Event history and subscription management.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -134,3 +146,5 @@ Objective: detect quality regressions across memory, routing, and skills before 
 15. Federation & Trust Layer
 16. Autonomous Recovery Supervisor
 17. Capability Drift Sentinel
+18. Circuit Breaker
+19. Event Bus

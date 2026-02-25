@@ -32,6 +32,8 @@ Adds collaboration UX primitives for timelines, decision explanations, and audit
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
 Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
+Adds a circuit breaker registry for per-agent failure isolation and automatic half-open recovery.
+Adds an event bus for decoupled pub-sub communication between swarm components.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -246,6 +248,46 @@ import { DriftSentinel } from 'swarm-protocol';
 const sentinel = new DriftSentinel();
 sentinel.setBaseline(baselineSnapshot);
 const driftReport = sentinel.evaluate(currentSnapshot);
+```
+
+Circuit breaker:
+```js
+import { CircuitBreakerRegistry } from 'swarm-protocol';
+
+const breakers = new CircuitBreakerRegistry({
+  failureThreshold: 5,
+  resetTimeoutMs: 30_000,
+  halfOpenMaxProbes: 2
+});
+
+// Record outcomes from task dispatch
+breakers.recordFailure('agent:flaky');
+breakers.recordSuccess('agent:reliable');
+
+// Check before routing
+if (breakers.isAllowed('agent:flaky')) {
+  // dispatch task
+}
+
+// Or use as a route filter
+const filter = breakers.createRouteFilter();
+const eligible = filter(allAgents);
+```
+
+Event bus:
+```js
+import { EventBus } from 'swarm-protocol';
+
+const bus = new EventBus();
+bus.subscribe('task.*', (event) => {
+  console.log(`Task event: ${event.channel}`, event.payload);
+});
+
+bus.emit('task.created', { taskId: '123' });
+bus.emit('task.completed', { taskId: '123', result: 'ok' });
+
+// Async delivery for async handlers
+await bus.emitAsync('task.failed', { taskId: '456', error: 'timeout' });
 ```
 
 Durability + live registry example:
