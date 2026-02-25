@@ -52,8 +52,8 @@ Objective: stress-test routing, orchestration, and failure behavior.
 
 ### 7) Policy/Safety Layer
 Objective: prevent unsafe or non-compliant actions by default.
-- [ ] Pre-dispatch policy checks with explicit denials.
-- [ ] Redaction/sanitization filters for sensitive payloads.
+- [x] Pre-dispatch policy checks with explicit denials.
+- [x] Redaction/sanitization filters for sensitive payloads.
 - [ ] Signed audit logs for post-incident review.
 
 ### 8) Cost/Latency Optimizer

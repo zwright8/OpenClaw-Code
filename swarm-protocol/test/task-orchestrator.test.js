@@ -418,3 +418,60 @@ test('denied approval rejects task without dispatch', async () => {
     assert.equal(denied.status, 'rejected');
     assert.equal(sent.length, 0);
 });
+
+test('dispatch policy can deny task before send', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        dispatchPolicy: () => ({
+            allowed: false,
+            reasons: [{ code: 'blocked_capability', reason: 'destructive_shell' }]
+        })
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-policy',
+            task: 'Attempt blocked action'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'POLICY_DENIED');
+            return true;
+        }
+    );
+
+    assert.equal(orchestrator.getMetrics().total, 0);
+});
+
+test('dispatch policy can sanitize request before dispatch', async () => {
+    let sent = null;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent = { target, message };
+            }
+        },
+        dispatchPolicy: () => ({
+            allowed: true,
+            redactions: [{ path: 'task', pattern: 'api_key_assignment', count: 1 }],
+            taskRequest: {
+                task: 'Sanitized task content',
+                context: { safe: true }
+            }
+        })
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-policy',
+        task: 'Leaked api_key=super-secret'
+    });
+
+    assert.ok(sent);
+    assert.equal(sent.message.task, 'Sanitized task content');
+    assert.equal(task.request.task, 'Sanitized task content');
+    assert.equal(task.policy.redactions.length, 1);
+});

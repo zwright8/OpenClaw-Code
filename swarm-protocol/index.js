@@ -9,3 +9,4 @@ export * from './src/approval-queue.js';
 export * from './src/workflow-engine.js';
 export * from './src/memory-contracts.js';
 export * from './src/simulation-harness.js';
+export * from './src/dispatch-policy.js';

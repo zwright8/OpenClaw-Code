@@ -20,6 +20,7 @@ Includes a workflow DAG engine for dependency-based multi-step execution.
 Workflow telemetry includes per-node durations and critical path analysis.
 Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with migration helpers and read/write validation hooks.
 Adds a deterministic simulation benchmark harness for orchestration stress tests and CI regression gating.
+Adds pre-dispatch safety policies with explicit deny decisions and sensitive payload redaction.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -100,6 +101,22 @@ orchestrator.ingestResult(resultMessage);
 
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
+```
+
+Safety policy integration:
+```js
+import { createDispatchPolicy, TaskOrchestrator } from 'swarm-protocol';
+
+const dispatchPolicy = createDispatchPolicy({
+  blockedRiskTags: ['malware', 'self_harm'],
+  blockedCapabilities: ['destructive_shell']
+});
+
+const orchestrator = new TaskOrchestrator({
+  localAgentId: 'agent:main',
+  transport,
+  dispatchPolicy
+});
 ```
 
 Durability + live registry example:

@@ -105,6 +105,7 @@ export class TaskOrchestrator {
         localAgentId,
         transport,
         routeTask = null,
+        dispatchPolicy = null,
         approvalPolicy = null,
         store = null,
         defaultTimeoutMs = 30_000,
@@ -127,6 +128,7 @@ export class TaskOrchestrator {
         this.localAgentId = localAgentId;
         this.transport = transport;
         this.routeTask = typeof routeTask === 'function' ? routeTask : null;
+        this.dispatchPolicy = typeof dispatchPolicy === 'function' ? dispatchPolicy : null;
         this.approvalPolicy = typeof approvalPolicy === 'function' ? approvalPolicy : null;
         this.store = store && typeof store === 'object' ? store : null;
         this.defaultTimeoutMs = Number.isFinite(defaultTimeoutMs) && defaultTimeoutMs > 0
@@ -252,7 +254,7 @@ export class TaskOrchestrator {
             );
         }
 
-        const request = buildTaskRequest({
+        let request = buildTaskRequest({
             from: this.localAgentId,
             target: resolvedTarget,
             task,
@@ -263,12 +265,62 @@ export class TaskOrchestrator {
             createdAt
         });
 
+        let policyDecision = null;
+        if (this.dispatchPolicy) {
+            const decision = await this.dispatchPolicy(request);
+            if (decision === false) {
+                throw new TaskOrchestratorError(
+                    'POLICY_DENIED',
+                    `Task ${request.id} denied by dispatch policy`,
+                    {
+                        taskId: request.id,
+                        reasons: [{ code: 'policy_denied', reason: 'dispatch_policy_returned_false' }]
+                    }
+                );
+            }
+
+            if (decision && typeof decision === 'object') {
+                const allowed = decision.allowed !== false && decision.decision !== 'deny';
+                const reasons = Array.isArray(decision.reasons) ? decision.reasons : [];
+                const redactions = Array.isArray(decision.redactions) ? decision.redactions : [];
+
+                if (decision.taskRequest && typeof decision.taskRequest === 'object') {
+                    request = buildTaskRequest({
+                        ...request,
+                        ...decision.taskRequest,
+                        id: request.id,
+                        from: request.from,
+                        target: request.target,
+                        createdAt: request.createdAt
+                    });
+                }
+
+                policyDecision = {
+                    allowed,
+                    reasons: clone(reasons),
+                    redactions: clone(redactions)
+                };
+
+                if (!allowed) {
+                    throw new TaskOrchestratorError(
+                        'POLICY_DENIED',
+                        `Task ${request.id} denied by dispatch policy`,
+                        {
+                            taskId: request.id,
+                            reasons
+                        }
+                    );
+                }
+            }
+        }
+
         const record = {
             taskId: request.id,
             target: request.target,
             request,
             status: 'created',
             approval: null,
+            policy: policyDecision,
             attempts: 0,
             maxRetries: this.maxRetries,
             createdAt: request.createdAt,
@@ -283,6 +335,14 @@ export class TaskOrchestrator {
                 { at: request.createdAt, event: 'created' }
             ]
         };
+
+        if (policyDecision?.redactions?.length > 0) {
+            record.history.push({
+                at: request.createdAt,
+                event: 'policy_redacted',
+                redactionCount: policyDecision.redactions.length
+            });
+        }
 
         if (this.approvalPolicy) {
             const decision = await this.approvalPolicy(request);
