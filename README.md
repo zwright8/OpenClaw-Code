@@ -62,6 +62,7 @@ Adds a counterfactual policy lab to compare governance variants before rollout.
 Adds a policy diff simulator to quantify pairwise policy deltas and convergence opportunities.
 Adds a value conflict resolver to balance competing ethical objectives with explicit tradeoff plans.
 Adds a multi-stakeholder preference modeler to quantify consensus and divergence across stakeholder groups.
+Adds a consent and agency mapper to enforce explicit consent scope boundaries and revocation safeguards.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -595,6 +596,17 @@ import { modelStakeholderPreferences } from 'swarm-protocol';
 const preferences = modelStakeholderPreferences({
   stakeholders,
   options
+});
+```
+
+Consent and agency mapper:
+```js
+import { mapConsentAndAgency } from 'swarm-protocol';
+
+const consentMap = mapConsentAndAgency({
+  participants,
+  actions,
+  policy
 });
 ```
 

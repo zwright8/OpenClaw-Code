@@ -48,3 +48,4 @@ export * from './src/counterfactual-policy-lab.js';
 export * from './src/policy-diff-simulator.js';
 export * from './src/value-conflict-resolver.js';
 export * from './src/stakeholder-preference.js';
+export * from './src/consent-agency.js';

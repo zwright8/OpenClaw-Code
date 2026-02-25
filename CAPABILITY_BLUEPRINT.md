@@ -284,6 +284,12 @@ Objective: model diverse stakeholder priorities and expose consensus vs divergen
 - [x] Option consensus scoring with divergence matrix across stakeholder groups.
 - [x] Consensus adoption, divergence mediation, and missing-preference task generation.
 
+### 46) Consent and Agency Mapper
+Objective: ensure planned actions remain inside explicit human consent boundaries and preserve revocation agency.
+- [x] Participant consent normalization across status, scope coverage, notice requirements, and revocation paths.
+- [x] Action-level posture evaluation (`allowed`, `review_required`, `blocked`) against consent policy constraints.
+- [x] Blocking/remediation task generation for unknown consent, denied consent, scope mismatch, and revocation gaps.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -330,3 +336,4 @@ Objective: model diverse stakeholder priorities and expose consensus vs divergen
 43. Policy Diff Simulator
 44. Value Conflict Resolver
 45. Multi-Stakeholder Preference Modeler
+46. Consent and Agency Mapper
