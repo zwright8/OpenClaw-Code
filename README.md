@@ -24,6 +24,7 @@ Adds pre-dispatch safety policies with explicit deny decisions and sensitive pay
 Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
+Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -156,6 +157,17 @@ const routeTask = createOptimizedRouteTaskFn({
   listAgents: () => registry.listAgents(),
   tracker
 });
+```
+
+World-state graph:
+```js
+import { WorldStateGraph } from 'swarm-protocol';
+
+const graph = new WorldStateGraph();
+graph.ingestContracts(memoryContracts);
+
+const snapshot = graph.getSnapshot();
+const diff = graph.diffSnapshots(1700000000000, Date.now());
 ```
 
 Durability + live registry example:

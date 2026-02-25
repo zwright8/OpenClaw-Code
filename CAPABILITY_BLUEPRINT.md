@@ -70,9 +70,9 @@ Objective: one control plane for debugging and operations.
 
 ### 10) Shared World-State Graph
 Objective: consistent, queryable model of what the swarm currently believes.
-- [ ] Cross-contract indexing and entity linking.
-- [ ] Temporal snapshots and diff views.
-- [ ] Confidence scoring for each fact edge.
+- [x] Cross-contract indexing and entity linking.
+- [x] Temporal snapshots and diff views.
+- [x] Confidence scoring for each fact edge.
 
 ### 11) Learning Loop Engine
 Objective: convert incidents/outcomes into automatic policy + prompt improvements.

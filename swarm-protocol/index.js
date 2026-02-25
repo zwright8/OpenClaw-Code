@@ -13,3 +13,4 @@ export * from './src/dispatch-policy.js';
 export * from './src/audit-log.js';
 export * from './src/cost-latency-optimizer.js';
 export * from './src/operator-ops.js';
+export * from './src/world-state-graph.js';
