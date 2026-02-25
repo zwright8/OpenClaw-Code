@@ -58,9 +58,9 @@ Objective: prevent unsafe or non-compliant actions by default.
 
 ### 8) Cost/Latency Optimizer
 Objective: dynamically optimize execution quality vs cost vs speed.
-- [ ] Per-task budget/latency constraints.
-- [ ] Adaptive routing by historical performance.
-- [ ] Explainable optimization decisions.
+- [x] Per-task budget/latency constraints.
+- [x] Adaptive routing by historical performance.
+- [x] Explainable optimization decisions.
 
 ### 9) Unified Operator CLI
 Objective: one control plane for debugging and operations.

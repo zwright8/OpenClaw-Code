@@ -22,6 +22,7 @@ Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with mi
 Adds a deterministic simulation benchmark harness for orchestration stress tests and CI regression gating.
 Adds pre-dispatch safety policies with explicit deny decisions and sensitive payload redaction.
 Adds hash-chained signed audit logging utilities for post-incident verification.
+Adds adaptive cost/latency optimization with explainable agent selection decisions.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -132,6 +133,20 @@ auditLog.append({
 });
 
 const verification = auditLog.verifyChain();
+```
+
+Cost/latency optimization:
+```js
+import {
+  AgentPerformanceTracker,
+  createOptimizedRouteTaskFn
+} from 'swarm-protocol';
+
+const tracker = new AgentPerformanceTracker();
+const routeTask = createOptimizedRouteTaskFn({
+  listAgents: () => registry.listAgents(),
+  tracker
+});
 ```
 
 Durability + live registry example:

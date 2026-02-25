@@ -11,3 +11,4 @@ export * from './src/memory-contracts.js';
 export * from './src/simulation-harness.js';
 export * from './src/dispatch-policy.js';
 export * from './src/audit-log.js';
+export * from './src/cost-latency-optimizer.js';
