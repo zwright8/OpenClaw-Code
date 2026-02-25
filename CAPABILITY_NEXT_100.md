@@ -36,11 +36,11 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 63. Education Support Planner - Build targeted educational support actions.
 - [x] 64. Civic Service Automation Planner - Improve public service delivery workflows.
 - [x] 65. Nonprofit Ops Copilot Bridge - Adapt capabilities for nonprofit operations.
-- [ ] 66. Workforce Upskilling Orchestrator - Plan human skill development pathways.
-- [ ] 67. Collaboration Trust Score Engine - Quantify trust in multi-agent collaboration.
-- [ ] 68. Reputation and Accountability Ledger - Preserve action accountability over time.
-- [ ] 69. Open Knowledge Curator - Curate high-quality open knowledge artifacts.
-- [ ] 70. Scientific Hypothesis Marketplace - Match hypotheses with available evidence resources.
+- [x] 66. Workforce Upskilling Orchestrator - Plan human skill development pathways.
+- [x] 67. Collaboration Trust Score Engine - Quantify trust in multi-agent collaboration.
+- [x] 68. Reputation and Accountability Ledger - Preserve action accountability over time.
+- [x] 69. Open Knowledge Curator - Curate high-quality open knowledge artifacts.
+- [x] 70. Scientific Hypothesis Marketplace - Match hypotheses with available evidence resources.
 - [ ] 71. Experiment Reproducibility Verifier - Verify reproducibility of research outcomes.
 - [ ] 72. Data Quality Sentinel - Continuously monitor data validity and drift.
 - [ ] 73. Bias Detection and Mitigation Loop - Detect and correct harmful bias patterns.

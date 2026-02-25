@@ -404,6 +404,36 @@ Objective: adapt copilot capabilities to nonprofit operational constraints such 
 - [x] Bridge lane planning (`now`/`next`/`hold`) under onboarding, implementation, and governance-review capacity.
 - [x] Copilot deployment, grant-flow configuration, volunteer coordination, and ops-brief task generation.
 
+### 66) Workforce Upskilling Orchestrator
+Objective: orchestrate role-targeted reskilling programs under mentor and budget constraints.
+- [x] Role/program scoring for automation exposure, criticality, attrition risk, and skill-coverage deficits.
+- [x] Capacity-aware upskilling lane planning (`now`/`next`/`hold`) with mentor and budget-gap tracking.
+- [x] Upskilling launch, mentor assignment, budget escalation, and workforce briefing task generation.
+
+### 67) Collaboration Trust Score Engine
+Objective: quantify trust posture across collaborations and trigger remediation before delivery quality degrades.
+- [x] Collaboration trust scoring across reliability, transparency, evidence traceability, incident rate, and response latency.
+- [x] Tier/posture classification with risk-pressure scoring for trust-health monitoring.
+- [x] Trust repair, retrospective scheduling, transparency reinforcement, and dashboard publication task generation.
+
+### 68) Reputation and Accountability Ledger
+Objective: preserve longitudinal accountability by converting action records into actor-level reputation and remediation plans.
+- [x] Event-level accountability scoring with policy, evidence, incident, and latency weighting.
+- [x] Actor-level ledger synthesis with reputation tiers and capacity-aware accountability lanes.
+- [x] Accountability review, evidence completion, reputation rebuild, and ledger publication task generation.
+
+### 69) Open Knowledge Curator
+Objective: curate and publish high-quality open knowledge artifacts matched to community priority domains.
+- [x] Artifact quality scoring across source trust, freshness, evidence depth, licensing clarity, and duplication risk.
+- [x] Need-to-artifact matching with capacity-aware curation lane planning and coverage-gap detection.
+- [x] Artifact publication, quality verification, domain-gap closure, and curation digest task generation.
+
+### 70) Scientific Hypothesis Marketplace
+Objective: match high-impact scientific hypotheses to constrained evidence resources and review capacity.
+- [x] Hypothesis/resource scoring across impact, novelty, falsifiability, evidence support, and domain fit.
+- [x] Capacity-aware marketplace lane planning (`now`/`next`/`hold`) with peer-review and resource-gap tracking.
+- [x] Experiment funding, resource allocation, peer review, and marketplace briefing task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -470,3 +500,8 @@ Objective: adapt copilot capabilities to nonprofit operational constraints such 
 63. Education Support Planner
 64. Civic Service Automation Planner
 65. Nonprofit Ops Copilot Bridge
+66. Workforce Upskilling Orchestrator
+67. Collaboration Trust Score Engine
+68. Reputation and Accountability Ledger
+69. Open Knowledge Curator
+70. Scientific Hypothesis Marketplace

@@ -82,6 +82,11 @@ Adds a healthcare safety protocol adapter to enforce clinical safety checks and 
 Adds an education support planner to prioritize targeted student interventions under capacity constraints.
 Adds a civic service automation planner to prioritize public service workflow automation with equity safeguards.
 Adds a nonprofit ops copilot bridge to match copilot capabilities to nonprofit program operations.
+Adds a workforce upskilling orchestrator to schedule role-targeted reskilling under mentor and budget limits.
+Adds a collaboration trust score engine to quantify trust posture and trigger proactive relationship repair.
+Adds a reputation and accountability ledger to track actor-level accountability and remediation over time.
+Adds an open knowledge curator to match high-quality reusable artifacts to urgent community knowledge gaps.
+Adds a scientific hypothesis marketplace to allocate constrained research resources to the highest-value hypotheses.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -819,6 +824,58 @@ import { bridgeNonprofitOpsCopilot } from 'swarm-protocol';
 const nonprofitPlan = bridgeNonprofitOpsCopilot({
   programs,
   copilotCapabilities,
+  capacity
+});
+```
+
+Workforce upskilling orchestrator:
+```js
+import { orchestrateWorkforceUpskilling } from 'swarm-protocol';
+
+const upskillingPlan = orchestrateWorkforceUpskilling({
+  roles,
+  learningPrograms,
+  capacity
+});
+```
+
+Collaboration trust score engine:
+```js
+import { scoreCollaborationTrust } from 'swarm-protocol';
+
+const trustReport = scoreCollaborationTrust({
+  collaborations
+});
+```
+
+Reputation and accountability ledger:
+```js
+import { buildReputationAccountabilityLedger } from 'swarm-protocol';
+
+const ledger = buildReputationAccountabilityLedger({
+  events,
+  capacity
+});
+```
+
+Open knowledge curator:
+```js
+import { curateOpenKnowledge } from 'swarm-protocol';
+
+const curation = curateOpenKnowledge({
+  artifacts,
+  communityNeeds,
+  capacity
+});
+```
+
+Scientific hypothesis marketplace:
+```js
+import { runScientificHypothesisMarketplace } from 'swarm-protocol';
+
+const marketplace = runScientificHypothesisMarketplace({
+  hypotheses,
+  resources,
   capacity
 });
 ```

@@ -68,3 +68,8 @@ export * from './src/healthcare-safety-adapter.js';
 export * from './src/education-support-planner.js';
 export * from './src/civic-service-automation-planner.js';
 export * from './src/nonprofit-ops-copilot-bridge.js';
+export * from './src/workforce-upskilling-orchestrator.js';
+export * from './src/collaboration-trust-score.js';
+export * from './src/reputation-accountability-ledger.js';
+export * from './src/open-knowledge-curator.js';
+export * from './src/scientific-hypothesis-marketplace.js';
