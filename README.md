@@ -42,6 +42,7 @@ Long-term roadmap lives in:
 ### Cognition Core
 ```bash
 cd cognition-core
+npm run build
 npm run analyze
 ```
 The analyzer now compares the current window against the immediately previous window and generates a prioritized remediation plan.
@@ -69,6 +70,7 @@ This ingests task outcomes, runs counterfactual variants, and writes actionable 
 ### Swarm Protocol
 ```bash
 cd swarm-protocol
+npm run build
 npm test
 ```
 Runs unit tests for handshake negotiation/reliability plus legacy integration checks.
