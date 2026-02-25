@@ -19,6 +19,7 @@ Adds approval-gated task dispatch with policy-driven human review checkpoints.
 Includes a workflow DAG engine for dependency-based multi-step execution.
 Workflow telemetry includes per-node durations and critical path analysis.
 Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with migration helpers and read/write validation hooks.
+Adds a deterministic simulation benchmark harness for orchestration stress tests and CI regression gating.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -63,6 +64,12 @@ Export pending approvals for operators:
 ```bash
 npm run approval:queue
 ```
+
+Run deterministic benchmark scenarios:
+```bash
+npm run benchmark:simulate
+```
+This runs `scenarios/baseline.json` with repeatable seeds and validates aggregate thresholds from `scenarios/baseline-thresholds.json`.
 
 Minimal orchestration usage:
 ```js

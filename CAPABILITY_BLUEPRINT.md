@@ -44,9 +44,9 @@ Objective: standardized artifacts between agents/humans/tools.
 
 ### 6) Simulation & Benchmark Harness
 Objective: stress-test routing, orchestration, and failure behavior.
-- [ ] Scenario DSL (timeouts, flaky workers, overload).
-- [ ] Benchmark runner with repeatable seeds.
-- [ ] Regression thresholds in CI.
+- [x] Scenario DSL (timeouts, flaky workers, overload).
+- [x] Benchmark runner with repeatable seeds.
+- [x] Regression thresholds in CI.
 
 ## Later
 

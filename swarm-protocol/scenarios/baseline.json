@@ -1,0 +1,90 @@
+{
+  "name": "baseline-routing-reliability",
+  "seed": 20260225,
+  "startMs": 100000,
+  "maintenanceIntervalMs": 15,
+  "defaultTimeoutMs": 180,
+  "maxRetries": 1,
+  "retryDelayMs": 20,
+  "maxTicks": 4000,
+  "tasks": [
+    {
+      "task": "Analyze alert fatigue trend",
+      "priority": "high",
+      "requiredCapabilities": ["analysis"]
+    },
+    {
+      "task": "Draft incident response checklist",
+      "priority": "normal",
+      "requiredCapabilities": ["operations"]
+    },
+    {
+      "task": "Summarize tool failures from last day",
+      "priority": "high",
+      "requiredCapabilities": ["analysis"]
+    },
+    {
+      "task": "Create mitigation plan for timeout spikes",
+      "priority": "critical",
+      "requiredCapabilities": ["operations"]
+    },
+    {
+      "task": "Generate execution telemetry digest",
+      "priority": "normal",
+      "requiredCapabilities": ["analysis"]
+    },
+    {
+      "task": "Review deployment rollback safety",
+      "priority": "high",
+      "requiredCapabilities": ["operations"]
+    },
+    {
+      "task": "Aggregate human-approval bottlenecks",
+      "priority": "normal",
+      "requiredCapabilities": ["analysis"]
+    },
+    {
+      "task": "Prepare swarm health brief",
+      "priority": "normal",
+      "requiredCapabilities": ["analysis"]
+    }
+  ],
+  "agents": [
+    {
+      "id": "agent:analysis-a",
+      "status": "idle",
+      "load": 0.25,
+      "capabilities": ["analysis", "reporting"],
+      "behavior": {
+        "failureRate": 0.05,
+        "timeoutRate": 0.06,
+        "minResultDelayMs": 35,
+        "maxResultDelayMs": 120
+      }
+    },
+    {
+      "id": "agent:analysis-b",
+      "status": "idle",
+      "load": 0.35,
+      "capabilities": ["analysis"],
+      "behavior": {
+        "failureRate": 0.09,
+        "timeoutRate": 0.08,
+        "minResultDelayMs": 45,
+        "maxResultDelayMs": 160
+      }
+    },
+    {
+      "id": "agent:ops-core",
+      "status": "idle",
+      "load": 0.28,
+      "capabilities": ["operations", "deploy"],
+      "behavior": {
+        "failureRate": 0.04,
+        "timeoutRate": 0.05,
+        "minResultDelayMs": 40,
+        "maxResultDelayMs": 140
+      }
+    }
+  ]
+}
