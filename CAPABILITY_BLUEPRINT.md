@@ -260,6 +260,12 @@ Objective: track lineage and trustworthiness of claims by explicitly connecting 
 - [x] Deterministic claim trust scoring and trust-tier classification from confidence + source reliability.
 - [x] Verification/contradiction-resolution/source-coverage task generation from provenance outcomes.
 
+### 42) Counterfactual Policy Lab
+Objective: test policy alternatives against simulated outcomes before committing governance changes.
+- [x] Baseline/variant policy simulation across safety, throughput, equity, trust, cost, and risk outcomes.
+- [x] Variant ranking with baseline deltas and uncertainty-aware tradeoff analysis.
+- [x] Adopt/pilot/investigate recommendation task generation for policy decision workflows.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -302,3 +308,4 @@ Objective: track lineage and trustworthiness of claims by explicitly connecting 
 39. Adversarial Robustness Fuzzer
 40. Explainability Narrative Generator
 41. Evidence Provenance Graph
+42. Counterfactual Policy Lab

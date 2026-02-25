@@ -58,6 +58,7 @@ Adds a misuse behavior detector to surface abuse signatures and automatically pr
 Adds an adversarial robustness fuzzer to stress defenses and generate hardening tasks.
 Adds an explainability narrative generator to convert complex decisions into clear human-readable reasoning.
 Adds an evidence provenance graph to score claim trust and track support/contradiction lineage.
+Adds a counterfactual policy lab to compare governance variants before rollout.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -549,6 +550,17 @@ import { buildEvidenceProvenanceGraph } from 'swarm-protocol';
 const provenance = buildEvidenceProvenanceGraph({
   claims,
   evidence
+});
+```
+
+Counterfactual policy lab:
+```js
+import { runCounterfactualPolicyLab } from 'swarm-protocol';
+
+const policyLab = runCounterfactualPolicyLab({
+  baselinePolicy,
+  variants,
+  context
 });
 ```
 
