@@ -1,0 +1,7 @@
+{
+  "name": "openclaw-code",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/auto-refactor.mjs && npm --prefix cognition-core test && npm --prefix swarm-protocol test"
+  }
+}
