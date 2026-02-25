@@ -6,6 +6,7 @@
   "scripts": {
     "analyze": "node scripts/analyze-history.mjs --days 7",
     "analyze:quick": "node scripts/analyze-history.mjs --days 1",
+    "plan:tasks": "node scripts/plan-remediation-tasks.mjs --report reports/cognition-report.json --out reports/remediation-tasks.json",
     "graph": "node scripts/graph.mjs",
     "test": "node --test"
   },
