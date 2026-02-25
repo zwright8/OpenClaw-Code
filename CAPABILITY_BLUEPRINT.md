@@ -176,6 +176,12 @@ Objective: prioritize hypothesis investigations into execution lanes under exper
 - [x] `now`/`next`/`backlog` lane assignment with capacity-aware deferral.
 - [x] Curiosity agenda + recommendation task generation.
 
+### 28) Humanity Impact Guardrail
+Objective: enforce pro-humanity execution standards by scoring likely human benefit vs harm before action.
+- [x] Multi-source task/mission/launch impact assessment.
+- [x] Deterministic `aligned`/`review_required`/`blocked` posture decisions.
+- [x] Mitigation/safeguard task generation for non-aligned items.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -204,3 +210,4 @@ Objective: prioritize hypothesis investigations into execution lanes under exper
 25. Autonomous Mission Launcher
 26. Truth-Seeking Hypothesis Engine
 27. Curiosity Agenda Planner
+28. Humanity Impact Guardrail

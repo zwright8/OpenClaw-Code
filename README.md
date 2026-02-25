@@ -44,6 +44,7 @@ Adds an autonomous approval engine to bypass human review gates with auditable d
 Adds an autonomous mission launcher that compiles and executes launch batches from portfolio lanes.
 Adds a truth-seeking hypothesis engine for evidence-based confidence updates and experiments.
 Adds a curiosity agenda planner to schedule which hypotheses to investigate now vs later.
+Adds a humanity impact guardrail to block or review work that could harm people.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -378,6 +379,15 @@ const curiosityAgenda = compileCuriosityAgenda({
   truthReport,
   missionPortfolio: portfolio
 }, { maxConcurrentExperiments: 3 });
+```
+
+Humanity impact guardrail:
+```js
+import { evaluateHumanityImpact } from 'swarm-protocol';
+
+const humanityReport = evaluateHumanityImpact({
+  launchBatch: batch
+});
 ```
 
 Durability + live registry example:
