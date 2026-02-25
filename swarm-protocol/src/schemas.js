@@ -46,8 +46,30 @@ export const HeartbeatSignal = z.object({
     timestamp: Timestamp
 });
 
+// --- Handshake Protocol ---
+
+export const HandshakeRequest = z.object({
+    kind: z.literal('handshake_request'),
+    id: z.string().uuid(),
+    from: AgentId,
+    supportedProtocols: z.array(z.string()).describe("List of supported protocol versions (e.g., ['swarm/1.0'])"),
+    capabilities: z.array(z.string()).optional().describe("List of agent capabilities/skills"),
+    timestamp: Timestamp
+});
+
+export const HandshakeResponse = z.object({
+    kind: z.literal('handshake_response'),
+    requestId: z.string().uuid().describe("Matches the handshake request ID"),
+    from: AgentId,
+    accepted: z.boolean(),
+    protocol: z.string().optional().describe("Selected protocol version"),
+    timestamp: Timestamp
+});
+
 export const AnyMessage = z.discriminatedUnion('kind', [
     TaskRequest,
     TaskResult,
-    HeartbeatSignal
+    HeartbeatSignal,
+    HandshakeRequest,
+    HandshakeResponse
 ]);

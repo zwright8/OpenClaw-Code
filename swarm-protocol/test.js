@@ -1,4 +1,4 @@
-import { TaskRequest, TaskResult } from './index.js';
+import { TaskRequest, TaskResult, HandshakeRequest, HandshakeResponse } from './index.js';
 import { randomUUID } from 'crypto';
 
 // Sample Request
@@ -39,4 +39,21 @@ try {
     console.log('✅ TaskResult valid:', parsedRes.taskId);
 } catch (e) {
     console.error('❌ TaskResult invalid:', e.errors);
+}
+
+// Sample Handshake Request
+const handshakeReq = {
+    kind: 'handshake_request',
+    id: randomUUID(),
+    from: 'agent:new-peer',
+    supportedProtocols: ['swarm/1.0', 'swarm/2.0'],
+    capabilities: ['code-analysis', 'web-search'],
+    timestamp: Date.now()
+};
+
+try {
+    const parsedHandshake = HandshakeRequest.parse(handshakeReq);
+    console.log('✅ HandshakeRequest valid:', parsedHandshake.id);
+} catch (e) {
+    console.error('❌ HandshakeRequest invalid:', e.errors);
 }
