@@ -1,7 +1,8 @@
 import {
     TaskOrchestrator,
     buildTaskReceipt,
-    buildTaskResult
+    buildTaskResult,
+    routeTaskRequest
 } from '../index.js';
 
 function wait(ms) {
@@ -9,8 +10,39 @@ function wait(ms) {
 }
 
 async function main() {
+    const agentPool = [
+        {
+            id: 'agent:research',
+            status: 'idle',
+            load: 0.3,
+            capabilities: ['analysis', 'research'],
+            timestamp: Date.now()
+        },
+        {
+            id: 'agent:ops',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['operations', 'deploy', 'reliability'],
+            timestamp: Date.now()
+        },
+        {
+            id: 'agent:docs',
+            status: 'busy',
+            load: 0.6,
+            capabilities: ['documentation', 'writing'],
+            timestamp: Date.now()
+        }
+    ];
+
     const orchestrator = new TaskOrchestrator({
         localAgentId: 'agent:main',
+        routeTask: async (taskRequest) => {
+            const routed = routeTaskRequest(taskRequest, agentPool, {
+                nowMs: Date.now(),
+                maxStalenessMs: 60_000
+            });
+            return routed.selectedAgentId;
+        },
         transport: {
             async send(target, request) {
                 console.log(`[dispatch] -> ${target} task=${request.id} priority=${request.priority}`);
@@ -43,9 +75,21 @@ async function main() {
     });
 
     const tasks = [
-        { target: 'agent:research', task: 'Summarize latest customer churn patterns', priority: 'high' },
-        { target: 'agent:ops', task: 'Draft reliability checklist for weekend deploy', priority: 'normal' },
-        { target: 'agent:docs', task: 'Generate API integration quickstart', priority: 'normal' }
+        {
+            task: 'Summarize latest customer churn patterns',
+            priority: 'high',
+            context: { requiredCapabilities: ['analysis'] }
+        },
+        {
+            task: 'Draft reliability checklist for weekend deploy',
+            priority: 'normal',
+            context: { requiredCapabilities: ['reliability'] }
+        },
+        {
+            task: 'Generate API integration quickstart',
+            priority: 'normal',
+            context: { requiredCapabilities: ['documentation'] }
+        }
     ];
 
     for (const task of tasks) {

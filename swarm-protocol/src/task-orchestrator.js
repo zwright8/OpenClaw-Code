@@ -102,6 +102,7 @@ export class TaskOrchestrator {
     constructor({
         localAgentId,
         transport,
+        routeTask = null,
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
@@ -121,6 +122,7 @@ export class TaskOrchestrator {
 
         this.localAgentId = localAgentId;
         this.transport = transport;
+        this.routeTask = typeof routeTask === 'function' ? routeTask : null;
         this.defaultTimeoutMs = Number.isFinite(defaultTimeoutMs) && defaultTimeoutMs > 0
             ? Number(defaultTimeoutMs)
             : 30_000;
@@ -144,9 +146,43 @@ export class TaskOrchestrator {
         id = randomUUID(),
         createdAt = safeNow(this.now)
     }) {
-        const request = buildTaskRequest({
+        const routingDraft = buildTaskRequest({
             from: this.localAgentId,
             target,
+            task,
+            priority,
+            context,
+            constraints,
+            id,
+            createdAt
+        });
+
+        let resolvedTarget = target;
+        if (!resolvedTarget && this.routeTask) {
+            const routed = await this.routeTask(routingDraft);
+            if (typeof routed === 'string' && routed.trim()) {
+                resolvedTarget = routed;
+            } else if (routed && typeof routed === 'object') {
+                if (typeof routed.target === 'string' && routed.target.trim()) {
+                    resolvedTarget = routed.target;
+                } else if (typeof routed.selectedAgentId === 'string' && routed.selectedAgentId.trim()) {
+                    resolvedTarget = routed.selectedAgentId;
+                } else if (typeof routed.taskRequest?.target === 'string' && routed.taskRequest.target.trim()) {
+                    resolvedTarget = routed.taskRequest.target;
+                }
+            }
+        }
+
+        if (!resolvedTarget || typeof resolvedTarget !== 'string') {
+            throw new TaskOrchestratorError(
+                'MISSING_TARGET',
+                'Task target is required (or provide a routeTask function that resolves one)'
+            );
+        }
+
+        const request = buildTaskRequest({
+            from: this.localAgentId,
+            target: resolvedTarget,
             task,
             priority,
             context,

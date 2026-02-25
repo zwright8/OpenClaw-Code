@@ -219,3 +219,42 @@ test('helper builders emit schema-valid messages', () => {
     assert.equal(receipt.kind, 'task_receipt');
     assert.equal(result.kind, 'task_result');
 });
+
+test('dispatchTask can resolve target through routeTask callback', async () => {
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        routeTask: async () => ({ selectedAgentId: 'agent:routed' })
+    });
+
+    const task = await orchestrator.dispatchTask({
+        task: 'Route me automatically'
+    });
+
+    assert.equal(task.target, 'agent:routed');
+    assert.equal(sent.length, 1);
+    assert.equal(sent[0].target, 'agent:routed');
+});
+
+test('dispatchTask throws when target missing and no routeTask provided', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        }
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({ task: 'No route available' }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'MISSING_TARGET');
+            return true;
+        }
+    );
+});
