@@ -26,7 +26,7 @@ Objective: route tasks using real-time agent health/capability data.
 Objective: allow safe human checkpoints for high-risk tasks.
 - [x] Add `approval_required` task metadata and pause/resume state.
 - [x] Add deterministic policy engine (`priority`, `capabilities`, `risk tags`).
-- [ ] Emit approval queue artifacts for operators.
+- [x] Emit approval queue artifacts for operators.
 
 ## Next
 

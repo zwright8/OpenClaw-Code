@@ -56,6 +56,11 @@ Orchestrator demo:
 npm run demo:orchestrator
 ```
 
+Export pending approvals for operators:
+```bash
+npm run approval:queue
+```
+
 Minimal orchestration usage:
 ```js
 import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
