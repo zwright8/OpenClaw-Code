@@ -128,6 +128,12 @@ Objective: preflight mission plans against real execution constraints before lau
 - [x] Approval and sandbox policy checks per mission node.
 - [x] Readiness scoring with remediation task generation.
 
+### 20) Adaptive Execution Governor
+Objective: continuously adapt dispatch policy based on mission, drift, incident, and queue pressure signals.
+- [x] Multi-signal risk scoring with deterministic execution modes.
+- [x] Mode-specific dispatch guardrails (throttle, blocking, approval escalation).
+- [x] Action planning with schema-valid mitigation task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -148,3 +154,4 @@ Objective: preflight mission plans against real execution constraints before lau
 17. Capability Drift Sentinel
 18. Autonomous Mission Planner
 19. Mission Readiness Gate
+20. Adaptive Execution Governor

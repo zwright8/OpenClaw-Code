@@ -36,6 +36,7 @@ Adds an autonomous recovery supervisor for incident detection and executable rem
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
+Adds an adaptive execution governor that throttles/halts dispatch based on multi-signal risk.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -277,6 +278,19 @@ const readiness = assessMissionReadiness({
 });
 
 const remediationTasks = buildReadinessTasks(readiness);
+```
+
+Adaptive execution governor:
+```js
+import { evaluateExecutionGovernor } from 'swarm-protocol';
+
+const governor = evaluateExecutionGovernor({
+  readinessReport: readiness,
+  driftReport,
+  incidents,
+  queueSummary: { open: 22, pendingApproval: 4, retryScheduled: 1, timedOut: 0 },
+  agentHealth: registry.getHealthSummary()
+});
 ```
 
 Durability + live registry example:
