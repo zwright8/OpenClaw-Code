@@ -7,8 +7,8 @@
 - [x] **SQLite Adapter:** Create a read-only adapter. (Superseded: Switched to parsing JSONL session files directly in LogAnalyzer v2).
 
 ## Swarm Protocol
-- [ ] **Standard Message Schema:** Define a JSON schema for agent-to-agent task handoff.
-- [ ] **Handshake:** A script to verify another agent is "online" and compatible.
+- [x] **Standard Message Schema:** Define a JSON schema for agent-to-agent task handoff. (Implemented v0.1)
+- [x] **Handshake:** A script to verify another agent is "online" and compatible.
 
 ## Infrastructure
 - [ ] **Auto-Refactor:** A script that lints my own code in this repo.

@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "dependencies": {
+    "uuid": "^13.0.0",
     "zod": "^3.22.4"
   }
 }
