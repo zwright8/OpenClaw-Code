@@ -392,6 +392,18 @@ Objective: prioritize targeted educational interventions under constrained tutor
 - [x] Capacity-aware support lane planning (`now`/`next`/`hold`) with projected improvement and support-gap metrics.
 - [x] Targeted support launch, tutor assignment, family outreach, and rollout brief task generation.
 
+### 64) Civic Service Automation Planner
+Objective: improve public service delivery by prioritizing automation while preserving equitable human-assist pathways.
+- [x] Service and automation scoring across backlog, manual effort, citizen impact, digital access, and equity sensitivity.
+- [x] Capacity-aware implementation planning with `now`/`next`/`hold` lanes and fallback allocation modeling.
+- [x] Service automation launch, human-assist fallback, intake digitization, and rollout-plan task generation.
+
+### 65) Nonprofit Ops Copilot Bridge
+Objective: adapt copilot capabilities to nonprofit operational constraints such as funding volatility, compliance burden, and volunteer dependence.
+- [x] Program/capability fit scoring with governance readiness and implementation-cost constraints.
+- [x] Bridge lane planning (`now`/`next`/`hold`) under onboarding, implementation, and governance-review capacity.
+- [x] Copilot deployment, grant-flow configuration, volunteer coordination, and ops-brief task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -456,3 +468,5 @@ Objective: prioritize targeted educational interventions under constrained tutor
 61. Disaster Response Mission Packager
 62. Healthcare Safety Protocol Adapter
 63. Education Support Planner
+64. Civic Service Automation Planner
+65. Nonprofit Ops Copilot Bridge

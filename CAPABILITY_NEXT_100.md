@@ -34,8 +34,8 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 61. Disaster Response Mission Packager - Package executable disaster-relief missions.
 - [x] 62. Healthcare Safety Protocol Adapter - Tailor workflows to healthcare safety norms.
 - [x] 63. Education Support Planner - Build targeted educational support actions.
-- [ ] 64. Civic Service Automation Planner - Improve public service delivery workflows.
-- [ ] 65. Nonprofit Ops Copilot Bridge - Adapt capabilities for nonprofit operations.
+- [x] 64. Civic Service Automation Planner - Improve public service delivery workflows.
+- [x] 65. Nonprofit Ops Copilot Bridge - Adapt capabilities for nonprofit operations.
 - [ ] 66. Workforce Upskilling Orchestrator - Plan human skill development pathways.
 - [ ] 67. Collaboration Trust Score Engine - Quantify trust in multi-agent collaboration.
 - [ ] 68. Reputation and Accountability Ledger - Preserve action accountability over time.

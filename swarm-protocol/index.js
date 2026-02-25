@@ -66,3 +66,5 @@ export * from './src/recovery-playbook-synthesizer.js';
 export * from './src/disaster-response-packager.js';
 export * from './src/healthcare-safety-adapter.js';
 export * from './src/education-support-planner.js';
+export * from './src/civic-service-automation-planner.js';
+export * from './src/nonprofit-ops-copilot-bridge.js';

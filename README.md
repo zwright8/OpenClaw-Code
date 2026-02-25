@@ -80,6 +80,8 @@ Adds a recovery playbook synthesizer to derive repeatable recovery procedures fr
 Adds a disaster response mission packager to turn disaster signals into executable relief mission bundles.
 Adds a healthcare safety protocol adapter to enforce clinical safety checks and signoff gates in workflows.
 Adds an education support planner to prioritize targeted student interventions under capacity constraints.
+Adds a civic service automation planner to prioritize public service workflow automation with equity safeguards.
+Adds a nonprofit ops copilot bridge to match copilot capabilities to nonprofit program operations.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -795,6 +797,28 @@ import { planEducationSupport } from 'swarm-protocol';
 const educationPlan = planEducationSupport({
   cohorts,
   interventions,
+  capacity
+});
+```
+
+Civic service automation planner:
+```js
+import { planCivicServiceAutomation } from 'swarm-protocol';
+
+const civicPlan = planCivicServiceAutomation({
+  services,
+  automations,
+  capacity
+});
+```
+
+Nonprofit ops copilot bridge:
+```js
+import { bridgeNonprofitOpsCopilot } from 'swarm-protocol';
+
+const nonprofitPlan = bridgeNonprofitOpsCopilot({
+  programs,
+  copilotCapabilities,
   capacity
 });
 ```
