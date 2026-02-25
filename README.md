@@ -63,6 +63,7 @@ Adds a policy diff simulator to quantify pairwise policy deltas and convergence 
 Adds a value conflict resolver to balance competing ethical objectives with explicit tradeoff plans.
 Adds a multi-stakeholder preference modeler to quantify consensus and divergence across stakeholder groups.
 Adds a consent and agency mapper to enforce explicit consent scope boundaries and revocation safeguards.
+Adds a vulnerable population safeguard evaluator to block rollouts that endanger high-risk groups.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -607,6 +608,17 @@ const consentMap = mapConsentAndAgency({
   participants,
   actions,
   policy
+});
+```
+
+Vulnerable population safeguard:
+```js
+import { evaluateVulnerablePopulationSafeguards } from 'swarm-protocol';
+
+const safeguardReport = evaluateVulnerablePopulationSafeguards({
+  populations,
+  interventions,
+  thresholds
 });
 ```
 

@@ -290,6 +290,12 @@ Objective: ensure planned actions remain inside explicit human consent boundarie
 - [x] Action-level posture evaluation (`allowed`, `review_required`, `blocked`) against consent policy constraints.
 - [x] Blocking/remediation task generation for unknown consent, denied consent, scope mismatch, and revocation gaps.
 
+### 47) Vulnerable Population Safeguard
+Objective: enforce stronger protections for high-vulnerability groups before and during intervention rollouts.
+- [x] Population-level harm/access/safeguard projection under planned interventions.
+- [x] Vulnerability-weighted risk scoring with `protected`/`review_required`/`blocked` posture decisions.
+- [x] Targeted safeguard, rollout pause, support expansion, and monitoring task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -337,3 +343,4 @@ Objective: ensure planned actions remain inside explicit human consent boundarie
 44. Value Conflict Resolver
 45. Multi-Stakeholder Preference Modeler
 46. Consent and Agency Mapper
+47. Vulnerable Population Safeguard
