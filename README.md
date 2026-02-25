@@ -57,6 +57,7 @@ Adds a harm escalation early-warning engine to detect rising broad-harm trajecto
 Adds a misuse behavior detector to surface abuse signatures and automatically propose restrictions/investigations.
 Adds an adversarial robustness fuzzer to stress defenses and generate hardening tasks.
 Adds an explainability narrative generator to convert complex decisions into clear human-readable reasoning.
+Adds an evidence provenance graph to score claim trust and track support/contradiction lineage.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -538,6 +539,16 @@ const narrative = generateExplainabilityNarrative({
   decision,
   governorDecision,
   constitutionReport
+});
+```
+
+Evidence provenance graph:
+```js
+import { buildEvidenceProvenanceGraph } from 'swarm-protocol';
+
+const provenance = buildEvidenceProvenanceGraph({
+  claims,
+  evidence
 });
 ```
 

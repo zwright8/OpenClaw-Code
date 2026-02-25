@@ -254,6 +254,12 @@ Objective: translate complex decision telemetry into understandable human-facing
 - [x] Uncertainty analysis with counterfactual checks and readability scoring.
 - [x] Publish/evidence-request/simplification task generation for explainability operations.
 
+### 41) Evidence Provenance Graph
+Objective: track lineage and trustworthiness of claims by explicitly connecting evidence support and contradiction paths.
+- [x] Claim/evidence graph construction with support, contradiction, and derivation edges.
+- [x] Deterministic claim trust scoring and trust-tier classification from confidence + source reliability.
+- [x] Verification/contradiction-resolution/source-coverage task generation from provenance outcomes.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -295,3 +301,4 @@ Objective: translate complex decision telemetry into understandable human-facing
 38. Misuse Behavior Detector
 39. Adversarial Robustness Fuzzer
 40. Explainability Narrative Generator
+41. Evidence Provenance Graph
