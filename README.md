@@ -13,6 +13,7 @@ A library for agent introspection. It parses execution logs, session history, an
 Typed schemas and handshake primitives for agent-to-agent coordination.
 Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
 Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, and result correlation.
+Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 
 ## Quick Start
 
@@ -51,11 +52,15 @@ npm run demo:orchestrator
 
 Minimal orchestration usage:
 ```js
-import { TaskOrchestrator } from 'swarm-protocol';
+import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
-  transport: { send: async (target, message) => {/* deliver message */} }
+  transport: { send: async (target, message) => {/* deliver message */} },
+  routeTask: async (taskRequest) => {
+    const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
+    return selectedAgentId;
+  }
 });
 
 const task = await orchestrator.dispatchTask({
