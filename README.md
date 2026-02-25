@@ -30,6 +30,7 @@ Adds a capability marketplace with metadata contracts, live probing, and stale/f
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
+Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -226,6 +227,15 @@ import { FederationKeyring, ProtocolBridge } from 'swarm-protocol';
 
 const keyring = new FederationKeyring();
 const bridge = new ProtocolBridge();
+```
+
+Recovery supervisor:
+```js
+import { RecoverySupervisor } from 'swarm-protocol';
+
+const supervisor = new RecoverySupervisor();
+supervisor.ingestSnapshot(telemetrySnapshot);
+const plan = supervisor.evaluateAndPlan();
 ```
 
 Durability + live registry example:

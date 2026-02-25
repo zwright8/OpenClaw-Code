@@ -104,6 +104,12 @@ Objective: coordinate across organizations without central trust assumptions.
 - [x] Tenant-aware policy boundaries.
 - [x] Protocol bridge for heterogeneous agent stacks.
 
+### 16) Autonomous Recovery Supervisor
+Objective: automatically detect incidents and generate executable recovery plans.
+- [x] Incident detection across orchestration and simulation telemetry.
+- [x] Structured remediation action planning.
+- [x] Auto-generated recovery task requests.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -120,3 +126,4 @@ Objective: coordinate across organizations without central trust assumptions.
 13. Tool Sandbox Orchestrator
 14. Human-Agent Collaboration UX
 15. Federation & Trust Layer
+16. Autonomous Recovery Supervisor

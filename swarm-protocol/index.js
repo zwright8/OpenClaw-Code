@@ -18,3 +18,4 @@ export * from './src/capability-marketplace.js';
 export * from './src/sandbox-orchestrator.js';
 export * from './src/collaboration-ux.js';
 export * from './src/federation-trust.js';
+export * from './src/recovery-supervisor.js';
