@@ -32,3 +32,4 @@ export * from './src/truth-engine.js';
 export * from './src/curiosity-agenda.js';
 export * from './src/humanity-impact.js';
 export * from './src/constitution-engine.js';
+export * from './src/constitutional-controller.js';

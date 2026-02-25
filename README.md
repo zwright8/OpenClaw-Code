@@ -46,6 +46,7 @@ Adds a truth-seeking hypothesis engine for evidence-based confidence updates and
 Adds a curiosity agenda planner to schedule which hypotheses to investigate now vs later.
 Adds a humanity impact guardrail to block or review work that could harm people.
 Adds a constitution alignment engine to score truth, humanity, and curiosity compliance.
+Adds a constitutional execution controller to gate mission dispatch from alignment outcomes.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -399,6 +400,17 @@ const constitution = evaluateConstitutionAlignment({
   truthReport,
   humanityReport,
   curiosityAgenda
+});
+```
+
+Constitutional execution controller:
+```js
+import { computeConstitutionalExecutionPlan } from 'swarm-protocol';
+
+const executionPlan = computeConstitutionalExecutionPlan({
+  launchBatch: batch,
+  constitutionReport: constitution,
+  humanityReport
 });
 ```
 

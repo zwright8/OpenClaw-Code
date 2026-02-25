@@ -188,6 +188,12 @@ Objective: continuously score operations against the core constitution: truth-se
 - [x] Compliance-tier decisions (`aligned`, `caution`, `non_compliant`) and blocking reasons.
 - [x] Constitution remediation task generation.
 
+### 30) Constitutional Execution Controller
+Objective: enforce constitution-aware launch gating by turning alignment outcomes into dispatch/throttle/pause behavior.
+- [x] Launch-batch gating with `active`/`caution`/`paused` modes.
+- [x] Constitution + humanity recommendation merge for mitigation planning.
+- [x] Dispatch and mitigation task conversion from constitutional execution plans.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -218,3 +224,4 @@ Objective: continuously score operations against the core constitution: truth-se
 27. Curiosity Agenda Planner
 28. Humanity Impact Guardrail
 29. Constitution Alignment Engine
+30. Constitutional Execution Controller
