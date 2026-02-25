@@ -218,6 +218,12 @@ Objective: quantify distribution of benefit, harm, and access across communities
 - [x] Equity posture scoring with disparity, vulnerability-harm, and fairness-index thresholds.
 - [x] Equity mitigation/proceed recommendation tasks for vulnerable-group safeguards and rollout adjustments.
 
+### 35) Community Feedback Harvester
+Objective: ingest and structure real-world community feedback into actionable planning signals.
+- [x] Multi-channel feedback normalization with sentiment, urgency, harm-risk, and theme tagging.
+- [x] Deterministic duplicate collapsing with theme-level aggregation across regions.
+- [x] Recommendation task generation for high-risk mitigation, investigation, and transparent community response.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -253,3 +259,4 @@ Objective: quantify distribution of benefit, harm, and access across communities
 32. Intervention Portfolio Optimizer
 33. Long-Horizon Externality Forecaster
 34. Equity Impact Analyzer
+35. Community Feedback Harvester

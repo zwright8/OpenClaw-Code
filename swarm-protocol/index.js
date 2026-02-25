@@ -37,3 +37,4 @@ export * from './src/societal-outcome.js';
 export * from './src/intervention-portfolio.js';
 export * from './src/long-horizon-externality.js';
 export * from './src/equity-impact.js';
+export * from './src/community-feedback.js';
