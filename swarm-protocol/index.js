@@ -63,3 +63,6 @@ export * from './src/incident-communication-synthesizer.js';
 export * from './src/crisis-coordination-mesh.js';
 export * from './src/reliability-chaos-gym.js';
 export * from './src/recovery-playbook-synthesizer.js';
+export * from './src/disaster-response-packager.js';
+export * from './src/healthcare-safety-adapter.js';
+export * from './src/education-support-planner.js';

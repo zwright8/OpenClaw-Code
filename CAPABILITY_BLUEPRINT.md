@@ -374,6 +374,24 @@ Objective: synthesize repeatable recovery playbooks from historical incident pat
 - [x] Confidence and risk posture scoring with recurrence and telemetry-coverage signals.
 - [x] Playbook adoption, tabletop validation, automation, telemetry, and briefing task generation.
 
+### 61) Disaster Response Mission Packager
+Objective: package disaster events into executable humanitarian mission plans with readiness and logistics risk scoring.
+- [x] Disaster/resource normalization and mission package generation across assess/mobilize/deliver/stabilize/report phases.
+- [x] Readiness posture classification (`launch_ready`/`review_required`/`blocked`) from capability coverage and logistics constraints.
+- [x] Mission launch, logistics corridor, resource-gap, and humanitarian briefing task generation.
+
+### 62) Healthcare Safety Protocol Adapter
+Objective: adapt operational workflows to healthcare safety protocols with mandatory gates and signoff enforcement.
+- [x] Workflow/protocol mapping across domains, settings, and mandatory-signoff requirements.
+- [x] Safety posture classification (`adapted`/`review_required`/`blocked`) with protocol/signoff coverage scoring.
+- [x] Safety gate enforcement, clinical review, missing-check remediation, and safety brief task generation.
+
+### 63) Education Support Planner
+Objective: prioritize targeted educational interventions under constrained tutoring/outreach capacity.
+- [x] Cohort priority scoring from performance, attendance, access, support coverage, and risk factors.
+- [x] Capacity-aware support lane planning (`now`/`next`/`hold`) with projected improvement and support-gap metrics.
+- [x] Targeted support launch, tutor assignment, family outreach, and rollout brief task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -435,3 +453,6 @@ Objective: synthesize repeatable recovery playbooks from historical incident pat
 58. Crisis Coordination Mesh
 59. Reliability Chaos Gym
 60. Recovery Playbook Synthesizer
+61. Disaster Response Mission Packager
+62. Healthcare Safety Protocol Adapter
+63. Education Support Planner

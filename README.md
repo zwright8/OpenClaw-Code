@@ -77,6 +77,9 @@ Adds an incident communication synthesizer to generate audience-specific inciden
 Adds a crisis coordination mesh to assign multi-team emergency roles and track coordination risk.
 Adds a reliability chaos gym to simulate failure drills and generate resilience hardening actions.
 Adds a recovery playbook synthesizer to derive repeatable recovery procedures from incident history.
+Adds a disaster response mission packager to turn disaster signals into executable relief mission bundles.
+Adds a healthcare safety protocol adapter to enforce clinical safety checks and signoff gates in workflows.
+Adds an education support planner to prioritize targeted student interventions under capacity constraints.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -762,6 +765,37 @@ import { synthesizeRecoveryPlaybooks } from 'swarm-protocol';
 
 const playbooks = synthesizeRecoveryPlaybooks({
   incidents
+});
+```
+
+Disaster response mission packager:
+```js
+import { packageDisasterResponseMissions } from 'swarm-protocol';
+
+const disasterMissions = packageDisasterResponseMissions({
+  disasters,
+  resources
+});
+```
+
+Healthcare safety protocol adapter:
+```js
+import { adaptHealthcareSafetyProtocols } from 'swarm-protocol';
+
+const safetyAdaptation = adaptHealthcareSafetyProtocols({
+  workflows,
+  protocols
+});
+```
+
+Education support planner:
+```js
+import { planEducationSupport } from 'swarm-protocol';
+
+const educationPlan = planEducationSupport({
+  cohorts,
+  interventions,
+  capacity
 });
 ```
 

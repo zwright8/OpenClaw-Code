@@ -31,9 +31,9 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 58. Crisis Coordination Mesh - Coordinate multi-team response during emergencies.
 - [x] 59. Reliability Chaos Gym - Systematically test resilience under failure.
 - [x] 60. Recovery Playbook Synthesizer - Generate recovery procedures from incident patterns.
-- [ ] 61. Disaster Response Mission Packager - Package executable disaster-relief missions.
-- [ ] 62. Healthcare Safety Protocol Adapter - Tailor workflows to healthcare safety norms.
-- [ ] 63. Education Support Planner - Build targeted educational support actions.
+- [x] 61. Disaster Response Mission Packager - Package executable disaster-relief missions.
+- [x] 62. Healthcare Safety Protocol Adapter - Tailor workflows to healthcare safety norms.
+- [x] 63. Education Support Planner - Build targeted educational support actions.
 - [ ] 64. Civic Service Automation Planner - Improve public service delivery workflows.
 - [ ] 65. Nonprofit Ops Copilot Bridge - Adapt capabilities for nonprofit operations.
 - [ ] 66. Workforce Upskilling Orchestrator - Plan human skill development pathways.
