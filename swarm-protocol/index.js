@@ -40,3 +40,4 @@ export * from './src/equity-impact.js';
 export * from './src/community-feedback.js';
 export * from './src/public-benefit-opportunity.js';
 export * from './src/harm-escalation.js';
+export * from './src/misuse-detector.js';

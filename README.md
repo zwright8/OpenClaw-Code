@@ -54,6 +54,7 @@ Adds an equity impact analyzer to quantify benefit/harm/access distribution acro
 Adds a community feedback harvester to turn multi-channel human feedback into actionable operations tasks.
 Adds a public benefit opportunity miner to rank and schedule high-leverage opportunities for social good.
 Adds a harm escalation early-warning engine to detect rising broad-harm trajectories and trigger rapid response.
+Adds a misuse behavior detector to surface abuse signatures and automatically propose restrictions/investigations.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -507,6 +508,15 @@ const warning = evaluateHarmEscalation({
   equityReport,
   societalReport
 }, { horizonHours: 72 });
+```
+
+Misuse behavior detector:
+```js
+import { detectMisuseBehaviors } from 'swarm-protocol';
+
+const misuse = detectMisuseBehaviors({
+  events
+});
 ```
 
 Durability + live registry example:

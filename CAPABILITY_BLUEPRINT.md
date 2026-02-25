@@ -236,6 +236,12 @@ Objective: detect trajectories likely to escalate into broad social harm and tri
 - [x] Deterministic escalation-level classification (`normal`/`watch`/`warning`/`severe`/`critical`) with response windows.
 - [x] Containment/review/monitoring task generation for proactive harm mitigation workflows.
 
+### 38) Misuse Behavior Detector
+Objective: detect emerging misuse and abuse signatures early and convert them into enforceable actions.
+- [x] Abuse-signature detection across event streams (`jailbreak`, `scam`, `exfiltration`, `harassment`, `fraud`).
+- [x] Actor-level misuse risk scoring and global threat-level classification.
+- [x] Restriction/investigation/rule-hardening task generation from detected misuse patterns.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -274,3 +280,4 @@ Objective: detect trajectories likely to escalate into broad social harm and tri
 35. Community Feedback Harvester
 36. Public Benefit Opportunity Miner
 37. Harm Escalation Early-Warning
+38. Misuse Behavior Detector
