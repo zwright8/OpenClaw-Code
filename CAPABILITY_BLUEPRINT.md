@@ -76,9 +76,9 @@ Objective: consistent, queryable model of what the swarm currently believes.
 
 ### 11) Learning Loop Engine
 Objective: convert incidents/outcomes into automatic policy + prompt improvements.
-- [ ] Outcome ingestion contracts from completed tasks.
-- [ ] Counterfactual replay over historical traces.
-- [ ] Suggested improvements with measurable expected impact.
+- [x] Outcome ingestion contracts from completed tasks.
+- [x] Counterfactual replay over historical traces.
+- [x] Suggested improvements with measurable expected impact.
 
 ### 12) Capability Marketplace
 Objective: discover, evaluate, and route to specialized skills dynamically.
@@ -111,3 +111,12 @@ Objective: coordinate across organizations without central trust assumptions.
 4. Workflow DAG Executor
 5. Shared Memory Contracts
 6. Simulation & Benchmark Harness
+7. Policy/Safety Layer
+8. Cost/Latency Optimizer
+9. Unified Operator CLI
+10. Shared World-State Graph
+11. Learning Loop Engine
+12. Capability Marketplace
+13. Tool Sandbox Orchestrator
+14. Human-Agent Collaboration UX
+15. Federation & Trust Layer

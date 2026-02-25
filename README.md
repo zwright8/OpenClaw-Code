@@ -25,6 +25,7 @@ Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
+Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -52,6 +53,12 @@ Convert remediation plan into executable swarm tasks:
 npm run plan:tasks
 ```
 This emits `reports/remediation-tasks.json` with schema-valid `task_request` messages that can be dispatched by agents or queued for human operators.
+
+Run learning-loop replay from task outcomes:
+```bash
+npm run learn:loop
+```
+This ingests task outcomes, runs counterfactual variants, and writes actionable recommendations to `reports/learning-loop.json` and `reports/learning-loop.md`.
 
 ### Swarm Protocol
 ```bash
