@@ -5,12 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js test/task-store.test.js test/agent-registry.test.js test/approval-policy.test.js test/approval-queue.test.js test/workflow-engine.test.js test/memory-contracts.test.js test/simulation-harness.test.js test/dispatch-policy.test.js test/audit-log.test.js test/cost-latency-optimizer.test.js && node run-tests.js",
-    "test:unit": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js test/task-store.test.js test/agent-registry.test.js test/approval-policy.test.js test/approval-queue.test.js test/workflow-engine.test.js test/memory-contracts.test.js test/simulation-harness.test.js test/dispatch-policy.test.js test/audit-log.test.js test/cost-latency-optimizer.test.js",
+    "test": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js test/task-store.test.js test/agent-registry.test.js test/approval-policy.test.js test/approval-queue.test.js test/workflow-engine.test.js test/memory-contracts.test.js test/simulation-harness.test.js test/dispatch-policy.test.js test/audit-log.test.js test/cost-latency-optimizer.test.js test/operator-ops.test.js && node run-tests.js",
+    "test:unit": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js test/task-store.test.js test/agent-registry.test.js test/approval-policy.test.js test/approval-queue.test.js test/workflow-engine.test.js test/memory-contracts.test.js test/simulation-harness.test.js test/dispatch-policy.test.js test/audit-log.test.js test/cost-latency-optimizer.test.js test/operator-ops.test.js",
     "test:legacy": "node run-tests.js",
     "demo:orchestrator": "node scripts/orchestrator-demo.mjs",
     "approval:queue": "node scripts/export-approval-queue.mjs --json state/approval-queue.json --markdown state/approval-queue.md",
-    "benchmark:simulate": "node scripts/run-simulation-benchmark.mjs --scenario scenarios/baseline.json --runs 8 --thresholds scenarios/baseline-thresholds.json --json state/simulation-benchmark.json --markdown state/simulation-benchmark.md"
+    "benchmark:simulate": "node scripts/run-simulation-benchmark.mjs --scenario scenarios/baseline.json --runs 8 --thresholds scenarios/baseline-thresholds.json --json state/simulation-benchmark.json --markdown state/simulation-benchmark.md",
+    "ops": "node scripts/swarm-ops.mjs"
   },
   "dependencies": {
     "uuid": "^13.0.0",

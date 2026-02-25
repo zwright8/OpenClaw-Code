@@ -64,9 +64,9 @@ Objective: dynamically optimize execution quality vs cost vs speed.
 
 ### 9) Unified Operator CLI
 Objective: one control plane for debugging and operations.
-- [ ] `status`, `queue`, `replay`, `reroute`, `drain` commands.
-- [ ] Live tail for task lifecycle events.
-- [ ] Human override commands with full audit trail.
+- [x] `status`, `queue`, `replay`, `reroute`, `drain` commands.
+- [x] Live tail for task lifecycle events.
+- [x] Human override commands with full audit trail.
 
 ### 10) Shared World-State Graph
 Objective: consistent, queryable model of what the swarm currently believes.

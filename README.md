@@ -23,6 +23,7 @@ Adds a deterministic simulation benchmark harness for orchestration stress tests
 Adds pre-dispatch safety policies with explicit deny decisions and sensitive payload redaction.
 Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
+Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -73,6 +74,14 @@ Run deterministic benchmark scenarios:
 npm run benchmark:simulate
 ```
 This runs `scenarios/baseline.json` with repeatable seeds and validates aggregate thresholds from `scenarios/baseline-thresholds.json`.
+
+Operator control plane:
+```bash
+export SWARM_AUDIT_SECRET='replace-me'
+npm run ops -- status
+npm run ops -- queue --limit 10
+npm run ops -- tail --limit 20
+```
 
 Minimal orchestration usage:
 ```js
