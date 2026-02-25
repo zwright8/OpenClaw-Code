@@ -41,6 +41,7 @@ Adds a command briefing center that generates unified ops summaries and action t
 Adds a mission portfolio manager that schedules what to execute now vs next vs hold.
 Adds a mission forecast lab for what-if scenario planning over portfolio strategy.
 Adds an autonomous approval engine to bypass human review gates with auditable decisions.
+Adds an autonomous mission launcher that compiles and executes launch batches from portfolio lanes.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -339,6 +340,20 @@ import { createAutonomousApprovalPolicy } from 'swarm-protocol';
 const approvalPolicy = createAutonomousApprovalPolicy({
   mode: 'bypass_all'
 });
+```
+
+Autonomous mission launcher:
+```js
+import { compileAutonomousLaunchBatch, launchBatchToDispatchTasks } from 'swarm-protocol';
+
+const batch = compileAutonomousLaunchBatch({
+  portfolioReport: portfolio
+}, {
+  maxLaunches: 3,
+  approvalOptions: { mode: 'bypass_all' }
+});
+
+const dispatchTasks = launchBatchToDispatchTasks(batch);
 ```
 
 Durability + live registry example:

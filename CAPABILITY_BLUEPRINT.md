@@ -158,6 +158,12 @@ Objective: eliminate human approval bottlenecks with machine approval decisions 
 - [x] Queue-level auto-approval processing and follow-up task generation.
 - [x] Deterministic autonomous approval audit payloads.
 
+### 25) Autonomous Mission Launcher
+Objective: convert prioritized mission lanes into executable launch batches with autonomous approval decisions.
+- [x] Launch-batch compiler for `now` lane missions from portfolio/forecast.
+- [x] Integrated approval-bypass gating per launch candidate.
+- [x] Dispatch + follow-up task generation for immediate/deferred/blocked missions.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -183,3 +189,4 @@ Objective: eliminate human approval bottlenecks with machine approval decisions 
 22. Mission Portfolio Manager
 23. Mission Forecast Lab
 24. Autonomous Approval Engine
+25. Autonomous Mission Launcher
