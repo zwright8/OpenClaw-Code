@@ -60,6 +60,7 @@ Adds an explainability narrative generator to convert complex decisions into cle
 Adds an evidence provenance graph to score claim trust and track support/contradiction lineage.
 Adds a counterfactual policy lab to compare governance variants before rollout.
 Adds a policy diff simulator to quantify pairwise policy deltas and convergence opportunities.
+Adds a value conflict resolver to balance competing ethical objectives with explicit tradeoff plans.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -573,6 +574,16 @@ const policyDiffs = simulatePolicyDiffs({
   baselinePolicy,
   variants,
   context
+});
+```
+
+Value conflict resolver:
+```js
+import { resolveValueConflicts } from 'swarm-protocol';
+
+const resolution = resolveValueConflicts({
+  objectives,
+  actions
 });
 ```
 

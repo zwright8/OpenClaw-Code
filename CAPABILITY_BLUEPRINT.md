@@ -272,6 +272,12 @@ Objective: quantify impact deltas between policy variants and expose the largest
 - [x] Dominance ranking to identify top policy candidates under multi-objective scoring.
 - [x] Alignment/gap-investigation/convergence task generation from diff analysis.
 
+### 44) Value Conflict Resolver
+Objective: explicitly resolve conflicts between competing ethical objectives with auditable tradeoff decisions.
+- [x] Objective conflict matrix across score gaps, thresholds, and volatility pressure.
+- [x] Action evaluation against weighted multi-objective utility plus threshold-violation penalties.
+- [x] Balanced-action/mediation/signal-gathering task generation for governance resolution workflows.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -316,3 +322,4 @@ Objective: quantify impact deltas between policy variants and expose the largest
 41. Evidence Provenance Graph
 42. Counterfactual Policy Lab
 43. Policy Diff Simulator
+44. Value Conflict Resolver
