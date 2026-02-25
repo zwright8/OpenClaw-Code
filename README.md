@@ -48,6 +48,7 @@ Adds a humanity impact guardrail to block or review work that could harm people.
 Adds a constitution alignment engine to score truth, humanity, and curiosity compliance.
 Adds a constitutional execution controller to gate mission dispatch from alignment outcomes.
 Adds a societal outcome simulator to forecast intervention impact before execution.
+Adds an intervention portfolio optimizer to pick the highest-impact intervention bundle under constraints.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -422,6 +423,21 @@ import { simulateSocietalOutcomes } from 'swarm-protocol';
 const societalForecast = simulateSocietalOutcomes({
   baseline: { humanity: 72, truth: 68, curiosity: 61, reliability: 70 },
   interventions
+});
+```
+
+Intervention portfolio optimizer:
+```js
+import { optimizeInterventionPortfolio } from 'swarm-protocol';
+
+const portfolio = optimizeInterventionPortfolio({
+  baseline: { humanity: 72, truth: 68, curiosity: 61, reliability: 70 },
+  interventions,
+  constraints: {
+    budgetUsd: 12000,
+    maxRiskScore: 45,
+    maxInterventions: 3
+  }
 });
 ```
 

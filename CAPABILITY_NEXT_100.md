@@ -1,0 +1,104 @@
+# Capability Next 100 (32-131)
+
+This roadmap extends the core blueprint with the next 100 capabilities needed to maximize truth-seeking, pro-humanity impact, and practical execution power.
+
+- [x] 32. Intervention Portfolio Optimizer - Optimize intervention bundles under budget/risk to maximize projected societal benefit.
+- [ ] 33. Long-Horizon Externality Forecaster - Project second-order effects across multi-year horizons.
+- [ ] 34. Equity Impact Analyzer - Quantify benefit/harm distribution across demographic and regional groups.
+- [ ] 35. Community Feedback Harvester - Ingest and structure real-world human feedback into planning loops.
+- [ ] 36. Public Benefit Opportunity Miner - Discover highest-leverage opportunities for social good.
+- [ ] 37. Harm Escalation Early-Warning - Detect trajectories likely to cause broad social harm.
+- [ ] 38. Misuse Behavior Detector - Identify emerging misuse patterns and abuse signatures.
+- [ ] 39. Adversarial Robustness Fuzzer - Continuously stress systems against adversarial manipulation.
+- [ ] 40. Explainability Narrative Generator - Produce understandable reasons for complex decisions.
+- [ ] 41. Evidence Provenance Graph - Track lineage and trustworthiness of every claim.
+- [ ] 42. Counterfactual Policy Lab - Test policy alternatives against simulated outcomes.
+- [ ] 43. Policy Diff Simulator - Measure impact deltas between policy variants.
+- [ ] 44. Value Conflict Resolver - Resolve conflicts between competing ethical objectives.
+- [ ] 45. Multi-Stakeholder Preference Modeler - Model diverse stakeholder priorities.
+- [ ] 46. Consent and Agency Mapper - Ensure plans respect human consent boundaries.
+- [ ] 47. Vulnerable Population Safeguard - Add protections for high-risk groups.
+- [ ] 48. Accessibility Quality Auditor - Detect accessibility failures early.
+- [ ] 49. Environmental Impact Estimator - Quantify environmental externalities.
+- [ ] 50. Resource Fairness Allocator - Distribute limited resources equitably.
+- [ ] 51. Ethical Budget Optimizer - Balance social benefit vs financial constraints.
+- [ ] 52. Human Oversight Workbench - Improve operator intervention speed and clarity.
+- [ ] 53. Operator Decision Replay Studio - Reconstruct and audit operator decision chains.
+- [ ] 54. Governance Rule Compiler - Convert governance intent into executable policy.
+- [ ] 55. Compliance Standard Mapper - Map controls to standards and obligations.
+- [ ] 56. Jurisdictional Policy Router - Apply correct rules per region/jurisdiction.
+- [ ] 57. Incident Communication Synthesizer - Generate clear incident updates for humans.
+- [ ] 58. Crisis Coordination Mesh - Coordinate multi-team response during emergencies.
+- [ ] 59. Reliability Chaos Gym - Systematically test resilience under failure.
+- [ ] 60. Recovery Playbook Synthesizer - Generate recovery procedures from incident patterns.
+- [ ] 61. Disaster Response Mission Packager - Package executable disaster-relief missions.
+- [ ] 62. Healthcare Safety Protocol Adapter - Tailor workflows to healthcare safety norms.
+- [ ] 63. Education Support Planner - Build targeted educational support actions.
+- [ ] 64. Civic Service Automation Planner - Improve public service delivery workflows.
+- [ ] 65. Nonprofit Ops Copilot Bridge - Adapt capabilities for nonprofit operations.
+- [ ] 66. Workforce Upskilling Orchestrator - Plan human skill development pathways.
+- [ ] 67. Collaboration Trust Score Engine - Quantify trust in multi-agent collaboration.
+- [ ] 68. Reputation and Accountability Ledger - Preserve action accountability over time.
+- [ ] 69. Open Knowledge Curator - Curate high-quality open knowledge artifacts.
+- [ ] 70. Scientific Hypothesis Marketplace - Match hypotheses with available evidence resources.
+- [ ] 71. Experiment Reproducibility Verifier - Verify reproducibility of research outcomes.
+- [ ] 72. Data Quality Sentinel - Continuously monitor data validity and drift.
+- [ ] 73. Bias Detection and Mitigation Loop - Detect and correct harmful bias patterns.
+- [ ] 74. Red Team Auto-Challenge Engine - Auto-generate red-team probes.
+- [ ] 75. Value Alignment Stress Tester - Stress-test constitutional alignment under pressure.
+- [ ] 76. Social Simulation Sandbox - Simulate social dynamics before deployment.
+- [ ] 77. Consensus Formation Facilitator - Accelerate consensus-building across teams.
+- [ ] 78. Debate Mediator and Fact Checker - Mediate disputes with evidence grounding.
+- [ ] 79. Uncertainty Communication Composer - Communicate uncertainty without distortion.
+- [ ] 80. Explainable Recommendation Layer - Make recommendations transparent and auditable.
+- [ ] 81. Goal Decomposition Superplanner - Break mega-goals into executable plans.
+- [ ] 82. Execution Autonomy Dial - Tune autonomy level dynamically by risk.
+- [ ] 83. Self-Reflection Error Taxonomy - Classify recurring reasoning failures.
+- [ ] 84. Cognitive Drift Corrector - Correct gradual strategic drift.
+- [ ] 85. Long-Term Memory Consolidator - Merge episodic memory into durable intelligence.
+- [ ] 86. Skill Discovery Auto-Installer - Discover and integrate new capabilities automatically.
+- [ ] 87. Tool Reliability Autopatcher - Repair flaky tools with automated patching loops.
+- [ ] 88. API Compatibility Adapter - Bridge breaking API changes safely.
+- [ ] 89. Workflow Template Synthesizer - Generate reusable workflow templates.
+- [ ] 90. Agent Team Topology Optimizer - Optimize team structure by mission type.
+- [ ] 91. Multi-Agent Negotiation Protocol - Resolve planning/resource conflicts across agents.
+- [ ] 92. Cross-Org Federation Coordinator - Coordinate efforts across organizations.
+- [ ] 93. Privacy-Preserving Collaboration Layer - Enable useful collaboration with strict privacy.
+- [ ] 94. Secure Data Clean Room Broker - Broker safe data exchange environments.
+- [ ] 95. Cryptographic Attestation Mesh - Attest to integrity of actions and artifacts.
+- [ ] 96. Zero-Trust Action Gatekeeper - Enforce least privilege by default.
+- [ ] 97. Economic Cost-Benefit Simulator - Forecast economic impacts of interventions.
+- [ ] 98. Funding Allocation Advisor - Recommend where funds do most good.
+- [ ] 99. Supply Chain Resilience Planner - Reduce fragility in critical supply chains.
+- [ ] 100. Infrastructure Capacity Forecaster - Anticipate infrastructure bottlenecks.
+- [ ] 101. Energy Efficiency Optimizer - Reduce energy cost and waste.
+- [ ] 102. Carbon and Sustainability Guard - Constrain carbon impact in decisions.
+- [ ] 103. Local Language Community Adapter - Adapt behavior to local language communities.
+- [ ] 104. Cultural Context Translator - Preserve nuance across cultures.
+- [ ] 105. Accessibility Personalization Engine - Personalize accessibility support.
+- [ ] 106. Mental Health Safety Companion - Detect and mitigate mental harm risk.
+- [ ] 107. Emotional Harm Detection Guard - Catch potentially harmful emotional interactions.
+- [ ] 108. Child Safety Protection Layer - Enforce child-focused safety constraints.
+- [ ] 109. Fraud and Scam Prevention Shield - Detect and block scam-like behavior.
+- [ ] 110. Digital Rights Compliance Monitor - Protect user rights and due process.
+- [ ] 111. Public Transparency Portal Generator - Publish transparent operational reports.
+- [ ] 112. Trustworthy Reporting Publisher - Emit verifiable and contextualized reports.
+- [ ] 113. Learning Curriculum Generator - Build adaptive learning curricula.
+- [ ] 114. Skill Gap Diagnostic Engine - Detect capability deficits in humans/agents.
+- [ ] 115. Human-AI Pair Programming Coach - Improve joint software delivery quality.
+- [ ] 116. Scientific Literature Synthesizer - Synthesize literature into actionable insight.
+- [ ] 117. Knowledge Gap Explorer - Identify unknowns that matter most.
+- [ ] 118. Autonomous Research Program Manager - Coordinate parallel research programs.
+- [ ] 119. Hypothesis Prioritization Exchange - Route effort to highest-value hypotheses.
+- [ ] 120. Breakthrough Opportunity Radar - Detect high-upside opportunity windows.
+- [ ] 121. Strategic Scenario War-Gamer - Explore strategic scenario branches.
+- [ ] 122. Policy Intervention Optimizer - Optimize intervention bundles across policies.
+- [ ] 123. Global Risk Observatory - Monitor planetary-scale risk signals.
+- [ ] 124. Humanitarian Logistics Coordinator - Optimize aid logistics in crises.
+- [ ] 125. Emergency Resource Dispatcher - Dispatch emergency resources adaptively.
+- [ ] 126. Community Impact Measurement Studio - Measure real-world community outcomes.
+- [ ] 127. Social Benefit KPI Dashboard - Track measurable social impact KPIs.
+- [ ] 128. Philanthropic Program Optimizer - Improve philanthropic portfolio performance.
+- [ ] 129. Inclusive Governance Co-Designer - Co-design inclusive governance structures.
+- [ ] 130. Collective Intelligence Commons - Share and reuse aligned intelligence artifacts.
+- [ ] 131. Humanity Mission Operating System - Unified operating layer for large-scale human-benefit missions.

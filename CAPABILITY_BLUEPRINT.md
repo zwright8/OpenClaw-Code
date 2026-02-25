@@ -200,6 +200,12 @@ Objective: forecast multi-horizon societal impact of intervention choices before
 - [x] Trajectory classification (`improving`, `stable`, `declining`) with risk alerts.
 - [x] Intervention adoption/review task generation from simulation results.
 
+### 32) Intervention Portfolio Optimizer
+Objective: choose intervention bundles under budget and risk limits to maximize projected societal benefit.
+- [x] Candidate bundle enumeration with deterministic ranking objective.
+- [x] Feasibility gating across budget, risk, intervention-count, and humanity floor constraints.
+- [x] Portfolio recommendation task generation for adopt/review/rebalance workflows.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -232,3 +238,4 @@ Objective: forecast multi-horizon societal impact of intervention choices before
 29. Constitution Alignment Engine
 30. Constitutional Execution Controller
 31. Societal Outcome Simulator
+32. Intervention Portfolio Optimizer
