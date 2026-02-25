@@ -278,6 +278,12 @@ Objective: explicitly resolve conflicts between competing ethical objectives wit
 - [x] Action evaluation against weighted multi-objective utility plus threshold-violation penalties.
 - [x] Balanced-action/mediation/signal-gathering task generation for governance resolution workflows.
 
+### 45) Multi-Stakeholder Preference Modeler
+Objective: model diverse stakeholder priorities and expose consensus vs divergence before key decisions.
+- [x] Stakeholder utility modeling across configurable preference axes and influence weights.
+- [x] Option consensus scoring with divergence matrix across stakeholder groups.
+- [x] Consensus adoption, divergence mediation, and missing-preference task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -323,3 +329,4 @@ Objective: explicitly resolve conflicts between competing ethical objectives wit
 42. Counterfactual Policy Lab
 43. Policy Diff Simulator
 44. Value Conflict Resolver
+45. Multi-Stakeholder Preference Modeler

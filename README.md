@@ -61,6 +61,7 @@ Adds an evidence provenance graph to score claim trust and track support/contrad
 Adds a counterfactual policy lab to compare governance variants before rollout.
 Adds a policy diff simulator to quantify pairwise policy deltas and convergence opportunities.
 Adds a value conflict resolver to balance competing ethical objectives with explicit tradeoff plans.
+Adds a multi-stakeholder preference modeler to quantify consensus and divergence across stakeholder groups.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -584,6 +585,16 @@ import { resolveValueConflicts } from 'swarm-protocol';
 const resolution = resolveValueConflicts({
   objectives,
   actions
+});
+```
+
+Multi-stakeholder preference modeler:
+```js
+import { modelStakeholderPreferences } from 'swarm-protocol';
+
+const preferences = modelStakeholderPreferences({
+  stakeholders,
+  options
 });
 ```
 
