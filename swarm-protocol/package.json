@@ -1,0 +1,10 @@
+{
+  "name": "swarm-protocol",
+  "version": "0.1.0",
+  "description": "Standardized communication schemas for OpenClaw agent swarms",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}

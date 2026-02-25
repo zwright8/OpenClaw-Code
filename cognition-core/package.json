@@ -6,7 +6,11 @@
   "scripts": {
     "analyze": "node scripts/analyze-history.mjs"
   },
-  "keywords": ["agent", "introspection", "openclaw"],
+  "keywords": [
+    "agent",
+    "introspection",
+    "openclaw"
+  ],
   "author": "Z <zach@zachwright.xyz>",
   "license": "MIT",
   "type": "module"

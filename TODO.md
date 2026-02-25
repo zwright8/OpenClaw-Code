@@ -4,7 +4,7 @@
 - [x] **Log Analyzer:** Script to parse `~/.openclaw/logs/` and count tool usage frequency. (Implemented v0.1 - Note: `gateway.log` is insufficient; need SQLite adapter)
 - [x] **Error Heatmap:** Identify which tools fail the most. (Implemented v0.1)
 - [x] **Memory Graph:** Generate a DOT/Graphviz file showing links between `MEMORY.md` entries. (Implemented v0.1)
-- [ ] **SQLite Adapter:** Create a read-only adapter for `~/.openclaw/memory/main.sqlite` to fetch real execution history for the Log Analyzer.
+- [x] **SQLite Adapter:** Create a read-only adapter. (Superseded: Switched to parsing JSONL session files directly in LogAnalyzer v2).
 
 ## Swarm Protocol
 - [ ] **Standard Message Schema:** Define a JSON schema for agent-to-agent task handoff.
