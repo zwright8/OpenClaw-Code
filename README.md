@@ -11,6 +11,7 @@ A library for agent introspection. It parses execution logs, session history, an
 
 ### 2. `swarm-protocol`
 Typed schemas and handshake primitives for agent-to-agent coordination.
+Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
 
 ## Quick Start
 
@@ -28,6 +29,13 @@ node scripts/analyze-history.mjs --days 7 \
   --markdown reports/cognition-report.md
 ```
 Use `--no-compare` to disable trend comparison, or `--compare-days <n>` to customize baseline size.
+
+### Swarm Protocol
+```bash
+cd swarm-protocol
+npm test
+```
+Runs unit tests for handshake negotiation/reliability plus legacy integration checks.
 
 ### Repo Self-Lint
 ```bash

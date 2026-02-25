@@ -4,6 +4,11 @@
   "description": "Standardized communication schemas for OpenClaw agent swarms",
   "main": "index.js",
   "type": "module",
+  "scripts": {
+    "test": "node --test test/handshake.test.js && node run-tests.js",
+    "test:unit": "node --test test/handshake.test.js",
+    "test:legacy": "node run-tests.js"
+  },
   "dependencies": {
     "uuid": "^13.0.0",
     "zod": "^3.22.4"
