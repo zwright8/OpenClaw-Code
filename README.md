@@ -67,6 +67,7 @@ Adds a vulnerable population safeguard evaluator to block rollouts that endanger
 Adds an accessibility quality auditor to score surface-level a11y readiness and prioritize remediation.
 Adds an environmental impact estimator to quantify carbon/water/waste externalities before launch.
 Adds a resource fairness allocator to distribute scarce resources across communities with equity weighting.
+Adds an ethical budget optimizer to pick the highest-impact initiative portfolio under fiscal and risk constraints.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -653,6 +654,17 @@ import { allocateResourcesFairly } from 'swarm-protocol';
 const allocationReport = allocateResourcesFairly({
   demands,
   supply,
+  policy
+});
+```
+
+Ethical budget optimizer:
+```js
+import { optimizeEthicalBudget } from 'swarm-protocol';
+
+const budgetPlan = optimizeEthicalBudget({
+  initiatives,
+  budget,
   policy
 });
 ```

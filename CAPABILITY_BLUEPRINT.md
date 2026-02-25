@@ -314,6 +314,12 @@ Objective: distribute scarce resources equitably while prioritizing vulnerable a
 - [x] Group and portfolio posture decisions (`fair`/`review_required`/`blocked`) with fairness-index and supply-shortfall signals.
 - [x] Reallocation, capacity request, rebalance, and transparency task generation.
 
+### 51) Ethical Budget Optimizer
+Objective: optimize budget allocation toward the strongest pro-humanity outcomes while respecting risk and governance constraints.
+- [x] Portfolio candidate search across initiatives under configurable budget, risk, and ethics policy limits.
+- [x] Ethical scoring model balancing benefit, equity, urgency, compliance, risk penalties, and cost pressure.
+- [x] Approval, tradeoff review, de-risking, budget-adjustment, and transparency task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -365,3 +371,4 @@ Objective: distribute scarce resources equitably while prioritizing vulnerable a
 48. Accessibility Quality Auditor
 49. Environmental Impact Estimator
 50. Resource Fairness Allocator
+51. Ethical Budget Optimizer

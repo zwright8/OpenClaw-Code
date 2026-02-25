@@ -53,3 +53,4 @@ export * from './src/vulnerable-safeguard.js';
 export * from './src/accessibility-auditor.js';
 export * from './src/environmental-impact.js';
 export * from './src/resource-fairness.js';
+export * from './src/ethical-budget.js';
