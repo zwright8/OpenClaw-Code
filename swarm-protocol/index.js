@@ -20,3 +20,4 @@ export * from './src/collaboration-ux.js';
 export * from './src/federation-trust.js';
 export * from './src/recovery-supervisor.js';
 export * from './src/drift-sentinel.js';
+export * from './src/telemetry-pipeline.js';

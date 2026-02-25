@@ -116,6 +116,12 @@ Objective: detect quality regressions across memory, routing, and skills before 
 - [x] Prioritized drift alert generation.
 - [x] Mitigation task generation for closed-loop recovery.
 
+### 18) Telemetry Pipeline
+Objective: centralized event bus for unified lifecycle telemetry across all subsystems.
+- [x] Structured event ingestion with subscriber hooks and filters.
+- [x] Time-windowed queries and aggregation by event type or source.
+- [x] Retention policies with configurable max events and age-based flush.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -134,3 +140,4 @@ Objective: detect quality regressions across memory, routing, and skills before 
 15. Federation & Trust Layer
 16. Autonomous Recovery Supervisor
 17. Capability Drift Sentinel
+18. Telemetry Pipeline

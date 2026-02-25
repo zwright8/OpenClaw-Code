@@ -32,6 +32,7 @@ Adds collaboration UX primitives for timelines, decision explanations, and audit
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
 Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
+Adds a telemetry pipeline for centralized event aggregation with subscriber hooks, time-windowed queries, and retention policies.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -246,6 +247,27 @@ import { DriftSentinel } from 'swarm-protocol';
 const sentinel = new DriftSentinel();
 sentinel.setBaseline(baselineSnapshot);
 const driftReport = sentinel.evaluate(currentSnapshot);
+```
+
+Telemetry pipeline:
+```js
+import { TelemetryPipeline } from 'swarm-protocol';
+
+const pipeline = new TelemetryPipeline({ maxEvents: 10_000, maxAgeMs: 3_600_000 });
+
+pipeline.subscribe((event) => console.log(event), {
+  filter: (e) => e.eventType === 'task_failed'
+});
+
+pipeline.emit({
+  eventType: 'task_created',
+  source: 'orchestrator',
+  payload: { taskId: '...' }
+});
+
+const recent = pipeline.query({ eventType: 'task_created', since: Date.now() - 60_000 });
+const agg = pipeline.aggregate({ windowMs: 300_000, groupBy: 'eventType' });
+pipeline.flush(); // remove events older than maxAgeMs
 ```
 
 Durability + live registry example:
