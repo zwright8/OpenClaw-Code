@@ -194,6 +194,12 @@ Objective: enforce constitution-aware launch gating by turning alignment outcome
 - [x] Constitution + humanity recommendation merge for mitigation planning.
 - [x] Dispatch and mitigation task conversion from constitutional execution plans.
 
+### 31) Societal Outcome Simulator
+Objective: forecast multi-horizon societal impact of intervention choices before execution.
+- [x] Baseline + intervention normalization into weighted societal score projections.
+- [x] Trajectory classification (`improving`, `stable`, `declining`) with risk alerts.
+- [x] Intervention adoption/review task generation from simulation results.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -225,3 +231,4 @@ Objective: enforce constitution-aware launch gating by turning alignment outcome
 28. Humanity Impact Guardrail
 29. Constitution Alignment Engine
 30. Constitutional Execution Controller
+31. Societal Outcome Simulator

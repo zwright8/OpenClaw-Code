@@ -47,6 +47,7 @@ Adds a curiosity agenda planner to schedule which hypotheses to investigate now 
 Adds a humanity impact guardrail to block or review work that could harm people.
 Adds a constitution alignment engine to score truth, humanity, and curiosity compliance.
 Adds a constitutional execution controller to gate mission dispatch from alignment outcomes.
+Adds a societal outcome simulator to forecast intervention impact before execution.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -411,6 +412,16 @@ const executionPlan = computeConstitutionalExecutionPlan({
   launchBatch: batch,
   constitutionReport: constitution,
   humanityReport
+});
+```
+
+Societal outcome simulator:
+```js
+import { simulateSocietalOutcomes } from 'swarm-protocol';
+
+const societalForecast = simulateSocietalOutcomes({
+  baseline: { humanity: 72, truth: 68, curiosity: 61, reliability: 70 },
+  interventions
 });
 ```
 
