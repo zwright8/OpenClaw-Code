@@ -164,6 +164,12 @@ Objective: convert prioritized mission lanes into executable launch batches with
 - [x] Integrated approval-bypass gating per launch candidate.
 - [x] Dispatch + follow-up task generation for immediate/deferred/blocked missions.
 
+### 26) Truth-Seeking Hypothesis Engine
+Objective: maintain explicit hypotheses, update confidence from evidence, and drive experiments that reduce uncertainty.
+- [x] Multi-source evidence normalization (readiness, drift, incidents, governor, explicit signals).
+- [x] Deterministic posterior confidence scoring with support/contradiction traces.
+- [x] Experiment/evidence recommendation tasks for uncertain and unlikely hypotheses.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -190,3 +196,4 @@ Objective: convert prioritized mission lanes into executable launch batches with
 23. Mission Forecast Lab
 24. Autonomous Approval Engine
 25. Autonomous Mission Launcher
+26. Truth-Seeking Hypothesis Engine

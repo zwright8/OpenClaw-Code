@@ -42,6 +42,7 @@ Adds a mission portfolio manager that schedules what to execute now vs next vs h
 Adds a mission forecast lab for what-if scenario planning over portfolio strategy.
 Adds an autonomous approval engine to bypass human review gates with auditable decisions.
 Adds an autonomous mission launcher that compiles and executes launch batches from portfolio lanes.
+Adds a truth-seeking hypothesis engine for evidence-based confidence updates and experiments.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -354,6 +355,18 @@ const batch = compileAutonomousLaunchBatch({
 });
 
 const dispatchTasks = launchBatchToDispatchTasks(batch);
+```
+
+Truth-seeking hypothesis engine:
+```js
+import { evaluateTruthHypotheses } from 'swarm-protocol';
+
+const truthReport = evaluateTruthHypotheses({
+  hypotheses,
+  readinessReport: readiness,
+  driftReport,
+  incidents
+});
 ```
 
 Durability + live registry example:
