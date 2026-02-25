@@ -434,6 +434,36 @@ Objective: match high-impact scientific hypotheses to constrained evidence resou
 - [x] Capacity-aware marketplace lane planning (`now`/`next`/`hold`) with peer-review and resource-gap tracking.
 - [x] Experiment funding, resource allocation, peer review, and marketplace briefing task generation.
 
+### 71) Experiment Reproducibility Verifier
+Objective: verify whether scientific outcomes can be reliably reproduced across runs, environments, and protocol variants.
+- [x] Reproducibility scoring from replication rate, environment parity, seed controls, and protocol completeness.
+- [x] Tier/posture classification (`reproducible`/`fragile`/`non_reproducible`) with risk-pressure tracking.
+- [x] Replication suite, protocol lock, failure investigation, and reproducibility report task generation.
+
+### 72) Data Quality Sentinel
+Objective: continuously monitor dataset integrity and trigger corrective actions for drift, freshness, and schema failures.
+- [x] Dataset quality scoring across completeness, validity, freshness, drift risk, schema stability, and anomaly rate.
+- [x] Tier/posture classification (`healthy`/`watch`/`degraded`) with risk-pressure detection.
+- [x] Data backfill, drift investigation, schema guardrail, and data-quality briefing task generation.
+
+### 73) Bias Detection and Mitigation Loop
+Objective: detect harmful bias patterns and continuously drive mitigation before model release and operation.
+- [x] Bias-risk scoring across group disparity, error rates, coverage gaps, harm signals, and mitigation coverage.
+- [x] Residual-risk posture classification (`controlled`/`elevated`/`severe`) for release readiness.
+- [x] Mitigation experiment, representative sampling, release gate, and bias audit task generation.
+
+### 74) Red Team Auto-Challenge Engine
+Objective: auto-generate and prioritize adversarial probes against critical surfaces under finite red-team capacity.
+- [x] Surface risk scoring and probe-fit ranking across privilege, guardrail strength, sensitivity, and attack complexity.
+- [x] Capacity-aware challenge lane planning (`now`/`next`/`hold`) with unresolved-risk and manual-review gap tracking.
+- [x] Probe execution, guardrail hardening, manual review scheduling, and red-team digest task generation.
+
+### 75) Value Alignment Stress Tester
+Objective: stress-test constitutional alignment under operational pressure and identify weak safeguard regimes.
+- [x] Scenario resilience scoring across truth/humanity/curiosity stress, safeguard coverage, override rate, and uncertainty.
+- [x] Alignment tiering (`stable`/`strained`/`unstable`) with drift-risk posture decisions.
+- [x] Alignment drills, safeguard strengthening, override-control tightening, and stress-report task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -505,3 +535,8 @@ Objective: match high-impact scientific hypotheses to constrained evidence resou
 68. Reputation and Accountability Ledger
 69. Open Knowledge Curator
 70. Scientific Hypothesis Marketplace
+71. Experiment Reproducibility Verifier
+72. Data Quality Sentinel
+73. Bias Detection and Mitigation Loop
+74. Red Team Auto-Challenge Engine
+75. Value Alignment Stress Tester

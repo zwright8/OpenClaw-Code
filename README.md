@@ -87,6 +87,11 @@ Adds a collaboration trust score engine to quantify trust posture and trigger pr
 Adds a reputation and accountability ledger to track actor-level accountability and remediation over time.
 Adds an open knowledge curator to match high-quality reusable artifacts to urgent community knowledge gaps.
 Adds a scientific hypothesis marketplace to allocate constrained research resources to the highest-value hypotheses.
+Adds an experiment reproducibility verifier to score replication reliability and enforce protocol rigor.
+Adds a data quality sentinel to monitor dataset freshness, validity, drift, and schema stability continuously.
+Adds a bias mitigation loop to track disparity risk and trigger remediation before harmful model deployment.
+Adds a red-team auto-challenge engine to prioritize adversarial probe coverage across high-risk surfaces.
+Adds a value-alignment stress tester to evaluate constitutional resilience under high-pressure scenarios.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -877,6 +882,53 @@ const marketplace = runScientificHypothesisMarketplace({
   hypotheses,
   resources,
   capacity
+});
+```
+
+Experiment reproducibility verifier:
+```js
+import { verifyExperimentReproducibility } from 'swarm-protocol';
+
+const reproducibility = verifyExperimentReproducibility({
+  experiments
+});
+```
+
+Data quality sentinel:
+```js
+import { runDataQualitySentinel } from 'swarm-protocol';
+
+const dataQuality = runDataQualitySentinel({
+  datasets
+});
+```
+
+Bias mitigation loop:
+```js
+import { runBiasMitigationLoop } from 'swarm-protocol';
+
+const biasLoop = runBiasMitigationLoop({
+  evaluations
+});
+```
+
+Red-team auto-challenge engine:
+```js
+import { runRedTeamAutoChallenge } from 'swarm-protocol';
+
+const redTeam = runRedTeamAutoChallenge({
+  surfaces,
+  probes,
+  capacity
+});
+```
+
+Value-alignment stress tester:
+```js
+import { runValueAlignmentStressTest } from 'swarm-protocol';
+
+const alignmentStress = runValueAlignmentStressTest({
+  scenarios
 });
 ```
 

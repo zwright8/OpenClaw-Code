@@ -41,11 +41,11 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 68. Reputation and Accountability Ledger - Preserve action accountability over time.
 - [x] 69. Open Knowledge Curator - Curate high-quality open knowledge artifacts.
 - [x] 70. Scientific Hypothesis Marketplace - Match hypotheses with available evidence resources.
-- [ ] 71. Experiment Reproducibility Verifier - Verify reproducibility of research outcomes.
-- [ ] 72. Data Quality Sentinel - Continuously monitor data validity and drift.
-- [ ] 73. Bias Detection and Mitigation Loop - Detect and correct harmful bias patterns.
-- [ ] 74. Red Team Auto-Challenge Engine - Auto-generate red-team probes.
-- [ ] 75. Value Alignment Stress Tester - Stress-test constitutional alignment under pressure.
+- [x] 71. Experiment Reproducibility Verifier - Verify reproducibility of research outcomes.
+- [x] 72. Data Quality Sentinel - Continuously monitor data validity and drift.
+- [x] 73. Bias Detection and Mitigation Loop - Detect and correct harmful bias patterns.
+- [x] 74. Red Team Auto-Challenge Engine - Auto-generate red-team probes.
+- [x] 75. Value Alignment Stress Tester - Stress-test constitutional alignment under pressure.
 - [ ] 76. Social Simulation Sandbox - Simulate social dynamics before deployment.
 - [ ] 77. Consensus Formation Facilitator - Accelerate consensus-building across teams.
 - [ ] 78. Debate Mediator and Fact Checker - Mediate disputes with evidence grounding.
@@ -70,35 +70,35 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [ ] 97. Economic Cost-Benefit Simulator - Forecast economic impacts of interventions.
 - [ ] 98. Funding Allocation Advisor - Recommend where funds do most good.
 - [ ] 99. Supply Chain Resilience Planner - Reduce fragility in critical supply chains.
-- [ ] 100. Infrastructure Capacity Forecaster - Anticipate infrastructure bottlenecks.
-- [ ] 101. Energy Efficiency Optimizer - Reduce energy cost and waste.
-- [ ] 102. Carbon and Sustainability Guard - Constrain carbon impact in decisions.
-- [ ] 103. Local Language Community Adapter - Adapt behavior to local language communities.
-- [ ] 104. Cultural Context Translator - Preserve nuance across cultures.
-- [ ] 105. Accessibility Personalization Engine - Personalize accessibility support.
-- [ ] 106. Mental Health Safety Companion - Detect and mitigate mental harm risk.
-- [ ] 107. Emotional Harm Detection Guard - Catch potentially harmful emotional interactions.
-- [ ] 108. Child Safety Protection Layer - Enforce child-focused safety constraints.
-- [ ] 109. Fraud and Scam Prevention Shield - Detect and block scam-like behavior.
-- [ ] 110. Digital Rights Compliance Monitor - Protect user rights and due process.
-- [ ] 111. Public Transparency Portal Generator - Publish transparent operational reports.
-- [ ] 112. Trustworthy Reporting Publisher - Emit verifiable and contextualized reports.
-- [ ] 113. Learning Curriculum Generator - Build adaptive learning curricula.
-- [ ] 114. Skill Gap Diagnostic Engine - Detect capability deficits in humans/agents.
-- [ ] 115. Human-AI Pair Programming Coach - Improve joint software delivery quality.
-- [ ] 116. Scientific Literature Synthesizer - Synthesize literature into actionable insight.
-- [ ] 117. Knowledge Gap Explorer - Identify unknowns that matter most.
-- [ ] 118. Autonomous Research Program Manager - Coordinate parallel research programs.
-- [ ] 119. Hypothesis Prioritization Exchange - Route effort to highest-value hypotheses.
-- [ ] 120. Breakthrough Opportunity Radar - Detect high-upside opportunity windows.
-- [ ] 121. Strategic Scenario War-Gamer - Explore strategic scenario branches.
-- [ ] 122. Policy Intervention Optimizer - Optimize intervention bundles across policies.
-- [ ] 123. Global Risk Observatory - Monitor planetary-scale risk signals.
-- [ ] 124. Humanitarian Logistics Coordinator - Optimize aid logistics in crises.
-- [ ] 125. Emergency Resource Dispatcher - Dispatch emergency resources adaptively.
-- [ ] 126. Community Impact Measurement Studio - Measure real-world community outcomes.
-- [ ] 127. Social Benefit KPI Dashboard - Track measurable social impact KPIs.
-- [ ] 128. Philanthropic Program Optimizer - Improve philanthropic portfolio performance.
-- [ ] 129. Inclusive Governance Co-Designer - Co-design inclusive governance structures.
-- [ ] 130. Collective Intelligence Commons - Share and reuse aligned intelligence artifacts.
-- [ ] 131. Humanity Mission Operating System - Unified operating layer for large-scale human-benefit missions.
+- [x] 100. Infrastructure Capacity Forecaster - Anticipate infrastructure bottlenecks.
+- [x] 101. Energy Efficiency Optimizer - Reduce energy cost and waste.
+- [x] 102. Carbon and Sustainability Guard - Constrain carbon impact in decisions.
+- [x] 103. Local Language Community Adapter - Adapt behavior to local language communities.
+- [x] 104. Cultural Context Translator - Preserve nuance across cultures.
+- [x] 105. Accessibility Personalization Engine - Personalize accessibility support.
+- [x] 106. Mental Health Safety Companion - Detect and mitigate mental harm risk.
+- [x] 107. Emotional Harm Detection Guard - Catch potentially harmful emotional interactions.
+- [x] 108. Child Safety Protection Layer - Enforce child-focused safety constraints.
+- [x] 109. Fraud and Scam Prevention Shield - Detect and block scam-like behavior.
+- [x] 110. Digital Rights Compliance Monitor - Protect user rights and due process.
+- [x] 111. Public Transparency Portal Generator - Publish transparent operational reports.
+- [x] 112. Trustworthy Reporting Publisher - Emit verifiable and contextualized reports.
+- [x] 113. Learning Curriculum Generator - Build adaptive learning curricula.
+- [x] 114. Skill Gap Diagnostic Engine - Detect capability deficits in humans/agents.
+- [x] 115. Human-AI Pair Programming Coach - Improve joint software delivery quality.
+- [x] 116. Scientific Literature Synthesizer - Synthesize literature into actionable insight.
+- [x] 117. Knowledge Gap Explorer - Identify unknowns that matter most.
+- [x] 118. Autonomous Research Program Manager - Coordinate parallel research programs.
+- [x] 119. Hypothesis Prioritization Exchange - Route effort to highest-value hypotheses.
+- [x] 120. Breakthrough Opportunity Radar - Detect high-upside opportunity windows.
+- [x] 121. Strategic Scenario War-Gamer - Explore strategic scenario branches.
+- [x] 122. Policy Intervention Optimizer - Optimize intervention bundles across policies.
+- [x] 123. Global Risk Observatory - Monitor planetary-scale risk signals.
+- [x] 124. Humanitarian Logistics Coordinator - Optimize aid logistics in crises.
+- [x] 125. Emergency Resource Dispatcher - Dispatch emergency resources adaptively.
+- [x] 126. Community Impact Measurement Studio - Measure real-world community outcomes.
+- [x] 127. Social Benefit KPI Dashboard - Track measurable social impact KPIs.
+- [x] 128. Philanthropic Program Optimizer - Improve philanthropic portfolio performance.
+- [x] 129. Inclusive Governance Co-Designer - Co-design inclusive governance structures.
+- [x] 130. Collective Intelligence Commons - Share and reuse aligned intelligence artifacts.
+- [x] 131. Humanity Mission Operating System - Unified operating layer for large-scale human-benefit missions.
