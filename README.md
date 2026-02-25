@@ -52,6 +52,7 @@ Adds an intervention portfolio optimizer to pick the highest-impact intervention
 Adds a long-horizon externality forecaster to model second-order multi-year effects.
 Adds an equity impact analyzer to quantify benefit/harm/access distribution across communities.
 Adds a community feedback harvester to turn multi-channel human feedback into actionable operations tasks.
+Adds a public benefit opportunity miner to rank and schedule high-leverage opportunities for social good.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -478,6 +479,20 @@ import { harvestCommunityFeedback } from 'swarm-protocol';
 
 const feedbackReport = harvestCommunityFeedback({
   feedback
+});
+```
+
+Public benefit opportunity miner:
+```js
+import { minePublicBenefitOpportunities } from 'swarm-protocol';
+
+const opportunities = minePublicBenefitOpportunities({
+  opportunities: opportunityCandidates,
+  constraints: {
+    budgetUsd: 50000,
+    maxNow: 3,
+    maxNext: 5
+  }
 });
 ```
 

@@ -6,7 +6,7 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 33. Long-Horizon Externality Forecaster - Project second-order effects across multi-year horizons.
 - [x] 34. Equity Impact Analyzer - Quantify benefit/harm distribution across demographic and regional groups.
 - [x] 35. Community Feedback Harvester - Ingest and structure real-world human feedback into planning loops.
-- [ ] 36. Public Benefit Opportunity Miner - Discover highest-leverage opportunities for social good.
+- [x] 36. Public Benefit Opportunity Miner - Discover highest-leverage opportunities for social good.
 - [ ] 37. Harm Escalation Early-Warning - Detect trajectories likely to cause broad social harm.
 - [ ] 38. Misuse Behavior Detector - Identify emerging misuse patterns and abuse signatures.
 - [ ] 39. Adversarial Robustness Fuzzer - Continuously stress systems against adversarial manipulation.

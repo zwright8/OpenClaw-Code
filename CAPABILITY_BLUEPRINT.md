@@ -224,6 +224,12 @@ Objective: ingest and structure real-world community feedback into actionable pl
 - [x] Deterministic duplicate collapsing with theme-level aggregation across regions.
 - [x] Recommendation task generation for high-risk mitigation, investigation, and transparent community response.
 
+### 36) Public Benefit Opportunity Miner
+Objective: discover and prioritize the highest-leverage opportunities for measurable social good.
+- [x] Opportunity scoring model across benefit, equity, urgency, feasibility, evidence, and population scale.
+- [x] Capacity/budget-aware lane scheduling for `now`/`next`/`backlog` execution.
+- [x] Launch/validate/unblock task generation from ranked opportunity pipeline.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -260,3 +266,4 @@ Objective: ingest and structure real-world community feedback into actionable pl
 33. Long-Horizon Externality Forecaster
 34. Equity Impact Analyzer
 35. Community Feedback Harvester
+36. Public Benefit Opportunity Miner
