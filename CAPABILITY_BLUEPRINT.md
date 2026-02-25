@@ -248,6 +248,12 @@ Objective: continuously stress-test agent surfaces against adversarial manipulat
 - [x] Deterministic exploitability scoring with per-target robustness summaries and threat levels.
 - [x] Guardrail patching, capability-disable, retest, and monitoring task generation from findings.
 
+### 40) Explainability Narrative Generator
+Objective: translate complex decision telemetry into understandable human-facing narratives.
+- [x] Ranked reason synthesis from constitutional, safety, readiness, and misuse signals.
+- [x] Uncertainty analysis with counterfactual checks and readability scoring.
+- [x] Publish/evidence-request/simplification task generation for explainability operations.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -288,3 +294,4 @@ Objective: continuously stress-test agent surfaces against adversarial manipulat
 37. Harm Escalation Early-Warning
 38. Misuse Behavior Detector
 39. Adversarial Robustness Fuzzer
+40. Explainability Narrative Generator

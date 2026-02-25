@@ -56,6 +56,7 @@ Adds a public benefit opportunity miner to rank and schedule high-leverage oppor
 Adds a harm escalation early-warning engine to detect rising broad-harm trajectories and trigger rapid response.
 Adds a misuse behavior detector to surface abuse signatures and automatically propose restrictions/investigations.
 Adds an adversarial robustness fuzzer to stress defenses and generate hardening tasks.
+Adds an explainability narrative generator to convert complex decisions into clear human-readable reasoning.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -526,6 +527,17 @@ import { runAdversarialRobustnessFuzzer } from 'swarm-protocol';
 
 const fuzzReport = runAdversarialRobustnessFuzzer({
   targets
+});
+```
+
+Explainability narrative generator:
+```js
+import { generateExplainabilityNarrative } from 'swarm-protocol';
+
+const narrative = generateExplainabilityNarrative({
+  decision,
+  governorDecision,
+  constitutionReport
 });
 ```
 
