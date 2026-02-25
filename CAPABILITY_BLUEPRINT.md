@@ -230,6 +230,12 @@ Objective: discover and prioritize the highest-leverage opportunities for measur
 - [x] Capacity/budget-aware lane scheduling for `now`/`next`/`backlog` execution.
 - [x] Launch/validate/unblock task generation from ranked opportunity pipeline.
 
+### 37) Harm Escalation Early-Warning
+Objective: detect trajectories likely to escalate into broad social harm and trigger rapid mitigation.
+- [x] Multi-signal risk model across incidents, community alerts, equity posture, and long-horizon trajectories.
+- [x] Deterministic escalation-level classification (`normal`/`watch`/`warning`/`severe`/`critical`) with response windows.
+- [x] Containment/review/monitoring task generation for proactive harm mitigation workflows.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -267,3 +273,4 @@ Objective: discover and prioritize the highest-leverage opportunities for measur
 34. Equity Impact Analyzer
 35. Community Feedback Harvester
 36. Public Benefit Opportunity Miner
+37. Harm Escalation Early-Warning

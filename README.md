@@ -53,6 +53,7 @@ Adds a long-horizon externality forecaster to model second-order multi-year effe
 Adds an equity impact analyzer to quantify benefit/harm/access distribution across communities.
 Adds a community feedback harvester to turn multi-channel human feedback into actionable operations tasks.
 Adds a public benefit opportunity miner to rank and schedule high-leverage opportunities for social good.
+Adds a harm escalation early-warning engine to detect rising broad-harm trajectories and trigger rapid response.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -494,6 +495,18 @@ const opportunities = minePublicBenefitOpportunities({
     maxNext: 5
   }
 });
+```
+
+Harm escalation early-warning:
+```js
+import { evaluateHarmEscalation } from 'swarm-protocol';
+
+const warning = evaluateHarmEscalation({
+  incidents,
+  communityReport,
+  equityReport,
+  societalReport
+}, { horizonHours: 72 });
 ```
 
 Durability + live registry example:
