@@ -302,6 +302,12 @@ Objective: detect accessibility quality failures early and convert them into act
 - [x] Deterministic posture classification (`compliant`/`review_required`/`blocked`) with impact-aware prioritization.
 - [x] Accessibility blocker, audit, assistive-support, and operator-update task generation.
 
+### 49) Environmental Impact Estimator
+Objective: quantify environmental externalities before rollout and trigger mitigation for high-impact activities.
+- [x] Activity-level carbon, water-stress, waste, and biodiversity impact modeling with configurable regional factors.
+- [x] Deterministic posture classification (`sustainable`/`review_required`/`blocked`) from threshold exceedance severity.
+- [x] Carbon-reduction, water-efficiency, waste-minimization, and disclosure task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -351,3 +357,4 @@ Objective: detect accessibility quality failures early and convert them into act
 46. Consent and Agency Mapper
 47. Vulnerable Population Safeguard
 48. Accessibility Quality Auditor
+49. Environmental Impact Estimator

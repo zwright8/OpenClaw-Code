@@ -65,6 +65,7 @@ Adds a multi-stakeholder preference modeler to quantify consensus and divergence
 Adds a consent and agency mapper to enforce explicit consent scope boundaries and revocation safeguards.
 Adds a vulnerable population safeguard evaluator to block rollouts that endanger high-risk groups.
 Adds an accessibility quality auditor to score surface-level a11y readiness and prioritize remediation.
+Adds an environmental impact estimator to quantify carbon/water/waste externalities before launch.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -629,6 +630,17 @@ import { auditAccessibilityQuality } from 'swarm-protocol';
 
 const accessibilityReport = auditAccessibilityQuality({
   surfaces,
+  thresholds
+});
+```
+
+Environmental impact estimator:
+```js
+import { estimateEnvironmentalImpact } from 'swarm-protocol';
+
+const environmentalReport = estimateEnvironmentalImpact({
+  activities,
+  factors,
   thresholds
 });
 ```

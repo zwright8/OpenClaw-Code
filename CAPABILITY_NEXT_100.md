@@ -19,7 +19,7 @@ This roadmap extends the core blueprint with the next 100 capabilities needed to
 - [x] 46. Consent and Agency Mapper - Ensure plans respect human consent boundaries.
 - [x] 47. Vulnerable Population Safeguard - Add protections for high-risk groups.
 - [x] 48. Accessibility Quality Auditor - Detect accessibility failures early.
-- [ ] 49. Environmental Impact Estimator - Quantify environmental externalities.
+- [x] 49. Environmental Impact Estimator - Quantify environmental externalities.
 - [ ] 50. Resource Fairness Allocator - Distribute limited resources equitably.
 - [ ] 51. Ethical Budget Optimizer - Balance social benefit vs financial constraints.
 - [ ] 52. Human Oversight Workbench - Improve operator intervention speed and clarity.
