@@ -11,7 +11,8 @@
     "demo:orchestrator": "node scripts/orchestrator-demo.mjs",
     "approval:queue": "node scripts/export-approval-queue.mjs --json state/approval-queue.json --markdown state/approval-queue.md",
     "benchmark:simulate": "node scripts/run-simulation-benchmark.mjs --scenario scenarios/baseline.json --runs 8 --thresholds scenarios/baseline-thresholds.json --json state/simulation-benchmark.json --markdown state/simulation-benchmark.md",
-    "ops": "node scripts/swarm-ops.mjs"
+    "ops": "node scripts/swarm-ops.mjs",
+    "build": "npm test"
   },
   "dependencies": {
     "uuid": "^13.0.0",
