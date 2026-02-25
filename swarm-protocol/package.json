@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js && node run-tests.js",
-    "test:unit": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js",
+    "test": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js test/task-store.test.js test/agent-registry.test.js && node run-tests.js",
+    "test:unit": "node --test test/handshake.test.js test/task-orchestrator.test.js test/task-router.test.js test/task-store.test.js test/agent-registry.test.js",
     "test:legacy": "node run-tests.js",
     "demo:orchestrator": "node scripts/orchestrator-demo.mjs"
   },

@@ -1,4 +1,5 @@
 import {
+    AgentRegistry,
     TaskOrchestrator,
     buildTaskReceipt,
     buildTaskResult,
@@ -10,34 +11,33 @@ function wait(ms) {
 }
 
 async function main() {
-    const agentPool = [
-        {
-            id: 'agent:research',
-            status: 'idle',
-            load: 0.3,
-            capabilities: ['analysis', 'research'],
-            timestamp: Date.now()
-        },
-        {
-            id: 'agent:ops',
-            status: 'idle',
-            load: 0.2,
-            capabilities: ['operations', 'deploy', 'reliability'],
-            timestamp: Date.now()
-        },
-        {
-            id: 'agent:docs',
-            status: 'busy',
-            load: 0.6,
-            capabilities: ['documentation', 'writing'],
-            timestamp: Date.now()
-        }
-    ];
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat({
+        kind: 'signal_heartbeat',
+        from: 'agent:research',
+        status: 'idle',
+        load: 0.3,
+        timestamp: Date.now()
+    }, { capabilities: ['analysis', 'research'] });
+    registry.ingestHeartbeat({
+        kind: 'signal_heartbeat',
+        from: 'agent:ops',
+        status: 'idle',
+        load: 0.2,
+        timestamp: Date.now()
+    }, { capabilities: ['operations', 'deploy', 'reliability'] });
+    registry.ingestHeartbeat({
+        kind: 'signal_heartbeat',
+        from: 'agent:docs',
+        status: 'busy',
+        load: 0.6,
+        timestamp: Date.now()
+    }, { capabilities: ['documentation', 'writing'] });
 
     const orchestrator = new TaskOrchestrator({
         localAgentId: 'agent:main',
         routeTask: async (taskRequest) => {
-            const routed = routeTaskRequest(taskRequest, agentPool, {
+            const routed = routeTaskRequest(taskRequest, registry.listAgents(), {
                 nowMs: Date.now(),
                 maxStalenessMs: 60_000
             });

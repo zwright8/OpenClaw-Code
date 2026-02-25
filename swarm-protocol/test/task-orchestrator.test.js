@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
 import {
+    FileTaskStore,
     TaskOrchestrator,
     TaskOrchestratorError,
     buildTaskReceipt,
@@ -19,6 +23,10 @@ function createClock(startMs = 1_000) {
             nowMs += delta;
         }
     };
+}
+
+function mkTmpDir() {
+    return fs.mkdtempSync(path.join(os.tmpdir(), 'swarm-orchestrator-'));
 }
 
 test('dispatchTask sends validated request and tracks state', async () => {
@@ -257,4 +265,86 @@ test('dispatchTask throws when target missing and no routeTask provided', async 
             return true;
         }
     );
+});
+
+test('persists task state and hydrates after restart', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const filePath = path.join(dir, 'tasks.journal.jsonl');
+    const clock = createClock(40_000);
+    const store = new FileTaskStore({ filePath, now: clock.now });
+
+    const orchestratorA = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        store
+    });
+
+    const task = await orchestratorA.dispatchTask({
+        target: 'agent:worker-persist',
+        task: 'Persist this task'
+    });
+
+    clock.advance(50);
+    orchestratorA.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-persist',
+        accepted: true,
+        timestamp: clock.now()
+    }));
+
+    await orchestratorA.flush();
+
+    const orchestratorB = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        store
+    });
+
+    const hydration = await orchestratorB.hydrate();
+    assert.equal(hydration.loaded, 1);
+
+    const reloaded = orchestratorB.getTask(task.taskId);
+    assert.ok(reloaded);
+    assert.equal(reloaded.status, 'acknowledged');
+    assert.equal(reloaded.attempts, 1);
+});
+
+test('failed initial send deletes persisted record after flush', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const filePath = path.join(dir, 'tasks.journal.jsonl');
+    const clock = createClock(50_000);
+    const store = new FileTaskStore({ filePath, now: clock.now });
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                throw new Error('send failed');
+            }
+        },
+        now: clock.now,
+        store
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-fail',
+            task: 'This should fail'
+        }),
+        /send failed/
+    );
+
+    await orchestrator.flush();
+    const records = await store.loadRecords();
+    assert.equal(records.length, 0);
 });

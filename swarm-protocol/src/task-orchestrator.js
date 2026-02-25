@@ -103,6 +103,7 @@ export class TaskOrchestrator {
         localAgentId,
         transport,
         routeTask = null,
+        store = null,
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
@@ -123,6 +124,7 @@ export class TaskOrchestrator {
         this.localAgentId = localAgentId;
         this.transport = transport;
         this.routeTask = typeof routeTask === 'function' ? routeTask : null;
+        this.store = store && typeof store === 'object' ? store : null;
         this.defaultTimeoutMs = Number.isFinite(defaultTimeoutMs) && defaultTimeoutMs > 0
             ? Number(defaultTimeoutMs)
             : 30_000;
@@ -135,6 +137,72 @@ export class TaskOrchestrator {
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
+        this._persistenceQueue = Promise.resolve();
+    }
+
+    async hydrate({ replace = true } = {}) {
+        if (!this.store || typeof this.store.loadRecords !== 'function') {
+            return {
+                loaded: 0
+            };
+        }
+
+        const loaded = await this.store.loadRecords();
+        if (!Array.isArray(loaded)) {
+            throw new TaskOrchestratorError('INVALID_STORE_DATA', 'loadRecords() must return an array');
+        }
+
+        if (replace) {
+            this.tasks.clear();
+        }
+
+        let applied = 0;
+        for (const record of loaded) {
+            if (!record || typeof record !== 'object' || typeof record.taskId !== 'string') {
+                continue;
+            }
+            this.tasks.set(record.taskId, clone(record));
+            applied++;
+        }
+
+        return {
+            loaded: applied
+        };
+    }
+
+    _enqueuePersistence(operation, label) {
+        if (!this.store || typeof operation !== 'function') return;
+
+        this._persistenceQueue = this._persistenceQueue
+            .then(async () => {
+                await operation();
+            })
+            .catch((error) => {
+                this.logger.warn?.(
+                    `[Swarm] Persistence operation failed (${label}): ${error.message}`
+                );
+            });
+    }
+
+    _persistRecord(record) {
+        if (!this.store || typeof this.store.saveRecord !== 'function') return;
+        const payload = clone(record);
+        this._enqueuePersistence(
+            () => this.store.saveRecord(payload),
+            'saveRecord'
+        );
+    }
+
+    _deleteRecord(taskId) {
+        if (!this.store || typeof this.store.deleteRecord !== 'function') return;
+        this._enqueuePersistence(
+            () => this.store.deleteRecord(taskId),
+            'deleteRecord'
+        );
+    }
+
+    async flush() {
+        await this._persistenceQueue;
     }
 
     async dispatchTask({
@@ -212,11 +280,13 @@ export class TaskOrchestrator {
         };
 
         this.tasks.set(record.taskId, record);
+        this._persistRecord(record);
 
         try {
             await this._sendTask(record, 'initial_dispatch');
         } catch (error) {
             this.tasks.delete(record.taskId);
+            this._deleteRecord(record.taskId);
             throw error;
         }
 
@@ -245,6 +315,7 @@ export class TaskOrchestrator {
                 event: 'send_success',
                 attempt: record.attempts
             });
+            this._persistRecord(record);
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
             record.lastError = message;
@@ -255,6 +326,7 @@ export class TaskOrchestrator {
                 attempt: record.attempts,
                 error: message
             });
+            this._persistRecord(record);
             throw new TaskOrchestratorError('SEND_FAILED', message, {
                 taskId: record.taskId,
                 target: record.target,
@@ -281,6 +353,7 @@ export class TaskOrchestrator {
                 event: 'rejected',
                 reason: receipt.reason || 'rejected_by_worker'
             });
+            this._persistRecord(record);
             return true;
         }
 
@@ -293,6 +366,7 @@ export class TaskOrchestrator {
             event: 'acknowledged',
             etaMs: receipt.etaMs ?? null
         });
+        this._persistRecord(record);
         return true;
     }
 
@@ -319,6 +393,7 @@ export class TaskOrchestrator {
             event: 'result',
             resultStatus: result.status
         });
+        this._persistRecord(record);
 
         return true;
     }
@@ -343,6 +418,7 @@ export class TaskOrchestrator {
                 record.updatedAt = nowMs;
                 record.closedAt = nowMs;
                 record.history.push({ at: nowMs, event: 'timed_out' });
+                this._persistRecord(record);
                 summary.timedOut++;
                 continue;
             }
@@ -356,6 +432,7 @@ export class TaskOrchestrator {
                     event: 'retry_scheduled',
                     nextRetryAt: record.nextRetryAt
                 });
+                this._persistRecord(record);
                 summary.scheduledRetries++;
                 continue;
             }
@@ -380,10 +457,12 @@ export class TaskOrchestrator {
                         event: 'transport_error',
                         error: record.lastError
                     });
+                    this._persistRecord(record);
                 } else {
                     record.status = 'retry_scheduled';
                     record.nextRetryAt = nowMs + this.retryDelayMs;
                     record.updatedAt = nowMs;
+                    this._persistRecord(record);
                 }
             }
         }
