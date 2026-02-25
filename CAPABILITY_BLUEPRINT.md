@@ -320,6 +320,18 @@ Objective: optimize budget allocation toward the strongest pro-humanity outcomes
 - [x] Ethical scoring model balancing benefit, equity, urgency, compliance, risk penalties, and cost pressure.
 - [x] Approval, tradeoff review, de-risking, budget-adjustment, and transparency task generation.
 
+### 52) Human Oversight Workbench
+Objective: accelerate human intervention speed and clarity across approvals, failures, and high-risk queue states.
+- [x] Intervention queue synthesis with urgency scoring from priority, risk, age, and task status.
+- [x] Operator load analysis with utilization/overload detection for active shifts.
+- [x] Critical triage, on-call assignment, context-recovery, load-rebalance, and handoff task generation.
+
+### 53) Operator Decision Replay Studio
+Objective: reconstruct operator decision chains for auditability, consistency review, and policy evidence tracking.
+- [x] Task-level decision chain reconstruction with step chronology, latency, and outcome traces.
+- [x] Auditability scoring across rationale, policy references, evidence coverage, overrides, and confidence.
+- [x] Rationale backfill, policy audit, evidence capture, coaching, and replay-report task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -372,3 +384,5 @@ Objective: optimize budget allocation toward the strongest pro-humanity outcomes
 49. Environmental Impact Estimator
 50. Resource Fairness Allocator
 51. Ethical Budget Optimizer
+52. Human Oversight Workbench
+53. Operator Decision Replay Studio

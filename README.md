@@ -68,6 +68,8 @@ Adds an accessibility quality auditor to score surface-level a11y readiness and 
 Adds an environmental impact estimator to quantify carbon/water/waste externalities before launch.
 Adds a resource fairness allocator to distribute scarce resources across communities with equity weighting.
 Adds an ethical budget optimizer to pick the highest-impact initiative portfolio under fiscal and risk constraints.
+Adds a human oversight workbench to prioritize interventions and operator load balancing in real time.
+Adds an operator decision replay studio to reconstruct decision chains and audit rationale/policy evidence.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -666,6 +668,25 @@ const budgetPlan = optimizeEthicalBudget({
   initiatives,
   budget,
   policy
+});
+```
+
+Human oversight workbench:
+```js
+import { buildHumanOversightWorkbench } from 'swarm-protocol';
+
+const oversightReport = buildHumanOversightWorkbench({
+  taskRecords,
+  operators
+});
+```
+
+Operator decision replay studio:
+```js
+import { buildOperatorDecisionReplay } from 'swarm-protocol';
+
+const replayReport = buildOperatorDecisionReplay({
+  decisions
 });
 ```
 

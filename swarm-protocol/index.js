@@ -54,3 +54,5 @@ export * from './src/accessibility-auditor.js';
 export * from './src/environmental-impact.js';
 export * from './src/resource-fairness.js';
 export * from './src/ethical-budget.js';
+export * from './src/human-oversight-workbench.js';
+export * from './src/operator-decision-replay.js';
