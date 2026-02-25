@@ -28,6 +28,7 @@ Adds a shared world-state graph with entity linking, temporal snapshots, and con
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
 Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
+Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -206,6 +207,16 @@ const escalation = sandbox.requestEscalation(taskRequest);
 const execution = await sandbox.executeTask(taskRequest, {
   escalationToken: escalation.escalation.token
 });
+```
+
+Collaboration UX:
+```js
+import { CollaborationUxEngine } from 'swarm-protocol';
+
+const ux = new CollaborationUxEngine();
+const timeline = ux.buildTaskTimeline(taskRecord);
+const explanation = ux.explainDecision(decisionContext);
+const actions = ux.buildInterventionActions(taskRecord);
 ```
 
 Durability + live registry example:

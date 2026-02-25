@@ -16,3 +16,4 @@ export * from './src/operator-ops.js';
 export * from './src/world-state-graph.js';
 export * from './src/capability-marketplace.js';
 export * from './src/sandbox-orchestrator.js';
+export * from './src/collaboration-ux.js';

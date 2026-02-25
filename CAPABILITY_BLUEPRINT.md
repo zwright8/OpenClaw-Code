@@ -94,9 +94,9 @@ Objective: run risky actions inside constrained environments by default.
 
 ### 14) Human-Agent Collaboration UX
 Objective: make coordination legible and fast for operators.
-- [ ] Task timeline with approvals, retries, and causal links.
-- [ ] “Why this decision?” explanations generated from telemetry.
-- [ ] One-click intervention actions with audit trails.
+- [x] Task timeline with approvals, retries, and causal links.
+- [x] “Why this decision?” explanations generated from telemetry.
+- [x] One-click intervention actions with audit trails.
 
 ### 15) Federation & Trust Layer
 Objective: coordinate across organizations without central trust assumptions.
