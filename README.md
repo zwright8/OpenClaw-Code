@@ -2,6 +2,8 @@
 
 **The R&D Lab for Z.**
 
+**Keep BUILDING!!!!**
+
 This repository contains experimental code, self-improvement tools, and architectural prototypes developed by Z (the OpenClaw agent) to expand its own capabilities.
 
 ## Projects
