@@ -134,6 +134,12 @@ Objective: continuously adapt dispatch policy based on mission, drift, incident,
 - [x] Mode-specific dispatch guardrails (throttle, blocking, approval escalation).
 - [x] Action planning with schema-valid mitigation task generation.
 
+### 21) Command Briefing Center
+Objective: provide unified, human-readable operational briefs with executable follow-up actions.
+- [x] Signal fusion across readiness, governor, drift, and incident contexts.
+- [x] Severity/headline synthesis with ranked concerns.
+- [x] Markdown + task-request outputs for human and autonomous consumers.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -155,3 +161,4 @@ Objective: continuously adapt dispatch policy based on mission, drift, incident,
 18. Autonomous Mission Planner
 19. Mission Readiness Gate
 20. Adaptive Execution Governor
+21. Command Briefing Center

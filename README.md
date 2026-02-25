@@ -37,6 +37,7 @@ Adds a drift sentinel for early regression detection across world-state, marketp
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
 Adds an adaptive execution governor that throttles/halts dispatch based on multi-signal risk.
+Adds a command briefing center that generates unified ops summaries and action tasks.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -291,6 +292,20 @@ const governor = evaluateExecutionGovernor({
   queueSummary: { open: 22, pendingApproval: 4, retryScheduled: 1, timedOut: 0 },
   agentHealth: registry.getHealthSummary()
 });
+```
+
+Command briefing center:
+```js
+import { buildCommandBrief, commandBriefToMarkdown } from 'swarm-protocol';
+
+const brief = buildCommandBrief({
+  readinessReport: readiness,
+  governorDecision: governor,
+  driftReport,
+  incidents
+});
+
+const markdownBrief = commandBriefToMarkdown(brief);
 ```
 
 Durability + live registry example:
