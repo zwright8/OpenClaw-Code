@@ -64,6 +64,7 @@ Adds a value conflict resolver to balance competing ethical objectives with expl
 Adds a multi-stakeholder preference modeler to quantify consensus and divergence across stakeholder groups.
 Adds a consent and agency mapper to enforce explicit consent scope boundaries and revocation safeguards.
 Adds a vulnerable population safeguard evaluator to block rollouts that endanger high-risk groups.
+Adds an accessibility quality auditor to score surface-level a11y readiness and prioritize remediation.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -618,6 +619,16 @@ import { evaluateVulnerablePopulationSafeguards } from 'swarm-protocol';
 const safeguardReport = evaluateVulnerablePopulationSafeguards({
   populations,
   interventions,
+  thresholds
+});
+```
+
+Accessibility quality auditor:
+```js
+import { auditAccessibilityQuality } from 'swarm-protocol';
+
+const accessibilityReport = auditAccessibilityQuality({
+  surfaces,
   thresholds
 });
 ```

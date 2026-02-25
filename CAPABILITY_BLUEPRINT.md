@@ -296,6 +296,12 @@ Objective: enforce stronger protections for high-vulnerability groups before and
 - [x] Vulnerability-weighted risk scoring with `protected`/`review_required`/`blocked` posture decisions.
 - [x] Targeted safeguard, rollout pause, support expansion, and monitoring task generation.
 
+### 48) Accessibility Quality Auditor
+Objective: detect accessibility quality failures early and convert them into actionable remediation work.
+- [x] Surface-level accessibility scoring across contrast, keyboard, screen-reader, focus, semantics, and media checks.
+- [x] Deterministic posture classification (`compliant`/`review_required`/`blocked`) with impact-aware prioritization.
+- [x] Accessibility blocker, audit, assistive-support, and operator-update task generation.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -344,3 +350,4 @@ Objective: enforce stronger protections for high-vulnerability groups before and
 45. Multi-Stakeholder Preference Modeler
 46. Consent and Agency Mapper
 47. Vulnerable Population Safeguard
+48. Accessibility Quality Auditor
