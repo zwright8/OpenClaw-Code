@@ -29,6 +29,7 @@ Adds a learning-loop engine for counterfactual replay and measurable improvement
 Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
+Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -217,6 +218,14 @@ const ux = new CollaborationUxEngine();
 const timeline = ux.buildTaskTimeline(taskRecord);
 const explanation = ux.explainDecision(decisionContext);
 const actions = ux.buildInterventionActions(taskRecord);
+```
+
+Federation + trust:
+```js
+import { FederationKeyring, ProtocolBridge } from 'swarm-protocol';
+
+const keyring = new FederationKeyring();
+const bridge = new ProtocolBridge();
 ```
 
 Durability + live registry example:

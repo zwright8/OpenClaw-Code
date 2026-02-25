@@ -100,9 +100,9 @@ Objective: make coordination legible and fast for operators.
 
 ### 15) Federation & Trust Layer
 Objective: coordinate across organizations without central trust assumptions.
-- [ ] Signed inter-swarm envelopes and key rotation.
-- [ ] Tenant-aware policy boundaries.
-- [ ] Protocol bridge for heterogeneous agent stacks.
+- [x] Signed inter-swarm envelopes and key rotation.
+- [x] Tenant-aware policy boundaries.
+- [x] Protocol bridge for heterogeneous agent stacks.
 
 ## Build Order
 1. Durable Task Memory
