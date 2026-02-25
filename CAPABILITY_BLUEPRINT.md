@@ -24,8 +24,8 @@ Objective: route tasks using real-time agent health/capability data.
 
 ### 3) Human Review Gates
 Objective: allow safe human checkpoints for high-risk tasks.
-- [ ] Add `approval_required` task metadata and pause/resume state.
-- [ ] Add deterministic policy engine (`priority`, `capabilities`, `risk tags`).
+- [x] Add `approval_required` task metadata and pause/resume state.
+- [x] Add deterministic policy engine (`priority`, `capabilities`, `risk tags`).
 - [ ] Emit approval queue artifacts for operators.
 
 ## Next

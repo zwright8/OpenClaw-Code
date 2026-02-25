@@ -15,6 +15,7 @@ Latest upgrade includes protocol negotiation, timeout/retry behavior, capability
 Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, and result correlation.
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
+Adds approval-gated task dispatch with policy-driven human review checkpoints.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -65,7 +66,12 @@ const orchestrator = new TaskOrchestrator({
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
-  }
+  },
+  approvalPolicy: (taskRequest) => ({
+    required: taskRequest.priority === 'critical',
+    reason: 'critical_priority',
+    reviewerGroup: 'ops-review'
+  })
 });
 
 const task = await orchestrator.dispatchTask({
@@ -76,6 +82,9 @@ const task = await orchestrator.dispatchTask({
 // Later, as messages arrive:
 orchestrator.ingestReceipt(receiptMessage);
 orchestrator.ingestResult(resultMessage);
+
+// If a task is gated:
+await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
 ```
 
 Durability + live registry example:
