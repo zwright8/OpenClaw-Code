@@ -177,3 +177,69 @@ test('node failure fails the workflow', async () => {
     const metrics = engine.getMetrics();
     assert.equal(metrics.failed, 1);
 });
+
+test('workflow telemetry exposes critical path and durations', async () => {
+    const mock = createMockOrchestrator();
+    let nowMs = 4_000;
+    const engine = new WorkflowEngine({
+        orchestrator: mock,
+        now: () => nowMs
+    });
+
+    await engine.startWorkflow({
+        id: 'wf-telemetry',
+        nodes: [
+            { id: 'a', task: 'A' },
+            { id: 'b', task: 'B', dependencies: ['a'] },
+            { id: 'c', task: 'C', dependencies: ['a'] },
+            { id: 'd', task: 'D', dependencies: ['b', 'c'] }
+        ]
+    });
+
+    nowMs = 4_100;
+    await engine.ingestResult(buildTaskResult({
+        taskId: '00000000-0000-4000-8000-000000000001',
+        from: 'agent:worker',
+        status: 'success',
+        output: 'done',
+        completedAt: nowMs
+    }));
+
+    nowMs = 4_250;
+    await engine.ingestResult(buildTaskResult({
+        taskId: '00000000-0000-4000-8000-000000000002',
+        from: 'agent:worker',
+        status: 'success',
+        output: 'done',
+        completedAt: nowMs
+    }));
+
+    nowMs = 4_180;
+    await engine.ingestResult(buildTaskResult({
+        taskId: '00000000-0000-4000-8000-000000000003',
+        from: 'agent:worker',
+        status: 'success',
+        output: 'done',
+        completedAt: nowMs
+    }));
+
+    nowMs = 4_420;
+    await engine.ingestResult(buildTaskResult({
+        taskId: '00000000-0000-4000-8000-000000000004',
+        from: 'agent:worker',
+        status: 'success',
+        output: 'done',
+        completedAt: nowMs
+    }));
+
+    const telemetry = engine.getWorkflowTelemetry('wf-telemetry');
+    assert.equal(telemetry.status, 'completed');
+    assert.ok(telemetry.totalDurationMs >= 420);
+    assert.deepEqual(telemetry.criticalPath.nodes, ['a', 'b', 'd']);
+    assert.ok(telemetry.criticalPath.durationMs > 0);
+    assert.ok(telemetry.nodes.d.durationMs > 0);
+
+    const metrics = engine.getMetrics();
+    assert.equal(metrics.completed, 1);
+    assert.ok(metrics.avgCompletedDurationMs > 0);
+});

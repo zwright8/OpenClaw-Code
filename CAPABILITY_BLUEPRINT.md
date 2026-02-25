@@ -34,7 +34,7 @@ Objective: allow safe human checkpoints for high-risk tasks.
 Objective: run multi-step plans with dependencies and retries.
 - [x] DAG schema (`nodes`, `edges`, `retry policy`).
 - [x] Execution engine with failure isolation and resumability.
-- [ ] Critical path metrics + per-node telemetry.
+- [x] Critical path metrics + per-node telemetry.
 
 ### 5) Shared Memory Contracts
 Objective: standardized artifacts between agents/humans/tools.

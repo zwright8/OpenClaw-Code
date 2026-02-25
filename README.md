@@ -17,6 +17,7 @@ Includes capability-aware routing helpers to auto-select the best agent by statu
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
 Includes a workflow DAG engine for dependency-based multi-step execution.
+Workflow telemetry includes per-node durations and critical path analysis.
 
 ## Blueprint
 Long-term roadmap lives in:

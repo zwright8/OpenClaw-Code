@@ -133,6 +133,66 @@ function allNodesCompleted(workflowRecord) {
     return Object.values(workflowRecord.nodes).every((node) => node.status === 'completed');
 }
 
+function nodeDurationMs(nodeState) {
+    if (!Number.isFinite(nodeState.startedAt) || !Number.isFinite(nodeState.completedAt)) {
+        return 0;
+    }
+    return Math.max(0, nodeState.completedAt - nodeState.startedAt);
+}
+
+function computeCriticalPath(workflowRecord) {
+    const nodeById = new Map(workflowRecord.workflow.nodes.map((node) => [node.id, node]));
+    const memo = new Map();
+
+    function longestTo(nodeId) {
+        if (memo.has(nodeId)) return memo.get(nodeId);
+        const node = nodeById.get(nodeId);
+        const nodeState = workflowRecord.nodes[nodeId];
+        const ownDuration = nodeDurationMs(nodeState);
+
+        if (!node || node.dependencies.length === 0) {
+            const base = {
+                durationMs: ownDuration,
+                path: [nodeId]
+            };
+            memo.set(nodeId, base);
+            return base;
+        }
+
+        let best = {
+            durationMs: 0,
+            path: []
+        };
+
+        for (const depId of node.dependencies) {
+            const candidate = longestTo(depId);
+            if (candidate.durationMs >= best.durationMs) {
+                best = candidate;
+            }
+        }
+
+        const result = {
+            durationMs: best.durationMs + ownDuration,
+            path: [...best.path, nodeId]
+        };
+        memo.set(nodeId, result);
+        return result;
+    }
+
+    let globalBest = {
+        durationMs: 0,
+        path: []
+    };
+    for (const node of workflowRecord.workflow.nodes) {
+        const candidate = longestTo(node.id);
+        if (candidate.durationMs >= globalBest.durationMs) {
+            globalBest = candidate;
+        }
+    }
+
+    return globalBest;
+}
+
 export class WorkflowEngine {
     constructor({
         orchestrator,
@@ -300,16 +360,63 @@ export class WorkflowEngine {
             total: this.workflows.size,
             running: 0,
             completed: 0,
-            failed: 0
+            failed: 0,
+            avgCompletedDurationMs: 0
         };
 
+        let completedDurationTotal = 0;
         for (const record of this.workflows.values()) {
             if (record.status === 'running') metrics.running++;
-            if (record.status === 'completed') metrics.completed++;
+            if (record.status === 'completed') {
+                metrics.completed++;
+                if (Number.isFinite(record.completedAt) && Number.isFinite(record.createdAt)) {
+                    completedDurationTotal += Math.max(0, record.completedAt - record.createdAt);
+                }
+            }
             if (record.status === 'failed') metrics.failed++;
         }
 
+        metrics.avgCompletedDurationMs = metrics.completed > 0
+            ? Number((completedDurationTotal / metrics.completed).toFixed(2))
+            : 0;
+
         return metrics;
+    }
+
+    getWorkflowTelemetry(workflowId, nowMs = safeNow(this.now)) {
+        const record = this.workflows.get(workflowId);
+        if (!record) return null;
+
+        const criticalPath = computeCriticalPath(record);
+        const nodes = {};
+        for (const [nodeId, nodeState] of Object.entries(record.nodes)) {
+            nodes[nodeId] = {
+                status: nodeState.status,
+                taskId: nodeState.taskId,
+                target: nodeState.target,
+                startedAt: nodeState.startedAt,
+                completedAt: nodeState.completedAt,
+                durationMs: nodeDurationMs(nodeState),
+                resultStatus: nodeState.resultStatus,
+                error: nodeState.error
+            };
+        }
+
+        const endAt = Number.isFinite(record.completedAt) ? record.completedAt : nowMs;
+        const totalDurationMs = Number.isFinite(record.createdAt)
+            ? Math.max(0, endAt - record.createdAt)
+            : null;
+
+        return {
+            workflowId: record.workflowId,
+            status: record.status,
+            totalDurationMs,
+            criticalPath: {
+                nodes: criticalPath.path,
+                durationMs: criticalPath.durationMs
+            },
+            nodes
+        };
     }
 }
 
