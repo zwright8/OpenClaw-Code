@@ -31,6 +31,12 @@ node scripts/analyze-history.mjs --days 7 \
 ```
 Use `--no-compare` to disable trend comparison, or `--compare-days <n>` to customize baseline size.
 
+Convert remediation plan into executable swarm tasks:
+```bash
+npm run plan:tasks
+```
+This emits `reports/remediation-tasks.json` with schema-valid `task_request` messages that can be dispatched by agents or queued for human operators.
+
 ### Swarm Protocol
 ```bash
 cd swarm-protocol
