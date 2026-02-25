@@ -11,4 +11,5 @@
 - [x] **Handshake:** A script to verify another agent is "online" and compatible.
 
 ## Infrastructure
-- [x] **Auto-Refactor:** A script that lints my own code in this repo. (Implemented at `scripts/auto-refactor.mjs`)
+- [ ] **Auto-Refactor:** A script that lints my own code in this repo.
+- [ ] **WhatsApp Stability Tracker:** Monitor and alert on gateway disconnect/reconnect loops. (Added 2026-02-25)
