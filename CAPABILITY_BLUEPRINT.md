@@ -82,9 +82,9 @@ Objective: convert incidents/outcomes into automatic policy + prompt improvement
 
 ### 12) Capability Marketplace
 Objective: discover, evaluate, and route to specialized skills dynamically.
-- [ ] Skill metadata contracts (quality, cost, latency, risk).
-- [ ] Runtime skill probing/verification.
-- [ ] Auto-retirement for stale or failing skills.
+- [x] Skill metadata contracts (quality, cost, latency, risk).
+- [x] Runtime skill probing/verification.
+- [x] Auto-retirement for stale or failing skills.
 
 ### 13) Tool Sandbox Orchestrator
 Objective: run risky actions inside constrained environments by default.

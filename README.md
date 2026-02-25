@@ -26,6 +26,7 @@ Adds adaptive cost/latency optimization with explainable agent selection decisio
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
+Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -175,6 +176,23 @@ graph.ingestContracts(memoryContracts);
 
 const snapshot = graph.getSnapshot();
 const diff = graph.diffSnapshots(1700000000000, Date.now());
+```
+
+Capability marketplace:
+```js
+import { CapabilityMarketplace } from 'swarm-protocol';
+
+const market = new CapabilityMarketplace();
+market.registerSkill({
+  id: 'skill:analysis-fast',
+  name: 'Fast Analyst',
+  endpointAgentId: 'agent:analysis-fast',
+  capabilities: ['analysis'],
+  qualityScore: 0.9,
+  costUsdPerTask: 4.2,
+  latencyMsP50: 95,
+  riskLevel: 'medium'
+});
 ```
 
 Durability + live registry example:
