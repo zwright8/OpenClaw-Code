@@ -348,3 +348,73 @@ test('failed initial send deletes persisted record after flush', async (t) => {
     const records = await store.loadRecords();
     assert.equal(records.length, 0);
 });
+
+test('approval policy can gate dispatch until review is approved', async () => {
+    const sent = [];
+    const clock = createClock(60_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        approvalPolicy: () => ({
+            required: true,
+            reason: 'policy_gate',
+            reviewerGroup: 'ops-review'
+        })
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-approval',
+        task: 'Run production migration',
+        priority: 'critical'
+    });
+
+    assert.equal(task.status, 'awaiting_approval');
+    assert.equal(sent.length, 0);
+    assert.equal(orchestrator.listPendingApprovals().length, 1);
+
+    const reviewed = await orchestrator.reviewTask(task.taskId, {
+        approved: true,
+        reviewer: 'human:ops',
+        reason: 'approved'
+    });
+
+    assert.equal(reviewed.status, 'dispatched');
+    assert.equal(sent.length, 1);
+    assert.equal(sent[0].target, 'agent:worker-approval');
+});
+
+test('denied approval rejects task without dispatch', async () => {
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        approvalPolicy: () => ({
+            required: true,
+            reason: 'manual_review'
+        })
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-approval-2',
+        task: 'Publish legal statement'
+    });
+
+    const denied = await orchestrator.reviewTask(task.taskId, {
+        approved: false,
+        reviewer: 'human:legal',
+        reason: 'needs rewrite'
+    });
+
+    assert.equal(denied.status, 'rejected');
+    assert.equal(sent.length, 0);
+});

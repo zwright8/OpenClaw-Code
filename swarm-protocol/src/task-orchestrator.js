@@ -17,6 +17,8 @@ const OPEN_STATUSES = new Set([
     'retry_scheduled'
 ]);
 
+const APPROVAL_PENDING_STATUS = 'awaiting_approval';
+
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
 }
@@ -103,6 +105,7 @@ export class TaskOrchestrator {
         localAgentId,
         transport,
         routeTask = null,
+        approvalPolicy = null,
         store = null,
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
@@ -124,6 +127,7 @@ export class TaskOrchestrator {
         this.localAgentId = localAgentId;
         this.transport = transport;
         this.routeTask = typeof routeTask === 'function' ? routeTask : null;
+        this.approvalPolicy = typeof approvalPolicy === 'function' ? approvalPolicy : null;
         this.store = store && typeof store === 'object' ? store : null;
         this.defaultTimeoutMs = Number.isFinite(defaultTimeoutMs) && defaultTimeoutMs > 0
             ? Number(defaultTimeoutMs)
@@ -264,6 +268,7 @@ export class TaskOrchestrator {
             target: request.target,
             request,
             status: 'created',
+            approval: null,
             attempts: 0,
             maxRetries: this.maxRetries,
             createdAt: request.createdAt,
@@ -279,8 +284,34 @@ export class TaskOrchestrator {
             ]
         };
 
+        if (this.approvalPolicy) {
+            const decision = await this.approvalPolicy(request);
+            if (decision?.required) {
+                record.status = APPROVAL_PENDING_STATUS;
+                record.approval = {
+                    status: 'pending',
+                    reviewerGroup: decision.reviewerGroup || null,
+                    reason: decision.reason || 'approval_required',
+                    matchedRules: Array.isArray(decision.matchedRules) ? decision.matchedRules : [],
+                    requestedAt: createdAt,
+                    reviewedAt: null,
+                    reviewer: null,
+                    reviewReason: null
+                };
+                record.history.push({
+                    at: createdAt,
+                    event: 'approval_requested',
+                    reason: record.approval.reason
+                });
+            }
+        }
+
         this.tasks.set(record.taskId, record);
         this._persistRecord(record);
+
+        if (record.status === APPROVAL_PENDING_STATUS) {
+            return this.getTask(record.taskId);
+        }
 
         try {
             await this._sendTask(record, 'initial_dispatch');
@@ -291,6 +322,66 @@ export class TaskOrchestrator {
         }
 
         return this.getTask(record.taskId);
+    }
+
+    async reviewTask(taskId, decision = {}) {
+        const record = this.tasks.get(taskId);
+        if (!record) return null;
+        if (record.status !== APPROVAL_PENDING_STATUS) {
+            throw new TaskOrchestratorError(
+                'NOT_AWAITING_APPROVAL',
+                `Task ${taskId} is not waiting for approval`
+            );
+        }
+
+        const approved = decision.approved === true;
+        const reviewedAt = Number.isFinite(Number(decision.reviewedAt))
+            ? Number(decision.reviewedAt)
+            : safeNow(this.now);
+
+        record.updatedAt = reviewedAt;
+        record.approval = {
+            ...(record.approval || {}),
+            status: approved ? 'approved' : 'denied',
+            reviewedAt,
+            reviewer: decision.reviewer || null,
+            reviewReason: decision.reason || null
+        };
+
+        if (!approved) {
+            record.status = 'rejected';
+            record.closedAt = reviewedAt;
+            record.history.push({
+                at: reviewedAt,
+                event: 'approval_denied',
+                reason: decision.reason || 'denied'
+            });
+            this._persistRecord(record);
+            return this.getTask(taskId);
+        }
+
+        record.status = 'created';
+        record.history.push({
+            at: reviewedAt,
+            event: 'approval_approved'
+        });
+        this._persistRecord(record);
+
+        try {
+            await this._sendTask(record, 'approval_release');
+        } catch (error) {
+            record.status = 'retry_scheduled';
+            record.nextRetryAt = reviewedAt + this.retryDelayMs;
+            record.updatedAt = reviewedAt;
+            record.history.push({
+                at: reviewedAt,
+                event: 'approval_release_failed',
+                error: error.message
+            });
+            this._persistRecord(record);
+        }
+
+        return this.getTask(taskId);
     }
 
     async _sendTask(record, reason) {
@@ -485,6 +576,10 @@ export class TaskOrchestrator {
             output.push(clone(record));
         }
         return output;
+    }
+
+    listPendingApprovals() {
+        return this.listTasks({ status: APPROVAL_PENDING_STATUS });
     }
 
     getMetrics() {

@@ -4,3 +4,4 @@ export * from './src/task-orchestrator.js';
 export * from './src/task-router.js';
 export * from './src/task-store.js';
 export * from './src/agent-registry.js';
+export * from './src/approval-policy.js';
