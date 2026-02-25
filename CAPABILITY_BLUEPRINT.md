@@ -88,9 +88,9 @@ Objective: discover, evaluate, and route to specialized skills dynamically.
 
 ### 13) Tool Sandbox Orchestrator
 Objective: run risky actions inside constrained environments by default.
-- [ ] Per-task sandbox profile selection.
-- [ ] Deterministic execution logs and replay tokens.
-- [ ] Escalation workflow for privileged actions.
+- [x] Per-task sandbox profile selection.
+- [x] Deterministic execution logs and replay tokens.
+- [x] Escalation workflow for privileged actions.
 
 ### 14) Human-Agent Collaboration UX
 Objective: make coordination legible and fast for operators.

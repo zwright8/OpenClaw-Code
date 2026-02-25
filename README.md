@@ -27,6 +27,7 @@ Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflo
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
 Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.
+Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -192,6 +193,18 @@ market.registerSkill({
   costUsdPerTask: 4.2,
   latencyMsP50: 95,
   riskLevel: 'medium'
+});
+```
+
+Sandbox orchestration:
+```js
+import { SandboxOrchestrator } from 'swarm-protocol';
+
+const sandbox = new SandboxOrchestrator({ executor });
+const escalation = sandbox.requestEscalation(taskRequest);
+// ... review escalation ...
+const execution = await sandbox.executeTask(taskRequest, {
+  escalationToken: escalation.escalation.token
 });
 ```
 

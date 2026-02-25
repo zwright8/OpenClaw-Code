@@ -15,3 +15,4 @@ export * from './src/cost-latency-optimizer.js';
 export * from './src/operator-ops.js';
 export * from './src/world-state-graph.js';
 export * from './src/capability-marketplace.js';
+export * from './src/sandbox-orchestrator.js';
