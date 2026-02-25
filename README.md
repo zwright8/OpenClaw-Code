@@ -14,6 +14,11 @@ Typed schemas and handshake primitives for agent-to-agent coordination.
 Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
 Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, and result correlation.
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
+Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
+
+## Blueprint
+Long-term roadmap lives in:
+- [CAPABILITY_BLUEPRINT.md](/Users/zacharywright/Documents/GitHub/OpenClaw-Code/CAPABILITY_BLUEPRINT.md)
 
 ## Quick Start
 
@@ -71,6 +76,23 @@ const task = await orchestrator.dispatchTask({
 // Later, as messages arrive:
 orchestrator.ingestReceipt(receiptMessage);
 orchestrator.ingestResult(resultMessage);
+```
+
+Durability + live registry example:
+```js
+import { AgentRegistry, FileTaskStore, TaskOrchestrator } from 'swarm-protocol';
+
+const registry = new AgentRegistry();
+const store = new FileTaskStore({ filePath: './state/tasks.journal.jsonl' });
+
+const orchestrator = new TaskOrchestrator({
+  localAgentId: 'agent:main',
+  transport,
+  store,
+  routeTask: registry.createRouteTaskFn()
+});
+
+await orchestrator.hydrate(); // restore previous tasks on boot
 ```
 
 ### Repo Self-Lint
