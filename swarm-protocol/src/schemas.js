@@ -37,6 +37,16 @@ export const TaskResult = z.object({
     completedAt: Timestamp
 });
 
+export const TaskReceipt = z.object({
+    kind: z.literal('task_receipt'),
+    taskId: z.string().uuid().describe('Matches the task request ID'),
+    from: AgentId,
+    accepted: z.boolean(),
+    reason: z.string().optional().describe('Optional rejection reason'),
+    etaMs: z.number().int().nonnegative().optional().describe('Estimated completion time in milliseconds'),
+    timestamp: Timestamp
+});
+
 // --- Signal Protocol ---
 
 export const HeartbeatSignal = z.object({
@@ -73,6 +83,7 @@ export const HandshakeResponse = z.object({
 export const AnyMessage = z.discriminatedUnion('kind', [
     TaskRequest,
     TaskResult,
+    TaskReceipt,
     HeartbeatSignal,
     HandshakeRequest,
     HandshakeResponse

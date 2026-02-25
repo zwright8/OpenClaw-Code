@@ -1,4 +1,9 @@
-import { performHandshake } from './index.js';
+import {
+    TaskOrchestrator,
+    buildTaskReceipt,
+    buildTaskResult,
+    performHandshake
+} from './index.js';
 
 async function runTest() {
     console.log('--- Testing Handshake Logic ---');
@@ -47,6 +52,42 @@ async function runTest() {
         console.error(e);
         process.exit(1);
     }
+
+    console.log('\n--- Testing Task Orchestrator Smoke ---');
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:alpha',
+        transport: {
+            async send() {}
+        },
+        defaultTimeoutMs: 1000
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:gamma',
+        task: 'Create handoff note'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:gamma',
+        accepted: true,
+        timestamp: Date.now()
+    }));
+
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:gamma',
+        status: 'success',
+        output: 'Handoff complete',
+        completedAt: Date.now()
+    }));
+
+    const completed = orchestrator.getTask(task.taskId);
+    if (!completed || completed.status !== 'completed') {
+        console.error('❌ Task orchestrator smoke test failed');
+        process.exit(1);
+    }
+    console.log('✅ Task orchestrator smoke test passed!');
 }
 
 runTest();

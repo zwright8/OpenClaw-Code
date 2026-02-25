@@ -1,4 +1,4 @@
-import { TaskRequest, TaskResult, HandshakeRequest, HandshakeResponse } from './index.js';
+import { TaskRequest, TaskResult, TaskReceipt, HandshakeRequest, HandshakeResponse } from './index.js';
 import { randomUUID } from 'crypto';
 
 // Sample Request
@@ -39,6 +39,23 @@ try {
     console.log('✅ TaskResult valid:', parsedRes.taskId);
 } catch (e) {
     console.error('❌ TaskResult invalid:', e.errors);
+}
+
+// Sample Receipt
+const receipt = {
+    kind: 'task_receipt',
+    taskId: request.id,
+    from: 'agent:sub-1',
+    accepted: true,
+    etaMs: 1500,
+    timestamp: Date.now()
+};
+
+try {
+    const parsedReceipt = TaskReceipt.parse(receipt);
+    console.log('✅ TaskReceipt valid:', parsedReceipt.taskId);
+} catch (e) {
+    console.error('❌ TaskReceipt invalid:', e.errors);
 }
 
 // Sample Handshake Request

@@ -5,9 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --test test/handshake.test.js && node run-tests.js",
-    "test:unit": "node --test test/handshake.test.js",
-    "test:legacy": "node run-tests.js"
+    "test": "node --test test/handshake.test.js test/task-orchestrator.test.js && node run-tests.js",
+    "test:unit": "node --test test/handshake.test.js test/task-orchestrator.test.js",
+    "test:legacy": "node run-tests.js",
+    "demo:orchestrator": "node scripts/orchestrator-demo.mjs"
   },
   "dependencies": {
     "uuid": "^13.0.0",
