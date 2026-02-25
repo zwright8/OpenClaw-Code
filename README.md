@@ -31,6 +31,7 @@ Adds a sandbox orchestrator for profile-based execution isolation with replay to
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
 Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
+Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -236,6 +237,15 @@ import { RecoverySupervisor } from 'swarm-protocol';
 const supervisor = new RecoverySupervisor();
 supervisor.ingestSnapshot(telemetrySnapshot);
 const plan = supervisor.evaluateAndPlan();
+```
+
+Drift sentinel:
+```js
+import { DriftSentinel } from 'swarm-protocol';
+
+const sentinel = new DriftSentinel();
+sentinel.setBaseline(baselineSnapshot);
+const driftReport = sentinel.evaluate(currentSnapshot);
 ```
 
 Durability + live registry example:

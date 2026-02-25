@@ -110,6 +110,12 @@ Objective: automatically detect incidents and generate executable recovery plans
 - [x] Structured remediation action planning.
 - [x] Auto-generated recovery task requests.
 
+### 17) Capability Drift Sentinel
+Objective: detect quality regressions across memory, routing, and skills before outages.
+- [x] Baseline/current drift detection across multiple subsystems.
+- [x] Prioritized drift alert generation.
+- [x] Mitigation task generation for closed-loop recovery.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
@@ -127,3 +133,4 @@ Objective: automatically detect incidents and generate executable recovery plans
 14. Human-Agent Collaboration UX
 15. Federation & Trust Layer
 16. Autonomous Recovery Supervisor
+17. Capability Drift Sentinel
