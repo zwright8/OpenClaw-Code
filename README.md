@@ -18,6 +18,7 @@ Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
 Includes a workflow DAG engine for dependency-based multi-step execution.
 Workflow telemetry includes per-node durations and critical path analysis.
+Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with migration helpers and read/write validation hooks.
 
 ## Blueprint
 Long-term roadmap lives in:
@@ -124,6 +125,32 @@ await engine.startWorkflow({
     { id: 'publish', task: 'Publish KPI brief', dependencies: ['summarize'] }
   ]
 });
+```
+
+Shared memory contracts:
+```js
+import {
+  buildReportContract,
+  migrateMemoryContract,
+  writeMemoryContract
+} from 'swarm-protocol';
+
+const contract = buildReportContract({
+  createdBy: 'agent:analyst',
+  payload: {
+    title: 'Reliability Digest',
+    summary: 'Weekly trend highlights',
+    findings: [{ id: 'f1', statement: 'Timeout spike observed' }]
+  }
+});
+
+const normalized = writeMemoryContract(contract, {
+  onValidate: ({ phase, contractId }) => {
+    console.log(`validated ${phase} for ${contractId}`);
+  }
+});
+
+const latest = migrateMemoryContract(normalized);
 ```
 
 ### Repo Self-Lint

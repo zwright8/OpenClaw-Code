@@ -7,3 +7,4 @@ export * from './src/agent-registry.js';
 export * from './src/approval-policy.js';
 export * from './src/approval-queue.js';
 export * from './src/workflow-engine.js';
+export * from './src/memory-contracts.js';

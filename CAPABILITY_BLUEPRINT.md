@@ -38,9 +38,9 @@ Objective: run multi-step plans with dependencies and retries.
 
 ### 5) Shared Memory Contracts
 Objective: standardized artifacts between agents/humans/tools.
-- [ ] Typed contracts for reports, decisions, and handoffs.
-- [ ] Versioning + migration helpers.
-- [ ] Validation hooks on write/read.
+- [x] Typed contracts for reports, decisions, and handoffs.
+- [x] Versioning + migration helpers.
+- [x] Validation hooks on write/read.
 
 ### 6) Simulation & Benchmark Harness
 Objective: stress-test routing, orchestration, and failure behavior.
@@ -68,9 +68,46 @@ Objective: one control plane for debugging and operations.
 - [ ] Live tail for task lifecycle events.
 - [ ] Human override commands with full audit trail.
 
+### 10) Shared World-State Graph
+Objective: consistent, queryable model of what the swarm currently believes.
+- [ ] Cross-contract indexing and entity linking.
+- [ ] Temporal snapshots and diff views.
+- [ ] Confidence scoring for each fact edge.
+
+### 11) Learning Loop Engine
+Objective: convert incidents/outcomes into automatic policy + prompt improvements.
+- [ ] Outcome ingestion contracts from completed tasks.
+- [ ] Counterfactual replay over historical traces.
+- [ ] Suggested improvements with measurable expected impact.
+
+### 12) Capability Marketplace
+Objective: discover, evaluate, and route to specialized skills dynamically.
+- [ ] Skill metadata contracts (quality, cost, latency, risk).
+- [ ] Runtime skill probing/verification.
+- [ ] Auto-retirement for stale or failing skills.
+
+### 13) Tool Sandbox Orchestrator
+Objective: run risky actions inside constrained environments by default.
+- [ ] Per-task sandbox profile selection.
+- [ ] Deterministic execution logs and replay tokens.
+- [ ] Escalation workflow for privileged actions.
+
+### 14) Human-Agent Collaboration UX
+Objective: make coordination legible and fast for operators.
+- [ ] Task timeline with approvals, retries, and causal links.
+- [ ] “Why this decision?” explanations generated from telemetry.
+- [ ] One-click intervention actions with audit trails.
+
+### 15) Federation & Trust Layer
+Objective: coordinate across organizations without central trust assumptions.
+- [ ] Signed inter-swarm envelopes and key rotation.
+- [ ] Tenant-aware policy boundaries.
+- [ ] Protocol bridge for heterogeneous agent stacks.
+
 ## Build Order
 1. Durable Task Memory
 2. Live Agent Registry
 3. Human Review Gates
 4. Workflow DAG Executor
-5. Simulation & Benchmark Harness
+5. Shared Memory Contracts
+6. Simulation & Benchmark Harness
