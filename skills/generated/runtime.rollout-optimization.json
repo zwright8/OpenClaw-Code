@@ -1,0 +1,617 @@
+{
+  "generatedAt": "2026-02-26T05:13:14.514Z",
+  "recommendation": {
+    "generatedAt": "2026-02-26T05:13:14.474Z",
+    "strategy": "stabilize",
+    "currentConfig": {
+      "nowWaveCapacity": 32,
+      "nextWaveCapacity": 48,
+      "maxPerDomainPerWave": 3
+    },
+    "recommendedConfig": {
+      "nowWaveCapacity": 26,
+      "nextWaveCapacity": 38,
+      "maxPerDomainPerWave": 2
+    },
+    "reasons": [
+      "critical waves and/or elevated failure rate indicate excessive rollout blast radius"
+    ],
+    "observedMetrics": {
+      "failureRate": 0.0898,
+      "approvalPendingRate": 0.4018,
+      "criticalWaves": 6,
+      "degradedWaves": 4,
+      "avgWaveFillRate": 0.842
+    },
+    "targetMetrics": {
+      "failureRate": 0.0698,
+      "approvalPendingRate": 0.3218,
+      "avgWaveFillRate": 0.812
+    }
+  },
+  "baseline": {
+    "wavePlanGeneratedAt": "2026-02-26T05:13:13.247Z",
+    "controlGeneratedAt": "2026-02-26T05:13:13.853Z",
+    "waveSummary": {
+      "scheduledSkills": 465,
+      "oversightSkills": 535,
+      "waveCounts": {
+        "now": 5,
+        "next": 8
+      },
+      "avgWaveFillRate": 0.842
+    },
+    "controlSummary": {
+      "totalTasks": 1013,
+      "successCount": 503,
+      "failedCount": 91,
+      "approvalPendingCount": 407,
+      "skippedCount": 12,
+      "wavePostureCounts": {
+        "stable": 3,
+        "degraded": 4,
+        "critical": 6
+      },
+      "overallPosture": "critical"
+    }
+  },
+  "candidate": {
+    "wavePlanGeneratedAt": "2026-02-26T05:13:14.488Z",
+    "controlGeneratedAt": "2026-02-26T05:13:14.489Z",
+    "waveSummary": {
+      "scheduledSkills": 465,
+      "oversightSkills": 535,
+      "waveCounts": {
+        "now": 5,
+        "next": 9
+      },
+      "avgWaveFillRate": 0.884
+    },
+    "controlSummary": {
+      "totalTasks": 1014,
+      "successCount": 506,
+      "failedCount": 107,
+      "approvalPendingCount": 391,
+      "skippedCount": 10,
+      "wavePostureCounts": {
+        "stable": 2,
+        "degraded": 8,
+        "critical": 4
+      },
+      "overallPosture": "critical"
+    }
+  },
+  "delta": {
+    "waveCountDelta": 1,
+    "taskCountDelta": 1,
+    "failureDelta": 16,
+    "approvalPendingDelta": -16,
+    "skippedDelta": -2,
+    "criticalWavesDelta": -2,
+    "degradedWavesDelta": 4,
+    "stableWavesDelta": -1
+  },
+  "search": {
+    "baselineScore": 4557.36,
+    "selectedScore": 4515.78,
+    "scoreDelta": -41.58,
+    "selectedConfig": {
+      "nowWaveCapacity": 32,
+      "nextWaveCapacity": 40,
+      "maxPerDomainPerWave": 3
+    },
+    "evaluatedCount": 17,
+    "candidates": [
+      {
+        "config": {
+          "nowWaveCapacity": 32,
+          "nextWaveCapacity": 40,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 4515.78,
+        "controlSummary": {
+          "totalTasks": 1014,
+          "successCount": 506,
+          "failedCount": 107,
+          "approvalPendingCount": 391,
+          "skippedCount": 10,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 8,
+            "critical": 4
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 5,
+            "next": 9
+          },
+          "avgWaveFillRate": 0.884
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 26,
+          "nextWaveCapacity": 38,
+          "maxPerDomainPerWave": 2
+        },
+        "score": 4552.42,
+        "controlSummary": {
+          "totalTasks": 1016,
+          "successCount": 507,
+          "failedCount": 92,
+          "approvalPendingCount": 405,
+          "skippedCount": 12,
+          "wavePostureCounts": {
+            "stable": 4,
+            "degraded": 7,
+            "critical": 5
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 10
+          },
+          "avgWaveFillRate": 0.857
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 28,
+          "nextWaveCapacity": 48,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 4683.18,
+        "controlSummary": {
+          "totalTasks": 1014,
+          "successCount": 515,
+          "failedCount": 93,
+          "approvalPendingCount": 393,
+          "skippedCount": 13,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 6,
+            "critical": 6
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 8
+          },
+          "avgWaveFillRate": 0.821
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 34,
+          "nextWaveCapacity": 48,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 4884.96,
+        "controlSummary": {
+          "totalTasks": 1013,
+          "successCount": 502,
+          "failedCount": 115,
+          "approvalPendingCount": 387,
+          "skippedCount": 9,
+          "wavePostureCounts": {
+            "stable": 1,
+            "degraded": 6,
+            "critical": 6
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 5,
+            "next": 8
+          },
+          "avgWaveFillRate": 0.825
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 24,
+          "nextWaveCapacity": 38,
+          "maxPerDomainPerWave": 2
+        },
+        "score": 4960.54,
+        "controlSummary": {
+          "totalTasks": 1017,
+          "successCount": 495,
+          "failedCount": 105,
+          "approvalPendingCount": 398,
+          "skippedCount": 19,
+          "wavePostureCounts": {
+            "stable": 3,
+            "degraded": 8,
+            "critical": 6
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 7,
+            "next": 10
+          },
+          "avgWaveFillRate": 0.829
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 32,
+          "nextWaveCapacity": 52,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 4983.86,
+        "controlSummary": {
+          "totalTasks": 1013,
+          "successCount": 502,
+          "failedCount": 110,
+          "approvalPendingCount": 384,
+          "skippedCount": 17,
+          "wavePostureCounts": {
+            "stable": 1,
+            "degraded": 5,
+            "critical": 7
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 5,
+            "next": 8
+          },
+          "avgWaveFillRate": 0.8
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 32,
+          "nextWaveCapacity": 48,
+          "maxPerDomainPerWave": 2
+        },
+        "score": 4985.4,
+        "controlSummary": {
+          "totalTasks": 1015,
+          "successCount": 480,
+          "failedCount": 114,
+          "approvalPendingCount": 399,
+          "skippedCount": 22,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 7,
+            "critical": 6
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 9
+          },
+          "avgWaveFillRate": 0.73
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 26,
+          "nextWaveCapacity": 40,
+          "maxPerDomainPerWave": 2
+        },
+        "score": 5039.72,
+        "controlSummary": {
+          "totalTasks": 1016,
+          "successCount": 492,
+          "failedCount": 124,
+          "approvalPendingCount": 382,
+          "skippedCount": 18,
+          "wavePostureCounts": {
+            "stable": 3,
+            "degraded": 7,
+            "critical": 6
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 10
+          },
+          "avgWaveFillRate": 0.828
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 26,
+          "nextWaveCapacity": 36,
+          "maxPerDomainPerWave": 2
+        },
+        "score": 5104.74,
+        "controlSummary": {
+          "totalTasks": 1017,
+          "successCount": 489,
+          "failedCount": 102,
+          "approvalPendingCount": 408,
+          "skippedCount": 18,
+          "wavePostureCounts": {
+            "stable": 3,
+            "degraded": 7,
+            "critical": 7
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 11
+          },
+          "avgWaveFillRate": 0.836
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 32,
+          "nextWaveCapacity": 48,
+          "maxPerDomainPerWave": 4
+        },
+        "score": 5198.86,
+        "controlSummary": {
+          "totalTasks": 1013,
+          "successCount": 496,
+          "failedCount": 106,
+          "approvalPendingCount": 394,
+          "skippedCount": 17,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 2,
+            "critical": 9
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 5,
+            "next": 8
+          },
+          "avgWaveFillRate": 0.842
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 26,
+          "nextWaveCapacity": 40,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 5208.2,
+        "controlSummary": {
+          "totalTasks": 1015,
+          "successCount": 514,
+          "failedCount": 113,
+          "approvalPendingCount": 375,
+          "skippedCount": 13,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 5,
+            "critical": 8
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 9
+          },
+          "avgWaveFillRate": 0.884
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 28,
+          "nextWaveCapacity": 38,
+          "maxPerDomainPerWave": 2
+        },
+        "score": 5279.02,
+        "controlSummary": {
+          "totalTasks": 1016,
+          "successCount": 481,
+          "failedCount": 122,
+          "approvalPendingCount": 399,
+          "skippedCount": 14,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 7,
+            "critical": 7
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 10
+          },
+          "avgWaveFillRate": 0.836
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 28,
+          "nextWaveCapacity": 38,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 5313.12,
+        "controlSummary": {
+          "totalTasks": 1016,
+          "successCount": 503,
+          "failedCount": 113,
+          "approvalPendingCount": 384,
+          "skippedCount": 16,
+          "wavePostureCounts": {
+            "stable": 4,
+            "degraded": 3,
+            "critical": 9
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 10
+          },
+          "avgWaveFillRate": 0.836
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 24,
+          "nextWaveCapacity": 36,
+          "maxPerDomainPerWave": 2
+        },
+        "score": 5343.26,
+        "controlSummary": {
+          "totalTasks": 1018,
+          "successCount": 472,
+          "failedCount": 108,
+          "approvalPendingCount": 425,
+          "skippedCount": 13,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 9,
+            "critical": 7
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 7,
+            "next": 11
+          },
+          "avgWaveFillRate": 0.811
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 32,
+          "nextWaveCapacity": 48,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 5385.76,
+        "controlSummary": {
+          "totalTasks": 1013,
+          "successCount": 510,
+          "failedCount": 134,
+          "approvalPendingCount": 359,
+          "skippedCount": 10,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 2,
+            "critical": 9
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 5,
+            "next": 8
+          },
+          "avgWaveFillRate": 0.842
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 26,
+          "nextWaveCapacity": 38,
+          "maxPerDomainPerWave": 3
+        },
+        "score": 5870.92,
+        "controlSummary": {
+          "totalTasks": 1016,
+          "successCount": 504,
+          "failedCount": 127,
+          "approvalPendingCount": 378,
+          "skippedCount": 7,
+          "wavePostureCounts": {
+            "stable": 2,
+            "degraded": 3,
+            "critical": 11
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 6,
+            "next": 10
+          },
+          "avgWaveFillRate": 0.857
+        }
+      },
+      {
+        "config": {
+          "nowWaveCapacity": 26,
+          "nextWaveCapacity": 38,
+          "maxPerDomainPerWave": 1
+        },
+        "score": 6152.64,
+        "controlSummary": {
+          "totalTasks": 1027,
+          "successCount": 510,
+          "failedCount": 120,
+          "approvalPendingCount": 385,
+          "skippedCount": 12,
+          "wavePostureCounts": {
+            "stable": 4,
+            "degraded": 14,
+            "critical": 9
+          },
+          "overallPosture": "critical"
+        },
+        "waveSummary": {
+          "scheduledSkills": 465,
+          "oversightSkills": 535,
+          "waveCounts": {
+            "now": 9,
+            "next": 18
+          },
+          "avgWaveFillRate": 0.508
+        }
+      }
+    ]
+  }
+}

@@ -363,3 +363,69 @@ export type SkillRolloutControlRun = {
     waveSummaries: SkillRolloutWaveExecutionSummary[];
     taskResults: SkillRolloutTaskResult[];
 };
+
+export type SkillRolloutOptimizationStrategy = 'stabilize' | 'balance' | 'expand';
+
+export type SkillRolloutOptimizationRecommendation = {
+    generatedAt: string;
+    strategy: SkillRolloutOptimizationStrategy;
+    currentConfig: SkillRolloutWaveConfig;
+    recommendedConfig: SkillRolloutWaveConfig;
+    reasons: string[];
+    observedMetrics: {
+        failureRate: number;
+        approvalPendingRate: number;
+        criticalWaves: number;
+        degradedWaves: number;
+        avgWaveFillRate: number;
+    };
+    targetMetrics: {
+        failureRate: number;
+        approvalPendingRate: number;
+        avgWaveFillRate: number;
+    };
+};
+
+export type SkillRolloutOptimizationDelta = {
+    waveCountDelta: number;
+    taskCountDelta: number;
+    failureDelta: number;
+    approvalPendingDelta: number;
+    skippedDelta: number;
+    criticalWavesDelta: number;
+    degradedWavesDelta: number;
+    stableWavesDelta: number;
+};
+
+export type SkillRolloutOptimizationCandidate = {
+    config: SkillRolloutWaveConfig;
+    score: number;
+    controlSummary: SkillRolloutControlSummary;
+    waveSummary: SkillRolloutWavePlanSummary;
+};
+
+export type SkillRolloutOptimizationRun = {
+    generatedAt: string;
+    recommendation: SkillRolloutOptimizationRecommendation;
+    baseline: {
+        wavePlanGeneratedAt: string;
+        controlGeneratedAt: string;
+        waveSummary: SkillRolloutWavePlanSummary;
+        controlSummary: SkillRolloutControlSummary;
+    };
+    candidate: {
+        wavePlanGeneratedAt: string;
+        controlGeneratedAt: string;
+        waveSummary: SkillRolloutWavePlanSummary;
+        controlSummary: SkillRolloutControlSummary;
+    };
+    delta: SkillRolloutOptimizationDelta;
+    search: {
+        baselineScore: number;
+        selectedScore: number;
+        scoreDelta: number;
+        selectedConfig: SkillRolloutWaveConfig;
+        evaluatedCount: number;
+        candidates: SkillRolloutOptimizationCandidate[];
+    };
+};

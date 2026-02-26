@@ -1,21 +1,6 @@
 [
   {
     "kind": "task_request",
-    "id": "control-wave-next-03",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:rollout-controller",
-    "task": "Pause and remediate critical rollout wave next-03",
-    "priority": "P0",
-    "context": {
-      "waveId": "next-03",
-      "posture": "critical",
-      "failedCount": 8,
-      "approvalPendingCount": 11,
-      "failureRate": 0.1633
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "control-wave-next-04",
     "from": "agent:skills-rollout-control",
     "to": "agent:rollout-controller",
@@ -24,39 +9,9 @@
     "context": {
       "waveId": "next-04",
       "posture": "critical",
-      "failedCount": 5,
-      "approvalPendingCount": 7,
-      "failureRate": 0.102
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "control-wave-next-05",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:rollout-controller",
-    "task": "Pause and remediate critical rollout wave next-05",
-    "priority": "P0",
-    "context": {
-      "waveId": "next-05",
-      "posture": "critical",
-      "failedCount": 5,
-      "approvalPendingCount": 9,
-      "failureRate": 0.102
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "control-wave-next-06",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:rollout-controller",
-    "task": "Pause and remediate critical rollout wave next-06",
-    "priority": "P0",
-    "context": {
-      "waveId": "next-06",
-      "posture": "critical",
-      "failedCount": 7,
-      "approvalPendingCount": 5,
-      "failureRate": 0.1429
+      "failedCount": 11,
+      "approvalPendingCount": 6,
+      "failureRate": 0.2683
     }
   },
   {
@@ -69,24 +24,67 @@
     "context": {
       "waveId": "next-07",
       "posture": "critical",
-      "failedCount": 6,
-      "approvalPendingCount": 7,
-      "failureRate": 0.1224
+      "failedCount": 11,
+      "approvalPendingCount": 3,
+      "failureRate": 0.2683
     }
   },
   {
     "kind": "task_request",
-    "id": "control-wave-now-03",
+    "id": "control-wave-next-08",
     "from": "agent:skills-rollout-control",
     "to": "agent:rollout-controller",
-    "task": "Pause and remediate critical rollout wave now-03",
+    "task": "Pause and remediate critical rollout wave next-08",
     "priority": "P0",
     "context": {
-      "waveId": "now-03",
+      "waveId": "next-08",
       "posture": "critical",
-      "failedCount": 7,
+      "failedCount": 5,
       "approvalPendingCount": 4,
-      "failureRate": 0.2121
+      "failureRate": 0.122
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "control-wave-now-05",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:rollout-controller",
+    "task": "Pause and remediate critical rollout wave now-05",
+    "priority": "P0",
+    "context": {
+      "waveId": "now-05",
+      "posture": "critical",
+      "failedCount": 1,
+      "approvalPendingCount": 1,
+      "failureRate": 0.2
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0029",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:truth-seeking-and-epistemics-swarm",
+    "task": "Remediate rollout failure for Epistemic Disaster Recovery Orchestrator",
+    "priority": "P0",
+    "context": {
+      "skillId": 29,
+      "sourceTaskId": "oversight-0029",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0043",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:strategic-planning-and-decomposition-swarm",
+    "task": "Remediate rollout failure for Planning Evidence Provenance Tracker",
+    "priority": "P0",
+    "context": {
+      "skillId": 43,
+      "sourceTaskId": "oversight-0043",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
     }
   },
   {
@@ -105,42 +103,84 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0046",
+    "id": "remediate-0074",
     "from": "agent:skills-rollout-control",
     "to": "agent:strategic-planning-and-decomposition-swarm",
-    "task": "Remediate rollout failure for Planning Counterfactual Simulator",
+    "task": "Remediate rollout failure for Planning Equity Impact Scorer",
     "priority": "P0",
     "context": {
-      "skillId": 46,
-      "sourceTaskId": "oversight-0046",
+      "skillId": 74,
+      "sourceTaskId": "oversight-0074",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0085",
+    "id": "remediate-0082",
     "from": "agent:skills-rollout-control",
     "to": "agent:memory-and-knowledge-operations-swarm",
-    "task": "Remediate rollout failure for Memory Confidence Calibration Engine",
+    "task": "Remediate rollout failure for Memory Context Window Prioritizer",
     "priority": "P0",
     "context": {
-      "skillId": 85,
-      "sourceTaskId": "oversight-0085",
+      "skillId": 82,
+      "sourceTaskId": "oversight-0082",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0106",
+    "id": "remediate-0083",
     "from": "agent:skills-rollout-control",
     "to": "agent:memory-and-knowledge-operations-swarm",
-    "task": "Remediate rollout failure for Memory Experiment Design Generator",
+    "task": "Remediate rollout failure for Memory Evidence Provenance Tracker",
     "priority": "P0",
     "context": {
-      "skillId": 106,
-      "sourceTaskId": "oversight-0106",
+      "skillId": 83,
+      "sourceTaskId": "oversight-0083",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0142",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Remediate rollout failure for Tooling Multi-Agent Negotiation Mediator",
+    "priority": "P0",
+    "context": {
+      "skillId": 142,
+      "sourceTaskId": "oversight-0142",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0167",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:safety-and-governance-swarm",
+    "task": "Remediate rollout failure for Governance Goal Decomposer",
+    "priority": "P0",
+    "context": {
+      "skillId": 167,
+      "sourceTaskId": "oversight-0167",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0175",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:safety-and-governance-swarm",
+    "task": "Remediate rollout failure for Governance Auto-Retry and Backoff Coordinator",
+    "priority": "P0",
+    "context": {
+      "skillId": 175,
+      "sourceTaskId": "oversight-0175",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
@@ -161,224 +201,252 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0197",
+    "id": "remediate-0189",
     "from": "agent:skills-rollout-control",
     "to": "agent:safety-and-governance-swarm",
-    "task": "Remediate rollout failure for Governance Skill Gap Diagnoser",
+    "task": "Remediate rollout failure for Governance Disaster Recovery Orchestrator",
     "priority": "P0",
     "context": {
-      "skillId": 197,
-      "sourceTaskId": "oversight-0197",
+      "skillId": 189,
+      "sourceTaskId": "oversight-0189",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0208",
+    "id": "remediate-0231",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight-and-operator-ux-swarm",
-    "task": "Remediate rollout failure for Oversight Dependency DAG Planner",
+    "task": "Remediate rollout failure for Oversight Security Threat Modeler",
     "priority": "P0",
     "context": {
-      "skillId": 208,
-      "sourceTaskId": "oversight-0208",
+      "skillId": 231,
+      "sourceTaskId": "oversight-0231",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0214",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight-and-operator-ux-swarm",
-    "task": "Remediate rollout failure for Oversight Tool Health Monitor",
-    "priority": "P0",
-    "context": {
-      "skillId": 214,
-      "sourceTaskId": "oversight-0214",
-      "reason": "oversight escalation processing failed",
-      "retryable": false
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0228",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight-and-operator-ux-swarm",
-    "task": "Remediate rollout failure for Oversight Incident Playbook Synthesizer",
-    "priority": "P0",
-    "context": {
-      "skillId": 228,
-      "sourceTaskId": "oversight-0228",
-      "reason": "oversight escalation processing failed",
-      "retryable": false
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0275",
+    "id": "remediate-0274",
     "from": "agent:skills-rollout-control",
     "to": "agent:collaboration-and-negotiation-swarm",
-    "task": "Remediate rollout failure for Collab Community Feedback Harvester",
+    "task": "Remediate rollout failure for Collab Equity Impact Scorer",
     "priority": "P0",
     "context": {
-      "skillId": 275,
-      "sourceTaskId": "oversight-0275",
+      "skillId": 274,
+      "sourceTaskId": "oversight-0274",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0301",
+    "id": "remediate-0282",
     "from": "agent:skills-rollout-control",
     "to": "agent:federation-and-interoperability-swarm",
-    "task": "Remediate rollout failure for Federation Plan Quality Evaluator",
+    "task": "Remediate rollout failure for Federation Context Window Prioritizer",
     "priority": "P0",
     "context": {
-      "skillId": 301,
-      "sourceTaskId": "oversight-0301",
+      "skillId": 282,
+      "sourceTaskId": "oversight-0282",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0307",
+    "id": "remediate-0284",
     "from": "agent:skills-rollout-control",
     "to": "agent:federation-and-interoperability-swarm",
-    "task": "Remediate rollout failure for Federation A/B Rollout Governor",
+    "task": "Remediate rollout failure for Federation Contradiction Detector",
     "priority": "P0",
     "context": {
-      "skillId": 307,
-      "sourceTaskId": "oversight-0307",
+      "skillId": 284,
+      "sourceTaskId": "oversight-0284",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0331",
+    "id": "remediate-0290",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:federation-and-interoperability-swarm",
+    "task": "Remediate rollout failure for Federation Risk-Aware Scheduler",
+    "priority": "P0",
+    "context": {
+      "skillId": 290,
+      "sourceTaskId": "oversight-0290",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0295",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:federation-and-interoperability-swarm",
+    "task": "Remediate rollout failure for Federation Auto-Retry and Backoff Coordinator",
+    "priority": "P0",
+    "context": {
+      "skillId": 295,
+      "sourceTaskId": "oversight-0295",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0302",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:federation-and-interoperability-swarm",
+    "task": "Remediate rollout failure for Federation Multi-Agent Negotiation Mediator",
+    "priority": "P0",
+    "context": {
+      "skillId": 302,
+      "sourceTaskId": "oversight-0302",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0330",
     "from": "agent:skills-rollout-control",
     "to": "agent:economic-optimization-swarm",
-    "task": "Remediate rollout failure for Economic Policy Constraint Compiler",
+    "task": "Remediate rollout failure for Economic Risk-Aware Scheduler",
     "priority": "P0",
     "context": {
-      "skillId": 331,
-      "sourceTaskId": "oversight-0331",
+      "skillId": 330,
+      "sourceTaskId": "oversight-0330",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0348",
+    "id": "remediate-0333",
     "from": "agent:skills-rollout-control",
     "to": "agent:economic-optimization-swarm",
-    "task": "Remediate rollout failure for Economic Incident Playbook Synthesizer",
+    "task": "Remediate rollout failure for Economic Task Handoff Contractor",
     "priority": "P0",
     "context": {
-      "skillId": 348,
-      "sourceTaskId": "oversight-0348",
+      "skillId": 333,
+      "sourceTaskId": "oversight-0333",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0353",
+    "id": "remediate-0354",
     "from": "agent:skills-rollout-control",
     "to": "agent:economic-optimization-swarm",
-    "task": "Remediate rollout failure for Economic Cost-Benefit Forecaster",
+    "task": "Remediate rollout failure for Economic Equity Impact Scorer",
     "priority": "P0",
     "context": {
-      "skillId": 353,
-      "sourceTaskId": "oversight-0353",
+      "skillId": 354,
+      "sourceTaskId": "oversight-0354",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0415",
+    "id": "remediate-0366",
     "from": "agent:skills-rollout-control",
-    "to": "agent:healthcare-and-public-services-swarm",
-    "task": "Remediate rollout failure for PublicService Auto-Retry and Backoff Coordinator",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Remediate rollout failure for Logistics Counterfactual Simulator",
     "priority": "P0",
     "context": {
-      "skillId": 415,
-      "sourceTaskId": "oversight-0415",
+      "skillId": 366,
+      "sourceTaskId": "oversight-0366",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0417",
+    "id": "remediate-0392",
     "from": "agent:skills-rollout-control",
-    "to": "agent:healthcare-and-public-services-swarm",
-    "task": "Remediate rollout failure for PublicService Regression Sentinel",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Remediate rollout failure for Logistics Compliance Evidence Mapper",
     "priority": "P0",
     "context": {
-      "skillId": 417,
-      "sourceTaskId": "oversight-0417",
+      "skillId": 392,
+      "sourceTaskId": "oversight-0392",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0439",
+    "id": "remediate-0398",
     "from": "agent:skills-rollout-control",
-    "to": "agent:healthcare-and-public-services-swarm",
-    "task": "Remediate rollout failure for PublicService Self-Reflection Error Taxonomist",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Remediate rollout failure for Logistics Training Curriculum Composer",
     "priority": "P0",
     "context": {
-      "skillId": 439,
-      "sourceTaskId": "oversight-0439",
+      "skillId": 398,
+      "sourceTaskId": "oversight-0398",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0463",
+    "id": "remediate-0464",
     "from": "agent:skills-rollout-control",
     "to": "agent:education-and-upskilling-swarm",
-    "task": "Remediate rollout failure for Education Conflict Resolution Coach",
+    "task": "Remediate rollout failure for Education Explainability Narrative Builder",
     "priority": "P0",
     "context": {
-      "skillId": 463,
-      "sourceTaskId": "oversight-0463",
+      "skillId": 464,
+      "sourceTaskId": "oversight-0464",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0473",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:education-and-upskilling-swarm",
-    "task": "Remediate rollout failure for Education Cost-Benefit Forecaster",
-    "priority": "P0",
-    "context": {
-      "skillId": 473,
-      "sourceTaskId": "oversight-0473",
-      "reason": "oversight escalation processing failed",
-      "retryable": false
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0504",
+    "id": "remediate-0487",
     "from": "agent:skills-rollout-control",
     "to": "agent:scientific-research-systems-swarm",
-    "task": "Remediate rollout failure for Research Explainability Narrative Builder",
+    "task": "Remediate rollout failure for Research Goal Decomposer",
     "priority": "P0",
     "context": {
-      "skillId": 504,
-      "sourceTaskId": "oversight-0504",
+      "skillId": 487,
+      "sourceTaskId": "oversight-0487",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0496",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:scientific-research-systems-swarm",
+    "task": "Remediate rollout failure for Research Failure Root-Cause Miner",
+    "priority": "P0",
+    "context": {
+      "skillId": 496,
+      "sourceTaskId": "oversight-0496",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0509",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:scientific-research-systems-swarm",
+    "task": "Remediate rollout failure for Research Disaster Recovery Orchestrator",
+    "priority": "P0",
+    "context": {
+      "skillId": 509,
+      "sourceTaskId": "oversight-0509",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
@@ -399,98 +467,154 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0528",
+    "id": "remediate-0553",
     "from": "agent:skills-rollout-control",
     "to": "agent:software-engineering-automation-swarm",
-    "task": "Remediate rollout failure for Engineering Dependency DAG Planner",
+    "task": "Remediate rollout failure for Engineering Cost-Benefit Forecaster",
     "priority": "P0",
     "context": {
-      "skillId": 528,
-      "sourceTaskId": "oversight-0528",
+      "skillId": 553,
+      "sourceTaskId": "oversight-0553",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0542",
+    "id": "remediate-0555",
     "from": "agent:skills-rollout-control",
     "to": "agent:software-engineering-automation-swarm",
-    "task": "Remediate rollout failure for Engineering Multi-Agent Negotiation Mediator",
+    "task": "Remediate rollout failure for Engineering Community Feedback Harvester",
     "priority": "P0",
     "context": {
-      "skillId": 542,
-      "sourceTaskId": "oversight-0542",
+      "skillId": 555,
+      "sourceTaskId": "oversight-0555",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0621",
+    "id": "remediate-0576",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Remediate rollout failure for Observability Failure Root-Cause Miner",
+    "priority": "P0",
+    "context": {
+      "skillId": 576,
+      "sourceTaskId": "oversight-0576",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0598",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Remediate rollout failure for Observability Training Curriculum Composer",
+    "priority": "P0",
+    "context": {
+      "skillId": 598,
+      "sourceTaskId": "oversight-0598",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0614",
     "from": "agent:skills-rollout-control",
     "to": "agent:security-and-privacy-swarm",
-    "task": "Remediate rollout failure for Security Plan Quality Evaluator",
+    "task": "Remediate rollout failure for Security Tool Health Monitor",
     "priority": "P0",
     "context": {
-      "skillId": 621,
-      "sourceTaskId": "oversight-0621",
+      "skillId": 614,
+      "sourceTaskId": "oversight-0614",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0627",
+    "id": "remediate-0616",
     "from": "agent:skills-rollout-control",
     "to": "agent:security-and-privacy-swarm",
-    "task": "Remediate rollout failure for Security A/B Rollout Governor",
+    "task": "Remediate rollout failure for Security Failure Root-Cause Miner",
     "priority": "P0",
     "context": {
-      "skillId": 627,
-      "sourceTaskId": "oversight-0627",
+      "skillId": 616,
+      "sourceTaskId": "oversight-0616",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0630",
+    "id": "remediate-0636",
     "from": "agent:skills-rollout-control",
     "to": "agent:security-and-privacy-swarm",
-    "task": "Remediate rollout failure for Security Privacy Preserving Data Broker",
+    "task": "Remediate rollout failure for Security KPI Dashboard Publisher",
     "priority": "P0",
     "context": {
-      "skillId": 630,
-      "sourceTaskId": "oversight-0630",
+      "skillId": 636,
+      "sourceTaskId": "oversight-0636",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0716",
+    "id": "remediate-0647",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:crisis-and-incident-response-swarm",
+    "task": "Remediate rollout failure for Crisis Goal Decomposer",
+    "priority": "P0",
+    "context": {
+      "skillId": 647,
+      "sourceTaskId": "oversight-0647",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0649",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:crisis-and-incident-response-swarm",
+    "task": "Remediate rollout failure for Crisis Resource Budget Allocator",
+    "priority": "P0",
+    "context": {
+      "skillId": 649,
+      "sourceTaskId": "oversight-0649",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0656",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:crisis-and-incident-response-swarm",
+    "task": "Remediate rollout failure for Crisis Failure Root-Cause Miner",
+    "priority": "P0",
+    "context": {
+      "skillId": 656,
+      "sourceTaskId": "oversight-0656",
+      "reason": "oversight escalation processing failed",
+      "retryable": false
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0693",
     "from": "agent:skills-rollout-control",
     "to": "agent:social-impact-measurement-swarm",
-    "task": "Remediate rollout failure for Impact KPI Dashboard Publisher",
+    "task": "Remediate rollout failure for Impact Task Handoff Contractor",
     "priority": "P0",
     "context": {
-      "skillId": 716,
-      "sourceTaskId": "oversight-0716",
-      "reason": "oversight escalation processing failed",
-      "retryable": false
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0724",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:communication-and-explainability-swarm",
-    "task": "Remediate rollout failure for Comms Contradiction Detector",
-    "priority": "P0",
-    "context": {
-      "skillId": 724,
-      "sourceTaskId": "oversight-0724",
+      "skillId": 693,
+      "sourceTaskId": "oversight-0693",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
@@ -511,140 +635,112 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0824",
+    "id": "remediate-0809",
     "from": "agent:skills-rollout-control",
     "to": "agent:accessibility-and-inclusion-swarm",
-    "task": "Remediate rollout failure for Inclusion Explainability Narrative Builder",
+    "task": "Remediate rollout failure for Inclusion Resource Budget Allocator",
     "priority": "P0",
     "context": {
-      "skillId": 824,
-      "sourceTaskId": "oversight-0824",
+      "skillId": 809,
+      "sourceTaskId": "oversight-0809",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0829",
+    "id": "remediate-0811",
     "from": "agent:skills-rollout-control",
     "to": "agent:accessibility-and-inclusion-swarm",
-    "task": "Remediate rollout failure for Inclusion Disaster Recovery Orchestrator",
+    "task": "Remediate rollout failure for Inclusion Policy Constraint Compiler",
     "priority": "P0",
     "context": {
-      "skillId": 829,
-      "sourceTaskId": "oversight-0829",
+      "skillId": 811,
+      "sourceTaskId": "oversight-0811",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0832",
+    "id": "remediate-0813",
     "from": "agent:skills-rollout-control",
     "to": "agent:accessibility-and-inclusion-swarm",
-    "task": "Remediate rollout failure for Inclusion Compliance Evidence Mapper",
+    "task": "Remediate rollout failure for Inclusion Task Handoff Contractor",
     "priority": "P0",
     "context": {
-      "skillId": 832,
-      "sourceTaskId": "oversight-0832",
+      "skillId": 813,
+      "sourceTaskId": "oversight-0813",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0836",
+    "id": "remediate-0823",
     "from": "agent:skills-rollout-control",
     "to": "agent:accessibility-and-inclusion-swarm",
-    "task": "Remediate rollout failure for Inclusion KPI Dashboard Publisher",
+    "task": "Remediate rollout failure for Inclusion Conflict Resolution Coach",
     "priority": "P0",
     "context": {
-      "skillId": 836,
-      "sourceTaskId": "oversight-0836",
+      "skillId": 823,
+      "sourceTaskId": "oversight-0823",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0841",
+    "id": "remediate-0837",
     "from": "agent:skills-rollout-control",
-    "to": "agent:community-engagement-and-feedback-swarm",
-    "task": "Remediate rollout failure for Community Signal Ingestion Normalizer",
+    "to": "agent:accessibility-and-inclusion-swarm",
+    "task": "Remediate rollout failure for Inclusion Skill Gap Diagnoser",
     "priority": "P0",
     "context": {
-      "skillId": 841,
-      "sourceTaskId": "oversight-0841",
+      "skillId": 837,
+      "sourceTaskId": "oversight-0837",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0860",
+    "id": "remediate-0903",
     "from": "agent:skills-rollout-control",
-    "to": "agent:community-engagement-and-feedback-swarm",
-    "task": "Remediate rollout failure for Community Semantic Retrieval Ranker",
+    "to": "agent:legal-rights-and-compliance-swarm",
+    "task": "Remediate rollout failure for Rights Conflict Resolution Coach",
     "priority": "P0",
     "context": {
-      "skillId": 860,
-      "sourceTaskId": "oversight-0860",
+      "skillId": 903,
+      "sourceTaskId": "oversight-0903",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0866",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:community-engagement-and-feedback-swarm",
-    "task": "Remediate rollout failure for Community Experiment Design Generator",
-    "priority": "P0",
-    "context": {
-      "skillId": 866,
-      "sourceTaskId": "oversight-0866",
-      "reason": "oversight escalation processing failed",
-      "retryable": false
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0941",
+    "id": "remediate-0936",
     "from": "agent:skills-rollout-control",
     "to": "agent:infrastructure-and-sustainability-swarm",
-    "task": "Remediate rollout failure for Infra Plan Quality Evaluator",
+    "task": "Remediate rollout failure for Infra Failure Root-Cause Miner",
     "priority": "P0",
     "context": {
-      "skillId": 941,
-      "sourceTaskId": "oversight-0941",
+      "skillId": 936,
+      "sourceTaskId": "oversight-0936",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0964",
+    "id": "remediate-0973",
     "from": "agent:skills-rollout-control",
     "to": "agent:autonomous-learning-and-evolution-swarm",
-    "task": "Remediate rollout failure for Evolution Contradiction Detector",
+    "task": "Remediate rollout failure for Evolution Task Handoff Contractor",
     "priority": "P0",
     "context": {
-      "skillId": 964,
-      "sourceTaskId": "oversight-0964",
-      "reason": "oversight escalation processing failed",
-      "retryable": false
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0978",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:autonomous-learning-and-evolution-swarm",
-    "task": "Remediate rollout failure for Evolution Memory Consolidation Pipeline",
-    "priority": "P0",
-    "context": {
-      "skillId": 978,
-      "sourceTaskId": "oversight-0978",
+      "skillId": 973,
+      "sourceTaskId": "oversight-0973",
       "reason": "oversight escalation processing failed",
       "retryable": false
     }
@@ -665,28 +761,44 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0995",
+    "id": "remediate-0428",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:healthcare-and-public-services-swarm",
+    "task": "Remediate rollout failure for PublicService Incident Playbook Synthesizer",
+    "priority": "P1",
+    "context": {
+      "skillId": 428,
+      "sourceTaskId": "wave-next-01-0428",
+      "waveId": "next-01",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0451",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:education-and-upskilling-swarm",
+    "task": "Remediate rollout failure for Education Policy Constraint Compiler",
+    "priority": "P1",
+    "context": {
+      "skillId": 451,
+      "sourceTaskId": "wave-next-01-0451",
+      "waveId": "next-01",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0970",
     "from": "agent:skills-rollout-control",
     "to": "agent:autonomous-learning-and-evolution-swarm",
-    "task": "Remediate rollout failure for Evolution Community Feedback Harvester",
-    "priority": "P0",
-    "context": {
-      "skillId": 995,
-      "sourceTaskId": "oversight-0995",
-      "reason": "oversight escalation processing failed",
-      "retryable": false
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0103",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:memory-and-knowledge-operations-swarm",
-    "task": "Remediate rollout failure for Memory Conflict Resolution Coach",
+    "task": "Remediate rollout failure for Evolution Risk-Aware Scheduler",
     "priority": "P1",
     "context": {
-      "skillId": 103,
-      "sourceTaskId": "wave-next-01-0103",
+      "skillId": 970,
+      "sourceTaskId": "wave-next-01-0970",
       "waveId": "next-01",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -694,59 +806,29 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0157",
+    "id": "remediate-0372",
     "from": "agent:skills-rollout-control",
-    "to": "agent:tool-reliability-and-execution-quality-swarm",
-    "task": "Remediate rollout failure for Tooling Skill Gap Diagnoser",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Remediate rollout failure for Logistics Human Approval Router",
     "priority": "P1",
     "context": {
-      "skillId": 157,
-      "sourceTaskId": "wave-next-01-0157",
-      "waveId": "next-01",
+      "skillId": 372,
+      "sourceTaskId": "wave-next-02-0372",
+      "waveId": "next-02",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0324",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:economic-optimization-swarm",
-    "task": "Remediate rollout failure for Economic Contradiction Detector",
-    "priority": "P1",
-    "context": {
-      "skillId": 324,
-      "sourceTaskId": "wave-next-01-0324",
-      "waveId": "next-01",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0625",
+    "id": "remediate-0635",
     "from": "agent:skills-rollout-control",
     "to": "agent:security-and-privacy-swarm",
-    "task": "Remediate rollout failure for Security Uncertainty Communicator",
+    "task": "Remediate rollout failure for Security Community Feedback Harvester",
     "priority": "P1",
     "context": {
-      "skillId": 625,
-      "sourceTaskId": "wave-next-01-0625",
-      "waveId": "next-01",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0252",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:collaboration-and-negotiation-swarm",
-    "task": "Remediate rollout failure for Collab Human Approval Router",
-    "priority": "P1",
-    "context": {
-      "skillId": 252,
-      "sourceTaskId": "wave-next-02-0252",
+      "skillId": 635,
+      "sourceTaskId": "wave-next-02-0635",
       "waveId": "next-02",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -754,14 +836,14 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0738",
+    "id": "remediate-0894",
     "from": "agent:skills-rollout-control",
-    "to": "agent:communication-and-explainability-swarm",
-    "task": "Remediate rollout failure for Comms Memory Consolidation Pipeline",
+    "to": "agent:legal-rights-and-compliance-swarm",
+    "task": "Remediate rollout failure for Rights Tool Health Monitor",
     "priority": "P1",
     "context": {
-      "skillId": 738,
-      "sourceTaskId": "wave-next-02-0738",
+      "skillId": 894,
+      "sourceTaskId": "wave-next-02-0894",
       "waveId": "next-02",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -769,29 +851,74 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0853",
+    "id": "remediate-0922",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:infrastructure-and-sustainability-swarm",
+    "task": "Remediate rollout failure for Infra Context Window Prioritizer",
+    "priority": "P1",
+    "context": {
+      "skillId": 922,
+      "sourceTaskId": "wave-next-02-0922",
+      "waveId": "next-02",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0090",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:memory-and-knowledge-operations-swarm",
+    "task": "Remediate rollout failure for Memory Risk-Aware Scheduler",
+    "priority": "P1",
+    "context": {
+      "skillId": 90,
+      "sourceTaskId": "wave-next-03-0090",
+      "waveId": "next-03",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0155",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Remediate rollout failure for Tooling Community Feedback Harvester",
+    "priority": "P1",
+    "context": {
+      "skillId": 155,
+      "sourceTaskId": "wave-next-03-0155",
+      "waveId": "next-03",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0644",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:crisis-and-incident-response-swarm",
+    "task": "Remediate rollout failure for Crisis Contradiction Detector",
+    "priority": "P1",
+    "context": {
+      "skillId": 644,
+      "sourceTaskId": "wave-next-03-0644",
+      "waveId": "next-03",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0850",
     "from": "agent:skills-rollout-control",
     "to": "agent:community-engagement-and-feedback-swarm",
-    "task": "Remediate rollout failure for Community Task Handoff Contractor",
+    "task": "Remediate rollout failure for Community Risk-Aware Scheduler",
     "priority": "P1",
     "context": {
-      "skillId": 853,
-      "sourceTaskId": "wave-next-02-0853",
-      "waveId": "next-02",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0047",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:strategic-planning-and-decomposition-swarm",
-    "task": "Remediate rollout failure for Planning Goal Decomposer",
-    "priority": "P1",
-    "context": {
-      "skillId": 47,
-      "sourceTaskId": "wave-next-03-0047",
+      "skillId": 850,
+      "sourceTaskId": "wave-next-03-0850",
       "waveId": "next-03",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -799,119 +926,14 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0116",
+    "id": "remediate-0010",
     "from": "agent:skills-rollout-control",
-    "to": "agent:memory-and-knowledge-operations-swarm",
-    "task": "Remediate rollout failure for Memory KPI Dashboard Publisher",
+    "to": "agent:truth-seeking-and-epistemics-swarm",
+    "task": "Remediate rollout failure for Epistemic Risk-Aware Scheduler",
     "priority": "P1",
     "context": {
-      "skillId": 116,
-      "sourceTaskId": "wave-next-03-0116",
-      "waveId": "next-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0151",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:tool-reliability-and-execution-quality-swarm",
-    "task": "Remediate rollout failure for Tooling Security Threat Modeler",
-    "priority": "P1",
-    "context": {
-      "skillId": 151,
-      "sourceTaskId": "wave-next-03-0151",
-      "waveId": "next-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0207",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight-and-operator-ux-swarm",
-    "task": "Remediate rollout failure for Oversight Goal Decomposer",
-    "priority": "P1",
-    "context": {
-      "skillId": 207,
-      "sourceTaskId": "wave-next-03-0207",
-      "waveId": "next-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0239",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight-and-operator-ux-swarm",
-    "task": "Remediate rollout failure for Oversight Self-Reflection Error Taxonomist",
-    "priority": "P1",
-    "context": {
-      "skillId": 239,
-      "sourceTaskId": "wave-next-03-0239",
-      "waveId": "next-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0561",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:data-quality-and-observability-swarm",
-    "task": "Remediate rollout failure for Observability Signal Ingestion Normalizer",
-    "priority": "P1",
-    "context": {
-      "skillId": 561,
-      "sourceTaskId": "wave-next-03-0561",
-      "waveId": "next-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0579",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:data-quality-and-observability-swarm",
-    "task": "Remediate rollout failure for Observability Knowledge Graph Linker",
-    "priority": "P1",
-    "context": {
-      "skillId": 579,
-      "sourceTaskId": "wave-next-03-0579",
-      "waveId": "next-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0638",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:security-and-privacy-swarm",
-    "task": "Remediate rollout failure for Security Training Curriculum Composer",
-    "priority": "P1",
-    "context": {
-      "skillId": 638,
-      "sourceTaskId": "wave-next-03-0638",
-      "waveId": "next-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0108",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:memory-and-knowledge-operations-swarm",
-    "task": "Remediate rollout failure for Memory Incident Playbook Synthesizer",
-    "priority": "P1",
-    "context": {
-      "skillId": 108,
-      "sourceTaskId": "wave-next-04-0108",
+      "skillId": 10,
+      "sourceTaskId": "wave-next-04-0010",
       "waveId": "next-04",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -919,14 +941,149 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0193",
+    "id": "remediate-0024",
     "from": "agent:skills-rollout-control",
-    "to": "agent:safety-and-governance-swarm",
-    "task": "Remediate rollout failure for Governance Cost-Benefit Forecaster",
+    "to": "agent:truth-seeking-and-epistemics-swarm",
+    "task": "Remediate rollout failure for Epistemic Explainability Narrative Builder",
     "priority": "P1",
     "context": {
-      "skillId": 193,
-      "sourceTaskId": "wave-next-04-0193",
+      "skillId": 24,
+      "sourceTaskId": "wave-next-04-0024",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0050",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:strategic-planning-and-decomposition-swarm",
+    "task": "Remediate rollout failure for Planning Risk-Aware Scheduler",
+    "priority": "P1",
+    "context": {
+      "skillId": 50,
+      "sourceTaskId": "wave-next-04-0050",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0086",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:memory-and-knowledge-operations-swarm",
+    "task": "Remediate rollout failure for Memory Counterfactual Simulator",
+    "priority": "P1",
+    "context": {
+      "skillId": 86,
+      "sourceTaskId": "wave-next-04-0086",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0246",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:collaboration-and-negotiation-swarm",
+    "task": "Remediate rollout failure for Collab Counterfactual Simulator",
+    "priority": "P1",
+    "context": {
+      "skillId": 246,
+      "sourceTaskId": "wave-next-04-0246",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0402",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:healthcare-and-public-services-swarm",
+    "task": "Remediate rollout failure for PublicService Context Window Prioritizer",
+    "priority": "P1",
+    "context": {
+      "skillId": 402,
+      "sourceTaskId": "wave-next-04-0402",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0431",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:healthcare-and-public-services-swarm",
+    "task": "Remediate rollout failure for PublicService Security Threat Modeler",
+    "priority": "P1",
+    "context": {
+      "skillId": 431,
+      "sourceTaskId": "wave-next-04-0431",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0651",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:crisis-and-incident-response-swarm",
+    "task": "Remediate rollout failure for Crisis Policy Constraint Compiler",
+    "priority": "P1",
+    "context": {
+      "skillId": 651,
+      "sourceTaskId": "wave-next-04-0651",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0753",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:communication-and-explainability-swarm",
+    "task": "Remediate rollout failure for Comms Cost-Benefit Forecaster",
+    "priority": "P1",
+    "context": {
+      "skillId": 753,
+      "sourceTaskId": "wave-next-04-0753",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0779",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Remediate rollout failure for Cultural Knowledge Graph Linker",
+    "priority": "P1",
+    "context": {
+      "skillId": 779,
+      "sourceTaskId": "wave-next-04-0779",
+      "waveId": "next-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0857",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:community-engagement-and-feedback-swarm",
+    "task": "Remediate rollout failure for Community Regression Sentinel",
+    "priority": "P1",
+    "context": {
+      "skillId": 857,
+      "sourceTaskId": "wave-next-04-0857",
       "waveId": "next-04",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -941,8 +1098,23 @@
     "priority": "P1",
     "context": {
       "skillId": 218,
-      "sourceTaskId": "wave-next-04-0218",
-      "waveId": "next-04",
+      "sourceTaskId": "wave-next-05-0218",
+      "waveId": "next-05",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0335",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:economic-optimization-swarm",
+    "task": "Remediate rollout failure for Economic Auto-Retry and Backoff Coordinator",
+    "priority": "P1",
+    "context": {
+      "skillId": 335,
+      "sourceTaskId": "wave-next-05-0335",
+      "waveId": "next-05",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
@@ -956,37 +1128,22 @@
     "priority": "P1",
     "context": {
       "skillId": 368,
-      "sourceTaskId": "wave-next-04-0368",
-      "waveId": "next-04",
+      "sourceTaskId": "wave-next-05-0368",
+      "waveId": "next-05",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0544",
+    "id": "remediate-0543",
     "from": "agent:skills-rollout-control",
     "to": "agent:software-engineering-automation-swarm",
-    "task": "Remediate rollout failure for Engineering Explainability Narrative Builder",
+    "task": "Remediate rollout failure for Engineering Conflict Resolution Coach",
     "priority": "P1",
     "context": {
-      "skillId": 544,
-      "sourceTaskId": "wave-next-04-0544",
-      "waveId": "next-04",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0069",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:strategic-planning-and-decomposition-swarm",
-    "task": "Remediate rollout failure for Planning Disaster Recovery Orchestrator",
-    "priority": "P1",
-    "context": {
-      "skillId": 69,
-      "sourceTaskId": "wave-next-05-0069",
+      "skillId": 543,
+      "sourceTaskId": "wave-next-05-0543",
       "waveId": "next-05",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -994,60 +1151,90 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0254",
+    "id": "remediate-0215",
     "from": "agent:skills-rollout-control",
-    "to": "agent:collaboration-and-negotiation-swarm",
-    "task": "Remediate rollout failure for Collab Tool Health Monitor",
+    "to": "agent:human-oversight-and-operator-ux-swarm",
+    "task": "Remediate rollout failure for Oversight Auto-Retry and Backoff Coordinator",
     "priority": "P1",
     "context": {
-      "skillId": 254,
-      "sourceTaskId": "wave-next-05-0254",
-      "waveId": "next-05",
+      "skillId": 215,
+      "sourceTaskId": "wave-next-06-0215",
+      "waveId": "next-06",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0320",
+    "id": "remediate-0816",
     "from": "agent:skills-rollout-control",
-    "to": "agent:federation-and-interoperability-swarm",
-    "task": "Remediate rollout failure for Federation Continuous Improvement Planner",
+    "to": "agent:accessibility-and-inclusion-swarm",
+    "task": "Remediate rollout failure for Inclusion Failure Root-Cause Miner",
     "priority": "P1",
     "context": {
-      "skillId": 320,
-      "sourceTaskId": "wave-next-05-0320",
-      "waveId": "next-05",
+      "skillId": 816,
+      "sourceTaskId": "wave-next-06-0816",
+      "waveId": "next-06",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0566",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:data-quality-and-observability-swarm",
-    "task": "Remediate rollout failure for Observability Counterfactual Simulator",
-    "priority": "P1",
-    "context": {
-      "skillId": 566,
-      "sourceTaskId": "wave-next-05-0566",
-      "waveId": "next-05",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0875",
+    "id": "remediate-0849",
     "from": "agent:skills-rollout-control",
     "to": "agent:community-engagement-and-feedback-swarm",
-    "task": "Remediate rollout failure for Community Community Feedback Harvester",
+    "task": "Remediate rollout failure for Community Resource Budget Allocator",
     "priority": "P1",
     "context": {
-      "skillId": 875,
-      "sourceTaskId": "wave-next-05-0875",
-      "waveId": "next-05",
+      "skillId": 849,
+      "sourceTaskId": "wave-next-06-0849",
+      "waveId": "next-06",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0023",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:truth-seeking-and-epistemics-swarm",
+    "task": "Remediate rollout failure for Epistemic Conflict Resolution Coach",
+    "priority": "P1",
+    "context": {
+      "skillId": 23,
+      "sourceTaskId": "wave-next-07-0023",
+      "waveId": "next-07",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0049",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:strategic-planning-and-decomposition-swarm",
+    "task": "Remediate rollout failure for Planning Resource Budget Allocator",
+    "priority": "P1",
+    "context": {
+      "skillId": 49,
+      "sourceTaskId": "wave-next-07-0049",
+      "waveId": "next-07",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0114",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:memory-and-knowledge-operations-swarm",
+    "task": "Remediate rollout failure for Memory Equity Impact Scorer",
+    "priority": "P1",
+    "context": {
+      "skillId": 114,
+      "sourceTaskId": "wave-next-07-0114",
+      "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
@@ -1061,68 +1248,83 @@
     "priority": "P1",
     "context": {
       "skillId": 141,
-      "sourceTaskId": "wave-next-06-0141",
-      "waveId": "next-06",
+      "sourceTaskId": "wave-next-07-0141",
+      "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0206",
+    "id": "remediate-0251",
     "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight-and-operator-ux-swarm",
-    "task": "Remediate rollout failure for Oversight Counterfactual Simulator",
+    "to": "agent:collaboration-and-negotiation-swarm",
+    "task": "Remediate rollout failure for Collab Policy Constraint Compiler",
     "priority": "P1",
     "context": {
-      "skillId": 206,
-      "sourceTaskId": "wave-next-06-0206",
-      "waveId": "next-06",
+      "skillId": 251,
+      "sourceTaskId": "wave-next-07-0251",
+      "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0310",
+    "id": "remediate-0309",
     "from": "agent:skills-rollout-control",
     "to": "agent:federation-and-interoperability-swarm",
-    "task": "Remediate rollout failure for Federation Privacy Preserving Data Broker",
+    "task": "Remediate rollout failure for Federation Disaster Recovery Orchestrator",
     "priority": "P1",
     "context": {
-      "skillId": 310,
-      "sourceTaskId": "wave-next-06-0310",
-      "waveId": "next-06",
+      "skillId": 309,
+      "sourceTaskId": "wave-next-07-0309",
+      "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0384",
+    "id": "remediate-0610",
     "from": "agent:skills-rollout-control",
-    "to": "agent:resource-allocation-and-logistics-swarm",
-    "task": "Remediate rollout failure for Logistics Explainability Narrative Builder",
+    "to": "agent:security-and-privacy-swarm",
+    "task": "Remediate rollout failure for Security Risk-Aware Scheduler",
     "priority": "P1",
     "context": {
-      "skillId": 384,
-      "sourceTaskId": "wave-next-06-0384",
-      "waveId": "next-06",
+      "skillId": 610,
+      "sourceTaskId": "wave-next-07-0610",
+      "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0904",
+    "id": "remediate-0774",
     "from": "agent:skills-rollout-control",
-    "to": "agent:legal-rights-and-compliance-swarm",
-    "task": "Remediate rollout failure for Rights Explainability Narrative Builder",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Remediate rollout failure for Cultural Tool Health Monitor",
     "priority": "P1",
     "context": {
-      "skillId": 904,
-      "sourceTaskId": "wave-next-06-0904",
-      "waveId": "next-06",
+      "skillId": 774,
+      "sourceTaskId": "wave-next-07-0774",
+      "waveId": "next-07",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0787",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Remediate rollout failure for Cultural A/B Rollout Governor",
+    "priority": "P1",
+    "context": {
+      "skillId": 787,
+      "sourceTaskId": "wave-next-07-0787",
+      "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
@@ -1136,8 +1338,8 @@
     "priority": "P1",
     "context": {
       "skillId": 943,
-      "sourceTaskId": "wave-next-06-0943",
-      "waveId": "next-06",
+      "sourceTaskId": "wave-next-07-0943",
+      "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
@@ -1151,22 +1353,7 @@
     "priority": "P1",
     "context": {
       "skillId": 982,
-      "sourceTaskId": "wave-next-06-0982",
-      "waveId": "next-06",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0273",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:collaboration-and-negotiation-swarm",
-    "task": "Remediate rollout failure for Collab Cost-Benefit Forecaster",
-    "priority": "P1",
-    "context": {
-      "skillId": 273,
-      "sourceTaskId": "wave-next-07-0273",
+      "sourceTaskId": "wave-next-07-0982",
       "waveId": "next-07",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
@@ -1174,45 +1361,30 @@
   },
   {
     "kind": "task_request",
-    "id": "remediate-0403",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:healthcare-and-public-services-swarm",
-    "task": "Remediate rollout failure for PublicService Evidence Provenance Tracker",
-    "priority": "P1",
-    "context": {
-      "skillId": 403,
-      "sourceTaskId": "wave-next-07-0403",
-      "waveId": "next-07",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0436",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:healthcare-and-public-services-swarm",
-    "task": "Remediate rollout failure for PublicService KPI Dashboard Publisher",
-    "priority": "P1",
-    "context": {
-      "skillId": 436,
-      "sourceTaskId": "wave-next-07-0436",
-      "waveId": "next-07",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0455",
+    "id": "remediate-0453",
     "from": "agent:skills-rollout-control",
     "to": "agent:education-and-upskilling-swarm",
-    "task": "Remediate rollout failure for Education Auto-Retry and Backoff Coordinator",
+    "task": "Remediate rollout failure for Education Task Handoff Contractor",
     "priority": "P1",
     "context": {
-      "skillId": 455,
-      "sourceTaskId": "wave-next-07-0455",
-      "waveId": "next-07",
+      "skillId": 453,
+      "sourceTaskId": "wave-next-08-0453",
+      "waveId": "next-08",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0488",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:scientific-research-systems-swarm",
+    "task": "Remediate rollout failure for Research Dependency DAG Planner",
+    "priority": "P1",
+    "context": {
+      "skillId": 488,
+      "sourceTaskId": "wave-next-08-0488",
+      "waveId": "next-08",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
@@ -1226,188 +1398,218 @@
     "priority": "P1",
     "context": {
       "skillId": 706,
-      "sourceTaskId": "wave-next-07-0706",
-      "waveId": "next-07",
+      "sourceTaskId": "wave-next-08-0706",
+      "waveId": "next-08",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
   },
   {
     "kind": "task_request",
-    "id": "remediate-0992",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:autonomous-learning-and-evolution-swarm",
-    "task": "Remediate rollout failure for Evolution Compliance Evidence Mapper",
-    "priority": "P1",
-    "context": {
-      "skillId": 992,
-      "sourceTaskId": "wave-next-07-0992",
-      "waveId": "next-07",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0057",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:strategic-planning-and-decomposition-swarm",
-    "task": "Remediate rollout failure for Planning Regression Sentinel",
-    "priority": "P1",
-    "context": {
-      "skillId": 57,
-      "sourceTaskId": "wave-now-02-0057",
-      "waveId": "now-02",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0861",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:community-engagement-and-feedback-swarm",
-    "task": "Remediate rollout failure for Community Plan Quality Evaluator",
-    "priority": "P1",
-    "context": {
-      "skillId": 861,
-      "sourceTaskId": "wave-now-02-0861",
-      "waveId": "now-02",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0932",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:infrastructure-and-sustainability-swarm",
-    "task": "Remediate rollout failure for Infra Human Approval Router",
-    "priority": "P1",
-    "context": {
-      "skillId": 932,
-      "sourceTaskId": "wave-now-02-0932",
-      "waveId": "now-02",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0032",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:truth-seeking-and-epistemics-swarm",
-    "task": "Remediate rollout failure for Epistemic Compliance Evidence Mapper",
-    "priority": "P1",
-    "context": {
-      "skillId": 32,
-      "sourceTaskId": "wave-now-03-0032",
-      "waveId": "now-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0340",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:economic-optimization-swarm",
-    "task": "Remediate rollout failure for Economic Semantic Retrieval Ranker",
-    "priority": "P1",
-    "context": {
-      "skillId": 340,
-      "sourceTaskId": "wave-now-03-0340",
-      "waveId": "now-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0380",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:resource-allocation-and-logistics-swarm",
-    "task": "Remediate rollout failure for Logistics Semantic Retrieval Ranker",
-    "priority": "P1",
-    "context": {
-      "skillId": 380,
-      "sourceTaskId": "wave-now-03-0380",
-      "waveId": "now-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0486",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:scientific-research-systems-swarm",
-    "task": "Remediate rollout failure for Research Counterfactual Simulator",
-    "priority": "P1",
-    "context": {
-      "skillId": 486,
-      "sourceTaskId": "wave-now-03-0486",
-      "waveId": "now-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0643",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:crisis-and-incident-response-swarm",
-    "task": "Remediate rollout failure for Crisis Evidence Provenance Tracker",
-    "priority": "P1",
-    "context": {
-      "skillId": 643,
-      "sourceTaskId": "wave-now-03-0643",
-      "waveId": "now-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0682",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:social-impact-measurement-swarm",
-    "task": "Remediate rollout failure for Impact Context Window Prioritizer",
-    "priority": "P1",
-    "context": {
-      "skillId": 682,
-      "sourceTaskId": "wave-now-03-0682",
-      "waveId": "now-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0705",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:social-impact-measurement-swarm",
-    "task": "Remediate rollout failure for Impact Uncertainty Communicator",
-    "priority": "P1",
-    "context": {
-      "skillId": 705,
-      "sourceTaskId": "wave-now-03-0705",
-      "waveId": "now-03",
-      "reason": "deployment workflow failed runtime checks",
-      "retryable": true
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "remediate-0769",
+    "id": "remediate-0771",
     "from": "agent:skills-rollout-control",
     "to": "agent:multilingual-and-cultural-adaptation-swarm",
-    "task": "Remediate rollout failure for Cultural Resource Budget Allocator",
+    "task": "Remediate rollout failure for Cultural Policy Constraint Compiler",
     "priority": "P1",
     "context": {
-      "skillId": 769,
-      "sourceTaskId": "wave-now-04-0769",
+      "skillId": 771,
+      "sourceTaskId": "wave-next-08-0771",
+      "waveId": "next-08",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0947",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:infrastructure-and-sustainability-swarm",
+    "task": "Remediate rollout failure for Infra A/B Rollout Governor",
+    "priority": "P1",
+    "context": {
+      "skillId": 947,
+      "sourceTaskId": "wave-next-08-0947",
+      "waveId": "next-08",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0195",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:safety-and-governance-swarm",
+    "task": "Remediate rollout failure for Governance Community Feedback Harvester",
+    "priority": "P1",
+    "context": {
+      "skillId": 195,
+      "sourceTaskId": "wave-next-09-0195",
+      "waveId": "next-09",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0754",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:communication-and-explainability-swarm",
+    "task": "Remediate rollout failure for Comms Equity Impact Scorer",
+    "priority": "P1",
+    "context": {
+      "skillId": 754,
+      "sourceTaskId": "wave-next-09-0754",
+      "waveId": "next-09",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0071",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:strategic-planning-and-decomposition-swarm",
+    "task": "Remediate rollout failure for Planning Security Threat Modeler",
+    "priority": "P1",
+    "context": {
+      "skillId": 71,
+      "sourceTaskId": "wave-now-01-0071",
+      "waveId": "now-01",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0107",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:memory-and-knowledge-operations-swarm",
+    "task": "Remediate rollout failure for Memory A/B Rollout Governor",
+    "priority": "P1",
+    "context": {
+      "skillId": 107,
+      "sourceTaskId": "wave-now-01-0107",
+      "waveId": "now-01",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0139",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Remediate rollout failure for Tooling Knowledge Graph Linker",
+    "priority": "P1",
+    "context": {
+      "skillId": 139,
+      "sourceTaskId": "wave-now-01-0139",
+      "waveId": "now-01",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0955",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:infrastructure-and-sustainability-swarm",
+    "task": "Remediate rollout failure for Infra Community Feedback Harvester",
+    "priority": "P1",
+    "context": {
+      "skillId": 955,
+      "sourceTaskId": "wave-now-02-0955",
+      "waveId": "now-02",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0434",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:healthcare-and-public-services-swarm",
+    "task": "Remediate rollout failure for PublicService Equity Impact Scorer",
+    "priority": "P1",
+    "context": {
+      "skillId": 434,
+      "sourceTaskId": "wave-now-03-0434",
+      "waveId": "now-03",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0549",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:software-engineering-automation-swarm",
+    "task": "Remediate rollout failure for Engineering Disaster Recovery Orchestrator",
+    "priority": "P1",
+    "context": {
+      "skillId": 549,
+      "sourceTaskId": "wave-now-03-0549",
+      "waveId": "now-03",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0574",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Remediate rollout failure for Observability Tool Health Monitor",
+    "priority": "P1",
+    "context": {
+      "skillId": 574,
+      "sourceTaskId": "wave-now-03-0574",
+      "waveId": "now-03",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0603",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:security-and-privacy-swarm",
+    "task": "Remediate rollout failure for Security Evidence Provenance Tracker",
+    "priority": "P1",
+    "context": {
+      "skillId": 603,
+      "sourceTaskId": "wave-now-03-0603",
+      "waveId": "now-03",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0825",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:accessibility-and-inclusion-swarm",
+    "task": "Remediate rollout failure for Inclusion Uncertainty Communicator",
+    "priority": "P1",
+    "context": {
+      "skillId": 825,
+      "sourceTaskId": "wave-now-04-0825",
       "waveId": "now-04",
+      "reason": "deployment workflow failed runtime checks",
+      "retryable": true
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "remediate-0991",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:autonomous-learning-and-evolution-swarm",
+    "task": "Remediate rollout failure for Evolution Security Threat Modeler",
+    "priority": "P1",
+    "context": {
+      "skillId": 991,
+      "sourceTaskId": "wave-now-05-0991",
+      "waveId": "now-05",
       "reason": "deployment workflow failed runtime checks",
       "retryable": true
     }
@@ -1440,6 +1642,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0004",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Epistemic Contradiction Detector",
+    "priority": "P0",
+    "context": {
+      "skillId": 4,
+      "sourceTaskId": "oversight-0004",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0005",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1461,19 +1676,6 @@
     "context": {
       "skillId": 8,
       "sourceTaskId": "oversight-0008",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0011",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Epistemic Policy Constraint Compiler",
-    "priority": "P0",
-    "context": {
-      "skillId": 11,
-      "sourceTaskId": "oversight-0011",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1505,19 +1707,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0020",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Epistemic Semantic Retrieval Ranker",
-    "priority": "P0",
-    "context": {
-      "skillId": 20,
-      "sourceTaskId": "oversight-0020",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0022",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1531,40 +1720,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0025",
+    "id": "approval-0033",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Epistemic Uncertainty Communicator",
+    "task": "Expedite approval for Epistemic Cost-Benefit Forecaster",
     "priority": "P0",
     "context": {
-      "skillId": 25,
-      "sourceTaskId": "oversight-0025",
+      "skillId": 33,
+      "sourceTaskId": "oversight-0033",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0029",
+    "id": "approval-0037",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Epistemic Disaster Recovery Orchestrator",
+    "task": "Expedite approval for Epistemic Skill Gap Diagnoser",
     "priority": "P0",
     "context": {
-      "skillId": 29,
-      "sourceTaskId": "oversight-0029",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0035",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Epistemic Community Feedback Harvester",
-    "priority": "P0",
-    "context": {
-      "skillId": 35,
-      "sourceTaskId": "oversight-0035",
+      "skillId": 37,
+      "sourceTaskId": "oversight-0037",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1596,19 +1772,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0043",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Planning Evidence Provenance Tracker",
-    "priority": "P0",
-    "context": {
-      "skillId": 43,
-      "sourceTaskId": "oversight-0043",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0045",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1617,6 +1780,19 @@
     "context": {
       "skillId": 45,
       "sourceTaskId": "oversight-0045",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0046",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Planning Counterfactual Simulator",
+    "priority": "P0",
+    "context": {
+      "skillId": 46,
+      "sourceTaskId": "oversight-0046",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1635,6 +1811,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0052",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Planning Human Approval Router",
+    "priority": "P0",
+    "context": {
+      "skillId": 52,
+      "sourceTaskId": "oversight-0052",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0053",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1648,19 +1837,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0055",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Planning Auto-Retry and Backoff Coordinator",
-    "priority": "P0",
-    "context": {
-      "skillId": 55,
-      "sourceTaskId": "oversight-0055",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0056",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1669,19 +1845,6 @@
     "context": {
       "skillId": 56,
       "sourceTaskId": "oversight-0056",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0060",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Planning Semantic Retrieval Ranker",
-    "priority": "P0",
-    "context": {
-      "skillId": 60,
-      "sourceTaskId": "oversight-0060",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1713,32 +1876,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0070",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Planning Privacy Preserving Data Broker",
-    "priority": "P0",
-    "context": {
-      "skillId": 70,
-      "sourceTaskId": "oversight-0070",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0074",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Planning Equity Impact Scorer",
-    "priority": "P0",
-    "context": {
-      "skillId": 74,
-      "sourceTaskId": "oversight-0074",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0075",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1747,6 +1884,32 @@
     "context": {
       "skillId": 75,
       "sourceTaskId": "oversight-0075",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0076",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Planning KPI Dashboard Publisher",
+    "priority": "P0",
+    "context": {
+      "skillId": 76,
+      "sourceTaskId": "oversight-0076",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0077",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Planning Skill Gap Diagnoser",
+    "priority": "P0",
+    "context": {
+      "skillId": 77,
+      "sourceTaskId": "oversight-0077",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1765,27 +1928,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0082",
+    "id": "approval-0084",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Memory Context Window Prioritizer",
+    "task": "Expedite approval for Memory Contradiction Detector",
     "priority": "P0",
     "context": {
-      "skillId": 82,
-      "sourceTaskId": "oversight-0082",
+      "skillId": 84,
+      "sourceTaskId": "oversight-0084",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0083",
+    "id": "approval-0085",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Memory Evidence Provenance Tracker",
+    "task": "Expedite approval for Memory Confidence Calibration Engine",
     "priority": "P0",
     "context": {
-      "skillId": 83,
-      "sourceTaskId": "oversight-0083",
+      "skillId": 85,
+      "sourceTaskId": "oversight-0085",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1812,32 +1975,6 @@
     "context": {
       "skillId": 89,
       "sourceTaskId": "oversight-0089",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0091",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Memory Policy Constraint Compiler",
-    "priority": "P0",
-    "context": {
-      "skillId": 91,
-      "sourceTaskId": "oversight-0091",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0094",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Memory Tool Health Monitor",
-    "priority": "P0",
-    "context": {
-      "skillId": 94,
-      "sourceTaskId": "oversight-0094",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1882,19 +2019,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0100",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Memory Semantic Retrieval Ranker",
-    "priority": "P0",
-    "context": {
-      "skillId": 100,
-      "sourceTaskId": "oversight-0100",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0104",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1903,6 +2027,32 @@
     "context": {
       "skillId": 104,
       "sourceTaskId": "oversight-0104",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0105",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Memory Uncertainty Communicator",
+    "priority": "P0",
+    "context": {
+      "skillId": 105,
+      "sourceTaskId": "oversight-0105",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0106",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Memory Experiment Design Generator",
+    "priority": "P0",
+    "context": {
+      "skillId": 106,
+      "sourceTaskId": "oversight-0106",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -1934,6 +2084,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0115",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Memory Community Feedback Harvester",
+    "priority": "P0",
+    "context": {
+      "skillId": 115,
+      "sourceTaskId": "oversight-0115",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0118",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -1947,53 +2110,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0120",
+    "id": "approval-0123",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Memory Continuous Improvement Planner",
+    "task": "Expedite approval for Tooling Evidence Provenance Tracker",
     "priority": "P0",
     "context": {
-      "skillId": 120,
-      "sourceTaskId": "oversight-0120",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0122",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Context Window Prioritizer",
-    "priority": "P0",
-    "context": {
-      "skillId": 122,
-      "sourceTaskId": "oversight-0122",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0124",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Contradiction Detector",
-    "priority": "P0",
-    "context": {
-      "skillId": 124,
-      "sourceTaskId": "oversight-0124",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0125",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Confidence Calibration Engine",
-    "priority": "P0",
-    "context": {
-      "skillId": 125,
-      "sourceTaskId": "oversight-0125",
+      "skillId": 123,
+      "sourceTaskId": "oversight-0123",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2025,19 +2149,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0129",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Resource Budget Allocator",
-    "priority": "P0",
-    "context": {
-      "skillId": 129,
-      "sourceTaskId": "oversight-0129",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0130",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2064,27 +2175,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0133",
+    "id": "approval-0132",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Task Handoff Contractor",
+    "task": "Expedite approval for Tooling Human Approval Router",
     "priority": "P0",
     "context": {
-      "skillId": 133,
-      "sourceTaskId": "oversight-0133",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0142",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Multi-Agent Negotiation Mediator",
-    "priority": "P0",
-    "context": {
-      "skillId": 142,
-      "sourceTaskId": "oversight-0142",
+      "skillId": 132,
+      "sourceTaskId": "oversight-0132",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2103,19 +2201,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0144",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Explainability Narrative Builder",
-    "priority": "P0",
-    "context": {
-      "skillId": 144,
-      "sourceTaskId": "oversight-0144",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0145",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2124,19 +2209,6 @@
     "context": {
       "skillId": 145,
       "sourceTaskId": "oversight-0145",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0149",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Disaster Recovery Orchestrator",
-    "priority": "P0",
-    "context": {
-      "skillId": 149,
-      "sourceTaskId": "oversight-0149",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2155,19 +2227,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0154",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Equity Impact Scorer",
-    "priority": "P0",
-    "context": {
-      "skillId": 154,
-      "sourceTaskId": "oversight-0154",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0156",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2176,19 +2235,6 @@
     "context": {
       "skillId": 156,
       "sourceTaskId": "oversight-0156",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0158",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Tooling Training Curriculum Composer",
-    "priority": "P0",
-    "context": {
-      "skillId": 158,
-      "sourceTaskId": "oversight-0158",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2207,58 +2253,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0162",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Context Window Prioritizer",
-    "priority": "P0",
-    "context": {
-      "skillId": 162,
-      "sourceTaskId": "oversight-0162",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0166",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Counterfactual Simulator",
-    "priority": "P0",
-    "context": {
-      "skillId": 166,
-      "sourceTaskId": "oversight-0166",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0167",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Goal Decomposer",
-    "priority": "P0",
-    "context": {
-      "skillId": 167,
-      "sourceTaskId": "oversight-0167",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0169",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Resource Budget Allocator",
-    "priority": "P0",
-    "context": {
-      "skillId": 169,
-      "sourceTaskId": "oversight-0169",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0170",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2272,27 +2266,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0171",
+    "id": "approval-0172",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Policy Constraint Compiler",
+    "task": "Expedite approval for Governance Human Approval Router",
     "priority": "P0",
     "context": {
-      "skillId": 171,
-      "sourceTaskId": "oversight-0171",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0175",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Auto-Retry and Backoff Coordinator",
-    "priority": "P0",
-    "context": {
-      "skillId": 175,
-      "sourceTaskId": "oversight-0175",
+      "skillId": 172,
+      "sourceTaskId": "oversight-0172",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2337,19 +2318,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0180",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Semantic Retrieval Ranker",
-    "priority": "P0",
-    "context": {
-      "skillId": 180,
-      "sourceTaskId": "oversight-0180",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0182",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2363,27 +2331,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0184",
+    "id": "approval-0186",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance Explainability Narrative Builder",
+    "task": "Expedite approval for Governance Experiment Design Generator",
     "priority": "P0",
     "context": {
-      "skillId": 184,
-      "sourceTaskId": "oversight-0184",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0187",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance A/B Rollout Governor",
-    "priority": "P0",
-    "context": {
-      "skillId": 187,
-      "sourceTaskId": "oversight-0187",
+      "skillId": 186,
+      "sourceTaskId": "oversight-0186",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2415,14 +2370,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0196",
+    "id": "approval-0197",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Governance KPI Dashboard Publisher",
+    "task": "Expedite approval for Governance Skill Gap Diagnoser",
     "priority": "P0",
     "context": {
-      "skillId": 196,
-      "sourceTaskId": "oversight-0196",
+      "skillId": 197,
+      "sourceTaskId": "oversight-0197",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0201",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Oversight Signal Ingestion Normalizer",
+    "priority": "P0",
+    "context": {
+      "skillId": 201,
+      "sourceTaskId": "oversight-0201",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2436,6 +2404,32 @@
     "context": {
       "skillId": 202,
       "sourceTaskId": "oversight-0202",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0203",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Oversight Evidence Provenance Tracker",
+    "priority": "P0",
+    "context": {
+      "skillId": 203,
+      "sourceTaskId": "oversight-0203",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0208",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Oversight Dependency DAG Planner",
+    "priority": "P0",
+    "context": {
+      "skillId": 208,
+      "sourceTaskId": "oversight-0208",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2480,6 +2474,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0222",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Oversight Multi-Agent Negotiation Mediator",
+    "priority": "P0",
+    "context": {
+      "skillId": 222,
+      "sourceTaskId": "oversight-0222",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0224",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2488,6 +2495,19 @@
     "context": {
       "skillId": 224,
       "sourceTaskId": "oversight-0224",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0228",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Oversight Incident Playbook Synthesizer",
+    "priority": "P0",
+    "context": {
+      "skillId": 228,
+      "sourceTaskId": "oversight-0228",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2519,27 +2539,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0231",
+    "id": "approval-0235",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Oversight Security Threat Modeler",
+    "task": "Expedite approval for Oversight Community Feedback Harvester",
     "priority": "P0",
     "context": {
-      "skillId": 231,
-      "sourceTaskId": "oversight-0231",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0232",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Oversight Compliance Evidence Mapper",
-    "priority": "P0",
-    "context": {
-      "skillId": 232,
-      "sourceTaskId": "oversight-0232",
+      "skillId": 235,
+      "sourceTaskId": "oversight-0235",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2571,19 +2578,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0242",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Context Window Prioritizer",
-    "priority": "P0",
-    "context": {
-      "skillId": 242,
-      "sourceTaskId": "oversight-0242",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0245",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2592,6 +2586,19 @@
     "context": {
       "skillId": 245,
       "sourceTaskId": "oversight-0245",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0247",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Collab Goal Decomposer",
+    "priority": "P0",
+    "context": {
+      "skillId": 247,
+      "sourceTaskId": "oversight-0247",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2610,6 +2617,32 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0249",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Collab Resource Budget Allocator",
+    "priority": "P0",
+    "context": {
+      "skillId": 249,
+      "sourceTaskId": "oversight-0249",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0250",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Collab Risk-Aware Scheduler",
+    "priority": "P0",
+    "context": {
+      "skillId": 250,
+      "sourceTaskId": "oversight-0250",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0253",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2623,27 +2656,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0257",
+    "id": "approval-0255",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Regression Sentinel",
+    "task": "Expedite approval for Collab Auto-Retry and Backoff Coordinator",
     "priority": "P0",
     "context": {
-      "skillId": 257,
-      "sourceTaskId": "oversight-0257",
+      "skillId": 255,
+      "sourceTaskId": "oversight-0255",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0260",
+    "id": "approval-0256",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Semantic Retrieval Ranker",
+    "task": "Expedite approval for Collab Failure Root-Cause Miner",
     "priority": "P0",
     "context": {
-      "skillId": 260,
-      "sourceTaskId": "oversight-0260",
+      "skillId": 256,
+      "sourceTaskId": "oversight-0256",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2657,19 +2690,6 @@
     "context": {
       "skillId": 264,
       "sourceTaskId": "oversight-0264",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0265",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Uncertainty Communicator",
-    "priority": "P0",
-    "context": {
-      "skillId": 265,
-      "sourceTaskId": "oversight-0265",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2714,40 +2734,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0271",
+    "id": "approval-0275",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Security Threat Modeler",
+    "task": "Expedite approval for Collab Community Feedback Harvester",
     "priority": "P0",
     "context": {
-      "skillId": 271,
-      "sourceTaskId": "oversight-0271",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0272",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Compliance Evidence Mapper",
-    "priority": "P0",
-    "context": {
-      "skillId": 272,
-      "sourceTaskId": "oversight-0272",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0274",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Equity Impact Scorer",
-    "priority": "P0",
-    "context": {
-      "skillId": 274,
-      "sourceTaskId": "oversight-0274",
+      "skillId": 275,
+      "sourceTaskId": "oversight-0275",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2766,53 +2760,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0278",
+    "id": "approval-0289",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Collab Training Curriculum Composer",
+    "task": "Expedite approval for Federation Resource Budget Allocator",
     "priority": "P0",
     "context": {
-      "skillId": 278,
-      "sourceTaskId": "oversight-0278",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0282",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Federation Context Window Prioritizer",
-    "priority": "P0",
-    "context": {
-      "skillId": 282,
-      "sourceTaskId": "oversight-0282",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0284",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Federation Contradiction Detector",
-    "priority": "P0",
-    "context": {
-      "skillId": 284,
-      "sourceTaskId": "oversight-0284",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0291",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Federation Policy Constraint Compiler",
-    "priority": "P0",
-    "context": {
-      "skillId": 291,
-      "sourceTaskId": "oversight-0291",
+      "skillId": 289,
+      "sourceTaskId": "oversight-0289",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2831,14 +2786,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0295",
+    "id": "approval-0296",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Federation Auto-Retry and Backoff Coordinator",
+    "task": "Expedite approval for Federation Failure Root-Cause Miner",
     "priority": "P0",
     "context": {
-      "skillId": 295,
-      "sourceTaskId": "oversight-0295",
+      "skillId": 296,
+      "sourceTaskId": "oversight-0296",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2883,19 +2838,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0302",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Federation Multi-Agent Negotiation Mediator",
-    "priority": "P0",
-    "context": {
-      "skillId": 302,
-      "sourceTaskId": "oversight-0302",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0303",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2909,14 +2851,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0304",
+    "id": "approval-0307",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Federation Explainability Narrative Builder",
+    "task": "Expedite approval for Federation A/B Rollout Governor",
     "priority": "P0",
     "context": {
-      "skillId": 304,
-      "sourceTaskId": "oversight-0304",
+      "skillId": 307,
+      "sourceTaskId": "oversight-0307",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0312",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Federation Compliance Evidence Mapper",
+    "priority": "P0",
+    "context": {
+      "skillId": 312,
+      "sourceTaskId": "oversight-0312",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2930,6 +2885,19 @@
     "context": {
       "skillId": 315,
       "sourceTaskId": "oversight-0315",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0317",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Federation Skill Gap Diagnoser",
+    "priority": "P0",
+    "context": {
+      "skillId": 317,
+      "sourceTaskId": "oversight-0317",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -2974,6 +2942,32 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0323",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Economic Evidence Provenance Tracker",
+    "priority": "P0",
+    "context": {
+      "skillId": 323,
+      "sourceTaskId": "oversight-0323",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0325",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Economic Confidence Calibration Engine",
+    "priority": "P0",
+    "context": {
+      "skillId": 325,
+      "sourceTaskId": "oversight-0325",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0328",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -2982,32 +2976,6 @@
     "context": {
       "skillId": 328,
       "sourceTaskId": "oversight-0328",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0330",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Economic Risk-Aware Scheduler",
-    "priority": "P0",
-    "context": {
-      "skillId": 330,
-      "sourceTaskId": "oversight-0330",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0333",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Economic Task Handoff Contractor",
-    "priority": "P0",
-    "context": {
-      "skillId": 333,
-      "sourceTaskId": "oversight-0333",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3078,19 +3046,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0344",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Economic Explainability Narrative Builder",
-    "priority": "P0",
-    "context": {
-      "skillId": 344,
-      "sourceTaskId": "oversight-0344",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0347",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3099,6 +3054,19 @@
     "context": {
       "skillId": 347,
       "sourceTaskId": "oversight-0347",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0348",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Economic Incident Playbook Synthesizer",
+    "priority": "P0",
+    "context": {
+      "skillId": 348,
+      "sourceTaskId": "oversight-0348",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3117,66 +3085,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0357",
+    "id": "approval-0353",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Economic Skill Gap Diagnoser",
+    "task": "Expedite approval for Economic Cost-Benefit Forecaster",
     "priority": "P0",
     "context": {
-      "skillId": 357,
-      "sourceTaskId": "oversight-0357",
+      "skillId": 353,
+      "sourceTaskId": "oversight-0353",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0358",
+    "id": "approval-0356",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Economic Training Curriculum Composer",
+    "task": "Expedite approval for Economic KPI Dashboard Publisher",
     "priority": "P0",
     "context": {
-      "skillId": 358,
-      "sourceTaskId": "oversight-0358",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0364",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Logistics Contradiction Detector",
-    "priority": "P0",
-    "context": {
-      "skillId": 364,
-      "sourceTaskId": "oversight-0364",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0365",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Logistics Confidence Calibration Engine",
-    "priority": "P0",
-    "context": {
-      "skillId": 365,
-      "sourceTaskId": "oversight-0365",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0366",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Logistics Counterfactual Simulator",
-    "priority": "P0",
-    "context": {
-      "skillId": 366,
-      "sourceTaskId": "oversight-0366",
+      "skillId": 356,
+      "sourceTaskId": "oversight-0356",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3208,19 +3137,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0373",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Logistics Task Handoff Contractor",
-    "priority": "P0",
-    "context": {
-      "skillId": 373,
-      "sourceTaskId": "oversight-0373",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0375",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3229,6 +3145,19 @@
     "context": {
       "skillId": 375,
       "sourceTaskId": "oversight-0375",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0377",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Logistics Regression Sentinel",
+    "priority": "P0",
+    "context": {
+      "skillId": 377,
+      "sourceTaskId": "oversight-0377",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3247,19 +3176,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0383",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Logistics Conflict Resolution Coach",
-    "priority": "P0",
-    "context": {
-      "skillId": 383,
-      "sourceTaskId": "oversight-0383",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0388",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3273,19 +3189,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0389",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Logistics Disaster Recovery Orchestrator",
-    "priority": "P0",
-    "context": {
-      "skillId": 389,
-      "sourceTaskId": "oversight-0389",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0390",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3294,19 +3197,6 @@
     "context": {
       "skillId": 390,
       "sourceTaskId": "oversight-0390",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0392",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Logistics Compliance Evidence Mapper",
-    "priority": "P0",
-    "context": {
-      "skillId": 392,
-      "sourceTaskId": "oversight-0392",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3364,19 +3254,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0404",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for PublicService Contradiction Detector",
-    "priority": "P0",
-    "context": {
-      "skillId": 404,
-      "sourceTaskId": "oversight-0404",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0407",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3385,6 +3262,19 @@
     "context": {
       "skillId": 407,
       "sourceTaskId": "oversight-0407",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0408",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for PublicService Dependency DAG Planner",
+    "priority": "P0",
+    "context": {
+      "skillId": 408,
+      "sourceTaskId": "oversight-0408",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3403,14 +3293,40 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0416",
+    "id": "approval-0414",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for PublicService Failure Root-Cause Miner",
+    "task": "Expedite approval for PublicService Tool Health Monitor",
     "priority": "P0",
     "context": {
-      "skillId": 416,
-      "sourceTaskId": "oversight-0416",
+      "skillId": 414,
+      "sourceTaskId": "oversight-0414",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0417",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for PublicService Regression Sentinel",
+    "priority": "P0",
+    "context": {
+      "skillId": 417,
+      "sourceTaskId": "oversight-0417",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0418",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for PublicService Memory Consolidation Pipeline",
+    "priority": "P0",
+    "context": {
+      "skillId": 418,
+      "sourceTaskId": "oversight-0418",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3429,6 +3345,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0423",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for PublicService Conflict Resolution Coach",
+    "priority": "P0",
+    "context": {
+      "skillId": 423,
+      "sourceTaskId": "oversight-0423",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0424",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3437,6 +3366,19 @@
     "context": {
       "skillId": 424,
       "sourceTaskId": "oversight-0424",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0426",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for PublicService Experiment Design Generator",
+    "priority": "P0",
+    "context": {
+      "skillId": 426,
+      "sourceTaskId": "oversight-0426",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3455,6 +3397,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0432",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for PublicService Compliance Evidence Mapper",
+    "priority": "P0",
+    "context": {
+      "skillId": 432,
+      "sourceTaskId": "oversight-0432",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0435",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3468,14 +3423,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0442",
+    "id": "approval-0439",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Context Window Prioritizer",
+    "task": "Expedite approval for PublicService Self-Reflection Error Taxonomist",
     "priority": "P0",
     "context": {
-      "skillId": 442,
-      "sourceTaskId": "oversight-0442",
+      "skillId": 439,
+      "sourceTaskId": "oversight-0439",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3494,19 +3449,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0445",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Confidence Calibration Engine",
-    "priority": "P0",
-    "context": {
-      "skillId": 445,
-      "sourceTaskId": "oversight-0445",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0446",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3520,14 +3462,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0448",
+    "id": "approval-0450",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Dependency DAG Planner",
+    "task": "Expedite approval for Education Risk-Aware Scheduler",
     "priority": "P0",
     "context": {
-      "skillId": 448,
-      "sourceTaskId": "oversight-0448",
+      "skillId": 450,
+      "sourceTaskId": "oversight-0450",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3546,19 +3488,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0456",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Failure Root-Cause Miner",
-    "priority": "P0",
-    "context": {
-      "skillId": 456,
-      "sourceTaskId": "oversight-0456",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0458",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3572,53 +3501,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0459",
+    "id": "approval-0461",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Knowledge Graph Linker",
+    "task": "Expedite approval for Education Plan Quality Evaluator",
     "priority": "P0",
     "context": {
-      "skillId": 459,
-      "sourceTaskId": "oversight-0459",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0460",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Semantic Retrieval Ranker",
-    "priority": "P0",
-    "context": {
-      "skillId": 460,
-      "sourceTaskId": "oversight-0460",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0462",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Multi-Agent Negotiation Mediator",
-    "priority": "P0",
-    "context": {
-      "skillId": 462,
-      "sourceTaskId": "oversight-0462",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0464",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Explainability Narrative Builder",
-    "priority": "P0",
-    "context": {
-      "skillId": 464,
-      "sourceTaskId": "oversight-0464",
+      "skillId": 461,
+      "sourceTaskId": "oversight-0461",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3632,19 +3522,6 @@
     "context": {
       "skillId": 467,
       "sourceTaskId": "oversight-0467",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0468",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Incident Playbook Synthesizer",
-    "priority": "P0",
-    "context": {
-      "skillId": 468,
-      "sourceTaskId": "oversight-0468",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3671,6 +3548,19 @@
     "context": {
       "skillId": 471,
       "sourceTaskId": "oversight-0471",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0473",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Education Cost-Benefit Forecaster",
+    "priority": "P0",
+    "context": {
+      "skillId": 473,
+      "sourceTaskId": "oversight-0473",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3715,32 +3605,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0478",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Training Curriculum Composer",
-    "priority": "P0",
-    "context": {
-      "skillId": 478,
-      "sourceTaskId": "oversight-0478",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0479",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Education Self-Reflection Error Taxonomist",
-    "priority": "P0",
-    "context": {
-      "skillId": 479,
-      "sourceTaskId": "oversight-0479",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0481",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3749,19 +3613,6 @@
     "context": {
       "skillId": 481,
       "sourceTaskId": "oversight-0481",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0487",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Research Goal Decomposer",
-    "priority": "P0",
-    "context": {
-      "skillId": 487,
-      "sourceTaskId": "oversight-0487",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3780,6 +3631,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0491",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Research Policy Constraint Compiler",
+    "priority": "P0",
+    "context": {
+      "skillId": 491,
+      "sourceTaskId": "oversight-0491",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0492",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3793,40 +3657,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0494",
+    "id": "approval-0498",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Research Tool Health Monitor",
+    "task": "Expedite approval for Research Memory Consolidation Pipeline",
     "priority": "P0",
     "context": {
-      "skillId": 494,
-      "sourceTaskId": "oversight-0494",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0496",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Research Failure Root-Cause Miner",
-    "priority": "P0",
-    "context": {
-      "skillId": 496,
-      "sourceTaskId": "oversight-0496",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0500",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Research Semantic Retrieval Ranker",
-    "priority": "P0",
-    "context": {
-      "skillId": 500,
-      "sourceTaskId": "oversight-0500",
+      "skillId": 498,
+      "sourceTaskId": "oversight-0498",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3845,14 +3683,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0506",
+    "id": "approval-0504",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Research Experiment Design Generator",
+    "task": "Expedite approval for Research Explainability Narrative Builder",
     "priority": "P0",
     "context": {
-      "skillId": 506,
-      "sourceTaskId": "oversight-0506",
+      "skillId": 504,
+      "sourceTaskId": "oversight-0504",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3871,14 +3709,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0509",
+    "id": "approval-0508",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Research Disaster Recovery Orchestrator",
+    "task": "Expedite approval for Research Incident Playbook Synthesizer",
     "priority": "P0",
     "context": {
-      "skillId": 509,
-      "sourceTaskId": "oversight-0509",
+      "skillId": 508,
+      "sourceTaskId": "oversight-0508",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -3923,19 +3761,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0519",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Research Self-Reflection Error Taxonomist",
-    "priority": "P0",
-    "context": {
-      "skillId": 519,
-      "sourceTaskId": "oversight-0519",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0520",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3975,6 +3800,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0528",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Engineering Dependency DAG Planner",
+    "priority": "P0",
+    "context": {
+      "skillId": 528,
+      "sourceTaskId": "oversight-0528",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0531",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -3988,14 +3826,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0533",
+    "id": "approval-0535",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Engineering Task Handoff Contractor",
+    "task": "Expedite approval for Engineering Auto-Retry and Backoff Coordinator",
     "priority": "P0",
     "context": {
-      "skillId": 533,
-      "sourceTaskId": "oversight-0533",
+      "skillId": 535,
+      "sourceTaskId": "oversight-0535",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4014,40 +3852,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0539",
+    "id": "approval-0538",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Engineering Knowledge Graph Linker",
+    "task": "Expedite approval for Engineering Memory Consolidation Pipeline",
     "priority": "P0",
     "context": {
-      "skillId": 539,
-      "sourceTaskId": "oversight-0539",
+      "skillId": 538,
+      "sourceTaskId": "oversight-0538",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0541",
+    "id": "approval-0542",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Engineering Plan Quality Evaluator",
+    "task": "Expedite approval for Engineering Multi-Agent Negotiation Mediator",
     "priority": "P0",
     "context": {
-      "skillId": 541,
-      "sourceTaskId": "oversight-0541",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0547",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Engineering A/B Rollout Governor",
-    "priority": "P0",
-    "context": {
-      "skillId": 547,
-      "sourceTaskId": "oversight-0547",
+      "skillId": 542,
+      "sourceTaskId": "oversight-0542",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4079,19 +3904,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0553",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Engineering Cost-Benefit Forecaster",
-    "priority": "P0",
-    "context": {
-      "skillId": 553,
-      "sourceTaskId": "oversight-0553",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0554",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4100,6 +3912,19 @@
     "context": {
       "skillId": 554,
       "sourceTaskId": "oversight-0554",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0558",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Engineering Training Curriculum Composer",
+    "priority": "P0",
+    "context": {
+      "skillId": 558,
+      "sourceTaskId": "oversight-0558",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4131,14 +3956,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0571",
+    "id": "approval-0568",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Observability Policy Constraint Compiler",
+    "task": "Expedite approval for Observability Dependency DAG Planner",
     "priority": "P0",
     "context": {
-      "skillId": 571,
-      "sourceTaskId": "oversight-0571",
+      "skillId": 568,
+      "sourceTaskId": "oversight-0568",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0569",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Observability Resource Budget Allocator",
+    "priority": "P0",
+    "context": {
+      "skillId": 569,
+      "sourceTaskId": "oversight-0569",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4157,27 +3995,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0576",
+    "id": "approval-0578",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Observability Failure Root-Cause Miner",
+    "task": "Expedite approval for Observability Memory Consolidation Pipeline",
     "priority": "P0",
     "context": {
-      "skillId": 576,
-      "sourceTaskId": "oversight-0576",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0580",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Observability Semantic Retrieval Ranker",
-    "priority": "P0",
-    "context": {
-      "skillId": 580,
-      "sourceTaskId": "oversight-0580",
+      "skillId": 578,
+      "sourceTaskId": "oversight-0578",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4209,14 +4034,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0587",
+    "id": "approval-0585",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Observability A/B Rollout Governor",
+    "task": "Expedite approval for Observability Uncertainty Communicator",
     "priority": "P0",
     "context": {
-      "skillId": 587,
-      "sourceTaskId": "oversight-0587",
+      "skillId": 585,
+      "sourceTaskId": "oversight-0585",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4235,32 +4060,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0598",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Observability Training Curriculum Composer",
-    "priority": "P0",
-    "context": {
-      "skillId": 598,
-      "sourceTaskId": "oversight-0598",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0599",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Observability Self-Reflection Error Taxonomist",
-    "priority": "P0",
-    "context": {
-      "skillId": 599,
-      "sourceTaskId": "oversight-0599",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0600",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4274,14 +4073,40 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0601",
+    "id": "approval-0604",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Security Signal Ingestion Normalizer",
+    "task": "Expedite approval for Security Contradiction Detector",
     "priority": "P0",
     "context": {
-      "skillId": 601,
-      "sourceTaskId": "oversight-0601",
+      "skillId": 604,
+      "sourceTaskId": "oversight-0604",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0607",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Security Goal Decomposer",
+    "priority": "P0",
+    "context": {
+      "skillId": 607,
+      "sourceTaskId": "oversight-0607",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0611",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Security Policy Constraint Compiler",
+    "priority": "P0",
+    "context": {
+      "skillId": 611,
+      "sourceTaskId": "oversight-0611",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4300,27 +4125,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0613",
+    "id": "approval-0615",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Security Task Handoff Contractor",
+    "task": "Expedite approval for Security Auto-Retry and Backoff Coordinator",
     "priority": "P0",
     "context": {
-      "skillId": 613,
-      "sourceTaskId": "oversight-0613",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0616",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Security Failure Root-Cause Miner",
-    "priority": "P0",
-    "context": {
-      "skillId": 616,
-      "sourceTaskId": "oversight-0616",
+      "skillId": 615,
+      "sourceTaskId": "oversight-0615",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4352,6 +4164,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0621",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Security Plan Quality Evaluator",
+    "priority": "P0",
+    "context": {
+      "skillId": 621,
+      "sourceTaskId": "oversight-0621",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0622",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4365,27 +4190,66 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0636",
+    "id": "approval-0624",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Security KPI Dashboard Publisher",
+    "task": "Expedite approval for Security Explainability Narrative Builder",
     "priority": "P0",
     "context": {
-      "skillId": 636,
-      "sourceTaskId": "oversight-0636",
+      "skillId": 624,
+      "sourceTaskId": "oversight-0624",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0640",
+    "id": "approval-0626",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Security Continuous Improvement Planner",
+    "task": "Expedite approval for Security Experiment Design Generator",
     "priority": "P0",
     "context": {
-      "skillId": 640,
-      "sourceTaskId": "oversight-0640",
+      "skillId": 626,
+      "sourceTaskId": "oversight-0626",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0627",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Security A/B Rollout Governor",
+    "priority": "P0",
+    "context": {
+      "skillId": 627,
+      "sourceTaskId": "oversight-0627",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0630",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Security Privacy Preserving Data Broker",
+    "priority": "P0",
+    "context": {
+      "skillId": 630,
+      "sourceTaskId": "oversight-0630",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0633",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Security Cost-Benefit Forecaster",
+    "priority": "P0",
+    "context": {
+      "skillId": 633,
+      "sourceTaskId": "oversight-0633",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4430,19 +4294,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0647",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Crisis Goal Decomposer",
-    "priority": "P0",
-    "context": {
-      "skillId": 647,
-      "sourceTaskId": "oversight-0647",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0648",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4456,27 +4307,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0652",
+    "id": "approval-0653",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Crisis Human Approval Router",
+    "task": "Expedite approval for Crisis Task Handoff Contractor",
     "priority": "P0",
     "context": {
-      "skillId": 652,
-      "sourceTaskId": "oversight-0652",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0656",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Crisis Failure Root-Cause Miner",
-    "priority": "P0",
-    "context": {
-      "skillId": 656,
-      "sourceTaskId": "oversight-0656",
+      "skillId": 653,
+      "sourceTaskId": "oversight-0653",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4521,6 +4359,19 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0662",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Crisis Multi-Agent Negotiation Mediator",
+    "priority": "P0",
+    "context": {
+      "skillId": 662,
+      "sourceTaskId": "oversight-0662",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0663",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4547,14 +4398,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0667",
+    "id": "approval-0666",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Crisis A/B Rollout Governor",
+    "task": "Expedite approval for Crisis Experiment Design Generator",
     "priority": "P0",
     "context": {
-      "skillId": 667,
-      "sourceTaskId": "oversight-0667",
+      "skillId": 666,
+      "sourceTaskId": "oversight-0666",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4573,19 +4424,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0671",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Crisis Security Threat Modeler",
-    "priority": "P0",
-    "context": {
-      "skillId": 671,
-      "sourceTaskId": "oversight-0671",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0672",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4599,6 +4437,32 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0673",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Crisis Cost-Benefit Forecaster",
+    "priority": "P0",
+    "context": {
+      "skillId": 673,
+      "sourceTaskId": "oversight-0673",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0674",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Crisis Equity Impact Scorer",
+    "priority": "P0",
+    "context": {
+      "skillId": 674,
+      "sourceTaskId": "oversight-0674",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0676",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4607,6 +4471,71 @@
     "context": {
       "skillId": 676,
       "sourceTaskId": "oversight-0676",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0678",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Crisis Training Curriculum Composer",
+    "priority": "P0",
+    "context": {
+      "skillId": 678,
+      "sourceTaskId": "oversight-0678",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0679",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Crisis Self-Reflection Error Taxonomist",
+    "priority": "P0",
+    "context": {
+      "skillId": 679,
+      "sourceTaskId": "oversight-0679",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0681",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Impact Signal Ingestion Normalizer",
+    "priority": "P0",
+    "context": {
+      "skillId": 681,
+      "sourceTaskId": "oversight-0681",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0683",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Impact Evidence Provenance Tracker",
+    "priority": "P0",
+    "context": {
+      "skillId": 683,
+      "sourceTaskId": "oversight-0683",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0685",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Impact Confidence Calibration Engine",
+    "priority": "P0",
+    "context": {
+      "skillId": 685,
+      "sourceTaskId": "oversight-0685",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4638,19 +4567,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0693",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Impact Task Handoff Contractor",
-    "priority": "P0",
-    "context": {
-      "skillId": 693,
-      "sourceTaskId": "oversight-0693",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0694",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4677,14 +4593,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0703",
+    "id": "approval-0701",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Impact Conflict Resolution Coach",
+    "task": "Expedite approval for Impact Plan Quality Evaluator",
     "priority": "P0",
     "context": {
-      "skillId": 703,
-      "sourceTaskId": "oversight-0703",
+      "skillId": 701,
+      "sourceTaskId": "oversight-0701",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4703,27 +4619,79 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0711",
+    "id": "approval-0707",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Impact Security Threat Modeler",
+    "task": "Expedite approval for Impact A/B Rollout Governor",
     "priority": "P0",
     "context": {
-      "skillId": 711,
-      "sourceTaskId": "oversight-0711",
+      "skillId": 707,
+      "sourceTaskId": "oversight-0707",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0715",
+    "id": "approval-0712",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Impact Community Feedback Harvester",
+    "task": "Expedite approval for Impact Compliance Evidence Mapper",
     "priority": "P0",
     "context": {
-      "skillId": 715,
-      "sourceTaskId": "oversight-0715",
+      "skillId": 712,
+      "sourceTaskId": "oversight-0712",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0716",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Impact KPI Dashboard Publisher",
+    "priority": "P0",
+    "context": {
+      "skillId": 716,
+      "sourceTaskId": "oversight-0716",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0718",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Impact Training Curriculum Composer",
+    "priority": "P0",
+    "context": {
+      "skillId": 718,
+      "sourceTaskId": "oversight-0718",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0723",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Comms Evidence Provenance Tracker",
+    "priority": "P0",
+    "context": {
+      "skillId": 723,
+      "sourceTaskId": "oversight-0723",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0724",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Comms Contradiction Detector",
+    "priority": "P0",
+    "context": {
+      "skillId": 724,
+      "sourceTaskId": "oversight-0724",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4737,19 +4705,6 @@
     "context": {
       "skillId": 729,
       "sourceTaskId": "oversight-0729",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0731",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Comms Policy Constraint Compiler",
-    "priority": "P0",
-    "context": {
-      "skillId": 731,
-      "sourceTaskId": "oversight-0731",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4794,6 +4749,32 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0740",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Comms Semantic Retrieval Ranker",
+    "priority": "P0",
+    "context": {
+      "skillId": 740,
+      "sourceTaskId": "oversight-0740",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0743",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Comms Conflict Resolution Coach",
+    "priority": "P0",
+    "context": {
+      "skillId": 743,
+      "sourceTaskId": "oversight-0743",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "approval-0744",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -4802,32 +4783,6 @@
     "context": {
       "skillId": 744,
       "sourceTaskId": "oversight-0744",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0747",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Comms A/B Rollout Governor",
-    "priority": "P0",
-    "context": {
-      "skillId": 747,
-      "sourceTaskId": "oversight-0747",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0748",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Comms Incident Playbook Synthesizer",
-    "priority": "P0",
-    "context": {
-      "skillId": 748,
-      "sourceTaskId": "oversight-0748",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4924,14 +4879,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0776",
+    "id": "approval-0775",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Cultural Failure Root-Cause Miner",
+    "task": "Expedite approval for Cultural Auto-Retry and Backoff Coordinator",
     "priority": "P0",
     "context": {
-      "skillId": 776,
-      "sourceTaskId": "oversight-0776",
+      "skillId": 775,
+      "sourceTaskId": "oversight-0775",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -4976,32 +4931,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0782",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Cultural Multi-Agent Negotiation Mediator",
-    "priority": "P0",
-    "context": {
-      "skillId": 782,
-      "sourceTaskId": "oversight-0782",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0783",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Cultural Conflict Resolution Coach",
-    "priority": "P0",
-    "context": {
-      "skillId": 783,
-      "sourceTaskId": "oversight-0783",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0788",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -5015,14 +4944,40 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0795",
+    "id": "approval-0794",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Cultural Community Feedback Harvester",
+    "task": "Expedite approval for Cultural Equity Impact Scorer",
     "priority": "P0",
     "context": {
-      "skillId": 795,
-      "sourceTaskId": "oversight-0795",
+      "skillId": 794,
+      "sourceTaskId": "oversight-0794",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0797",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Cultural Skill Gap Diagnoser",
+    "priority": "P0",
+    "context": {
+      "skillId": 797,
+      "sourceTaskId": "oversight-0797",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0799",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Cultural Self-Reflection Error Taxonomist",
+    "priority": "P0",
+    "context": {
+      "skillId": 799,
+      "sourceTaskId": "oversight-0799",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -5049,6 +5004,19 @@
     "context": {
       "skillId": 802,
       "sourceTaskId": "oversight-0802",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0804",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Inclusion Contradiction Detector",
+    "priority": "P0",
+    "context": {
+      "skillId": 804,
+      "sourceTaskId": "oversight-0804",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -5093,32 +5061,6 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0811",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Policy Constraint Compiler",
-    "priority": "P0",
-    "context": {
-      "skillId": 811,
-      "sourceTaskId": "oversight-0811",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
-    "id": "approval-0813",
-    "from": "agent:skills-rollout-control",
-    "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Task Handoff Contractor",
-    "priority": "P0",
-    "context": {
-      "skillId": 813,
-      "sourceTaskId": "oversight-0813",
-      "reason": "awaiting reviewer assignment and case adjudication"
-    }
-  },
-  {
-    "kind": "task_request",
     "id": "approval-0815",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
@@ -5132,27 +5074,27 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0819",
+    "id": "approval-0817",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Knowledge Graph Linker",
+    "task": "Expedite approval for Inclusion Regression Sentinel",
     "priority": "P0",
     "context": {
-      "skillId": 819,
-      "sourceTaskId": "oversight-0819",
+      "skillId": 817,
+      "sourceTaskId": "oversight-0817",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0820",
+    "id": "approval-0818",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Semantic Retrieval Ranker",
+    "task": "Expedite approval for Inclusion Memory Consolidation Pipeline",
     "priority": "P0",
     "context": {
-      "skillId": 820,
-      "sourceTaskId": "oversight-0820",
+      "skillId": 818,
+      "sourceTaskId": "oversight-0818",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -5184,14 +5126,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0823",
+    "id": "approval-0824",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Conflict Resolution Coach",
+    "task": "Expedite approval for Inclusion Explainability Narrative Builder",
     "priority": "P0",
     "context": {
-      "skillId": 823,
-      "sourceTaskId": "oversight-0823",
+      "skillId": 824,
+      "sourceTaskId": "oversight-0824",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -5210,40 +5152,53 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0835",
+    "id": "approval-0828",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Community Feedback Harvester",
+    "task": "Expedite approval for Inclusion Incident Playbook Synthesizer",
     "priority": "P0",
     "context": {
-      "skillId": 835,
-      "sourceTaskId": "oversight-0835",
+      "skillId": 828,
+      "sourceTaskId": "oversight-0828",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0837",
+    "id": "approval-0832",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Skill Gap Diagnoser",
+    "task": "Expedite approval for Inclusion Compliance Evidence Mapper",
     "priority": "P0",
     "context": {
-      "skillId": 837,
-      "sourceTaskId": "oversight-0837",
+      "skillId": 832,
+      "sourceTaskId": "oversight-0832",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
   {
     "kind": "task_request",
-    "id": "approval-0839",
+    "id": "approval-0836",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Inclusion Self-Reflection Error Taxonomist",
+    "task": "Expedite approval for Inclusion KPI Dashboard Publisher",
     "priority": "P0",
     "context": {
-      "skillId": 839,
-      "sourceTaskId": "oversight-0839",
+      "skillId": 836,
+      "sourceTaskId": "oversight-0836",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0841",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Community Signal Ingestion Normalizer",
+    "priority": "P0",
+    "context": {
+      "skillId": 841,
+      "sourceTaskId": "oversight-0841",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -5327,14 +5282,14 @@
   },
   {
     "kind": "task_request",
-    "id": "approval-0856",
+    "id": "approval-0855",
     "from": "agent:skills-rollout-control",
     "to": "agent:human-oversight",
-    "task": "Expedite approval for Community Failure Root-Cause Miner",
+    "task": "Expedite approval for Community Auto-Retry and Backoff Coordinator",
     "priority": "P0",
     "context": {
-      "skillId": 856,
-      "sourceTaskId": "oversight-0856",
+      "skillId": 855,
+      "sourceTaskId": "oversight-0855",
       "reason": "awaiting reviewer assignment and case adjudication"
     }
   },
@@ -5353,6 +5308,71 @@
   },
   {
     "kind": "task_request",
+    "id": "approval-0865",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Community Uncertainty Communicator",
+    "priority": "P0",
+    "context": {
+      "skillId": 865,
+      "sourceTaskId": "oversight-0865",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0866",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Community Experiment Design Generator",
+    "priority": "P0",
+    "context": {
+      "skillId": 866,
+      "sourceTaskId": "oversight-0866",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0867",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Community A/B Rollout Governor",
+    "priority": "P0",
+    "context": {
+      "skillId": 867,
+      "sourceTaskId": "oversight-0867",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0869",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Community Disaster Recovery Orchestrator",
+    "priority": "P0",
+    "context": {
+      "skillId": 869,
+      "sourceTaskId": "oversight-0869",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "approval-0870",
+    "from": "agent:skills-rollout-control",
+    "to": "agent:human-oversight",
+    "task": "Expedite approval for Community Privacy Preserving Data Broker",
+    "priority": "P0",
+    "context": {
+      "skillId": 870,
+      "sourceTaskId": "oversight-0870",
+      "reason": "awaiting reviewer assignment and case adjudication"
+    }
+  },
+  {
+    "kind": "task_request",
     "id": "control-report-publish",
     "from": "agent:skills-rollout-control",
     "to": "agent:rollout-controller",
@@ -5360,9 +5380,9 @@
     "priority": "P0",
     "context": {
       "overallPosture": "critical",
-      "failedCount": 91,
-      "approvalPendingCount": 407,
-      "generatedAt": "2026-02-26T05:13:13.853Z"
+      "failedCount": 107,
+      "approvalPendingCount": 391,
+      "generatedAt": "2026-02-26T05:13:14.489Z"
     }
   }
 ]
