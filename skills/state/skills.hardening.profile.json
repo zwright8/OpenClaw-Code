@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-26T21:38:27.401Z",
+  "defaultPolicy": {
+    "policy": "enforce",
+    "minDeployableScore": 82,
+    "strict": true
+  },
+  "rules": [
+    {
+      "id": "domain-critical-crisis-and-incident-response",
+      "description": "Critical-domain hardening override for Crisis and Incident Response.",
+      "domains": [
+        "crisis and incident response"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-cybersecurity-operations",
+      "description": "Critical-domain hardening override for cybersecurity operations.",
+      "domains": [
+        "cybersecurity operations"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-disaster-response-networks",
+      "description": "Critical-domain hardening override for disaster response networks.",
+      "domains": [
+        "disaster response networks"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-healthcare-and-public-services",
+      "description": "Critical-domain hardening override for Healthcare and Public Services.",
+      "domains": [
+        "healthcare and public services"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-healthcare-operations",
+      "description": "Critical-domain hardening override for healthcare operations.",
+      "domains": [
+        "healthcare operations"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-infrastructure-and-sustainability",
+      "description": "Critical-domain hardening override for Infrastructure and Sustainability.",
+      "domains": [
+        "infrastructure and sustainability"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-legal-and-policy-workflows",
+      "description": "Critical-domain hardening override for legal and policy workflows.",
+      "domains": [
+        "legal and policy workflows"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-legal-rights-and-compliance",
+      "description": "Critical-domain hardening override for Legal, Rights, and Compliance.",
+      "domains": [
+        "legal, rights, and compliance"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-personal-finance-management",
+      "description": "Critical-domain hardening override for personal finance management.",
+      "domains": [
+        "personal finance management"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-personal-health-routines",
+      "description": "Critical-domain hardening override for personal health routines.",
+      "domains": [
+        "personal health routines"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-safety-and-governance",
+      "description": "Critical-domain hardening override for Safety and Governance.",
+      "domains": [
+        "safety and governance"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-critical-security-and-privacy",
+      "description": "Critical-domain hardening override for Security and Privacy.",
+      "domains": [
+        "security and privacy"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-accessibility-and-inclusion",
+      "description": "Public-impact hardening override for Accessibility and Inclusion.",
+      "domains": [
+        "accessibility and inclusion"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-community-engagement-and-feedback",
+      "description": "Public-impact hardening override for Community Engagement and Feedback.",
+      "domains": [
+        "community engagement and feedback"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-community-mediation-programs",
+      "description": "Public-impact hardening override for community mediation programs.",
+      "domains": [
+        "community mediation programs"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-economic-optimization",
+      "description": "Public-impact hardening override for Economic Optimization.",
+      "domains": [
+        "economic optimization"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-education-and-upskilling",
+      "description": "Public-impact hardening override for Education and Upskilling.",
+      "domains": [
+        "education and upskilling"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-education-support-services",
+      "description": "Public-impact hardening override for education support services.",
+      "domains": [
+        "education support services"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-household-logistics",
+      "description": "Public-impact hardening override for household logistics.",
+      "domains": [
+        "household logistics"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-resource-allocation-and-logistics",
+      "description": "Public-impact hardening override for Resource Allocation and Logistics.",
+      "domains": [
+        "resource allocation and logistics"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "domain-impact-social-impact-measurement",
+      "description": "Public-impact hardening override for Social Impact Measurement.",
+      "domains": [
+        "social impact measurement"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "critical-safety-domains",
+      "description": "Enforce stricter deployability in safety-critical or rights-critical domains.",
+      "domains": [
+        "health",
+        "medical",
+        "clinical",
+        "security",
+        "privacy",
+        "safety",
+        "rights",
+        "crisis",
+        "disaster",
+        "infra",
+        "compliance",
+        "governance",
+        "legal",
+        "finance"
+      ],
+      "minDeployableScore": 90,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "high-public-impact-domains",
+      "description": "Use elevated guardrails for high public impact domains.",
+      "domains": [
+        "publicservice",
+        "public service",
+        "education",
+        "community",
+        "inclusion",
+        "equity",
+        "economic",
+        "logistics",
+        "impact"
+      ],
+      "minDeployableScore": 86,
+      "strict": true,
+      "policy": "enforce"
+    },
+    {
+      "id": "creative-exploratory-domains",
+      "description": "Allow report-only hardening in creative exploratory domains while preserving telemetry.",
+      "domains": [
+        "aesthetic",
+        "beauty",
+        "creative",
+        "journal",
+        "storytelling",
+        "ideation"
+      ],
+      "minDeployableScore": 78,
+      "strict": false,
+      "policy": "report"
+    }
+  ]
+}

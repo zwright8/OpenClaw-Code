@@ -5,6 +5,8 @@ import type {
     SkillExecutionSignals,
     SkillExecutionTask,
     SkillExecutionTaskOptions,
+    SkillImprovementProfile,
+    SkillImprovementTier,
     SkillImplementation,
     SkillPosture,
     SkillPriority,
@@ -119,12 +121,17 @@ function derivePosture(
 
 function deriveActions(
     implementation: SkillImplementation,
-    posture: SkillPosture
+    posture: SkillPosture,
+    improvementProfile: SkillImprovementProfile
 ): string[] {
     const actions = [
         `validate-contract:${implementation.runtimeProfile.requiredSignals.join('+')}`,
         `compute-score:${implementation.runtimeProfile.coreMethod}`,
-        `route:${implementation.runtimeProfile.orchestration.routingTag}`
+        `route:${implementation.runtimeProfile.orchestration.routingTag}`,
+        `runbook-preflight:${improvementProfile.runbook.preflight.length}`,
+        `runbook-recovery:${improvementProfile.runbook.recovery.length}`,
+        `guardrails:${improvementProfile.guardrails.map((item) => item.kind).join('+')}`,
+        `autopilot-ready:${improvementProfile.automation.autopilotReady ? 'enabled' : 'disabled'}`
     ];
 
     if (posture === 'critical') {
@@ -144,15 +151,101 @@ function deriveActions(
 function deriveDeliverables(
     implementation: SkillImplementation,
     posture: SkillPosture,
-    overallScore: number
+    overallScore: number,
+    improvementProfile: SkillImprovementProfile
 ): string[] {
     return [
         `artifact:${implementation.runtimeProfile.primaryArtifact}`,
         `scorecard:overall=${overallScore}`,
         `posture:${posture}`,
         `telemetry:${implementation.runtimeProfile.rollout.featureFlag}`,
-        `kpi-focus:${implementation.runtimeProfile.kpiFocus.join(';')}`
+        `kpi-focus:${implementation.runtimeProfile.kpiFocus.join(';')}`,
+        `improvement-tier:${improvementProfile.tier}`,
+        `slo:${improvementProfile.observability.slo}`,
+        `review-cadence:${improvementProfile.outcomes.reviewCadence}`
     ];
+}
+
+function defaultImprovementTier(archetype: string): SkillImprovementTier {
+    const normalized = String(archetype || '').toLowerCase();
+    if (normalized.includes('security') || normalized.includes('compliance') || normalized.includes('incident')) {
+        return 'mission_critical';
+    }
+    if (normalized.includes('governance') || normalized.includes('planning') || normalized.includes('orchestration')) {
+        return 'advanced';
+    }
+    return 'foundation';
+}
+
+function resolveImprovementProfile(implementation: SkillImplementation): SkillImprovementProfile {
+    if (implementation.improvementProfile && typeof implementation.improvementProfile === 'object') {
+        return implementation.improvementProfile;
+    }
+
+    const tier = defaultImprovementTier(implementation.runtimeProfile.archetype);
+    return {
+        version: 1,
+        tier,
+        humanUseCases: [
+            `Operate ${implementation.title} safely in production workflows.`,
+            `Support humans with transparent and auditable execution decisions.`
+        ],
+        runbook: {
+            preflight: [
+                'Validate input contract and required signals.',
+                'Verify dependencies, feature flags, and policy constraints.'
+            ],
+            execution: [
+                `Execute ${implementation.runtimeProfile.coreMethod} workflow deterministically.`,
+                'Capture trace artifacts and decision rationale.'
+            ],
+            recovery: [
+                'Trigger rollback strategy on critical posture or failing guardrails.',
+                'Escalate to human oversight with incident packet.'
+            ],
+            handoff: [
+                'Publish outcome report and operational metrics.',
+                'Queue follow-up actions for unresolved risks.'
+            ]
+        },
+        guardrails: [
+            {
+                kind: 'safety',
+                rule: 'Block unsafe execution when harm potential exceeds threshold.',
+                automation: 'queue-approval:human-approval-router'
+            },
+            {
+                kind: 'quality',
+                rule: 'Require validation suites before rollout promotion.',
+                automation: `run-validation:${implementation.runtimeProfile.validation.suites.join('+')}`
+            },
+            {
+                kind: 'reliability',
+                rule: 'Apply retry/backoff and rollback on repeated failures.',
+                automation: `rollback:${implementation.runtimeProfile.orchestration.rollbackStrategy}`
+            }
+        ],
+        observability: {
+            slo: '>=99.5% successful skill runs per 7-day window',
+            errorBudget: '<=0.5% critical execution failures per 7-day window',
+            alertTriggers: [
+                'critical posture spikes above baseline',
+                'hardening gate failures persist > 3 runs',
+                'validation regression detected'
+            ]
+        },
+        automation: {
+            autopilotReady: true,
+            parallelism: 3,
+            maxCycleMinutes: 20,
+            approvals: implementation.runtimeProfile.orchestration.approvalGates
+        },
+        outcomes: {
+            primaryMetric: implementation.runtimeProfile.kpiFocus[0] || 'overall quality score',
+            secondaryMetrics: implementation.runtimeProfile.kpiFocus.slice(1),
+            reviewCadence: tier === 'mission_critical' ? 'daily' : 'weekly'
+        }
+    };
 }
 
 function derivePriority(posture: SkillPosture): SkillPriority {
@@ -166,6 +259,7 @@ export function executeSkillImplementation(
     input: SkillExecutionInput = {}
 ): SkillExecutionOutput {
     const profile = implementation.runtimeProfile;
+    const improvementProfile = resolveImprovementProfile(implementation);
     const weights = normalizeWeights(profile.scoringWeights);
     const signals = resolveSignals(implementation, input);
 
@@ -228,8 +322,10 @@ export function executeSkillImplementation(
         },
         signals,
         kpiFocus: profile.kpiFocus,
-        deliverables: deriveDeliverables(implementation, posture, overallScore),
-        actions: deriveActions(implementation, posture),
+        improvementTier: improvementProfile.tier,
+        autopilotReady: improvementProfile.automation.autopilotReady,
+        deliverables: deriveDeliverables(implementation, posture, overallScore, improvementProfile),
+        actions: deriveActions(implementation, posture, improvementProfile),
         approvalGates: profile.orchestration.approvalGates,
         routingTag: profile.orchestration.routingTag,
         rollbackStrategy: profile.orchestration.rollbackStrategy,
@@ -256,7 +352,8 @@ export function skillExecutionToTasks(
             context: {
                 skillId: execution.skillId,
                 requiredSignals: execution.signals,
-                kpiFocus: execution.kpiFocus
+                kpiFocus: execution.kpiFocus,
+                improvementTier: execution.improvementTier
             }
         },
         {
@@ -267,9 +364,11 @@ export function skillExecutionToTasks(
             task: `Execute ${execution.archetype} workflow`,
             priority,
             context: {
+                skillId: execution.skillId,
                 score: execution.scores.overallScore,
                 posture: execution.posture,
-                actions: execution.actions
+                actions: execution.actions,
+                autopilotReady: execution.autopilotReady
             }
         },
         {
@@ -280,9 +379,11 @@ export function skillExecutionToTasks(
             task: `Publish deliverables for ${execution.title}`,
             priority,
             context: {
+                skillId: execution.skillId,
                 deliverables: execution.deliverables,
                 routingTag: execution.routingTag,
-                approvalGates: execution.approvalGates
+                approvalGates: execution.approvalGates,
+                improvementTier: execution.improvementTier
             }
         }
     ];

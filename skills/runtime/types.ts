@@ -55,6 +55,51 @@ export type SkillRuntimeProfile = {
     scoringSeed: string;
 };
 
+export type SkillImprovementTier = 'foundation' | 'advanced' | 'mission_critical';
+
+export type SkillImprovementRunbook = {
+    preflight: string[];
+    execution: string[];
+    recovery: string[];
+    handoff: string[];
+};
+
+export type SkillImprovementGuardrail = {
+    kind: 'safety' | 'quality' | 'compliance' | 'cost' | 'reliability';
+    rule: string;
+    automation: string;
+};
+
+export type SkillImprovementObservability = {
+    slo: string;
+    errorBudget: string;
+    alertTriggers: string[];
+};
+
+export type SkillImprovementAutomation = {
+    autopilotReady: boolean;
+    parallelism: number;
+    maxCycleMinutes: number;
+    approvals: string[];
+};
+
+export type SkillImprovementOutcomes = {
+    primaryMetric: string;
+    secondaryMetrics: string[];
+    reviewCadence: 'daily' | 'weekly';
+};
+
+export type SkillImprovementProfile = {
+    version: 1;
+    tier: SkillImprovementTier;
+    humanUseCases: string[];
+    runbook: SkillImprovementRunbook;
+    guardrails: SkillImprovementGuardrail[];
+    observability: SkillImprovementObservability;
+    automation: SkillImprovementAutomation;
+    outcomes: SkillImprovementOutcomes;
+};
+
 export type SkillImplementation = {
     version: 1;
     sourceFile: string;
@@ -66,6 +111,7 @@ export type SkillImplementation = {
     reason: string;
     implementationGuide: string[];
     runtimeProfile: SkillRuntimeProfile;
+    improvementProfile?: SkillImprovementProfile;
     traceability: {
         scopeStep: string;
         contractStep: string;
@@ -162,6 +208,8 @@ export type SkillExecutionOutput = {
     scores: SkillExecutionScores;
     signals: SkillExecutionSignals;
     kpiFocus: string[];
+    improvementTier: SkillImprovementTier;
+    autopilotReady: boolean;
     deliverables: string[];
     actions: string[];
     approvalGates: string[];
@@ -183,6 +231,20 @@ export type SkillExecutionTask = {
 export type SkillExecutionTaskOptions = {
     fromAgentId?: string;
     toAgentId?: string;
+};
+
+export type SkillImprovementCatalogEntry = {
+    skillId: number;
+    skillName: string;
+    improvementProfile: SkillImprovementProfile;
+};
+
+export type SkillImprovementCatalog = {
+    version: 1;
+    sourceImplementations: string;
+    generatedAt: string;
+    count: number;
+    entries: SkillImprovementCatalogEntry[];
 };
 
 export type SkillRolloutLane = 'now' | 'next' | 'hold';
@@ -646,4 +708,154 @@ export type SkillRolloutPromotionPolicyCanaryRun = {
     guardrailBreaches: string[];
     reasons: string[];
     scenarios: SkillRolloutPromotionPolicyCanaryScenario[];
+};
+
+export type SkillHardeningSource = 'manifest' | 'external' | 'runtime';
+
+export type SkillHardeningPolicy = 'off' | 'report' | 'enforce';
+
+export type SkillHardeningSeverity = 'critical' | 'high' | 'medium' | 'low';
+
+export type SkillHardeningCheckStatus = 'pass' | 'warn' | 'fail';
+
+export type SkillHardeningCheckId =
+    | 'identity'
+    | 'implementation_guide'
+    | 'runtime_contract'
+    | 'orchestration_safety'
+    | 'simulation';
+
+export type SkillHardeningFinding = {
+    checkId: SkillHardeningCheckId;
+    severity: SkillHardeningSeverity;
+    message: string;
+    field?: string;
+    blocking: boolean;
+};
+
+export type SkillHardeningCheck = {
+    id: SkillHardeningCheckId;
+    label: string;
+    status: SkillHardeningCheckStatus;
+    score: number;
+    maxScore: number;
+    findings: SkillHardeningFinding[];
+};
+
+export type SkillHardeningScenario = {
+    name: string;
+    input: Required<Omit<SkillExecutionInput, 'missionId'>>;
+};
+
+export type SkillHardeningScenarioResult = {
+    name: string;
+    posture: SkillPosture;
+    overallScore: number;
+    riskScore: number;
+    followupTaskCount: number;
+};
+
+export type SkillHardeningPolicyConfig = {
+    policy: SkillHardeningPolicy;
+    minDeployableScore: number;
+    strict: boolean;
+};
+
+export type SkillHardeningProfileRule = {
+    id: string;
+    description?: string;
+    policy?: SkillHardeningPolicy;
+    minDeployableScore?: number;
+    strict?: boolean;
+    sources?: SkillHardeningSource[];
+    domains?: string[];
+    domainSlugs?: string[];
+    archetypes?: string[];
+    skillIds?: number[];
+    skillIdMin?: number;
+    skillIdMax?: number;
+};
+
+export type SkillHardeningProfile = {
+    version: 1;
+    generatedAt: string;
+    defaultPolicy: SkillHardeningPolicyConfig;
+    rules: SkillHardeningProfileRule[];
+};
+
+export type SkillHardeningPolicyResolutionInput = {
+    source: SkillHardeningSource;
+    skillId: number;
+    skillName: string;
+    domain: string;
+    domainSlug: string;
+    archetype: string;
+};
+
+export type SkillHardeningResolvedPolicy = SkillHardeningPolicyConfig & {
+    matchedRuleIds: string[];
+};
+
+export type SkillHardeningReport = {
+    generatedAt: string;
+    source: SkillHardeningSource;
+    skillId: number;
+    skillName: string;
+    title: string;
+    deployable: boolean;
+    hardeningGatePass: boolean;
+    hardeningScore: number;
+    blockingFindings: number;
+    checks: SkillHardeningCheck[];
+    findings: SkillHardeningFinding[];
+    scenarioResults: SkillHardeningScenarioResult[];
+    appliedPolicy: SkillHardeningResolvedPolicy;
+    reasons: string[];
+};
+
+export type SkillHardeningBatchSummary = {
+    generatedAt: string;
+    sourceCounts: Record<SkillHardeningSource, number>;
+    policyUsage: Record<SkillHardeningPolicy, number>;
+    strictCount: number;
+    evaluated: number;
+    deployable: number;
+    nonDeployable: number;
+    averageScore: number;
+    minScore: number;
+    maxScore: number;
+    blockingFindings: number;
+};
+
+export type SkillHardeningBatchReport = {
+    generatedAt: string;
+    minDeployableScore: number;
+    strict: boolean;
+    profile: SkillHardeningProfile;
+    summary: SkillHardeningBatchSummary;
+    reports: SkillHardeningReport[];
+};
+
+export type SkillDeployabilityIndexEntry = {
+    key: string;
+    source: SkillHardeningSource;
+    skillId: number;
+    skillName: string;
+    title: string;
+    policy: SkillHardeningPolicy;
+    minDeployableScore: number;
+    strict: boolean;
+    matchedRuleIds: string[];
+    deployable: boolean;
+    hardeningGatePass: boolean;
+    hardeningScore: number;
+    blockingFindings: number;
+    generatedAt: string;
+};
+
+export type SkillDeployabilityIndex = {
+    version: 1;
+    generatedAt: string;
+    profile: SkillHardeningProfile;
+    entries: SkillDeployabilityIndexEntry[];
 };
