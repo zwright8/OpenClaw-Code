@@ -5,3 +5,4 @@ export * from './rollout-planner.js';
 export * from './rollout-orchestrator.js';
 export * from './rollout-controller.js';
 export * from './rollout-optimizer.js';
+export * from './promotion-controller.js';

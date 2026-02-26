@@ -130,6 +130,9 @@ Outputs are generated under `skills/generated/`:
 - `runtime.rollout-optimized-waves.json` + `runtime.rollout-optimized-wave-tasks.json` (candidate wave plan from optimized config)
 - `runtime.rollout-optimized-control.json` + `runtime.rollout-optimized-control-tasks.json` (candidate control outcomes and follow-up tasks)
 - `runtime.rollout-promotion-tasks.json` + `runtime.rollout-promotion-tasks.md` (executable promotion or shadow-validation task bundle)
+- `runtime.rollout-promotion-control.json` + `runtime.rollout-promotion-control.md` (execution control outcomes for promotion task lifecycle)
+- `runtime.rollout-promotion-policy-adjustment.json` + `runtime.rollout-promotion-policy-adjustment.md` (adaptive threshold tuning recommendation)
+- `runtime.rollout-promotion-adjustment-tasks.json` + `runtime.rollout-promotion-adjustment-tasks.md` (actionable policy-adjustment and remediation tasks)
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
 - `0001-.../implementation.json` through `1000-.../implementation.json`
 

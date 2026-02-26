@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-02-26T05:32:28.419Z",
+  "strategy": "maintain",
+  "currentPolicy": {
+    "minCandidateWinRate": 0.55,
+    "maxWeightedScoreDelta": 0.5,
+    "maxWorstScoreDelta": 45,
+    "maxAvgFailureRateDelta": 0.01,
+    "maxAvgCriticalWaveDelta": 0.15
+  },
+  "recommendedPolicy": {
+    "minCandidateWinRate": 0.55,
+    "maxWeightedScoreDelta": 0.5,
+    "maxWorstScoreDelta": 45,
+    "maxAvgFailureRateDelta": 0.01,
+    "maxAvgCriticalWaveDelta": 0.15
+  },
+  "confidence": 0.88,
+  "reasons": [
+    "promotion control metrics are mixed; maintain current policy thresholds"
+  ],
+  "observedMetrics": {
+    "failureRate": 0.0476,
+    "approvalPendingRate": 0.1071,
+    "successRate": 0.8333,
+    "verificationFailureRate": 0,
+    "shadowFailureRate": 0.05
+  }
+}

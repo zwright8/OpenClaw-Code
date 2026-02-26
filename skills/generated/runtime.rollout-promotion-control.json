@@ -1,0 +1,798 @@
+{
+  "generatedAt": "2026-02-26T05:32:28.419Z",
+  "sourcePromotionGeneratedAt": "2026-02-26T05:32:27.280Z",
+  "sourceTaskCount": 84,
+  "summary": {
+    "totalTasks": 84,
+    "successCount": 70,
+    "failedCount": 4,
+    "approvalPendingCount": 9,
+    "skippedCount": 1,
+    "categoryCounts": {
+      "decision": 1,
+      "config_change": 1,
+      "investigation": 1,
+      "verification": 0,
+      "shadow_validation": 80,
+      "audit": 1,
+      "unknown": 0
+    },
+    "categoryFailureCounts": {
+      "decision": 0,
+      "config_change": 0,
+      "investigation": 0,
+      "verification": 0,
+      "shadow_validation": 4,
+      "audit": 0,
+      "unknown": 0
+    },
+    "categoryPendingCounts": {
+      "decision": 0,
+      "config_change": 0,
+      "investigation": 1,
+      "verification": 0,
+      "shadow_validation": 8,
+      "audit": 0,
+      "unknown": 0
+    },
+    "overallPosture": "stable"
+  },
+  "taskResults": [
+    {
+      "taskId": "promotion-decision-publish",
+      "category": "decision",
+      "status": "success",
+      "reason": "promotion decision published to rollout control plane",
+      "retryable": false,
+      "latencyMs": 2974,
+      "priority": "P0"
+    },
+    {
+      "taskId": "promotion-retain-baseline-config",
+      "category": "config_change",
+      "status": "success",
+      "reason": "promotion config transition completed successfully",
+      "retryable": false,
+      "latencyMs": 7052,
+      "priority": "P0"
+    },
+    {
+      "taskId": "promotion-policy-investigation",
+      "category": "investigation",
+      "status": "approval_pending",
+      "reason": "investigation outcome pending human oversight adjudication",
+      "retryable": false,
+      "latencyMs": 15924,
+      "priority": "P0"
+    },
+    {
+      "taskId": "promotion-shadow-0059",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 14579,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0111",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 6580,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0332",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 3469,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0371",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 13840,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0410",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 4275,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0449",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 9301,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0540",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 3005,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0579",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 5747,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0644",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 17362,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0696",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 8976,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0722",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 9019,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0852",
+      "category": "shadow_validation",
+      "status": "failed",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 18263,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0007",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 10285,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0072",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 15983,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0137",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 6957,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0215",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 15661,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0241",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 4380,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0254",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 10210,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0280",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 7282,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0345",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 11259,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0384",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 11379,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0527",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 5213,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0566",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 3234,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0592",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 6548,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0605",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 5145,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0618",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 14999,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0631",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 11092,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0657",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 9285,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0709",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 9517,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0774",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 14764,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0787",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 4214,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0800",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 9560,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0891",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 12025,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0904",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 3345,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0917",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 8748,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0943",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 8777,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0969",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 7942,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0982",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 5423,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0150",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 4147,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0306",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 14054,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0436",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 10701,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0488",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 7531,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0501",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 6087,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0514",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 3427,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0735",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 12629,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0761",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 7537,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0570",
+      "category": "shadow_validation",
+      "status": "skipped",
+      "reason": "task skipped by promotion control throttling",
+      "retryable": false,
+      "latencyMs": 1294,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0713",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 14363,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0970",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 7758,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0021",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 9867,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0073",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 12646,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0088",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 6397,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0099",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 7176,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0128",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 12815,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0138",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 20071,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0147",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 5340,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0151",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 11168,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0219",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 9764,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0258",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 13364,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0359",
+      "category": "shadow_validation",
+      "status": "failed",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 12400,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0372",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 11858,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0400",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 5118,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0440",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 4920,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0515",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 13339,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0530",
+      "category": "shadow_validation",
+      "status": "failed",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 8042,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0567",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 11056,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0593",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 14605,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0595",
+      "category": "shadow_validation",
+      "status": "failed",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 10343,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0635",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 11414,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0684",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 11137,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0697",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 12059,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0699",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 3768,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0736",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 13797,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0738",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 7982,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0752",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 10052,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0790",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 6706,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0803",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 15769,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0853",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 10185,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0882",
+      "category": "shadow_validation",
+      "status": "approval_pending",
+      "reason": "task waiting for approval gate completion",
+      "retryable": false,
+      "latencyMs": 19540,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-shadow-0894",
+      "category": "shadow_validation",
+      "status": "success",
+      "reason": "shadow validation completed with acceptable divergence",
+      "retryable": false,
+      "latencyMs": 12118,
+      "priority": "P2"
+    },
+    {
+      "taskId": "promotion-audit-log",
+      "category": "audit",
+      "status": "success",
+      "reason": "promotion audit evidence written and signed",
+      "retryable": false,
+      "latencyMs": 4466,
+      "priority": "P0"
+    }
+  ]
+}

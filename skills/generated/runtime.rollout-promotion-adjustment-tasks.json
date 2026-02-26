@@ -1,0 +1,136 @@
+[
+  {
+    "kind": "task_request",
+    "id": "promotion-adjustment-publish",
+    "from": "agent:skills-rollout-promotion-control",
+    "to": "agent:rollout-controller",
+    "task": "Publish promotion policy adjustment (maintain)",
+    "priority": "P1",
+    "context": {
+      "strategy": "maintain",
+      "confidence": 0.88,
+      "currentPolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "recommendedPolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "reasons": [
+        "promotion control metrics are mixed; maintain current policy thresholds"
+      ],
+      "observedMetrics": {
+        "failureRate": 0.0476,
+        "approvalPendingRate": 0.1071,
+        "successRate": 0.8333,
+        "verificationFailureRate": 0,
+        "shadowFailureRate": 0.05
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-adjustment-maintain-policy",
+    "from": "agent:skills-rollout-promotion-control",
+    "to": "agent:rollout-controller",
+    "task": "Maintain current promotion policy and continue monitoring",
+    "priority": "P1",
+    "context": {
+      "currentPolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "observedMetrics": {
+        "failureRate": 0.0476,
+        "approvalPendingRate": 0.1071,
+        "successRate": 0.8333,
+        "verificationFailureRate": 0,
+        "shadowFailureRate": 0.05
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-adjustment-remediate-0852",
+    "from": "agent:skills-rollout-promotion-control",
+    "to": "agent:rollout-controller",
+    "task": "Remediate failed promotion task promotion-shadow-0852",
+    "priority": "P1",
+    "context": {
+      "sourceTaskId": "promotion-shadow-0852",
+      "category": "shadow_validation",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 18263
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-adjustment-remediate-0359",
+    "from": "agent:skills-rollout-promotion-control",
+    "to": "agent:rollout-controller",
+    "task": "Remediate failed promotion task promotion-shadow-0359",
+    "priority": "P1",
+    "context": {
+      "sourceTaskId": "promotion-shadow-0359",
+      "category": "shadow_validation",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 12400
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-adjustment-remediate-0530",
+    "from": "agent:skills-rollout-promotion-control",
+    "to": "agent:rollout-controller",
+    "task": "Remediate failed promotion task promotion-shadow-0530",
+    "priority": "P1",
+    "context": {
+      "sourceTaskId": "promotion-shadow-0530",
+      "category": "shadow_validation",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 8042
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-adjustment-remediate-0595",
+    "from": "agent:skills-rollout-promotion-control",
+    "to": "agent:rollout-controller",
+    "task": "Remediate failed promotion task promotion-shadow-0595",
+    "priority": "P1",
+    "context": {
+      "sourceTaskId": "promotion-shadow-0595",
+      "category": "shadow_validation",
+      "reason": "promotion validation failed acceptance thresholds",
+      "retryable": true,
+      "latencyMs": 10343
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-adjustment-audit",
+    "from": "agent:skills-rollout-promotion-control",
+    "to": "agent:rollout-controller",
+    "task": "Write promotion policy-adjustment audit report and threshold diff",
+    "priority": "P1",
+    "context": {
+      "strategy": "maintain",
+      "confidence": 0.88,
+      "failedCount": 4,
+      "pendingCount": 9
+    }
+  }
+]

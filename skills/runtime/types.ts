@@ -480,3 +480,62 @@ export type SkillRolloutOptimizationRun = {
     };
     promotion: SkillRolloutPromotionDecision;
 };
+
+export type SkillRolloutPromotionTaskStatus = 'success' | 'failed' | 'approval_pending' | 'skipped';
+
+export type SkillRolloutPromotionTaskCategory =
+    | 'decision'
+    | 'config_change'
+    | 'investigation'
+    | 'verification'
+    | 'shadow_validation'
+    | 'audit'
+    | 'unknown';
+
+export type SkillRolloutPromotionTaskResult = {
+    taskId: string;
+    category: SkillRolloutPromotionTaskCategory;
+    status: SkillRolloutPromotionTaskStatus;
+    reason: string;
+    retryable: boolean;
+    latencyMs: number;
+    priority: SkillPriority;
+};
+
+export type SkillRolloutPromotionControlSummary = {
+    totalTasks: number;
+    successCount: number;
+    failedCount: number;
+    approvalPendingCount: number;
+    skippedCount: number;
+    categoryCounts: Record<SkillRolloutPromotionTaskCategory, number>;
+    categoryFailureCounts: Record<SkillRolloutPromotionTaskCategory, number>;
+    categoryPendingCounts: Record<SkillRolloutPromotionTaskCategory, number>;
+    overallPosture: SkillRolloutWavePosture;
+};
+
+export type SkillRolloutPromotionControlRun = {
+    generatedAt: string;
+    sourcePromotionGeneratedAt: string;
+    sourceTaskCount: number;
+    summary: SkillRolloutPromotionControlSummary;
+    taskResults: SkillRolloutPromotionTaskResult[];
+};
+
+export type SkillRolloutPromotionPolicyAdjustmentStrategy = 'tighten' | 'maintain' | 'relax';
+
+export type SkillRolloutPromotionPolicyAdjustment = {
+    generatedAt: string;
+    strategy: SkillRolloutPromotionPolicyAdjustmentStrategy;
+    currentPolicy: SkillRolloutPromotionPolicy;
+    recommendedPolicy: SkillRolloutPromotionPolicy;
+    confidence: number;
+    reasons: string[];
+    observedMetrics: {
+        failureRate: number;
+        approvalPendingRate: number;
+        successRate: number;
+        verificationFailureRate: number;
+        shadowFailureRate: number;
+    };
+};
