@@ -120,6 +120,8 @@ Outputs are generated under `skills/generated/`:
 - `runtime.execution-report.json` (execution verification summary for all 1000 skills)
 - `runtime.rollout-plan.json` + `runtime.rollout-plan.md` (lane assignment + deployment strategy)
 - `runtime.rollout-tasks.json` (task bundle for swarm rollout/execution)
+- `runtime.rollout-waves.json` + `runtime.rollout-waves.md` (capacity-aware phased wave orchestration)
+- `runtime.rollout-wave-tasks.json` (wave kickoff + per-skill execution + oversight queue tasks)
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
 - `0001-.../implementation.json` through `1000-.../implementation.json`
 

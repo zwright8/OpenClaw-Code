@@ -235,3 +235,73 @@ export type SkillRolloutPlan = {
     summary: SkillRolloutPlanSummary;
     entries: SkillRolloutPlanEntry[];
 };
+
+export type SkillRolloutWaveEntry = {
+    skillId: number;
+    skillName: string;
+    title: string;
+    domain: string;
+    domainSlug: string;
+    archetype: string;
+    lane: Exclude<SkillRolloutLane, 'hold'>;
+    waveId: string;
+    waveIndex: number;
+    executionOrder: number;
+    priority: SkillPriority;
+    readinessIndex: number;
+    riskIndex: number;
+    featureFlag: string;
+    requiredApprovalGates: string[];
+    reasons: string[];
+};
+
+export type SkillRolloutWave = {
+    waveId: string;
+    lane: Exclude<SkillRolloutLane, 'hold'>;
+    waveIndex: number;
+    capacity: number;
+    entryCount: number;
+    avgReadiness: number;
+    avgRisk: number;
+    domainLoad: Array<{ domain: string; count: number; }>;
+    entries: SkillRolloutWaveEntry[];
+};
+
+export type SkillOversightQueueEntry = {
+    position: number;
+    skillId: number;
+    skillName: string;
+    title: string;
+    domain: string;
+    archetype: string;
+    readinessIndex: number;
+    riskIndex: number;
+    priority: SkillPriority;
+    reasons: string[];
+    requiredApprovalGates: string[];
+};
+
+export type SkillRolloutWaveConfig = {
+    nowWaveCapacity: number;
+    nextWaveCapacity: number;
+    maxPerDomainPerWave: number;
+};
+
+export type SkillRolloutWavePlanSummary = {
+    scheduledSkills: number;
+    oversightSkills: number;
+    waveCounts: {
+        now: number;
+        next: number;
+    };
+    avgWaveFillRate: number;
+};
+
+export type SkillRolloutWavePlan = {
+    generatedAt: string;
+    sourcePlanGeneratedAt: string;
+    config: SkillRolloutWaveConfig;
+    summary: SkillRolloutWavePlanSummary;
+    waves: SkillRolloutWave[];
+    oversightQueue: SkillOversightQueueEntry[];
+};
