@@ -122,6 +122,8 @@ Outputs are generated under `skills/generated/`:
 - `runtime.rollout-tasks.json` (task bundle for swarm rollout/execution)
 - `runtime.rollout-waves.json` + `runtime.rollout-waves.md` (capacity-aware phased wave orchestration)
 - `runtime.rollout-wave-tasks.json` (wave kickoff + per-skill execution + oversight queue tasks)
+- `runtime.rollout-control.json` + `runtime.rollout-control.md` (control-loop outcomes and wave health posture)
+- `runtime.rollout-control-tasks.json` (auto-generated remediation and approval follow-up tasks)
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
 - `0001-.../implementation.json` through `1000-.../implementation.json`
 

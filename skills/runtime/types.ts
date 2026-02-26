@@ -305,3 +305,61 @@ export type SkillRolloutWavePlan = {
     waves: SkillRolloutWave[];
     oversightQueue: SkillOversightQueueEntry[];
 };
+
+export type SkillRolloutTaskCategory = 'kickoff' | 'skill' | 'oversight' | 'unknown';
+
+export type SkillRolloutTaskStatus = 'success' | 'failed' | 'approval_pending' | 'skipped';
+
+export type SkillRolloutWavePosture = 'stable' | 'degraded' | 'critical';
+
+export type SkillRolloutTaskResult = {
+    taskId: string;
+    waveId?: string;
+    lane?: Exclude<SkillRolloutLane, 'hold'>;
+    category: SkillRolloutTaskCategory;
+    skillId?: number;
+    status: SkillRolloutTaskStatus;
+    reason: string;
+    retryable: boolean;
+    latencyMs: number;
+    priority: SkillPriority;
+};
+
+export type SkillRolloutWaveExecutionSummary = {
+    waveId: string;
+    lane: Exclude<SkillRolloutLane, 'hold'>;
+    taskCount: number;
+    successCount: number;
+    failedCount: number;
+    approvalPendingCount: number;
+    skippedCount: number;
+    successRate: number;
+    failureRate: number;
+    avgLatencyMs: number;
+    posture: SkillRolloutWavePosture;
+    failedSkillIds: number[];
+    approvalPendingSkillIds: number[];
+};
+
+export type SkillRolloutControlSummary = {
+    totalTasks: number;
+    successCount: number;
+    failedCount: number;
+    approvalPendingCount: number;
+    skippedCount: number;
+    wavePostureCounts: {
+        stable: number;
+        degraded: number;
+        critical: number;
+    };
+    overallPosture: SkillRolloutWavePosture;
+};
+
+export type SkillRolloutControlRun = {
+    generatedAt: string;
+    sourceWavePlanGeneratedAt: string;
+    sourceTaskCount: number;
+    summary: SkillRolloutControlSummary;
+    waveSummaries: SkillRolloutWaveExecutionSummary[];
+    taskResults: SkillRolloutTaskResult[];
+};
