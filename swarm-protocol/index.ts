@@ -438,3 +438,8 @@ export * from './src/publicservice-compliance-evidence-mapper.js';
 export * from './src/publicservice-cost-benefit-forecaster.js';
 export * from './src/publicservice-equity-impact-scorer.js';
 export * from './src/publicservice-community-feedback-harvester.js';
+export * from './src/publicservice-kpi-dashboard-publisher.js';
+export * from './src/publicservice-skill-gap-diagnoser.js';
+export * from './src/publicservice-training-curriculum-composer.js';
+export * from './src/publicservice-self-reflection-error-taxonomist.js';
+export * from './src/publicservice-continuous-improvement-planner.js';
