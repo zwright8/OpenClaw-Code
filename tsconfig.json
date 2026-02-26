@@ -2,7 +2,8 @@
   "extends": "./tsconfig.base.json",
   "include": [
     "scripts/**/*.ts",
-    "scripts/**/*.mts"
+    "scripts/**/*.mts",
+    "skills/**/*.ts"
   ],
   "exclude": [
     "node_modules",

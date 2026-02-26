@@ -6,7 +6,10 @@
     "build": "tsx scripts/auto-refactor.ts && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
     "capabilities:blueprint": "tsx scripts/sync-capability-blueprint.ts",
     "capabilities:audit": "tsx scripts/audit-capabilities.ts",
-    "typecheck": "tsc --noEmit -p tsconfig.json && npm --prefix cognition-core run typecheck && npm --prefix swarm-protocol run typecheck"
+    "typecheck": "tsc --noEmit -p tsconfig.json && npm --prefix cognition-core run typecheck && npm --prefix swarm-protocol run typecheck",
+    "skills:build": "tsx scripts/build-1000-skills.ts",
+    "skills:validate": "tsx scripts/validate-1000-skills.ts",
+    "skills:sync": "npm run skills:build && npm run skills:validate"
   },
   "devDependencies": {
     "@types/node": "^24.5.0",

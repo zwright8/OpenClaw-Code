@@ -108,6 +108,16 @@ npm run capabilities:blueprint
 npm run capabilities:audit
 ```
 
+## Skill Arsenal
+Build and validate the 1000 generated skills from [SKILLS_UPDATES_1000.md](/SKILLS_UPDATES_1000.md):
+```bash
+npm run skills:sync
+```
+Outputs are generated under `skills/generated/`:
+- `INDEX.md` (full catalog)
+- `skills.manifest.json` (machine-readable registry)
+- `0001-.../SKILL.md` through `1000-.../SKILL.md`
+
 ## Quick Start
 
 ### Cognition Core
