@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "sourceFile": "SKILLS_UPDATES_10000.md",
+  "skillId": 5281,
+  "skillName": "u05281-privacy-preserving-data-brokering-for-healthcare-operations",
+  "title": "Privacy-Preserving Data Brokering for healthcare operations",
+  "domain": "healthcare operations",
+  "domainSlug": "healthcare-operations",
+  "reason": "Use privacy-preserving data brokering in healthcare operations with emphasis on evidence quality, falsifiability, and calibration.",
+  "implementationGuide": [
+    "Define measurable outcomes for Privacy-Preserving Data Brokering for healthcare operations, including baseline and target metrics for healthcare operations.",
+    "Specify structured inputs/outputs for privacy-preserving data brokering and validate schema contract edge cases.",
+    "Implement the core privacy-preserving data brokering logic with deterministic scoring and reproducible execution traces.",
+    "Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.",
+    "Run unit, integration, simulation, and regression suites for Privacy-Preserving Data Brokering for healthcare operations under maximally truth-seeking conditions.",
+    "Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "privacy-engine",
+    "coreMethod": "privacy-preserving data brokering",
+    "primaryArtifact": "privacy-preserving-data-brokering-artifact-healthcare-operations",
+    "requiredSignals": [
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "accuracy lift",
+      "contradiction reduction",
+      "evidence coverage in healthcare operations"
+    ],
+    "scoringWeights": {
+      "truth": 0.45,
+      "execution": 0.2,
+      "safety": 0.2,
+      "impact": 0.15
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 54,
+      "reviewRisk": 62,
+      "criticalRisk": 81
+    },
+    "orchestration": {
+      "routingTag": "healthcare-operations:privacy-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "evidence-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_05281_privacy-preserving-data-broker",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "SK-05281:maximally-truth-seeking:privacy-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define measurable outcomes for Privacy-Preserving Data Brokering for healthcare operations, including baseline and target metrics for healthcare operations.",
+    "contractStep": "Specify structured inputs/outputs for privacy-preserving data brokering and validate schema contract edge cases.",
+    "coreStep": "Implement the core privacy-preserving data brokering logic with deterministic scoring and reproducible execution traces.",
+    "orchestrationStep": "Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.",
+    "validationStep": "Run unit, integration, simulation, and regression suites for Privacy-Preserving Data Brokering for healthcare operations under maximally truth-seeking conditions.",
+    "rolloutStep": "Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes."
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "mission_critical",
+    "humanUseCases": [
+      "Run Privacy-Preserving Data Brokering for healthcare operations as a repeatable production workflow for humans and agents.",
+      "Use Privacy-Preserving Data Brokering for healthcare operations to accelerate decisions while preserving safety, quality, and auditability."
+    ],
+    "runbook": {
+      "preflight": [
+        "Validate mission scope, contracts, and required inputs.",
+        "Verify feature flag posture, dependencies, and approval prerequisites."
+      ],
+      "execution": [
+        "Execute privacy-preserving data brokering workflow with deterministic scoring and trace capture.",
+        "Track posture transitions and preserve reproducible evidence artifacts."
+      ],
+      "recovery": [
+        "Apply rollback strategy if posture is critical or guardrails fail.",
+        "Escalate blocked execution to oversight with incident packet and trace references."
+      ],
+      "handoff": [
+        "Publish outcome report, scorecard, and telemetry links.",
+        "Queue follow-up tasks for unresolved risks, approvals, or optimization work."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "quality",
+        "rule": "Require unit and integration validations before promoting Privacy-Preserving Data Brokering for healthcare operations.",
+        "automation": "run-validation:unit+integration+simulation+regression-baseline"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Trigger rollback on critical posture or repeated failures.",
+        "automation": "rollback:rollback-to-last-stable-baseline"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Require policy and approval gates prior to autonomous deployment.",
+        "automation": "approval-gates:policy-constraint-check+evidence-review"
+      },
+      {
+        "kind": "safety",
+        "rule": "Block production action when risk posture is critical until human oversight review.",
+        "automation": "open-incident:human-oversight"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.9% successful runs per 7-day window",
+      "errorBudget": "<=0.1% critical failures per 7-day window",
+      "alertTriggers": [
+        "critical posture exceeds baseline trend",
+        "validation regression crosses threshold",
+        "hardening or approval bottlenecks persist"
+      ]
+    },
+    "automation": {
+      "autopilotReady": true,
+      "parallelism": 2,
+      "maxCycleMinutes": 15,
+      "approvals": [
+        "policy-constraint-check",
+        "evidence-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "accuracy lift",
+      "secondaryMetrics": [
+        "contradiction reduction",
+        "evidence coverage in healthcare operations"
+      ],
+      "reviewCadence": "daily"
+    }
+  }
+}

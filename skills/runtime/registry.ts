@@ -1,5 +1,5 @@
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
 import type {
     SkillImplementation,
     SkillManifestEntry,
@@ -8,8 +8,8 @@ import type {
 } from './types.js';
 
 const GENERATED_ROOT = path.join('skills', 'generated');
-const MANIFEST_FILE = 'skills.manifest.json';
-const RUNTIME_CATALOG_FILE = 'runtime.catalog.json';
+const MANIFEST_FILES = ['skills.manifest.10000.json', 'skills.manifest.json'] as const;
+const RUNTIME_CATALOG_FILES = ['runtime.catalog.10000.json', 'runtime.catalog.json'] as const;
 
 function loadJson<T>(filePath: string): T {
     return JSON.parse(fs.readFileSync(filePath, 'utf8')) as T;
@@ -55,14 +55,28 @@ export function resolveGeneratedRoot(repoRoot = process.cwd()): string {
     return path.join(repoRoot, GENERATED_ROOT);
 }
 
+function resolveGeneratedFile(
+    repoRoot: string,
+    candidates: readonly string[]
+): string {
+    const generatedRoot = resolveGeneratedRoot(repoRoot);
+    for (const candidate of candidates) {
+        const filePath = path.join(generatedRoot, candidate);
+        if (fs.existsSync(filePath)) {
+            return filePath;
+        }
+    }
+    return path.join(generatedRoot, candidates[candidates.length - 1]);
+}
+
 export function loadSkillManifest(repoRoot = process.cwd()): SkillManifestEntry[] {
-    const manifestPath = path.join(resolveGeneratedRoot(repoRoot), MANIFEST_FILE);
+    const manifestPath = resolveGeneratedFile(repoRoot, MANIFEST_FILES);
     const entries = loadJson<SkillManifestEntry[]>(manifestPath);
     return entries.slice().sort((a, b) => a.id - b.id);
 }
 
 export function loadRuntimeCatalog(repoRoot = process.cwd()): SkillRuntimeCatalog {
-    const runtimeCatalogPath = path.join(resolveGeneratedRoot(repoRoot), RUNTIME_CATALOG_FILE);
+    const runtimeCatalogPath = resolveGeneratedFile(repoRoot, RUNTIME_CATALOG_FILES);
     return loadJson<SkillRuntimeCatalog>(runtimeCatalogPath);
 }
 
