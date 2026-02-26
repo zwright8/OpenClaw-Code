@@ -17,7 +17,7 @@ function printHelp() {
     console.log(`Swarm operator control plane
 
 Usage:
-  node scripts/swarm-ops.mjs <command> [args] [options]
+  tsx scripts/swarm-ops.ts <command> [args] [options]
 
 Commands:
   status

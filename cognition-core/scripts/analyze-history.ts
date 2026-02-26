@@ -9,7 +9,7 @@ function printHelp() {
     console.log(`Cognition Core history analyzer
 
 Usage:
-  node scripts/analyze-history.mjs [options]
+  tsx scripts/analyze-history.ts [options]
 
 Options:
   --days <n>            Analyze sessions updated in the last n days (default: 7)

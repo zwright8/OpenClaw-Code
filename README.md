@@ -119,7 +119,7 @@ The analyzer now compares the current window against the immediately previous wi
 
 Optional report outputs:
 ```bash
-node scripts/analyze-history.mjs --days 7 \
+tsx scripts/analyze-history.ts --days 7 \
   --json reports/cognition-report.json \
   --markdown reports/cognition-report.md
 ```
@@ -1043,7 +1043,7 @@ const latest = migrateMemoryContract(normalized);
 
 ### Repo Self-Lint
 ```bash
-node scripts/auto-refactor.mjs
+tsx scripts/auto-refactor.ts
 ```
 Runs syntax checks, package script entrypoint checks, and relative import validation across the repo.
 

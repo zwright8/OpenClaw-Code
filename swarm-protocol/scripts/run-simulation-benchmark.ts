@@ -6,7 +6,7 @@ function printHelp() {
     console.log(`Run deterministic simulation benchmarks
 
 Usage:
-  node scripts/run-simulation-benchmark.mjs [options]
+  tsx scripts/run-simulation-benchmark.ts [options]
 
 Options:
   --scenario <path>      Scenario JSON path (default: ./scenarios/baseline.json)

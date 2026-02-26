@@ -1,9 +1,16 @@
 {
   "name": "openclaw-code",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "node scripts/auto-refactor.mjs && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
-    "capabilities:blueprint": "node scripts/sync-capability-blueprint.mjs",
-    "capabilities:audit": "node scripts/audit-capabilities.mjs"
+    "build": "tsx scripts/auto-refactor.ts && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
+    "capabilities:blueprint": "tsx scripts/sync-capability-blueprint.ts",
+    "capabilities:audit": "tsx scripts/audit-capabilities.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json && npm --prefix cognition-core run typecheck && npm --prefix swarm-protocol run typecheck"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2"
   }
 }

@@ -5,7 +5,7 @@ import { pathToFileURL } from 'url';
 const REPO_ROOT = process.cwd();
 const NEXT_100_PATH = path.join(REPO_ROOT, 'CAPABILITY_NEXT_100.md');
 const BLUEPRINT_PATH = path.join(REPO_ROOT, 'CAPABILITY_BLUEPRINT.md');
-const INDEX_PATH = path.join(REPO_ROOT, 'swarm-protocol', 'index.js');
+const INDEX_PATH = path.join(REPO_ROOT, 'swarm-protocol', 'index.ts');
 const TEST_DIR = path.join(REPO_ROOT, 'swarm-protocol', 'test');
 const OUTPUT_PATH = path.join(REPO_ROOT, 'CAPABILITY_DEPLOYABILITY_AUDIT.md');
 
@@ -44,7 +44,7 @@ function parseCapabilityModuleMap(indexText) {
 
     const start = exports.indexOf('intervention-portfolio');
     if (start < 0) {
-        throw new Error('Could not find capability 32 start module (intervention-portfolio) in swarm-protocol/index.js');
+        throw new Error('Could not find capability 32 start module (intervention-portfolio) in swarm-protocol/index.ts');
     }
 
     const modules = exports.slice(start, start + 100);
@@ -61,7 +61,7 @@ function parseCapabilityModuleMap(indexText) {
 
 function collectTests() {
     const files = fs.readdirSync(TEST_DIR)
-        .filter((entry) => entry.endsWith('.test.js'))
+        .filter((entry) => entry.endsWith('.test.ts'))
         .map((entry) => path.join(TEST_DIR, entry));
 
     return files.map((filePath) => ({
@@ -119,7 +119,7 @@ function markdownEscape(value) {
 }
 
 async function auditCapability(entry, moduleName, blueprintCoverage, tests) {
-    const modulePath = path.join(REPO_ROOT, 'swarm-protocol', 'src', `${moduleName}.js`);
+    const modulePath = path.join(REPO_ROOT, 'swarm-protocol', 'src', `${moduleName}.ts`);
     const moduleExists = fs.existsSync(modulePath);
 
     if (!moduleExists) {
@@ -228,7 +228,7 @@ function renderMarkdown(summary, results) {
     lines.push(`Generated: ${generatedAt}`);
     lines.push('');
     lines.push('## Criteria');
-    lines.push('- Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/index.js` mapping.');
+    lines.push('- Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/index.ts` mapping.');
     lines.push('- Capability exports evaluator + `ToTasks` adapter + manager class.');
     lines.push('- Evaluator, task conversion, and manager wrapper pass a smoke execution check.');
     lines.push('- Capability section exists in `CAPABILITY_BLUEPRINT.md`.');

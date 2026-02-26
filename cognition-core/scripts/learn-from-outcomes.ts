@@ -7,7 +7,7 @@ function printHelp() {
     console.log(`Learn from execution outcomes via counterfactual replay
 
 Usage:
-  node scripts/learn-from-outcomes.mjs [options]
+  tsx scripts/learn-from-outcomes.ts [options]
 
 Options:
   --input <path>       JSON file containing task outcome records

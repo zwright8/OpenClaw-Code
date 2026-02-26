@@ -2,11 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import ts from 'typescript';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, '..');
 const IGNORED_DIRS = new Set(['.git', 'node_modules']);
-const CHECKED_EXTENSIONS = new Set(['.js', '.mjs', '.cjs']);
+const CHECKED_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts']);
+const JS_EXTENSIONS = new Set(['.js', '.mjs', '.cjs']);
+const TS_EXTENSIONS = new Set(['.ts', '.mts', '.cts']);
 
 function parseArgs(argv) {
     const options = {
@@ -39,7 +42,7 @@ function printHelp() {
     console.log(`OpenClaw Auto-Refactor (lint/check mode)
 
 Usage:
-  node scripts/auto-refactor.mjs [options]
+  tsx scripts/auto-refactor.ts [options]
 
 Options:
   --repo <path>   Repository root to scan (default: current repo)
@@ -64,7 +67,7 @@ function walk(rootDir, onFile) {
 }
 
 function collectFiles(repoRoot) {
-    const jsFiles = [];
+    const sourceFiles = [];
     const packageJsonFiles = [];
 
     walk(repoRoot, (filePath) => {
@@ -76,26 +79,56 @@ function collectFiles(repoRoot) {
 
         const ext = path.extname(filePath);
         if (CHECKED_EXTENSIONS.has(ext)) {
-            jsFiles.push(filePath);
+            sourceFiles.push(filePath);
         }
     });
 
-    return { jsFiles, packageJsonFiles };
+    return { sourceFiles, packageJsonFiles };
 }
 
-function runSyntaxChecks(jsFiles) {
+function runSyntaxChecks(sourceFiles) {
     const issues = [];
 
-    for (const filePath of jsFiles) {
-        const result = spawnSync(process.execPath, ['--check', filePath], { encoding: 'utf8' });
-        if (result.status === 0) continue;
+    for (const filePath of sourceFiles) {
+        const ext = path.extname(filePath);
+        if (JS_EXTENSIONS.has(ext)) {
+            const result = spawnSync(process.execPath, ['--check', filePath], { encoding: 'utf8' });
+            if (result.status === 0) continue;
 
-        const stderr = (result.stderr || '').trim();
-        issues.push({
-            type: 'syntax',
-            filePath,
-            message: stderr || 'Syntax check failed'
-        });
+            const stderr = (result.stderr || '').trim();
+            issues.push({
+                type: 'syntax',
+                filePath,
+                message: stderr || 'Syntax check failed'
+            });
+            continue;
+        }
+
+        if (TS_EXTENSIONS.has(ext)) {
+            const source = fs.readFileSync(filePath, 'utf8');
+            const transpiled = ts.transpileModule(source, {
+                compilerOptions: {
+                    module: ts.ModuleKind.NodeNext,
+                    target: ts.ScriptTarget.ES2022
+                },
+                reportDiagnostics: true,
+                fileName: filePath
+            });
+
+            const diagnostics = (transpiled.diagnostics || []).filter((diagnostic) => (
+                diagnostic.category === ts.DiagnosticCategory.Error
+            ));
+            if (diagnostics.length === 0) continue;
+
+            const message = diagnostics
+                .map((diagnostic) => ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'))
+                .join(' | ');
+            issues.push({
+                type: 'syntax',
+                filePath,
+                message: message || 'TypeScript syntax check failed'
+            });
+        }
     }
 
     return issues;
@@ -107,15 +140,39 @@ function extractNodeEntrypoints(scriptCommand) {
 
     for (const chunk of chunks) {
         const tokens = chunk.trim().split(/\s+/).filter(Boolean);
-        for (let i = 0; i < tokens.length; i++) {
-            if (tokens[i] !== 'node') continue;
-            let cursor = i + 1;
+        const findEntrypoint = (startIndex) => {
+            let cursor = startIndex;
             while (cursor < tokens.length && tokens[cursor].startsWith('-')) {
                 cursor++;
             }
             if (cursor < tokens.length) {
                 const target = tokens[cursor].replace(/^['"]|['"]$/g, '');
-                entrypoints.push(target);
+                if (target && !target.startsWith('$')) {
+                    entrypoints.push(target);
+                }
+            }
+        };
+
+        for (let i = 0; i < tokens.length; i++) {
+            if (tokens[i] === 'node' || tokens[i] === 'tsx') {
+                findEntrypoint(i + 1);
+            }
+
+            if (tokens[i] === 'npx' && tokens[i + 1] === 'tsx') {
+                findEntrypoint(i + 2);
+            }
+
+            if (tokens[i] === 'npm') {
+                for (let cursor = i + 1; cursor < tokens.length; cursor++) {
+                    const token = tokens[cursor];
+                    if (token === '--' && tokens[cursor + 1]) {
+                        const afterDashDash = tokens[cursor + 1].replace(/^['"]|['"]$/g, '');
+                        if (afterDashDash.endsWith('.ts') || afterDashDash.endsWith('.js')) {
+                            entrypoints.push(afterDashDash);
+                        }
+                        break;
+                    }
+                }
             }
         }
     }
@@ -155,7 +212,7 @@ function runPackageScriptChecks(packageJsonFiles) {
 
 function collectRelativeImports(filePath) {
     const source = fs.readFileSync(filePath, 'utf8');
-    const imports = new Set();
+    const imports = new Set<string>();
     const patterns = [
         /\bimport\s+(?:[^'"]*?\s+from\s+)?['"]([^'"]+)['"]/g,
         /\bexport\s+[^'"]*?\s+from\s+['"]([^'"]+)['"]/g,
@@ -178,27 +235,43 @@ function resolveImportCandidate(baseFile, specifier) {
 
     const candidates = [];
     if (path.extname(candidateRoot)) {
+        const ext = path.extname(candidateRoot);
+        const stem = candidateRoot.slice(0, -ext.length);
         candidates.push(candidateRoot);
+
+        if (ext === '.js') {
+            candidates.push(`${stem}.ts`, `${stem}.mts`, `${stem}.cts`);
+        } else if (ext === '.mjs') {
+            candidates.push(`${stem}.mts`, `${stem}.ts`, `${stem}.cts`);
+        } else if (ext === '.cjs') {
+            candidates.push(`${stem}.cts`, `${stem}.ts`, `${stem}.mts`);
+        }
     } else {
         candidates.push(
             candidateRoot,
             `${candidateRoot}.js`,
             `${candidateRoot}.mjs`,
             `${candidateRoot}.cjs`,
+            `${candidateRoot}.ts`,
+            `${candidateRoot}.mts`,
+            `${candidateRoot}.cts`,
             `${candidateRoot}.json`,
             path.join(candidateRoot, 'index.js'),
             path.join(candidateRoot, 'index.mjs'),
-            path.join(candidateRoot, 'index.cjs')
+            path.join(candidateRoot, 'index.cjs'),
+            path.join(candidateRoot, 'index.ts'),
+            path.join(candidateRoot, 'index.mts'),
+            path.join(candidateRoot, 'index.cts')
         );
     }
 
     return candidates.find((candidate) => fs.existsSync(candidate));
 }
 
-function runImportChecks(jsFiles) {
+function runImportChecks(sourceFiles) {
     const issues = [];
 
-    for (const filePath of jsFiles) {
+    for (const filePath of sourceFiles) {
         for (const specifier of collectRelativeImports(filePath)) {
             const resolved = resolveImportCandidate(filePath, specifier);
             if (resolved) continue;
@@ -227,14 +300,14 @@ function renderIssue(issue, repoRoot) {
             return;
         }
 
-        const { jsFiles, packageJsonFiles } = collectFiles(options.repoRoot);
+        const { sourceFiles, packageJsonFiles } = collectFiles(options.repoRoot);
         const issues = [
-            ...runSyntaxChecks(jsFiles),
+            ...runSyntaxChecks(sourceFiles),
             ...runPackageScriptChecks(packageJsonFiles),
-            ...runImportChecks(jsFiles)
+            ...runImportChecks(sourceFiles)
         ];
 
-        console.log(`[auto-refactor] JS files checked: ${jsFiles.length}`);
+        console.log(`[auto-refactor] source files checked: ${sourceFiles.length}`);
         console.log(`[auto-refactor] package.json files checked: ${packageJsonFiles.length}`);
 
         if (issues.length === 0) {

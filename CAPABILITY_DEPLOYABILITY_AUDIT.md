@@ -1,9 +1,9 @@
 # Capability Deployability Audit (32-131)
 
-Generated: 2026-02-26T02:44:57.182Z
+Generated: 2026-02-26T03:09:35.635Z
 
 ## Criteria
-- Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/index.js` mapping.
+- Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/index.ts` mapping.
 - Capability exports evaluator + `ToTasks` adapter + manager class.
 - Evaluator, task conversion, and manager wrapper pass a smoke execution check.
 - Capability section exists in `CAPABILITY_BLUEPRINT.md`.

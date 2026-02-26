@@ -6,7 +6,7 @@ function printHelp() {
     console.log(`Cognition Core remediation task planner
 
 Usage:
-  node scripts/plan-remediation-tasks.mjs [options]
+  tsx scripts/plan-remediation-tasks.ts [options]
 
 Options:
   --report <path>         Path to cognition report JSON (default: ./reports/cognition-report.json)

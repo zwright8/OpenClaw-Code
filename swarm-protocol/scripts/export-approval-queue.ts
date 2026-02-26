@@ -6,7 +6,7 @@ function printHelp() {
     console.log(`Export pending task approvals
 
 Usage:
-  node scripts/export-approval-queue.mjs [options]
+  tsx scripts/export-approval-queue.ts [options]
 
 Options:
   --store <path>      Task store journal path (default: ./state/tasks.journal.jsonl)

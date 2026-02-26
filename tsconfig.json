@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "scripts/**/*.ts",
+    "scripts/**/*.mts"
+  ],
+  "exclude": [
+    "node_modules",
+    "cognition-core/node_modules",
+    "swarm-protocol/node_modules"
+  ]
+}

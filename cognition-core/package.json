@@ -2,16 +2,16 @@
   "name": "cognition-core",
   "version": "0.1.0",
   "description": "Agent introspection and telemetry analysis",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "build": "npm test",
-    "analyze": "node scripts/analyze-history.mjs --days 7",
-    "analyze:quick": "node scripts/analyze-history.mjs --days 1",
-    "plan:tasks": "node scripts/plan-remediation-tasks.mjs --report reports/cognition-report.json --out reports/remediation-tasks.json",
-    "learn:loop": "node scripts/learn-from-outcomes.mjs --store ../swarm-protocol/state/tasks.journal.jsonl --json reports/learning-loop.json --markdown reports/learning-loop.md",
-    "graph": "node scripts/graph.mjs",
-    "test": "node --test",
-    "build": "npm test"
+    "analyze": "tsx scripts/analyze-history.ts --days 7",
+    "analyze:quick": "tsx scripts/analyze-history.ts --days 1",
+    "plan:tasks": "tsx scripts/plan-remediation-tasks.ts --report reports/cognition-report.json --out reports/remediation-tasks.json",
+    "learn:loop": "tsx scripts/learn-from-outcomes.ts --store ../swarm-protocol/state/tasks.journal.jsonl --json reports/learning-loop.json --markdown reports/learning-loop.md",
+    "graph": "tsx scripts/graph.ts",
+    "test": "tsx --test",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "agent",
@@ -20,5 +20,10 @@
   ],
   "author": "Z <zach@zachwright.xyz>",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2"
+  }
 }
