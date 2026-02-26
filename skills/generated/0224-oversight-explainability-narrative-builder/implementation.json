@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 224,
+  "skillName": "u0224-oversight-explainability-narrative-builder",
+  "title": "Oversight Explainability Narrative Builder",
+  "domain": "Human Oversight and Operator UX",
+  "domainSlug": "human-oversight-and-operator-ux",
+  "reason": "We need this skill because human teams need fast, legible control when stakes are high. This specific skill translates technical decisions into operator-usable narratives.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Oversight Explainability Narrative Builder`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "Implement the core capability using reason synthesis and abstraction, and produce decision narratives with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "reason synthesis and abstraction",
+    "primaryArtifact": "decision narratives",
+    "requiredSignals": [
+      "approval queues",
+      "operator workload",
+      "intervention history",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow interventions",
+      "approval bottlenecks",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1485,
+      "execution": 0.2962,
+      "safety": 0.2569,
+      "impact": 0.2984
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 61,
+      "reviewRisk": 53,
+      "criticalRisk": 88
+    },
+    "orchestration": {
+      "routingTag": "human-oversight-and-operator-ux:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0224_oversight-explainability-narrati",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0224-oversight-explainability-narrative-builder:224:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Oversight Explainability Narrative Builder`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "contractStep": "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using reason synthesis and abstraction, and produce decision narratives with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

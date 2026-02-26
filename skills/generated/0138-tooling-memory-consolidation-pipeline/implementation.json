@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 138,
+  "skillName": "u0138-tooling-memory-consolidation-pipeline",
+  "title": "Tooling Memory Consolidation Pipeline",
+  "domain": "Tool Reliability and Execution Quality",
+  "domainSlug": "tool-reliability-and-execution-quality",
+  "reason": "We need this skill because automation collapses when tools are flaky and failure modes are opaque. This specific skill turns raw logs into durable reusable memory.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Tooling Memory Consolidation Pipeline`, including at least three measurable KPIs tied to silent failures and cascading retries.",
+    "Design and version the input/output contract for tool runs, error signatures, and retry outcomes, then add schema validation and failure-mode handling.",
+    "Implement the core capability using episodic-to-semantic consolidation, and produce consolidated memory snapshots with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover silent failures and cascading retries, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "episodic-to-semantic consolidation",
+    "primaryArtifact": "consolidated memory snapshots",
+    "requiredSignals": [
+      "tool runs",
+      "error signatures",
+      "retry outcomes",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "silent failures",
+      "cascading retries",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.4105,
+      "execution": 0.1525,
+      "safety": 0.2149,
+      "impact": 0.2221
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 52,
+      "reviewRisk": 59,
+      "criticalRisk": 78
+    },
+    "orchestration": {
+      "routingTag": "tool-reliability-and-execution-quality:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0138_tooling-memory-consolidation-pip",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0138-tooling-memory-consolidation-pipeline:138:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Tooling Memory Consolidation Pipeline`, including at least three measurable KPIs tied to silent failures and cascading retries.",
+    "contractStep": "Design and version the input/output contract for tool runs, error signatures, and retry outcomes, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using episodic-to-semantic consolidation, and produce consolidated memory snapshots with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover silent failures and cascading retries, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 843,
+  "skillName": "u0843-community-evidence-provenance-tracker",
+  "title": "Community Evidence Provenance Tracker",
+  "domain": "Community Engagement and Feedback",
+  "domainSlug": "community-engagement-and-feedback",
+  "reason": "We need this skill because real-world feedback loops are necessary for continuous alignment. This specific skill preserves source lineage so claims remain auditable.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Community Evidence Provenance Tracker`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "provenance-tracker",
+    "coreMethod": "signed provenance links",
+    "primaryArtifact": "evidence lineage graphs",
+    "requiredSignals": [
+      "feedback channels",
+      "sentiment",
+      "urgency",
+      "follow-ups",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "community trust loss",
+      "unaddressed concerns",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1617,
+      "execution": 0.3839,
+      "safety": 0.2506,
+      "impact": 0.2038
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 48,
+      "reviewRisk": 42,
+      "criticalRisk": 59
+    },
+    "orchestration": {
+      "routingTag": "community-engagement-and-feedback:provenance-tracker",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0843_community-evidence-provenance-tr",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0843-community-evidence-provenance-tracker:843:provenance-tracker"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Community Evidence Provenance Tracker`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "contractStep": "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

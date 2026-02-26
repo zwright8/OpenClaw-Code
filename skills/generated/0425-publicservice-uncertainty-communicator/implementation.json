@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 425,
+  "skillName": "u0425-publicservice-uncertainty-communicator",
+  "title": "PublicService Uncertainty Communicator",
+  "domain": "Healthcare and Public Services",
+  "domainSlug": "healthcare-and-public-services",
+  "reason": "We need this skill because public-facing workflows require strict safety and reliability controls. This specific skill prevents overstatement by explicitly framing uncertainty.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `PublicService Uncertainty Communicator`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "Implement the core capability using confidence-bound communication templates, and produce uncertainty briefs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "confidence-bound communication templates",
+    "primaryArtifact": "uncertainty briefs",
+    "requiredSignals": [
+      "protocol checks",
+      "service queues",
+      "compliance flags",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "service harm",
+      "procedural violations",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2764,
+      "execution": 0.3062,
+      "safety": 0.2044,
+      "impact": 0.213
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 48,
+      "reviewRisk": 44,
+      "criticalRisk": 67
+    },
+    "orchestration": {
+      "routingTag": "healthcare-and-public-services:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0425_publicservice-uncertainty-commun",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0425-publicservice-uncertainty-communicator:425:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `PublicService Uncertainty Communicator`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "contractStep": "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using confidence-bound communication templates, and produce uncertainty briefs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 506,
+  "skillName": "u0506-research-experiment-design-generator",
+  "title": "Research Experiment Design Generator",
+  "domain": "Scientific Research Systems",
+  "domainSlug": "scientific-research-systems",
+  "reason": "We need this skill because research throughput degrades without reproducibility and prioritization. This specific skill converts unknowns into testable learning loops.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Research Experiment Design Generator`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "hypothesis-driven design",
+    "primaryArtifact": "experiment plans",
+    "requiredSignals": [
+      "hypotheses",
+      "experiments",
+      "replication evidence",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "non-reproducible results",
+      "wasted cycles",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2988,
+      "execution": 0.3123,
+      "safety": 0.2272,
+      "impact": 0.1617
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 53,
+      "reviewRisk": 51,
+      "criticalRisk": 76
+    },
+    "orchestration": {
+      "routingTag": "scientific-research-systems:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0506_research-experiment-design-gener",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0506-research-experiment-design-generator:506:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Research Experiment Design Generator`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "contractStep": "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

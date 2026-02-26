@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 85,
+  "skillName": "u0085-memory-confidence-calibration-engine",
+  "title": "Memory Confidence Calibration Engine",
+  "domain": "Memory and Knowledge Operations",
+  "domainSlug": "memory-and-knowledge-operations",
+  "reason": "We need this skill because agents lose performance when lessons are not retained and reused. This specific skill aligns reported confidence with actual uncertainty.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Memory Confidence Calibration Engine`, including at least three measurable KPIs tied to repeated mistakes and context loss.",
+    "Design and version the input/output contract for episodic logs, knowledge nodes, and retrieval metadata, then add schema validation and failure-mode handling.",
+    "Implement the core capability using calibration curves and error bins, and produce calibrated confidence scores with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover repeated mistakes and context loss, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "optimization-engine",
+    "coreMethod": "calibration curves and error bins",
+    "primaryArtifact": "calibrated confidence scores",
+    "requiredSignals": [
+      "episodic logs",
+      "knowledge nodes",
+      "retrieval metadata",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "repeated mistakes",
+      "context loss",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2439,
+      "execution": 0.3284,
+      "safety": 0.2969,
+      "impact": 0.1308
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 56,
+      "reviewRisk": 57,
+      "criticalRisk": 79
+    },
+    "orchestration": {
+      "routingTag": "memory-and-knowledge-operations:optimization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0085_memory-confidence-calibration-en",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0085-memory-confidence-calibration-engine:85:optimization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Memory Confidence Calibration Engine`, including at least three measurable KPIs tied to repeated mistakes and context loss.",
+    "contractStep": "Design and version the input/output contract for episodic logs, knowledge nodes, and retrieval metadata, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using calibration curves and error bins, and produce calibrated confidence scores with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover repeated mistakes and context loss, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

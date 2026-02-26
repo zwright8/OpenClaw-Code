@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 859,
+  "skillName": "u0859-community-knowledge-graph-linker",
+  "title": "Community Knowledge Graph Linker",
+  "domain": "Community Engagement and Feedback",
+  "domainSlug": "community-engagement-and-feedback",
+  "reason": "We need this skill because real-world feedback loops are necessary for continuous alignment. This specific skill connects fragmented facts into reusable structures.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Community Knowledge Graph Linker`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "Implement the core capability using entity and relation linking, and produce linked knowledge entities with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "entity and relation linking",
+    "primaryArtifact": "linked knowledge entities",
+    "requiredSignals": [
+      "feedback channels",
+      "sentiment",
+      "urgency",
+      "follow-ups",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "community trust loss",
+      "unaddressed concerns",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2559,
+      "execution": 0.2572,
+      "safety": 0.2378,
+      "impact": 0.2491
+    },
+    "postureThresholds": {
+      "readyMin": 71,
+      "reviewMin": 46,
+      "reviewRisk": 46,
+      "criticalRisk": 65
+    },
+    "orchestration": {
+      "routingTag": "community-engagement-and-feedback:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0859_community-knowledge-graph-linker",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0859-community-knowledge-graph-linker:859:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Community Knowledge Graph Linker`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "contractStep": "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using entity and relation linking, and produce linked knowledge entities with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

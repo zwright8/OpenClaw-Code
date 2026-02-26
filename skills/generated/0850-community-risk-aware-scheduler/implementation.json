@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 850,
+  "skillName": "u0850-community-risk-aware-scheduler",
+  "title": "Community Risk-Aware Scheduler",
+  "domain": "Community Engagement and Feedback",
+  "domainSlug": "community-engagement-and-feedback",
+  "reason": "We need this skill because real-world feedback loops are necessary for continuous alignment. This specific skill times execution based on risk posture instead of urgency alone.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Community Risk-Aware Scheduler`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "risk-weighted sequencing",
+    "primaryArtifact": "risk-gated schedules",
+    "requiredSignals": [
+      "feedback channels",
+      "sentiment",
+      "urgency",
+      "follow-ups",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "community trust loss",
+      "unaddressed concerns",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1508,
+      "execution": 0.4146,
+      "safety": 0.2284,
+      "impact": 0.2062
+    },
+    "postureThresholds": {
+      "readyMin": 71,
+      "reviewMin": 47,
+      "reviewRisk": 35,
+      "criticalRisk": 74
+    },
+    "orchestration": {
+      "routingTag": "community-engagement-and-feedback:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0850_community-risk-aware-scheduler",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0850-community-risk-aware-scheduler:850:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Community Risk-Aware Scheduler`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "contractStep": "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

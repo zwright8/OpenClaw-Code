@@ -109,14 +109,17 @@ npm run capabilities:audit
 ```
 
 ## Skill Arsenal
-Build and validate the 1000 generated skills from [SKILLS_UPDATES_1000.md](/SKILLS_UPDATES_1000.md):
+Build, validate, and runtime-execute the 1000 generated skills from [SKILL_UPDATES_1000.md](/SKILL_UPDATES_1000.md):
 ```bash
 npm run skills:sync
 ```
 Outputs are generated under `skills/generated/`:
 - `INDEX.md` (full catalog)
 - `skills.manifest.json` (machine-readable registry)
+- `runtime.catalog.json` (runtime-facing registry)
+- `runtime.execution-report.json` (execution verification summary for all 1000 skills)
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
+- `0001-.../implementation.json` through `1000-.../implementation.json`
 
 ## Quick Start
 

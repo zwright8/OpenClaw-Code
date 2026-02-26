@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 931,
+  "skillName": "u0931-infra-policy-constraint-compiler",
+  "title": "Infra Policy Constraint Compiler",
+  "domain": "Infrastructure and Sustainability",
+  "domainSlug": "infrastructure-and-sustainability",
+  "reason": "We need this skill because long-term scale depends on resilient and sustainable infrastructure choices. This specific skill turns governance language into enforceable runtime checks.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Infra Policy Constraint Compiler`, including at least three measurable KPIs tied to capacity collapse and environmental debt.",
+    "Design and version the input/output contract for capacity forecasts, energy usage, and sustainability metrics, then add schema validation and failure-mode handling.",
+    "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover capacity collapse and environmental debt, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "rule compilation",
+    "primaryArtifact": "executable policy bundles",
+    "requiredSignals": [
+      "capacity forecasts",
+      "energy usage",
+      "sustainability metrics",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "capacity collapse",
+      "environmental debt",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2665,
+      "execution": 0.2755,
+      "safety": 0.1638,
+      "impact": 0.2942
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 45,
+      "reviewRisk": 37,
+      "criticalRisk": 64
+    },
+    "orchestration": {
+      "routingTag": "infrastructure-and-sustainability:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0931_infra-policy-constraint-compiler",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0931-infra-policy-constraint-compiler:931:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Infra Policy Constraint Compiler`, including at least three measurable KPIs tied to capacity collapse and environmental debt.",
+    "contractStep": "Design and version the input/output contract for capacity forecasts, energy usage, and sustainability metrics, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover capacity collapse and environmental debt, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

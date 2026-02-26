@@ -1,0 +1,173 @@
+{
+  "generatedAt": "2026-02-26T04:49:00.119Z",
+  "totalSkillsExecuted": 1000,
+  "postureCounts": {
+    "ready": 53,
+    "review_required": 834,
+    "critical": 113
+  },
+  "topDomains": [
+    {
+      "domain": "Truth-Seeking and Epistemics",
+      "count": 40
+    },
+    {
+      "domain": "Strategic Planning and Decomposition",
+      "count": 40
+    },
+    {
+      "domain": "Memory and Knowledge Operations",
+      "count": 40
+    },
+    {
+      "domain": "Tool Reliability and Execution Quality",
+      "count": 40
+    },
+    {
+      "domain": "Safety and Governance",
+      "count": 40
+    },
+    {
+      "domain": "Human Oversight and Operator UX",
+      "count": 40
+    },
+    {
+      "domain": "Collaboration and Negotiation",
+      "count": 40
+    },
+    {
+      "domain": "Federation and Interoperability",
+      "count": 40
+    },
+    {
+      "domain": "Economic Optimization",
+      "count": 40
+    },
+    {
+      "domain": "Resource Allocation and Logistics",
+      "count": 40
+    },
+    {
+      "domain": "Healthcare and Public Services",
+      "count": 40
+    },
+    {
+      "domain": "Education and Upskilling",
+      "count": 40
+    },
+    {
+      "domain": "Scientific Research Systems",
+      "count": 40
+    },
+    {
+      "domain": "Software Engineering Automation",
+      "count": 40
+    },
+    {
+      "domain": "Data Quality and Observability",
+      "count": 40
+    },
+    {
+      "domain": "Security and Privacy",
+      "count": 40
+    },
+    {
+      "domain": "Crisis and Incident Response",
+      "count": 40
+    },
+    {
+      "domain": "Social Impact Measurement",
+      "count": 40
+    },
+    {
+      "domain": "Communication and Explainability",
+      "count": 40
+    },
+    {
+      "domain": "Multilingual and Cultural Adaptation",
+      "count": 40
+    }
+  ],
+  "sampleRuns": [
+    {
+      "id": 1,
+      "name": "u0001-epistemic-signal-ingestion-normalizer",
+      "domain": "Truth-Seeking and Epistemics",
+      "posture": "review_required",
+      "overallScore": 60,
+      "riskScore": 22
+    },
+    {
+      "id": 97,
+      "name": "u0097-memory-regression-sentinel",
+      "domain": "Memory and Knowledge Operations",
+      "posture": "review_required",
+      "overallScore": 61,
+      "riskScore": 66
+    },
+    {
+      "id": 194,
+      "name": "u0194-governance-equity-impact-scorer",
+      "domain": "Safety and Governance",
+      "posture": "review_required",
+      "overallScore": 67,
+      "riskScore": 59
+    },
+    {
+      "id": 291,
+      "name": "u0291-federation-policy-constraint-compiler",
+      "domain": "Federation and Interoperability",
+      "posture": "critical",
+      "overallScore": 61,
+      "riskScore": 61
+    },
+    {
+      "id": 388,
+      "name": "u0388-logistics-incident-playbook-synthesizer",
+      "domain": "Resource Allocation and Logistics",
+      "posture": "critical",
+      "overallScore": 55,
+      "riskScore": 54
+    },
+    {
+      "id": 485,
+      "name": "u0485-research-confidence-calibration-engine",
+      "domain": "Scientific Research Systems",
+      "posture": "review_required",
+      "overallScore": 74,
+      "riskScore": 48
+    },
+    {
+      "id": 500,
+      "name": "u0500-research-semantic-retrieval-ranker",
+      "domain": "Scientific Research Systems",
+      "posture": "review_required",
+      "overallScore": 69,
+      "riskScore": 41
+    },
+    {
+      "id": 582,
+      "name": "u0582-observability-multi-agent-negotiation-mediator",
+      "domain": "Data Quality and Observability",
+      "posture": "review_required",
+      "overallScore": 66,
+      "riskScore": 43
+    },
+    {
+      "id": 679,
+      "name": "u0679-crisis-self-reflection-error-taxonomist",
+      "domain": "Crisis and Incident Response",
+      "posture": "review_required",
+      "overallScore": 67,
+      "riskScore": 36
+    },
+    {
+      "id": 776,
+      "name": "u0776-cultural-failure-root-cause-miner",
+      "domain": "Multilingual and Cultural Adaptation",
+      "posture": "ready",
+      "overallScore": 76,
+      "riskScore": 30
+    }
+  ]
+}

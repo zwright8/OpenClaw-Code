@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 765,
+  "skillName": "u0765-cultural-confidence-calibration-engine",
+  "title": "Cultural Confidence Calibration Engine",
+  "domain": "Multilingual and Cultural Adaptation",
+  "domainSlug": "multilingual-and-cultural-adaptation",
+  "reason": "We need this skill because global utility requires language and cultural context fidelity. This specific skill aligns reported confidence with actual uncertainty.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Cultural Confidence Calibration Engine`, including at least three measurable KPIs tied to context mismatch and exclusion.",
+    "Design and version the input/output contract for language variants, cultural norms, and local preferences, then add schema validation and failure-mode handling.",
+    "Implement the core capability using calibration curves and error bins, and produce calibrated confidence scores with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover context mismatch and exclusion, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "optimization-engine",
+    "coreMethod": "calibration curves and error bins",
+    "primaryArtifact": "calibrated confidence scores",
+    "requiredSignals": [
+      "language variants",
+      "cultural norms",
+      "local preferences",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "context mismatch",
+      "exclusion",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1909,
+      "execution": 0.253,
+      "safety": 0.2742,
+      "impact": 0.2819
+    },
+    "postureThresholds": {
+      "readyMin": 75,
+      "reviewMin": 55,
+      "reviewRisk": 53,
+      "criticalRisk": 82
+    },
+    "orchestration": {
+      "routingTag": "multilingual-and-cultural-adaptation:optimization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0765_cultural-confidence-calibration-",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0765-cultural-confidence-calibration-engine:765:optimization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Cultural Confidence Calibration Engine`, including at least three measurable KPIs tied to context mismatch and exclusion.",
+    "contractStep": "Design and version the input/output contract for language variants, cultural norms, and local preferences, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using calibration curves and error bins, and produce calibrated confidence scores with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover context mismatch and exclusion, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

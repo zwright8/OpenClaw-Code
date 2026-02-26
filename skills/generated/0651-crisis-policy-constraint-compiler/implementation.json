@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 651,
+  "skillName": "u0651-crisis-policy-constraint-compiler",
+  "title": "Crisis Policy Constraint Compiler",
+  "domain": "Crisis and Incident Response",
+  "domainSlug": "crisis-and-incident-response",
+  "reason": "We need this skill because response quality determines whether incidents are contained or amplified. This specific skill turns governance language into enforceable runtime checks.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Crisis Policy Constraint Compiler`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "rule compilation",
+    "primaryArtifact": "executable policy bundles",
+    "requiredSignals": [
+      "incident timelines",
+      "response roles",
+      "recovery artifacts",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow containment",
+      "repeated outages",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2807,
+      "execution": 0.2844,
+      "safety": 0.2244,
+      "impact": 0.2105
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 50,
+      "reviewRisk": 44,
+      "criticalRisk": 66
+    },
+    "orchestration": {
+      "routingTag": "crisis-and-incident-response:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0651_crisis-policy-constraint-compile",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0651-crisis-policy-constraint-compiler:651:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Crisis Policy Constraint Compiler`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "contractStep": "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

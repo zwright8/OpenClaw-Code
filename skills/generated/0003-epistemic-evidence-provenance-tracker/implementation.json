@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 3,
+  "skillName": "u0003-epistemic-evidence-provenance-tracker",
+  "title": "Epistemic Evidence Provenance Tracker",
+  "domain": "Truth-Seeking and Epistemics",
+  "domainSlug": "truth-seeking-and-epistemics",
+  "reason": "We need this skill because decisions drift when claims are accepted without verification. This specific skill preserves source lineage so claims remain auditable.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Epistemic Evidence Provenance Tracker`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "provenance-tracker",
+    "coreMethod": "signed provenance links",
+    "primaryArtifact": "evidence lineage graphs",
+    "requiredSignals": [
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "false certainty",
+      "unverified assumptions",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2708,
+      "execution": 0.2487,
+      "safety": 0.3264,
+      "impact": 0.1541
+    },
+    "postureThresholds": {
+      "readyMin": 78,
+      "reviewMin": 53,
+      "reviewRisk": 47,
+      "criticalRisk": 88
+    },
+    "orchestration": {
+      "routingTag": "truth-seeking-and-epistemics:provenance-tracker",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0003_epistemic-evidence-provenance-tr",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0003-epistemic-evidence-provenance-tracker:3:provenance-tracker"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Epistemic Evidence Provenance Tracker`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "contractStep": "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

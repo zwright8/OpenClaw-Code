@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 145,
+  "skillName": "u0145-tooling-uncertainty-communicator",
+  "title": "Tooling Uncertainty Communicator",
+  "domain": "Tool Reliability and Execution Quality",
+  "domainSlug": "tool-reliability-and-execution-quality",
+  "reason": "We need this skill because automation collapses when tools are flaky and failure modes are opaque. This specific skill prevents overstatement by explicitly framing uncertainty.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Tooling Uncertainty Communicator`, including at least three measurable KPIs tied to silent failures and cascading retries.",
+    "Design and version the input/output contract for tool runs, error signatures, and retry outcomes, then add schema validation and failure-mode handling.",
+    "Implement the core capability using confidence-bound communication templates, and produce uncertainty briefs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover silent failures and cascading retries, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "confidence-bound communication templates",
+    "primaryArtifact": "uncertainty briefs",
+    "requiredSignals": [
+      "tool runs",
+      "error signatures",
+      "retry outcomes",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "silent failures",
+      "cascading retries",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1831,
+      "execution": 0.241,
+      "safety": 0.3202,
+      "impact": 0.2557
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 54,
+      "reviewRisk": 47,
+      "criticalRisk": 82
+    },
+    "orchestration": {
+      "routingTag": "tool-reliability-and-execution-quality:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0145_tooling-uncertainty-communicator",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0145-tooling-uncertainty-communicator:145:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Tooling Uncertainty Communicator`, including at least three measurable KPIs tied to silent failures and cascading retries.",
+    "contractStep": "Design and version the input/output contract for tool runs, error signatures, and retry outcomes, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using confidence-bound communication templates, and produce uncertainty briefs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover silent failures and cascading retries, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

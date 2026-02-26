@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 295,
+  "skillName": "u0295-federation-auto-retry-and-backoff-coordinator",
+  "title": "Federation Auto-Retry and Backoff Coordinator",
+  "domain": "Federation and Interoperability",
+  "domainSlug": "federation-and-interoperability",
+  "reason": "We need this skill because cross-org collaboration fails without shared contracts and trust primitives. This specific skill improves success rates while preventing retry storms.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Federation Auto-Retry and Backoff Coordinator`, including at least three measurable KPIs tied to integration breakage and trust boundary violations.",
+    "Design and version the input/output contract for envelopes, tenant boundaries, and protocol bridges, then add schema validation and failure-mode handling.",
+    "Implement the core capability using adaptive backoff control, and produce retry policy decisions with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover integration breakage and trust boundary violations, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "adaptive backoff control",
+    "primaryArtifact": "retry policy decisions",
+    "requiredSignals": [
+      "envelopes",
+      "tenant boundaries",
+      "protocol bridges",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "integration breakage",
+      "trust boundary violations",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3091,
+      "execution": 0.2835,
+      "safety": 0.276,
+      "impact": 0.1314
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 59,
+      "reviewRisk": 51,
+      "criticalRisk": 87
+    },
+    "orchestration": {
+      "routingTag": "federation-and-interoperability:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0295_federation-auto-retry-and-backof",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0295-federation-auto-retry-and-backoff-coordinator:295:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Federation Auto-Retry and Backoff Coordinator`, including at least three measurable KPIs tied to integration breakage and trust boundary violations.",
+    "contractStep": "Design and version the input/output contract for envelopes, tenant boundaries, and protocol bridges, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using adaptive backoff control, and produce retry policy decisions with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover integration breakage and trust boundary violations, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

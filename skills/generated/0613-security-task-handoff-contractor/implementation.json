@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 613,
+  "skillName": "u0613-security-task-handoff-contractor",
+  "title": "Security Task Handoff Contractor",
+  "domain": "Security and Privacy",
+  "domainSlug": "security-and-privacy",
+  "reason": "We need this skill because production autonomy must default to least privilege and strong privacy. This specific skill standardizes handoffs between agents and humans.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Security Task Handoff Contractor`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "Implement the core capability using contracted payload schemas, and produce typed handoff artifacts with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "contracted payload schemas",
+    "primaryArtifact": "typed handoff artifacts",
+    "requiredSignals": [
+      "permissions",
+      "sensitive data flows",
+      "threat events",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "breach",
+      "exfiltration",
+      "over-privileged actions"
+    ],
+    "scoringWeights": {
+      "truth": 0.2739,
+      "execution": 0.3568,
+      "safety": 0.1973,
+      "impact": 0.172
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 52,
+      "reviewRisk": 40,
+      "criticalRisk": 74
+    },
+    "orchestration": {
+      "routingTag": "security-and-privacy:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "security-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0613_security-task-handoff-contractor",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0613-security-task-handoff-contractor:613:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Security Task Handoff Contractor`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "contractStep": "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using contracted payload schemas, and produce typed handoff artifacts with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

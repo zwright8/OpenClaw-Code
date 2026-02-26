@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 43,
+  "skillName": "u0043-planning-evidence-provenance-tracker",
+  "title": "Planning Evidence Provenance Tracker",
+  "domain": "Strategic Planning and Decomposition",
+  "domainSlug": "strategic-planning-and-decomposition",
+  "reason": "We need this skill because large goals fail when decomposition is inconsistent or incomplete. This specific skill preserves source lineage so claims remain auditable.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Planning Evidence Provenance Tracker`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.",
+    "Design and version the input/output contract for goals, dependencies, milestones, and constraints, then add schema validation and failure-mode handling.",
+    "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover execution stalls and hidden dependency failures, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "provenance-tracker",
+    "coreMethod": "signed provenance links",
+    "primaryArtifact": "evidence lineage graphs",
+    "requiredSignals": [
+      "goals",
+      "dependencies",
+      "milestones",
+      "constraints",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "execution stalls",
+      "hidden dependency failures",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1504,
+      "execution": 0.3061,
+      "safety": 0.2866,
+      "impact": 0.2569
+    },
+    "postureThresholds": {
+      "readyMin": 75,
+      "reviewMin": 61,
+      "reviewRisk": 61,
+      "criticalRisk": 89
+    },
+    "orchestration": {
+      "routingTag": "strategic-planning-and-decomposition:provenance-tracker",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0043_planning-evidence-provenance-tra",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0043-planning-evidence-provenance-tracker:43:provenance-tracker"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Planning Evidence Provenance Tracker`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.",
+    "contractStep": "Design and version the input/output contract for goals, dependencies, milestones, and constraints, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover execution stalls and hidden dependency failures, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

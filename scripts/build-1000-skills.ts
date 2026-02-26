@@ -9,11 +9,88 @@ type SkillUpdate = {
     steps: string[];
 };
 
+type SkillRuntimeProfile = {
+    archetype: string;
+    coreMethod: string;
+    primaryArtifact: string;
+    requiredSignals: string[];
+    kpiFocus: string[];
+    scoringWeights: {
+        truth: number;
+        execution: number;
+        safety: number;
+        impact: number;
+    };
+    postureThresholds: {
+        readyMin: number;
+        reviewMin: number;
+        reviewRisk: number;
+        criticalRisk: number;
+    };
+    orchestration: {
+        routingTag: string;
+        approvalGates: string[];
+        retryPolicy: {
+            maxAttempts: number;
+            baseDelayMs: number;
+            backoff: 'exponential';
+        };
+        rollbackStrategy: string;
+        components: string[];
+    };
+    validation: {
+        suites: string[];
+        baselineRequired: boolean;
+    };
+    rollout: {
+        featureFlag: string;
+        releaseCycles: number;
+        telemetryAlerts: boolean;
+    };
+    scoringSeed: string;
+};
+
+type SkillImplementation = {
+    version: 1;
+    sourceFile: string;
+    skillId: number;
+    skillName: string;
+    title: string;
+    domain: string;
+    domainSlug: string;
+    reason: string;
+    implementationGuide: string[];
+    runtimeProfile: SkillRuntimeProfile;
+    traceability: {
+        scopeStep: string;
+        contractStep: string;
+        coreStep: string;
+        orchestrationStep: string;
+        validationStep: string;
+        rolloutStep: string;
+    };
+};
+
+type ManifestEntry = {
+    id: number;
+    name: string;
+    title: string;
+    domain: string;
+    path: string;
+    implementationPath: string;
+    reason: string;
+    stepCount: number;
+    runtimeArchetype: string;
+    coreMethod: string;
+    primaryArtifact: string;
+};
+
 const REPO_ROOT = process.cwd();
-const SOURCE_PATH = path.join(REPO_ROOT, 'SKILLS_UPDATES_1000.md');
+const SOURCE_CANDIDATES = ['SKILL_UPDATES_1000.md', 'SKILLS_UPDATES_1000.md'] as const;
 const SKILL_ROOT = path.join(REPO_ROOT, 'skills', 'generated');
 const MANIFEST_PATH = path.join(SKILL_ROOT, 'skills.manifest.json');
 const INDEX_PATH = path.join(SKILL_ROOT, 'INDEX.md');
+const RUNTIME_CATALOG_PATH = path.join(SKILL_ROOT, 'runtime.catalog.json');
 
 function slugify(value: string): string {
     return value
@@ -25,6 +102,14 @@ function slugify(value: string): string {
 
 function cleanSentence(value: string): string {
     return value.replace(/\s+/g, ' ').trim();
+}
+
+function splitPhraseList(value: string): string[] {
+    return value
+        .replace(/\band\/or\b/gi, ' and ')
+        .split(/,\s*|\s+and\s+/gi)
+        .map((entry) => cleanSentence(entry).replace(/^and\s+/i, '').replace(/\.$/, ''))
+        .filter(Boolean);
 }
 
 function parseUpdates(markdown: string): SkillUpdate[] {
@@ -79,6 +164,31 @@ function parseUpdates(markdown: string): SkillUpdate[] {
     return updates;
 }
 
+function resolveSourcePath(repoRoot: string): string {
+    const existing = SOURCE_CANDIDATES
+        .map((relativePath) => path.join(repoRoot, relativePath))
+        .filter((absolutePath) => fs.existsSync(absolutePath));
+
+    if (existing.length === 0) {
+        throw new Error(`Could not find source backlog. Tried: ${SOURCE_CANDIDATES.join(', ')}`);
+    }
+
+    if (existing.length > 1) {
+        const [first, second] = existing;
+        const firstBody = fs.readFileSync(first, 'utf8');
+        const secondBody = fs.readFileSync(second, 'utf8');
+        if (firstBody !== secondBody) {
+            throw new Error(
+                `Found multiple backlog files with different contents:\n- ${first}\n- ${second}\n` +
+                'Keep one canonical source or make them identical.'
+            );
+        }
+    }
+
+    const preferred = path.join(repoRoot, SOURCE_CANDIDATES[0]);
+    return fs.existsSync(preferred) ? preferred : existing[0];
+}
+
 function buildSkillName(id: number, title: string, usedNames: Set<string>): string {
     const idPrefix = `u${String(id).padStart(4, '0')}`;
     const titleSlug = slugify(title);
@@ -95,6 +205,228 @@ function buildSkillName(id: number, title: string, usedNames: Set<string>): stri
     }
     usedNames.add(candidate);
     return candidate;
+}
+
+function extractCoreMethodAndArtifact(step: string, title: string): { coreMethod: string; primaryArtifact: string; } {
+    const match = step.match(/using (.+?), and produce (.+?) with deterministic scoring\.?$/i);
+    if (match) {
+        return {
+            coreMethod: cleanSentence(match[1]),
+            primaryArtifact: cleanSentence(match[2])
+        };
+    }
+
+    return {
+        coreMethod: 'deterministic capability execution',
+        primaryArtifact: `${title} execution output`
+    };
+}
+
+function extractKpiFocus(step: string): string[] {
+    const match = step.match(/tied to (.+?)\./i);
+    if (!match) {
+        return ['false certainty', 'unverified assumptions', 'decision drift'];
+    }
+
+    const parsed = splitPhraseList(match[1]);
+    if (parsed.length >= 3) return parsed.slice(0, 6);
+    return [...parsed, 'decision drift'].slice(0, 6);
+}
+
+function extractRequiredSignals(step: string): string[] {
+    const match = step.match(/for (.+?), then add schema validation/i);
+    const parsed = match ? splitPhraseList(match[1]) : [];
+    const normalized = parsed.map((entry) => entry.toLowerCase());
+    const withFallback = Array.from(new Set([
+        ...normalized,
+        'claims',
+        'evidence',
+        'confidence traces'
+    ]));
+    return withFallback.slice(0, 8);
+}
+
+function extractOrchestrationComponents(step: string): string[] {
+    const match = step.match(/orchestration:\s*(.+)$/i);
+    if (!match) {
+        return ['task routing', 'approval gates', 'retry strategy', 'rollback controls'];
+    }
+
+    return splitPhraseList(match[1]).map((entry) => entry.replace(/\.$/, '')).slice(0, 8);
+}
+
+function extractValidationSuites(step: string): string[] {
+    const suites: string[] = [];
+    if (/unit/i.test(step)) suites.push('unit');
+    if (/integration/i.test(step)) suites.push('integration');
+    if (/simulation/i.test(step)) suites.push('simulation');
+    if (/regression/i.test(step)) suites.push('regression-baseline');
+    if (suites.length === 0) suites.push('unit', 'integration', 'simulation');
+    return suites;
+}
+
+function extractReleaseCycles(step: string): number {
+    const wordMap: Record<string, number> = {
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+        five: 5
+    };
+    const match = step.match(/(one|two|three|four|five|\d+)\s+release cycles?/i);
+    if (!match) return 2;
+    const token = match[1].toLowerCase();
+    const numeric = Number(token);
+    if (Number.isFinite(numeric)) return Math.max(1, Math.min(6, Math.floor(numeric)));
+    return wordMap[token] ?? 2;
+}
+
+function hashNumber(value: string): number {
+    let hash = 2_166_136_261;
+    for (const ch of value) {
+        hash ^= ch.charCodeAt(0);
+        hash = Math.imul(hash, 16_777_619);
+    }
+    return hash >>> 0;
+}
+
+function deriveScoringWeights(seed: string): SkillRuntimeProfile['scoringWeights'] {
+    let state = hashNumber(seed);
+    const next = () => {
+        state = (Math.imul(state, 1_664_525) + 1_013_904_223) >>> 0;
+        return (state & 0xffff) / 0xffff;
+    };
+
+    const raw = [0.45 + next(), 0.45 + next(), 0.45 + next(), 0.45 + next()];
+    const total = raw.reduce((sum, value) => sum + value, 0);
+    const scaled = raw.map((value) => Number((value / total).toFixed(4)));
+    const drift = Number((1 - scaled.reduce((sum, value) => sum + value, 0)).toFixed(4));
+    scaled[scaled.length - 1] = Number((scaled[scaled.length - 1] + drift).toFixed(4));
+
+    return {
+        truth: scaled[0],
+        execution: scaled[1],
+        safety: scaled[2],
+        impact: scaled[3]
+    };
+}
+
+function derivePostureThresholds(seed: string): SkillRuntimeProfile['postureThresholds'] {
+    const base = hashNumber(seed);
+    const readyMin = 70 + (base % 11);
+    let reviewMin = 52 + ((base >> 4) % 11);
+    let reviewRisk = 46 + ((base >> 9) % 16);
+    const criticalRisk = 74 + ((base >> 14) % 16);
+
+    reviewMin = Math.min(reviewMin, readyMin - 5);
+    reviewRisk = Math.min(reviewRisk, criticalRisk - 5);
+
+    return {
+        readyMin,
+        reviewMin,
+        reviewRisk,
+        criticalRisk
+    };
+}
+
+function deriveArchetype(update: SkillUpdate, coreMethod: string, artifact: string): string {
+    const corpus = `${update.title} ${coreMethod} ${artifact}`.toLowerCase();
+    if (/normaliz|clean|mapping/.test(corpus)) return 'normalization-engine';
+    if (/priorit|rank|budget|allocat|scheduler|planner|router|decomposer/.test(corpus)) return 'planning-router';
+    if (/provenance|lineage|ledger|attestation/.test(corpus)) return 'provenance-tracker';
+    if (/detect|sentinel|monitor|guard|shield|threat/.test(corpus)) return 'detection-guard';
+    if (/simulat|counterfactual|sandbox|war-gamer/.test(corpus)) return 'simulation-lab';
+    if (/compile|compiler|mapper|adapter|contract/.test(corpus)) return 'contract-compiler';
+    if (/negotiation|mediat|resolver|consensus/.test(corpus)) return 'collaboration-mediator';
+    if (/narrative|communicat|publisher|synthesizer|translator/.test(corpus)) return 'communication-engine';
+    if (/audit|verifier|diagnostic|taxonomy|health/.test(corpus)) return 'diagnostic-engine';
+    if (/optimizer|calibration|autopatcher|consolidator/.test(corpus)) return 'optimization-engine';
+    return 'general-capability';
+}
+
+function deriveApprovalGates(domain: string, archetype: string): string[] {
+    const gates = ['policy-constraint-check', 'human-approval-router'];
+    if (/privacy|security|zero-trust|cryptographic/i.test(domain)) {
+        gates.push('security-review');
+    }
+    if (/health|safety|child|mental/i.test(domain)) {
+        gates.push('safety-review');
+    }
+    if (/economic|finance|funding|budget|philanthropic/i.test(domain)) {
+        gates.push('budget-review');
+    }
+    if (archetype === 'simulation-lab') {
+        gates.push('scenario-review');
+    }
+    return Array.from(new Set(gates));
+}
+
+function buildRuntimeProfile(update: SkillUpdate, skillName: string): SkillRuntimeProfile {
+    const scopeStep = update.steps[0] ?? '';
+    const contractStep = update.steps[1] ?? '';
+    const coreStep = update.steps[2] ?? '';
+    const orchestrationStep = update.steps[3] ?? '';
+    const validationStep = update.steps[4] ?? '';
+    const rolloutStep = update.steps[5] ?? '';
+
+    const { coreMethod, primaryArtifact } = extractCoreMethodAndArtifact(coreStep, update.title);
+    const archetype = deriveArchetype(update, coreMethod, primaryArtifact);
+    const scoringSeed = `${skillName}:${update.id}:${archetype}`;
+
+    return {
+        archetype,
+        coreMethod,
+        primaryArtifact,
+        requiredSignals: extractRequiredSignals(contractStep),
+        kpiFocus: extractKpiFocus(scopeStep),
+        scoringWeights: deriveScoringWeights(scoringSeed),
+        postureThresholds: derivePostureThresholds(scoringSeed),
+        orchestration: {
+            routingTag: `${slugify(update.domain)}:${archetype}`,
+            approvalGates: deriveApprovalGates(update.domain, archetype),
+            retryPolicy: {
+                maxAttempts: 3 + (update.id % 2),
+                baseDelayMs: 600 + (update.id % 5) * 150,
+                backoff: 'exponential'
+            },
+            rollbackStrategy: 'rollback-to-last-stable-baseline',
+            components: extractOrchestrationComponents(orchestrationStep)
+        },
+        validation: {
+            suites: extractValidationSuites(validationStep),
+            baselineRequired: /regression/i.test(validationStep)
+        },
+        rollout: {
+            featureFlag: `skill_${String(update.id).padStart(4, '0')}_${slugify(update.title).slice(0, 32)}`,
+            releaseCycles: extractReleaseCycles(rolloutStep),
+            telemetryAlerts: /telemetry|alert/i.test(rolloutStep)
+        },
+        scoringSeed
+    };
+}
+
+function buildImplementation(update: SkillUpdate, skillName: string, sourceFile: string): SkillImplementation {
+    const runtimeProfile = buildRuntimeProfile(update, skillName);
+    return {
+        version: 1,
+        sourceFile,
+        skillId: update.id,
+        skillName,
+        title: update.title,
+        domain: update.domain,
+        domainSlug: slugify(update.domain).slice(0, 64) || 'general',
+        reason: update.reason,
+        implementationGuide: update.steps,
+        runtimeProfile,
+        traceability: {
+            scopeStep: update.steps[0] ?? '',
+            contractStep: update.steps[1] ?? '',
+            coreStep: update.steps[2] ?? '',
+            orchestrationStep: update.steps[3] ?? '',
+            validationStep: update.steps[4] ?? '',
+            rolloutStep: update.steps[5] ?? ''
+        }
+    };
 }
 
 function buildSkillMarkdown(update: SkillUpdate, skillName: string): string {
@@ -135,24 +467,22 @@ function ensureCleanOutputDir(outputDir: string) {
     fs.mkdirSync(outputDir, { recursive: true });
 }
 
+function escapeMarkdownCell(value: string): string {
+    return value.replace(/\|/g, '\\|');
+}
+
 function main() {
-    const sourceMarkdown = fs.readFileSync(SOURCE_PATH, 'utf8');
+    const sourcePath = resolveSourcePath(REPO_ROOT);
+    const sourceFile = path.basename(sourcePath);
+    const sourceMarkdown = fs.readFileSync(sourcePath, 'utf8');
     const updates = parseUpdates(sourceMarkdown);
     if (updates.length !== 1000) {
-        throw new Error(`Expected 1000 updates in ${SOURCE_PATH}, found ${updates.length}`);
+        throw new Error(`Expected 1000 updates in ${sourcePath}, found ${updates.length}`);
     }
 
     ensureCleanOutputDir(SKILL_ROOT);
     const usedNames = new Set<string>();
-    const manifest: Array<{
-        id: number;
-        name: string;
-        title: string;
-        domain: string;
-        path: string;
-        reason: string;
-        stepCount: number;
-    }> = [];
+    const manifest: ManifestEntry[] = [];
 
     for (const update of updates) {
         if (!update.domain || !update.reason || update.steps.length < 6) {
@@ -163,7 +493,12 @@ function main() {
         const dirName = `${String(update.id).padStart(4, '0')}-${slugify(update.title).slice(0, 80)}`;
         const skillDir = path.join(SKILL_ROOT, dirName);
         fs.mkdirSync(skillDir, { recursive: true });
-        fs.writeFileSync(path.join(skillDir, 'SKILL.md'), buildSkillMarkdown(update, skillName));
+        const skillPath = path.join(skillDir, 'SKILL.md');
+        const implementationPath = path.join(skillDir, 'implementation.json');
+
+        fs.writeFileSync(skillPath, buildSkillMarkdown(update, skillName));
+        const implementation = buildImplementation(update, skillName, sourceFile);
+        fs.writeFileSync(implementationPath, `${JSON.stringify(implementation, null, 2)}\n`);
 
         manifest.push({
             id: update.id,
@@ -171,28 +506,52 @@ function main() {
             title: update.title,
             domain: update.domain,
             path: `skills/generated/${dirName}/SKILL.md`,
+            implementationPath: `skills/generated/${dirName}/implementation.json`,
             reason: update.reason,
-            stepCount: update.steps.length
+            stepCount: update.steps.length,
+            runtimeArchetype: implementation.runtimeProfile.archetype,
+            coreMethod: implementation.runtimeProfile.coreMethod,
+            primaryArtifact: implementation.runtimeProfile.primaryArtifact
         });
     }
 
     fs.writeFileSync(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`);
 
+    const runtimeCatalog = {
+        version: 1,
+        sourceFile,
+        generatedAt: new Date().toISOString(),
+        count: manifest.length,
+        entries: manifest.map((entry) => ({
+            id: entry.id,
+            name: entry.name,
+            domain: entry.domain,
+            implementationPath: entry.implementationPath,
+            archetype: entry.runtimeArchetype,
+            coreMethod: entry.coreMethod,
+            primaryArtifact: entry.primaryArtifact
+        }))
+    };
+    fs.writeFileSync(RUNTIME_CATALOG_PATH, `${JSON.stringify(runtimeCatalog, null, 2)}\n`);
+
     const indexLines = [
         '# Generated Skills Index (1000 Skills)',
         '',
-        'This index is generated from `SKILLS_UPDATES_1000.md`.',
+        `This index is generated from \`${sourceFile}\`.`,
         '',
-        '| Update | Skill Name | Domain | Path |',
-        '| --- | --- | --- | --- |',
+        '| Update | Skill Name | Domain | Archetype | Method | Path |',
+        '| --- | --- | --- | --- | --- | --- |',
         ...manifest.map((entry) => (
-            `| ${entry.id} | \`${entry.name}\` | ${entry.domain} | ${entry.path} |`
+            `| ${entry.id} | \`${entry.name}\` | ${escapeMarkdownCell(entry.domain)} | ` +
+            `${escapeMarkdownCell(entry.runtimeArchetype)} | ${escapeMarkdownCell(entry.coreMethod)} | ${entry.path} |`
         )),
         ''
     ];
     fs.writeFileSync(INDEX_PATH, indexLines.join('\n'));
 
-    console.log(`[build-1000-skills] Generated ${manifest.length} skills in ${SKILL_ROOT}`);
+    console.log(
+        `[build-1000-skills] Generated ${manifest.length} skills in ${SKILL_ROOT} from ${sourceFile}`
+    );
 }
 
 main();

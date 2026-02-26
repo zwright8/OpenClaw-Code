@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 535,
+  "skillName": "u0535-engineering-auto-retry-and-backoff-coordinator",
+  "title": "Engineering Auto-Retry and Backoff Coordinator",
+  "domain": "Software Engineering Automation",
+  "domainSlug": "software-engineering-automation",
+  "reason": "We need this skill because delivery speed must increase without sacrificing correctness. This specific skill improves success rates while preventing retry storms.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Engineering Auto-Retry and Backoff Coordinator`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "Implement the core capability using adaptive backoff control, and produce retry policy decisions with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "adaptive backoff control",
+    "primaryArtifact": "retry policy decisions",
+    "requiredSignals": [
+      "code changes",
+      "tests",
+      "incidents",
+      "rollout data",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "regressions",
+      "brittle release pipelines",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2314,
+      "execution": 0.2701,
+      "safety": 0.2695,
+      "impact": 0.229
+    },
+    "postureThresholds": {
+      "readyMin": 75,
+      "reviewMin": 59,
+      "reviewRisk": 60,
+      "criticalRisk": 83
+    },
+    "orchestration": {
+      "routingTag": "software-engineering-automation:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0535_engineering-auto-retry-and-backo",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0535-engineering-auto-retry-and-backoff-coordinator:535:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Engineering Auto-Retry and Backoff Coordinator`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "contractStep": "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using adaptive backoff control, and produce retry policy decisions with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

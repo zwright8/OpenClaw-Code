@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 824,
+  "skillName": "u0824-inclusion-explainability-narrative-builder",
+  "title": "Inclusion Explainability Narrative Builder",
+  "domain": "Accessibility and Inclusion",
+  "domainSlug": "accessibility-and-inclusion",
+  "reason": "We need this skill because systems must be operable and understandable for diverse users. This specific skill translates technical decisions into operator-usable narratives.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Inclusion Explainability Narrative Builder`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.",
+    "Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.",
+    "Implement the core capability using reason synthesis and abstraction, and produce decision narratives with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "reason synthesis and abstraction",
+    "primaryArtifact": "decision narratives",
+    "requiredSignals": [
+      "accessibility audits",
+      "accommodations",
+      "usability feedback",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "barriers for disabled",
+      "underserved groups",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2174,
+      "execution": 0.2973,
+      "safety": 0.3171,
+      "impact": 0.1682
+    },
+    "postureThresholds": {
+      "readyMin": 78,
+      "reviewMin": 54,
+      "reviewRisk": 59,
+      "criticalRisk": 79
+    },
+    "orchestration": {
+      "routingTag": "accessibility-and-inclusion:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0824_inclusion-explainability-narrati",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0824-inclusion-explainability-narrative-builder:824:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Inclusion Explainability Narrative Builder`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.",
+    "contractStep": "Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using reason synthesis and abstraction, and produce decision narratives with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

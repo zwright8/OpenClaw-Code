@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 626,
+  "skillName": "u0626-security-experiment-design-generator",
+  "title": "Security Experiment Design Generator",
+  "domain": "Security and Privacy",
+  "domainSlug": "security-and-privacy",
+  "reason": "We need this skill because production autonomy must default to least privilege and strong privacy. This specific skill converts unknowns into testable learning loops.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Security Experiment Design Generator`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "hypothesis-driven design",
+    "primaryArtifact": "experiment plans",
+    "requiredSignals": [
+      "permissions",
+      "sensitive data flows",
+      "threat events",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "breach",
+      "exfiltration",
+      "over-privileged actions"
+    ],
+    "scoringWeights": {
+      "truth": 0.157,
+      "execution": 0.3456,
+      "safety": 0.2303,
+      "impact": 0.2671
+    },
+    "postureThresholds": {
+      "readyMin": 80,
+      "reviewMin": 53,
+      "reviewRisk": 47,
+      "criticalRisk": 80
+    },
+    "orchestration": {
+      "routingTag": "security-and-privacy:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "security-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0626_security-experiment-design-gener",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0626-security-experiment-design-generator:626:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Security Experiment Design Generator`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "contractStep": "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 369,
+  "skillName": "u0369-logistics-resource-budget-allocator",
+  "title": "Logistics Resource Budget Allocator",
+  "domain": "Resource Allocation and Logistics",
+  "domainSlug": "resource-allocation-and-logistics",
+  "reason": "We need this skill because impact work fails when scarce resources are not routed intelligently. This specific skill matches mission ambition to finite execution capacity.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Logistics Resource Budget Allocator`, including at least three measurable KPIs tied to supply shortfalls and fairness gaps.",
+    "Design and version the input/output contract for capacity, bottlenecks, and distribution plans, then add schema validation and failure-mode handling.",
+    "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover supply shortfalls and fairness gaps, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "capacity-aware allocation",
+    "primaryArtifact": "budgeted execution plans",
+    "requiredSignals": [
+      "capacity",
+      "bottlenecks",
+      "distribution plans",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "supply shortfalls",
+      "fairness gaps",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2814,
+      "execution": 0.334,
+      "safety": 0.1626,
+      "impact": 0.222
+    },
+    "postureThresholds": {
+      "readyMin": 70,
+      "reviewMin": 57,
+      "reviewRisk": 52,
+      "criticalRisk": 75
+    },
+    "orchestration": {
+      "routingTag": "resource-allocation-and-logistics:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0369_logistics-resource-budget-alloca",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0369-logistics-resource-budget-allocator:369:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Logistics Resource Budget Allocator`, including at least three measurable KPIs tied to supply shortfalls and fairness gaps.",
+    "contractStep": "Design and version the input/output contract for capacity, bottlenecks, and distribution plans, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover supply shortfalls and fairness gaps, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 674,
+  "skillName": "u0674-crisis-equity-impact-scorer",
+  "title": "Crisis Equity Impact Scorer",
+  "domain": "Crisis and Incident Response",
+  "domainSlug": "crisis-and-incident-response",
+  "reason": "We need this skill because response quality determines whether incidents are contained or amplified. This specific skill exposes uneven benefit/harm distribution before rollout.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Crisis Equity Impact Scorer`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "Implement the core capability using group-level impact scoring, and produce equity impact profiles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "group-level impact scoring",
+    "primaryArtifact": "equity impact profiles",
+    "requiredSignals": [
+      "incident timelines",
+      "response roles",
+      "recovery artifacts",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow containment",
+      "repeated outages",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3785,
+      "execution": 0.2273,
+      "safety": 0.258,
+      "impact": 0.1362
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 60,
+      "reviewRisk": 48,
+      "criticalRisk": 89
+    },
+    "orchestration": {
+      "routingTag": "crisis-and-incident-response:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0674_crisis-equity-impact-scorer",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0674-crisis-equity-impact-scorer:674:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Crisis Equity Impact Scorer`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "contractStep": "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using group-level impact scoring, and produce equity impact profiles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

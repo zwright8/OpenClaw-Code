@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 361,
+  "skillName": "u0361-logistics-signal-ingestion-normalizer",
+  "title": "Logistics Signal Ingestion Normalizer",
+  "domain": "Resource Allocation and Logistics",
+  "domainSlug": "resource-allocation-and-logistics",
+  "reason": "We need this skill because impact work fails when scarce resources are not routed intelligently. This specific skill stabilizes noisy upstream inputs before they contaminate planning.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Logistics Signal Ingestion Normalizer`, including at least three measurable KPIs tied to supply shortfalls and fairness gaps.",
+    "Design and version the input/output contract for capacity, bottlenecks, and distribution plans, then add schema validation and failure-mode handling.",
+    "Implement the core capability using schema mapping and validation, and produce normalized signal feeds with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover supply shortfalls and fairness gaps, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "normalization-engine",
+    "coreMethod": "schema mapping and validation",
+    "primaryArtifact": "normalized signal feeds",
+    "requiredSignals": [
+      "capacity",
+      "bottlenecks",
+      "distribution plans",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "supply shortfalls",
+      "fairness gaps",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3639,
+      "execution": 0.1699,
+      "safety": 0.3132,
+      "impact": 0.153
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 53,
+      "reviewRisk": 50,
+      "criticalRisk": 75
+    },
+    "orchestration": {
+      "routingTag": "resource-allocation-and-logistics:normalization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0361_logistics-signal-ingestion-norma",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0361-logistics-signal-ingestion-normalizer:361:normalization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Logistics Signal Ingestion Normalizer`, including at least three measurable KPIs tied to supply shortfalls and fairness gaps.",
+    "contractStep": "Design and version the input/output contract for capacity, bottlenecks, and distribution plans, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using schema mapping and validation, and produce normalized signal feeds with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover supply shortfalls and fairness gaps, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

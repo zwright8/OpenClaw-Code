@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 440,
+  "skillName": "u0440-publicservice-continuous-improvement-planner",
+  "title": "PublicService Continuous Improvement Planner",
+  "domain": "Healthcare and Public Services",
+  "domainSlug": "healthcare-and-public-services",
+  "reason": "We need this skill because public-facing workflows require strict safety and reliability controls. This specific skill turns findings into sustained upgrade cycles.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `PublicService Continuous Improvement Planner`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "Implement the core capability using closed-loop prioritization, and produce improvement roadmaps with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "closed-loop prioritization",
+    "primaryArtifact": "improvement roadmaps",
+    "requiredSignals": [
+      "protocol checks",
+      "service queues",
+      "compliance flags",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "service harm",
+      "procedural violations",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3685,
+      "execution": 0.2425,
+      "safety": 0.1325,
+      "impact": 0.2565
+    },
+    "postureThresholds": {
+      "readyMin": 70,
+      "reviewMin": 53,
+      "reviewRisk": 54,
+      "criticalRisk": 78
+    },
+    "orchestration": {
+      "routingTag": "healthcare-and-public-services:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0440_publicservice-continuous-improve",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0440-publicservice-continuous-improvement-planner:440:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `PublicService Continuous Improvement Planner`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "contractStep": "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using closed-loop prioritization, and produce improvement roadmaps with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

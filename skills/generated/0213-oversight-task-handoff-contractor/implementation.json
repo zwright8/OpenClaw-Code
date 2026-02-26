@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 213,
+  "skillName": "u0213-oversight-task-handoff-contractor",
+  "title": "Oversight Task Handoff Contractor",
+  "domain": "Human Oversight and Operator UX",
+  "domainSlug": "human-oversight-and-operator-ux",
+  "reason": "We need this skill because human teams need fast, legible control when stakes are high. This specific skill standardizes handoffs between agents and humans.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Oversight Task Handoff Contractor`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "Implement the core capability using contracted payload schemas, and produce typed handoff artifacts with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "contracted payload schemas",
+    "primaryArtifact": "typed handoff artifacts",
+    "requiredSignals": [
+      "approval queues",
+      "operator workload",
+      "intervention history",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow interventions",
+      "approval bottlenecks",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.225,
+      "execution": 0.2679,
+      "safety": 0.2529,
+      "impact": 0.2542
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 61,
+      "reviewRisk": 54,
+      "criticalRisk": 83
+    },
+    "orchestration": {
+      "routingTag": "human-oversight-and-operator-ux:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0213_oversight-task-handoff-contracto",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0213-oversight-task-handoff-contractor:213:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Oversight Task Handoff Contractor`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "contractStep": "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using contracted payload schemas, and produce typed handoff artifacts with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 169,
+  "skillName": "u0169-governance-resource-budget-allocator",
+  "title": "Governance Resource Budget Allocator",
+  "domain": "Safety and Governance",
+  "domainSlug": "safety-and-governance",
+  "reason": "We need this skill because high-speed autonomy needs enforceable guardrails to stay aligned. This specific skill matches mission ambition to finite execution capacity.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Governance Resource Budget Allocator`, including at least three measurable KPIs tied to unsafe actions and policy drift.",
+    "Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.",
+    "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "capacity-aware allocation",
+    "primaryArtifact": "budgeted execution plans",
+    "requiredSignals": [
+      "policies",
+      "violations",
+      "mitigation actions",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "unsafe actions",
+      "policy drift",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3294,
+      "execution": 0.1708,
+      "safety": 0.2664,
+      "impact": 0.2334
+    },
+    "postureThresholds": {
+      "readyMin": 75,
+      "reviewMin": 60,
+      "reviewRisk": 48,
+      "criticalRisk": 81
+    },
+    "orchestration": {
+      "routingTag": "safety-and-governance:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0169_governance-resource-budget-alloc",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0169-governance-resource-budget-allocator:169:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Governance Resource Budget Allocator`, including at least three measurable KPIs tied to unsafe actions and policy drift.",
+    "contractStep": "Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

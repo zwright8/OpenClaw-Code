@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 489,
+  "skillName": "u0489-research-resource-budget-allocator",
+  "title": "Research Resource Budget Allocator",
+  "domain": "Scientific Research Systems",
+  "domainSlug": "scientific-research-systems",
+  "reason": "We need this skill because research throughput degrades without reproducibility and prioritization. This specific skill matches mission ambition to finite execution capacity.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Research Resource Budget Allocator`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "capacity-aware allocation",
+    "primaryArtifact": "budgeted execution plans",
+    "requiredSignals": [
+      "hypotheses",
+      "experiments",
+      "replication evidence",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "non-reproducible results",
+      "wasted cycles",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1514,
+      "execution": 0.1843,
+      "safety": 0.3416,
+      "impact": 0.3227
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 45,
+      "reviewRisk": 45,
+      "criticalRisk": 64
+    },
+    "orchestration": {
+      "routingTag": "scientific-research-systems:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0489_research-resource-budget-allocat",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0489-research-resource-budget-allocator:489:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Research Resource Budget Allocator`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "contractStep": "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

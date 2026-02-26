@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 512,
+  "skillName": "u0512-research-compliance-evidence-mapper",
+  "title": "Research Compliance Evidence Mapper",
+  "domain": "Scientific Research Systems",
+  "domainSlug": "scientific-research-systems",
+  "reason": "We need this skill because research throughput degrades without reproducibility and prioritization. This specific skill keeps proof of control coverage continuously current.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Research Compliance Evidence Mapper`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "Implement the core capability using requirement-to-evidence mapping, and produce compliance evidence matrices with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "normalization-engine",
+    "coreMethod": "requirement-to-evidence mapping",
+    "primaryArtifact": "compliance evidence matrices",
+    "requiredSignals": [
+      "hypotheses",
+      "experiments",
+      "replication evidence",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "non-reproducible results",
+      "wasted cycles",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.342,
+      "execution": 0.1782,
+      "safety": 0.1535,
+      "impact": 0.3263
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 50,
+      "reviewRisk": 45,
+      "criticalRisk": 70
+    },
+    "orchestration": {
+      "routingTag": "scientific-research-systems:normalization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0512_research-compliance-evidence-map",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0512-research-compliance-evidence-mapper:512:normalization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Research Compliance Evidence Mapper`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "contractStep": "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using requirement-to-evidence mapping, and produce compliance evidence matrices with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

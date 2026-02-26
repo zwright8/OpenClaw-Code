@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 265,
+  "skillName": "u0265-collab-uncertainty-communicator",
+  "title": "Collab Uncertainty Communicator",
+  "domain": "Collaboration and Negotiation",
+  "domainSlug": "collaboration-and-negotiation",
+  "reason": "We need this skill because multi-agent systems underperform without explicit conflict resolution. This specific skill prevents overstatement by explicitly framing uncertainty.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Collab Uncertainty Communicator`, including at least three measurable KPIs tied to deadlocks and degraded trust.",
+    "Design and version the input/output contract for proposals, contention signals, and negotiated outcomes, then add schema validation and failure-mode handling.",
+    "Implement the core capability using confidence-bound communication templates, and produce uncertainty briefs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover deadlocks and degraded trust, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "confidence-bound communication templates",
+    "primaryArtifact": "uncertainty briefs",
+    "requiredSignals": [
+      "proposals",
+      "contention signals",
+      "negotiated outcomes",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "deadlocks",
+      "degraded trust",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2232,
+      "execution": 0.1771,
+      "safety": 0.3936,
+      "impact": 0.2061
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 55,
+      "reviewRisk": 58,
+      "criticalRisk": 76
+    },
+    "orchestration": {
+      "routingTag": "collaboration-and-negotiation:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0265_collab-uncertainty-communicator",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0265-collab-uncertainty-communicator:265:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Collab Uncertainty Communicator`, including at least three measurable KPIs tied to deadlocks and degraded trust.",
+    "contractStep": "Design and version the input/output contract for proposals, contention signals, and negotiated outcomes, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using confidence-bound communication templates, and produce uncertainty briefs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover deadlocks and degraded trust, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 621,
+  "skillName": "u0621-security-plan-quality-evaluator",
+  "title": "Security Plan Quality Evaluator",
+  "domain": "Security and Privacy",
+  "domainSlug": "security-and-privacy",
+  "reason": "We need this skill because production autonomy must default to least privilege and strong privacy. This specific skill quantifies whether plans are complete, safe, and feasible.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Security Plan Quality Evaluator`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "Implement the core capability using multi-criteria plan scoring, and produce plan quality scorecards with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "multi-criteria plan scoring",
+    "primaryArtifact": "plan quality scorecards",
+    "requiredSignals": [
+      "permissions",
+      "sensitive data flows",
+      "threat events",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "breach",
+      "exfiltration",
+      "over-privileged actions"
+    ],
+    "scoringWeights": {
+      "truth": 0.294,
+      "execution": 0.3363,
+      "safety": 0.1125,
+      "impact": 0.2572
+    },
+    "postureThresholds": {
+      "readyMin": 70,
+      "reviewMin": 60,
+      "reviewRisk": 52,
+      "criticalRisk": 86
+    },
+    "orchestration": {
+      "routingTag": "security-and-privacy:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "security-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0621_security-plan-quality-evaluator",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0621-security-plan-quality-evaluator:621:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Security Plan Quality Evaluator`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "contractStep": "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using multi-criteria plan scoring, and produce plan quality scorecards with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

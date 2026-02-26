@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 324,
+  "skillName": "u0324-economic-contradiction-detector",
+  "title": "Economic Contradiction Detector",
+  "domain": "Economic Optimization",
+  "domainSlug": "economic-optimization",
+  "reason": "We need this skill because missions need explicit tradeoff logic for cost, speed, and impact. This specific skill catches internal and external claim conflicts early.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Economic Contradiction Detector`, including at least three measurable KPIs tied to overspending and low-impact allocation.",
+    "Design and version the input/output contract for budgets, costs, benefits, and opportunity values, then add schema validation and failure-mode handling.",
+    "Implement the core capability using cross-claim consistency checks, and produce contradiction alerts with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover overspending and low-impact allocation, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "detection-guard",
+    "coreMethod": "cross-claim consistency checks",
+    "primaryArtifact": "contradiction alerts",
+    "requiredSignals": [
+      "budgets",
+      "costs",
+      "benefits",
+      "opportunity values",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "overspending",
+      "low-impact allocation",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2708,
+      "execution": 0.1682,
+      "safety": 0.2556,
+      "impact": 0.3054
+    },
+    "postureThresholds": {
+      "readyMin": 70,
+      "reviewMin": 43,
+      "reviewRisk": 43,
+      "criticalRisk": 70
+    },
+    "orchestration": {
+      "routingTag": "economic-optimization:detection-guard",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "budget-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0324_economic-contradiction-detector",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0324-economic-contradiction-detector:324:detection-guard"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Economic Contradiction Detector`, including at least three measurable KPIs tied to overspending and low-impact allocation.",
+    "contractStep": "Design and version the input/output contract for budgets, costs, benefits, and opportunity values, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using cross-claim consistency checks, and produce contradiction alerts with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover overspending and low-impact allocation, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

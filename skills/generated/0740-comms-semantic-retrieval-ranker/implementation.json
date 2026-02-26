@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 740,
+  "skillName": "u0740-comms-semantic-retrieval-ranker",
+  "title": "Comms Semantic Retrieval Ranker",
+  "domain": "Communication and Explainability",
+  "domainSlug": "communication-and-explainability",
+  "reason": "We need this skill because complex systems require explanations humans can act on quickly. This specific skill improves recall precision for downstream decision quality.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Comms Semantic Retrieval Ranker`, including at least three measurable KPIs tied to misinterpretation and trust erosion.",
+    "Design and version the input/output contract for decision factors, uncertainty markers, and audience summaries, then add schema validation and failure-mode handling.",
+    "Implement the core capability using semantic relevance scoring, and produce ranked retrieval results with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover misinterpretation and trust erosion, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "semantic relevance scoring",
+    "primaryArtifact": "ranked retrieval results",
+    "requiredSignals": [
+      "decision factors",
+      "uncertainty markers",
+      "audience summaries",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "misinterpretation",
+      "trust erosion",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1422,
+      "execution": 0.2378,
+      "safety": 0.3145,
+      "impact": 0.3055
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 62,
+      "reviewRisk": 60,
+      "criticalRisk": 81
+    },
+    "orchestration": {
+      "routingTag": "communication-and-explainability:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0740_comms-semantic-retrieval-ranker",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0740-comms-semantic-retrieval-ranker:740:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Comms Semantic Retrieval Ranker`, including at least three measurable KPIs tied to misinterpretation and trust erosion.",
+    "contractStep": "Design and version the input/output contract for decision factors, uncertainty markers, and audience summaries, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using semantic relevance scoring, and produce ranked retrieval results with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover misinterpretation and trust erosion, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

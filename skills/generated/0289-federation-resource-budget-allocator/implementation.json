@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 289,
+  "skillName": "u0289-federation-resource-budget-allocator",
+  "title": "Federation Resource Budget Allocator",
+  "domain": "Federation and Interoperability",
+  "domainSlug": "federation-and-interoperability",
+  "reason": "We need this skill because cross-org collaboration fails without shared contracts and trust primitives. This specific skill matches mission ambition to finite execution capacity.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Federation Resource Budget Allocator`, including at least three measurable KPIs tied to integration breakage and trust boundary violations.",
+    "Design and version the input/output contract for envelopes, tenant boundaries, and protocol bridges, then add schema validation and failure-mode handling.",
+    "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover integration breakage and trust boundary violations, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "capacity-aware allocation",
+    "primaryArtifact": "budgeted execution plans",
+    "requiredSignals": [
+      "envelopes",
+      "tenant boundaries",
+      "protocol bridges",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "integration breakage",
+      "trust boundary violations",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.284,
+      "execution": 0.216,
+      "safety": 0.1857,
+      "impact": 0.3143
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 54,
+      "reviewRisk": 60,
+      "criticalRisk": 89
+    },
+    "orchestration": {
+      "routingTag": "federation-and-interoperability:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0289_federation-resource-budget-alloc",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0289-federation-resource-budget-allocator:289:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Federation Resource Budget Allocator`, including at least three measurable KPIs tied to integration breakage and trust boundary violations.",
+    "contractStep": "Design and version the input/output contract for envelopes, tenant boundaries, and protocol bridges, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using capacity-aware allocation, and produce budgeted execution plans with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover integration breakage and trust boundary violations, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

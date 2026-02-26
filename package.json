@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.json && npm --prefix cognition-core run typecheck && npm --prefix swarm-protocol run typecheck",
     "skills:build": "tsx scripts/build-1000-skills.ts",
     "skills:validate": "tsx scripts/validate-1000-skills.ts",
-    "skills:sync": "npm run skills:build && npm run skills:validate"
+    "skills:test": "tsx scripts/exercise-1000-skills.ts",
+    "skills:sync": "npm run skills:build && npm run skills:validate && npm run skills:test"
   },
   "devDependencies": {
     "@types/node": "^24.5.0",

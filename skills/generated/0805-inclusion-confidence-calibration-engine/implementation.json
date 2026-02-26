@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 805,
+  "skillName": "u0805-inclusion-confidence-calibration-engine",
+  "title": "Inclusion Confidence Calibration Engine",
+  "domain": "Accessibility and Inclusion",
+  "domainSlug": "accessibility-and-inclusion",
+  "reason": "We need this skill because systems must be operable and understandable for diverse users. This specific skill aligns reported confidence with actual uncertainty.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Inclusion Confidence Calibration Engine`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.",
+    "Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.",
+    "Implement the core capability using calibration curves and error bins, and produce calibrated confidence scores with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "optimization-engine",
+    "coreMethod": "calibration curves and error bins",
+    "primaryArtifact": "calibrated confidence scores",
+    "requiredSignals": [
+      "accessibility audits",
+      "accommodations",
+      "usability feedback",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "barriers for disabled",
+      "underserved groups",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.316,
+      "execution": 0.3302,
+      "safety": 0.2159,
+      "impact": 0.1379
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 57,
+      "reviewRisk": 56,
+      "criticalRisk": 85
+    },
+    "orchestration": {
+      "routingTag": "accessibility-and-inclusion:optimization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0805_inclusion-confidence-calibration",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0805-inclusion-confidence-calibration-engine:805:optimization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Inclusion Confidence Calibration Engine`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.",
+    "contractStep": "Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using calibration curves and error bins, and produce calibrated confidence scores with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 279,
+  "skillName": "u0279-collab-self-reflection-error-taxonomist",
+  "title": "Collab Self-Reflection Error Taxonomist",
+  "domain": "Collaboration and Negotiation",
+  "domainSlug": "collaboration-and-negotiation",
+  "reason": "We need this skill because multi-agent systems underperform without explicit conflict resolution. This specific skill classifies recurrent reasoning failures for targeted fixes.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Collab Self-Reflection Error Taxonomist`, including at least three measurable KPIs tied to deadlocks and degraded trust.",
+    "Design and version the input/output contract for proposals, contention signals, and negotiated outcomes, then add schema validation and failure-mode handling.",
+    "Implement the core capability using failure-type clustering, and produce error taxonomies with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover deadlocks and degraded trust, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "failure-type clustering",
+    "primaryArtifact": "error taxonomies",
+    "requiredSignals": [
+      "proposals",
+      "contention signals",
+      "negotiated outcomes",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "deadlocks",
+      "degraded trust",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2718,
+      "execution": 0.2219,
+      "safety": 0.216,
+      "impact": 0.2903
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 50,
+      "reviewRisk": 42,
+      "criticalRisk": 59
+    },
+    "orchestration": {
+      "routingTag": "collaboration-and-negotiation:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0279_collab-self-reflection-error-tax",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0279-collab-self-reflection-error-taxonomist:279:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Collab Self-Reflection Error Taxonomist`, including at least three measurable KPIs tied to deadlocks and degraded trust.",
+    "contractStep": "Design and version the input/output contract for proposals, contention signals, and negotiated outcomes, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using failure-type clustering, and produce error taxonomies with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover deadlocks and degraded trust, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

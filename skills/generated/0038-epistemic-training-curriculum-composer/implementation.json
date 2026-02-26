@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 38,
+  "skillName": "u0038-epistemic-training-curriculum-composer",
+  "title": "Epistemic Training Curriculum Composer",
+  "domain": "Truth-Seeking and Epistemics",
+  "domainSlug": "truth-seeking-and-epistemics",
+  "reason": "We need this skill because decisions drift when claims are accepted without verification. This specific skill converts capability gaps into actionable upskilling programs.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Epistemic Training Curriculum Composer`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "sequenced learning path design",
+    "primaryArtifact": "role-specific curricula",
+    "requiredSignals": [
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "false certainty",
+      "unverified assumptions",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2811,
+      "execution": 0.2747,
+      "safety": 0.2602,
+      "impact": 0.184
+    },
+    "postureThresholds": {
+      "readyMin": 70,
+      "reviewMin": 48,
+      "reviewRisk": 34,
+      "criticalRisk": 65
+    },
+    "orchestration": {
+      "routingTag": "truth-seeking-and-epistemics:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0038_epistemic-training-curriculum-co",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0038-epistemic-training-curriculum-composer:38:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Epistemic Training Curriculum Composer`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "contractStep": "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}
