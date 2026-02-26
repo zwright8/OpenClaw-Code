@@ -19,6 +19,39 @@ Use this skill when the request explicitly needs "Inclusion Contradiction Detect
 5. Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
+## Deterministic Workflow Notes
+- Core method: cross-claim consistency checks
+- Archetype: detection-guard
+- Routing tag: accessibility-and-inclusion:detection-guard
+
+## Input Contract
+- `accessibility audits` (signal, source=upstream, required=true)
+- `accommodations` (signal, source=upstream, required=true)
+- `usability feedback` (signal, source=upstream, required=true)
+- `claims` (signal, source=upstream, required=true)
+- `evidence` (signal, source=upstream, required=true)
+- `confidence traces` (signal, source=upstream, required=true)
+
+## Output Contract
+- `contradiction_alerts_report` (structured-report, consumer=orchestrator, guaranteed=true)
+- `contradiction_alerts_scorecard` (scorecard, consumer=operator, guaranteed=true)
+
+## Validation Gates
+1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
+2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
+3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+
+## Failure Handling
+- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
+- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
+- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
+- Rollback strategy: rollback-to-last-stable-baseline
+
+## Handoff Contract
+- Produces: Inclusion Contradiction Detector normalized artifacts; execution scorecard; risk posture
+- Consumes: accessibility audits; accommodations; usability feedback; claims; evidence; confidence traces
+- Downstream routing hint: Route next to accessibility-and-inclusion:detection-guard consumers with approval-gate context
+
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.

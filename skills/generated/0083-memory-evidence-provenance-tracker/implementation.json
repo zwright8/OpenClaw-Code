@@ -77,7 +77,114 @@
       "releaseCycles": 2,
       "telemetryAlerts": true
     },
-    "scoringSeed": "u0083-memory-evidence-provenance-tracker:83:provenance-tracker"
+    "scoringSeed": "u0083-memory-evidence-provenance-tracker:83:provenance-tracker",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "episodic logs",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "knowledge nodes",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "retrieval metadata",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "evidence_lineage_graphs_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "evidence_lineage_graphs_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Memory Evidence Provenance Tracker normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "episodic logs",
+        "knowledge nodes",
+        "retrieval metadata",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to memory-and-knowledge-operations:provenance-tracker consumers with approval-gate context"
+    }
   },
   "traceability": {
     "scopeStep": "Define the scope and success metrics for `Memory Evidence Provenance Tracker`, including at least three measurable KPIs tied to repeated mistakes and context loss.",

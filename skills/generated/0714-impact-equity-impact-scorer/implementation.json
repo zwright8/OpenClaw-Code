@@ -77,7 +77,114 @@
       "releaseCycles": 2,
       "telemetryAlerts": true
     },
-    "scoringSeed": "u0714-impact-equity-impact-scorer:714:general-capability"
+    "scoringSeed": "u0714-impact-equity-impact-scorer:714:general-capability",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "community outcomes",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "kpi trends",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "intervention deltas",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "equity_impact_profiles_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "equity_impact_profiles_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Impact Equity Impact Scorer normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "community outcomes",
+        "kpi trends",
+        "intervention deltas",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to social-impact-measurement:general-capability consumers with approval-gate context"
+    }
   },
   "traceability": {
     "scopeStep": "Define the scope and success metrics for `Impact Equity Impact Scorer`, including at least three measurable KPIs tied to impact theater and unmeasured harm.",

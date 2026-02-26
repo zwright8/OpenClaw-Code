@@ -48,6 +48,20 @@ type SkillRuntimeProfile = {
         telemetryAlerts: boolean;
     };
     scoringSeed: string;
+    ioContract?: {
+        inputs: Array<{ name: string; type: string; required: boolean; source: 'upstream' | 'runtime' | 'human'; }>;
+        outputs: Array<{ name: string; type: string; guaranteed: boolean; consumer: 'orchestrator' | 'operator' | 'downstream'; }>;
+    };
+    validationGates?: Array<{ gate: string; check: string; onFail: 'retry' | 'escalate' | 'quarantine'; }>;
+    failureHandling?: {
+        knownFailures: Array<{ code: string; trigger: string; action: string; }>;
+        rollbackStrategy: string;
+    };
+    handoffContract?: {
+        produces: string[];
+        consumes: string[];
+        downstreamHint: string;
+    };
 };
 
 type SkillImplementation = {
@@ -372,12 +386,14 @@ function buildRuntimeProfile(update: SkillUpdate, skillName: string): SkillRunti
     const { coreMethod, primaryArtifact } = extractCoreMethodAndArtifact(coreStep, update.title);
     const archetype = deriveArchetype(update, coreMethod, primaryArtifact);
     const scoringSeed = `${skillName}:${update.id}:${archetype}`;
+    const requiredSignals = extractRequiredSignals(contractStep);
+    const outputArtifact = slugify(primaryArtifact).replace(/-/g, '_').slice(0, 40) || 'artifact';
 
     return {
         archetype,
         coreMethod,
         primaryArtifact,
-        requiredSignals: extractRequiredSignals(contractStep),
+        requiredSignals,
         kpiFocus: extractKpiFocus(scopeStep),
         scoringWeights: deriveScoringWeights(scoringSeed),
         postureThresholds: derivePostureThresholds(scoringSeed),
@@ -401,7 +417,71 @@ function buildRuntimeProfile(update: SkillUpdate, skillName: string): SkillRunti
             releaseCycles: extractReleaseCycles(rolloutStep),
             telemetryAlerts: /telemetry|alert/i.test(rolloutStep)
         },
-        scoringSeed
+        scoringSeed,
+        ioContract: {
+            inputs: requiredSignals.map((signal) => ({
+                name: signal,
+                type: 'signal',
+                required: true,
+                source: 'upstream' as const
+            })),
+            outputs: [
+                {
+                    name: `${outputArtifact}_report`,
+                    type: 'structured-report',
+                    guaranteed: true,
+                    consumer: 'orchestrator' as const
+                },
+                {
+                    name: `${outputArtifact}_scorecard`,
+                    type: 'scorecard',
+                    guaranteed: true,
+                    consumer: 'operator' as const
+                }
+            ]
+        },
+        validationGates: [
+            {
+                gate: 'schema-contract-check',
+                check: 'All required input signals present and schema-valid',
+                onFail: 'quarantine'
+            },
+            {
+                gate: 'determinism-check',
+                check: 'Repeated run on same inputs yields stable scoring and artifacts',
+                onFail: 'escalate'
+            },
+            {
+                gate: 'policy-approval-check',
+                check: 'Approval gates satisfied before publish-level outputs',
+                onFail: 'retry'
+            }
+        ],
+        failureHandling: {
+            knownFailures: [
+                {
+                    code: 'E_INPUT_SCHEMA',
+                    trigger: 'Missing or malformed required signals',
+                    action: 'Reject payload, emit validation error, request corrected payload'
+                },
+                {
+                    code: 'E_NON_DETERMINISM',
+                    trigger: 'Determinism delta exceeds allowed threshold',
+                    action: 'Freeze output, escalate to human approval router'
+                },
+                {
+                    code: 'E_DEPENDENCY_TIMEOUT',
+                    trigger: 'Downstream or external dependency timeout',
+                    action: 'Apply retry policy then rollback to last stable baseline'
+                }
+            ],
+            rollbackStrategy: 'rollback-to-last-stable-baseline'
+        },
+        handoffContract: {
+            produces: [`${update.title} normalized artifacts`, 'execution scorecard', 'risk posture'],
+            consumes: requiredSignals,
+            downstreamHint: `Route next to ${slugify(update.domain)}:${archetype} consumers with approval-gate context`
+        }
     };
 }
 
@@ -429,7 +509,7 @@ function buildImplementation(update: SkillUpdate, skillName: string, sourceFile:
     };
 }
 
-function buildSkillMarkdown(update: SkillUpdate, skillName: string): string {
+function buildSkillMarkdown(update: SkillUpdate, skillName: string, runtimeProfile: SkillRuntimeProfile): string {
     const description = cleanSentence(
         `Build and operate the "${update.title}" capability for ${update.domain}. ` +
         `Trigger when this exact capability is needed in mission execution.`
@@ -437,6 +517,19 @@ function buildSkillMarkdown(update: SkillUpdate, skillName: string): string {
 
     const stepList = update.steps
         .map((step, index) => `${index + 1}. ${step}`)
+        .join('\n');
+
+    const inputLines = (runtimeProfile.ioContract?.inputs ?? [])
+        .map((item) => `- \`${item.name}\` (${item.type}, source=${item.source}, required=${item.required})`)
+        .join('\n');
+    const outputLines = (runtimeProfile.ioContract?.outputs ?? [])
+        .map((item) => `- \`${item.name}\` (${item.type}, consumer=${item.consumer}, guaranteed=${item.guaranteed})`)
+        .join('\n');
+    const gateLines = (runtimeProfile.validationGates ?? [])
+        .map((gate, index) => `${index + 1}. **${gate.gate}** — ${gate.check} (on fail: ${gate.onFail})`)
+        .join('\n');
+    const failureLines = (runtimeProfile.failureHandling?.knownFailures ?? [])
+        .map((failure) => `- \`${failure.code}\`: ${failure.trigger} → ${failure.action}`)
         .join('\n');
 
     return `---
@@ -455,6 +548,29 @@ Use this skill when the request explicitly needs "${update.title}" outcomes in t
 ## Step-by-Step Implementation Guide
 ${stepList}
 
+## Deterministic Workflow Notes
+- Core method: ${runtimeProfile.coreMethod}
+- Archetype: ${runtimeProfile.archetype}
+- Routing tag: ${runtimeProfile.orchestration.routingTag}
+
+## Input Contract
+${inputLines}
+
+## Output Contract
+${outputLines}
+
+## Validation Gates
+${gateLines}
+
+## Failure Handling
+${failureLines}
+- Rollback strategy: ${runtimeProfile.failureHandling?.rollbackStrategy ?? runtimeProfile.orchestration.rollbackStrategy}
+
+## Handoff Contract
+- Produces: ${(runtimeProfile.handoffContract?.produces ?? []).join('; ')}
+- Consumes: ${(runtimeProfile.handoffContract?.consumes ?? []).join('; ')}
+- Downstream routing hint: ${runtimeProfile.handoffContract?.downstreamHint ?? runtimeProfile.orchestration.routingTag}
+
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
@@ -463,8 +579,13 @@ ${stepList}
 }
 
 function ensureCleanOutputDir(outputDir: string) {
-    fs.rmSync(outputDir, { recursive: true, force: true });
     fs.mkdirSync(outputDir, { recursive: true });
+    const entries = fs.readdirSync(outputDir, { withFileTypes: true });
+    for (const entry of entries) {
+        if (!entry.isDirectory()) continue;
+        if (!/^\d{4}-/.test(entry.name)) continue;
+        fs.rmSync(path.join(outputDir, entry.name), { recursive: true, force: true });
+    }
 }
 
 function escapeMarkdownCell(value: string): string {
@@ -496,8 +617,8 @@ function main() {
         const skillPath = path.join(skillDir, 'SKILL.md');
         const implementationPath = path.join(skillDir, 'implementation.json');
 
-        fs.writeFileSync(skillPath, buildSkillMarkdown(update, skillName));
         const implementation = buildImplementation(update, skillName, sourceFile);
+        fs.writeFileSync(skillPath, buildSkillMarkdown(update, skillName, implementation.runtimeProfile));
         fs.writeFileSync(implementationPath, `${JSON.stringify(implementation, null, 2)}\n`);
 
         manifest.push({

@@ -41,6 +41,28 @@ export type SkillRolloutProfile = {
     telemetryAlerts: boolean;
 };
 
+export type SkillRuntimeIOContract = {
+    inputs: Array<{ name: string; type: string; required: boolean; source: 'upstream' | 'runtime' | 'human'; }>;
+    outputs: Array<{ name: string; type: string; guaranteed: boolean; consumer: 'orchestrator' | 'operator' | 'downstream'; }>;
+};
+
+export type SkillRuntimeValidationGate = {
+    gate: string;
+    check: string;
+    onFail: 'retry' | 'escalate' | 'quarantine';
+};
+
+export type SkillRuntimeFailureHandling = {
+    knownFailures: Array<{ code: string; trigger: string; action: string; }>;
+    rollbackStrategy: string;
+};
+
+export type SkillRuntimeHandoffContract = {
+    produces: string[];
+    consumes: string[];
+    downstreamHint: string;
+};
+
 export type SkillRuntimeProfile = {
     archetype: string;
     coreMethod: string;
@@ -53,6 +75,10 @@ export type SkillRuntimeProfile = {
     validation: SkillValidationProfile;
     rollout: SkillRolloutProfile;
     scoringSeed: string;
+    ioContract?: SkillRuntimeIOContract;
+    validationGates?: SkillRuntimeValidationGate[];
+    failureHandling?: SkillRuntimeFailureHandling;
+    handoffContract?: SkillRuntimeHandoffContract;
 };
 
 export type SkillImprovementTier = 'foundation' | 'advanced' | 'mission_critical';

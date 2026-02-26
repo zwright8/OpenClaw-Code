@@ -19,6 +19,39 @@ Use this skill when the request explicitly needs "Governance Explainability Narr
 5. Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
+## Deterministic Workflow Notes
+- Core method: reason synthesis and abstraction
+- Archetype: communication-engine
+- Routing tag: safety-and-governance:communication-engine
+
+## Input Contract
+- `policies` (signal, source=upstream, required=true)
+- `violations` (signal, source=upstream, required=true)
+- `mitigation actions` (signal, source=upstream, required=true)
+- `claims` (signal, source=upstream, required=true)
+- `evidence` (signal, source=upstream, required=true)
+- `confidence traces` (signal, source=upstream, required=true)
+
+## Output Contract
+- `decision_narratives_report` (structured-report, consumer=orchestrator, guaranteed=true)
+- `decision_narratives_scorecard` (scorecard, consumer=operator, guaranteed=true)
+
+## Validation Gates
+1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
+2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
+3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+
+## Failure Handling
+- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
+- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
+- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
+- Rollback strategy: rollback-to-last-stable-baseline
+
+## Handoff Contract
+- Produces: Governance Explainability Narrative Builder normalized artifacts; execution scorecard; risk posture
+- Consumes: policies; violations; mitigation actions; claims; evidence; confidence traces
+- Downstream routing hint: Route next to safety-and-governance:communication-engine consumers with approval-gate context
+
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.

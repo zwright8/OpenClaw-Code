@@ -19,6 +19,39 @@ Use this skill when the request explicitly needs "PublicService Dependency DAG P
 5. Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
+## Deterministic Workflow Notes
+- Core method: dependency graph compilation
+- Archetype: planning-router
+- Routing tag: healthcare-and-public-services:planning-router
+
+## Input Contract
+- `protocol checks` (signal, source=upstream, required=true)
+- `service queues` (signal, source=upstream, required=true)
+- `compliance flags` (signal, source=upstream, required=true)
+- `claims` (signal, source=upstream, required=true)
+- `evidence` (signal, source=upstream, required=true)
+- `confidence traces` (signal, source=upstream, required=true)
+
+## Output Contract
+- `validated_workflow_dags_report` (structured-report, consumer=orchestrator, guaranteed=true)
+- `validated_workflow_dags_scorecard` (scorecard, consumer=operator, guaranteed=true)
+
+## Validation Gates
+1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
+2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
+3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+
+## Failure Handling
+- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
+- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
+- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
+- Rollback strategy: rollback-to-last-stable-baseline
+
+## Handoff Contract
+- Produces: PublicService Dependency DAG Planner normalized artifacts; execution scorecard; risk posture
+- Consumes: protocol checks; service queues; compliance flags; claims; evidence; confidence traces
+- Downstream routing hint: Route next to healthcare-and-public-services:planning-router consumers with approval-gate context
+
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.

@@ -77,7 +77,114 @@
       "releaseCycles": 2,
       "telemetryAlerts": true
     },
-    "scoringSeed": "u0968-evolution-dependency-dag-planner:968:planning-router"
+    "scoringSeed": "u0968-evolution-dependency-dag-planner:968:planning-router",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "outcomes",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "error taxonomies",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "adaptation decisions",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "validated_workflow_dags_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "validated_workflow_dags_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Evolution Dependency DAG Planner normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "outcomes",
+        "error taxonomies",
+        "adaptation decisions",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to autonomous-learning-and-evolution:planning-router consumers with approval-gate context"
+    }
   },
   "traceability": {
     "scopeStep": "Define the scope and success metrics for `Evolution Dependency DAG Planner`, including at least three measurable KPIs tied to capability stagnation and repeated blind spots.",
