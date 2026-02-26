@@ -100,6 +100,13 @@ Adds an uncertainty communication composer to improve confidence calibration and
 ## Blueprint
 Long-term roadmap lives in:
 - [CAPABILITY_BLUEPRINT.md](/CAPABILITY_BLUEPRINT.md)
+- [CAPABILITY_DEPLOYABILITY_AUDIT.md](/CAPABILITY_DEPLOYABILITY_AUDIT.md)
+
+Refresh blueprint coverage and run full deployability audit:
+```bash
+npm run capabilities:blueprint
+npm run capabilities:audit
+```
 
 ## Quick Start
 

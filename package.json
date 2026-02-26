@@ -2,6 +2,8 @@
   "name": "openclaw-code",
   "private": true,
   "scripts": {
-    "build": "node scripts/auto-refactor.mjs && npm --prefix cognition-core test && npm --prefix swarm-protocol test"
+    "build": "node scripts/auto-refactor.mjs && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
+    "capabilities:blueprint": "node scripts/sync-capability-blueprint.mjs",
+    "capabilities:audit": "node scripts/audit-capabilities.mjs"
   }
 }

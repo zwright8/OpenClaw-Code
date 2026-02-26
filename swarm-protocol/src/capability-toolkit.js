@@ -39,6 +39,12 @@ function safeNumber(value, fallback = 0) {
     return Number.isFinite(numeric) ? numeric : fallback;
 }
 
+function safeFraction(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return Math.max(0, Math.min(1, numeric));
+}
+
 function clamp(value, min = 0, max = 100) {
     return Math.max(min, Math.min(max, value));
 }
@@ -80,6 +86,21 @@ function normalizeSignalDefinitions(signalMap = {}) {
     return normalized;
 }
 
+function parseSignalValue(rawValue, fallbackValue) {
+    const parsed = Number(rawValue);
+    if (Number.isFinite(parsed)) {
+        return {
+            value: clamp(parsed),
+            provided: true
+        };
+    }
+
+    return {
+        value: clamp(safeNumber(fallbackValue, 0)),
+        provided: false
+    };
+}
+
 function normalizeEntities(inputPayload, {
     collectionField,
     idField,
@@ -102,15 +123,28 @@ function normalizeEntities(inputPayload, {
                 : `${defaultName} ${index + 1}`;
 
             const signals = {};
+            let providedSignalCount = 0;
+            let defaultedSignalCount = 0;
             for (const [signalName, definition] of Object.entries(signalDefinitions)) {
                 const raw = entry?.[definition.field];
-                signals[signalName] = clamp(safeNumber(raw, definition.default));
+                const parsed = parseSignalValue(raw, definition.default);
+                signals[signalName] = parsed.value;
+                if (parsed.provided) providedSignalCount += 1;
+                else defaultedSignalCount += 1;
             }
+            const totalSignalCount = Object.keys(signalDefinitions).length;
+            const signalCoverage = totalSignalCount > 0
+                ? Number((providedSignalCount / totalSignalCount).toFixed(3))
+                : 1;
 
             return {
                 entityId,
                 entityName,
-                signals
+                signals,
+                signalCoverage,
+                providedSignalCount,
+                defaultedSignalCount,
+                totalSignalCount
             };
         });
 }
@@ -126,7 +160,7 @@ function normalizeCapacity(inputPayload = {}) {
     };
 }
 
-function scoreEntity(signals) {
+function scoreEntity(signals, signalCoverage = 1) {
     const pressureScore = clamp(Math.round(
         signals.demand * 0.42
         + signals.risk * 0.24
@@ -151,10 +185,13 @@ function scoreEntity(signals) {
         + signals.trust * 0.14
         + signals.quality * 0.16
     ));
+    const dataReliabilityScore = clamp(Math.round(signalCoverage * 100));
+    const confidencePenalty = clamp(Math.round((100 - dataReliabilityScore) * 0.18), 0, 18);
     const priorityScore = clamp(Math.round(
         gapScore * 0.56
         + benefitScore * 0.3
         + signals.criticality * 0.14
+        + confidencePenalty
     ));
 
     return {
@@ -162,7 +199,8 @@ function scoreEntity(signals) {
         bufferScore,
         gapScore,
         benefitScore,
-        priorityScore
+        priorityScore,
+        dataReliabilityScore
     };
 }
 
@@ -174,7 +212,7 @@ function assessEntities(entities, capacity, thresholds) {
     const prioritized = entities
         .map((entity) => ({
             ...entity,
-            ...scoreEntity(entity.signals)
+            ...scoreEntity(entity.signals, entity.signalCoverage)
         }))
         .sort((a, b) => b.priorityScore - a.priorityScore);
 
@@ -200,7 +238,7 @@ function assessEntities(entities, capacity, thresholds) {
             reviewHours -= reviewNeed;
         }
 
-        const projectedLift = allocated
+        const rawProjectedLift = allocated
             ? clamp(Math.round(
                 entity.signals.readiness * 0.2
                 + entity.signals.capacity * 0.18
@@ -214,6 +252,8 @@ function assessEntities(entities, capacity, thresholds) {
                 + entity.signals.capacity * 0.16
                 + entity.signals.trust * 0.14
             ));
+        const reliabilityFactor = Number((0.72 + entity.signalCoverage * 0.28).toFixed(3));
+        const projectedLift = clamp(Math.round(rawProjectedLift * reliabilityFactor));
 
         const residualGap = clamp(Math.round(
             entity.gapScore * 0.72
@@ -242,6 +282,11 @@ function assessEntities(entities, capacity, thresholds) {
                 analysisNeed,
                 reviewNeed
             },
+            signalCoverage: entity.signalCoverage,
+            providedSignalCount: entity.providedSignalCount,
+            defaultedSignalCount: entity.defaultedSignalCount,
+            totalSignalCount: entity.totalSignalCount,
+            dataReliabilityScore: entity.dataReliabilityScore,
             signals: {
                 ...entity.signals
             }
@@ -265,7 +310,13 @@ function assessEntities(entities, capacity, thresholds) {
     };
 }
 
-function summarizeAssessments(assessments, remainingCapacity, readyPosture, thresholds) {
+function summarizeAssessments(
+    assessments,
+    remainingCapacity,
+    readyPosture,
+    thresholds,
+    reliabilityPolicy
+) {
     const laneCounts = assessments.reduce((acc, item) => {
         acc[item.lane] = (acc[item.lane] || 0) + 1;
         return acc;
@@ -277,22 +328,48 @@ function summarizeAssessments(assessments, remainingCapacity, readyPosture, thre
     const avgProjectedLift = assessments.length > 0
         ? Number((assessments.reduce((acc, item) => acc + item.projectedLift, 0) / assessments.length).toFixed(2))
         : 0;
+    const avgSignalCoverage = assessments.length > 0
+        ? Number((assessments.reduce((acc, item) => acc + item.signalCoverage, 0) / assessments.length).toFixed(3))
+        : 1;
+    const lowCoverageCount = assessments.filter((item) => item.signalCoverage < reliabilityPolicy.lowCoverageThreshold).length;
+    const signalTotals = assessments.reduce((acc, item) => {
+        acc.total += item.totalSignalCount;
+        acc.defaulted += item.defaultedSignalCount;
+        return acc;
+    }, { total: 0, defaulted: 0 });
+    const defaultedSignalRate = signalTotals.total > 0
+        ? Number((signalTotals.defaulted / signalTotals.total).toFixed(3))
+        : 0;
 
     let posture = readyPosture;
     if (laneCounts.hold > 0 || avgResidualGap >= thresholds.criticalGap) posture = 'critical';
     else if (laneCounts.next > 0 || avgResidualGap >= thresholds.reviewGap) posture = 'review_required';
+    if (posture !== 'critical' && (
+        avgSignalCoverage < reliabilityPolicy.criticalCoverageThreshold
+        || defaultedSignalRate >= 0.5
+    )) {
+        posture = 'critical';
+    } else if (posture === readyPosture && (
+        lowCoverageCount > 0
+        || defaultedSignalRate >= reliabilityPolicy.defaultSignalRateThreshold
+    )) {
+        posture = 'review_required';
+    }
 
     return {
         entityCount: assessments.length,
         laneCounts,
         avgResidualGap,
         avgProjectedLift,
+        avgSignalCoverage,
+        lowCoverageCount,
+        defaultedSignalRate,
         remainingCapacity,
         posture
     };
 }
 
-function buildAlerts(assessments, summary, capabilityId) {
+function buildAlerts(assessments, summary, capabilityId, reliabilityPolicy) {
     const alerts = [];
 
     if (summary.laneCounts.hold > 0) alerts.push(`${capabilityId}_hold_queue_present`);
@@ -306,14 +383,25 @@ function buildAlerts(assessments, summary, capabilityId) {
     if (assessments.some((item) => item.signals.quality < 50)) {
         alerts.push(`${capabilityId}_signal_quality_gap`);
     }
+    if (summary.lowCoverageCount > 0) {
+        alerts.push(`${capabilityId}_low_signal_coverage`);
+    }
+    if (summary.defaultedSignalRate >= reliabilityPolicy.defaultSignalRateThreshold) {
+        alerts.push(`${capabilityId}_default_signal_overuse`);
+    }
 
     return alerts;
 }
 
-function buildRecommendations(assessments, alerts, recommendationTypes) {
+function buildRecommendations(assessments, alerts, recommendationTypes, reliabilityPolicy) {
     const recommendations = [];
 
     for (const item of assessments) {
+        const weakSignalCoverage = (
+            item.signalCoverage < reliabilityPolicy.lowCoverageThreshold
+            || item.defaultedSignalCount >= Math.ceil(item.totalSignalCount * 0.4)
+        );
+
         if (item.allocated && item.lane === 'now') {
             recommendations.push({
                 id: `recommendation-${randomUUID().slice(0, 8)}`,
@@ -323,7 +411,8 @@ function buildRecommendations(assessments, alerts, recommendationTypes) {
                 description: `Priority ${item.priorityScore} with projected lift ${item.projectedLift}.`,
                 priority: item.priorityScore >= 80 ? 'P1' : 'P2',
                 lane: item.lane,
-                residualGap: item.residualGap
+                residualGap: item.residualGap,
+                signalCoverage: item.signalCoverage
             });
         }
 
@@ -336,20 +425,28 @@ function buildRecommendations(assessments, alerts, recommendationTypes) {
                 description: `Residual gap ${item.residualGap} with risk ${item.signals.risk}.`,
                 priority: item.lane === 'hold' ? 'P0' : 'P1',
                 lane: item.lane,
-                residualGap: item.residualGap
+                residualGap: item.residualGap,
+                signalCoverage: item.signalCoverage
             });
         }
 
-        if (item.signals.trust < 50 || item.signals.quality < 50) {
+        if (item.signals.trust < 50 || item.signals.quality < 50 || weakSignalCoverage) {
+            const qualityIssues = [];
+            if (item.signals.trust < 50) qualityIssues.push(`trust ${item.signals.trust}`);
+            if (item.signals.quality < 50) qualityIssues.push(`quality ${item.signals.quality}`);
+            if (weakSignalCoverage) {
+                qualityIssues.push(`signal coverage ${(item.signalCoverage * 100).toFixed(1)}%`);
+            }
             recommendations.push({
                 id: `recommendation-${randomUUID().slice(0, 8)}`,
                 type: recommendationTypes.audit,
                 entityId: item.entityId,
                 title: `Audit signal quality for ${item.entityName}`,
-                description: `Trust ${item.signals.trust} and quality ${item.signals.quality} need verification.`,
+                description: `${qualityIssues.join(', ')} need verification.`,
                 priority: item.lane === 'hold' ? 'P1' : 'P2',
                 lane: item.lane,
-                residualGap: item.residualGap
+                residualGap: item.residualGap,
+                signalCoverage: item.signalCoverage
             });
         }
     }
@@ -362,7 +459,8 @@ function buildRecommendations(assessments, alerts, recommendationTypes) {
             description: 'Share actionable lanes, residual risks, and capacity constraints.',
             priority: alerts.some((alert) => alert.endsWith('_hold_queue_present')) ? 'P1' : 'P2',
             lane: 'now',
-            residualGap: 0
+            residualGap: 0,
+            signalCoverage: null
         });
     }
 
@@ -411,6 +509,11 @@ export function createCapabilityToolkit(config = {}) {
         ...DefaultThresholds,
         ...(config.thresholds || {})
     };
+    const reliabilityPolicy = {
+        lowCoverageThreshold: safeFraction(config.reliabilityPolicy?.lowCoverageThreshold, 0.6),
+        defaultSignalRateThreshold: safeFraction(config.reliabilityPolicy?.defaultSignalRateThreshold, 0.35),
+        criticalCoverageThreshold: safeFraction(config.reliabilityPolicy?.criticalCoverageThreshold, 0.45)
+    };
 
     function evaluate(inputPayload, { now = Date.now } = {}) {
         const at = safeNow(now);
@@ -427,10 +530,16 @@ export function createCapabilityToolkit(config = {}) {
             assessed.assessments,
             assessed.remainingCapacity,
             readyPosture,
-            thresholds
+            thresholds,
+            reliabilityPolicy
         );
-        const alerts = buildAlerts(assessed.assessments, summary, capabilityId);
-        const recommendations = buildRecommendations(assessed.assessments, alerts, recommendationTypes);
+        const alerts = buildAlerts(assessed.assessments, summary, capabilityId, reliabilityPolicy);
+        const recommendations = buildRecommendations(
+            assessed.assessments,
+            alerts,
+            recommendationTypes,
+            reliabilityPolicy
+        );
 
         return {
             at,
@@ -472,7 +581,10 @@ export function createCapabilityToolkit(config = {}) {
                 posture: reportPayload.summary?.posture || null,
                 holdCount: reportPayload.summary?.laneCounts?.hold || 0,
                 lane: recommendation.lane || null,
-                residualGap: recommendation.residualGap ?? null
+                residualGap: recommendation.residualGap ?? null,
+                signalCoverage: recommendation.signalCoverage ?? null,
+                defaultedSignalRate: reportPayload.summary?.defaultedSignalRate ?? null,
+                lowCoverageCount: reportPayload.summary?.lowCoverageCount ?? 0
             },
             createdAt: nowMs + index
         }));
@@ -530,7 +642,8 @@ export function createCapabilityToolkit(config = {}) {
             scoreEntity,
             assessEntities,
             summarizeAssessments,
-            buildRecommendations
+            buildRecommendations,
+            parseSignalValue
         }
     };
 }
