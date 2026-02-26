@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsx scripts/auto-refactor.ts && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
+    "lint": "tsx scripts/auto-refactor.ts",
+    "build": "npm run lint && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
     "capabilities:blueprint": "tsx scripts/sync-capability-blueprint.ts",
     "capabilities:audit": "tsx scripts/audit-capabilities.ts",
     "typecheck": "tsc --noEmit -p tsconfig.json && npm --prefix cognition-core run typecheck && npm --prefix swarm-protocol run typecheck",

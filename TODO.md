@@ -12,5 +12,5 @@
 - [x] **Live Test:** First successful handshake and report handoff between `main` and `nexus`. (Completed 2026-02-25)
 
 ## Infrastructure
-- [ ] **Auto-Refactor:** A script that lints my own code in this repo.
+- [x] **Auto-Refactor:** A script that lints my own code in this repo. (Completed 2026-02-26 — `scripts/auto-refactor.mjs`)
 - [ ] **WhatsApp Stability Tracker:** Monitor and alert on gateway disconnect/reconnect loops. (Added 2026-02-25)
