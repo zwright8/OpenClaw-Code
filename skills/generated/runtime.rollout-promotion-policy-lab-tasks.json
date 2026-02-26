@@ -146,7 +146,7 @@
         "maxAvgFailureRateDelta": 0.01,
         "maxAvgCriticalWaveDelta": 0.15
       },
-      "sampleSize": 3
+      "sampleSize": 4
     }
   }
 ]

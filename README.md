@@ -138,6 +138,8 @@ Outputs are generated under `skills/generated/`:
 - `runtime.rollout-promotion-drift-tasks.json` + `runtime.rollout-promotion-drift-tasks.md` (governance tasks generated from drift level)
 - `runtime.rollout-promotion-policy-lab.json` + `runtime.rollout-promotion-policy-lab.md` (simulated ranking of candidate promotion threshold profiles)
 - `runtime.rollout-promotion-policy-lab-tasks.json` + `runtime.rollout-promotion-policy-lab-tasks.md` (executable tasks to apply/compare lab-recommended policies)
+- `runtime.rollout-promotion-policy-canary.json` + `runtime.rollout-promotion-policy-canary.md` (scenario-weighted canary decision: adopt/defer/rollback)
+- `runtime.rollout-promotion-policy-canary-tasks.json` + `runtime.rollout-promotion-policy-canary-tasks.md` (operational tasks generated from canary decision and breach scenarios)
 - `skills/state/runtime.rollout-promotion-policy-history.state.json` (persistent history backing store across full rebuilds)
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
 - `0001-.../implementation.json` through `1000-.../implementation.json`

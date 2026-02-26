@@ -605,3 +605,45 @@ export type SkillRolloutPromotionPolicyLabRun = {
     variants: SkillRolloutPromotionPolicyLabVariant[];
     assumptions: string[];
 };
+
+export type SkillRolloutPromotionPolicyCanaryDecision = 'adopt' | 'defer' | 'rollback';
+
+export type SkillRolloutPromotionPolicyCanaryScenario = {
+    name: string;
+    weight: number;
+    baseline: {
+        failureRate: number;
+        approvalPendingRate: number;
+        successRate: number;
+        candidateWinRate: number;
+    };
+    candidate: {
+        failureRate: number;
+        approvalPendingRate: number;
+        successRate: number;
+        candidateWinRate: number;
+    };
+    scoreDelta: number;
+    guardrailBreaches: string[];
+};
+
+export type SkillRolloutPromotionPolicyCanaryRun = {
+    generatedAt: string;
+    sampleSize: number;
+    driftLevel: SkillRolloutPromotionPolicyDriftLevel;
+    baselinePolicy: SkillRolloutPromotionPolicy;
+    candidatePolicy: SkillRolloutPromotionPolicy;
+    decision: SkillRolloutPromotionPolicyCanaryDecision;
+    confidence: number;
+    baselineScore: number;
+    candidateScore: number;
+    scoreDelta: number;
+    scenarioCount: number;
+    weightedFailureDelta: number;
+    weightedApprovalPendingDelta: number;
+    weightedSuccessDelta: number;
+    weightedCandidateWinDelta: number;
+    guardrailBreaches: string[];
+    reasons: string[];
+    scenarios: SkillRolloutPromotionPolicyCanaryScenario[];
+};

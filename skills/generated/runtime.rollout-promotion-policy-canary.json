@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-02-26T05:47:46.859Z",
+  "sampleSize": 4,
+  "driftLevel": "stable",
+  "baselinePolicy": {
+    "minCandidateWinRate": 0.55,
+    "maxWeightedScoreDelta": 0.5,
+    "maxWorstScoreDelta": 45,
+    "maxAvgFailureRateDelta": 0.01,
+    "maxAvgCriticalWaveDelta": 0.15
+  },
+  "candidatePolicy": {
+    "minCandidateWinRate": 0.575,
+    "maxWeightedScoreDelta": 0.18,
+    "maxWorstScoreDelta": 39,
+    "maxAvgFailureRateDelta": 0.008,
+    "maxAvgCriticalWaveDelta": 0.134
+  },
+  "decision": "adopt",
+  "confidence": 0.75,
+  "baselineScore": 100.408,
+  "candidateScore": 96.452,
+  "scoreDelta": -3.956,
+  "scenarioCount": 5,
+  "weightedFailureDelta": -0.0058,
+  "weightedApprovalPendingDelta": 0.0082,
+  "weightedSuccessDelta": 0.0125,
+  "weightedCandidateWinDelta": 0.0048,
+  "guardrailBreaches": [],
+  "reasons": [
+    "candidate policy improves canary score with no meaningful guardrail regressions",
+    "weighted deltas failure=-0.0058, pending=0.0082, success=0.0125",
+    "weighted score delta=-3.956 across 5 canary scenarios"
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "weight": 0.32,
+      "baseline": {
+        "failureRate": 0.0476,
+        "approvalPendingRate": 0.1071,
+        "successRate": 0.8333,
+        "candidateWinRate": 0.4211
+      },
+      "candidate": {
+        "failureRate": 0.0418,
+        "approvalPendingRate": 0.1153,
+        "successRate": 0.8482,
+        "candidateWinRate": 0.4259
+      },
+      "scoreDelta": -4.319,
+      "guardrailBreaches": []
+    },
+    {
+      "name": "traffic_spike",
+      "weight": 0.22,
+      "baseline": {
+        "failureRate": 0.0596,
+        "approvalPendingRate": 0.1221,
+        "successRate": 0.8213,
+        "candidateWinRate": 0.4121
+      },
+      "candidate": {
+        "failureRate": 0.0538,
+        "approvalPendingRate": 0.1303,
+        "successRate": 0.8333,
+        "candidateWinRate": 0.4169
+      },
+      "scoreDelta": -3.884,
+      "guardrailBreaches": []
+    },
+    {
+      "name": "approval_burst",
+      "weight": 0.2,
+      "baseline": {
+        "failureRate": 0.0548,
+        "approvalPendingRate": 0.1761,
+        "successRate": 0.8261,
+        "candidateWinRate": 0.4157
+      },
+      "candidate": {
+        "failureRate": 0.049,
+        "approvalPendingRate": 0.1843,
+        "successRate": 0.8345,
+        "candidateWinRate": 0.4205
+      },
+      "scoreDelta": -3.344,
+      "guardrailBreaches": []
+    },
+    {
+      "name": "incident_backpressure",
+      "weight": 0.18,
+      "baseline": {
+        "failureRate": 0.0632,
+        "approvalPendingRate": 0.1266,
+        "successRate": 0.8177,
+        "candidateWinRate": 0.4094
+      },
+      "candidate": {
+        "failureRate": 0.0574,
+        "approvalPendingRate": 0.1348,
+        "successRate": 0.8289,
+        "candidateWinRate": 0.4142
+      },
+      "scoreDelta": -3.764,
+      "guardrailBreaches": []
+    },
+    {
+      "name": "recovery_window",
+      "weight": 0.08,
+      "baseline": {
+        "failureRate": 0.038,
+        "approvalPendingRate": 0.0951,
+        "successRate": 0.8429,
+        "candidateWinRate": 0.4283
+      },
+      "candidate": {
+        "failureRate": 0.0322,
+        "approvalPendingRate": 0.1033,
+        "successRate": 0.8601,
+        "candidateWinRate": 0.4331
+      },
+      "scoreDelta": -4.664,
+      "guardrailBreaches": []
+    }
+  ]
+}

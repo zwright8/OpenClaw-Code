@@ -7,3 +7,4 @@ export * from './rollout-controller.js';
 export * from './rollout-optimizer.js';
 export * from './promotion-controller.js';
 export * from './promotion-policy-lab.js';
+export * from './promotion-policy-canary.js';

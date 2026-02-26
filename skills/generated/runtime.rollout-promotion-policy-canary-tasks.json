@@ -1,0 +1,74 @@
+[
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-canary-publish",
+    "from": "agent:skills-rollout-promotion-canary",
+    "to": "agent:rollout-controller",
+    "task": "Publish promotion policy canary decision (adopt)",
+    "priority": "P1",
+    "context": {
+      "decision": "adopt",
+      "confidence": 0.75,
+      "baselinePolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "candidatePolicy": {
+        "minCandidateWinRate": 0.575,
+        "maxWeightedScoreDelta": 0.18,
+        "maxWorstScoreDelta": 39,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.134
+      },
+      "scoreDelta": -3.956,
+      "guardrailBreaches": [],
+      "reasons": [
+        "candidate policy improves canary score with no meaningful guardrail regressions",
+        "weighted deltas failure=-0.0058, pending=0.0082, success=0.0125",
+        "weighted score delta=-3.956 across 5 canary scenarios"
+      ]
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-canary-adopt",
+    "from": "agent:skills-rollout-promotion-canary",
+    "to": "agent:rollout-controller",
+    "task": "Adopt candidate promotion policy and begin staged rollout",
+    "priority": "P1",
+    "context": {
+      "candidatePolicy": {
+        "minCandidateWinRate": 0.575,
+        "maxWeightedScoreDelta": 0.18,
+        "maxWorstScoreDelta": 39,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.134
+      },
+      "baselinePolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "confidence": 0.75
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-canary-audit",
+    "from": "agent:skills-rollout-promotion-canary",
+    "to": "agent:rollout-controller",
+    "task": "Archive canary decision evidence and scenario-level guardrail outcomes",
+    "priority": "P1",
+    "context": {
+      "decision": "adopt",
+      "confidence": 0.75,
+      "scenarioCount": 5,
+      "guardrailBreaches": []
+    }
+  }
+]

@@ -8,7 +8,7 @@
     "priority": "P1",
     "context": {
       "driftLevel": "stable",
-      "sampleSize": 3,
+      "sampleSize": 4,
       "trend": {
         "failureRateDelta": 0,
         "approvalPendingRateDelta": 0,
@@ -54,7 +54,7 @@
     "priority": "P1",
     "context": {
       "driftLevel": "stable",
-      "sampleSize": 3
+      "sampleSize": 4
     }
   }
 ]
