@@ -19,9 +19,11 @@ type CliOptions = {
 
 const REPO_ROOT = process.cwd();
 const GENERATED_ROOT = path.join(REPO_ROOT, 'skills', 'generated');
+const STATE_ROOT = path.join(REPO_ROOT, 'skills', 'state');
 const OPTIMIZATION_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimization.json');
 const PROMOTION_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-control.json');
 const PROMOTION_ADJUSTMENT_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-policy-adjustment.json');
+const POLICY_HISTORY_STATE_PATH = path.join(STATE_ROOT, 'runtime.rollout-promotion-policy-history.state.json');
 const POLICY_HISTORY_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-policy-history.json');
 const POLICY_HISTORY_MD_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-policy-history.md');
 const POLICY_DRIFT_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-policy-drift.json');
@@ -142,9 +144,11 @@ function main() {
     const optimization = loadJson<SkillRolloutOptimizationRun>(OPTIMIZATION_PATH);
     const controlRun = loadJson<SkillRolloutPromotionControlRun>(PROMOTION_CONTROL_PATH);
     const adjustment = loadJson<SkillRolloutPromotionPolicyAdjustment>(PROMOTION_ADJUSTMENT_PATH);
-    const priorHistory = fs.existsSync(POLICY_HISTORY_PATH)
-        ? loadJson<SkillRolloutPromotionPolicyHistory>(POLICY_HISTORY_PATH)
-        : undefined;
+    const priorHistory = fs.existsSync(POLICY_HISTORY_STATE_PATH)
+        ? loadJson<SkillRolloutPromotionPolicyHistory>(POLICY_HISTORY_STATE_PATH)
+        : fs.existsSync(POLICY_HISTORY_PATH)
+            ? loadJson<SkillRolloutPromotionPolicyHistory>(POLICY_HISTORY_PATH)
+            : undefined;
 
     const history = updateSkillRolloutPromotionPolicyHistory({
         history: priorHistory,
@@ -159,6 +163,8 @@ function main() {
     const drift = evaluateSkillRolloutPromotionPolicyDrift(history, options.sampleSize);
     const driftTasks = rolloutPromotionPolicyDriftToTasks(drift);
 
+    fs.mkdirSync(STATE_ROOT, { recursive: true });
+    fs.writeFileSync(POLICY_HISTORY_STATE_PATH, `${JSON.stringify(history, null, 2)}\n`);
     fs.writeFileSync(POLICY_HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`);
     fs.writeFileSync(POLICY_HISTORY_MD_PATH, renderHistoryMarkdown(history));
     fs.writeFileSync(POLICY_DRIFT_PATH, `${JSON.stringify(drift, null, 2)}\n`);

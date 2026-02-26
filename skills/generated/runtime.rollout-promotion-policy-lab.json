@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-26T05:39:52.304Z",
-  "sampleSize": 1,
+  "generatedAt": "2026-02-26T05:41:07.439Z",
+  "sampleSize": 3,
   "driftLevel": "stable",
   "baselinePolicy": {
     "minCandidateWinRate": 0.55,

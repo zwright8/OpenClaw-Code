@@ -9,6 +9,8 @@ import type {
 
 const REPO_ROOT = process.cwd();
 const GENERATED_ROOT = path.join(REPO_ROOT, 'skills', 'generated');
+const STATE_ROOT = path.join(REPO_ROOT, 'skills', 'state');
+const POLICY_HISTORY_STATE_PATH = path.join(STATE_ROOT, 'runtime.rollout-promotion-policy-history.state.json');
 const POLICY_HISTORY_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-policy-history.json');
 const POLICY_HISTORY_MD_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-policy-history.md');
 const POLICY_DRIFT_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion-policy-drift.json');
@@ -23,6 +25,7 @@ function loadJson<T>(filePath: string): T {
 function main() {
     for (const requiredPath of [
         POLICY_HISTORY_PATH,
+        POLICY_HISTORY_STATE_PATH,
         POLICY_HISTORY_MD_PATH,
         POLICY_DRIFT_PATH,
         POLICY_DRIFT_MD_PATH,
@@ -33,11 +36,13 @@ function main() {
     }
 
     const history = loadJson<SkillRolloutPromotionPolicyHistory>(POLICY_HISTORY_PATH);
+    const historyState = loadJson<SkillRolloutPromotionPolicyHistory>(POLICY_HISTORY_STATE_PATH);
     const drift = loadJson<SkillRolloutPromotionPolicyDriftReport>(POLICY_DRIFT_PATH);
     const driftTasks = loadJson<SkillExecutionTask[]>(POLICY_DRIFT_TASKS_PATH);
 
     assert.equal(history.entryCount, history.entries.length, 'History entryCount mismatch');
     assert.ok(history.entryCount >= 1, 'Expected at least one history entry');
+    assert.deepEqual(historyState, history, 'Persistent history state mismatch');
 
     for (const entry of history.entries) {
         assert.ok(

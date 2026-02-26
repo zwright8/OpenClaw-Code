@@ -8,7 +8,7 @@
     "priority": "P1",
     "context": {
       "driftLevel": "stable",
-      "sampleSize": 1,
+      "sampleSize": 3,
       "trend": {
         "failureRateDelta": 0,
         "approvalPendingRateDelta": 0,
@@ -18,10 +18,11 @@
         "candidateWinRateDelta": 0
       },
       "reasons": [
-        "insufficient history; policy drift evaluation requires at least two entries"
+        "promotion policy and execution metrics are stable within expected tolerance"
       ],
       "recommendedActions": [
-        "continue collecting promotion history before applying drift-driven policy changes"
+        "continue monitoring with existing policy cadence",
+        "maintain current thresholds unless new failure signals emerge"
       ]
     }
   },
@@ -53,7 +54,7 @@
     "priority": "P1",
     "context": {
       "driftLevel": "stable",
-      "sampleSize": 1
+      "sampleSize": 3
     }
   }
 ]
