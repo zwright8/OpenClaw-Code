@@ -118,6 +118,8 @@ Outputs are generated under `skills/generated/`:
 - `skills.manifest.json` (machine-readable registry)
 - `runtime.catalog.json` (runtime-facing registry)
 - `runtime.execution-report.json` (execution verification summary for all 1000 skills)
+- `runtime.rollout-plan.json` + `runtime.rollout-plan.md` (lane assignment + deployment strategy)
+- `runtime.rollout-tasks.json` (task bundle for swarm rollout/execution)
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
 - `0001-.../implementation.json` through `1000-.../implementation.json`
 

@@ -10,7 +10,9 @@
     "skills:build": "tsx scripts/build-1000-skills.ts",
     "skills:validate": "tsx scripts/validate-1000-skills.ts",
     "skills:test": "tsx scripts/exercise-1000-skills.ts",
-    "skills:sync": "npm run skills:build && npm run skills:validate && npm run skills:test"
+    "skills:plan": "tsx scripts/plan-1000-skills-rollout.ts",
+    "skills:plan:validate": "tsx scripts/validate-skill-rollout.ts",
+    "skills:sync": "npm run skills:build && npm run skills:validate && npm run skills:test && npm run skills:plan && npm run skills:plan:validate"
   },
   "devDependencies": {
     "@types/node": "^24.5.0",

@@ -76,6 +76,45 @@ export type SkillImplementation = {
     };
 };
 
+export type SkillManifestEntry = {
+    id: number;
+    name: string;
+    title: string;
+    domain: string;
+    path: string;
+    implementationPath: string;
+    reason: string;
+    stepCount: number;
+    runtimeArchetype: string;
+    coreMethod: string;
+    primaryArtifact: string;
+};
+
+export type SkillRuntimeCatalogEntry = {
+    id: number;
+    name: string;
+    domain: string;
+    implementationPath: string;
+    archetype: string;
+    coreMethod: string;
+    primaryArtifact: string;
+};
+
+export type SkillRuntimeCatalog = {
+    version: number;
+    sourceFile: string;
+    generatedAt: string;
+    count: number;
+    entries: SkillRuntimeCatalogEntry[];
+};
+
+export type SkillRegistryFilters = {
+    ids?: number[];
+    names?: string[];
+    domains?: string[];
+    archetypes?: string[];
+};
+
 export type SkillExecutionInput = {
     missionId?: string;
     signalQuality?: number;
@@ -144,4 +183,55 @@ export type SkillExecutionTask = {
 export type SkillExecutionTaskOptions = {
     fromAgentId?: string;
     toAgentId?: string;
+};
+
+export type SkillRolloutLane = 'now' | 'next' | 'hold';
+
+export type SkillRolloutScenario = {
+    name: string;
+    weight: number;
+    input: Required<Omit<SkillExecutionInput, 'missionId'>>;
+};
+
+export type SkillRolloutAssessment = {
+    scenario: string;
+    posture: SkillPosture;
+    overallScore: number;
+    riskScore: number;
+};
+
+export type SkillRolloutPlanEntry = {
+    skillId: number;
+    skillName: string;
+    title: string;
+    domain: string;
+    domainSlug: string;
+    archetype: string;
+    lane: SkillRolloutLane;
+    priority: SkillPriority;
+    readinessIndex: number;
+    riskIndex: number;
+    postureDistribution: {
+        ready: number;
+        review_required: number;
+        critical: number;
+    };
+    requiredApprovalGates: string[];
+    featureFlag: string;
+    reasons: string[];
+    assessments: SkillRolloutAssessment[];
+};
+
+export type SkillRolloutPlanSummary = {
+    laneCounts: Record<SkillRolloutLane, number>;
+    topDomains: Array<{ domain: string; count: number; }>;
+    topArchetypes: Array<{ archetype: string; count: number; }>;
+};
+
+export type SkillRolloutPlan = {
+    generatedAt: string;
+    totalSkills: number;
+    scenarios: SkillRolloutScenario[];
+    summary: SkillRolloutPlanSummary;
+    entries: SkillRolloutPlanEntry[];
 };
