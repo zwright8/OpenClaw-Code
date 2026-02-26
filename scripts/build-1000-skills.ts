@@ -578,13 +578,23 @@ ${failureLines}
 `;
 }
 
+function shardForId(id: number): string {
+    return String(id).padStart(5, '0').slice(0, 2);
+}
+
+function skillDirPath(outputDir: string, id: number, dirName: string): string {
+    return path.join(outputDir, 'shards', shardForId(id), dirName);
+}
+
+function manifestPathForSkill(id: number, dirName: string): string {
+    return `skills/generated/shards/${shardForId(id)}/${dirName}/`;
+}
+
 function ensureCleanOutputDir(outputDir: string) {
     fs.mkdirSync(outputDir, { recursive: true });
-    const entries = fs.readdirSync(outputDir, { withFileTypes: true });
-    for (const entry of entries) {
-        if (!entry.isDirectory()) continue;
-        if (!/^\d{4}-/.test(entry.name)) continue;
-        fs.rmSync(path.join(outputDir, entry.name), { recursive: true, force: true });
+    const shardsPath = path.join(outputDir, 'shards');
+    if (fs.existsSync(shardsPath)) {
+        fs.rmSync(shardsPath, { recursive: true, force: true });
     }
 }
 
@@ -612,7 +622,7 @@ function main() {
 
         const skillName = buildSkillName(update.id, update.title, usedNames);
         const dirName = `${String(update.id).padStart(4, '0')}-${slugify(update.title).slice(0, 80)}`;
-        const skillDir = path.join(SKILL_ROOT, dirName);
+        const skillDir = skillDirPath(SKILL_ROOT, update.id, dirName);
         fs.mkdirSync(skillDir, { recursive: true });
         const skillPath = path.join(skillDir, 'SKILL.md');
         const implementationPath = path.join(skillDir, 'implementation.json');
@@ -621,13 +631,14 @@ function main() {
         fs.writeFileSync(skillPath, buildSkillMarkdown(update, skillName, implementation.runtimeProfile));
         fs.writeFileSync(implementationPath, `${JSON.stringify(implementation, null, 2)}\n`);
 
+        const basePath = manifestPathForSkill(update.id, dirName);
         manifest.push({
             id: update.id,
             name: skillName,
             title: update.title,
             domain: update.domain,
-            path: `skills/generated/${dirName}/SKILL.md`,
-            implementationPath: `skills/generated/${dirName}/implementation.json`,
+            path: `${basePath}SKILL.md`,
+            implementationPath: `${basePath}implementation.json`,
             reason: update.reason,
             stepCount: update.steps.length,
             runtimeArchetype: implementation.runtimeProfile.archetype,

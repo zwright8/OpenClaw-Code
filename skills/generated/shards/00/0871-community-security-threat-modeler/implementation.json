@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 871,
+  "skillName": "u0871-community-security-threat-modeler",
+  "title": "Community Security Threat Modeler",
+  "domain": "Community Engagement and Feedback",
+  "domainSlug": "community-engagement-and-feedback",
+  "reason": "We need this skill because real-world feedback loops are necessary for continuous alignment. This specific skill anticipates attack paths before adversaries exploit them.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Community Security Threat Modeler`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "Implement the core capability using attack-surface modeling, and produce threat models with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "detection-guard",
+    "coreMethod": "attack-surface modeling",
+    "primaryArtifact": "threat models",
+    "requiredSignals": [
+      "feedback channels",
+      "sentiment",
+      "urgency",
+      "follow-ups",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "community trust loss",
+      "unaddressed concerns",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3318,
+      "execution": 0.2018,
+      "safety": 0.3315,
+      "impact": 0.1349
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 52,
+      "reviewRisk": 58,
+      "criticalRisk": 78
+    },
+    "orchestration": {
+      "routingTag": "community-engagement-and-feedback:detection-guard",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0871_community-security-threat-modele",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0871-community-security-threat-modeler:871:detection-guard",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "feedback channels",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "sentiment",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "urgency",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "follow-ups",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "threat_models_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "threat_models_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Community Security Threat Modeler normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "feedback channels",
+        "sentiment",
+        "urgency",
+        "follow-ups",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to community-engagement-and-feedback:detection-guard consumers with approval-gate context"
+    }
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Community Security Threat Modeler`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "contractStep": "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using attack-surface modeling, and produce threat models with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

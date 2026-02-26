@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 410,
+  "skillName": "u0410-publicservice-risk-aware-scheduler",
+  "title": "PublicService Risk-Aware Scheduler",
+  "domain": "Healthcare and Public Services",
+  "domainSlug": "healthcare-and-public-services",
+  "reason": "We need this skill because public-facing workflows require strict safety and reliability controls. This specific skill times execution based on risk posture instead of urgency alone.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `PublicService Risk-Aware Scheduler`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "risk-weighted sequencing",
+    "primaryArtifact": "risk-gated schedules",
+    "requiredSignals": [
+      "protocol checks",
+      "service queues",
+      "compliance flags",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "service harm",
+      "procedural violations",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3368,
+      "execution": 0.143,
+      "safety": 0.2654,
+      "impact": 0.2548
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 45,
+      "reviewRisk": 32,
+      "criticalRisk": 70
+    },
+    "orchestration": {
+      "routingTag": "healthcare-and-public-services:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0410_publicservice-risk-aware-schedul",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0410-publicservice-risk-aware-scheduler:410:planning-router",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "protocol checks",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "service queues",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "compliance flags",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "risk_gated_schedules_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "risk_gated_schedules_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "PublicService Risk-Aware Scheduler normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "protocol checks",
+        "service queues",
+        "compliance flags",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to healthcare-and-public-services:planning-router consumers with approval-gate context"
+    }
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `PublicService Risk-Aware Scheduler`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "contractStep": "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

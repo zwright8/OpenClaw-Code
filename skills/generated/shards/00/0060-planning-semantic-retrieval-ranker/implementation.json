@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 60,
+  "skillName": "u0060-planning-semantic-retrieval-ranker",
+  "title": "Planning Semantic Retrieval Ranker",
+  "domain": "Strategic Planning and Decomposition",
+  "domainSlug": "strategic-planning-and-decomposition",
+  "reason": "We need this skill because large goals fail when decomposition is inconsistent or incomplete. This specific skill improves recall precision for downstream decision quality.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Planning Semantic Retrieval Ranker`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.",
+    "Design and version the input/output contract for goals, dependencies, milestones, and constraints, then add schema validation and failure-mode handling.",
+    "Implement the core capability using semantic relevance scoring, and produce ranked retrieval results with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover execution stalls and hidden dependency failures, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "semantic relevance scoring",
+    "primaryArtifact": "ranked retrieval results",
+    "requiredSignals": [
+      "goals",
+      "dependencies",
+      "milestones",
+      "constraints",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "execution stalls",
+      "hidden dependency failures",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1681,
+      "execution": 0.2855,
+      "safety": 0.2629,
+      "impact": 0.2835
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 56,
+      "reviewRisk": 54,
+      "criticalRisk": 78
+    },
+    "orchestration": {
+      "routingTag": "strategic-planning-and-decomposition:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0060_planning-semantic-retrieval-rank",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0060-planning-semantic-retrieval-ranker:60:planning-router",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "goals",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "dependencies",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "milestones",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "constraints",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ranked_retrieval_results_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "ranked_retrieval_results_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Planning Semantic Retrieval Ranker normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "goals",
+        "dependencies",
+        "milestones",
+        "constraints",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to strategic-planning-and-decomposition:planning-router consumers with approval-gate context"
+    }
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Planning Semantic Retrieval Ranker`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.",
+    "contractStep": "Design and version the input/output contract for goals, dependencies, milestones, and constraints, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using semantic relevance scoring, and produce ranked retrieval results with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover execution stalls and hidden dependency failures, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

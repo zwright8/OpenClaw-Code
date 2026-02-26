@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 638,
+  "skillName": "u0638-security-training-curriculum-composer",
+  "title": "Security Training Curriculum Composer",
+  "domain": "Security and Privacy",
+  "domainSlug": "security-and-privacy",
+  "reason": "We need this skill because production autonomy must default to least privilege and strong privacy. This specific skill converts capability gaps into actionable upskilling programs.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Security Training Curriculum Composer`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "sequenced learning path design",
+    "primaryArtifact": "role-specific curricula",
+    "requiredSignals": [
+      "permissions",
+      "sensitive data flows",
+      "threat events",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "breach",
+      "exfiltration",
+      "over-privileged actions"
+    ],
+    "scoringWeights": {
+      "truth": 0.3403,
+      "execution": 0.3131,
+      "safety": 0.2289,
+      "impact": 0.1177
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 43,
+      "reviewRisk": 35,
+      "criticalRisk": 64
+    },
+    "orchestration": {
+      "routingTag": "security-and-privacy:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "security-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0638_security-training-curriculum-com",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0638-security-training-curriculum-composer:638:general-capability",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "permissions",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "sensitive data flows",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "threat events",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "role_specific_curricula_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "role_specific_curricula_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Security Training Curriculum Composer normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "permissions",
+        "sensitive data flows",
+        "threat events",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to security-and-privacy:general-capability consumers with approval-gate context"
+    }
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Security Training Curriculum Composer`, including at least three measurable KPIs tied to breach, exfiltration, and over-privileged actions.",
+    "contractStep": "Design and version the input/output contract for permissions, sensitive data flows, and threat events, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover breach, exfiltration, and over-privileged actions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}
