@@ -13,6 +13,9 @@ const GENERATED_ROOT = path.join(REPO_ROOT, 'skills', 'generated');
 const BASELINE_WAVES_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-waves.json');
 const BASELINE_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-control.json');
 const OPTIMIZATION_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimization.json');
+const SELECTED_WAVES_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-selected-waves.json');
+const SELECTED_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-selected-control.json');
+const SELECTED_TASKS_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-selected-wave-tasks.json');
 const OPTIMIZED_WAVES_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-waves.json');
 const OPTIMIZED_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-control.json');
 const OPTIMIZED_TASKS_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-wave-tasks.json');
@@ -29,6 +32,9 @@ function main() {
         BASELINE_WAVES_PATH,
         BASELINE_CONTROL_PATH,
         OPTIMIZATION_PATH,
+        SELECTED_WAVES_PATH,
+        SELECTED_CONTROL_PATH,
+        SELECTED_TASKS_PATH,
         OPTIMIZED_WAVES_PATH,
         OPTIMIZED_CONTROL_PATH,
         OPTIMIZED_TASKS_PATH,
@@ -42,6 +48,9 @@ function main() {
     const baselineWaves = loadJson<SkillRolloutWavePlan>(BASELINE_WAVES_PATH);
     const baselineControl = loadJson<SkillRolloutControlRun>(BASELINE_CONTROL_PATH);
     const optimization = loadJson<SkillRolloutOptimizationRun>(OPTIMIZATION_PATH);
+    const selectedWaves = loadJson<SkillRolloutWavePlan>(SELECTED_WAVES_PATH);
+    const selectedControl = loadJson<SkillRolloutControlRun>(SELECTED_CONTROL_PATH);
+    const selectedWaveTasks = loadJson<Array<{ id: string; }>>(SELECTED_TASKS_PATH);
     const optimizedWaves = loadJson<SkillRolloutWavePlan>(OPTIMIZED_WAVES_PATH);
     const optimizedControl = loadJson<SkillRolloutControlRun>(OPTIMIZED_CONTROL_PATH);
     const optimizedWaveTasks = loadJson<Array<{ id: string; }>>(OPTIMIZED_TASKS_PATH);
@@ -123,6 +132,33 @@ function main() {
         optimization.recommendation.currentConfig.maxPerDomainPerWave,
         'Promotion baseline maxPerDomainPerWave mismatch'
     );
+    assert.equal(
+        selectedWaves.config.nowWaveCapacity,
+        optimization.search.selectedConfig.nowWaveCapacity,
+        'Selected nowWaveCapacity mismatch'
+    );
+    assert.equal(
+        selectedWaves.config.nextWaveCapacity,
+        optimization.search.selectedConfig.nextWaveCapacity,
+        'Selected nextWaveCapacity mismatch'
+    );
+    assert.equal(
+        selectedWaves.config.maxPerDomainPerWave,
+        optimization.search.selectedConfig.maxPerDomainPerWave,
+        'Selected maxPerDomainPerWave mismatch'
+    );
+    assert.equal(
+        selectedWaves.summary.scheduledSkills + selectedWaves.summary.oversightSkills,
+        1000,
+        'Selected wave plan must cover 1000 skills'
+    );
+    assert.equal(
+        selectedControl.summary.totalTasks,
+        optimization.candidate.controlSummary.totalTasks,
+        'Selected control task count mismatch vs optimization candidate'
+    );
+    assert.equal(selectedControl.sourceTaskCount, selectedWaveTasks.length, 'Selected control source task count mismatch');
+    assert.equal(selectedControl.taskResults.length, selectedWaveTasks.length, 'Selected task result count mismatch');
 
     assert.equal(
         optimizedWaves.config.nowWaveCapacity,

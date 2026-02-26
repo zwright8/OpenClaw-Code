@@ -1,4 +1,6 @@
 import type {
+    SkillExecutionTask,
+    SkillPriority,
     SkillRolloutControlSummary,
     SkillRolloutControlRun,
     SkillRolloutOptimizationCandidate,
@@ -10,6 +12,7 @@ import type {
     SkillRolloutPromotionRobustness,
     SkillRolloutPromotionRobustnessScenario,
     SkillRolloutWaveConfig,
+    SkillRolloutWaveEntry,
     SkillRolloutWavePlan
 } from './types.js';
 
@@ -380,4 +383,173 @@ export function buildRolloutOptimizationRun(args: {
         },
         promotion
     };
+}
+
+type PromotionTaskOptions = {
+    fromAgentId?: string;
+    maxSkillTasks?: number;
+};
+
+const DEFAULT_PROMOTION_TASK_OPTIONS: Required<PromotionTaskOptions> = {
+    fromAgentId: 'agent:skills-rollout-promotion',
+    maxSkillTasks: 80
+};
+
+function normalizeTaskLimit(value: number): number {
+    return Math.max(20, Math.floor(Number(value)));
+}
+
+function priorityForPromotionEntry(entry: SkillRolloutWaveEntry): SkillPriority {
+    if (entry.riskIndex >= 65) return 'P0';
+    if (entry.riskIndex >= 50) return 'P1';
+    return 'P2';
+}
+
+function topRiskEntries(wavePlan: SkillRolloutWavePlan, limit: number): SkillRolloutWaveEntry[] {
+    return wavePlan.waves
+        .flatMap((wave) => wave.entries)
+        .slice()
+        .sort((a, b) => {
+            const riskDelta = b.riskIndex - a.riskIndex;
+            if (riskDelta !== 0) return riskDelta;
+            const readinessDelta = b.readinessIndex - a.readinessIndex;
+            if (readinessDelta !== 0) return readinessDelta;
+            return a.skillId - b.skillId;
+        })
+        .slice(0, limit);
+}
+
+export function rolloutPromotionToTasks(args: {
+    optimization: SkillRolloutOptimizationRun;
+    baselineWavePlan: SkillRolloutWavePlan;
+    selectedWavePlan: SkillRolloutWavePlan;
+    options?: PromotionTaskOptions;
+}): SkillExecutionTask[] {
+    const options = {
+        ...DEFAULT_PROMOTION_TASK_OPTIONS,
+        ...(args.options || {}),
+        maxSkillTasks: normalizeTaskLimit(
+            Number(args.options?.maxSkillTasks ?? DEFAULT_PROMOTION_TASK_OPTIONS.maxSkillTasks)
+        )
+    };
+    const tasks: SkillExecutionTask[] = [];
+    const promotion = args.optimization.promotion;
+
+    tasks.push({
+        kind: 'task_request',
+        id: 'promotion-decision-publish',
+        from: options.fromAgentId,
+        to: 'agent:rollout-controller',
+        task: `Publish rollout promotion decision (${promotion.status})`,
+        priority: promotion.status === 'approved' ? 'P1' : 'P0',
+        context: {
+            status: promotion.status,
+            strategy: args.optimization.recommendation.strategy,
+            selectedConfig: promotion.selectedConfig,
+            effectiveConfig: promotion.effectiveConfig,
+            policy: promotion.policy,
+            violations: promotion.violations,
+            rationale: promotion.rationale
+        }
+    });
+
+    if (promotion.status === 'approved') {
+        tasks.push({
+            kind: 'task_request',
+            id: 'promotion-apply-selected-config',
+            from: options.fromAgentId,
+            to: 'agent:rollout-controller',
+            task: 'Apply selected rollout config and schedule production promotion wave',
+            priority: 'P1',
+            context: {
+                selectedConfig: promotion.selectedConfig,
+                effectiveConfig: promotion.effectiveConfig,
+                robustness: promotion.robustness
+            }
+        });
+
+        for (const entry of topRiskEntries(args.selectedWavePlan, options.maxSkillTasks)) {
+            tasks.push({
+                kind: 'task_request',
+                id: `promotion-verify-${String(entry.skillId).padStart(4, '0')}`,
+                from: options.fromAgentId,
+                to: `agent:${entry.domainSlug}-swarm`,
+                task: `Verify promoted rollout guardrails for ${entry.title}`,
+                priority: priorityForPromotionEntry(entry),
+                context: {
+                    skillId: entry.skillId,
+                    skillName: entry.skillName,
+                    waveId: entry.waveId,
+                    readinessIndex: entry.readinessIndex,
+                    riskIndex: entry.riskIndex,
+                    effectiveConfig: promotion.effectiveConfig
+                }
+            });
+        }
+    } else {
+        tasks.push({
+            kind: 'task_request',
+            id: 'promotion-retain-baseline-config',
+            from: options.fromAgentId,
+            to: 'agent:rollout-controller',
+            task: 'Retain baseline rollout config and freeze promotion',
+            priority: 'P0',
+            context: {
+                baselineConfig: promotion.baselineConfig,
+                selectedConfig: promotion.selectedConfig,
+                violations: promotion.violations
+            }
+        });
+        tasks.push({
+            kind: 'task_request',
+            id: 'promotion-policy-investigation',
+            from: options.fromAgentId,
+            to: 'agent:human-oversight',
+            task: 'Investigate rollout promotion policy violations and propose remediations',
+            priority: 'P0',
+            context: {
+                strategy: args.optimization.recommendation.strategy,
+                violations: promotion.violations,
+                robustness: promotion.robustness
+            }
+        });
+
+        for (const entry of topRiskEntries(args.selectedWavePlan, options.maxSkillTasks)) {
+            tasks.push({
+                kind: 'task_request',
+                id: `promotion-shadow-${String(entry.skillId).padStart(4, '0')}`,
+                from: options.fromAgentId,
+                to: `agent:${entry.domainSlug}-swarm`,
+                task: `Run shadow validation for rejected promotion candidate on ${entry.title}`,
+                priority: priorityForPromotionEntry(entry),
+                context: {
+                    skillId: entry.skillId,
+                    skillName: entry.skillName,
+                    waveId: entry.waveId,
+                    readinessIndex: entry.readinessIndex,
+                    riskIndex: entry.riskIndex,
+                    baselineConfig: promotion.baselineConfig,
+                    selectedConfig: promotion.selectedConfig
+                }
+            });
+        }
+    }
+
+    tasks.push({
+        kind: 'task_request',
+        id: 'promotion-audit-log',
+        from: options.fromAgentId,
+        to: 'agent:rollout-controller',
+        task: 'Write promotion decision audit trail and compliance evidence bundle',
+        priority: promotion.status === 'approved' ? 'P1' : 'P0',
+        context: {
+            status: promotion.status,
+            policy: promotion.policy,
+            robustness: promotion.robustness,
+            baselineWaveCount: args.baselineWavePlan.waves.length,
+            selectedWaveCount: args.selectedWavePlan.waves.length
+        }
+    });
+
+    return tasks;
 }

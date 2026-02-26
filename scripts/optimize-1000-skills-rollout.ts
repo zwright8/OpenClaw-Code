@@ -49,6 +49,9 @@ const OPTIMIZATION_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimizatio
 const OPTIMIZATION_MD_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimization.md');
 const PROMOTION_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion.json');
 const PROMOTION_MD_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion.md');
+const SELECTED_WAVE_PLAN_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-selected-waves.json');
+const SELECTED_WAVE_TASKS_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-selected-wave-tasks.json');
+const SELECTED_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-selected-control.json');
 const OPTIMIZED_WAVE_PLAN_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-waves.json');
 const OPTIMIZED_WAVE_TASKS_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-wave-tasks.json');
 const OPTIMIZED_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-control.json');
@@ -490,6 +493,9 @@ function main() {
     fs.writeFileSync(OPTIMIZATION_MD_PATH, renderMarkdown(optimizationRun));
     fs.writeFileSync(PROMOTION_PATH, `${JSON.stringify(optimizationRun.promotion, null, 2)}\n`);
     fs.writeFileSync(PROMOTION_MD_PATH, renderPromotionMarkdown(optimizationRun));
+    fs.writeFileSync(SELECTED_WAVE_PLAN_PATH, `${JSON.stringify(selected.wavePlan, null, 2)}\n`);
+    fs.writeFileSync(SELECTED_WAVE_TASKS_PATH, `${JSON.stringify(selected.waveTasks, null, 2)}\n`);
+    fs.writeFileSync(SELECTED_CONTROL_PATH, `${JSON.stringify(selected.controlRun, null, 2)}\n`);
     fs.writeFileSync(OPTIMIZED_WAVE_PLAN_PATH, `${JSON.stringify(effectiveWavePlan, null, 2)}\n`);
     fs.writeFileSync(OPTIMIZED_WAVE_TASKS_PATH, `${JSON.stringify(effectiveWaveTasks, null, 2)}\n`);
     fs.writeFileSync(OPTIMIZED_CONTROL_PATH, `${JSON.stringify(effectiveControl, null, 2)}\n`);

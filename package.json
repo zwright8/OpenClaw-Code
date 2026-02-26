@@ -18,7 +18,9 @@
     "skills:control:validate": "tsx scripts/validate-skill-rollout-control.ts",
     "skills:optimize": "tsx scripts/optimize-1000-skills-rollout.ts",
     "skills:optimize:validate": "tsx scripts/validate-skill-rollout-optimization.ts",
-    "skills:sync": "npm run skills:build && npm run skills:validate && npm run skills:test && npm run skills:plan && npm run skills:plan:validate && npm run skills:orchestrate && npm run skills:orchestrate:validate && npm run skills:control && npm run skills:control:validate && npm run skills:optimize && npm run skills:optimize:validate"
+    "skills:promote": "tsx scripts/promotion-tasks-1000-skills-rollout.ts",
+    "skills:promote:validate": "tsx scripts/validate-skill-rollout-promotion.ts",
+    "skills:sync": "npm run skills:build && npm run skills:validate && npm run skills:test && npm run skills:plan && npm run skills:plan:validate && npm run skills:orchestrate && npm run skills:orchestrate:validate && npm run skills:control && npm run skills:control:validate && npm run skills:optimize && npm run skills:optimize:validate && npm run skills:promote && npm run skills:promote:validate"
   },
   "devDependencies": {
     "@types/node": "^24.5.0",

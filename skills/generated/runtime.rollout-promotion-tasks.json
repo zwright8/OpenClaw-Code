@@ -1,0 +1,2277 @@
+[
+  {
+    "kind": "task_request",
+    "id": "promotion-decision-publish",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:rollout-controller",
+    "task": "Publish rollout promotion decision (rejected)",
+    "priority": "P0",
+    "context": {
+      "status": "rejected",
+      "strategy": "stabilize",
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      },
+      "effectiveConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "policy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "violations": [
+        "candidate win-rate 0.4211 below required 0.55",
+        "weighted score delta 78.2196 exceeds max 0.5",
+        "worst-case score delta 892.72 exceeds max 45"
+      ],
+      "rationale": [
+        "strategy=stabilize",
+        "robustness trials=19 across 5 scenarios",
+        "weightedScoreDelta=78.2196, winRate=0.4211",
+        "candidate rejected by promotion policy; baseline config retained"
+      ]
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-retain-baseline-config",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:rollout-controller",
+    "task": "Retain baseline rollout config and freeze promotion",
+    "priority": "P0",
+    "context": {
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      },
+      "violations": [
+        "candidate win-rate 0.4211 below required 0.55",
+        "weighted score delta 78.2196 exceeds max 0.5",
+        "worst-case score delta 892.72 exceeds max 45"
+      ]
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-investigation",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:human-oversight",
+    "task": "Investigate rollout promotion policy violations and propose remediations",
+    "priority": "P0",
+    "context": {
+      "strategy": "stabilize",
+      "violations": [
+        "candidate win-rate 0.4211 below required 0.55",
+        "weighted score delta 78.2196 exceeds max 0.5",
+        "worst-case score delta 892.72 exceeds max 45"
+      ],
+      "robustness": {
+        "evaluatedTrials": 19,
+        "scenarioCount": 5,
+        "candidateWinRate": 0.4211,
+        "weightedScoreDelta": 78.2196,
+        "worstScoreDelta": 892.72,
+        "avgFailureRateDelta": -0.0019,
+        "avgApprovalPendingRateDelta": -0.0024,
+        "avgCriticalWaveDelta": 0.0125,
+        "scenarios": [
+          {
+            "name": "nominal",
+            "failBias": 0,
+            "approvalBias": 0,
+            "trials": 4,
+            "weight": 0.3,
+            "candidateWins": 0,
+            "baselineWins": 4,
+            "ties": 0,
+            "avgScoreDelta": 419.645,
+            "worstScoreDelta": 892.72,
+            "avgFailureRateDelta": 0.01,
+            "avgApprovalPendingRateDelta": -0.011,
+            "avgCriticalWaveDelta": 1.25
+          },
+          {
+            "name": "failure_spike",
+            "failBias": 0.16,
+            "approvalBias": 0.04,
+            "trials": 4,
+            "weight": 0.25,
+            "candidateWins": 1,
+            "baselineWins": 3,
+            "ties": 0,
+            "avgScoreDelta": 92.97,
+            "worstScoreDelta": 271.22,
+            "avgFailureRateDelta": -0.0164,
+            "avgApprovalPendingRateDelta": 0.0129,
+            "avgCriticalWaveDelta": 1
+          },
+          {
+            "name": "approval_backlog",
+            "failBias": 0.04,
+            "approvalBias": 0.2,
+            "trials": 4,
+            "weight": 0.2,
+            "candidateWins": 3,
+            "baselineWins": 1,
+            "ties": 0,
+            "avgScoreDelta": -124.78,
+            "worstScoreDelta": 836.82,
+            "avgFailureRateDelta": -0.0046,
+            "avgApprovalPendingRateDelta": 0.0005,
+            "avgCriticalWaveDelta": -1.25
+          },
+          {
+            "name": "mixed_pressure",
+            "failBias": 0.1,
+            "approvalBias": 0.14,
+            "trials": 4,
+            "weight": 0.15,
+            "candidateWins": 1,
+            "baselineWins": 3,
+            "ties": 0,
+            "avgScoreDelta": 141.895,
+            "worstScoreDelta": 495.02,
+            "avgFailureRateDelta": 0.005,
+            "avgApprovalPendingRateDelta": -0.0076,
+            "avgCriticalWaveDelta": 0.25
+          },
+          {
+            "name": "recovery_bias",
+            "failBias": -0.08,
+            "approvalBias": -0.05,
+            "trials": 3,
+            "weight": 0.1,
+            "candidateWins": 3,
+            "baselineWins": 0,
+            "ties": 0,
+            "avgScoreDelta": -672.4467,
+            "worstScoreDelta": -545.78,
+            "avgFailureRateDelta": -0.0063,
+            "avgApprovalPendingRateDelta": -0.0129,
+            "avgCriticalWaveDelta": -4
+          }
+        ]
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0059",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:strategic-planning-and-decomposition-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Planning Knowledge Graph Linker",
+    "priority": "P2",
+    "context": {
+      "skillId": 59,
+      "skillName": "u0059-planning-knowledge-graph-linker",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0111",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:memory-and-knowledge-operations-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Memory Security Threat Modeler",
+    "priority": "P2",
+    "context": {
+      "skillId": 111,
+      "skillName": "u0111-memory-security-threat-modeler",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0332",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:economic-optimization-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Economic Human Approval Router",
+    "priority": "P2",
+    "context": {
+      "skillId": 332,
+      "skillName": "u0332-economic-human-approval-router",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0371",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Logistics Policy Constraint Compiler",
+    "priority": "P2",
+    "context": {
+      "skillId": 371,
+      "skillName": "u0371-logistics-policy-constraint-compiler",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0410",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:healthcare-and-public-services-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on PublicService Risk-Aware Scheduler",
+    "priority": "P2",
+    "context": {
+      "skillId": 410,
+      "skillName": "u0410-publicservice-risk-aware-scheduler",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0449",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:education-and-upskilling-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Education Resource Budget Allocator",
+    "priority": "P2",
+    "context": {
+      "skillId": 449,
+      "skillName": "u0449-education-resource-budget-allocator",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0540",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:software-engineering-automation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Engineering Semantic Retrieval Ranker",
+    "priority": "P2",
+    "context": {
+      "skillId": 540,
+      "skillName": "u0540-engineering-semantic-retrieval-ranker",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0579",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Observability Knowledge Graph Linker",
+    "priority": "P2",
+    "context": {
+      "skillId": 579,
+      "skillName": "u0579-observability-knowledge-graph-linker",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0644",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:crisis-and-incident-response-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Crisis Contradiction Detector",
+    "priority": "P2",
+    "context": {
+      "skillId": 644,
+      "skillName": "u0644-crisis-contradiction-detector",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0696",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:social-impact-measurement-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Impact Failure Root-Cause Miner",
+    "priority": "P2",
+    "context": {
+      "skillId": 696,
+      "skillName": "u0696-impact-failure-root-cause-miner",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0722",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:communication-and-explainability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Comms Context Window Prioritizer",
+    "priority": "P2",
+    "context": {
+      "skillId": 722,
+      "skillName": "u0722-comms-context-window-prioritizer",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0852",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:community-engagement-and-feedback-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Community Human Approval Router",
+    "priority": "P2",
+    "context": {
+      "skillId": 852,
+      "skillName": "u0852-community-human-approval-router",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0007",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:truth-seeking-and-epistemics-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Epistemic Goal Decomposer",
+    "priority": "P2",
+    "context": {
+      "skillId": 7,
+      "skillName": "u0007-epistemic-goal-decomposer",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0072",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:strategic-planning-and-decomposition-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Planning Compliance Evidence Mapper",
+    "priority": "P2",
+    "context": {
+      "skillId": 72,
+      "skillName": "u0072-planning-compliance-evidence-mapper",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0137",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Tooling Regression Sentinel",
+    "priority": "P2",
+    "context": {
+      "skillId": 137,
+      "skillName": "u0137-tooling-regression-sentinel",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0215",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:human-oversight-and-operator-ux-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Oversight Auto-Retry and Backoff Coordinator",
+    "priority": "P2",
+    "context": {
+      "skillId": 215,
+      "skillName": "u0215-oversight-auto-retry-and-backoff-coordinator",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0241",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:collaboration-and-negotiation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Collab Signal Ingestion Normalizer",
+    "priority": "P2",
+    "context": {
+      "skillId": 241,
+      "skillName": "u0241-collab-signal-ingestion-normalizer",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0254",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:collaboration-and-negotiation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Collab Tool Health Monitor",
+    "priority": "P2",
+    "context": {
+      "skillId": 254,
+      "skillName": "u0254-collab-tool-health-monitor",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0280",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:collaboration-and-negotiation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Collab Continuous Improvement Planner",
+    "priority": "P2",
+    "context": {
+      "skillId": 280,
+      "skillName": "u0280-collab-continuous-improvement-planner",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0345",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:economic-optimization-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Economic Uncertainty Communicator",
+    "priority": "P2",
+    "context": {
+      "skillId": 345,
+      "skillName": "u0345-economic-uncertainty-communicator",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0384",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Logistics Explainability Narrative Builder",
+    "priority": "P2",
+    "context": {
+      "skillId": 384,
+      "skillName": "u0384-logistics-explainability-narrative-builder",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0527",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:software-engineering-automation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Engineering Goal Decomposer",
+    "priority": "P2",
+    "context": {
+      "skillId": 527,
+      "skillName": "u0527-engineering-goal-decomposer",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0566",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Observability Counterfactual Simulator",
+    "priority": "P2",
+    "context": {
+      "skillId": 566,
+      "skillName": "u0566-observability-counterfactual-simulator",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0592",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Observability Compliance Evidence Mapper",
+    "priority": "P2",
+    "context": {
+      "skillId": 592,
+      "skillName": "u0592-observability-compliance-evidence-mapper",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0605",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:security-and-privacy-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Security Confidence Calibration Engine",
+    "priority": "P2",
+    "context": {
+      "skillId": 605,
+      "skillName": "u0605-security-confidence-calibration-engine",
+      "waveId": "next-06",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0618",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:security-and-privacy-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Security Memory Consolidation Pipeline",
+    "priority": "P2",
+    "context": {
+      "skillId": 618,
+      "skillName": "u0618-security-memory-consolidation-pipeline",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0631",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:security-and-privacy-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Security Security Threat Modeler",
+    "priority": "P2",
+    "context": {
+      "skillId": 631,
+      "skillName": "u0631-security-security-threat-modeler",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0657",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:crisis-and-incident-response-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Crisis Regression Sentinel",
+    "priority": "P2",
+    "context": {
+      "skillId": 657,
+      "skillName": "u0657-crisis-regression-sentinel",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0709",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:social-impact-measurement-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Impact Disaster Recovery Orchestrator",
+    "priority": "P2",
+    "context": {
+      "skillId": 709,
+      "skillName": "u0709-impact-disaster-recovery-orchestrator",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0774",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Cultural Tool Health Monitor",
+    "priority": "P2",
+    "context": {
+      "skillId": 774,
+      "skillName": "u0774-cultural-tool-health-monitor",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0787",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Cultural A/B Rollout Governor",
+    "priority": "P2",
+    "context": {
+      "skillId": 787,
+      "skillName": "u0787-cultural-a-b-rollout-governor",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0800",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Cultural Continuous Improvement Planner",
+    "priority": "P2",
+    "context": {
+      "skillId": 800,
+      "skillName": "u0800-cultural-continuous-improvement-planner",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0891",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:legal-rights-and-compliance-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Rights Policy Constraint Compiler",
+    "priority": "P2",
+    "context": {
+      "skillId": 891,
+      "skillName": "u0891-rights-policy-constraint-compiler",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0904",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:legal-rights-and-compliance-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Rights Explainability Narrative Builder",
+    "priority": "P2",
+    "context": {
+      "skillId": 904,
+      "skillName": "u0904-rights-explainability-narrative-builder",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0917",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:legal-rights-and-compliance-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Rights Skill Gap Diagnoser",
+    "priority": "P2",
+    "context": {
+      "skillId": 917,
+      "skillName": "u0917-rights-skill-gap-diagnoser",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0943",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:infrastructure-and-sustainability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Infra Conflict Resolution Coach",
+    "priority": "P2",
+    "context": {
+      "skillId": 943,
+      "skillName": "u0943-infra-conflict-resolution-coach",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0969",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:autonomous-learning-and-evolution-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Evolution Resource Budget Allocator",
+    "priority": "P2",
+    "context": {
+      "skillId": 969,
+      "skillName": "u0969-evolution-resource-budget-allocator",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0982",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:autonomous-learning-and-evolution-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Evolution Multi-Agent Negotiation Mediator",
+    "priority": "P2",
+    "context": {
+      "skillId": 982,
+      "skillName": "u0982-evolution-multi-agent-negotiation-mediator",
+      "waveId": "next-07",
+      "readinessIndex": 66,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0150",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Tooling Privacy Preserving Data Broker",
+    "priority": "P2",
+    "context": {
+      "skillId": 150,
+      "skillName": "u0150-tooling-privacy-preserving-data-broker",
+      "waveId": "next-08",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0306",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:federation-and-interoperability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Federation Experiment Design Generator",
+    "priority": "P2",
+    "context": {
+      "skillId": 306,
+      "skillName": "u0306-federation-experiment-design-generator",
+      "waveId": "next-08",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0436",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:healthcare-and-public-services-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on PublicService KPI Dashboard Publisher",
+    "priority": "P2",
+    "context": {
+      "skillId": 436,
+      "skillName": "u0436-publicservice-kpi-dashboard-publisher",
+      "waveId": "next-08",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0488",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:scientific-research-systems-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Research Dependency DAG Planner",
+    "priority": "P2",
+    "context": {
+      "skillId": 488,
+      "skillName": "u0488-research-dependency-dag-planner",
+      "waveId": "next-08",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0501",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:scientific-research-systems-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Research Plan Quality Evaluator",
+    "priority": "P2",
+    "context": {
+      "skillId": 501,
+      "skillName": "u0501-research-plan-quality-evaluator",
+      "waveId": "next-08",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0514",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:scientific-research-systems-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Research Equity Impact Scorer",
+    "priority": "P2",
+    "context": {
+      "skillId": 514,
+      "skillName": "u0514-research-equity-impact-scorer",
+      "waveId": "next-09",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0735",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:communication-and-explainability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Comms Auto-Retry and Backoff Coordinator",
+    "priority": "P2",
+    "context": {
+      "skillId": 735,
+      "skillName": "u0735-comms-auto-retry-and-backoff-coordinator",
+      "waveId": "next-08",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0761",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Cultural Signal Ingestion Normalizer",
+    "priority": "P2",
+    "context": {
+      "skillId": 761,
+      "skillName": "u0761-cultural-signal-ingestion-normalizer",
+      "waveId": "next-08",
+      "readinessIndex": 65,
+      "riskIndex": 39,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0570",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Observability Risk-Aware Scheduler",
+    "priority": "P2",
+    "context": {
+      "skillId": 570,
+      "skillName": "u0570-observability-risk-aware-scheduler",
+      "waveId": "next-01",
+      "readinessIndex": 68,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0713",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:social-impact-measurement-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Impact Cost-Benefit Forecaster",
+    "priority": "P2",
+    "context": {
+      "skillId": 713,
+      "skillName": "u0713-impact-cost-benefit-forecaster",
+      "waveId": "next-01",
+      "readinessIndex": 68,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0970",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:autonomous-learning-and-evolution-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Evolution Risk-Aware Scheduler",
+    "priority": "P2",
+    "context": {
+      "skillId": 970,
+      "skillName": "u0970-evolution-risk-aware-scheduler",
+      "waveId": "next-01",
+      "readinessIndex": 68,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0021",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:truth-seeking-and-epistemics-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Epistemic Plan Quality Evaluator",
+    "priority": "P2",
+    "context": {
+      "skillId": 21,
+      "skillName": "u0021-epistemic-plan-quality-evaluator",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0073",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:strategic-planning-and-decomposition-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Planning Cost-Benefit Forecaster",
+    "priority": "P2",
+    "context": {
+      "skillId": 73,
+      "skillName": "u0073-planning-cost-benefit-forecaster",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0088",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:memory-and-knowledge-operations-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Memory Dependency DAG Planner",
+    "priority": "P2",
+    "context": {
+      "skillId": 88,
+      "skillName": "u0088-memory-dependency-dag-planner",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0099",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:memory-and-knowledge-operations-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Memory Knowledge Graph Linker",
+    "priority": "P2",
+    "context": {
+      "skillId": 99,
+      "skillName": "u0099-memory-knowledge-graph-linker",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0128",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Tooling Dependency DAG Planner",
+    "priority": "P2",
+    "context": {
+      "skillId": 128,
+      "skillName": "u0128-tooling-dependency-dag-planner",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0138",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Tooling Memory Consolidation Pipeline",
+    "priority": "P2",
+    "context": {
+      "skillId": 138,
+      "skillName": "u0138-tooling-memory-consolidation-pipeline",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0147",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Tooling A/B Rollout Governor",
+    "priority": "P2",
+    "context": {
+      "skillId": 147,
+      "skillName": "u0147-tooling-a-b-rollout-governor",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0151",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:tool-reliability-and-execution-quality-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Tooling Security Threat Modeler",
+    "priority": "P2",
+    "context": {
+      "skillId": 151,
+      "skillName": "u0151-tooling-security-threat-modeler",
+      "waveId": "next-03",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0219",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:human-oversight-and-operator-ux-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Oversight Knowledge Graph Linker",
+    "priority": "P2",
+    "context": {
+      "skillId": 219,
+      "skillName": "u0219-oversight-knowledge-graph-linker",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0258",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:collaboration-and-negotiation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Collab Memory Consolidation Pipeline",
+    "priority": "P2",
+    "context": {
+      "skillId": 258,
+      "skillName": "u0258-collab-memory-consolidation-pipeline",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0359",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:economic-optimization-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Economic Self-Reflection Error Taxonomist",
+    "priority": "P2",
+    "context": {
+      "skillId": 359,
+      "skillName": "u0359-economic-self-reflection-error-taxonomist",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0372",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Logistics Human Approval Router",
+    "priority": "P2",
+    "context": {
+      "skillId": 372,
+      "skillName": "u0372-logistics-human-approval-router",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0400",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:resource-allocation-and-logistics-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Logistics Continuous Improvement Planner",
+    "priority": "P2",
+    "context": {
+      "skillId": 400,
+      "skillName": "u0400-logistics-continuous-improvement-planner",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0440",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:healthcare-and-public-services-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on PublicService Continuous Improvement Planner",
+    "priority": "P2",
+    "context": {
+      "skillId": 440,
+      "skillName": "u0440-publicservice-continuous-improvement-planner",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0515",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:scientific-research-systems-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Research Community Feedback Harvester",
+    "priority": "P2",
+    "context": {
+      "skillId": 515,
+      "skillName": "u0515-research-community-feedback-harvester",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0530",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:software-engineering-automation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Engineering Risk-Aware Scheduler",
+    "priority": "P2",
+    "context": {
+      "skillId": 530,
+      "skillName": "u0530-engineering-risk-aware-scheduler",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0567",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Observability Goal Decomposer",
+    "priority": "P2",
+    "context": {
+      "skillId": 567,
+      "skillName": "u0567-observability-goal-decomposer",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0593",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Observability Cost-Benefit Forecaster",
+    "priority": "P2",
+    "context": {
+      "skillId": 593,
+      "skillName": "u0593-observability-cost-benefit-forecaster",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0595",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:data-quality-and-observability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Observability Community Feedback Harvester",
+    "priority": "P2",
+    "context": {
+      "skillId": 595,
+      "skillName": "u0595-observability-community-feedback-harvester",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0635",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:security-and-privacy-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Security Community Feedback Harvester",
+    "priority": "P2",
+    "context": {
+      "skillId": 635,
+      "skillName": "u0635-security-community-feedback-harvester",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0684",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:social-impact-measurement-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Impact Contradiction Detector",
+    "priority": "P2",
+    "context": {
+      "skillId": 684,
+      "skillName": "u0684-impact-contradiction-detector",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0697",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:social-impact-measurement-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Impact Regression Sentinel",
+    "priority": "P2",
+    "context": {
+      "skillId": 697,
+      "skillName": "u0697-impact-regression-sentinel",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0699",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:social-impact-measurement-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Impact Knowledge Graph Linker",
+    "priority": "P2",
+    "context": {
+      "skillId": 699,
+      "skillName": "u0699-impact-knowledge-graph-linker",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0736",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:communication-and-explainability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Comms Failure Root-Cause Miner",
+    "priority": "P2",
+    "context": {
+      "skillId": 736,
+      "skillName": "u0736-comms-failure-root-cause-miner",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0738",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:communication-and-explainability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Comms Memory Consolidation Pipeline",
+    "priority": "P2",
+    "context": {
+      "skillId": 738,
+      "skillName": "u0738-comms-memory-consolidation-pipeline",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0752",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:communication-and-explainability-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Comms Compliance Evidence Mapper",
+    "priority": "P2",
+    "context": {
+      "skillId": 752,
+      "skillName": "u0752-comms-compliance-evidence-mapper",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0790",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:multilingual-and-cultural-adaptation-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Cultural Privacy Preserving Data Broker",
+    "priority": "P2",
+    "context": {
+      "skillId": 790,
+      "skillName": "u0790-cultural-privacy-preserving-data-broker",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0803",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:accessibility-and-inclusion-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Inclusion Evidence Provenance Tracker",
+    "priority": "P2",
+    "context": {
+      "skillId": 803,
+      "skillName": "u0803-inclusion-evidence-provenance-tracker",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0853",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:community-engagement-and-feedback-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Community Task Handoff Contractor",
+    "priority": "P2",
+    "context": {
+      "skillId": 853,
+      "skillName": "u0853-community-task-handoff-contractor",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0882",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:legal-rights-and-compliance-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Rights Context Window Prioritizer",
+    "priority": "P2",
+    "context": {
+      "skillId": 882,
+      "skillName": "u0882-rights-context-window-prioritizer",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-shadow-0894",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:legal-rights-and-compliance-swarm",
+    "task": "Run shadow validation for rejected promotion candidate on Rights Tool Health Monitor",
+    "priority": "P2",
+    "context": {
+      "skillId": 894,
+      "skillName": "u0894-rights-tool-health-monitor",
+      "waveId": "next-02",
+      "readinessIndex": 67,
+      "riskIndex": 38,
+      "baselineConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 48,
+        "maxPerDomainPerWave": 3
+      },
+      "selectedConfig": {
+        "nowWaveCapacity": 32,
+        "nextWaveCapacity": 40,
+        "maxPerDomainPerWave": 3
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-audit-log",
+    "from": "agent:skills-rollout-promotion",
+    "to": "agent:rollout-controller",
+    "task": "Write promotion decision audit trail and compliance evidence bundle",
+    "priority": "P0",
+    "context": {
+      "status": "rejected",
+      "policy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "robustness": {
+        "evaluatedTrials": 19,
+        "scenarioCount": 5,
+        "candidateWinRate": 0.4211,
+        "weightedScoreDelta": 78.2196,
+        "worstScoreDelta": 892.72,
+        "avgFailureRateDelta": -0.0019,
+        "avgApprovalPendingRateDelta": -0.0024,
+        "avgCriticalWaveDelta": 0.0125,
+        "scenarios": [
+          {
+            "name": "nominal",
+            "failBias": 0,
+            "approvalBias": 0,
+            "trials": 4,
+            "weight": 0.3,
+            "candidateWins": 0,
+            "baselineWins": 4,
+            "ties": 0,
+            "avgScoreDelta": 419.645,
+            "worstScoreDelta": 892.72,
+            "avgFailureRateDelta": 0.01,
+            "avgApprovalPendingRateDelta": -0.011,
+            "avgCriticalWaveDelta": 1.25
+          },
+          {
+            "name": "failure_spike",
+            "failBias": 0.16,
+            "approvalBias": 0.04,
+            "trials": 4,
+            "weight": 0.25,
+            "candidateWins": 1,
+            "baselineWins": 3,
+            "ties": 0,
+            "avgScoreDelta": 92.97,
+            "worstScoreDelta": 271.22,
+            "avgFailureRateDelta": -0.0164,
+            "avgApprovalPendingRateDelta": 0.0129,
+            "avgCriticalWaveDelta": 1
+          },
+          {
+            "name": "approval_backlog",
+            "failBias": 0.04,
+            "approvalBias": 0.2,
+            "trials": 4,
+            "weight": 0.2,
+            "candidateWins": 3,
+            "baselineWins": 1,
+            "ties": 0,
+            "avgScoreDelta": -124.78,
+            "worstScoreDelta": 836.82,
+            "avgFailureRateDelta": -0.0046,
+            "avgApprovalPendingRateDelta": 0.0005,
+            "avgCriticalWaveDelta": -1.25
+          },
+          {
+            "name": "mixed_pressure",
+            "failBias": 0.1,
+            "approvalBias": 0.14,
+            "trials": 4,
+            "weight": 0.15,
+            "candidateWins": 1,
+            "baselineWins": 3,
+            "ties": 0,
+            "avgScoreDelta": 141.895,
+            "worstScoreDelta": 495.02,
+            "avgFailureRateDelta": 0.005,
+            "avgApprovalPendingRateDelta": -0.0076,
+            "avgCriticalWaveDelta": 0.25
+          },
+          {
+            "name": "recovery_bias",
+            "failBias": -0.08,
+            "approvalBias": -0.05,
+            "trials": 3,
+            "weight": 0.1,
+            "candidateWins": 3,
+            "baselineWins": 0,
+            "ties": 0,
+            "avgScoreDelta": -672.4467,
+            "worstScoreDelta": -545.78,
+            "avgFailureRateDelta": -0.0063,
+            "avgApprovalPendingRateDelta": -0.0129,
+            "avgCriticalWaveDelta": -4
+          }
+        ]
+      },
+      "baselineWaveCount": 13,
+      "selectedWaveCount": 14
+    }
+  }
+]
