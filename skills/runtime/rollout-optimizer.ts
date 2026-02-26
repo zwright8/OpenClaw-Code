@@ -5,6 +5,10 @@ import type {
     SkillRolloutOptimizationRecommendation,
     SkillRolloutOptimizationRun,
     SkillRolloutOptimizationStrategy,
+    SkillRolloutPromotionDecision,
+    SkillRolloutPromotionPolicy,
+    SkillRolloutPromotionRobustness,
+    SkillRolloutPromotionRobustnessScenario,
     SkillRolloutWaveConfig,
     SkillRolloutWavePlan
 } from './types.js';
@@ -15,6 +19,10 @@ function clamp(value: number, min: number, max: number): number {
 
 function roundRate(value: number): number {
     return Number(clamp(value, 0, 1).toFixed(4));
+}
+
+function roundMetric(value: number): number {
+    return Number(value.toFixed(4));
 }
 
 function toInt(value: number): number {
@@ -46,6 +54,171 @@ export function scoreRolloutControlForOptimization(controlRun: SkillRolloutContr
         + summary.skippedCount * 0.8
         + summary.totalTasks * 0.02
     ).toFixed(3));
+}
+
+export type SkillRolloutPromotionScenarioInput = {
+    name: string;
+    failBias: number;
+    approvalBias: number;
+    trials: number;
+    weight: number;
+};
+
+export function defaultRolloutPromotionScenarios(): SkillRolloutPromotionScenarioInput[] {
+    return [
+        {
+            name: 'nominal',
+            failBias: 0,
+            approvalBias: 0,
+            trials: 4,
+            weight: 0.3
+        },
+        {
+            name: 'failure_spike',
+            failBias: 0.16,
+            approvalBias: 0.04,
+            trials: 4,
+            weight: 0.25
+        },
+        {
+            name: 'approval_backlog',
+            failBias: 0.04,
+            approvalBias: 0.2,
+            trials: 4,
+            weight: 0.2
+        },
+        {
+            name: 'mixed_pressure',
+            failBias: 0.1,
+            approvalBias: 0.14,
+            trials: 4,
+            weight: 0.15
+        },
+        {
+            name: 'recovery_bias',
+            failBias: -0.08,
+            approvalBias: -0.05,
+            trials: 3,
+            weight: 0.1
+        }
+    ];
+}
+
+function normalizeRobustnessScenarios(
+    scenarios: SkillRolloutPromotionRobustnessScenario[]
+): SkillRolloutPromotionRobustnessScenario[] {
+    if (scenarios.length === 0) return [];
+    const totalWeight = scenarios.reduce((sum, scenario) => sum + Math.max(0.001, scenario.weight), 0);
+    return scenarios.map((scenario) => ({
+        ...scenario,
+        weight: roundMetric(Math.max(0.001, scenario.weight) / totalWeight)
+    }));
+}
+
+export function buildRolloutPromotionPolicy(
+    strategy: SkillRolloutOptimizationStrategy
+): SkillRolloutPromotionPolicy {
+    if (strategy === 'stabilize') {
+        return {
+            minCandidateWinRate: 0.55,
+            maxWeightedScoreDelta: 0.5,
+            maxWorstScoreDelta: 45,
+            maxAvgFailureRateDelta: 0.01,
+            maxAvgCriticalWaveDelta: 0.15
+        };
+    }
+    if (strategy === 'expand') {
+        return {
+            minCandidateWinRate: 0.58,
+            maxWeightedScoreDelta: 4,
+            maxWorstScoreDelta: 90,
+            maxAvgFailureRateDelta: 0.02,
+            maxAvgCriticalWaveDelta: 0.25
+        };
+    }
+    return {
+        minCandidateWinRate: 0.5,
+        maxWeightedScoreDelta: 2,
+        maxWorstScoreDelta: 65,
+        maxAvgFailureRateDelta: 0.015,
+        maxAvgCriticalWaveDelta: 0.2
+    };
+}
+
+export function decideRolloutPromotion(args: {
+    recommendation: SkillRolloutOptimizationRecommendation;
+    selectedConfig: SkillRolloutWaveConfig;
+    baselineConfig: SkillRolloutWaveConfig;
+    robustness: SkillRolloutPromotionRobustness;
+    policy?: SkillRolloutPromotionPolicy;
+    forcePromote?: boolean;
+}): SkillRolloutPromotionDecision {
+    const policy = args.policy || buildRolloutPromotionPolicy(args.recommendation.strategy);
+    const robustness = {
+        ...args.robustness,
+        candidateWinRate: roundRate(args.robustness.candidateWinRate),
+        weightedScoreDelta: roundMetric(args.robustness.weightedScoreDelta),
+        worstScoreDelta: roundMetric(args.robustness.worstScoreDelta),
+        avgFailureRateDelta: roundMetric(args.robustness.avgFailureRateDelta),
+        avgApprovalPendingRateDelta: roundMetric(args.robustness.avgApprovalPendingRateDelta),
+        avgCriticalWaveDelta: roundMetric(args.robustness.avgCriticalWaveDelta),
+        scenarios: normalizeRobustnessScenarios(args.robustness.scenarios)
+    };
+
+    const violations: string[] = [];
+    if (robustness.candidateWinRate < policy.minCandidateWinRate) {
+        violations.push(
+            `candidate win-rate ${robustness.candidateWinRate} below required ${policy.minCandidateWinRate}`
+        );
+    }
+    if (robustness.weightedScoreDelta > policy.maxWeightedScoreDelta) {
+        violations.push(
+            `weighted score delta ${robustness.weightedScoreDelta} exceeds max ${policy.maxWeightedScoreDelta}`
+        );
+    }
+    if (robustness.worstScoreDelta > policy.maxWorstScoreDelta) {
+        violations.push(
+            `worst-case score delta ${robustness.worstScoreDelta} exceeds max ${policy.maxWorstScoreDelta}`
+        );
+    }
+    if (robustness.avgFailureRateDelta > policy.maxAvgFailureRateDelta) {
+        violations.push(
+            `avg failure-rate delta ${robustness.avgFailureRateDelta} exceeds max ${policy.maxAvgFailureRateDelta}`
+        );
+    }
+    if (robustness.avgCriticalWaveDelta > policy.maxAvgCriticalWaveDelta) {
+        violations.push(
+            `avg critical-wave delta ${robustness.avgCriticalWaveDelta} exceeds max ${policy.maxAvgCriticalWaveDelta}`
+        );
+    }
+
+    const forcePromote = args.forcePromote === true;
+    const status = (violations.length === 0 || forcePromote) ? 'approved' : 'rejected';
+
+    const rationale = [
+        `strategy=${args.recommendation.strategy}`,
+        `robustness trials=${robustness.evaluatedTrials} across ${robustness.scenarioCount} scenarios`,
+        `weightedScoreDelta=${robustness.weightedScoreDelta}, winRate=${robustness.candidateWinRate}`
+    ];
+    if (forcePromote && violations.length > 0) {
+        rationale.push('promotion forced by operator override despite policy violations');
+    } else if (status === 'approved') {
+        rationale.push('candidate satisfies promotion policy thresholds');
+    } else {
+        rationale.push('candidate rejected by promotion policy; baseline config retained');
+    }
+
+    return {
+        generatedAt: new Date().toISOString(),
+        status,
+        selectedConfig: normalizeConfig(args.selectedConfig),
+        baselineConfig: normalizeConfig(args.baselineConfig),
+        effectiveConfig: normalizeConfig(status === 'approved' ? args.selectedConfig : args.baselineConfig),
+        policy,
+        robustness,
+        violations,
+        rationale
+    };
 }
 
 export function recommendRolloutWaveConfig(
@@ -160,6 +333,7 @@ export function buildRolloutOptimizationRun(args: {
         selectedConfig: SkillRolloutWaveConfig;
         candidates: SkillRolloutOptimizationCandidate[];
     };
+    promotion: SkillRolloutPromotionDecision;
 }): SkillRolloutOptimizationRun {
     const {
         recommendation,
@@ -167,7 +341,8 @@ export function buildRolloutOptimizationRun(args: {
         baselineControlRun,
         candidateWavePlan,
         candidateControlRun,
-        search
+        search,
+        promotion
     } = args;
 
     return {
@@ -202,6 +377,7 @@ export function buildRolloutOptimizationRun(args: {
             selectedConfig: search.selectedConfig,
             evaluatedCount: search.candidates.length,
             candidates: search.candidates
-        }
+        },
+        promotion
     };
 }

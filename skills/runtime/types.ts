@@ -404,6 +404,56 @@ export type SkillRolloutOptimizationCandidate = {
     waveSummary: SkillRolloutWavePlanSummary;
 };
 
+export type SkillRolloutPromotionRobustnessScenario = {
+    name: string;
+    failBias: number;
+    approvalBias: number;
+    trials: number;
+    weight: number;
+    candidateWins: number;
+    baselineWins: number;
+    ties: number;
+    avgScoreDelta: number;
+    worstScoreDelta: number;
+    avgFailureRateDelta: number;
+    avgApprovalPendingRateDelta: number;
+    avgCriticalWaveDelta: number;
+};
+
+export type SkillRolloutPromotionRobustness = {
+    evaluatedTrials: number;
+    scenarioCount: number;
+    candidateWinRate: number;
+    weightedScoreDelta: number;
+    worstScoreDelta: number;
+    avgFailureRateDelta: number;
+    avgApprovalPendingRateDelta: number;
+    avgCriticalWaveDelta: number;
+    scenarios: SkillRolloutPromotionRobustnessScenario[];
+};
+
+export type SkillRolloutPromotionPolicy = {
+    minCandidateWinRate: number;
+    maxWeightedScoreDelta: number;
+    maxWorstScoreDelta: number;
+    maxAvgFailureRateDelta: number;
+    maxAvgCriticalWaveDelta: number;
+};
+
+export type SkillRolloutPromotionStatus = 'approved' | 'rejected';
+
+export type SkillRolloutPromotionDecision = {
+    generatedAt: string;
+    status: SkillRolloutPromotionStatus;
+    selectedConfig: SkillRolloutWaveConfig;
+    baselineConfig: SkillRolloutWaveConfig;
+    effectiveConfig: SkillRolloutWaveConfig;
+    policy: SkillRolloutPromotionPolicy;
+    robustness: SkillRolloutPromotionRobustness;
+    violations: string[];
+    rationale: string[];
+};
+
 export type SkillRolloutOptimizationRun = {
     generatedAt: string;
     recommendation: SkillRolloutOptimizationRecommendation;
@@ -428,4 +478,5 @@ export type SkillRolloutOptimizationRun = {
         evaluatedCount: number;
         candidates: SkillRolloutOptimizationCandidate[];
     };
+    promotion: SkillRolloutPromotionDecision;
 };

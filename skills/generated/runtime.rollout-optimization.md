@@ -1,12 +1,14 @@
 # Skill Runtime Rollout Optimization
 
-Generated: 2026-02-26T05:13:14.514Z
+Generated: 2026-02-26T05:23:56.100Z
 
 ## Recommendation
 - Strategy: stabilize
 - Current config: now=32, next=48, maxDomain=3
 - Recommended config: now=26, next=38, maxDomain=2
 - Selected config: now=32, next=40, maxDomain=3
+- Effective config: now=32, next=48, maxDomain=3
+- Promotion status: rejected
 - Reasons: critical waves and/or elevated failure rate indicate excessive rollout blast radius
 
 ## Baseline vs Candidate
@@ -20,14 +22,28 @@ Generated: 2026-02-26T05:13:14.514Z
 | Overall posture | critical | critical | - |
 | Optimization score | 4557.36 | 4515.78 | -41.58 |
 
-## Observed Metrics
-| Metric | Value | Target |
+## Promotion Robustness
+| Metric | Value | Policy |
 | --- | --- | --- |
-| Failure rate | 0.0898 | 0.0698 |
-| Approval pending rate | 0.4018 | 0.3218 |
-| Avg wave fill rate | 0.842 | 0.812 |
-| Critical waves | 6 | n/a |
-| Degraded waves | 4 | n/a |
+| Candidate win rate | 0.4211 | >= 0.55 |
+| Weighted score delta | 78.2196 | <= 0.5 |
+| Worst score delta | 892.72 | <= 45 |
+| Avg failure-rate delta | -0.0019 | <= 0.01 |
+| Avg critical-wave delta | 0.0125 | <= 0.15 |
+
+### Robustness Scenarios
+| Scenario | Trials | Weight | Avg Score Delta | Worst Score Delta | Win/Baseline/Tie | Avg Failure Delta | Avg Pending Delta | Avg Critical Delta |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| nominal | 4 | 0.3 | 419.645 | 892.72 | 0/4/0 | 0.01 | -0.011 | 1.25 |
+| failure_spike | 4 | 0.25 | 92.97 | 271.22 | 1/3/0 | -0.0164 | 0.0129 | 1 |
+| approval_backlog | 4 | 0.2 | -124.78 | 836.82 | 3/1/0 | -0.0046 | 0.0005 | -1.25 |
+| mixed_pressure | 4 | 0.15 | 141.895 | 495.02 | 1/3/0 | 0.005 | -0.0076 | 0.25 |
+| recovery_bias | 3 | 0.1 | -672.4467 | -545.78 | 3/0/0 | -0.0063 | -0.0129 | -4 |
+
+## Promotion Violations
+- candidate win-rate 0.4211 below required 0.55
+- weighted score delta 78.2196 exceeds max 0.5
+- worst-case score delta 892.72 exceeds max 45
 
 ## Delta Notes
 - Stable wave delta: -1

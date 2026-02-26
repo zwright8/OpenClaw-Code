@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-02-26T05:13:14.514Z",
+  "generatedAt": "2026-02-26T05:23:56.100Z",
   "recommendation": {
-    "generatedAt": "2026-02-26T05:13:14.474Z",
+    "generatedAt": "2026-02-26T05:23:56.022Z",
     "strategy": "stabilize",
     "currentConfig": {
       "nowWaveCapacity": 32,
@@ -30,8 +30,8 @@
     }
   },
   "baseline": {
-    "wavePlanGeneratedAt": "2026-02-26T05:13:13.247Z",
-    "controlGeneratedAt": "2026-02-26T05:13:13.853Z",
+    "wavePlanGeneratedAt": "2026-02-26T05:23:54.740Z",
+    "controlGeneratedAt": "2026-02-26T05:23:55.345Z",
     "waveSummary": {
       "scheduledSkills": 465,
       "oversightSkills": 535,
@@ -56,8 +56,8 @@
     }
   },
   "candidate": {
-    "wavePlanGeneratedAt": "2026-02-26T05:13:14.488Z",
-    "controlGeneratedAt": "2026-02-26T05:13:14.489Z",
+    "wavePlanGeneratedAt": "2026-02-26T05:23:56.036Z",
+    "controlGeneratedAt": "2026-02-26T05:23:56.037Z",
     "waveSummary": {
       "scheduledSkills": 465,
       "oversightSkills": 535,
@@ -612,6 +612,130 @@
           "avgWaveFillRate": 0.508
         }
       }
+    ]
+  },
+  "promotion": {
+    "generatedAt": "2026-02-26T05:23:56.098Z",
+    "status": "rejected",
+    "selectedConfig": {
+      "nowWaveCapacity": 32,
+      "nextWaveCapacity": 40,
+      "maxPerDomainPerWave": 3
+    },
+    "baselineConfig": {
+      "nowWaveCapacity": 32,
+      "nextWaveCapacity": 48,
+      "maxPerDomainPerWave": 3
+    },
+    "effectiveConfig": {
+      "nowWaveCapacity": 32,
+      "nextWaveCapacity": 48,
+      "maxPerDomainPerWave": 3
+    },
+    "policy": {
+      "minCandidateWinRate": 0.55,
+      "maxWeightedScoreDelta": 0.5,
+      "maxWorstScoreDelta": 45,
+      "maxAvgFailureRateDelta": 0.01,
+      "maxAvgCriticalWaveDelta": 0.15
+    },
+    "robustness": {
+      "evaluatedTrials": 19,
+      "scenarioCount": 5,
+      "candidateWinRate": 0.4211,
+      "weightedScoreDelta": 78.2196,
+      "worstScoreDelta": 892.72,
+      "avgFailureRateDelta": -0.0019,
+      "avgApprovalPendingRateDelta": -0.0024,
+      "avgCriticalWaveDelta": 0.0125,
+      "scenarios": [
+        {
+          "name": "nominal",
+          "failBias": 0,
+          "approvalBias": 0,
+          "trials": 4,
+          "weight": 0.3,
+          "candidateWins": 0,
+          "baselineWins": 4,
+          "ties": 0,
+          "avgScoreDelta": 419.645,
+          "worstScoreDelta": 892.72,
+          "avgFailureRateDelta": 0.01,
+          "avgApprovalPendingRateDelta": -0.011,
+          "avgCriticalWaveDelta": 1.25
+        },
+        {
+          "name": "failure_spike",
+          "failBias": 0.16,
+          "approvalBias": 0.04,
+          "trials": 4,
+          "weight": 0.25,
+          "candidateWins": 1,
+          "baselineWins": 3,
+          "ties": 0,
+          "avgScoreDelta": 92.97,
+          "worstScoreDelta": 271.22,
+          "avgFailureRateDelta": -0.0164,
+          "avgApprovalPendingRateDelta": 0.0129,
+          "avgCriticalWaveDelta": 1
+        },
+        {
+          "name": "approval_backlog",
+          "failBias": 0.04,
+          "approvalBias": 0.2,
+          "trials": 4,
+          "weight": 0.2,
+          "candidateWins": 3,
+          "baselineWins": 1,
+          "ties": 0,
+          "avgScoreDelta": -124.78,
+          "worstScoreDelta": 836.82,
+          "avgFailureRateDelta": -0.0046,
+          "avgApprovalPendingRateDelta": 0.0005,
+          "avgCriticalWaveDelta": -1.25
+        },
+        {
+          "name": "mixed_pressure",
+          "failBias": 0.1,
+          "approvalBias": 0.14,
+          "trials": 4,
+          "weight": 0.15,
+          "candidateWins": 1,
+          "baselineWins": 3,
+          "ties": 0,
+          "avgScoreDelta": 141.895,
+          "worstScoreDelta": 495.02,
+          "avgFailureRateDelta": 0.005,
+          "avgApprovalPendingRateDelta": -0.0076,
+          "avgCriticalWaveDelta": 0.25
+        },
+        {
+          "name": "recovery_bias",
+          "failBias": -0.08,
+          "approvalBias": -0.05,
+          "trials": 3,
+          "weight": 0.1,
+          "candidateWins": 3,
+          "baselineWins": 0,
+          "ties": 0,
+          "avgScoreDelta": -672.4467,
+          "worstScoreDelta": -545.78,
+          "avgFailureRateDelta": -0.0063,
+          "avgApprovalPendingRateDelta": -0.0129,
+          "avgCriticalWaveDelta": -4
+        }
+      ]
+    },
+    "violations": [
+      "candidate win-rate 0.4211 below required 0.55",
+      "weighted score delta 78.2196 exceeds max 0.5",
+      "worst-case score delta 892.72 exceeds max 45"
+    ],
+    "rationale": [
+      "strategy=stabilize",
+      "robustness trials=19 across 5 scenarios",
+      "weightedScoreDelta=78.2196, winRate=0.4211",
+      "candidate rejected by promotion policy; baseline config retained"
     ]
   }
 }

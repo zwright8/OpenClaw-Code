@@ -2,7 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import {
     buildRolloutOptimizationRun,
+    buildRolloutPromotionPolicy,
     buildSkillRolloutWavePlan,
+    decideRolloutPromotion,
+    defaultRolloutPromotionScenarios,
     recommendRolloutWaveConfig,
     scoreRolloutControlForOptimization,
     rolloutControlToFollowUpTasks,
@@ -13,6 +16,8 @@ import {
     type SkillRolloutOptimizationCandidate,
     type SkillRolloutOptimizationRun,
     type SkillRolloutPlan,
+    type SkillRolloutPromotionRobustness,
+    type SkillRolloutPromotionRobustnessScenario,
     type SkillRolloutWavePlan
 } from '../skills/runtime/index.js';
 
@@ -20,6 +25,19 @@ type CliOptions = {
     failBias?: number;
     approvalBias?: number;
     maxFollowUps?: number;
+    forcePromote?: boolean;
+};
+
+type RolloutConfig = {
+    nowWaveCapacity: number;
+    nextWaveCapacity: number;
+    maxPerDomainPerWave: number;
+};
+
+type CandidateEvaluation = SkillRolloutOptimizationCandidate & {
+    wavePlan: SkillRolloutWavePlan;
+    waveTasks: SkillExecutionTask[];
+    controlRun: SkillRolloutControlRun;
 };
 
 const REPO_ROOT = process.cwd();
@@ -29,6 +47,8 @@ const BASELINE_WAVE_PLAN_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-waves
 const BASELINE_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-control.json');
 const OPTIMIZATION_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimization.json');
 const OPTIMIZATION_MD_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimization.md');
+const PROMOTION_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion.json');
+const PROMOTION_MD_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-promotion.md');
 const OPTIMIZED_WAVE_PLAN_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-waves.json');
 const OPTIMIZED_WAVE_TASKS_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-wave-tasks.json');
 const OPTIMIZED_CONTROL_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-optimized-control.json');
@@ -36,6 +56,10 @@ const OPTIMIZED_CONTROL_TASKS_PATH = path.join(GENERATED_ROOT, 'runtime.rollout-
 
 function loadJson<T>(filePath: string): T {
     return JSON.parse(fs.readFileSync(filePath, 'utf8')) as T;
+}
+
+function roundMetric(value: number): number {
+    return Number(value.toFixed(4));
 }
 
 function parseArgs(argv: string[]): CliOptions {
@@ -58,16 +82,16 @@ function parseArgs(argv: string[]): CliOptions {
             index += 1;
             continue;
         }
+        if (token === '--force-promote') {
+            options.forcePromote = true;
+            continue;
+        }
         throw new Error(`Unknown or incomplete argument: ${token}`);
     }
     return options;
 }
 
-function normalizeConfig(config: {
-    nowWaveCapacity: number;
-    nextWaveCapacity: number;
-    maxPerDomainPerWave: number;
-}) {
+function normalizeConfig(config: RolloutConfig): RolloutConfig {
     return {
         nowWaveCapacity: Math.max(8, Math.floor(Number(config.nowWaveCapacity))),
         nextWaveCapacity: Math.max(8, Math.floor(Number(config.nextWaveCapacity))),
@@ -75,17 +99,9 @@ function normalizeConfig(config: {
     };
 }
 
-function uniqueConfigs(configs: Array<{
-    nowWaveCapacity: number;
-    nextWaveCapacity: number;
-    maxPerDomainPerWave: number;
-}>) {
+function uniqueConfigs(configs: RolloutConfig[]): RolloutConfig[] {
     const seen = new Set<string>();
-    const unique: Array<{
-        nowWaveCapacity: number;
-        nextWaveCapacity: number;
-        maxPerDomainPerWave: number;
-    }> = [];
+    const unique: RolloutConfig[] = [];
 
     for (const config of configs) {
         const normalized = normalizeConfig(config);
@@ -99,9 +115,9 @@ function uniqueConfigs(configs: Array<{
 }
 
 function buildCandidateConfigs(args: {
-    current: { nowWaveCapacity: number; nextWaveCapacity: number; maxPerDomainPerWave: number; };
-    recommended: { nowWaveCapacity: number; nextWaveCapacity: number; maxPerDomainPerWave: number; };
-}) {
+    current: RolloutConfig;
+    recommended: RolloutConfig;
+}): RolloutConfig[] {
     const { current, recommended } = args;
     const candidates = [
         current,
@@ -126,8 +142,174 @@ function buildCandidateConfigs(args: {
     return uniqueConfigs(candidates);
 }
 
+function normalizeRobustnessWeights(scenarios: SkillRolloutPromotionRobustnessScenario[]): SkillRolloutPromotionRobustnessScenario[] {
+    const totalWeight = scenarios.reduce((sum, scenario) => sum + Math.max(0.001, scenario.weight), 0);
+    if (totalWeight <= 0) return scenarios;
+
+    return scenarios.map((scenario) => ({
+        ...scenario,
+        weight: roundMetric(Math.max(0.001, scenario.weight) / totalWeight)
+    }));
+}
+
+function evaluatePromotionRobustness(args: {
+    baselineWavePlan: SkillRolloutWavePlan;
+    baselineWaveTasks: SkillExecutionTask[];
+    candidateWavePlan: SkillRolloutWavePlan;
+    candidateWaveTasks: SkillExecutionTask[];
+}): SkillRolloutPromotionRobustness {
+    const scenarioInputs = defaultRolloutPromotionScenarios();
+    const scenarioResults: SkillRolloutPromotionRobustnessScenario[] = [];
+
+    let totalTrials = 0;
+    let totalWins = 0;
+    let totalTies = 0;
+    let weightedScoreDelta = 0;
+    let weightedFailureRateDelta = 0;
+    let weightedPendingRateDelta = 0;
+    let weightedCriticalWaveDelta = 0;
+    let worstScoreDelta = Number.NEGATIVE_INFINITY;
+
+    for (const scenario of scenarioInputs) {
+        let candidateWins = 0;
+        let baselineWins = 0;
+        let ties = 0;
+        let scoreDeltaSum = 0;
+        let failureRateDeltaSum = 0;
+        let pendingRateDeltaSum = 0;
+        let criticalWaveDeltaSum = 0;
+        let scenarioWorstScoreDelta = Number.NEGATIVE_INFINITY;
+
+        for (let trial = 0; trial < scenario.trials; trial += 1) {
+            const baselineRun = runSkillRolloutControlLoop(args.baselineWavePlan, args.baselineWaveTasks, {
+                failBias: scenario.failBias,
+                approvalBias: scenario.approvalBias,
+                seed: `openclaw-rollout-promotion-baseline-${scenario.name}-${trial + 1}`
+            });
+            const candidateRun = runSkillRolloutControlLoop(args.candidateWavePlan, args.candidateWaveTasks, {
+                failBias: scenario.failBias,
+                approvalBias: scenario.approvalBias,
+                seed: `openclaw-rollout-promotion-candidate-${scenario.name}-${trial + 1}`
+            });
+
+            const baselineScore = scoreRolloutControlForOptimization(baselineRun);
+            const candidateScore = scoreRolloutControlForOptimization(candidateRun);
+            const scoreDelta = roundMetric(candidateScore - baselineScore);
+            const baselineFailureRate = baselineRun.summary.totalTasks === 0
+                ? 0
+                : baselineRun.summary.failedCount / baselineRun.summary.totalTasks;
+            const candidateFailureRate = candidateRun.summary.totalTasks === 0
+                ? 0
+                : candidateRun.summary.failedCount / candidateRun.summary.totalTasks;
+            const baselinePendingRate = baselineRun.summary.totalTasks === 0
+                ? 0
+                : baselineRun.summary.approvalPendingCount / baselineRun.summary.totalTasks;
+            const candidatePendingRate = candidateRun.summary.totalTasks === 0
+                ? 0
+                : candidateRun.summary.approvalPendingCount / candidateRun.summary.totalTasks;
+            const criticalWaveDelta = candidateRun.summary.wavePostureCounts.critical - baselineRun.summary.wavePostureCounts.critical;
+
+            if (scoreDelta < 0) candidateWins += 1;
+            else if (scoreDelta > 0) baselineWins += 1;
+            else ties += 1;
+
+            scoreDeltaSum += scoreDelta;
+            failureRateDeltaSum += (candidateFailureRate - baselineFailureRate);
+            pendingRateDeltaSum += (candidatePendingRate - baselinePendingRate);
+            criticalWaveDeltaSum += criticalWaveDelta;
+            scenarioWorstScoreDelta = Math.max(scenarioWorstScoreDelta, scoreDelta);
+        }
+
+        const avgScoreDelta = roundMetric(scoreDeltaSum / scenario.trials);
+        const avgFailureRateDelta = roundMetric(failureRateDeltaSum / scenario.trials);
+        const avgApprovalPendingRateDelta = roundMetric(pendingRateDeltaSum / scenario.trials);
+        const avgCriticalWaveDelta = roundMetric(criticalWaveDeltaSum / scenario.trials);
+
+        const scenarioResult: SkillRolloutPromotionRobustnessScenario = {
+            name: scenario.name,
+            failBias: scenario.failBias,
+            approvalBias: scenario.approvalBias,
+            trials: scenario.trials,
+            weight: scenario.weight,
+            candidateWins,
+            baselineWins,
+            ties,
+            avgScoreDelta,
+            worstScoreDelta: roundMetric(scenarioWorstScoreDelta),
+            avgFailureRateDelta,
+            avgApprovalPendingRateDelta,
+            avgCriticalWaveDelta
+        };
+
+        scenarioResults.push(scenarioResult);
+        totalTrials += scenario.trials;
+        totalWins += candidateWins;
+        totalTies += ties;
+        weightedScoreDelta += avgScoreDelta * scenario.weight;
+        weightedFailureRateDelta += avgFailureRateDelta * scenario.weight;
+        weightedPendingRateDelta += avgApprovalPendingRateDelta * scenario.weight;
+        weightedCriticalWaveDelta += avgCriticalWaveDelta * scenario.weight;
+        worstScoreDelta = Math.max(worstScoreDelta, scenarioWorstScoreDelta);
+    }
+
+    const normalizedScenarios = normalizeRobustnessWeights(scenarioResults);
+
+    return {
+        evaluatedTrials: totalTrials,
+        scenarioCount: normalizedScenarios.length,
+        candidateWinRate: roundMetric((totalWins + totalTies * 0.5) / Math.max(1, totalTrials)),
+        weightedScoreDelta: roundMetric(weightedScoreDelta),
+        worstScoreDelta: roundMetric(worstScoreDelta),
+        avgFailureRateDelta: roundMetric(weightedFailureRateDelta),
+        avgApprovalPendingRateDelta: roundMetric(weightedPendingRateDelta),
+        avgCriticalWaveDelta: roundMetric(weightedCriticalWaveDelta),
+        scenarios: normalizedScenarios
+    };
+}
+
 function escapeCell(value: string): string {
     return value.replace(/\|/g, '\\|');
+}
+
+function renderPromotionMarkdown(run: SkillRolloutOptimizationRun): string {
+    const lines: string[] = [];
+
+    lines.push('# Skill Runtime Rollout Promotion Decision');
+    lines.push('');
+    lines.push(`Generated: ${run.promotion.generatedAt}`);
+    lines.push(`Status: ${run.promotion.status}`);
+    lines.push(`Strategy: ${run.recommendation.strategy}`);
+    lines.push(`Selected config: ${run.promotion.selectedConfig.nowWaveCapacity}/${run.promotion.selectedConfig.nextWaveCapacity}/${run.promotion.selectedConfig.maxPerDomainPerWave}`);
+    lines.push(`Effective config: ${run.promotion.effectiveConfig.nowWaveCapacity}/${run.promotion.effectiveConfig.nextWaveCapacity}/${run.promotion.effectiveConfig.maxPerDomainPerWave}`);
+    lines.push('');
+    lines.push('## Policy');
+    lines.push(`- minCandidateWinRate: ${run.promotion.policy.minCandidateWinRate}`);
+    lines.push(`- maxWeightedScoreDelta: ${run.promotion.policy.maxWeightedScoreDelta}`);
+    lines.push(`- maxWorstScoreDelta: ${run.promotion.policy.maxWorstScoreDelta}`);
+    lines.push(`- maxAvgFailureRateDelta: ${run.promotion.policy.maxAvgFailureRateDelta}`);
+    lines.push(`- maxAvgCriticalWaveDelta: ${run.promotion.policy.maxAvgCriticalWaveDelta}`);
+    lines.push('');
+    lines.push('## Robustness Aggregate');
+    lines.push(`- Trials: ${run.promotion.robustness.evaluatedTrials}`);
+    lines.push(`- Candidate win rate: ${run.promotion.robustness.candidateWinRate}`);
+    lines.push(`- Weighted score delta: ${run.promotion.robustness.weightedScoreDelta}`);
+    lines.push(`- Worst score delta: ${run.promotion.robustness.worstScoreDelta}`);
+    lines.push(`- Avg failure-rate delta: ${run.promotion.robustness.avgFailureRateDelta}`);
+    lines.push(`- Avg approval-pending delta: ${run.promotion.robustness.avgApprovalPendingRateDelta}`);
+    lines.push(`- Avg critical-wave delta: ${run.promotion.robustness.avgCriticalWaveDelta}`);
+    lines.push('');
+
+    if (run.promotion.violations.length > 0) {
+        lines.push('## Violations');
+        run.promotion.violations.forEach((violation) => lines.push(`- ${violation}`));
+        lines.push('');
+    }
+
+    lines.push('## Rationale');
+    run.promotion.rationale.forEach((item) => lines.push(`- ${item}`));
+    lines.push('');
+
+    return lines.join('\n');
 }
 
 function renderMarkdown(run: SkillRolloutOptimizationRun): string {
@@ -141,6 +323,8 @@ function renderMarkdown(run: SkillRolloutOptimizationRun): string {
     lines.push(`- Current config: now=${run.recommendation.currentConfig.nowWaveCapacity}, next=${run.recommendation.currentConfig.nextWaveCapacity}, maxDomain=${run.recommendation.currentConfig.maxPerDomainPerWave}`);
     lines.push(`- Recommended config: now=${run.recommendation.recommendedConfig.nowWaveCapacity}, next=${run.recommendation.recommendedConfig.nextWaveCapacity}, maxDomain=${run.recommendation.recommendedConfig.maxPerDomainPerWave}`);
     lines.push(`- Selected config: now=${run.search.selectedConfig.nowWaveCapacity}, next=${run.search.selectedConfig.nextWaveCapacity}, maxDomain=${run.search.selectedConfig.maxPerDomainPerWave}`);
+    lines.push(`- Effective config: now=${run.promotion.effectiveConfig.nowWaveCapacity}, next=${run.promotion.effectiveConfig.nextWaveCapacity}, maxDomain=${run.promotion.effectiveConfig.maxPerDomainPerWave}`);
+    lines.push(`- Promotion status: ${run.promotion.status}`);
     lines.push(`- Reasons: ${run.recommendation.reasons.join('; ')}`);
     lines.push('');
     lines.push('## Baseline vs Candidate');
@@ -154,15 +338,33 @@ function renderMarkdown(run: SkillRolloutOptimizationRun): string {
     lines.push(`| Overall posture | ${run.baseline.controlSummary.overallPosture} | ${run.candidate.controlSummary.overallPosture} | - |`);
     lines.push(`| Optimization score | ${run.search.baselineScore} | ${run.search.selectedScore} | ${run.search.scoreDelta} |`);
     lines.push('');
-    lines.push('## Observed Metrics');
-    lines.push('| Metric | Value | Target |');
+    lines.push('## Promotion Robustness');
+    lines.push('| Metric | Value | Policy |');
     lines.push('| --- | --- | --- |');
-    lines.push(`| Failure rate | ${run.recommendation.observedMetrics.failureRate} | ${run.recommendation.targetMetrics.failureRate} |`);
-    lines.push(`| Approval pending rate | ${run.recommendation.observedMetrics.approvalPendingRate} | ${run.recommendation.targetMetrics.approvalPendingRate} |`);
-    lines.push(`| Avg wave fill rate | ${run.recommendation.observedMetrics.avgWaveFillRate} | ${run.recommendation.targetMetrics.avgWaveFillRate} |`);
-    lines.push(`| Critical waves | ${run.recommendation.observedMetrics.criticalWaves} | n/a |`);
-    lines.push(`| Degraded waves | ${run.recommendation.observedMetrics.degradedWaves} | n/a |`);
+    lines.push(`| Candidate win rate | ${run.promotion.robustness.candidateWinRate} | >= ${run.promotion.policy.minCandidateWinRate} |`);
+    lines.push(`| Weighted score delta | ${run.promotion.robustness.weightedScoreDelta} | <= ${run.promotion.policy.maxWeightedScoreDelta} |`);
+    lines.push(`| Worst score delta | ${run.promotion.robustness.worstScoreDelta} | <= ${run.promotion.policy.maxWorstScoreDelta} |`);
+    lines.push(`| Avg failure-rate delta | ${run.promotion.robustness.avgFailureRateDelta} | <= ${run.promotion.policy.maxAvgFailureRateDelta} |`);
+    lines.push(`| Avg critical-wave delta | ${run.promotion.robustness.avgCriticalWaveDelta} | <= ${run.promotion.policy.maxAvgCriticalWaveDelta} |`);
     lines.push('');
+    lines.push('### Robustness Scenarios');
+    lines.push('| Scenario | Trials | Weight | Avg Score Delta | Worst Score Delta | Win/Baseline/Tie | Avg Failure Delta | Avg Pending Delta | Avg Critical Delta |');
+    lines.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- |');
+    run.promotion.robustness.scenarios.forEach((scenario) => {
+        lines.push(
+            `| ${scenario.name} | ${scenario.trials} | ${scenario.weight} | ${scenario.avgScoreDelta} | ${scenario.worstScoreDelta} | ` +
+            `${scenario.candidateWins}/${scenario.baselineWins}/${scenario.ties} | ${scenario.avgFailureRateDelta} | ` +
+            `${scenario.avgApprovalPendingRateDelta} | ${scenario.avgCriticalWaveDelta} |`
+        );
+    });
+    lines.push('');
+
+    if (run.promotion.violations.length > 0) {
+        lines.push('## Promotion Violations');
+        run.promotion.violations.forEach((violation) => lines.push(`- ${violation}`));
+        lines.push('');
+    }
+
     lines.push('## Delta Notes');
     lines.push(`- Stable wave delta: ${run.delta.stableWavesDelta}`);
     lines.push(`- Degraded wave delta: ${run.delta.degradedWavesDelta}`);
@@ -201,6 +403,7 @@ function main() {
     const sourcePlan = loadJson<SkillRolloutPlan>(SOURCE_PLAN_PATH);
     const baselineWavePlan = loadJson<SkillRolloutWavePlan>(BASELINE_WAVE_PLAN_PATH);
     const baselineControl = loadJson<SkillRolloutControlRun>(BASELINE_CONTROL_PATH);
+    const baselineWaveTasks = rolloutWavePlanToTasks(baselineWavePlan);
 
     const recommendation = recommendRolloutWaveConfig(baselineControl, baselineWavePlan);
     const candidateConfigs = buildCandidateConfigs({
@@ -208,11 +411,7 @@ function main() {
         recommended: recommendation.recommendedConfig
     });
 
-    const candidateEvaluations: Array<SkillRolloutOptimizationCandidate & {
-        wavePlan: SkillRolloutWavePlan;
-        waveTasks: SkillExecutionTask[];
-        controlRun: SkillRolloutControlRun;
-    }> = [];
+    const candidateEvaluations: CandidateEvaluation[] = [];
 
     candidateConfigs.forEach((config, index) => {
         const wavePlan = buildSkillRolloutWavePlan(sourcePlan, config);
@@ -243,10 +442,27 @@ function main() {
     });
 
     const selected = candidateEvaluations[0];
-    const optimizedWavePlan = selected.wavePlan;
-    const optimizedWaveTasks = selected.waveTasks;
-    const optimizedControl = selected.controlRun;
-    const optimizedFollowUps = rolloutControlToFollowUpTasks(optimizedControl, optimizedWavePlan, {
+    const promotionRobustness = evaluatePromotionRobustness({
+        baselineWavePlan,
+        baselineWaveTasks,
+        candidateWavePlan: selected.wavePlan,
+        candidateWaveTasks: selected.waveTasks
+    });
+
+    const promotionPolicy = buildRolloutPromotionPolicy(recommendation.strategy);
+    const promotion = decideRolloutPromotion({
+        recommendation,
+        selectedConfig: selected.config,
+        baselineConfig: recommendation.currentConfig,
+        robustness: promotionRobustness,
+        policy: promotionPolicy,
+        forcePromote: options.forcePromote
+    });
+
+    const effectiveWavePlan = promotion.status === 'approved' ? selected.wavePlan : baselineWavePlan;
+    const effectiveWaveTasks = promotion.status === 'approved' ? selected.waveTasks : baselineWaveTasks;
+    const effectiveControl = promotion.status === 'approved' ? selected.controlRun : baselineControl;
+    const effectiveFollowUps = rolloutControlToFollowUpTasks(effectiveControl, effectiveWavePlan, {
         maxTasks: options.maxFollowUps
     });
 
@@ -254,8 +470,8 @@ function main() {
         recommendation,
         baselineWavePlan,
         baselineControlRun: baselineControl,
-        candidateWavePlan: optimizedWavePlan,
-        candidateControlRun: optimizedControl,
+        candidateWavePlan: selected.wavePlan,
+        candidateControlRun: selected.controlRun,
         search: {
             baselineScore: scoreRolloutControlForOptimization(baselineControl),
             selectedScore: selected.score,
@@ -266,19 +482,24 @@ function main() {
                 controlSummary: entry.controlSummary,
                 waveSummary: entry.waveSummary
             }))
-        }
+        },
+        promotion
     });
 
     fs.writeFileSync(OPTIMIZATION_PATH, `${JSON.stringify(optimizationRun, null, 2)}\n`);
     fs.writeFileSync(OPTIMIZATION_MD_PATH, renderMarkdown(optimizationRun));
-    fs.writeFileSync(OPTIMIZED_WAVE_PLAN_PATH, `${JSON.stringify(optimizedWavePlan, null, 2)}\n`);
-    fs.writeFileSync(OPTIMIZED_WAVE_TASKS_PATH, `${JSON.stringify(optimizedWaveTasks, null, 2)}\n`);
-    fs.writeFileSync(OPTIMIZED_CONTROL_PATH, `${JSON.stringify(optimizedControl, null, 2)}\n`);
-    fs.writeFileSync(OPTIMIZED_CONTROL_TASKS_PATH, `${JSON.stringify(optimizedFollowUps, null, 2)}\n`);
+    fs.writeFileSync(PROMOTION_PATH, `${JSON.stringify(optimizationRun.promotion, null, 2)}\n`);
+    fs.writeFileSync(PROMOTION_MD_PATH, renderPromotionMarkdown(optimizationRun));
+    fs.writeFileSync(OPTIMIZED_WAVE_PLAN_PATH, `${JSON.stringify(effectiveWavePlan, null, 2)}\n`);
+    fs.writeFileSync(OPTIMIZED_WAVE_TASKS_PATH, `${JSON.stringify(effectiveWaveTasks, null, 2)}\n`);
+    fs.writeFileSync(OPTIMIZED_CONTROL_PATH, `${JSON.stringify(effectiveControl, null, 2)}\n`);
+    fs.writeFileSync(OPTIMIZED_CONTROL_TASKS_PATH, `${JSON.stringify(effectiveFollowUps, null, 2)}\n`);
 
     console.log(
         `[optimize-1000-skills-rollout] strategy=${optimizationRun.recommendation.strategy} ` +
+        `promotion=${optimizationRun.promotion.status} ` +
         `evaluated=${optimizationRun.search.evaluatedCount} ` +
+        `robustTrials=${optimizationRun.promotion.robustness.evaluatedTrials} ` +
         `waveDelta=${optimizationRun.delta.waveCountDelta} ` +
         `failureDelta=${optimizationRun.delta.failureDelta} ` +
         `pendingDelta=${optimizationRun.delta.approvalPendingDelta} ` +
