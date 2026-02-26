@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-02-26T05:35:11.783Z",
+  "sampleSize": 1,
+  "driftLevel": "stable",
+  "trend": {
+    "failureRateDelta": 0,
+    "approvalPendingRateDelta": 0,
+    "successRateDelta": 0,
+    "minCandidateWinRateDelta": 0,
+    "maxWeightedScoreDeltaDelta": 0,
+    "candidateWinRateDelta": 0
+  },
+  "reasons": [
+    "insufficient history; policy drift evaluation requires at least two entries"
+  ],
+  "recommendedActions": [
+    "continue collecting promotion history before applying drift-driven policy changes"
+  ]
+}

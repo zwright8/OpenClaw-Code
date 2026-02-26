@@ -1,0 +1,59 @@
+[
+  {
+    "kind": "task_request",
+    "id": "promotion-drift-publish",
+    "from": "agent:skills-rollout-promotion-history",
+    "to": "agent:rollout-controller",
+    "task": "Publish promotion policy drift report (stable)",
+    "priority": "P1",
+    "context": {
+      "driftLevel": "stable",
+      "sampleSize": 1,
+      "trend": {
+        "failureRateDelta": 0,
+        "approvalPendingRateDelta": 0,
+        "successRateDelta": 0,
+        "minCandidateWinRateDelta": 0,
+        "maxWeightedScoreDeltaDelta": 0,
+        "candidateWinRateDelta": 0
+      },
+      "reasons": [
+        "insufficient history; policy drift evaluation requires at least two entries"
+      ],
+      "recommendedActions": [
+        "continue collecting promotion history before applying drift-driven policy changes"
+      ]
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-drift-stable-monitor",
+    "from": "agent:skills-rollout-promotion-history",
+    "to": "agent:rollout-controller",
+    "task": "Continue routine monitoring for promotion policy drift",
+    "priority": "P2",
+    "context": {
+      "driftLevel": "stable",
+      "trend": {
+        "failureRateDelta": 0,
+        "approvalPendingRateDelta": 0,
+        "successRateDelta": 0,
+        "minCandidateWinRateDelta": 0,
+        "maxWeightedScoreDeltaDelta": 0,
+        "candidateWinRateDelta": 0
+      }
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-drift-audit",
+    "from": "agent:skills-rollout-promotion-history",
+    "to": "agent:rollout-controller",
+    "task": "Append promotion policy drift report to governance audit trail",
+    "priority": "P1",
+    "context": {
+      "driftLevel": "stable",
+      "sampleSize": 1
+    }
+  }
+]

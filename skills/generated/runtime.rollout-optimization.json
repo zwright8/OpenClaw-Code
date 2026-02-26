@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-02-26T05:32:27.282Z",
+  "generatedAt": "2026-02-26T05:35:10.030Z",
   "recommendation": {
-    "generatedAt": "2026-02-26T05:32:27.202Z",
+    "generatedAt": "2026-02-26T05:35:09.947Z",
     "strategy": "stabilize",
     "currentConfig": {
       "nowWaveCapacity": 32,
@@ -30,8 +30,8 @@
     }
   },
   "baseline": {
-    "wavePlanGeneratedAt": "2026-02-26T05:32:26.031Z",
-    "controlGeneratedAt": "2026-02-26T05:32:26.630Z",
+    "wavePlanGeneratedAt": "2026-02-26T05:35:08.762Z",
+    "controlGeneratedAt": "2026-02-26T05:35:09.357Z",
     "waveSummary": {
       "scheduledSkills": 465,
       "oversightSkills": 535,
@@ -56,8 +56,8 @@
     }
   },
   "candidate": {
-    "wavePlanGeneratedAt": "2026-02-26T05:32:27.217Z",
-    "controlGeneratedAt": "2026-02-26T05:32:27.218Z",
+    "wavePlanGeneratedAt": "2026-02-26T05:35:09.962Z",
+    "controlGeneratedAt": "2026-02-26T05:35:09.963Z",
     "waveSummary": {
       "scheduledSkills": 465,
       "oversightSkills": 535,
@@ -615,7 +615,7 @@
     ]
   },
   "promotion": {
-    "generatedAt": "2026-02-26T05:32:27.280Z",
+    "generatedAt": "2026-02-26T05:35:10.028Z",
     "status": "rejected",
     "selectedConfig": {
       "nowWaveCapacity": 32,

@@ -2,6 +2,9 @@ import type {
     SkillExecutionTask,
     SkillRolloutOptimizationRun,
     SkillRolloutPromotionControlRun,
+    SkillRolloutPromotionPolicyDriftReport,
+    SkillRolloutPromotionPolicyHistory,
+    SkillRolloutPromotionPolicyHistoryEntry,
     SkillRolloutPromotionPolicy,
     SkillRolloutPromotionPolicyAdjustment,
     SkillRolloutPromotionTaskCategory,
@@ -460,6 +463,254 @@ export function rolloutPromotionPolicyAdjustmentToTasks(
             confidence: adjustment.confidence,
             failedCount: controlRun.summary.failedCount,
             pendingCount: controlRun.summary.approvalPendingCount
+        }
+    });
+
+    return tasks;
+}
+
+type PromotionHistoryOptions = {
+    maxEntries?: number;
+};
+
+type PromotionDriftTaskOptions = {
+    fromAgentId?: string;
+};
+
+const DEFAULT_HISTORY_OPTIONS: Required<PromotionHistoryOptions> = {
+    maxEntries: 180
+};
+
+const DEFAULT_DRIFT_TASK_OPTIONS: Required<PromotionDriftTaskOptions> = {
+    fromAgentId: 'agent:skills-rollout-promotion-history'
+};
+
+function normalizePolicyHistory(
+    history: SkillRolloutPromotionPolicyHistory | undefined
+): SkillRolloutPromotionPolicyHistory {
+    if (!history) {
+        return {
+            generatedAt: new Date().toISOString(),
+            entryCount: 0,
+            entries: []
+        };
+    }
+    return {
+        generatedAt: history.generatedAt,
+        entryCount: history.entries.length,
+        entries: history.entries.slice()
+    };
+}
+
+function toHistoryEntry(args: {
+    optimization: SkillRolloutOptimizationRun;
+    controlRun: SkillRolloutPromotionControlRun;
+    adjustment: SkillRolloutPromotionPolicyAdjustment;
+}): SkillRolloutPromotionPolicyHistoryEntry {
+    const { optimization, controlRun, adjustment } = args;
+    return {
+        recordedAt: new Date().toISOString(),
+        promotionStatus: optimization.promotion.status,
+        controlPosture: controlRun.summary.overallPosture,
+        adjustmentStrategy: adjustment.strategy,
+        policy: adjustment.recommendedPolicy,
+        metrics: {
+            failureRate: adjustment.observedMetrics.failureRate,
+            approvalPendingRate: adjustment.observedMetrics.approvalPendingRate,
+            successRate: adjustment.observedMetrics.successRate,
+            verificationFailureRate: adjustment.observedMetrics.verificationFailureRate,
+            shadowFailureRate: adjustment.observedMetrics.shadowFailureRate,
+            candidateWinRate: optimization.promotion.robustness.candidateWinRate,
+            weightedScoreDelta: optimization.promotion.robustness.weightedScoreDelta
+        }
+    };
+}
+
+export function updateSkillRolloutPromotionPolicyHistory(args: {
+    history?: SkillRolloutPromotionPolicyHistory;
+    optimization: SkillRolloutOptimizationRun;
+    controlRun: SkillRolloutPromotionControlRun;
+    adjustment: SkillRolloutPromotionPolicyAdjustment;
+    options?: PromotionHistoryOptions;
+}): SkillRolloutPromotionPolicyHistory {
+    const options = {
+        ...DEFAULT_HISTORY_OPTIONS,
+        ...(args.options || {}),
+        maxEntries: Math.max(20, Math.floor(Number(args.options?.maxEntries ?? DEFAULT_HISTORY_OPTIONS.maxEntries)))
+    };
+    const base = normalizePolicyHistory(args.history);
+    base.entries.push(
+        toHistoryEntry({
+            optimization: args.optimization,
+            controlRun: args.controlRun,
+            adjustment: args.adjustment
+        })
+    );
+    if (base.entries.length > options.maxEntries) {
+        base.entries = base.entries.slice(base.entries.length - options.maxEntries);
+    }
+    return {
+        generatedAt: new Date().toISOString(),
+        entryCount: base.entries.length,
+        entries: base.entries
+    };
+}
+
+export function evaluateSkillRolloutPromotionPolicyDrift(
+    history: SkillRolloutPromotionPolicyHistory,
+    sampleSize = 12
+): SkillRolloutPromotionPolicyDriftReport {
+    const scoped = history.entries.slice(-Math.max(2, Math.floor(sampleSize)));
+    if (scoped.length < 2) {
+        return {
+            generatedAt: new Date().toISOString(),
+            sampleSize: scoped.length,
+            driftLevel: 'stable',
+            trend: {
+                failureRateDelta: 0,
+                approvalPendingRateDelta: 0,
+                successRateDelta: 0,
+                minCandidateWinRateDelta: 0,
+                maxWeightedScoreDeltaDelta: 0,
+                candidateWinRateDelta: 0
+            },
+            reasons: ['insufficient history; policy drift evaluation requires at least two entries'],
+            recommendedActions: ['continue collecting promotion history before applying drift-driven policy changes']
+        };
+    }
+
+    const first = scoped[0];
+    const last = scoped[scoped.length - 1];
+    const trend = {
+        failureRateDelta: roundMetric(last.metrics.failureRate - first.metrics.failureRate),
+        approvalPendingRateDelta: roundMetric(last.metrics.approvalPendingRate - first.metrics.approvalPendingRate),
+        successRateDelta: roundMetric(last.metrics.successRate - first.metrics.successRate),
+        minCandidateWinRateDelta: roundMetric(last.policy.minCandidateWinRate - first.policy.minCandidateWinRate),
+        maxWeightedScoreDeltaDelta: roundMetric(last.policy.maxWeightedScoreDelta - first.policy.maxWeightedScoreDelta),
+        candidateWinRateDelta: roundMetric(last.metrics.candidateWinRate - first.metrics.candidateWinRate)
+    };
+
+    let driftLevel: SkillRolloutPromotionPolicyDriftReport['driftLevel'] = 'stable';
+    const reasons: string[] = [];
+    const recommendedActions: string[] = [];
+
+    if (trend.failureRateDelta >= 0.03 || trend.approvalPendingRateDelta >= 0.06 || trend.successRateDelta <= -0.05) {
+        driftLevel = 'watch';
+        reasons.push('promotion execution quality is trending negatively across recent history');
+    }
+    if (Math.abs(trend.minCandidateWinRateDelta) >= 0.05 || Math.abs(trend.maxWeightedScoreDeltaDelta) >= 0.8) {
+        driftLevel = driftLevel === 'stable' ? 'watch' : driftLevel;
+        reasons.push('policy thresholds show meaningful movement and require governance review');
+    }
+    if (trend.failureRateDelta >= 0.07 || trend.successRateDelta <= -0.1 || trend.candidateWinRateDelta <= -0.1) {
+        driftLevel = 'critical';
+        reasons.push('promotion system drift reached critical thresholds across reliability and robustness metrics');
+    }
+
+    if (reasons.length === 0) {
+        reasons.push('promotion policy and execution metrics are stable within expected tolerance');
+    }
+
+    if (driftLevel === 'critical') {
+        recommendedActions.push('immediately tighten promotion thresholds and run incident-style policy review');
+        recommendedActions.push('pause relax-style policy adjustments until drift returns to watch/stable');
+    } else if (driftLevel === 'watch') {
+        recommendedActions.push('run focused review on recent threshold changes and failed promotion tasks');
+        recommendedActions.push('increase shadow-validation sample size for the next promotion cycles');
+    } else {
+        recommendedActions.push('continue monitoring with existing policy cadence');
+        recommendedActions.push('maintain current thresholds unless new failure signals emerge');
+    }
+
+    return {
+        generatedAt: new Date().toISOString(),
+        sampleSize: scoped.length,
+        driftLevel,
+        trend,
+        reasons,
+        recommendedActions
+    };
+}
+
+export function rolloutPromotionPolicyDriftToTasks(
+    drift: SkillRolloutPromotionPolicyDriftReport,
+    options: PromotionDriftTaskOptions = {}
+): SkillExecutionTask[] {
+    const config = {
+        ...DEFAULT_DRIFT_TASK_OPTIONS,
+        ...options
+    };
+    const tasks: SkillExecutionTask[] = [
+        {
+            kind: 'task_request',
+            id: 'promotion-drift-publish',
+            from: config.fromAgentId,
+            to: 'agent:rollout-controller',
+            task: `Publish promotion policy drift report (${drift.driftLevel})`,
+            priority: drift.driftLevel === 'critical' ? 'P0' : 'P1',
+            context: {
+                driftLevel: drift.driftLevel,
+                sampleSize: drift.sampleSize,
+                trend: drift.trend,
+                reasons: drift.reasons,
+                recommendedActions: drift.recommendedActions
+            }
+        }
+    ];
+
+    if (drift.driftLevel === 'critical') {
+        tasks.push({
+            kind: 'task_request',
+            id: 'promotion-drift-critical-response',
+            from: config.fromAgentId,
+            to: 'agent:human-oversight',
+            task: 'Run critical response review for promotion policy drift',
+            priority: 'P0',
+            context: {
+                driftLevel: drift.driftLevel,
+                reasons: drift.reasons,
+                trend: drift.trend
+            }
+        });
+    } else if (drift.driftLevel === 'watch') {
+        tasks.push({
+            kind: 'task_request',
+            id: 'promotion-drift-watch-review',
+            from: config.fromAgentId,
+            to: 'agent:rollout-controller',
+            task: 'Run watch-level promotion policy drift review and verification expansion',
+            priority: 'P1',
+            context: {
+                driftLevel: drift.driftLevel,
+                reasons: drift.reasons,
+                trend: drift.trend
+            }
+        });
+    } else {
+        tasks.push({
+            kind: 'task_request',
+            id: 'promotion-drift-stable-monitor',
+            from: config.fromAgentId,
+            to: 'agent:rollout-controller',
+            task: 'Continue routine monitoring for promotion policy drift',
+            priority: 'P2',
+            context: {
+                driftLevel: drift.driftLevel,
+                trend: drift.trend
+            }
+        });
+    }
+
+    tasks.push({
+        kind: 'task_request',
+        id: 'promotion-drift-audit',
+        from: config.fromAgentId,
+        to: 'agent:rollout-controller',
+        task: 'Append promotion policy drift report to governance audit trail',
+        priority: drift.driftLevel === 'critical' ? 'P0' : 'P1',
+        context: {
+            driftLevel: drift.driftLevel,
+            sampleSize: drift.sampleSize
         }
     });
 

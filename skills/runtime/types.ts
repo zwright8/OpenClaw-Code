@@ -539,3 +539,44 @@ export type SkillRolloutPromotionPolicyAdjustment = {
         shadowFailureRate: number;
     };
 };
+
+export type SkillRolloutPromotionPolicyHistoryEntry = {
+    recordedAt: string;
+    promotionStatus: SkillRolloutPromotionStatus;
+    controlPosture: SkillRolloutWavePosture;
+    adjustmentStrategy: SkillRolloutPromotionPolicyAdjustmentStrategy;
+    policy: SkillRolloutPromotionPolicy;
+    metrics: {
+        failureRate: number;
+        approvalPendingRate: number;
+        successRate: number;
+        verificationFailureRate: number;
+        shadowFailureRate: number;
+        candidateWinRate: number;
+        weightedScoreDelta: number;
+    };
+};
+
+export type SkillRolloutPromotionPolicyHistory = {
+    generatedAt: string;
+    entryCount: number;
+    entries: SkillRolloutPromotionPolicyHistoryEntry[];
+};
+
+export type SkillRolloutPromotionPolicyDriftLevel = 'stable' | 'watch' | 'critical';
+
+export type SkillRolloutPromotionPolicyDriftReport = {
+    generatedAt: string;
+    sampleSize: number;
+    driftLevel: SkillRolloutPromotionPolicyDriftLevel;
+    trend: {
+        failureRateDelta: number;
+        approvalPendingRateDelta: number;
+        successRateDelta: number;
+        minCandidateWinRateDelta: number;
+        maxWeightedScoreDeltaDelta: number;
+        candidateWinRateDelta: number;
+    };
+    reasons: string[];
+    recommendedActions: string[];
+};

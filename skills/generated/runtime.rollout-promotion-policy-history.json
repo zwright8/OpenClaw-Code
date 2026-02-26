@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-02-26T05:35:11.783Z",
+  "entryCount": 1,
+  "entries": [
+    {
+      "recordedAt": "2026-02-26T05:35:11.783Z",
+      "promotionStatus": "rejected",
+      "controlPosture": "stable",
+      "adjustmentStrategy": "maintain",
+      "policy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "metrics": {
+        "failureRate": 0.0476,
+        "approvalPendingRate": 0.1071,
+        "successRate": 0.8333,
+        "verificationFailureRate": 0,
+        "shadowFailureRate": 0.05,
+        "candidateWinRate": 0.4211,
+        "weightedScoreDelta": 78.2196
+      }
+    }
+  ]
+}
