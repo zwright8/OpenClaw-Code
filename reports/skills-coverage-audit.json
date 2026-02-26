@@ -1,0 +1,5016 @@
+{
+  "summary": {
+    "generatedAt": "2026-02-26T22:17:41.343Z",
+    "updatesTotal": 1000,
+    "valid": 1000,
+    "missing": 0,
+    "malformed": 0,
+    "generatedDirectories": 9999,
+    "manifest10000Count": 10000,
+    "runtime10000Count": 10000,
+    "updatesMissingInManifest": [],
+    "updatesMissingInRuntime": []
+  },
+  "rows": [
+    {
+      "id": 1,
+      "status": "ok",
+      "dir": "0001-epistemic-signal-ingestion-normalizer"
+    },
+    {
+      "id": 2,
+      "status": "ok",
+      "dir": "0002-epistemic-context-window-prioritizer"
+    },
+    {
+      "id": 3,
+      "status": "ok",
+      "dir": "0003-epistemic-evidence-provenance-tracker"
+    },
+    {
+      "id": 4,
+      "status": "ok",
+      "dir": "0004-epistemic-contradiction-detector"
+    },
+    {
+      "id": 5,
+      "status": "ok",
+      "dir": "0005-epistemic-confidence-calibration-engine"
+    },
+    {
+      "id": 6,
+      "status": "ok",
+      "dir": "0006-epistemic-counterfactual-simulator"
+    },
+    {
+      "id": 7,
+      "status": "ok",
+      "dir": "0007-epistemic-goal-decomposer"
+    },
+    {
+      "id": 8,
+      "status": "ok",
+      "dir": "0008-epistemic-dependency-dag-planner"
+    },
+    {
+      "id": 9,
+      "status": "ok",
+      "dir": "0009-epistemic-resource-budget-allocator"
+    },
+    {
+      "id": 10,
+      "status": "ok",
+      "dir": "0010-epistemic-risk-aware-scheduler"
+    },
+    {
+      "id": 11,
+      "status": "ok",
+      "dir": "0011-epistemic-policy-constraint-compiler"
+    },
+    {
+      "id": 12,
+      "status": "ok",
+      "dir": "0012-epistemic-human-approval-router"
+    },
+    {
+      "id": 13,
+      "status": "ok",
+      "dir": "0013-epistemic-task-handoff-contractor"
+    },
+    {
+      "id": 14,
+      "status": "ok",
+      "dir": "0014-epistemic-tool-health-monitor"
+    },
+    {
+      "id": 15,
+      "status": "ok",
+      "dir": "0015-epistemic-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 16,
+      "status": "ok",
+      "dir": "0016-epistemic-failure-root-cause-miner"
+    },
+    {
+      "id": 17,
+      "status": "ok",
+      "dir": "0017-epistemic-regression-sentinel"
+    },
+    {
+      "id": 18,
+      "status": "ok",
+      "dir": "0018-epistemic-memory-consolidation-pipeline"
+    },
+    {
+      "id": 19,
+      "status": "ok",
+      "dir": "0019-epistemic-knowledge-graph-linker"
+    },
+    {
+      "id": 20,
+      "status": "ok",
+      "dir": "0020-epistemic-semantic-retrieval-ranker"
+    },
+    {
+      "id": 21,
+      "status": "ok",
+      "dir": "0021-epistemic-plan-quality-evaluator"
+    },
+    {
+      "id": 22,
+      "status": "ok",
+      "dir": "0022-epistemic-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 23,
+      "status": "ok",
+      "dir": "0023-epistemic-conflict-resolution-coach"
+    },
+    {
+      "id": 24,
+      "status": "ok",
+      "dir": "0024-epistemic-explainability-narrative-builder"
+    },
+    {
+      "id": 25,
+      "status": "ok",
+      "dir": "0025-epistemic-uncertainty-communicator"
+    },
+    {
+      "id": 26,
+      "status": "ok",
+      "dir": "0026-epistemic-experiment-design-generator"
+    },
+    {
+      "id": 27,
+      "status": "ok",
+      "dir": "0027-epistemic-a-b-rollout-governor"
+    },
+    {
+      "id": 28,
+      "status": "ok",
+      "dir": "0028-epistemic-incident-playbook-synthesizer"
+    },
+    {
+      "id": 29,
+      "status": "ok",
+      "dir": "0029-epistemic-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 30,
+      "status": "ok",
+      "dir": "0030-epistemic-privacy-preserving-data-broker"
+    },
+    {
+      "id": 31,
+      "status": "ok",
+      "dir": "0031-epistemic-security-threat-modeler"
+    },
+    {
+      "id": 32,
+      "status": "ok",
+      "dir": "0032-epistemic-compliance-evidence-mapper"
+    },
+    {
+      "id": 33,
+      "status": "ok",
+      "dir": "0033-epistemic-cost-benefit-forecaster"
+    },
+    {
+      "id": 34,
+      "status": "ok",
+      "dir": "0034-epistemic-equity-impact-scorer"
+    },
+    {
+      "id": 35,
+      "status": "ok",
+      "dir": "0035-epistemic-community-feedback-harvester"
+    },
+    {
+      "id": 36,
+      "status": "ok",
+      "dir": "0036-epistemic-kpi-dashboard-publisher"
+    },
+    {
+      "id": 37,
+      "status": "ok",
+      "dir": "0037-epistemic-skill-gap-diagnoser"
+    },
+    {
+      "id": 38,
+      "status": "ok",
+      "dir": "0038-epistemic-training-curriculum-composer"
+    },
+    {
+      "id": 39,
+      "status": "ok",
+      "dir": "0039-epistemic-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 40,
+      "status": "ok",
+      "dir": "0040-epistemic-continuous-improvement-planner"
+    },
+    {
+      "id": 41,
+      "status": "ok",
+      "dir": "0041-planning-signal-ingestion-normalizer"
+    },
+    {
+      "id": 42,
+      "status": "ok",
+      "dir": "0042-planning-context-window-prioritizer"
+    },
+    {
+      "id": 43,
+      "status": "ok",
+      "dir": "0043-planning-evidence-provenance-tracker"
+    },
+    {
+      "id": 44,
+      "status": "ok",
+      "dir": "0044-planning-contradiction-detector"
+    },
+    {
+      "id": 45,
+      "status": "ok",
+      "dir": "0045-planning-confidence-calibration-engine"
+    },
+    {
+      "id": 46,
+      "status": "ok",
+      "dir": "0046-planning-counterfactual-simulator"
+    },
+    {
+      "id": 47,
+      "status": "ok",
+      "dir": "0047-planning-goal-decomposer"
+    },
+    {
+      "id": 48,
+      "status": "ok",
+      "dir": "0048-planning-dependency-dag-planner"
+    },
+    {
+      "id": 49,
+      "status": "ok",
+      "dir": "0049-planning-resource-budget-allocator"
+    },
+    {
+      "id": 50,
+      "status": "ok",
+      "dir": "0050-planning-risk-aware-scheduler"
+    },
+    {
+      "id": 51,
+      "status": "ok",
+      "dir": "0051-planning-policy-constraint-compiler"
+    },
+    {
+      "id": 52,
+      "status": "ok",
+      "dir": "0052-planning-human-approval-router"
+    },
+    {
+      "id": 53,
+      "status": "ok",
+      "dir": "0053-planning-task-handoff-contractor"
+    },
+    {
+      "id": 54,
+      "status": "ok",
+      "dir": "0054-planning-tool-health-monitor"
+    },
+    {
+      "id": 55,
+      "status": "ok",
+      "dir": "0055-planning-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 56,
+      "status": "ok",
+      "dir": "0056-planning-failure-root-cause-miner"
+    },
+    {
+      "id": 57,
+      "status": "ok",
+      "dir": "0057-planning-regression-sentinel"
+    },
+    {
+      "id": 58,
+      "status": "ok",
+      "dir": "0058-planning-memory-consolidation-pipeline"
+    },
+    {
+      "id": 59,
+      "status": "ok",
+      "dir": "0059-planning-knowledge-graph-linker"
+    },
+    {
+      "id": 60,
+      "status": "ok",
+      "dir": "0060-planning-semantic-retrieval-ranker"
+    },
+    {
+      "id": 61,
+      "status": "ok",
+      "dir": "0061-planning-plan-quality-evaluator"
+    },
+    {
+      "id": 62,
+      "status": "ok",
+      "dir": "0062-planning-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 63,
+      "status": "ok",
+      "dir": "0063-planning-conflict-resolution-coach"
+    },
+    {
+      "id": 64,
+      "status": "ok",
+      "dir": "0064-planning-explainability-narrative-builder"
+    },
+    {
+      "id": 65,
+      "status": "ok",
+      "dir": "0065-planning-uncertainty-communicator"
+    },
+    {
+      "id": 66,
+      "status": "ok",
+      "dir": "0066-planning-experiment-design-generator"
+    },
+    {
+      "id": 67,
+      "status": "ok",
+      "dir": "0067-planning-a-b-rollout-governor"
+    },
+    {
+      "id": 68,
+      "status": "ok",
+      "dir": "0068-planning-incident-playbook-synthesizer"
+    },
+    {
+      "id": 69,
+      "status": "ok",
+      "dir": "0069-planning-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 70,
+      "status": "ok",
+      "dir": "0070-planning-privacy-preserving-data-broker"
+    },
+    {
+      "id": 71,
+      "status": "ok",
+      "dir": "0071-planning-security-threat-modeler"
+    },
+    {
+      "id": 72,
+      "status": "ok",
+      "dir": "0072-planning-compliance-evidence-mapper"
+    },
+    {
+      "id": 73,
+      "status": "ok",
+      "dir": "0073-planning-cost-benefit-forecaster"
+    },
+    {
+      "id": 74,
+      "status": "ok",
+      "dir": "0074-planning-equity-impact-scorer"
+    },
+    {
+      "id": 75,
+      "status": "ok",
+      "dir": "0075-planning-community-feedback-harvester"
+    },
+    {
+      "id": 76,
+      "status": "ok",
+      "dir": "0076-planning-kpi-dashboard-publisher"
+    },
+    {
+      "id": 77,
+      "status": "ok",
+      "dir": "0077-planning-skill-gap-diagnoser"
+    },
+    {
+      "id": 78,
+      "status": "ok",
+      "dir": "0078-planning-training-curriculum-composer"
+    },
+    {
+      "id": 79,
+      "status": "ok",
+      "dir": "0079-planning-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 80,
+      "status": "ok",
+      "dir": "0080-planning-continuous-improvement-planner"
+    },
+    {
+      "id": 81,
+      "status": "ok",
+      "dir": "0081-memory-signal-ingestion-normalizer"
+    },
+    {
+      "id": 82,
+      "status": "ok",
+      "dir": "0082-memory-context-window-prioritizer"
+    },
+    {
+      "id": 83,
+      "status": "ok",
+      "dir": "0083-memory-evidence-provenance-tracker"
+    },
+    {
+      "id": 84,
+      "status": "ok",
+      "dir": "0084-memory-contradiction-detector"
+    },
+    {
+      "id": 85,
+      "status": "ok",
+      "dir": "0085-memory-confidence-calibration-engine"
+    },
+    {
+      "id": 86,
+      "status": "ok",
+      "dir": "0086-memory-counterfactual-simulator"
+    },
+    {
+      "id": 87,
+      "status": "ok",
+      "dir": "0087-memory-goal-decomposer"
+    },
+    {
+      "id": 88,
+      "status": "ok",
+      "dir": "0088-memory-dependency-dag-planner"
+    },
+    {
+      "id": 89,
+      "status": "ok",
+      "dir": "0089-memory-resource-budget-allocator"
+    },
+    {
+      "id": 90,
+      "status": "ok",
+      "dir": "0090-memory-risk-aware-scheduler"
+    },
+    {
+      "id": 91,
+      "status": "ok",
+      "dir": "0091-memory-policy-constraint-compiler"
+    },
+    {
+      "id": 92,
+      "status": "ok",
+      "dir": "0092-memory-human-approval-router"
+    },
+    {
+      "id": 93,
+      "status": "ok",
+      "dir": "0093-memory-task-handoff-contractor"
+    },
+    {
+      "id": 94,
+      "status": "ok",
+      "dir": "0094-memory-tool-health-monitor"
+    },
+    {
+      "id": 95,
+      "status": "ok",
+      "dir": "0095-memory-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 96,
+      "status": "ok",
+      "dir": "0096-memory-failure-root-cause-miner"
+    },
+    {
+      "id": 97,
+      "status": "ok",
+      "dir": "0097-memory-regression-sentinel"
+    },
+    {
+      "id": 98,
+      "status": "ok",
+      "dir": "0098-memory-memory-consolidation-pipeline"
+    },
+    {
+      "id": 99,
+      "status": "ok",
+      "dir": "0099-memory-knowledge-graph-linker"
+    },
+    {
+      "id": 100,
+      "status": "ok",
+      "dir": "0100-memory-semantic-retrieval-ranker"
+    },
+    {
+      "id": 101,
+      "status": "ok",
+      "dir": "0101-memory-plan-quality-evaluator"
+    },
+    {
+      "id": 102,
+      "status": "ok",
+      "dir": "0102-memory-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 103,
+      "status": "ok",
+      "dir": "0103-memory-conflict-resolution-coach"
+    },
+    {
+      "id": 104,
+      "status": "ok",
+      "dir": "0104-memory-explainability-narrative-builder"
+    },
+    {
+      "id": 105,
+      "status": "ok",
+      "dir": "0105-memory-uncertainty-communicator"
+    },
+    {
+      "id": 106,
+      "status": "ok",
+      "dir": "0106-memory-experiment-design-generator"
+    },
+    {
+      "id": 107,
+      "status": "ok",
+      "dir": "0107-memory-a-b-rollout-governor"
+    },
+    {
+      "id": 108,
+      "status": "ok",
+      "dir": "0108-memory-incident-playbook-synthesizer"
+    },
+    {
+      "id": 109,
+      "status": "ok",
+      "dir": "0109-memory-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 110,
+      "status": "ok",
+      "dir": "0110-memory-privacy-preserving-data-broker"
+    },
+    {
+      "id": 111,
+      "status": "ok",
+      "dir": "0111-memory-security-threat-modeler"
+    },
+    {
+      "id": 112,
+      "status": "ok",
+      "dir": "0112-memory-compliance-evidence-mapper"
+    },
+    {
+      "id": 113,
+      "status": "ok",
+      "dir": "0113-memory-cost-benefit-forecaster"
+    },
+    {
+      "id": 114,
+      "status": "ok",
+      "dir": "0114-memory-equity-impact-scorer"
+    },
+    {
+      "id": 115,
+      "status": "ok",
+      "dir": "0115-memory-community-feedback-harvester"
+    },
+    {
+      "id": 116,
+      "status": "ok",
+      "dir": "0116-memory-kpi-dashboard-publisher"
+    },
+    {
+      "id": 117,
+      "status": "ok",
+      "dir": "0117-memory-skill-gap-diagnoser"
+    },
+    {
+      "id": 118,
+      "status": "ok",
+      "dir": "0118-memory-training-curriculum-composer"
+    },
+    {
+      "id": 119,
+      "status": "ok",
+      "dir": "0119-memory-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 120,
+      "status": "ok",
+      "dir": "0120-memory-continuous-improvement-planner"
+    },
+    {
+      "id": 121,
+      "status": "ok",
+      "dir": "0121-tooling-signal-ingestion-normalizer"
+    },
+    {
+      "id": 122,
+      "status": "ok",
+      "dir": "0122-tooling-context-window-prioritizer"
+    },
+    {
+      "id": 123,
+      "status": "ok",
+      "dir": "0123-tooling-evidence-provenance-tracker"
+    },
+    {
+      "id": 124,
+      "status": "ok",
+      "dir": "0124-tooling-contradiction-detector"
+    },
+    {
+      "id": 125,
+      "status": "ok",
+      "dir": "0125-tooling-confidence-calibration-engine"
+    },
+    {
+      "id": 126,
+      "status": "ok",
+      "dir": "0126-tooling-counterfactual-simulator"
+    },
+    {
+      "id": 127,
+      "status": "ok",
+      "dir": "0127-tooling-goal-decomposer"
+    },
+    {
+      "id": 128,
+      "status": "ok",
+      "dir": "0128-tooling-dependency-dag-planner"
+    },
+    {
+      "id": 129,
+      "status": "ok",
+      "dir": "0129-tooling-resource-budget-allocator"
+    },
+    {
+      "id": 130,
+      "status": "ok",
+      "dir": "0130-tooling-risk-aware-scheduler"
+    },
+    {
+      "id": 131,
+      "status": "ok",
+      "dir": "0131-tooling-policy-constraint-compiler"
+    },
+    {
+      "id": 132,
+      "status": "ok",
+      "dir": "0132-tooling-human-approval-router"
+    },
+    {
+      "id": 133,
+      "status": "ok",
+      "dir": "0133-tooling-task-handoff-contractor"
+    },
+    {
+      "id": 134,
+      "status": "ok",
+      "dir": "0134-tooling-tool-health-monitor"
+    },
+    {
+      "id": 135,
+      "status": "ok",
+      "dir": "0135-tooling-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 136,
+      "status": "ok",
+      "dir": "0136-tooling-failure-root-cause-miner"
+    },
+    {
+      "id": 137,
+      "status": "ok",
+      "dir": "0137-tooling-regression-sentinel"
+    },
+    {
+      "id": 138,
+      "status": "ok",
+      "dir": "0138-tooling-memory-consolidation-pipeline"
+    },
+    {
+      "id": 139,
+      "status": "ok",
+      "dir": "0139-tooling-knowledge-graph-linker"
+    },
+    {
+      "id": 140,
+      "status": "ok",
+      "dir": "0140-tooling-semantic-retrieval-ranker"
+    },
+    {
+      "id": 141,
+      "status": "ok",
+      "dir": "0141-tooling-plan-quality-evaluator"
+    },
+    {
+      "id": 142,
+      "status": "ok",
+      "dir": "0142-tooling-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 143,
+      "status": "ok",
+      "dir": "0143-tooling-conflict-resolution-coach"
+    },
+    {
+      "id": 144,
+      "status": "ok",
+      "dir": "0144-tooling-explainability-narrative-builder"
+    },
+    {
+      "id": 145,
+      "status": "ok",
+      "dir": "0145-tooling-uncertainty-communicator"
+    },
+    {
+      "id": 146,
+      "status": "ok",
+      "dir": "0146-tooling-experiment-design-generator"
+    },
+    {
+      "id": 147,
+      "status": "ok",
+      "dir": "0147-tooling-a-b-rollout-governor"
+    },
+    {
+      "id": 148,
+      "status": "ok",
+      "dir": "0148-tooling-incident-playbook-synthesizer"
+    },
+    {
+      "id": 149,
+      "status": "ok",
+      "dir": "0149-tooling-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 150,
+      "status": "ok",
+      "dir": "0150-tooling-privacy-preserving-data-broker"
+    },
+    {
+      "id": 151,
+      "status": "ok",
+      "dir": "0151-tooling-security-threat-modeler"
+    },
+    {
+      "id": 152,
+      "status": "ok",
+      "dir": "0152-tooling-compliance-evidence-mapper"
+    },
+    {
+      "id": 153,
+      "status": "ok",
+      "dir": "0153-tooling-cost-benefit-forecaster"
+    },
+    {
+      "id": 154,
+      "status": "ok",
+      "dir": "0154-tooling-equity-impact-scorer"
+    },
+    {
+      "id": 155,
+      "status": "ok",
+      "dir": "0155-tooling-community-feedback-harvester"
+    },
+    {
+      "id": 156,
+      "status": "ok",
+      "dir": "0156-tooling-kpi-dashboard-publisher"
+    },
+    {
+      "id": 157,
+      "status": "ok",
+      "dir": "0157-tooling-skill-gap-diagnoser"
+    },
+    {
+      "id": 158,
+      "status": "ok",
+      "dir": "0158-tooling-training-curriculum-composer"
+    },
+    {
+      "id": 159,
+      "status": "ok",
+      "dir": "0159-tooling-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 160,
+      "status": "ok",
+      "dir": "0160-tooling-continuous-improvement-planner"
+    },
+    {
+      "id": 161,
+      "status": "ok",
+      "dir": "0161-governance-signal-ingestion-normalizer"
+    },
+    {
+      "id": 162,
+      "status": "ok",
+      "dir": "0162-governance-context-window-prioritizer"
+    },
+    {
+      "id": 163,
+      "status": "ok",
+      "dir": "0163-governance-evidence-provenance-tracker"
+    },
+    {
+      "id": 164,
+      "status": "ok",
+      "dir": "0164-governance-contradiction-detector"
+    },
+    {
+      "id": 165,
+      "status": "ok",
+      "dir": "0165-governance-confidence-calibration-engine"
+    },
+    {
+      "id": 166,
+      "status": "ok",
+      "dir": "0166-governance-counterfactual-simulator"
+    },
+    {
+      "id": 167,
+      "status": "ok",
+      "dir": "0167-governance-goal-decomposer"
+    },
+    {
+      "id": 168,
+      "status": "ok",
+      "dir": "0168-governance-dependency-dag-planner"
+    },
+    {
+      "id": 169,
+      "status": "ok",
+      "dir": "0169-governance-resource-budget-allocator"
+    },
+    {
+      "id": 170,
+      "status": "ok",
+      "dir": "0170-governance-risk-aware-scheduler"
+    },
+    {
+      "id": 171,
+      "status": "ok",
+      "dir": "0171-governance-policy-constraint-compiler"
+    },
+    {
+      "id": 172,
+      "status": "ok",
+      "dir": "0172-governance-human-approval-router"
+    },
+    {
+      "id": 173,
+      "status": "ok",
+      "dir": "0173-governance-task-handoff-contractor"
+    },
+    {
+      "id": 174,
+      "status": "ok",
+      "dir": "0174-governance-tool-health-monitor"
+    },
+    {
+      "id": 175,
+      "status": "ok",
+      "dir": "0175-governance-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 176,
+      "status": "ok",
+      "dir": "0176-governance-failure-root-cause-miner"
+    },
+    {
+      "id": 177,
+      "status": "ok",
+      "dir": "0177-governance-regression-sentinel"
+    },
+    {
+      "id": 178,
+      "status": "ok",
+      "dir": "0178-governance-memory-consolidation-pipeline"
+    },
+    {
+      "id": 179,
+      "status": "ok",
+      "dir": "0179-governance-knowledge-graph-linker"
+    },
+    {
+      "id": 180,
+      "status": "ok",
+      "dir": "0180-governance-semantic-retrieval-ranker"
+    },
+    {
+      "id": 181,
+      "status": "ok",
+      "dir": "0181-governance-plan-quality-evaluator"
+    },
+    {
+      "id": 182,
+      "status": "ok",
+      "dir": "0182-governance-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 183,
+      "status": "ok",
+      "dir": "0183-governance-conflict-resolution-coach"
+    },
+    {
+      "id": 184,
+      "status": "ok",
+      "dir": "0184-governance-explainability-narrative-builder"
+    },
+    {
+      "id": 185,
+      "status": "ok",
+      "dir": "0185-governance-uncertainty-communicator"
+    },
+    {
+      "id": 186,
+      "status": "ok",
+      "dir": "0186-governance-experiment-design-generator"
+    },
+    {
+      "id": 187,
+      "status": "ok",
+      "dir": "0187-governance-a-b-rollout-governor"
+    },
+    {
+      "id": 188,
+      "status": "ok",
+      "dir": "0188-governance-incident-playbook-synthesizer"
+    },
+    {
+      "id": 189,
+      "status": "ok",
+      "dir": "0189-governance-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 190,
+      "status": "ok",
+      "dir": "0190-governance-privacy-preserving-data-broker"
+    },
+    {
+      "id": 191,
+      "status": "ok",
+      "dir": "0191-governance-security-threat-modeler"
+    },
+    {
+      "id": 192,
+      "status": "ok",
+      "dir": "0192-governance-compliance-evidence-mapper"
+    },
+    {
+      "id": 193,
+      "status": "ok",
+      "dir": "0193-governance-cost-benefit-forecaster"
+    },
+    {
+      "id": 194,
+      "status": "ok",
+      "dir": "0194-governance-equity-impact-scorer"
+    },
+    {
+      "id": 195,
+      "status": "ok",
+      "dir": "0195-governance-community-feedback-harvester"
+    },
+    {
+      "id": 196,
+      "status": "ok",
+      "dir": "0196-governance-kpi-dashboard-publisher"
+    },
+    {
+      "id": 197,
+      "status": "ok",
+      "dir": "0197-governance-skill-gap-diagnoser"
+    },
+    {
+      "id": 198,
+      "status": "ok",
+      "dir": "0198-governance-training-curriculum-composer"
+    },
+    {
+      "id": 199,
+      "status": "ok",
+      "dir": "0199-governance-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 200,
+      "status": "ok",
+      "dir": "0200-governance-continuous-improvement-planner"
+    },
+    {
+      "id": 201,
+      "status": "ok",
+      "dir": "0201-oversight-signal-ingestion-normalizer"
+    },
+    {
+      "id": 202,
+      "status": "ok",
+      "dir": "0202-oversight-context-window-prioritizer"
+    },
+    {
+      "id": 203,
+      "status": "ok",
+      "dir": "0203-oversight-evidence-provenance-tracker"
+    },
+    {
+      "id": 204,
+      "status": "ok",
+      "dir": "0204-oversight-contradiction-detector"
+    },
+    {
+      "id": 205,
+      "status": "ok",
+      "dir": "0205-oversight-confidence-calibration-engine"
+    },
+    {
+      "id": 206,
+      "status": "ok",
+      "dir": "0206-oversight-counterfactual-simulator"
+    },
+    {
+      "id": 207,
+      "status": "ok",
+      "dir": "0207-oversight-goal-decomposer"
+    },
+    {
+      "id": 208,
+      "status": "ok",
+      "dir": "0208-oversight-dependency-dag-planner"
+    },
+    {
+      "id": 209,
+      "status": "ok",
+      "dir": "0209-oversight-resource-budget-allocator"
+    },
+    {
+      "id": 210,
+      "status": "ok",
+      "dir": "0210-oversight-risk-aware-scheduler"
+    },
+    {
+      "id": 211,
+      "status": "ok",
+      "dir": "0211-oversight-policy-constraint-compiler"
+    },
+    {
+      "id": 212,
+      "status": "ok",
+      "dir": "0212-oversight-human-approval-router"
+    },
+    {
+      "id": 213,
+      "status": "ok",
+      "dir": "0213-oversight-task-handoff-contractor"
+    },
+    {
+      "id": 214,
+      "status": "ok",
+      "dir": "0214-oversight-tool-health-monitor"
+    },
+    {
+      "id": 215,
+      "status": "ok",
+      "dir": "0215-oversight-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 216,
+      "status": "ok",
+      "dir": "0216-oversight-failure-root-cause-miner"
+    },
+    {
+      "id": 217,
+      "status": "ok",
+      "dir": "0217-oversight-regression-sentinel"
+    },
+    {
+      "id": 218,
+      "status": "ok",
+      "dir": "0218-oversight-memory-consolidation-pipeline"
+    },
+    {
+      "id": 219,
+      "status": "ok",
+      "dir": "0219-oversight-knowledge-graph-linker"
+    },
+    {
+      "id": 220,
+      "status": "ok",
+      "dir": "0220-oversight-semantic-retrieval-ranker"
+    },
+    {
+      "id": 221,
+      "status": "ok",
+      "dir": "0221-oversight-plan-quality-evaluator"
+    },
+    {
+      "id": 222,
+      "status": "ok",
+      "dir": "0222-oversight-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 223,
+      "status": "ok",
+      "dir": "0223-oversight-conflict-resolution-coach"
+    },
+    {
+      "id": 224,
+      "status": "ok",
+      "dir": "0224-oversight-explainability-narrative-builder"
+    },
+    {
+      "id": 225,
+      "status": "ok",
+      "dir": "0225-oversight-uncertainty-communicator"
+    },
+    {
+      "id": 226,
+      "status": "ok",
+      "dir": "0226-oversight-experiment-design-generator"
+    },
+    {
+      "id": 227,
+      "status": "ok",
+      "dir": "0227-oversight-a-b-rollout-governor"
+    },
+    {
+      "id": 228,
+      "status": "ok",
+      "dir": "0228-oversight-incident-playbook-synthesizer"
+    },
+    {
+      "id": 229,
+      "status": "ok",
+      "dir": "0229-oversight-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 230,
+      "status": "ok",
+      "dir": "0230-oversight-privacy-preserving-data-broker"
+    },
+    {
+      "id": 231,
+      "status": "ok",
+      "dir": "0231-oversight-security-threat-modeler"
+    },
+    {
+      "id": 232,
+      "status": "ok",
+      "dir": "0232-oversight-compliance-evidence-mapper"
+    },
+    {
+      "id": 233,
+      "status": "ok",
+      "dir": "0233-oversight-cost-benefit-forecaster"
+    },
+    {
+      "id": 234,
+      "status": "ok",
+      "dir": "0234-oversight-equity-impact-scorer"
+    },
+    {
+      "id": 235,
+      "status": "ok",
+      "dir": "0235-oversight-community-feedback-harvester"
+    },
+    {
+      "id": 236,
+      "status": "ok",
+      "dir": "0236-oversight-kpi-dashboard-publisher"
+    },
+    {
+      "id": 237,
+      "status": "ok",
+      "dir": "0237-oversight-skill-gap-diagnoser"
+    },
+    {
+      "id": 238,
+      "status": "ok",
+      "dir": "0238-oversight-training-curriculum-composer"
+    },
+    {
+      "id": 239,
+      "status": "ok",
+      "dir": "0239-oversight-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 240,
+      "status": "ok",
+      "dir": "0240-oversight-continuous-improvement-planner"
+    },
+    {
+      "id": 241,
+      "status": "ok",
+      "dir": "0241-collab-signal-ingestion-normalizer"
+    },
+    {
+      "id": 242,
+      "status": "ok",
+      "dir": "0242-collab-context-window-prioritizer"
+    },
+    {
+      "id": 243,
+      "status": "ok",
+      "dir": "0243-collab-evidence-provenance-tracker"
+    },
+    {
+      "id": 244,
+      "status": "ok",
+      "dir": "0244-collab-contradiction-detector"
+    },
+    {
+      "id": 245,
+      "status": "ok",
+      "dir": "0245-collab-confidence-calibration-engine"
+    },
+    {
+      "id": 246,
+      "status": "ok",
+      "dir": "0246-collab-counterfactual-simulator"
+    },
+    {
+      "id": 247,
+      "status": "ok",
+      "dir": "0247-collab-goal-decomposer"
+    },
+    {
+      "id": 248,
+      "status": "ok",
+      "dir": "0248-collab-dependency-dag-planner"
+    },
+    {
+      "id": 249,
+      "status": "ok",
+      "dir": "0249-collab-resource-budget-allocator"
+    },
+    {
+      "id": 250,
+      "status": "ok",
+      "dir": "0250-collab-risk-aware-scheduler"
+    },
+    {
+      "id": 251,
+      "status": "ok",
+      "dir": "0251-collab-policy-constraint-compiler"
+    },
+    {
+      "id": 252,
+      "status": "ok",
+      "dir": "0252-collab-human-approval-router"
+    },
+    {
+      "id": 253,
+      "status": "ok",
+      "dir": "0253-collab-task-handoff-contractor"
+    },
+    {
+      "id": 254,
+      "status": "ok",
+      "dir": "0254-collab-tool-health-monitor"
+    },
+    {
+      "id": 255,
+      "status": "ok",
+      "dir": "0255-collab-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 256,
+      "status": "ok",
+      "dir": "0256-collab-failure-root-cause-miner"
+    },
+    {
+      "id": 257,
+      "status": "ok",
+      "dir": "0257-collab-regression-sentinel"
+    },
+    {
+      "id": 258,
+      "status": "ok",
+      "dir": "0258-collab-memory-consolidation-pipeline"
+    },
+    {
+      "id": 259,
+      "status": "ok",
+      "dir": "0259-collab-knowledge-graph-linker"
+    },
+    {
+      "id": 260,
+      "status": "ok",
+      "dir": "0260-collab-semantic-retrieval-ranker"
+    },
+    {
+      "id": 261,
+      "status": "ok",
+      "dir": "0261-collab-plan-quality-evaluator"
+    },
+    {
+      "id": 262,
+      "status": "ok",
+      "dir": "0262-collab-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 263,
+      "status": "ok",
+      "dir": "0263-collab-conflict-resolution-coach"
+    },
+    {
+      "id": 264,
+      "status": "ok",
+      "dir": "0264-collab-explainability-narrative-builder"
+    },
+    {
+      "id": 265,
+      "status": "ok",
+      "dir": "0265-collab-uncertainty-communicator"
+    },
+    {
+      "id": 266,
+      "status": "ok",
+      "dir": "0266-collab-experiment-design-generator"
+    },
+    {
+      "id": 267,
+      "status": "ok",
+      "dir": "0267-collab-a-b-rollout-governor"
+    },
+    {
+      "id": 268,
+      "status": "ok",
+      "dir": "0268-collab-incident-playbook-synthesizer"
+    },
+    {
+      "id": 269,
+      "status": "ok",
+      "dir": "0269-collab-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 270,
+      "status": "ok",
+      "dir": "0270-collab-privacy-preserving-data-broker"
+    },
+    {
+      "id": 271,
+      "status": "ok",
+      "dir": "0271-collab-security-threat-modeler"
+    },
+    {
+      "id": 272,
+      "status": "ok",
+      "dir": "0272-collab-compliance-evidence-mapper"
+    },
+    {
+      "id": 273,
+      "status": "ok",
+      "dir": "0273-collab-cost-benefit-forecaster"
+    },
+    {
+      "id": 274,
+      "status": "ok",
+      "dir": "0274-collab-equity-impact-scorer"
+    },
+    {
+      "id": 275,
+      "status": "ok",
+      "dir": "0275-collab-community-feedback-harvester"
+    },
+    {
+      "id": 276,
+      "status": "ok",
+      "dir": "0276-collab-kpi-dashboard-publisher"
+    },
+    {
+      "id": 277,
+      "status": "ok",
+      "dir": "0277-collab-skill-gap-diagnoser"
+    },
+    {
+      "id": 278,
+      "status": "ok",
+      "dir": "0278-collab-training-curriculum-composer"
+    },
+    {
+      "id": 279,
+      "status": "ok",
+      "dir": "0279-collab-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 280,
+      "status": "ok",
+      "dir": "0280-collab-continuous-improvement-planner"
+    },
+    {
+      "id": 281,
+      "status": "ok",
+      "dir": "0281-federation-signal-ingestion-normalizer"
+    },
+    {
+      "id": 282,
+      "status": "ok",
+      "dir": "0282-federation-context-window-prioritizer"
+    },
+    {
+      "id": 283,
+      "status": "ok",
+      "dir": "0283-federation-evidence-provenance-tracker"
+    },
+    {
+      "id": 284,
+      "status": "ok",
+      "dir": "0284-federation-contradiction-detector"
+    },
+    {
+      "id": 285,
+      "status": "ok",
+      "dir": "0285-federation-confidence-calibration-engine"
+    },
+    {
+      "id": 286,
+      "status": "ok",
+      "dir": "0286-federation-counterfactual-simulator"
+    },
+    {
+      "id": 287,
+      "status": "ok",
+      "dir": "0287-federation-goal-decomposer"
+    },
+    {
+      "id": 288,
+      "status": "ok",
+      "dir": "0288-federation-dependency-dag-planner"
+    },
+    {
+      "id": 289,
+      "status": "ok",
+      "dir": "0289-federation-resource-budget-allocator"
+    },
+    {
+      "id": 290,
+      "status": "ok",
+      "dir": "0290-federation-risk-aware-scheduler"
+    },
+    {
+      "id": 291,
+      "status": "ok",
+      "dir": "0291-federation-policy-constraint-compiler"
+    },
+    {
+      "id": 292,
+      "status": "ok",
+      "dir": "0292-federation-human-approval-router"
+    },
+    {
+      "id": 293,
+      "status": "ok",
+      "dir": "0293-federation-task-handoff-contractor"
+    },
+    {
+      "id": 294,
+      "status": "ok",
+      "dir": "0294-federation-tool-health-monitor"
+    },
+    {
+      "id": 295,
+      "status": "ok",
+      "dir": "0295-federation-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 296,
+      "status": "ok",
+      "dir": "0296-federation-failure-root-cause-miner"
+    },
+    {
+      "id": 297,
+      "status": "ok",
+      "dir": "0297-federation-regression-sentinel"
+    },
+    {
+      "id": 298,
+      "status": "ok",
+      "dir": "0298-federation-memory-consolidation-pipeline"
+    },
+    {
+      "id": 299,
+      "status": "ok",
+      "dir": "0299-federation-knowledge-graph-linker"
+    },
+    {
+      "id": 300,
+      "status": "ok",
+      "dir": "0300-federation-semantic-retrieval-ranker"
+    },
+    {
+      "id": 301,
+      "status": "ok",
+      "dir": "0301-federation-plan-quality-evaluator"
+    },
+    {
+      "id": 302,
+      "status": "ok",
+      "dir": "0302-federation-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 303,
+      "status": "ok",
+      "dir": "0303-federation-conflict-resolution-coach"
+    },
+    {
+      "id": 304,
+      "status": "ok",
+      "dir": "0304-federation-explainability-narrative-builder"
+    },
+    {
+      "id": 305,
+      "status": "ok",
+      "dir": "0305-federation-uncertainty-communicator"
+    },
+    {
+      "id": 306,
+      "status": "ok",
+      "dir": "0306-federation-experiment-design-generator"
+    },
+    {
+      "id": 307,
+      "status": "ok",
+      "dir": "0307-federation-a-b-rollout-governor"
+    },
+    {
+      "id": 308,
+      "status": "ok",
+      "dir": "0308-federation-incident-playbook-synthesizer"
+    },
+    {
+      "id": 309,
+      "status": "ok",
+      "dir": "0309-federation-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 310,
+      "status": "ok",
+      "dir": "0310-federation-privacy-preserving-data-broker"
+    },
+    {
+      "id": 311,
+      "status": "ok",
+      "dir": "0311-federation-security-threat-modeler"
+    },
+    {
+      "id": 312,
+      "status": "ok",
+      "dir": "0312-federation-compliance-evidence-mapper"
+    },
+    {
+      "id": 313,
+      "status": "ok",
+      "dir": "0313-federation-cost-benefit-forecaster"
+    },
+    {
+      "id": 314,
+      "status": "ok",
+      "dir": "0314-federation-equity-impact-scorer"
+    },
+    {
+      "id": 315,
+      "status": "ok",
+      "dir": "0315-federation-community-feedback-harvester"
+    },
+    {
+      "id": 316,
+      "status": "ok",
+      "dir": "0316-federation-kpi-dashboard-publisher"
+    },
+    {
+      "id": 317,
+      "status": "ok",
+      "dir": "0317-federation-skill-gap-diagnoser"
+    },
+    {
+      "id": 318,
+      "status": "ok",
+      "dir": "0318-federation-training-curriculum-composer"
+    },
+    {
+      "id": 319,
+      "status": "ok",
+      "dir": "0319-federation-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 320,
+      "status": "ok",
+      "dir": "0320-federation-continuous-improvement-planner"
+    },
+    {
+      "id": 321,
+      "status": "ok",
+      "dir": "0321-economic-signal-ingestion-normalizer"
+    },
+    {
+      "id": 322,
+      "status": "ok",
+      "dir": "0322-economic-context-window-prioritizer"
+    },
+    {
+      "id": 323,
+      "status": "ok",
+      "dir": "0323-economic-evidence-provenance-tracker"
+    },
+    {
+      "id": 324,
+      "status": "ok",
+      "dir": "0324-economic-contradiction-detector"
+    },
+    {
+      "id": 325,
+      "status": "ok",
+      "dir": "0325-economic-confidence-calibration-engine"
+    },
+    {
+      "id": 326,
+      "status": "ok",
+      "dir": "0326-economic-counterfactual-simulator"
+    },
+    {
+      "id": 327,
+      "status": "ok",
+      "dir": "0327-economic-goal-decomposer"
+    },
+    {
+      "id": 328,
+      "status": "ok",
+      "dir": "0328-economic-dependency-dag-planner"
+    },
+    {
+      "id": 329,
+      "status": "ok",
+      "dir": "0329-economic-resource-budget-allocator"
+    },
+    {
+      "id": 330,
+      "status": "ok",
+      "dir": "0330-economic-risk-aware-scheduler"
+    },
+    {
+      "id": 331,
+      "status": "ok",
+      "dir": "0331-economic-policy-constraint-compiler"
+    },
+    {
+      "id": 332,
+      "status": "ok",
+      "dir": "0332-economic-human-approval-router"
+    },
+    {
+      "id": 333,
+      "status": "ok",
+      "dir": "0333-economic-task-handoff-contractor"
+    },
+    {
+      "id": 334,
+      "status": "ok",
+      "dir": "0334-economic-tool-health-monitor"
+    },
+    {
+      "id": 335,
+      "status": "ok",
+      "dir": "0335-economic-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 336,
+      "status": "ok",
+      "dir": "0336-economic-failure-root-cause-miner"
+    },
+    {
+      "id": 337,
+      "status": "ok",
+      "dir": "0337-economic-regression-sentinel"
+    },
+    {
+      "id": 338,
+      "status": "ok",
+      "dir": "0338-economic-memory-consolidation-pipeline"
+    },
+    {
+      "id": 339,
+      "status": "ok",
+      "dir": "0339-economic-knowledge-graph-linker"
+    },
+    {
+      "id": 340,
+      "status": "ok",
+      "dir": "0340-economic-semantic-retrieval-ranker"
+    },
+    {
+      "id": 341,
+      "status": "ok",
+      "dir": "0341-economic-plan-quality-evaluator"
+    },
+    {
+      "id": 342,
+      "status": "ok",
+      "dir": "0342-economic-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 343,
+      "status": "ok",
+      "dir": "0343-economic-conflict-resolution-coach"
+    },
+    {
+      "id": 344,
+      "status": "ok",
+      "dir": "0344-economic-explainability-narrative-builder"
+    },
+    {
+      "id": 345,
+      "status": "ok",
+      "dir": "0345-economic-uncertainty-communicator"
+    },
+    {
+      "id": 346,
+      "status": "ok",
+      "dir": "0346-economic-experiment-design-generator"
+    },
+    {
+      "id": 347,
+      "status": "ok",
+      "dir": "0347-economic-a-b-rollout-governor"
+    },
+    {
+      "id": 348,
+      "status": "ok",
+      "dir": "0348-economic-incident-playbook-synthesizer"
+    },
+    {
+      "id": 349,
+      "status": "ok",
+      "dir": "0349-economic-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 350,
+      "status": "ok",
+      "dir": "0350-economic-privacy-preserving-data-broker"
+    },
+    {
+      "id": 351,
+      "status": "ok",
+      "dir": "0351-economic-security-threat-modeler"
+    },
+    {
+      "id": 352,
+      "status": "ok",
+      "dir": "0352-economic-compliance-evidence-mapper"
+    },
+    {
+      "id": 353,
+      "status": "ok",
+      "dir": "0353-economic-cost-benefit-forecaster"
+    },
+    {
+      "id": 354,
+      "status": "ok",
+      "dir": "0354-economic-equity-impact-scorer"
+    },
+    {
+      "id": 355,
+      "status": "ok",
+      "dir": "0355-economic-community-feedback-harvester"
+    },
+    {
+      "id": 356,
+      "status": "ok",
+      "dir": "0356-economic-kpi-dashboard-publisher"
+    },
+    {
+      "id": 357,
+      "status": "ok",
+      "dir": "0357-economic-skill-gap-diagnoser"
+    },
+    {
+      "id": 358,
+      "status": "ok",
+      "dir": "0358-economic-training-curriculum-composer"
+    },
+    {
+      "id": 359,
+      "status": "ok",
+      "dir": "0359-economic-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 360,
+      "status": "ok",
+      "dir": "0360-economic-continuous-improvement-planner"
+    },
+    {
+      "id": 361,
+      "status": "ok",
+      "dir": "0361-logistics-signal-ingestion-normalizer"
+    },
+    {
+      "id": 362,
+      "status": "ok",
+      "dir": "0362-logistics-context-window-prioritizer"
+    },
+    {
+      "id": 363,
+      "status": "ok",
+      "dir": "0363-logistics-evidence-provenance-tracker"
+    },
+    {
+      "id": 364,
+      "status": "ok",
+      "dir": "0364-logistics-contradiction-detector"
+    },
+    {
+      "id": 365,
+      "status": "ok",
+      "dir": "0365-logistics-confidence-calibration-engine"
+    },
+    {
+      "id": 366,
+      "status": "ok",
+      "dir": "0366-logistics-counterfactual-simulator"
+    },
+    {
+      "id": 367,
+      "status": "ok",
+      "dir": "0367-logistics-goal-decomposer"
+    },
+    {
+      "id": 368,
+      "status": "ok",
+      "dir": "0368-logistics-dependency-dag-planner"
+    },
+    {
+      "id": 369,
+      "status": "ok",
+      "dir": "0369-logistics-resource-budget-allocator"
+    },
+    {
+      "id": 370,
+      "status": "ok",
+      "dir": "0370-logistics-risk-aware-scheduler"
+    },
+    {
+      "id": 371,
+      "status": "ok",
+      "dir": "0371-logistics-policy-constraint-compiler"
+    },
+    {
+      "id": 372,
+      "status": "ok",
+      "dir": "0372-logistics-human-approval-router"
+    },
+    {
+      "id": 373,
+      "status": "ok",
+      "dir": "0373-logistics-task-handoff-contractor"
+    },
+    {
+      "id": 374,
+      "status": "ok",
+      "dir": "0374-logistics-tool-health-monitor"
+    },
+    {
+      "id": 375,
+      "status": "ok",
+      "dir": "0375-logistics-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 376,
+      "status": "ok",
+      "dir": "0376-logistics-failure-root-cause-miner"
+    },
+    {
+      "id": 377,
+      "status": "ok",
+      "dir": "0377-logistics-regression-sentinel"
+    },
+    {
+      "id": 378,
+      "status": "ok",
+      "dir": "0378-logistics-memory-consolidation-pipeline"
+    },
+    {
+      "id": 379,
+      "status": "ok",
+      "dir": "0379-logistics-knowledge-graph-linker"
+    },
+    {
+      "id": 380,
+      "status": "ok",
+      "dir": "0380-logistics-semantic-retrieval-ranker"
+    },
+    {
+      "id": 381,
+      "status": "ok",
+      "dir": "0381-logistics-plan-quality-evaluator"
+    },
+    {
+      "id": 382,
+      "status": "ok",
+      "dir": "0382-logistics-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 383,
+      "status": "ok",
+      "dir": "0383-logistics-conflict-resolution-coach"
+    },
+    {
+      "id": 384,
+      "status": "ok",
+      "dir": "0384-logistics-explainability-narrative-builder"
+    },
+    {
+      "id": 385,
+      "status": "ok",
+      "dir": "0385-logistics-uncertainty-communicator"
+    },
+    {
+      "id": 386,
+      "status": "ok",
+      "dir": "0386-logistics-experiment-design-generator"
+    },
+    {
+      "id": 387,
+      "status": "ok",
+      "dir": "0387-logistics-a-b-rollout-governor"
+    },
+    {
+      "id": 388,
+      "status": "ok",
+      "dir": "0388-logistics-incident-playbook-synthesizer"
+    },
+    {
+      "id": 389,
+      "status": "ok",
+      "dir": "0389-logistics-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 390,
+      "status": "ok",
+      "dir": "0390-logistics-privacy-preserving-data-broker"
+    },
+    {
+      "id": 391,
+      "status": "ok",
+      "dir": "0391-logistics-security-threat-modeler"
+    },
+    {
+      "id": 392,
+      "status": "ok",
+      "dir": "0392-logistics-compliance-evidence-mapper"
+    },
+    {
+      "id": 393,
+      "status": "ok",
+      "dir": "0393-logistics-cost-benefit-forecaster"
+    },
+    {
+      "id": 394,
+      "status": "ok",
+      "dir": "0394-logistics-equity-impact-scorer"
+    },
+    {
+      "id": 395,
+      "status": "ok",
+      "dir": "0395-logistics-community-feedback-harvester"
+    },
+    {
+      "id": 396,
+      "status": "ok",
+      "dir": "0396-logistics-kpi-dashboard-publisher"
+    },
+    {
+      "id": 397,
+      "status": "ok",
+      "dir": "0397-logistics-skill-gap-diagnoser"
+    },
+    {
+      "id": 398,
+      "status": "ok",
+      "dir": "0398-logistics-training-curriculum-composer"
+    },
+    {
+      "id": 399,
+      "status": "ok",
+      "dir": "0399-logistics-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 400,
+      "status": "ok",
+      "dir": "0400-logistics-continuous-improvement-planner"
+    },
+    {
+      "id": 401,
+      "status": "ok",
+      "dir": "0401-publicservice-signal-ingestion-normalizer"
+    },
+    {
+      "id": 402,
+      "status": "ok",
+      "dir": "0402-publicservice-context-window-prioritizer"
+    },
+    {
+      "id": 403,
+      "status": "ok",
+      "dir": "0403-publicservice-evidence-provenance-tracker"
+    },
+    {
+      "id": 404,
+      "status": "ok",
+      "dir": "0404-publicservice-contradiction-detector"
+    },
+    {
+      "id": 405,
+      "status": "ok",
+      "dir": "0405-publicservice-confidence-calibration-engine"
+    },
+    {
+      "id": 406,
+      "status": "ok",
+      "dir": "0406-publicservice-counterfactual-simulator"
+    },
+    {
+      "id": 407,
+      "status": "ok",
+      "dir": "0407-publicservice-goal-decomposer"
+    },
+    {
+      "id": 408,
+      "status": "ok",
+      "dir": "0408-publicservice-dependency-dag-planner"
+    },
+    {
+      "id": 409,
+      "status": "ok",
+      "dir": "0409-publicservice-resource-budget-allocator"
+    },
+    {
+      "id": 410,
+      "status": "ok",
+      "dir": "0410-publicservice-risk-aware-scheduler"
+    },
+    {
+      "id": 411,
+      "status": "ok",
+      "dir": "0411-publicservice-policy-constraint-compiler"
+    },
+    {
+      "id": 412,
+      "status": "ok",
+      "dir": "0412-publicservice-human-approval-router"
+    },
+    {
+      "id": 413,
+      "status": "ok",
+      "dir": "0413-publicservice-task-handoff-contractor"
+    },
+    {
+      "id": 414,
+      "status": "ok",
+      "dir": "0414-publicservice-tool-health-monitor"
+    },
+    {
+      "id": 415,
+      "status": "ok",
+      "dir": "0415-publicservice-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 416,
+      "status": "ok",
+      "dir": "0416-publicservice-failure-root-cause-miner"
+    },
+    {
+      "id": 417,
+      "status": "ok",
+      "dir": "0417-publicservice-regression-sentinel"
+    },
+    {
+      "id": 418,
+      "status": "ok",
+      "dir": "0418-publicservice-memory-consolidation-pipeline"
+    },
+    {
+      "id": 419,
+      "status": "ok",
+      "dir": "0419-publicservice-knowledge-graph-linker"
+    },
+    {
+      "id": 420,
+      "status": "ok",
+      "dir": "0420-publicservice-semantic-retrieval-ranker"
+    },
+    {
+      "id": 421,
+      "status": "ok",
+      "dir": "0421-publicservice-plan-quality-evaluator"
+    },
+    {
+      "id": 422,
+      "status": "ok",
+      "dir": "0422-publicservice-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 423,
+      "status": "ok",
+      "dir": "0423-publicservice-conflict-resolution-coach"
+    },
+    {
+      "id": 424,
+      "status": "ok",
+      "dir": "0424-publicservice-explainability-narrative-builder"
+    },
+    {
+      "id": 425,
+      "status": "ok",
+      "dir": "0425-publicservice-uncertainty-communicator"
+    },
+    {
+      "id": 426,
+      "status": "ok",
+      "dir": "0426-publicservice-experiment-design-generator"
+    },
+    {
+      "id": 427,
+      "status": "ok",
+      "dir": "0427-publicservice-a-b-rollout-governor"
+    },
+    {
+      "id": 428,
+      "status": "ok",
+      "dir": "0428-publicservice-incident-playbook-synthesizer"
+    },
+    {
+      "id": 429,
+      "status": "ok",
+      "dir": "0429-publicservice-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 430,
+      "status": "ok",
+      "dir": "0430-publicservice-privacy-preserving-data-broker"
+    },
+    {
+      "id": 431,
+      "status": "ok",
+      "dir": "0431-publicservice-security-threat-modeler"
+    },
+    {
+      "id": 432,
+      "status": "ok",
+      "dir": "0432-publicservice-compliance-evidence-mapper"
+    },
+    {
+      "id": 433,
+      "status": "ok",
+      "dir": "0433-publicservice-cost-benefit-forecaster"
+    },
+    {
+      "id": 434,
+      "status": "ok",
+      "dir": "0434-publicservice-equity-impact-scorer"
+    },
+    {
+      "id": 435,
+      "status": "ok",
+      "dir": "0435-publicservice-community-feedback-harvester"
+    },
+    {
+      "id": 436,
+      "status": "ok",
+      "dir": "0436-publicservice-kpi-dashboard-publisher"
+    },
+    {
+      "id": 437,
+      "status": "ok",
+      "dir": "0437-publicservice-skill-gap-diagnoser"
+    },
+    {
+      "id": 438,
+      "status": "ok",
+      "dir": "0438-publicservice-training-curriculum-composer"
+    },
+    {
+      "id": 439,
+      "status": "ok",
+      "dir": "0439-publicservice-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 440,
+      "status": "ok",
+      "dir": "0440-publicservice-continuous-improvement-planner"
+    },
+    {
+      "id": 441,
+      "status": "ok",
+      "dir": "0441-education-signal-ingestion-normalizer"
+    },
+    {
+      "id": 442,
+      "status": "ok",
+      "dir": "0442-education-context-window-prioritizer"
+    },
+    {
+      "id": 443,
+      "status": "ok",
+      "dir": "0443-education-evidence-provenance-tracker"
+    },
+    {
+      "id": 444,
+      "status": "ok",
+      "dir": "0444-education-contradiction-detector"
+    },
+    {
+      "id": 445,
+      "status": "ok",
+      "dir": "0445-education-confidence-calibration-engine"
+    },
+    {
+      "id": 446,
+      "status": "ok",
+      "dir": "0446-education-counterfactual-simulator"
+    },
+    {
+      "id": 447,
+      "status": "ok",
+      "dir": "0447-education-goal-decomposer"
+    },
+    {
+      "id": 448,
+      "status": "ok",
+      "dir": "0448-education-dependency-dag-planner"
+    },
+    {
+      "id": 449,
+      "status": "ok",
+      "dir": "0449-education-resource-budget-allocator"
+    },
+    {
+      "id": 450,
+      "status": "ok",
+      "dir": "0450-education-risk-aware-scheduler"
+    },
+    {
+      "id": 451,
+      "status": "ok",
+      "dir": "0451-education-policy-constraint-compiler"
+    },
+    {
+      "id": 452,
+      "status": "ok",
+      "dir": "0452-education-human-approval-router"
+    },
+    {
+      "id": 453,
+      "status": "ok",
+      "dir": "0453-education-task-handoff-contractor"
+    },
+    {
+      "id": 454,
+      "status": "ok",
+      "dir": "0454-education-tool-health-monitor"
+    },
+    {
+      "id": 455,
+      "status": "ok",
+      "dir": "0455-education-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 456,
+      "status": "ok",
+      "dir": "0456-education-failure-root-cause-miner"
+    },
+    {
+      "id": 457,
+      "status": "ok",
+      "dir": "0457-education-regression-sentinel"
+    },
+    {
+      "id": 458,
+      "status": "ok",
+      "dir": "0458-education-memory-consolidation-pipeline"
+    },
+    {
+      "id": 459,
+      "status": "ok",
+      "dir": "0459-education-knowledge-graph-linker"
+    },
+    {
+      "id": 460,
+      "status": "ok",
+      "dir": "0460-education-semantic-retrieval-ranker"
+    },
+    {
+      "id": 461,
+      "status": "ok",
+      "dir": "0461-education-plan-quality-evaluator"
+    },
+    {
+      "id": 462,
+      "status": "ok",
+      "dir": "0462-education-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 463,
+      "status": "ok",
+      "dir": "0463-education-conflict-resolution-coach"
+    },
+    {
+      "id": 464,
+      "status": "ok",
+      "dir": "0464-education-explainability-narrative-builder"
+    },
+    {
+      "id": 465,
+      "status": "ok",
+      "dir": "0465-education-uncertainty-communicator"
+    },
+    {
+      "id": 466,
+      "status": "ok",
+      "dir": "0466-education-experiment-design-generator"
+    },
+    {
+      "id": 467,
+      "status": "ok",
+      "dir": "0467-education-a-b-rollout-governor"
+    },
+    {
+      "id": 468,
+      "status": "ok",
+      "dir": "0468-education-incident-playbook-synthesizer"
+    },
+    {
+      "id": 469,
+      "status": "ok",
+      "dir": "0469-education-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 470,
+      "status": "ok",
+      "dir": "0470-education-privacy-preserving-data-broker"
+    },
+    {
+      "id": 471,
+      "status": "ok",
+      "dir": "0471-education-security-threat-modeler"
+    },
+    {
+      "id": 472,
+      "status": "ok",
+      "dir": "0472-education-compliance-evidence-mapper"
+    },
+    {
+      "id": 473,
+      "status": "ok",
+      "dir": "0473-education-cost-benefit-forecaster"
+    },
+    {
+      "id": 474,
+      "status": "ok",
+      "dir": "0474-education-equity-impact-scorer"
+    },
+    {
+      "id": 475,
+      "status": "ok",
+      "dir": "0475-education-community-feedback-harvester"
+    },
+    {
+      "id": 476,
+      "status": "ok",
+      "dir": "0476-education-kpi-dashboard-publisher"
+    },
+    {
+      "id": 477,
+      "status": "ok",
+      "dir": "0477-education-skill-gap-diagnoser"
+    },
+    {
+      "id": 478,
+      "status": "ok",
+      "dir": "0478-education-training-curriculum-composer"
+    },
+    {
+      "id": 479,
+      "status": "ok",
+      "dir": "0479-education-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 480,
+      "status": "ok",
+      "dir": "0480-education-continuous-improvement-planner"
+    },
+    {
+      "id": 481,
+      "status": "ok",
+      "dir": "0481-research-signal-ingestion-normalizer"
+    },
+    {
+      "id": 482,
+      "status": "ok",
+      "dir": "0482-research-context-window-prioritizer"
+    },
+    {
+      "id": 483,
+      "status": "ok",
+      "dir": "0483-research-evidence-provenance-tracker"
+    },
+    {
+      "id": 484,
+      "status": "ok",
+      "dir": "0484-research-contradiction-detector"
+    },
+    {
+      "id": 485,
+      "status": "ok",
+      "dir": "0485-research-confidence-calibration-engine"
+    },
+    {
+      "id": 486,
+      "status": "ok",
+      "dir": "0486-research-counterfactual-simulator"
+    },
+    {
+      "id": 487,
+      "status": "ok",
+      "dir": "0487-research-goal-decomposer"
+    },
+    {
+      "id": 488,
+      "status": "ok",
+      "dir": "0488-research-dependency-dag-planner"
+    },
+    {
+      "id": 489,
+      "status": "ok",
+      "dir": "0489-research-resource-budget-allocator"
+    },
+    {
+      "id": 490,
+      "status": "ok",
+      "dir": "0490-research-risk-aware-scheduler"
+    },
+    {
+      "id": 491,
+      "status": "ok",
+      "dir": "0491-research-policy-constraint-compiler"
+    },
+    {
+      "id": 492,
+      "status": "ok",
+      "dir": "0492-research-human-approval-router"
+    },
+    {
+      "id": 493,
+      "status": "ok",
+      "dir": "0493-research-task-handoff-contractor"
+    },
+    {
+      "id": 494,
+      "status": "ok",
+      "dir": "0494-research-tool-health-monitor"
+    },
+    {
+      "id": 495,
+      "status": "ok",
+      "dir": "0495-research-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 496,
+      "status": "ok",
+      "dir": "0496-research-failure-root-cause-miner"
+    },
+    {
+      "id": 497,
+      "status": "ok",
+      "dir": "0497-research-regression-sentinel"
+    },
+    {
+      "id": 498,
+      "status": "ok",
+      "dir": "0498-research-memory-consolidation-pipeline"
+    },
+    {
+      "id": 499,
+      "status": "ok",
+      "dir": "0499-research-knowledge-graph-linker"
+    },
+    {
+      "id": 500,
+      "status": "ok",
+      "dir": "0500-research-semantic-retrieval-ranker"
+    },
+    {
+      "id": 501,
+      "status": "ok",
+      "dir": "0501-research-plan-quality-evaluator"
+    },
+    {
+      "id": 502,
+      "status": "ok",
+      "dir": "0502-research-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 503,
+      "status": "ok",
+      "dir": "0503-research-conflict-resolution-coach"
+    },
+    {
+      "id": 504,
+      "status": "ok",
+      "dir": "0504-research-explainability-narrative-builder"
+    },
+    {
+      "id": 505,
+      "status": "ok",
+      "dir": "0505-research-uncertainty-communicator"
+    },
+    {
+      "id": 506,
+      "status": "ok",
+      "dir": "0506-research-experiment-design-generator"
+    },
+    {
+      "id": 507,
+      "status": "ok",
+      "dir": "0507-research-a-b-rollout-governor"
+    },
+    {
+      "id": 508,
+      "status": "ok",
+      "dir": "0508-research-incident-playbook-synthesizer"
+    },
+    {
+      "id": 509,
+      "status": "ok",
+      "dir": "0509-research-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 510,
+      "status": "ok",
+      "dir": "0510-research-privacy-preserving-data-broker"
+    },
+    {
+      "id": 511,
+      "status": "ok",
+      "dir": "0511-research-security-threat-modeler"
+    },
+    {
+      "id": 512,
+      "status": "ok",
+      "dir": "0512-research-compliance-evidence-mapper"
+    },
+    {
+      "id": 513,
+      "status": "ok",
+      "dir": "0513-research-cost-benefit-forecaster"
+    },
+    {
+      "id": 514,
+      "status": "ok",
+      "dir": "0514-research-equity-impact-scorer"
+    },
+    {
+      "id": 515,
+      "status": "ok",
+      "dir": "0515-research-community-feedback-harvester"
+    },
+    {
+      "id": 516,
+      "status": "ok",
+      "dir": "0516-research-kpi-dashboard-publisher"
+    },
+    {
+      "id": 517,
+      "status": "ok",
+      "dir": "0517-research-skill-gap-diagnoser"
+    },
+    {
+      "id": 518,
+      "status": "ok",
+      "dir": "0518-research-training-curriculum-composer"
+    },
+    {
+      "id": 519,
+      "status": "ok",
+      "dir": "0519-research-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 520,
+      "status": "ok",
+      "dir": "0520-research-continuous-improvement-planner"
+    },
+    {
+      "id": 521,
+      "status": "ok",
+      "dir": "0521-engineering-signal-ingestion-normalizer"
+    },
+    {
+      "id": 522,
+      "status": "ok",
+      "dir": "0522-engineering-context-window-prioritizer"
+    },
+    {
+      "id": 523,
+      "status": "ok",
+      "dir": "0523-engineering-evidence-provenance-tracker"
+    },
+    {
+      "id": 524,
+      "status": "ok",
+      "dir": "0524-engineering-contradiction-detector"
+    },
+    {
+      "id": 525,
+      "status": "ok",
+      "dir": "0525-engineering-confidence-calibration-engine"
+    },
+    {
+      "id": 526,
+      "status": "ok",
+      "dir": "0526-engineering-counterfactual-simulator"
+    },
+    {
+      "id": 527,
+      "status": "ok",
+      "dir": "0527-engineering-goal-decomposer"
+    },
+    {
+      "id": 528,
+      "status": "ok",
+      "dir": "0528-engineering-dependency-dag-planner"
+    },
+    {
+      "id": 529,
+      "status": "ok",
+      "dir": "0529-engineering-resource-budget-allocator"
+    },
+    {
+      "id": 530,
+      "status": "ok",
+      "dir": "0530-engineering-risk-aware-scheduler"
+    },
+    {
+      "id": 531,
+      "status": "ok",
+      "dir": "0531-engineering-policy-constraint-compiler"
+    },
+    {
+      "id": 532,
+      "status": "ok",
+      "dir": "0532-engineering-human-approval-router"
+    },
+    {
+      "id": 533,
+      "status": "ok",
+      "dir": "0533-engineering-task-handoff-contractor"
+    },
+    {
+      "id": 534,
+      "status": "ok",
+      "dir": "0534-engineering-tool-health-monitor"
+    },
+    {
+      "id": 535,
+      "status": "ok",
+      "dir": "0535-engineering-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 536,
+      "status": "ok",
+      "dir": "0536-engineering-failure-root-cause-miner"
+    },
+    {
+      "id": 537,
+      "status": "ok",
+      "dir": "0537-engineering-regression-sentinel"
+    },
+    {
+      "id": 538,
+      "status": "ok",
+      "dir": "0538-engineering-memory-consolidation-pipeline"
+    },
+    {
+      "id": 539,
+      "status": "ok",
+      "dir": "0539-engineering-knowledge-graph-linker"
+    },
+    {
+      "id": 540,
+      "status": "ok",
+      "dir": "0540-engineering-semantic-retrieval-ranker"
+    },
+    {
+      "id": 541,
+      "status": "ok",
+      "dir": "0541-engineering-plan-quality-evaluator"
+    },
+    {
+      "id": 542,
+      "status": "ok",
+      "dir": "0542-engineering-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 543,
+      "status": "ok",
+      "dir": "0543-engineering-conflict-resolution-coach"
+    },
+    {
+      "id": 544,
+      "status": "ok",
+      "dir": "0544-engineering-explainability-narrative-builder"
+    },
+    {
+      "id": 545,
+      "status": "ok",
+      "dir": "0545-engineering-uncertainty-communicator"
+    },
+    {
+      "id": 546,
+      "status": "ok",
+      "dir": "0546-engineering-experiment-design-generator"
+    },
+    {
+      "id": 547,
+      "status": "ok",
+      "dir": "0547-engineering-a-b-rollout-governor"
+    },
+    {
+      "id": 548,
+      "status": "ok",
+      "dir": "0548-engineering-incident-playbook-synthesizer"
+    },
+    {
+      "id": 549,
+      "status": "ok",
+      "dir": "0549-engineering-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 550,
+      "status": "ok",
+      "dir": "0550-engineering-privacy-preserving-data-broker"
+    },
+    {
+      "id": 551,
+      "status": "ok",
+      "dir": "0551-engineering-security-threat-modeler"
+    },
+    {
+      "id": 552,
+      "status": "ok",
+      "dir": "0552-engineering-compliance-evidence-mapper"
+    },
+    {
+      "id": 553,
+      "status": "ok",
+      "dir": "0553-engineering-cost-benefit-forecaster"
+    },
+    {
+      "id": 554,
+      "status": "ok",
+      "dir": "0554-engineering-equity-impact-scorer"
+    },
+    {
+      "id": 555,
+      "status": "ok",
+      "dir": "0555-engineering-community-feedback-harvester"
+    },
+    {
+      "id": 556,
+      "status": "ok",
+      "dir": "0556-engineering-kpi-dashboard-publisher"
+    },
+    {
+      "id": 557,
+      "status": "ok",
+      "dir": "0557-engineering-skill-gap-diagnoser"
+    },
+    {
+      "id": 558,
+      "status": "ok",
+      "dir": "0558-engineering-training-curriculum-composer"
+    },
+    {
+      "id": 559,
+      "status": "ok",
+      "dir": "0559-engineering-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 560,
+      "status": "ok",
+      "dir": "0560-engineering-continuous-improvement-planner"
+    },
+    {
+      "id": 561,
+      "status": "ok",
+      "dir": "0561-observability-signal-ingestion-normalizer"
+    },
+    {
+      "id": 562,
+      "status": "ok",
+      "dir": "0562-observability-context-window-prioritizer"
+    },
+    {
+      "id": 563,
+      "status": "ok",
+      "dir": "0563-observability-evidence-provenance-tracker"
+    },
+    {
+      "id": 564,
+      "status": "ok",
+      "dir": "0564-observability-contradiction-detector"
+    },
+    {
+      "id": 565,
+      "status": "ok",
+      "dir": "0565-observability-confidence-calibration-engine"
+    },
+    {
+      "id": 566,
+      "status": "ok",
+      "dir": "0566-observability-counterfactual-simulator"
+    },
+    {
+      "id": 567,
+      "status": "ok",
+      "dir": "0567-observability-goal-decomposer"
+    },
+    {
+      "id": 568,
+      "status": "ok",
+      "dir": "0568-observability-dependency-dag-planner"
+    },
+    {
+      "id": 569,
+      "status": "ok",
+      "dir": "0569-observability-resource-budget-allocator"
+    },
+    {
+      "id": 570,
+      "status": "ok",
+      "dir": "0570-observability-risk-aware-scheduler"
+    },
+    {
+      "id": 571,
+      "status": "ok",
+      "dir": "0571-observability-policy-constraint-compiler"
+    },
+    {
+      "id": 572,
+      "status": "ok",
+      "dir": "0572-observability-human-approval-router"
+    },
+    {
+      "id": 573,
+      "status": "ok",
+      "dir": "0573-observability-task-handoff-contractor"
+    },
+    {
+      "id": 574,
+      "status": "ok",
+      "dir": "0574-observability-tool-health-monitor"
+    },
+    {
+      "id": 575,
+      "status": "ok",
+      "dir": "0575-observability-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 576,
+      "status": "ok",
+      "dir": "0576-observability-failure-root-cause-miner"
+    },
+    {
+      "id": 577,
+      "status": "ok",
+      "dir": "0577-observability-regression-sentinel"
+    },
+    {
+      "id": 578,
+      "status": "ok",
+      "dir": "0578-observability-memory-consolidation-pipeline"
+    },
+    {
+      "id": 579,
+      "status": "ok",
+      "dir": "0579-observability-knowledge-graph-linker"
+    },
+    {
+      "id": 580,
+      "status": "ok",
+      "dir": "0580-observability-semantic-retrieval-ranker"
+    },
+    {
+      "id": 581,
+      "status": "ok",
+      "dir": "0581-observability-plan-quality-evaluator"
+    },
+    {
+      "id": 582,
+      "status": "ok",
+      "dir": "0582-observability-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 583,
+      "status": "ok",
+      "dir": "0583-observability-conflict-resolution-coach"
+    },
+    {
+      "id": 584,
+      "status": "ok",
+      "dir": "0584-observability-explainability-narrative-builder"
+    },
+    {
+      "id": 585,
+      "status": "ok",
+      "dir": "0585-observability-uncertainty-communicator"
+    },
+    {
+      "id": 586,
+      "status": "ok",
+      "dir": "0586-observability-experiment-design-generator"
+    },
+    {
+      "id": 587,
+      "status": "ok",
+      "dir": "0587-observability-a-b-rollout-governor"
+    },
+    {
+      "id": 588,
+      "status": "ok",
+      "dir": "0588-observability-incident-playbook-synthesizer"
+    },
+    {
+      "id": 589,
+      "status": "ok",
+      "dir": "0589-observability-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 590,
+      "status": "ok",
+      "dir": "0590-observability-privacy-preserving-data-broker"
+    },
+    {
+      "id": 591,
+      "status": "ok",
+      "dir": "0591-observability-security-threat-modeler"
+    },
+    {
+      "id": 592,
+      "status": "ok",
+      "dir": "0592-observability-compliance-evidence-mapper"
+    },
+    {
+      "id": 593,
+      "status": "ok",
+      "dir": "0593-observability-cost-benefit-forecaster"
+    },
+    {
+      "id": 594,
+      "status": "ok",
+      "dir": "0594-observability-equity-impact-scorer"
+    },
+    {
+      "id": 595,
+      "status": "ok",
+      "dir": "0595-observability-community-feedback-harvester"
+    },
+    {
+      "id": 596,
+      "status": "ok",
+      "dir": "0596-observability-kpi-dashboard-publisher"
+    },
+    {
+      "id": 597,
+      "status": "ok",
+      "dir": "0597-observability-skill-gap-diagnoser"
+    },
+    {
+      "id": 598,
+      "status": "ok",
+      "dir": "0598-observability-training-curriculum-composer"
+    },
+    {
+      "id": 599,
+      "status": "ok",
+      "dir": "0599-observability-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 600,
+      "status": "ok",
+      "dir": "0600-observability-continuous-improvement-planner"
+    },
+    {
+      "id": 601,
+      "status": "ok",
+      "dir": "0601-security-signal-ingestion-normalizer"
+    },
+    {
+      "id": 602,
+      "status": "ok",
+      "dir": "0602-security-context-window-prioritizer"
+    },
+    {
+      "id": 603,
+      "status": "ok",
+      "dir": "0603-security-evidence-provenance-tracker"
+    },
+    {
+      "id": 604,
+      "status": "ok",
+      "dir": "0604-security-contradiction-detector"
+    },
+    {
+      "id": 605,
+      "status": "ok",
+      "dir": "0605-security-confidence-calibration-engine"
+    },
+    {
+      "id": 606,
+      "status": "ok",
+      "dir": "0606-security-counterfactual-simulator"
+    },
+    {
+      "id": 607,
+      "status": "ok",
+      "dir": "0607-security-goal-decomposer"
+    },
+    {
+      "id": 608,
+      "status": "ok",
+      "dir": "0608-security-dependency-dag-planner"
+    },
+    {
+      "id": 609,
+      "status": "ok",
+      "dir": "0609-security-resource-budget-allocator"
+    },
+    {
+      "id": 610,
+      "status": "ok",
+      "dir": "0610-security-risk-aware-scheduler"
+    },
+    {
+      "id": 611,
+      "status": "ok",
+      "dir": "0611-security-policy-constraint-compiler"
+    },
+    {
+      "id": 612,
+      "status": "ok",
+      "dir": "0612-security-human-approval-router"
+    },
+    {
+      "id": 613,
+      "status": "ok",
+      "dir": "0613-security-task-handoff-contractor"
+    },
+    {
+      "id": 614,
+      "status": "ok",
+      "dir": "0614-security-tool-health-monitor"
+    },
+    {
+      "id": 615,
+      "status": "ok",
+      "dir": "0615-security-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 616,
+      "status": "ok",
+      "dir": "0616-security-failure-root-cause-miner"
+    },
+    {
+      "id": 617,
+      "status": "ok",
+      "dir": "0617-security-regression-sentinel"
+    },
+    {
+      "id": 618,
+      "status": "ok",
+      "dir": "0618-security-memory-consolidation-pipeline"
+    },
+    {
+      "id": 619,
+      "status": "ok",
+      "dir": "0619-security-knowledge-graph-linker"
+    },
+    {
+      "id": 620,
+      "status": "ok",
+      "dir": "0620-security-semantic-retrieval-ranker"
+    },
+    {
+      "id": 621,
+      "status": "ok",
+      "dir": "0621-security-plan-quality-evaluator"
+    },
+    {
+      "id": 622,
+      "status": "ok",
+      "dir": "0622-security-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 623,
+      "status": "ok",
+      "dir": "0623-security-conflict-resolution-coach"
+    },
+    {
+      "id": 624,
+      "status": "ok",
+      "dir": "0624-security-explainability-narrative-builder"
+    },
+    {
+      "id": 625,
+      "status": "ok",
+      "dir": "0625-security-uncertainty-communicator"
+    },
+    {
+      "id": 626,
+      "status": "ok",
+      "dir": "0626-security-experiment-design-generator"
+    },
+    {
+      "id": 627,
+      "status": "ok",
+      "dir": "0627-security-a-b-rollout-governor"
+    },
+    {
+      "id": 628,
+      "status": "ok",
+      "dir": "0628-security-incident-playbook-synthesizer"
+    },
+    {
+      "id": 629,
+      "status": "ok",
+      "dir": "0629-security-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 630,
+      "status": "ok",
+      "dir": "0630-security-privacy-preserving-data-broker"
+    },
+    {
+      "id": 631,
+      "status": "ok",
+      "dir": "0631-security-security-threat-modeler"
+    },
+    {
+      "id": 632,
+      "status": "ok",
+      "dir": "0632-security-compliance-evidence-mapper"
+    },
+    {
+      "id": 633,
+      "status": "ok",
+      "dir": "0633-security-cost-benefit-forecaster"
+    },
+    {
+      "id": 634,
+      "status": "ok",
+      "dir": "0634-security-equity-impact-scorer"
+    },
+    {
+      "id": 635,
+      "status": "ok",
+      "dir": "0635-security-community-feedback-harvester"
+    },
+    {
+      "id": 636,
+      "status": "ok",
+      "dir": "0636-security-kpi-dashboard-publisher"
+    },
+    {
+      "id": 637,
+      "status": "ok",
+      "dir": "0637-security-skill-gap-diagnoser"
+    },
+    {
+      "id": 638,
+      "status": "ok",
+      "dir": "0638-security-training-curriculum-composer"
+    },
+    {
+      "id": 639,
+      "status": "ok",
+      "dir": "0639-security-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 640,
+      "status": "ok",
+      "dir": "0640-security-continuous-improvement-planner"
+    },
+    {
+      "id": 641,
+      "status": "ok",
+      "dir": "0641-crisis-signal-ingestion-normalizer"
+    },
+    {
+      "id": 642,
+      "status": "ok",
+      "dir": "0642-crisis-context-window-prioritizer"
+    },
+    {
+      "id": 643,
+      "status": "ok",
+      "dir": "0643-crisis-evidence-provenance-tracker"
+    },
+    {
+      "id": 644,
+      "status": "ok",
+      "dir": "0644-crisis-contradiction-detector"
+    },
+    {
+      "id": 645,
+      "status": "ok",
+      "dir": "0645-crisis-confidence-calibration-engine"
+    },
+    {
+      "id": 646,
+      "status": "ok",
+      "dir": "0646-crisis-counterfactual-simulator"
+    },
+    {
+      "id": 647,
+      "status": "ok",
+      "dir": "0647-crisis-goal-decomposer"
+    },
+    {
+      "id": 648,
+      "status": "ok",
+      "dir": "0648-crisis-dependency-dag-planner"
+    },
+    {
+      "id": 649,
+      "status": "ok",
+      "dir": "0649-crisis-resource-budget-allocator"
+    },
+    {
+      "id": 650,
+      "status": "ok",
+      "dir": "0650-crisis-risk-aware-scheduler"
+    },
+    {
+      "id": 651,
+      "status": "ok",
+      "dir": "0651-crisis-policy-constraint-compiler"
+    },
+    {
+      "id": 652,
+      "status": "ok",
+      "dir": "0652-crisis-human-approval-router"
+    },
+    {
+      "id": 653,
+      "status": "ok",
+      "dir": "0653-crisis-task-handoff-contractor"
+    },
+    {
+      "id": 654,
+      "status": "ok",
+      "dir": "0654-crisis-tool-health-monitor"
+    },
+    {
+      "id": 655,
+      "status": "ok",
+      "dir": "0655-crisis-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 656,
+      "status": "ok",
+      "dir": "0656-crisis-failure-root-cause-miner"
+    },
+    {
+      "id": 657,
+      "status": "ok",
+      "dir": "0657-crisis-regression-sentinel"
+    },
+    {
+      "id": 658,
+      "status": "ok",
+      "dir": "0658-crisis-memory-consolidation-pipeline"
+    },
+    {
+      "id": 659,
+      "status": "ok",
+      "dir": "0659-crisis-knowledge-graph-linker"
+    },
+    {
+      "id": 660,
+      "status": "ok",
+      "dir": "0660-crisis-semantic-retrieval-ranker"
+    },
+    {
+      "id": 661,
+      "status": "ok",
+      "dir": "0661-crisis-plan-quality-evaluator"
+    },
+    {
+      "id": 662,
+      "status": "ok",
+      "dir": "0662-crisis-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 663,
+      "status": "ok",
+      "dir": "0663-crisis-conflict-resolution-coach"
+    },
+    {
+      "id": 664,
+      "status": "ok",
+      "dir": "0664-crisis-explainability-narrative-builder"
+    },
+    {
+      "id": 665,
+      "status": "ok",
+      "dir": "0665-crisis-uncertainty-communicator"
+    },
+    {
+      "id": 666,
+      "status": "ok",
+      "dir": "0666-crisis-experiment-design-generator"
+    },
+    {
+      "id": 667,
+      "status": "ok",
+      "dir": "0667-crisis-a-b-rollout-governor"
+    },
+    {
+      "id": 668,
+      "status": "ok",
+      "dir": "0668-crisis-incident-playbook-synthesizer"
+    },
+    {
+      "id": 669,
+      "status": "ok",
+      "dir": "0669-crisis-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 670,
+      "status": "ok",
+      "dir": "0670-crisis-privacy-preserving-data-broker"
+    },
+    {
+      "id": 671,
+      "status": "ok",
+      "dir": "0671-crisis-security-threat-modeler"
+    },
+    {
+      "id": 672,
+      "status": "ok",
+      "dir": "0672-crisis-compliance-evidence-mapper"
+    },
+    {
+      "id": 673,
+      "status": "ok",
+      "dir": "0673-crisis-cost-benefit-forecaster"
+    },
+    {
+      "id": 674,
+      "status": "ok",
+      "dir": "0674-crisis-equity-impact-scorer"
+    },
+    {
+      "id": 675,
+      "status": "ok",
+      "dir": "0675-crisis-community-feedback-harvester"
+    },
+    {
+      "id": 676,
+      "status": "ok",
+      "dir": "0676-crisis-kpi-dashboard-publisher"
+    },
+    {
+      "id": 677,
+      "status": "ok",
+      "dir": "0677-crisis-skill-gap-diagnoser"
+    },
+    {
+      "id": 678,
+      "status": "ok",
+      "dir": "0678-crisis-training-curriculum-composer"
+    },
+    {
+      "id": 679,
+      "status": "ok",
+      "dir": "0679-crisis-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 680,
+      "status": "ok",
+      "dir": "0680-crisis-continuous-improvement-planner"
+    },
+    {
+      "id": 681,
+      "status": "ok",
+      "dir": "0681-impact-signal-ingestion-normalizer"
+    },
+    {
+      "id": 682,
+      "status": "ok",
+      "dir": "0682-impact-context-window-prioritizer"
+    },
+    {
+      "id": 683,
+      "status": "ok",
+      "dir": "0683-impact-evidence-provenance-tracker"
+    },
+    {
+      "id": 684,
+      "status": "ok",
+      "dir": "0684-impact-contradiction-detector"
+    },
+    {
+      "id": 685,
+      "status": "ok",
+      "dir": "0685-impact-confidence-calibration-engine"
+    },
+    {
+      "id": 686,
+      "status": "ok",
+      "dir": "0686-impact-counterfactual-simulator"
+    },
+    {
+      "id": 687,
+      "status": "ok",
+      "dir": "0687-impact-goal-decomposer"
+    },
+    {
+      "id": 688,
+      "status": "ok",
+      "dir": "0688-impact-dependency-dag-planner"
+    },
+    {
+      "id": 689,
+      "status": "ok",
+      "dir": "0689-impact-resource-budget-allocator"
+    },
+    {
+      "id": 690,
+      "status": "ok",
+      "dir": "0690-impact-risk-aware-scheduler"
+    },
+    {
+      "id": 691,
+      "status": "ok",
+      "dir": "0691-impact-policy-constraint-compiler"
+    },
+    {
+      "id": 692,
+      "status": "ok",
+      "dir": "0692-impact-human-approval-router"
+    },
+    {
+      "id": 693,
+      "status": "ok",
+      "dir": "0693-impact-task-handoff-contractor"
+    },
+    {
+      "id": 694,
+      "status": "ok",
+      "dir": "0694-impact-tool-health-monitor"
+    },
+    {
+      "id": 695,
+      "status": "ok",
+      "dir": "0695-impact-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 696,
+      "status": "ok",
+      "dir": "0696-impact-failure-root-cause-miner"
+    },
+    {
+      "id": 697,
+      "status": "ok",
+      "dir": "0697-impact-regression-sentinel"
+    },
+    {
+      "id": 698,
+      "status": "ok",
+      "dir": "0698-impact-memory-consolidation-pipeline"
+    },
+    {
+      "id": 699,
+      "status": "ok",
+      "dir": "0699-impact-knowledge-graph-linker"
+    },
+    {
+      "id": 700,
+      "status": "ok",
+      "dir": "0700-impact-semantic-retrieval-ranker"
+    },
+    {
+      "id": 701,
+      "status": "ok",
+      "dir": "0701-impact-plan-quality-evaluator"
+    },
+    {
+      "id": 702,
+      "status": "ok",
+      "dir": "0702-impact-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 703,
+      "status": "ok",
+      "dir": "0703-impact-conflict-resolution-coach"
+    },
+    {
+      "id": 704,
+      "status": "ok",
+      "dir": "0704-impact-explainability-narrative-builder"
+    },
+    {
+      "id": 705,
+      "status": "ok",
+      "dir": "0705-impact-uncertainty-communicator"
+    },
+    {
+      "id": 706,
+      "status": "ok",
+      "dir": "0706-impact-experiment-design-generator"
+    },
+    {
+      "id": 707,
+      "status": "ok",
+      "dir": "0707-impact-a-b-rollout-governor"
+    },
+    {
+      "id": 708,
+      "status": "ok",
+      "dir": "0708-impact-incident-playbook-synthesizer"
+    },
+    {
+      "id": 709,
+      "status": "ok",
+      "dir": "0709-impact-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 710,
+      "status": "ok",
+      "dir": "0710-impact-privacy-preserving-data-broker"
+    },
+    {
+      "id": 711,
+      "status": "ok",
+      "dir": "0711-impact-security-threat-modeler"
+    },
+    {
+      "id": 712,
+      "status": "ok",
+      "dir": "0712-impact-compliance-evidence-mapper"
+    },
+    {
+      "id": 713,
+      "status": "ok",
+      "dir": "0713-impact-cost-benefit-forecaster"
+    },
+    {
+      "id": 714,
+      "status": "ok",
+      "dir": "0714-impact-equity-impact-scorer"
+    },
+    {
+      "id": 715,
+      "status": "ok",
+      "dir": "0715-impact-community-feedback-harvester"
+    },
+    {
+      "id": 716,
+      "status": "ok",
+      "dir": "0716-impact-kpi-dashboard-publisher"
+    },
+    {
+      "id": 717,
+      "status": "ok",
+      "dir": "0717-impact-skill-gap-diagnoser"
+    },
+    {
+      "id": 718,
+      "status": "ok",
+      "dir": "0718-impact-training-curriculum-composer"
+    },
+    {
+      "id": 719,
+      "status": "ok",
+      "dir": "0719-impact-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 720,
+      "status": "ok",
+      "dir": "0720-impact-continuous-improvement-planner"
+    },
+    {
+      "id": 721,
+      "status": "ok",
+      "dir": "0721-comms-signal-ingestion-normalizer"
+    },
+    {
+      "id": 722,
+      "status": "ok",
+      "dir": "0722-comms-context-window-prioritizer"
+    },
+    {
+      "id": 723,
+      "status": "ok",
+      "dir": "0723-comms-evidence-provenance-tracker"
+    },
+    {
+      "id": 724,
+      "status": "ok",
+      "dir": "0724-comms-contradiction-detector"
+    },
+    {
+      "id": 725,
+      "status": "ok",
+      "dir": "0725-comms-confidence-calibration-engine"
+    },
+    {
+      "id": 726,
+      "status": "ok",
+      "dir": "0726-comms-counterfactual-simulator"
+    },
+    {
+      "id": 727,
+      "status": "ok",
+      "dir": "0727-comms-goal-decomposer"
+    },
+    {
+      "id": 728,
+      "status": "ok",
+      "dir": "0728-comms-dependency-dag-planner"
+    },
+    {
+      "id": 729,
+      "status": "ok",
+      "dir": "0729-comms-resource-budget-allocator"
+    },
+    {
+      "id": 730,
+      "status": "ok",
+      "dir": "0730-comms-risk-aware-scheduler"
+    },
+    {
+      "id": 731,
+      "status": "ok",
+      "dir": "0731-comms-policy-constraint-compiler"
+    },
+    {
+      "id": 732,
+      "status": "ok",
+      "dir": "0732-comms-human-approval-router"
+    },
+    {
+      "id": 733,
+      "status": "ok",
+      "dir": "0733-comms-task-handoff-contractor"
+    },
+    {
+      "id": 734,
+      "status": "ok",
+      "dir": "0734-comms-tool-health-monitor"
+    },
+    {
+      "id": 735,
+      "status": "ok",
+      "dir": "0735-comms-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 736,
+      "status": "ok",
+      "dir": "0736-comms-failure-root-cause-miner"
+    },
+    {
+      "id": 737,
+      "status": "ok",
+      "dir": "0737-comms-regression-sentinel"
+    },
+    {
+      "id": 738,
+      "status": "ok",
+      "dir": "0738-comms-memory-consolidation-pipeline"
+    },
+    {
+      "id": 739,
+      "status": "ok",
+      "dir": "0739-comms-knowledge-graph-linker"
+    },
+    {
+      "id": 740,
+      "status": "ok",
+      "dir": "0740-comms-semantic-retrieval-ranker"
+    },
+    {
+      "id": 741,
+      "status": "ok",
+      "dir": "0741-comms-plan-quality-evaluator"
+    },
+    {
+      "id": 742,
+      "status": "ok",
+      "dir": "0742-comms-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 743,
+      "status": "ok",
+      "dir": "0743-comms-conflict-resolution-coach"
+    },
+    {
+      "id": 744,
+      "status": "ok",
+      "dir": "0744-comms-explainability-narrative-builder"
+    },
+    {
+      "id": 745,
+      "status": "ok",
+      "dir": "0745-comms-uncertainty-communicator"
+    },
+    {
+      "id": 746,
+      "status": "ok",
+      "dir": "0746-comms-experiment-design-generator"
+    },
+    {
+      "id": 747,
+      "status": "ok",
+      "dir": "0747-comms-a-b-rollout-governor"
+    },
+    {
+      "id": 748,
+      "status": "ok",
+      "dir": "0748-comms-incident-playbook-synthesizer"
+    },
+    {
+      "id": 749,
+      "status": "ok",
+      "dir": "0749-comms-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 750,
+      "status": "ok",
+      "dir": "0750-comms-privacy-preserving-data-broker"
+    },
+    {
+      "id": 751,
+      "status": "ok",
+      "dir": "0751-comms-security-threat-modeler"
+    },
+    {
+      "id": 752,
+      "status": "ok",
+      "dir": "0752-comms-compliance-evidence-mapper"
+    },
+    {
+      "id": 753,
+      "status": "ok",
+      "dir": "0753-comms-cost-benefit-forecaster"
+    },
+    {
+      "id": 754,
+      "status": "ok",
+      "dir": "0754-comms-equity-impact-scorer"
+    },
+    {
+      "id": 755,
+      "status": "ok",
+      "dir": "0755-comms-community-feedback-harvester"
+    },
+    {
+      "id": 756,
+      "status": "ok",
+      "dir": "0756-comms-kpi-dashboard-publisher"
+    },
+    {
+      "id": 757,
+      "status": "ok",
+      "dir": "0757-comms-skill-gap-diagnoser"
+    },
+    {
+      "id": 758,
+      "status": "ok",
+      "dir": "0758-comms-training-curriculum-composer"
+    },
+    {
+      "id": 759,
+      "status": "ok",
+      "dir": "0759-comms-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 760,
+      "status": "ok",
+      "dir": "0760-comms-continuous-improvement-planner"
+    },
+    {
+      "id": 761,
+      "status": "ok",
+      "dir": "0761-cultural-signal-ingestion-normalizer"
+    },
+    {
+      "id": 762,
+      "status": "ok",
+      "dir": "0762-cultural-context-window-prioritizer"
+    },
+    {
+      "id": 763,
+      "status": "ok",
+      "dir": "0763-cultural-evidence-provenance-tracker"
+    },
+    {
+      "id": 764,
+      "status": "ok",
+      "dir": "0764-cultural-contradiction-detector"
+    },
+    {
+      "id": 765,
+      "status": "ok",
+      "dir": "0765-cultural-confidence-calibration-engine"
+    },
+    {
+      "id": 766,
+      "status": "ok",
+      "dir": "0766-cultural-counterfactual-simulator"
+    },
+    {
+      "id": 767,
+      "status": "ok",
+      "dir": "0767-cultural-goal-decomposer"
+    },
+    {
+      "id": 768,
+      "status": "ok",
+      "dir": "0768-cultural-dependency-dag-planner"
+    },
+    {
+      "id": 769,
+      "status": "ok",
+      "dir": "0769-cultural-resource-budget-allocator"
+    },
+    {
+      "id": 770,
+      "status": "ok",
+      "dir": "0770-cultural-risk-aware-scheduler"
+    },
+    {
+      "id": 771,
+      "status": "ok",
+      "dir": "0771-cultural-policy-constraint-compiler"
+    },
+    {
+      "id": 772,
+      "status": "ok",
+      "dir": "0772-cultural-human-approval-router"
+    },
+    {
+      "id": 773,
+      "status": "ok",
+      "dir": "0773-cultural-task-handoff-contractor"
+    },
+    {
+      "id": 774,
+      "status": "ok",
+      "dir": "0774-cultural-tool-health-monitor"
+    },
+    {
+      "id": 775,
+      "status": "ok",
+      "dir": "0775-cultural-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 776,
+      "status": "ok",
+      "dir": "0776-cultural-failure-root-cause-miner"
+    },
+    {
+      "id": 777,
+      "status": "ok",
+      "dir": "0777-cultural-regression-sentinel"
+    },
+    {
+      "id": 778,
+      "status": "ok",
+      "dir": "0778-cultural-memory-consolidation-pipeline"
+    },
+    {
+      "id": 779,
+      "status": "ok",
+      "dir": "0779-cultural-knowledge-graph-linker"
+    },
+    {
+      "id": 780,
+      "status": "ok",
+      "dir": "0780-cultural-semantic-retrieval-ranker"
+    },
+    {
+      "id": 781,
+      "status": "ok",
+      "dir": "0781-cultural-plan-quality-evaluator"
+    },
+    {
+      "id": 782,
+      "status": "ok",
+      "dir": "0782-cultural-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 783,
+      "status": "ok",
+      "dir": "0783-cultural-conflict-resolution-coach"
+    },
+    {
+      "id": 784,
+      "status": "ok",
+      "dir": "0784-cultural-explainability-narrative-builder"
+    },
+    {
+      "id": 785,
+      "status": "ok",
+      "dir": "0785-cultural-uncertainty-communicator"
+    },
+    {
+      "id": 786,
+      "status": "ok",
+      "dir": "0786-cultural-experiment-design-generator"
+    },
+    {
+      "id": 787,
+      "status": "ok",
+      "dir": "0787-cultural-a-b-rollout-governor"
+    },
+    {
+      "id": 788,
+      "status": "ok",
+      "dir": "0788-cultural-incident-playbook-synthesizer"
+    },
+    {
+      "id": 789,
+      "status": "ok",
+      "dir": "0789-cultural-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 790,
+      "status": "ok",
+      "dir": "0790-cultural-privacy-preserving-data-broker"
+    },
+    {
+      "id": 791,
+      "status": "ok",
+      "dir": "0791-cultural-security-threat-modeler"
+    },
+    {
+      "id": 792,
+      "status": "ok",
+      "dir": "0792-cultural-compliance-evidence-mapper"
+    },
+    {
+      "id": 793,
+      "status": "ok",
+      "dir": "0793-cultural-cost-benefit-forecaster"
+    },
+    {
+      "id": 794,
+      "status": "ok",
+      "dir": "0794-cultural-equity-impact-scorer"
+    },
+    {
+      "id": 795,
+      "status": "ok",
+      "dir": "0795-cultural-community-feedback-harvester"
+    },
+    {
+      "id": 796,
+      "status": "ok",
+      "dir": "0796-cultural-kpi-dashboard-publisher"
+    },
+    {
+      "id": 797,
+      "status": "ok",
+      "dir": "0797-cultural-skill-gap-diagnoser"
+    },
+    {
+      "id": 798,
+      "status": "ok",
+      "dir": "0798-cultural-training-curriculum-composer"
+    },
+    {
+      "id": 799,
+      "status": "ok",
+      "dir": "0799-cultural-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 800,
+      "status": "ok",
+      "dir": "0800-cultural-continuous-improvement-planner"
+    },
+    {
+      "id": 801,
+      "status": "ok",
+      "dir": "0801-inclusion-signal-ingestion-normalizer"
+    },
+    {
+      "id": 802,
+      "status": "ok",
+      "dir": "0802-inclusion-context-window-prioritizer"
+    },
+    {
+      "id": 803,
+      "status": "ok",
+      "dir": "0803-inclusion-evidence-provenance-tracker"
+    },
+    {
+      "id": 804,
+      "status": "ok",
+      "dir": "0804-inclusion-contradiction-detector"
+    },
+    {
+      "id": 805,
+      "status": "ok",
+      "dir": "0805-inclusion-confidence-calibration-engine"
+    },
+    {
+      "id": 806,
+      "status": "ok",
+      "dir": "0806-inclusion-counterfactual-simulator"
+    },
+    {
+      "id": 807,
+      "status": "ok",
+      "dir": "0807-inclusion-goal-decomposer"
+    },
+    {
+      "id": 808,
+      "status": "ok",
+      "dir": "0808-inclusion-dependency-dag-planner"
+    },
+    {
+      "id": 809,
+      "status": "ok",
+      "dir": "0809-inclusion-resource-budget-allocator"
+    },
+    {
+      "id": 810,
+      "status": "ok",
+      "dir": "0810-inclusion-risk-aware-scheduler"
+    },
+    {
+      "id": 811,
+      "status": "ok",
+      "dir": "0811-inclusion-policy-constraint-compiler"
+    },
+    {
+      "id": 812,
+      "status": "ok",
+      "dir": "0812-inclusion-human-approval-router"
+    },
+    {
+      "id": 813,
+      "status": "ok",
+      "dir": "0813-inclusion-task-handoff-contractor"
+    },
+    {
+      "id": 814,
+      "status": "ok",
+      "dir": "0814-inclusion-tool-health-monitor"
+    },
+    {
+      "id": 815,
+      "status": "ok",
+      "dir": "0815-inclusion-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 816,
+      "status": "ok",
+      "dir": "0816-inclusion-failure-root-cause-miner"
+    },
+    {
+      "id": 817,
+      "status": "ok",
+      "dir": "0817-inclusion-regression-sentinel"
+    },
+    {
+      "id": 818,
+      "status": "ok",
+      "dir": "0818-inclusion-memory-consolidation-pipeline"
+    },
+    {
+      "id": 819,
+      "status": "ok",
+      "dir": "0819-inclusion-knowledge-graph-linker"
+    },
+    {
+      "id": 820,
+      "status": "ok",
+      "dir": "0820-inclusion-semantic-retrieval-ranker"
+    },
+    {
+      "id": 821,
+      "status": "ok",
+      "dir": "0821-inclusion-plan-quality-evaluator"
+    },
+    {
+      "id": 822,
+      "status": "ok",
+      "dir": "0822-inclusion-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 823,
+      "status": "ok",
+      "dir": "0823-inclusion-conflict-resolution-coach"
+    },
+    {
+      "id": 824,
+      "status": "ok",
+      "dir": "0824-inclusion-explainability-narrative-builder"
+    },
+    {
+      "id": 825,
+      "status": "ok",
+      "dir": "0825-inclusion-uncertainty-communicator"
+    },
+    {
+      "id": 826,
+      "status": "ok",
+      "dir": "0826-inclusion-experiment-design-generator"
+    },
+    {
+      "id": 827,
+      "status": "ok",
+      "dir": "0827-inclusion-a-b-rollout-governor"
+    },
+    {
+      "id": 828,
+      "status": "ok",
+      "dir": "0828-inclusion-incident-playbook-synthesizer"
+    },
+    {
+      "id": 829,
+      "status": "ok",
+      "dir": "0829-inclusion-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 830,
+      "status": "ok",
+      "dir": "0830-inclusion-privacy-preserving-data-broker"
+    },
+    {
+      "id": 831,
+      "status": "ok",
+      "dir": "0831-inclusion-security-threat-modeler"
+    },
+    {
+      "id": 832,
+      "status": "ok",
+      "dir": "0832-inclusion-compliance-evidence-mapper"
+    },
+    {
+      "id": 833,
+      "status": "ok",
+      "dir": "0833-inclusion-cost-benefit-forecaster"
+    },
+    {
+      "id": 834,
+      "status": "ok",
+      "dir": "0834-inclusion-equity-impact-scorer"
+    },
+    {
+      "id": 835,
+      "status": "ok",
+      "dir": "0835-inclusion-community-feedback-harvester"
+    },
+    {
+      "id": 836,
+      "status": "ok",
+      "dir": "0836-inclusion-kpi-dashboard-publisher"
+    },
+    {
+      "id": 837,
+      "status": "ok",
+      "dir": "0837-inclusion-skill-gap-diagnoser"
+    },
+    {
+      "id": 838,
+      "status": "ok",
+      "dir": "0838-inclusion-training-curriculum-composer"
+    },
+    {
+      "id": 839,
+      "status": "ok",
+      "dir": "0839-inclusion-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 840,
+      "status": "ok",
+      "dir": "0840-inclusion-continuous-improvement-planner"
+    },
+    {
+      "id": 841,
+      "status": "ok",
+      "dir": "0841-community-signal-ingestion-normalizer"
+    },
+    {
+      "id": 842,
+      "status": "ok",
+      "dir": "0842-community-context-window-prioritizer"
+    },
+    {
+      "id": 843,
+      "status": "ok",
+      "dir": "0843-community-evidence-provenance-tracker"
+    },
+    {
+      "id": 844,
+      "status": "ok",
+      "dir": "0844-community-contradiction-detector"
+    },
+    {
+      "id": 845,
+      "status": "ok",
+      "dir": "0845-community-confidence-calibration-engine"
+    },
+    {
+      "id": 846,
+      "status": "ok",
+      "dir": "0846-community-counterfactual-simulator"
+    },
+    {
+      "id": 847,
+      "status": "ok",
+      "dir": "0847-community-goal-decomposer"
+    },
+    {
+      "id": 848,
+      "status": "ok",
+      "dir": "0848-community-dependency-dag-planner"
+    },
+    {
+      "id": 849,
+      "status": "ok",
+      "dir": "0849-community-resource-budget-allocator"
+    },
+    {
+      "id": 850,
+      "status": "ok",
+      "dir": "0850-community-risk-aware-scheduler"
+    },
+    {
+      "id": 851,
+      "status": "ok",
+      "dir": "0851-community-policy-constraint-compiler"
+    },
+    {
+      "id": 852,
+      "status": "ok",
+      "dir": "0852-community-human-approval-router"
+    },
+    {
+      "id": 853,
+      "status": "ok",
+      "dir": "0853-community-task-handoff-contractor"
+    },
+    {
+      "id": 854,
+      "status": "ok",
+      "dir": "0854-community-tool-health-monitor"
+    },
+    {
+      "id": 855,
+      "status": "ok",
+      "dir": "0855-community-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 856,
+      "status": "ok",
+      "dir": "0856-community-failure-root-cause-miner"
+    },
+    {
+      "id": 857,
+      "status": "ok",
+      "dir": "0857-community-regression-sentinel"
+    },
+    {
+      "id": 858,
+      "status": "ok",
+      "dir": "0858-community-memory-consolidation-pipeline"
+    },
+    {
+      "id": 859,
+      "status": "ok",
+      "dir": "0859-community-knowledge-graph-linker"
+    },
+    {
+      "id": 860,
+      "status": "ok",
+      "dir": "0860-community-semantic-retrieval-ranker"
+    },
+    {
+      "id": 861,
+      "status": "ok",
+      "dir": "0861-community-plan-quality-evaluator"
+    },
+    {
+      "id": 862,
+      "status": "ok",
+      "dir": "0862-community-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 863,
+      "status": "ok",
+      "dir": "0863-community-conflict-resolution-coach"
+    },
+    {
+      "id": 864,
+      "status": "ok",
+      "dir": "0864-community-explainability-narrative-builder"
+    },
+    {
+      "id": 865,
+      "status": "ok",
+      "dir": "0865-community-uncertainty-communicator"
+    },
+    {
+      "id": 866,
+      "status": "ok",
+      "dir": "0866-community-experiment-design-generator"
+    },
+    {
+      "id": 867,
+      "status": "ok",
+      "dir": "0867-community-a-b-rollout-governor"
+    },
+    {
+      "id": 868,
+      "status": "ok",
+      "dir": "0868-community-incident-playbook-synthesizer"
+    },
+    {
+      "id": 869,
+      "status": "ok",
+      "dir": "0869-community-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 870,
+      "status": "ok",
+      "dir": "0870-community-privacy-preserving-data-broker"
+    },
+    {
+      "id": 871,
+      "status": "ok",
+      "dir": "0871-community-security-threat-modeler"
+    },
+    {
+      "id": 872,
+      "status": "ok",
+      "dir": "0872-community-compliance-evidence-mapper"
+    },
+    {
+      "id": 873,
+      "status": "ok",
+      "dir": "0873-community-cost-benefit-forecaster"
+    },
+    {
+      "id": 874,
+      "status": "ok",
+      "dir": "0874-community-equity-impact-scorer"
+    },
+    {
+      "id": 875,
+      "status": "ok",
+      "dir": "0875-community-community-feedback-harvester"
+    },
+    {
+      "id": 876,
+      "status": "ok",
+      "dir": "0876-community-kpi-dashboard-publisher"
+    },
+    {
+      "id": 877,
+      "status": "ok",
+      "dir": "0877-community-skill-gap-diagnoser"
+    },
+    {
+      "id": 878,
+      "status": "ok",
+      "dir": "0878-community-training-curriculum-composer"
+    },
+    {
+      "id": 879,
+      "status": "ok",
+      "dir": "0879-community-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 880,
+      "status": "ok",
+      "dir": "0880-community-continuous-improvement-planner"
+    },
+    {
+      "id": 881,
+      "status": "ok",
+      "dir": "0881-rights-signal-ingestion-normalizer"
+    },
+    {
+      "id": 882,
+      "status": "ok",
+      "dir": "0882-rights-context-window-prioritizer"
+    },
+    {
+      "id": 883,
+      "status": "ok",
+      "dir": "0883-rights-evidence-provenance-tracker"
+    },
+    {
+      "id": 884,
+      "status": "ok",
+      "dir": "0884-rights-contradiction-detector"
+    },
+    {
+      "id": 885,
+      "status": "ok",
+      "dir": "0885-rights-confidence-calibration-engine"
+    },
+    {
+      "id": 886,
+      "status": "ok",
+      "dir": "0886-rights-counterfactual-simulator"
+    },
+    {
+      "id": 887,
+      "status": "ok",
+      "dir": "0887-rights-goal-decomposer"
+    },
+    {
+      "id": 888,
+      "status": "ok",
+      "dir": "0888-rights-dependency-dag-planner"
+    },
+    {
+      "id": 889,
+      "status": "ok",
+      "dir": "0889-rights-resource-budget-allocator"
+    },
+    {
+      "id": 890,
+      "status": "ok",
+      "dir": "0890-rights-risk-aware-scheduler"
+    },
+    {
+      "id": 891,
+      "status": "ok",
+      "dir": "0891-rights-policy-constraint-compiler"
+    },
+    {
+      "id": 892,
+      "status": "ok",
+      "dir": "0892-rights-human-approval-router"
+    },
+    {
+      "id": 893,
+      "status": "ok",
+      "dir": "0893-rights-task-handoff-contractor"
+    },
+    {
+      "id": 894,
+      "status": "ok",
+      "dir": "0894-rights-tool-health-monitor"
+    },
+    {
+      "id": 895,
+      "status": "ok",
+      "dir": "0895-rights-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 896,
+      "status": "ok",
+      "dir": "0896-rights-failure-root-cause-miner"
+    },
+    {
+      "id": 897,
+      "status": "ok",
+      "dir": "0897-rights-regression-sentinel"
+    },
+    {
+      "id": 898,
+      "status": "ok",
+      "dir": "0898-rights-memory-consolidation-pipeline"
+    },
+    {
+      "id": 899,
+      "status": "ok",
+      "dir": "0899-rights-knowledge-graph-linker"
+    },
+    {
+      "id": 900,
+      "status": "ok",
+      "dir": "0900-rights-semantic-retrieval-ranker"
+    },
+    {
+      "id": 901,
+      "status": "ok",
+      "dir": "0901-rights-plan-quality-evaluator"
+    },
+    {
+      "id": 902,
+      "status": "ok",
+      "dir": "0902-rights-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 903,
+      "status": "ok",
+      "dir": "0903-rights-conflict-resolution-coach"
+    },
+    {
+      "id": 904,
+      "status": "ok",
+      "dir": "0904-rights-explainability-narrative-builder"
+    },
+    {
+      "id": 905,
+      "status": "ok",
+      "dir": "0905-rights-uncertainty-communicator"
+    },
+    {
+      "id": 906,
+      "status": "ok",
+      "dir": "0906-rights-experiment-design-generator"
+    },
+    {
+      "id": 907,
+      "status": "ok",
+      "dir": "0907-rights-a-b-rollout-governor"
+    },
+    {
+      "id": 908,
+      "status": "ok",
+      "dir": "0908-rights-incident-playbook-synthesizer"
+    },
+    {
+      "id": 909,
+      "status": "ok",
+      "dir": "0909-rights-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 910,
+      "status": "ok",
+      "dir": "0910-rights-privacy-preserving-data-broker"
+    },
+    {
+      "id": 911,
+      "status": "ok",
+      "dir": "0911-rights-security-threat-modeler"
+    },
+    {
+      "id": 912,
+      "status": "ok",
+      "dir": "0912-rights-compliance-evidence-mapper"
+    },
+    {
+      "id": 913,
+      "status": "ok",
+      "dir": "0913-rights-cost-benefit-forecaster"
+    },
+    {
+      "id": 914,
+      "status": "ok",
+      "dir": "0914-rights-equity-impact-scorer"
+    },
+    {
+      "id": 915,
+      "status": "ok",
+      "dir": "0915-rights-community-feedback-harvester"
+    },
+    {
+      "id": 916,
+      "status": "ok",
+      "dir": "0916-rights-kpi-dashboard-publisher"
+    },
+    {
+      "id": 917,
+      "status": "ok",
+      "dir": "0917-rights-skill-gap-diagnoser"
+    },
+    {
+      "id": 918,
+      "status": "ok",
+      "dir": "0918-rights-training-curriculum-composer"
+    },
+    {
+      "id": 919,
+      "status": "ok",
+      "dir": "0919-rights-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 920,
+      "status": "ok",
+      "dir": "0920-rights-continuous-improvement-planner"
+    },
+    {
+      "id": 921,
+      "status": "ok",
+      "dir": "0921-infra-signal-ingestion-normalizer"
+    },
+    {
+      "id": 922,
+      "status": "ok",
+      "dir": "0922-infra-context-window-prioritizer"
+    },
+    {
+      "id": 923,
+      "status": "ok",
+      "dir": "0923-infra-evidence-provenance-tracker"
+    },
+    {
+      "id": 924,
+      "status": "ok",
+      "dir": "0924-infra-contradiction-detector"
+    },
+    {
+      "id": 925,
+      "status": "ok",
+      "dir": "0925-infra-confidence-calibration-engine"
+    },
+    {
+      "id": 926,
+      "status": "ok",
+      "dir": "0926-infra-counterfactual-simulator"
+    },
+    {
+      "id": 927,
+      "status": "ok",
+      "dir": "0927-infra-goal-decomposer"
+    },
+    {
+      "id": 928,
+      "status": "ok",
+      "dir": "0928-infra-dependency-dag-planner"
+    },
+    {
+      "id": 929,
+      "status": "ok",
+      "dir": "0929-infra-resource-budget-allocator"
+    },
+    {
+      "id": 930,
+      "status": "ok",
+      "dir": "0930-infra-risk-aware-scheduler"
+    },
+    {
+      "id": 931,
+      "status": "ok",
+      "dir": "0931-infra-policy-constraint-compiler"
+    },
+    {
+      "id": 932,
+      "status": "ok",
+      "dir": "0932-infra-human-approval-router"
+    },
+    {
+      "id": 933,
+      "status": "ok",
+      "dir": "0933-infra-task-handoff-contractor"
+    },
+    {
+      "id": 934,
+      "status": "ok",
+      "dir": "0934-infra-tool-health-monitor"
+    },
+    {
+      "id": 935,
+      "status": "ok",
+      "dir": "0935-infra-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 936,
+      "status": "ok",
+      "dir": "0936-infra-failure-root-cause-miner"
+    },
+    {
+      "id": 937,
+      "status": "ok",
+      "dir": "0937-infra-regression-sentinel"
+    },
+    {
+      "id": 938,
+      "status": "ok",
+      "dir": "0938-infra-memory-consolidation-pipeline"
+    },
+    {
+      "id": 939,
+      "status": "ok",
+      "dir": "0939-infra-knowledge-graph-linker"
+    },
+    {
+      "id": 940,
+      "status": "ok",
+      "dir": "0940-infra-semantic-retrieval-ranker"
+    },
+    {
+      "id": 941,
+      "status": "ok",
+      "dir": "0941-infra-plan-quality-evaluator"
+    },
+    {
+      "id": 942,
+      "status": "ok",
+      "dir": "0942-infra-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 943,
+      "status": "ok",
+      "dir": "0943-infra-conflict-resolution-coach"
+    },
+    {
+      "id": 944,
+      "status": "ok",
+      "dir": "0944-infra-explainability-narrative-builder"
+    },
+    {
+      "id": 945,
+      "status": "ok",
+      "dir": "0945-infra-uncertainty-communicator"
+    },
+    {
+      "id": 946,
+      "status": "ok",
+      "dir": "0946-infra-experiment-design-generator"
+    },
+    {
+      "id": 947,
+      "status": "ok",
+      "dir": "0947-infra-a-b-rollout-governor"
+    },
+    {
+      "id": 948,
+      "status": "ok",
+      "dir": "0948-infra-incident-playbook-synthesizer"
+    },
+    {
+      "id": 949,
+      "status": "ok",
+      "dir": "0949-infra-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 950,
+      "status": "ok",
+      "dir": "0950-infra-privacy-preserving-data-broker"
+    },
+    {
+      "id": 951,
+      "status": "ok",
+      "dir": "0951-infra-security-threat-modeler"
+    },
+    {
+      "id": 952,
+      "status": "ok",
+      "dir": "0952-infra-compliance-evidence-mapper"
+    },
+    {
+      "id": 953,
+      "status": "ok",
+      "dir": "0953-infra-cost-benefit-forecaster"
+    },
+    {
+      "id": 954,
+      "status": "ok",
+      "dir": "0954-infra-equity-impact-scorer"
+    },
+    {
+      "id": 955,
+      "status": "ok",
+      "dir": "0955-infra-community-feedback-harvester"
+    },
+    {
+      "id": 956,
+      "status": "ok",
+      "dir": "0956-infra-kpi-dashboard-publisher"
+    },
+    {
+      "id": 957,
+      "status": "ok",
+      "dir": "0957-infra-skill-gap-diagnoser"
+    },
+    {
+      "id": 958,
+      "status": "ok",
+      "dir": "0958-infra-training-curriculum-composer"
+    },
+    {
+      "id": 959,
+      "status": "ok",
+      "dir": "0959-infra-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 960,
+      "status": "ok",
+      "dir": "0960-infra-continuous-improvement-planner"
+    },
+    {
+      "id": 961,
+      "status": "ok",
+      "dir": "0961-evolution-signal-ingestion-normalizer"
+    },
+    {
+      "id": 962,
+      "status": "ok",
+      "dir": "0962-evolution-context-window-prioritizer"
+    },
+    {
+      "id": 963,
+      "status": "ok",
+      "dir": "0963-evolution-evidence-provenance-tracker"
+    },
+    {
+      "id": 964,
+      "status": "ok",
+      "dir": "0964-evolution-contradiction-detector"
+    },
+    {
+      "id": 965,
+      "status": "ok",
+      "dir": "0965-evolution-confidence-calibration-engine"
+    },
+    {
+      "id": 966,
+      "status": "ok",
+      "dir": "0966-evolution-counterfactual-simulator"
+    },
+    {
+      "id": 967,
+      "status": "ok",
+      "dir": "0967-evolution-goal-decomposer"
+    },
+    {
+      "id": 968,
+      "status": "ok",
+      "dir": "0968-evolution-dependency-dag-planner"
+    },
+    {
+      "id": 969,
+      "status": "ok",
+      "dir": "0969-evolution-resource-budget-allocator"
+    },
+    {
+      "id": 970,
+      "status": "ok",
+      "dir": "0970-evolution-risk-aware-scheduler"
+    },
+    {
+      "id": 971,
+      "status": "ok",
+      "dir": "0971-evolution-policy-constraint-compiler"
+    },
+    {
+      "id": 972,
+      "status": "ok",
+      "dir": "0972-evolution-human-approval-router"
+    },
+    {
+      "id": 973,
+      "status": "ok",
+      "dir": "0973-evolution-task-handoff-contractor"
+    },
+    {
+      "id": 974,
+      "status": "ok",
+      "dir": "0974-evolution-tool-health-monitor"
+    },
+    {
+      "id": 975,
+      "status": "ok",
+      "dir": "0975-evolution-auto-retry-and-backoff-coordinator"
+    },
+    {
+      "id": 976,
+      "status": "ok",
+      "dir": "0976-evolution-failure-root-cause-miner"
+    },
+    {
+      "id": 977,
+      "status": "ok",
+      "dir": "0977-evolution-regression-sentinel"
+    },
+    {
+      "id": 978,
+      "status": "ok",
+      "dir": "0978-evolution-memory-consolidation-pipeline"
+    },
+    {
+      "id": 979,
+      "status": "ok",
+      "dir": "0979-evolution-knowledge-graph-linker"
+    },
+    {
+      "id": 980,
+      "status": "ok",
+      "dir": "0980-evolution-semantic-retrieval-ranker"
+    },
+    {
+      "id": 981,
+      "status": "ok",
+      "dir": "0981-evolution-plan-quality-evaluator"
+    },
+    {
+      "id": 982,
+      "status": "ok",
+      "dir": "0982-evolution-multi-agent-negotiation-mediator"
+    },
+    {
+      "id": 983,
+      "status": "ok",
+      "dir": "0983-evolution-conflict-resolution-coach"
+    },
+    {
+      "id": 984,
+      "status": "ok",
+      "dir": "0984-evolution-explainability-narrative-builder"
+    },
+    {
+      "id": 985,
+      "status": "ok",
+      "dir": "0985-evolution-uncertainty-communicator"
+    },
+    {
+      "id": 986,
+      "status": "ok",
+      "dir": "0986-evolution-experiment-design-generator"
+    },
+    {
+      "id": 987,
+      "status": "ok",
+      "dir": "0987-evolution-a-b-rollout-governor"
+    },
+    {
+      "id": 988,
+      "status": "ok",
+      "dir": "0988-evolution-incident-playbook-synthesizer"
+    },
+    {
+      "id": 989,
+      "status": "ok",
+      "dir": "0989-evolution-disaster-recovery-orchestrator"
+    },
+    {
+      "id": 990,
+      "status": "ok",
+      "dir": "0990-evolution-privacy-preserving-data-broker"
+    },
+    {
+      "id": 991,
+      "status": "ok",
+      "dir": "0991-evolution-security-threat-modeler"
+    },
+    {
+      "id": 992,
+      "status": "ok",
+      "dir": "0992-evolution-compliance-evidence-mapper"
+    },
+    {
+      "id": 993,
+      "status": "ok",
+      "dir": "0993-evolution-cost-benefit-forecaster"
+    },
+    {
+      "id": 994,
+      "status": "ok",
+      "dir": "0994-evolution-equity-impact-scorer"
+    },
+    {
+      "id": 995,
+      "status": "ok",
+      "dir": "0995-evolution-community-feedback-harvester"
+    },
+    {
+      "id": 996,
+      "status": "ok",
+      "dir": "0996-evolution-kpi-dashboard-publisher"
+    },
+    {
+      "id": 997,
+      "status": "ok",
+      "dir": "0997-evolution-skill-gap-diagnoser"
+    },
+    {
+      "id": 998,
+      "status": "ok",
+      "dir": "0998-evolution-training-curriculum-composer"
+    },
+    {
+      "id": 999,
+      "status": "ok",
+      "dir": "0999-evolution-self-reflection-error-taxonomist"
+    },
+    {
+      "id": 1000,
+      "status": "ok",
+      "dir": "1000-evolution-continuous-improvement-planner"
+    }
+  ]
+}
