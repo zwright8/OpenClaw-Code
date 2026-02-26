@@ -24,7 +24,9 @@
     "skills:promote:control:validate": "tsx scripts/validate-skill-rollout-promotion-control.ts",
     "skills:promote:history": "tsx scripts/history-1000-skills-rollout-promotion.ts",
     "skills:promote:history:validate": "tsx scripts/validate-skill-rollout-promotion-history.ts",
-    "skills:sync": "npm run skills:build && npm run skills:validate && npm run skills:test && npm run skills:plan && npm run skills:plan:validate && npm run skills:orchestrate && npm run skills:orchestrate:validate && npm run skills:control && npm run skills:control:validate && npm run skills:optimize && npm run skills:optimize:validate && npm run skills:promote && npm run skills:promote:validate && npm run skills:promote:control && npm run skills:promote:control:validate && npm run skills:promote:history && npm run skills:promote:history:validate"
+    "skills:promote:policy-lab": "tsx scripts/policy-lab-1000-skills-rollout-promotion.ts",
+    "skills:promote:policy-lab:validate": "tsx scripts/validate-skill-rollout-promotion-policy-lab.ts",
+    "skills:sync": "npm run skills:build && npm run skills:validate && npm run skills:test && npm run skills:plan && npm run skills:plan:validate && npm run skills:orchestrate && npm run skills:orchestrate:validate && npm run skills:control && npm run skills:control:validate && npm run skills:optimize && npm run skills:optimize:validate && npm run skills:promote && npm run skills:promote:validate && npm run skills:promote:control && npm run skills:promote:control:validate && npm run skills:promote:history && npm run skills:promote:history:validate && npm run skills:promote:policy-lab && npm run skills:promote:policy-lab:validate"
   },
   "devDependencies": {
     "@types/node": "^24.5.0",

@@ -580,3 +580,28 @@ export type SkillRolloutPromotionPolicyDriftReport = {
     reasons: string[];
     recommendedActions: string[];
 };
+
+export type SkillRolloutPromotionPolicyLabVariant = {
+    name: string;
+    policy: SkillRolloutPromotionPolicy;
+    score: number;
+    projectedFailureRate: number;
+    projectedApprovalPendingRate: number;
+    projectedSuccessRate: number;
+    projectedCandidateWinRate: number;
+    projectedRejectionRate: number;
+    rationale: string[];
+};
+
+export type SkillRolloutPromotionPolicyLabRun = {
+    generatedAt: string;
+    sampleSize: number;
+    driftLevel: SkillRolloutPromotionPolicyDriftLevel;
+    baselinePolicy: SkillRolloutPromotionPolicy;
+    recommendedPolicy: SkillRolloutPromotionPolicy;
+    baselineScore: number;
+    recommendedScore: number;
+    scoreDelta: number;
+    variants: SkillRolloutPromotionPolicyLabVariant[];
+    assumptions: string[];
+};

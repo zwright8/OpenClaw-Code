@@ -1,0 +1,152 @@
+[
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-lab-publish",
+    "from": "agent:skills-rollout-promotion-policy-lab",
+    "to": "agent:rollout-controller",
+    "task": "Publish promotion policy lab recommendation (stable)",
+    "priority": "P1",
+    "context": {
+      "driftLevel": "stable",
+      "baselinePolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "recommendedPolicy": {
+        "minCandidateWinRate": 0.575,
+        "maxWeightedScoreDelta": 0.18,
+        "maxWorstScoreDelta": 39,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.134
+      },
+      "baselineScore": 174.614,
+      "recommendedScore": 172.86,
+      "scoreDelta": -1.754,
+      "assumptions": [
+        "projections are derived from recent promotion history averages and deterministic policy deltas",
+        "drift level acts as a directional bias and not as a deterministic future guarantee",
+        "lower lab score indicates a better tradeoff between reliability, governance load, and adoption risk"
+      ]
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-lab-canary",
+    "from": "agent:skills-rollout-promotion-policy-lab",
+    "to": "agent:rollout-controller",
+    "task": "Run canary rollout with lab-recommended promotion policy thresholds",
+    "priority": "P1",
+    "context": {
+      "baselinePolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "recommendedPolicy": {
+        "minCandidateWinRate": 0.575,
+        "maxWeightedScoreDelta": 0.18,
+        "maxWorstScoreDelta": 39,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.134
+      },
+      "scoreDelta": -1.754
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-lab-alt-quality-focus",
+    "from": "agent:skills-rollout-promotion-policy-lab",
+    "to": "agent:rollout-controller",
+    "task": "Evaluate alternative promotion policy variant quality_focus",
+    "priority": "P1",
+    "context": {
+      "variant": "quality_focus",
+      "policy": {
+        "minCandidateWinRate": 0.57,
+        "maxWeightedScoreDelta": 0.28,
+        "maxWorstScoreDelta": 40,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.138
+      },
+      "projectedFailureRate": 0.0434,
+      "projectedApprovalPendingRate": 0.1127,
+      "projectedSuccessRate": 0.8375,
+      "score": 173.205
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-lab-alt-relax-medium",
+    "from": "agent:skills-rollout-promotion-policy-lab",
+    "to": "agent:rollout-controller",
+    "task": "Evaluate alternative promotion policy variant relax_medium",
+    "priority": "P1",
+    "context": {
+      "variant": "relax_medium",
+      "policy": {
+        "minCandidateWinRate": 0.532,
+        "maxWeightedScoreDelta": 0.95,
+        "maxWorstScoreDelta": 52,
+        "maxAvgFailureRateDelta": 0.012,
+        "maxAvgCriticalWaveDelta": 0.167
+      },
+      "projectedFailureRate": 0.0566,
+      "projectedApprovalPendingRate": 0.0999,
+      "projectedSuccessRate": 0.8352,
+      "score": 173.3
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-lab-alt-throughput-focus",
+    "from": "agent:skills-rollout-promotion-policy-lab",
+    "to": "agent:rollout-controller",
+    "task": "Evaluate alternative promotion policy variant throughput_focus",
+    "priority": "P1",
+    "context": {
+      "variant": "throughput_focus",
+      "policy": {
+        "minCandidateWinRate": 0.538,
+        "maxWeightedScoreDelta": 0.84,
+        "maxWorstScoreDelta": 50,
+        "maxAvgFailureRateDelta": 0.011,
+        "maxAvgCriticalWaveDelta": 0.163
+      },
+      "projectedFailureRate": 0.0538,
+      "projectedApprovalPendingRate": 0.1021,
+      "projectedSuccessRate": 0.8358,
+      "score": 173.7
+    }
+  },
+  {
+    "kind": "task_request",
+    "id": "promotion-policy-lab-audit",
+    "from": "agent:skills-rollout-promotion-policy-lab",
+    "to": "agent:rollout-controller",
+    "task": "Archive promotion policy lab analysis and threshold decision diff",
+    "priority": "P1",
+    "context": {
+      "driftLevel": "stable",
+      "recommendedPolicy": {
+        "minCandidateWinRate": 0.575,
+        "maxWeightedScoreDelta": 0.18,
+        "maxWorstScoreDelta": 39,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.134
+      },
+      "baselinePolicy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "sampleSize": 1
+    }
+  }
+]

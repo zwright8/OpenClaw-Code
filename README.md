@@ -136,6 +136,8 @@ Outputs are generated under `skills/generated/`:
 - `runtime.rollout-promotion-policy-history.json` + `runtime.rollout-promotion-policy-history.md` (longitudinal policy + outcome history ledger)
 - `runtime.rollout-promotion-policy-drift.json` + `runtime.rollout-promotion-policy-drift.md` (drift trend analysis across recent promotion cycles)
 - `runtime.rollout-promotion-drift-tasks.json` + `runtime.rollout-promotion-drift-tasks.md` (governance tasks generated from drift level)
+- `runtime.rollout-promotion-policy-lab.json` + `runtime.rollout-promotion-policy-lab.md` (simulated ranking of candidate promotion threshold profiles)
+- `runtime.rollout-promotion-policy-lab-tasks.json` + `runtime.rollout-promotion-policy-lab-tasks.md` (executable tasks to apply/compare lab-recommended policies)
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
 - `0001-.../implementation.json` through `1000-.../implementation.json`
 

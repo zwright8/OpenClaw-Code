@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-02-26T05:39:52.304Z",
+  "sampleSize": 1,
+  "driftLevel": "stable",
+  "baselinePolicy": {
+    "minCandidateWinRate": 0.55,
+    "maxWeightedScoreDelta": 0.5,
+    "maxWorstScoreDelta": 45,
+    "maxAvgFailureRateDelta": 0.01,
+    "maxAvgCriticalWaveDelta": 0.15
+  },
+  "recommendedPolicy": {
+    "minCandidateWinRate": 0.575,
+    "maxWeightedScoreDelta": 0.18,
+    "maxWorstScoreDelta": 39,
+    "maxAvgFailureRateDelta": 0.008,
+    "maxAvgCriticalWaveDelta": 0.134
+  },
+  "baselineScore": 174.614,
+  "recommendedScore": 172.86,
+  "scoreDelta": -1.754,
+  "variants": [
+    {
+      "name": "tighten_medium",
+      "policy": {
+        "minCandidateWinRate": 0.575,
+        "maxWeightedScoreDelta": 0.18,
+        "maxWorstScoreDelta": 39,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.134
+      },
+      "score": 172.86,
+      "projectedFailureRate": 0.0424,
+      "projectedApprovalPendingRate": 0.114,
+      "projectedSuccessRate": 0.8376,
+      "projectedCandidateWinRate": 0.4246,
+      "projectedRejectionRate": 1,
+      "rationale": [
+        "minCandidateWinRate +0.025",
+        "maxWeightedScoreDelta -0.32",
+        "maxWorstScoreDelta -6",
+        "maxAvgFailureRateDelta -0.002",
+        "maxAvgCriticalWaveDelta -0.016",
+        "projected failure=0.0424, pending=0.114, success=0.8376",
+        "projected candidateWinRate=0.4246, rejectionRate=1"
+      ]
+    },
+    {
+      "name": "quality_focus",
+      "policy": {
+        "minCandidateWinRate": 0.57,
+        "maxWeightedScoreDelta": 0.28,
+        "maxWorstScoreDelta": 40,
+        "maxAvgFailureRateDelta": 0.008,
+        "maxAvgCriticalWaveDelta": 0.138
+      },
+      "score": 173.205,
+      "projectedFailureRate": 0.0434,
+      "projectedApprovalPendingRate": 0.1127,
+      "projectedSuccessRate": 0.8375,
+      "projectedCandidateWinRate": 0.4239,
+      "projectedRejectionRate": 1,
+      "rationale": [
+        "minCandidateWinRate +0.02",
+        "maxWeightedScoreDelta -0.22",
+        "maxWorstScoreDelta -5",
+        "maxAvgFailureRateDelta -0.002",
+        "maxAvgCriticalWaveDelta -0.012",
+        "projected failure=0.0434, pending=0.1127, success=0.8375",
+        "projected candidateWinRate=0.4239, rejectionRate=1"
+      ]
+    },
+    {
+      "name": "relax_medium",
+      "policy": {
+        "minCandidateWinRate": 0.532,
+        "maxWeightedScoreDelta": 0.95,
+        "maxWorstScoreDelta": 52,
+        "maxAvgFailureRateDelta": 0.012,
+        "maxAvgCriticalWaveDelta": 0.167
+      },
+      "score": 173.3,
+      "projectedFailureRate": 0.0566,
+      "projectedApprovalPendingRate": 0.0999,
+      "projectedSuccessRate": 0.8352,
+      "projectedCandidateWinRate": 0.4175,
+      "projectedRejectionRate": 0.946,
+      "rationale": [
+        "minCandidateWinRate -0.018",
+        "maxWeightedScoreDelta +0.45",
+        "maxWorstScoreDelta +7",
+        "maxAvgFailureRateDelta +0.002",
+        "maxAvgCriticalWaveDelta +0.017",
+        "projected failure=0.0566, pending=0.0999, success=0.8352",
+        "projected candidateWinRate=0.4175, rejectionRate=0.946"
+      ]
+    },
+    {
+      "name": "throughput_focus",
+      "policy": {
+        "minCandidateWinRate": 0.538,
+        "maxWeightedScoreDelta": 0.84,
+        "maxWorstScoreDelta": 50,
+        "maxAvgFailureRateDelta": 0.011,
+        "maxAvgCriticalWaveDelta": 0.163
+      },
+      "score": 173.7,
+      "projectedFailureRate": 0.0538,
+      "projectedApprovalPendingRate": 0.1021,
+      "projectedSuccessRate": 0.8358,
+      "projectedCandidateWinRate": 0.4186,
+      "projectedRejectionRate": 0.9628,
+      "rationale": [
+        "minCandidateWinRate -0.012",
+        "maxWeightedScoreDelta +0.34",
+        "maxWorstScoreDelta +5",
+        "maxAvgFailureRateDelta +0.001",
+        "maxAvgCriticalWaveDelta +0.013",
+        "projected failure=0.0538, pending=0.1021, success=0.8358",
+        "projected candidateWinRate=0.4186, rejectionRate=0.9628"
+      ]
+    },
+    {
+      "name": "tighten_small",
+      "policy": {
+        "minCandidateWinRate": 0.56,
+        "maxWeightedScoreDelta": 0.38,
+        "maxWorstScoreDelta": 43,
+        "maxAvgFailureRateDelta": 0.009,
+        "maxAvgCriticalWaveDelta": 0.142
+      },
+      "score": 173.903,
+      "projectedFailureRate": 0.0455,
+      "projectedApprovalPendingRate": 0.1099,
+      "projectedSuccessRate": 0.8373,
+      "projectedCandidateWinRate": 0.4225,
+      "projectedRejectionRate": 1,
+      "rationale": [
+        "minCandidateWinRate +0.01",
+        "maxWeightedScoreDelta -0.12",
+        "maxWorstScoreDelta -2",
+        "maxAvgFailureRateDelta -0.001",
+        "maxAvgCriticalWaveDelta -0.008",
+        "projected failure=0.0455, pending=0.1099, success=0.8373",
+        "projected candidateWinRate=0.4225, rejectionRate=1"
+      ]
+    },
+    {
+      "name": "relax_small",
+      "policy": {
+        "minCandidateWinRate": 0.542,
+        "maxWeightedScoreDelta": 0.7,
+        "maxWorstScoreDelta": 48,
+        "maxAvgFailureRateDelta": 0.011,
+        "maxAvgCriticalWaveDelta": 0.159
+      },
+      "score": 173.993,
+      "projectedFailureRate": 0.0517,
+      "projectedApprovalPendingRate": 0.1038,
+      "projectedSuccessRate": 0.8362,
+      "projectedCandidateWinRate": 0.4195,
+      "projectedRejectionRate": 0.9753,
+      "rationale": [
+        "minCandidateWinRate -0.008",
+        "maxWeightedScoreDelta +0.2",
+        "maxWorstScoreDelta +3",
+        "maxAvgFailureRateDelta +0.001",
+        "maxAvgCriticalWaveDelta +0.009",
+        "projected failure=0.0517, pending=0.1038, success=0.8362",
+        "projected candidateWinRate=0.4195, rejectionRate=0.9753"
+      ]
+    },
+    {
+      "name": "baseline",
+      "policy": {
+        "minCandidateWinRate": 0.55,
+        "maxWeightedScoreDelta": 0.5,
+        "maxWorstScoreDelta": 45,
+        "maxAvgFailureRateDelta": 0.01,
+        "maxAvgCriticalWaveDelta": 0.15
+      },
+      "score": 174.614,
+      "projectedFailureRate": 0.0476,
+      "projectedApprovalPendingRate": 0.1071,
+      "projectedSuccessRate": 0.837,
+      "projectedCandidateWinRate": 0.4211,
+      "projectedRejectionRate": 1,
+      "rationale": [
+        "no policy threshold changes vs baseline",
+        "projected failure=0.0476, pending=0.1071, success=0.837",
+        "projected candidateWinRate=0.4211, rejectionRate=1"
+      ]
+    }
+  ],
+  "assumptions": [
+    "projections are derived from recent promotion history averages and deterministic policy deltas",
+    "drift level acts as a directional bias and not as a deterministic future guarantee",
+    "lower lab score indicates a better tradeoff between reliability, governance load, and adoption risk"
+  ]
+}
