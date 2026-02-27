@@ -1,0 +1,18 @@
+{
+  "skill": "u0181-governance-plan-quality-evaluator",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "plan_quality_scorecards_report",
+    "plan_quality_scorecards_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

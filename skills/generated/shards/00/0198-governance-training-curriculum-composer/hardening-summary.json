@@ -1,0 +1,9 @@
+{
+  "skill": "u0198-governance-training-curriculum-composer",
+  "status": "hardened",
+  "risk_score": "pending-runtime-eval",
+  "confidence": "pending-runtime-eval",
+  "next_handoff": "safety-and-governance:general-capability",
+  "human_signoff_required": true,
+  "hardening_version": 1
+}

@@ -1,0 +1,18 @@
+{
+  "skill": "u0201-oversight-signal-ingestion-normalizer",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "approval queues",
+    "operator workload",
+    "intervention history",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "normalized_signal_feeds_report",
+    "normalized_signal_feeds_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

@@ -1,0 +1,18 @@
+{
+  "skill": "u0193-governance-cost-benefit-forecaster",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "forecasted_roi_scenarios_report",
+    "forecasted_roi_scenarios_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

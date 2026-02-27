@@ -1,0 +1,9 @@
+{
+  "skill": "u0190-governance-privacy-preserving-data-broker",
+  "status": "hardened",
+  "risk_score": "pending-runtime-eval",
+  "confidence": "pending-runtime-eval",
+  "next_handoff": "safety-and-governance:collaboration-mediator",
+  "human_signoff_required": true,
+  "hardening_version": 1
+}

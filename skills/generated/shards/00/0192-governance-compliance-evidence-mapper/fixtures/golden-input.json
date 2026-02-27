@@ -1,0 +1,18 @@
+{
+  "skill": "u0192-governance-compliance-evidence-mapper",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "compliance_evidence_matrices_report",
+    "compliance_evidence_matrices_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

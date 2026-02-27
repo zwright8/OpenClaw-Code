@@ -1,0 +1,18 @@
+{
+  "skill": "u0189-governance-disaster-recovery-orchestrator",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "recovery_mission_plans_report",
+    "recovery_mission_plans_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

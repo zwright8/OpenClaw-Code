@@ -1,0 +1,9 @@
+{
+  "skill": "u0201-oversight-signal-ingestion-normalizer",
+  "status": "hardened",
+  "risk_score": "pending-runtime-eval",
+  "confidence": "pending-runtime-eval",
+  "next_handoff": "human-oversight-and-operator-ux:normalization-engine",
+  "human_signoff_required": true,
+  "hardening_version": 1
+}

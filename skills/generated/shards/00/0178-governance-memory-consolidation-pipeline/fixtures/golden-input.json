@@ -1,0 +1,18 @@
+{
+  "skill": "u0178-governance-memory-consolidation-pipeline",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "consolidated_memory_snapshots_report",
+    "consolidated_memory_snapshots_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

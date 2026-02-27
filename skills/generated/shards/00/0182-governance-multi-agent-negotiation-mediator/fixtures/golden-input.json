@@ -1,0 +1,18 @@
+{
+  "skill": "u0182-governance-multi-agent-negotiation-mediator",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "negotiated_agreement_sets_report",
+    "negotiated_agreement_sets_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}
