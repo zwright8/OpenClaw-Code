@@ -1,6 +1,6 @@
 ---
 name: u01431-constraint-compilation-for-mental-well-being-practices
-description: Build and operate the "Constraint Compilation for mental well-being practices" capability for mental well-being practices. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for mental well-being practices" capability in production for mental well-being practices workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for mental well-being practices

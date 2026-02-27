@@ -1,6 +1,6 @@
 ---
 name: u01411-constraint-compilation-for-household-logistics
-description: Build and operate the "Constraint Compilation for household logistics" capability for household logistics. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for household logistics" capability in production for household logistics workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for household logistics

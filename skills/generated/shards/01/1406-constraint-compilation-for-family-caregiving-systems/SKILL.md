@@ -1,6 +1,6 @@
 ---
 name: u01406-constraint-compilation-for-family-caregiving-systems
-description: Build and operate the "Constraint Compilation for family caregiving systems" capability for family caregiving systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for family caregiving systems" capability in production for family caregiving systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for family caregiving systems

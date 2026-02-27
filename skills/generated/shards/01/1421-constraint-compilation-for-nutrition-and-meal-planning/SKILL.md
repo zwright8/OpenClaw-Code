@@ -1,6 +1,6 @@
 ---
 name: u01421-constraint-compilation-for-nutrition-and-meal-planning
-description: Build and operate the "Constraint Compilation for nutrition and meal planning" capability for nutrition and meal planning. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for nutrition and meal planning" capability in production for nutrition and meal planning workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for nutrition and meal planning

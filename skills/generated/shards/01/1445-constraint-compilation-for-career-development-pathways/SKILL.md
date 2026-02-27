@@ -1,6 +1,6 @@
 ---
 name: u01445-constraint-compilation-for-career-development-pathways
-description: Build and operate the "Constraint Compilation for career development pathways" capability for career development pathways. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for career development pathways" capability in production for career development pathways workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for career development pathways

@@ -1,6 +1,6 @@
 ---
 name: u01402-constraint-compilation-for-personal-health-routines
-description: Build and operate the "Constraint Compilation for personal health routines" capability for personal health routines. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for personal health routines" capability in production for personal health routines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for personal health routines
