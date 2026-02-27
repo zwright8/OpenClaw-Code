@@ -1,6 +1,6 @@
 ---
 name: u0836-inclusion-kpi-dashboard-publisher
-description: Build and operate the "Inclusion KPI Dashboard Publisher" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion KPI Dashboard Publisher" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion KPI Dashboard Publisher

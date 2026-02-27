@@ -1,6 +1,6 @@
 ---
 name: u0816-inclusion-failure-root-cause-miner
-description: Build and operate the "Inclusion Failure Root-Cause Miner" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Failure Root-Cause Miner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Failure Root-Cause Miner

@@ -1,6 +1,6 @@
 ---
 name: u0818-inclusion-memory-consolidation-pipeline
-description: Build and operate the "Inclusion Memory Consolidation Pipeline" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Memory Consolidation Pipeline" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Memory Consolidation Pipeline

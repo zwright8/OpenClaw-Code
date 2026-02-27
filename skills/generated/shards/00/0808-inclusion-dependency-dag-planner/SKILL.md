@@ -1,6 +1,6 @@
 ---
 name: u0808-inclusion-dependency-dag-planner
-description: Build and operate the "Inclusion Dependency DAG Planner" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Dependency DAG Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Dependency DAG Planner

@@ -1,6 +1,6 @@
 ---
 name: u0848-community-dependency-dag-planner
-description: Build and operate the "Community Dependency DAG Planner" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Dependency DAG Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Dependency DAG Planner

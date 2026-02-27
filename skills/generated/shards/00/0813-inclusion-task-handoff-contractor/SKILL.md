@@ -1,6 +1,6 @@
 ---
 name: u0813-inclusion-task-handoff-contractor
-description: Build and operate the "Inclusion Task Handoff Contractor" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Task Handoff Contractor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Task Handoff Contractor

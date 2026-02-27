@@ -1,6 +1,6 @@
 ---
 name: u0825-inclusion-uncertainty-communicator
-description: Build and operate the "Inclusion Uncertainty Communicator" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Uncertainty Communicator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Uncertainty Communicator

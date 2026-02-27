@@ -1,6 +1,6 @@
 ---
 name: u0810-inclusion-risk-aware-scheduler
-description: Build and operate the "Inclusion Risk-Aware Scheduler" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Risk-Aware Scheduler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Risk-Aware Scheduler

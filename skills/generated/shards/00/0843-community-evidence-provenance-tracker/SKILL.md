@@ -1,6 +1,6 @@
 ---
 name: u0843-community-evidence-provenance-tracker
-description: Build and operate the "Community Evidence Provenance Tracker" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Evidence Provenance Tracker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Evidence Provenance Tracker

@@ -1,6 +1,6 @@
 ---
 name: u0844-community-contradiction-detector
-description: Build and operate the "Community Contradiction Detector" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Contradiction Detector" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Contradiction Detector

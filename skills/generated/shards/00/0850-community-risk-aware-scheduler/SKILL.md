@@ -1,6 +1,6 @@
 ---
 name: u0850-community-risk-aware-scheduler
-description: Build and operate the "Community Risk-Aware Scheduler" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Risk-Aware Scheduler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Risk-Aware Scheduler

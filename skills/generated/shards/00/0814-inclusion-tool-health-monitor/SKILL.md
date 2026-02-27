@@ -1,6 +1,6 @@
 ---
 name: u0814-inclusion-tool-health-monitor
-description: Build and operate the "Inclusion Tool Health Monitor" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Tool Health Monitor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Tool Health Monitor

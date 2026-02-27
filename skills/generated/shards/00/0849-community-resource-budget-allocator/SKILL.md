@@ -1,6 +1,6 @@
 ---
 name: u0849-community-resource-budget-allocator
-description: Build and operate the "Community Resource Budget Allocator" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Resource Budget Allocator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Resource Budget Allocator

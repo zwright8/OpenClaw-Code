@@ -1,6 +1,6 @@
 ---
 name: u0807-inclusion-goal-decomposer
-description: Build and operate the "Inclusion Goal Decomposer" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Goal Decomposer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Goal Decomposer

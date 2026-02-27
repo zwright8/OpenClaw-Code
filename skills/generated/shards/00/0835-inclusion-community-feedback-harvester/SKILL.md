@@ -1,6 +1,6 @@
 ---
 name: u0835-inclusion-community-feedback-harvester
-description: Build and operate the "Inclusion Community Feedback Harvester" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Community Feedback Harvester" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Community Feedback Harvester

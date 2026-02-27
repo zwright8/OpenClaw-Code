@@ -1,6 +1,6 @@
 ---
 name: u0822-inclusion-multi-agent-negotiation-mediator
-description: Build and operate the "Inclusion Multi-Agent Negotiation Mediator" capability for Accessibility and Inclusion. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Inclusion Multi-Agent Negotiation Mediator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Inclusion Multi-Agent Negotiation Mediator
