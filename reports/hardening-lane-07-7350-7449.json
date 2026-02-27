@@ -1,0 +1,528 @@
+{
+  "lane": "07",
+  "batch_size": 50,
+  "batches": [
+    {
+      "batch_index": 1,
+      "id_range": [
+        7350,
+        7399
+      ],
+      "count": 50,
+      "composite_sha256": "c86fc57b64016c26e37cc1b15e3df726b531f25dec2bf90ce35b5df63977941c",
+      "records": [
+        {
+          "id": 7350,
+          "dir": "7350-continuous-improvement-planning-for-civic-participation-platforms",
+          "skill_sha256": "59bf9cc182c17df668ef4bba735e2d04d545396190a0b489c0c6c3cc07a57393"
+        },
+        {
+          "id": 7351,
+          "dir": "7351-continuous-improvement-planning-for-accessibility-services",
+          "skill_sha256": "c279e86f53242f26e684f63ba5f48f5418dd270a7ecbdec826054e0a35d15b7a"
+        },
+        {
+          "id": 7352,
+          "dir": "7352-continuous-improvement-planning-for-accessibility-services",
+          "skill_sha256": "9b981919014b00180c59b1341050d517022da8907448f7fe267c4d0ef5430d8d"
+        },
+        {
+          "id": 7353,
+          "dir": "7353-continuous-improvement-planning-for-accessibility-services",
+          "skill_sha256": "303a09e53e803a029071dc64784e9fb876ffa81fe3b5279191f30f5eccbfdb26"
+        },
+        {
+          "id": 7354,
+          "dir": "7354-continuous-improvement-planning-for-accessibility-services",
+          "skill_sha256": "a677d198c7b4462e26f16f8443fc149c565fbe8b2841727f15fd9c41ce83eac7"
+        },
+        {
+          "id": 7355,
+          "dir": "7355-continuous-improvement-planning-for-accessibility-services",
+          "skill_sha256": "d56af4979343dab687492cae626ece82f3604840ece9167bf4175394ddd93c56"
+        },
+        {
+          "id": 7356,
+          "dir": "7356-continuous-improvement-planning-for-eldercare-coordination",
+          "skill_sha256": "c13faa5f87183ed8f561af34535d9a536c5bb23473fb0b01021a920806ebc9ce"
+        },
+        {
+          "id": 7357,
+          "dir": "7357-continuous-improvement-planning-for-eldercare-coordination",
+          "skill_sha256": "65bf21d12450a00f8740c505db43ba6dafda85f71672959b2511d7632f53897c"
+        },
+        {
+          "id": 7358,
+          "dir": "7358-continuous-improvement-planning-for-eldercare-coordination",
+          "skill_sha256": "f0fb0b8ad32acd06da3e74b047a2c9d11a6c19cccd679b79c69f8e70f5691399"
+        },
+        {
+          "id": 7359,
+          "dir": "7359-continuous-improvement-planning-for-eldercare-coordination",
+          "skill_sha256": "76fbd3efb0c9ffc5e88f65024d59f8f940cdb15cfd7913ad29fdd45a9cfc5477"
+        },
+        {
+          "id": 7360,
+          "dir": "7360-continuous-improvement-planning-for-eldercare-coordination",
+          "skill_sha256": "880fa65d310193d2442713a0b2f3ac621fbff0ad38e7d96fc177aca0bd26713c"
+        },
+        {
+          "id": 7361,
+          "dir": "7361-continuous-improvement-planning-for-childcare-support-systems",
+          "skill_sha256": "3884de69da4cf295bcfc22eaf701401169979749ce87fddecd6e17be4b8ea770"
+        },
+        {
+          "id": 7362,
+          "dir": "7362-continuous-improvement-planning-for-childcare-support-systems",
+          "skill_sha256": "3b28a1ea2068252b56f285f8c452697ea91b0c9f3c7fde8a43c4ec326de51154"
+        },
+        {
+          "id": 7363,
+          "dir": "7363-continuous-improvement-planning-for-childcare-support-systems",
+          "skill_sha256": "bcca0ad2c96a4b126006b6ee411abd74e1998e63dab6b2678f2f4ba036b621cc"
+        },
+        {
+          "id": 7364,
+          "dir": "7364-continuous-improvement-planning-for-childcare-support-systems",
+          "skill_sha256": "dbda7d538a9ea84f13f6cdf7a162f81f614521f87e34cebb4f7d2826cc352a76"
+        },
+        {
+          "id": 7365,
+          "dir": "7365-continuous-improvement-planning-for-childcare-support-systems",
+          "skill_sha256": "648fe88fa97cd75da9cef82f6df365138a08d0622fd0e8ac930ba5c6e4a78de3"
+        },
+        {
+          "id": 7366,
+          "dir": "7366-continuous-improvement-planning-for-arts-and-culture-programming",
+          "skill_sha256": "d57043f5cf54b253129dedee9ab96b7be305c6bb0ae2dc899f02efeed7f8e011"
+        },
+        {
+          "id": 7367,
+          "dir": "7367-continuous-improvement-planning-for-arts-and-culture-programming",
+          "skill_sha256": "0fc3b845cef7f9e5db736d77655dfdc4e55ec433aa4de7f5dd9bf43160726737"
+        },
+        {
+          "id": 7368,
+          "dir": "7368-continuous-improvement-planning-for-arts-and-culture-programming",
+          "skill_sha256": "07b89043b2f7b73effc34734eddcee1dff91ebdf6192f7642fa9fb372215ac18"
+        },
+        {
+          "id": 7369,
+          "dir": "7369-continuous-improvement-planning-for-arts-and-culture-programming",
+          "skill_sha256": "86ca3a934ca385ce8bdb25421a36af09118f4c7b2ba4c770b5e74fa548e1eafd"
+        },
+        {
+          "id": 7370,
+          "dir": "7370-continuous-improvement-planning-for-arts-and-culture-programming",
+          "skill_sha256": "910e25317f61080177ab9b31275306762773bfb906536e6aca255c94773f7c82"
+        },
+        {
+          "id": 7371,
+          "dir": "7371-continuous-improvement-planning-for-music-and-creative-practice",
+          "skill_sha256": "7d5854de5d79f8dd6f51b20c06a47cfd92cee05096b0aed79aeee2a62d635996"
+        },
+        {
+          "id": 7372,
+          "dir": "7372-continuous-improvement-planning-for-music-and-creative-practice",
+          "skill_sha256": "b8986152ea2ea397ab063c9734a5c5e53e2c4b6a90e7dbef76edee0bcacbc799"
+        },
+        {
+          "id": 7373,
+          "dir": "7373-continuous-improvement-planning-for-music-and-creative-practice",
+          "skill_sha256": "669a3d2317c6c07234aa27b76a3d90d69f4f1105f6d8012816ff4d678ad45bf7"
+        },
+        {
+          "id": 7374,
+          "dir": "7374-continuous-improvement-planning-for-music-and-creative-practice",
+          "skill_sha256": "c9b940c80a79218fa76266eb69e448b89177c988e1e89992fb9212c3d6dd3f26"
+        },
+        {
+          "id": 7375,
+          "dir": "7375-continuous-improvement-planning-for-music-and-creative-practice",
+          "skill_sha256": "3e5e4971eb057f0d018abc311dd36d0fc412faa9711daf6bfae613e865445014"
+        },
+        {
+          "id": 7376,
+          "dir": "7376-continuous-improvement-planning-for-journalism-and-public-communication",
+          "skill_sha256": "6b81f655e2eba4204bda08682f07042596b3d6129086f513a777c74969cd9f37"
+        },
+        {
+          "id": 7377,
+          "dir": "7377-continuous-improvement-planning-for-journalism-and-public-communication",
+          "skill_sha256": "2af7bffff54384e3647aa61508319b1b825228f4504c99e038a54cc2353a19db"
+        },
+        {
+          "id": 7378,
+          "dir": "7378-continuous-improvement-planning-for-journalism-and-public-communication",
+          "skill_sha256": "35d4e2e8c64810df2b8fa598910a2bfb7c2ccd5652dc1a1a2234ca4dc3e3c954"
+        },
+        {
+          "id": 7379,
+          "dir": "7379-continuous-improvement-planning-for-journalism-and-public-communication",
+          "skill_sha256": "b417951e011beed48f1822c1375ccb67f3b272e6dfe96c03b9bb5b8043a3c440"
+        },
+        {
+          "id": 7380,
+          "dir": "7380-continuous-improvement-planning-for-journalism-and-public-communication",
+          "skill_sha256": "b8eeb3765817e63c765e54748b08972dd6c4f76f031c755ec6a3456a6503ad06"
+        },
+        {
+          "id": 7381,
+          "dir": "7381-continuous-improvement-planning-for-multilingual-translation-services",
+          "skill_sha256": "5c227575d8748a7abada46dddee15db91384bcc083a531f7c24d75ccf71e2af8"
+        },
+        {
+          "id": 7382,
+          "dir": "7382-continuous-improvement-planning-for-multilingual-translation-services",
+          "skill_sha256": "10f0a9d25fab464edc4a2d2fb1614e96a35593f6658deec97d6b4582aeb9b1d2"
+        },
+        {
+          "id": 7383,
+          "dir": "7383-continuous-improvement-planning-for-multilingual-translation-services",
+          "skill_sha256": "f8fced0dd1ee7ffe012854f1f25014712d4531e55becf667836734447f722a27"
+        },
+        {
+          "id": 7384,
+          "dir": "7384-continuous-improvement-planning-for-multilingual-translation-services",
+          "skill_sha256": "9170326d61ee9853a8b754294269ac50aea76df2e29f1b7d8a3f87a9c50835d7"
+        },
+        {
+          "id": 7385,
+          "dir": "7385-continuous-improvement-planning-for-multilingual-translation-services",
+          "skill_sha256": "3536e1d3cd61d026aa301f6496aa1cfe982a274a66399f7655a1207260f1ac1e"
+        },
+        {
+          "id": 7386,
+          "dir": "7386-continuous-improvement-planning-for-remote-team-collaboration",
+          "skill_sha256": "fda191464da36d51c48afdb9795ab4e7b4f5cedd5b19f7f96d321ae8e819620a"
+        },
+        {
+          "id": 7387,
+          "dir": "7387-continuous-improvement-planning-for-remote-team-collaboration",
+          "skill_sha256": "2b9217bc22103adf1684a05a0cdded90e32018f4637a67939dde2e4ef8f02e72"
+        },
+        {
+          "id": 7388,
+          "dir": "7388-continuous-improvement-planning-for-remote-team-collaboration",
+          "skill_sha256": "3d8477e1a882df5d71ffb4d255e3600376f3acf81dd8e1681ba314de6487b10e"
+        },
+        {
+          "id": 7389,
+          "dir": "7389-continuous-improvement-planning-for-remote-team-collaboration",
+          "skill_sha256": "1a33315d8793240f0189929dd35bfdd68098f60228915e024188c3097256a3ce"
+        },
+        {
+          "id": 7390,
+          "dir": "7390-continuous-improvement-planning-for-remote-team-collaboration",
+          "skill_sha256": "440a504bebe27c142cd97c3e27a65cac77e333d4b98de21135264b9f37fce2be"
+        },
+        {
+          "id": 7391,
+          "dir": "7391-continuous-improvement-planning-for-customer-support-operations",
+          "skill_sha256": "ca6db72fc18d2f9ed78a667420ada706c9cf79762e48ea26ce5d3736b3fffe4f"
+        },
+        {
+          "id": 7392,
+          "dir": "7392-continuous-improvement-planning-for-customer-support-operations",
+          "skill_sha256": "8dfe78b3262a9362b37d82e50864438dc793abd73b8e01e1f1fc2694850ff365"
+        },
+        {
+          "id": 7393,
+          "dir": "7393-continuous-improvement-planning-for-customer-support-operations",
+          "skill_sha256": "9112f4649327d425045e5af1942463b181a8dfdb04177623ab8d2f601eb8449b"
+        },
+        {
+          "id": 7394,
+          "dir": "7394-continuous-improvement-planning-for-customer-support-operations",
+          "skill_sha256": "b48f0e68b5708a85c7c27d584a82dfde478ac13e8a608c5234917e262db3bb2f"
+        },
+        {
+          "id": 7395,
+          "dir": "7395-continuous-improvement-planning-for-customer-support-operations",
+          "skill_sha256": "a7c10122050abd70540516a6fe1dff2399d5b87a3345a4e02ebdd0f30484927b"
+        },
+        {
+          "id": 7396,
+          "dir": "7396-continuous-improvement-planning-for-knowledge-management-systems",
+          "skill_sha256": "5cbe3e3335b62ee5fd07fc45f08f39d9a31c52f726c7893a9eacc47842c6acea"
+        },
+        {
+          "id": 7397,
+          "dir": "7397-continuous-improvement-planning-for-knowledge-management-systems",
+          "skill_sha256": "8b3639a34c3cbdb0c46c50474c7d487c2138f2c98a3d0de835fa56fe3f1b3aa0"
+        },
+        {
+          "id": 7398,
+          "dir": "7398-continuous-improvement-planning-for-knowledge-management-systems",
+          "skill_sha256": "096821df56115e0581a8d8ad64eb903daa7a64dd57f3a8ae1f72d22188b6c926"
+        },
+        {
+          "id": 7399,
+          "dir": "7399-continuous-improvement-planning-for-knowledge-management-systems",
+          "skill_sha256": "aa0ef6e4c6607d95d588709bd62f04935dacc2d91861200695cd7dfaccef4ad5"
+        }
+      ]
+    },
+    {
+      "batch_index": 2,
+      "id_range": [
+        7400,
+        7449
+      ],
+      "count": 50,
+      "composite_sha256": "dd13151b582fefbf3371e91c9e7962eebf17c6d9e612d01751e0f69bb248815d",
+      "records": [
+        {
+          "id": 7400,
+          "dir": "7400-continuous-improvement-planning-for-knowledge-management-systems",
+          "skill_sha256": "72d77a62e4b9394656ad1a030608d4d40460b45a1766f942ef0c9dd3bd150b03"
+        },
+        {
+          "id": 7401,
+          "dir": "7401-autonomous-workflow-authoring-for-personal-health-routines",
+          "skill_sha256": "68e08fed0cea153fd3e24be6d533f52a655a838428a8105ea0245c241067a298"
+        },
+        {
+          "id": 7402,
+          "dir": "7402-autonomous-workflow-authoring-for-personal-health-routines",
+          "skill_sha256": "5be5544cb9088cf1880ffb554e7c510e8b272ad16a89589fcbc0b2ff36567f25"
+        },
+        {
+          "id": 7403,
+          "dir": "7403-autonomous-workflow-authoring-for-personal-health-routines",
+          "skill_sha256": "8a9d4f40da05ca93a3eb1e7237ef1fa96c18ab0176ab051f90430cfa77d9e806"
+        },
+        {
+          "id": 7404,
+          "dir": "7404-autonomous-workflow-authoring-for-personal-health-routines",
+          "skill_sha256": "fba25099fb12ed62548be7bbcbb8abb61f22758205e4d2bff599140f1589fdef"
+        },
+        {
+          "id": 7405,
+          "dir": "7405-autonomous-workflow-authoring-for-personal-health-routines",
+          "skill_sha256": "e6c9588a08eef22f346351cae40b0e77455c01c90cc8bdc841b652753be911c6"
+        },
+        {
+          "id": 7406,
+          "dir": "7406-autonomous-workflow-authoring-for-family-caregiving-systems",
+          "skill_sha256": "8446f6128dd29b6fe2e75847fd01ab2616bbdfc5fd2d2b42811e1da7e3ec3768"
+        },
+        {
+          "id": 7407,
+          "dir": "7407-autonomous-workflow-authoring-for-family-caregiving-systems",
+          "skill_sha256": "fd60268137ef1ccf9789e61e12e624fa11724a768dce722e05e374a702ded039"
+        },
+        {
+          "id": 7408,
+          "dir": "7408-autonomous-workflow-authoring-for-family-caregiving-systems",
+          "skill_sha256": "74d0e5860100e3ba9711a11166cbf6e18110e294efb8421b9bf67684633cd28d"
+        },
+        {
+          "id": 7409,
+          "dir": "7409-autonomous-workflow-authoring-for-family-caregiving-systems",
+          "skill_sha256": "ba497a7705ac82106a974f373a669980b8e421efc44a7f0fea47ddeb1951e0db"
+        },
+        {
+          "id": 7410,
+          "dir": "7410-autonomous-workflow-authoring-for-family-caregiving-systems",
+          "skill_sha256": "df098608f8a0e2c19bfbb908d7f48058bffc495e1b9af2ea0a168b3b71c3b464"
+        },
+        {
+          "id": 7411,
+          "dir": "7411-autonomous-workflow-authoring-for-household-logistics",
+          "skill_sha256": "bafe7aaed09ac569ce2c746ee5a6a9687df3f14656da1a379192aeae1dcdbb06"
+        },
+        {
+          "id": 7412,
+          "dir": "7412-autonomous-workflow-authoring-for-household-logistics",
+          "skill_sha256": "337319c849ec4e94caa9687e2a740fb43b17b069981c3ed08ad05e66d4b9b8eb"
+        },
+        {
+          "id": 7413,
+          "dir": "7413-autonomous-workflow-authoring-for-household-logistics",
+          "skill_sha256": "45bd873acb9794916ea3125c9fea7f7bd7fb6d4a5fecfd27a579b7c784056c66"
+        },
+        {
+          "id": 7414,
+          "dir": "7414-autonomous-workflow-authoring-for-household-logistics",
+          "skill_sha256": "34133a50fcb18932e06bb40f28b7444f86acfcc8696f78becb26968d552ed4a8"
+        },
+        {
+          "id": 7415,
+          "dir": "7415-autonomous-workflow-authoring-for-household-logistics",
+          "skill_sha256": "61b751d31e069b6ce84a788e7944fb3d163a7ee3ec1c7d14c799e90aa1f39cb4"
+        },
+        {
+          "id": 7416,
+          "dir": "7416-autonomous-workflow-authoring-for-personal-finance-management",
+          "skill_sha256": "238fbff927ab92825bbef582114fa3161b2920ff23dbd013477acd88c10305cd"
+        },
+        {
+          "id": 7417,
+          "dir": "7417-autonomous-workflow-authoring-for-personal-finance-management",
+          "skill_sha256": "9f0314b6d112bf77445f66f4df91d215bd4bd3f85410ef0e8f3e731689ce6b6b"
+        },
+        {
+          "id": 7418,
+          "dir": "7418-autonomous-workflow-authoring-for-personal-finance-management",
+          "skill_sha256": "fb514bb9a59b2597765c4ed534e80fdff5fe943c8bcc55e4fecf4444046ddb74"
+        },
+        {
+          "id": 7419,
+          "dir": "7419-autonomous-workflow-authoring-for-personal-finance-management",
+          "skill_sha256": "943f058ddbb9a3b8d1f044e95406abc6b47b3068118bef6eda48e5dbb9509a88"
+        },
+        {
+          "id": 7420,
+          "dir": "7420-autonomous-workflow-authoring-for-personal-finance-management",
+          "skill_sha256": "994fad87ab98d601b034ab38dbce62347099019a3fd17afc482c17afee9c050c"
+        },
+        {
+          "id": 7421,
+          "dir": "7421-autonomous-workflow-authoring-for-nutrition-and-meal-planning",
+          "skill_sha256": "c912c3f669e4f1b20b6466fa77dd0ddf616f2f1b81adf58f6a0929fb9d3c2c62"
+        },
+        {
+          "id": 7422,
+          "dir": "7422-autonomous-workflow-authoring-for-nutrition-and-meal-planning",
+          "skill_sha256": "3647647fc03b8459c6e261e0f271b3d5219d04142ab285e581eac5cc46096173"
+        },
+        {
+          "id": 7423,
+          "dir": "7423-autonomous-workflow-authoring-for-nutrition-and-meal-planning",
+          "skill_sha256": "c4c3b36274a6db8fe8517dde6633cc87384a430194b9bdf11d5c5858fb822308"
+        },
+        {
+          "id": 7424,
+          "dir": "7424-autonomous-workflow-authoring-for-nutrition-and-meal-planning",
+          "skill_sha256": "3cb03ba3ca529a566dd9ba9b3870b515ca3d79e06d9979a69733fb120ef3a1ab"
+        },
+        {
+          "id": 7425,
+          "dir": "7425-autonomous-workflow-authoring-for-nutrition-and-meal-planning",
+          "skill_sha256": "0d2015e874fe3dc9ae98c9af68e18a8b5b3e1f861865967eb543b1614ebadb7c"
+        },
+        {
+          "id": 7426,
+          "dir": "7426-autonomous-workflow-authoring-for-fitness-and-recovery-training",
+          "skill_sha256": "99bcfd32e40111c45e9c156e2772f3f1dc2be2206c0eeba828d2edf1ef1547d4"
+        },
+        {
+          "id": 7427,
+          "dir": "7427-autonomous-workflow-authoring-for-fitness-and-recovery-training",
+          "skill_sha256": "97024778682b0a008a58d3a8a48f377008212e1ecbd793607b10fe12179109f6"
+        },
+        {
+          "id": 7428,
+          "dir": "7428-autonomous-workflow-authoring-for-fitness-and-recovery-training",
+          "skill_sha256": "cd93b324e6a400d060b410bd8bbb21cc7c5c208a99407e2524c8b75e7101c957"
+        },
+        {
+          "id": 7429,
+          "dir": "7429-autonomous-workflow-authoring-for-fitness-and-recovery-training",
+          "skill_sha256": "5cf4e238cb291b864f36c9afd9ac6f98edb1febc081a2701c76ad474cf1795ba"
+        },
+        {
+          "id": 7430,
+          "dir": "7430-autonomous-workflow-authoring-for-fitness-and-recovery-training",
+          "skill_sha256": "b6952089d1e8fca6095c6043deada55589b5b38074d9d6f3f110decb3d5cc007"
+        },
+        {
+          "id": 7431,
+          "dir": "7431-autonomous-workflow-authoring-for-mental-well-being-practices",
+          "skill_sha256": "7d969157df5ac0ed3103d7fa78ca8f0f8e2f7b51fa968d28bfd1a011ff5a1a53"
+        },
+        {
+          "id": 7432,
+          "dir": "7432-autonomous-workflow-authoring-for-mental-well-being-practices",
+          "skill_sha256": "3a518351447b2f43104a711b3fb3beb71469b9dfb69e58c30678b586fe71dedf"
+        },
+        {
+          "id": 7433,
+          "dir": "7433-autonomous-workflow-authoring-for-mental-well-being-practices",
+          "skill_sha256": "c31311c7f248ac1a7db18e47bbcd27ccc1d9d4b1c4ed9b273b742aba3362cd43"
+        },
+        {
+          "id": 7434,
+          "dir": "7434-autonomous-workflow-authoring-for-mental-well-being-practices",
+          "skill_sha256": "30c9dfd5a14b6964bb15549ad1d2c912c24f587af4faefcfc81541eea1c730ad"
+        },
+        {
+          "id": 7435,
+          "dir": "7435-autonomous-workflow-authoring-for-mental-well-being-practices",
+          "skill_sha256": "1f8cc930006041b5b4d3abac299960b45639a249a0aca41cdf62372eee755861"
+        },
+        {
+          "id": 7436,
+          "dir": "7436-autonomous-workflow-authoring-for-lifelong-learning-plans",
+          "skill_sha256": "92be206985ee91a0f059d6ae551c024263f6882a84709d5c1512c4e4474372e5"
+        },
+        {
+          "id": 7437,
+          "dir": "7437-autonomous-workflow-authoring-for-lifelong-learning-plans",
+          "skill_sha256": "ceab18347bf7022d54960a5c0849b213faf67b2aaa2549615de4c17751d93fa8"
+        },
+        {
+          "id": 7438,
+          "dir": "7438-autonomous-workflow-authoring-for-lifelong-learning-plans",
+          "skill_sha256": "0856716ebcf22574abd180cb1b84ef8d1977ec8aa59773509888785a7889c95d"
+        },
+        {
+          "id": 7439,
+          "dir": "7439-autonomous-workflow-authoring-for-lifelong-learning-plans",
+          "skill_sha256": "69a4cf20babc6ffd4a5d510e78f2b4f42ddcf574ef28733180f19070fd34d9de"
+        },
+        {
+          "id": 7440,
+          "dir": "7440-autonomous-workflow-authoring-for-lifelong-learning-plans",
+          "skill_sha256": "3c8bd569d9962ea1fd934f71773f21ffb4a3244f1b21028c88bcc36dfb643d2f"
+        },
+        {
+          "id": 7441,
+          "dir": "7441-autonomous-workflow-authoring-for-career-development-pathways",
+          "skill_sha256": "bb1208f368294d0047bf2ca4649953d625ef9b6ba98439b0f271084f44faab83"
+        },
+        {
+          "id": 7442,
+          "dir": "7442-autonomous-workflow-authoring-for-career-development-pathways",
+          "skill_sha256": "b798fa86e02587d18615991cea78e4f058ab85dc497e99a0a6ac7e5d1c53c09f"
+        },
+        {
+          "id": 7443,
+          "dir": "7443-autonomous-workflow-authoring-for-career-development-pathways",
+          "skill_sha256": "f00c58a2aaba7b2ef885750a7d8cce7427ba125c14a36dd4708b707718f76384"
+        },
+        {
+          "id": 7444,
+          "dir": "7444-autonomous-workflow-authoring-for-career-development-pathways",
+          "skill_sha256": "5c79569ea6a48a2169cf05abe4fccd167131172b13d9b139b7400e66564bdb1d"
+        },
+        {
+          "id": 7445,
+          "dir": "7445-autonomous-workflow-authoring-for-career-development-pathways",
+          "skill_sha256": "09edddb1dfd419b0b71292ac7508e22955f55f153f326e689b11752ecba67ac9"
+        },
+        {
+          "id": 7446,
+          "dir": "7446-autonomous-workflow-authoring-for-entrepreneurship-operations",
+          "skill_sha256": "0ae73ca09f71ba4ad432b31edde1e755fd0d8c419033a2606ed73cce420f642f"
+        },
+        {
+          "id": 7447,
+          "dir": "7447-autonomous-workflow-authoring-for-entrepreneurship-operations",
+          "skill_sha256": "93266a837d5a5fa5ed2718818afd4af3b85c20ea3545d2dceed009f636900b16"
+        },
+        {
+          "id": 7448,
+          "dir": "7448-autonomous-workflow-authoring-for-entrepreneurship-operations",
+          "skill_sha256": "8b6056d748b7297158a138e9b2e55dd76f438b5863be95f20a843122aa5d51df"
+        },
+        {
+          "id": 7449,
+          "dir": "7449-autonomous-workflow-authoring-for-entrepreneurship-operations",
+          "skill_sha256": "2d95b9748a01eb9f94ce6fd0410aa533f0b6ae17f415c49d3965dd5370d9f2f1"
+        }
+      ]
+    }
+  ]
+}
