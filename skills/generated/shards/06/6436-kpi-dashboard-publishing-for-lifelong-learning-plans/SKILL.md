@@ -1,6 +1,6 @@
 ---
 name: u06436-kpi-dashboard-publishing-for-lifelong-learning-plans
-description: Build and operate the "KPI Dashboard Publishing for lifelong learning plans" capability for lifelong learning plans. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for lifelong learning plans" capability in production for lifelong learning plans workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for lifelong learning plans
 

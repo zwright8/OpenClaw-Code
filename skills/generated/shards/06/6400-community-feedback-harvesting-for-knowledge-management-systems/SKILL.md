@@ -1,6 +1,6 @@
 ---
 name: u06400-community-feedback-harvesting-for-knowledge-management-systems
-description: Build and operate the "Community Feedback Harvesting for knowledge management systems" capability for knowledge management systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Community Feedback Harvesting for knowledge management systems" capability in production for knowledge management systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Community Feedback Harvesting for knowledge management systems
 

@@ -1,6 +1,6 @@
 ---
 name: u06411-kpi-dashboard-publishing-for-household-logistics
-description: Build and operate the "KPI Dashboard Publishing for household logistics" capability for household logistics. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for household logistics" capability in production for household logistics workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for household logistics
 

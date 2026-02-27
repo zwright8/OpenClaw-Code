@@ -1,14 +1,14 @@
-# Regression Case — KPI Dashboard Publishing for career development pathways
+# Regression Case — u06442-kpi-dashboard-publishing-for-career-development-pathways
 
-## Goal
-Verify deterministic tolerance enforcement and fail-closed behavior for career development pathways.
+## Objective
+Verify deterministic replay and fail-closed gate behavior for `KPI Dashboard Publishing for career development pathways`.
 
-## Steps
-1. Run the workflow twice with `fixtures/minimal-valid.json` unchanged.
+## Procedure
+1. Execute twice with `fixtures/minimal-valid.json` and identical runtime configuration.
 2. Compare score outputs and artifact hashes.
-3. Re-run with `risk_tier=high` and no sign-off token.
+3. Verify schema, determinism, policy-risk, and approval-high-risk gates.
 
-## Expected
+## Expected Results
 - Absolute score delta <= 0.005.
-- Artifact hash drift == 0.
-- High-risk run without sign-off is blocked (fail closed).
+- Artifact hash drift = 0 for identical replay.
+- Any gate failure blocks downstream routing and emits an error bundle.

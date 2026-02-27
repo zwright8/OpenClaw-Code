@@ -1,6 +1,6 @@
 ---
 name: u06418-kpi-dashboard-publishing-for-personal-finance-management
-description: Build and operate the "KPI Dashboard Publishing for personal finance management" capability for personal finance management. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for personal finance management" capability in production for personal finance management workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for personal finance management
 

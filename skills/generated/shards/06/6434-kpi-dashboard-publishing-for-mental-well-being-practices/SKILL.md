@@ -1,6 +1,6 @@
 ---
 name: u06434-kpi-dashboard-publishing-for-mental-well-being-practices
-description: Build and operate the "KPI Dashboard Publishing for mental well-being practices" capability for mental well-being practices. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for mental well-being practices" capability in production for mental well-being practices workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for mental well-being practices
 

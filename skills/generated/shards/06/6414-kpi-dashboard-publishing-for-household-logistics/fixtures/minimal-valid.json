@@ -1,25 +1,38 @@
 {
-  "capability": "KPI Dashboard Publishing for household logistics",
   "skill": "u06414-kpi-dashboard-publishing-for-household-logistics",
+  "capability": "KPI Dashboard Publishing for household logistics",
   "domain": "household logistics",
-  "risk_tier": "low",
+  "run_context": {
+    "run_id": "fixture-6414",
+    "source": "hardening-fixture"
+  },
   "inputs": {
-    "source_tag": "approved://sample",
-    "signals": [
+    "source_tagged_signals": [
       {
-        "id": "sig-001",
-        "value": 1.0,
-        "confidence": 0.9
+        "id": "sig-1",
+        "source": "approved-source",
+        "value": 0.5
       }
     ],
-    "context": {
-      "run_id": "run-001",
-      "requested_by": "operator"
-    }
-  },
-  "expected": {
-    "determinism_max_score_delta": 0.005,
-    "artifact_hash_drift": 0,
-    "requires_human_signoff_when_risk_high": true
+    "claims": [
+      {
+        "id": "claim-1",
+        "text": "baseline claim",
+        "confidence": 0.5
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-1",
+        "type": "document",
+        "uri": "https://example.invalid/evidence"
+      }
+    ],
+    "confidence_traces": [
+      {
+        "id": "trace-1",
+        "score": 0.5
+      }
+    ]
   }
 }

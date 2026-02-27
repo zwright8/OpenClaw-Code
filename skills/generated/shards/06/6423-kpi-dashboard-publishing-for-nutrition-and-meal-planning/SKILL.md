@@ -1,6 +1,6 @@
 ---
 name: u06423-kpi-dashboard-publishing-for-nutrition-and-meal-planning
-description: Build and operate the "KPI Dashboard Publishing for nutrition and meal planning" capability for nutrition and meal planning. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for nutrition and meal planning" capability in production for nutrition and meal planning workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for nutrition and meal planning
 
