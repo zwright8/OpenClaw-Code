@@ -1,0 +1,24 @@
+{
+  "lane": "07",
+  "batch_size": 50,
+  "batches": [
+    {
+      "batch_index": 1,
+      "id_range": [
+        7450,
+        7499
+      ],
+      "count": 50,
+      "composite_sha256": "bd7f51c4e269c71bb0e2295630dc0ef7079533d8dba768cb0e78d3119d093c41"
+    },
+    {
+      "batch_index": 2,
+      "id_range": [
+        7500,
+        7549
+      ],
+      "count": 50,
+      "composite_sha256": "3d5c4b3b63140f50f9120181dc5e77cb91202884a208a26c195d9d71fe799ebc"
+    }
+  ]
+}
