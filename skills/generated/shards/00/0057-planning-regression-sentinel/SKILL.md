@@ -1,6 +1,6 @@
 ---
 name: u0057-planning-regression-sentinel
-description: Build and operate the "Planning Regression Sentinel" capability for Strategic Planning and Decomposition. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Planning Regression Sentinel" capability for Strategic Planning and Decomposition. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Planning Regression Sentinel
@@ -9,7 +9,7 @@ description: Build and operate the "Planning Regression Sentinel" capability for
 We need this skill because large goals fail when decomposition is inconsistent or incomplete. This specific skill prevents unnoticed quality drift after updates.
 
 ## When To Use
-Use this skill when the request explicitly needs "Planning Regression Sentinel" outcomes in the Strategic Planning and Decomposition domain.
+Use this skill when you need "Planning Regression Sentinel" outcomes for the Strategic Planning and Decomposition domain with measurable, production-facing outputs.
 
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Planning Regression Sentinel`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.
@@ -57,3 +57,10 @@ Use this skill when the request explicitly needs "Planning Regression Sentinel" 
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+
+
+## Immediate Hardening Additions
+- Add golden test fixtures for at least 5 representative payloads.
+- Add regression test covering the highest-risk failure mode for this capability.
+- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
+- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.

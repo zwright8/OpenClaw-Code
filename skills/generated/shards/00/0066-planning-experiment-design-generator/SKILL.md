@@ -1,6 +1,6 @@
 ---
 name: u0066-planning-experiment-design-generator
-description: Build and operate the "Planning Experiment Design Generator" capability for Strategic Planning and Decomposition. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Planning Experiment Design Generator" capability for Strategic Planning and Decomposition. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Planning Experiment Design Generator
@@ -9,7 +9,7 @@ description: Build and operate the "Planning Experiment Design Generator" capabi
 We need this skill because large goals fail when decomposition is inconsistent or incomplete. This specific skill converts unknowns into testable learning loops.
 
 ## When To Use
-Use this skill when the request explicitly needs "Planning Experiment Design Generator" outcomes in the Strategic Planning and Decomposition domain.
+Use this skill when you need "Planning Experiment Design Generator" outcomes for the Strategic Planning and Decomposition domain with measurable, production-facing outputs.
 
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Planning Experiment Design Generator`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.
@@ -57,3 +57,10 @@ Use this skill when the request explicitly needs "Planning Experiment Design Gen
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+
+
+## Immediate Hardening Additions
+- Add golden test fixtures for at least 5 representative payloads.
+- Add regression test covering the highest-risk failure mode for this capability.
+- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
+- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.
