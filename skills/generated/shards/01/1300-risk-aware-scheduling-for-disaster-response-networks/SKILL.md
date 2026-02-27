@@ -1,6 +1,6 @@
 ---
 name: u01300-risk-aware-scheduling-for-disaster-response-networks
-description: Build and operate the "Risk-Aware Scheduling for disaster response networks" capability for disaster response networks. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for disaster response networks" capability in production for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for disaster response networks

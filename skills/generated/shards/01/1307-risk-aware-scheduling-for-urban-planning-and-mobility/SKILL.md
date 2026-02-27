@@ -1,6 +1,6 @@
 ---
 name: u01307-risk-aware-scheduling-for-urban-planning-and-mobility
-description: Build and operate the "Risk-Aware Scheduling for urban planning and mobility" capability for urban planning and mobility. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for urban planning and mobility
