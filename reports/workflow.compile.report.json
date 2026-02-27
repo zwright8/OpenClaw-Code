@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-27T02:04:52.597Z",
+  "command": "compile-workflow",
+  "inputs": {
+    "manifestPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/generated/skills.manifest.json",
+    "selectedSkills": [
+      "u0001-epistemic-signal-ingestion-normalizer",
+      "u0003-epistemic-evidence-provenance-tracker",
+      "u0008-epistemic-dependency-dag-planner"
+    ]
+  },
+  "outputs": {
+    "workflowPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/workflow.compiled.json",
+    "workflowSha256": "a541d73f6d7ae7925916728385d40f37b7bf30236e722a06b6b73f8d040c0c36"
+  },
+  "counts": {
+    "nodes": 3,
+    "edges": 0,
+    "handoffContracts": 0
+  }
+}

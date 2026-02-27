@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-27T02:04:52.597Z",
+  "selectedSkills": [
+    "u0001-epistemic-signal-ingestion-normalizer",
+    "u0003-epistemic-evidence-provenance-tracker",
+    "u0008-epistemic-dependency-dag-planner"
+  ],
+  "nodeCount": 3,
+  "edgeCount": 0,
+  "nodes": [
+    {
+      "id": "u0001-epistemic-signal-ingestion-normalizer",
+      "skillId": 1,
+      "skillName": "u0001-epistemic-signal-ingestion-normalizer",
+      "title": "Epistemic Signal Ingestion Normalizer",
+      "domain": "Truth-Seeking and Epistemics",
+      "routingTag": "truth-seeking-and-epistemics:normalization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "handoff": {
+        "produces": [
+          "Epistemic Signal Ingestion Normalizer normalized artifacts",
+          "execution scorecard",
+          "risk posture"
+        ],
+        "consumes": [
+          "claims",
+          "evidence",
+          "confidence traces"
+        ],
+        "downstreamHint": "Route next to truth-seeking-and-epistemics:normalization-engine consumers with approval-gate context"
+      },
+      "risk": {
+        "level": null,
+        "score": null,
+        "rationale": null
+      }
+    },
+    {
+      "id": "u0003-epistemic-evidence-provenance-tracker",
+      "skillId": 3,
+      "skillName": "u0003-epistemic-evidence-provenance-tracker",
+      "title": "Epistemic Evidence Provenance Tracker",
+      "domain": "Truth-Seeking and Epistemics",
+      "routingTag": "truth-seeking-and-epistemics:provenance-tracker",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "handoff": {
+        "produces": [
+          "Epistemic Evidence Provenance Tracker normalized artifacts",
+          "execution scorecard",
+          "risk posture"
+        ],
+        "consumes": [
+          "claims",
+          "evidence",
+          "confidence traces"
+        ],
+        "downstreamHint": "Route next to truth-seeking-and-epistemics:provenance-tracker consumers with approval-gate context"
+      },
+      "risk": {
+        "level": null,
+        "score": null,
+        "rationale": null
+      }
+    },
+    {
+      "id": "u0008-epistemic-dependency-dag-planner",
+      "skillId": 8,
+      "skillName": "u0008-epistemic-dependency-dag-planner",
+      "title": "Epistemic Dependency DAG Planner",
+      "domain": "Truth-Seeking and Epistemics",
+      "routingTag": "truth-seeking-and-epistemics:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "handoff": {
+        "produces": [
+          "Epistemic Dependency DAG Planner normalized artifacts",
+          "execution scorecard",
+          "risk posture"
+        ],
+        "consumes": [
+          "claims",
+          "evidence",
+          "confidence traces"
+        ],
+        "downstreamHint": "Route next to truth-seeking-and-epistemics:planning-router consumers with approval-gate context"
+      },
+      "risk": {
+        "level": null,
+        "score": null,
+        "rationale": null
+      }
+    }
+  ],
+  "edges": [],
+  "handoffContracts": []
+}
