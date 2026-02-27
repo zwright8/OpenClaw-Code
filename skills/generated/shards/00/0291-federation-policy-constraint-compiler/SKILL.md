@@ -1,15 +1,15 @@
 ---
 name: u0291-federation-policy-constraint-compiler
-description: Operate the "Federation Policy Constraint Compiler" capability in production for the target domain workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Federation Policy Constraint Compiler" capability in production for Federation and Interoperability workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Federation Policy Constraint Compiler
 
 ## Why This Skill Exists
-This skill hardens a generated capability for production execution so the target domain workflows remain deterministic, auditable, and fail-closed under risk.
+This skill hardens a generated capability for production execution so federation and interoperability workflows remain deterministic, auditable, and fail-closed under risk.
 
 ## When To Use
-Use this skill only when the request explicitly needs `Federation Policy Constraint Compiler` in the target domain and a downstream consumer requires contract-bound artifacts.
+Use this skill only when the request explicitly needs `Federation Policy Constraint Compiler` in Federation and Interoperability and a downstream consumer requires contract-bound artifacts.
 
 ## Step-by-Step Implementation Guide
 1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.

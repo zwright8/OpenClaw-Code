@@ -1,15 +1,15 @@
 ---
 name: u0267-collab-a-b-rollout-governor
-description: Operate the "Collab A/B Rollout Governor" capability in production for the target domain workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Collab A/B Rollout Governor" capability in production for Collaboration and Negotiation workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Collab A/B Rollout Governor
 
 ## Why This Skill Exists
-This skill hardens a generated capability for production execution so the target domain workflows remain deterministic, auditable, and fail-closed under risk.
+This skill hardens a generated capability for production execution so collaboration and negotiation workflows remain deterministic, auditable, and fail-closed under risk.
 
 ## When To Use
-Use this skill only when the request explicitly needs `Collab A/B Rollout Governor` in the target domain and a downstream consumer requires contract-bound artifacts.
+Use this skill only when the request explicitly needs `Collab A/B Rollout Governor` in Collaboration and Negotiation and a downstream consumer requires contract-bound artifacts.
 
 ## Step-by-Step Implementation Guide
 1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
