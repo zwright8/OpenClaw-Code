@@ -1,40 +1,41 @@
 ---
 name: u05804-cost-benefit-forecasting-for-personal-health-routines
-description: Build and operate the "Cost-Benefit Forecasting for personal health routines" capability for personal health routines. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Cost benefit forecasting for personal health routines" capability in production for personal health routines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
-# Cost-Benefit Forecasting for personal health routines
+# Cost benefit forecasting for personal health routines
 
 ## Why This Skill Exists
-Use cost-benefit forecasting in personal health routines with emphasis on throughput, reliability, leverage, and execution speed.
+This skill hardens a generated capability for production execution so personal health routines workflows remain deterministic, auditable, and fail-closed under risk.
+
+## When To Use
+Use this skill only when the request explicitly needs `Cost benefit forecasting for personal health routines` in personal health routines and a downstream consumer requires contract-bound artifacts.
 
 ## Step-by-Step Implementation Guide
-1. Define measurable outcomes for Cost-Benefit Forecasting for personal health routines, including baseline and target metrics for personal health routines.
-2. Specify structured inputs/outputs for cost-benefit forecasting and validate schema contract edge cases.
-3. Implement the core cost-benefit forecasting logic with deterministic scoring and reproducible execution traces.
-4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
-5. Run unit, integration, simulation, and regression suites for Cost-Benefit Forecasting for personal health routines under hyper-productive autonomy conditions.
-6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
+1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
+2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
+3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
+4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
+5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
+6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
 
-## Operational Runbook
-Preflight:
-- Validate mission scope, contracts, and required inputs.
-- Verify feature flag posture, dependencies, and approval prerequisites.
+## Deterministic Workflow Constraints
+- Replay score variance: <= 0.005 absolute per item.
+- Artifact hash drift for identical replay: 0 allowed.
+- Time-dependent fields allowed only in metadata and excluded from scoring.
 
-Execution:
-- Execute cost-benefit forecasting workflow with deterministic scoring and trace capture.
-- Track posture transitions and preserve reproducible evidence artifacts.
+## Validation Gates
+1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
+2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
+3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
+4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
 
-Recovery:
-- Apply rollback strategy if posture is critical or guardrails fail.
-- Escalate blocked execution to oversight with incident packet and trace references.
+## Handoff Contract
+- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
+- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
+- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
 
-Handoff:
-- Publish outcome report, scorecard, and telemetry links.
-- Queue follow-up tasks for unresolved risks, approvals, or optimization work.
-
-## Guardrails
-- [quality] Require unit and integration validations before promoting Cost-Benefit Forecasting for personal health routines. -> `run-validation:unit+integration+simulation+regression-baseline`
-- [reliability] Trigger rollback on critical posture or repeated failures. -> `rollback:rollback-to-last-stable-baseline`
-- [compliance] Require policy and approval gates prior to autonomous deployment. -> `approval-gates:policy-constraint-check+human-approval-router`
-- [safety] Block production action when risk posture is critical until human oversight review. -> `open-incident:human-oversight`
+## Immediate Hardening Additions
+- Fixture: `fixtures/minimal-valid.json`
+- Regression case: `tests/regression-case.md`
+- Machine-readable summary: `hardening-summary.json`
