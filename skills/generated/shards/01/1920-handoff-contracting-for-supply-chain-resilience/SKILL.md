@@ -1,6 +1,6 @@
 ---
 name: u01920-handoff-contracting-for-supply-chain-resilience
-description: Build and operate the "Handoff Contracting for supply chain resilience" capability for supply chain resilience. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for supply chain resilience" capability in production for supply chain resilience workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for supply chain resilience

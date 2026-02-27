@@ -1,6 +1,6 @@
 ---
 name: u01905-handoff-contracting-for-climate-adaptation-initiatives
-description: Build and operate the "Handoff Contracting for climate adaptation initiatives" capability for climate adaptation initiatives. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for climate adaptation initiatives" capability in production for climate adaptation initiatives workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for climate adaptation initiatives

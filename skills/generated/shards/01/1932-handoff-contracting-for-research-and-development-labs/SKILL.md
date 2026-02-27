@@ -1,6 +1,6 @@
 ---
 name: u01932-handoff-contracting-for-research-and-development-labs
-description: Build and operate the "Handoff Contracting for research and development labs" capability for research and development labs. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for research and development labs" capability in production for research and development labs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for research and development labs

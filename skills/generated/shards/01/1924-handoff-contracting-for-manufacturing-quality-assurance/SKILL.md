@@ -1,6 +1,6 @@
 ---
 name: u01924-handoff-contracting-for-manufacturing-quality-assurance
-description: Build and operate the "Handoff Contracting for manufacturing quality assurance" capability for manufacturing quality assurance. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for manufacturing quality assurance" capability in production for manufacturing quality assurance workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for manufacturing quality assurance

@@ -1,6 +1,6 @@
 ---
 name: u01914-handoff-contracting-for-agriculture-and-food-systems
-description: Build and operate the "Handoff Contracting for agriculture and food systems" capability for agriculture and food systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for agriculture and food systems" capability in production for agriculture and food systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for agriculture and food systems
