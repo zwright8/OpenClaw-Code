@@ -1,23 +1,18 @@
 {
-  "skill_id": "u0265-collab-uncertainty-communicator",
+  "version": "1.0.0",
   "hardened": true,
-  "production_trigger_criteria": true,
-  "deterministic_tolerance": {
-    "score_delta_abs_max": 0.005,
-    "artifact_hash_drift_allowed": 0
+  "requirements": {
+    "production_trigger_use_clarity": true,
+    "deterministic_tolerances": true,
+    "fail_closed_validation_gates": true,
+    "high_risk_human_sign_off": true,
+    "explicit_handoff_contract": true,
+    "fixtures_minimal_valid": true,
+    "tests_regression_case": true
   },
-  "fail_closed_gates": [
-    "schema-gate",
-    "determinism-gate",
-    "policy-risk-gate",
-    "approval-gate-high-risk"
-  ],
-  "human_signoff_required_for_high_risk": true,
-  "handoff_contract_defined": true,
-  "fixtures_added": [
-    "fixtures/minimal-valid.json"
-  ],
-  "regression_added": [
-    "tests/regression-case.md"
-  ]
+  "artifacts": {
+    "skill": "SKILL.md",
+    "fixture": "fixtures/minimal-valid.json",
+    "regression_test": "tests/regression-case.md"
+  }
 }
