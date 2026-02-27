@@ -1,6 +1,6 @@
 ---
 name: u01565-constraint-compilation-for-childcare-support-systems
-description: Build and operate the "Constraint Compilation for childcare support systems" capability for childcare support systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for childcare support systems" capability in production for childcare support systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for childcare support systems

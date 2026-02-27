@@ -1,6 +1,6 @@
 ---
 name: u01581-constraint-compilation-for-multilingual-translation-services
-description: Build and operate the "Constraint Compilation for multilingual translation services" capability for multilingual translation services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for multilingual translation services" capability in production for multilingual translation services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for multilingual translation services

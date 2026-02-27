@@ -1,6 +1,6 @@
 ---
 name: u01589-constraint-compilation-for-remote-team-collaboration
-description: Build and operate the "Constraint Compilation for remote team collaboration" capability for remote team collaboration. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for remote team collaboration" capability in production for remote team collaboration workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for remote team collaboration

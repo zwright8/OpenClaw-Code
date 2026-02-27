@@ -1,6 +1,6 @@
 ---
 name: u01593-constraint-compilation-for-customer-support-operations
-description: Build and operate the "Constraint Compilation for customer support operations" capability for customer support operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for customer support operations" capability in production for customer support operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for customer support operations

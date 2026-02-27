@@ -1,6 +1,6 @@
 ---
 name: u01569-constraint-compilation-for-arts-and-culture-programming
-description: Build and operate the "Constraint Compilation for arts and culture programming" capability for arts and culture programming. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for arts and culture programming" capability in production for arts and culture programming workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for arts and culture programming

@@ -1,6 +1,6 @@
 ---
 name: u01551-constraint-compilation-for-accessibility-services
-description: Build and operate the "Constraint Compilation for accessibility services" capability for accessibility services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for accessibility services" capability in production for accessibility services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for accessibility services

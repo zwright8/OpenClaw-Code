@@ -1,6 +1,6 @@
 ---
 name: u01558-constraint-compilation-for-eldercare-coordination
-description: Build and operate the "Constraint Compilation for eldercare coordination" capability for eldercare coordination. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for eldercare coordination" capability in production for eldercare coordination workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for eldercare coordination
