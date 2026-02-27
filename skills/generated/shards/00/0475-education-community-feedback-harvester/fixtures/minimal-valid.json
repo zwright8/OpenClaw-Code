@@ -1,0 +1,27 @@
+{
+  "claims": [
+    {
+      "id": "c-001",
+      "text": "sample claim",
+      "source": "test-fixture"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e-001",
+      "text": "sample evidence",
+      "source": "test-fixture"
+    }
+  ],
+  "confidence_traces": [
+    {
+      "claim_id": "c-001",
+      "confidence": 0.75,
+      "method": "deterministic-baseline"
+    }
+  ],
+  "metadata": {
+    "fixture": "minimal-valid",
+    "version": "1.0.0"
+  }
+}
