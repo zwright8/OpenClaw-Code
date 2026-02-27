@@ -16,6 +16,7 @@
     "skills:registry:build": "tsx scripts/build-skill-registry.ts",
     "skills:registry:validate": "tsx scripts/validate-skill-registry.ts",
     "skills:route": "tsx scripts/route-skills.ts",
+    "skills:run": "tsx scripts/skillos-run.ts",
     "skills:harden:profile": "tsx scripts/build-skill-hardening-profile.ts",
     "skills:harden": "tsx scripts/harden-skills.ts",
     "skills:validate": "tsx scripts/validate-1000-skills.ts",
