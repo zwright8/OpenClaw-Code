@@ -1,6 +1,6 @@
 ---
 name: u0881-rights-signal-ingestion-normalizer
-description: Build and operate the "Rights Signal Ingestion Normalizer" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights Signal Ingestion Normalizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights Signal Ingestion Normalizer

@@ -1,6 +1,6 @@
 ---
 name: u0885-rights-confidence-calibration-engine
-description: Build and operate the "Rights Confidence Calibration Engine" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights Confidence Calibration Engine" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights Confidence Calibration Engine

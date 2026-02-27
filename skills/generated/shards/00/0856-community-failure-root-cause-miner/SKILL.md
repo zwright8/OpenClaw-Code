@@ -1,6 +1,6 @@
 ---
 name: u0856-community-failure-root-cause-miner
-description: Build and operate the "Community Failure Root-Cause Miner" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Failure Root-Cause Miner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Failure Root-Cause Miner

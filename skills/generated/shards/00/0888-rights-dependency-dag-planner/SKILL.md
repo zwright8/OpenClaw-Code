@@ -1,6 +1,6 @@
 ---
 name: u0888-rights-dependency-dag-planner
-description: Build and operate the "Rights Dependency DAG Planner" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights Dependency DAG Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights Dependency DAG Planner

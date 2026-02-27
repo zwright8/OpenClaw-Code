@@ -1,6 +1,6 @@
 ---
 name: u0891-rights-policy-constraint-compiler
-description: Build and operate the "Rights Policy Constraint Compiler" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights Policy Constraint Compiler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights Policy Constraint Compiler

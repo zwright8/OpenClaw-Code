@@ -1,6 +1,6 @@
 ---
 name: u0877-community-skill-gap-diagnoser
-description: Build and operate the "Community Skill Gap Diagnoser" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Skill Gap Diagnoser" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Skill Gap Diagnoser

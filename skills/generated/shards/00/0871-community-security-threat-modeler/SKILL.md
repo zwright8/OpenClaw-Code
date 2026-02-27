@@ -1,6 +1,6 @@
 ---
 name: u0871-community-security-threat-modeler
-description: Build and operate the "Community Security Threat Modeler" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Security Threat Modeler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Security Threat Modeler

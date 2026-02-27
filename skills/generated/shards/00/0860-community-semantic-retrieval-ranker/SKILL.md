@@ -1,6 +1,6 @@
 ---
 name: u0860-community-semantic-retrieval-ranker
-description: Build and operate the "Community Semantic Retrieval Ranker" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Semantic Retrieval Ranker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Semantic Retrieval Ranker

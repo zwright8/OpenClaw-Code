@@ -1,6 +1,6 @@
 ---
 name: u0875-community-community-feedback-harvester
-description: Build and operate the "Community Feedback Harvester" capability for Community Engagement and Feedback. Use when outcomes in this capability family are required for production execution.
+description: Operate the "Community Feedback Harvester" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Feedback Harvester

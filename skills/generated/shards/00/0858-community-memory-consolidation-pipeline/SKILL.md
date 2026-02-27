@@ -1,6 +1,6 @@
 ---
 name: u0858-community-memory-consolidation-pipeline
-description: Build and operate the "Community Memory Consolidation Pipeline" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Community Memory Consolidation Pipeline" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Community Memory Consolidation Pipeline
