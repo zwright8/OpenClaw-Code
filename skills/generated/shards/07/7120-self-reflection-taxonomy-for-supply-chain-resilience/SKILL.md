@@ -1,6 +1,6 @@
 ---
 name: u07120-self-reflection-taxonomy-for-supply-chain-resilience
-description: Operate the "Self-reflection taxonomy for supply chain resilience" capability in production for supply chain resilience" capability for supply chain resilience workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for supply chain resilience" capability in production for supply chain resilience workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for supply chain resilience
 

@@ -1,6 +1,6 @@
 ---
 name: u07138-self-reflection-taxonomy-for-scientific-publishing-pipelines
-description: Operate the "Self-reflection taxonomy for scientific publishing pipelines" capability in production for scientific publishing pipelines" capability for scientific publishing pipelines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for scientific publishing pipelines" capability in production for scientific publishing pipelines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for scientific publishing pipelines
 

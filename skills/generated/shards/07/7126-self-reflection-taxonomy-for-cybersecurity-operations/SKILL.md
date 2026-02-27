@@ -1,6 +1,6 @@
 ---
 name: u07126-self-reflection-taxonomy-for-cybersecurity-operations
-description: Operate the "Self-reflection taxonomy for cybersecurity operations" capability in production for cybersecurity operations" capability for cybersecurity operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for cybersecurity operations" capability in production for cybersecurity operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for cybersecurity operations
 

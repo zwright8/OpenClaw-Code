@@ -1,6 +1,6 @@
 ---
 name: u07147-self-reflection-taxonomy-for-civic-participation-platforms
-description: Operate the "Self-reflection taxonomy for civic participation platforms" capability in production for civic participation platforms" capability for civic participation platforms workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for civic participation platforms" capability in production for civic participation platforms workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for civic participation platforms
 

@@ -1,6 +1,6 @@
 ---
 name: u07107-self-reflection-taxonomy-for-urban-planning-and-mobility
-description: Operate the "Self-reflection taxonomy for urban planning and mobility" capability in production for urban planning and mobility" capability for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for urban planning and mobility
 

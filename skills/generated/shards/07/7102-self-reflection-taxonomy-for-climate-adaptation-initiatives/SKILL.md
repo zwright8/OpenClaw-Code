@@ -1,6 +1,6 @@
 ---
 name: u07102-self-reflection-taxonomy-for-climate-adaptation-initiatives
-description: Operate the "Self-reflection taxonomy for climate adaptation initiatives" capability in production for climate adaptation initiatives" capability for climate adaptation initiatives workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for climate adaptation initiatives" capability in production for climate adaptation initiatives workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for climate adaptation initiatives
 
