@@ -6,7 +6,7 @@ description: Operate the "Federation Failure Root-Cause Miner" capability in pro
 # Federation Failure Root-Cause Miner
 
 ## Why This Skill Exists
-This skill hardens a generated capability for production execution so federation and interoperability workflows remain deterministic, auditable, and fail-closed under risk.
+This skill hardens a generated capability for production execution so federation workflows remain deterministic, auditable, and fail-closed under risk.
 
 ## When To Use
 Use this skill only when the request explicitly needs `Federation Failure Root-Cause Miner` in Federation and Interoperability and a downstream consumer requires contract-bound artifacts.

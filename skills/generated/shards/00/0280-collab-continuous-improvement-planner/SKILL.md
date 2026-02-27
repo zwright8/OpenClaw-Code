@@ -6,7 +6,7 @@ description: Operate the "Collab Continuous Improvement Planner" capability in p
 # Collab Continuous Improvement Planner
 
 ## Why This Skill Exists
-This skill hardens a generated capability for production execution so collaboration and negotiation workflows remain deterministic, auditable, and fail-closed under risk.
+This skill hardens a generated capability for production execution so collaboration workflows remain deterministic, auditable, and fail-closed under risk.
 
 ## When To Use
 Use this skill only when the request explicitly needs `Collab Continuous Improvement Planner` in Collaboration and Negotiation and a downstream consumer requires contract-bound artifacts.

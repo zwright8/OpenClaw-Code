@@ -6,7 +6,7 @@ description: Operate the "Collab Community Feedback Harvester" capability in pro
 # Collab Community Feedback Harvester
 
 ## Why This Skill Exists
-This skill hardens a generated capability for production execution so collaboration and negotiation workflows remain deterministic, auditable, and fail-closed under risk.
+This skill hardens a generated capability for production execution so collaboration workflows remain deterministic, auditable, and fail-closed under risk.
 
 ## When To Use
 Use this skill only when the request explicitly needs `Collab Community Feedback Harvester` in Collaboration and Negotiation and a downstream consumer requires contract-bound artifacts.
