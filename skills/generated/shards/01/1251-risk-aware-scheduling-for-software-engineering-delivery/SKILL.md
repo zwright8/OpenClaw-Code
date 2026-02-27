@@ -1,6 +1,6 @@
 ---
 name: u01251-risk-aware-scheduling-for-software-engineering-delivery
-description: Build and operate the "Risk-Aware Scheduling for software engineering delivery" capability for software engineering delivery. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for software engineering delivery" capability in production for software engineering delivery workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for software engineering delivery

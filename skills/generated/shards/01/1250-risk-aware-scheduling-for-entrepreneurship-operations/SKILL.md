@@ -1,6 +1,6 @@
 ---
 name: u01250-risk-aware-scheduling-for-entrepreneurship-operations
-description: Build and operate the "Risk-Aware Scheduling for entrepreneurship operations" capability for entrepreneurship operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for entrepreneurship operations" capability in production for entrepreneurship operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for entrepreneurship operations

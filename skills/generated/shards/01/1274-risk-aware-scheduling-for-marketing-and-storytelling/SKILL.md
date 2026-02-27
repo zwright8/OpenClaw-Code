@@ -1,6 +1,6 @@
 ---
 name: u01274-risk-aware-scheduling-for-marketing-and-storytelling
-description: Build and operate the "Risk-Aware Scheduling for marketing and storytelling" capability for marketing and storytelling. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for marketing and storytelling" capability in production for marketing and storytelling workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for marketing and storytelling

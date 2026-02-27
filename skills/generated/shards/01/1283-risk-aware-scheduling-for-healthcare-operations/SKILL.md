@@ -1,6 +1,6 @@
 ---
 name: u01283-risk-aware-scheduling-for-healthcare-operations
-description: Build and operate the "Risk-Aware Scheduling for healthcare operations" capability for healthcare operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for healthcare operations" capability in production for healthcare operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for healthcare operations

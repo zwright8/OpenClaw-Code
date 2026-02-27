@@ -1,6 +1,6 @@
 ---
 name: u01294-risk-aware-scheduling-for-nonprofit-program-delivery
-description: Build and operate the "Risk-Aware Scheduling for nonprofit program delivery" capability for nonprofit program delivery. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for nonprofit program delivery" capability in production for nonprofit program delivery workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for nonprofit program delivery
