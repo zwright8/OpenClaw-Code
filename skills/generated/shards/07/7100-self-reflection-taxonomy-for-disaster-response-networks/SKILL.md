@@ -1,6 +1,6 @@
 ---
 name: u07100-self-reflection-taxonomy-for-disaster-response-networks
-description: Operate the "Self-reflection taxonomy for disaster response networks" capability in production for disaster response networks" capability for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for disaster response networks" capability in production for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for disaster response networks
 

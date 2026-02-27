@@ -1,6 +1,6 @@
 ---
 name: u06144-equity-impact-scoring-for-community-mediation-programs
-description: Operate the "Equity impact scoring for community mediation programs" capability in production for community mediation programs" capability for community mediation programs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for community mediation programs" capability in production for community mediation programs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for community mediation programs
 

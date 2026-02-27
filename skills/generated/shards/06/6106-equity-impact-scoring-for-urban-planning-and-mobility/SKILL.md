@@ -1,6 +1,6 @@
 ---
 name: u06106-equity-impact-scoring-for-urban-planning-and-mobility
-description: Operate the "Equity impact scoring for urban planning and mobility" capability in production for urban planning and mobility" capability for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for urban planning and mobility
 

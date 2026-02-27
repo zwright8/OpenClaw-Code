@@ -1,6 +1,6 @@
 ---
 name: u06121-equity-impact-scoring-for-manufacturing-quality-assurance
-description: Operate the "Equity impact scoring for manufacturing quality assurance" capability in production for manufacturing quality assurance" capability for manufacturing quality assurance workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for manufacturing quality assurance" capability in production for manufacturing quality assurance workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for manufacturing quality assurance
 

@@ -1,6 +1,6 @@
 ---
 name: u06127-equity-impact-scoring-for-cybersecurity-operations
-description: Operate the "Equity impact scoring for cybersecurity operations" capability in production for cybersecurity operations" capability for cybersecurity operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for cybersecurity operations" capability in production for cybersecurity operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for cybersecurity operations
 

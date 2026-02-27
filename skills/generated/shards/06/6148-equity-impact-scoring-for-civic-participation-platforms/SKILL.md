@@ -1,6 +1,6 @@
 ---
 name: u06148-equity-impact-scoring-for-civic-participation-platforms
-description: Operate the "Equity impact scoring for civic participation platforms" capability in production for civic participation platforms" capability for civic participation platforms workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for civic participation platforms" capability in production for civic participation platforms workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for civic participation platforms
 

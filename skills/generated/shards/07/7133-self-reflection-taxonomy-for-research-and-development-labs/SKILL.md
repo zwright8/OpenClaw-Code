@@ -1,6 +1,6 @@
 ---
 name: u07133-self-reflection-taxonomy-for-research-and-development-labs
-description: Operate the "Self-reflection taxonomy for research and development labs" capability in production for research and development labs" capability for research and development labs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Self-reflection taxonomy for research and development labs" capability in production for research and development labs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Self-reflection taxonomy for research and development labs
 

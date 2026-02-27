@@ -1,6 +1,6 @@
 ---
 name: u06137-equity-impact-scoring-for-scientific-publishing-pipelines
-description: Operate the "Equity impact scoring for scientific publishing pipelines" capability in production for scientific publishing pipelines" capability for scientific publishing pipelines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for scientific publishing pipelines" capability in production for scientific publishing pipelines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for scientific publishing pipelines
 

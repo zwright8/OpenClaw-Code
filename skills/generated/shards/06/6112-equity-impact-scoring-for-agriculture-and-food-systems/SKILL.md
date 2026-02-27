@@ -1,6 +1,6 @@
 ---
 name: u06112-equity-impact-scoring-for-agriculture-and-food-systems
-description: Operate the "Equity impact scoring for agriculture and food systems" capability in production for agriculture and food systems" capability for agriculture and food systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for agriculture and food systems" capability in production for agriculture and food systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for agriculture and food systems
 

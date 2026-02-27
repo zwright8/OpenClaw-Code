@@ -1,6 +1,6 @@
 ---
 name: u06100-equity-impact-scoring-for-disaster-response-networks
-description: Operate the "Equity impact scoring for disaster response networks" capability in production for disaster response networks" capability for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Operate the "Equity impact scoring for disaster response networks" capability in production for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # Equity impact scoring for disaster response networks
 
