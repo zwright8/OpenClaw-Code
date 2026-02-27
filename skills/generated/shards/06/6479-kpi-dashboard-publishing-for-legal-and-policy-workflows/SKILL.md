@@ -1,6 +1,6 @@
 ---
 name: u06479-kpi-dashboard-publishing-for-legal-and-policy-workflows
-description: Build and operate the "KPI Dashboard Publishing for legal and policy workflows" capability for legal and policy workflows. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for legal and policy workflows" capability in production for legal and policy workflows workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for legal and policy workflows
 

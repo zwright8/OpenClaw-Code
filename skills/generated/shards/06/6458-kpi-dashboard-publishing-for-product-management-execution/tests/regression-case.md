@@ -1,14 +1,14 @@
-# Regression Case — KPI Dashboard Publishing for product management execution
+# Regression Case — u06458-kpi-dashboard-publishing-for-product-management-execution
 
-## Goal
-Verify deterministic tolerance enforcement and fail-closed behavior for product management execution.
+## Objective
+Verify deterministic replay and fail-closed gate behavior for `KPI Dashboard Publishing for product management execution`.
 
-## Steps
-1. Run the workflow twice with `fixtures/minimal-valid.json` unchanged.
+## Procedure
+1. Execute twice with `fixtures/minimal-valid.json` and identical runtime configuration.
 2. Compare score outputs and artifact hashes.
-3. Re-run with `risk_tier=high` and no sign-off token.
+3. Verify schema, determinism, policy-risk, and approval-high-risk gates.
 
-## Expected
+## Expected Results
 - Absolute score delta <= 0.005.
-- Artifact hash drift == 0.
-- High-risk run without sign-off is blocked (fail closed).
+- Artifact hash drift = 0 for identical replay.
+- Any gate failure blocks downstream routing and emits an error bundle.

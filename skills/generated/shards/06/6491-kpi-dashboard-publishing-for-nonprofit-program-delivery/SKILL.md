@@ -1,6 +1,6 @@
 ---
 name: u06491-kpi-dashboard-publishing-for-nonprofit-program-delivery
-description: Build and operate the "KPI Dashboard Publishing for nonprofit program delivery" capability for nonprofit program delivery. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for nonprofit program delivery" capability in production for nonprofit program delivery workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for nonprofit program delivery
 

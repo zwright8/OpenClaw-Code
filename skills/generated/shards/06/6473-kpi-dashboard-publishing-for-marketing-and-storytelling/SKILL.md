@@ -1,6 +1,6 @@
 ---
 name: u06473-kpi-dashboard-publishing-for-marketing-and-storytelling
-description: Build and operate the "KPI Dashboard Publishing for marketing and storytelling" capability for marketing and storytelling. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for marketing and storytelling" capability in production for marketing and storytelling workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for marketing and storytelling
 

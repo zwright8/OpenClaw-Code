@@ -1,6 +1,6 @@
 ---
 name: u06456-kpi-dashboard-publishing-for-product-management-execution
-description: Build and operate the "KPI Dashboard Publishing for product management execution" capability for product management execution. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for product management execution" capability in production for product management execution workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for product management execution
 
