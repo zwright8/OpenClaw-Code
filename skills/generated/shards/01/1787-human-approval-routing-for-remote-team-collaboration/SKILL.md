@@ -1,6 +1,6 @@
 ---
 name: u01787-human-approval-routing-for-remote-team-collaboration
-description: Build and operate the "Human Approval Routing for remote team collaboration" capability for remote team collaboration. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for remote team collaboration" capability in production for remote team collaboration workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for remote team collaboration

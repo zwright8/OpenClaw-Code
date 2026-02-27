@@ -1,6 +1,6 @@
 ---
 name: u01796-human-approval-routing-for-knowledge-management-systems
-description: Build and operate the "Human Approval Routing for knowledge management systems" capability for knowledge management systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for knowledge management systems" capability in production for knowledge management systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for knowledge management systems
