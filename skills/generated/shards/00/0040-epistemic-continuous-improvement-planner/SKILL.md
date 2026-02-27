@@ -1,6 +1,6 @@
 ---
 name: u0040-epistemic-continuous-improvement-planner
-description: Build and operate the "Epistemic Continuous Improvement Planner" capability for Truth-Seeking and Epistemics. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Epistemic Continuous Improvement Planner" capability for Truth-Seeking and Epistemics. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Epistemic Continuous Improvement Planner
@@ -9,7 +9,7 @@ description: Build and operate the "Epistemic Continuous Improvement Planner" ca
 We need this skill because decisions drift when claims are accepted without verification. This specific skill turns findings into sustained upgrade cycles.
 
 ## When To Use
-Use this skill when the request explicitly needs "Epistemic Continuous Improvement Planner" outcomes in the Truth-Seeking and Epistemics domain.
+Use this skill when you need "Epistemic Continuous Improvement Planner" outcomes for the Truth-Seeking and Epistemics domain with measurable, production-facing outputs.
 
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Epistemic Continuous Improvement Planner`, including at least three measurable KPIs tied to false certainty and unverified assumptions.
@@ -35,8 +35,8 @@ Use this skill when the request explicitly needs "Epistemic Continuous Improveme
 
 ## Validation Gates
 1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts within tolerance <= 1% (on fail: escalate)
+3. **policy-approval-check** — Approval gates satisfied before publish-level outputs; high-risk changes require human sign-off (on fail: block)
 
 ## Failure Handling
 - `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
@@ -53,3 +53,9 @@ Use this skill when the request explicitly needs "Epistemic Continuous Improveme
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+
+## Immediate Hardening Additions
+- Add golden test fixtures for at least 5 representative payloads.
+- Add regression test covering the highest-risk failure mode for this capability.
+- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
+- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.
