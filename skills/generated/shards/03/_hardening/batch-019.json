@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 19,
+  "range": {
+    "start": "u3900-conflict-resolution-coaching-for-disaster-response-networks",
+    "end": "u3949-conflict-resolution-coaching-for-civic-participation-platforms",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3900-conflict-resolution-coaching-for-disaster-response-networks",
+      "path": "generated/shards/03/3900-conflict-resolution-coaching-for-disaster-response-networks",
+      "skill_md_sha256": "702129b676db8ca47544cdb6303b63b6c23473afa9c596df131d25ac5570aca4",
+      "summary_sha256": "5b0808c249ef210da152d02d17201763d9167238face9749c2aa9553794305ec"
+    },
+    {
+      "skill_id": "u3901-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3901-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "c72ce45551aeca4edb70fd49bb9897cd829396e04c3f199d0b55a65e3b59a530",
+      "summary_sha256": "4d479e55ea97a430ddc9cdbcc2949cc046b10e6eba79a8b7622e64f4e6138e87"
+    },
+    {
+      "skill_id": "u3902-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3902-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "45595bc9d0bae80e4980a5ae4fa92f53d15b68ccf7899c6b1e1923dba9a39a27",
+      "summary_sha256": "2d4254218547ba5b46e2ebc97e271b06ad37d5d769fed168eac4402da2192698"
+    },
+    {
+      "skill_id": "u3903-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3903-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "7c8ef69199e39cfc6dfc4db671218268ae6230177e05cd05e71a094a5ec4e96b",
+      "summary_sha256": "3201d51df4d1d2087a0b7d89114802741ce42e4511ec403e512b1d1778e30aee"
+    },
+    {
+      "skill_id": "u3904-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3904-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "921a9bb7733e942b73b6886935af3f9a5625080b9474b750f76499273d993587",
+      "summary_sha256": "1e7514897c48570f56c9099166096f004fc905c2e7ea9c96a6a6d8f6b7ced76a"
+    },
+    {
+      "skill_id": "u3905-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3905-conflict-resolution-coaching-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "3ab7c262a06806e59f3fdf97136fc4490030fe6102c8b412fabb5aa249913e58",
+      "summary_sha256": "336e8f3de2fc4e5b5a1e5cbf697d5f28db949e1326296beda9fb5e609d1e73b0"
+    },
+    {
+      "skill_id": "u3906-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3906-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "skill_md_sha256": "e365e06da18adabf4443d2f41e56af6f47d5cf9546b51918bd5ff6b1ce8217d2",
+      "summary_sha256": "95bc633f1662c9c653caf65930a9ab04c425b2a838993a2305ef467a4b15c6a5"
+    },
+    {
+      "skill_id": "u3907-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3907-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "skill_md_sha256": "d9350b0d8edaa5a313ac288de232c22d81ec09506560a59c82bed0e5b9e31872",
+      "summary_sha256": "fcfa8d96c919937a795618b2606f97c88392cc0f4b90111e1b98555a70747785"
+    },
+    {
+      "skill_id": "u3908-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3908-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "skill_md_sha256": "4970bccd604c429168ae49c1c62d7105f19a4d88ff41f3edab444f502a81096d",
+      "summary_sha256": "d6036811fd69a7be46fc779332bb1905288bb3e1afcb36003b86fac32913093a"
+    },
+    {
+      "skill_id": "u3909-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3909-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "skill_md_sha256": "db1f6239d5e21266b9fc194c405c34b82660b3656a20cae73adbe691840f3d8d",
+      "summary_sha256": "4be6a40ae4aa539e63e4c9ef07ea38a4a66a860ed88c16a40e046ed3ed40f351"
+    },
+    {
+      "skill_id": "u3910-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3910-conflict-resolution-coaching-for-urban-planning-and-mobility",
+      "skill_md_sha256": "dcf360457d67169c83393e451c131fdc9f1be067207472b8b0095bac5a93c093",
+      "summary_sha256": "df54a5eed053a657f98da4403922c2b5c6bf14e1720c55c4bb5832acf920360b"
+    },
+    {
+      "skill_id": "u3911-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3911-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "skill_md_sha256": "0cdc6d8b67d73a1e8a75874cb0fb1c7e0daacf7886e4cadd241fda794a4eb855",
+      "summary_sha256": "8b0098da88c91a0c54dcd66784973378707ad81257604645a0dc70e93e43fee0"
+    },
+    {
+      "skill_id": "u3912-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3912-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "skill_md_sha256": "90bd52fac5d0735c802b987fd3ef4cd0c13c389dd7527c427292adea42e3bf8a",
+      "summary_sha256": "11112bc0107acfe471fd26c2414a1f46f3c68d485fa1baaa3edfe78ca362b9f4"
+    },
+    {
+      "skill_id": "u3913-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3913-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "skill_md_sha256": "a770d5cb0389fa1ddff882d3b8c1efde58e93b09db7de6869d3012d5637559df",
+      "summary_sha256": "4d790594135d0cd96455e47db292d06a1058d346a32972993199d13f39f40565"
+    },
+    {
+      "skill_id": "u3914-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3914-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "skill_md_sha256": "5d5edc241e5b558d698ac04f98d78525b41c6e79be2ced794aefb195c2905420",
+      "summary_sha256": "a7c3017f79d8bc41e9f435b443450fa2488fddb06e2e2084e1e1f6302766868f"
+    },
+    {
+      "skill_id": "u3915-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3915-conflict-resolution-coaching-for-agriculture-and-food-systems",
+      "skill_md_sha256": "8ca7a5c69216a3390b63424b4f89c122e376b9f05bd0861b7c3c7de15de0aa93",
+      "summary_sha256": "b20918aa40bc1d7859e897659b73b2f45c06f68a343ab5cfb71d5942f98fd438"
+    },
+    {
+      "skill_id": "u3916-conflict-resolution-coaching-for-supply-chain-resilience",
+      "path": "generated/shards/03/3916-conflict-resolution-coaching-for-supply-chain-resilience",
+      "skill_md_sha256": "0e8d615f9fee370f3dcbe12dbb9cac6332818d712d1c4993ec4c960d99703f73",
+      "summary_sha256": "d5e64fc8934e286ad4f6c3ffde6d14ff804d940909ede1a76d2e01b2b27d07fa"
+    },
+    {
+      "skill_id": "u3917-conflict-resolution-coaching-for-supply-chain-resilience",
+      "path": "generated/shards/03/3917-conflict-resolution-coaching-for-supply-chain-resilience",
+      "skill_md_sha256": "5841aa213a56415f850dda2f3f31ef4ffc6fd8b7fcc75c347acb127af5d1ce5e",
+      "summary_sha256": "5052a6df00bb22d6663f65f71f9aa9f49ef830cf63a565f916479a7e64e5bc1c"
+    },
+    {
+      "skill_id": "u3918-conflict-resolution-coaching-for-supply-chain-resilience",
+      "path": "generated/shards/03/3918-conflict-resolution-coaching-for-supply-chain-resilience",
+      "skill_md_sha256": "f478aa31fad2fb9a30dd202c67a5df554a2d8ad6cf75385c9402666592f5a6ce",
+      "summary_sha256": "578292483ce02765495655bb15dea8dbf57a1aab041c7ed556ad985cd88b0aef"
+    },
+    {
+      "skill_id": "u3919-conflict-resolution-coaching-for-supply-chain-resilience",
+      "path": "generated/shards/03/3919-conflict-resolution-coaching-for-supply-chain-resilience",
+      "skill_md_sha256": "af7c079cf60a265a1d55643b03fbb7d12969f2e54541c410b118f8366c6b045a",
+      "summary_sha256": "2d9225069f06db8ffa0e14a88e060bb0503123695d87ba69709f85aff9c8e219"
+    },
+    {
+      "skill_id": "u3920-conflict-resolution-coaching-for-supply-chain-resilience",
+      "path": "generated/shards/03/3920-conflict-resolution-coaching-for-supply-chain-resilience",
+      "skill_md_sha256": "9a809ac27ebcbef4984dbcbb1ba4ff8d0589905500186102c03436ac65e84421",
+      "summary_sha256": "88e50e6bac3a9e9177d37458fe71aab5961e8f1c5da0263cd335e44bd38d2110"
+    },
+    {
+      "skill_id": "u3921-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3921-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "aaddd2b16c83e95ecd4bf78627b71a579933845631fac0615847a1de14db43d9",
+      "summary_sha256": "0eb199a7166a9cbeeea00136754aaf2a1147d531a42222fd7f19d2432773845d"
+    },
+    {
+      "skill_id": "u3922-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3922-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "713b2e85048cb091a590bcd64b24e0ce545ce324a73353eb99cb4bfff03b4fa7",
+      "summary_sha256": "a596a1515c87f788b62d0a76e72a6a69999449d9efaf763db297e9d2df84f353"
+    },
+    {
+      "skill_id": "u3923-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3923-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "b8aa8713cd5da89b6bab120bbf517bf2b197a3471b0dfcd708ab0f09b96dd59e",
+      "summary_sha256": "cc53eaaa657f618e6cca7e1b5fe86b17d8c85e663f2ecfd83f38ffe8e83d301e"
+    },
+    {
+      "skill_id": "u3924-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3924-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "3bbfae64810c069e557c27422b49e218057dfb577906df9f1ac316026459cec8",
+      "summary_sha256": "54bf2d7f3505bc76ad15cce9c5d166deecc251d5c4d3562ac929df3b56f27945"
+    },
+    {
+      "skill_id": "u3925-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3925-conflict-resolution-coaching-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "f32c68a1d129b614f06c80103015dd17850941c145d19d269ceda0622e6cfe0a",
+      "summary_sha256": "5bc76b5eb30dd11ca79e9708ee6e073a198500213516e18e21fa764a6f80387e"
+    },
+    {
+      "skill_id": "u3926-conflict-resolution-coaching-for-cybersecurity-operations",
+      "path": "generated/shards/03/3926-conflict-resolution-coaching-for-cybersecurity-operations",
+      "skill_md_sha256": "3ae4e8587cf89581611c9e3ea7ca8605914b8b1bfb1ac9b41319707c21f73ff7",
+      "summary_sha256": "9bebd0b7f2ddc96f90247f17311ce3c60a070309bacd474ac6c37c1fa6e9d15a"
+    },
+    {
+      "skill_id": "u3927-conflict-resolution-coaching-for-cybersecurity-operations",
+      "path": "generated/shards/03/3927-conflict-resolution-coaching-for-cybersecurity-operations",
+      "skill_md_sha256": "80b524ab3200478a9514ba39e71017f66d56bcc0f7f15ab0635d45a57508e185",
+      "summary_sha256": "9acecd3b8bbfd81c2e934cdda54ed8cf073d43b8731ca1ba5c5425ea52e185d1"
+    },
+    {
+      "skill_id": "u3928-conflict-resolution-coaching-for-cybersecurity-operations",
+      "path": "generated/shards/03/3928-conflict-resolution-coaching-for-cybersecurity-operations",
+      "skill_md_sha256": "6cb424858bb0b32ef1eca0dbdc827f1fa7de25f16b44a78735fe6c947a778f0a",
+      "summary_sha256": "c1bc5d8e28b74b2b5fb4d4c89b8b443b3b69b126d6085fd4d2ad4eb750660967"
+    },
+    {
+      "skill_id": "u3929-conflict-resolution-coaching-for-cybersecurity-operations",
+      "path": "generated/shards/03/3929-conflict-resolution-coaching-for-cybersecurity-operations",
+      "skill_md_sha256": "3519b3113abd7ba8c100a4fcc8aa100c6e2eb96633923de30df95a6daeea8e0d",
+      "summary_sha256": "c623f0939c9061ea0e46c36d8aded918cd201e1d1ea8aa4293853317e1cbe1a6"
+    },
+    {
+      "skill_id": "u3930-conflict-resolution-coaching-for-cybersecurity-operations",
+      "path": "generated/shards/03/3930-conflict-resolution-coaching-for-cybersecurity-operations",
+      "skill_md_sha256": "07ff9d4614b8f4b998da29222d3319c7558d1cded9ee2637b896e13e3ab2cf08",
+      "summary_sha256": "7d24a54610a64cee2845b8d642a253fb3939af7533e70956542e729e8bc94ff0"
+    },
+    {
+      "skill_id": "u3931-conflict-resolution-coaching-for-research-and-development-labs",
+      "path": "generated/shards/03/3931-conflict-resolution-coaching-for-research-and-development-labs",
+      "skill_md_sha256": "097277c91b2703d28f3a82002c106b9c2e157b9a2cc24c91442b6939cd9954d8",
+      "summary_sha256": "53ab28f2f9c71cd1b12c75f5fe1528600f0638ab0c748d2bf82df79eaecab06c"
+    },
+    {
+      "skill_id": "u3932-conflict-resolution-coaching-for-research-and-development-labs",
+      "path": "generated/shards/03/3932-conflict-resolution-coaching-for-research-and-development-labs",
+      "skill_md_sha256": "f8ac26192cd823e9712d8b883fe8a0c0042fd69c68974e2a9842b20403e9367c",
+      "summary_sha256": "667f0f3ee6a8b6b5169cc0281d1c4cee66e4f026d0c32c409f40d881b5cded08"
+    },
+    {
+      "skill_id": "u3933-conflict-resolution-coaching-for-research-and-development-labs",
+      "path": "generated/shards/03/3933-conflict-resolution-coaching-for-research-and-development-labs",
+      "skill_md_sha256": "6b74cf9976286412b20bd6898a6cbe024b4c8e383ffe1cef626b062608cabc81",
+      "summary_sha256": "8878368fb6c098055c1afa29460517f56148b5287eb9ab3d624ed85791b62f94"
+    },
+    {
+      "skill_id": "u3934-conflict-resolution-coaching-for-research-and-development-labs",
+      "path": "generated/shards/03/3934-conflict-resolution-coaching-for-research-and-development-labs",
+      "skill_md_sha256": "ec7d92dcdaeb4b44dbb85767c61cc8bb8027535d647dbdc002b2db7a870188af",
+      "summary_sha256": "a0ab21ac76ed226d3181480b94e0e2d2c871964c49bb8c29518b8cb446cfca05"
+    },
+    {
+      "skill_id": "u3935-conflict-resolution-coaching-for-research-and-development-labs",
+      "path": "generated/shards/03/3935-conflict-resolution-coaching-for-research-and-development-labs",
+      "skill_md_sha256": "cafbcdc00e8abd687e87305282904cfbd5ec6066b23385e046b0bfc8fcd50eba",
+      "summary_sha256": "bcefd259ab8c3b79fdccd820a214b904b2e0278a336c6a3c89f44ec82659dfe2"
+    },
+    {
+      "skill_id": "u3936-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3936-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "0b755ef129aa9da4523eab67e95de717a63bdc7b5a174a16b9698fddbd32a83f",
+      "summary_sha256": "fb42b38f681f8c98f3b3cef3325a1d8630399b8b8aeec896c1cc9500f1cbdb35"
+    },
+    {
+      "skill_id": "u3937-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3937-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "2f86147472596d29474edf387c1b5a9188c04d3308db45e3d4e7dfd5e99ba5ef",
+      "summary_sha256": "b9eb94e0c642ea0636a6d5b01a5211391bc9a99af5f0ba7648058ad7e39774e1"
+    },
+    {
+      "skill_id": "u3938-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3938-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "e884f3004469cf6612a09214eb9e2d5338fb38ed6639f600bdedcedbe536c352",
+      "summary_sha256": "2644c8304cc4afe2afaede27a2baa9c9016899130a86cdc02852829a28d47eb1"
+    },
+    {
+      "skill_id": "u3939-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3939-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "447a00873565c47e41bbb4a747d684ba24fa45df568e4fff493228b7f1c27eea",
+      "summary_sha256": "030ea73a927cf2e85249fa42028cf19c0e61bf2ab1eead71198dab0457ab431a"
+    },
+    {
+      "skill_id": "u3940-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3940-conflict-resolution-coaching-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "f4ec1378df7ef08ee47a12c3473fc5d9a86474b08101275260a27c4bc70dcd12",
+      "summary_sha256": "5a24019187a6573220797ef456690d95d0e6bfb7c1172cb793a68246f7cdc2fc"
+    },
+    {
+      "skill_id": "u3941-conflict-resolution-coaching-for-community-mediation-programs",
+      "path": "generated/shards/03/3941-conflict-resolution-coaching-for-community-mediation-programs",
+      "skill_md_sha256": "69c5fd792d77c412d039c0e515fb15db78920faf6d9cb11dc867ac4cc382a121",
+      "summary_sha256": "56a1ac306a6951e3507c24a29c669848fa3ddd0f1fccf6111b51a42179d8e2e3"
+    },
+    {
+      "skill_id": "u3942-conflict-resolution-coaching-for-community-mediation-programs",
+      "path": "generated/shards/03/3942-conflict-resolution-coaching-for-community-mediation-programs",
+      "skill_md_sha256": "544b6c9e9198db72cba2f892d0ad9316b447bb96d36dff701d1008c3874e311d",
+      "summary_sha256": "783365d4813c3b2edffe23f31636703004080a53424e14b1c45ada5fdd8d4a1f"
+    },
+    {
+      "skill_id": "u3943-conflict-resolution-coaching-for-community-mediation-programs",
+      "path": "generated/shards/03/3943-conflict-resolution-coaching-for-community-mediation-programs",
+      "skill_md_sha256": "522567648ca10de913a959bb7ecd4cb0d2c727243f5ae188830cfad6cf824416",
+      "summary_sha256": "9c5aea2dcfe6c3198ff50a276fb23761bbb96b85c100b2ae4dde255d0d605c14"
+    },
+    {
+      "skill_id": "u3944-conflict-resolution-coaching-for-community-mediation-programs",
+      "path": "generated/shards/03/3944-conflict-resolution-coaching-for-community-mediation-programs",
+      "skill_md_sha256": "68defa078e3885e51725ae490be383ec56f288783cd5e7eed4b32f4fe8aca636",
+      "summary_sha256": "27550c52ddba4d0dd81c5d50b3d22fe8d76def430de5dee5fa845e77f3fba5cb"
+    },
+    {
+      "skill_id": "u3945-conflict-resolution-coaching-for-community-mediation-programs",
+      "path": "generated/shards/03/3945-conflict-resolution-coaching-for-community-mediation-programs",
+      "skill_md_sha256": "46b19218eb83a91f180671a4edf8117102d08ae321eef476f0dddfe2de8ca397",
+      "summary_sha256": "21e426686642655520dac671fb969be65f44610a13fd999c57f8df49ee8b597e"
+    },
+    {
+      "skill_id": "u3946-conflict-resolution-coaching-for-civic-participation-platforms",
+      "path": "generated/shards/03/3946-conflict-resolution-coaching-for-civic-participation-platforms",
+      "skill_md_sha256": "7ae1b0634c4781db6af47d4a40667b1142369ea04792f8a72836d63ced1e4d5c",
+      "summary_sha256": "c49bcd0d6188f9b9522502522401964a032ae7639637f4cef304f1984bfd4214"
+    },
+    {
+      "skill_id": "u3947-conflict-resolution-coaching-for-civic-participation-platforms",
+      "path": "generated/shards/03/3947-conflict-resolution-coaching-for-civic-participation-platforms",
+      "skill_md_sha256": "51b12c3c06e62cd8dd04f369512cbaa55b769877af79ea671c86121f5dedbdf9",
+      "summary_sha256": "8511db9b0cff8f49f24772e388de10c4a6e713e5f9ad9787fec223a6daae5e32"
+    },
+    {
+      "skill_id": "u3948-conflict-resolution-coaching-for-civic-participation-platforms",
+      "path": "generated/shards/03/3948-conflict-resolution-coaching-for-civic-participation-platforms",
+      "skill_md_sha256": "df11f54a4adc107937d695fbc38f80680ffab7b3c49d110eff4484d09c5ac3fb",
+      "summary_sha256": "4df8e799585e8013a24ad70dfebf5beff3e2124b73add4d2f76a42280ad50e5b"
+    },
+    {
+      "skill_id": "u3949-conflict-resolution-coaching-for-civic-participation-platforms",
+      "path": "generated/shards/03/3949-conflict-resolution-coaching-for-civic-participation-platforms",
+      "skill_md_sha256": "04e3cb3ac7d9d0f5602a6e284ddfeb6459fd1fc4533aa10c2eba43785addcf7c",
+      "summary_sha256": "c606034c927ba7a75fb9baf4b5b293749d0a78b2fe1e6bbff3d8e81e4e923890"
+    }
+  ]
+}

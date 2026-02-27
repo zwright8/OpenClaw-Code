@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 2,
+  "range": {
+    "start": "u2050-tool-health-monitoring-for-entrepreneurship-operations",
+    "end": "u2099-tool-health-monitoring-for-disaster-response-networks",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2050-tool-health-monitoring-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2050-tool-health-monitoring-for-entrepreneurship-operations",
+      "skill_md_sha256": "f9ffc0afb16192a38d31ebfdcaed7248075e6748481e76ae5e1f2128c67611fc",
+      "summary_sha256": "9c2efbdb17f1c5c3ad84da0629c32bc795c5d8a2398a9c19b554e987c9cf3a89"
+    },
+    {
+      "skill_id": "u2051-tool-health-monitoring-for-software-engineering-delivery",
+      "path": "generated/shards/02/2051-tool-health-monitoring-for-software-engineering-delivery",
+      "skill_md_sha256": "562041d737a2a2307c664692ca89bc6803d8f0a8cd47265e19ebb366d738d24c",
+      "summary_sha256": "e2c2e970a6e167b8a08222a5bc19e8d30fa2d650453636b5f968e2ade6932b1c"
+    },
+    {
+      "skill_id": "u2052-tool-health-monitoring-for-software-engineering-delivery",
+      "path": "generated/shards/02/2052-tool-health-monitoring-for-software-engineering-delivery",
+      "skill_md_sha256": "2cde8abe6c54c30c2b486b890484bce316080b1e38098792cb51f3ef9153041c",
+      "summary_sha256": "dd3f55b5b43a4f348a804008adc787225cfdc4831e842e92113444105a34366d"
+    },
+    {
+      "skill_id": "u2053-tool-health-monitoring-for-software-engineering-delivery",
+      "path": "generated/shards/02/2053-tool-health-monitoring-for-software-engineering-delivery",
+      "skill_md_sha256": "159e5f9427b614b6bc87427b4af04992bd60b9c442e9e0bf48f9c5cfbf816f32",
+      "summary_sha256": "89b94cc3fd4b201a366a2646e0bcce9afe8b906017caa30ba47c77a2f09fc270"
+    },
+    {
+      "skill_id": "u2054-tool-health-monitoring-for-software-engineering-delivery",
+      "path": "generated/shards/02/2054-tool-health-monitoring-for-software-engineering-delivery",
+      "skill_md_sha256": "c674b59b0c001af77dacfab72865c79523dfb9b50506af18427830d76db92763",
+      "summary_sha256": "16b0edb2d19f79ba506a7bbd7f3f883764b50557a8f48a9bf8ef87188720ddce"
+    },
+    {
+      "skill_id": "u2055-tool-health-monitoring-for-software-engineering-delivery",
+      "path": "generated/shards/02/2055-tool-health-monitoring-for-software-engineering-delivery",
+      "skill_md_sha256": "667043cc7523cc98304900e8b82d137f7da08d9e30617901e9b63ae1f8121fb5",
+      "summary_sha256": "2bd4c6d77333a06980ade520ac4a9a900db77ed7b20b84e7d587cd67e106fc98"
+    },
+    {
+      "skill_id": "u2056-tool-health-monitoring-for-product-management-execution",
+      "path": "generated/shards/02/2056-tool-health-monitoring-for-product-management-execution",
+      "skill_md_sha256": "012309de3c3627bf877cf31d96c3672393a1d5e08bccc3b3e4328a7f7331d720",
+      "summary_sha256": "ad9a76c90e90db3c15bf82a5894ddbca68c8ce3965b34f943dcd960f58f9dfdd"
+    },
+    {
+      "skill_id": "u2057-tool-health-monitoring-for-product-management-execution",
+      "path": "generated/shards/02/2057-tool-health-monitoring-for-product-management-execution",
+      "skill_md_sha256": "908d2c75dfa5f1ee121d2f0a09b40b8044336eb5e1568bf5929948e186063fcd",
+      "summary_sha256": "f9da326b69a7806f9845f947ca5244c21e70f9bdffee23e383394bccd6806859"
+    },
+    {
+      "skill_id": "u2058-tool-health-monitoring-for-product-management-execution",
+      "path": "generated/shards/02/2058-tool-health-monitoring-for-product-management-execution",
+      "skill_md_sha256": "467ef683de0a27b5aa0da06436dc1249d7504074a7ebcb290259d85368755013",
+      "summary_sha256": "f0299886f4995e93d3ecd13153600b4decaea46021a750f48e896da1f32f98f4"
+    },
+    {
+      "skill_id": "u2059-tool-health-monitoring-for-product-management-execution",
+      "path": "generated/shards/02/2059-tool-health-monitoring-for-product-management-execution",
+      "skill_md_sha256": "77b657ba6af291612e9e3b7d0f5782a3a8e52943de398669533d03caf4d6dd8d",
+      "summary_sha256": "1ef232c1e0905f76a2b23026ce349307772531faf24dd23dbb54c91df5e649a2"
+    },
+    {
+      "skill_id": "u2060-tool-health-monitoring-for-product-management-execution",
+      "path": "generated/shards/02/2060-tool-health-monitoring-for-product-management-execution",
+      "skill_md_sha256": "9e0a77de547a486b3eb71a3c692c3646e0bc919f0c11bb9bc80fd4f608c8895c",
+      "summary_sha256": "33e79182f443fae9247a3b52bb3d51ab0c92e514fcf9f5d98c65a94dfc5648e9"
+    },
+    {
+      "skill_id": "u2061-tool-health-monitoring-for-design-and-user-research",
+      "path": "generated/shards/02/2061-tool-health-monitoring-for-design-and-user-research",
+      "skill_md_sha256": "6f7d2cf29177c58cb4b203c97076d0e2de22ef87acb65d86df39820fd807d529",
+      "summary_sha256": "5305810de509c1c1861f3f79c248344edeb0dc006d60cb85b4a90354e7280c7d"
+    },
+    {
+      "skill_id": "u2062-tool-health-monitoring-for-design-and-user-research",
+      "path": "generated/shards/02/2062-tool-health-monitoring-for-design-and-user-research",
+      "skill_md_sha256": "39671a4eb9db454360a2573aab0461b3e143809fbc84edd5b40eb1f36eba6009",
+      "summary_sha256": "3feb132a3b7d00663b3b9012f9b57cec9c4404568828ab304e09c7e2354e89a4"
+    },
+    {
+      "skill_id": "u2063-tool-health-monitoring-for-design-and-user-research",
+      "path": "generated/shards/02/2063-tool-health-monitoring-for-design-and-user-research",
+      "skill_md_sha256": "1e9adcd696bd26b670f1c9e279a1954d9b9b4ac070fbb5207ace1d23c27c1387",
+      "summary_sha256": "b2e6a706aa4b4cee5132cd0b5a3a40b15b3bd875e19b3167372c1845070982b1"
+    },
+    {
+      "skill_id": "u2064-tool-health-monitoring-for-design-and-user-research",
+      "path": "generated/shards/02/2064-tool-health-monitoring-for-design-and-user-research",
+      "skill_md_sha256": "1efa99f85bedef48205a57d07f830c3a1fc9575ab71f70c069bcf034dba331eb",
+      "summary_sha256": "d2caea2499bbd42241d4f3dbcd787fd5093d5edb27351ba210bc8682d7c84bdf"
+    },
+    {
+      "skill_id": "u2065-tool-health-monitoring-for-design-and-user-research",
+      "path": "generated/shards/02/2065-tool-health-monitoring-for-design-and-user-research",
+      "skill_md_sha256": "1dcd2a3723c5b0d10494e4951f9b7714b4ed0b893cd0ae433e83a2d65898205a",
+      "summary_sha256": "ba1822fdf9ab9fed58cbcb92ac30ab4a8f73f980db4a109720e20fbbf164ffb1"
+    },
+    {
+      "skill_id": "u2066-tool-health-monitoring-for-sales-and-client-success",
+      "path": "generated/shards/02/2066-tool-health-monitoring-for-sales-and-client-success",
+      "skill_md_sha256": "f3e57875daaa92fd48817e653ce770fea1199996c9242d70eab5d65bfb9a4fe1",
+      "summary_sha256": "771d435155ee49dd4edd679973a746ddc39c5ec766b25d667f7157a075e18c5d"
+    },
+    {
+      "skill_id": "u2067-tool-health-monitoring-for-sales-and-client-success",
+      "path": "generated/shards/02/2067-tool-health-monitoring-for-sales-and-client-success",
+      "skill_md_sha256": "38657355ed56aa618d88176491a8dbc8579b6e481bb7d3c8ef7d8ad1a89efeaa",
+      "summary_sha256": "284782bece115ce5b19e7d9d6db2475050015cac86f161c14644667bb551de50"
+    },
+    {
+      "skill_id": "u2068-tool-health-monitoring-for-sales-and-client-success",
+      "path": "generated/shards/02/2068-tool-health-monitoring-for-sales-and-client-success",
+      "skill_md_sha256": "37a2e65516c266322b054861a3c5d0f547c645b5c9df970dd13f1c5791fb4431",
+      "summary_sha256": "1a3a8fd567bf7afc87100d7b57e226726427a70768ec214abf58a26fead1d65e"
+    },
+    {
+      "skill_id": "u2069-tool-health-monitoring-for-sales-and-client-success",
+      "path": "generated/shards/02/2069-tool-health-monitoring-for-sales-and-client-success",
+      "skill_md_sha256": "452183943ecc2abe9124f073e5512af88e64106857f3b08ea48f360bb1be61b6",
+      "summary_sha256": "1a4dce4322c194e19149f2107b1ca76e54334b2437d68e9edd03974029ed9082"
+    },
+    {
+      "skill_id": "u2070-tool-health-monitoring-for-sales-and-client-success",
+      "path": "generated/shards/02/2070-tool-health-monitoring-for-sales-and-client-success",
+      "skill_md_sha256": "8314a9e2e730e51851aabaaaa7adfaab315874a4377135647221f8e12647727a",
+      "summary_sha256": "4a9bdb2d003aed7c5388e4daaed5bfe4fac7947f68e345cd5922b756f7d367fe"
+    },
+    {
+      "skill_id": "u2071-tool-health-monitoring-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2071-tool-health-monitoring-for-marketing-and-storytelling",
+      "skill_md_sha256": "e57f3a06643688c0b5496b8a36443b9e60fa4c0b96f7df3a389eb6cad9edff3b",
+      "summary_sha256": "e21ea40d3cc49c52fc9c3c00614c838581fba7d99434d9d1fb0d1bb171198750"
+    },
+    {
+      "skill_id": "u2072-tool-health-monitoring-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2072-tool-health-monitoring-for-marketing-and-storytelling",
+      "skill_md_sha256": "138cbb28327d8b410a5a62bef520799c4a01d36bca396aa5b80fe83509ab2e80",
+      "summary_sha256": "a51ac7be34dc302d4c1b8972bf7549679b9fe69f4676d94630c5aa81e78f01d9"
+    },
+    {
+      "skill_id": "u2073-tool-health-monitoring-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2073-tool-health-monitoring-for-marketing-and-storytelling",
+      "skill_md_sha256": "b34ca849e03e34b3e847e7a0d0b634f92e13d98338272ac1d01292a22aaeef81",
+      "summary_sha256": "2fc4d641156cc6e7b38ac15188c854d325f91ae7a1b748d7d01db6693cf0a4c7"
+    },
+    {
+      "skill_id": "u2074-tool-health-monitoring-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2074-tool-health-monitoring-for-marketing-and-storytelling",
+      "skill_md_sha256": "f673d4d5a1703f9e7abeab5e13a0175e05df914f3e0234793015a5c01b3bfd11",
+      "summary_sha256": "cd441a68d9c2ea32aad890884c0171661e21ff4803176c12c1d94b95838d5e91"
+    },
+    {
+      "skill_id": "u2075-tool-health-monitoring-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2075-tool-health-monitoring-for-marketing-and-storytelling",
+      "skill_md_sha256": "3ed7f650d798bd2e33c5cf683091446f2140863317e844365d75e53270165d3c",
+      "summary_sha256": "19805b7a44aacc6ab13f9f90e3f9833b2f1858ca890adc01690f5b4a48a5f90a"
+    },
+    {
+      "skill_id": "u2076-tool-health-monitoring-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2076-tool-health-monitoring-for-legal-and-policy-workflows",
+      "skill_md_sha256": "499748424dfef69775094f2e54830b8a46eb28e85f1ab1a0a1fd65081bca85e7",
+      "summary_sha256": "a2074b2d282545a9ae03fca3d6b867a7a390151a786efb2cbdc8821196a003a4"
+    },
+    {
+      "skill_id": "u2077-tool-health-monitoring-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2077-tool-health-monitoring-for-legal-and-policy-workflows",
+      "skill_md_sha256": "315e3d71620653fbf882cce6f94cef8775335a7653292a01cfb115079b5a6a93",
+      "summary_sha256": "9eb0b3a2df950ae0526dd575880f5cd386e1c579dbe4710a1e704b832de1a4a8"
+    },
+    {
+      "skill_id": "u2078-tool-health-monitoring-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2078-tool-health-monitoring-for-legal-and-policy-workflows",
+      "skill_md_sha256": "3b6cb96ed91b36c4b8e871ec0788eec144303e5143c1bd5283094fe3298061fa",
+      "summary_sha256": "6b06598a292af1f41a0bd7c6c3d6d91eb73e4edce74b533b25995eb3e230ee25"
+    },
+    {
+      "skill_id": "u2079-tool-health-monitoring-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2079-tool-health-monitoring-for-legal-and-policy-workflows",
+      "skill_md_sha256": "a284624ef8480dbc1569fce8ce2e40cf441e7e0a44cbe277e4b6fc1d3bc99e7c",
+      "summary_sha256": "0db582fcc5906aa05694115444b8ec61de26a3e9473bd37788a962de5522637b"
+    },
+    {
+      "skill_id": "u2080-tool-health-monitoring-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2080-tool-health-monitoring-for-legal-and-policy-workflows",
+      "skill_md_sha256": "ce748eb36e24e62a077db64729a2fd8f02a50dbac8b9b2131ab1f39809472fc0",
+      "summary_sha256": "0c8742571d6903c7d0da5bbc5c27254eccabf6246a9528e614c70c46aec3046d"
+    },
+    {
+      "skill_id": "u2081-tool-health-monitoring-for-healthcare-operations",
+      "path": "generated/shards/02/2081-tool-health-monitoring-for-healthcare-operations",
+      "skill_md_sha256": "92ea760d5f6df13a415a6884e4aa5597547605e060105343a524668010503143",
+      "summary_sha256": "56ac4075423d9f052eb991a7103067f8bceb050aa142669936b2214fd1abcc43"
+    },
+    {
+      "skill_id": "u2082-tool-health-monitoring-for-healthcare-operations",
+      "path": "generated/shards/02/2082-tool-health-monitoring-for-healthcare-operations",
+      "skill_md_sha256": "237cb31c4505356dfde16c0b9e0a6c0e6ae78df5c38d8ba60fcaa277bd8a13b6",
+      "summary_sha256": "2dd77972b36b1977ef4bf7df4699a842fd94d22e74492bae60d6515d2bcfcada"
+    },
+    {
+      "skill_id": "u2083-tool-health-monitoring-for-healthcare-operations",
+      "path": "generated/shards/02/2083-tool-health-monitoring-for-healthcare-operations",
+      "skill_md_sha256": "378531b3c6644559d52c45edbf72d9a1c96891ca862cd8f2fe0278735bf4830a",
+      "summary_sha256": "b2832e04a8ae34f184e543396801eae3aa3ad780e7ca10bba65c37c44fdbfe71"
+    },
+    {
+      "skill_id": "u2084-tool-health-monitoring-for-healthcare-operations",
+      "path": "generated/shards/02/2084-tool-health-monitoring-for-healthcare-operations",
+      "skill_md_sha256": "4d441e8c7e8213b3b9a0ae230a5fb23e4dce0e639dbe85a4b8588e47753e4f44",
+      "summary_sha256": "9b4e3f8bfaa6bb5d268c30110fcf5eb2a977b42668af0e6174e5f24c35ee7e74"
+    },
+    {
+      "skill_id": "u2085-tool-health-monitoring-for-healthcare-operations",
+      "path": "generated/shards/02/2085-tool-health-monitoring-for-healthcare-operations",
+      "skill_md_sha256": "5aa89c3c530e1c26ba257cb06db1c57b574cc1fee57a3da67a39f60fded40028",
+      "summary_sha256": "a3a9c190699233cd9362dcdea352feb14d660f2362f5d9e56d04e88f4bd85291"
+    },
+    {
+      "skill_id": "u2086-tool-health-monitoring-for-education-support-services",
+      "path": "generated/shards/02/2086-tool-health-monitoring-for-education-support-services",
+      "skill_md_sha256": "1a44728104bca1b4acfb8e75a24d22318b7af24f5662214b118dadcc82535031",
+      "summary_sha256": "e5ab80f7cf1b266d3a96b4e9ae75a70b7638046758c8a2b266d1eb7d004ccc84"
+    },
+    {
+      "skill_id": "u2087-tool-health-monitoring-for-education-support-services",
+      "path": "generated/shards/02/2087-tool-health-monitoring-for-education-support-services",
+      "skill_md_sha256": "0bd0f7f52013c0a4a0b89acced0b6d320fd5ad62c29cf2317ad062eed1df584a",
+      "summary_sha256": "e12ce995ed317a71314e62db28d5c6defb45f6115d4e0f78e36495bf17edf0cb"
+    },
+    {
+      "skill_id": "u2088-tool-health-monitoring-for-education-support-services",
+      "path": "generated/shards/02/2088-tool-health-monitoring-for-education-support-services",
+      "skill_md_sha256": "c1db3cb3e6f725b1f076afc8f771f2b9091e082a0bf03367ca34c7a0b157f41e",
+      "summary_sha256": "b49ba4a8118d12c1979dc2f828a22d3484ec675f53201c837f3d362ce0f949b9"
+    },
+    {
+      "skill_id": "u2089-tool-health-monitoring-for-education-support-services",
+      "path": "generated/shards/02/2089-tool-health-monitoring-for-education-support-services",
+      "skill_md_sha256": "57f90674b4b957353721bc75809089d33fec131cfe1fa8519e6cadd8763ee55d",
+      "summary_sha256": "bc892429425cedaf70bca47582449dd8800dba34d4a22906b372576f40ba682e"
+    },
+    {
+      "skill_id": "u2090-tool-health-monitoring-for-education-support-services",
+      "path": "generated/shards/02/2090-tool-health-monitoring-for-education-support-services",
+      "skill_md_sha256": "72571352b57d33b6f3c15552357c4f4f3d7e647b19242e36b11471c9799651ee",
+      "summary_sha256": "385bc92a286cc05ab77b727620bf78dddb468883ff8faf7f5608828bd25c22fd"
+    },
+    {
+      "skill_id": "u2091-tool-health-monitoring-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2091-tool-health-monitoring-for-nonprofit-program-delivery",
+      "skill_md_sha256": "78f783b265a2b55d9dd8a57d77361cbe796afb368449ef1c36a0031afeb43406",
+      "summary_sha256": "f5326d1abae7e5001273d1b5734a03b3468f4e7a22f741cdbaf714a48cafda6d"
+    },
+    {
+      "skill_id": "u2092-tool-health-monitoring-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2092-tool-health-monitoring-for-nonprofit-program-delivery",
+      "skill_md_sha256": "95b427b2176bf07af9b302da95ce53af5c68fc3e5ce720cdd152bb4240350aa2",
+      "summary_sha256": "7653843bcc0ac63ade9fc9864e06e9912cb943e4a6b1516260981fedf34d05e5"
+    },
+    {
+      "skill_id": "u2093-tool-health-monitoring-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2093-tool-health-monitoring-for-nonprofit-program-delivery",
+      "skill_md_sha256": "3d036b8db1aee01602e3d32cb47760b42759dfac507d6cfbe1d24b80efae1932",
+      "summary_sha256": "fffe955e081666df690292e4adb48d6bea700e206ec8fbc17287de785b14d64c"
+    },
+    {
+      "skill_id": "u2094-tool-health-monitoring-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2094-tool-health-monitoring-for-nonprofit-program-delivery",
+      "skill_md_sha256": "f78104f776bba7be017459edfe4fff7999029e8a7cf8984e1d179ff572a1ebf8",
+      "summary_sha256": "3d7313fba5c3dd18c155d895b994d8385839bf443111ecd526b11049a22b3abc"
+    },
+    {
+      "skill_id": "u2095-tool-health-monitoring-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2095-tool-health-monitoring-for-nonprofit-program-delivery",
+      "skill_md_sha256": "bb7954b30f5a87348bda909ad7e911175dc950594b2bae0d0f9dbd700b4ccc70",
+      "summary_sha256": "cf15d6f85d81fb525f046b1803bc0f2c66382e509148938037b884897f8f7cc5"
+    },
+    {
+      "skill_id": "u2096-tool-health-monitoring-for-disaster-response-networks",
+      "path": "generated/shards/02/2096-tool-health-monitoring-for-disaster-response-networks",
+      "skill_md_sha256": "7e4c82093883d8f2cba8f11d674be7f80616a22c6611bc21f86c05e74d34af40",
+      "summary_sha256": "4aaa2fc9026a284862e956aaf9e4da9292fc75d983b618214e197df4b2fb6d79"
+    },
+    {
+      "skill_id": "u2097-tool-health-monitoring-for-disaster-response-networks",
+      "path": "generated/shards/02/2097-tool-health-monitoring-for-disaster-response-networks",
+      "skill_md_sha256": "56be727b8489641f7c3e5337b94a53077945e5f8a4003fde6bd88c558fe28b79",
+      "summary_sha256": "7ccb0e06ea2109c655900aa876a48665b0598ed65bf725ac1dec595332b2c6af"
+    },
+    {
+      "skill_id": "u2098-tool-health-monitoring-for-disaster-response-networks",
+      "path": "generated/shards/02/2098-tool-health-monitoring-for-disaster-response-networks",
+      "skill_md_sha256": "3bf63efb700b343fd11019294b1b781f9df5583a8ab417dece36d9b7de0ec713",
+      "summary_sha256": "1873201be769d567461b297fe37f6bb1cfb243aeed677c917123517a69d3215c"
+    },
+    {
+      "skill_id": "u2099-tool-health-monitoring-for-disaster-response-networks",
+      "path": "generated/shards/02/2099-tool-health-monitoring-for-disaster-response-networks",
+      "skill_md_sha256": "500b9e5679060e71e2b9321f43129c81b4dcfc916eb9c822fca3d3a0b6dc15e7",
+      "summary_sha256": "1c58b68507852e0d3d330148c17b1d22ef3069a7d1ca338f84e768f6b2bf8e59"
+    }
+  ]
+}

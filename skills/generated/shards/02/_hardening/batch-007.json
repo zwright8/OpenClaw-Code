@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 7,
+  "range": {
+    "start": "u2300-retry-and-backoff-orchestration-for-disaster-response-networks",
+    "end": "u2349-retry-and-backoff-orchestration-for-civic-participation-platforms",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2300-retry-and-backoff-orchestration-for-disaster-response-networks",
+      "path": "generated/shards/02/2300-retry-and-backoff-orchestration-for-disaster-response-networks",
+      "skill_md_sha256": "bca3b0ac95cdd82a1bb5cc618790c901fa77f4b2ba5648f1758bd6e036183a91",
+      "summary_sha256": "053ba599ac8d60de803576e9d6411eea8fd9bf6ee3ffe45c6b6268cc6a3f318e"
+    },
+    {
+      "skill_id": "u2301-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2301-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "1b8002850d75234e78998a57cda201d52d9c8c0c77d547b3ecdf666893f87841",
+      "summary_sha256": "4a2eddb320326070873da0dc30bf47d2dcb46410742d0b3f1dafe6d6a9cf7448"
+    },
+    {
+      "skill_id": "u2302-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2302-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "9630152adfea023c2aa0658bfbc490917450a254afd41317ffe7844402401c54",
+      "summary_sha256": "aa2f67eda0ec6b280818963874c71f42eea5e7495df250a819800d5d758a448c"
+    },
+    {
+      "skill_id": "u2303-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2303-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "fa0372e4c9fc808fae25e8cac83fa0fa707e89e4f59acddb902f0b1138b55452",
+      "summary_sha256": "0dcb9a6989c7b1ced6ca0e9e45e302305f2453ec681e9cd2723af7021df091c1"
+    },
+    {
+      "skill_id": "u2304-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2304-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "13409b2844bcf0d9e798e3942f7d134a70e8b111167dc33a9b64ac1424c8654a",
+      "summary_sha256": "7cd3ec366212a915ee8bc59cc6a93973435a120b17e8f60d1cae559da37247fe"
+    },
+    {
+      "skill_id": "u2305-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2305-retry-and-backoff-orchestration-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "b316bb215bb40b1a1bb02d80dbe969efcdcea5fc3f23c94349fd5a1f93f786f2",
+      "summary_sha256": "bef88467804e1a68898a8ad13ccbd3fa0e1f75193db64cdf0b6e4c5aa40a8f55"
+    },
+    {
+      "skill_id": "u2306-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2306-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "skill_md_sha256": "40457caf31c45ff920cb992e0893327e46f42303b4d3c1539e0fa13703444391",
+      "summary_sha256": "ff0567db2d253bbe630bd05850e552121138c0a8cc038a78af975e28ea21286d"
+    },
+    {
+      "skill_id": "u2307-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2307-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "skill_md_sha256": "5a89ccee0622622c64a50f16fa59cfb78f9237d677b3ce9f7ef2ffc259aa2c68",
+      "summary_sha256": "6c94905536a28202914d0e8a11efe3854982e9050277861a62e03c54daafcb4a"
+    },
+    {
+      "skill_id": "u2308-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2308-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "skill_md_sha256": "296984f8286509a421319f5272e48b43111f1adad818046d48200818252d30b0",
+      "summary_sha256": "6b5d3fa5ee1494c49d9130ff3495f643d12ab503a900afa3d9d3e1d0100733a3"
+    },
+    {
+      "skill_id": "u2309-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2309-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "skill_md_sha256": "ca0c4ced9114f59b76f40c5f61ae4b8d9abbdb409a31d262c869c5bf113b6e3e",
+      "summary_sha256": "edb00d254997ad0464879065e5054fdc425ba6e14ea0825fa505919b05abe9cd"
+    },
+    {
+      "skill_id": "u2310-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2310-retry-and-backoff-orchestration-for-urban-planning-and-mobility",
+      "skill_md_sha256": "398d44dc09a655a4204b00cf953cd67dc80309cfe07a81faf25b31db57d3c077",
+      "summary_sha256": "19a9a51bb3afdeabc28ed9d018e71a4964565bc11abd564ca69ddf909a8ff22d"
+    },
+    {
+      "skill_id": "u2311-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2311-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "skill_md_sha256": "783b6b7e4f9c6826996c23434d293910a556f021f4314acfbd71a2c90537bf08",
+      "summary_sha256": "7c8421c4245d1f65de236e4a3f381080c9e6cd657470e78b509be6b9f60c36ae"
+    },
+    {
+      "skill_id": "u2312-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2312-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "skill_md_sha256": "1a40a329c8b52f33fd80d63d63ce266da99a6fc550aa216aa680fd4bd2e6eb92",
+      "summary_sha256": "890a015a2ac59af49e2b7d610111bb3849be2886bd4fbf9b2fe97df617310e1a"
+    },
+    {
+      "skill_id": "u2313-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2313-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "skill_md_sha256": "a4b32bb6cd21920e8917da98ce71709a7338aad11e490b16e2e39cf58a09606e",
+      "summary_sha256": "ad5481ff369b93799d84a6d947b2ecd0593360863190ebd08bb2ece2c52ea7ca"
+    },
+    {
+      "skill_id": "u2314-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2314-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "skill_md_sha256": "fd3312714530589a85517fac28c14935c4cb5636f18af5a1782cf9ef6d70e5bf",
+      "summary_sha256": "2481b727da938b627474790a4e25680f2feea1b89205524b610073b4e9868c60"
+    },
+    {
+      "skill_id": "u2315-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2315-retry-and-backoff-orchestration-for-agriculture-and-food-systems",
+      "skill_md_sha256": "b44622562303a2207263a10fdc2630849f84dea9fcf8a3f5d28067fb3d2dfe24",
+      "summary_sha256": "b2924feec92ac50a678ee0b98a57dd245345c57809e8f948e7dbbf338ff7e2ff"
+    },
+    {
+      "skill_id": "u2316-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "path": "generated/shards/02/2316-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "skill_md_sha256": "c91184b3ed5e86231a5fe8953f24c3a5744668a2b680f2fb1ecce4c04f600bb6",
+      "summary_sha256": "4b8c29902e20fafe8d5028d141ddcd66a829356e7f88270ce97f41370b791544"
+    },
+    {
+      "skill_id": "u2317-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "path": "generated/shards/02/2317-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "skill_md_sha256": "d14e1bb34fff4dd4a50e66fbcceb4e05772750296a68957cdf4dac2b946bae62",
+      "summary_sha256": "c81e20126f0125ed046862a8187a9d89b32cdddd53f94365589f05c19cf919fb"
+    },
+    {
+      "skill_id": "u2318-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "path": "generated/shards/02/2318-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "skill_md_sha256": "28965886aa36eee3c95f47ff3fd728619af28685c205c5852d7ba2b2afd2ef7a",
+      "summary_sha256": "c29e90854a6ad76d2f47d19b0e909e980011fd748de05a81d58e8fd97eb2883b"
+    },
+    {
+      "skill_id": "u2319-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "path": "generated/shards/02/2319-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "skill_md_sha256": "31039c1d1c9c5bfd1549db0f698a6aa57b3db8b15f9d679ef6c8f78da2d945dd",
+      "summary_sha256": "39063845b3178a69235027521b73dda42ae2a1f0bb6532b742ef212a6d2e2070"
+    },
+    {
+      "skill_id": "u2320-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "path": "generated/shards/02/2320-retry-and-backoff-orchestration-for-supply-chain-resilience",
+      "skill_md_sha256": "6930b5c4a3f5f9ba28b64e73fb96c19df6cc4ff03d1cf41cec993bb5e40008ca",
+      "summary_sha256": "8d34a1edbdd4ca32283343b8cc8de5b3746babd9944c4257e6fba4fb1b610621"
+    },
+    {
+      "skill_id": "u2321-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2321-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "1c755102b3600993a4b808821a9156480e9d0786f5f1af270ec99fe1d4d609e3",
+      "summary_sha256": "a01b71efb0797451f524776c910c3bf6389c3c9ad0c1eeb51c2a171103d31358"
+    },
+    {
+      "skill_id": "u2322-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2322-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "572efa5f3f647863c832a40c3c395e59711d878948a89802bf856c50c55dd262",
+      "summary_sha256": "10ebe24b7183f54676e0b847085446d4bc53a030554731423a11981d930fd24e"
+    },
+    {
+      "skill_id": "u2323-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2323-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "d2d89980fa8bc79066eabc7c9779db943815a586217f33423399500a0639539a",
+      "summary_sha256": "7b9d5964433573f69c2a1b530a8cd9c2854145842ea11050c1d0ce42eaea579f"
+    },
+    {
+      "skill_id": "u2324-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2324-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "bae83c54a84bb8bd7abcaef6697aaac2d3d490d0acc11c883b29debd822b49ba",
+      "summary_sha256": "dbd4c5b143666d282ccedc340f23f5012cdc214bbc118a35430607d369a9183d"
+    },
+    {
+      "skill_id": "u2325-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2325-retry-and-backoff-orchestration-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "d49d3166eb60c4abed27f80b60d5c22efe5a7767ffbb2f0620600082dbea5a22",
+      "summary_sha256": "39aff1e27b78fe9217cbf6ba326d1c1dbf1a34b92d753b230f010dd5d9c1af28"
+    },
+    {
+      "skill_id": "u2326-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "path": "generated/shards/02/2326-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "skill_md_sha256": "2ce90b81c5f25c5b116aa34717aeba9149a4957862b8f71f84e2c55df021a70c",
+      "summary_sha256": "8352c954f1f090677fa3153c39779e89e069e1e9de2ee1e8ef94b50949359f1d"
+    },
+    {
+      "skill_id": "u2327-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "path": "generated/shards/02/2327-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "skill_md_sha256": "a33ff4510b798d4da15bfdb50ffebe761e074cea125c52cf22e6d8a5616d17b8",
+      "summary_sha256": "01c298a0cb3dea89e9d3f616af42a5c992a5eb27718aff716c69f7f6cbfcd3e7"
+    },
+    {
+      "skill_id": "u2328-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "path": "generated/shards/02/2328-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "skill_md_sha256": "8646ec3dd54f64ad9d188457686c6d0edb752682a1fad673b0f00f6a22603fb0",
+      "summary_sha256": "137b490f25353f73eba7ad6b81ed3fef5c011e57edad6e54cb25b794fb3915ce"
+    },
+    {
+      "skill_id": "u2329-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "path": "generated/shards/02/2329-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "skill_md_sha256": "453e9e9877da7531bb7da45d074b020bf574bef846e0bab265445c27c84f7c37",
+      "summary_sha256": "03f319e47bc0f6c68030f76a874ff1abaa43b082aeb0f29f5d18048081eb4d13"
+    },
+    {
+      "skill_id": "u2330-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "path": "generated/shards/02/2330-retry-and-backoff-orchestration-for-cybersecurity-operations",
+      "skill_md_sha256": "0a92185d531582c07952b2ec0a4640e70a63b65fa6f4a40291e57c6059af3c28",
+      "summary_sha256": "f8d806fcc5e87e4a30b58ca394db22be8c6f2be1261224a781a1814ba412cb4b"
+    },
+    {
+      "skill_id": "u2331-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "path": "generated/shards/02/2331-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "skill_md_sha256": "12c06064ec61692b7af3bed75e0f7927925d0e2eb413edc1fdea7010bfe8e526",
+      "summary_sha256": "2b5215bf193c6ceaec0c835ab4b73b73e4982a29535668fb756b9f7f6338f520"
+    },
+    {
+      "skill_id": "u2332-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "path": "generated/shards/02/2332-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "skill_md_sha256": "2da1ac397e2214775882e4506335f432311cc4b3d082cdd5f6264bb88061ebc6",
+      "summary_sha256": "cc0a4ce5c401ef3f139ad57c10c8c48e053efbbc7f4ae2f0f3353b8397c42586"
+    },
+    {
+      "skill_id": "u2333-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "path": "generated/shards/02/2333-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "skill_md_sha256": "7525899189976f179973c8e8b657fa8c83a560a5a421973ed02d3238c7f18bde",
+      "summary_sha256": "b58275c9c00cb89f576c2d45e8687c4305e24c077d44def74b0a424be470e417"
+    },
+    {
+      "skill_id": "u2334-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "path": "generated/shards/02/2334-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "skill_md_sha256": "dc6d686b4d830d7f00bd6ef1d381e1b983ed738b3752090b1191952cdee725f2",
+      "summary_sha256": "cb5f5b9735ddaa76a59fd4729bba2ad2d6e27d1ba304a095eba8e4d2f021ab24"
+    },
+    {
+      "skill_id": "u2335-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "path": "generated/shards/02/2335-retry-and-backoff-orchestration-for-research-and-development-labs",
+      "skill_md_sha256": "c84fe87261066890c7893486003a24e31050a2efc18cf25f5e03b58a66fc413b",
+      "summary_sha256": "9180ddd69878a01c4ace644c177288f0633f76d55c2431472c4e533179f2c6af"
+    },
+    {
+      "skill_id": "u2336-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2336-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "1ced49582e4ee1028efe0d5c767870944de98eb27e7255cf4748be80919a6140",
+      "summary_sha256": "cb04e51706842b50a6d63880b11f605f79feea1a7ce067d15ebe90d5487b766a"
+    },
+    {
+      "skill_id": "u2337-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2337-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "105047b64a742f50c908f7f2bf9591b311d9ad5b958383efe6cb7d08e3b59a23",
+      "summary_sha256": "3a0c7368e96ed5ace54434114ba3fcca21408bb1267f847b1bb44ba5f8523267"
+    },
+    {
+      "skill_id": "u2338-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2338-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "91e2031baa850d47fb7670638834b64542b8670b21a3019091875f3914767732",
+      "summary_sha256": "095e0c0c83e3376f24ca9dd655792925898b36af89de2f0030582aa585c65ca1"
+    },
+    {
+      "skill_id": "u2339-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2339-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "2d8de2052434ac6898a51b5f15ce0a26fdf787de5ab48835749b5720ff39415e",
+      "summary_sha256": "1a320b3c8a15e3ff546569f324fe76355eb1d7bf5e7d2117f79d3e7a58b04bb4"
+    },
+    {
+      "skill_id": "u2340-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2340-retry-and-backoff-orchestration-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "92b31ef06deaddc4c843eca37f5e2ddba068216b18c4d2213595e32a62dac4a2",
+      "summary_sha256": "9f1317e8e9a737d6ce180c42cb4ef4feedb312abde221241b5e5a3edd1282790"
+    },
+    {
+      "skill_id": "u2341-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "path": "generated/shards/02/2341-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "skill_md_sha256": "2b4bdd133b48054b2d7bbe6773061ac948c9cef3f65f8c903a4454374ac12a4a",
+      "summary_sha256": "f977b496dbe98ba1e6e7da7a6989becc26d616ba10c8f08070e8a7f38591e562"
+    },
+    {
+      "skill_id": "u2342-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "path": "generated/shards/02/2342-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "skill_md_sha256": "b342d933ea2c6c22dc2394b13dfb04a7ba47e6d18dbc9d0f5a5b45924deecd76",
+      "summary_sha256": "33cfc96d142b2cb253b901bee431d8ba0cfe7cbbbfcd8b79aac8a3bbecaacd0a"
+    },
+    {
+      "skill_id": "u2343-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "path": "generated/shards/02/2343-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "skill_md_sha256": "bc827afee47113a1132368a939f16186ba507b3b4bf657f9c081da372f37387b",
+      "summary_sha256": "9d5b377c0997fa6a72dc1c9cdaa48e7f538d2b0b7bc9892199e138043a4dc876"
+    },
+    {
+      "skill_id": "u2344-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "path": "generated/shards/02/2344-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "skill_md_sha256": "3c33225d574da02d5c8cb5be6fee7196d056e64797c11d8569012e8107bf2b8b",
+      "summary_sha256": "4af06fd1d4d9659663e9c4dc09c1ed6ba2161e037dbe79b65cf6c84347b8f0ae"
+    },
+    {
+      "skill_id": "u2345-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "path": "generated/shards/02/2345-retry-and-backoff-orchestration-for-community-mediation-programs",
+      "skill_md_sha256": "881cc6178ef0d7644ae3579e7ea22a7aa651ec51d9dc12bcec0d4763c8825384",
+      "summary_sha256": "493b60bd4fe7c331250f69f1ea3eb52e80eae7b60bde749c98d5c8d7e1edfe53"
+    },
+    {
+      "skill_id": "u2346-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "path": "generated/shards/02/2346-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "skill_md_sha256": "509790b56d88c6978b09fd653f07fec93d06a437fda5cfbcb7a23dc6f5c7f2d2",
+      "summary_sha256": "2d16f11a1f200295e7fb10853812637aabb927a536f17038f6f41984831f005e"
+    },
+    {
+      "skill_id": "u2347-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "path": "generated/shards/02/2347-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "skill_md_sha256": "48510eac0b1fe6aafb315cdfa9916390e68a93d50c72e5e4b3e76a7ac4576c0c",
+      "summary_sha256": "7d16b2308ddc2a87f2a3cb6cd493f7b0807b2650c0472a946b7b0d4ed4535d6e"
+    },
+    {
+      "skill_id": "u2348-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "path": "generated/shards/02/2348-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "skill_md_sha256": "a6d5e79c73416be936090ef8db12b9c48d54453fe07ed0f6d1735a2629f7a6e1",
+      "summary_sha256": "b1e8c16340169784676e4a730cee2751d3b756a3c49b4e52f07ec3ca241d86cc"
+    },
+    {
+      "skill_id": "u2349-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "path": "generated/shards/02/2349-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "skill_md_sha256": "48d97610715c0c4c740ff7269132e86875bfa98ccfa7a08a02fca17e3a422643",
+      "summary_sha256": "282eaf791e84daa12574e10d0c78179eea52fd3433065880d8a8d0c2f446335c"
+    }
+  ]
+}

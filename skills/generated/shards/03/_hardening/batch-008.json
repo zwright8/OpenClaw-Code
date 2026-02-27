@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 8,
+  "range": {
+    "start": "u3350-semantic-retrieval-ranking-for-civic-participation-platforms",
+    "end": "u3399-semantic-retrieval-ranking-for-knowledge-management-systems",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3350-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "path": "generated/shards/03/3350-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "skill_md_sha256": "9a9b77cba62fe6542f809a415201a00e98e72894eb20a55902107027ada18bba",
+      "summary_sha256": "5bae0054d76aac80a15bd3959a55bb63bedce9b35cba38f49442021138d56073"
+    },
+    {
+      "skill_id": "u3351-semantic-retrieval-ranking-for-accessibility-services",
+      "path": "generated/shards/03/3351-semantic-retrieval-ranking-for-accessibility-services",
+      "skill_md_sha256": "cc27266d550a0d5446b9770efbe2b8ab4cc920d2f431c059b7d33dc90779c94c",
+      "summary_sha256": "72110afb2fedf690d78bd0c6709556b0400052add17e382bacbcedcdb6fd1e71"
+    },
+    {
+      "skill_id": "u3352-semantic-retrieval-ranking-for-accessibility-services",
+      "path": "generated/shards/03/3352-semantic-retrieval-ranking-for-accessibility-services",
+      "skill_md_sha256": "78d8e1e7808bd126f8fb77c6c958dc79bdeb399cd7db1d7755aa4e4b73138d3d",
+      "summary_sha256": "d38a0eb3d024af8354a79e172acdc682acedf68cb0578f32548362d04212e896"
+    },
+    {
+      "skill_id": "u3353-semantic-retrieval-ranking-for-accessibility-services",
+      "path": "generated/shards/03/3353-semantic-retrieval-ranking-for-accessibility-services",
+      "skill_md_sha256": "99edc00a787c973c40ed0626a23b6be9ccdbe4986767a7489b0f01186b92e458",
+      "summary_sha256": "ebda53723d4237cf73466e10f60b2349688aead843af226561512ae59f3d2dc0"
+    },
+    {
+      "skill_id": "u3354-semantic-retrieval-ranking-for-accessibility-services",
+      "path": "generated/shards/03/3354-semantic-retrieval-ranking-for-accessibility-services",
+      "skill_md_sha256": "a8551e0414ae4e5cddcdd424d9bbe40445438f7665f24c8f0731d6a4f193ffff",
+      "summary_sha256": "46868f4c91f70cc0e588afd054108abf1c255d63ff9ed336d7f92d9295ed2a15"
+    },
+    {
+      "skill_id": "u3355-semantic-retrieval-ranking-for-accessibility-services",
+      "path": "generated/shards/03/3355-semantic-retrieval-ranking-for-accessibility-services",
+      "skill_md_sha256": "d3599e73917c2046f68b8bf3ad387b0fe22e34e4ebad38b9d68ed5b2e3b02e96",
+      "summary_sha256": "28cb484da9b5f2829a085d76e67336ae436dbc57728f9cee4d3f99aea93bd397"
+    },
+    {
+      "skill_id": "u3356-semantic-retrieval-ranking-for-eldercare-coordination",
+      "path": "generated/shards/03/3356-semantic-retrieval-ranking-for-eldercare-coordination",
+      "skill_md_sha256": "3aeaa4a3ed7a7e386ff50ea8942b46947d379e0c6ebb41b6aa4ed6c112dae3cb",
+      "summary_sha256": "09a009918fee4767daa0fea0a98c09c0f5251e7eb61db334d4f6f92583b13d45"
+    },
+    {
+      "skill_id": "u3357-semantic-retrieval-ranking-for-eldercare-coordination",
+      "path": "generated/shards/03/3357-semantic-retrieval-ranking-for-eldercare-coordination",
+      "skill_md_sha256": "c5133d3ddcd7e5e17da0e6c0ab3d7d5765298e80e15508d3067d3dcc3289b046",
+      "summary_sha256": "07dd1fc1cd9e4c64a18471c1aed7a65bb10dfe7f1a890966e9886edfb6535113"
+    },
+    {
+      "skill_id": "u3358-semantic-retrieval-ranking-for-eldercare-coordination",
+      "path": "generated/shards/03/3358-semantic-retrieval-ranking-for-eldercare-coordination",
+      "skill_md_sha256": "c70af5a9313725af04d7dc9dd84671eae7182ff11c1c89a6cce1e7ce6fd0e895",
+      "summary_sha256": "c025fd2e54ea1a475314fef93169b64298414f9292d7812f9423cc5c678ea24e"
+    },
+    {
+      "skill_id": "u3359-semantic-retrieval-ranking-for-eldercare-coordination",
+      "path": "generated/shards/03/3359-semantic-retrieval-ranking-for-eldercare-coordination",
+      "skill_md_sha256": "80658e8c700d2be132fc5883840a97dfe67669b69cc6896e976b097f3b5874ca",
+      "summary_sha256": "a25abaa8fd5554692c8b252ff01bd1a6dedb514439e52b9ddd741954d4fcada5"
+    },
+    {
+      "skill_id": "u3360-semantic-retrieval-ranking-for-eldercare-coordination",
+      "path": "generated/shards/03/3360-semantic-retrieval-ranking-for-eldercare-coordination",
+      "skill_md_sha256": "fa5cff82b76b738689149f703b078231c9678dbdea07c9c29a90522d9c4ec5df",
+      "summary_sha256": "010354a16e2b45bc28f9f114bc76011bcd3458e491c889232652574ae3f0ef40"
+    },
+    {
+      "skill_id": "u3361-semantic-retrieval-ranking-for-childcare-support-systems",
+      "path": "generated/shards/03/3361-semantic-retrieval-ranking-for-childcare-support-systems",
+      "skill_md_sha256": "2829915a78fbcf29430fa1792c50de42a7d3bf99fb6e007c7d6b9d0faf08a5ab",
+      "summary_sha256": "157de36a8fdb4e815d2094663fd9b7cf4881acb81a0322b69c74dd3102837916"
+    },
+    {
+      "skill_id": "u3362-semantic-retrieval-ranking-for-childcare-support-systems",
+      "path": "generated/shards/03/3362-semantic-retrieval-ranking-for-childcare-support-systems",
+      "skill_md_sha256": "ab1802e81ff8b952d595cf0028afda6c5fb9acf5196079b02c862e0cba5b02b2",
+      "summary_sha256": "7e0cd05ddf7c4b2949f5b8cdd7e4845e2ef30bf434c213e95347a44a18660ceb"
+    },
+    {
+      "skill_id": "u3363-semantic-retrieval-ranking-for-childcare-support-systems",
+      "path": "generated/shards/03/3363-semantic-retrieval-ranking-for-childcare-support-systems",
+      "skill_md_sha256": "b0d433474e83471d0bd54ca8a3e9060b2c03548d4ad4b6b7eb96630c815cf55d",
+      "summary_sha256": "9d31cb77a8b7aaeb43275f0cf5f32f47070d7b2c937d878a5dc69a4841bb4bf1"
+    },
+    {
+      "skill_id": "u3364-semantic-retrieval-ranking-for-childcare-support-systems",
+      "path": "generated/shards/03/3364-semantic-retrieval-ranking-for-childcare-support-systems",
+      "skill_md_sha256": "7f516199c7a0e94905f2653f9efa3d4f3cbb0b5d36f10b13c8a391434be8eaa2",
+      "summary_sha256": "61a299defe55d70e6621dfb3988525d752bb63d4dc34877e6d6eb8a64e88e74b"
+    },
+    {
+      "skill_id": "u3365-semantic-retrieval-ranking-for-childcare-support-systems",
+      "path": "generated/shards/03/3365-semantic-retrieval-ranking-for-childcare-support-systems",
+      "skill_md_sha256": "66b0f176a6a6f5c3cc3d7a31c63090f9366b87e0e2f803ac4a74938bd304e2cf",
+      "summary_sha256": "383a7c5526be85bf92621a714e603d82865c29ab477d458c55ec5f41fa01fa2d"
+    },
+    {
+      "skill_id": "u3366-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3366-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "skill_md_sha256": "c5f91d12d8d552162e70f58fd901b86e3c27f76b94686bc2af1b6d4912db0224",
+      "summary_sha256": "581a8fb0ecdd9430f8641bd658bd247c37fae97d84f0be46ff7684871f043ab6"
+    },
+    {
+      "skill_id": "u3367-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3367-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "skill_md_sha256": "101c3df71a4141c478f01e6403019a8c2c1dc503bad9de0fb89654b3783cc39e",
+      "summary_sha256": "597082ee7bf2b591a13d66f658a3153bb43d5995a2321db2c9ab627926b95828"
+    },
+    {
+      "skill_id": "u3368-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3368-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "skill_md_sha256": "367533dbcaf0e7c3a16a160ac933f7c33b29fe51ec284c38d6e15f480ab855e3",
+      "summary_sha256": "aee7029e20b7c93c5e5d28ace2859a824553bd52b4f6bf1019fcb0e9699a24e3"
+    },
+    {
+      "skill_id": "u3369-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3369-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "skill_md_sha256": "7218b32ee30f040e447988ce826d4f96e754edd78689b4c5a1cf941942cd7be9",
+      "summary_sha256": "c752c53eb875626057b326529b6735a06f727b1a9a20fa7943857d8bf79370b6"
+    },
+    {
+      "skill_id": "u3370-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3370-semantic-retrieval-ranking-for-arts-and-culture-programming",
+      "skill_md_sha256": "de54cddff4ba318f438336c30f52127cb6b3720c85a8e945bda00d4351bbc6bb",
+      "summary_sha256": "e681040d7e6c1a0670a881c0fd92788ff2fb074a7e7088e54547f95c6e9c949b"
+    },
+    {
+      "skill_id": "u3371-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3371-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "skill_md_sha256": "5a3dace7354a8fa5b190007515c5f6aa3874b4bb65ea9f59ca20e84f9517c54e",
+      "summary_sha256": "4b0ce2c36563d20a163e8e034f18f179d12273934c1033f4abb8984e4c7b3cf6"
+    },
+    {
+      "skill_id": "u3372-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3372-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "skill_md_sha256": "bc711e395247e652fb8586f1889783d1daf69c83f337b87c444f786138aafc06",
+      "summary_sha256": "94719838eb544f8197313118b535a830f47e190a5682d61cb621daa72e430a58"
+    },
+    {
+      "skill_id": "u3373-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3373-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "skill_md_sha256": "8d7c2d5699d2e34d2e65e77da20451f26dcfeaf49b7a85c6a9cd6a68da9dba0f",
+      "summary_sha256": "b3bd3989a55432c9f30888cf9dac8bc912ee452f374b297a7d247af558b2f369"
+    },
+    {
+      "skill_id": "u3374-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3374-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "skill_md_sha256": "4c6f5a82f6be5754d5eaa9470afd5f4d38b063be64afdf1f323513467472b62c",
+      "summary_sha256": "8bc3ea41d790a5b3deabcfceb93ea1841248bb65bb6bc878d96a12d8545293a4"
+    },
+    {
+      "skill_id": "u3375-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3375-semantic-retrieval-ranking-for-music-and-creative-practice",
+      "skill_md_sha256": "866cdfda90d9f948e621eea4b21802c30c704dd38e8f7ffbd51c2d49427d203c",
+      "summary_sha256": "83d3f283f07d7223e3a1427998cde45ddeb357803975f58dc0af89c5eb213178"
+    },
+    {
+      "skill_id": "u3376-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3376-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "skill_md_sha256": "218593d85a68b5de618f5c91b9b8294662d68e7032cca0fff1672ed81f5ff4cd",
+      "summary_sha256": "b607bbba081203030fdc4e19e0f1250021e9dd68529467480fdfe5ef81eb11b0"
+    },
+    {
+      "skill_id": "u3377-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3377-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "skill_md_sha256": "41a4077d2b7d727521ad9bb31fecc9f064ee6c9999b90087715dd186f2921937",
+      "summary_sha256": "ac8063e28e0115f61944f4989a0cf7067fd21fd694dc8349b3a836c4fc5e1aa0"
+    },
+    {
+      "skill_id": "u3378-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3378-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "skill_md_sha256": "02ebf7e949094a1d9397ed9f8911dac97c8c18644efbb582b47aa23b9b6b6a89",
+      "summary_sha256": "a5d4fa7194c8ace518e62ff200b0d569fed4f26ad988059f4ddfeae2b951c893"
+    },
+    {
+      "skill_id": "u3379-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3379-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "skill_md_sha256": "f36990513931617111382b81feed19b4bac2b8e609fe56d3b6a0af556d749186",
+      "summary_sha256": "0c2be6b4ec2243d7f22a69317a72e49323084501a291e4ae6b95d2971202df05"
+    },
+    {
+      "skill_id": "u3380-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3380-semantic-retrieval-ranking-for-journalism-and-public-communication",
+      "skill_md_sha256": "fbffbc63a7c7804fb86abccfe62fb76553e8d553d45655cc28f5e4e871ccd6b6",
+      "summary_sha256": "74d58edd5295dee9da3acd7268fbda07f84582ff05dacce83bd29206691a2eea"
+    },
+    {
+      "skill_id": "u3381-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3381-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "skill_md_sha256": "45ced51d5a9e4e156f575d9c183c65af218f899518a2631206ae0572878ec508",
+      "summary_sha256": "314f80847d65550fb5816b4d59128dc77332f8ce3620130181e659f8d2fc0100"
+    },
+    {
+      "skill_id": "u3382-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3382-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "skill_md_sha256": "40a80981fd4549abdc6d2e9502731f73e18f6bffe00af18a44043d6c32b82924",
+      "summary_sha256": "267292932a86206f1024aff16803fb168ab9e8d92352ce5c50009b521ec180a3"
+    },
+    {
+      "skill_id": "u3383-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3383-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "skill_md_sha256": "81d2252979e6788e4c18cdb3363079f2c2e0c095a40d85425684106a74caa21c",
+      "summary_sha256": "2c8e51901a9c80f962ad8d7d32f776962ad30d1c9f72e5a2788a12f77352e36b"
+    },
+    {
+      "skill_id": "u3384-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3384-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "skill_md_sha256": "c4932581429de62a4fb852c522f50b47c40fd412cbf6fbece23c6b32900d65f5",
+      "summary_sha256": "f0058bb71a422c9b3cc076d9cd9ee73634c2cabcdb11ddb8971d2226e5f3d73a"
+    },
+    {
+      "skill_id": "u3385-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3385-semantic-retrieval-ranking-for-multilingual-translation-services",
+      "skill_md_sha256": "48d0c53409bc5265a350e1e4004250216fad3edc66c0ee6c38f4ddb7beb5f4e8",
+      "summary_sha256": "5471bb12096d3c21e6e34efebe9383e97a11e3389432003af606ec32d28087a7"
+    },
+    {
+      "skill_id": "u3386-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3386-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "skill_md_sha256": "d3be623c8e75d3e869acc033a3b57be8ca5fe67ef973ee1a5a4abc88914a772f",
+      "summary_sha256": "d184aa27212c8971d01a7ec38ed321d924625477cecda0dca602a2fbd0a820e2"
+    },
+    {
+      "skill_id": "u3387-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3387-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "skill_md_sha256": "049a7020dc557302a15870fc251b4c9302978e2dd1bdbb672a292057dde9883d",
+      "summary_sha256": "c47cf9d81d439bb328f5792dc9389ec978bdaa0bd823b3b8d3b4f129d241780e"
+    },
+    {
+      "skill_id": "u3388-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3388-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "skill_md_sha256": "2497d723c552acad67f40ec2d1d21e5a37a40f558dd95e988c84c00e62d2be00",
+      "summary_sha256": "60d564bfaf038492d94d2b6e3ba967f5b82b52f11c5f4f429ab513027164e216"
+    },
+    {
+      "skill_id": "u3389-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3389-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "skill_md_sha256": "c450b34ee8938c3a3007cd13cc78afc84759b5e8269fd5f1239004f99c753b10",
+      "summary_sha256": "a40c71b20d9e0c7c7b478ffe7ce0984b0a63cc91ca20cc9aa7ea41989d96eb85"
+    },
+    {
+      "skill_id": "u3390-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3390-semantic-retrieval-ranking-for-remote-team-collaboration",
+      "skill_md_sha256": "899fb6f567f4e8367cdbb56963a3faf50175114da1f8ecfec2ec8f39fc8e0858",
+      "summary_sha256": "55d7727f495511889c13f385de8881ea835006ab1a3adc9a91fb1a8b2a568ba3"
+    },
+    {
+      "skill_id": "u3391-semantic-retrieval-ranking-for-customer-support-operations",
+      "path": "generated/shards/03/3391-semantic-retrieval-ranking-for-customer-support-operations",
+      "skill_md_sha256": "e938551794cf0b8ab83b2bd4681488bcc2dd5ddf2532a84576fbe2750d84a479",
+      "summary_sha256": "02be5caf0a4abc830021f0775e11f52ad8c93c654206ab0f7b71425fddc6eb77"
+    },
+    {
+      "skill_id": "u3392-semantic-retrieval-ranking-for-customer-support-operations",
+      "path": "generated/shards/03/3392-semantic-retrieval-ranking-for-customer-support-operations",
+      "skill_md_sha256": "dd68bfaa309e70032fa2583b5f5af01a7e7389ffff5068fae05523457f88049b",
+      "summary_sha256": "43d1a629083a238c20d93fd70abe12ebedf4fbc187366672aff5d480bf6f0568"
+    },
+    {
+      "skill_id": "u3393-semantic-retrieval-ranking-for-customer-support-operations",
+      "path": "generated/shards/03/3393-semantic-retrieval-ranking-for-customer-support-operations",
+      "skill_md_sha256": "c8ba271552436bb4c9c0dd55232675aaf929c4c9a70aedb78a67aaac4cf1971e",
+      "summary_sha256": "cba9d3c28c39c786fa1d35eb8c35b82764415f7372aba192b71a2ddad82f070f"
+    },
+    {
+      "skill_id": "u3394-semantic-retrieval-ranking-for-customer-support-operations",
+      "path": "generated/shards/03/3394-semantic-retrieval-ranking-for-customer-support-operations",
+      "skill_md_sha256": "898aa9f204b07a8b6d4b6c5e3effcef9a72e55d588f97911ac71ab677e875c07",
+      "summary_sha256": "300868f896b7449ca2f5ddddfd1e6bf0acf4e30283263d22153b1bc5d1d8a884"
+    },
+    {
+      "skill_id": "u3395-semantic-retrieval-ranking-for-customer-support-operations",
+      "path": "generated/shards/03/3395-semantic-retrieval-ranking-for-customer-support-operations",
+      "skill_md_sha256": "dafdebaaa6038b78d8a25233654ddad52aa0489e1a7122ec254759a671819160",
+      "summary_sha256": "1fa599b7cc3835a7bab82486c56351f1a2b3a47f560c4c0aee5a4ce1c8406cfa"
+    },
+    {
+      "skill_id": "u3396-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3396-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "skill_md_sha256": "68a02646d86d2549cf1501b8feb220057a2169ed29b67c86b01e411af74fbb6c",
+      "summary_sha256": "5444219203cfbecbc0de76628cb3a0bcb82fbace7a6c00495f2b30865fc888ed"
+    },
+    {
+      "skill_id": "u3397-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3397-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "skill_md_sha256": "bc88c9ea3ca66955d5fd56e761a471531c027086fe9269fe0c037aa74387ce24",
+      "summary_sha256": "1d3c70cb7902adab96ece0134e2675b61b1a66d8f95ad0e13918d04bb9c664d2"
+    },
+    {
+      "skill_id": "u3398-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3398-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "skill_md_sha256": "6cbd2b9321adbb712cc3eebb4114f596e2963e8386c435746c3ee8c638813905",
+      "summary_sha256": "6d005e63c63573161a01fe1ce00467e43f8d62481eaacaa98044977b5b8c99c0"
+    },
+    {
+      "skill_id": "u3399-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3399-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "skill_md_sha256": "e6b29c87581f65b76243a069d48b31c57da58177028de32e3e107f3addc1be3d",
+      "summary_sha256": "965370ccd25acfe10f4efc4ef1f09a6798e9a95f30c4114219b00faab2ea27af"
+    }
+  ]
+}

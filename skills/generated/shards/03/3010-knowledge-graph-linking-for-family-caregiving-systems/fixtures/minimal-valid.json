@@ -1,0 +1,35 @@
+{
+  "run_id": "3010-fixture-001",
+  "ruleset_version": "v1.0.0",
+  "signals": [
+    {
+      "id": "sig-1",
+      "source": "approved-system",
+      "value": 0.72
+    },
+    {
+      "id": "sig-2",
+      "source": "approved-system",
+      "value": 0.41
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Policy variance observed"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "ref": "ticket-3010"
+    }
+  ],
+  "confidence_traces": [
+    {
+      "id": "ct1",
+      "confidence": 0.88
+    }
+  ],
+  "requested_consumer": "orchestrator"
+}

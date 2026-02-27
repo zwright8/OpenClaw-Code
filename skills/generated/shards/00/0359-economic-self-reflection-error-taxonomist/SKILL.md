@@ -1,59 +1,65 @@
 ---
 name: u0359-economic-self-reflection-error-taxonomist
-description: Build and operate the "Economic Self-Reflection Error Taxonomist" capability for Economic Optimization. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Economic Self-Reflection Error Taxonomist" capability for Economic Optimization. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Economic Self-Reflection Error Taxonomist
 
 ## Why This Skill Exists
-We need this skill because missions need explicit tradeoff logic for cost, speed, and impact. This specific skill classifies recurrent reasoning failures for targeted fixes.
+This skill exists to make economic optimization execution reliable under real production pressure, with explicit contracts, measurable outcomes, and fail-closed governance.
 
 ## When To Use
-Use this skill when the request explicitly needs "Economic Self-Reflection Error Taxonomist" outcomes in the Economic Optimization domain.
+Use this skill when you need "Economic Self-Reflection Error Taxonomist" outputs that will influence production decisions, automated routing, policy posture, or external-facing actions.
 
 ## Step-by-Step Implementation Guide
-1. Define the scope and success metrics for `Economic Self-Reflection Error Taxonomist`, including at least three measurable KPIs tied to overspending and low-impact allocation.
-2. Design and version the input/output contract for budgets, costs, benefits, and opportunity values, then add schema validation and failure-mode handling.
-3. Implement the core capability using failure-type clustering, and produce error taxonomies with deterministic scoring.
-4. Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
-5. Add unit, integration, and simulation tests that explicitly cover overspending and low-impact allocation, then run regression baselines.
-6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
+1. Define scope, operational risk tier, and at least three KPIs tied to correctness, latency, and incident prevention.
+2. Specify versioned input/output contracts and enforce strict schema validation before any processing.
+3. Implement the core capability using deterministic contract execution, with deterministic scoring and reproducible artifact generation.
+4. Integrate orchestration controls: retry/backoff, idempotency keys, rollback checkpoints, and audit logging.
+5. Add tests (unit, integration, regression, and adversarial) that cover malformed signals, drift, and boundary thresholds.
+6. Deploy behind a feature flag, run staged rollout checks, and tune thresholds only through controlled change approval.
 
 ## Deterministic Workflow Notes
-- Core method: failure-type clustering
-- Archetype: general-capability
-- Routing tag: economic-optimization:general-capability
+- Core method: deterministic contract execution
+- Execution mode: deterministic-first with explicit tolerances
+- Routing tag: economic-optimization:economic-self-reflection-error-taxonomist
 
 ## Input Contract
-- `budgets` (signal, source=upstream, required=true)
-- `costs` (signal, source=upstream, required=true)
-- `benefits` (signal, source=upstream, required=true)
-- `opportunity values` (signal, source=upstream, required=true)
-- `claims` (signal, source=upstream, required=true)
-- `evidence` (signal, source=upstream, required=true)
-- `confidence traces` (signal, source=upstream, required=true)
+- `primary_signals` (array<object>, required=true)
+- `policy_context` (object, required=true)
+- `provenance_bundle` (object, required=true)
+- `confidence_trace` (object, required=true)
 
 ## Output Contract
-- `error_taxonomies_report` (structured-report, consumer=orchestrator, guaranteed=true)
-- `error_taxonomies_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `economic_self_reflection_error_taxonomist_report` (structured-report, consumer=orchestrator, guaranteed=true)
+- `economic_self_reflection_error_taxonomist_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `economic_self_reflection_error_taxonomist_handoff` (handoff-packet, consumer=downstream-skill, guaranteed=true)
 
 ## Validation Gates
-1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+1. **schema-contract-check** — Reject if any required input is missing or malformed (on fail: quarantine)
+2. **determinism-check** — Re-run on identical inputs; output deltas must remain within tolerance <= 1% (on fail: escalate)
+3. **policy-gate-check** — Block publish-level artifacts until all policy checks pass (on fail: block)
+4. **high-risk-approval-check** — Require explicit human sign-off for high-risk impact changes (on fail: hold)
 
 ## Failure Handling
-- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
-- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
-- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
-- Rollback strategy: rollback-to-last-stable-baseline
+- `E_INPUT_SCHEMA`: Invalid or missing required signals → Reject request; emit structured validation errors
+- `E_POLICY_BLOCK`: Policy guard violation → Fail closed; do not emit publish-level outputs
+- `E_NON_DETERMINISM`: Reproducibility delta exceeds tolerance → Freeze artifacts; route to human approval
+- `E_DEPENDENCY_FAILURE`: Upstream/downstream dependency unavailable → Execute bounded retries then rollback
+- Rollback strategy: rollback-to-last-stable-baseline with incident annotation
 
 ## Handoff Contract
-- Produces: Economic Self-Reflection Error Taxonomist normalized artifacts; execution scorecard; risk posture
-- Consumes: budgets; costs; benefits; opportunity values; claims; evidence; confidence traces
-- Downstream routing hint: Route next to economic-optimization:general-capability consumers with approval-gate context
+- Produces: validated artifacts, confidence trace, risk posture, machine-readable handoff packet
+- Consumes: production-scoped signals, policy context, provenance evidence, deterministic config
+- Downstream routing hint: pass only gate-cleared artifacts with approval state and rollback pointer
 
 ## Required Deliverables
-- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+- Versioned capability contract with deterministic tolerances and explicit failure semantics.
+- Test evidence covering nominal, edge, adversarial, and rollback scenarios.
+- Rollout evidence (feature-flag stage logs, gate outcomes, and operator sign-off where required).
+
+## Immediate Hardening Additions
+- Add at least 5 golden fixtures with expected outputs and tolerance assertions.
+- Add regression tests for the highest-severity failure mode and policy bypass attempts.
+- Emit machine-readable run summary: `status`, `risk_score`, `confidence`, `approval_state`, `next_handoff`.
+- Enforce fail-closed behavior on schema, determinism, and policy gate failures.

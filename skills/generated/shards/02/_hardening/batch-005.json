@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 5,
+  "range": {
+    "start": "u2200-tool-health-monitoring-for-knowledge-management-systems",
+    "end": "u2249-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2200-tool-health-monitoring-for-knowledge-management-systems",
+      "path": "generated/shards/02/2200-tool-health-monitoring-for-knowledge-management-systems",
+      "skill_md_sha256": "30fda9777e9025a90e0bcb996f8f232cec2be3978fb2fd8de5e335328b3b862e",
+      "summary_sha256": "42cadd69cc4e20ee436d0f69304a3bc5e76c822c48a9b9a7aad6dec3222c4f38"
+    },
+    {
+      "skill_id": "u2201-retry-and-backoff-orchestration-for-personal-health-routines",
+      "path": "generated/shards/02/2201-retry-and-backoff-orchestration-for-personal-health-routines",
+      "skill_md_sha256": "6f43a7ee45d1491cb516234bb929b6ed2985ef986e5c32748badd84fb6ffade4",
+      "summary_sha256": "00606909dc15753a930f959b3bf47a4de8f4ca53fe84d770733d9a7c7db2db77"
+    },
+    {
+      "skill_id": "u2202-retry-and-backoff-orchestration-for-personal-health-routines",
+      "path": "generated/shards/02/2202-retry-and-backoff-orchestration-for-personal-health-routines",
+      "skill_md_sha256": "a6dedc148ea303603d2609283d1923d91f3985c4a7b14d0ff3d90cc89b33b521",
+      "summary_sha256": "2f20414a9e1ff72ee3daf77ce8794defd5b164c2852a181742741cfb45deaa0f"
+    },
+    {
+      "skill_id": "u2203-retry-and-backoff-orchestration-for-personal-health-routines",
+      "path": "generated/shards/02/2203-retry-and-backoff-orchestration-for-personal-health-routines",
+      "skill_md_sha256": "f0574b5cce1f00d6e84f280209f1c25238fea9f07b6ea3146a556a959f348290",
+      "summary_sha256": "1a629f05ee4b4efb94ff04855e6f3b4ffe5e065afac154c32f05046b5891abed"
+    },
+    {
+      "skill_id": "u2204-retry-and-backoff-orchestration-for-personal-health-routines",
+      "path": "generated/shards/02/2204-retry-and-backoff-orchestration-for-personal-health-routines",
+      "skill_md_sha256": "61a01ddda137d037487107e683c7ee90439d899f95644915f919040c0d8f9f72",
+      "summary_sha256": "2a07470b74a3eff461d723876c4371db970be55b58caf7197981336c80af9044"
+    },
+    {
+      "skill_id": "u2205-retry-and-backoff-orchestration-for-personal-health-routines",
+      "path": "generated/shards/02/2205-retry-and-backoff-orchestration-for-personal-health-routines",
+      "skill_md_sha256": "2073dc79eb298136cbe57fdb9e8a065ff607991bb64097a449627c9a6478df3c",
+      "summary_sha256": "0397af1872513d673e52ca37276269634576e2ee879ecec5340430d1fc3da5d7"
+    },
+    {
+      "skill_id": "u2206-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "path": "generated/shards/02/2206-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "skill_md_sha256": "07c7b92b95ad9eab9a0e78fb005590ec4b4c960a8c3921d93ff0c3f4e7bd96c4",
+      "summary_sha256": "0db53fdd0fb5333daee82f3c11db7ce42b2e8ba106350591993cccf7eb65ef64"
+    },
+    {
+      "skill_id": "u2207-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "path": "generated/shards/02/2207-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "skill_md_sha256": "cd6ca02b1716796a50b8097ac9c171aecaad7a49902a1e43070e1872e2eb0a7e",
+      "summary_sha256": "f7546df691bb4c8acdad997296ad5869553be8c79d2eea6abcf77d3ba8e9224f"
+    },
+    {
+      "skill_id": "u2208-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "path": "generated/shards/02/2208-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "skill_md_sha256": "e1899914b4aafbe0472f0a928889c859194b6909f68d44b85f20cfb6036eabfa",
+      "summary_sha256": "11e2d5f5133d677468fa1d7a767ee3e3e016b0a089665cfb78cf5af10bead80d"
+    },
+    {
+      "skill_id": "u2209-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "path": "generated/shards/02/2209-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "skill_md_sha256": "2e5874421fd58da3cbbe88d38f87edd01cab4491203036c3c32de73621efa76f",
+      "summary_sha256": "ea8a409293863a77ae2a0fc76d7041ef39507caf75f38c88e204e4a27197f206"
+    },
+    {
+      "skill_id": "u2210-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "path": "generated/shards/02/2210-retry-and-backoff-orchestration-for-family-caregiving-systems",
+      "skill_md_sha256": "2deaf27072ed3fc27adf2057a8cb37769f6960b9bbb9a63edaee4168e4fc6f05",
+      "summary_sha256": "096d632e184efc7e01febf292b57f27586172458f87e5ebd6b456ddd5af6ee46"
+    },
+    {
+      "skill_id": "u2211-retry-and-backoff-orchestration-for-household-logistics",
+      "path": "generated/shards/02/2211-retry-and-backoff-orchestration-for-household-logistics",
+      "skill_md_sha256": "d1e98b326e1f294df408f4c6c69b5ab4ed96cb3aecf53495f918482b0f89d4cf",
+      "summary_sha256": "0019435672bdceaab5ecdd6e3139a72f1f9144e5a4393a3fee4ae0d9e39d8f32"
+    },
+    {
+      "skill_id": "u2212-retry-and-backoff-orchestration-for-household-logistics",
+      "path": "generated/shards/02/2212-retry-and-backoff-orchestration-for-household-logistics",
+      "skill_md_sha256": "d495ea6aad5f1b02f089a80943abd2937c70a23b264f3ac85f4809bddf8169ea",
+      "summary_sha256": "8a3c532c623e6178dd2ac2191c062502d9d054f2a56def1ad21ede480ee078d7"
+    },
+    {
+      "skill_id": "u2213-retry-and-backoff-orchestration-for-household-logistics",
+      "path": "generated/shards/02/2213-retry-and-backoff-orchestration-for-household-logistics",
+      "skill_md_sha256": "d2b2704b3a6b2fb6047642c15f69281224104ef5fe227c18dd18cccadb148c0d",
+      "summary_sha256": "5c8b43a0609f4d8336177ab2554a73f202e5d4f2446a0411907f8669b635c0e2"
+    },
+    {
+      "skill_id": "u2214-retry-and-backoff-orchestration-for-household-logistics",
+      "path": "generated/shards/02/2214-retry-and-backoff-orchestration-for-household-logistics",
+      "skill_md_sha256": "c7ab6674fb6095f7ab5859c9a617e02fd095908fbff890f2edd3c5d91e9bb015",
+      "summary_sha256": "e4481fae755c8e7c3c246a1b163a8b6fe7736aee88fa61c310818d343e5cc645"
+    },
+    {
+      "skill_id": "u2215-retry-and-backoff-orchestration-for-household-logistics",
+      "path": "generated/shards/02/2215-retry-and-backoff-orchestration-for-household-logistics",
+      "skill_md_sha256": "1a8f90a4658b11b5153059927ad9ab2d42f687ae0948d348163b98ad6dd8ed9c",
+      "summary_sha256": "5c256226f1c2f97282a326d81f0a5f5f34f7ac72662c37ea925b26b8f32286d1"
+    },
+    {
+      "skill_id": "u2216-retry-and-backoff-orchestration-for-personal-finance-management",
+      "path": "generated/shards/02/2216-retry-and-backoff-orchestration-for-personal-finance-management",
+      "skill_md_sha256": "f7f5146212ad1201b301be4a0f67656b38df208592c5654866b4036ab55cc1c7",
+      "summary_sha256": "7a3ce144f03d9e14ec7d6363153a6e5437f1f1c01d75fd9c225586a2706f8c77"
+    },
+    {
+      "skill_id": "u2217-retry-and-backoff-orchestration-for-personal-finance-management",
+      "path": "generated/shards/02/2217-retry-and-backoff-orchestration-for-personal-finance-management",
+      "skill_md_sha256": "14a97fe72cf5cbb827992ea4e3609a10065fabad196b24e61775187444894902",
+      "summary_sha256": "c007117d8d5ac3a111266583408e1c243cccee74754146ecd46b7b40ce76886c"
+    },
+    {
+      "skill_id": "u2218-retry-and-backoff-orchestration-for-personal-finance-management",
+      "path": "generated/shards/02/2218-retry-and-backoff-orchestration-for-personal-finance-management",
+      "skill_md_sha256": "03d5b449b84bc77131a49e393c10dc1f472cedffcde23bae85dfc3b84491b7e8",
+      "summary_sha256": "d5e87a49ea6662c47782d041664c73328797d25915ebc746eaa65e0acaf24802"
+    },
+    {
+      "skill_id": "u2219-retry-and-backoff-orchestration-for-personal-finance-management",
+      "path": "generated/shards/02/2219-retry-and-backoff-orchestration-for-personal-finance-management",
+      "skill_md_sha256": "1ccb75672d4c3381f0a6a812a485c51c44b6a5ae913cad36a6f2f170ed5f9398",
+      "summary_sha256": "473e3a1e7f7b99a59371e228b0951e3a2c0741ae74b560ff4dd55381e22f9347"
+    },
+    {
+      "skill_id": "u2220-retry-and-backoff-orchestration-for-personal-finance-management",
+      "path": "generated/shards/02/2220-retry-and-backoff-orchestration-for-personal-finance-management",
+      "skill_md_sha256": "8f9cad13333e24208dd84ea63da15f0380cfca0a8e76228aa6e822b3c687e552",
+      "summary_sha256": "6d0489326805115a130c0935c82d1bf9b983aef553854ede07cf6d78386c86b3"
+    },
+    {
+      "skill_id": "u2221-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2221-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "346def9e91da820fc4f5578f2138fdabae9bc8b21abde5e42a8dfb8901b2accf",
+      "summary_sha256": "e1234d06abae54099a538f76c25933a54bbc88ed0a8962fc3c0a4225504b1b3b"
+    },
+    {
+      "skill_id": "u2222-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2222-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "c4276b2fdc1295b42c627ff9f6dd988870f3e9bdc3cfdd5834ebdfaf92928d5b",
+      "summary_sha256": "f396645a3a9e4c9a80e454664063d08195ea408cd11440a40df94498b39547b9"
+    },
+    {
+      "skill_id": "u2223-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2223-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "9f34d84cb254cc6d6a55a23f1fa22edfdde406e66cf51662850c58a2b884501d",
+      "summary_sha256": "22da073e020b700fc77021f152f301ffca32bff024942c88395a305b68dcee0a"
+    },
+    {
+      "skill_id": "u2224-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2224-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "b3b73bc78bd204e42fb9e2d7d2d884f5b6af1968127423dde509840b2a554fc2",
+      "summary_sha256": "f29e418112dfb4affa3ffd32e7095850475a7d0d300793f2ac964aa3f6770e66"
+    },
+    {
+      "skill_id": "u2225-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2225-retry-and-backoff-orchestration-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "02f00142dc9e550c40c8845063e72c9bb76a0c67ebd8f321570b30bff5c5b0d2",
+      "summary_sha256": "6d9cb01c9716c8d29a769144c447595d7e59fc56ad87e85508f8eb19193d84fa"
+    },
+    {
+      "skill_id": "u2226-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2226-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "skill_md_sha256": "5cf036050da52503039ef488f8cfae4696dba54b92d70435cff6f2610c23ee4c",
+      "summary_sha256": "0b9d7f4df0b27f9757d2b39d57d3e51788aa9903ef2f2518a410c75635c9cdce"
+    },
+    {
+      "skill_id": "u2227-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2227-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "skill_md_sha256": "0ecbb41c4f3e7565bf52f1c8823c81c8dd0acc4b6da90d04545676cfb3383fa8",
+      "summary_sha256": "341279d89778a6ac4ec5ba795fe10bf54dcadc7484c1621342a550777f4e4740"
+    },
+    {
+      "skill_id": "u2228-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2228-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "skill_md_sha256": "1919e2b9835c088113f157689984f9bc9a2d00aff1e34d038aa4414d2769b2c9",
+      "summary_sha256": "4fe042116b3ca201ecd4ba8d003b12f68155f8827164c94a1f04b9a97e2e8dcd"
+    },
+    {
+      "skill_id": "u2229-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2229-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "skill_md_sha256": "f6faf3f884da1a98f7a0971365a44df5305239ec5bb61cf3ab54d818658c887e",
+      "summary_sha256": "c48785a254199a1d0fbada4ab57792c0618b646202777e04c13f2f9656ccbb54"
+    },
+    {
+      "skill_id": "u2230-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2230-retry-and-backoff-orchestration-for-fitness-and-recovery-training",
+      "skill_md_sha256": "29eec30dc87b852958b1a49a335f14b1033769014987a659b662a8cc6c08afe3",
+      "summary_sha256": "4c127d59fffa8a526c4bd86bc50ecd8b245ce45e849c5d644acdca39baa6a420"
+    },
+    {
+      "skill_id": "u2231-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "path": "generated/shards/02/2231-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "skill_md_sha256": "bf1963a1cefd90a7ab37f2f24c81e8c1c75f82f509251c5c36f8fa8ed8c3c7ae",
+      "summary_sha256": "43245e7759e590b6effb2f795ba1b7ebb737f9b6cbf322cab330521c33691336"
+    },
+    {
+      "skill_id": "u2232-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "path": "generated/shards/02/2232-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "skill_md_sha256": "9dc7df39d0d2b8c4ac6db94053527ff8db9a585cde9fb531f07f3076972cca9c",
+      "summary_sha256": "3d32ade647c9266e82a3192f3383fc9ea181e27eb441f80a11f240186256e9b2"
+    },
+    {
+      "skill_id": "u2233-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "path": "generated/shards/02/2233-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "skill_md_sha256": "d979dbb3e64107158d6806e374a20a76dea393c63b0a2704a2e67e4dc54b03fa",
+      "summary_sha256": "4d323732a30a6e44d5b798d9c7c906d30329f355b82f9d5c7fe66cce3ce73275"
+    },
+    {
+      "skill_id": "u2234-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "path": "generated/shards/02/2234-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "skill_md_sha256": "66d43e7c61a94db4d1b871b66eba143ddaa87f632468191b6630a6fc44250c89",
+      "summary_sha256": "1c01985b0d92705a6bf4777e7bb75462b35728ca9a6846655f3aa66a2b5628f7"
+    },
+    {
+      "skill_id": "u2235-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "path": "generated/shards/02/2235-retry-and-backoff-orchestration-for-mental-well-being-practices",
+      "skill_md_sha256": "d3de0a2b1f822776bcf2b6bed2c52ef7edeb61a7bf20e29dadf54259ff59590a",
+      "summary_sha256": "160ba8b0938a341f2d80654a28f4cfb6b697db2e656317bf930cb8309bf36636"
+    },
+    {
+      "skill_id": "u2236-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2236-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "skill_md_sha256": "3b0f4a2857ff6efb2fb52ab346e660a1c1ec0e09ad459bc40c9192801fee6472",
+      "summary_sha256": "174ce791f0587b178e8cf31697dd3e9e8ec129b26bbb320f9ae9b6e1b9a813b1"
+    },
+    {
+      "skill_id": "u2237-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2237-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "skill_md_sha256": "8517ec06edfcd32f691aecd9d2c50831c46a512fd0e530907a59915b6046c47c",
+      "summary_sha256": "ebbd5cc3ec238587c9d01817b3625ccaa36844a75380bdc873d7a319c683b1d6"
+    },
+    {
+      "skill_id": "u2238-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2238-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "skill_md_sha256": "56cc896770371aa509071bca94f8cc6878a35aab03d2f737c50e75ae21b04c1c",
+      "summary_sha256": "bdbf4a18e30988a19dd5cc72e68360333209f970a8747e6cb42856ea36948c50"
+    },
+    {
+      "skill_id": "u2239-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2239-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "skill_md_sha256": "95102eabfb175ab60e4574600fd0c923731f273024394ac7b054fd61bbc77730",
+      "summary_sha256": "c145f27338209a95266cdcae0765c81ef57e2cf74d0100e7b98cb1d2b2c62c59"
+    },
+    {
+      "skill_id": "u2240-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2240-retry-and-backoff-orchestration-for-lifelong-learning-plans",
+      "skill_md_sha256": "dcf405baf8878f5c1bffe899c45b261adb3b902f126628833d7c22ea868c1cbb",
+      "summary_sha256": "3a8a2054b56f0097dcde09a24d78d9c131a08e652936b110944d8502d48b3578"
+    },
+    {
+      "skill_id": "u2241-retry-and-backoff-orchestration-for-career-development-pathways",
+      "path": "generated/shards/02/2241-retry-and-backoff-orchestration-for-career-development-pathways",
+      "skill_md_sha256": "c13a4c6270b12eac620b4f1dc8b5338532ba3a320257a6bb2367901d83e6f30b",
+      "summary_sha256": "262769615365147c7c0c4c9999b64348fdd31c39b2fffe8a53537660ad4ce08e"
+    },
+    {
+      "skill_id": "u2242-retry-and-backoff-orchestration-for-career-development-pathways",
+      "path": "generated/shards/02/2242-retry-and-backoff-orchestration-for-career-development-pathways",
+      "skill_md_sha256": "0e0b636bce37d5ad493aaf644686a132f92766b433fb2ba1d84ef00ffbc37d70",
+      "summary_sha256": "9b598fb7640ac4fb16e0b39fa1439ab32be88f6ceb7b9a237d5ffc61024d3c33"
+    },
+    {
+      "skill_id": "u2243-retry-and-backoff-orchestration-for-career-development-pathways",
+      "path": "generated/shards/02/2243-retry-and-backoff-orchestration-for-career-development-pathways",
+      "skill_md_sha256": "70cc8f8f467e0d1366cd57263718f197e1d32ba7b046eeacac868f50947c7554",
+      "summary_sha256": "29b687f2ded5d9b7ab58a2bbadf5725b06b6ba1c06c9673bb3eeb6b20bea80ec"
+    },
+    {
+      "skill_id": "u2244-retry-and-backoff-orchestration-for-career-development-pathways",
+      "path": "generated/shards/02/2244-retry-and-backoff-orchestration-for-career-development-pathways",
+      "skill_md_sha256": "00729e1c7f83f1049482f498b2e6a2da6c30672df08570aec716db418e2256e4",
+      "summary_sha256": "bb9e13a8e70622229afb282d775df32afe477f1f2cc145395a6be4f9036d03d1"
+    },
+    {
+      "skill_id": "u2245-retry-and-backoff-orchestration-for-career-development-pathways",
+      "path": "generated/shards/02/2245-retry-and-backoff-orchestration-for-career-development-pathways",
+      "skill_md_sha256": "10b3b623e7baf3fcc05d7e55292d67bd50b7022112b122f4ea1d920e44af4f16",
+      "summary_sha256": "2c63463d36a874bc223621bc05a902be73ef187e872863fd34e3b0ae5499f9eb"
+    },
+    {
+      "skill_id": "u2246-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2246-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "skill_md_sha256": "eb047574a29a703dea630842b7dc532e070f984f7d6aa4c7b1fec02bc8f645c3",
+      "summary_sha256": "ce25dc723b376c1849f745b43d7ef494c51c13110a36a1ed470c198203d2c5eb"
+    },
+    {
+      "skill_id": "u2247-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2247-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "skill_md_sha256": "bf70022596b9a30cd2c1e00010599cbd93237c37f2fdd0474e774520a1d1349c",
+      "summary_sha256": "d0cf523b67c6c51779503a4934a8c4d93c479878f9618fed82d489133f18ff4e"
+    },
+    {
+      "skill_id": "u2248-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2248-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "skill_md_sha256": "4a038d4ab0716ac8d8dc150925876c6ed7ace192614ea7585cfa313cbbf8c69a",
+      "summary_sha256": "45e1cfe00e155c23b515d955380b6773d67a90003ba76edaa8048c8278b33394"
+    },
+    {
+      "skill_id": "u2249-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2249-retry-and-backoff-orchestration-for-entrepreneurship-operations",
+      "skill_md_sha256": "65a3bea5c2daa40b4f4910ebc0edb107646374e8f4645acd2d8338e2b085b11b",
+      "summary_sha256": "3ea28690a745bcc6e1e9f6ff9b655b576e592aa970fe8919759ac813b547ec4b"
+    }
+  ]
+}

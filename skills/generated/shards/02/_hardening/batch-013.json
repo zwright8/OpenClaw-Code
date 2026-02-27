@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 13,
+  "range": {
+    "start": "u2600-failure-root-cause-mining-for-knowledge-management-systems",
+    "end": "u2649-regression-sentinel-design-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2600-failure-root-cause-mining-for-knowledge-management-systems",
+      "path": "generated/shards/02/2600-failure-root-cause-mining-for-knowledge-management-systems",
+      "skill_md_sha256": "789b0562844c9c5d8bec9f8b85c1a5d0284b960fdfeedfa9dab9107a82a16f09",
+      "summary_sha256": "c6208c4eae03531706a213a245649105ba446de069c5a6e9d0a96ffaa92a936f"
+    },
+    {
+      "skill_id": "u2601-regression-sentinel-design-for-personal-health-routines",
+      "path": "generated/shards/02/2601-regression-sentinel-design-for-personal-health-routines",
+      "skill_md_sha256": "df6267aa2910f6fdee4791cadc1206a1ce684eb93388165958695c61a7d40fd2",
+      "summary_sha256": "b2c477c82e955c0cb156220c7fa86042621f73846a0ad7f802faf1eadf0b0a1f"
+    },
+    {
+      "skill_id": "u2602-regression-sentinel-design-for-personal-health-routines",
+      "path": "generated/shards/02/2602-regression-sentinel-design-for-personal-health-routines",
+      "skill_md_sha256": "482d7bedf66f6a0c9a550f41883d9e9e0b4613830febc985a451f5dc6d73ed65",
+      "summary_sha256": "00c6305f9f0958ec67085c3d27583bb3a7438786e6dfb26b29a98ff46ce67ecc"
+    },
+    {
+      "skill_id": "u2603-regression-sentinel-design-for-personal-health-routines",
+      "path": "generated/shards/02/2603-regression-sentinel-design-for-personal-health-routines",
+      "skill_md_sha256": "ea3d9d0eba4eb71fb2b5a0c607217f7d68704ba9b7b570dfeb97c0d79d885dca",
+      "summary_sha256": "624d0b2ee984592db3e6512e0d09a102365bae71c1c22fcfbd733d7f3b3f5ae7"
+    },
+    {
+      "skill_id": "u2604-regression-sentinel-design-for-personal-health-routines",
+      "path": "generated/shards/02/2604-regression-sentinel-design-for-personal-health-routines",
+      "skill_md_sha256": "7b80a0bb9219f8a7f4e491bc5fd0bc5a5247a70c75aea9aec67569b13c4b92b3",
+      "summary_sha256": "07324454de2ad726b599421fc3af5b9fa1e56cabf8170cc307bacdb53c6b04a2"
+    },
+    {
+      "skill_id": "u2605-regression-sentinel-design-for-personal-health-routines",
+      "path": "generated/shards/02/2605-regression-sentinel-design-for-personal-health-routines",
+      "skill_md_sha256": "b34c5262bcd24179cc68b14b78f8e366658b97c3a89a53823e8af81dec85254c",
+      "summary_sha256": "a8137e1dae6d569563556620b6f9e395911ec7762f069252ef0cab9819fae61f"
+    },
+    {
+      "skill_id": "u2606-regression-sentinel-design-for-family-caregiving-systems",
+      "path": "generated/shards/02/2606-regression-sentinel-design-for-family-caregiving-systems",
+      "skill_md_sha256": "425858ae5e724180f4f37557dbf8efce48b8f7faf5c4b2be2dfd3a585cb910ad",
+      "summary_sha256": "b52e8a71dc7335266d1cedc98c1dc3e528ee9be7c468e277cedc5e9f979428cb"
+    },
+    {
+      "skill_id": "u2607-regression-sentinel-design-for-family-caregiving-systems",
+      "path": "generated/shards/02/2607-regression-sentinel-design-for-family-caregiving-systems",
+      "skill_md_sha256": "5018fefc90e8e4fc1dddcc0a522b9fc6fe784df106543562ad14b7bdd7439316",
+      "summary_sha256": "762b54e780867f42a260e9bbb27318a6246384c209a9d15aa670ccd06dd65254"
+    },
+    {
+      "skill_id": "u2608-regression-sentinel-design-for-family-caregiving-systems",
+      "path": "generated/shards/02/2608-regression-sentinel-design-for-family-caregiving-systems",
+      "skill_md_sha256": "c79d634668396eab2cf5b83939efbdf6e6e9a16c3f5b763300d7f5aa682579df",
+      "summary_sha256": "02994322754d36abc63e1a317a0897f296d2339973d510ae644da013f9063086"
+    },
+    {
+      "skill_id": "u2609-regression-sentinel-design-for-family-caregiving-systems",
+      "path": "generated/shards/02/2609-regression-sentinel-design-for-family-caregiving-systems",
+      "skill_md_sha256": "51b363ac238d1afc20e7b8571c7fb636e95ad5578ed364872e4ce56e7ee218a3",
+      "summary_sha256": "d40876b8571fd76895b909371ee81c60c598bd1a628ad960d89379cc7737fa8d"
+    },
+    {
+      "skill_id": "u2610-regression-sentinel-design-for-family-caregiving-systems",
+      "path": "generated/shards/02/2610-regression-sentinel-design-for-family-caregiving-systems",
+      "skill_md_sha256": "8b2d10ddfa403b059a7dd3b575cd4b288a5fc996ad0335e3e2f6d160338c76c2",
+      "summary_sha256": "4c502649fbbac3b0631bdb3f0dbc1d2941c7420d1f86c74247c9c00822f08732"
+    },
+    {
+      "skill_id": "u2611-regression-sentinel-design-for-household-logistics",
+      "path": "generated/shards/02/2611-regression-sentinel-design-for-household-logistics",
+      "skill_md_sha256": "2d533461094206c98377de3d37282b6d5d782be4ba1e6fabffb97436756e970a",
+      "summary_sha256": "99e80e38dc9e1586d9723b0c16cc0c5c6ebf6b6af9520c432b24f4deb238f0a5"
+    },
+    {
+      "skill_id": "u2612-regression-sentinel-design-for-household-logistics",
+      "path": "generated/shards/02/2612-regression-sentinel-design-for-household-logistics",
+      "skill_md_sha256": "0c163453be0456bb573b0e41a0c358177301316379a39aa9f1f2cef4e413abc6",
+      "summary_sha256": "ba61fb3229f8ff200e008bce2dbe5bbf2123c40a1d8113116e6f502a65a5154e"
+    },
+    {
+      "skill_id": "u2613-regression-sentinel-design-for-household-logistics",
+      "path": "generated/shards/02/2613-regression-sentinel-design-for-household-logistics",
+      "skill_md_sha256": "8d726fafa95c1498fba51d3cfa77cdca432d9b95cde7da4ab975c6ed9cc1e23e",
+      "summary_sha256": "191d27cca7b09455140ec2646752082edfbaa1f3c6ea0de2c2660b7b129dacb5"
+    },
+    {
+      "skill_id": "u2614-regression-sentinel-design-for-household-logistics",
+      "path": "generated/shards/02/2614-regression-sentinel-design-for-household-logistics",
+      "skill_md_sha256": "6d6e5319a29c5f63849fa2ef3b8959a1af58e8d521824048b82569656b1c2569",
+      "summary_sha256": "04149d54f52f0350e3841a4707a1aaa63351ddab0f069459d920bf98321a91ec"
+    },
+    {
+      "skill_id": "u2615-regression-sentinel-design-for-household-logistics",
+      "path": "generated/shards/02/2615-regression-sentinel-design-for-household-logistics",
+      "skill_md_sha256": "5c6bf6aa9512bf6a6cf1fa51b30e5da6a492fc1661ba4c340e7ce582f51c6a97",
+      "summary_sha256": "13eb3aba97d8377f0eb0fd5fc867c0270fb94202b4d238e945a94e2c38bfb06c"
+    },
+    {
+      "skill_id": "u2616-regression-sentinel-design-for-personal-finance-management",
+      "path": "generated/shards/02/2616-regression-sentinel-design-for-personal-finance-management",
+      "skill_md_sha256": "d2d523f777be13af5fdfea277380fe5df3193f9782a9982885c6d373e7ac0bc6",
+      "summary_sha256": "063c48ef7b2afdf7ed4ca36ec46cb40dbbcf87f5e707f2d79d78642ca54aa864"
+    },
+    {
+      "skill_id": "u2617-regression-sentinel-design-for-personal-finance-management",
+      "path": "generated/shards/02/2617-regression-sentinel-design-for-personal-finance-management",
+      "skill_md_sha256": "3ea9a074e7c553d3a9277203e10f1189b9e011265b4b7d0f48b8e73315339be4",
+      "summary_sha256": "7912943bb818f11c8494824f4f92466ca0cf473d4c0150cc0eaceb116d2dcd00"
+    },
+    {
+      "skill_id": "u2618-regression-sentinel-design-for-personal-finance-management",
+      "path": "generated/shards/02/2618-regression-sentinel-design-for-personal-finance-management",
+      "skill_md_sha256": "4219ef0e243a0a487fe8a5b48d5f2f14314f32941bcb08bac2fd72b3e886427d",
+      "summary_sha256": "5c364f6f6f24de8b2690a135ba1bc123720cbdf29915101e32cb6966c2db6dff"
+    },
+    {
+      "skill_id": "u2619-regression-sentinel-design-for-personal-finance-management",
+      "path": "generated/shards/02/2619-regression-sentinel-design-for-personal-finance-management",
+      "skill_md_sha256": "758553bc0b63e2ef8a8d0f25729243f8424ffc998efa166632ca3446e299363a",
+      "summary_sha256": "febb2c0e7685030baffb441e537a24d1e430799067f578983c08cec2f1451f3e"
+    },
+    {
+      "skill_id": "u2620-regression-sentinel-design-for-personal-finance-management",
+      "path": "generated/shards/02/2620-regression-sentinel-design-for-personal-finance-management",
+      "skill_md_sha256": "c31592e918f6a25c8f73aa593bebf4a018c1b2d6e9b1a6ffdf73c33d507b02b2",
+      "summary_sha256": "df3cc9025c680a50cffec5dd1803fb9dc2045e951121a0048f0a9218a34b29ce"
+    },
+    {
+      "skill_id": "u2621-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2621-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "2a48a8c58537610d64e9313c5afe4740dd781756c891b92765a2397cf7b5fae3",
+      "summary_sha256": "e610c4f15af6d37427c52f785e13c55d3ba1f79779362f059ef9e9adab03a123"
+    },
+    {
+      "skill_id": "u2622-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2622-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "81b54f509feba9189a3c76a74ec47595489aa452096e9e10f1b4505a3100b29a",
+      "summary_sha256": "0408ce2750fb9e4c1e045dcdee52f3796c97f86ce8cd4af827d348eb4198c3f2"
+    },
+    {
+      "skill_id": "u2623-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2623-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "70c82ea805d6ccaaa814fefc3fda6b23d4a49dbac79de26106bfff3f99b79f95",
+      "summary_sha256": "29b97757aec54871f27b7f133647c4aa161500bf17486b6ee0b6bc909666f79f"
+    },
+    {
+      "skill_id": "u2624-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2624-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "6f357ce7edcbb114032414dc1dc724a17612b426911be58dff317f7a4e5a973d",
+      "summary_sha256": "1553448786bab8bb0a3b123af1c6ee9411b2813e8d2f63fd1e4706497133339e"
+    },
+    {
+      "skill_id": "u2625-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2625-regression-sentinel-design-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "0f9e34c337665eba5af57d695a4116dff906322ff6b03088eb9d19a30784327b",
+      "summary_sha256": "4a3eab4c6bd7462ab1dfecc3126fedbf3d97e5e4f7a442e7303913211c74e3fc"
+    },
+    {
+      "skill_id": "u2626-regression-sentinel-design-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2626-regression-sentinel-design-for-fitness-and-recovery-training",
+      "skill_md_sha256": "a5fe10d48f519014a7275539d64d98a33c8f1b523f1277cd9e5c0c696f5734d0",
+      "summary_sha256": "721001d21da3252f38312d9d602824bea9842d6c9af45871d22bd55719431d1f"
+    },
+    {
+      "skill_id": "u2627-regression-sentinel-design-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2627-regression-sentinel-design-for-fitness-and-recovery-training",
+      "skill_md_sha256": "f0d8f947eff00cdd5702b2850a1e3c02ae8fa00c77b46c83350c79fbc4d0e431",
+      "summary_sha256": "4d38ce31893f0393d88ff89f44fae7864c7d0d9933c287b3965953fa4cf1732a"
+    },
+    {
+      "skill_id": "u2628-regression-sentinel-design-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2628-regression-sentinel-design-for-fitness-and-recovery-training",
+      "skill_md_sha256": "21c61ce490f87d70519a1e8791628062e0bfb9d29dcca168deb86afefacf77ce",
+      "summary_sha256": "0097b2954ecaeaefd60a3198cb3a2a79ad3e1993320fb8634a8043d98e7a4d25"
+    },
+    {
+      "skill_id": "u2629-regression-sentinel-design-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2629-regression-sentinel-design-for-fitness-and-recovery-training",
+      "skill_md_sha256": "e1e7a97c439ad0a4723b98609df29773f0b6f9f9eaeebdf13ff81a7713608cc6",
+      "summary_sha256": "df60b2c5719b62a2dba995473cacca576aafa47c5353986b1a4dfa0787f1eb2a"
+    },
+    {
+      "skill_id": "u2630-regression-sentinel-design-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2630-regression-sentinel-design-for-fitness-and-recovery-training",
+      "skill_md_sha256": "dd8453f0cf42678d0127ce0da392a766d3dbd15f2e9e4b1987fd4674eef7df75",
+      "summary_sha256": "ab809e4c8f5d2c6502d3838d2d1c214efe6e986307c79e844ef63dc9907fe8d8"
+    },
+    {
+      "skill_id": "u2631-regression-sentinel-design-for-mental-well-being-practices",
+      "path": "generated/shards/02/2631-regression-sentinel-design-for-mental-well-being-practices",
+      "skill_md_sha256": "b90b226a65e6ae0e7ada1fef15b08c895c06540a93e8226fe5bacebfec635e6b",
+      "summary_sha256": "43e4d4410a9e86badbfd0c259ebfc1ddb333be2894dc80c10514042734cd2851"
+    },
+    {
+      "skill_id": "u2632-regression-sentinel-design-for-mental-well-being-practices",
+      "path": "generated/shards/02/2632-regression-sentinel-design-for-mental-well-being-practices",
+      "skill_md_sha256": "03fdccf9b785ba2233eb12f436386aa395d6455b0f0ca6e4d218cebb1a44ca12",
+      "summary_sha256": "61f6d8e512135ca08e9548d13fde88efea95eb831d88a97718a15a4549d3defb"
+    },
+    {
+      "skill_id": "u2633-regression-sentinel-design-for-mental-well-being-practices",
+      "path": "generated/shards/02/2633-regression-sentinel-design-for-mental-well-being-practices",
+      "skill_md_sha256": "76a65f6ff4f579ac10760dd10e3cc21fb9f6fd6d0790f06cb5936f3600a3081f",
+      "summary_sha256": "5e0ee603ab237fa36212e69d345cef02235769cb61cd84efb88368fe7de2ff7b"
+    },
+    {
+      "skill_id": "u2634-regression-sentinel-design-for-mental-well-being-practices",
+      "path": "generated/shards/02/2634-regression-sentinel-design-for-mental-well-being-practices",
+      "skill_md_sha256": "ffd05750e04935ff443eba495a07ab92507a5fbd56fec1ee99f3df59c07b3d92",
+      "summary_sha256": "1a47fef6e32c85fd2ab77a1aa44dfc61bea1f73d09d405355602761a20a82d54"
+    },
+    {
+      "skill_id": "u2635-regression-sentinel-design-for-mental-well-being-practices",
+      "path": "generated/shards/02/2635-regression-sentinel-design-for-mental-well-being-practices",
+      "skill_md_sha256": "563f344b2b2e569605b2be810fb282ac064bba15434ac094a9b850b8b0d4ff24",
+      "summary_sha256": "b90f7f00d45b32e36a670334e53e7f82ed096465588183c8a1425cc1f1f08644"
+    },
+    {
+      "skill_id": "u2636-regression-sentinel-design-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2636-regression-sentinel-design-for-lifelong-learning-plans",
+      "skill_md_sha256": "fcac604cb42b9f7ed596c5f5704fbe7c0439e71f7ce87b87dce4d95edae97850",
+      "summary_sha256": "7a70658ae28e0f6557ea975dc9fc6fcf5d2d7dc7d9292fd4b1121320d8073da6"
+    },
+    {
+      "skill_id": "u2637-regression-sentinel-design-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2637-regression-sentinel-design-for-lifelong-learning-plans",
+      "skill_md_sha256": "2fc3416bce627af1373fa812a21255aecbdedc0014f672b60d9cc836eb147d07",
+      "summary_sha256": "a7008e04061b3488328ff78d58309245bc9389382b9de8e86dcbf79455feb385"
+    },
+    {
+      "skill_id": "u2638-regression-sentinel-design-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2638-regression-sentinel-design-for-lifelong-learning-plans",
+      "skill_md_sha256": "8870bfef11bee5ec1b444e0848eb17f485331f8b681cbcc7b041c692012bc238",
+      "summary_sha256": "a379c0da54700c5f6bd1a7de02e27f5bb9e2fe5ec1d1119b78e46858e9d70125"
+    },
+    {
+      "skill_id": "u2639-regression-sentinel-design-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2639-regression-sentinel-design-for-lifelong-learning-plans",
+      "skill_md_sha256": "094644f4f60a71cd08a0b66248d777a5a4813920a3ddf86bbed3dbe2165db2a7",
+      "summary_sha256": "7e68369167ce6e7c85461904a771910f55ed2eaaab4a4bf835f43b51bffa5727"
+    },
+    {
+      "skill_id": "u2640-regression-sentinel-design-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2640-regression-sentinel-design-for-lifelong-learning-plans",
+      "skill_md_sha256": "fdaf52b08715f1d9940af288a825b6b8e592413b49a00c1840399f13f296b97f",
+      "summary_sha256": "1bda00ab49e8aa8c348c706d87a7624cc51ec93e3e3bef83b71be4d0d6b9a46b"
+    },
+    {
+      "skill_id": "u2641-regression-sentinel-design-for-career-development-pathways",
+      "path": "generated/shards/02/2641-regression-sentinel-design-for-career-development-pathways",
+      "skill_md_sha256": "3d1952254cb9c888655d594586c1d8f52eebb740f77c2a9b40d764e7fb6fcb18",
+      "summary_sha256": "3d4622ec772bc8e37a85809c08c742d46cb6030cf9c67546b5511feaf898ef9f"
+    },
+    {
+      "skill_id": "u2642-regression-sentinel-design-for-career-development-pathways",
+      "path": "generated/shards/02/2642-regression-sentinel-design-for-career-development-pathways",
+      "skill_md_sha256": "5be15f4d3496f2416f73a5732407b494d631ec934eadbef6e305b4455ae8c93b",
+      "summary_sha256": "1d8d37dcba2edbbbc5b8dc8bb684ab67307127191ebdc96732380fd4739265e1"
+    },
+    {
+      "skill_id": "u2643-regression-sentinel-design-for-career-development-pathways",
+      "path": "generated/shards/02/2643-regression-sentinel-design-for-career-development-pathways",
+      "skill_md_sha256": "50ae8d56cd777d52f44f5c39b9d783413af40b05a1f98024f1feb112f6b8d7c6",
+      "summary_sha256": "b6aca9ef363417dfdddfa968d305d11cf879c315173d3bf52ed07a819bd5d4ac"
+    },
+    {
+      "skill_id": "u2644-regression-sentinel-design-for-career-development-pathways",
+      "path": "generated/shards/02/2644-regression-sentinel-design-for-career-development-pathways",
+      "skill_md_sha256": "8c97987ba07f4c6b40df0dd3b7333cb7de50e5d211f7cdc9428fff4dc7c2a373",
+      "summary_sha256": "176f83f8c6a0e92dbce9b965fe8f68296d11dc3d396af07425842e90337314af"
+    },
+    {
+      "skill_id": "u2645-regression-sentinel-design-for-career-development-pathways",
+      "path": "generated/shards/02/2645-regression-sentinel-design-for-career-development-pathways",
+      "skill_md_sha256": "b96ddcd5e81771fc5747107406c11b93b6b3cb1c81ee00512150cb6979f72677",
+      "summary_sha256": "b85abb8b98a9e1ab9ef4dee19939a6921659ebdaa4de7c4315ac9eea72c5ab3f"
+    },
+    {
+      "skill_id": "u2646-regression-sentinel-design-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2646-regression-sentinel-design-for-entrepreneurship-operations",
+      "skill_md_sha256": "4059a5662ae8b80d1a5101e8b661179ee0c93db56e7f027e55aa0f0944589a46",
+      "summary_sha256": "9a3af132c0d33a6574c3062558cf8764bd19ea9e6de54941f877337134f74e04"
+    },
+    {
+      "skill_id": "u2647-regression-sentinel-design-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2647-regression-sentinel-design-for-entrepreneurship-operations",
+      "skill_md_sha256": "21c336844760f1d169eab2e1e16afb5a8e76dd4a7390ba6889e4cc35351a56de",
+      "summary_sha256": "4c22b222c1039b9a5d67c0ff6d7ecb11b23ad7522f4c946bb9f7a4ed6d5cd68b"
+    },
+    {
+      "skill_id": "u2648-regression-sentinel-design-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2648-regression-sentinel-design-for-entrepreneurship-operations",
+      "skill_md_sha256": "ed1777b7f763e1776800e77d974452ead19a9677946054f2250c56abdf22cf35",
+      "summary_sha256": "399b2fe3e480a0c3725cf868ea6f97e562a911c052dab0fc2f2aedd1b824796c"
+    },
+    {
+      "skill_id": "u2649-regression-sentinel-design-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2649-regression-sentinel-design-for-entrepreneurship-operations",
+      "skill_md_sha256": "8de95e9f7b394974dcb3b957b6064732bf7b99f717bec645946819c097b81c2d",
+      "summary_sha256": "8f617d4359627a32ce9b9573603ed1bd5d622e81a26a8658af8564acf6920dcb"
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 20,
+  "range": {
+    "start": "u3950-conflict-resolution-coaching-for-civic-participation-platforms",
+    "end": "u3999-conflict-resolution-coaching-for-knowledge-management-systems",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3950-conflict-resolution-coaching-for-civic-participation-platforms",
+      "path": "generated/shards/03/3950-conflict-resolution-coaching-for-civic-participation-platforms",
+      "skill_md_sha256": "0d9a0850e58d3562052cf8523cf40cbe092ac51ea38b2c2c76a16e03c8e0eb7c",
+      "summary_sha256": "f0af6c95c9010bd1fa88d5601f12226623e2b2f4b0c8d7bf52229bdbc00fae49"
+    },
+    {
+      "skill_id": "u3951-conflict-resolution-coaching-for-accessibility-services",
+      "path": "generated/shards/03/3951-conflict-resolution-coaching-for-accessibility-services",
+      "skill_md_sha256": "6fa86eeaee5ee2ed800c929b88f11007b5cec3a650a7d30dea3c4c92b01c02c1",
+      "summary_sha256": "09e4bc8d4ed7f1ef76c589bd81ac04169f22721f53f3911dfa375427cf5d2a86"
+    },
+    {
+      "skill_id": "u3952-conflict-resolution-coaching-for-accessibility-services",
+      "path": "generated/shards/03/3952-conflict-resolution-coaching-for-accessibility-services",
+      "skill_md_sha256": "7870b9f9671d61e0674b85e9bf518affbd2d0d0a4aadd0dcbbbaf54dfa4a3c41",
+      "summary_sha256": "1037fe5880096803c12f88534acbcf876c7cb6db103924ccb02d6e7ff9e7fd41"
+    },
+    {
+      "skill_id": "u3953-conflict-resolution-coaching-for-accessibility-services",
+      "path": "generated/shards/03/3953-conflict-resolution-coaching-for-accessibility-services",
+      "skill_md_sha256": "e04e763da59568f3b7188acfefb036e97d736e2fa95d34a7667a1f5775272714",
+      "summary_sha256": "280e24e1cf42fb76947d2b7f28d22014fc2ccb2a7c900cf7838fa0f1840d5d15"
+    },
+    {
+      "skill_id": "u3954-conflict-resolution-coaching-for-accessibility-services",
+      "path": "generated/shards/03/3954-conflict-resolution-coaching-for-accessibility-services",
+      "skill_md_sha256": "515ac7b9235758423162fb0837cddf44d28db44c46c47e1a2bfa6a9f5310df59",
+      "summary_sha256": "1b251b1ceb2906d4d8181654759851981ef674b346e79e9d20dc79579023b153"
+    },
+    {
+      "skill_id": "u3955-conflict-resolution-coaching-for-accessibility-services",
+      "path": "generated/shards/03/3955-conflict-resolution-coaching-for-accessibility-services",
+      "skill_md_sha256": "d6414569fe9550b868af4826a39a4b017a678a5c3020cba82be98c7d53f1b153",
+      "summary_sha256": "072d969ff1fa21b7fe8c7e1bd6b89353c1b07b0b587cd05639e2bac0e9d4980f"
+    },
+    {
+      "skill_id": "u3956-conflict-resolution-coaching-for-eldercare-coordination",
+      "path": "generated/shards/03/3956-conflict-resolution-coaching-for-eldercare-coordination",
+      "skill_md_sha256": "f61dbce1fe9427fffba3f8beebfdd2d6d302ed248585f5ae80233b360c64e54f",
+      "summary_sha256": "70ab73dc992b86391a0600ee6b17f689151b8bbb85e59a1f93073fc60387621a"
+    },
+    {
+      "skill_id": "u3957-conflict-resolution-coaching-for-eldercare-coordination",
+      "path": "generated/shards/03/3957-conflict-resolution-coaching-for-eldercare-coordination",
+      "skill_md_sha256": "4a7ca38666561d5052e278b59e2573903c1c934c817e71541e27500acbfb5a49",
+      "summary_sha256": "778735b56557491dbc8e434313f1df023a701fb3914ac219927d82d7cac59cb3"
+    },
+    {
+      "skill_id": "u3958-conflict-resolution-coaching-for-eldercare-coordination",
+      "path": "generated/shards/03/3958-conflict-resolution-coaching-for-eldercare-coordination",
+      "skill_md_sha256": "7eb3812542a81f7e52bd72a0cab3f96d73dc96968c930d0a54d6b3c93d7d7962",
+      "summary_sha256": "cd0917a075bb6f1c27a47ca46402e4030cd016e5e254216e7c0a478d7106bd22"
+    },
+    {
+      "skill_id": "u3959-conflict-resolution-coaching-for-eldercare-coordination",
+      "path": "generated/shards/03/3959-conflict-resolution-coaching-for-eldercare-coordination",
+      "skill_md_sha256": "aae8e385074159e8716d68cf44db544afd4aa2ea835e0a03f98471c7f1033996",
+      "summary_sha256": "3e30da8fad989f1221e6b8511ad0f2d20436983c0d72bdcbd4be72895e619d56"
+    },
+    {
+      "skill_id": "u3960-conflict-resolution-coaching-for-eldercare-coordination",
+      "path": "generated/shards/03/3960-conflict-resolution-coaching-for-eldercare-coordination",
+      "skill_md_sha256": "dc03b717780a9c188522c9d744d28955c71d9549dac732b7bc9d4180f4315ce1",
+      "summary_sha256": "15cf6e999e598239d049b8ce1489157228f796b5ff1c0fde8df40d3b6a5a2964"
+    },
+    {
+      "skill_id": "u3961-conflict-resolution-coaching-for-childcare-support-systems",
+      "path": "generated/shards/03/3961-conflict-resolution-coaching-for-childcare-support-systems",
+      "skill_md_sha256": "0a31ce58aa3a03eb67a43ad0b32563ef6e2e370337a36432a6eadba420d0c88d",
+      "summary_sha256": "27b409f1aa4eeccd467a09d826c827bcc99aaa9577792fc5873cc1822d691545"
+    },
+    {
+      "skill_id": "u3962-conflict-resolution-coaching-for-childcare-support-systems",
+      "path": "generated/shards/03/3962-conflict-resolution-coaching-for-childcare-support-systems",
+      "skill_md_sha256": "1650fd9ed37fd98206a20eee55c9701aeeaac422b7d7f88fb7167765acc3acf9",
+      "summary_sha256": "790bbbd24a91d59a6a8356eeebba25347082c9391ddefb14b74e7d1a82667d22"
+    },
+    {
+      "skill_id": "u3963-conflict-resolution-coaching-for-childcare-support-systems",
+      "path": "generated/shards/03/3963-conflict-resolution-coaching-for-childcare-support-systems",
+      "skill_md_sha256": "d089405040737d949c81c7f6b12505c571b9cd5049dbe43726eeb8fe788f105a",
+      "summary_sha256": "f380f5fcc21226675bb05023790a2d6fc79256b915967ad3a5271aa48a383930"
+    },
+    {
+      "skill_id": "u3964-conflict-resolution-coaching-for-childcare-support-systems",
+      "path": "generated/shards/03/3964-conflict-resolution-coaching-for-childcare-support-systems",
+      "skill_md_sha256": "12d8c37bad53955e257cb66fd1ce52e0891a8955812496612b3249c163def308",
+      "summary_sha256": "f30820065c04cfa1854ef94159b09ae090567433b9c751c396784434ad1db54f"
+    },
+    {
+      "skill_id": "u3965-conflict-resolution-coaching-for-childcare-support-systems",
+      "path": "generated/shards/03/3965-conflict-resolution-coaching-for-childcare-support-systems",
+      "skill_md_sha256": "ccd58e9a4960e39e1a7dd0773ac61b22403277a65fca4bcf48e48024b3cfa468",
+      "summary_sha256": "25a2defb8958e2405851aaacfafaa3bb991698667e8d4d96b99eafde88827d06"
+    },
+    {
+      "skill_id": "u3966-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3966-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "skill_md_sha256": "384f1dba709dafe4c7d1e40d8727b7d80a90aa3bf88309c2e21dc35c57c682db",
+      "summary_sha256": "d27309554116f2e148f3315b693dcd4032c50895d99b2fd48b507b46de638ac5"
+    },
+    {
+      "skill_id": "u3967-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3967-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "skill_md_sha256": "3cd59f90ef1ac32d00921808238a8d4ec0689fdb69459d07cc8f11f3cc0f1af4",
+      "summary_sha256": "87768ef12859809f2155d32305166457ca4ca865dd22b4602c1e18948056fb4b"
+    },
+    {
+      "skill_id": "u3968-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3968-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "skill_md_sha256": "2643994ea53a0aa22923ee5116f767b21c08542b7d5bf4dc31a40d4d83c90a5b",
+      "summary_sha256": "a97b8409e78777b4832bfdec0e095e5efed2d3d7a3e2a4a9320645ea0087d07f"
+    },
+    {
+      "skill_id": "u3969-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3969-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "skill_md_sha256": "6bedca2670826734072883936ff1bbe09a3cc5aee598c8b1ae8e6ba5d72e9f77",
+      "summary_sha256": "4efb0ff15a9ac14cefd705b102780d878e7bb5bbf956607069b1028a2903c49c"
+    },
+    {
+      "skill_id": "u3970-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3970-conflict-resolution-coaching-for-arts-and-culture-programming",
+      "skill_md_sha256": "4e986cdc8f0fce19b64c5b99f94b84744426ed2c018bf6374209bc13bb8374b2",
+      "summary_sha256": "30830b36e127913bb48627a6a6c438fc8c75ff5625e49108f17eda50494d1dcb"
+    },
+    {
+      "skill_id": "u3971-conflict-resolution-coaching-for-music-and-creative-practice",
+      "path": "generated/shards/03/3971-conflict-resolution-coaching-for-music-and-creative-practice",
+      "skill_md_sha256": "c91acae6095de75e650f23e72ba361de77d12cfb6328c9df055a8e0591695177",
+      "summary_sha256": "0b78c9b675c1c8b97fdf3828877da8c3090b65b00f090e199c4822ffc3749f67"
+    },
+    {
+      "skill_id": "u3972-conflict-resolution-coaching-for-music-and-creative-practice",
+      "path": "generated/shards/03/3972-conflict-resolution-coaching-for-music-and-creative-practice",
+      "skill_md_sha256": "27b4d1785135896d74b287aa433b689fe3a9f7788d1c85b8c89624a2afb47262",
+      "summary_sha256": "516fee3bf4d0d89c6fef2335dc2f600654688d3c69b348c2943da6247076252e"
+    },
+    {
+      "skill_id": "u3973-conflict-resolution-coaching-for-music-and-creative-practice",
+      "path": "generated/shards/03/3973-conflict-resolution-coaching-for-music-and-creative-practice",
+      "skill_md_sha256": "ac0f9bc20d448cecc520d7d4dd1eec665846770e9a80d813ec2c17b4325d37b6",
+      "summary_sha256": "67b606a3a964ffc13dc47d0247783cd0862c788b1f68551a05dbef412158fa68"
+    },
+    {
+      "skill_id": "u3974-conflict-resolution-coaching-for-music-and-creative-practice",
+      "path": "generated/shards/03/3974-conflict-resolution-coaching-for-music-and-creative-practice",
+      "skill_md_sha256": "7a6bf3955db525e6d0e2372f6c1dc6e096bb7c8c2c2c7f6d57c60099e4c06cf8",
+      "summary_sha256": "15f03a4df5caeab30cf3be953226eae2c98ce0d2b62456788cd12c8cfe8631d3"
+    },
+    {
+      "skill_id": "u3975-conflict-resolution-coaching-for-music-and-creative-practice",
+      "path": "generated/shards/03/3975-conflict-resolution-coaching-for-music-and-creative-practice",
+      "skill_md_sha256": "a075df0ff4eb2bfe68da17929edfa3b3a9d941964fd2b539cefac2e8a5952db1",
+      "summary_sha256": "0933cff7eda88848c26660bd7095295a4f3646bb2c58c39bd0019aa942782033"
+    },
+    {
+      "skill_id": "u3976-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3976-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "skill_md_sha256": "99636d16a8c5ae42d053212e5c4d8dd30b5fb22e676f12eb5d7769fac3743587",
+      "summary_sha256": "e86fa222c98a3762106537aa9fc4357971d2531f85ee24272626409396e02d42"
+    },
+    {
+      "skill_id": "u3977-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3977-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "skill_md_sha256": "ad4383cfc6ce316dc27d65e7cd81b8c7c8ff7b83a998e28584b3cfb9365ab31a",
+      "summary_sha256": "97d648f48a6e430756b0d9630b4b4c4f7e1263b5dcbfb8798bf3255f9615c21a"
+    },
+    {
+      "skill_id": "u3978-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3978-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "skill_md_sha256": "8215897f49357724988d2ba6cd345fd24e416519a97c978407ab74c954eb1d23",
+      "summary_sha256": "4971265ae007ea701147d5b45df60ea183a5783d232aa75b1a0eea13ea8bd83c"
+    },
+    {
+      "skill_id": "u3979-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3979-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "skill_md_sha256": "b086e37f105429c7abbeaf4ce61f35ea030b65e5198b835fb468f8389574a7cb",
+      "summary_sha256": "83f11ee6b491fec33a7438796e804513d769797198f766f5ed21609ab6d4c559"
+    },
+    {
+      "skill_id": "u3980-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3980-conflict-resolution-coaching-for-journalism-and-public-communication",
+      "skill_md_sha256": "cd51d1b89d289c9044487d7e65fc6d495ecfe57ba0ff52194feb1391faae0db7",
+      "summary_sha256": "3b9c7b90efb5221cd2fbc4b87a1cdf18a194717f0d82888ef6718492463b5265"
+    },
+    {
+      "skill_id": "u3981-conflict-resolution-coaching-for-multilingual-translation-services",
+      "path": "generated/shards/03/3981-conflict-resolution-coaching-for-multilingual-translation-services",
+      "skill_md_sha256": "4bc6d20ffe7c23c0818107c6074033df5b58afdedd2b87a5c2ded9bb4ff409ec",
+      "summary_sha256": "2b3f1e2ca014e9cb60382292e311480e820c5a9f7140cbec2c19da34208cf524"
+    },
+    {
+      "skill_id": "u3982-conflict-resolution-coaching-for-multilingual-translation-services",
+      "path": "generated/shards/03/3982-conflict-resolution-coaching-for-multilingual-translation-services",
+      "skill_md_sha256": "aaa3885eae2148862bc0e9d18f990b033faa628847fc9ed0e2804c6441526129",
+      "summary_sha256": "32f1b1bea7ae39921bace6fbd0ebf35b4dc79909dd0a6556da6390dd2521b420"
+    },
+    {
+      "skill_id": "u3983-conflict-resolution-coaching-for-multilingual-translation-services",
+      "path": "generated/shards/03/3983-conflict-resolution-coaching-for-multilingual-translation-services",
+      "skill_md_sha256": "587cdb704f79b474d76737c5616312d531f13c8967e400501c5a8e65bf63d5f3",
+      "summary_sha256": "7d4580b941edb4d4cc036140ed049290f57374bdc3045213ddb8241ea041142a"
+    },
+    {
+      "skill_id": "u3984-conflict-resolution-coaching-for-multilingual-translation-services",
+      "path": "generated/shards/03/3984-conflict-resolution-coaching-for-multilingual-translation-services",
+      "skill_md_sha256": "39ae3db454249f64ce9e484393fb84e046235ff386d80d46d03056149c64725e",
+      "summary_sha256": "3994ecf1efe32a51f6a29f2e4237fdf25c7fcdf7e19c7065672125651544cd4f"
+    },
+    {
+      "skill_id": "u3985-conflict-resolution-coaching-for-multilingual-translation-services",
+      "path": "generated/shards/03/3985-conflict-resolution-coaching-for-multilingual-translation-services",
+      "skill_md_sha256": "75a5e1b93cb58ac5860bef0bdf4f2cff8a04535e02178abdc3b5a2d37fd045af",
+      "summary_sha256": "bb0590714c7fbf1a0426efa1ced3d177ec56a69fac496560ad56e6468cec20de"
+    },
+    {
+      "skill_id": "u3986-conflict-resolution-coaching-for-remote-team-collaboration",
+      "path": "generated/shards/03/3986-conflict-resolution-coaching-for-remote-team-collaboration",
+      "skill_md_sha256": "f8c926dbd2f6408a3bf247ec418a9c12b237b168709baf322d6a4bbfb89ad7d8",
+      "summary_sha256": "98369720a3f7f64841647981a0014f18f053d119880865336791499db32d5604"
+    },
+    {
+      "skill_id": "u3987-conflict-resolution-coaching-for-remote-team-collaboration",
+      "path": "generated/shards/03/3987-conflict-resolution-coaching-for-remote-team-collaboration",
+      "skill_md_sha256": "cf2470639e1fb8cdfc0269c23718c29e3efbcf1ec81d0394c0eeafa207b93b34",
+      "summary_sha256": "d3a3d64f3317bb0f2e9c5f350ddaf8bd87380fab4b9a0655704a524638b0f03c"
+    },
+    {
+      "skill_id": "u3988-conflict-resolution-coaching-for-remote-team-collaboration",
+      "path": "generated/shards/03/3988-conflict-resolution-coaching-for-remote-team-collaboration",
+      "skill_md_sha256": "8cff0ea609c8c9b1d41f8de6c939e75c9873f15c375170c6e065c1d14079b810",
+      "summary_sha256": "6604f3168dc1fadda9eb40debdbfe20d87fc80d12954933f2e4257f19e96d909"
+    },
+    {
+      "skill_id": "u3989-conflict-resolution-coaching-for-remote-team-collaboration",
+      "path": "generated/shards/03/3989-conflict-resolution-coaching-for-remote-team-collaboration",
+      "skill_md_sha256": "469653dc5d9249631599f2b3323fa489b8b67e90227f9ddd6dcaadccb19f473e",
+      "summary_sha256": "798b53013edae3221a444770583232b5b3e5490b0f9aa2c80a39c9c0fe6a8ebe"
+    },
+    {
+      "skill_id": "u3990-conflict-resolution-coaching-for-remote-team-collaboration",
+      "path": "generated/shards/03/3990-conflict-resolution-coaching-for-remote-team-collaboration",
+      "skill_md_sha256": "076dd79a3c9bc374094dedc0171f5fed9937b1092f8b24134443c3dcf41fdd85",
+      "summary_sha256": "c3f84ddbd5ad763f3016d4628cdb21686b7c268189ccde7e30db0bac0f7b00ce"
+    },
+    {
+      "skill_id": "u3991-conflict-resolution-coaching-for-customer-support-operations",
+      "path": "generated/shards/03/3991-conflict-resolution-coaching-for-customer-support-operations",
+      "skill_md_sha256": "3f15800ee13d879c5b341aa50a16dd96581e9d2e32364eab01e321215d7b141d",
+      "summary_sha256": "3ea9501060c8b038927009c6000582bd556fba4dc349df71e995ed89b555a09c"
+    },
+    {
+      "skill_id": "u3992-conflict-resolution-coaching-for-customer-support-operations",
+      "path": "generated/shards/03/3992-conflict-resolution-coaching-for-customer-support-operations",
+      "skill_md_sha256": "0c3c1764fbb8b2744e68598e55edb692afd3849cf326724c2dfb7fb20934e217",
+      "summary_sha256": "76723d804c28b57302d15887a54aa8a83ca9d88d092116d9cea4d394118847ca"
+    },
+    {
+      "skill_id": "u3993-conflict-resolution-coaching-for-customer-support-operations",
+      "path": "generated/shards/03/3993-conflict-resolution-coaching-for-customer-support-operations",
+      "skill_md_sha256": "423569bfe510011ec8994f9f8341dd3ef43ec23d1010867991773f0f44660430",
+      "summary_sha256": "0602ce8e7d63127d6884fd49be8e7908d6482682a8948cd5646c7db0ca3d1f2c"
+    },
+    {
+      "skill_id": "u3994-conflict-resolution-coaching-for-customer-support-operations",
+      "path": "generated/shards/03/3994-conflict-resolution-coaching-for-customer-support-operations",
+      "skill_md_sha256": "db83d50a35009f19b28b13d12400339f9798f53d22ea7fa75e98bc28bfff8883",
+      "summary_sha256": "ddedfa7dfce264f3c33e5ff3f92ff61604c8a0046d953ef5435db70ec77e093f"
+    },
+    {
+      "skill_id": "u3995-conflict-resolution-coaching-for-customer-support-operations",
+      "path": "generated/shards/03/3995-conflict-resolution-coaching-for-customer-support-operations",
+      "skill_md_sha256": "ca28ca14e3684b3c94e73d0301743440a745a87bd73ebf08a69ffc482f7f1118",
+      "summary_sha256": "e092e1e2037008c59161e3f9b44c8bd9423c6e1985da7522336632214c0fca38"
+    },
+    {
+      "skill_id": "u3996-conflict-resolution-coaching-for-knowledge-management-systems",
+      "path": "generated/shards/03/3996-conflict-resolution-coaching-for-knowledge-management-systems",
+      "skill_md_sha256": "0c2471d662eb1822a76c0a79fc7785dbe4f71eff30154ce25b7983c6f503b42c",
+      "summary_sha256": "87661ea79daeb2660c96cb695017bbda8e7079d692827a4295b5da2737b20612"
+    },
+    {
+      "skill_id": "u3997-conflict-resolution-coaching-for-knowledge-management-systems",
+      "path": "generated/shards/03/3997-conflict-resolution-coaching-for-knowledge-management-systems",
+      "skill_md_sha256": "87ca783508768fa5954c14cbf6ba532876d931d94371021fd64d400dd997f07d",
+      "summary_sha256": "4ae42c345a85c51d9b74f9ee2581166c1bbe590ea58bc93c05a3e48fcb4fc8f0"
+    },
+    {
+      "skill_id": "u3998-conflict-resolution-coaching-for-knowledge-management-systems",
+      "path": "generated/shards/03/3998-conflict-resolution-coaching-for-knowledge-management-systems",
+      "skill_md_sha256": "0cca365670ebbe646f9601c39943609692876ae90b73f6d60d9fd897b7d4b20f",
+      "summary_sha256": "9fb4d58a83120faa1973a1c070433f3d0cdb9db4a3e9302c1c89c307ba86fe71"
+    },
+    {
+      "skill_id": "u3999-conflict-resolution-coaching-for-knowledge-management-systems",
+      "path": "generated/shards/03/3999-conflict-resolution-coaching-for-knowledge-management-systems",
+      "skill_md_sha256": "a6a0b5de2d919a67c55cbc99eb8072ff3df0da4f033865f54209c770f37ba85a",
+      "summary_sha256": "ef3fa729cc8521279191e3fd4572c6492f6d600e1ce5b77a0213012be18a76fc"
+    }
+  ]
+}

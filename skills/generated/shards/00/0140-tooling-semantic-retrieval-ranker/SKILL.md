@@ -1,74 +1,65 @@
 ---
 name: u0140-tooling-semantic-retrieval-ranker
-description: Build and operate the "Tooling Semantic Retrieval Ranker" capability for Tool Reliability and Execution Quality. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Tooling Semantic Retrieval Ranker" capability for Tool Reliability and Execution Quality. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Tooling Semantic Retrieval Ranker
 
 ## Why This Skill Exists
-We need this skill because automation collapses when tools are flaky and failure modes are opaque. This specific skill improves recall precision for downstream decision quality.
+This skill exists to make tool reliability and execution quality execution reliable under real production pressure, with explicit contracts, measurable outcomes, and fail-closed governance.
 
 ## When To Use
-Use this skill only when all of the following production criteria are true:
-- The task explicitly requires `u0140-tooling-semantic-retrieval-ranker` outcomes in the declared domain and cannot be handled by a simpler upstream capability.
-- Required upstream artifacts are available, schema-valid, and freshness-checked within the active execution window.
-- A named downstream consumer is declared for the primary report and scorecard outputs.
-- For high-risk impact (policy, safety, legal, security, privacy, or external publication), a human approver is assigned before execution starts.
+Use this skill when you need "Tooling Semantic Retrieval Ranker" outputs that will influence production decisions, automated routing, policy posture, or external-facing actions.
 
 ## Step-by-Step Implementation Guide
-1. Define the scope and success metrics for `Tooling Semantic Retrieval Ranker`, including at least three measurable KPIs tied to silent failures and cascading retries.
-2. Design and version the input/output contract for tool runs, error signatures, and retry outcomes, then add schema validation and failure-mode handling.
-3. Implement the core capability using semantic relevance scoring, and produce ranked retrieval results with deterministic scoring.
-4. Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
-5. Add unit, integration, and simulation tests that explicitly cover silent failures and cascading retries, then run regression baselines.
-6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
+1. Define scope, operational risk tier, and at least three KPIs tied to correctness, latency, and incident prevention.
+2. Specify versioned input/output contracts and enforce strict schema validation before any processing.
+3. Implement the core capability using deterministic contract execution, with deterministic scoring and reproducible artifact generation.
+4. Integrate orchestration controls: retry/backoff, idempotency keys, rollback checkpoints, and audit logging.
+5. Add tests (unit, integration, regression, and adversarial) that cover malformed signals, drift, and boundary thresholds.
+6. Deploy behind a feature flag, run staged rollout checks, and tune thresholds only through controlled change approval.
 
 ## Deterministic Workflow Notes
-- Core method: semantic relevance scoring
-- Archetype: planning-router
-- Routing tag: tool-reliability-and-execution-quality:planning-router
-- Determinism tolerance: max score delta <= 0.5% and max rank drift <= 1 position on identical inputs across reruns.
-- Execution tolerance: p95 end-to-end latency variance <= 10% across three replay runs.
-- Non-determinism policy: exceedance triggers fail-closed behavior and blocks publish-level output until human sign-off.
+- Core method: deterministic contract execution
+- Execution mode: deterministic-first with explicit tolerances
+- Routing tag: tool-reliability-and-execution-quality:tooling-semantic-retrieval-ranker
 
 ## Input Contract
-- `tool runs` (signal, source=upstream, required=true)
-- `error signatures` (signal, source=upstream, required=true)
-- `retry outcomes` (signal, source=upstream, required=true)
-- `claims` (signal, source=upstream, required=true)
-- `evidence` (signal, source=upstream, required=true)
-- `confidence traces` (signal, source=upstream, required=true)
+- `primary_signals` (array<object>, required=true)
+- `policy_context` (object, required=true)
+- `provenance_bundle` (object, required=true)
+- `confidence_trace` (object, required=true)
 
 ## Output Contract
-- `ranked_retrieval_results_report` (structured-report, consumer=orchestrator, guaranteed=true)
-- `ranked_retrieval_results_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `tooling_semantic_retrieval_ranker_report` (structured-report, consumer=orchestrator, guaranteed=true)
+- `tooling_semantic_retrieval_ranker_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `tooling_semantic_retrieval_ranker_handoff` (handoff-packet, consumer=downstream-skill, guaranteed=true)
 
 ## Validation Gates
-1. **schema-contract-check** — All required input signals present, schema-valid, and freshness-valid (on fail: fail-closed, reject run).
-2. **determinism-check** — Replay on identical inputs stays within explicit tolerance bounds (on fail: fail-closed, open incident).
-3. **policy-approval-check** — Policy/compliance/data-handling constraints pass with no waivers (on fail: fail-closed, quarantine artifacts).
-4. **high-risk-human-signoff** — Required for high-risk runs before publish-level release (on fail: hold output, no externalization).
+1. **schema-contract-check** — Reject if any required input is missing or malformed (on fail: quarantine)
+2. **determinism-check** — Re-run on identical inputs; output deltas must remain within tolerance <= 1% (on fail: escalate)
+3. **policy-gate-check** — Block publish-level artifacts until all policy checks pass (on fail: block)
+4. **high-risk-approval-check** — Require explicit human sign-off for high-risk impact changes (on fail: hold)
 
 ## Failure Handling
-- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
-- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
-- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
-- Rollback strategy: rollback-to-last-stable-baseline
+- `E_INPUT_SCHEMA`: Invalid or missing required signals → Reject request; emit structured validation errors
+- `E_POLICY_BLOCK`: Policy guard violation → Fail closed; do not emit publish-level outputs
+- `E_NON_DETERMINISM`: Reproducibility delta exceeds tolerance → Freeze artifacts; route to human approval
+- `E_DEPENDENCY_FAILURE`: Upstream/downstream dependency unavailable → Execute bounded retries then rollback
+- Rollback strategy: rollback-to-last-stable-baseline with incident annotation
 
 ## Handoff Contract
-- Produces: normalized capability artifacts, execution scorecard, risk posture, and machine-readable run summary.
-- Consumes: declared upstream signals plus validated policy and approval context.
-- Preconditions to handoff: all validation gates pass; high-risk runs include human sign-off (approver ID + timestamp).
-- Downstream routing hint: route only to declared consumers for this run; otherwise halt and request routing confirmation.
+- Produces: validated artifacts, confidence trace, risk posture, machine-readable handoff packet
+- Consumes: production-scoped signals, policy context, provenance evidence, deterministic config
+- Downstream routing hint: pass only gate-cleared artifacts with approval state and rollback pointer
 
 ## Required Deliverables
-- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
-
+- Versioned capability contract with deterministic tolerances and explicit failure semantics.
+- Test evidence covering nominal, edge, adversarial, and rollback scenarios.
+- Rollout evidence (feature-flag stage logs, gate outcomes, and operator sign-off where required).
 
 ## Immediate Hardening Additions
-- Add and keep current at least 5 golden fixtures in `fixtures/` with deterministic expected outputs.
-- Add and run a regression case for the highest-risk failure mode at `tests/regression-case.md`.
-- Emit `hardening-summary.json` per run with `status`, `risk_score`, `confidence`, `tolerance_result`, and `next_handoff`.
-- Fail closed on schema/policy/sign-off failures; never emit publish-level outputs on gate failure.
+- Add at least 5 golden fixtures with expected outputs and tolerance assertions.
+- Add regression tests for the highest-severity failure mode and policy bypass attempts.
+- Emit machine-readable run summary: `status`, `risk_score`, `confidence`, `approval_state`, `next_handoff`.
+- Enforce fail-closed behavior on schema, determinism, and policy gate failures.

@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 11,
+  "range": {
+    "start": "u3500-plan-quality-evaluation-for-disaster-response-networks",
+    "end": "u3549-plan-quality-evaluation-for-civic-participation-platforms",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3500-plan-quality-evaluation-for-disaster-response-networks",
+      "path": "generated/shards/03/3500-plan-quality-evaluation-for-disaster-response-networks",
+      "skill_md_sha256": "702d9cd85e56665d15243572d0dd1ddef4974b2a98b48484d4debc5a7c7bb896",
+      "summary_sha256": "13e902f46d7e747d4abbab73c4fdf3f11b920b15e286072db7f2efafaaed9975"
+    },
+    {
+      "skill_id": "u3501-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3501-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "71fd5eb18fc9dada8a47e269daca162b2fa64594a14aa2ca22c700cbb1f76654",
+      "summary_sha256": "948ba004a634362de9c3ded719a5a2b5a6db7d197580eaef49aabc3b3e4585b6"
+    },
+    {
+      "skill_id": "u3502-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3502-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "69c6ddfbbadd8921fbb271e1dd93dd26f4dcba56bc9f9666b8005e3a3f9dbac9",
+      "summary_sha256": "869b18a1d7449f67dec0ca11abd13dbcf598d42a6fa63d89a04b9005bf6ca9e0"
+    },
+    {
+      "skill_id": "u3503-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3503-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "8fadb2dc045432c2aaa02343ff69c671cac9a4a5d8f575faaa307c0b2d7cb521",
+      "summary_sha256": "cf93aac688d3d7064c5c8c0229d947a20aeafe699c448bc218a1f36bed2f9e8a"
+    },
+    {
+      "skill_id": "u3504-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3504-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "181a82532468d548af706b806573d7e5bd339a4bc6ea1257d8af057f34fa2de3",
+      "summary_sha256": "2461ab412500526cd3da08707db6d24e97392d9e492220055292e36a678e9fb7"
+    },
+    {
+      "skill_id": "u3505-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3505-plan-quality-evaluation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "a117b61b9e26be8cd8b9f8b65ba1381f4e46b7a3821a7df98cd4053a99d1bcdc",
+      "summary_sha256": "f144fe595b6cd98544bddb30623afa0019285f42c67e65842932d489ae4b924b"
+    },
+    {
+      "skill_id": "u3506-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3506-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "b5630608d8c7ccb390c455827038289112d2dc409f5bcc6e9337171afc0c7be6",
+      "summary_sha256": "75cad1a92e2ef3c80a1502e5724b69dbb917b73d221b502c2849089a36351061"
+    },
+    {
+      "skill_id": "u3507-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3507-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "7568ec55ece46c5f22778fa6deb79811c88c23caceb0b4329c35d99d9489f498",
+      "summary_sha256": "01085a4c4ad4921c3dc0812a5f2a102d5100c4cc53fe597e0b7cc98da9f04d8c"
+    },
+    {
+      "skill_id": "u3508-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3508-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "17fea4f2e1615418a464eabe515e4f81ab8bd602ee1c5714bbf4b4b14e7a9b7b",
+      "summary_sha256": "866cef0d406940b25ba9c92dd42b43471ce919bb95ae0004fd02b030ba3d6a4b"
+    },
+    {
+      "skill_id": "u3509-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3509-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "97010597c7c8176dcf1bae59bd6600227ab1c6daa607f97c1c1969a344086a7e",
+      "summary_sha256": "18aae742171b56726734dfc11ff2ff1eb9d70af7552e5080506039a6badd3b81"
+    },
+    {
+      "skill_id": "u3510-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3510-plan-quality-evaluation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "d88a19ad6727f307e164d77eb3dda8bd8e4eb53a0a9e5edd5085f01053209388",
+      "summary_sha256": "d242847749aa6dc53d9faead7cd92f94027e9f5dd38fe3a795f60b289197bc5b"
+    },
+    {
+      "skill_id": "u3511-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3511-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "4dadb856b5e63f435bdfec2f3ef489e18262d8588f2494aae321e1a3fae7d756",
+      "summary_sha256": "1e811397f9e6f226b674a4954e1193aa1f40cab657508bc4faf8d2fc6d4a2af0"
+    },
+    {
+      "skill_id": "u3512-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3512-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "232ad3ff245ff3ba1642ea1e6b4feab9179246254afbf980c415c405fd8eca25",
+      "summary_sha256": "995a8c0b6eaf5b1546ec3fce061836fe2b35b675ee6f94b74f2afb3dab0f86e3"
+    },
+    {
+      "skill_id": "u3513-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3513-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "7efe128cd91d9908b6e238f6ec81734d32d8fc64e5fced7ed49a8123f2939bd0",
+      "summary_sha256": "fbe5d9fb1f314cfebb774e4688f41e8c3591eb00ae38faf1c84aaff760fe9256"
+    },
+    {
+      "skill_id": "u3514-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3514-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "abc9e1d47dd871b3cad3aa1fe93c6dc5479672f8ba31725afa4216312339b5d5",
+      "summary_sha256": "da217e51d9ae283da74c074b25d124ee23ae75ba71c8f42dc3cf64ffb8ab6cd1"
+    },
+    {
+      "skill_id": "u3515-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3515-plan-quality-evaluation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "af4a4ab2c16efba57edb1b07e897d23c06fcd226fb72f461a9ce8019b7ea1e01",
+      "summary_sha256": "62bc814c8ae0d51e343b2c6c6ce8aca6be8fdd191e4b3c43bc4c43c36594b917"
+    },
+    {
+      "skill_id": "u3516-plan-quality-evaluation-for-supply-chain-resilience",
+      "path": "generated/shards/03/3516-plan-quality-evaluation-for-supply-chain-resilience",
+      "skill_md_sha256": "323af6d2f142b6220dc9b3be969228d4f291790dcfcda283ae5e0eaa0ea36773",
+      "summary_sha256": "c1903a96d29ec54caeef3f90e7bcbad918aad0fc939841e89b90e88ec01fa12c"
+    },
+    {
+      "skill_id": "u3517-plan-quality-evaluation-for-supply-chain-resilience",
+      "path": "generated/shards/03/3517-plan-quality-evaluation-for-supply-chain-resilience",
+      "skill_md_sha256": "47fc2480e13e3bb6f1ce5d90e397bb92a4399c7a1aff2cf6726bb82359811c30",
+      "summary_sha256": "867f0e140be3e2fbfd40d86819dfa1048900b0a5b6e30d813baad56be11367b1"
+    },
+    {
+      "skill_id": "u3518-plan-quality-evaluation-for-supply-chain-resilience",
+      "path": "generated/shards/03/3518-plan-quality-evaluation-for-supply-chain-resilience",
+      "skill_md_sha256": "bd0bb40d9c8fd378f993b98e748e69aca90fc43b010230fd8d511a55fcf5abbb",
+      "summary_sha256": "1e7fe38f5b8f5cb9541083da4a5fb7d9558adb512a9bb53980fe9ee7efb1f61d"
+    },
+    {
+      "skill_id": "u3519-plan-quality-evaluation-for-supply-chain-resilience",
+      "path": "generated/shards/03/3519-plan-quality-evaluation-for-supply-chain-resilience",
+      "skill_md_sha256": "f7fe7f90da84b5a0f4b519ac1cfcc7aaab9d96b9bafa62b71b09ec46c82460c3",
+      "summary_sha256": "11f5a0bae0a065a163606bbf0e215c61a597a39798bb28d0e1bccbc04b859124"
+    },
+    {
+      "skill_id": "u3520-plan-quality-evaluation-for-supply-chain-resilience",
+      "path": "generated/shards/03/3520-plan-quality-evaluation-for-supply-chain-resilience",
+      "skill_md_sha256": "7c6c41869b3e81609922f72392142dfd8b728953cc85d9afe226be61771b077c",
+      "summary_sha256": "8d3d7ef3a94fc47e7f2ba5bb4017d9fbbc10155a187d57201b34d2dff3a94a8a"
+    },
+    {
+      "skill_id": "u3521-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3521-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "80043ae5d745cde1c0c2adac7e80ebbf4845992cf7c77a0040750ab5cb204b64",
+      "summary_sha256": "707b2289a1fd1f4c099ccba45d0c4339aa30742cb0767cdaf75379d1f43a5f51"
+    },
+    {
+      "skill_id": "u3522-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3522-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "7fc08322893b80417bf5c224fd3fa85d76fdc79396187ecfa17125b485de71b7",
+      "summary_sha256": "8c1c211ddbe0ba4c874673032da3eed0fab609676d2e35e016ad0a19cae6aa48"
+    },
+    {
+      "skill_id": "u3523-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3523-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "8593ffe9a07a85853d973e00a24436c6b377a0eb4d5a9db0fa9b448dd8d499e1",
+      "summary_sha256": "b663bd09b8d92a912024558dc6bf16c4286a0f9037bb384439cd8555b48898d3"
+    },
+    {
+      "skill_id": "u3524-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3524-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "f7b802f7058ee251eb2780047cf9336180187b10c761008004ba2022e359b76e",
+      "summary_sha256": "6a13bc00565896fad71baf1efba4fa27aca3a8fc1851040cd430cd0674811708"
+    },
+    {
+      "skill_id": "u3525-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3525-plan-quality-evaluation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "bbdbd8e0b906663491059d891d0f065039203f05b0ede7416c1d5a81daa8e444",
+      "summary_sha256": "cf2e1e30232258de49a307005bd47659098aebc197bdd5a6456f561184f803fe"
+    },
+    {
+      "skill_id": "u3526-plan-quality-evaluation-for-cybersecurity-operations",
+      "path": "generated/shards/03/3526-plan-quality-evaluation-for-cybersecurity-operations",
+      "skill_md_sha256": "ba5a8d453cb43ac01aee47ad9d16ae39a2ae4db74c2ecc7af7c76cdb6d7ce516",
+      "summary_sha256": "89783b4350082c067a18afb7669bdc2d0436dc9d2c6bd8f2e0a4ca22409c197b"
+    },
+    {
+      "skill_id": "u3527-plan-quality-evaluation-for-cybersecurity-operations",
+      "path": "generated/shards/03/3527-plan-quality-evaluation-for-cybersecurity-operations",
+      "skill_md_sha256": "b4cf6a18a8048aed04c674ef1daa6f58178147580c21d952c49510577be34dff",
+      "summary_sha256": "8a7deb3cd53c220311faad299cee337a9b98b40f3183a358adaabd1dae332a67"
+    },
+    {
+      "skill_id": "u3528-plan-quality-evaluation-for-cybersecurity-operations",
+      "path": "generated/shards/03/3528-plan-quality-evaluation-for-cybersecurity-operations",
+      "skill_md_sha256": "6c6eaf7743fb075ceca28e1938d4d90f78fbe81612f926d573fff96fe42571fa",
+      "summary_sha256": "e5c2ff330da0ddbec0689f7b6f7416b4403e6b66d4373d26934a12d7d3389547"
+    },
+    {
+      "skill_id": "u3529-plan-quality-evaluation-for-cybersecurity-operations",
+      "path": "generated/shards/03/3529-plan-quality-evaluation-for-cybersecurity-operations",
+      "skill_md_sha256": "45a7fa96cf7dfc0b2877b1d3db621c28e5aafdc5f60ad8522edc55b727640680",
+      "summary_sha256": "32702c845b541d7afd450eb998b50275aaea5404144102ce0f38783470bedd26"
+    },
+    {
+      "skill_id": "u3530-plan-quality-evaluation-for-cybersecurity-operations",
+      "path": "generated/shards/03/3530-plan-quality-evaluation-for-cybersecurity-operations",
+      "skill_md_sha256": "2fdbac93c8185ba4fd46a685284c20d9e9612e264a2c62a3507b5b0f725942f2",
+      "summary_sha256": "526b94b63071b32be00b9b586df9de2c03961ce2e1e1e40c355971c48c46a04d"
+    },
+    {
+      "skill_id": "u3531-plan-quality-evaluation-for-research-and-development-labs",
+      "path": "generated/shards/03/3531-plan-quality-evaluation-for-research-and-development-labs",
+      "skill_md_sha256": "1aab24b16796ffd664fe57c8177d0ebc42863c3c610095fcefe467c596d16829",
+      "summary_sha256": "2db8622c0c4b511cbf6ec6c72416cf9df912cd4fafec073c3d23ef3b0ee81930"
+    },
+    {
+      "skill_id": "u3532-plan-quality-evaluation-for-research-and-development-labs",
+      "path": "generated/shards/03/3532-plan-quality-evaluation-for-research-and-development-labs",
+      "skill_md_sha256": "719b5b7e48c9cc4ca335d5a7640c675699d40e28efbf7160021de3324dca4111",
+      "summary_sha256": "4eae61e228d22513a68e0bcffea8fe056ff792c254fa789c47f2637b6843a50f"
+    },
+    {
+      "skill_id": "u3533-plan-quality-evaluation-for-research-and-development-labs",
+      "path": "generated/shards/03/3533-plan-quality-evaluation-for-research-and-development-labs",
+      "skill_md_sha256": "558d6a3e17474af0ed14b3215565c9fe5d5f033cca3fd97df9fd4b54a76ab2f9",
+      "summary_sha256": "b40b2bc4c13003d61092737fe7fe156234a6e4d0cccb1e31dd17449d833365a4"
+    },
+    {
+      "skill_id": "u3534-plan-quality-evaluation-for-research-and-development-labs",
+      "path": "generated/shards/03/3534-plan-quality-evaluation-for-research-and-development-labs",
+      "skill_md_sha256": "10a60eccef787a3a6f4d54f1e237d1b97a23d81ad7e7efe812a7da8ca31821d4",
+      "summary_sha256": "1117c44b37986342b3b8ab3fe3aa5efe0e21d52a2964adb1e5bc00b49d06fc3a"
+    },
+    {
+      "skill_id": "u3535-plan-quality-evaluation-for-research-and-development-labs",
+      "path": "generated/shards/03/3535-plan-quality-evaluation-for-research-and-development-labs",
+      "skill_md_sha256": "7350ee89ade721b931b68fcb521d0f4be81a6aa0d78bca42c44cce6c339bd9e3",
+      "summary_sha256": "c262711fbe2d61bb29cd0719a24403cbc506bac95f2ed9d1babe602fd43dcc84"
+    },
+    {
+      "skill_id": "u3536-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3536-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "87bb697009ad9dfaad015a9ccae518b645db8bc252edcfb51255dcfa1f971032",
+      "summary_sha256": "a529ceea3ebc2be28ba13b84daaf1941602eb097da3233e98ef7049727b0cd3c"
+    },
+    {
+      "skill_id": "u3537-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3537-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "af70456b4c5e890332ad6a1b1d4ef06b99f16159d144f6416dd3f2f9fce05868",
+      "summary_sha256": "ff6c07b7db1a5e618efdf3356e8f6315a07e161f0ac90c1fccd46e84827fac73"
+    },
+    {
+      "skill_id": "u3538-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3538-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "a12ff64b4859a4f92f3d3e53942da4114447310aa2ae2f08e59dc6a2c4651968",
+      "summary_sha256": "e67dfae5c6a369efe40e9ac59933076a55fc2cc9c4013f1c21d30de9a6fa6589"
+    },
+    {
+      "skill_id": "u3539-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3539-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "6618210f0a54cfb04a5cbc8038797a368b0a825a618167d5d54f9d4ef2c8fafc",
+      "summary_sha256": "ef088e702fe0b8e32884efd1ab3a677df74b1dbdb2232c818e05f3688af7e2b4"
+    },
+    {
+      "skill_id": "u3540-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3540-plan-quality-evaluation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "64dd8961df4cb00d4fe89075fcf5827fba91b7beca2cf38fbad8525a906bd1a6",
+      "summary_sha256": "5ce6763def74826a5d81a92c85998d86447cdfa5af89411451d83216dc4808d2"
+    },
+    {
+      "skill_id": "u3541-plan-quality-evaluation-for-community-mediation-programs",
+      "path": "generated/shards/03/3541-plan-quality-evaluation-for-community-mediation-programs",
+      "skill_md_sha256": "a8ce1b7ab6fe3d47edaabb9bdb8b92ed37690431a1e7c403afa98666e62714b2",
+      "summary_sha256": "fa08540cabcfc1305634321b874ccac95d5f1b62acad68246f7a371b268c0ad5"
+    },
+    {
+      "skill_id": "u3542-plan-quality-evaluation-for-community-mediation-programs",
+      "path": "generated/shards/03/3542-plan-quality-evaluation-for-community-mediation-programs",
+      "skill_md_sha256": "9f6649fb3a983040a7165d095ce939c3cded3cab4203408093f2c6b8d39e18bf",
+      "summary_sha256": "b731d13fe267ba4c70a60934c4f80d4ea836c3345f239295b169514a931a926c"
+    },
+    {
+      "skill_id": "u3543-plan-quality-evaluation-for-community-mediation-programs",
+      "path": "generated/shards/03/3543-plan-quality-evaluation-for-community-mediation-programs",
+      "skill_md_sha256": "38a27102be78099fb75b6245f74b5f7228c92b0230d683276cd571406d6faa17",
+      "summary_sha256": "e7e68035011a684516ebdd9d94482bdff8d2e583557c0a79c7a1d52f5e0a4295"
+    },
+    {
+      "skill_id": "u3544-plan-quality-evaluation-for-community-mediation-programs",
+      "path": "generated/shards/03/3544-plan-quality-evaluation-for-community-mediation-programs",
+      "skill_md_sha256": "da67c4a36db687c37539da5276953640bb7c103fc9e12717df9c10953032d6ae",
+      "summary_sha256": "2afd2d537a09fd00c172a2d95797134708e073f9523992ea305b693bd42da673"
+    },
+    {
+      "skill_id": "u3545-plan-quality-evaluation-for-community-mediation-programs",
+      "path": "generated/shards/03/3545-plan-quality-evaluation-for-community-mediation-programs",
+      "skill_md_sha256": "c60d833426352a3662935deab21a35a05d86ff064926979496e329c18ddd5902",
+      "summary_sha256": "126522ea3d815dddcbea0ab0de9432009624d818cf5930189bddd5412cbd73c2"
+    },
+    {
+      "skill_id": "u3546-plan-quality-evaluation-for-civic-participation-platforms",
+      "path": "generated/shards/03/3546-plan-quality-evaluation-for-civic-participation-platforms",
+      "skill_md_sha256": "93de8e638a8019def275cf7f8997bd0ab686608fc1b9365cac626494bb914e99",
+      "summary_sha256": "0c1e87b8c62931fccfca8d492ad69cc19b5bb36883b8682b5f8dc9aa64777d5a"
+    },
+    {
+      "skill_id": "u3547-plan-quality-evaluation-for-civic-participation-platforms",
+      "path": "generated/shards/03/3547-plan-quality-evaluation-for-civic-participation-platforms",
+      "skill_md_sha256": "3deeb6394727591137afd573b373c72ae84dc059e8e629ba90de17127819a735",
+      "summary_sha256": "86ddf90f402332c6837c00382c2cd35bb0ab257af6d5f82e663de501e1511df6"
+    },
+    {
+      "skill_id": "u3548-plan-quality-evaluation-for-civic-participation-platforms",
+      "path": "generated/shards/03/3548-plan-quality-evaluation-for-civic-participation-platforms",
+      "skill_md_sha256": "a510d84a91612d9183b005a9b9ea47316f4804ab0d4bbe1a407149b140549dfb",
+      "summary_sha256": "9b09d89f60380de7aa6e98ca251cb3440dc1f873da3c560f5b051a1979fdf2d1"
+    },
+    {
+      "skill_id": "u3549-plan-quality-evaluation-for-civic-participation-platforms",
+      "path": "generated/shards/03/3549-plan-quality-evaluation-for-civic-participation-platforms",
+      "skill_md_sha256": "b21784b36fe3b9804a9d54bfcc1c35c91d57efc7d42b87ea1768216210a50747",
+      "summary_sha256": "0b96571066424402bdd64073f29304e088c038e789404070a86d37355effd1b9"
+    }
+  ]
+}

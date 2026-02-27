@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 6,
+  "range": {
+    "start": "u3250-semantic-retrieval-ranking-for-entrepreneurship-operations",
+    "end": "u3299-semantic-retrieval-ranking-for-disaster-response-networks",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3250-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3250-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "skill_md_sha256": "09e5add94043fc0eb6c0de5cc1bec59ea47cdefffa566e0041bb0a9eb028a78a",
+      "summary_sha256": "7dab2d9a698b5503176fd108b0d91aa774f09860c6e115a666fbcf2699000e3f"
+    },
+    {
+      "skill_id": "u3251-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "path": "generated/shards/03/3251-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "skill_md_sha256": "ca716d5f9ef86e48a4f4c928541d100ba0699d4019023037f1d8c94be5922c2e",
+      "summary_sha256": "5e083d7ec2376d3547510f816f59104ac4e1ac6ee3e493dc7cbfeae471fd379f"
+    },
+    {
+      "skill_id": "u3252-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "path": "generated/shards/03/3252-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "skill_md_sha256": "c9492ccbfbc3cc07dfcecd7318a55d4519c979f39c5e9fc2fcc4b32a53e9c98c",
+      "summary_sha256": "44419171e23cab8bd74edd2131b78bcd61a20966e4bdb6310f5a09aaed194808"
+    },
+    {
+      "skill_id": "u3253-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "path": "generated/shards/03/3253-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "skill_md_sha256": "b53ad9bb843acc549651fcf12df028fce1adae85ef6853cc5f1cf8d4ca386e19",
+      "summary_sha256": "35ab6a17cd1f428472cdfa6fe91c7d23bc3727c3ad35722f3db6d93d3ac7233b"
+    },
+    {
+      "skill_id": "u3254-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "path": "generated/shards/03/3254-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "skill_md_sha256": "a81a94c6a3b65886096b42dd979efed149bbf9a64a773e683556460cf62cfd24",
+      "summary_sha256": "03d67480892d72c56c06e8d3dd826c9ca3e0c62ac53a515146ce8ce4181bd943"
+    },
+    {
+      "skill_id": "u3255-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "path": "generated/shards/03/3255-semantic-retrieval-ranking-for-software-engineering-delivery",
+      "skill_md_sha256": "ef5d15a3408e8aa6e7b36284ed810a23c7a82f35a2a067abe92260470fd3b612",
+      "summary_sha256": "8dda696dc9c9c473049c0d9371eebe12ffc759b01bb2f8ebc62f06676ec43629"
+    },
+    {
+      "skill_id": "u3256-semantic-retrieval-ranking-for-product-management-execution",
+      "path": "generated/shards/03/3256-semantic-retrieval-ranking-for-product-management-execution",
+      "skill_md_sha256": "ffa50fdad76106292ed38c04b0152863b58f43704ba3757f563091682b904f38",
+      "summary_sha256": "76431c77a2756c6f4c6ebb38b79d3ac7d4787d9b1fe9d13d5595c60f7532b886"
+    },
+    {
+      "skill_id": "u3257-semantic-retrieval-ranking-for-product-management-execution",
+      "path": "generated/shards/03/3257-semantic-retrieval-ranking-for-product-management-execution",
+      "skill_md_sha256": "05edd32a027f561e9a79474fd0769c2eeaefc29c8d802edc4c5fbb7eb0840e17",
+      "summary_sha256": "f7b09159ca8f769de01b22415784ea41def31f35164a09c02319eca98c40eae1"
+    },
+    {
+      "skill_id": "u3258-semantic-retrieval-ranking-for-product-management-execution",
+      "path": "generated/shards/03/3258-semantic-retrieval-ranking-for-product-management-execution",
+      "skill_md_sha256": "b5d8f25d7ce8a0d14fdec2230ffd4c9e184b97bdea857d302d76732c2830f83b",
+      "summary_sha256": "bbc9053ed1c2fe4646cc272adf97ebb6ce75458a9ef28d670c2f11f80e0ba237"
+    },
+    {
+      "skill_id": "u3259-semantic-retrieval-ranking-for-product-management-execution",
+      "path": "generated/shards/03/3259-semantic-retrieval-ranking-for-product-management-execution",
+      "skill_md_sha256": "bcd5e962d2b84cbae671ad30b48d5a925d4884d326848659c8e0b6bdf145f5f4",
+      "summary_sha256": "210e79f6357b06166cbefd864e8f5c0ff5cefbef0492ba83a32685f53df47cdf"
+    },
+    {
+      "skill_id": "u3260-semantic-retrieval-ranking-for-product-management-execution",
+      "path": "generated/shards/03/3260-semantic-retrieval-ranking-for-product-management-execution",
+      "skill_md_sha256": "687504d39b4c49f24154eecff2a046647cdf832f42f1b01cf09ab806c5918429",
+      "summary_sha256": "703ca215c422766d7ab2923bccbaabc92b0fcd1711fcded2c170532f8761abd9"
+    },
+    {
+      "skill_id": "u3261-semantic-retrieval-ranking-for-design-and-user-research",
+      "path": "generated/shards/03/3261-semantic-retrieval-ranking-for-design-and-user-research",
+      "skill_md_sha256": "e688acbdfd1b41cc7a2fdabf77a58a1a48b6e3f9d73c3d373f7e694aff662f21",
+      "summary_sha256": "8985a1d329ba5c0b142181b0fd3bec04f1a0e28e922c98ee2c9f132713d8ec3f"
+    },
+    {
+      "skill_id": "u3262-semantic-retrieval-ranking-for-design-and-user-research",
+      "path": "generated/shards/03/3262-semantic-retrieval-ranking-for-design-and-user-research",
+      "skill_md_sha256": "ca1736744e25aaf0167a4877470db44792edd85fcd23f7483b04a206ad32b0c5",
+      "summary_sha256": "c875aa4fa6d82e06e372b193d837ab3666a05081bd4de931cdbdfb39e9941a41"
+    },
+    {
+      "skill_id": "u3263-semantic-retrieval-ranking-for-design-and-user-research",
+      "path": "generated/shards/03/3263-semantic-retrieval-ranking-for-design-and-user-research",
+      "skill_md_sha256": "2e844db789b6a14ee4dc1961563f0580e53c1465806e7891c1ea030f46a7a8e7",
+      "summary_sha256": "c18433c8fdaf4e6517d24260050660f2ed69ac6dbc88cf8db1e00be7c63a4387"
+    },
+    {
+      "skill_id": "u3264-semantic-retrieval-ranking-for-design-and-user-research",
+      "path": "generated/shards/03/3264-semantic-retrieval-ranking-for-design-and-user-research",
+      "skill_md_sha256": "10b83d72d5d1984ebdd28c9d29b003a111d8e06eba82921fbc7e9541cf94be0a",
+      "summary_sha256": "445f8338c8f854f397f77e463239a4e941fdb987df48665759aa8f0ce2edde80"
+    },
+    {
+      "skill_id": "u3265-semantic-retrieval-ranking-for-design-and-user-research",
+      "path": "generated/shards/03/3265-semantic-retrieval-ranking-for-design-and-user-research",
+      "skill_md_sha256": "768ef82cea99ccb1d5f76a8d318c4d4ece50ff1d7c8ce03b48ad1b4eb609c808",
+      "summary_sha256": "ebf712df06f13b3d75df5494c00c8614dd92d7c9eb8705d5c2cccb8da1286e26"
+    },
+    {
+      "skill_id": "u3266-semantic-retrieval-ranking-for-sales-and-client-success",
+      "path": "generated/shards/03/3266-semantic-retrieval-ranking-for-sales-and-client-success",
+      "skill_md_sha256": "808ce9b3240747d82bf520c9169bffc0de2fcba5190bb789727ea26f9c56042c",
+      "summary_sha256": "d635b2e122a8ddf9250caeb9bc65c38e233e0bece45373583cb772b51ac3c193"
+    },
+    {
+      "skill_id": "u3267-semantic-retrieval-ranking-for-sales-and-client-success",
+      "path": "generated/shards/03/3267-semantic-retrieval-ranking-for-sales-and-client-success",
+      "skill_md_sha256": "d8c187dcce095b86294e2a2ea29f7df4088641ae9ad6570bc68e3817dfa08ce6",
+      "summary_sha256": "03dfcd55b897e64b18a4b4043e36de5adca3bcb735f4339e1d9c149e1da7003b"
+    },
+    {
+      "skill_id": "u3268-semantic-retrieval-ranking-for-sales-and-client-success",
+      "path": "generated/shards/03/3268-semantic-retrieval-ranking-for-sales-and-client-success",
+      "skill_md_sha256": "07e7ca42a9f7429f3adcecfaa4549d527080e5219b8668490708d34118d2d78c",
+      "summary_sha256": "a85e2f3b84dc28b684751f6fd178c3d21670c0960d6b6e87b94fba5554dcd271"
+    },
+    {
+      "skill_id": "u3269-semantic-retrieval-ranking-for-sales-and-client-success",
+      "path": "generated/shards/03/3269-semantic-retrieval-ranking-for-sales-and-client-success",
+      "skill_md_sha256": "a40cc35ae07408e5524252cc0b1ee1cdc56b143875733fe7643960a44b8ed1fe",
+      "summary_sha256": "da0b0ae792dfad641dd349444cf1c96170b2a111c06445a916e32db5e2c60100"
+    },
+    {
+      "skill_id": "u3270-semantic-retrieval-ranking-for-sales-and-client-success",
+      "path": "generated/shards/03/3270-semantic-retrieval-ranking-for-sales-and-client-success",
+      "skill_md_sha256": "785f9c72b9fca204804beeac3ab56b5c68788a4e7eb11926cdcd739fb51a006a",
+      "summary_sha256": "c71c1dd182538403c722f0f7a17f6a805de95e973b9b1c722b85dbcdff5b41f8"
+    },
+    {
+      "skill_id": "u3271-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3271-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "skill_md_sha256": "d18a2d47f3b353424a99cb7e6ab8fe313519f3af33d3962d14b720f89408742d",
+      "summary_sha256": "333390d00ff8b7f2e3d2fd72c563418fa98d449b1ad5e9f265c3d843c01a2701"
+    },
+    {
+      "skill_id": "u3272-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3272-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "skill_md_sha256": "cbfd382f4ed03aa3366bb93a43941467f4ab0216aeee4aa455aeec3e443d9519",
+      "summary_sha256": "13b20c434f686b72a698972ea9a2f8d8388693197ca052c4f53c9e3efff2c4ee"
+    },
+    {
+      "skill_id": "u3273-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3273-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "skill_md_sha256": "344db311ff864db4d18a1f7a4215d91f40348393f98955ae05bc3817b698cf79",
+      "summary_sha256": "f3cef8e439f9bf4efe97634d18ddea50661b7c7ce0f03d0cd4d14d9324f5318e"
+    },
+    {
+      "skill_id": "u3274-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3274-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "skill_md_sha256": "af93da6f26a92e8e091ca2235411fb301db388da8ddfe6830f4d934c0ddf59e0",
+      "summary_sha256": "d32ce681eb6795d522557bbd2736d490dfb204ce5e84edba1fb48e85529a27be"
+    },
+    {
+      "skill_id": "u3275-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3275-semantic-retrieval-ranking-for-marketing-and-storytelling",
+      "skill_md_sha256": "1c1c7db6ea5646ea9e6f2947d94b6ffb120d9cd00ababcc8c43d967814a95549",
+      "summary_sha256": "8bed65c6361709696fa7781ab8a52b1b01b626e9597beef794001e35a3c2971f"
+    },
+    {
+      "skill_id": "u3276-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3276-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "skill_md_sha256": "dc315233bd1027cced5d3b18a2935e6a5dbc3cefbc00054fc46da510b7e80dfe",
+      "summary_sha256": "9a21b047961f3d2ae95d6e771425cc7af613420b12f8a5b01ad0d9c0ac2e24ec"
+    },
+    {
+      "skill_id": "u3277-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3277-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "skill_md_sha256": "b9ba48c40b93193863b5cbcd4a7029b57a31f00b447b5d0e6c286bc16f760f72",
+      "summary_sha256": "372b204b03fbd600aa24748c2262be5d9b298ab83e6fc01f59bb5de472ff42c3"
+    },
+    {
+      "skill_id": "u3278-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3278-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "skill_md_sha256": "9d795bdc63a359dde8956b8dbfa6944f78b8b9356303d092444f93927afc2c89",
+      "summary_sha256": "f5c96d44c21733413eae80736501bfa5470555364ec0f57d0128286c0f0994ac"
+    },
+    {
+      "skill_id": "u3279-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3279-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "skill_md_sha256": "dd65a056ade0c683b6642c5cf4fa260dc8f015044bfce47bc4c303f6bd8c3f44",
+      "summary_sha256": "de9e2a156905a1afe51dc74d8f67b5fe9ef30977a4755bf9b37a8c8627ac0d42"
+    },
+    {
+      "skill_id": "u3280-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3280-semantic-retrieval-ranking-for-legal-and-policy-workflows",
+      "skill_md_sha256": "10dfd2cc9f0ee3c3fb6b19c168f20a68708c82ceda5f516b82d76f6c1244a0bb",
+      "summary_sha256": "cc2a206140b3b04265d440373ef0e76072ccd5deee510c8fffccb34b0a64a179"
+    },
+    {
+      "skill_id": "u3281-semantic-retrieval-ranking-for-healthcare-operations",
+      "path": "generated/shards/03/3281-semantic-retrieval-ranking-for-healthcare-operations",
+      "skill_md_sha256": "170bf0b0dc8bd0e2197abffff6c3c2666c0609c40692b3c427c079cc53a0e782",
+      "summary_sha256": "c8a2437ce84670024605799acaac2f6875ad7277ffb7019b55b1ca2a04c39fea"
+    },
+    {
+      "skill_id": "u3282-semantic-retrieval-ranking-for-healthcare-operations",
+      "path": "generated/shards/03/3282-semantic-retrieval-ranking-for-healthcare-operations",
+      "skill_md_sha256": "4a5648e5986f6464700ef7a712f152bcce0440aa854575ae338d4e42431c69b6",
+      "summary_sha256": "cdc508a964c996a35cde516cfc6188fbd586245af47d3ce35a465da35b869383"
+    },
+    {
+      "skill_id": "u3283-semantic-retrieval-ranking-for-healthcare-operations",
+      "path": "generated/shards/03/3283-semantic-retrieval-ranking-for-healthcare-operations",
+      "skill_md_sha256": "5265efba8ddf8f7ba6213536813c00b9d9e0a95cca423a07a71d3dfddf21349a",
+      "summary_sha256": "89984842786491b79fa7f98c34d09f98c6fb2098050ce6ecb75f690ef3d81605"
+    },
+    {
+      "skill_id": "u3284-semantic-retrieval-ranking-for-healthcare-operations",
+      "path": "generated/shards/03/3284-semantic-retrieval-ranking-for-healthcare-operations",
+      "skill_md_sha256": "45f5790d0d819b5bb2cbf1a59046a2e4f94a56b0635441a31a890afcf21394b6",
+      "summary_sha256": "0930bc09d3c15bf4756c89f431b4f6513bd05bc86f4e2ac0cd3a241fbdd638b6"
+    },
+    {
+      "skill_id": "u3285-semantic-retrieval-ranking-for-healthcare-operations",
+      "path": "generated/shards/03/3285-semantic-retrieval-ranking-for-healthcare-operations",
+      "skill_md_sha256": "a606463f339284e350f74ddc665852ffa6c1770bf20dd1c2efdd742587879d14",
+      "summary_sha256": "0dd4bb4d47c7fe618bd7ab4769d8c091d09ea86becaf9899b0d87df73f7e975e"
+    },
+    {
+      "skill_id": "u3286-semantic-retrieval-ranking-for-education-support-services",
+      "path": "generated/shards/03/3286-semantic-retrieval-ranking-for-education-support-services",
+      "skill_md_sha256": "ad7f6f8ade7cdfd4c2720cfc0173e555a52c94d04650cca4edb89abd74163295",
+      "summary_sha256": "16e64f7d2c5235070248b2afb02d15044bfb088c32f44d12ee1df8aa7580372a"
+    },
+    {
+      "skill_id": "u3287-semantic-retrieval-ranking-for-education-support-services",
+      "path": "generated/shards/03/3287-semantic-retrieval-ranking-for-education-support-services",
+      "skill_md_sha256": "e8c7425e3fefad73807b68db7464a2e00a0398a1c944cb98a7690ed846290f32",
+      "summary_sha256": "9bc92fdd61e76253a4307d3435ed4bb388d9016cacd951b13c7d19d8356c8ad0"
+    },
+    {
+      "skill_id": "u3288-semantic-retrieval-ranking-for-education-support-services",
+      "path": "generated/shards/03/3288-semantic-retrieval-ranking-for-education-support-services",
+      "skill_md_sha256": "774b48520c80462ac713825eea8bd0958c83ee05e25d40d9cdb3e5eb6b15be4d",
+      "summary_sha256": "d488d6cbc7eb431fa6af54bf61a315ce54bb956ddbadde448ccb2c6219d864e8"
+    },
+    {
+      "skill_id": "u3289-semantic-retrieval-ranking-for-education-support-services",
+      "path": "generated/shards/03/3289-semantic-retrieval-ranking-for-education-support-services",
+      "skill_md_sha256": "1c2a6c89db08cc212a5b7b1aa2663c736a914c335db14d69592e37a3f7ef8c51",
+      "summary_sha256": "17664eb107b4b8cb74c1b0ce1a8883012a46f29ccd289cc69c95f8c66afdf6ff"
+    },
+    {
+      "skill_id": "u3290-semantic-retrieval-ranking-for-education-support-services",
+      "path": "generated/shards/03/3290-semantic-retrieval-ranking-for-education-support-services",
+      "skill_md_sha256": "fc35ec42275e71fd9839aacab8292f73b39531e1925c8000bb89651da1a93381",
+      "summary_sha256": "9d882280bfed00fed10d2c6fdfd3014eebcac9cbbce542cf0c75a7fc3564aa6f"
+    },
+    {
+      "skill_id": "u3291-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3291-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "skill_md_sha256": "28a53204173639e94948d92bdaef6eae3ff1a0b76e1a201249c514b4d0919bbf",
+      "summary_sha256": "a6f36042b4be2a0a27ddb0ff667394f3099e6946531a87eb3cbc1d60d8b644f6"
+    },
+    {
+      "skill_id": "u3292-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3292-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "skill_md_sha256": "dfb72c24e3b738a05ef4afc2c7e3bd04aaeecbeec19f126bc57be0b3df6a64de",
+      "summary_sha256": "d4b3dabe0cde3bffd10a53b1443e07f1514661a52cad75f7ecc45ba6ebbde37d"
+    },
+    {
+      "skill_id": "u3293-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3293-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "skill_md_sha256": "67c3be585fe359292fefaa9f3475b914e9d97a75bc8509a360ae85eedbb1aaf7",
+      "summary_sha256": "77575ef0218398b0d98c5430521bd5ca036029a8defc2e66cecf7df08fea8ec7"
+    },
+    {
+      "skill_id": "u3294-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3294-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "skill_md_sha256": "d538ac463bb6c5095addb4f85093a74301df967ef620271e6d3fbc4491d34eb2",
+      "summary_sha256": "0aab6990e08a9b85d05a4e3cd867712d5f947338fa85c32000b5968439323846"
+    },
+    {
+      "skill_id": "u3295-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3295-semantic-retrieval-ranking-for-nonprofit-program-delivery",
+      "skill_md_sha256": "23a0f2ae9a96e66e021133b0eaa0d492ecdbff3927f87f1de8cb2b2c9241d223",
+      "summary_sha256": "8ce937b43da33f5711aed506b7ee937ccdc6923c495c31d6d363c1a479941f3c"
+    },
+    {
+      "skill_id": "u3296-semantic-retrieval-ranking-for-disaster-response-networks",
+      "path": "generated/shards/03/3296-semantic-retrieval-ranking-for-disaster-response-networks",
+      "skill_md_sha256": "196e86d1927245b0242c67274fa0b75c5c21eb2f0925f2e408ca0ff629e4fa7c",
+      "summary_sha256": "443114f8464a79f10f5b39e0d642ac602c10012a95b0d5758cc53b96107b2efd"
+    },
+    {
+      "skill_id": "u3297-semantic-retrieval-ranking-for-disaster-response-networks",
+      "path": "generated/shards/03/3297-semantic-retrieval-ranking-for-disaster-response-networks",
+      "skill_md_sha256": "a03deaf8873b1b75f7cae32ae45ce92631d5cfe8f692f14a76797c67396340a6",
+      "summary_sha256": "3279d55c43d399d613567ba5a519fbeee454a51bf1b8cbdcdb2f2eed84df833b"
+    },
+    {
+      "skill_id": "u3298-semantic-retrieval-ranking-for-disaster-response-networks",
+      "path": "generated/shards/03/3298-semantic-retrieval-ranking-for-disaster-response-networks",
+      "skill_md_sha256": "167cdaa1f07f9aa4bd8cd7719656f4cc6df682794e16b12de0c4e2049f7e769a",
+      "summary_sha256": "c53f1f6c90e6e9c72ef8d63d7437d6215dad929595055dab8f13d8c60bc8005f"
+    },
+    {
+      "skill_id": "u3299-semantic-retrieval-ranking-for-disaster-response-networks",
+      "path": "generated/shards/03/3299-semantic-retrieval-ranking-for-disaster-response-networks",
+      "skill_md_sha256": "5c109f0d0b44b027beda56ddc71ce282a42f6eb0893b0244890e989aa94bd4e8",
+      "summary_sha256": "dea7d55a16fc7802d534f24cf0ca83c12a5d6edcd41ff1ef0c9c9c2752bd60e9"
+    }
+  ]
+}

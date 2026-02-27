@@ -1,58 +1,65 @@
 ---
 name: u0371-logistics-policy-constraint-compiler
-description: Build and operate the "Logistics Policy Constraint Compiler" capability for Resource Allocation and Logistics. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Logistics Policy Constraint Compiler" capability for Resource Allocation and Logistics. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Logistics Policy Constraint Compiler
 
 ## Why This Skill Exists
-We need this skill because impact work fails when scarce resources are not routed intelligently. This specific skill turns governance language into enforceable runtime checks.
+This skill exists to make resource allocation and logistics execution reliable under real production pressure, with explicit contracts, measurable outcomes, and fail-closed governance.
 
 ## When To Use
-Use this skill when the request explicitly needs "Logistics Policy Constraint Compiler" outcomes in the Resource Allocation and Logistics domain.
+Use this skill when you need "Logistics Policy Constraint Compiler" outputs that will influence production decisions, automated routing, policy posture, or external-facing actions.
 
 ## Step-by-Step Implementation Guide
-1. Define the scope and success metrics for `Logistics Policy Constraint Compiler`, including at least three measurable KPIs tied to supply shortfalls and fairness gaps.
-2. Design and version the input/output contract for capacity, bottlenecks, and distribution plans, then add schema validation and failure-mode handling.
-3. Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.
-4. Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
-5. Add unit, integration, and simulation tests that explicitly cover supply shortfalls and fairness gaps, then run regression baselines.
-6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
+1. Define scope, operational risk tier, and at least three KPIs tied to correctness, latency, and incident prevention.
+2. Specify versioned input/output contracts and enforce strict schema validation before any processing.
+3. Implement the core capability using policy-gated decision routing, with deterministic scoring and reproducible artifact generation.
+4. Integrate orchestration controls: retry/backoff, idempotency keys, rollback checkpoints, and audit logging.
+5. Add tests (unit, integration, regression, and adversarial) that cover malformed signals, drift, and boundary thresholds.
+6. Deploy behind a feature flag, run staged rollout checks, and tune thresholds only through controlled change approval.
 
 ## Deterministic Workflow Notes
-- Core method: rule compilation
-- Archetype: contract-compiler
-- Routing tag: resource-allocation-and-logistics:contract-compiler
+- Core method: policy-gated decision routing
+- Execution mode: deterministic-first with explicit tolerances
+- Routing tag: resource-allocation-and-logistics:logistics-policy-constraint-compiler
 
 ## Input Contract
-- `capacity` (signal, source=upstream, required=true)
-- `bottlenecks` (signal, source=upstream, required=true)
-- `distribution plans` (signal, source=upstream, required=true)
-- `claims` (signal, source=upstream, required=true)
-- `evidence` (signal, source=upstream, required=true)
-- `confidence traces` (signal, source=upstream, required=true)
+- `primary_signals` (array<object>, required=true)
+- `policy_context` (object, required=true)
+- `provenance_bundle` (object, required=true)
+- `confidence_trace` (object, required=true)
 
 ## Output Contract
-- `executable_policy_bundles_report` (structured-report, consumer=orchestrator, guaranteed=true)
-- `executable_policy_bundles_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `logistics_policy_constraint_compiler_report` (structured-report, consumer=orchestrator, guaranteed=true)
+- `logistics_policy_constraint_compiler_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `logistics_policy_constraint_compiler_handoff` (handoff-packet, consumer=downstream-skill, guaranteed=true)
 
 ## Validation Gates
-1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+1. **schema-contract-check** — Reject if any required input is missing or malformed (on fail: quarantine)
+2. **determinism-check** — Re-run on identical inputs; output deltas must remain within tolerance <= 1% (on fail: escalate)
+3. **policy-gate-check** — Block publish-level artifacts until all policy checks pass (on fail: block)
+4. **high-risk-approval-check** — Require explicit human sign-off for high-risk impact changes (on fail: hold)
 
 ## Failure Handling
-- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
-- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
-- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
-- Rollback strategy: rollback-to-last-stable-baseline
+- `E_INPUT_SCHEMA`: Invalid or missing required signals → Reject request; emit structured validation errors
+- `E_POLICY_BLOCK`: Policy guard violation → Fail closed; do not emit publish-level outputs
+- `E_NON_DETERMINISM`: Reproducibility delta exceeds tolerance → Freeze artifacts; route to human approval
+- `E_DEPENDENCY_FAILURE`: Upstream/downstream dependency unavailable → Execute bounded retries then rollback
+- Rollback strategy: rollback-to-last-stable-baseline with incident annotation
 
 ## Handoff Contract
-- Produces: Logistics Policy Constraint Compiler normalized artifacts; execution scorecard; risk posture
-- Consumes: capacity; bottlenecks; distribution plans; claims; evidence; confidence traces
-- Downstream routing hint: Route next to resource-allocation-and-logistics:contract-compiler consumers with approval-gate context
+- Produces: validated artifacts, confidence trace, risk posture, machine-readable handoff packet
+- Consumes: production-scoped signals, policy context, provenance evidence, deterministic config
+- Downstream routing hint: pass only gate-cleared artifacts with approval state and rollback pointer
 
 ## Required Deliverables
-- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+- Versioned capability contract with deterministic tolerances and explicit failure semantics.
+- Test evidence covering nominal, edge, adversarial, and rollback scenarios.
+- Rollout evidence (feature-flag stage logs, gate outcomes, and operator sign-off where required).
+
+## Immediate Hardening Additions
+- Add at least 5 golden fixtures with expected outputs and tolerance assertions.
+- Add regression tests for the highest-severity failure mode and policy bypass attempts.
+- Emit machine-readable run summary: `status`, `risk_score`, `confidence`, `approval_state`, `next_handoff`.
+- Enforce fail-closed behavior on schema, determinism, and policy gate failures.

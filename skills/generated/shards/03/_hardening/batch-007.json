@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 7,
+  "range": {
+    "start": "u3300-semantic-retrieval-ranking-for-disaster-response-networks",
+    "end": "u3349-semantic-retrieval-ranking-for-civic-participation-platforms",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3300-semantic-retrieval-ranking-for-disaster-response-networks",
+      "path": "generated/shards/03/3300-semantic-retrieval-ranking-for-disaster-response-networks",
+      "skill_md_sha256": "9f8399e5fe7cf645ecbd9f75082921c4741b73f00dbeef361b5f946b18e23f8a",
+      "summary_sha256": "c5a0816dc72a66df86d0eecad801f54673f0949e958866db768817eb8b504d3e"
+    },
+    {
+      "skill_id": "u3301-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3301-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "c90db4d68f970f47822fd32a605ff121244d298a24008ee551f7c05636e2c140",
+      "summary_sha256": "2b879d75a01676f668dc3480020c67166a7154abb517ec72a59651b873e99e9a"
+    },
+    {
+      "skill_id": "u3302-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3302-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "c05399b47df893d7d7eb96d7d1c78571604aae068a95ad707daa9ee974f9a711",
+      "summary_sha256": "ca314888019ef4319370b9d68947a4a40b38b75c218bde1549d07d7f42456403"
+    },
+    {
+      "skill_id": "u3303-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3303-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "077c9c1254d5991961d45e818cc9c49ab72ba5a03e23bc8b5bfd0d7816b1728a",
+      "summary_sha256": "9dd61d6215c2e4442a5109928e8f49912c812a65f29492f831792cd93cb99975"
+    },
+    {
+      "skill_id": "u3304-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3304-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "c8bea7b7c11782ab4c30214a459cbb82eda2871535a6acd77b38285aa12441b7",
+      "summary_sha256": "4064f6ed7e30872d04ac94dd50d76de36687ebca43df2f734e22f2465a29843d"
+    },
+    {
+      "skill_id": "u3305-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "path": "generated/shards/03/3305-semantic-retrieval-ranking-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "6ea706cddfee6ea1e354a7b4b58b17cf0fc543b1c75f5fff4348f85fd2364f06",
+      "summary_sha256": "0148af74cb6b3802ac51b1228c63cac236cfadfd4fc2ee0c62cc7bad4f703b5c"
+    },
+    {
+      "skill_id": "u3306-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3306-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "skill_md_sha256": "23fed94fa6c7ff2b29c4f4a7af7e5b21462db1aa7bf4066b482d090d71b2b115",
+      "summary_sha256": "57b6737d63a22f611a6a3cd808044a1c355c077ee2da95a36f8b7272396ca759"
+    },
+    {
+      "skill_id": "u3307-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3307-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "skill_md_sha256": "5449f9301fbf9a36cf708a40c3891fb4a8c2a9fd3ee78dd0d9e3912104220655",
+      "summary_sha256": "23405348b6609a4f0e4567b363f37d41fb2b5d210e931b8dd9474a6101976896"
+    },
+    {
+      "skill_id": "u3308-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3308-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "skill_md_sha256": "21721ec90814e6bb459452e61c5a6bbf51f25180a555d555a834c26e19821431",
+      "summary_sha256": "633d6056332c6c8a2780de49ae834ba1f917160bdf95f78281896495bf5a11df"
+    },
+    {
+      "skill_id": "u3309-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3309-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "skill_md_sha256": "28b6b51ca0162c378ce37aefb5d962a53636aa131cf1965d5b39236cdeee6b06",
+      "summary_sha256": "53c537f2aa064e3303024d1b3a4967f3fc2c872cafb496007279883c3192a0d8"
+    },
+    {
+      "skill_id": "u3310-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "path": "generated/shards/03/3310-semantic-retrieval-ranking-for-urban-planning-and-mobility",
+      "skill_md_sha256": "86bfcf4a51426d285580b75405a0f9114aac441889eea19e999c04beb35112f0",
+      "summary_sha256": "ae24c6aa40abc051d001560b30879a439cdcaf1c8e45e048715454efd26176ae"
+    },
+    {
+      "skill_id": "u3311-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3311-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "skill_md_sha256": "63bea4e3076ebf218a1b536026b48115966842cb03b8e19976408e407818bd9c",
+      "summary_sha256": "bf9d42844383dd5fa9293d3bafb4449e140a119b3571ea7916a3158e94cb5d40"
+    },
+    {
+      "skill_id": "u3312-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3312-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "skill_md_sha256": "deb8f5e0b2d9c88ab1a7385fbbdb02a11a78bfb8d92aaa61904fad19f0adb5d6",
+      "summary_sha256": "7121dee2b49907ee71d7ed913665f85f3fb036ae4194ec206761251db6866223"
+    },
+    {
+      "skill_id": "u3313-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3313-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "skill_md_sha256": "e404b587ee1dc8b1520a761d6c5a15f269be7a99d13d9bafbcca6389d22fc025",
+      "summary_sha256": "5aeeba0fd9f2b68563b08b798e2ac23874c832a99bbd01b30ae0e75ea3770973"
+    },
+    {
+      "skill_id": "u3314-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3314-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "skill_md_sha256": "aa9fdb0a6ef7990e297cc369b3f14c804f145a2458d0e0a8989daaf0b8a743ce",
+      "summary_sha256": "e12b1fcd69bdedc222e277c4094f801d77366a481b7082b2b9457b3448e40f37"
+    },
+    {
+      "skill_id": "u3315-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "path": "generated/shards/03/3315-semantic-retrieval-ranking-for-agriculture-and-food-systems",
+      "skill_md_sha256": "1517313880cc69a780321e936086d0f7afe15fef67d4584af5990f7f7884f70e",
+      "summary_sha256": "ceb71d98c68597b6dab123ff9fa3f1b1b3b1cb65b71e6766766209b7401d110b"
+    },
+    {
+      "skill_id": "u3316-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "path": "generated/shards/03/3316-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "skill_md_sha256": "23e57744757c4fcd950a5582c384a8eaac433639c3ad04a0eeac2af80e1cce61",
+      "summary_sha256": "9a89ddb5e65d519d8184752709e1f7f66ad914dd943382c8ab0594d8866dd26b"
+    },
+    {
+      "skill_id": "u3317-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "path": "generated/shards/03/3317-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "skill_md_sha256": "aaae7257568e73ac6a9673f61cc7493f7be3045aac4e9a4bc49e460e7f6cc11f",
+      "summary_sha256": "f0c00b238ddd98570da80aa3b2a7cbc52fcc9e895bf4b4a17b2681b0f52ff686"
+    },
+    {
+      "skill_id": "u3318-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "path": "generated/shards/03/3318-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "skill_md_sha256": "c01a6fb06b971b00a215f79c41addfaf0589b3bf9a1586d23555c375bd7fa75d",
+      "summary_sha256": "cbe4a1da058ab664563c1b25da96425e044f9f7bb5547fe18803ff4c29a0c697"
+    },
+    {
+      "skill_id": "u3319-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "path": "generated/shards/03/3319-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "skill_md_sha256": "284004eb04a1ab0a4170e132c07e557660589aa6b906e05d03c480be2b46bf00",
+      "summary_sha256": "cc47325cbcfcf21f43bcb3b371058ed2385e9780c1d9f5ce92a3e3d4fabe4af9"
+    },
+    {
+      "skill_id": "u3320-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "path": "generated/shards/03/3320-semantic-retrieval-ranking-for-supply-chain-resilience",
+      "skill_md_sha256": "6e4e8f513bd057a759e3352f39aca6780be74f1467388506322f068b7aa2a2f3",
+      "summary_sha256": "a5ffe58d17c38a594f90e22fccc5bb6ae94363f65520a84c57bdd75b5124afd8"
+    },
+    {
+      "skill_id": "u3321-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3321-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "450f8ba56253dcb2000fd2f463e5f58765e6abfa27de6215212c5cc4c4ef1900",
+      "summary_sha256": "d78ad00a60b56a4da56863b91573e34aa83c9cb66a9bc1ff2832ac169d681869"
+    },
+    {
+      "skill_id": "u3322-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3322-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "e921bb106a8745cc39ff3b210bd5c2a2b3d1f9942538a697b5b7da784932b9c8",
+      "summary_sha256": "29e1ad2d9a98fb59b687dba8029c65548fb3ce248722085e357ab86f7b3d68b6"
+    },
+    {
+      "skill_id": "u3323-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3323-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "e4be713c89c67effc5d8724b425dadff4e1c838833379c68a910862d051dead9",
+      "summary_sha256": "803fdbc10c6636354f7978f5c802693f07055e008c4361bbf047b56b0b203e11"
+    },
+    {
+      "skill_id": "u3324-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3324-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "189f15ea1a95b22418119972dcc9cddf69f1a0fff439b7936763738990156081",
+      "summary_sha256": "b2ad003b624d2d071fe416b170d70b7aae64258ea12c0ea2ad66a7021131a005"
+    },
+    {
+      "skill_id": "u3325-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "path": "generated/shards/03/3325-semantic-retrieval-ranking-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "95a90cca298a48f6bb89873aba0a2b459e5e49f454e43f3d3aa5712982837a0a",
+      "summary_sha256": "855d3d7288db7b2e8ac33e9a7e1d60e52f1796b9b853559a5d5794f67d96042a"
+    },
+    {
+      "skill_id": "u3326-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "path": "generated/shards/03/3326-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "skill_md_sha256": "91ff8c61bec437020dc9b0e4844b078df1f099c7ff5523105cd6a054b3ffcb43",
+      "summary_sha256": "428b96ad0fc55c7a4501e72b49b650c58856a45959444d89a36faba6fe495349"
+    },
+    {
+      "skill_id": "u3327-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "path": "generated/shards/03/3327-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "skill_md_sha256": "b60820b651b4e1ad739d71389f98f92b383e3793db50fe461cb990780fc03520",
+      "summary_sha256": "654f31682a5bd774fef9f79ea592694df399595731c6390b540870302e62aec1"
+    },
+    {
+      "skill_id": "u3328-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "path": "generated/shards/03/3328-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "skill_md_sha256": "77d9ed0fc0631dcfe7f71ed2666507686cbff93b5e1629628b378a99c2142f1b",
+      "summary_sha256": "10a6b2f5cd46c87fb71c4a18e0145eb823bfd1a2bb988d8a55dadea83a765b9d"
+    },
+    {
+      "skill_id": "u3329-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "path": "generated/shards/03/3329-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "skill_md_sha256": "4e3033c95af2e59fef8bd15e56e80a3f8b1b1d1ac7c27a5735bee78798255fe0",
+      "summary_sha256": "5cc28dae7576fae2780e94b83ac3f5d7c4bcf571d9447c42154e316a2c7c4aed"
+    },
+    {
+      "skill_id": "u3330-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "path": "generated/shards/03/3330-semantic-retrieval-ranking-for-cybersecurity-operations",
+      "skill_md_sha256": "d17646fc216464719f11b5918ecde51a2e118b778c1cd5620fa50918845c339c",
+      "summary_sha256": "498e51f882fa45fcf91b6e0da53babda79109c4207ad6a74a68969c1d38089e6"
+    },
+    {
+      "skill_id": "u3331-semantic-retrieval-ranking-for-research-and-development-labs",
+      "path": "generated/shards/03/3331-semantic-retrieval-ranking-for-research-and-development-labs",
+      "skill_md_sha256": "82cee5bc540ccc7fb37d699db2f49b8f139625e2cdfcaa1fbf0ee25aa27f372e",
+      "summary_sha256": "49fd8ea7653b45fca29ed0e0a53905ccf39c27ed7046b5325c898d9ffcb5ab8b"
+    },
+    {
+      "skill_id": "u3332-semantic-retrieval-ranking-for-research-and-development-labs",
+      "path": "generated/shards/03/3332-semantic-retrieval-ranking-for-research-and-development-labs",
+      "skill_md_sha256": "5b2a42ba999f82c1c7b0883531608acc059a26b68ac4f646d096fef9af605d60",
+      "summary_sha256": "e18ad83c89a2019c1e1f4e24e996511b5938b49b895d0480c3efe1ff36c2b11d"
+    },
+    {
+      "skill_id": "u3333-semantic-retrieval-ranking-for-research-and-development-labs",
+      "path": "generated/shards/03/3333-semantic-retrieval-ranking-for-research-and-development-labs",
+      "skill_md_sha256": "c2ce511eeed1ff3f9740f12940d92dea460fa3e8fe3aa9a695788d22309d56d5",
+      "summary_sha256": "819c2e61db276e5ce50325da001e92e32d5c8a5cccba4ed5080bd7cf203ba380"
+    },
+    {
+      "skill_id": "u3334-semantic-retrieval-ranking-for-research-and-development-labs",
+      "path": "generated/shards/03/3334-semantic-retrieval-ranking-for-research-and-development-labs",
+      "skill_md_sha256": "2ffded264483963fffa9b563bc8f508e8260dba5d1224a454bb0f33e7ca011c9",
+      "summary_sha256": "9f21aadde36981fb3349506509e5b418bd96db56b5d3cc4d360f70f8dc07eeac"
+    },
+    {
+      "skill_id": "u3335-semantic-retrieval-ranking-for-research-and-development-labs",
+      "path": "generated/shards/03/3335-semantic-retrieval-ranking-for-research-and-development-labs",
+      "skill_md_sha256": "bb3e06435dccd4c746f6cc2fc1ae7cfbe6cdde2412ad53ea8c5ceae521e74d7d",
+      "summary_sha256": "27fe60aacc3192eb4ff416e694c4b71889ce135cbe6752c73de583eafa59e922"
+    },
+    {
+      "skill_id": "u3336-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3336-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "3ca29044f6cefcab6ce3305b80198eebdfb429bd45e052dc21f331832e50f630",
+      "summary_sha256": "54c3489819bc6f6645dce116d1f73287a9866e9caa49e8fae7bfce7df0021e29"
+    },
+    {
+      "skill_id": "u3337-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3337-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "cef4912bd91660d531ea1d9fd76b9f788d6ffe4c8fa35ce1602a89603fd88b4c",
+      "summary_sha256": "866c32c067e99f462d62ba856168c675c25f59e54085c9035e1785619c5aace9"
+    },
+    {
+      "skill_id": "u3338-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3338-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "4c282c05925830e8ed2948149b6af887d0c7fa8c11457f3cc0a79c12b5c10b9a",
+      "summary_sha256": "4233fa3a09419ab5b5a90be539433ccb856094b057d4f3b86bf841714cf25e5e"
+    },
+    {
+      "skill_id": "u3339-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3339-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "a260a0ef687a97218062025b1d83a19c8d06f34cd9a39bcb81f8fba63562709b",
+      "summary_sha256": "d9896de058551be8b7ece739de6e4abfeafde6174d203e41f16d2842d2acad1f"
+    },
+    {
+      "skill_id": "u3340-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "path": "generated/shards/03/3340-semantic-retrieval-ranking-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "af0a372f031d58bae42a7f9d34679422c5f459c22aa2ef474b76f768f12444be",
+      "summary_sha256": "20ff6599e94fe3338da3af81fc4dc26119c3d339b4616abe4248d731642d0d50"
+    },
+    {
+      "skill_id": "u3341-semantic-retrieval-ranking-for-community-mediation-programs",
+      "path": "generated/shards/03/3341-semantic-retrieval-ranking-for-community-mediation-programs",
+      "skill_md_sha256": "085fc635f4c96c78adeaee0df82495b949c1654c74e86a93e835ec07ad5667ce",
+      "summary_sha256": "05f7d44cfc3bcfa99fc93f64ac2b8058f734594893992f24b4bcdf81dd12fd97"
+    },
+    {
+      "skill_id": "u3342-semantic-retrieval-ranking-for-community-mediation-programs",
+      "path": "generated/shards/03/3342-semantic-retrieval-ranking-for-community-mediation-programs",
+      "skill_md_sha256": "1bb653f58129b8219140e19e8890c530d29f70b0ae5f619e7f9bb8a1b21af426",
+      "summary_sha256": "2e0410dd82440ff9ab2140c5e345b6c9680009955e51b9a78ae6390382b8a2ec"
+    },
+    {
+      "skill_id": "u3343-semantic-retrieval-ranking-for-community-mediation-programs",
+      "path": "generated/shards/03/3343-semantic-retrieval-ranking-for-community-mediation-programs",
+      "skill_md_sha256": "b133548b7827f276d011e0409b9a93c2482a4c629c5e39285323f112daaaf3ea",
+      "summary_sha256": "79970bc68eb8c95392f04acf70114a673eadbc0b1bc0de307157020b63be70f8"
+    },
+    {
+      "skill_id": "u3344-semantic-retrieval-ranking-for-community-mediation-programs",
+      "path": "generated/shards/03/3344-semantic-retrieval-ranking-for-community-mediation-programs",
+      "skill_md_sha256": "7626b3954b0d26f23821f945857dbd201fc2be62ad703c8a3331ac73be3b2d3e",
+      "summary_sha256": "7d65d72d032fd3b288f3b36d0d924f6104a1e5954d0250ff0863b4d1a0659f42"
+    },
+    {
+      "skill_id": "u3345-semantic-retrieval-ranking-for-community-mediation-programs",
+      "path": "generated/shards/03/3345-semantic-retrieval-ranking-for-community-mediation-programs",
+      "skill_md_sha256": "b577e16dcf34eb2689dbd6b2ffb6da0ff1fc59175fd2b778291834d73748987c",
+      "summary_sha256": "72c7d072f5e82a14df35f8fca99b074e971282123bb05e92bb4eace68f72efda"
+    },
+    {
+      "skill_id": "u3346-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "path": "generated/shards/03/3346-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "skill_md_sha256": "85dd9d6416f626ed3e8cb41b9cd1baa5709a2b18ca964bd0553b2d0200e4ae1f",
+      "summary_sha256": "f3b11eedcc36a7c3212f8540cc1b26747b9139374e0be6d3384232e08eba042b"
+    },
+    {
+      "skill_id": "u3347-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "path": "generated/shards/03/3347-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "skill_md_sha256": "e522af1d10169b21ef746d01e74c5aafc1e4601d1bdfa669da6d5974916e26b8",
+      "summary_sha256": "3e794c6ea2f5b16b2c43f960b11aa977bf13ba84656ae04c47909421aec961c6"
+    },
+    {
+      "skill_id": "u3348-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "path": "generated/shards/03/3348-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "skill_md_sha256": "9580c0b4dac4d8c1d90004e994752908df1988b0de8ab4d96167666a6e4a0916",
+      "summary_sha256": "010624a4d3ec944e220b8e0fe463fe7ce31a1cb12c1f1af512b6375863834eca"
+    },
+    {
+      "skill_id": "u3349-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "path": "generated/shards/03/3349-semantic-retrieval-ranking-for-civic-participation-platforms",
+      "skill_md_sha256": "7476bced53b3e0a03c5e234f53a364cbb933e28542458cd51fc26a184bba33bc",
+      "summary_sha256": "fb5edf0e7742b95683dac8aa4b4f7989f4321658bc173ffb7781bf3efcbabad8"
+    }
+  ]
+}

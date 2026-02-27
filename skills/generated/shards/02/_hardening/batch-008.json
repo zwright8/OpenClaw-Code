@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 8,
+  "range": {
+    "start": "u2350-retry-and-backoff-orchestration-for-civic-participation-platforms",
+    "end": "u2399-retry-and-backoff-orchestration-for-knowledge-management-systems",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2350-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "path": "generated/shards/02/2350-retry-and-backoff-orchestration-for-civic-participation-platforms",
+      "skill_md_sha256": "ba7b81b984d3d9ded60b14587ee5e01dacfcfb67d75a89dc33d9b5276d897317",
+      "summary_sha256": "48d53b38b200487667909551140ab433c88f019041e4a9de6a78de927d10e6c2"
+    },
+    {
+      "skill_id": "u2351-retry-and-backoff-orchestration-for-accessibility-services",
+      "path": "generated/shards/02/2351-retry-and-backoff-orchestration-for-accessibility-services",
+      "skill_md_sha256": "5f659e05b758eb1d5d7624357d56366effaed56da11d2ec5d49cb1a59ffcadf4",
+      "summary_sha256": "4b42312c9adfa1e84040e8a5f2d8afbd8b5d2c97efd99c9a426b546b4e7c6df4"
+    },
+    {
+      "skill_id": "u2352-retry-and-backoff-orchestration-for-accessibility-services",
+      "path": "generated/shards/02/2352-retry-and-backoff-orchestration-for-accessibility-services",
+      "skill_md_sha256": "63f4d22c640e1596c70cd7bdb8e5849de1312eaf68b8ff87d64e274de7b7194d",
+      "summary_sha256": "fd50468aae9c02416f4c44b35de37f208f92beb05fa8a50319885d9164ca230e"
+    },
+    {
+      "skill_id": "u2353-retry-and-backoff-orchestration-for-accessibility-services",
+      "path": "generated/shards/02/2353-retry-and-backoff-orchestration-for-accessibility-services",
+      "skill_md_sha256": "e85a116c20e41059026293414addf31e2330b142b6192e9748b3d29dea900f10",
+      "summary_sha256": "c51a59f437fec89877feae1768c83b991bed639498d80464725f973b86cd5aa3"
+    },
+    {
+      "skill_id": "u2354-retry-and-backoff-orchestration-for-accessibility-services",
+      "path": "generated/shards/02/2354-retry-and-backoff-orchestration-for-accessibility-services",
+      "skill_md_sha256": "7e6c0b9a55fd9efb306c41d38bc63a7dff2ef3c5da2b3b1601c319ba29498232",
+      "summary_sha256": "bffcac0cc6dfe5f601d1f91b06bd888ca2a39fe0b024c155b6b6c234f2beaba1"
+    },
+    {
+      "skill_id": "u2355-retry-and-backoff-orchestration-for-accessibility-services",
+      "path": "generated/shards/02/2355-retry-and-backoff-orchestration-for-accessibility-services",
+      "skill_md_sha256": "3e83eb8528f1e10b1bd5114b48fd497e3a60f63c105cb4eb79fe18cfaefb4595",
+      "summary_sha256": "84276ee650a93f7665db8d051c6bcfdc215f7882785168ce0f2b77929fe40dc2"
+    },
+    {
+      "skill_id": "u2356-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "path": "generated/shards/02/2356-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "skill_md_sha256": "b70657e11692329e1d2117016edbe6fb5b36e45e28802cd705982ad4bcdff9f3",
+      "summary_sha256": "029ad001cf7ba48658636c11a880aa2a75f567ae5dcf42a76983873fb5a69592"
+    },
+    {
+      "skill_id": "u2357-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "path": "generated/shards/02/2357-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "skill_md_sha256": "59a8ff0b0f953871d212419e87b3daa3b85522db0885ad6094ae51fe96610ddf",
+      "summary_sha256": "452f18f0a5fcbb8e02c1fb75fc90424b64998dbeee17b7d8ec6615abbd01b605"
+    },
+    {
+      "skill_id": "u2358-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "path": "generated/shards/02/2358-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "skill_md_sha256": "d47163027b7f2038c6f57c2d553db822f2f72c5e4ba37e364bf2303d0cad1110",
+      "summary_sha256": "71279bff361d2052107abb4ced14d7140c98bf644b6e47e1a70b63bf5f9c8749"
+    },
+    {
+      "skill_id": "u2359-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "path": "generated/shards/02/2359-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "skill_md_sha256": "1f7beee96c81bae21af0e57327945eae91fcc4426ea859673ef195991363b473",
+      "summary_sha256": "9485d4264f97be8d6866c1e72e5eed0fb8f7d352640786633a4f0c5ead8435ea"
+    },
+    {
+      "skill_id": "u2360-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "path": "generated/shards/02/2360-retry-and-backoff-orchestration-for-eldercare-coordination",
+      "skill_md_sha256": "a5f353b3c35aab414bd9a009e5f96e414b3c528c8693a69237d2efcc704236f4",
+      "summary_sha256": "78cd17b94953dfbec6917f0a1f4d66bd1432f647b2b1642ff0dad90718ef070b"
+    },
+    {
+      "skill_id": "u2361-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "path": "generated/shards/02/2361-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "skill_md_sha256": "f1358b0c743c34ee8b3ac80fac2d8922bcb6a5258e4be1af5acc42970cc8b2b6",
+      "summary_sha256": "6080a346c472fd842902500380d0e81535a9a3d7a20d5607c70dacfcf2bc52eb"
+    },
+    {
+      "skill_id": "u2362-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "path": "generated/shards/02/2362-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "skill_md_sha256": "adec38b50c06d5b3bc380172b97e9d1f286950e935a8588ffd96101d93df3e4f",
+      "summary_sha256": "9f83eedb82f071de6ddaced9721c3b29367696b01ad835a3d974e4f6ed001bc7"
+    },
+    {
+      "skill_id": "u2363-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "path": "generated/shards/02/2363-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "skill_md_sha256": "11651a3ec86b09d96e495afe1594b4902b34cf20f0eef047ecad9d0b7b0fe704",
+      "summary_sha256": "59a2de1a02970c1931f13451f8f8f33932759713b1bb9e6ad26306c78d728bd3"
+    },
+    {
+      "skill_id": "u2364-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "path": "generated/shards/02/2364-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "skill_md_sha256": "b907969e73f5a0186713f2677b5387084d6d26eb9444c8033520c3a34a6a3ca2",
+      "summary_sha256": "80f6907d3a50766720c88587390be0b1fe18c22cadd30b0ea9965f19d4886134"
+    },
+    {
+      "skill_id": "u2365-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "path": "generated/shards/02/2365-retry-and-backoff-orchestration-for-childcare-support-systems",
+      "skill_md_sha256": "2eb7307af9106ae5853439cfae0500d7f06e94f5c97cb6f4555064473c2e7104",
+      "summary_sha256": "52af4149aeefd624d132943552d3ee170669b4a4c3cccfe433baad7ec94a8a11"
+    },
+    {
+      "skill_id": "u2366-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2366-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "skill_md_sha256": "531edd334e952dc5f76f172c088af69530b6921f1c8d405d2902726c49bc1873",
+      "summary_sha256": "ffa51f1bc0a915448f9b72158ec5f6f6afbb521b0bed36f65de7b9119e800e6e"
+    },
+    {
+      "skill_id": "u2367-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2367-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "skill_md_sha256": "bc9cb56f57389a5a4d2a7fa655ecfd0148398fb63699a8906ddce4be21973689",
+      "summary_sha256": "aa74c626442f8c90dfaaf91b9ff2fb1038218ff45193b254884c399c7ab46627"
+    },
+    {
+      "skill_id": "u2368-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2368-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "skill_md_sha256": "a36bd06a853df477a2c8a700a562134323bbc6f34779d412b9f6dcfab96968ae",
+      "summary_sha256": "0d14d6efe1c1507c572636096e9a7b01192a85cf79a53619e320a3c77cd40f0a"
+    },
+    {
+      "skill_id": "u2369-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2369-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "skill_md_sha256": "de65bd13b9d4bbd795c2bacd4d0f8e5b007d490e9cd25b6f46059d9b572662b1",
+      "summary_sha256": "c73d235de109326b8568c81585f5544c2b7d215303772c8c89d2644e6884029f"
+    },
+    {
+      "skill_id": "u2370-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2370-retry-and-backoff-orchestration-for-arts-and-culture-programming",
+      "skill_md_sha256": "602c31365561e6f8870cb660f6f261e43bb885a4804c309ca355806de00f5309",
+      "summary_sha256": "3839e5b3a0ab29e3d99ffdd09aa09917d4cb3cf6366c120e96ee6420f3aeee45"
+    },
+    {
+      "skill_id": "u2371-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "path": "generated/shards/02/2371-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "skill_md_sha256": "50a0d94c5ef16dbcc17198233f06978507a5285e6dad99fdbbed29cba924bc37",
+      "summary_sha256": "3809d9a002f7880ebe0b52a5f627a61c68c57d319c9d4ef881008f8636841a36"
+    },
+    {
+      "skill_id": "u2372-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "path": "generated/shards/02/2372-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "skill_md_sha256": "4618b8284d4cdb55db77d94fa917838997f48f403283a9cf8182c75363870373",
+      "summary_sha256": "7fb5a0c5be4eb600f478da982fa9532f2ae7499da4e7d0a8837a1c4d26583279"
+    },
+    {
+      "skill_id": "u2373-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "path": "generated/shards/02/2373-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "skill_md_sha256": "fcf1c6d8d1e8ac79d5b8d3f8f761e09a684184e969efd0c75c75228388b23acc",
+      "summary_sha256": "2a13a9bc71be585f7cdb747ecada0625fccf4587cae6fa371dcad04eaf7de79f"
+    },
+    {
+      "skill_id": "u2374-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "path": "generated/shards/02/2374-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "skill_md_sha256": "eddcf886a93f8edf780c925cbe70346722fae9b6ccc9481fda807e5f023eac31",
+      "summary_sha256": "c35d75277409c9646fa8b72d4656bf65e675da9dce15cb7c57c4aa2abe304dea"
+    },
+    {
+      "skill_id": "u2375-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "path": "generated/shards/02/2375-retry-and-backoff-orchestration-for-music-and-creative-practice",
+      "skill_md_sha256": "9e0610627b86f874db2f3ecd88d2cdb4463340501a15b37a0409424009816c4c",
+      "summary_sha256": "ceeb2199bdcd3ba05ffd046e744845352c625db0cfa3f45407294b97d16cc88e"
+    },
+    {
+      "skill_id": "u2376-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2376-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "skill_md_sha256": "5e2344e61fb0a022b219bf3353c537b831b7483673c9285cb404526168e889a6",
+      "summary_sha256": "025e42c0564bc5b31d123d8906b964584e77502c9a9ae3aebff3da1683333240"
+    },
+    {
+      "skill_id": "u2377-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2377-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "skill_md_sha256": "8e3822b64be87a231009bbc27addbc915fa904d4b9c4c5a019591a8f0b18856b",
+      "summary_sha256": "3bbf84cf93ac229bfb474744bbe5da8b61cf409a96d4c4a39fb0da8609b05eb8"
+    },
+    {
+      "skill_id": "u2378-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2378-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "skill_md_sha256": "df5b6eb319a576b7d730d3e94ebe357e7803f29ed33b6a7adba9d389e82a2c95",
+      "summary_sha256": "2dd33f3444df5944ba1b809cbc68cf91100fdce81a6ed7bd5f70b6cd644adfb7"
+    },
+    {
+      "skill_id": "u2379-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2379-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "skill_md_sha256": "f2e9732cfb2e8199b6cedebefb08244dd8398305f7541e1faebfa29553e00aca",
+      "summary_sha256": "c496f6f4faadf9e6fb12cb9561bd62a1b11ed332569e8f0273661299cc839b55"
+    },
+    {
+      "skill_id": "u2380-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2380-retry-and-backoff-orchestration-for-journalism-and-public-communication",
+      "skill_md_sha256": "62be79b9c624a6a208b10adf15f8e11f3655fb671fd721a1e9a9663e5fea8dcf",
+      "summary_sha256": "d96f4a01cb5b7c3075d053b9432de89e9947b5022a143312f0535980a3f5d8a7"
+    },
+    {
+      "skill_id": "u2381-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "path": "generated/shards/02/2381-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "skill_md_sha256": "d1085278618e89b97b320c1922b2e94e3663755339856ed3b918015e41be26c9",
+      "summary_sha256": "762b84a6343888b6eeb6d6b1dab5110541f0f5db74f05c0963c79bb72bb4ce12"
+    },
+    {
+      "skill_id": "u2382-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "path": "generated/shards/02/2382-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "skill_md_sha256": "e5f8ba986dc5a3cc8264af068c35b8389ba086daec4833cc001eaab096e77b01",
+      "summary_sha256": "53f9c75136ddbbdb4eb58ce8ffbeab615672dca7a7e5017b3dddbdf7a16d59d8"
+    },
+    {
+      "skill_id": "u2383-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "path": "generated/shards/02/2383-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "skill_md_sha256": "a9ed40b69d9e923b19a0502383d0b89f85c69092c78a4ffadaefd86ad8114133",
+      "summary_sha256": "55061d55f9878933e780677598faff9bf2b694daad2f699570d12ef2f6278ac0"
+    },
+    {
+      "skill_id": "u2384-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "path": "generated/shards/02/2384-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "skill_md_sha256": "fffb81f9e484f2b7492b0b467ef91aece869eea34a0ed90b1c748abebae73625",
+      "summary_sha256": "f6fc83f8d5e63a87336e1d28134bbd789cfb3f2b749a680a4eae2834f25e5da6"
+    },
+    {
+      "skill_id": "u2385-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "path": "generated/shards/02/2385-retry-and-backoff-orchestration-for-multilingual-translation-services",
+      "skill_md_sha256": "f3ae30aa1864ba22ecaa4ee3a6bf2e11f479a768f6c82f4e5755e57a6bba906c",
+      "summary_sha256": "b63bf62fea36c926cd73ee342c8db3cf4eeb7fc1ec278d42d7e5b91081b07110"
+    },
+    {
+      "skill_id": "u2386-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "path": "generated/shards/02/2386-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "skill_md_sha256": "6567c9ca1a958a011d57ecc2738451ba411af802d8507aab5e919e70b341d50f",
+      "summary_sha256": "34aca7a30d4bbe20c32d1f5071c71c8d1dc75a1fa41ffcb3eeba28c2a4ee86d1"
+    },
+    {
+      "skill_id": "u2387-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "path": "generated/shards/02/2387-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "skill_md_sha256": "a678479d338a0024ab932be986273a70f6e3caf218b21402498b8dd54d1ffb21",
+      "summary_sha256": "79404e313838ae681817cf2a1c14a165c865af8f2caa8c7592e3a74e53b4bfec"
+    },
+    {
+      "skill_id": "u2388-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "path": "generated/shards/02/2388-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "skill_md_sha256": "a72767208a3f1e427b0a9ea72b0b2da37a34d37c25dd7589e8222d4120d5eafa",
+      "summary_sha256": "d23af9c9bd580e6bf5efc389c1053bf71aa64b1e66666cd83ee15239c79bfaa3"
+    },
+    {
+      "skill_id": "u2389-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "path": "generated/shards/02/2389-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "skill_md_sha256": "3e6737908274ca26c5d64c78b6c5b1f8b2735753d6d041534bdfa0f81b3a4d58",
+      "summary_sha256": "648e55532123896b59e7577cc21286cf32638c1bcb6148436e689484b0bd06f3"
+    },
+    {
+      "skill_id": "u2390-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "path": "generated/shards/02/2390-retry-and-backoff-orchestration-for-remote-team-collaboration",
+      "skill_md_sha256": "7f2d5d6f5ba0e276b742f408b89a9c8d1bd22c6e690a0847ee7391d306f1f69b",
+      "summary_sha256": "79477fa7dfa07ba42cb1fc4b41807b91c756e0222e69aa43795bb228c4c89824"
+    },
+    {
+      "skill_id": "u2391-retry-and-backoff-orchestration-for-customer-support-operations",
+      "path": "generated/shards/02/2391-retry-and-backoff-orchestration-for-customer-support-operations",
+      "skill_md_sha256": "496f1f3109bb416635a53795e629129695c8bdfaed21ddfcf8284ef57f72ece7",
+      "summary_sha256": "9528d7c24873c42900f96b5ad46bb1abc570171949fca2d28546fead14e1c5f0"
+    },
+    {
+      "skill_id": "u2392-retry-and-backoff-orchestration-for-customer-support-operations",
+      "path": "generated/shards/02/2392-retry-and-backoff-orchestration-for-customer-support-operations",
+      "skill_md_sha256": "a27b77ee48084c47231b0ab15839fda1667a79071403e56d48c9aeec46d2b659",
+      "summary_sha256": "56a2573234ceff0a2e21a88d61e2f962b4491b897b8a1b07127fb4d192a4b373"
+    },
+    {
+      "skill_id": "u2393-retry-and-backoff-orchestration-for-customer-support-operations",
+      "path": "generated/shards/02/2393-retry-and-backoff-orchestration-for-customer-support-operations",
+      "skill_md_sha256": "28e1c833a5b33fab46c48ad6a2661d23042d551d810a52f775fa792257d156a4",
+      "summary_sha256": "f78e4e7ba7c152d279aa65a767f80bc3d3b3a1456c8c2d668fb90ed307272068"
+    },
+    {
+      "skill_id": "u2394-retry-and-backoff-orchestration-for-customer-support-operations",
+      "path": "generated/shards/02/2394-retry-and-backoff-orchestration-for-customer-support-operations",
+      "skill_md_sha256": "d6ad4fa2846c4833cfad68b1c9b01e25838df9d3520f4dd3253c828f6ccd9211",
+      "summary_sha256": "0a5e76c2c50e9f14066c2514cfbc8edd5bdd03c436a5c80ffa0a0518e97e1071"
+    },
+    {
+      "skill_id": "u2395-retry-and-backoff-orchestration-for-customer-support-operations",
+      "path": "generated/shards/02/2395-retry-and-backoff-orchestration-for-customer-support-operations",
+      "skill_md_sha256": "2ac8608402f3e3c71d3581af6b3458f537c305bc3ce435de8175e9ab9a78138d",
+      "summary_sha256": "a46b5cc61246be1fde781cac6e132f3e09de3c2d9d7231c5c833ae47ee3e954c"
+    },
+    {
+      "skill_id": "u2396-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "path": "generated/shards/02/2396-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "skill_md_sha256": "0f513deeaa25864d3f3a6b43b47fbeac5d2d7fa8df1e300364f5b1ec83628900",
+      "summary_sha256": "10a1dbbe36465c765fd160ff281cd02a08a31c2d25ed43ef405156bb1bcaed52"
+    },
+    {
+      "skill_id": "u2397-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "path": "generated/shards/02/2397-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "skill_md_sha256": "c72520795e8aad4f100d265de3450c56fc5e6a93b599eff6e41e7187d5d3e352",
+      "summary_sha256": "016f9d3b9cf4660b33aade283ee6b631fe32631c3661c2a93077e9c72830f5ac"
+    },
+    {
+      "skill_id": "u2398-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "path": "generated/shards/02/2398-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "skill_md_sha256": "228bdc4b642113a3c519852b39fa7682829d96962f0cb7c5cbcbba510416771d",
+      "summary_sha256": "546e7c4701b190df0e977d74e32a801279009ab48afb2c8c4aac9afbbe8cae2c"
+    },
+    {
+      "skill_id": "u2399-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "path": "generated/shards/02/2399-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "skill_md_sha256": "61c3611626d6b216f38f237ea244e269e1bf0e5548c95982b9ef477ab6387845",
+      "summary_sha256": "5601ba77987c27ce6039071c997555fbc0ebe859120b0f9e893bf88decffa4bf"
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 10,
+  "range": {
+    "start": "u3450-plan-quality-evaluation-for-entrepreneurship-operations",
+    "end": "u3499-plan-quality-evaluation-for-disaster-response-networks",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3450-plan-quality-evaluation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3450-plan-quality-evaluation-for-entrepreneurship-operations",
+      "skill_md_sha256": "9fce4107e0746046027ddee4503ed403261a0544e9384637f392628973cf0c6d",
+      "summary_sha256": "62190e49fbcaeacb625dea18b6ecfddf908b0a18f484c5678d4a3920a97062cd"
+    },
+    {
+      "skill_id": "u3451-plan-quality-evaluation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3451-plan-quality-evaluation-for-software-engineering-delivery",
+      "skill_md_sha256": "733801eb4273fec73073ec0c45f9c16cdc5ea78b64ca32599dd80278e0079394",
+      "summary_sha256": "06c06ea87acb86dd1d77fb371137fb7cc752b85729ac9b95790ee8a358622eda"
+    },
+    {
+      "skill_id": "u3452-plan-quality-evaluation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3452-plan-quality-evaluation-for-software-engineering-delivery",
+      "skill_md_sha256": "c0e13c444b82be504439e30a4fb752b64b88cc372213092d5f9043e68c6ad573",
+      "summary_sha256": "46670b5c57cbf27d108171d8b0667a02c0fba17e5cdcd97ed598b8fe03e53622"
+    },
+    {
+      "skill_id": "u3453-plan-quality-evaluation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3453-plan-quality-evaluation-for-software-engineering-delivery",
+      "skill_md_sha256": "379611ea8bf4e37c7b3d122f3ca1b086d81b0a01d785451c8f993d1cde5d9319",
+      "summary_sha256": "7a1e25dc3325cf677bf1f62aed821aa8c18947b6bf59232806e1ee26f11729db"
+    },
+    {
+      "skill_id": "u3454-plan-quality-evaluation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3454-plan-quality-evaluation-for-software-engineering-delivery",
+      "skill_md_sha256": "ffe439e34e33563124182c9289f06505a3d9d78c9fdc5ff2589da62b9452c9a5",
+      "summary_sha256": "c08e5956a3f4f445200fe7feaba6b1460962b092657a28c12f076a054d911fa5"
+    },
+    {
+      "skill_id": "u3455-plan-quality-evaluation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3455-plan-quality-evaluation-for-software-engineering-delivery",
+      "skill_md_sha256": "72f21c32925c115ff7a860514c7475a3d91cf0926c3915929d558069f060ecca",
+      "summary_sha256": "8864eb8e08b45652d2be93c81342fb2666e1f95bf538ae40f01077d490a1d49f"
+    },
+    {
+      "skill_id": "u3456-plan-quality-evaluation-for-product-management-execution",
+      "path": "generated/shards/03/3456-plan-quality-evaluation-for-product-management-execution",
+      "skill_md_sha256": "46ab3747618a4ad7a2cc033e69301e2604ed4ee2cbe3355aa234df09869bea29",
+      "summary_sha256": "36a5cc0c87319eece15c1863c61a64f847c21a1ce0cd6f17ad45d2832408f2d2"
+    },
+    {
+      "skill_id": "u3457-plan-quality-evaluation-for-product-management-execution",
+      "path": "generated/shards/03/3457-plan-quality-evaluation-for-product-management-execution",
+      "skill_md_sha256": "61a03b64d76053d45c3b8d1dd35670a1f291943125398095933e3865b6a1b13a",
+      "summary_sha256": "120c3393299dfd90ad087b32d2b4c9563a822bf80049b314b1db6b208031f3c3"
+    },
+    {
+      "skill_id": "u3458-plan-quality-evaluation-for-product-management-execution",
+      "path": "generated/shards/03/3458-plan-quality-evaluation-for-product-management-execution",
+      "skill_md_sha256": "9b4efca3fc19ecfc3c5a638150c660f6d5f44946fbafc513b34cd4365ed98791",
+      "summary_sha256": "ba9f7f3b0b14db8d9a499e4a03673a418e157cf48ab499e9e6a37f548935e952"
+    },
+    {
+      "skill_id": "u3459-plan-quality-evaluation-for-product-management-execution",
+      "path": "generated/shards/03/3459-plan-quality-evaluation-for-product-management-execution",
+      "skill_md_sha256": "5134b8bcc5d99aeedbcef234ab9ca9c72c74ea39063a02f412bbf2d524ab3346",
+      "summary_sha256": "90e5f1998a3640f26ae798383825124d12ee8741f1cee30e1106fc0d10633c8a"
+    },
+    {
+      "skill_id": "u3460-plan-quality-evaluation-for-product-management-execution",
+      "path": "generated/shards/03/3460-plan-quality-evaluation-for-product-management-execution",
+      "skill_md_sha256": "f66b58f64e29ca4856f5919ef6d8c97881b969a65c86a8cf0cb549deb2d29caf",
+      "summary_sha256": "827e2d841b6aba26223c33b6d2d4cc79880ce0199ed1b425621d3de74635ec9f"
+    },
+    {
+      "skill_id": "u3461-plan-quality-evaluation-for-design-and-user-research",
+      "path": "generated/shards/03/3461-plan-quality-evaluation-for-design-and-user-research",
+      "skill_md_sha256": "7fb0b3c472a53656059426ea41cb59993c4a928ab117a721cf590963eb53e716",
+      "summary_sha256": "ec3f30c1ef3cbcef6d7c67a38421546d00d8054cfa3e5f63d41e3e399cb6a5ea"
+    },
+    {
+      "skill_id": "u3462-plan-quality-evaluation-for-design-and-user-research",
+      "path": "generated/shards/03/3462-plan-quality-evaluation-for-design-and-user-research",
+      "skill_md_sha256": "d22dca51f3272418dc9f538eb01413ffbf43113b14cd45daa7588649bdf08a0d",
+      "summary_sha256": "3fdfcdc4813b67d684dfeb786594ca2c49577e1ba2c7e37da21a2b2f92504033"
+    },
+    {
+      "skill_id": "u3463-plan-quality-evaluation-for-design-and-user-research",
+      "path": "generated/shards/03/3463-plan-quality-evaluation-for-design-and-user-research",
+      "skill_md_sha256": "7d194a28fcbf060261ab8b1361f4ce9b9766a157bb5c3cd5effd4530f3b623ad",
+      "summary_sha256": "33b77b88f957973c1b75bb204b48b78ce2366071c5915c0adc1a78894290cd4a"
+    },
+    {
+      "skill_id": "u3464-plan-quality-evaluation-for-design-and-user-research",
+      "path": "generated/shards/03/3464-plan-quality-evaluation-for-design-and-user-research",
+      "skill_md_sha256": "e7a667fd20c031f4fba830fa4f4941525e91cdef2c630200e4f3761a31b36b1e",
+      "summary_sha256": "282e4c1cc2267e26667415fcaff70121bfcef6b6e1b8beba0018dbf664201a2d"
+    },
+    {
+      "skill_id": "u3465-plan-quality-evaluation-for-design-and-user-research",
+      "path": "generated/shards/03/3465-plan-quality-evaluation-for-design-and-user-research",
+      "skill_md_sha256": "92ad8eb7feb22e8a6ab5d921f799f61c23ad0c2fc9aa275471be2e03da116127",
+      "summary_sha256": "6bfa1df54243b0a2de281dd3c7a4421d080da99a4383bbfd274eee60fee0922f"
+    },
+    {
+      "skill_id": "u3466-plan-quality-evaluation-for-sales-and-client-success",
+      "path": "generated/shards/03/3466-plan-quality-evaluation-for-sales-and-client-success",
+      "skill_md_sha256": "4b28e6c6269d2547a7851859da02e25428c3fa96ee8f1f9864506ec922c8e03b",
+      "summary_sha256": "d6cae0aa5874b7cf0edecd92761b7079a3e5ee842773dfd4b945f6aa4cb3c683"
+    },
+    {
+      "skill_id": "u3467-plan-quality-evaluation-for-sales-and-client-success",
+      "path": "generated/shards/03/3467-plan-quality-evaluation-for-sales-and-client-success",
+      "skill_md_sha256": "50f358b7bce8f038091e30359698dc590516ad994bb3de8837df9f822209683b",
+      "summary_sha256": "1fbc078872cb43084941a466e2a462c104308600c5e8367f1441205c660c1ecb"
+    },
+    {
+      "skill_id": "u3468-plan-quality-evaluation-for-sales-and-client-success",
+      "path": "generated/shards/03/3468-plan-quality-evaluation-for-sales-and-client-success",
+      "skill_md_sha256": "7d3eb12f1dc8b35a49fd5258c50a20c217a68f0b3152f2941325e9f028d9c2f7",
+      "summary_sha256": "fc9f0bba2a1c5ff8db1e968fc5c3d30ae71c0b7a39ab1ace05bfa4c544ca78e5"
+    },
+    {
+      "skill_id": "u3469-plan-quality-evaluation-for-sales-and-client-success",
+      "path": "generated/shards/03/3469-plan-quality-evaluation-for-sales-and-client-success",
+      "skill_md_sha256": "ca9c0e27e3433c4e3e06535390165435ca074b40e5441db7611c4589092418f3",
+      "summary_sha256": "c4725604c183af1167b43c0bb476877513714fa77b6310ac96f57e249f6a55a0"
+    },
+    {
+      "skill_id": "u3470-plan-quality-evaluation-for-sales-and-client-success",
+      "path": "generated/shards/03/3470-plan-quality-evaluation-for-sales-and-client-success",
+      "skill_md_sha256": "0aeb1d01773864c441e0f59937beecaabd1adb16eca427677763bbbbf7442134",
+      "summary_sha256": "a6b770673c81188bef5e6616ddd772ebe51032e2741e835d3bb77aea39b9e16b"
+    },
+    {
+      "skill_id": "u3471-plan-quality-evaluation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3471-plan-quality-evaluation-for-marketing-and-storytelling",
+      "skill_md_sha256": "4b7ebf639ee7db63dddd52290fe356138da515387f3a44066989ac7c82d9edc8",
+      "summary_sha256": "92cf0c44d143ea46ad50c6f1449c1a68c052c704c99c9d8418c1fb3095e40bd4"
+    },
+    {
+      "skill_id": "u3472-plan-quality-evaluation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3472-plan-quality-evaluation-for-marketing-and-storytelling",
+      "skill_md_sha256": "0fd44adf5003e9169323b455006b100893480d28464f0b7f60d21d9c1c698ae0",
+      "summary_sha256": "d81f3aba3cbda0af66b64fbc4c037b2d86c31f2d649030f6274532e1a4d57c5b"
+    },
+    {
+      "skill_id": "u3473-plan-quality-evaluation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3473-plan-quality-evaluation-for-marketing-and-storytelling",
+      "skill_md_sha256": "b9e239ecebe2c30ff1ff8b9e9e34d356ce6c984b0ce101b9366a5f3e64310ee0",
+      "summary_sha256": "94035bbfd6bb10b4fd9766d4346001ca859b96efaf032511a6a6ea59ed85a730"
+    },
+    {
+      "skill_id": "u3474-plan-quality-evaluation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3474-plan-quality-evaluation-for-marketing-and-storytelling",
+      "skill_md_sha256": "2670e54bcc546b467529838e1466b66d4db8f8d964bed4d8926584140b556d81",
+      "summary_sha256": "fae354ef6bc0694d62f42cb29c36d4b47d21673152c71642e9a3968da58439c8"
+    },
+    {
+      "skill_id": "u3475-plan-quality-evaluation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3475-plan-quality-evaluation-for-marketing-and-storytelling",
+      "skill_md_sha256": "c704ea67f7db71a6bfc5b846613f97eecb5cb37453ac8e2bf95e51ff4233bf35",
+      "summary_sha256": "b55f8e61eaf628be36dbb80226ecf5e841a565c73a5c0ba1864768f0f56336f3"
+    },
+    {
+      "skill_id": "u3476-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3476-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "11092c3a72f4af506acbd8ed0b32288a922763392b4ebf042dbcad8e1563e915",
+      "summary_sha256": "d10b06935ae1ba76e41cefed57842225316afdc165dffa19371a774fa38268d9"
+    },
+    {
+      "skill_id": "u3477-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3477-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "f4817aa015c9b9cd79c98228daf434c5f5498e4a1666396669e1a33244c62dbd",
+      "summary_sha256": "8a7601a64a5ebe8f975cef119fd4dee2274100f54028ff0ed073028566c5399c"
+    },
+    {
+      "skill_id": "u3478-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3478-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "0b6a3ce16add50700fac8e909869bc7cf0c99ff7d63a3a33be338b200d19560c",
+      "summary_sha256": "f9d3f75f1785e0e7a4c0f52365ed4fec542b93a802e8171e3eadda26046ce830"
+    },
+    {
+      "skill_id": "u3479-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3479-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "448553c7b067f4160b4fe53a8f2344d9c90d6136aff14aae8c47169e3d28ce8f",
+      "summary_sha256": "85293aaece64aacf6fe410e25150f72a6ac90207e6b6625d2ca5af362b2e60f0"
+    },
+    {
+      "skill_id": "u3480-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3480-plan-quality-evaluation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "a64035bbbce4bc81e18dc9f2bf8c6b9596bf58501a800420fb804ee1b5b64f1d",
+      "summary_sha256": "c2dda116977a2357bfef02a6c565dce7f8fa3e1abd20119675fd2855fc4bb4cb"
+    },
+    {
+      "skill_id": "u3481-plan-quality-evaluation-for-healthcare-operations",
+      "path": "generated/shards/03/3481-plan-quality-evaluation-for-healthcare-operations",
+      "skill_md_sha256": "fa1318672ec10c4634cbfa712a7f554dafe546f4383eb42200e97f8e7cf20659",
+      "summary_sha256": "d13dde77ad891a03aa9eea44a78fad20f2454286c3f7285bebe986326666a652"
+    },
+    {
+      "skill_id": "u3482-plan-quality-evaluation-for-healthcare-operations",
+      "path": "generated/shards/03/3482-plan-quality-evaluation-for-healthcare-operations",
+      "skill_md_sha256": "2660bfe54661a70712e2b3e02654b389735076a451a05a5e2177bcd85e84635f",
+      "summary_sha256": "a1c325e63aa15203c46002942e341f05205b9cdff4f70e01cbee13777b14ca65"
+    },
+    {
+      "skill_id": "u3483-plan-quality-evaluation-for-healthcare-operations",
+      "path": "generated/shards/03/3483-plan-quality-evaluation-for-healthcare-operations",
+      "skill_md_sha256": "0cb79db0173e839f8f8d226448b59284b3e0bfbb710ac70cd8ba1cb24f6e8601",
+      "summary_sha256": "01f66ebd2e8e9105ae65b9920667901c913802111ab8c9240e3f34adb5bf263c"
+    },
+    {
+      "skill_id": "u3484-plan-quality-evaluation-for-healthcare-operations",
+      "path": "generated/shards/03/3484-plan-quality-evaluation-for-healthcare-operations",
+      "skill_md_sha256": "37796cb49593624579635a7f2643505f814e4df3491a555e139e6878dd319ab1",
+      "summary_sha256": "aa9903b862e3cb9eabb377d612aa00d0704285575a9d2ad21be701abc066f412"
+    },
+    {
+      "skill_id": "u3485-plan-quality-evaluation-for-healthcare-operations",
+      "path": "generated/shards/03/3485-plan-quality-evaluation-for-healthcare-operations",
+      "skill_md_sha256": "f8c08882587f618b629aeacd159d6c87c57f3058406c5a79ba12ff982c5e30e2",
+      "summary_sha256": "db4bf8ed29fecfbb6d50dcfa0992f72d2903f85316f667e9afff04126a236872"
+    },
+    {
+      "skill_id": "u3486-plan-quality-evaluation-for-education-support-services",
+      "path": "generated/shards/03/3486-plan-quality-evaluation-for-education-support-services",
+      "skill_md_sha256": "4c68f7f7dd177a8a98b774ab29e0ac4c0d0bb763d1de410ea5535daee5c32cbb",
+      "summary_sha256": "c1575ff79fd8ee3b7651a9393fb8dda52d2d325e469523723c04eb8d3dfe5141"
+    },
+    {
+      "skill_id": "u3487-plan-quality-evaluation-for-education-support-services",
+      "path": "generated/shards/03/3487-plan-quality-evaluation-for-education-support-services",
+      "skill_md_sha256": "77813eb1d0db52c0a0b9cf4ff20e24b1150073bf4562d030b3233d62708b29a1",
+      "summary_sha256": "9312a050eb939e547b97f36fb29fa043d64a9ad48df0b43cd6b5c29012568a3c"
+    },
+    {
+      "skill_id": "u3488-plan-quality-evaluation-for-education-support-services",
+      "path": "generated/shards/03/3488-plan-quality-evaluation-for-education-support-services",
+      "skill_md_sha256": "7fd5ef51f8df6cda993333be69cdf4df28a4817f00a51f3cc3dc21f466bae6d2",
+      "summary_sha256": "ba539d07c75df8b7c002b764d1fe971bc0073c266568048729f6964c4b82bd79"
+    },
+    {
+      "skill_id": "u3489-plan-quality-evaluation-for-education-support-services",
+      "path": "generated/shards/03/3489-plan-quality-evaluation-for-education-support-services",
+      "skill_md_sha256": "5fbccb73b9308b2fbd001e52eef781e13525203a3330136baeb612c117feb5d1",
+      "summary_sha256": "5671a9c1b9f92f3ce228f56c4872ebe4f48fd5b1773243ae0583ce3e40c7e764"
+    },
+    {
+      "skill_id": "u3490-plan-quality-evaluation-for-education-support-services",
+      "path": "generated/shards/03/3490-plan-quality-evaluation-for-education-support-services",
+      "skill_md_sha256": "7a25cd0f73474e176a502daa00bab809fed8cd8f12fda08190f83fd3e396e039",
+      "summary_sha256": "10359546bf467cb4b16235e024b263e3bc422233d918b3fbe9ff728b86309996"
+    },
+    {
+      "skill_id": "u3491-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3491-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "5a626e4b43969fd8743224fcabb457dd0e249233f2ffc939583ac0595e49c21c",
+      "summary_sha256": "f4ffedf721cbfbe3788e7e8a66c154edbdbd510b4fde22aa62ec2f9ec9aef5a6"
+    },
+    {
+      "skill_id": "u3492-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3492-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "6fc31fb35f6703448db97e6c4f70f22dd8852e6107cdb79d05835744cf77ebe4",
+      "summary_sha256": "a4fc2ccca565c10b5d24d4548158f814b690c8e1ba4dd714cde84fa058b1e4ae"
+    },
+    {
+      "skill_id": "u3493-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3493-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "d58b9d33072608b251dacfc95f9dc2831eab4b08721b67785ded8fd5075edfd0",
+      "summary_sha256": "c5953edd88f4ec08bb23079d05378eeff9e72ac515c38de516e15fd9ba781a12"
+    },
+    {
+      "skill_id": "u3494-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3494-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "fe8e857f40b933a530aa5a6e5aa1177e77b229149cc3d7f9761ec5d9bf3413b0",
+      "summary_sha256": "1a44bd049d056e16d1daa8856889ec05c4a60bbd811d9b2d3a0a954b690d411b"
+    },
+    {
+      "skill_id": "u3495-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3495-plan-quality-evaluation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "6152e5b3eb2200202e61c6f07db8ec37e9355cd65f22a1bfed1f9311994583db",
+      "summary_sha256": "54582f79655d3efaa0453e3b71ccfc6e2fcb6861a0544dbe9135a5fc8701182b"
+    },
+    {
+      "skill_id": "u3496-plan-quality-evaluation-for-disaster-response-networks",
+      "path": "generated/shards/03/3496-plan-quality-evaluation-for-disaster-response-networks",
+      "skill_md_sha256": "1c6235beae90cb96c09ee0043ec9d6b7e7dd769d792a081a3bf5cb6322b40672",
+      "summary_sha256": "725181d07763c42e3b0ad66aa27833e650cb98173383f3649fac4345d550824a"
+    },
+    {
+      "skill_id": "u3497-plan-quality-evaluation-for-disaster-response-networks",
+      "path": "generated/shards/03/3497-plan-quality-evaluation-for-disaster-response-networks",
+      "skill_md_sha256": "79825690d72ff91618a06d2930ca9a598165591b4ccc7b133525f6feee87ba4c",
+      "summary_sha256": "78f467b4f277c5c47ebc793dabf66603446ead082ea22382937d2d3763e0b37a"
+    },
+    {
+      "skill_id": "u3498-plan-quality-evaluation-for-disaster-response-networks",
+      "path": "generated/shards/03/3498-plan-quality-evaluation-for-disaster-response-networks",
+      "skill_md_sha256": "db5a6b12abb623e44e09fe2d5f1ebe3125b66bda213ff2232b6717cef047c137",
+      "summary_sha256": "0247d9846524f244cf5d13616840c25961772cd494659a8cb1f1eab7422abdc2"
+    },
+    {
+      "skill_id": "u3499-plan-quality-evaluation-for-disaster-response-networks",
+      "path": "generated/shards/03/3499-plan-quality-evaluation-for-disaster-response-networks",
+      "skill_md_sha256": "42298f0371983cef882b23f49d91a1a739345d302bd84b6ee0e1624f7b49bd71",
+      "summary_sha256": "32983b00c449f298b291cfa53c0ea740835122a5145e7884c4e07440e69eb2cb"
+    }
+  ]
+}

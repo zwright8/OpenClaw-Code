@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 13,
+  "range": {
+    "start": "u3600-plan-quality-evaluation-for-knowledge-management-systems",
+    "end": "u3649-multi-agent-negotiation-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3600-plan-quality-evaluation-for-knowledge-management-systems",
+      "path": "generated/shards/03/3600-plan-quality-evaluation-for-knowledge-management-systems",
+      "skill_md_sha256": "159ebe787f350f6568ce728e2e8c6b765956c8f66dceddd99ae4f7927721395b",
+      "summary_sha256": "6c032ecff104619f048fe43428cecc99302220412c57fdd29645e943375759d3"
+    },
+    {
+      "skill_id": "u3601-multi-agent-negotiation-for-personal-health-routines",
+      "path": "generated/shards/03/3601-multi-agent-negotiation-for-personal-health-routines",
+      "skill_md_sha256": "01a6167dfa78c80d938716ca913ddbcfdb99c1b29535d49e7a6c1df5a48301d6",
+      "summary_sha256": "6678a3d40abc5a4cb0258c40a39ecb1c4beadb461dcf0a7291b629e6bc8b8206"
+    },
+    {
+      "skill_id": "u3602-multi-agent-negotiation-for-personal-health-routines",
+      "path": "generated/shards/03/3602-multi-agent-negotiation-for-personal-health-routines",
+      "skill_md_sha256": "8067bc5c84dea897bcb4c92e52591f02f6231ed723b6debfac9498735c9e8d7c",
+      "summary_sha256": "9a871e40f3c379811d906162f6ec2e29e720eaeca86635d558ecf06fcdb47b1b"
+    },
+    {
+      "skill_id": "u3603-multi-agent-negotiation-for-personal-health-routines",
+      "path": "generated/shards/03/3603-multi-agent-negotiation-for-personal-health-routines",
+      "skill_md_sha256": "dd40eb04a497f0c19e39845b2e97b23e31bdec9821fc3e8874e2b00aec18aa0c",
+      "summary_sha256": "2fabb572567fe31806b2736f91c758cfb3d81b4431361174e038a41ecf003a98"
+    },
+    {
+      "skill_id": "u3604-multi-agent-negotiation-for-personal-health-routines",
+      "path": "generated/shards/03/3604-multi-agent-negotiation-for-personal-health-routines",
+      "skill_md_sha256": "fa52b98727b6375bf36d3319201e7323629202f2e93dc74eec52648b68c48b29",
+      "summary_sha256": "8455023deac5e3e696ae890f08a51a2c3c7563d78486ef0b696a2e29751f63c1"
+    },
+    {
+      "skill_id": "u3605-multi-agent-negotiation-for-personal-health-routines",
+      "path": "generated/shards/03/3605-multi-agent-negotiation-for-personal-health-routines",
+      "skill_md_sha256": "61c7137eb44c22ebab5decb2b0c4a1334b85ad16fc0caa91cca7bdb827f00783",
+      "summary_sha256": "73e2382ca1cb3eca702d2a39585407b6a005059be72b9659bb8145c5aa029588"
+    },
+    {
+      "skill_id": "u3606-multi-agent-negotiation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3606-multi-agent-negotiation-for-family-caregiving-systems",
+      "skill_md_sha256": "b23d430fd676054081e982b451184802ee63d895283391694ca9aec46ffd424f",
+      "summary_sha256": "63cd2ffed5bc71028940cf95d6dcd251bf56800f5df6db7173d050eaae7385d7"
+    },
+    {
+      "skill_id": "u3607-multi-agent-negotiation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3607-multi-agent-negotiation-for-family-caregiving-systems",
+      "skill_md_sha256": "36b18902785430c1435319da98a4d1c4d1a2d7f383dcbca7b45a27156fbadaf5",
+      "summary_sha256": "1145fda5218b92d045979a76c7cb1666bc544b6dcc49b37e445220bc75409985"
+    },
+    {
+      "skill_id": "u3608-multi-agent-negotiation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3608-multi-agent-negotiation-for-family-caregiving-systems",
+      "skill_md_sha256": "737e65b512b6aa9f66168cf5e106a889ba9cbfd0b7615d4a0149b6e7ec0f9adf",
+      "summary_sha256": "ddc4b94a0c095b6990ed76769c97f686d7f8194b64b92782dec8656ba809f578"
+    },
+    {
+      "skill_id": "u3609-multi-agent-negotiation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3609-multi-agent-negotiation-for-family-caregiving-systems",
+      "skill_md_sha256": "f4d80e3f4838086851366620ba968379cb63c91485880474e641269da94cd1cc",
+      "summary_sha256": "74b38c8df181a08549d5e10d4db44d96d88cf052677216980067f42080b9c01a"
+    },
+    {
+      "skill_id": "u3610-multi-agent-negotiation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3610-multi-agent-negotiation-for-family-caregiving-systems",
+      "skill_md_sha256": "e10e57d720a2f0f1dbe622d7faa7c2f8d9cdfe2277314915862ff479088fd71a",
+      "summary_sha256": "2b9a967a857a52a28421a33b54c2afb989da9bf6207be64ae4f60abe1aafbb91"
+    },
+    {
+      "skill_id": "u3611-multi-agent-negotiation-for-household-logistics",
+      "path": "generated/shards/03/3611-multi-agent-negotiation-for-household-logistics",
+      "skill_md_sha256": "fc5f44bbeea30aaf9fc8d241047e3d10c2a1f93e3a84a15ed3daf4b6761ff705",
+      "summary_sha256": "07361026fb99a801d86086a910b063daf99037b26cf9a4d210d1c0f8f45f2dc9"
+    },
+    {
+      "skill_id": "u3612-multi-agent-negotiation-for-household-logistics",
+      "path": "generated/shards/03/3612-multi-agent-negotiation-for-household-logistics",
+      "skill_md_sha256": "cae7f8a6567a0d651a6fe2117676b877ae21e89a1434763fd9b0635dfbe3cb57",
+      "summary_sha256": "4b05e96549dbf8373d5d6b689b11c60a5fc46a54aba238b3609fdf97a3445b4b"
+    },
+    {
+      "skill_id": "u3613-multi-agent-negotiation-for-household-logistics",
+      "path": "generated/shards/03/3613-multi-agent-negotiation-for-household-logistics",
+      "skill_md_sha256": "6280db37d5c91f6a1584eca4353c5784d916631c43cd3bc5175ee6c796a7e09e",
+      "summary_sha256": "ad742e35536e29beb166e45584acd2d372786492adb3f8d2800f54e7d414ff28"
+    },
+    {
+      "skill_id": "u3614-multi-agent-negotiation-for-household-logistics",
+      "path": "generated/shards/03/3614-multi-agent-negotiation-for-household-logistics",
+      "skill_md_sha256": "2a8f7a4a2d0ce3d6e3803dbb058f9b988e7a2d6a6deede17d6cfd03c71254f5c",
+      "summary_sha256": "518d21f98b4404518c1a30dfdaa187d9021eee4a6ea3e1e0a935dccf8271fabd"
+    },
+    {
+      "skill_id": "u3615-multi-agent-negotiation-for-household-logistics",
+      "path": "generated/shards/03/3615-multi-agent-negotiation-for-household-logistics",
+      "skill_md_sha256": "ca4ff940784616676f5bf05ae2735ee30972a99eeaef568e7d68673cc7fbbb60",
+      "summary_sha256": "8cec06df655098a332e35b2ca85f07d51c586610db4e624aa81d1707f4916771"
+    },
+    {
+      "skill_id": "u3616-multi-agent-negotiation-for-personal-finance-management",
+      "path": "generated/shards/03/3616-multi-agent-negotiation-for-personal-finance-management",
+      "skill_md_sha256": "71daaef413cf6faf63fe6b153245aec789725ce9870318a31eeb115fda237335",
+      "summary_sha256": "dfc56efc0bd35115b629c7ec62614eb3be24c3d1cf685aab3c22699523942c69"
+    },
+    {
+      "skill_id": "u3617-multi-agent-negotiation-for-personal-finance-management",
+      "path": "generated/shards/03/3617-multi-agent-negotiation-for-personal-finance-management",
+      "skill_md_sha256": "8631d92f81fbadb5cdf986464399b584a06b2e9aa2cdc474ca055200da48fe35",
+      "summary_sha256": "a47f84b5f2d4f0a4beb843ae542c044fc6c79e2f73275888c556626d3d91f356"
+    },
+    {
+      "skill_id": "u3618-multi-agent-negotiation-for-personal-finance-management",
+      "path": "generated/shards/03/3618-multi-agent-negotiation-for-personal-finance-management",
+      "skill_md_sha256": "26d10809df5a0c37fd484ba5790f701585d5b02e957cb227eee415a8dc6f052a",
+      "summary_sha256": "49c6450fd95264534e3a6718238159b4f891115a959933614dff8e99b1947121"
+    },
+    {
+      "skill_id": "u3619-multi-agent-negotiation-for-personal-finance-management",
+      "path": "generated/shards/03/3619-multi-agent-negotiation-for-personal-finance-management",
+      "skill_md_sha256": "171426160ae4fa393731489174ecd079107c5e79345d95caafe0bb6b08adb5a3",
+      "summary_sha256": "01b3ac75ec7ddcf45e65f866066bdb857157d3b3c10cf86acc2404479801858b"
+    },
+    {
+      "skill_id": "u3620-multi-agent-negotiation-for-personal-finance-management",
+      "path": "generated/shards/03/3620-multi-agent-negotiation-for-personal-finance-management",
+      "skill_md_sha256": "233136bef128918e7f0b99064520af35e774f94eae4904890d0dcb22e9a315be",
+      "summary_sha256": "4b777f34940b7668b99e49a6821740ba75181cf6b1ea8647c4ab84deaa1ff88c"
+    },
+    {
+      "skill_id": "u3621-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3621-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "f3cc7d34860393da82ae39097364b7d26de4a4b8c038e87f8ece4751e5056f3c",
+      "summary_sha256": "ae8bc5d65e9f5483e610f70d323b3af072c623b25405e3104dec2aafa4981a25"
+    },
+    {
+      "skill_id": "u3622-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3622-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "26d5f2bb46ae9eaf1809af330e2bc906d088cfab826b77945016848d055c5ec9",
+      "summary_sha256": "34e5c843ea6e7e3b4736a2764e04202d1dec46c07b7965e13baea85c5ddacf99"
+    },
+    {
+      "skill_id": "u3623-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3623-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "c59665e8cc35f0d37b5f02843b988f6d848b87a0b14f368b40b10960230d1a42",
+      "summary_sha256": "ecd0af880b3828e4e0e4c5652bfc55d28630832954230d461b3297fc77400c45"
+    },
+    {
+      "skill_id": "u3624-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3624-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "aa610a8d599c94e1a4b8f72edc79f9426f06778a94310212d70ee00414de2676",
+      "summary_sha256": "5f090425e0a5fcc8acfd91d0bf61646275b724c1f589048ce9dc50c33f627470"
+    },
+    {
+      "skill_id": "u3625-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3625-multi-agent-negotiation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "fba52a506b7ef57a976ce881d0f87a98fec88bebaeda507605cf22466b983547",
+      "summary_sha256": "ac2a38978f565e5eac38d608764cff719568fac976b33d170c77d93792a7decf"
+    },
+    {
+      "skill_id": "u3626-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3626-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "e6c5d08e183ce888c08563285730ba412e5c0786146181c9f2497e6aa05651fb",
+      "summary_sha256": "53aafafa08d995904f71c4e77d943f96cb8d517f9f6fbd1b03b50b4b114b3645"
+    },
+    {
+      "skill_id": "u3627-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3627-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "39a05900f6025e7a12668b0e7576557319bb9fe17210c2cdc748d3347a35a58d",
+      "summary_sha256": "8ca5b6a38deb2388d64ed49064631b25d1677be5a52de79dc5dd29183a4cd620"
+    },
+    {
+      "skill_id": "u3628-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3628-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "733efab08d36abfd95ca6c5796125da5fdd245425bda9cb156a733995970c165",
+      "summary_sha256": "c0e7a0dce1e883077b6644091654fc126fa5d5cd9d6aa0dbc1dab4afb8c546fd"
+    },
+    {
+      "skill_id": "u3629-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3629-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "d00f9dd86f74dc64940b15c578672ccb7505e0cbcda8ea3b6a89fb8ac3ac3f7c",
+      "summary_sha256": "83dab0a6877ff5009e0b02e69454618bc82e13371a59b46480f89bb5c9dc8093"
+    },
+    {
+      "skill_id": "u3630-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3630-multi-agent-negotiation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "d722945b1a4f72695658ed2eb202729cd52cee642470734f8d807a1953291c99",
+      "summary_sha256": "733f878111250c26b55a6e6cc28143bb7b644664cc30af5766365da56a692cc2"
+    },
+    {
+      "skill_id": "u3631-multi-agent-negotiation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3631-multi-agent-negotiation-for-mental-well-being-practices",
+      "skill_md_sha256": "fe5724695c4ade8f4e7ffcbb441ec45ba4b8c2184d7c52778d9011555cccd9b1",
+      "summary_sha256": "084d1974082af9069d72cb398e601a6887c26a1be77d582c0f72db8b66b768c8"
+    },
+    {
+      "skill_id": "u3632-multi-agent-negotiation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3632-multi-agent-negotiation-for-mental-well-being-practices",
+      "skill_md_sha256": "7c0e5dc6c4ec1f8bd0c67ac51acd31b3ada536950b5c770d8953854705360f03",
+      "summary_sha256": "fd8350a9f54c2e8c536724ca6411fca87cbc5f7da5dc69c178cec541b6148408"
+    },
+    {
+      "skill_id": "u3633-multi-agent-negotiation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3633-multi-agent-negotiation-for-mental-well-being-practices",
+      "skill_md_sha256": "601d6c45db3b95e0161dc595b565717fbd77909e21be085f156331c8b5cc5e3a",
+      "summary_sha256": "ae0176555bbdb4abf7d8b699654d550f5eb9cbbcc8b6ca1ba24cf4a25f504d4c"
+    },
+    {
+      "skill_id": "u3634-multi-agent-negotiation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3634-multi-agent-negotiation-for-mental-well-being-practices",
+      "skill_md_sha256": "877bed1b488671a3e8fa58b4a842903d5f6f694aec88f7a3ce3ba3c1d81fe85e",
+      "summary_sha256": "a0b23fb105c3721724c1a2a55fa960d9e5afbadd9360089a0fc7ec4961e13076"
+    },
+    {
+      "skill_id": "u3635-multi-agent-negotiation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3635-multi-agent-negotiation-for-mental-well-being-practices",
+      "skill_md_sha256": "89148e604ebac4848faf08164b4144542604544d225c3219199412f9bb343644",
+      "summary_sha256": "ef91670a8630900fc0427379fb46ddb2bcef6d22fdae785da601ab115875ea57"
+    },
+    {
+      "skill_id": "u3636-multi-agent-negotiation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3636-multi-agent-negotiation-for-lifelong-learning-plans",
+      "skill_md_sha256": "625ef11cefd7643f1e8ab28cd58eeb531d5b51d22a7f95697f7f6668efc5e8d0",
+      "summary_sha256": "7279e092a91d1a2531db91bb56dcd613549f535ea173f577c4f57b6dae0ab991"
+    },
+    {
+      "skill_id": "u3637-multi-agent-negotiation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3637-multi-agent-negotiation-for-lifelong-learning-plans",
+      "skill_md_sha256": "1821fad21b527f8b6db72e561df66863a84740926232bb365cd8f6a35ae0751b",
+      "summary_sha256": "4df77428c47a24fd72a83f6be69662dd418502026cf293b4a9c2b0243573a75a"
+    },
+    {
+      "skill_id": "u3638-multi-agent-negotiation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3638-multi-agent-negotiation-for-lifelong-learning-plans",
+      "skill_md_sha256": "cad786db85d37f93992053e8c5ca07480ad614716c2dfa6a5a2932e11445277a",
+      "summary_sha256": "c95a6aedbabb2c1ae555e4d3a36654d6a5fbf64699035451afbcdbf058e31b1b"
+    },
+    {
+      "skill_id": "u3639-multi-agent-negotiation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3639-multi-agent-negotiation-for-lifelong-learning-plans",
+      "skill_md_sha256": "a6e78b0dc7f86690923148e37ee7a31c1c08b920a02480c4585caed57c60d099",
+      "summary_sha256": "69693a8b4c64117202075eeb2284aef9b77e96803595690fe7f46abbb46d92c5"
+    },
+    {
+      "skill_id": "u3640-multi-agent-negotiation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3640-multi-agent-negotiation-for-lifelong-learning-plans",
+      "skill_md_sha256": "c4e0461a5b83c323187e878f157ffc9ad93e7e657e2036ab9dd7a583272efbc3",
+      "summary_sha256": "ad89558b3a69804e6e4ea3992f94d4ae0d15657d66096eef39e6ac24cb9ab046"
+    },
+    {
+      "skill_id": "u3641-multi-agent-negotiation-for-career-development-pathways",
+      "path": "generated/shards/03/3641-multi-agent-negotiation-for-career-development-pathways",
+      "skill_md_sha256": "1804379c0c739feeafe2452c61412780771aaaf3f1cb5e6bbf16441afbc40f79",
+      "summary_sha256": "34e532a73febe6b1f0be97520e7e121e717d5dffe6b5c07d7a8b0e83dd396013"
+    },
+    {
+      "skill_id": "u3642-multi-agent-negotiation-for-career-development-pathways",
+      "path": "generated/shards/03/3642-multi-agent-negotiation-for-career-development-pathways",
+      "skill_md_sha256": "4308a17dfc5d971a9d265baad9b273cebf23fc21c94483e689f326fa2dd7a4dc",
+      "summary_sha256": "ef75ab52b34e9c9207dec220f59b0e5776ea8d05a14299be6db31ac2b9d348c0"
+    },
+    {
+      "skill_id": "u3643-multi-agent-negotiation-for-career-development-pathways",
+      "path": "generated/shards/03/3643-multi-agent-negotiation-for-career-development-pathways",
+      "skill_md_sha256": "652d994c4d97a91c7c0d7addca243b9a3a793b0d21f477a09ec120beef2bafc7",
+      "summary_sha256": "15100daab2827e2876f61a89e72db89f808250c131a8c12abf74e6d5ce601728"
+    },
+    {
+      "skill_id": "u3644-multi-agent-negotiation-for-career-development-pathways",
+      "path": "generated/shards/03/3644-multi-agent-negotiation-for-career-development-pathways",
+      "skill_md_sha256": "3be53d9dc8ecd7e190d94298ced569327b03abd0c762df40e7487e7ad03d5248",
+      "summary_sha256": "f0ce98d009dd69186d2f6020baed5600ea21377b7389efd7398272d9a687167a"
+    },
+    {
+      "skill_id": "u3645-multi-agent-negotiation-for-career-development-pathways",
+      "path": "generated/shards/03/3645-multi-agent-negotiation-for-career-development-pathways",
+      "skill_md_sha256": "f5a77165d70f36a867c40db4c9ef79d2a154ada58962edd10e38d0ffbb497b24",
+      "summary_sha256": "56421fa2df8c2b1a66f01052d8385bee08ede782a5e44481fa8de4eca3e469d9"
+    },
+    {
+      "skill_id": "u3646-multi-agent-negotiation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3646-multi-agent-negotiation-for-entrepreneurship-operations",
+      "skill_md_sha256": "c557b88bbf73c67edc0676327fe4266368b3b9b95f64e122e7362a61161a9b90",
+      "summary_sha256": "16e81cb6061c4ad7c7eee344f905b5b4a1a28530f13f03bdc9a1b78b76aa323b"
+    },
+    {
+      "skill_id": "u3647-multi-agent-negotiation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3647-multi-agent-negotiation-for-entrepreneurship-operations",
+      "skill_md_sha256": "a1b48a05fc4b13f24b8779df277e10662d481cb786a782945880208ef58f88a1",
+      "summary_sha256": "3c2035d7296a845dc3d3b887e9e3c82fd8117024f0b154d39ecdde095ac9b5d0"
+    },
+    {
+      "skill_id": "u3648-multi-agent-negotiation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3648-multi-agent-negotiation-for-entrepreneurship-operations",
+      "skill_md_sha256": "3cefb73da45fed3fcb4692945bd2c46fc7231f09cdd2cda5af52e005d6129785",
+      "summary_sha256": "41f776f4002d2df5290aa7ab6c7dc1b72a4a443860151844b1ea382c766a4480"
+    },
+    {
+      "skill_id": "u3649-multi-agent-negotiation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3649-multi-agent-negotiation-for-entrepreneurship-operations",
+      "skill_md_sha256": "7b54f98d4fe46c7da60c51cafbbc71d27b9bfc7ae9ac9d4e473a2ea9bc0f8f7a",
+      "summary_sha256": "745cc0f046d7962fbee30c0906f6f64cb5df731537af912b0f3a7a8a66ee5965"
+    }
+  ]
+}

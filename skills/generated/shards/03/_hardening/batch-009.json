@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 9,
+  "range": {
+    "start": "u3400-semantic-retrieval-ranking-for-knowledge-management-systems",
+    "end": "u3449-plan-quality-evaluation-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3400-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3400-semantic-retrieval-ranking-for-knowledge-management-systems",
+      "skill_md_sha256": "4321cbc11367c5fe93dc6b0d6b6433528629102a28fc2d2a09c5a669c4c5ca9e",
+      "summary_sha256": "7509de9249aaac535b9a7f408d1fe5c55ce3cf68c22217d56e65838593de40b4"
+    },
+    {
+      "skill_id": "u3401-plan-quality-evaluation-for-personal-health-routines",
+      "path": "generated/shards/03/3401-plan-quality-evaluation-for-personal-health-routines",
+      "skill_md_sha256": "a2f97515c2c6947381dbe2a5a6dc5e5408cebb2ff755d17d522c07ad05a14a01",
+      "summary_sha256": "929936cd539ffecf10770fac4f720149e56d58cdf937fb1a23da6bfab80e6966"
+    },
+    {
+      "skill_id": "u3402-plan-quality-evaluation-for-personal-health-routines",
+      "path": "generated/shards/03/3402-plan-quality-evaluation-for-personal-health-routines",
+      "skill_md_sha256": "c74cc0b45d64bbbd0e83645f7efa451fcde6d4174c241201601228fa4dfe1131",
+      "summary_sha256": "9361c1df50a581720c3fbf8af4a7bbb73755a398be5429f983ba38cb1296bfca"
+    },
+    {
+      "skill_id": "u3403-plan-quality-evaluation-for-personal-health-routines",
+      "path": "generated/shards/03/3403-plan-quality-evaluation-for-personal-health-routines",
+      "skill_md_sha256": "5bc541953926f68fcefd07b11e6cf6883176f03f3f04428e7f9ae444ee12e924",
+      "summary_sha256": "b05cc1f08993265beef4565da9441a2733a895ad30ca0987f96e4fc53065c71d"
+    },
+    {
+      "skill_id": "u3404-plan-quality-evaluation-for-personal-health-routines",
+      "path": "generated/shards/03/3404-plan-quality-evaluation-for-personal-health-routines",
+      "skill_md_sha256": "0fa75d5b1c21309262d477b16031e535c670463fd8eed0e031643616a359bfbb",
+      "summary_sha256": "5eba83b2ac7cfc32519cf55952a9b5d7420b3d53053174841405fc06a9c65841"
+    },
+    {
+      "skill_id": "u3405-plan-quality-evaluation-for-personal-health-routines",
+      "path": "generated/shards/03/3405-plan-quality-evaluation-for-personal-health-routines",
+      "skill_md_sha256": "3b19cfa141e078e2b2515eecabcfdc5a0dc0872167e5653694f5d196e864331e",
+      "summary_sha256": "3efb324bb2263ceac6eaa53b3825a23adcd324443616f4f3277c0b42da227b60"
+    },
+    {
+      "skill_id": "u3406-plan-quality-evaluation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3406-plan-quality-evaluation-for-family-caregiving-systems",
+      "skill_md_sha256": "11ab39fbea71c4d866a40abcace9b1a039a50ff326aeebebf85f5f006dbee100",
+      "summary_sha256": "358df6a513164a53f335e3bf31179be469629599988e2398fb6f0bb4a30dba05"
+    },
+    {
+      "skill_id": "u3407-plan-quality-evaluation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3407-plan-quality-evaluation-for-family-caregiving-systems",
+      "skill_md_sha256": "e7483be67d9a606a62d263f5de248cebe3f05387ecc38a3fe74aa14a4d0280b4",
+      "summary_sha256": "372b717eda2754391b88d09211717eb76db88c5008bffca87dbe3943eda9fb8a"
+    },
+    {
+      "skill_id": "u3408-plan-quality-evaluation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3408-plan-quality-evaluation-for-family-caregiving-systems",
+      "skill_md_sha256": "00f8088a9f431828beec80e66ce0d32ea2d91139d3cf66032275e0ca9be267b7",
+      "summary_sha256": "3675868b8dd5b1154b735ca71fe16c875dd35b43f7489e0a85a098d415746da1"
+    },
+    {
+      "skill_id": "u3409-plan-quality-evaluation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3409-plan-quality-evaluation-for-family-caregiving-systems",
+      "skill_md_sha256": "f45334d92a4612125c5d5913b814a0529eed225b700ea1a664eacc0b3a0774f6",
+      "summary_sha256": "03b2d9e1a835f4646d2621711e27fb3157dec3561e4f4e4f26e24a1b056176f7"
+    },
+    {
+      "skill_id": "u3410-plan-quality-evaluation-for-family-caregiving-systems",
+      "path": "generated/shards/03/3410-plan-quality-evaluation-for-family-caregiving-systems",
+      "skill_md_sha256": "76ad2a90b73705cc15549191d106294d0d9915a301d800cc6d5e8350398d6b9b",
+      "summary_sha256": "8784531ed6720721953e8643ccb7e6e46bfd35d6f37b4aa88ed8517a3f8869c9"
+    },
+    {
+      "skill_id": "u3411-plan-quality-evaluation-for-household-logistics",
+      "path": "generated/shards/03/3411-plan-quality-evaluation-for-household-logistics",
+      "skill_md_sha256": "22e1238024870f50e829d0a9321ce18bde127eabc2c1e2210568083988723410",
+      "summary_sha256": "1a1013fc582bd42e0fc5c13c2288ff76a55b6d07909bc5c85a4b93a283bf707b"
+    },
+    {
+      "skill_id": "u3412-plan-quality-evaluation-for-household-logistics",
+      "path": "generated/shards/03/3412-plan-quality-evaluation-for-household-logistics",
+      "skill_md_sha256": "7769279790ec39504b5c0e3642d0b990c0fae7b02e5a62c227e28329bbf9a686",
+      "summary_sha256": "819a6245fb30201b5ac4f0ce1a2889ac2d66863ecbd643162685a3683b9ada6b"
+    },
+    {
+      "skill_id": "u3413-plan-quality-evaluation-for-household-logistics",
+      "path": "generated/shards/03/3413-plan-quality-evaluation-for-household-logistics",
+      "skill_md_sha256": "63d5e4f0b05266fad6a0842be86c713cffca41bfe3e116cb42d0d52e749c3a3a",
+      "summary_sha256": "0cb8342f59d2ba8e492758596dc9145aa0c9bde631694dc564aa1d5810707a42"
+    },
+    {
+      "skill_id": "u3414-plan-quality-evaluation-for-household-logistics",
+      "path": "generated/shards/03/3414-plan-quality-evaluation-for-household-logistics",
+      "skill_md_sha256": "b79fd1972de0743bb0bf5f0d1ff51e1514f7d8e4c132f7517787f9734e0026aa",
+      "summary_sha256": "e923ac84be0e48ab8b398e105dcb965af7076fd97c1976db40407cbad5a8f403"
+    },
+    {
+      "skill_id": "u3415-plan-quality-evaluation-for-household-logistics",
+      "path": "generated/shards/03/3415-plan-quality-evaluation-for-household-logistics",
+      "skill_md_sha256": "adc67566c1658756b5a76cd9812ece22b89d2f4825b8b47e1c8581b06de04605",
+      "summary_sha256": "7b536c0cefdd8d1d24b2413bfeb6ac4ab4de43c256613fd082022102864aa91c"
+    },
+    {
+      "skill_id": "u3416-plan-quality-evaluation-for-personal-finance-management",
+      "path": "generated/shards/03/3416-plan-quality-evaluation-for-personal-finance-management",
+      "skill_md_sha256": "0b8b184c4cb9cbde7f7b3a931a2fdb920379f28d132368fb31e654f390a68fb6",
+      "summary_sha256": "09015f692e3de0cef87d3a5521c34b04d25aa649fdf9252cbc9fad60b04661cc"
+    },
+    {
+      "skill_id": "u3417-plan-quality-evaluation-for-personal-finance-management",
+      "path": "generated/shards/03/3417-plan-quality-evaluation-for-personal-finance-management",
+      "skill_md_sha256": "2e992743d2f2f835fbbbd0c866eec922e8ad500485cd971da7c93f99236d40b9",
+      "summary_sha256": "20b80beeca21be0f00d441332e847e96a04be4772a1d244255c0f138b34454cc"
+    },
+    {
+      "skill_id": "u3418-plan-quality-evaluation-for-personal-finance-management",
+      "path": "generated/shards/03/3418-plan-quality-evaluation-for-personal-finance-management",
+      "skill_md_sha256": "b5a80c10c8b03fd74ce6904b2f1dabc21dcc353df0f0aed1b8c59b6c097c27d5",
+      "summary_sha256": "a7fdb3be972ee9c6f417aca259eea82b240a8e4d5e78c6431f4a095ccb7c9953"
+    },
+    {
+      "skill_id": "u3419-plan-quality-evaluation-for-personal-finance-management",
+      "path": "generated/shards/03/3419-plan-quality-evaluation-for-personal-finance-management",
+      "skill_md_sha256": "d62dd5965109aa069d7c8945ef40a84254fa2c0322201e8408b1b1d0f0dfbf41",
+      "summary_sha256": "5f94aa51ef06668f56d144f7443193f8220f5121cd009ee6933d9e7625fb6a32"
+    },
+    {
+      "skill_id": "u3420-plan-quality-evaluation-for-personal-finance-management",
+      "path": "generated/shards/03/3420-plan-quality-evaluation-for-personal-finance-management",
+      "skill_md_sha256": "6bc6bc2488d96b234f974d7bc40871c8afd5e069a3037be31868bc76b4b6e5f4",
+      "summary_sha256": "4640ef7f606044239f540280af2783e4614c9e0ebafbc9314d498075765d27da"
+    },
+    {
+      "skill_id": "u3421-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3421-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "abc4d6f9554935e766dd28d5d12090def5256061c74d3248addd4b28088fc427",
+      "summary_sha256": "2b748f675d2ce6902fb34cc89666d9aa3af9ad98281c50e614350baa09369835"
+    },
+    {
+      "skill_id": "u3422-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3422-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "38a6804fd0baacb3022f0ad80b80fec1a3c07045d7d159203cc25f180a4cd628",
+      "summary_sha256": "e23c052a6bf79f247116a2f4b4df0cf4a819cf3a1af9bf3e84143a208e4161c1"
+    },
+    {
+      "skill_id": "u3423-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3423-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "c8efb780b206dc39b0e3d1a44ffdc1424e036ea81d92713071fa6dfed9af5945",
+      "summary_sha256": "5dc5eb7e90d436d19e5d863ae01fad235191e427281b40e05f552056c45e691a"
+    },
+    {
+      "skill_id": "u3424-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3424-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "1588baf76ea1bfd4d5ba2fa5356fca82118d688b65234c42ed8f4d9f5eb97741",
+      "summary_sha256": "6a8e749ac77bec91650e93637e452488995d269f97ce434d6ca47362b723672e"
+    },
+    {
+      "skill_id": "u3425-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3425-plan-quality-evaluation-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "22031364384808e465752c2778918973e6939a0e775b98bda16d21c712bea535",
+      "summary_sha256": "4fcad3c0c3aff1bf20c0f36c6cacf99dcf0b7d7b0f1c580df7f9993dd1638aed"
+    },
+    {
+      "skill_id": "u3426-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3426-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "aa22e04a280c51d25638b15c402fcd65f7d62c765b2e4d883333e569b8bcca54",
+      "summary_sha256": "4ede8fbec4293d26f7be9c76311b020e60841620bb6c491cfd81f08bb7f7121d"
+    },
+    {
+      "skill_id": "u3427-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3427-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "40fa32fb74a7d5ab47d5da02b5459dc7f99359d33d04aad2d5158375eefb84c8",
+      "summary_sha256": "70982c07baed390ead2260fec689f438cf3a8e088ad022decbdf9eff48ff786f"
+    },
+    {
+      "skill_id": "u3428-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3428-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "7cf8e983a97d55dde0d334b1fc4983f5ce65c5f50b5d1dda987db49c1008b1fd",
+      "summary_sha256": "373dc77bcb3bb56949d12883ed87779f742179c0df65c20e52ccb6e8c322d10c"
+    },
+    {
+      "skill_id": "u3429-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3429-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "85d631349fb7c8d3de034b1f0eefc5c85de4f829b3e91f520331153abf832e11",
+      "summary_sha256": "40db4a3df68f0cd0c4059fcb864a7ec7a9592383bae4db34441694983ae8d563"
+    },
+    {
+      "skill_id": "u3430-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3430-plan-quality-evaluation-for-fitness-and-recovery-training",
+      "skill_md_sha256": "cc6171c5cfa6c3c236bcf511f0c66e82225e4c1ad18428f8867049e28d450557",
+      "summary_sha256": "243dc4e145c43f5f1db9bd22138898e603090c1adcf543771743a28279b370f4"
+    },
+    {
+      "skill_id": "u3431-plan-quality-evaluation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3431-plan-quality-evaluation-for-mental-well-being-practices",
+      "skill_md_sha256": "be4ee1ed1a53a47af6f027daae3e7e7d7c5d70ede514867bc0d5cac964c7e159",
+      "summary_sha256": "3a56e3f5c7996537c9a311e47b7f8261a1518c577b64fcec4b3b26e986d26c67"
+    },
+    {
+      "skill_id": "u3432-plan-quality-evaluation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3432-plan-quality-evaluation-for-mental-well-being-practices",
+      "skill_md_sha256": "cfe973cca94b547d2723c5d04686a3abdb54b00848844060e6fdb6b34d9fe221",
+      "summary_sha256": "22366db6647e02843c7c5f22e183aa8eb57f1a270552e770de6daec78e6a9e4b"
+    },
+    {
+      "skill_id": "u3433-plan-quality-evaluation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3433-plan-quality-evaluation-for-mental-well-being-practices",
+      "skill_md_sha256": "acd3d314e81cdb8970c5ddda5a6ae501a4e5c0b550659087ba1e335f45f519a9",
+      "summary_sha256": "dfe2de32302ad8f43ea9733131485ca8b42bb6201b5d5c29c59584d15520a13b"
+    },
+    {
+      "skill_id": "u3434-plan-quality-evaluation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3434-plan-quality-evaluation-for-mental-well-being-practices",
+      "skill_md_sha256": "e1ccddfad775a04ac4de95a37ac35f5779530c2c9e8b82db1983af997f6449a2",
+      "summary_sha256": "84ff1681d3c3fe66dc22e9ae3b208d44410f37ebea0772f782218bd010e49512"
+    },
+    {
+      "skill_id": "u3435-plan-quality-evaluation-for-mental-well-being-practices",
+      "path": "generated/shards/03/3435-plan-quality-evaluation-for-mental-well-being-practices",
+      "skill_md_sha256": "512f854f59c59f90ff83b3380fd41c0a96fa7e1b6b3c9440dffdc8fd37460b6d",
+      "summary_sha256": "ddf880d67a8636c140cd6ebf796e084ec49e5d1a6cdc88bdc8bd3dea1c927a21"
+    },
+    {
+      "skill_id": "u3436-plan-quality-evaluation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3436-plan-quality-evaluation-for-lifelong-learning-plans",
+      "skill_md_sha256": "2f0e95518567a79f4ac21ecdd11a999106bdd73f0ef32e4f1cdac3f3d84425b6",
+      "summary_sha256": "e1c942538efc4813e965e8175c95188c3f630a35c6510be691d5984beb96a104"
+    },
+    {
+      "skill_id": "u3437-plan-quality-evaluation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3437-plan-quality-evaluation-for-lifelong-learning-plans",
+      "skill_md_sha256": "ad8b78c5a9ba210576b1c1c1764376b902ec3a053f39d6758f228ebecc99c7f2",
+      "summary_sha256": "4428534d3aa125e70da9e222fc625b850f21e84738f6d941678802351c077091"
+    },
+    {
+      "skill_id": "u3438-plan-quality-evaluation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3438-plan-quality-evaluation-for-lifelong-learning-plans",
+      "skill_md_sha256": "80bab9e5b7e3dc22a7d37ce4dfacb0f126b6e5c07ea3d84f339cc453ed4204f3",
+      "summary_sha256": "d364bef80978600bdbac49b965e873b3c3e062a57fb915ab65d2f8c1dd59f264"
+    },
+    {
+      "skill_id": "u3439-plan-quality-evaluation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3439-plan-quality-evaluation-for-lifelong-learning-plans",
+      "skill_md_sha256": "d38a973c76fd0f9954b41f530cb11afc3a2f40708c7229037d3c84445ebdc12e",
+      "summary_sha256": "3e6db3b227c393bde891bba37ba6f7d0d669aaac3bdc8c813ed33c4f5f7bce13"
+    },
+    {
+      "skill_id": "u3440-plan-quality-evaluation-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3440-plan-quality-evaluation-for-lifelong-learning-plans",
+      "skill_md_sha256": "632c5c2f0fc80522ecb558a25dd166be1d6f90284c20374d7f4b4955b7356aaa",
+      "summary_sha256": "8fee7c3f0768eb973e430d101165a72699b7c71ecb1f6270b77eca21556aa90f"
+    },
+    {
+      "skill_id": "u3441-plan-quality-evaluation-for-career-development-pathways",
+      "path": "generated/shards/03/3441-plan-quality-evaluation-for-career-development-pathways",
+      "skill_md_sha256": "404c49da7689ec33173a6aca0bf063507d59888895ab8f7740d148bad810896f",
+      "summary_sha256": "461b030464f60e58c83986f5d27435c12be01c8018f5e0d027b7f7cbb9b84eb5"
+    },
+    {
+      "skill_id": "u3442-plan-quality-evaluation-for-career-development-pathways",
+      "path": "generated/shards/03/3442-plan-quality-evaluation-for-career-development-pathways",
+      "skill_md_sha256": "2f5fa5d803a9c9c6f9039fa6072f05b65eed3cd104f8f131ed01fbab244efec3",
+      "summary_sha256": "6a953553ad93b992a0fdf043e55e48ffa777faf5a8ef43423cf4c42ac6f9824f"
+    },
+    {
+      "skill_id": "u3443-plan-quality-evaluation-for-career-development-pathways",
+      "path": "generated/shards/03/3443-plan-quality-evaluation-for-career-development-pathways",
+      "skill_md_sha256": "af5f5e5c587c59c19c6956f5b4d17a1a3a9e4cd0d5f17659c62547b1d7d0f69c",
+      "summary_sha256": "abc18f60bbaf98f42bf07115a534bd083a9720f0475e6e1c315ce2acafa1ed90"
+    },
+    {
+      "skill_id": "u3444-plan-quality-evaluation-for-career-development-pathways",
+      "path": "generated/shards/03/3444-plan-quality-evaluation-for-career-development-pathways",
+      "skill_md_sha256": "a31cbfbbeaefabd9b99c89b9c355dfcef264847bfeeaa0345b8c5c6191f46380",
+      "summary_sha256": "fc9b1bb3dabdfca2c71552d90d967f189e669c78a86df36e2bc6b748ef7d5c4b"
+    },
+    {
+      "skill_id": "u3445-plan-quality-evaluation-for-career-development-pathways",
+      "path": "generated/shards/03/3445-plan-quality-evaluation-for-career-development-pathways",
+      "skill_md_sha256": "e065ef8cc05ccbdaad305760da7e92ac016b879f64069b68287c785e001d19a5",
+      "summary_sha256": "890aef8d74eb545a0ee5c1c63dd4c578aa58de4cab655bdd2ab8f2f41f18fa20"
+    },
+    {
+      "skill_id": "u3446-plan-quality-evaluation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3446-plan-quality-evaluation-for-entrepreneurship-operations",
+      "skill_md_sha256": "b0448e5c45a34e022ef2cf9a8de97cbc9ee8630705770a02fd4e2f26d77603d2",
+      "summary_sha256": "2084a59dfbd21e19032aafe57f03170b16379b913ede437ebda3d9701c2329a2"
+    },
+    {
+      "skill_id": "u3447-plan-quality-evaluation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3447-plan-quality-evaluation-for-entrepreneurship-operations",
+      "skill_md_sha256": "697f9e7da8f285d5a0cb67552cf2ffa53c23f2943e78e0814e0932c4aa1a2564",
+      "summary_sha256": "7d419c68c27ff3fbe610b67518845220823d7ca4e9ae2447e28c5e9f83214ead"
+    },
+    {
+      "skill_id": "u3448-plan-quality-evaluation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3448-plan-quality-evaluation-for-entrepreneurship-operations",
+      "skill_md_sha256": "df3f396d6df31a3ec2216deecbdfd46ff012f82298858fd36d49db62fec268b7",
+      "summary_sha256": "3b1dd79be22053801ad49cb42af0995212a5394db6abccfcaefea67d8827bc2f"
+    },
+    {
+      "skill_id": "u3449-plan-quality-evaluation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3449-plan-quality-evaluation-for-entrepreneurship-operations",
+      "skill_md_sha256": "9333d9a6023718436bff23843c141abef0a219f85080c84887dbede3d7ce0883",
+      "summary_sha256": "d235b9610ce69516b58305676a21cc2f9f678c9996bdc59c060c9f1f676c10ad"
+    }
+  ]
+}

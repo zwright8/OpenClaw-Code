@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 20,
+  "range": {
+    "start": "u2950-memory-consolidation-for-civic-participation-platforms",
+    "end": "u2999-memory-consolidation-for-knowledge-management-systems",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2950-memory-consolidation-for-civic-participation-platforms",
+      "path": "generated/shards/02/2950-memory-consolidation-for-civic-participation-platforms",
+      "skill_md_sha256": "3850c9e36078ee08a229ea616aa6012e30e42e3aad6f040287e591fd35dc8762",
+      "summary_sha256": "34768e5631764267ac8d288cce684f922c20b251c23c82192a648e7f73eeb33a"
+    },
+    {
+      "skill_id": "u2951-memory-consolidation-for-accessibility-services",
+      "path": "generated/shards/02/2951-memory-consolidation-for-accessibility-services",
+      "skill_md_sha256": "e7144ab53fc48edbbd63dd5dbdc4c5f1c4152c2482b13e21168b6aa9862c4fd7",
+      "summary_sha256": "8ba773823608af865352f9859663763c720c71879037d9a184cbce48ce0c1d48"
+    },
+    {
+      "skill_id": "u2952-memory-consolidation-for-accessibility-services",
+      "path": "generated/shards/02/2952-memory-consolidation-for-accessibility-services",
+      "skill_md_sha256": "afc0a7596cd92e7659f18efb087c30d86e123113a89fe163e14b1b3531290a59",
+      "summary_sha256": "ddf3148b770dbef80e9fdc3d8e2fc6ab2f1b98efc013046b5c0efff0f7948ce6"
+    },
+    {
+      "skill_id": "u2953-memory-consolidation-for-accessibility-services",
+      "path": "generated/shards/02/2953-memory-consolidation-for-accessibility-services",
+      "skill_md_sha256": "8db57e578476414f593d7055291dbea7188f23c862c60d8e869a2ce1b12591aa",
+      "summary_sha256": "8ecc95a7a7bc0e96379c939db33bace0cd2d4724b17b4986523a4426ccda14ec"
+    },
+    {
+      "skill_id": "u2954-memory-consolidation-for-accessibility-services",
+      "path": "generated/shards/02/2954-memory-consolidation-for-accessibility-services",
+      "skill_md_sha256": "719fd89d9e51ea5eeebf885df8e083e33cfff5a35c7c5278f1373f5a1c7b09d5",
+      "summary_sha256": "1ec2df64c9dc2cffbda4bf80edbb50cfd8369fed4ad3009815f97ab7377f858e"
+    },
+    {
+      "skill_id": "u2955-memory-consolidation-for-accessibility-services",
+      "path": "generated/shards/02/2955-memory-consolidation-for-accessibility-services",
+      "skill_md_sha256": "37fb7ad56467a7dfc12f3ad50e699a2544e7dc7fefd071eef5ea3c7c971c6cd1",
+      "summary_sha256": "58799d454c3c52808b99fe29d0d3557124e62f95c2c970dd8ea24481b754b43e"
+    },
+    {
+      "skill_id": "u2956-memory-consolidation-for-eldercare-coordination",
+      "path": "generated/shards/02/2956-memory-consolidation-for-eldercare-coordination",
+      "skill_md_sha256": "66ff331b69689fd04c572f95a6cc8ae5f2976f2ae381d974d7d4701170611a24",
+      "summary_sha256": "dae89e8a7b7e0fea7ff2d2c60b45dc9e21d657b32cfa875e460408b8a0b7c443"
+    },
+    {
+      "skill_id": "u2957-memory-consolidation-for-eldercare-coordination",
+      "path": "generated/shards/02/2957-memory-consolidation-for-eldercare-coordination",
+      "skill_md_sha256": "89b210a14b2a99a6d702036e2876a8920c99c71530c970c16c29d64f1456cc96",
+      "summary_sha256": "66a1c9eb0e9c52f3f3469b76d5c03e7c4fe46bc46a892db4cfedae54be55c9bb"
+    },
+    {
+      "skill_id": "u2958-memory-consolidation-for-eldercare-coordination",
+      "path": "generated/shards/02/2958-memory-consolidation-for-eldercare-coordination",
+      "skill_md_sha256": "9fd42ac6b4669753a7a79674e5c19a60a00154d53e426c1ed7f6d16f04a017fe",
+      "summary_sha256": "e75467416a4cb8971f4978c3ec4b618a0a4a622a31a665665126668f847e8cf7"
+    },
+    {
+      "skill_id": "u2959-memory-consolidation-for-eldercare-coordination",
+      "path": "generated/shards/02/2959-memory-consolidation-for-eldercare-coordination",
+      "skill_md_sha256": "72c98c38a5ccaa07672c4bc12a25d0ca049d7893e2d2b83552a5a66d0918d500",
+      "summary_sha256": "6de7ed6bbf91abc0af484b48bb5107a55119cc8389e8cba355d4e70f4a6c6a09"
+    },
+    {
+      "skill_id": "u2960-memory-consolidation-for-eldercare-coordination",
+      "path": "generated/shards/02/2960-memory-consolidation-for-eldercare-coordination",
+      "skill_md_sha256": "5f2aeb513f8bdd4184da28031d2a276ac0fae0e2ad0c4efb9f49d2df921f82c7",
+      "summary_sha256": "f73a45d7b004544a7b1aaed22d3560a6a92cdd8dd49d1d305a0c4acca87bc647"
+    },
+    {
+      "skill_id": "u2961-memory-consolidation-for-childcare-support-systems",
+      "path": "generated/shards/02/2961-memory-consolidation-for-childcare-support-systems",
+      "skill_md_sha256": "a6155ecb74982d65bc51e4e1f3a85b0aab55211d3f625c01fb92c16d32465ad2",
+      "summary_sha256": "7cd9fab1fc8bcbc3dedf2dab089bbbeaa5cef0ef36aa3dc96ad96f0ce5a84f47"
+    },
+    {
+      "skill_id": "u2962-memory-consolidation-for-childcare-support-systems",
+      "path": "generated/shards/02/2962-memory-consolidation-for-childcare-support-systems",
+      "skill_md_sha256": "ad52f80dffcadd526a263a2ecb631595508cb0d4ad45106be5923df91245ba13",
+      "summary_sha256": "236be9933ce596af72f5241bf2c5e2435a95781773e3fd7b2a8aaf00ac9016d3"
+    },
+    {
+      "skill_id": "u2963-memory-consolidation-for-childcare-support-systems",
+      "path": "generated/shards/02/2963-memory-consolidation-for-childcare-support-systems",
+      "skill_md_sha256": "13f709cc9c2e4885b2c82d2e2305c6c816b9fa393409cb7c2ee3721f072a1f0e",
+      "summary_sha256": "ec1c442f90244a9cfef42efd875aba5b238455cec4b0e0c4601316fdf203f7c1"
+    },
+    {
+      "skill_id": "u2964-memory-consolidation-for-childcare-support-systems",
+      "path": "generated/shards/02/2964-memory-consolidation-for-childcare-support-systems",
+      "skill_md_sha256": "c407fc765c195336239d7e3bcf23773ce918300e7ff50a3c565a5d36a79d9670",
+      "summary_sha256": "f3c2cbd30dbbb2df41c88c1ec4e9a19c5256ed08a4124086edaa6ea3991ab7a1"
+    },
+    {
+      "skill_id": "u2965-memory-consolidation-for-childcare-support-systems",
+      "path": "generated/shards/02/2965-memory-consolidation-for-childcare-support-systems",
+      "skill_md_sha256": "f2c2907bbe805eee42575c92b10d8af3ed922a9c2a578c2049d1901adce127cd",
+      "summary_sha256": "532ce90bbbc67ea1ef467cd2d2aab12c5d0f0a055f2e5fb87f2169a898d43c0c"
+    },
+    {
+      "skill_id": "u2966-memory-consolidation-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2966-memory-consolidation-for-arts-and-culture-programming",
+      "skill_md_sha256": "972189efb05f727b96b76570ef0655eaa57c7ac67488e40de3bf6e2981599ca4",
+      "summary_sha256": "99659f3f496c3759e7d64d85bf4877a54ec258a7a1e8aa8a77260c8b6e57c6ae"
+    },
+    {
+      "skill_id": "u2967-memory-consolidation-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2967-memory-consolidation-for-arts-and-culture-programming",
+      "skill_md_sha256": "543b3e82280729d346cb0cc60f33e63ec05f1f7cad7b99814f318bbdaa64e606",
+      "summary_sha256": "4d6f293e179a4bfa3d182f5fb07516cce416240be9c74fed04fd51508434bd5b"
+    },
+    {
+      "skill_id": "u2968-memory-consolidation-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2968-memory-consolidation-for-arts-and-culture-programming",
+      "skill_md_sha256": "0ca6d9a474df964e53d5d78f1a1120c02ec35d6bb0143b02acb51fd2dfe8d5d0",
+      "summary_sha256": "a2e8820e2b08fa70adff150901f9f6ad2bff4b412719285894eba0176e42274e"
+    },
+    {
+      "skill_id": "u2969-memory-consolidation-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2969-memory-consolidation-for-arts-and-culture-programming",
+      "skill_md_sha256": "aafaa9cf5d5d86010aa8eca720e33ac476ec41120f30f4462e13ffa751c6fa7a",
+      "summary_sha256": "e525bae97bff92d79cf677aacf2b222efbd9d835dff4045ad3a9d2c2944ccbd9"
+    },
+    {
+      "skill_id": "u2970-memory-consolidation-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2970-memory-consolidation-for-arts-and-culture-programming",
+      "skill_md_sha256": "f5adb7fd30558e58cb31cc3ce2542b0ef153400f799757ccd040f4675150e714",
+      "summary_sha256": "099f84b7995f50ae17698d8ca1cc35873366a1357b74de0097012230b9e5f655"
+    },
+    {
+      "skill_id": "u2971-memory-consolidation-for-music-and-creative-practice",
+      "path": "generated/shards/02/2971-memory-consolidation-for-music-and-creative-practice",
+      "skill_md_sha256": "afe86299bf1d7e2f408696d1915703d7286f3e21400f56e74ffef8922bb28eb6",
+      "summary_sha256": "61bb865d326dee9cd5f5f5fb6852ee83ae33bb514c94fe5083eeead1cbb6c07a"
+    },
+    {
+      "skill_id": "u2972-memory-consolidation-for-music-and-creative-practice",
+      "path": "generated/shards/02/2972-memory-consolidation-for-music-and-creative-practice",
+      "skill_md_sha256": "ef4ea7aa9e4b2c52d51cdd63e568acb46f35f516de25a8dc3df959eed495268c",
+      "summary_sha256": "ac40001e0f81752813799efb2f43dd6c7052213049ef8219f8cc121a0f1493e0"
+    },
+    {
+      "skill_id": "u2973-memory-consolidation-for-music-and-creative-practice",
+      "path": "generated/shards/02/2973-memory-consolidation-for-music-and-creative-practice",
+      "skill_md_sha256": "ae2793360ce7f66f2384c8fadb4582a9c5ed3a0b48fdabba921462eb91c91e1d",
+      "summary_sha256": "6e3c0aa2083e8faf3852c0b0105e8dcf6bc6b2aacf1a3f1d6cd55b8dc4c771b4"
+    },
+    {
+      "skill_id": "u2974-memory-consolidation-for-music-and-creative-practice",
+      "path": "generated/shards/02/2974-memory-consolidation-for-music-and-creative-practice",
+      "skill_md_sha256": "02c193b55421787c1b222d7600d49431bae77a2fcf501ed573c2aea457db5992",
+      "summary_sha256": "931ac32bfa956be0ee36aeb72546738023346d68a63c3e3b1f3c4b1310d8e09f"
+    },
+    {
+      "skill_id": "u2975-memory-consolidation-for-music-and-creative-practice",
+      "path": "generated/shards/02/2975-memory-consolidation-for-music-and-creative-practice",
+      "skill_md_sha256": "e9fbf5e1797ca3ac549b27774a2446efb9537eb9dfecec6bf110041087d58e27",
+      "summary_sha256": "f129a3db447461387ad713521d512a8349a45702436172e85613207343cb4fb2"
+    },
+    {
+      "skill_id": "u2976-memory-consolidation-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2976-memory-consolidation-for-journalism-and-public-communication",
+      "skill_md_sha256": "c992910832d4610535d35da4f95b59ed63131922f5f5ac308ee8f1c15cfb51ee",
+      "summary_sha256": "4a675387c80f9a963390b494790c4e67605f643ffbddd16615cf14cce5e53c9b"
+    },
+    {
+      "skill_id": "u2977-memory-consolidation-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2977-memory-consolidation-for-journalism-and-public-communication",
+      "skill_md_sha256": "b4e7a07c7fbbda5afb53bc5542f351a5fcb0cb73d3284d5a9ece53780eeba9fd",
+      "summary_sha256": "0073048ac701da53b146ec642f0314a1ff0fc88f3309959c4ab73c86954c0836"
+    },
+    {
+      "skill_id": "u2978-memory-consolidation-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2978-memory-consolidation-for-journalism-and-public-communication",
+      "skill_md_sha256": "9e2c669a0aa24ef71fe2a6590b89869d743baeb92e89fca374b4041188dd0dd3",
+      "summary_sha256": "d43948a5f3213b74523bb18b9c4e1b796fa4f3344ecb155c436ba02d1e149474"
+    },
+    {
+      "skill_id": "u2979-memory-consolidation-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2979-memory-consolidation-for-journalism-and-public-communication",
+      "skill_md_sha256": "1949793fa13da55488726f03d587090d85ec2105e4217131efc72e86470f3f9d",
+      "summary_sha256": "dce81e18cc2b9e6f5503c842458f5064c8e07d196dce26ac1ba2ea855bf749f3"
+    },
+    {
+      "skill_id": "u2980-memory-consolidation-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2980-memory-consolidation-for-journalism-and-public-communication",
+      "skill_md_sha256": "9b34b8051ef6a079266df1ee5b4e8c637073314492123c29ea610c9058606afa",
+      "summary_sha256": "4cf74d327466f4375ea571e94e444257c4660ba3dc4f0bf61f855b56afe06467"
+    },
+    {
+      "skill_id": "u2981-memory-consolidation-for-multilingual-translation-services",
+      "path": "generated/shards/02/2981-memory-consolidation-for-multilingual-translation-services",
+      "skill_md_sha256": "885dcefe50e9a0ba2b69d9c26c7aade756eca42246699393cf429a72bf876344",
+      "summary_sha256": "421238acabfd66b9b72c3bcb5451ae8aba00bb03b14ba3c95d9fe8c7d28905cb"
+    },
+    {
+      "skill_id": "u2982-memory-consolidation-for-multilingual-translation-services",
+      "path": "generated/shards/02/2982-memory-consolidation-for-multilingual-translation-services",
+      "skill_md_sha256": "1acc2d05daeea7d63346b0f37fedfbd22e2aa7e35ba967f61cfa9884fa74623c",
+      "summary_sha256": "d90a08bc72baefaeb0006e4d2e388b44d09edb1d0dda7aaf43f410866b966ba1"
+    },
+    {
+      "skill_id": "u2983-memory-consolidation-for-multilingual-translation-services",
+      "path": "generated/shards/02/2983-memory-consolidation-for-multilingual-translation-services",
+      "skill_md_sha256": "5f3b7d00b9b2c16b3a7499c5ff2ea6866b6bf599741b3b50fe7ccac6766187a0",
+      "summary_sha256": "cdf2a7b8d675327cf7b396d8e91ae88ed425786e935d1732e371b2daedf1993e"
+    },
+    {
+      "skill_id": "u2984-memory-consolidation-for-multilingual-translation-services",
+      "path": "generated/shards/02/2984-memory-consolidation-for-multilingual-translation-services",
+      "skill_md_sha256": "e2329bb6ce4cd7477e05e3bbf48295c72cbaaaba6d51d6284419ac153feb3523",
+      "summary_sha256": "a9ff5283a6b5f29e4eb6b49563885af0c9e66f569d6b85855c49e6729dc4d57b"
+    },
+    {
+      "skill_id": "u2985-memory-consolidation-for-multilingual-translation-services",
+      "path": "generated/shards/02/2985-memory-consolidation-for-multilingual-translation-services",
+      "skill_md_sha256": "f443f9375e02ac6e427e613866dcce205dd8d3f6a2b93eba8da2f1d6f24d53c8",
+      "summary_sha256": "14dbf3f1b17e9ca0ba585729590978597f53885dba4b3d63e1f6ab96d0361d8a"
+    },
+    {
+      "skill_id": "u2986-memory-consolidation-for-remote-team-collaboration",
+      "path": "generated/shards/02/2986-memory-consolidation-for-remote-team-collaboration",
+      "skill_md_sha256": "d80c72d980176d6143b422335296248a255d5f9ca6d827bbd0f83f064d767fb9",
+      "summary_sha256": "b5d68949afa6441f31eef8ef3b64a4792d1264208dc4b331f6712f7d995d070c"
+    },
+    {
+      "skill_id": "u2987-memory-consolidation-for-remote-team-collaboration",
+      "path": "generated/shards/02/2987-memory-consolidation-for-remote-team-collaboration",
+      "skill_md_sha256": "42059bb490415da0c843e134685c13b8d552559685997ce6d91d5c696f2aba7e",
+      "summary_sha256": "9878b9bd4caea247c30f8f520b6b3bf69efc4c4610483fe571a3ebf6af87e17a"
+    },
+    {
+      "skill_id": "u2988-memory-consolidation-for-remote-team-collaboration",
+      "path": "generated/shards/02/2988-memory-consolidation-for-remote-team-collaboration",
+      "skill_md_sha256": "d57866b77af54f9dcfcb054c05d4d1be4c4cbaf4a71cce648c2e693a1df49446",
+      "summary_sha256": "a4433661164db4b4b6aa5b6d4ec22e18f7875147e60ab7a1272ac5f4edc0c16f"
+    },
+    {
+      "skill_id": "u2989-memory-consolidation-for-remote-team-collaboration",
+      "path": "generated/shards/02/2989-memory-consolidation-for-remote-team-collaboration",
+      "skill_md_sha256": "3c8c744bb9d35ba6747cd525f43b69110ecc94bed8c0706d486a4abb51dd9ab1",
+      "summary_sha256": "980767c042c16b7c86c0b5cbbd4dd932e43009ee37701dab4467d878fd1281aa"
+    },
+    {
+      "skill_id": "u2990-memory-consolidation-for-remote-team-collaboration",
+      "path": "generated/shards/02/2990-memory-consolidation-for-remote-team-collaboration",
+      "skill_md_sha256": "778a346c5b8c6049781803181c89d85421ebd6419e3aaf4548d5fadc029fc79d",
+      "summary_sha256": "953598a29a63c82a1e174f8361e244a0cb936be3800b62ffd95dfdb6665226d6"
+    },
+    {
+      "skill_id": "u2991-memory-consolidation-for-customer-support-operations",
+      "path": "generated/shards/02/2991-memory-consolidation-for-customer-support-operations",
+      "skill_md_sha256": "55590b8bc7b64982bd5a89bf3052b37c89148e943ec5e76ec21344003543dfef",
+      "summary_sha256": "b5c2bd75b7d7849fb83994f13ab7ede8984419fda8a8a0ec8012024a3d30e7d2"
+    },
+    {
+      "skill_id": "u2992-memory-consolidation-for-customer-support-operations",
+      "path": "generated/shards/02/2992-memory-consolidation-for-customer-support-operations",
+      "skill_md_sha256": "674775e70adf3eb3392c3bd62d06406f1001d71a41d278250acc70b4a38653ad",
+      "summary_sha256": "e7be8f9acc74e515101f18d1ab79fa59ed900ab54fe6e45d8ae89e66dafb9d4d"
+    },
+    {
+      "skill_id": "u2993-memory-consolidation-for-customer-support-operations",
+      "path": "generated/shards/02/2993-memory-consolidation-for-customer-support-operations",
+      "skill_md_sha256": "8c7b77cde131c59aaf92eaf8bca2411e22658912b2909b2dba2f238d404aa4f4",
+      "summary_sha256": "72ce0de3d2cb4a440c97e9949948122593fe13160fdf371c4902274e27eea84a"
+    },
+    {
+      "skill_id": "u2994-memory-consolidation-for-customer-support-operations",
+      "path": "generated/shards/02/2994-memory-consolidation-for-customer-support-operations",
+      "skill_md_sha256": "4e225fec01189dfd47df50e309d6807365e5068c9f52addb7fc978d7e52a0625",
+      "summary_sha256": "da4147f9127d63a1308169cb9fb4d61fddc5258033cb79ebe03582887c9b86c1"
+    },
+    {
+      "skill_id": "u2995-memory-consolidation-for-customer-support-operations",
+      "path": "generated/shards/02/2995-memory-consolidation-for-customer-support-operations",
+      "skill_md_sha256": "0b8070b061b306469eb5838a8fe83b07189f96e53ea9d93203ef77f77d42815b",
+      "summary_sha256": "f62cbcf869db80c93064f59a4ca88793cab7ba34b0e81378b7c4dd3c26e64be7"
+    },
+    {
+      "skill_id": "u2996-memory-consolidation-for-knowledge-management-systems",
+      "path": "generated/shards/02/2996-memory-consolidation-for-knowledge-management-systems",
+      "skill_md_sha256": "5a9b6bda270a6b25340c268a382069764b3f49a35401ab7bb3f3ae89080bc20c",
+      "summary_sha256": "9391ae10838a9c4b4e8ca68c4bb081e1ce5e3ce24edf8f5106a6f951fb6a1050"
+    },
+    {
+      "skill_id": "u2997-memory-consolidation-for-knowledge-management-systems",
+      "path": "generated/shards/02/2997-memory-consolidation-for-knowledge-management-systems",
+      "skill_md_sha256": "2f281b64c7b1e4c25a15c21285993c9f690a4b158423800f11a0bcd93aa127de",
+      "summary_sha256": "a771c6060ccd94e9ee2dd5ad848510b759b37ebc5d7e0e3f46e42067eb6a5a66"
+    },
+    {
+      "skill_id": "u2998-memory-consolidation-for-knowledge-management-systems",
+      "path": "generated/shards/02/2998-memory-consolidation-for-knowledge-management-systems",
+      "skill_md_sha256": "e8781ac0ee2abfb7f107b94b065cbf102a2a1f47747847990767db5a67430160",
+      "summary_sha256": "5f8edeae30bc43378fb160153072f34d3fe5b6d5217e203898c69954f260dd5a"
+    },
+    {
+      "skill_id": "u2999-memory-consolidation-for-knowledge-management-systems",
+      "path": "generated/shards/02/2999-memory-consolidation-for-knowledge-management-systems",
+      "skill_md_sha256": "c81986a3b7d777357f7bc32a3952c0732b2f4d3bfb244b4b13b6f7778e00ad4b",
+      "summary_sha256": "ebe8a3cb409b0e02e278e22f86083e41898ca5c4f7a973fa09a51ac73f8a9059"
+    }
+  ]
+}
