@@ -1,6 +1,6 @@
 ---
 name: u0774-cultural-tool-health-monitor
-description: Build and operate the "Cultural Tool Health Monitor" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Cultural Tool Health Monitor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Cultural Tool Health Monitor

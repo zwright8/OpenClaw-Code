@@ -1,6 +1,6 @@
 ---
 name: u0788-cultural-incident-playbook-synthesizer
-description: Build and operate the "Cultural Incident Playbook Synthesizer" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Cultural Incident Playbook Synthesizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Cultural Incident Playbook Synthesizer

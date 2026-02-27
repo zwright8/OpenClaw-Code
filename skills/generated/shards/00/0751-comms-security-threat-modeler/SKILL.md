@@ -1,6 +1,6 @@
 ---
 name: u0751-comms-security-threat-modeler
-description: Build and operate the "Comms Security Threat Modeler" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Security Threat Modeler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Security Threat Modeler

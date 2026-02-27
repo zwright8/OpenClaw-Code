@@ -1,0 +1,38 @@
+{
+  "skill": "u0798-cultural-training-curriculum-composer",
+  "capability": "Cultural Training Curriculum Composer",
+  "domain": "",
+  "determinism": {
+    "score_delta_abs_max": 0.005,
+    "artifact_hash_drift_allowed": 0,
+    "time_fields_excluded_from_scoring": true
+  },
+  "gates": [
+    "schema-gate",
+    "determinism-gate",
+    "policy-risk-gate",
+    "approval-gate-high-risk"
+  ],
+  "fail_closed": true,
+  "high_risk_requires_human_signoff": true,
+  "handoff_contract": {
+    "inputs": [
+      "source-tagged signals",
+      "claims",
+      "evidence",
+      "confidence traces",
+      "run context"
+    ],
+    "outputs": [
+      "deterministic artifact",
+      "scorecard",
+      "handoff envelope with approval metadata"
+    ],
+    "routing_rule": "forward only when all gates pass; high-risk requires sign-off token"
+  },
+  "artifacts": {
+    "fixture": "fixtures/minimal-valid.json",
+    "regression": "tests/regression-case.md",
+    "summary": "hardening-summary.json"
+  }
+}

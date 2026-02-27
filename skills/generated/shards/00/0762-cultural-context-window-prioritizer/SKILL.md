@@ -1,6 +1,6 @@
 ---
 name: u0762-cultural-context-window-prioritizer
-description: Build and operate the "Cultural Context Window Prioritizer" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Cultural Context Window Prioritizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Cultural Context Window Prioritizer

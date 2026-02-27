@@ -1,6 +1,6 @@
 ---
 name: u0782-cultural-multi-agent-negotiation-mediator
-description: Build and operate the "Cultural Multi-Agent Negotiation Mediator" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Cultural Multi-Agent Negotiation Mediator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Cultural Multi-Agent Negotiation Mediator

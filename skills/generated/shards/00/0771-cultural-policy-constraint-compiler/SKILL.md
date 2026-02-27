@@ -1,6 +1,6 @@
 ---
 name: u0771-cultural-policy-constraint-compiler
-description: Build and operate the "Cultural Policy Constraint Compiler" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Cultural Policy Constraint Compiler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Cultural Policy Constraint Compiler
