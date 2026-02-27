@@ -1,6 +1,6 @@
 ---
 name: u01707-human-approval-routing-for-urban-planning-and-mobility
-description: Build and operate the "Human Approval Routing for urban planning and mobility" capability for urban planning and mobility. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for urban planning and mobility

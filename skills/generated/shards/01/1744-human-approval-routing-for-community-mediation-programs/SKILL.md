@@ -1,6 +1,6 @@
 ---
 name: u01744-human-approval-routing-for-community-mediation-programs
-description: Build and operate the "Human Approval Routing for community mediation programs" capability for community mediation programs. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for community mediation programs" capability in production for community mediation programs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for community mediation programs

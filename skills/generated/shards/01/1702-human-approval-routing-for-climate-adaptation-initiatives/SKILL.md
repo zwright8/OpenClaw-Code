@@ -1,6 +1,6 @@
 ---
 name: u01702-human-approval-routing-for-climate-adaptation-initiatives
-description: Build and operate the "Human Approval Routing for climate adaptation initiatives" capability for climate adaptation initiatives. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for climate adaptation initiatives" capability in production for climate adaptation initiatives workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for climate adaptation initiatives
