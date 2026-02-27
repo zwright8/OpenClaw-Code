@@ -1,6 +1,6 @@
 ---
 name: u0942-infra-multi-agent-negotiation-mediator
-description: Build and operate the "Infra Multi-Agent Negotiation Mediator" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Multi-Agent Negotiation Mediator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Multi-Agent Negotiation Mediator

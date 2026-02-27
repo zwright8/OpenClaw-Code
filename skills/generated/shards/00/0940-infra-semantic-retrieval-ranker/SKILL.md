@@ -1,6 +1,6 @@
 ---
 name: u0940-infra-semantic-retrieval-ranker
-description: Build and operate the "Infra Semantic Retrieval Ranker" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Semantic Retrieval Ranker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Semantic Retrieval Ranker

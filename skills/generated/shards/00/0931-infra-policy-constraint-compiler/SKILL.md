@@ -1,6 +1,6 @@
 ---
 name: u0931-infra-policy-constraint-compiler
-description: Build and operate the "Infra Policy Constraint Compiler" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Policy Constraint Compiler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Policy Constraint Compiler

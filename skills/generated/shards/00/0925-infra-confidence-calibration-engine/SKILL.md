@@ -1,6 +1,6 @@
 ---
 name: u0925-infra-confidence-calibration-engine
-description: Build and operate the "Infra Confidence Calibration Engine" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Confidence Calibration Engine" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Confidence Calibration Engine

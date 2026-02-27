@@ -1,6 +1,6 @@
 ---
 name: u0916-rights-kpi-dashboard-publisher
-description: Build and operate the "Rights KPI Dashboard Publisher" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights KPI Dashboard Publisher" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights KPI Dashboard Publisher

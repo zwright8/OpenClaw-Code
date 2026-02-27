@@ -1,6 +1,6 @@
 ---
 name: u0946-infra-experiment-design-generator
-description: Build and operate the "Infra Experiment Design Generator" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Experiment Design Generator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Experiment Design Generator

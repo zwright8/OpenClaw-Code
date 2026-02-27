@@ -1,6 +1,6 @@
 ---
 name: u0944-infra-explainability-narrative-builder
-description: Build and operate the "Infra Explainability Narrative Builder" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Explainability Narrative Builder" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Explainability Narrative Builder

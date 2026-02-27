@@ -1,6 +1,6 @@
 ---
 name: u0928-infra-dependency-dag-planner
-description: Build and operate the "Infra Dependency DAG Planner" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Dependency DAG Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Dependency DAG Planner

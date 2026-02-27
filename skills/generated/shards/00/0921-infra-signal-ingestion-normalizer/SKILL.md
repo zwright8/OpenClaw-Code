@@ -1,6 +1,6 @@
 ---
 name: u0921-infra-signal-ingestion-normalizer
-description: Build and operate the "Infra Signal Ingestion Normalizer" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Signal Ingestion Normalizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Signal Ingestion Normalizer

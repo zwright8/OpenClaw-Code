@@ -1,6 +1,6 @@
 ---
 name: u0939-infra-knowledge-graph-linker
-description: Build and operate the "Infra Knowledge Graph Linker" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Knowledge Graph Linker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Knowledge Graph Linker

@@ -1,6 +1,6 @@
 ---
 name: u0918-rights-training-curriculum-composer
-description: Build and operate the "Rights Training Curriculum Composer" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights Training Curriculum Composer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights Training Curriculum Composer

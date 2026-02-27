@@ -1,6 +1,6 @@
 ---
 name: u0923-infra-evidence-provenance-tracker
-description: Build and operate the "Infra Evidence Provenance Tracker" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Evidence Provenance Tracker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Evidence Provenance Tracker

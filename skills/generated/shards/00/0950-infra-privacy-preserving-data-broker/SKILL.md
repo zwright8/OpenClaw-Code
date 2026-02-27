@@ -1,6 +1,6 @@
 ---
 name: u0950-infra-privacy-preserving-data-broker
-description: Build and operate the "Infra Privacy Preserving Data Broker" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Privacy Preserving Data Broker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Privacy Preserving Data Broker

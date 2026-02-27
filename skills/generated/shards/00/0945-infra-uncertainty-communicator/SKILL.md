@@ -1,6 +1,6 @@
 ---
 name: u0945-infra-uncertainty-communicator
-description: Build and operate the "Infra Uncertainty Communicator" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Uncertainty Communicator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Uncertainty Communicator

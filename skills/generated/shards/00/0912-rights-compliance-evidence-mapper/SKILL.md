@@ -1,6 +1,6 @@
 ---
 name: u0912-rights-compliance-evidence-mapper
-description: Build and operate the "Rights Compliance Evidence Mapper" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights Compliance Evidence Mapper" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights Compliance Evidence Mapper

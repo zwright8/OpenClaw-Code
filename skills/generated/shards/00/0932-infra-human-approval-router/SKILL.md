@@ -1,6 +1,6 @@
 ---
 name: u0932-infra-human-approval-router
-description: Build and operate the "Infra Human Approval Router" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Human Approval Router" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Human Approval Router

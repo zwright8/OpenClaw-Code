@@ -1,6 +1,6 @@
 ---
 name: u0904-rights-explainability-narrative-builder
-description: Build and operate the "Rights Explainability Narrative Builder" capability for Legal, Rights, and Compliance. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Rights Explainability Narrative Builder" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Rights Explainability Narrative Builder
