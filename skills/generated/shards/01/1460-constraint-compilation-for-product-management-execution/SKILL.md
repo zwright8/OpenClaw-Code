@@ -1,6 +1,6 @@
 ---
 name: u01460-constraint-compilation-for-product-management-execution
-description: Build and operate the "Constraint Compilation for product management execution" capability for product management execution. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for product management execution" capability in production for product management execution workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for product management execution

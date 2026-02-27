@@ -1,6 +1,6 @@
 ---
 name: u01493-constraint-compilation-for-nonprofit-program-delivery
-description: Build and operate the "Constraint Compilation for nonprofit program delivery" capability for nonprofit program delivery. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for nonprofit program delivery" capability in production for nonprofit program delivery workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for nonprofit program delivery
