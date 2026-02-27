@@ -1,6 +1,6 @@
 ---
 name: u0632-security-compliance-evidence-mapper
-description: Build and operate the "Security Compliance Evidence Mapper" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Compliance Evidence Mapper" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Compliance Evidence Mapper

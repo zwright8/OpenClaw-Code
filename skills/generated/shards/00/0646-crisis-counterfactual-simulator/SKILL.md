@@ -1,6 +1,6 @@
 ---
 name: u0646-crisis-counterfactual-simulator
-description: Build and operate the "Crisis Counterfactual Simulator" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis Counterfactual Simulator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis Counterfactual Simulator

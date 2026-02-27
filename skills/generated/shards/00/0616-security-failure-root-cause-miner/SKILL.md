@@ -1,6 +1,6 @@
 ---
 name: u0616-security-failure-root-cause-miner
-description: Build and operate the "Security Failure Root-Cause Miner" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Failure Root-Cause Miner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Failure Root-Cause Miner

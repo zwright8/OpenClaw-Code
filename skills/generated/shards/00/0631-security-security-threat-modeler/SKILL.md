@@ -1,6 +1,6 @@
 ---
 name: u0631-security-security-threat-modeler
-description: Build and operate the "Security Security Threat Modeler" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Security Threat Modeler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Security Threat Modeler

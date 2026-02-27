@@ -1,6 +1,6 @@
 ---
 name: u0625-security-uncertainty-communicator
-description: Build and operate the "Security Uncertainty Communicator" capability for Security and Privacy. Use when outcomes in this capability family are required for production execution.
+description: Operate the "Security Uncertainty Communicator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Uncertainty Communicator

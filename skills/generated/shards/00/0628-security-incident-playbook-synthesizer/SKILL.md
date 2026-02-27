@@ -1,6 +1,6 @@
 ---
 name: u0628-security-incident-playbook-synthesizer
-description: Build and operate the "Security Incident Playbook Synthesizer" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Incident Playbook Synthesizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Incident Playbook Synthesizer

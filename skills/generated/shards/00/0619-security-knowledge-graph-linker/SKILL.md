@@ -1,6 +1,6 @@
 ---
 name: u0619-security-knowledge-graph-linker
-description: Build and operate the "Security Knowledge Graph Linker" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Knowledge Graph Linker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Knowledge Graph Linker

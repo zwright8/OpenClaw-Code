@@ -1,6 +1,6 @@
 ---
 name: u0604-security-contradiction-detector
-description: Build and operate the "Security Contradiction Detector" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Contradiction Detector" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Contradiction Detector

@@ -1,6 +1,6 @@
 ---
 name: u0613-security-task-handoff-contractor
-description: Build and operate the "Security Task Handoff Contractor" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Task Handoff Contractor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Task Handoff Contractor

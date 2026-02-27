@@ -1,6 +1,6 @@
 ---
 name: u0649-crisis-resource-budget-allocator
-description: Build and operate the "Crisis Resource Budget Allocator" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis Resource Budget Allocator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis Resource Budget Allocator

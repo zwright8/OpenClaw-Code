@@ -1,6 +1,6 @@
 ---
 name: u0610-security-risk-aware-scheduler
-description: Build and operate the "Security Risk-Aware Scheduler" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Risk-Aware Scheduler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Risk-Aware Scheduler

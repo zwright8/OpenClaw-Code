@@ -1,6 +1,6 @@
 ---
 name: u0629-security-disaster-recovery-orchestrator
-description: Build and operate the "Security Disaster Recovery Orchestrator" capability for Security and Privacy. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Security Disaster Recovery Orchestrator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Security Disaster Recovery Orchestrator
