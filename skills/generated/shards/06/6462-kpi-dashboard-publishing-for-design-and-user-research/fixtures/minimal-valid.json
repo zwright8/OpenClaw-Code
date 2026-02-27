@@ -1,0 +1,25 @@
+{
+  "capability": "KPI Dashboard Publishing for design and user research",
+  "skill": "u06462-kpi-dashboard-publishing-for-design-and-user-research",
+  "domain": "design and user research",
+  "risk_tier": "low",
+  "inputs": {
+    "source_tag": "approved://sample",
+    "signals": [
+      {
+        "id": "sig-001",
+        "value": 1.0,
+        "confidence": 0.9
+      }
+    ],
+    "context": {
+      "run_id": "run-001",
+      "requested_by": "operator"
+    }
+  },
+  "expected": {
+    "determinism_max_score_delta": 0.005,
+    "artifact_hash_drift": 0,
+    "requires_human_signoff_when_risk_high": true
+  }
+}
