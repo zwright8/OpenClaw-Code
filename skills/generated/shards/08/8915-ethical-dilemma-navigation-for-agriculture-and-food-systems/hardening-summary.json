@@ -1,0 +1,23 @@
+{
+  "skill_id": "u08915-ethical-dilemma-navigation-for-agriculture-and-food-systems",
+  "hardened": true,
+  "production_trigger_criteria": true,
+  "deterministic_tolerance": {
+    "score_delta_abs_max": 0.005,
+    "artifact_hash_drift_allowed": 0
+  },
+  "fail_closed_gates": [
+    "schema-gate",
+    "determinism-gate",
+    "policy-risk-gate",
+    "approval-gate-high-risk"
+  ],
+  "human_signoff_required_for_high_risk": true,
+  "handoff_contract_defined": true,
+  "fixtures_added": [
+    "fixtures/minimal-valid.json"
+  ],
+  "regression_added": [
+    "tests/regression-case.md"
+  ]
+}

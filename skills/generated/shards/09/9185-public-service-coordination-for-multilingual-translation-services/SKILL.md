@@ -1,39 +1,41 @@
 ---
 name: u09185-public-service-coordination-for-multilingual-translation-services
-description: Build and operate the "Public Service Coordination for multilingual translation services" capability for multilingual translation services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Public Service Coordination for multilingual translation services" capability in production for multilingual translation services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Public Service Coordination for multilingual translation services
 
 ## Why This Skill Exists
-Use public service coordination in multilingual translation services with emphasis on best-in-class standards, precision, and repeatable excellence.
+This skill hardens a generated capability for production execution so multilingual translation services workflows remain deterministic, auditable, and fail-closed under risk.
+
+## When To Use
+Use this skill only when the request explicitly needs `Public Service Coordination for multilingual translation services` in multilingual translation services and a downstream consumer requires contract-bound artifacts.
 
 ## Step-by-Step Implementation Guide
-1. Define measurable outcomes for Public Service Coordination for multilingual translation services, including baseline and target metrics for multilingual translation services.
-2. Specify structured inputs/outputs for public service coordination and validate schema contract edge cases.
-3. Implement the core public service coordination logic with deterministic scoring and reproducible execution traces.
-4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
-5. Run unit, integration, simulation, and regression suites for Public Service Coordination for multilingual translation services under professional mastery conditions.
-6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
+1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
+2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
+3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
+4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
+5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
+6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
 
-## Operational Runbook
-Preflight:
-- Validate mission scope, contracts, and required inputs.
-- Verify feature flag posture, dependencies, and approval prerequisites.
+## Deterministic Workflow Constraints
+- Replay score variance: <= 0.005 absolute per item.
+- Artifact hash drift for identical replay: 0 allowed.
+- Time-dependent fields allowed only in metadata and excluded from scoring.
 
-Execution:
-- Execute public service coordination workflow with deterministic scoring and trace capture.
-- Track posture transitions and preserve reproducible evidence artifacts.
+## Validation Gates
+1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
+2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
+3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
+4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
 
-Recovery:
-- Apply rollback strategy if posture is critical or guardrails fail.
-- Escalate blocked execution to oversight with incident packet and trace references.
+## Handoff Contract
+- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
+- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
+- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
 
-Handoff:
-- Publish outcome report, scorecard, and telemetry links.
-- Queue follow-up tasks for unresolved risks, approvals, or optimization work.
-
-## Guardrails
-- [quality] Require unit and integration validations before promoting Public Service Coordination for multilingual translation services. -> `run-validation:unit+integration+simulation+regression-baseline`
-- [reliability] Trigger rollback on critical posture or repeated failures. -> `rollback:rollback-to-last-stable-baseline`
-- [cost] Respect bounded resource pressure and execution budget during scaling. -> `budget-guard:resource-pressure-cap`
+## Immediate Hardening Additions
+- Fixture: `fixtures/minimal-valid.json`
+- Regression case: `tests/regression-case.md`
+- Machine-readable summary: `hardening-summary.json`
