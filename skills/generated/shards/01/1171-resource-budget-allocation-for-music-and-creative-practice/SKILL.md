@@ -1,6 +1,6 @@
 ---
 name: u01171-resource-budget-allocation-for-music-and-creative-practice
-description: Build and operate the "Resource Budget Allocation for music and creative practice" capability for music and creative practice. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Resource Budget Allocation for music and creative practice" capability in production for music and creative practice workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Resource Budget Allocation for music and creative practice

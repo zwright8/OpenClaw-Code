@@ -1,6 +1,6 @@
 ---
 name: u01191-resource-budget-allocation-for-customer-support-operations
-description: Build and operate the "Resource Budget Allocation for customer support operations" capability for customer support operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Resource Budget Allocation for customer support operations" capability in production for customer support operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Resource Budget Allocation for customer support operations

@@ -1,6 +1,6 @@
 ---
 name: u01188-resource-budget-allocation-for-remote-team-collaboration
-description: Build and operate the "Resource Budget Allocation for remote team collaboration" capability for remote team collaboration. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Resource Budget Allocation for remote team collaboration" capability in production for remote team collaboration workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Resource Budget Allocation for remote team collaboration

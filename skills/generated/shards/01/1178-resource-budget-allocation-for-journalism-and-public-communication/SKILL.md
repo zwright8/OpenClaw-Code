@@ -1,6 +1,6 @@
 ---
 name: u01178-resource-budget-allocation-for-journalism-and-public-communication
-description: Build and operate the "Resource Budget Allocation for journalism and public communication" capability for journalism and public communication. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Resource Budget Allocation for journalism and public communication" capability in production for journalism and public communication workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Resource Budget Allocation for journalism and public communication

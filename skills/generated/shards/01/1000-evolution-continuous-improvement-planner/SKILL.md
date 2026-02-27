@@ -1,6 +1,6 @@
 ---
 name: u1000-evolution-continuous-improvement-planner
-description: Build and operate the "Evolution Continuous Improvement Planner" capability for Autonomous Learning and Evolution. Use when outcomes in this capability family are required for production execution.
+description: Operate the "Evolution Continuous Improvement Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Continuous Improvement Planner
