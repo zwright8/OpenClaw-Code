@@ -1,6 +1,6 @@
 ---
 name: u0565-observability-confidence-calibration-engine
-description: Build and operate the "Observability Confidence Calibration Engine" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Confidence Calibration Engine" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Confidence Calibration Engine

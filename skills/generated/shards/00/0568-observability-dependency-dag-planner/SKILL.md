@@ -1,6 +1,6 @@
 ---
 name: u0568-observability-dependency-dag-planner
-description: Build and operate the "Observability Dependency DAG Planner" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Dependency DAG Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Dependency DAG Planner

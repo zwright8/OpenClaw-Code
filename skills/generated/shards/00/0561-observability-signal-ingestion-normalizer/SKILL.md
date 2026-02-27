@@ -1,6 +1,6 @@
 ---
 name: u0561-observability-signal-ingestion-normalizer
-description: Build and operate the "Observability Signal Ingestion Normalizer" capability for Data Quality and Observability. Use when outcomes in this capability family are required for production execution.
+description: Operate the "Observability Signal Ingestion Normalizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Signal Ingestion Normalizer

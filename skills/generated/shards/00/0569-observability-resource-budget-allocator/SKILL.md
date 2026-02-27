@@ -1,6 +1,6 @@
 ---
 name: u0569-observability-resource-budget-allocator
-description: Build and operate the "Observability Resource Budget Allocator" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Resource Budget Allocator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Resource Budget Allocator

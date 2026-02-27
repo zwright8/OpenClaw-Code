@@ -1,6 +1,6 @@
 ---
 name: u0587-observability-a-b-rollout-governor
-description: Build and operate the "Observability A/B Rollout Governor" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability A/B Rollout Governor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability A/B Rollout Governor

@@ -1,6 +1,6 @@
 ---
 name: u0586-observability-experiment-design-generator
-description: Build and operate the "Observability Experiment Design Generator" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Experiment Design Generator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Experiment Design Generator

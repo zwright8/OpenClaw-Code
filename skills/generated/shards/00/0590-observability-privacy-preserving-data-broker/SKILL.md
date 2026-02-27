@@ -1,6 +1,6 @@
 ---
 name: u0590-observability-privacy-preserving-data-broker
-description: Build and operate the "Observability Privacy Preserving Data Broker" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Privacy Preserving Data Broker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Privacy Preserving Data Broker

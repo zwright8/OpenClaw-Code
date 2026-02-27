@@ -1,6 +1,6 @@
 ---
 name: u0598-observability-training-curriculum-composer
-description: Build and operate the "Observability Training Curriculum Composer" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Training Curriculum Composer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Training Curriculum Composer

@@ -1,6 +1,6 @@
 ---
 name: u0579-observability-knowledge-graph-linker
-description: Build and operate the "Observability Knowledge Graph Linker" capability for Data Quality and Observability. Use when outcomes in this capability family are required for production execution.
+description: Operate the "Observability Knowledge Graph Linker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Knowledge Graph Linker

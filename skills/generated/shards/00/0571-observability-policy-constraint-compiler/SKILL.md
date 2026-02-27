@@ -1,6 +1,6 @@
 ---
 name: u0571-observability-policy-constraint-compiler
-description: Build and operate the "Observability Policy Constraint Compiler" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Policy Constraint Compiler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Policy Constraint Compiler

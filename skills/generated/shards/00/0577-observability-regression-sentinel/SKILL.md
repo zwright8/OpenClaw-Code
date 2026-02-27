@@ -1,6 +1,6 @@
 ---
 name: u0577-observability-regression-sentinel
-description: Build and operate the "Observability Regression Sentinel" capability for Data Quality and Observability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Observability Regression Sentinel" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Observability Regression Sentinel
