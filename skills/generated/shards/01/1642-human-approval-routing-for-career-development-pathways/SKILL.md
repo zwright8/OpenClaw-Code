@@ -1,6 +1,6 @@
 ---
 name: u01642-human-approval-routing-for-career-development-pathways
-description: Build and operate the "Human Approval Routing for career development pathways" capability for career development pathways. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for career development pathways" capability in production for career development pathways workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for career development pathways

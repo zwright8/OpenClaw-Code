@@ -1,6 +1,6 @@
 ---
 name: u01632-human-approval-routing-for-mental-well-being-practices
-description: Build and operate the "Human Approval Routing for mental well-being practices" capability for mental well-being practices. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for mental well-being practices" capability in production for mental well-being practices workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for mental well-being practices

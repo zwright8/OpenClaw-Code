@@ -1,6 +1,6 @@
 ---
 name: u01637-human-approval-routing-for-lifelong-learning-plans
-description: Build and operate the "Human Approval Routing for lifelong learning plans" capability for lifelong learning plans. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for lifelong learning plans" capability in production for lifelong learning plans workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for lifelong learning plans
