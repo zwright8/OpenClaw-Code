@@ -1,6 +1,6 @@
 ---
 name: u01229-risk-aware-scheduling-for-fitness-and-recovery-training
-description: Build and operate the "Risk-Aware Scheduling for fitness and recovery training" capability for fitness and recovery training. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for fitness and recovery training" capability in production for fitness and recovery training workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for fitness and recovery training

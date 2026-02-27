@@ -1,6 +1,6 @@
 ---
 name: u01210-risk-aware-scheduling-for-family-caregiving-systems
-description: Build and operate the "Risk-Aware Scheduling for family caregiving systems" capability for family caregiving systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for family caregiving systems" capability in production for family caregiving systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for family caregiving systems
