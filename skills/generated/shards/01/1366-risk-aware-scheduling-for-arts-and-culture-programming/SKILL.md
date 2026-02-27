@@ -1,6 +1,6 @@
 ---
 name: u01366-risk-aware-scheduling-for-arts-and-culture-programming
-description: Build and operate the "Risk-Aware Scheduling for arts and culture programming" capability for arts and culture programming. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for arts and culture programming" capability in production for arts and culture programming workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for arts and culture programming

@@ -1,6 +1,6 @@
 ---
 name: u01354-risk-aware-scheduling-for-accessibility-services
-description: Build and operate the "Risk-Aware Scheduling for accessibility services" capability for accessibility services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for accessibility services" capability in production for accessibility services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for accessibility services

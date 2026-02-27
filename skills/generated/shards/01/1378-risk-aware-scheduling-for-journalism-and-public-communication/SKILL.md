@@ -1,6 +1,6 @@
 ---
 name: u01378-risk-aware-scheduling-for-journalism-and-public-communication
-description: Build and operate the "Risk-Aware Scheduling for journalism and public communication" capability for journalism and public communication. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for journalism and public communication" capability in production for journalism and public communication workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for journalism and public communication

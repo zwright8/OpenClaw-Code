@@ -1,6 +1,6 @@
 ---
 name: u01372-risk-aware-scheduling-for-music-and-creative-practice
-description: Build and operate the "Risk-Aware Scheduling for music and creative practice" capability for music and creative practice. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Risk-Aware Scheduling for music and creative practice" capability in production for music and creative practice workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Risk-Aware Scheduling for music and creative practice
