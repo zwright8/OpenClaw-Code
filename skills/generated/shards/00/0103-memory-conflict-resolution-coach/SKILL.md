@@ -9,7 +9,11 @@ description: Build and operate the "Memory Conflict Resolution Coach" capability
 We need this skill because agents lose performance when lessons are not retained and reused. This specific skill reduces deadlocks in human-agent collaboration loops.
 
 ## When To Use
-Use this skill when you need "Memory Conflict Resolution Coach" outcomes for the Memory and Knowledge Operations domain with measurable, production-facing outputs.
+Use this skill only when all of the following production criteria are true:
+- The task explicitly requires `u0103-memory-conflict-resolution-coach` outcomes in the declared domain and cannot be handled by a simpler upstream capability.
+- Required upstream artifacts are available, schema-valid, and freshness-checked within the active execution window.
+- A named downstream consumer is declared for the primary report and scorecard outputs.
+- For high-risk impact (policy, safety, legal, security, privacy, or external publication), a human approver is assigned before execution starts.
 
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Memory Conflict Resolution Coach`, including at least three measurable KPIs tied to repeated mistakes and context loss.
@@ -23,6 +27,9 @@ Use this skill when you need "Memory Conflict Resolution Coach" outcomes for the
 - Core method: guided mediation prompts
 - Archetype: collaboration-mediator
 - Routing tag: memory-and-knowledge-operations:collaboration-mediator
+- Determinism tolerance: max score delta <= 0.5% and max rank drift <= 1 position on identical inputs across reruns.
+- Execution tolerance: p95 end-to-end latency variance <= 10% across three replay runs.
+- Non-determinism policy: exceedance triggers fail-closed behavior and blocks publish-level output until human sign-off.
 
 ## Input Contract
 - `episodic logs` (signal, source=upstream, required=true)
@@ -37,9 +44,10 @@ Use this skill when you need "Memory Conflict Resolution Coach" outcomes for the
 - `conflict_remediation_playbooks_scorecard` (scorecard, consumer=operator, guaranteed=true)
 
 ## Validation Gates
-1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts within tolerance <= 1% (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs; high-risk changes require human sign-off (on fail: block)
+1. **schema-contract-check** — All required input signals present, schema-valid, and freshness-valid (on fail: fail-closed, reject run).
+2. **determinism-check** — Replay on identical inputs stays within explicit tolerance bounds (on fail: fail-closed, open incident).
+3. **policy-approval-check** — Policy/compliance/data-handling constraints pass with no waivers (on fail: fail-closed, quarantine artifacts).
+4. **high-risk-human-signoff** — Required for high-risk runs before publish-level release (on fail: hold output, no externalization).
 
 ## Failure Handling
 - `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
@@ -48,9 +56,10 @@ Use this skill when you need "Memory Conflict Resolution Coach" outcomes for the
 - Rollback strategy: rollback-to-last-stable-baseline
 
 ## Handoff Contract
-- Produces: Memory Conflict Resolution Coach normalized artifacts; execution scorecard; risk posture
-- Consumes: episodic logs; knowledge nodes; retrieval metadata; claims; evidence; confidence traces
-- Downstream routing hint: Route next to memory-and-knowledge-operations:collaboration-mediator consumers with approval-gate context
+- Produces: normalized capability artifacts, execution scorecard, risk posture, and machine-readable run summary.
+- Consumes: declared upstream signals plus validated policy and approval context.
+- Preconditions to handoff: all validation gates pass; high-risk runs include human sign-off (approver ID + timestamp).
+- Downstream routing hint: route only to declared consumers for this run; otherwise halt and request routing confirmation.
 
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
@@ -58,7 +67,7 @@ Use this skill when you need "Memory Conflict Resolution Coach" outcomes for the
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
 
 ## Immediate Hardening Additions
-- Add golden test fixtures for at least 5 representative payloads.
-- Add regression test covering the highest-risk failure mode for this capability.
-- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
-- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.
+- Add and keep current at least 5 golden fixtures in `fixtures/` with deterministic expected outputs.
+- Add and run a regression case for the highest-risk failure mode at `tests/regression-case.md`.
+- Emit `hardening-summary.json` per run with `status`, `risk_score`, `confidence`, `tolerance_result`, and `next_handoff`.
+- Fail closed on schema/policy/sign-off failures; never emit publish-level outputs on gate failure.

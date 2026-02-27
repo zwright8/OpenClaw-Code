@@ -1,0 +1,14 @@
+{
+  "skill": "u0108-memory-incident-playbook-synthesizer",
+  "case": "minimal-valid",
+  "inputs_present": [
+    "episodic logs",
+    "knowledge nodes",
+    "retrieval metadata",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expected_gate_result": "pass",
+  "risk_classification": "standard"
+}

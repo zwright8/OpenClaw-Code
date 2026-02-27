@@ -1,0 +1,13 @@
+{
+  "skill": "u0116-memory-kpi-dashboard-publisher",
+  "status": "hardened",
+  "risk_score": "set-at-runtime",
+  "confidence": "set-at-runtime",
+  "tolerance": {
+    "score_delta_max_pct": 0.5,
+    "rank_drift_max": 1,
+    "latency_variance_p95_max_pct": 10
+  },
+  "required_signoff_for_high_risk": true,
+  "next_handoff": "memory-and-knowledge-operations:communication-engine"
+}
