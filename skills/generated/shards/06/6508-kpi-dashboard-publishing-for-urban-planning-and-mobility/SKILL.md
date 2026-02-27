@@ -1,6 +1,6 @@
 ---
 name: u06508-kpi-dashboard-publishing-for-urban-planning-and-mobility
-description: Build and operate the "KPI Dashboard Publishing for urban planning and mobility" capability for urban planning and mobility. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for urban planning and mobility
 

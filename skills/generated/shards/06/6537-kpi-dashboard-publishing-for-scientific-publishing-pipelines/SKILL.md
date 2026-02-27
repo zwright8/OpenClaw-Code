@@ -1,6 +1,6 @@
 ---
 name: u06537-kpi-dashboard-publishing-for-scientific-publishing-pipelines
-description: Build and operate the "KPI Dashboard Publishing for scientific publishing pipelines" capability for scientific publishing pipelines. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for scientific publishing pipelines" capability in production for scientific publishing pipelines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for scientific publishing pipelines
 

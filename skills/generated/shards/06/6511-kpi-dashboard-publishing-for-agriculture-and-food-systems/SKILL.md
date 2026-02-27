@@ -1,6 +1,6 @@
 ---
 name: u06511-kpi-dashboard-publishing-for-agriculture-and-food-systems
-description: Build and operate the "KPI Dashboard Publishing for agriculture and food systems" capability for agriculture and food systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for agriculture and food systems" capability in production for agriculture and food systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for agriculture and food systems
 

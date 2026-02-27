@@ -1,6 +1,6 @@
 ---
 name: u06525-kpi-dashboard-publishing-for-manufacturing-quality-assurance
-description: Build and operate the "KPI Dashboard Publishing for manufacturing quality assurance" capability for manufacturing quality assurance. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for manufacturing quality assurance" capability in production for manufacturing quality assurance workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for manufacturing quality assurance
 

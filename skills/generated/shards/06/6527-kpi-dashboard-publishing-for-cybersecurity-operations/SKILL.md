@@ -1,6 +1,6 @@
 ---
 name: u06527-kpi-dashboard-publishing-for-cybersecurity-operations
-description: Build and operate the "KPI Dashboard Publishing for cybersecurity operations" capability for cybersecurity operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for cybersecurity operations" capability in production for cybersecurity operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for cybersecurity operations
 

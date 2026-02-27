@@ -1,6 +1,6 @@
 ---
 name: u06547-kpi-dashboard-publishing-for-civic-participation-platforms
-description: Build and operate the "KPI Dashboard Publishing for civic participation platforms" capability for civic participation platforms. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "KPI Dashboard Publishing for civic participation platforms" capability in production for civic participation platforms workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 # KPI Dashboard Publishing for civic participation platforms
 
