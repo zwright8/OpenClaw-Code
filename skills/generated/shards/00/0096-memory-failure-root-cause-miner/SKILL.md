@@ -9,7 +9,7 @@ description: Build and operate the "Memory Failure Root-Cause Miner" capability 
 We need this skill because agents lose performance when lessons are not retained and reused. This specific skill finds recurring break patterns to speed remediation.
 
 ## When To Use
-Use this skill when the request explicitly needs "Memory Failure Root-Cause Miner" outcomes in the Memory and Knowledge Operations domain.
+Use this skill when you need "Memory Failure Root-Cause Miner" outcomes in the Memory and Knowledge Operations domain.
 
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Memory Failure Root-Cause Miner`, including at least three measurable KPIs tied to repeated mistakes and context loss.
@@ -56,3 +56,10 @@ Use this skill when the request explicitly needs "Memory Failure Root-Cause Mine
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+
+
+## Immediate Hardening Additions
+- Add golden test fixtures for at least 5 representative payloads.
+- Add regression test covering the highest-risk failure mode for this capability.
+- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
+- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.
