@@ -1,6 +1,6 @@
 ---
 name: u07867-attention-management-architecture-for-sales-and-client-success
-description: Build and operate the "Attention Management Architecture for sales and client success" capability for sales and client success. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for sales and client success" capability in production for sales and client success workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for sales and client success

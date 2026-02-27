@@ -1,6 +1,6 @@
 ---
 name: u07891-attention-management-architecture-for-nonprofit-program-delivery
-description: Build and operate the "Attention Management Architecture for nonprofit program delivery" capability for nonprofit program delivery. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for nonprofit program delivery" capability in production for nonprofit program delivery workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for nonprofit program delivery

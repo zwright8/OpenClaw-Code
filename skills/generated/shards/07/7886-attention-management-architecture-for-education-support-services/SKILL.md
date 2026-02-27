@@ -1,6 +1,6 @@
 ---
 name: u07886-attention-management-architecture-for-education-support-services
-description: Build and operate the "Attention Management Architecture for education support services" capability for education support services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for education support services" capability in production for education support services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for education support services

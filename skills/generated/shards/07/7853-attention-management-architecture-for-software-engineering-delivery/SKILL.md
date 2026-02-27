@@ -1,6 +1,6 @@
 ---
 name: u07853-attention-management-architecture-for-software-engineering-delivery
-description: Build and operate the "Attention Management Architecture for software engineering delivery" capability for software engineering delivery. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for software engineering delivery" capability in production for software engineering delivery workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for software engineering delivery

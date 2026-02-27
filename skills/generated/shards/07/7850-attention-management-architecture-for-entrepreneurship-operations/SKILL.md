@@ -1,6 +1,6 @@
 ---
 name: u07850-attention-management-architecture-for-entrepreneurship-operations
-description: Build and operate the "Attention Management Architecture for entrepreneurship operations" capability for entrepreneurship operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for entrepreneurship operations" capability in production for entrepreneurship operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for entrepreneurship operations

@@ -1,6 +1,6 @@
 ---
 name: u07884-attention-management-architecture-for-healthcare-operations
-description: Build and operate the "Attention Management Architecture for healthcare operations" capability for healthcare operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for healthcare operations" capability in production for healthcare operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for healthcare operations

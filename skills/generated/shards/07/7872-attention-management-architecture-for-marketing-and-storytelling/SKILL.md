@@ -1,6 +1,6 @@
 ---
 name: u07872-attention-management-architecture-for-marketing-and-storytelling
-description: Build and operate the "Attention Management Architecture for marketing and storytelling" capability for marketing and storytelling. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for marketing and storytelling" capability in production for marketing and storytelling workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for marketing and storytelling

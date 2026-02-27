@@ -1,6 +1,6 @@
 ---
 name: u07899-attention-management-architecture-for-disaster-response-networks
-description: Build and operate the "Attention Management Architecture for disaster response networks" capability for disaster response networks. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for disaster response networks" capability in production for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for disaster response networks

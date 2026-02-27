@@ -1,6 +1,6 @@
 ---
 name: u07877-attention-management-architecture-for-legal-and-policy-workflows
-description: Build and operate the "Attention Management Architecture for legal and policy workflows" capability for legal and policy workflows. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for legal and policy workflows" capability in production for legal and policy workflows workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for legal and policy workflows
