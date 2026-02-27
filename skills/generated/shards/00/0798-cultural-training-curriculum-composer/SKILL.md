@@ -1,6 +1,6 @@
 ---
 name: u0798-cultural-training-curriculum-composer
-description: Operate the "Cultural Training Curriculum Composer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Training Curriculum Composer" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Training Curriculum Composer

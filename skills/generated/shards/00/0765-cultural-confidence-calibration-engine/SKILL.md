@@ -1,6 +1,6 @@
 ---
 name: u0765-cultural-confidence-calibration-engine
-description: Operate the "Cultural Confidence Calibration Engine" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Confidence Calibration Engine" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Confidence Calibration Engine

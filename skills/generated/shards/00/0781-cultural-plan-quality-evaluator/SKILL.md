@@ -1,6 +1,6 @@
 ---
 name: u0781-cultural-plan-quality-evaluator
-description: Operate the "Cultural Plan Quality Evaluator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Plan Quality Evaluator" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Plan Quality Evaluator

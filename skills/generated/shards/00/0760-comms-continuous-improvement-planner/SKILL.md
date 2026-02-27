@@ -1,6 +1,6 @@
 ---
 name: u0760-comms-continuous-improvement-planner
-description: Operate the "Comms Continuous Improvement Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Comms Continuous Improvement Planner" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Comms Continuous Improvement Planner

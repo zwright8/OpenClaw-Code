@@ -1,6 +1,6 @@
 ---
 name: u0756-comms-kpi-dashboard-publisher
-description: Operate the "Comms KPI Dashboard Publisher" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Comms KPI Dashboard Publisher" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Comms KPI Dashboard Publisher

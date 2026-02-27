@@ -1,6 +1,6 @@
 ---
 name: u0793-cultural-cost-benefit-forecaster
-description: Operate the "Cultural Cost-Benefit Forecaster" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Cost-Benefit Forecaster" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Cost-Benefit Forecaster

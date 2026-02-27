@@ -1,6 +1,6 @@
 ---
 name: u0780-cultural-semantic-retrieval-ranker
-description: Operate the "Cultural Semantic Retrieval Ranker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Semantic Retrieval Ranker" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Semantic Retrieval Ranker

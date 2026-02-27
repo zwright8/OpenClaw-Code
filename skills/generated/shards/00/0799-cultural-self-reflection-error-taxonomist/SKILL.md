@@ -1,6 +1,6 @@
 ---
 name: u0799-cultural-self-reflection-error-taxonomist
-description: Operate the "Cultural Self-Reflection Error Taxonomist" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Self-Reflection Error Taxonomist" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Self-Reflection Error Taxonomist

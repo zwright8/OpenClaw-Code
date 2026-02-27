@@ -1,6 +1,6 @@
 ---
 name: u0787-cultural-a-b-rollout-governor
-description: Operate the "Cultural A/B Rollout Governor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural A/B Rollout Governor" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural A/B Rollout Governor

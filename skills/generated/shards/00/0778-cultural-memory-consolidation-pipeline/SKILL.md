@@ -1,6 +1,6 @@
 ---
 name: u0778-cultural-memory-consolidation-pipeline
-description: Operate the "Cultural Memory Consolidation Pipeline" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Memory Consolidation Pipeline" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Memory Consolidation Pipeline

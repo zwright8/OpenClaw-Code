@@ -1,6 +1,6 @@
 ---
 name: u0761-cultural-signal-ingestion-normalizer
-description: Operate the "Cultural Signal Ingestion Normalizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Signal Ingestion Normalizer" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Signal Ingestion Normalizer

@@ -1,6 +1,6 @@
 ---
 name: u0795-cultural-community-feedback-harvester
-description: Operate the "Cultural Community Feedback Harvester" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Build and operate the "Cultural Community Feedback Harvester" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
 ---
 
 # Cultural Community Feedback Harvester
