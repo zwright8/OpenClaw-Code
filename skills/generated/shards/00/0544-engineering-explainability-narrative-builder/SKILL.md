@@ -1,6 +1,6 @@
 ---
 name: u0544-engineering-explainability-narrative-builder
-description: Build and operate the "Engineering Explainability Narrative Builder" capability for Software Engineering Automation. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Engineering Explainability Narrative Builder" capability for Software Engineering Automation. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Engineering Explainability Narrative Builder
@@ -9,7 +9,7 @@ description: Build and operate the "Engineering Explainability Narrative Builder
 We need this skill because delivery speed must increase without sacrificing correctness. This specific skill translates technical decisions into operator-usable narratives.
 
 ## When To Use
-Use this skill when the request explicitly needs "Engineering Explainability Narrative Builder" outcomes in the Software Engineering Automation domain.
+Use this skill when you need "Engineering Explainability Narrative Builder" outcomes for the Software Engineering Automation domain with measurable, production-facing outputs.
 
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Engineering Explainability Narrative Builder`, including at least three measurable KPIs tied to regressions and brittle release pipelines.
@@ -39,8 +39,8 @@ Use this skill when the request explicitly needs "Engineering Explainability Nar
 
 ## Validation Gates
 1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts within tolerance <= 1% (on fail: escalate)
+3. **policy-approval-check** — Approval gates satisfied before publish-level outputs; high-risk changes require human sign-off (on fail: block)
 
 ## Failure Handling
 - `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
@@ -57,3 +57,9 @@ Use this skill when the request explicitly needs "Engineering Explainability Nar
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+
+## Immediate Hardening Additions
+- Add golden test fixtures for at least 5 representative payloads.
+- Add regression test covering the highest-risk failure mode for this capability.
+- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
+- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.

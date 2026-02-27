@@ -1,18 +1,18 @@
 ---
 name: u0875-community-community-feedback-harvester
-description: Build and operate the "Community Community Feedback Harvester" capability for Community Engagement and Feedback. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Community Feedback Harvester" capability for Community Engagement and Feedback. Use when outcomes in this capability family are required for production execution.
 ---
 
-# Community Community Feedback Harvester
+# Community Feedback Harvester
 
 ## Why This Skill Exists
 We need this skill because real-world feedback loops are necessary for continuous alignment. This specific skill integrates lived user feedback into planning cycles.
 
 ## When To Use
-Use this skill when the request explicitly needs "Community Community Feedback Harvester" outcomes in the Community Engagement and Feedback domain.
+Use this skill when you need "Community Feedback Harvester" outcomes for the Community Engagement and Feedback domain with measurable, production-facing outputs.
 
 ## Step-by-Step Implementation Guide
-1. Define the scope and success metrics for `Community Community Feedback Harvester`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.
+1. Define the scope and success metrics for `Community Feedback Harvester`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.
 2. Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.
 3. Implement the core capability using feedback normalization and clustering, and produce theme-prioritized feedback digests with deterministic scoring.
 4. Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
@@ -39,8 +39,8 @@ Use this skill when the request explicitly needs "Community Community Feedback H
 
 ## Validation Gates
 1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts within tolerance <= 1% (on fail: escalate)
+3. **policy-approval-check** — Approval gates satisfied before publish-level outputs; high-risk changes require human sign-off (on fail: block)
 
 ## Failure Handling
 - `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
@@ -49,7 +49,7 @@ Use this skill when the request explicitly needs "Community Community Feedback H
 - Rollback strategy: rollback-to-last-stable-baseline
 
 ## Handoff Contract
-- Produces: Community Community Feedback Harvester normalized artifacts; execution scorecard; risk posture
+- Produces: Community Feedback Harvester normalized artifacts; execution scorecard; risk posture
 - Consumes: feedback channels; sentiment; urgency; follow-ups; claims; evidence; confidence traces
 - Downstream routing hint: Route next to community-engagement-and-feedback:normalization-engine consumers with approval-gate context
 
@@ -57,3 +57,9 @@ Use this skill when the request explicitly needs "Community Community Feedback H
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+
+## Immediate Hardening Additions
+- Add golden test fixtures for at least 5 representative payloads.
+- Add regression test covering the highest-risk failure mode for this capability.
+- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
+- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.

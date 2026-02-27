@@ -1,6 +1,6 @@
 ---
 name: u0103-memory-conflict-resolution-coach
-description: Build and operate the "Memory Conflict Resolution Coach" capability for Memory and Knowledge Operations. Trigger when this exact capability is needed in mission execution.
+description: Build and operate the "Memory Conflict Resolution Coach" capability for Memory and Knowledge Operations. Use when outcomes in this capability family are required for production execution.
 ---
 
 # Memory Conflict Resolution Coach
@@ -9,7 +9,7 @@ description: Build and operate the "Memory Conflict Resolution Coach" capability
 We need this skill because agents lose performance when lessons are not retained and reused. This specific skill reduces deadlocks in human-agent collaboration loops.
 
 ## When To Use
-Use this skill when the request explicitly needs "Memory Conflict Resolution Coach" outcomes in the Memory and Knowledge Operations domain.
+Use this skill when you need "Memory Conflict Resolution Coach" outcomes for the Memory and Knowledge Operations domain with measurable, production-facing outputs.
 
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Memory Conflict Resolution Coach`, including at least three measurable KPIs tied to repeated mistakes and context loss.
@@ -38,8 +38,8 @@ Use this skill when the request explicitly needs "Memory Conflict Resolution Coa
 
 ## Validation Gates
 1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts within tolerance <= 1% (on fail: escalate)
+3. **policy-approval-check** — Approval gates satisfied before publish-level outputs; high-risk changes require human sign-off (on fail: block)
 
 ## Failure Handling
 - `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
@@ -56,3 +56,9 @@ Use this skill when the request explicitly needs "Memory Conflict Resolution Coa
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
 - Orchestration integration: task routing, approval gates, retries, and rollback controls.
 - Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+
+## Immediate Hardening Additions
+- Add golden test fixtures for at least 5 representative payloads.
+- Add regression test covering the highest-risk failure mode for this capability.
+- Emit machine-readable run summary (`status`, `risk_score`, `confidence`, `next_handoff`).
+- Fail closed on schema or policy gate violations; never emit publish-level output on gate failure.
