@@ -1,6 +1,6 @@
 ---
 name: u06934-learning-curriculum-composition-for-research-and-development-labs
-description: Build and operate the "Learning Curriculum Composition for research and development labs" capability for research and development labs. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Learning Curriculum Composition for research and development labs" capability in production for research and development labs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Learning Curriculum Composition for research and development labs

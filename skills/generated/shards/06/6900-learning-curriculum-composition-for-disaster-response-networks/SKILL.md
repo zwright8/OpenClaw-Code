@@ -1,6 +1,6 @@
 ---
 name: u06900-learning-curriculum-composition-for-disaster-response-networks
-description: Build and operate the "Learning Curriculum Composition for disaster response networks" capability for disaster response networks. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Learning Curriculum Composition for disaster response networks" capability in production for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Learning Curriculum Composition for disaster response networks

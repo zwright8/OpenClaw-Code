@@ -1,6 +1,6 @@
 ---
 name: u06907-learning-curriculum-composition-for-urban-planning-and-mobility
-description: Build and operate the "Learning Curriculum Composition for urban planning and mobility" capability for urban planning and mobility. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Learning Curriculum Composition for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Learning Curriculum Composition for urban planning and mobility

@@ -1,6 +1,6 @@
 ---
 name: u06911-learning-curriculum-composition-for-agriculture-and-food-systems
-description: Build and operate the "Learning Curriculum Composition for agriculture and food systems" capability for agriculture and food systems. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Learning Curriculum Composition for agriculture and food systems" capability in production for agriculture and food systems workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Learning Curriculum Composition for agriculture and food systems
