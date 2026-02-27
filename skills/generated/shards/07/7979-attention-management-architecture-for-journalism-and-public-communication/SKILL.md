@@ -1,6 +1,6 @@
 ---
 name: u07979-attention-management-architecture-for-journalism-and-public-communication
-description: Build and operate the "Attention Management Architecture for journalism and public communication" capability for journalism and public communication. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for journalism and public communication" capability in production for journalism and public communication workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for journalism and public communication

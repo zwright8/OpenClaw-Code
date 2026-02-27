@@ -1,6 +1,6 @@
 ---
 name: u07982-attention-management-architecture-for-multilingual-translation-services
-description: Build and operate the "Attention Management Architecture for multilingual translation services" capability for multilingual translation services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for multilingual translation services" capability in production for multilingual translation services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for multilingual translation services
