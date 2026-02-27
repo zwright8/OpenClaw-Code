@@ -1,6 +1,6 @@
 ---
 name: u01886-handoff-contracting-for-education-support-services
-description: Build and operate the "Handoff Contracting for education support services" capability for education support services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for education support services" capability in production for education support services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for education support services

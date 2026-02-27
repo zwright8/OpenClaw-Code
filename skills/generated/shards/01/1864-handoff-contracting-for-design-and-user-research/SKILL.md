@@ -1,6 +1,6 @@
 ---
 name: u01864-handoff-contracting-for-design-and-user-research
-description: Build and operate the "Handoff Contracting for design and user research" capability for design and user research. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for design and user research" capability in production for design and user research workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for design and user research
