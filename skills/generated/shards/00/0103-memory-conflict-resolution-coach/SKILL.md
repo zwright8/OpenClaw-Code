@@ -71,3 +71,28 @@ Use this skill only when all of the following production criteria are true:
 - Add and run a regression case for the highest-risk failure mode at `tests/regression-case.md`.
 - Emit `hardening-summary.json` per run with `status`, `risk_score`, `confidence`, `tolerance_result`, and `next_handoff`.
 - Fail closed on schema/policy/sign-off failures; never emit publish-level outputs on gate failure.
+
+## Production Trigger Clarity
+- Use only when this capability produces production-facing outcomes with measurable acceptance criteria.
+- Do not invoke for exploratory brainstorming or unrelated domains; route those requests to the correct capability family.
+
+## Deterministic Tolerances
+- Repeated runs on identical inputs must remain within **<=1% output variance** for scoring fields and preserve schema-identical artifact shape.
+- Any variance beyond tolerance is a hard failure and must trigger escalation.
+
+## Fail-Closed Validation Gates
+1. Schema validity gate (required inputs present and valid).
+2. Determinism gate (variance within tolerance).
+3. Policy/approval gate (required approvals satisfied).
+
+If any gate fails: **block output publication and fail closed**.
+
+## High-Risk Human Sign-Off
+- Any high-risk change, policy-impacting output, or publish-level action requires explicit human sign-off before release.
+- Missing sign-off is a blocking condition.
+
+## Explicit Handoff Contract
+- **Produces:** normalized artifacts, decision scorecard, risk/confidence metadata.
+- **Consumes:** validated upstream inputs for this capability.
+- **Next hop:** route only to declared downstream consumers with gate/approval context attached.
+

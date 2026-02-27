@@ -1,13 +1,18 @@
 {
-  "skill": "u0124-tooling-contradiction-detector",
-  "status": "hardened",
-  "risk_score": "set-at-runtime",
-  "confidence": "set-at-runtime",
-  "tolerance": {
-    "score_delta_max_pct": 0.5,
-    "rank_drift_max": 1,
-    "latency_variance_p95_max_pct": 10
+  "version": "1.0.0",
+  "hardened": true,
+  "requirements": {
+    "production_trigger_use_clarity": true,
+    "deterministic_tolerances": true,
+    "fail_closed_validation_gates": true,
+    "high_risk_human_sign_off": true,
+    "explicit_handoff_contract": true,
+    "fixtures_minimal_valid": true,
+    "tests_regression_case": true
   },
-  "required_signoff_for_high_risk": true,
-  "next_handoff": "tool-reliability-and-execution-quality:detection-guard"
+  "artifacts": {
+    "skill": "SKILL.md",
+    "fixture": "fixtures/minimal-valid.json",
+    "regression_test": "tests/regression-case.md"
+  }
 }
