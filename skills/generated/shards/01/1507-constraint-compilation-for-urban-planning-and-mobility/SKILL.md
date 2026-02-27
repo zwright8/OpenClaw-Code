@@ -1,6 +1,6 @@
 ---
 name: u01507-constraint-compilation-for-urban-planning-and-mobility
-description: Build and operate the "Constraint Compilation for urban planning and mobility" capability for urban planning and mobility. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for urban planning and mobility

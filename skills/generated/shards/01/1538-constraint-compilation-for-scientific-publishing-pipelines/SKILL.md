@@ -1,6 +1,6 @@
 ---
 name: u01538-constraint-compilation-for-scientific-publishing-pipelines
-description: Build and operate the "Constraint Compilation for scientific publishing pipelines" capability for scientific publishing pipelines. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Constraint Compilation for scientific publishing pipelines" capability in production for scientific publishing pipelines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Constraint Compilation for scientific publishing pipelines
