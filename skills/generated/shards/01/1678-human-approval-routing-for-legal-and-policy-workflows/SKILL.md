@@ -1,6 +1,6 @@
 ---
 name: u01678-human-approval-routing-for-legal-and-policy-workflows
-description: Build and operate the "Human Approval Routing for legal and policy workflows" capability for legal and policy workflows. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for legal and policy workflows" capability in production for legal and policy workflows workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for legal and policy workflows

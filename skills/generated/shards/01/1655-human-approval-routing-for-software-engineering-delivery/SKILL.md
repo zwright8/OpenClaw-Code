@@ -1,6 +1,6 @@
 ---
 name: u01655-human-approval-routing-for-software-engineering-delivery
-description: Build and operate the "Human Approval Routing for software engineering delivery" capability for software engineering delivery. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for software engineering delivery" capability in production for software engineering delivery workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for software engineering delivery

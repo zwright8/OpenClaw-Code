@@ -1,6 +1,6 @@
 ---
 name: u01669-human-approval-routing-for-sales-and-client-success
-description: Build and operate the "Human Approval Routing for sales and client success" capability for sales and client success. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for sales and client success" capability in production for sales and client success workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for sales and client success

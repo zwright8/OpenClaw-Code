@@ -1,6 +1,6 @@
 ---
 name: u01698-human-approval-routing-for-disaster-response-networks
-description: Build and operate the "Human Approval Routing for disaster response networks" capability for disaster response networks. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for disaster response networks" capability in production for disaster response networks workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for disaster response networks

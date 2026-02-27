@@ -1,6 +1,6 @@
 ---
 name: u01658-human-approval-routing-for-product-management-execution
-description: Build and operate the "Human Approval Routing for product management execution" capability for product management execution. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Human Approval Routing for product management execution" capability in production for product management execution workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Human Approval Routing for product management execution
