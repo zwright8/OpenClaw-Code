@@ -1,9 +1,18 @@
 {
-  "skill": "u0153-tooling-cost-benefit-forecaster",
-  "status": "hardened",
-  "risk_score": "pending-runtime-eval",
-  "confidence": "pending-runtime-eval",
-  "next_handoff": "tool-reliability-and-execution-quality:simulation-lab",
-  "human_signoff_required": true,
-  "hardening_version": 1
+  "version": "1.0.0",
+  "hardened": true,
+  "requirements": {
+    "production_trigger_use_clarity": true,
+    "deterministic_tolerances": true,
+    "fail_closed_validation_gates": true,
+    "high_risk_human_sign_off": true,
+    "explicit_handoff_contract": true,
+    "fixtures_minimal_valid": true,
+    "tests_regression_case": true
+  },
+  "artifacts": {
+    "skill": "SKILL.md",
+    "fixture": "fixtures/minimal-valid.json",
+    "regression_test": "tests/regression-case.md"
+  }
 }
