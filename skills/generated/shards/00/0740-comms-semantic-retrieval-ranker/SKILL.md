@@ -1,6 +1,6 @@
 ---
 name: u0740-comms-semantic-retrieval-ranker
-description: Build and operate the "Comms Semantic Retrieval Ranker" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Semantic Retrieval Ranker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Semantic Retrieval Ranker

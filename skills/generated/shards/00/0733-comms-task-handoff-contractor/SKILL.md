@@ -1,6 +1,6 @@
 ---
 name: u0733-comms-task-handoff-contractor
-description: Build and operate the "Comms Task Handoff Contractor" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Task Handoff Contractor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Task Handoff Contractor

@@ -1,6 +1,6 @@
 ---
 name: u0704-impact-explainability-narrative-builder
-description: Build and operate the "Impact Explainability Narrative Builder" capability for Social Impact Measurement. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Impact Explainability Narrative Builder" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Impact Explainability Narrative Builder

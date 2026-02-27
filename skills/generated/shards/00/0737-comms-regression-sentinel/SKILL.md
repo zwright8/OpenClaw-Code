@@ -1,6 +1,6 @@
 ---
 name: u0737-comms-regression-sentinel
-description: Build and operate the "Comms Regression Sentinel" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Regression Sentinel" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Regression Sentinel

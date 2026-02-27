@@ -1,6 +1,6 @@
 ---
 name: u0745-comms-uncertainty-communicator
-description: Build and operate the "Comms Uncertainty Communicator" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Uncertainty Communicator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Uncertainty Communicator

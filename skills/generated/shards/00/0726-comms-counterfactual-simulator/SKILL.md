@@ -1,6 +1,6 @@
 ---
 name: u0726-comms-counterfactual-simulator
-description: Build and operate the "Comms Counterfactual Simulator" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Counterfactual Simulator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Counterfactual Simulator

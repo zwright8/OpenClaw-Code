@@ -1,6 +1,6 @@
 ---
 name: u0735-comms-auto-retry-and-backoff-coordinator
-description: Build and operate the "Comms Auto-Retry and Backoff Coordinator" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Auto-Retry and Backoff Coordinator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Auto-Retry and Backoff Coordinator

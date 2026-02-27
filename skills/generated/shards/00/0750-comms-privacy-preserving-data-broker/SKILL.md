@@ -1,6 +1,6 @@
 ---
 name: u0750-comms-privacy-preserving-data-broker
-description: Build and operate the "Comms Privacy Preserving Data Broker" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Privacy Preserving Data Broker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Privacy Preserving Data Broker

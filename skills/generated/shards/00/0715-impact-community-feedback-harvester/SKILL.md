@@ -1,6 +1,6 @@
 ---
 name: u0715-impact-community-feedback-harvester
-description: Build and operate the "Impact Community Feedback Harvester" capability for Social Impact Measurement. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Impact Community Feedback Harvester" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Impact Community Feedback Harvester

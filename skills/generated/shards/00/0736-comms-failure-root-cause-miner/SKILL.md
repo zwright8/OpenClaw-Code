@@ -1,6 +1,6 @@
 ---
 name: u0736-comms-failure-root-cause-miner
-description: Build and operate the "Comms Failure Root-Cause Miner" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Failure Root-Cause Miner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Failure Root-Cause Miner

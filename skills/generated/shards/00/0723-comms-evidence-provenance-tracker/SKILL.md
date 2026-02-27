@@ -1,6 +1,6 @@
 ---
 name: u0723-comms-evidence-provenance-tracker
-description: Build and operate the "Comms Evidence Provenance Tracker" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Evidence Provenance Tracker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Evidence Provenance Tracker

@@ -1,6 +1,6 @@
 ---
 name: u0738-comms-memory-consolidation-pipeline
-description: Build and operate the "Comms Memory Consolidation Pipeline" capability for Communication and Explainability. Use when outcomes in this capability family are required for production execution.
+description: Operate the "Comms Memory Consolidation Pipeline" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Memory Consolidation Pipeline

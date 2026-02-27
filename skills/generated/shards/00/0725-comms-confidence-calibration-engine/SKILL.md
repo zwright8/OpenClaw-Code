@@ -1,6 +1,6 @@
 ---
 name: u0725-comms-confidence-calibration-engine
-description: Build and operate the "Comms Confidence Calibration Engine" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Confidence Calibration Engine" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Confidence Calibration Engine

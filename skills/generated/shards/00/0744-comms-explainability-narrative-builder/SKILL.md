@@ -1,6 +1,6 @@
 ---
 name: u0744-comms-explainability-narrative-builder
-description: Build and operate the "Comms Explainability Narrative Builder" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Explainability Narrative Builder" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Explainability Narrative Builder

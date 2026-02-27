@@ -1,6 +1,6 @@
 ---
 name: u0749-comms-disaster-recovery-orchestrator
-description: Build and operate the "Comms Disaster Recovery Orchestrator" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Disaster Recovery Orchestrator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Disaster Recovery Orchestrator

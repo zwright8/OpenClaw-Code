@@ -1,6 +1,6 @@
 ---
 name: u0722-comms-context-window-prioritizer
-description: Build and operate the "Comms Context Window Prioritizer" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Context Window Prioritizer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Context Window Prioritizer
