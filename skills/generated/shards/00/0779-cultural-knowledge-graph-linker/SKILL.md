@@ -1,6 +1,6 @@
 ---
 name: u0779-cultural-knowledge-graph-linker
-description: Build and operate the "Cultural Knowledge Graph Linker" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Cultural Knowledge Graph Linker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Cultural Knowledge Graph Linker

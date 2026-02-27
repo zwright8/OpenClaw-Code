@@ -1,6 +1,6 @@
 ---
 name: u0758-comms-training-curriculum-composer
-description: Build and operate the "Comms Training Curriculum Composer" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Training Curriculum Composer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Training Curriculum Composer

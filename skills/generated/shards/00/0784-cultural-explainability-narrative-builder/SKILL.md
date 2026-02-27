@@ -1,6 +1,6 @@
 ---
 name: u0784-cultural-explainability-narrative-builder
-description: Build and operate the "Cultural Explainability Narrative Builder" capability for Multilingual and Cultural Adaptation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Cultural Explainability Narrative Builder" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Cultural Explainability Narrative Builder

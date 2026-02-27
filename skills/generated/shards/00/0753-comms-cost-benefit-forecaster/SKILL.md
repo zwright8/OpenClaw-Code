@@ -1,6 +1,6 @@
 ---
 name: u0753-comms-cost-benefit-forecaster
-description: Build and operate the "Comms Cost-Benefit Forecaster" capability for Communication and Explainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Comms Cost-Benefit Forecaster" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Comms Cost-Benefit Forecaster
