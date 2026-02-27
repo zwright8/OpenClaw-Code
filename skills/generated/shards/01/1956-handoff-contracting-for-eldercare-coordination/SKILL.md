@@ -1,6 +1,6 @@
 ---
 name: u01956-handoff-contracting-for-eldercare-coordination
-description: Build and operate the "Handoff Contracting for eldercare coordination" capability for eldercare coordination. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for eldercare coordination" capability in production for eldercare coordination workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for eldercare coordination

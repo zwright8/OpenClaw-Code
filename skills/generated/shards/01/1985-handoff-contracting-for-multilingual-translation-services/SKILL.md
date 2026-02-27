@@ -1,6 +1,6 @@
 ---
 name: u01985-handoff-contracting-for-multilingual-translation-services
-description: Build and operate the "Handoff Contracting for multilingual translation services" capability for multilingual translation services. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for multilingual translation services" capability in production for multilingual translation services workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for multilingual translation services

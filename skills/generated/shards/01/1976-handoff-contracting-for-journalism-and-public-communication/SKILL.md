@@ -1,6 +1,6 @@
 ---
 name: u01976-handoff-contracting-for-journalism-and-public-communication
-description: Build and operate the "Handoff Contracting for journalism and public communication" capability for journalism and public communication. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Handoff Contracting for journalism and public communication" capability in production for journalism and public communication workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Handoff Contracting for journalism and public communication
