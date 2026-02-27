@@ -1,0 +1,9 @@
+{
+  "skill": "u0157-tooling-skill-gap-diagnoser",
+  "status": "hardened",
+  "risk_score": "pending-runtime-eval",
+  "confidence": "pending-runtime-eval",
+  "next_handoff": "tool-reliability-and-execution-quality:general-capability",
+  "human_signoff_required": true,
+  "hardening_version": 1
+}

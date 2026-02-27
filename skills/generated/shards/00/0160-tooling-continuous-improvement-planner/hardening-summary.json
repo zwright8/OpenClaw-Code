@@ -1,0 +1,9 @@
+{
+  "skill": "u0160-tooling-continuous-improvement-planner",
+  "status": "hardened",
+  "risk_score": "pending-runtime-eval",
+  "confidence": "pending-runtime-eval",
+  "next_handoff": "tool-reliability-and-execution-quality:planning-router",
+  "human_signoff_required": true,
+  "hardening_version": 1
+}

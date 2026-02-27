@@ -1,0 +1,18 @@
+{
+  "skill": "u0161-governance-signal-ingestion-normalizer",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "normalized_signal_feeds_report",
+    "normalized_signal_feeds_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

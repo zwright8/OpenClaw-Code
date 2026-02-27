@@ -1,0 +1,18 @@
+{
+  "skill": "u0152-tooling-compliance-evidence-mapper",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "tool runs",
+    "error signatures",
+    "retry outcomes",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "compliance_evidence_matrices_report",
+    "compliance_evidence_matrices_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

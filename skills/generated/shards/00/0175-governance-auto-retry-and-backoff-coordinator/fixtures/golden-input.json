@@ -1,0 +1,18 @@
+{
+  "skill": "u0175-governance-auto-retry-and-backoff-coordinator",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "retry_policy_decisions_report",
+    "retry_policy_decisions_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}
