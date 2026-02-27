@@ -1,6 +1,6 @@
 ---
 name: u0690-impact-risk-aware-scheduler
-description: Build and operate the "Impact Risk-Aware Scheduler" capability for Social Impact Measurement. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Impact Risk-Aware Scheduler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Impact Risk-Aware Scheduler

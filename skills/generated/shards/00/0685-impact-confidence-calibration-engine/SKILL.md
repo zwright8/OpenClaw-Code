@@ -1,6 +1,6 @@
 ---
 name: u0685-impact-confidence-calibration-engine
-description: Build and operate the "Impact Confidence Calibration Engine" capability for Social Impact Measurement. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Impact Confidence Calibration Engine" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Impact Confidence Calibration Engine

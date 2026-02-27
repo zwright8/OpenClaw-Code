@@ -1,6 +1,6 @@
 ---
 name: u0671-crisis-security-threat-modeler
-description: Build and operate the "Crisis Security Threat Modeler" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis Security Threat Modeler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis Security Threat Modeler

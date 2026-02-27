@@ -1,6 +1,6 @@
 ---
 name: u0686-impact-counterfactual-simulator
-description: Build and operate the "Impact Counterfactual Simulator" capability for Social Impact Measurement. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Impact Counterfactual Simulator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Impact Counterfactual Simulator

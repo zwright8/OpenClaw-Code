@@ -1,6 +1,6 @@
 ---
 name: u0672-crisis-compliance-evidence-mapper
-description: Build and operate the "Crisis Compliance Evidence Mapper" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis Compliance Evidence Mapper" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis Compliance Evidence Mapper

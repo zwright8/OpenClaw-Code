@@ -1,6 +1,6 @@
 ---
 name: u0659-crisis-knowledge-graph-linker
-description: Build and operate the "Crisis Knowledge Graph Linker" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis Knowledge Graph Linker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis Knowledge Graph Linker

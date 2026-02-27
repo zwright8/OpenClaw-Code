@@ -1,6 +1,6 @@
 ---
 name: u0680-crisis-continuous-improvement-planner
-description: Build and operate the "Crisis Continuous Improvement Planner" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis Continuous Improvement Planner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis Continuous Improvement Planner

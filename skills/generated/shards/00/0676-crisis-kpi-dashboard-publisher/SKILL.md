@@ -1,6 +1,6 @@
 ---
 name: u0676-crisis-kpi-dashboard-publisher
-description: Build and operate the "Crisis KPI Dashboard Publisher" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis KPI Dashboard Publisher" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis KPI Dashboard Publisher

@@ -1,6 +1,6 @@
 ---
 name: u0674-crisis-equity-impact-scorer
-description: Build and operate the "Crisis Equity Impact Scorer" capability for Crisis and Incident Response. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Crisis Equity Impact Scorer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Crisis Equity Impact Scorer

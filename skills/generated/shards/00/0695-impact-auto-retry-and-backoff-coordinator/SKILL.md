@@ -1,6 +1,6 @@
 ---
 name: u0695-impact-auto-retry-and-backoff-coordinator
-description: Build and operate the "Impact Auto-Retry and Backoff Coordinator" capability for Social Impact Measurement. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Impact Auto-Retry and Backoff Coordinator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Impact Auto-Retry and Backoff Coordinator

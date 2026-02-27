@@ -1,6 +1,6 @@
 ---
 name: u0684-impact-contradiction-detector
-description: Build and operate the "Impact Contradiction Detector" capability for Social Impact Measurement. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Impact Contradiction Detector" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Impact Contradiction Detector
