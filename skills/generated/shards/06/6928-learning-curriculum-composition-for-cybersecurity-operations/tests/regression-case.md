@@ -1,12 +1,14 @@
 # Regression Case — u06928-learning-curriculum-composition-for-cybersecurity-operations
 
 ## Objective
-Verify deterministic tolerance, fail-closed gates, and high-risk human sign-off requirements.
+Verify deterministic replay and fail-closed gate behavior for `Learning Curriculum Composition for cybersecurity operations`.
 
-## Steps
-1. Run baseline execution with `fixtures/minimal-valid.json`; confirm all gates pass.
-2. Replay identical input; assert absolute score delta <= 0.005 and artifact hash drift == 0.
-3. Inject schema violation (remove `inputs.signals`) and verify schema-gate blocks output.
-4. Force determinism breach (>0.005) and verify determinism-gate quarantines run.
-5. Set `risk_tier=high` without sign-off token and verify approval-gate-high-risk fails closed.
-6. Provide explicit sign-off token and verify routing unlocks with complete handoff envelope.
+## Procedure
+1. Execute twice with `fixtures/minimal-valid.json` and identical runtime configuration.
+2. Compare score outputs and artifact hashes.
+3. Verify schema, determinism, policy-risk, and approval-high-risk gates.
+
+## Expected Results
+- Absolute score delta <= 0.005.
+- Artifact hash drift = 0 for identical replay.
+- Any gate failure blocks downstream routing and emits an error bundle.

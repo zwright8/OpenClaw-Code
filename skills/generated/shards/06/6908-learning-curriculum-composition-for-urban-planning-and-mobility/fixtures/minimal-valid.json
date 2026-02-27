@@ -2,31 +2,37 @@
   "skill": "u06908-learning-curriculum-composition-for-urban-planning-and-mobility",
   "capability": "Learning Curriculum Composition for urban planning and mobility",
   "domain": "urban planning and mobility",
+  "run_context": {
+    "run_id": "fixture-6908",
+    "source": "hardening-fixture"
+  },
   "inputs": {
-    "request_id": "06908-learning-curriculum-composition-for-urban-planning-and-mobility-minimal",
-    "source_tags": [
-      "approved:test"
-    ],
-    "signals": [
+    "source_tagged_signals": [
       {
         "id": "sig-1",
-        "value": 0.5,
-        "confidence": 0.9
+        "source": "approved-source",
+        "value": 0.5
+      }
+    ],
+    "claims": [
+      {
+        "id": "claim-1",
+        "text": "baseline claim",
+        "confidence": 0.5
       }
     ],
     "evidence": [
       {
         "id": "ev-1",
-        "type": "doc",
-        "uri": "memory://evidence/ev-1"
+        "type": "document",
+        "uri": "https://example.invalid/evidence"
       }
     ],
-    "risk_tier": "low"
-  },
-  "expected": {
-    "determinism_tolerance_abs": 0.005,
-    "hash_drift_allowed": 0,
-    "requires_human_signoff_if_high_risk": true,
-    "fail_closed": true
+    "confidence_traces": [
+      {
+        "id": "trace-1",
+        "score": 0.5
+      }
+    ]
   }
 }
