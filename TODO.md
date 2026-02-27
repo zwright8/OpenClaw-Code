@@ -13,4 +13,4 @@
 
 ## Infrastructure
 - [x] **Auto-Refactor:** A script that lints my own code in this repo. (Completed 2026-02-26 — `scripts/auto-refactor.mjs`)
-- [ ] **WhatsApp Stability Tracker:** Monitor and alert on gateway disconnect/reconnect loops. (Added 2026-02-25)
+- [x] **WhatsApp Stability Tracker:** Monitor and alert on gateway disconnect/reconnect loops. (Completed 2026-02-27 — `cognition-core/src/whatsapp-stability-tracker.ts`, CLI/report script + tests)
