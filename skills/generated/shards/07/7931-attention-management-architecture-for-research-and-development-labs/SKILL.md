@@ -1,6 +1,6 @@
 ---
 name: u07931-attention-management-architecture-for-research-and-development-labs
-description: Build and operate the "Attention Management Architecture for research and development labs" capability for research and development labs. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for research and development labs" capability in production for research and development labs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for research and development labs

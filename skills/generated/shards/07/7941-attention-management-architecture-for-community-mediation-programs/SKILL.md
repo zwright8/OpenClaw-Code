@@ -1,6 +1,6 @@
 ---
 name: u07941-attention-management-architecture-for-community-mediation-programs
-description: Build and operate the "Attention Management Architecture for community mediation programs" capability for community mediation programs. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for community mediation programs" capability in production for community mediation programs workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for community mediation programs

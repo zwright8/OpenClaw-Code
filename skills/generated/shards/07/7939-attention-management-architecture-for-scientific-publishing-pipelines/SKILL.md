@@ -1,6 +1,6 @@
 ---
 name: u07939-attention-management-architecture-for-scientific-publishing-pipelines
-description: Build and operate the "Attention Management Architecture for scientific publishing pipelines" capability for scientific publishing pipelines. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for scientific publishing pipelines" capability in production for scientific publishing pipelines workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for scientific publishing pipelines

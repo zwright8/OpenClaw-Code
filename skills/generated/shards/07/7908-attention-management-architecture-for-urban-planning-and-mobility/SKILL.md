@@ -1,6 +1,6 @@
 ---
 name: u07908-attention-management-architecture-for-urban-planning-and-mobility
-description: Build and operate the "Attention Management Architecture for urban planning and mobility" capability for urban planning and mobility. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for urban planning and mobility" capability in production for urban planning and mobility workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for urban planning and mobility

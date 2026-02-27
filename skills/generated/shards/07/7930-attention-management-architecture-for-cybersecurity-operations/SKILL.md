@@ -1,6 +1,6 @@
 ---
 name: u07930-attention-management-architecture-for-cybersecurity-operations
-description: Build and operate the "Attention Management Architecture for cybersecurity operations" capability for cybersecurity operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for cybersecurity operations" capability in production for cybersecurity operations workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for cybersecurity operations

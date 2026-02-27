@@ -1,6 +1,6 @@
 ---
 name: u07905-attention-management-architecture-for-climate-adaptation-initiatives
-description: Build and operate the "Attention Management Architecture for climate adaptation initiatives" capability for climate adaptation initiatives. Use when this exact capability is required by autonomous or human-guided missions.
+description: Operate the "Attention Management Architecture for climate adaptation initiatives" capability in production for climate adaptation initiatives workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Attention Management Architecture for climate adaptation initiatives
