@@ -1,6 +1,6 @@
 ---
 name: u0512-research-compliance-evidence-mapper
-description: Build and operate the "Research Compliance Evidence Mapper" capability for Scientific Research Systems. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Research Compliance Evidence Mapper" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Research Compliance Evidence Mapper

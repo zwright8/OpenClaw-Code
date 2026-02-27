@@ -1,6 +1,6 @@
 ---
 name: u0535-engineering-auto-retry-and-backoff-coordinator
-description: Build and operate the "Engineering Auto-Retry and Backoff Coordinator" capability for Software Engineering Automation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Engineering Auto-Retry and Backoff Coordinator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Engineering Auto-Retry and Backoff Coordinator

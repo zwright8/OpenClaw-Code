@@ -1,6 +1,6 @@
 ---
 name: u0536-engineering-failure-root-cause-miner
-description: Build and operate the "Engineering Failure Root-Cause Miner" capability for Software Engineering Automation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Engineering Failure Root-Cause Miner" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Engineering Failure Root-Cause Miner

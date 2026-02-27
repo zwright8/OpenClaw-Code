@@ -1,6 +1,6 @@
 ---
 name: u0544-engineering-explainability-narrative-builder
-description: Build and operate the "Engineering Explainability Narrative Builder" capability for Software Engineering Automation. Use when outcomes in this capability family are required for production execution.
+description: Operate the "Engineering Explainability Narrative Builder" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Engineering Explainability Narrative Builder

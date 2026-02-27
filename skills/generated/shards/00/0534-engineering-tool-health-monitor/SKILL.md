@@ -1,6 +1,6 @@
 ---
 name: u0534-engineering-tool-health-monitor
-description: Build and operate the "Engineering Tool Health Monitor" capability for Software Engineering Automation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Engineering Tool Health Monitor" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Engineering Tool Health Monitor

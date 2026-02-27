@@ -1,6 +1,6 @@
 ---
 name: u0530-engineering-risk-aware-scheduler
-description: Build and operate the "Engineering Risk-Aware Scheduler" capability for Software Engineering Automation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Engineering Risk-Aware Scheduler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Engineering Risk-Aware Scheduler

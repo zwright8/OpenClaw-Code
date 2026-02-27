@@ -1,6 +1,6 @@
 ---
 name: u0509-research-disaster-recovery-orchestrator
-description: Build and operate the "Research Disaster Recovery Orchestrator" capability for Scientific Research Systems. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Research Disaster Recovery Orchestrator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Research Disaster Recovery Orchestrator

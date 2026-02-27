@@ -1,6 +1,6 @@
 ---
 name: u0540-engineering-semantic-retrieval-ranker
-description: Build and operate the "Engineering Semantic Retrieval Ranker" capability for Software Engineering Automation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Engineering Semantic Retrieval Ranker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Engineering Semantic Retrieval Ranker

@@ -1,6 +1,6 @@
 ---
 name: u0538-engineering-memory-consolidation-pipeline
-description: Build and operate the "Engineering Memory Consolidation Pipeline" capability for Software Engineering Automation. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Engineering Memory Consolidation Pipeline" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Engineering Memory Consolidation Pipeline
