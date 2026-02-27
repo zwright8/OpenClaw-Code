@@ -1,6 +1,6 @@
 ---
 name: u0969-evolution-resource-budget-allocator
-description: Build and operate the "Evolution Resource Budget Allocator" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Resource Budget Allocator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Resource Budget Allocator

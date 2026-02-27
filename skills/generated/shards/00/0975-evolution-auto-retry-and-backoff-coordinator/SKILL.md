@@ -1,6 +1,6 @@
 ---
 name: u0975-evolution-auto-retry-and-backoff-coordinator
-description: Build and operate the "Evolution Auto-Retry and Backoff Coordinator" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Auto-Retry and Backoff Coordinator" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Auto-Retry and Backoff Coordinator

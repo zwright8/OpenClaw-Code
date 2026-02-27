@@ -1,6 +1,6 @@
 ---
 name: u0996-evolution-kpi-dashboard-publisher
-description: Build and operate the "Evolution KPI Dashboard Publisher" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution KPI Dashboard Publisher" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution KPI Dashboard Publisher

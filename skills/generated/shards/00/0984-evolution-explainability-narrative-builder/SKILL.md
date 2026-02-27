@@ -1,6 +1,6 @@
 ---
 name: u0984-evolution-explainability-narrative-builder
-description: Build and operate the "Evolution Explainability Narrative Builder" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Explainability Narrative Builder" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Explainability Narrative Builder

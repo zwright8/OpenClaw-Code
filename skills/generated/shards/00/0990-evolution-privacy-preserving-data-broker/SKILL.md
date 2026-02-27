@@ -1,6 +1,6 @@
 ---
 name: u0990-evolution-privacy-preserving-data-broker
-description: Build and operate the "Evolution Privacy Preserving Data Broker" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Privacy Preserving Data Broker" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Privacy Preserving Data Broker

@@ -1,6 +1,6 @@
 ---
 name: u0994-evolution-equity-impact-scorer
-description: Build and operate the "Evolution Equity Impact Scorer" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Equity Impact Scorer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Equity Impact Scorer

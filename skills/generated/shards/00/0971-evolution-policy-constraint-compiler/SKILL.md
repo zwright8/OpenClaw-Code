@@ -1,6 +1,6 @@
 ---
 name: u0971-evolution-policy-constraint-compiler
-description: Build and operate the "Evolution Policy Constraint Compiler" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Policy Constraint Compiler" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Policy Constraint Compiler

@@ -1,6 +1,6 @@
 ---
 name: u0967-evolution-goal-decomposer
-description: Build and operate the "Evolution Goal Decomposer" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Goal Decomposer" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Goal Decomposer

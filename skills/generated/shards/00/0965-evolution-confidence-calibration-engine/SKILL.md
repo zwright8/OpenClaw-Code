@@ -1,6 +1,6 @@
 ---
 name: u0965-evolution-confidence-calibration-engine
-description: Build and operate the "Evolution Confidence Calibration Engine" capability for Autonomous Learning and Evolution. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Evolution Confidence Calibration Engine" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Evolution Confidence Calibration Engine

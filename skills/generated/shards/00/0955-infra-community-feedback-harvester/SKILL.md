@@ -1,6 +1,6 @@
 ---
 name: u0955-infra-community-feedback-harvester
-description: Build and operate the "Infra Community Feedback Harvester" capability for Infrastructure and Sustainability. Trigger when this exact capability is needed in mission execution.
+description: Operate the "Infra Community Feedback Harvester" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
 
 # Infra Community Feedback Harvester
