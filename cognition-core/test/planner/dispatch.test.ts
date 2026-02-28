@@ -157,6 +157,18 @@ test('buildDispatchJournalEntries dispatches gate-passed task requests and block
 
     assert.equal(built.blockedEntries[0].taskId, TASK_B_ID);
     assert.equal(built.blockedEntries[0].reason, 'awaiting_human_approval');
+    assert.equal(built.blockedEntries[0].blockedSource, 'dispatch_request');
+    assert.equal(built.blockedEntries[0].approvalFlow.approvalStatus, 'pending');
+    assert.equal(built.blockedEntries[0].approvalFlow.requiresHumanApproval, true);
+
+    const blockedContext = built.blockedEntries[0].context as Record<string, unknown>;
+    const blockedApprovalFlow = blockedContext.approvalFlow as Record<string, unknown>;
+    assert.equal(blockedApprovalFlow.approvalStatus, 'pending');
+
+    assert.deepEqual(built.stats.blockedByReason, { awaiting_human_approval: 1 });
+    assert.deepEqual(built.stats.blockedBySource, { dispatch_request: 1 });
+    assert.deepEqual(built.stats.blockedByApprovalStatus, { pending: 1 });
+    assert.equal(built.stats.blockedApprovalRequiredCount, 1);
 });
 
 test('dispatchArtifacts appends dispatchable and blocked journal entries and writes report stats', () => {
@@ -197,7 +209,10 @@ test('dispatchArtifacts appends dispatchable and blocked journal entries and wri
                     riskTier: 'high',
                     requiresHumanApproval: true,
                     approvalStatus: 'pending',
-                    gatePassed: false
+                    gatePassed: false,
+                    passthrough: {
+                        requiredApprovers: ['security-ops']
+                    }
                 },
                 dependencies: [TASK_A_ID]
             }
@@ -229,11 +244,43 @@ test('dispatchArtifacts appends dispatchable and blocked journal entries and wri
     assert.equal(journalLines.length, 2);
     assert.equal(journalLines[0].kind, 'task_request');
     assert.equal(journalLines[1].kind, 'task_blocked');
+    assert.equal(journalLines[1].blockedSource, 'task_package_blocked');
+    assert.equal(journalLines[1].approvalFlow.approvalStatus, 'pending');
 
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
     assert.equal(report.stats.dispatchCount, 1);
     assert.equal(report.stats.blockedCount, 1);
     assert.equal(report.stats.appendedEntries, 2);
+    assert.equal(report.stats.blockedApprovalRequiredCount, 1);
+    assert.deepEqual(report.stats.blockedByReason, { awaiting_human_approval: 1 });
+    assert.deepEqual(report.stats.blockedBySource, { task_package_blocked: 1 });
+    assert.deepEqual(report.stats.blockedByApprovalStatus, { pending: 1 });
+
+    assert.equal(report.approvalFlow.pendingCount, 1);
+    assert.deepEqual(report.approvalFlow.pendingTaskIds, [TASK_B_ID]);
+    assert.deepEqual(report.approvalFlow.requiredApprovers, [
+        {
+            approver: 'security-ops',
+            blockedTaskCount: 1
+        }
+    ]);
+
+    assert.deepEqual(report.blockedEntries, [
+        {
+            taskId: TASK_B_ID,
+            recommendationId: 'rec-policy-gating-hardening',
+            reason: 'awaiting_human_approval',
+            blockedSource: 'task_package_blocked',
+            approvalFlow: {
+                requiresHumanApproval: true,
+                approvalStatus: 'pending',
+                gatePassed: false,
+                approvalMarkerPresent: null,
+                riskTier: 'high',
+                requiredApprovers: ['security-ops']
+            }
+        }
+    ]);
 
     fs.rmSync(tmpDir, { recursive: true, force: true });
 });

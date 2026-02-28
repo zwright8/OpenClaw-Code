@@ -7,6 +7,17 @@ import type { PackagedTaskDag } from '../src/planner/task-packager.js';
 
 type DispatchRequest = PackagedTaskDag['requests'][number];
 
+type DispatchBlockedSource = 'dispatch_request' | 'task_package_blocked';
+
+type DispatchApprovalFlowMetadata = {
+    requiresHumanApproval: boolean;
+    approvalStatus: string | null;
+    gatePassed: boolean | null;
+    approvalMarkerPresent: boolean | null;
+    riskTier: string | null;
+    requiredApprovers: string[];
+};
+
 type DispatchBlockedJournalEntry = {
     kind: 'task_blocked';
     taskId: string;
@@ -14,6 +25,8 @@ type DispatchBlockedJournalEntry = {
     from: string;
     target: string | null;
     reason: string;
+    blockedSource: DispatchBlockedSource;
+    approvalFlow: DispatchApprovalFlowMetadata;
     policyGate: Record<string, unknown> | null;
     context: Record<string, unknown>;
     createdAt: number;
@@ -27,6 +40,10 @@ export type DispatchBuildResult = {
         dispatchCount: number;
         blockedCount: number;
         blockedPendingCount: number;
+        blockedByReason: Record<string, number>;
+        blockedByApprovalStatus: Record<string, number>;
+        blockedBySource: Record<string, number>;
+        blockedApprovalRequiredCount: number;
     };
 };
 
@@ -178,6 +195,113 @@ function isPendingApproval(policyGate: Record<string, unknown> | null): boolean 
     return !gatePassed && approvalStatus !== 'approved' && approvalStatus !== 'not_required';
 }
 
+function normalizeOptionalString(value: unknown): string | null {
+    if (typeof value !== 'string') return null;
+    const trimmed = value.trim();
+    return trimmed ? trimmed : null;
+}
+
+function extractRequiredApprovers(policyGate: Record<string, unknown> | null): string[] {
+    if (!policyGate) return [];
+
+    const passthrough = isRecord(policyGate.passthrough)
+        ? policyGate.passthrough
+        : null;
+
+    const requiredApprovers = passthrough?.requiredApprovers;
+    if (!Array.isArray(requiredApprovers)) return [];
+
+    return Array.from(new Set(
+        requiredApprovers
+            .map((value) => normalizeOptionalString(value))
+            .filter((value): value is string => Boolean(value))
+    )).sort((left, right) => left.localeCompare(right));
+}
+
+function toApprovalFlowMetadata(
+    policyGate: Record<string, unknown> | null,
+    reason: string
+): DispatchApprovalFlowMetadata {
+    const normalizedStatus = normalizeApprovalStatus(policyGate?.approvalStatus);
+    const fallbackStatus = reason === 'awaiting_human_approval' ? 'pending' : null;
+
+    return {
+        requiresHumanApproval: policyGate?.requiresHumanApproval === true,
+        approvalStatus: normalizedStatus ?? fallbackStatus,
+        gatePassed: policyGate && typeof policyGate.gatePassed === 'boolean'
+            ? policyGate.gatePassed
+            : null,
+        approvalMarkerPresent: policyGate && typeof policyGate.approvalMarkerPresent === 'boolean'
+            ? policyGate.approvalMarkerPresent
+            : null,
+        riskTier: normalizeOptionalString(policyGate?.riskTier),
+        requiredApprovers: extractRequiredApprovers(policyGate)
+    };
+}
+
+function incrementCount(counter: Record<string, number>, key: string) {
+    counter[key] = (counter[key] ?? 0) + 1;
+}
+
+function sortCounter(counter: Record<string, number>): Record<string, number> {
+    return Object.fromEntries(
+        Object.entries(counter).sort(([left], [right]) => left.localeCompare(right))
+    );
+}
+
+type BlockedEntriesSummary = {
+    byReason: Record<string, number>;
+    byApprovalStatus: Record<string, number>;
+    bySource: Record<string, number>;
+    approvalRequiredCount: number;
+    pendingTaskIds: string[];
+    requiredApprovers: Array<{
+        approver: string;
+        blockedTaskCount: number;
+    }>;
+};
+
+function summarizeBlockedEntries(blockedEntries: DispatchBlockedJournalEntry[]): BlockedEntriesSummary {
+    const byReason: Record<string, number> = {};
+    const byApprovalStatus: Record<string, number> = {};
+    const bySource: Record<string, number> = {};
+    const pendingTaskIds: string[] = [];
+    const requiredApprovers: Record<string, number> = {};
+
+    let approvalRequiredCount = 0;
+
+    for (const entry of blockedEntries) {
+        incrementCount(byReason, entry.reason || 'unknown');
+        incrementCount(bySource, entry.blockedSource || 'unknown');
+
+        const approvalStatus = entry.approvalFlow.approvalStatus ?? 'unknown';
+        incrementCount(byApprovalStatus, approvalStatus);
+
+        if (entry.approvalFlow.requiresHumanApproval) {
+            approvalRequiredCount += 1;
+        }
+
+        if (entry.reason === 'awaiting_human_approval' || approvalStatus === 'pending') {
+            pendingTaskIds.push(entry.taskId);
+        }
+
+        for (const approver of entry.approvalFlow.requiredApprovers) {
+            incrementCount(requiredApprovers, approver);
+        }
+    }
+
+    return {
+        byReason: sortCounter(byReason),
+        byApprovalStatus: sortCounter(byApprovalStatus),
+        bySource: sortCounter(bySource),
+        approvalRequiredCount,
+        pendingTaskIds: Array.from(new Set(pendingTaskIds)).sort((left, right) => left.localeCompare(right)),
+        requiredApprovers: Object.entries(requiredApprovers)
+            .sort(([left], [right]) => left.localeCompare(right))
+            .map(([approver, blockedTaskCount]) => ({ approver, blockedTaskCount }))
+    };
+}
+
 function enrichRequestContext(
     request: DispatchRequest,
     taskNode: CognitionTaskNode | null
@@ -215,18 +339,23 @@ function buildBlockedEntry(input: {
     from: string;
     target: string | null;
     reason: string;
+    blockedSource: DispatchBlockedSource;
     policyGate: Record<string, unknown> | null;
     taskNode: CognitionTaskNode | null;
     requestContext: Record<string, unknown> | null;
     createdAt: number;
 }): DispatchBlockedJournalEntry {
+    const approvalFlow = toApprovalFlowMetadata(input.policyGate, input.reason);
+
     const context = {
         planner: 'cognition-core/dispatch',
+        blockedSource: input.blockedSource,
         recommendationId: input.recommendationId,
         dependencies: cloneValue(input.taskNode?.dependencies ?? []),
         successCriteria: cloneValue(input.taskNode?.successCriteria ?? input.requestContext?.successCriteria ?? []),
         rollbackPlan: cloneValue(input.taskNode?.rollbackPlan ?? input.requestContext?.rollbackPlan ?? null),
-        policyGate: cloneValue(input.policyGate)
+        policyGate: cloneValue(input.policyGate),
+        approvalFlow: cloneValue(approvalFlow)
     };
 
     return {
@@ -236,6 +365,8 @@ function buildBlockedEntry(input: {
         from: input.from,
         target: input.target,
         reason: input.reason,
+        blockedSource: input.blockedSource,
+        approvalFlow,
         policyGate: cloneValue(input.policyGate),
         context,
         createdAt: input.createdAt
@@ -283,6 +414,7 @@ export function buildDispatchJournalEntries(
                 from: request.from,
                 target: request.target ?? null,
                 reason: 'awaiting_human_approval',
+                blockedSource: 'dispatch_request',
                 policyGate,
                 taskNode,
                 requestContext: enrichedContext,
@@ -313,6 +445,7 @@ export function buildDispatchJournalEntries(
             from: 'agent:cognition-core',
             target: null,
             reason: blocked.reason,
+            blockedSource: 'task_package_blocked',
             policyGate,
             taskNode,
             requestContext: null,
@@ -323,6 +456,8 @@ export function buildDispatchJournalEntries(
         blockedTaskIds.add(blocked.taskId);
     }
 
+    const blockedSummary = summarizeBlockedEntries(blockedEntries);
+
     return {
         dispatchEntries,
         blockedEntries,
@@ -330,7 +465,11 @@ export function buildDispatchJournalEntries(
             requestCount: taskPackage.requests.length,
             dispatchCount: dispatchEntries.length,
             blockedCount: blockedEntries.length,
-            blockedPendingCount: blockedEntries.filter((entry) => entry.reason === 'awaiting_human_approval').length
+            blockedPendingCount: blockedEntries.filter((entry) => entry.reason === 'awaiting_human_approval').length,
+            blockedByReason: blockedSummary.byReason,
+            blockedByApprovalStatus: blockedSummary.byApprovalStatus,
+            blockedBySource: blockedSummary.bySource,
+            blockedApprovalRequiredCount: blockedSummary.approvalRequiredCount
         }
     };
 }
@@ -361,6 +500,8 @@ export function dispatchArtifacts(input: DispatchArtifactsInput): DispatchArtifa
 
     appendJsonl(input.journalPath, journalEntries);
 
+    const blockedSummary = summarizeBlockedEntries(buildResult.blockedEntries);
+
     const report = {
         version: 1,
         generatedAt: new Date(now()).toISOString(),
@@ -381,10 +522,28 @@ export function dispatchArtifacts(input: DispatchArtifactsInput): DispatchArtifa
             dispatchCount: buildResult.stats.dispatchCount,
             blockedCount: buildResult.stats.blockedCount,
             blockedPendingCount: buildResult.stats.blockedPendingCount,
+            blockedApprovalRequiredCount: buildResult.stats.blockedApprovalRequiredCount,
+            blockedByReason: buildResult.stats.blockedByReason,
+            blockedByApprovalStatus: buildResult.stats.blockedByApprovalStatus,
+            blockedBySource: buildResult.stats.blockedBySource,
             appendedEntries: journalEntries.length
         },
         dispatchedTaskIds: buildResult.dispatchEntries.map((entry) => entry.id),
-        blockedTaskIds: buildResult.blockedEntries.map((entry) => entry.taskId)
+        blockedTaskIds: buildResult.blockedEntries.map((entry) => entry.taskId),
+        approvalFlow: {
+            pendingTaskIds: blockedSummary.pendingTaskIds,
+            pendingCount: blockedSummary.pendingTaskIds.length,
+            approvalRequiredCount: blockedSummary.approvalRequiredCount,
+            byApprovalStatus: blockedSummary.byApprovalStatus,
+            requiredApprovers: blockedSummary.requiredApprovers
+        },
+        blockedEntries: buildResult.blockedEntries.map((entry) => ({
+            taskId: entry.taskId,
+            recommendationId: entry.recommendationId,
+            reason: entry.reason,
+            blockedSource: entry.blockedSource,
+            approvalFlow: entry.approvalFlow
+        }))
     };
 
     writeJson(input.reportPath, report);
