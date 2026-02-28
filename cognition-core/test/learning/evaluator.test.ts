@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { evaluateRecommendations } from '../../src/learning/evaluator.js';
+import { DEFAULT_THRESHOLDS, tuneThresholds } from '../../src/learning/threshold-tuner.js';
 
 test('evaluateRecommendations computes core metrics and recommendation rollups', () => {
     const predictions = [
@@ -40,4 +41,115 @@ test('evaluateRecommendations handles empty mappings safely', () => {
     assert.equal(result.metrics.mappedOutcomes, 0);
     assert.equal(result.metrics.brierScore, null);
     assert.equal(result.metrics.calibrationGap, null);
+});
+
+
+test('tuneThresholds keeps promotion gates stable when calibration evidence is sparse', () => {
+    const evaluation = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.9 }],
+        [
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'failed' }
+        ]
+    );
+
+    assert.equal(evaluation.metrics.totalOutcomes, 10);
+    assert.equal(evaluation.metrics.mappedOutcomes, 2);
+
+    const tuned = tuneThresholds(evaluation);
+
+    assert.equal(tuned.changes.length, 0);
+    assert.equal(tuned.thresholds.confidenceFloor, DEFAULT_THRESHOLDS.confidenceFloor);
+    assert.equal(tuned.thresholds.promotionSuccessRate, DEFAULT_THRESHOLDS.promotionSuccessRate);
+});
+
+test('tuneThresholds relaxes quality gates with healthy, sufficient calibration evidence', () => {
+    const evaluation = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.9 }],
+        [
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'completed' },
+            { recommendationId: 'r1', status: 'failed' }
+        ]
+    );
+
+    const tuned = tuneThresholds(evaluation);
+
+    assert.deepEqual(tuned.changes.map((change) => change.field), [
+        'confidenceFloor',
+        'promotionSuccessRate'
+    ]);
+    assert.equal(tuned.thresholds.confidenceFloor, 0.58);
+    assert.equal(tuned.thresholds.promotionSuccessRate, 0.84);
+});
+
+test('tuneThresholds skips calibration penalties when mapped evidence is too small', () => {
+    const evaluation = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 1 }],
+        [
+            { recommendationId: 'r1', status: 'failed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'failed' }
+        ]
+    );
+
+    assert.equal(evaluation.metrics.brierScore, 1);
+    assert.equal(evaluation.metrics.calibrationGap, 1);
+
+    const tuned = tuneThresholds(evaluation);
+
+    assert.equal(tuned.changes.length, 0);
+    assert.equal(tuned.thresholds.maxBrierScore, DEFAULT_THRESHOLDS.maxBrierScore);
+    assert.equal(tuned.thresholds.maxCalibrationGap, DEFAULT_THRESHOLDS.maxCalibrationGap);
+});
+
+test('tuneThresholds still tightens quality gates for weak execution success', () => {
+    const evaluation = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.6 }],
+        [
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'completed' },
+            { status: 'failed' },
+            { status: 'failed' },
+            { status: 'failed' },
+            { status: 'failed' },
+            { status: 'failed' },
+            { status: 'failed' }
+        ]
+    );
+
+    const tuned = tuneThresholds(evaluation);
+
+    assert.deepEqual(tuned.changes.map((change) => change.field), [
+        'confidenceFloor',
+        'promotionSuccessRate'
+    ]);
+    assert.equal(tuned.thresholds.confidenceFloor, 0.63);
+    assert.equal(tuned.thresholds.promotionSuccessRate, 0.87);
 });

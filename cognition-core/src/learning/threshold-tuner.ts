@@ -41,6 +41,13 @@ function round(value: number, decimals = 4): number {
     return Math.round(value * factor) / factor;
 }
 
+function minimumCalibrationSampleSize(minSampleSize: number): number {
+    const normalized = Number.isFinite(minSampleSize)
+        ? Math.max(1, Math.round(minSampleSize))
+        : DEFAULT_THRESHOLDS.minSampleSize;
+    return clamp(Math.ceil(normalized / 2), 3, 10);
+}
+
 function withChange(
     result: ThresholdTuningResult,
     field: keyof EvaluationThresholds,
@@ -73,9 +80,22 @@ export function tuneThresholds(
     };
 
     const { metrics } = evaluation;
+    const mappedOutcomes = Number.isFinite(metrics.mappedOutcomes)
+        ? Math.max(0, Math.round(metrics.mappedOutcomes))
+        : 0;
+    const minimumCalibrationSamples = minimumCalibrationSampleSize(result.thresholds.minSampleSize);
+    const hasCalibrationEvidence = mappedOutcomes >= minimumCalibrationSamples;
+
     if (metrics.totalOutcomes < result.thresholds.minSampleSize) {
         return result;
     }
+
+    const calibrationWithinBounds =
+        hasCalibrationEvidence &&
+        metrics.brierScore !== null &&
+        metrics.calibrationGap !== null &&
+        metrics.brierScore <= result.thresholds.maxBrierScore &&
+        metrics.calibrationGap <= result.thresholds.maxCalibrationGap;
 
     if (metrics.successRate < result.thresholds.holdSuccessRate) {
         withChange(
@@ -93,8 +113,7 @@ export function tuneThresholds(
         );
     } else if (
         metrics.successRate > result.thresholds.promotionSuccessRate &&
-        (metrics.brierScore ?? result.thresholds.maxBrierScore) <= result.thresholds.maxBrierScore &&
-        (metrics.calibrationGap ?? result.thresholds.maxCalibrationGap) <= result.thresholds.maxCalibrationGap
+        calibrationWithinBounds
     ) {
         withChange(
             result,
@@ -112,6 +131,7 @@ export function tuneThresholds(
     }
 
     if (
+        hasCalibrationEvidence &&
         metrics.brierScore !== null &&
         metrics.brierScore > result.thresholds.maxBrierScore
     ) {
@@ -124,6 +144,7 @@ export function tuneThresholds(
     }
 
     if (
+        hasCalibrationEvidence &&
         metrics.calibrationGap !== null &&
         metrics.calibrationGap > result.thresholds.maxCalibrationGap
     ) {
