@@ -8,9 +8,6 @@ description: Operate the "Community Conflict Resolution Coach" capability in pro
 ## Why This Skill Exists
 We need this skill because real-world feedback loops are necessary for continuous alignment. This specific skill reduces deadlocks in human-agent collaboration loops.
 
-## When To Use
-Use this skill when the request explicitly needs "Community Conflict Resolution Coach" outcomes in the Community Engagement and Feedback domain.
-
 ## Step-by-Step Implementation Guide
 1. Define the scope and success metrics for `Community Conflict Resolution Coach`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.
 2. Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.
@@ -19,68 +16,89 @@ Use this skill when the request explicitly needs "Community Conflict Resolution 
 5. Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## Deterministic Workflow Notes
-- Core method: guided mediation prompts
-- Archetype: collaboration-mediator
-- Routing tag: community-engagement-and-feedback:collaboration-mediator
+## Metadata
+- **Skill ID:** `863`
+- **Skill Name:** `u0863-community-conflict-resolution-coach`
+- **Domain:** `Community Engagement and Feedback`
+- **Domain Slug:** `community-engagement-and-feedback`
+- **Archetype:** `collaboration-mediator`
+- **Core Method:** `guided mediation prompts`
+- **Primary Artifact:** `conflict remediation playbooks`
+- **Routing Tag:** `community-engagement-and-feedback:collaboration-mediator`
+- **Feature Flag:** `skill_0863_community-conflict-resolution-co`
+- **Release Cycles:** `2`
 
-## Input Contract
-- `feedback channels` (signal, source=upstream, required=true)
-- `sentiment` (signal, source=upstream, required=true)
-- `urgency` (signal, source=upstream, required=true)
-- `follow-ups` (signal, source=upstream, required=true)
-- `claims` (signal, source=upstream, required=true)
-- `evidence` (signal, source=upstream, required=true)
-- `confidence traces` (signal, source=upstream, required=true)
+## Allowed Tools
+- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
+- `exec`, `process` for deterministic execution, validation suites, and regression checks.
+- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
+- Use messaging or publishing tools only after policy approval gates are satisfied.
 
-## Output Contract
-- `conflict_remediation_playbooks_report` (structured-report, consumer=orchestrator, guaranteed=true)
-- `conflict_remediation_playbooks_scorecard` (scorecard, consumer=operator, guaranteed=true)
+## Inputs (formatted)
+| name | type | required | source |
+|---|---|---|---|
+| feedback channels | signal | true | upstream |
+| sentiment | signal | true | upstream |
+| urgency | signal | true | upstream |
+| follow-ups | signal | true | upstream |
+| claims | signal | true | upstream |
+| evidence | signal | true | upstream |
+| confidence traces | signal | true | upstream |
 
-## Validation Gates
-1. **schema-contract-check** — All required input signals present and schema-valid (on fail: quarantine)
-2. **determinism-check** — Repeated run on same inputs yields stable scoring and artifacts (on fail: escalate)
-3. **policy-approval-check** — Approval gates satisfied before publish-level outputs (on fail: retry)
+## Outputs (formatted)
+| name | type | guaranteed | consumer |
+|---|---|---|---|
+| conflict_remediation_playbooks_report | structured-report | true | orchestrator |
+| conflict_remediation_playbooks_scorecard | scorecard | true | operator |
 
-## Failure Handling
+## Guidelines
+1. Validate required inputs before execution and reject non-conforming payloads early.
+2. Run `guided mediation prompts` with deterministic settings and trace capture enabled.
+3. Produce `conflict remediation playbooks` outputs in machine-readable form for orchestrator/operator use.
+4. Keep routing aligned with `community-engagement-and-feedback:collaboration-mediator` and include approval context.
+5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
+
+## Musts
+- Enforce approval gates: `policy-constraint-check`, `human-approval-router`.
+- Apply retry policy: maxAttempts=`4`, baseDelayMs=`1050`, backoff=`exponential`.
+- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
+- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
+- Preserve reproducible evidence artifacts for audits and downstream handoff.
+
+## Targets (day/week/month operating cadence)
+- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
+- **Week:** Review KPI focus (`community trust loss`, `unaddressed concerns`, `decision drift`), failure trends, and approval/retry performance.
+- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
+
+## Common Actions
+1. **Intake Check:** Confirm all required signals are present and schema-valid.
+2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
+3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
+4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
+5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
+
+## External Tool Calls Needed
+- None required by default.
+- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
+
+## Validation & Handoff
+### Validation Gates
+- `schema-contract-check`: All required input signals present and schema-valid (on fail: `quarantine`)
+- `determinism-check`: Repeated run on same inputs yields stable scoring and artifacts (on fail: `escalate`)
+- `policy-approval-check`: Approval gates satisfied before publish-level outputs (on fail: `retry`)
+
+### Validation Suites
+- `unit`
+- `integration`
+- `simulation`
+- `regression-baseline`
+
+### Failure Handling
 - `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
 - `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
 - `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
-- Rollback strategy: rollback-to-last-stable-baseline
 
-## Handoff Contract
-- Produces: Community Conflict Resolution Coach normalized artifacts; execution scorecard; risk posture
-- Consumes: feedback channels; sentiment; urgency; follow-ups; claims; evidence; confidence traces
-- Downstream routing hint: Route next to community-engagement-and-feedback:collaboration-mediator consumers with approval-gate context
-
-## Required Deliverables
-- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
-
-## Trigger Checklist
-- [ ] The request explicitly needs **Community Conflict Resolution Coach** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
-
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
-
-## Practical Usage Examples
-1. **Incident stabilization in workflows**
-   - Input: noisy upstream payload requiring community conflict resolution coach normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
-
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
+### Handoff Contract
+- **Produces:** `Community Conflict Resolution Coach normalized artifacts`, `execution scorecard`, `risk posture`
+- **Consumes:** `feedback channels`, `sentiment`, `urgency`, `follow-ups`, `claims`, `evidence`, `confidence traces`
+- **Downstream Hint:** Route next to community-engagement-and-feedback:collaboration-mediator consumers with approval-gate context

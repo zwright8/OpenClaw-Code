@@ -6,93 +6,98 @@ description: Operate the "Collab Privacy Preserving Data Broker" capability in p
 # Collab Privacy Preserving Data Broker
 
 ## Why This Skill Exists
-This skill hardens a generated capability for production execution so collaboration workflows remain deterministic, auditable, and fail-closed under risk.
-
-## When To Use
-Use this skill only when the request explicitly needs `Collab Privacy Preserving Data Broker` in Collaboration and Negotiation and a downstream consumer requires contract-bound artifacts.
+We need this skill because multi-agent systems underperform without explicit conflict resolution. This specific skill enables collaboration while minimizing raw data exposure.
 
 ## Step-by-Step Implementation Guide
-1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
-2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
-3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
-4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
-5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
-6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
+1. Define the scope and success metrics for `Collab Privacy Preserving Data Broker`, including at least three measurable KPIs tied to deadlocks and degraded trust.
+2. Design and version the input/output contract for proposals, contention signals, and negotiated outcomes, then add schema validation and failure-mode handling.
+3. Implement the core capability using policy-scoped data mediation, and produce privacy-scoped exchanges with deterministic scoring.
+4. Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
+5. Add unit, integration, and simulation tests that explicitly cover deadlocks and degraded trust, then run regression baselines.
+6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## Deterministic Workflow Constraints
-- Replay score variance: <= 0.005 absolute per item.
-- Artifact hash drift for identical replay: 0 allowed.
-- Time-dependent fields allowed only in metadata and excluded from scoring.
+## Metadata
+- **Skill ID:** `270`
+- **Skill Name:** `u0270-collab-privacy-preserving-data-broker`
+- **Domain:** `Collaboration and Negotiation`
+- **Domain Slug:** `collaboration-and-negotiation`
+- **Archetype:** `collaboration-mediator`
+- **Core Method:** `policy-scoped data mediation`
+- **Primary Artifact:** `privacy-scoped exchanges`
+- **Routing Tag:** `collaboration-and-negotiation:collaboration-mediator`
+- **Feature Flag:** `skill_0270_collab-privacy-preserving-data-b`
+- **Release Cycles:** `2`
 
-## Validation Gates
-1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
-2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
-3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
-4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
+## Allowed Tools
+- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
+- `exec`, `process` for deterministic execution, validation suites, and regression checks.
+- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
+- Use messaging or publishing tools only after policy approval gates are satisfied.
 
-## Handoff Contract
-- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
-- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
-- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
+## Inputs (formatted)
+| name | type | required | source |
+|---|---|---|---|
+| proposals | signal | true | upstream |
+| contention signals | signal | true | upstream |
+| negotiated outcomes | signal | true | upstream |
+| claims | signal | true | upstream |
+| evidence | signal | true | upstream |
+| confidence traces | signal | true | upstream |
 
-## Immediate Hardening Additions
-- Fixture: `fixtures/minimal-valid.json`
-- Regression case: `tests/regression-case.md`
-- Machine-readable summary: `hardening-summary.json`
+## Outputs (formatted)
+| name | type | guaranteed | consumer |
+|---|---|---|---|
+| privacy_scoped_exchanges_report | structured-report | true | orchestrator |
+| privacy_scoped_exchanges_scorecard | scorecard | true | operator |
 
-## Production Trigger Clarity
-- Use only when this capability produces production-facing outcomes with measurable acceptance criteria.
-- Do not invoke for exploratory brainstorming or unrelated domains; route those requests to the correct capability family.
+## Guidelines
+1. Validate required inputs before execution and reject non-conforming payloads early.
+2. Run `policy-scoped data mediation` with deterministic settings and trace capture enabled.
+3. Produce `privacy-scoped exchanges` outputs in machine-readable form for orchestrator/operator use.
+4. Keep routing aligned with `collaboration-and-negotiation:collaboration-mediator` and include approval context.
+5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
 
-## Deterministic Tolerances
-- Repeated runs on identical inputs must remain within **<=1% output variance** for scoring fields and preserve schema-identical artifact shape.
-- Any variance beyond tolerance is a hard failure and must trigger escalation.
+## Musts
+- Enforce approval gates: `policy-constraint-check`, `human-approval-router`.
+- Apply retry policy: maxAttempts=`3`, baseDelayMs=`600`, backoff=`exponential`.
+- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
+- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
+- Preserve reproducible evidence artifacts for audits and downstream handoff.
 
-## Fail-Closed Validation Gates
-1. Schema validity gate (required inputs present and valid).
-2. Determinism gate (variance within tolerance).
-3. Policy/approval gate (required approvals satisfied).
+## Targets (day/week/month operating cadence)
+- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
+- **Week:** Review KPI focus (`deadlocks`, `degraded trust`, `decision drift`), failure trends, and approval/retry performance.
+- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
 
-If any gate fails: **block output publication and fail closed**.
+## Common Actions
+1. **Intake Check:** Confirm all required signals are present and schema-valid.
+2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
+3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
+4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
+5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
 
-## High-Risk Human Sign-Off
-- Any high-risk change, policy-impacting output, or publish-level action requires explicit human sign-off before release.
-- Missing sign-off is a blocking condition.
+## External Tool Calls Needed
+- None required by default.
+- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
 
-## Explicit Handoff Contract
-- **Produces:** normalized artifacts, decision scorecard, risk/confidence metadata.
-- **Consumes:** validated upstream inputs for this capability.
-- **Next hop:** route only to declared downstream consumers with gate/approval context attached.
+## Validation & Handoff
+### Validation Gates
+- `schema-contract-check`: All required input signals present and schema-valid (on fail: `quarantine`)
+- `determinism-check`: Repeated run on same inputs yields stable scoring and artifacts (on fail: `escalate`)
+- `policy-approval-check`: Approval gates satisfied before publish-level outputs (on fail: `retry`)
 
+### Validation Suites
+- `unit`
+- `integration`
+- `simulation`
+- `regression-baseline`
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Collab Privacy Preserving Data Broker** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **Collaboration and Negotiation workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+### Failure Handling
+- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
+- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
+- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new collaboration and negotiation workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
-
-## Practical Usage Examples
-1. **Incident stabilization in Collaboration and Negotiation workflows**
-   - Input: noisy upstream payload requiring collab privacy preserving data broker normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
-
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
-
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
+### Handoff Contract
+- **Produces:** `Collab Privacy Preserving Data Broker normalized artifacts`, `execution scorecard`, `risk posture`
+- **Consumes:** `proposals`, `contention signals`, `negotiated outcomes`, `claims`, `evidence`, `confidence traces`
+- **Downstream Hint:** Route next to collaboration-and-negotiation:collaboration-mediator consumers with approval-gate context

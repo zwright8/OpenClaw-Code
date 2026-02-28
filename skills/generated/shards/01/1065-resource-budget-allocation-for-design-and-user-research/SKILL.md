@@ -16,70 +16,78 @@ Use resource budget allocation in design and user research with emphasis on best
 5. Run unit, integration, simulation, and regression suites for Resource Budget Allocation for design and user research under professional mastery conditions.
 6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
-## Operational Runbook
-Preflight:
-- Validate mission scope, contracts, and required inputs.
-- Verify feature flag posture, dependencies, and approval prerequisites.
+## Metadata
+- **Skill ID:** `1065`
+- **Skill Name:** `u01065-resource-budget-allocation-for-design-and-user-research`
+- **Domain:** `design and user research`
+- **Domain Slug:** `design-and-user-research`
+- **Archetype:** `generalist-engine`
+- **Core Method:** `resource budget allocation`
+- **Primary Artifact:** `resource-budget-allocation-artifact-design-and-user-research`
+- **Routing Tag:** `design-and-user-research:generalist-engine`
+- **Feature Flag:** `skill_01065_resource-budget-allocation`
+- **Release Cycles:** `2`
 
-Execution:
-- Execute resource budget allocation workflow with deterministic scoring and trace capture.
-- Track posture transitions and preserve reproducible evidence artifacts.
+## Allowed Tools
+- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
+- `exec`, `process` for deterministic execution, validation suites, and regression checks.
+- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
+- Use messaging or publishing tools only after policy approval gates are satisfied.
 
-Recovery:
-- Apply rollback strategy if posture is critical or guardrails fail.
-- Escalate blocked execution to oversight with incident packet and trace references.
+## Inputs (formatted)
+| name | type | required | source |
+|---|---|---|---|
+| (none) | - | - | - |
 
-Handoff:
-- Publish outcome report, scorecard, and telemetry links.
-- Queue follow-up tasks for unresolved risks, approvals, or optimization work.
+## Outputs (formatted)
+| name | type | guaranteed | consumer |
+|---|---|---|---|
+| (none) | - | - | - |
 
-## Guardrails
-- [quality] Require unit and integration validations before promoting Resource Budget Allocation for design and user research. -> `run-validation:unit+integration+simulation+regression-baseline`
-- [reliability] Trigger rollback on critical posture or repeated failures. -> `rollback:rollback-to-last-stable-baseline`
-- [compliance] Require policy and approval gates prior to autonomous deployment. -> `approval-gates:policy-constraint-check+human-approval-router`
-- [cost] Respect bounded resource pressure and execution budget during scaling. -> `budget-guard:resource-pressure-cap`
+## Guidelines
+1. Validate required inputs before execution and reject non-conforming payloads early.
+2. Run `resource budget allocation` with deterministic settings and trace capture enabled.
+3. Produce `resource-budget-allocation-artifact-design-and-user-research` outputs in machine-readable form for orchestrator/operator use.
+4. Keep routing aligned with `design-and-user-research:generalist-engine` and include approval context.
+5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Resource Budget Allocation for design and user research** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **design and user research" capability for design and user research** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## Musts
+- Enforce approval gates: `policy-constraint-check`, `human-approval-router`.
+- Apply retry policy: maxAttempts=`4`, baseDelayMs=`750`, backoff=`exponential`.
+- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
+- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
+- Preserve reproducible evidence artifacts for audits and downstream handoff.
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new design and user research" capability for design and user research signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## Targets (day/week/month operating cadence)
+- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
+- **Week:** Review KPI focus (`quality score`, `consistency index`, `mastery progress in design and user research`), failure trends, and approval/retry performance.
+- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
 
-## Practical Usage Examples
-1. **Incident stabilization in design and user research" capability for design and user research**
-   - Input: noisy upstream payload requiring resource budget allocation for design and user research normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+## Common Actions
+1. **Intake Check:** Confirm all required signals are present and schema-valid.
+2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
+3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
+4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
+5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
 
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
+## External Tool Calls Needed
+- None required by default.
+- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
 
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
+## Validation & Handoff
+### Validation Gates
+- (none declared)
 
-## Validation Gates
-1. **schema-contract-check** — Required inputs are present and schema-valid (on fail: block).
-2. **determinism-check** — Stable output under repeated runs on identical input (on fail: escalate).
-3. **policy-approval-check** — Required approvals and policy constraints satisfied (on fail: block publish).
+### Validation Suites
+- `unit`
+- `integration`
+- `simulation`
+- `regression-baseline`
 
-## Handoff Contract
-- Produces: `Resource Budget Allocation for design and user research` execution artifacts + scorecard + risk/confidence metadata.
-- Consumes: validated upstream payloads that satisfy schema and policy checks.
-- Downstream routing hint: route only to declared consumers with gate/approval context attached.
+### Failure Handling
+- (none declared)
 
-## When To Use
-Use this when a request in **design and user research" capability for design and user research** depends on **Resource Budget Allocation for design and user research** outcomes with explicit acceptance criteria. Do not use for unconstrained ideation; route discovery work before invoking this execution skill.
+### Handoff Contract
+- **Produces:** (none declared)
+- **Consumes:** (none declared)
+- **Downstream Hint:** (none declared)

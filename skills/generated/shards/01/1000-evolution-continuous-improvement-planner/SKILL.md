@@ -6,87 +6,98 @@ description: Operate the "Evolution Continuous Improvement Planner" capability i
 # Evolution Continuous Improvement Planner
 
 ## Why This Skill Exists
-This skill exists to make autonomous learning and evolution execution reliable under real production pressure, with explicit contracts, measurable outcomes, and fail-closed governance.
-
-## When To Use
-Use this skill when you need "Evolution Continuous Improvement Planner" outputs that will influence production decisions, automated routing, policy posture, or external-facing actions.
+We need this skill because agents stagnate without structured reflection and continuous improvement loops. This specific skill turns findings into sustained upgrade cycles.
 
 ## Step-by-Step Implementation Guide
-1. Define scope, operational risk tier, and at least three KPIs tied to correctness, latency, and incident prevention.
-2. Specify versioned input/output contracts and enforce strict schema validation before any processing.
-3. Implement the core capability using deterministic contract execution, with deterministic scoring and reproducible artifact generation.
-4. Integrate orchestration controls: retry/backoff, idempotency keys, rollback checkpoints, and audit logging.
-5. Add tests (unit, integration, regression, and adversarial) that cover malformed signals, drift, and boundary thresholds.
-6. Deploy behind a feature flag, run staged rollout checks, and tune thresholds only through controlled change approval.
+1. Define the scope and success metrics for `Evolution Continuous Improvement Planner`, including at least three measurable KPIs tied to capability stagnation and repeated blind spots.
+2. Design and version the input/output contract for outcomes, error taxonomies, and adaptation decisions, then add schema validation and failure-mode handling.
+3. Implement the core capability using closed-loop prioritization, and produce improvement roadmaps with deterministic scoring.
+4. Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
+5. Add unit, integration, and simulation tests that explicitly cover capability stagnation and repeated blind spots, then run regression baselines.
+6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## Deterministic Workflow Notes
-- Core method: deterministic contract execution
-- Execution mode: deterministic-first with explicit tolerances
-- Routing tag: autonomous-learning-and-evolution:evolution-continuous-improvement-planner
+## Metadata
+- **Skill ID:** `1000`
+- **Skill Name:** `u1000-evolution-continuous-improvement-planner`
+- **Domain:** `Autonomous Learning and Evolution`
+- **Domain Slug:** `autonomous-learning-and-evolution`
+- **Archetype:** `planning-router`
+- **Core Method:** `closed-loop prioritization`
+- **Primary Artifact:** `improvement roadmaps`
+- **Routing Tag:** `autonomous-learning-and-evolution:planning-router`
+- **Feature Flag:** `skill_1000_evolution-continuous-improvement`
+- **Release Cycles:** `2`
 
-## Input Contract
-- `primary_signals` (array<object>, required=true)
-- `policy_context` (object, required=true)
-- `provenance_bundle` (object, required=true)
-- `confidence_trace` (object, required=true)
+## Allowed Tools
+- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
+- `exec`, `process` for deterministic execution, validation suites, and regression checks.
+- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
+- Use messaging or publishing tools only after policy approval gates are satisfied.
 
-## Output Contract
-- `evolution_continuous_improvement_planner_report` (structured-report, consumer=orchestrator, guaranteed=true)
-- `evolution_continuous_improvement_planner_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `evolution_continuous_improvement_planner_handoff` (handoff-packet, consumer=downstream-skill, guaranteed=true)
+## Inputs (formatted)
+| name | type | required | source |
+|---|---|---|---|
+| outcomes | signal | true | upstream |
+| error taxonomies | signal | true | upstream |
+| adaptation decisions | signal | true | upstream |
+| claims | signal | true | upstream |
+| evidence | signal | true | upstream |
+| confidence traces | signal | true | upstream |
 
-## Validation Gates
-1. **schema-contract-check** — Reject if any required input is missing or malformed (on fail: quarantine)
-2. **determinism-check** — Re-run on identical inputs; output deltas must remain within tolerance <= 1% (on fail: escalate)
-3. **policy-gate-check** — Block publish-level artifacts until all policy checks pass (on fail: block)
-4. **high-risk-approval-check** — Require explicit human sign-off for high-risk impact changes (on fail: hold)
+## Outputs (formatted)
+| name | type | guaranteed | consumer |
+|---|---|---|---|
+| improvement_roadmaps_report | structured-report | true | orchestrator |
+| improvement_roadmaps_scorecard | scorecard | true | operator |
 
-## Failure Handling
-- `E_INPUT_SCHEMA`: Invalid or missing required signals → Reject request; emit structured validation errors
-- `E_POLICY_BLOCK`: Policy guard violation → Fail closed; do not emit publish-level outputs
-- `E_NON_DETERMINISM`: Reproducibility delta exceeds tolerance → Freeze artifacts; route to human approval
-- `E_DEPENDENCY_FAILURE`: Upstream/downstream dependency unavailable → Execute bounded retries then rollback
-- Rollback strategy: rollback-to-last-stable-baseline with incident annotation
+## Guidelines
+1. Validate required inputs before execution and reject non-conforming payloads early.
+2. Run `closed-loop prioritization` with deterministic settings and trace capture enabled.
+3. Produce `improvement roadmaps` outputs in machine-readable form for orchestrator/operator use.
+4. Keep routing aligned with `autonomous-learning-and-evolution:planning-router` and include approval context.
+5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
 
-## Handoff Contract
-- Produces: validated artifacts, confidence trace, risk posture, machine-readable handoff packet
-- Consumes: production-scoped signals, policy context, provenance evidence, deterministic config
-- Downstream routing hint: pass only gate-cleared artifacts with approval state and rollback pointer
+## Musts
+- Enforce approval gates: `policy-constraint-check`, `human-approval-router`.
+- Apply retry policy: maxAttempts=`3`, baseDelayMs=`600`, backoff=`exponential`.
+- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
+- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
+- Preserve reproducible evidence artifacts for audits and downstream handoff.
 
-## Required Deliverables
-- Versioned capability contract with deterministic tolerances and explicit failure semantics.
-- Test evidence covering nominal, edge, adversarial, and rollback scenarios.
-- Rollout evidence (feature-flag stage logs, gate outcomes, and operator sign-off where required).
+## Targets (day/week/month operating cadence)
+- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
+- **Week:** Review KPI focus (`capability stagnation`, `repeated blind spots`, `decision drift`), failure trends, and approval/retry performance.
+- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
 
-## Immediate Hardening Additions
-- Add at least 5 golden fixtures with expected outputs and tolerance assertions.
-- Add regression tests for the highest-severity failure mode and policy bypass attempts.
-- Emit machine-readable run summary: `status`, `risk_score`, `confidence`, `approval_state`, `next_handoff`.
-- Enforce fail-closed behavior on schema, determinism, and policy gate failures.
+## Common Actions
+1. **Intake Check:** Confirm all required signals are present and schema-valid.
+2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
+3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
+4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
+5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Evolution Continuous Improvement Planner** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## External Tool Calls Needed
+- None required by default.
+- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## Validation & Handoff
+### Validation Gates
+- `schema-contract-check`: All required input signals present and schema-valid (on fail: `quarantine`)
+- `determinism-check`: Repeated run on same inputs yields stable scoring and artifacts (on fail: `escalate`)
+- `policy-approval-check`: Approval gates satisfied before publish-level outputs (on fail: `retry`)
 
-## Practical Usage Examples
-1. **Incident stabilization in workflows**
-   - Input: noisy upstream payload requiring evolution continuous improvement planner normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+### Validation Suites
+- `unit`
+- `integration`
+- `simulation`
+- `regression-baseline`
 
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
+### Failure Handling
+- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
+- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
+- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
+
+### Handoff Contract
+- **Produces:** `Evolution Continuous Improvement Planner normalized artifacts`, `execution scorecard`, `risk posture`
+- **Consumes:** `outcomes`, `error taxonomies`, `adaptation decisions`, `claims`, `evidence`, `confidence traces`
+- **Downstream Hint:** Route next to autonomous-learning-and-evolution:planning-router consumers with approval-gate context

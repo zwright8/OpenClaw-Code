@@ -5,68 +5,88 @@ description: Build and operate the "Resource Budget Allocation for urban plannin
 # Resource Budget Allocation for urban planning and mobility
 
 ## Why This Skill Exists
-This skill hardens a generated capability for production execution so urban planning and mobility workflows remain deterministic, auditable, and fail-closed under risk.
-
-## When To Use
-Use this skill only when the request explicitly needs `Resource Budget Allocation for urban planning and mobility` in urban planning and mobility and a downstream consumer requires contract-bound artifacts.
+Use resource budget allocation in urban planning and mobility with emphasis on safety, dignity, equity, and long-term societal benefit.
 
 ## Step-by-Step Implementation Guide
-1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
-2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
-3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
-4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
-5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
-6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
+1. Define measurable outcomes for Resource Budget Allocation for urban planning and mobility, including baseline and target metrics for urban planning and mobility.
+2. Specify structured inputs/outputs for resource budget allocation and validate schema contract edge cases.
+3. Implement the core resource budget allocation logic with deterministic scoring and reproducible execution traces.
+4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
+5. Run unit, integration, simulation, and regression suites for Resource Budget Allocation for urban planning and mobility under pro-humanity impact conditions.
+6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
-## Deterministic Workflow Constraints
-- Replay score variance: <= 0.005 absolute per item.
-- Artifact hash drift for identical replay: 0 allowed.
-- Time-dependent fields allowed only in metadata and excluded from scoring.
+## Metadata
+- **Skill ID:** `1107`
+- **Skill Name:** `u01107-resource-budget-allocation-for-urban-planning-and-mobility`
+- **Domain:** `urban planning and mobility`
+- **Domain Slug:** `urban-planning-and-mobility`
+- **Archetype:** `generalist-engine`
+- **Core Method:** `resource budget allocation`
+- **Primary Artifact:** `resource-budget-allocation-artifact-urban-planning-and-mobility`
+- **Routing Tag:** `urban-planning-and-mobility:generalist-engine`
+- **Feature Flag:** `skill_01107_resource-budget-allocation`
+- **Release Cycles:** `2`
 
-## Validation Gates
-1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
-2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
-3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
-4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
+## Allowed Tools
+- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
+- `exec`, `process` for deterministic execution, validation suites, and regression checks.
+- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
+- Use messaging or publishing tools only after policy approval gates are satisfied.
 
-## Handoff Contract
-- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
-- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
-- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
+## Inputs (formatted)
+| name | type | required | source |
+|---|---|---|---|
+| (none) | - | - | - |
 
-## Immediate Hardening Additions
-- Fixture: `fixtures/minimal-valid.json`
-- Regression case: `tests/regression-case.md`
-- Machine-readable summary: `hardening-summary.json`
+## Outputs (formatted)
+| name | type | guaranteed | consumer |
+|---|---|---|---|
+| (none) | - | - | - |
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Resource Budget Allocation for urban planning and mobility** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **urban planning and mobility" capability for urban planning and mobility** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## Guidelines
+1. Validate required inputs before execution and reject non-conforming payloads early.
+2. Run `resource budget allocation` with deterministic settings and trace capture enabled.
+3. Produce `resource-budget-allocation-artifact-urban-planning-and-mobility` outputs in machine-readable form for orchestrator/operator use.
+4. Keep routing aligned with `urban-planning-and-mobility:generalist-engine` and include approval context.
+5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new urban planning and mobility" capability for urban planning and mobility signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## Musts
+- Enforce approval gates: `policy-constraint-check`, `human-impact-review`.
+- Apply retry policy: maxAttempts=`4`, baseDelayMs=`750`, backoff=`exponential`.
+- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
+- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
+- Preserve reproducible evidence artifacts for audits and downstream handoff.
 
-## Practical Usage Examples
-1. **Incident stabilization in urban planning and mobility" capability for urban planning and mobility**
-   - Input: noisy upstream payload requiring resource budget allocation for urban planning and mobility normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+## Targets (day/week/month operating cadence)
+- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
+- **Week:** Review KPI focus (`harm reduction`, `equity improvement`, `human benefit in urban planning and mobility`), failure trends, and approval/retry performance.
+- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
 
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
+## Common Actions
+1. **Intake Check:** Confirm all required signals are present and schema-valid.
+2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
+3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
+4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
+5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
 
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
+## External Tool Calls Needed
+- None required by default.
+- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
+
+## Validation & Handoff
+### Validation Gates
+- (none declared)
+
+### Validation Suites
+- `unit`
+- `integration`
+- `simulation`
+- `regression-baseline`
+
+### Failure Handling
+- (none declared)
+
+### Handoff Contract
+- **Produces:** (none declared)
+- **Consumes:** (none declared)
+- **Downstream Hint:** (none declared)
