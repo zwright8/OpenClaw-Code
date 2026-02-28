@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-28T05:53:35.221Z",
+  "tasks": [
+    {
+      "taskId": "0ede65cb-64c1-59a1-b7e5-24331a820ec1",
+      "recommendationId": "rec-observability-baseline",
+      "title": "Establish cognition execution baseline telemetry",
+      "priority": "P1",
+      "priorityScore": 1,
+      "riskTier": "medium",
+      "owner": "agent:observability",
+      "dependencies": [],
+      "dependencyRecommendationIds": [],
+      "actions": [
+        "enable planner telemetry counters",
+        "record DAG compile and package latencies"
+      ],
+      "successCriteria": [
+        "latency metrics available for 24h window",
+        "planner telemetry appears in daily report"
+      ],
+      "rollbackPlan": {
+        "trigger": "Telemetry ingestion introduces regression",
+        "owner": "agent:observability",
+        "steps": [
+          "disable planner telemetry flag",
+          "restore prior telemetry config"
+        ],
+        "dataRecovery": null
+      },
+      "policyGate": {
+        "riskTier": "medium",
+        "requiresHumanApproval": false,
+        "approvalStatus": null,
+        "approvalMarkerPresent": false,
+        "gatePassed": true,
+        "passthrough": null
+      },
+      "source": {
+        "recommendationId": "rec-observability-baseline",
+        "title": "Establish cognition execution baseline telemetry",
+        "priority": "P1",
+        "riskTier": "medium",
+        "requiresHumanApproval": false,
+        "owner": "agent:observability",
+        "actions": [
+          "enable planner telemetry counters",
+          "record DAG compile and package latencies"
+        ],
+        "successCriteria": [
+          "planner telemetry appears in daily report",
+          "latency metrics available for 24h window"
+        ],
+        "rollbackPlan": {
+          "trigger": "Telemetry ingestion introduces regression",
+          "steps": [
+            "disable planner telemetry flag",
+            "restore prior telemetry config"
+          ]
+        }
+      }
+    },
+    {
+      "taskId": "a941db54-6228-585f-8196-523cae4c5751",
+      "recommendationId": "rec-policy-gating-hardening",
+      "title": "Enforce policy gate propagation for high-risk tasks",
+      "priority": "P1",
+      "priorityScore": 1,
+      "riskTier": "high",
+      "owner": null,
+      "dependencies": [
+        "0ede65cb-64c1-59a1-b7e5-24331a820ec1"
+      ],
+      "dependencyRecommendationIds": [
+        "rec-observability-baseline"
+      ],
+      "actions": [
+        "block non-approved high-risk tasks from auto-dispatch",
+        "propagate approval metadata into packaged swarm tasks"
+      ],
+      "successCriteria": [
+        "high-risk task retains approval metadata in context",
+        "pending approvals are reported as blocked"
+      ],
+      "rollbackPlan": {
+        "trigger": "Regression, policy breach, or failed verification",
+        "owner": null,
+        "steps": [
+          "Disable or revert the change",
+          "Restore the last known good state",
+          "Re-run verification checks"
+        ],
+        "dataRecovery": null
+      },
+      "policyGate": {
+        "riskTier": "high",
+        "requiresHumanApproval": true,
+        "approvalStatus": "pending",
+        "approvalMarkerPresent": true,
+        "gatePassed": false,
+        "passthrough": {
+          "requiredApprovers": [
+            "security-ops",
+            "platform-lead"
+          ],
+          "ticket": "SEC-2481"
+        }
+      },
+      "source": {
+        "recommendationId": "rec-policy-gating-hardening",
+        "title": "Enforce policy gate propagation for high-risk tasks",
+        "priority": "P1",
+        "riskTier": "high",
+        "requiresHumanApproval": true,
+        "approvalStatus": "pending",
+        "dependsOn": [
+          "rec-observability-baseline"
+        ],
+        "policyGate": {
+          "requiredApprovers": [
+            "security-ops",
+            "platform-lead"
+          ],
+          "ticket": "SEC-2481"
+        },
+        "actions": [
+          "propagate approval metadata into packaged swarm tasks",
+          "block non-approved high-risk tasks from auto-dispatch"
+        ],
+        "verificationPlan": {
+          "checks": [
+            "high-risk task retains approval metadata in context",
+            "pending approvals are reported as blocked"
+          ]
+        }
+      }
+    },
+    {
+      "taskId": "ca300893-a200-5008-ac4f-f48864ea098a",
+      "recommendationId": "rec-retry-circuit-breakers",
+      "title": "Add retry + circuit-breaker defaults for swarm dispatch",
+      "priority": "P2",
+      "priorityScore": 2,
+      "riskTier": "high",
+      "owner": null,
+      "dependencies": [
+        "0ede65cb-64c1-59a1-b7e5-24331a820ec1"
+      ],
+      "dependencyRecommendationIds": [
+        "rec-observability-baseline"
+      ],
+      "actions": [
+        "configure circuit-breaker trip thresholds",
+        "set bounded retry profile for transient failures"
+      ],
+      "successCriteria": [
+        "circuit breaker opens under sustained errors",
+        "dispatch retries capped within policy window"
+      ],
+      "rollbackPlan": {
+        "trigger": "dispatch throughput drops below baseline",
+        "owner": null,
+        "steps": [
+          "disable circuit-breaker policy override",
+          "revert retry profile"
+        ],
+        "dataRecovery": "restore pre-change dispatch profile snapshot"
+      },
+      "policyGate": {
+        "riskTier": "high",
+        "requiresHumanApproval": true,
+        "approvalStatus": "approved",
+        "approvalMarkerPresent": true,
+        "gatePassed": true,
+        "passthrough": null
+      },
+      "source": {
+        "recommendationId": "rec-retry-circuit-breakers",
+        "title": "Add retry + circuit-breaker defaults for swarm dispatch",
+        "priority": "P2",
+        "riskTier": "high",
+        "requiresHumanApproval": true,
+        "approvalStatus": "approved",
+        "dependsOn": [
+          "rec-observability-baseline"
+        ],
+        "actions": [
+          "set bounded retry profile for transient failures",
+          "configure circuit-breaker trip thresholds"
+        ],
+        "verificationPlan": {
+          "checks": [
+            "dispatch retries capped within policy window",
+            "circuit breaker opens under sustained errors"
+          ]
+        },
+        "rollbackPlan": {
+          "trigger": "dispatch throughput drops below baseline",
+          "steps": [
+            "revert retry profile",
+            "disable circuit-breaker policy override"
+          ],
+          "dataRecovery": "restore pre-change dispatch profile snapshot"
+        }
+      }
+    },
+    {
+      "taskId": "22fea5c4-acc3-5841-b1b1-ceb4ce1495e0",
+      "recommendationId": "rec-routing-optimizer",
+      "title": "Route planner tasks by risk and ownership tags",
+      "priority": "P2",
+      "priorityScore": 2,
+      "riskTier": "medium",
+      "owner": "agent:ops",
+      "dependencies": [
+        "ca300893-a200-5008-ac4f-f48864ea098a"
+      ],
+      "dependencyRecommendationIds": [
+        "rec-retry-circuit-breakers"
+      ],
+      "actions": [
+        "map high/critical tasks to incident channel",
+        "map owner-tagged tasks to specialist workers"
+      ],
+      "successCriteria": [
+        "owner-tagged tasks map to configured routing table",
+        "packaged tasks include deterministic target routing"
+      ],
+      "rollbackPlan": {
+        "trigger": "Regression, policy breach, or failed verification",
+        "owner": "agent:ops",
+        "steps": [
+          "Disable or revert the change",
+          "Restore the last known good state",
+          "Re-run verification checks"
+        ],
+        "dataRecovery": null
+      },
+      "policyGate": {
+        "riskTier": "medium",
+        "requiresHumanApproval": false,
+        "approvalStatus": null,
+        "approvalMarkerPresent": false,
+        "gatePassed": true,
+        "passthrough": null
+      },
+      "source": {
+        "recommendationId": "rec-routing-optimizer",
+        "title": "Route planner tasks by risk and ownership tags",
+        "priority": "P2",
+        "riskTier": "medium",
+        "requiresHumanApproval": false,
+        "dependsOn": [
+          "rec-retry-circuit-breakers"
+        ],
+        "owner": "agent:ops",
+        "actions": [
+          "map high/critical tasks to incident channel",
+          "map owner-tagged tasks to specialist workers"
+        ],
+        "successCriteria": [
+          "packaged tasks include deterministic target routing",
+          "owner-tagged tasks map to configured routing table"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "0ede65cb-64c1-59a1-b7e5-24331a820ec1->a941db54-6228-585f-8196-523cae4c5751",
+      "from": "0ede65cb-64c1-59a1-b7e5-24331a820ec1",
+      "to": "a941db54-6228-585f-8196-523cae4c5751",
+      "kind": "depends_on"
+    },
+    {
+      "id": "0ede65cb-64c1-59a1-b7e5-24331a820ec1->ca300893-a200-5008-ac4f-f48864ea098a",
+      "from": "0ede65cb-64c1-59a1-b7e5-24331a820ec1",
+      "to": "ca300893-a200-5008-ac4f-f48864ea098a",
+      "kind": "depends_on"
+    },
+    {
+      "id": "ca300893-a200-5008-ac4f-f48864ea098a->22fea5c4-acc3-5841-b1b1-ceb4ce1495e0",
+      "from": "ca300893-a200-5008-ac4f-f48864ea098a",
+      "to": "22fea5c4-acc3-5841-b1b1-ceb4ce1495e0",
+      "kind": "depends_on"
+    }
+  ],
+  "summary": {
+    "taskCount": 4,
+    "edgeCount": 3,
+    "approvalRequiredCount": 2,
+    "approvalPendingCount": 1,
+    "gateBlockedCount": 1,
+    "rootTaskCount": 1,
+    "maxDepth": 2
+  }
+}

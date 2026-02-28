@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-28T05:53:35.220Z",
+  "count": 4,
+  "recommendations": [
+    {
+      "recommendationId": "rec-observability-baseline",
+      "title": "Establish cognition execution baseline telemetry",
+      "priority": "P1",
+      "riskTier": "medium",
+      "requiresHumanApproval": false,
+      "owner": "agent:observability",
+      "actions": [
+        "enable planner telemetry counters",
+        "record DAG compile and package latencies"
+      ],
+      "successCriteria": [
+        "planner telemetry appears in daily report",
+        "latency metrics available for 24h window"
+      ],
+      "rollbackPlan": {
+        "trigger": "Telemetry ingestion introduces regression",
+        "steps": [
+          "disable planner telemetry flag",
+          "restore prior telemetry config"
+        ]
+      }
+    },
+    {
+      "recommendationId": "rec-policy-gating-hardening",
+      "title": "Enforce policy gate propagation for high-risk tasks",
+      "priority": "P1",
+      "riskTier": "high",
+      "requiresHumanApproval": true,
+      "approvalStatus": "pending",
+      "dependsOn": [
+        "rec-observability-baseline"
+      ],
+      "policyGate": {
+        "requiredApprovers": [
+          "security-ops",
+          "platform-lead"
+        ],
+        "ticket": "SEC-2481"
+      },
+      "actions": [
+        "propagate approval metadata into packaged swarm tasks",
+        "block non-approved high-risk tasks from auto-dispatch"
+      ],
+      "verificationPlan": {
+        "checks": [
+          "high-risk task retains approval metadata in context",
+          "pending approvals are reported as blocked"
+        ]
+      }
+    },
+    {
+      "recommendationId": "rec-retry-circuit-breakers",
+      "title": "Add retry + circuit-breaker defaults for swarm dispatch",
+      "priority": "P2",
+      "riskTier": "high",
+      "requiresHumanApproval": true,
+      "approvalStatus": "approved",
+      "dependsOn": [
+        "rec-observability-baseline"
+      ],
+      "actions": [
+        "set bounded retry profile for transient failures",
+        "configure circuit-breaker trip thresholds"
+      ],
+      "verificationPlan": {
+        "checks": [
+          "dispatch retries capped within policy window",
+          "circuit breaker opens under sustained errors"
+        ]
+      },
+      "rollbackPlan": {
+        "trigger": "dispatch throughput drops below baseline",
+        "steps": [
+          "revert retry profile",
+          "disable circuit-breaker policy override"
+        ],
+        "dataRecovery": "restore pre-change dispatch profile snapshot"
+      }
+    },
+    {
+      "recommendationId": "rec-routing-optimizer",
+      "title": "Route planner tasks by risk and ownership tags",
+      "priority": "P2",
+      "riskTier": "medium",
+      "requiresHumanApproval": false,
+      "dependsOn": [
+        "rec-retry-circuit-breakers"
+      ],
+      "owner": "agent:ops",
+      "actions": [
+        "map high/critical tasks to incident channel",
+        "map owner-tagged tasks to specialist workers"
+      ],
+      "successCriteria": [
+        "packaged tasks include deterministic target routing",
+        "owner-tagged tasks map to configured routing table"
+      ]
+    }
+  ]
+}

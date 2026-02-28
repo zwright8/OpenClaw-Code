@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-28T05:53:35.223Z",
+  "command": "cognition-core/scripts/plan.ts",
+  "inputs": {
+    "recommendationsPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/cognition-recommendations.json",
+    "recommendationsSha256": "b97f6f461a3f85cf5edcd9273d3ad76862294e8dba40b821cc9e118bb4ae67c1"
+  },
+  "outputs": {
+    "recommendationsPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/cognition-recommendations.json",
+    "recommendationsSha256": "b97f6f461a3f85cf5edcd9273d3ad76862294e8dba40b821cc9e118bb4ae67c1",
+    "dagPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/cognition-task-dag.json",
+    "dagSha256": "9eb77314ac7b8e0bfed9b96fd5a437c1c19b07fc8134975e84b67e95994413f4",
+    "packagePath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/reports/cognition-task-package.deterministic.json",
+    "packageSha256": "89c6d10216991206347fae37e93718af425e05f6c1177b6ef05da661f6c4e336"
+  },
+  "stats": {
+    "recommendationCount": 4,
+    "taskCount": 4,
+    "edgeCount": 3,
+    "approvalRequiredCount": 2,
+    "blockedByPolicyGate": 1,
+    "packagedTasks": 3,
+    "blockedTasks": 1
+  }
+}
