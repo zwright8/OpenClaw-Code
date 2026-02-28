@@ -4,69 +4,89 @@ description: Operate the "Skill Gap Diagnosis for entrepreneurship operations" c
 ---
 # Skill Gap Diagnosis for entrepreneurship operations
 
-## Why This Skill Exists
-This skill hardens a generated capability for production execution so entrepreneurship operations workflows remain deterministic, auditable, and fail-closed under risk.
+## Metadata
+- skill_id: `u06649-skill-gap-diagnosis-for-entrepreneurship-operations`
+- capability: `Skill Gap Diagnosis for entrepreneurship operations`
+- domain: `entrepreneurship operations`
+- operating_mode: `production`
+- delivery_contract: `deterministic, auditable, handoff-ready`
 
-## When To Use
-Use this skill only when the request explicitly needs `Skill Gap Diagnosis for entrepreneurship operations` in entrepreneurship operations and a downstream consumer requires contract-bound artifacts.
+## Allowed Tools
+Use only tools enabled by the active runtime policy.
+Preferred local-first toolset:
+- `read`, `write`, `edit`
+- `exec`, `process`
+- `web_search`, `web_fetch` (only when external verification is required)
 
-## Step-by-Step Implementation Guide
-1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
-2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
-3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
-4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
-5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
-6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
+## Inputs (formatted)
+| Field | Type | Required | Format | Purpose |
+|---|---|---:|---|---|
+| `mission_request` | string | yes | concise objective + constraints | Defines the requested outcome. |
+| `capability_trigger` | string | yes | exact capability name | Confirms this skill is the correct lane. |
+| `source_signals` | array<object> | yes | source-tagged records | Provides normalized working inputs. |
+| `evidence_refs` | array<string> | yes | IDs/URLs/file paths | Supports factual traceability. |
+| `acceptance_criteria` | array<string> | yes | measurable checks | Defines pass/fail conditions. |
+| `downstream_consumer` | string | yes | team/agent/system name | Identifies handoff target. |
+| `risk_tier` | enum | yes | `low`/`medium`/`high` | Sets approval and routing strictness. |
+| `approval_token` | string | conditional | signed token or ticket ID | Required when `risk_tier=high`. |
 
-## Deterministic Workflow Constraints
-- Replay score variance: <= 0.005 absolute per item.
-- Artifact hash drift for identical replay: 0 allowed.
-- Time-dependent fields allowed only in metadata and excluded from scoring.
+## Outputs (formatted)
+| Output | Type | Format | Consumer | Required |
+|---|---|---|---|---:|
+| `primary_artifact_bundle` | object | versioned JSON/Markdown bundle | orchestrator | yes |
+| `execution_scorecard` | object | gate-by-gate status + metrics | operator | yes |
+| `handoff_packet` | object | machine-readable envelope | downstream skill/system | yes |
+| `exceptions_log` | array<object> | structured error list | operator/audit | no |
 
-## Validation Gates
-1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
-2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
-3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
-4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
+## Guidelines
+- Keep execution deterministic: same input should yield materially identical decisions.
+- Preserve provenance on every claim, score, and recommendation.
+- Prefer minimal viable output that passes gates over verbose narrative.
+- Escalate quickly when inputs are incomplete, contradictory, or policy-sensitive.
+- Optimize for day-to-day operability: clear status, clear blockers, clear next action.
 
-## Handoff Contract
-- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
-- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
-- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
+## Musts
+- [ ] Confirm the request explicitly matches `Skill Gap Diagnosis for entrepreneurship operations` in `entrepreneurship operations`.
+- [ ] Validate schema and required fields before scoring or transformation.
+- [ ] Run policy/risk checks before publication or downstream routing.
+- [ ] Fail closed on missing evidence, failed validation, or unmet approval.
+- [ ] Include a complete handoff packet with owner, status, and next step.
 
-## Immediate Hardening Additions
-- Fixture: `fixtures/minimal-valid.json`
-- Regression case: `tests/regression-case.md`
-- Machine-readable summary: `hardening-summary.json`
+## Targets (day/week/month operating cadence)
+- **Day:** Triage incoming work, execute validated runs, and hand off only gate-passing outputs.
+- **Week:** Review failures/retries, tune thresholds and rules, and close recurring quality gaps.
+- **Month:** Re-baseline acceptance criteria, refresh playbooks, and archive audit-ready evidence.
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Skill Gap Diagnosis for entrepreneurship operations** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **entrepreneurship operations" capability in production for entrepreneurship operations workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## Common Actions
+1. Intake and classify request against capability trigger.
+2. Normalize inputs and attach evidence references.
+3. Execute core transformation/scoring workflow.
+4. Run validation gates (schema, determinism, policy-risk, approval).
+5. Build output artifacts and issue handoff packet.
+6. Record outcomes for weekly and monthly review.
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new entrepreneurship operations" capability in production for entrepreneurship operations workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## External Tool Calls Needed
+None required by default.
+Use external calls only when fresh outside evidence is necessary, and log each call in `evidence_refs`.
 
-## Practical Usage Examples
-1. **Incident stabilization in entrepreneurship operations" capability in production for entrepreneurship operations workflows**
-   - Input: noisy upstream payload requiring skill gap diagnosis for entrepreneurship operations normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+## Validation & Handoff
+Validation sequence:
+1. `schema-gate` — required fields present and well-typed.
+2. `determinism-gate` — repeat run is stable within configured tolerance.
+3. `policy-risk-gate` — legal/policy/risk checks pass.
+4. `approval-gate` — high-risk runs include explicit human approval token.
 
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
+Handoff minimum contract:
+```json
+{
+  "skill_id": "u06649-skill-gap-diagnosis-for-entrepreneurship-operations",
+  "capability": "Skill Gap Diagnosis for entrepreneurship operations",
+  "domain": "entrepreneurship operations",
+  "status": "pass|fail|blocked",
+  "consumer": "<downstream_consumer>",
+  "artifacts": ["primary_artifact_bundle", "execution_scorecard"],
+  "next_action": "<clear owner action>",
+  "evidence_refs": []
+}
+```
 
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)

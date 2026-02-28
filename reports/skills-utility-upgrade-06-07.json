@@ -1,0 +1,43 @@
+{
+  "task": "skills-utility-upgrade-06-07",
+  "scope": {
+    "lanes": ["06", "07"],
+    "file_pattern": "skills/generated/shards/{06,07}/**/SKILL.md"
+  },
+  "changes": {
+    "sections_standardized": [
+      "Metadata",
+      "Allowed Tools",
+      "Inputs (formatted)",
+      "Outputs (formatted)",
+      "Guidelines",
+      "Musts",
+      "Targets (day/week/month operating cadence)",
+      "Common Actions",
+      "External Tool Calls Needed",
+      "Validation & Handoff"
+    ],
+    "skills_upgraded": {
+      "06": 1000,
+      "07": 1000,
+      "total": 2000
+    }
+  },
+  "constraints": {
+    "out_of_scope_edits_intended": false,
+    "allowed_extra_files": [
+      "reports/skills-utility-upgrade-06-07.md",
+      "reports/skills-utility-upgrade-06-07.json"
+    ]
+  },
+  "validation": {
+    "required_commands": [
+      "npm run -s skills:validate",
+      "npx tsx scripts/validate-10000-skill-improvements.ts"
+    ],
+    "section_presence_check": {
+      "06": "pass",
+      "07": "pass"
+    }
+  }
+}

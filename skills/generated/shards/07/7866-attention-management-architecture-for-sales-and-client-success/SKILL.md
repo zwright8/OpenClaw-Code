@@ -2,83 +2,91 @@
 name: u07866-attention-management-architecture-for-sales-and-client-success
 description: Operate the "Attention Management Architecture for sales and client success" capability in production for sales and client success workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
 ---
-
 # Attention Management Architecture for sales and client success
 
-## Why This Skill Exists
-Use attention management architecture in sales and client success with emphasis on evidence quality, falsifiability, and calibration.
+## Metadata
+- skill_id: `u07866-attention-management-architecture-for-sales-and-client-success`
+- capability: `Attention Management Architecture for sales and client success`
+- domain: `sales and client success`
+- operating_mode: `production`
+- delivery_contract: `deterministic, auditable, handoff-ready`
 
-## Step-by-Step Implementation Guide
-1. Define measurable outcomes for Attention Management Architecture for sales and client success, including baseline and target metrics for sales and client success.
-2. Specify structured inputs/outputs for attention management architecture and validate schema contract edge cases.
-3. Implement the core attention management architecture logic with deterministic scoring and reproducible execution traces.
-4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
-5. Run unit, integration, simulation, and regression suites for Attention Management Architecture for sales and client success under maximally truth-seeking conditions.
-6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
+## Allowed Tools
+Use only tools enabled by the active runtime policy.
+Preferred local-first toolset:
+- `read`, `write`, `edit`
+- `exec`, `process`
+- `web_search`, `web_fetch` (only when external verification is required)
 
-## Operational Runbook
-Preflight:
-- Validate mission scope, contracts, and required inputs.
-- Verify feature flag posture, dependencies, and approval prerequisites.
+## Inputs (formatted)
+| Field | Type | Required | Format | Purpose |
+|---|---|---:|---|---|
+| `mission_request` | string | yes | concise objective + constraints | Defines the requested outcome. |
+| `capability_trigger` | string | yes | exact capability name | Confirms this skill is the correct lane. |
+| `source_signals` | array<object> | yes | source-tagged records | Provides normalized working inputs. |
+| `evidence_refs` | array<string> | yes | IDs/URLs/file paths | Supports factual traceability. |
+| `acceptance_criteria` | array<string> | yes | measurable checks | Defines pass/fail conditions. |
+| `downstream_consumer` | string | yes | team/agent/system name | Identifies handoff target. |
+| `risk_tier` | enum | yes | `low`/`medium`/`high` | Sets approval and routing strictness. |
+| `approval_token` | string | conditional | signed token or ticket ID | Required when `risk_tier=high`. |
 
-Execution:
-- Execute attention management architecture workflow with deterministic scoring and trace capture.
-- Track posture transitions and preserve reproducible evidence artifacts.
+## Outputs (formatted)
+| Output | Type | Format | Consumer | Required |
+|---|---|---|---|---:|
+| `primary_artifact_bundle` | object | versioned JSON/Markdown bundle | orchestrator | yes |
+| `execution_scorecard` | object | gate-by-gate status + metrics | operator | yes |
+| `handoff_packet` | object | machine-readable envelope | downstream skill/system | yes |
+| `exceptions_log` | array<object> | structured error list | operator/audit | no |
 
-Recovery:
-- Apply rollback strategy if posture is critical or guardrails fail.
-- Escalate blocked execution to oversight with incident packet and trace references.
+## Guidelines
+- Keep execution deterministic: same input should yield materially identical decisions.
+- Preserve provenance on every claim, score, and recommendation.
+- Prefer minimal viable output that passes gates over verbose narrative.
+- Escalate quickly when inputs are incomplete, contradictory, or policy-sensitive.
+- Optimize for day-to-day operability: clear status, clear blockers, clear next action.
 
-Handoff:
-- Publish outcome report, scorecard, and telemetry links.
-- Queue follow-up tasks for unresolved risks, approvals, or optimization work.
+## Musts
+- [ ] Confirm the request explicitly matches `Attention Management Architecture for sales and client success` in `sales and client success`.
+- [ ] Validate schema and required fields before scoring or transformation.
+- [ ] Run policy/risk checks before publication or downstream routing.
+- [ ] Fail closed on missing evidence, failed validation, or unmet approval.
+- [ ] Include a complete handoff packet with owner, status, and next step.
 
-## Guardrails
-- [quality] Require unit and integration validations before promoting Attention Management Architecture for sales and client success. -> `run-validation:unit+integration+simulation+regression-baseline`
-- [reliability] Trigger rollback on critical posture or repeated failures. -> `rollback:rollback-to-last-stable-baseline`
-- [cost] Respect bounded resource pressure and execution budget during scaling. -> `budget-guard:resource-pressure-cap`
+## Targets (day/week/month operating cadence)
+- **Day:** Triage incoming work, execute validated runs, and hand off only gate-passing outputs.
+- **Week:** Review failures/retries, tune thresholds and rules, and close recurring quality gaps.
+- **Month:** Re-baseline acceptance criteria, refresh playbooks, and archive audit-ready evidence.
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Attention Management Architecture for sales and client success** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **sales and client success" capability in production for sales and client success workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## Common Actions
+1. Intake and classify request against capability trigger.
+2. Normalize inputs and attach evidence references.
+3. Execute core transformation/scoring workflow.
+4. Run validation gates (schema, determinism, policy-risk, approval).
+5. Build output artifacts and issue handoff packet.
+6. Record outcomes for weekly and monthly review.
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new sales and client success" capability in production for sales and client success workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## External Tool Calls Needed
+None required by default.
+Use external calls only when fresh outside evidence is necessary, and log each call in `evidence_refs`.
 
-## Practical Usage Examples
-1. **Incident stabilization in sales and client success" capability in production for sales and client success workflows**
-   - Input: noisy upstream payload requiring attention management architecture for sales and client success normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+## Validation & Handoff
+Validation sequence:
+1. `schema-gate` — required fields present and well-typed.
+2. `determinism-gate` — repeat run is stable within configured tolerance.
+3. `policy-risk-gate` — legal/policy/risk checks pass.
+4. `approval-gate` — high-risk runs include explicit human approval token.
 
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
+Handoff minimum contract:
+```json
+{
+  "skill_id": "u07866-attention-management-architecture-for-sales-and-client-success",
+  "capability": "Attention Management Architecture for sales and client success",
+  "domain": "sales and client success",
+  "status": "pass|fail|blocked",
+  "consumer": "<downstream_consumer>",
+  "artifacts": ["primary_artifact_bundle", "execution_scorecard"],
+  "next_action": "<clear owner action>",
+  "evidence_refs": []
+}
+```
 
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
-
-## Validation Gates
-1. **schema-contract-check** — Required inputs are present and schema-valid (on fail: block).
-2. **determinism-check** — Stable output under repeated runs on identical input (on fail: escalate).
-3. **policy-approval-check** — Required approvals and policy constraints satisfied (on fail: block publish).
-
-## Handoff Contract
-- Produces: `Attention Management Architecture for sales and client success` execution artifacts + scorecard + risk/confidence metadata.
-- Consumes: validated upstream payloads that satisfy schema and policy checks.
-- Downstream routing hint: route only to declared consumers with gate/approval context attached.
-
-## When To Use
-Use this when a request in **sales and client success" capability in production for sales and client success workflows** depends on **Attention Management Architecture for sales and client success** outcomes with explicit acceptance criteria. Do not use for unconstrained ideation; route discovery work before invoking this execution skill.
