@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "evaluate": "tsx scripts/evaluate.ts",
     "report": "tsx scripts/report.ts",
-    "run": "tsx scripts/run.ts"
+    "run": "tsx scripts/run.ts",
+    "dispatch": "tsx scripts/dispatch.ts"
   },
   "keywords": [
     "agent",
