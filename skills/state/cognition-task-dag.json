@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-28T05:53:35.221Z",
+  "generatedAt": "2026-02-28T11:15:30.188Z",
   "tasks": [
     {
       "taskId": "0ede65cb-64c1-59a1-b7e5-24331a820ec1",
@@ -58,6 +58,30 @@
             "disable planner telemetry flag",
             "restore prior telemetry config"
           ]
+        },
+        "expectedSuccessProbability": 0.74,
+        "confidence": 0.66,
+        "verificationPlan": {
+          "checks": [
+            "threshold_check: sample_size >= 10",
+            "threshold_check: success_rate >= 0.7",
+            "threshold_check: brier_score <= 0.2",
+            "threshold_check: calibration_gap <= 0.2",
+            "threshold_check: confidence >= 0.6",
+            "threshold_check: terminal_outcomes >= 3",
+            "readiness_check: owner_assigned",
+            "readiness_check: rollback_plan_present"
+          ],
+          "thresholdFeedbackChecks": {
+            "minSampleSize": 10,
+            "holdSuccessRate": 0.7,
+            "promotionSuccessRate": 0.85,
+            "maxBrierScore": 0.2,
+            "maxCalibrationGap": 0.2,
+            "confidenceFloor": 0.6,
+            "riskAwareSuccessThreshold": 0.7,
+            "evaluatedAt": "2026-02-28T11:15:23.881Z"
+          }
         }
       }
     },
@@ -68,7 +92,7 @@
       "priority": "P1",
       "priorityScore": 1,
       "riskTier": "high",
-      "owner": null,
+      "owner": "agent:platform-lead",
       "dependencies": [
         "0ede65cb-64c1-59a1-b7e5-24331a820ec1"
       ],
@@ -80,12 +104,24 @@
         "propagate approval metadata into packaged swarm tasks"
       ],
       "successCriteria": [
+        "approval_check: no_execution_without_approval",
+        "approval_check: required_approvers_recorded",
+        "approval_check: ticket_attached_when_available",
         "high-risk task retains approval metadata in context",
-        "pending approvals are reported as blocked"
+        "pending approvals are reported as blocked",
+        "readiness_check: owner_assigned",
+        "readiness_check: rollback_plan_present",
+        "threshold_check: brier_score <= 0.2",
+        "threshold_check: calibration_gap <= 0.2",
+        "threshold_check: confidence >= 0.6",
+        "threshold_check: sample_size >= 10",
+        "threshold_check: success_rate >= 0.7",
+        "threshold_check: success_rate >= 0.85",
+        "threshold_check: terminal_outcomes >= 3"
       ],
       "rollbackPlan": {
         "trigger": "Regression, policy breach, or failed verification",
-        "owner": null,
+        "owner": "agent:platform-lead",
         "steps": [
           "Disable or revert the change",
           "Restore the last known good state",
@@ -131,8 +167,43 @@
         "verificationPlan": {
           "checks": [
             "high-risk task retains approval metadata in context",
-            "pending approvals are reported as blocked"
-          ]
+            "pending approvals are reported as blocked",
+            "threshold_check: sample_size >= 10",
+            "threshold_check: success_rate >= 0.7",
+            "threshold_check: brier_score <= 0.2",
+            "threshold_check: calibration_gap <= 0.2",
+            "threshold_check: confidence >= 0.6",
+            "threshold_check: terminal_outcomes >= 3",
+            "threshold_check: success_rate >= 0.85",
+            "readiness_check: owner_assigned",
+            "readiness_check: rollback_plan_present",
+            "approval_check: required_approvers_recorded",
+            "approval_check: ticket_attached_when_available",
+            "approval_check: no_execution_without_approval"
+          ],
+          "thresholdFeedbackChecks": {
+            "minSampleSize": 10,
+            "holdSuccessRate": 0.7,
+            "promotionSuccessRate": 0.85,
+            "maxBrierScore": 0.2,
+            "maxCalibrationGap": 0.2,
+            "confidenceFloor": 0.6,
+            "riskAwareSuccessThreshold": 0.85,
+            "evaluatedAt": "2026-02-28T11:15:23.886Z"
+          }
+        },
+        "expectedSuccessProbability": 0.565,
+        "confidence": 0.54,
+        "owner": "agent:platform-lead",
+        "approvalWorkflow": {
+          "status": "pending",
+          "requiredApprovers": [
+            "platform-lead",
+            "security-ops"
+          ],
+          "ticket": "SEC-2481",
+          "blockedTasks": 1,
+          "nextAction": "Route approval follow-up to agent:platform-lead, agent:security-ops"
         }
       }
     },
@@ -143,7 +214,7 @@
       "priority": "P2",
       "priorityScore": 2,
       "riskTier": "high",
-      "owner": null,
+      "owner": "agent:ops:high-risk",
       "dependencies": [
         "0ede65cb-64c1-59a1-b7e5-24331a820ec1"
       ],
@@ -155,12 +226,24 @@
         "set bounded retry profile for transient failures"
       ],
       "successCriteria": [
+        "approval_check: no_execution_without_approval",
+        "approval_check: required_approvers_recorded",
+        "approval_check: ticket_attached_when_available",
         "circuit breaker opens under sustained errors",
-        "dispatch retries capped within policy window"
+        "dispatch retries capped within policy window",
+        "readiness_check: owner_assigned",
+        "readiness_check: rollback_plan_present",
+        "threshold_check: brier_score <= 0.2",
+        "threshold_check: calibration_gap <= 0.2",
+        "threshold_check: confidence >= 0.6",
+        "threshold_check: sample_size >= 10",
+        "threshold_check: success_rate >= 0.7",
+        "threshold_check: success_rate >= 0.85",
+        "threshold_check: terminal_outcomes >= 3"
       ],
       "rollbackPlan": {
         "trigger": "dispatch throughput drops below baseline",
-        "owner": null,
+        "owner": "agent:ops:high-risk",
         "steps": [
           "disable circuit-breaker policy override",
           "revert retry profile"
@@ -192,8 +275,30 @@
         "verificationPlan": {
           "checks": [
             "dispatch retries capped within policy window",
-            "circuit breaker opens under sustained errors"
-          ]
+            "circuit breaker opens under sustained errors",
+            "threshold_check: sample_size >= 10",
+            "threshold_check: success_rate >= 0.7",
+            "threshold_check: brier_score <= 0.2",
+            "threshold_check: calibration_gap <= 0.2",
+            "threshold_check: confidence >= 0.6",
+            "threshold_check: terminal_outcomes >= 3",
+            "threshold_check: success_rate >= 0.85",
+            "readiness_check: owner_assigned",
+            "readiness_check: rollback_plan_present",
+            "approval_check: required_approvers_recorded",
+            "approval_check: ticket_attached_when_available",
+            "approval_check: no_execution_without_approval"
+          ],
+          "thresholdFeedbackChecks": {
+            "minSampleSize": 10,
+            "holdSuccessRate": 0.7,
+            "promotionSuccessRate": 0.85,
+            "maxBrierScore": 0.2,
+            "maxCalibrationGap": 0.2,
+            "confidenceFloor": 0.6,
+            "riskAwareSuccessThreshold": 0.85,
+            "evaluatedAt": "2026-02-28T11:15:23.886Z"
+          }
         },
         "rollbackPlan": {
           "trigger": "dispatch throughput drops below baseline",
@@ -202,7 +307,10 @@
             "disable circuit-breaker policy override"
           ],
           "dataRecovery": "restore pre-change dispatch profile snapshot"
-        }
+        },
+        "expectedSuccessProbability": 0.625,
+        "confidence": 0.6,
+        "owner": "agent:ops:high-risk"
       }
     },
     {
@@ -262,7 +370,31 @@
         "successCriteria": [
           "packaged tasks include deterministic target routing",
           "owner-tagged tasks map to configured routing table"
-        ]
+        ],
+        "expectedSuccessProbability": 0.695,
+        "confidence": 0.615,
+        "verificationPlan": {
+          "checks": [
+            "threshold_check: sample_size >= 10",
+            "threshold_check: success_rate >= 0.7",
+            "threshold_check: brier_score <= 0.2",
+            "threshold_check: calibration_gap <= 0.2",
+            "threshold_check: confidence >= 0.6",
+            "threshold_check: terminal_outcomes >= 3",
+            "readiness_check: owner_assigned",
+            "readiness_check: rollback_plan_present"
+          ],
+          "thresholdFeedbackChecks": {
+            "minSampleSize": 10,
+            "holdSuccessRate": 0.7,
+            "promotionSuccessRate": 0.85,
+            "maxBrierScore": 0.2,
+            "maxCalibrationGap": 0.2,
+            "confidenceFloor": 0.6,
+            "riskAwareSuccessThreshold": 0.7,
+            "evaluatedAt": "2026-02-28T11:15:23.886Z"
+          }
+        }
       }
     }
   ],

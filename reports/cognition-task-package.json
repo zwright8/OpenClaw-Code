@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-28T05:53:06.842Z",
+  "generatedAt": "2026-02-28T11:15:30.189Z",
   "requests": [
     {
       "kind": "task_request",
@@ -40,7 +40,7 @@
           "passthrough": null
         }
       },
-      "createdAt": 1772257986842
+      "createdAt": 1772277330188
     },
     {
       "kind": "task_request",
@@ -63,12 +63,24 @@
           "set bounded retry profile for transient failures"
         ],
         "successCriteria": [
+          "approval_check: no_execution_without_approval",
+          "approval_check: required_approvers_recorded",
+          "approval_check: ticket_attached_when_available",
           "circuit breaker opens under sustained errors",
-          "dispatch retries capped within policy window"
+          "dispatch retries capped within policy window",
+          "readiness_check: owner_assigned",
+          "readiness_check: rollback_plan_present",
+          "threshold_check: brier_score <= 0.2",
+          "threshold_check: calibration_gap <= 0.2",
+          "threshold_check: confidence >= 0.6",
+          "threshold_check: sample_size >= 10",
+          "threshold_check: success_rate >= 0.7",
+          "threshold_check: success_rate >= 0.85",
+          "threshold_check: terminal_outcomes >= 3"
         ],
         "rollbackPlan": {
           "trigger": "dispatch throughput drops below baseline",
-          "owner": null,
+          "owner": "agent:ops:high-risk",
           "steps": [
             "disable circuit-breaker policy override",
             "revert retry profile"
@@ -87,7 +99,7 @@
       "constraints": [
         "human-approval-required"
       ],
-      "createdAt": 1772257986844
+      "createdAt": 1772277330190
     },
     {
       "kind": "task_request",
@@ -132,7 +144,7 @@
           "passthrough": null
         }
       },
-      "createdAt": 1772257986845
+      "createdAt": 1772277330191
     }
   ],
   "blocked": [

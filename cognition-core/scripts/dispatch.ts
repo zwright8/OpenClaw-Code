@@ -4,10 +4,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { CognitionTaskDag, CognitionTaskNode } from '../src/planner/dag-compiler.js';
 import type { PackagedTaskDag } from '../src/planner/task-packager.js';
+import { buildTaskRequest } from '../../swarm-protocol/index.js';
 
 type DispatchRequest = PackagedTaskDag['requests'][number];
 
 type DispatchBlockedSource = 'dispatch_request' | 'task_package_blocked';
+
+type DispatchApprovalFollowUpRequest = DispatchRequest;
 
 type DispatchApprovalFlowMetadata = {
     requiresHumanApproval: boolean;
@@ -34,10 +37,12 @@ type DispatchBlockedJournalEntry = {
 
 export type DispatchBuildResult = {
     dispatchEntries: DispatchRequest[];
+    approvalFollowUpEntries: DispatchApprovalFollowUpRequest[];
     blockedEntries: DispatchBlockedJournalEntry[];
     stats: {
         requestCount: number;
         dispatchCount: number;
+        approvalFollowUpCount: number;
         blockedCount: number;
         blockedPendingCount: number;
         blockedByReason: Record<string, number>;
@@ -249,6 +254,31 @@ function sortCounter(counter: Record<string, number>): Record<string, number> {
     );
 }
 
+function deterministicUuid(seed: string): string {
+    const hash = crypto.createHash('sha1').update(seed).digest();
+    const bytes = Uint8Array.from(hash.subarray(0, 16));
+    bytes[6] = (bytes[6] & 0x0f) | 0x50;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+
+    const hex = [...bytes].map((part) => part.toString(16).padStart(2, '0')).join('');
+    return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
+function normalizeApproverTarget(approver: string): string {
+    const trimmed = approver.trim();
+    if (!trimmed) return 'agent:ops';
+    if (trimmed.startsWith('agent:')) return trimmed;
+
+    const slug = trimmed
+        .toLowerCase()
+        .replace(/[^a-z0-9:_-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+
+    if (slug.startsWith('agent:')) return slug;
+    return `agent:${slug || 'ops'}`;
+}
+
 type BlockedEntriesSummary = {
     byReason: Record<string, number>;
     byApprovalStatus: Record<string, number>;
@@ -302,6 +332,53 @@ function summarizeBlockedEntries(blockedEntries: DispatchBlockedJournalEntry[]):
     };
 }
 
+function buildApprovalFollowUpRequests(
+    blockedEntries: DispatchBlockedJournalEntry[],
+    createdAtBase: number
+): DispatchApprovalFollowUpRequest[] {
+    const requests: DispatchApprovalFollowUpRequest[] = [];
+    const seen = new Set<string>();
+
+    for (const blocked of blockedEntries) {
+        if (!blocked.approvalFlow.requiresHumanApproval) continue;
+        if (blocked.approvalFlow.approvalStatus !== 'pending') continue;
+
+        const approvers = blocked.approvalFlow.requiredApprovers.length > 0
+            ? blocked.approvalFlow.requiredApprovers
+            : ['team-lead'];
+
+        for (const approver of approvers) {
+            const key = `${blocked.taskId}:${approver}`;
+            if (seen.has(key)) continue;
+            seen.add(key);
+
+            const recommendationLabel = blocked.recommendationId ?? blocked.taskId;
+            const riskTier = blocked.approvalFlow.riskTier ?? 'unknown';
+            const target = normalizeApproverTarget(approver);
+
+            requests.push(buildTaskRequest({
+                id: deterministicUuid(`approval-followup:${blocked.taskId}:${approver}`),
+                from: 'agent:cognition-core',
+                target,
+                priority: riskTier === 'critical' || riskTier === 'high' ? 'high' : 'normal',
+                task: `[APPROVAL] Review ${recommendationLabel} (${blocked.taskId})`,
+                context: {
+                    planner: 'cognition-core/dispatch-approval-followup',
+                    recommendationId: blocked.recommendationId,
+                    blockedTaskId: blocked.taskId,
+                    approvalFlow: blocked.approvalFlow,
+                    blockedReason: blocked.reason,
+                    approver
+                },
+                constraints: ['approval-review-only', 'no-execution-without-approval'],
+                createdAt: createdAtBase + requests.length
+            }));
+        }
+    }
+
+    return requests;
+}
+
 function enrichRequestContext(
     request: DispatchRequest,
     taskNode: CognitionTaskNode | null
@@ -320,9 +397,19 @@ function enrichRequestContext(
         ? cloneValue(originalContext.rollbackPlan)
         : cloneValue(taskNode?.rollbackPlan ?? null);
 
-    const policyGate = isRecord(originalContext.policyGate)
+    const requestPolicyGate = isRecord(originalContext.policyGate)
         ? cloneValue(originalContext.policyGate)
-        : cloneValue(taskNode?.policyGate ?? null);
+        : null;
+    const taskPolicyGate = isRecord(taskNode?.policyGate)
+        ? cloneValue(taskNode.policyGate)
+        : null;
+
+    const policyGate = requestPolicyGate || taskPolicyGate
+        ? {
+            ...(taskPolicyGate ?? {}),
+            ...(requestPolicyGate ?? {})
+        }
+        : null;
 
     return {
         ...originalContext,
@@ -378,6 +465,7 @@ export function buildDispatchJournalEntries(
     taskPackage: PackagedTaskDag,
     options: {
         blockedCreatedAtBase?: number;
+        approvalFollowUpCreatedAtBase?: number;
     } = {}
 ): DispatchBuildResult {
     if (!Array.isArray(taskDag.tasks)) {
@@ -457,13 +545,22 @@ export function buildDispatchJournalEntries(
     }
 
     const blockedSummary = summarizeBlockedEntries(blockedEntries);
+    const approvalFollowUpCreatedAtBase = Number.isFinite(Number(options.approvalFollowUpCreatedAtBase))
+        ? Number(options.approvalFollowUpCreatedAtBase)
+        : blockedCreatedAtBase + 10_000;
+    const approvalFollowUpEntries = buildApprovalFollowUpRequests(
+        blockedEntries,
+        approvalFollowUpCreatedAtBase
+    );
 
     return {
         dispatchEntries,
+        approvalFollowUpEntries,
         blockedEntries,
         stats: {
             requestCount: taskPackage.requests.length,
             dispatchCount: dispatchEntries.length,
+            approvalFollowUpCount: approvalFollowUpEntries.length,
             blockedCount: blockedEntries.length,
             blockedPendingCount: blockedEntries.filter((entry) => entry.reason === 'awaiting_human_approval').length,
             blockedByReason: blockedSummary.byReason,
@@ -489,12 +586,15 @@ export function dispatchArtifacts(input: DispatchArtifactsInput): DispatchArtifa
     const taskDag = taskDagRaw as CognitionTaskDag;
     const taskPackage = taskPackageRaw as PackagedTaskDag;
 
+    const blockedCreatedAtBase = now();
     const buildResult = buildDispatchJournalEntries(taskDag, taskPackage, {
-        blockedCreatedAtBase: now()
+        blockedCreatedAtBase,
+        approvalFollowUpCreatedAtBase: blockedCreatedAtBase + 10_000
     });
 
     const journalEntries = [
         ...buildResult.dispatchEntries,
+        ...buildResult.approvalFollowUpEntries,
         ...buildResult.blockedEntries
     ];
 
@@ -520,6 +620,7 @@ export function dispatchArtifacts(input: DispatchArtifactsInput): DispatchArtifa
             dagTaskCount: Array.isArray(taskDag.tasks) ? taskDag.tasks.length : 0,
             packageRequestCount: buildResult.stats.requestCount,
             dispatchCount: buildResult.stats.dispatchCount,
+            approvalFollowUpCount: buildResult.stats.approvalFollowUpCount,
             blockedCount: buildResult.stats.blockedCount,
             blockedPendingCount: buildResult.stats.blockedPendingCount,
             blockedApprovalRequiredCount: buildResult.stats.blockedApprovalRequiredCount,
@@ -535,8 +636,20 @@ export function dispatchArtifacts(input: DispatchArtifactsInput): DispatchArtifa
             pendingCount: blockedSummary.pendingTaskIds.length,
             approvalRequiredCount: blockedSummary.approvalRequiredCount,
             byApprovalStatus: blockedSummary.byApprovalStatus,
-            requiredApprovers: blockedSummary.requiredApprovers
+            requiredApprovers: blockedSummary.requiredApprovers,
+            followUpRequestCount: buildResult.approvalFollowUpEntries.length,
+            followUpTargets: Array.from(new Set(buildResult.approvalFollowUpEntries.map((entry) => entry.target))).sort((left, right) => left.localeCompare(right))
         },
+        approvalFollowUpEntries: buildResult.approvalFollowUpEntries.map((entry) => ({
+            taskId: entry.id,
+            target: entry.target,
+            recommendationId: (isRecord(entry.context) && typeof entry.context.recommendationId === 'string')
+                ? entry.context.recommendationId
+                : null,
+            blockedTaskId: (isRecord(entry.context) && typeof entry.context.blockedTaskId === 'string')
+                ? entry.context.blockedTaskId
+                : null
+        })),
         blockedEntries: buildResult.blockedEntries.map((entry) => ({
             taskId: entry.taskId,
             recommendationId: entry.recommendationId,

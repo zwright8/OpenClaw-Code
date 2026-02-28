@@ -1,18 +1,18 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-28T05:53:35.223Z",
+  "generatedAt": "2026-02-28T11:15:30.189Z",
   "command": "cognition-core/scripts/plan.ts",
   "inputs": {
     "recommendationsPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/cognition-recommendations.json",
-    "recommendationsSha256": "b97f6f461a3f85cf5edcd9273d3ad76862294e8dba40b821cc9e118bb4ae67c1"
+    "recommendationsSha256": "37fa7a73d49fcf21eefa3d205a4fd3a6c99d06faa1644a22c0d88597ba02a15f"
   },
   "outputs": {
     "recommendationsPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/cognition-recommendations.json",
-    "recommendationsSha256": "b97f6f461a3f85cf5edcd9273d3ad76862294e8dba40b821cc9e118bb4ae67c1",
+    "recommendationsSha256": "37fa7a73d49fcf21eefa3d205a4fd3a6c99d06faa1644a22c0d88597ba02a15f",
     "dagPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/cognition-task-dag.json",
-    "dagSha256": "9eb77314ac7b8e0bfed9b96fd5a437c1c19b07fc8134975e84b67e95994413f4",
-    "packagePath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/reports/cognition-task-package.deterministic.json",
-    "packageSha256": "89c6d10216991206347fae37e93718af425e05f6c1177b6ef05da661f6c4e336"
+    "dagSha256": "b215bf85fcc9c03846558d4d8e8f852131fcd642e49718bef66b5f4b86c7c3fe",
+    "packagePath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/reports/cognition-task-package.json",
+    "packageSha256": "c8f8118ad153f8be016cc89ce3a1f6020df48ef988a2a3accbf3c348188e7cfe"
   },
   "stats": {
     "recommendationCount": 4,

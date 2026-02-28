@@ -143,8 +143,12 @@ test('buildDispatchJournalEntries dispatches gate-passed task requests and block
     });
 
     assert.equal(built.dispatchEntries.length, 1);
+    assert.equal(built.approvalFollowUpEntries.length, 1);
     assert.equal(built.blockedEntries.length, 1);
     assert.equal(built.dispatchEntries[0].id, TASK_A_ID);
+
+    assert.equal(built.approvalFollowUpEntries[0].target, 'agent:security-ops');
+    assert.equal(built.approvalFollowUpEntries[0].constraints?.includes('approval-review-only'), true);
 
     const dispatchContext = built.dispatchEntries[0].context as Record<string, unknown>;
     assert.deepEqual(dispatchContext.successCriteria, ['planner telemetry appears in daily report']);
@@ -168,6 +172,7 @@ test('buildDispatchJournalEntries dispatches gate-passed task requests and block
     assert.deepEqual(built.stats.blockedByReason, { awaiting_human_approval: 1 });
     assert.deepEqual(built.stats.blockedBySource, { dispatch_request: 1 });
     assert.deepEqual(built.stats.blockedByApprovalStatus, { pending: 1 });
+    assert.equal(built.stats.approvalFollowUpCount, 1);
     assert.equal(built.stats.blockedApprovalRequiredCount, 1);
 });
 
@@ -238,30 +243,44 @@ test('dispatchArtifacts appends dispatchable and blocked journal entries and wri
 
     assert.equal(result.dispatchCount, 1);
     assert.equal(result.blockedCount, 1);
-    assert.equal(result.appendedEntries, 2);
+    assert.equal(result.appendedEntries, 3);
 
     const journalLines = fs.readFileSync(journalPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
-    assert.equal(journalLines.length, 2);
+    assert.equal(journalLines.length, 3);
     assert.equal(journalLines[0].kind, 'task_request');
-    assert.equal(journalLines[1].kind, 'task_blocked');
-    assert.equal(journalLines[1].blockedSource, 'task_package_blocked');
-    assert.equal(journalLines[1].approvalFlow.approvalStatus, 'pending');
+    assert.equal(journalLines[1].kind, 'task_request');
+    assert.equal(journalLines[1].constraints.includes('approval-review-only'), true);
+    assert.equal(journalLines[2].kind, 'task_blocked');
+    assert.equal(journalLines[2].blockedSource, 'task_package_blocked');
+    assert.equal(journalLines[2].approvalFlow.approvalStatus, 'pending');
 
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
     assert.equal(report.stats.dispatchCount, 1);
     assert.equal(report.stats.blockedCount, 1);
-    assert.equal(report.stats.appendedEntries, 2);
+    assert.equal(report.stats.approvalFollowUpCount, 1);
+    assert.equal(report.stats.appendedEntries, 3);
     assert.equal(report.stats.blockedApprovalRequiredCount, 1);
     assert.deepEqual(report.stats.blockedByReason, { awaiting_human_approval: 1 });
     assert.deepEqual(report.stats.blockedBySource, { task_package_blocked: 1 });
     assert.deepEqual(report.stats.blockedByApprovalStatus, { pending: 1 });
 
     assert.equal(report.approvalFlow.pendingCount, 1);
+    assert.equal(report.approvalFlow.followUpRequestCount, 1);
+    assert.deepEqual(report.approvalFlow.followUpTargets, ['agent:security-ops']);
     assert.deepEqual(report.approvalFlow.pendingTaskIds, [TASK_B_ID]);
     assert.deepEqual(report.approvalFlow.requiredApprovers, [
         {
             approver: 'security-ops',
             blockedTaskCount: 1
+        }
+    ]);
+
+    assert.deepEqual(report.approvalFollowUpEntries, [
+        {
+            taskId: report.approvalFollowUpEntries[0].taskId,
+            target: 'agent:security-ops',
+            recommendationId: 'rec-policy-gating-hardening',
+            blockedTaskId: TASK_B_ID
         }
     ]);
 

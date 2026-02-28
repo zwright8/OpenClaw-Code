@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-28T08:50:25.944Z",
+  "generatedAt": "2026-02-28T11:15:30.186Z",
   "count": 4,
   "recommendations": [
     {
@@ -25,23 +25,28 @@
           "restore prior telemetry config"
         ]
       },
-      "expectedSuccessProbability": 0.68,
-      "confidence": 0.63,
+      "expectedSuccessProbability": 0.74,
+      "confidence": 0.66,
       "verificationPlan": {
         "checks": [
           "threshold_check: sample_size >= 10",
           "threshold_check: success_rate >= 0.7",
           "threshold_check: brier_score <= 0.2",
           "threshold_check: calibration_gap <= 0.2",
-          "threshold_check: confidence >= 0.6"
+          "threshold_check: confidence >= 0.6",
+          "threshold_check: terminal_outcomes >= 3",
+          "readiness_check: owner_assigned",
+          "readiness_check: rollback_plan_present"
         ],
         "thresholdFeedbackChecks": {
           "minSampleSize": 10,
           "holdSuccessRate": 0.7,
+          "promotionSuccessRate": 0.85,
           "maxBrierScore": 0.2,
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
-          "evaluatedAt": "2026-02-28T08:50:24.723Z"
+          "riskAwareSuccessThreshold": 0.7,
+          "evaluatedAt": "2026-02-28T11:15:23.881Z"
         }
       }
     },
@@ -74,19 +79,39 @@
           "threshold_check: success_rate >= 0.7",
           "threshold_check: brier_score <= 0.2",
           "threshold_check: calibration_gap <= 0.2",
-          "threshold_check: confidence >= 0.6"
+          "threshold_check: confidence >= 0.6",
+          "threshold_check: terminal_outcomes >= 3",
+          "threshold_check: success_rate >= 0.85",
+          "readiness_check: owner_assigned",
+          "readiness_check: rollback_plan_present",
+          "approval_check: required_approvers_recorded",
+          "approval_check: ticket_attached_when_available",
+          "approval_check: no_execution_without_approval"
         ],
         "thresholdFeedbackChecks": {
           "minSampleSize": 10,
           "holdSuccessRate": 0.7,
+          "promotionSuccessRate": 0.85,
           "maxBrierScore": 0.2,
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
-          "evaluatedAt": "2026-02-28T08:50:24.724Z"
+          "riskAwareSuccessThreshold": 0.85,
+          "evaluatedAt": "2026-02-28T11:15:23.886Z"
         }
       },
-      "expectedSuccessProbability": 0.53,
-      "confidence": 0.6
+      "expectedSuccessProbability": 0.565,
+      "confidence": 0.54,
+      "owner": "agent:platform-lead",
+      "approvalWorkflow": {
+        "status": "pending",
+        "requiredApprovers": [
+          "platform-lead",
+          "security-ops"
+        ],
+        "ticket": "SEC-2481",
+        "blockedTasks": 1,
+        "nextAction": "Route approval follow-up to agent:platform-lead, agent:security-ops"
+      }
     },
     {
       "recommendationId": "rec-retry-circuit-breakers",
@@ -110,15 +135,24 @@
           "threshold_check: success_rate >= 0.7",
           "threshold_check: brier_score <= 0.2",
           "threshold_check: calibration_gap <= 0.2",
-          "threshold_check: confidence >= 0.6"
+          "threshold_check: confidence >= 0.6",
+          "threshold_check: terminal_outcomes >= 3",
+          "threshold_check: success_rate >= 0.85",
+          "readiness_check: owner_assigned",
+          "readiness_check: rollback_plan_present",
+          "approval_check: required_approvers_recorded",
+          "approval_check: ticket_attached_when_available",
+          "approval_check: no_execution_without_approval"
         ],
         "thresholdFeedbackChecks": {
           "minSampleSize": 10,
           "holdSuccessRate": 0.7,
+          "promotionSuccessRate": 0.85,
           "maxBrierScore": 0.2,
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
-          "evaluatedAt": "2026-02-28T08:50:24.724Z"
+          "riskAwareSuccessThreshold": 0.85,
+          "evaluatedAt": "2026-02-28T11:15:23.886Z"
         }
       },
       "rollbackPlan": {
@@ -129,8 +163,9 @@
         ],
         "dataRecovery": "restore pre-change dispatch profile snapshot"
       },
-      "expectedSuccessProbability": 0.56,
-      "confidence": 0.6
+      "expectedSuccessProbability": 0.625,
+      "confidence": 0.6,
+      "owner": "agent:ops:high-risk"
     },
     {
       "recommendationId": "rec-routing-optimizer",
@@ -150,23 +185,28 @@
         "packaged tasks include deterministic target routing",
         "owner-tagged tasks map to configured routing table"
       ],
-      "expectedSuccessProbability": 0.68,
-      "confidence": 0.63,
+      "expectedSuccessProbability": 0.695,
+      "confidence": 0.615,
       "verificationPlan": {
         "checks": [
           "threshold_check: sample_size >= 10",
           "threshold_check: success_rate >= 0.7",
           "threshold_check: brier_score <= 0.2",
           "threshold_check: calibration_gap <= 0.2",
-          "threshold_check: confidence >= 0.6"
+          "threshold_check: confidence >= 0.6",
+          "threshold_check: terminal_outcomes >= 3",
+          "readiness_check: owner_assigned",
+          "readiness_check: rollback_plan_present"
         ],
         "thresholdFeedbackChecks": {
           "minSampleSize": 10,
           "holdSuccessRate": 0.7,
+          "promotionSuccessRate": 0.85,
           "maxBrierScore": 0.2,
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
-          "evaluatedAt": "2026-02-28T08:50:24.724Z"
+          "riskAwareSuccessThreshold": 0.7,
+          "evaluatedAt": "2026-02-28T11:15:23.886Z"
         }
       }
     }
