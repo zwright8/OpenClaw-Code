@@ -9,9 +9,12 @@ import type {
     EvaluationThresholds
 } from '../src/learning/threshold-tuner.js';
 import type {
-    ExecutionOutcome,
     RecommendationPrediction
 } from '../src/learning/evaluator.js';
+import {
+    extractArray,
+    outcomesFromGenericPayload
+} from '../src/learning/outcome-mapper.js';
 
 interface CliOptions {
     recommendationsPath: string;
@@ -31,7 +34,7 @@ Usage:
 Options:
   --recommendations <path>   Recommendations JSON (default: skills/state/cognition-recommendations.json)
   --task-dag <path>          Task DAG JSON (default: skills/state/cognition-task-dag.json)
-  --outcomes <path>          Outcomes JSON/JSONL (default: swarm-protocol/state/tasks.journal.jsonl)
+  --outcomes <path>          Outcomes JSON/JSONL (default: cognition-core/reports/swarm-outcomes.latest.jsonl)
   --thresholds <path>        Optional thresholds JSON
   --out <path>               Output evaluation JSON (default: skills/state/cognition-evaluation.json)
   -h, --help                 Show help
@@ -108,18 +111,6 @@ function safeReadJsonLines(filePath: string): unknown[] {
     return parsed;
 }
 
-function extractArray(input: unknown): unknown[] {
-    if (Array.isArray(input)) return input;
-    if (input && typeof input === 'object') {
-        const candidateKeys = ['items', 'recommendations', 'tasks', 'records', 'outcomes'];
-        for (const key of candidateKeys) {
-            const value = (input as Record<string, unknown>)[key];
-            if (Array.isArray(value)) return value;
-        }
-    }
-    return [];
-}
-
 function toPredictions(
     recommendationsRaw: unknown,
     taskDagRaw: unknown
@@ -174,34 +165,6 @@ function toPredictions(
     return { predictions, recommendationByTaskId };
 }
 
-function toOutcomes(raw: unknown, recommendationByTaskId: Map<string, string>): ExecutionOutcome[] {
-    const records = extractArray(raw);
-
-    return records
-        .map((item) => {
-            if (!item || typeof item !== 'object') return null;
-            const row = item as Record<string, unknown>;
-            const taskId = String(row.taskId ?? row.id ?? '').trim() || undefined;
-            const recommendationId = String(
-                row.recommendationId ?? (taskId ? recommendationByTaskId.get(taskId) : '') ?? ''
-            ).trim() || undefined;
-
-            const status = String(row.status ?? row.result ?? 'failed');
-            return {
-                taskId,
-                recommendationId,
-                status,
-                owner: typeof row.owner === 'string'
-                    ? row.owner
-                    : (typeof row.target === 'string' ? row.target : undefined),
-                attempts: Number.isFinite(Number(row.attempts)) ? Number(row.attempts) : undefined,
-                createdAt: Number.isFinite(Number(row.createdAt)) ? Number(row.createdAt) : undefined,
-                closedAt: Number.isFinite(Number(row.closedAt)) ? Number(row.closedAt) : undefined
-            } satisfies ExecutionOutcome;
-        })
-        .filter((item): item is ExecutionOutcome => item !== null);
-}
-
 function ensureDir(filePath: string): void {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
@@ -229,6 +192,28 @@ function writeResult(outputPath: string, result: FeedbackLoopResult): void {
     fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`);
 }
 
+function resolveOutcomesPath(
+    requestedOutcomesPath: string,
+    canonicalDefaultPath: string,
+    fallbackPaths: string[]
+): string {
+    if (fs.existsSync(requestedOutcomesPath)) {
+        return requestedOutcomesPath;
+    }
+
+    if (requestedOutcomesPath !== canonicalDefaultPath) {
+        return requestedOutcomesPath;
+    }
+
+    for (const fallbackPath of fallbackPaths) {
+        if (fs.existsSync(fallbackPath)) {
+            return fallbackPath;
+        }
+    }
+
+    return requestedOutcomesPath;
+}
+
 (async () => {
     try {
         const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -237,10 +222,12 @@ function writeResult(outputPath: string, result: FeedbackLoopResult): void {
         const defaults: Omit<CliOptions, 'help'> = {
             recommendationsPath: path.join(repoRoot, 'skills/state/cognition-recommendations.json'),
             taskDagPath: path.join(repoRoot, 'skills/state/cognition-task-dag.json'),
-            outcomesPath: path.join(repoRoot, 'swarm-protocol/state/tasks.journal.jsonl'),
+            outcomesPath: path.join(repoRoot, 'cognition-core/reports/swarm-outcomes.latest.jsonl'),
             thresholdsPath: null,
             outputPath: path.join(repoRoot, 'skills/state/cognition-evaluation.json')
         };
+
+        const legacyFallbackOutcomesPath = path.join(repoRoot, 'swarm-protocol/state/tasks.journal.jsonl');
 
         const options = parseArgs(process.argv.slice(2), defaults);
         if (options.help) {
@@ -252,8 +239,14 @@ function writeResult(outputPath: string, result: FeedbackLoopResult): void {
         const taskDagRaw = safeReadJson(options.taskDagPath);
         const { predictions, recommendationByTaskId } = toPredictions(recommendationsRaw, taskDagRaw);
 
-        const outcomesRaw = buildOutcomesInput(options.outcomesPath);
-        const outcomes = toOutcomes(outcomesRaw, recommendationByTaskId);
+        const resolvedOutcomesPath = resolveOutcomesPath(
+            options.outcomesPath,
+            defaults.outcomesPath,
+            [legacyFallbackOutcomesPath]
+        );
+
+        const outcomesRaw = buildOutcomesInput(resolvedOutcomesPath);
+        const outcomes = outcomesFromGenericPayload(outcomesRaw, recommendationByTaskId);
         const thresholds = readThresholds(options.thresholdsPath);
 
         const result = runFeedbackLoop(predictions, outcomes, { thresholds });
@@ -262,6 +255,11 @@ function writeResult(outputPath: string, result: FeedbackLoopResult): void {
         console.log(`Predictions: ${predictions.length}`);
         console.log(`Outcomes: ${outcomes.length}`);
         console.log(`Success rate: ${(result.evaluation.metrics.successRate * 100).toFixed(2)}%`);
+        if (resolvedOutcomesPath !== options.outcomesPath) {
+            console.log(`Outcomes fallback source: ${resolvedOutcomesPath}`);
+        } else {
+            console.log(`Outcomes source: ${resolvedOutcomesPath}`);
+        }
         console.log(`Evaluation output: ${options.outputPath}`);
     } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
