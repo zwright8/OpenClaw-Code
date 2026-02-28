@@ -20,6 +20,7 @@ const OPEN_STATUSES = new Set([
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
 const DEFAULT_MAX_RETRY_DELAY_MULTIPLIER = 32;
 const DEFAULT_RETRY_JITTER_RATIO = 0.2;
+const RETRY_CYCLE_GUARD_MULTIPLIER = 4;
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -50,6 +51,56 @@ function stableHash(value) {
 
 function stableUnitInterval(seed) {
     return stableHash(seed) / 0xffffffff;
+}
+
+function ensureRetryLifecycle(record, fallbackMaxRetries = 0) {
+    const maxRetries = safeNonNegativeInteger(record?.maxRetries, fallbackMaxRetries);
+    const minGuardCycles = Math.max(1, (maxRetries + 1) * RETRY_CYCLE_GUARD_MULTIPLIER);
+    const existing = record?.retryLifecycle;
+
+    const lifecycle = existing && typeof existing === 'object'
+        ? existing
+        : {
+            state: 'idle',
+            scheduledCount: 0,
+            dispatchCount: 0,
+            consecutiveFailures: 0,
+            maxCycles: minGuardCycles,
+            lastReason: null,
+            lastDelayMs: null,
+            nextRetryAt: null,
+            terminalReason: null,
+            lastTransitionAt: null
+        };
+
+    lifecycle.state = typeof lifecycle.state === 'string' && lifecycle.state.trim()
+        ? lifecycle.state
+        : 'idle';
+    lifecycle.scheduledCount = safeNonNegativeInteger(lifecycle.scheduledCount, 0);
+    lifecycle.dispatchCount = safeNonNegativeInteger(lifecycle.dispatchCount, 0);
+    lifecycle.consecutiveFailures = safeNonNegativeInteger(lifecycle.consecutiveFailures, 0);
+    lifecycle.maxCycles = Math.max(
+        minGuardCycles,
+        safeNonNegativeInteger(lifecycle.maxCycles, minGuardCycles)
+    );
+    lifecycle.lastReason = lifecycle.lastReason ?? null;
+    lifecycle.lastDelayMs = Number.isFinite(lifecycle.lastDelayMs)
+        ? Number(lifecycle.lastDelayMs)
+        : null;
+    lifecycle.nextRetryAt = Number.isFinite(lifecycle.nextRetryAt)
+        ? Number(lifecycle.nextRetryAt)
+        : null;
+    lifecycle.terminalReason = lifecycle.terminalReason ?? null;
+    lifecycle.lastTransitionAt = Number.isFinite(lifecycle.lastTransitionAt)
+        ? Number(lifecycle.lastTransitionAt)
+        : null;
+
+    if (record && typeof record === 'object') {
+        record.retryLifecycle = lifecycle;
+        record.maxRetries = maxRetries;
+    }
+
+    return lifecycle;
 }
 
 export function buildTaskRequest({
@@ -198,7 +249,13 @@ export class TaskOrchestrator {
             if (!record || typeof record !== 'object' || typeof record.taskId !== 'string') {
                 continue;
             }
-            this.tasks.set(record.taskId, clone(record));
+
+            const hydrated = clone(record);
+            hydrated.attempts = safeNonNegativeInteger(hydrated.attempts, 0);
+            hydrated.maxRetries = safeNonNegativeInteger(hydrated.maxRetries, this.maxRetries);
+            ensureRetryLifecycle(hydrated, this.maxRetries);
+
+            this.tasks.set(hydrated.taskId, hydrated);
             applied++;
         }
 
@@ -257,6 +314,98 @@ export class TaskOrchestrator {
 
     async flush() {
         await this._persistenceQueue;
+    }
+
+    _normalizeRetryLifecycle(record) {
+        if (!record || typeof record !== 'object') return null;
+
+        record.attempts = safeNonNegativeInteger(record.attempts, 0);
+        record.maxRetries = safeNonNegativeInteger(record.maxRetries, this.maxRetries);
+
+        return ensureRetryLifecycle(record, this.maxRetries);
+    }
+
+    _setRetryLifecycleState(record, state, at, details = {}) {
+        const lifecycle = this._normalizeRetryLifecycle(record);
+        if (!lifecycle) return null;
+
+        const changed = lifecycle.state !== state;
+        lifecycle.state = state;
+        lifecycle.lastTransitionAt = at;
+
+        if (Object.prototype.hasOwnProperty.call(details, 'reason')) {
+            lifecycle.lastReason = details.reason ?? null;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(details, 'delayMs')) {
+            lifecycle.lastDelayMs = Number.isFinite(details.delayMs)
+                ? Number(details.delayMs)
+                : null;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(details, 'nextRetryAt')) {
+            lifecycle.nextRetryAt = Number.isFinite(details.nextRetryAt)
+                ? Number(details.nextRetryAt)
+                : null;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(details, 'terminalReason')) {
+            lifecycle.terminalReason = details.terminalReason ?? null;
+        }
+
+        if (changed || details.forceHistory === true) {
+            record.history.push({
+                at,
+                event: 'retry_state',
+                state,
+                reason: lifecycle.lastReason,
+                delayMs: lifecycle.lastDelayMs,
+                nextRetryAt: lifecycle.nextRetryAt,
+                terminalReason: lifecycle.terminalReason
+            });
+        }
+
+        return lifecycle;
+    }
+
+    _isRetryCycleExhausted(record) {
+        const lifecycle = this._normalizeRetryLifecycle(record);
+        if (!lifecycle) return true;
+        return lifecycle.scheduledCount >= lifecycle.maxCycles;
+    }
+
+    _terminalizeRecordForRetry(record, {
+        nowMs,
+        status,
+        event,
+        reason,
+        auditEvent,
+        auditPayload
+    }) {
+        this._setRetryLifecycleState(record, 'terminalized', nowMs, {
+            reason,
+            terminalReason: reason,
+            nextRetryAt: null,
+            forceHistory: true
+        });
+
+        record.status = status;
+        record.updatedAt = nowMs;
+        record.closedAt = nowMs;
+        record.nextRetryAt = null;
+        record.history.push({
+            at: nowMs,
+            event,
+            reason,
+            error: record.lastError
+        });
+        this._persistRecord(record);
+        this._emitAudit(auditEvent, {
+            taskId: record.taskId,
+            target: record.target,
+            attempts: record.attempts,
+            ...(auditPayload || {})
+        }, nowMs);
     }
 
     async dispatchTask({
@@ -381,6 +530,18 @@ export class TaskOrchestrator {
             policy: policyDecision,
             attempts: 0,
             maxRetries: this.maxRetries,
+            retryLifecycle: {
+                state: 'idle',
+                scheduledCount: 0,
+                dispatchCount: 0,
+                consecutiveFailures: 0,
+                maxCycles: Math.max(1, (this.maxRetries + 1) * RETRY_CYCLE_GUARD_MULTIPLIER),
+                lastReason: null,
+                lastDelayMs: null,
+                nextRetryAt: null,
+                terminalReason: null,
+                lastTransitionAt: request.createdAt
+            },
             createdAt: request.createdAt,
             updatedAt: request.createdAt,
             deadlineAt: request.createdAt + this.defaultTimeoutMs,
@@ -393,6 +554,7 @@ export class TaskOrchestrator {
                 { at: request.createdAt, event: 'created' }
             ]
         };
+        this._normalizeRetryLifecycle(record);
 
         if (policyDecision?.redactions?.length > 0) {
             record.history.push({
@@ -481,6 +643,12 @@ export class TaskOrchestrator {
         if (!approved) {
             record.status = 'rejected';
             record.closedAt = reviewedAt;
+            this._setRetryLifecycleState(record, 'terminalized', reviewedAt, {
+                reason: decision.reason || 'approval_denied',
+                terminalReason: 'approval_denied',
+                nextRetryAt: null,
+                forceHistory: true
+            });
             record.history.push({
                 at: reviewedAt,
                 event: 'approval_denied',
@@ -517,23 +685,7 @@ export class TaskOrchestrator {
                 error: error.message
             });
 
-            if (this._isRetryBudgetExhausted(record)) {
-                record.status = 'transport_error';
-                record.closedAt = reviewedAt;
-                record.history.push({
-                    at: reviewedAt,
-                    event: 'transport_error',
-                    error: record.lastError
-                });
-                this._persistRecord(record);
-                this._emitAudit('task_transport_error', {
-                    taskId: record.taskId,
-                    target: record.target,
-                    error: record.lastError
-                }, reviewedAt);
-            } else {
-                this._scheduleRetry(record, reviewedAt, 'approval_release_failed');
-            }
+            this._scheduleRetry(record, reviewedAt, 'approval_release_failed');
         }
 
         return this.getTask(taskId);
@@ -541,6 +693,16 @@ export class TaskOrchestrator {
 
     async _sendTask(record, reason) {
         const sendAt = safeNow(this.now);
+        const lifecycle = this._normalizeRetryLifecycle(record);
+
+        if (reason === 'timeout_retry' || reason === 'transport_failure_retry' || reason === 'approval_release_failed') {
+            lifecycle.dispatchCount += 1;
+            this._setRetryLifecycleState(record, 'dispatching', sendAt, {
+                reason,
+                forceHistory: true
+            });
+        }
+
         record.attempts += 1;
         record.updatedAt = sendAt;
         record.history.push({
@@ -562,6 +724,11 @@ export class TaskOrchestrator {
             record.deadlineAt = sendAt + this.defaultTimeoutMs;
             record.nextRetryAt = null;
             record.lastError = null;
+            lifecycle.consecutiveFailures = 0;
+            this._setRetryLifecycleState(record, 'idle', sendAt, {
+                reason,
+                nextRetryAt: null
+            });
             record.history.push({
                 at: safeNow(this.now),
                 event: 'send_success',
@@ -575,6 +742,7 @@ export class TaskOrchestrator {
             }, record.updatedAt);
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
+            lifecycle.consecutiveFailures += 1;
             record.lastError = message;
             record.updatedAt = safeNow(this.now);
             record.history.push({
@@ -611,6 +779,12 @@ export class TaskOrchestrator {
         if (!receipt.accepted) {
             record.status = 'rejected';
             record.closedAt = receipt.timestamp;
+            this._setRetryLifecycleState(record, 'terminalized', receipt.timestamp, {
+                reason: receipt.reason || 'rejected_by_worker',
+                terminalReason: 'rejected_by_worker',
+                nextRetryAt: null,
+                forceHistory: true
+            });
             record.history.push({
                 at: receipt.timestamp,
                 event: 'rejected',
@@ -661,6 +835,13 @@ export class TaskOrchestrator {
             record.status = 'failed';
         }
 
+        this._setRetryLifecycleState(record, 'terminalized', result.completedAt, {
+            reason: result.status,
+            terminalReason: result.status,
+            nextRetryAt: null,
+            forceHistory: true
+        });
+
         record.history.push({
             at: result.completedAt,
             event: 'result',
@@ -677,20 +858,28 @@ export class TaskOrchestrator {
     }
 
     _isRetryBudgetExhausted(record) {
+        this._normalizeRetryLifecycle(record);
         const attempts = safeNonNegativeInteger(record?.attempts, 0);
         const maxRetries = safeNonNegativeInteger(record?.maxRetries, this.maxRetries);
         return attempts > maxRetries;
     }
 
-    _computeRetryDelayMs(record) {
+    _computeRetryDelayMs(record, reason = 'timeout') {
+        const lifecycle = this._normalizeRetryLifecycle(record);
         const baseDelayMs = safeNonNegativeNumber(this.retryDelayMs, 0);
         if (baseDelayMs === 0) return 0;
 
         const maxDelayMs = safeNonNegativeNumber(this.maxRetryDelayMs, baseDelayMs);
-        const attempts = safeNonNegativeInteger(record?.attempts, 0);
-        const retryIndex = Math.max(0, attempts - 1);
-        const exponent = Math.min(retryIndex, 30);
-        const uncappedDelayMs = baseDelayMs * (2 ** exponent);
+        const exponent = Math.min(safeNonNegativeInteger(lifecycle?.scheduledCount, 0), 30);
+        const exponentialDelayMs = baseDelayMs * (2 ** exponent);
+
+        const consecutiveFailures = safeNonNegativeInteger(lifecycle?.consecutiveFailures, 0);
+        const failureMultiplier = 1 + Math.min(consecutiveFailures, 4) * 0.15;
+        const reasonMultiplier = reason === 'transport_failure' || reason === 'approval_release_failed'
+            ? 1.25
+            : 1;
+
+        const uncappedDelayMs = exponentialDelayMs * failureMultiplier * reasonMultiplier;
         const cappedDelayMs = Math.min(maxDelayMs, uncappedDelayMs);
 
         if (cappedDelayMs === 0 || this.retryJitterRatio <= 0) {
@@ -699,7 +888,9 @@ export class TaskOrchestrator {
 
         const minFactor = Math.max(0, 1 - this.retryJitterRatio);
         const maxFactor = 1 + this.retryJitterRatio;
-        const unit = stableUnitInterval(`${record?.taskId}:${attempts}:${record?.updatedAt ?? 0}`);
+        const unit = stableUnitInterval(
+            `${record?.taskId}:${reason}:${lifecycle?.scheduledCount}:${consecutiveFailures}:${record?.attempts}:${record?.updatedAt ?? 0}`
+        );
         const jitterFactor = minFactor + (maxFactor - minFactor) * unit;
         const jitteredDelayMs = cappedDelayMs * jitterFactor;
 
@@ -707,18 +898,72 @@ export class TaskOrchestrator {
     }
 
     _scheduleRetry(record, nowMs, reason = 'timeout') {
-        const delayMs = this._computeRetryDelayMs(record);
+        const lifecycle = this._normalizeRetryLifecycle(record);
+
+        if (this._isRetryBudgetExhausted(record)) {
+            const terminalReason = `retry_budget_exhausted:${reason}`;
+            const status = reason === 'transport_failure' || reason === 'approval_release_failed'
+                ? 'transport_error'
+                : 'timed_out';
+
+            this._terminalizeRecordForRetry(record, {
+                nowMs,
+                status,
+                event: status === 'transport_error' ? 'transport_error' : 'timed_out',
+                reason: terminalReason,
+                auditEvent: status === 'transport_error' ? 'task_transport_error' : 'task_timed_out',
+                auditPayload: {
+                    error: record.lastError,
+                    retryGuard: 'retry_budget_exhausted'
+                }
+            });
+            return null;
+        }
+
+        if (this._isRetryCycleExhausted(record)) {
+            const terminalReason = `retry_cycle_guard:${reason}`;
+            const status = reason === 'transport_failure' || reason === 'approval_release_failed'
+                ? 'transport_error'
+                : 'timed_out';
+
+            this._terminalizeRecordForRetry(record, {
+                nowMs,
+                status,
+                event: status === 'transport_error' ? 'transport_error' : 'timed_out',
+                reason: terminalReason,
+                auditEvent: status === 'transport_error' ? 'task_transport_error' : 'task_timed_out',
+                auditPayload: {
+                    error: record.lastError,
+                    retryGuard: 'retry_cycle_guard'
+                }
+            });
+            return null;
+        }
+
+        const delayMs = this._computeRetryDelayMs(record, reason);
         const nextRetryAt = nowMs + delayMs;
+
+        lifecycle.scheduledCount += 1;
+        lifecycle.lastReason = reason;
+        lifecycle.lastDelayMs = delayMs;
+        lifecycle.nextRetryAt = nextRetryAt;
 
         record.status = 'retry_scheduled';
         record.nextRetryAt = nextRetryAt;
         record.updatedAt = nowMs;
+        this._setRetryLifecycleState(record, 'scheduled', nowMs, {
+            reason,
+            delayMs,
+            nextRetryAt,
+            forceHistory: true
+        });
         record.history.push({
             at: nowMs,
             event: 'retry_scheduled',
             reason,
             delayMs,
-            nextRetryAt
+            nextRetryAt,
+            retryCount: lifecycle.scheduledCount
         });
         this._persistRecord(record);
         this._emitAudit('task_retry_scheduled', {
@@ -726,7 +971,8 @@ export class TaskOrchestrator {
             target: record.target,
             reason,
             delayMs,
-            nextRetryAt
+            nextRetryAt,
+            retryCount: lifecycle.scheduledCount
         }, nowMs);
 
         return nextRetryAt;
@@ -743,29 +989,51 @@ export class TaskOrchestrator {
 
         for (const record of this.tasks.values()) {
             if (!OPEN_STATUSES.has(record.status)) continue;
+            this._normalizeRetryLifecycle(record);
             summary.checked++;
 
             const deadlineAt = Number.isFinite(record.deadlineAt) ? Number(record.deadlineAt) : 0;
             if (nowMs <= deadlineAt) continue;
 
             if (this._isRetryBudgetExhausted(record)) {
-                record.status = 'timed_out';
-                record.updatedAt = nowMs;
-                record.closedAt = nowMs;
-                record.history.push({ at: nowMs, event: 'timed_out' });
-                this._persistRecord(record);
-                this._emitAudit('task_timed_out', {
-                    taskId: record.taskId,
-                    target: record.target,
-                    attempts: record.attempts
-                }, nowMs);
+                this._terminalizeRecordForRetry(record, {
+                    nowMs,
+                    status: 'timed_out',
+                    event: 'timed_out',
+                    reason: 'retry_budget_exhausted:timeout',
+                    auditEvent: 'task_timed_out',
+                    auditPayload: {
+                        retryGuard: 'retry_budget_exhausted'
+                    }
+                });
+                summary.timedOut++;
+                continue;
+            }
+
+            if (this._isRetryCycleExhausted(record)) {
+                this._terminalizeRecordForRetry(record, {
+                    nowMs,
+                    status: 'timed_out',
+                    event: 'timed_out',
+                    reason: 'retry_cycle_guard:timeout',
+                    auditEvent: 'task_timed_out',
+                    auditPayload: {
+                        retryGuard: 'retry_cycle_guard'
+                    }
+                });
                 summary.timedOut++;
                 continue;
             }
 
             if (record.nextRetryAt === null) {
-                this._scheduleRetry(record, nowMs, 'timeout');
-                summary.scheduledRetries++;
+                const scheduledAt = this._scheduleRetry(record, nowMs, 'timeout');
+                if (scheduledAt !== null) {
+                    summary.scheduledRetries++;
+                } else if (record.status === 'timed_out') {
+                    summary.timedOut++;
+                } else if (record.status === 'transport_error') {
+                    summary.transportFailures++;
+                }
                 continue;
             }
 
@@ -780,24 +1048,11 @@ export class TaskOrchestrator {
                     `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
                 );
 
-                if (this._isRetryBudgetExhausted(record)) {
-                    record.status = 'transport_error';
-                    record.updatedAt = nowMs;
-                    record.closedAt = nowMs;
-                    record.history.push({
-                        at: nowMs,
-                        event: 'transport_error',
-                        error: record.lastError
-                    });
-                    this._persistRecord(record);
-                    this._emitAudit('task_transport_error', {
-                        taskId: record.taskId,
-                        target: record.target,
-                        error: record.lastError
-                    }, nowMs);
-                } else {
-                    this._scheduleRetry(record, nowMs, 'transport_failure');
+                const scheduledAt = this._scheduleRetry(record, nowMs, 'transport_failure');
+                if (scheduledAt !== null) {
                     summary.scheduledRetries++;
+                } else if (record.status === 'timed_out') {
+                    summary.timedOut++;
                 }
             }
         }
@@ -837,7 +1092,7 @@ export class TaskOrchestrator {
 
         let attemptsTotal = 0;
         for (const record of this.tasks.values()) {
-            attemptsTotal += record.attempts;
+            attemptsTotal += safeNonNegativeNumber(record.attempts, 0);
             metrics.byStatus[record.status] = (metrics.byStatus[record.status] || 0) + 1;
 
             if (TERMINAL_STATUSES.has(record.status)) {

@@ -162,6 +162,8 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     let current = orchestrator.getTask(task.taskId);
     assert.equal(pass1.scheduledRetries, 1);
     assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.retryLifecycle.state, 'scheduled');
+    assert.equal(current.retryLifecycle.scheduledCount, 1);
 
     clock.set(4_170);
     const pass2 = await orchestrator.runMaintenance(clock.now());
@@ -169,12 +171,15 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     assert.equal(pass2.retried, 1);
     assert.equal(current.status, 'dispatched');
     assert.equal(current.attempts, 2);
+    assert.equal(current.retryLifecycle.state, 'idle');
 
     clock.set(4_300);
     const pass3 = await orchestrator.runMaintenance(clock.now());
     current = orchestrator.getTask(task.taskId);
     assert.equal(pass3.timedOut, 1);
     assert.equal(current.status, 'timed_out');
+    assert.equal(current.retryLifecycle.state, 'terminalized');
+    assert.match(current.retryLifecycle.terminalReason, /retry_budget_exhausted/);
     assert.equal(sent.length, 2);
 });
 
@@ -261,15 +266,60 @@ test('retry failures terminate and stay terminal without looping', async () => {
     await orchestrator.runMaintenance(clock.now());
     let current = orchestrator.getTask(task.taskId);
     assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.retryLifecycle.state, 'scheduled');
 
     await orchestrator.runMaintenance(clock.now());
     current = orchestrator.getTask(task.taskId);
     assert.equal(current.status, 'transport_error');
+    assert.equal(current.retryLifecycle.state, 'terminalized');
+    assert.match(current.retryLifecycle.terminalReason, /retry_budget_exhausted/);
 
     const terminalPass = await orchestrator.runMaintenance(clock.now() + 1_000);
     assert.equal(terminalPass.checked, 0);
     assert.equal(orchestrator.getTask(task.taskId).status, 'transport_error');
 });
+
+test('retry cycle guard terminalizes malformed retry lifecycle and prevents loops', async () => {
+    const clock = createClock(90_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 5,
+        retryDelayMs: 1,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-cycle-guard',
+        task: 'Guard against malformed retry state'
+    });
+
+    clock.set(90_100);
+    await orchestrator.runMaintenance(clock.now());
+
+    const mutableRecord = orchestrator.tasks.get(task.taskId);
+    mutableRecord.status = 'retry_scheduled';
+    mutableRecord.deadlineAt = clock.now() - 1;
+    mutableRecord.nextRetryAt = null;
+    mutableRecord.retryLifecycle.scheduledCount = mutableRecord.retryLifecycle.maxCycles;
+
+    const cycleGuardPass = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+
+    assert.equal(cycleGuardPass.timedOut, 1);
+    assert.equal(current.status, 'timed_out');
+    assert.equal(current.retryLifecycle.state, 'terminalized');
+    assert.match(current.retryLifecycle.terminalReason, /retry_cycle_guard/);
+
+    const postTerminalPass = await orchestrator.runMaintenance(clock.now() + 1_000);
+    assert.equal(postTerminalPass.checked, 0);
+});
+
 
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);

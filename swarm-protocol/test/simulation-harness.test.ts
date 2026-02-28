@@ -133,6 +133,51 @@ test('timeout-heavy scenario drives timeout rate', async () => {
     assert.equal(run.metrics.successRate, 0);
 });
 
+test('simulation exposes retry lifecycle states for timeout retries', async () => {
+    const scenario = {
+        name: 'retry-lifecycle-observable',
+        seed: 77,
+        startMs: 30_000,
+        maintenanceIntervalMs: 5,
+        defaultTimeoutMs: 20,
+        maxRetries: 1,
+        retryDelayMs: 5,
+        maxTicks: 1_000,
+        tasks: [
+            { task: 'timeout-task', target: 'agent:slow', priority: 'normal' }
+        ],
+        agents: [
+            {
+                id: 'agent:slow',
+                status: 'idle',
+                load: 0.1,
+                capabilities: ['general'],
+                behavior: {
+                    timeoutRate: 1,
+                    failureRate: 0,
+                    minReceiptDelayMs: 1,
+                    maxReceiptDelayMs: 1,
+                    minResultDelayMs: 2,
+                    maxResultDelayMs: 2
+                }
+            }
+        ]
+    };
+
+    const run = await runSimulationScenario(scenario);
+    const [task] = run.tasks;
+
+    assert.equal(task.status, 'timed_out');
+    assert.ok(task.retryLifecycle);
+    assert.equal(task.retryLifecycle.state, 'terminalized');
+
+    const retryStateEvents = task.history.filter((entry) => entry.event === 'retry_state');
+    assert.ok(retryStateEvents.some((entry) => entry.state === 'scheduled'));
+    assert.ok(retryStateEvents.some((entry) => entry.state === 'dispatching'));
+    assert.ok(retryStateEvents.some((entry) => entry.state === 'terminalized'));
+});
+
+
 test('runSimulationBenchmark aggregates runs and evaluates thresholds', async () => {
     const scenario = makeBaseScenario();
 
