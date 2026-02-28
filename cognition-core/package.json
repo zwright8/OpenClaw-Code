@@ -18,7 +18,9 @@
     "evaluate": "tsx scripts/evaluate.ts",
     "report": "tsx scripts/report.ts",
     "run": "tsx scripts/run.ts",
-    "dispatch": "tsx scripts/dispatch.ts"
+    "dispatch": "tsx scripts/dispatch.ts",
+    "status": "tsx scripts/status.ts",
+    "run:dispatch": "tsx scripts/run.ts --dispatch true"
   },
   "keywords": [
     "agent",
