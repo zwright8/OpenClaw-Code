@@ -13,7 +13,10 @@
     "stability:whatsapp": "tsx scripts/whatsapp-stability.ts --hours 24 --json reports/whatsapp-stability.json --markdown reports/whatsapp-stability.md",
     "ingest": "tsx scripts/ingest.ts --since-hours 24",
     "test": "tsx --test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "evaluate": "tsx scripts/evaluate.ts",
+    "report": "tsx scripts/report.ts",
+    "run": "tsx scripts/run.ts"
   },
   "keywords": [
     "agent",
