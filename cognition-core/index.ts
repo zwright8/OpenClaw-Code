@@ -4,3 +4,13 @@ export * from './src/memory-graph.js';
 export * from './src/remediation-task-planner.js';
 export * from './src/learning-loop.js';
 export * from './src/whatsapp-stability-tracker.js';
+
+export * from './src/reasoning/anomaly.js';
+export * from './src/reasoning/root-cause.js';
+export * from './src/reasoning/counterfactual.js';
+export * from './src/reasoning/remediation.js';
+export * from './src/reasoning/impact-scoring.js';
+
+export * from './src/policy/approval-gates.js';
+export * from './src/policy/fail-closed.js';
+export * from './src/policy/policy-engine.js';
