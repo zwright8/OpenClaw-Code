@@ -23,6 +23,14 @@ function createDayStats() {
     };
 }
 
+function createHourStats() {
+    return {
+        messages: 0,
+        toolCalls: 0,
+        errors: 0
+    };
+}
+
 function roundNumber(value, decimals = 2) {
     if (!Number.isFinite(value)) return value;
     const multiplier = 10 ** decimals;
@@ -362,6 +370,7 @@ export class LogAnalyzerV2 {
             providers: {},
             stopReasons: {},
             byDay: {},
+            hourlyActivity: {},
             cutoffIso: null,
             startIso: null,
             endIso: null,
@@ -524,6 +533,7 @@ export class LogAnalyzerV2 {
 
         const timestampMs = this._normalizeTimestamp(msg.timestamp) ?? this._normalizeTimestamp(event.timestamp);
         this._countDay(timestampMs, 'messages');
+        this._countHour(timestampMs, 'messages');
 
         if (msg.role === 'assistant' && Array.isArray(msg.content)) {
             for (const item of msg.content) {
@@ -562,6 +572,7 @@ export class LogAnalyzerV2 {
         bucket.calls++;
         this.stats.toolCalls++;
         this._countDay(timestampMs, 'toolCalls');
+        this._countHour(timestampMs, 'toolCalls');
     }
 
     _countError(name, timestampMs) {
@@ -569,6 +580,7 @@ export class LogAnalyzerV2 {
         bucket.errors++;
         this.stats.errors++;
         this._countDay(timestampMs, 'errors');
+        this._countHour(timestampMs, 'errors');
     }
 
     _getToolBucket(name) {
@@ -605,6 +617,13 @@ export class LogAnalyzerV2 {
         this.stats.byDay[day][key]++;
     }
 
+    _countHour(timestampMs, key) {
+        if (!Number.isFinite(timestampMs)) return;
+        const hour = new Date(timestampMs).toISOString().slice(11, 13);
+        if (!this.stats.hourlyActivity[hour]) this.stats.hourlyActivity[hour] = createHourStats();
+        this.stats.hourlyActivity[hour][key]++;
+    }
+
     _toolSummary() {
         const result = {};
 
@@ -624,6 +643,17 @@ export class LogAnalyzerV2 {
         }
 
         return result;
+    }
+
+    _topActiveHours(limit = 5) {
+        return Object.entries(this.stats.hourlyActivity)
+            .map(([hourUtc, bucket]) => ({ hourUtc, ...bucket }))
+            .sort((a, b) => {
+                if (b.toolCalls !== a.toolCalls) return b.toolCalls - a.toolCalls;
+                if (b.messages !== a.messages) return b.messages - a.messages;
+                return b.errors - a.errors;
+            })
+            .slice(0, limit);
     }
 
     _getReliabilityScore() {
@@ -646,6 +676,14 @@ export class LogAnalyzerV2 {
             }
             if (data.avgDurationMs !== null && data.calls >= 5 && data.avgDurationMs >= 5000) {
                 insights.push(`Slow tool: ${tool} averages ${data.avgDurationMs}ms over ${data.calls} calls.`);
+            }
+        }
+
+        const topHour = this._topActiveHours(1)[0];
+        if (topHour && this.stats.toolCalls >= 5) {
+            const concentration = safePercent(topHour.toolCalls, this.stats.toolCalls);
+            if (concentration >= 40) {
+                insights.push(`Tool-call activity is concentrated around ${topHour.hourUtc}:00–${topHour.hourUtc}:59 UTC (${roundNumber(concentration, 1)}% of calls).`);
             }
         }
 
@@ -675,6 +713,7 @@ export class LogAnalyzerV2 {
             ...this.stats,
             tools,
             topTools,
+            topActiveHours: this._topActiveHours(),
             reliabilityScore: this._getReliabilityScore(),
             insights: this.getInsights()
         };
@@ -706,6 +745,14 @@ export class LogAnalyzerV2 {
             console.log(`  ${tool.padEnd(20)} | ${String(data.calls).padEnd(6)} | ${String(data.errors).padEnd(6)} | ${rate.padEnd(8)} | ${avgDuration.padEnd(8)}`);
         }
         console.log('----------------------------------------------------------------');
+
+        const activeHours = summary.topActiveHours || [];
+        if (activeHours.length > 0) {
+            console.log('\nTop Active UTC Hours:');
+            for (const hour of activeHours) {
+                console.log(`  - ${hour.hourUtc}:00 | tool calls ${hour.toolCalls}, messages ${hour.messages}, errors ${hour.errors}`);
+            }
+        }
 
         if (summary.insights.length > 0) {
             console.log('\nInsights:');

@@ -218,6 +218,18 @@ function formatMarkdown(summary) {
     }
     lines.push('');
 
+    lines.push('## Top Active UTC Hours');
+    lines.push('');
+    lines.push('| Hour (UTC) | Messages | Tool Calls | Errors |');
+    lines.push('| --- | ---: | ---: | ---: |');
+    for (const hour of summary.topActiveHours || []) {
+        lines.push(`| ${hour.hourUtc}:00 | ${hour.messages} | ${hour.toolCalls} | ${hour.errors} |`);
+    }
+    if ((summary.topActiveHours || []).length === 0) {
+        lines.push('| (no activity) | 0 | 0 | 0 |');
+    }
+    lines.push('');
+
     lines.push('## Insights');
     lines.push('');
     for (const insight of summary.insights || []) {

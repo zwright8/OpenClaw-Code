@@ -228,6 +228,61 @@ test('supports explicit time windows and tracks future/old skips', async (t) => 
     assert.equal(summary.endIso, new Date(end).toISOString());
 });
 
+test('captures hourly activity and concentration insight for bursty windows', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const baseTs = Date.UTC(2026, 1, 28, 14, 0, 0); // 14:00 UTC
+    const sessionId = '88888888-8888-4888-8888-888888888888';
+    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
+    const sessionsFile = path.join(dir, 'sessions.json');
+
+    const lines = [];
+
+    for (let i = 0; i < 6; i++) {
+        const ts = baseTs + (i * 60_000);
+        lines.push(JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'assistant',
+                content: [{ type: 'toolCall', name: 'exec' }],
+                timestamp: ts
+            }
+        }));
+    }
+
+    for (let i = 0; i < 4; i++) {
+        const ts = baseTs + (60 * 60 * 1000) + (i * 60_000); // 15:00 UTC
+        lines.push(JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'assistant',
+                content: [{ type: 'toolCall', name: 'read' }],
+                timestamp: ts
+            }
+        }));
+    }
+
+    writeJsonl(sessionFile, lines);
+
+    writeJson(sessionsFile, {
+        burst: { sessionId, updatedAt: baseTs + (2 * 60 * 60 * 1000) }
+    });
+
+    const analyzer = new LogAnalyzerV2(sessionsFile);
+    await analyzer.analyze(7, {
+        rangeStartMs: baseTs - (60 * 1000),
+        rangeEndMs: baseTs + (3 * 60 * 60 * 1000)
+    });
+
+    const summary = analyzer.toJSON();
+
+    assert.equal(summary.hourlyActivity['14'].toolCalls, 6);
+    assert.equal(summary.hourlyActivity['15'].toolCalls, 4);
+    assert.equal(summary.topActiveHours[0].hourUtc, '14');
+    assert.ok(summary.insights.some((line) => line.includes('concentrated around 14:00')));
+});
+
 test('builds trend comparison and prioritized remediation plan', () => {
     const current = {
         startIso: '2026-02-20T00:00:00.000Z',

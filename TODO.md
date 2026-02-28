@@ -5,6 +5,7 @@
 - [x] **Error Heatmap:** Identify which tools fail the most. (Implemented v0.1)
 - [x] **Memory Graph:** Generate a DOT/Graphviz file showing links between `MEMORY.md` entries. (Implemented v0.1)
 - [x] **SQLite Adapter:** Create a read-only adapter. (Superseded: Switched to parsing JSONL session files directly in LogAnalyzer v2).
+- [x] **Activity Burst Detection:** Add UTC hourly heatmap + concentration insight to LogAnalyzer v2 and markdown report output. (Completed 2026-02-28)
 
 ## Swarm Protocol
 - [x] **Standard Message Schema:** Define a JSON schema for agent-to-agent task handoff. (Implemented v0.1)
