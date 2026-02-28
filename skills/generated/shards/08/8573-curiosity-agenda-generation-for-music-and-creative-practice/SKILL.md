@@ -5,69 +5,102 @@ description: Operate the "Curiosity Agenda Generation for music and creative pra
 
 # Curiosity Agenda Generation for music and creative practice
 
-## Why This Skill Exists
-This skill hardens a generated capability for production execution so music and creative practice workflows remain deterministic, auditable, and fail-closed under risk.
+## Metadata
+- **Skill ID:** `u08573-curiosity-agenda-generation-for-music-and-creative-practice`
+- **Capability:** Curiosity Agenda Generation for music and creative practice
+- **Domain:** music and creative practice
+- **Purpose:** Operate the "Curiosity Agenda Generation for music and creative practice" capability in production for music and creative practice workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+- **Use When:** The request explicitly needs this capability and requires a concrete, handoff-ready result.
 
-## When To Use
-Use this skill only when the request explicitly needs `Curiosity Agenda Generation for music and creative practice` in music and creative practice and a downstream consumer requires contract-bound artifacts.
+## Allowed Tools
+- Use only tools allowed by the current runtime policy.
+- Preferred local tools: `read`, `write`, `edit`, `exec`, `process`.
+- Optional research tools (only when evidence is needed): `web_search`, `web_fetch`, `browser`.
+- If no tool is necessary, complete using reasoning plus provided context.
 
-## Step-by-Step Implementation Guide
-1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
-2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
-3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
-4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
-5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
-6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
+## Inputs (formatted)
+```yaml
+required:
+  objective: string
+  context: string
+  constraints:
+    - string
+  success_criteria:
+    - string
+optional:
+  prior_artifacts:
+    - path_or_url
+  stakeholders:
+    - string
+  deadline: string
+  risk_level: low|medium|high
+```
 
-## Deterministic Workflow Constraints
-- Replay score variance: <= 0.005 absolute per item.
-- Artifact hash drift for identical replay: 0 allowed.
-- Time-dependent fields allowed only in metadata and excluded from scoring.
+## Outputs (formatted)
+```yaml
+primary_output:
+  type: markdown|json|text
+  summary: string
+supporting_output:
+  assumptions:
+    - string
+  decisions:
+    - string
+  next_actions:
+    - string
+status:
+  validation: pass|fail
+  blockers:
+    - string
+```
 
-## Validation Gates
-1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
-2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
-3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
-4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
+## Guidelines
+1. Clarify goal, audience, and constraints before producing deliverables.
+2. Reuse existing artifacts where possible to avoid duplicated work.
+3. Keep outputs concise, actionable, and aligned to the stated success criteria.
+4. Document assumptions and unresolved questions explicitly.
+5. Prefer reversible, low-risk recommendations when uncertainty is high.
+6. Escalate for human review when policy, legal, safety, or reputation risk is material.
 
-## Handoff Contract
-- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
-- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
-- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
+## Musts
+- Must keep all claims tied to provided evidence or clearly labeled assumptions.
+- Must provide at least one concrete next action.
+- Must state blockers if requirements are incomplete.
+- Must fail closed (no publish/send action) when required approvals are missing.
 
-## Immediate Hardening Additions
-- Fixture: `fixtures/minimal-valid.json`
-- Regression case: `tests/regression-case.md`
-- Machine-readable summary: `hardening-summary.json`
+## Targets (day/week/month operating cadence)
+- **Day:** Process active requests, triage priority, and publish a clear status outcome.
+- **Week:** Review repeated blockers, improve templates/checklists, and tune decision quality.
+- **Month:** Audit outcomes, retire low-value steps, and update operating guidance from lessons learned.
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Curiosity Agenda Generation for music and creative practice** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **music and creative practice" capability in production for music and creative practice workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## Common Actions
+- `triage_request`
+- `collect_required_inputs`
+- `draft_output`
+- `validate_against_success_criteria`
+- `prepare_handoff_bundle`
+- `escalate_or_close`
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new music and creative practice" capability in production for music and creative practice workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## External Tool Calls Needed
+- **Default:** None required.
+- **When needed:**
+  - Use `web_search`/`web_fetch` for external evidence verification.
+  - Use `browser` only for UI-dependent retrieval or validation.
+  - Use execution tools (`exec`/`process`) only for local, auditable transformations.
 
-## Practical Usage Examples
-1. **Incident stabilization in music and creative practice" capability in production for music and creative practice workflows**
-   - Input: noisy upstream payload requiring curiosity agenda generation for music and creative practice normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
-
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
-
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
+## Validation & Handoff
+```yaml
+validation_checks:
+  - inputs_complete
+  - constraints_applied
+  - output_meets_success_criteria
+  - risks_and_assumptions_documented
+handoff_required:
+  summary: string
+  artifact_paths:
+    - path
+  open_questions:
+    - string
+  recommended_owner: string
+  recommended_next_step: string
+```

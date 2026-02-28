@@ -1,0 +1,31 @@
+{
+  "skill": "u06345-community-feedback-harvesting-for-community-mediation-programs",
+  "capability": "Community Feedback Harvesting for community mediation programs",
+  "domain": "community mediation programs",
+  "hardening_version": "2026-02-26",
+  "determinism": {
+    "max_score_delta": 0.005,
+    "artifact_hash_drift": 0
+  },
+  "gates": [
+    "schema-gate",
+    "determinism-gate",
+    "policy-risk-gate",
+    "approval-gate-high-risk"
+  ],
+  "high_risk_requires_human_signoff": true,
+  "handoff_contract": {
+    "inputs": [
+      "source-tagged-signals",
+      "claims",
+      "evidence",
+      "confidence-traces",
+      "run-context"
+    ],
+    "outputs": [
+      "deterministic-artifact",
+      "scorecard",
+      "handoff-envelope"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-02-28T05:37:29.473214+00:00",
+  "lanes": [
+    "08",
+    "09",
+    "10"
+  ],
+  "total_skills_scanned": 2001,
+  "total_skills_changed": 2001,
+  "per_lane": {
+    "08": {
+      "total": 1000,
+      "changed": 1000
+    },
+    "09": {
+      "total": 1000,
+      "changed": 1000
+    },
+    "10": {
+      "total": 1,
+      "changed": 1
+    }
+  },
+  "sections_standardized": [
+    "Metadata",
+    "Allowed Tools",
+    "Inputs (formatted)",
+    "Outputs (formatted)",
+    "Guidelines",
+    "Musts",
+    "Targets (day/week/month operating cadence)",
+    "Common Actions",
+    "External Tool Calls Needed",
+    "Validation & Handoff"
+  ]
+}
