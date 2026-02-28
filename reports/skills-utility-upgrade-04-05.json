@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-02-28T00:37:00.274557-05:00",
+  "scope": {
+    "lanes": [
+      "04",
+      "05"
+    ],
+    "paths": [
+      "skills/generated/shards/04",
+      "skills/generated/shards/05"
+    ]
+  },
+  "skills_upgraded": {
+    "lane_04": 840,
+    "lane_05": 872,
+    "total": 1712
+  },
+  "sections_standardized": [
+    "Metadata",
+    "Allowed Tools",
+    "Inputs (formatted)",
+    "Outputs (formatted)",
+    "Guidelines",
+    "Musts",
+    "Targets (day/week/month operating cadence)",
+    "Common Actions",
+    "External Tool Calls Needed",
+    "Validation & Handoff"
+  ],
+  "validation": [
+    {
+      "command": "npm run -s skills:validate",
+      "result": "[validate-1000-skills] Validated 1000 skills successfully."
+    },
+    {
+      "command": "npx tsx scripts/validate-10000-skill-improvements.ts",
+      "result": "[validate-10000-skill-improvements] All 10000 skills have improvement profiles."
+    }
+  ]
+}
