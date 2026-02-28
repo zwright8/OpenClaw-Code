@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-28T00:37:00.274557-05:00",
+  "generated_at": "2026-02-28T00:38:25.392207-05:00",
   "scope": {
     "lanes": [
       "04",
@@ -11,9 +11,9 @@
     ]
   },
   "skills_upgraded": {
-    "lane_04": 840,
-    "lane_05": 872,
-    "total": 1712
+    "lane_04": 1000,
+    "lane_05": 1000,
+    "total": 2000
   },
   "sections_standardized": [
     "Metadata",

@@ -5,69 +5,105 @@ description: Operate the "Experiment design for multilingual translation service
 
 # Experiment design for multilingual translation services
 
-## Why This Skill Exists
-This skill hardens a generated capability for production execution so multilingual translation services workflows remain deterministic, auditable, and fail-closed under risk.
+## Metadata
+```yaml
+capability_id: u04585-experiment-design-for-multilingual-translation-services
+capability_name: Experiment design for multilingual translation services
+domain: multilingual translation services
+lifecycle: production
+invocation_mode: explicit
+artifact_contract: required
+```
 
-## When To Use
-Use this skill only when the request explicitly needs `Experiment design for multilingual translation services` in multilingual translation services and a downstream consumer requires contract-bound artifacts.
+## Allowed Tools
+- No external API/tool is strictly required.
+- Use runtime-provided local tools for file I/O, validation, and logging when available.
+- Keep execution deterministic; avoid tools that introduce uncontrolled randomness.
 
-## Step-by-Step Implementation Guide
-1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
-2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
-3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
-4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
-5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
-6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
+## Inputs (formatted)
+```yaml
+required:
+  capability_request:
+    type: string
+    description: Explicit request to run "Experiment design for multilingual translation services".
+  domain_scope:
+    type: string
+    description: Task scope and decision context for multilingual translation services.
+  source_inputs:
+    type: array
+    items: object
+    description: Source-tagged signals, claims, and evidence used for execution.
+  acceptance_criteria:
+    type: object
+    description: Measurable success criteria, constraints, and guardrails.
+  downstream_consumer:
+    type: string
+    description: Named receiver of outputs (operator, orchestrator, or audit sink).
+optional:
+  risk_tier:
+    type: string
+    enum: [low, medium, high]
+  approval_token:
+    type: string
+    description: Required before release when risk_tier is high.
+```
 
-## Deterministic Workflow Constraints
-- Replay score variance: <= 0.005 absolute per item.
-- Artifact hash drift for identical replay: 0 allowed.
-- Time-dependent fields allowed only in metadata and excluded from scoring.
+## Outputs (formatted)
+```yaml
+artifacts:
+  primary_artifact_bundle:
+    type: object
+    required: true
+    description: Deterministic, schema-valid result package.
+  execution_scorecard:
+    type: object
+    required: true
+    description: Gate outcomes, tolerance checks, and confidence notes.
+  handoff_packet:
+    type: object
+    required: true
+    description: Next-hop routing metadata, approval state, and audit fields.
+status:
+  publish_ready:
+    type: boolean
+    description: True only when all validation gates pass.
+```
 
-## Validation Gates
-1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
-2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
-3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
-4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
+## Guidelines
+1. Start only after confirming explicit capability request and a clear downstream consumer.
+2. Normalize inputs with stable ordering and pinned ruleset versions.
+3. Make assumptions explicit inside artifacts and scorecards.
+4. Fail closed on missing inputs, schema errors, policy conflicts, or unresolved risk.
+5. Keep recommendations operational for day-to-day and week-to-week execution.
 
-## Handoff Contract
-- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
-- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
-- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
+## Musts
+- Must preserve deterministic behavior across identical re-runs.
+- Must enforce schema, determinism, policy/risk, and approval gates before handoff.
+- Must block publication for high-risk runs without a human approval token.
+- Must include traceable provenance for every material claim or decision.
+- Must emit machine-readable handoff metadata.
 
-## Immediate Hardening Additions
-- Fixture: `fixtures/minimal-valid.json`
-- Regression case: `tests/regression-case.md`
-- Machine-readable summary: `hardening-summary.json`
+## Targets (day/week/month operating cadence)
+- **Day:** Triage active requests, run required gates, and publish only validated artifacts.
+- **Week:** Review failures/drift, tune thresholds, and refresh runbook actions.
+- **Month:** Re-baseline tolerances, audit policy alignment, and update approval routing.
 
-## Trigger Checklist
-- [ ] The request explicitly needs **Experiment design for multilingual translation services** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **multilingual translation services" capability in production for multilingual translation services workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## Common Actions
+1. Validate trigger, scope, and acceptance criteria.
+2. Ingest and normalize source-tagged inputs.
+3. Execute capability workflow for **Experiment design for multilingual translation services** in **multilingual translation services**.
+4. Run validation gates and capture evidence.
+5. Produce artifact bundle, scorecard, and handoff packet.
+6. Route to downstream consumer or return a fail-closed remediation bundle.
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new multilingual translation services" capability in production for multilingual translation services workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## External Tool Calls Needed
+- **Mandatory:** none.
+- **Optional:** local file/validation tooling available in the current runtime for schema checks, replay checks, and artifact packaging.
 
-## Practical Usage Examples
-1. **Incident stabilization in multilingual translation services" capability in production for multilingual translation services workflows**
-   - Input: noisy upstream payload requiring experiment design for multilingual translation services normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
-
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
-
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
+## Validation & Handoff
+- Required gates: `schema-gate`, `determinism-gate`, `policy-risk-gate`, `approval-gate-high-risk`.
+- Determinism targets: replay score delta `<= 0.005` absolute, identical-input artifact hash drift `= 0`.
+- Handoff conditions:
+  - Route only when every gate passes.
+  - Include `risk_tier`, `approval_state`, `artifact_paths`, and `next_owner`.
+  - If any gate fails, return blocked status with remediation steps and do not publish.
