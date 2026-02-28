@@ -39,3 +39,35 @@ Use this skill only when the request explicitly needs `A b rollout governance fo
 - Fixture: `fixtures/minimal-valid.json`
 - Regression case: `tests/regression-case.md`
 - Machine-readable summary: `hardening-summary.json`
+
+## Trigger Checklist
+- [ ] The request explicitly needs **A b rollout governance for arts and culture programming** outcomes (not generic brainstorming).
+- [ ] Inputs are sufficient to execute in **arts and culture programming" capability in production for arts and culture programming workflows** with measurable acceptance criteria.
+- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
+- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+
+## Operational Cadence (Day / Week / Month)
+- **Daily:** Run when new arts and culture programming" capability in production for arts and culture programming workflows signals arrive or when active decisions depend on this capability.
+- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
+- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+
+## Practical Usage Examples
+1. **Incident stabilization in arts and culture programming" capability in production for arts and culture programming workflows**
+   - Input: noisy upstream payload requiring a b rollout governance for arts and culture programming normalization/assessment.
+   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
+   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
+2. **Planned delivery quality check**
+   - Input: scheduled batch with known baseline and acceptance metrics.
+   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
+   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+
+## Anti-Patterns (Do Not Use)
+- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
+- Do **not** bypass schema/policy gates to force output publication under time pressure.
+- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
+- Do **not** invoke this skill when a different capability family is the true bottleneck.
+
+## Output Contract
+- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
+- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)

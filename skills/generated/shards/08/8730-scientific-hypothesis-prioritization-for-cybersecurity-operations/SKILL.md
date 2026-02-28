@@ -39,3 +39,35 @@ Use this skill only when the request explicitly needs `Scientific Hypothesis Pri
 - Fixture: `fixtures/minimal-valid.json`
 - Regression case: `tests/regression-case.md`
 - Machine-readable summary: `hardening-summary.json`
+
+## Trigger Checklist
+- [ ] The request explicitly needs **Scientific Hypothesis Prioritization for cybersecurity operations** outcomes (not generic brainstorming).
+- [ ] Inputs are sufficient to execute in **cybersecurity operations" capability in production for cybersecurity operations workflows** with measurable acceptance criteria.
+- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
+- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+
+## Operational Cadence (Day / Week / Month)
+- **Daily:** Run when new cybersecurity operations" capability in production for cybersecurity operations workflows signals arrive or when active decisions depend on this capability.
+- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
+- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+
+## Practical Usage Examples
+1. **Incident stabilization in cybersecurity operations" capability in production for cybersecurity operations workflows**
+   - Input: noisy upstream payload requiring scientific hypothesis prioritization for cybersecurity operations normalization/assessment.
+   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
+   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
+2. **Planned delivery quality check**
+   - Input: scheduled batch with known baseline and acceptance metrics.
+   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
+   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+
+## Anti-Patterns (Do Not Use)
+- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
+- Do **not** bypass schema/policy gates to force output publication under time pressure.
+- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
+- Do **not** invoke this skill when a different capability family is the true bottleneck.
+
+## Output Contract
+- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
+- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)

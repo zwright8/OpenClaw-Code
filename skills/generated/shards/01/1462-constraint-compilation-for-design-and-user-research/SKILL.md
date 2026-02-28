@@ -38,3 +38,48 @@ Handoff:
 - [reliability] Trigger rollback on critical posture or repeated failures. -> `rollback:rollback-to-last-stable-baseline`
 - [compliance] Require policy and approval gates prior to autonomous deployment. -> `approval-gates:policy-constraint-check+human-impact-review`
 - [cost] Respect bounded resource pressure and execution budget during scaling. -> `budget-guard:resource-pressure-cap`
+
+## Trigger Checklist
+- [ ] The request explicitly needs **Constraint Compilation for design and user research** outcomes (not generic brainstorming).
+- [ ] Inputs are sufficient to execute in **design and user research" capability in production for design and user research workflows** with measurable acceptance criteria.
+- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
+- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+
+## Operational Cadence (Day / Week / Month)
+- **Daily:** Run when new design and user research" capability in production for design and user research workflows signals arrive or when active decisions depend on this capability.
+- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
+- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+
+## Practical Usage Examples
+1. **Incident stabilization in design and user research" capability in production for design and user research workflows**
+   - Input: noisy upstream payload requiring constraint compilation for design and user research normalization/assessment.
+   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
+   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
+2. **Planned delivery quality check**
+   - Input: scheduled batch with known baseline and acceptance metrics.
+   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
+   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+
+## Anti-Patterns (Do Not Use)
+- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
+- Do **not** bypass schema/policy gates to force output publication under time pressure.
+- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
+- Do **not** invoke this skill when a different capability family is the true bottleneck.
+
+## Output Contract
+- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
+- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
+- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
+
+## Validation Gates
+1. **schema-contract-check** — Required inputs are present and schema-valid (on fail: block).
+2. **determinism-check** — Stable output under repeated runs on identical input (on fail: escalate).
+3. **policy-approval-check** — Required approvals and policy constraints satisfied (on fail: block publish).
+
+## Handoff Contract
+- Produces: `Constraint Compilation for design and user research` execution artifacts + scorecard + risk/confidence metadata.
+- Consumes: validated upstream payloads that satisfy schema and policy checks.
+- Downstream routing hint: route only to declared consumers with gate/approval context attached.
+
+## When To Use
+Use this when a request in **design and user research" capability in production for design and user research workflows** depends on **Constraint Compilation for design and user research** outcomes with explicit acceptance criteria. Do not use for unconstrained ideation; route discovery work before invoking this execution skill.

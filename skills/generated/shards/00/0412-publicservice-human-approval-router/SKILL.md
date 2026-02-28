@@ -81,3 +81,30 @@ If any gate fails: **block output publication and fail closed**.
 - **Consumes:** validated upstream inputs for this capability.
 - **Next hop:** route only to declared downstream consumers with gate/approval context attached.
 
+
+## Trigger Checklist
+- [ ] The request explicitly needs **PublicService Human Approval Router** outcomes (not generic brainstorming).
+- [ ] Inputs are sufficient to execute in **Healthcare and Public Services** with measurable acceptance criteria.
+- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
+- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+
+## Operational Cadence (Day / Week / Month)
+- **Daily:** Run when new healthcare and public services signals arrive or when active decisions depend on this capability.
+- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
+- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+
+## Practical Usage Examples
+1. **Incident stabilization in Healthcare and Public Services**
+   - Input: noisy upstream payload requiring publicservice human approval router normalization/assessment.
+   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
+   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
+2. **Planned delivery quality check**
+   - Input: scheduled batch with known baseline and acceptance metrics.
+   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
+   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
+
+## Anti-Patterns (Do Not Use)
+- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
+- Do **not** bypass schema/policy gates to force output publication under time pressure.
+- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
+- Do **not** invoke this skill when a different capability family is the true bottleneck.
