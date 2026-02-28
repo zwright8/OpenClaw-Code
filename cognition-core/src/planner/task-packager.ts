@@ -22,12 +22,34 @@ export type PackageOptions = {
     constraints?: string[];
 };
 
+type BlockedTaskMetadata = {
+    followUp: {
+        requiredApprovers: string[];
+        approverTargets: string[];
+        ticket: string | null;
+    };
+    traceability: {
+        blockedTraceId: string;
+        releaseKey: string;
+        releaseReady: boolean;
+    };
+    releaseTemplate: {
+        from: string;
+        target: string;
+        priority: SwarmTaskRequest['priority'];
+        task: string;
+        context: Record<string, unknown>;
+        constraints?: string[];
+    };
+};
+
 export type BlockedTask = {
     taskId: string;
     recommendationId: string;
     reason: string;
     policyGate: CognitionTaskNode['policyGate'];
     dependencies: string[];
+    metadata?: BlockedTaskMetadata;
 };
 
 export type PackagedTaskDag = {
@@ -60,6 +82,72 @@ function buildTaskText(task: CognitionTaskNode): string {
     return `[${task.priority}] ${task.title}. ${primaryAction}`;
 }
 
+function normalizeOptionalString(value: unknown): string | null {
+    if (typeof value !== 'string') return null;
+    const trimmed = value.trim();
+    return trimmed ? trimmed : null;
+}
+
+function normalizeApproverTarget(approver: string): string {
+    const trimmed = approver.trim();
+    if (!trimmed) return 'agent:ops';
+    if (trimmed.startsWith('agent:')) return trimmed;
+
+    const slug = trimmed
+        .toLowerCase()
+        .replace(/[^a-z0-9:_-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+
+    if (slug.startsWith('agent:')) return slug;
+    return `agent:${slug || 'ops'}`;
+}
+
+function extractRequiredApprovers(task: CognitionTaskNode): string[] {
+    const passthrough = task.policyGate.passthrough;
+    if (!passthrough || typeof passthrough !== 'object' || Array.isArray(passthrough)) {
+        return [];
+    }
+
+    const value = (passthrough as Record<string, unknown>).requiredApprovers;
+    if (!Array.isArray(value)) return [];
+
+    return Array.from(new Set(
+        value
+            .map((entry) => normalizeOptionalString(entry))
+            .filter((entry): entry is string => Boolean(entry))
+    )).sort((left, right) => left.localeCompare(right));
+}
+
+function extractApprovalTicket(task: CognitionTaskNode): string | null {
+    const passthrough = task.policyGate.passthrough;
+    if (!passthrough || typeof passthrough !== 'object' || Array.isArray(passthrough)) {
+        return null;
+    }
+
+    return normalizeOptionalString((passthrough as Record<string, unknown>).ticket);
+}
+
+function toDispatchPriority(priority: CognitionTaskNode['priority']): SwarmTaskRequest['priority'] {
+    if (priority === 'P0') return 'critical';
+    if (priority === 'P1') return 'high';
+    if (priority === 'P2') return 'normal';
+    return 'low';
+}
+
+function buildRequestContext(task: CognitionTaskNode): Record<string, unknown> {
+    return {
+        planner: 'cognition-core/task-packager',
+        recommendationId: task.recommendationId,
+        dependencies: task.dependencies,
+        dependencyRecommendationIds: task.dependencyRecommendationIds,
+        actions: task.actions,
+        successCriteria: task.successCriteria,
+        rollbackPlan: task.rollbackPlan,
+        policyGate: task.policyGate
+    };
+}
+
 export function packageDagForSwarm(
     dag: CognitionTaskDag,
     options: PackageOptions = {}
@@ -85,18 +173,6 @@ export function packageDagForSwarm(
 
     for (let index = 0; index < dag.tasks.length; index += 1) {
         const task = dag.tasks[index];
-
-        if (task.policyGate.requiresHumanApproval && !task.policyGate.gatePassed && !normalizedOptions.includeApprovalPending) {
-            blocked.push({
-                taskId: task.taskId,
-                recommendationId: task.recommendationId,
-                reason: 'awaiting_human_approval',
-                policyGate: task.policyGate,
-                dependencies: task.dependencies
-            });
-            continue;
-        }
-
         const target = resolveTarget(task, normalizedOptions);
         const createdAt = normalizedOptions.createdAtBase + index;
         const constraints = [
@@ -104,28 +180,50 @@ export function packageDagForSwarm(
             ...(task.policyGate.requiresHumanApproval ? ['human-approval-required'] : [])
         ];
 
+        const requestContext = buildRequestContext(task);
+        const requestPriority = toDispatchPriority(task.priority);
+        const requestTask = buildTaskText(task);
+
+        if (task.policyGate.requiresHumanApproval && !task.policyGate.gatePassed && !normalizedOptions.includeApprovalPending) {
+            const requiredApprovers = extractRequiredApprovers(task);
+
+            blocked.push({
+                taskId: task.taskId,
+                recommendationId: task.recommendationId,
+                reason: 'awaiting_human_approval',
+                policyGate: task.policyGate,
+                dependencies: task.dependencies,
+                metadata: {
+                    followUp: {
+                        requiredApprovers,
+                        approverTargets: requiredApprovers.map((approver) => normalizeApproverTarget(approver)),
+                        ticket: extractApprovalTicket(task)
+                    },
+                    traceability: {
+                        blockedTraceId: `blocked:${task.taskId}`,
+                        releaseKey: `release:${task.taskId}:${task.recommendationId}`,
+                        releaseReady: false
+                    },
+                    releaseTemplate: {
+                        from: normalizedOptions.fromAgentId,
+                        target,
+                        priority: requestPriority,
+                        task: requestTask,
+                        context: requestContext,
+                        constraints: constraints.length > 0 ? constraints : undefined
+                    }
+                }
+            });
+            continue;
+        }
+
         const request = buildTaskRequest({
             id: task.taskId,
             from: normalizedOptions.fromAgentId,
             target,
-            priority: task.priority === 'P0'
-                ? 'critical'
-                : task.priority === 'P1'
-                    ? 'high'
-                    : task.priority === 'P2'
-                        ? 'normal'
-                        : 'low',
-            task: buildTaskText(task),
-            context: {
-                planner: 'cognition-core/task-packager',
-                recommendationId: task.recommendationId,
-                dependencies: task.dependencies,
-                dependencyRecommendationIds: task.dependencyRecommendationIds,
-                actions: task.actions,
-                successCriteria: task.successCriteria,
-                rollbackPlan: task.rollbackPlan,
-                policyGate: task.policyGate
-            },
+            priority: requestPriority,
+            task: requestTask,
+            context: requestContext,
             constraints: constraints.length > 0 ? constraints : undefined,
             createdAt
         });

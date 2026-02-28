@@ -150,6 +150,11 @@ test('buildDispatchJournalEntries dispatches gate-passed task requests and block
     assert.equal(built.approvalFollowUpEntries[0].target, 'agent:security-ops');
     assert.equal(built.approvalFollowUpEntries[0].constraints?.includes('approval-review-only'), true);
 
+    const followUpContext = built.approvalFollowUpEntries[0].context as Record<string, unknown>;
+    const followUpTraceability = followUpContext.traceability as Record<string, unknown>;
+    assert.equal(typeof followUpTraceability.blockedTraceId, 'string');
+    assert.equal(typeof followUpTraceability.releaseRequestId, 'string');
+
     const dispatchContext = built.dispatchEntries[0].context as Record<string, unknown>;
     assert.deepEqual(dispatchContext.successCriteria, ['planner telemetry appears in daily report']);
     assert.deepEqual(dispatchContext.rollbackPlan, {
@@ -164,6 +169,8 @@ test('buildDispatchJournalEntries dispatches gate-passed task requests and block
     assert.equal(built.blockedEntries[0].blockedSource, 'dispatch_request');
     assert.equal(built.blockedEntries[0].approvalFlow.approvalStatus, 'pending');
     assert.equal(built.blockedEntries[0].approvalFlow.requiresHumanApproval, true);
+    assert.equal(typeof built.blockedEntries[0].traceability.blockedTraceId, 'string');
+    assert.equal(built.blockedEntries[0].followUp.requiredApprovers[0], 'security-ops');
 
     const blockedContext = built.blockedEntries[0].context as Record<string, unknown>;
     const blockedApprovalFlow = blockedContext.approvalFlow as Record<string, unknown>;
@@ -174,6 +181,100 @@ test('buildDispatchJournalEntries dispatches gate-passed task requests and block
     assert.deepEqual(built.stats.blockedByApprovalStatus, { pending: 1 });
     assert.equal(built.stats.approvalFollowUpCount, 1);
     assert.equal(built.stats.blockedApprovalRequiredCount, 1);
+    assert.equal(built.stats.releasedAfterApprovalCount, 0);
+});
+
+test('buildDispatchJournalEntries releases blocked approval tasks when gate is already approved', () => {
+    const dag = buildDag();
+    const packaged = {
+        version: 1,
+        generatedAt: '2026-02-28T06:22:10.594Z',
+        requests: [
+            {
+                kind: 'task_request',
+                id: TASK_A_ID,
+                from: 'agent:cognition-core',
+                target: 'agent:ops',
+                priority: 'high',
+                task: '[P1] Baseline telemetry',
+                context: {
+                    recommendationId: 'rec-observability-baseline'
+                },
+                createdAt: 100
+            }
+        ],
+        blocked: [
+            {
+                taskId: TASK_B_ID,
+                recommendationId: 'rec-policy-gating-hardening',
+                reason: 'awaiting_human_approval',
+                policyGate: {
+                    riskTier: 'high',
+                    requiresHumanApproval: true,
+                    approvalStatus: 'approved',
+                    approvalMarkerPresent: true,
+                    gatePassed: true,
+                    passthrough: {
+                        requiredApprovers: ['security-ops'],
+                        ticket: 'SEC-2481'
+                    }
+                },
+                dependencies: [TASK_A_ID],
+                metadata: {
+                    followUp: {
+                        requiredApprovers: ['security-ops'],
+                        approverTargets: ['agent:security-ops'],
+                        ticket: 'SEC-2481'
+                    },
+                    traceability: {
+                        blockedTraceId: `blocked:${TASK_B_ID}`,
+                        releaseKey: `release:${TASK_B_ID}:rec-policy-gating-hardening`,
+                        releaseReady: true
+                    },
+                    releaseTemplate: {
+                        from: 'agent:cognition-core',
+                        target: 'agent:ops:high-risk',
+                        priority: 'high',
+                        task: '[P1] Policy gating hardening',
+                        context: {
+                            planner: 'cognition-core/task-packager',
+                            recommendationId: 'rec-policy-gating-hardening'
+                        },
+                        constraints: ['human-approval-required']
+                    }
+                }
+            }
+        ],
+        stats: {
+            totalTasks: 2,
+            packagedTasks: 1,
+            blockedTasks: 1,
+            approvalRequiredCount: 1
+        }
+    };
+
+    const built = buildDispatchJournalEntries(dag as never, packaged as never, {
+        blockedCreatedAtBase: 6_000
+    });
+
+    assert.equal(built.dispatchEntries.length, 2);
+    assert.equal(built.approvalFollowUpEntries.length, 0);
+    assert.equal(built.blockedEntries.length, 0);
+    assert.deepEqual(built.releasedAfterApprovalTaskIds, [TASK_B_ID]);
+    assert.equal(built.stats.releasedAfterApprovalCount, 1);
+
+    const released = built.dispatchEntries.find((entry) => entry.id === TASK_B_ID);
+    assert.ok(released);
+
+    const releasedContext = released?.context as Record<string, unknown>;
+    const approvalRelease = releasedContext.approvalRelease as Record<string, unknown>;
+    assert.equal(approvalRelease.releasedFromBlocked, true);
+    assert.equal(approvalRelease.blockedReason, 'awaiting_human_approval');
+
+    const policyGate = releasedContext.policyGate as Record<string, unknown>;
+    assert.equal(policyGate.approvalStatus, 'approved');
+    assert.equal(released?.target, 'agent:ops:high-risk');
+    assert.equal(released?.constraints?.includes('human-approval-required'), true);
 });
 
 test('dispatchArtifacts appends dispatchable and blocked journal entries and writes report stats', () => {
@@ -216,10 +317,34 @@ test('dispatchArtifacts appends dispatchable and blocked journal entries and wri
                     approvalStatus: 'pending',
                     gatePassed: false,
                     passthrough: {
-                        requiredApprovers: ['security-ops']
+                        requiredApprovers: ['security-ops'],
+                        ticket: 'SEC-2481'
                     }
                 },
-                dependencies: [TASK_A_ID]
+                dependencies: [TASK_A_ID],
+                metadata: {
+                    followUp: {
+                        requiredApprovers: ['security-ops'],
+                        approverTargets: ['agent:security-ops'],
+                        ticket: 'SEC-2481'
+                    },
+                    traceability: {
+                        blockedTraceId: `blocked:${TASK_B_ID}`,
+                        releaseKey: `release:${TASK_B_ID}:rec-policy-gating-hardening`,
+                        releaseReady: false
+                    },
+                    releaseTemplate: {
+                        from: 'agent:cognition-core',
+                        target: 'agent:ops:high-risk',
+                        priority: 'high',
+                        task: '[P1] Policy gating hardening',
+                        context: {
+                            planner: 'cognition-core/task-packager',
+                            recommendationId: 'rec-policy-gating-hardening'
+                        },
+                        constraints: ['human-approval-required']
+                    }
+                }
             }
         ],
         stats: {
@@ -253,16 +378,22 @@ test('dispatchArtifacts appends dispatchable and blocked journal entries and wri
     assert.equal(journalLines[2].kind, 'task_blocked');
     assert.equal(journalLines[2].blockedSource, 'task_package_blocked');
     assert.equal(journalLines[2].approvalFlow.approvalStatus, 'pending');
+    assert.equal(journalLines[2].followUp.ticket, 'SEC-2481');
+    assert.equal(typeof journalLines[2].traceability.blockedTraceId, 'string');
 
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
     assert.equal(report.stats.dispatchCount, 1);
     assert.equal(report.stats.blockedCount, 1);
     assert.equal(report.stats.approvalFollowUpCount, 1);
+    assert.equal(report.stats.releasedAfterApprovalCount, 0);
     assert.equal(report.stats.appendedEntries, 3);
     assert.equal(report.stats.blockedApprovalRequiredCount, 1);
     assert.deepEqual(report.stats.blockedByReason, { awaiting_human_approval: 1 });
     assert.deepEqual(report.stats.blockedBySource, { task_package_blocked: 1 });
     assert.deepEqual(report.stats.blockedByApprovalStatus, { pending: 1 });
+
+    assert.equal(report.compatibility.artifactSchemaVersion, 1);
+    assert.deepEqual(report.compatibility.backwardCompatibleWith, [1]);
 
     assert.equal(report.approvalFlow.pendingCount, 1);
     assert.equal(report.approvalFlow.followUpRequestCount, 1);
@@ -275,31 +406,35 @@ test('dispatchArtifacts appends dispatchable and blocked journal entries and wri
         }
     ]);
 
-    assert.deepEqual(report.approvalFollowUpEntries, [
-        {
-            taskId: report.approvalFollowUpEntries[0].taskId,
-            target: 'agent:security-ops',
-            recommendationId: 'rec-policy-gating-hardening',
-            blockedTaskId: TASK_B_ID
-        }
-    ]);
+    assert.equal(report.approvalFlow.releasedAfterApprovalCount, 0);
+    assert.deepEqual(report.releasedAfterApprovalTaskIds, []);
 
-    assert.deepEqual(report.blockedEntries, [
-        {
-            taskId: TASK_B_ID,
-            recommendationId: 'rec-policy-gating-hardening',
-            reason: 'awaiting_human_approval',
-            blockedSource: 'task_package_blocked',
-            approvalFlow: {
-                requiresHumanApproval: true,
-                approvalStatus: 'pending',
-                gatePassed: false,
-                approvalMarkerPresent: null,
-                riskTier: 'high',
-                requiredApprovers: ['security-ops']
-            }
-        }
-    ]);
+    assert.equal(report.approvalFollowUpEntries.length, 1);
+    assert.equal(report.approvalFollowUpEntries[0].target, 'agent:security-ops');
+    assert.equal(report.approvalFollowUpEntries[0].recommendationId, 'rec-policy-gating-hardening');
+    assert.equal(report.approvalFollowUpEntries[0].blockedTaskId, TASK_B_ID);
+    assert.equal(typeof report.approvalFollowUpEntries[0].blockedTraceId, 'string');
+    assert.equal(typeof report.approvalFollowUpEntries[0].releaseRequestId, 'string');
+
+    assert.equal(report.blockedEntries.length, 1);
+    assert.equal(report.blockedEntries[0].taskId, TASK_B_ID);
+    assert.equal(report.blockedEntries[0].reason, 'awaiting_human_approval');
+    assert.equal(report.blockedEntries[0].blockedSource, 'task_package_blocked');
+    assert.deepEqual(report.blockedEntries[0].approvalFlow, {
+        requiresHumanApproval: true,
+        approvalStatus: 'pending',
+        gatePassed: false,
+        approvalMarkerPresent: null,
+        riskTier: 'high',
+        requiredApprovers: ['security-ops']
+    });
+    assert.deepEqual(report.blockedEntries[0].followUp, {
+        requiredApprovers: ['security-ops'],
+        approverTargets: ['agent:security-ops'],
+        ticket: 'SEC-2481'
+    });
+    assert.equal(report.blockedEntries[0].traceability.blockedTraceId, `blocked:${TASK_B_ID}`);
+    assert.equal(report.blockedEntries[0].traceability.releaseTemplatePresent, true);
 
     fs.rmSync(tmpDir, { recursive: true, force: true });
 });
