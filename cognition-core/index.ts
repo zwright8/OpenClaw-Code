@@ -14,3 +14,11 @@ export * from './src/reasoning/impact-scoring.js';
 export * from './src/policy/approval-gates.js';
 export * from './src/policy/fail-closed.js';
 export * from './src/policy/policy-engine.js';
+
+export * from './src/ingest/gateway-ingest.js';
+export * from './src/ingest/runtime-ingest.js';
+export * from './src/ingest/business-ingest.js';
+
+export * from './src/normalize/event-normalizer.js';
+export * from './src/normalize/enrichment.js';
+export * from './src/normalize/dedupe.js';
