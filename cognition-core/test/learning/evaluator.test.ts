@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluateRecommendations } from '../../src/learning/evaluator.js';
+import { evaluateRecommendations, type EvaluatorResult } from '../../src/learning/evaluator.js';
 import { DEFAULT_THRESHOLDS, tuneThresholds } from '../../src/learning/threshold-tuner.js';
 
 test('evaluateRecommendations computes core metrics and recommendation rollups', () => {
@@ -171,4 +171,94 @@ test('tuneThresholds still tightens quality gates for weak execution success', (
     ]);
     assert.equal(tuned.thresholds.confidenceFloor, 0.63);
     assert.equal(tuned.thresholds.promotionSuccessRate, 0.87);
+});
+
+test('evaluateRecommendations keeps terminal metrics deterministic when non-terminal outcomes dominate', () => {
+    const result = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.2 }],
+        [
+            { recommendationId: 'r1', status: 'failed' },
+            { recommendationId: 'r1', status: 'failed' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' }
+        ]
+    );
+
+    assert.equal(result.metrics.totalOutcomes, 10);
+    assert.equal(result.metrics.terminalOutcomes, 2);
+    assert.equal(result.metrics.nonTerminalOutcomes, 8);
+    assert.equal(result.metrics.mappedOutcomes, 2);
+    assert.equal(result.metrics.mappingRate, 1);
+    assert.equal(result.metrics.successRate, 0);
+});
+
+test('tuneThresholds keeps quality gates stable when terminal sample size is below minimum', () => {
+    const evaluation = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.1 }],
+        [
+            { recommendationId: 'r1', status: 'failed' },
+            { recommendationId: 'r1', status: 'failed' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' }
+        ]
+    );
+
+    assert.equal(evaluation.metrics.totalOutcomes, 12);
+    assert.equal(evaluation.metrics.terminalOutcomes, 2);
+    assert.equal(evaluation.metrics.nonTerminalOutcomes, 10);
+
+    const tuned = tuneThresholds(evaluation);
+
+    assert.equal(tuned.changes.length, 0);
+    assert.equal(tuned.thresholds.confidenceFloor, DEFAULT_THRESHOLDS.confidenceFloor);
+    assert.equal(tuned.thresholds.promotionSuccessRate, DEFAULT_THRESHOLDS.promotionSuccessRate);
+});
+
+test('tuneThresholds derives terminal sample size from total-minus-non-terminal for legacy metrics', () => {
+    const evaluation = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.1 }],
+        [
+            { recommendationId: 'r1', status: 'failed' },
+            { recommendationId: 'r1', status: 'failed' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'awaiting_approval' }
+        ]
+    );
+
+    const legacyEvaluation = {
+        ...evaluation,
+        metrics: {
+            ...evaluation.metrics
+        }
+    } as unknown as EvaluatorResult;
+
+    delete (legacyEvaluation.metrics as unknown as { terminalOutcomes?: number }).terminalOutcomes;
+
+    const tuned = tuneThresholds(legacyEvaluation);
+
+    assert.equal(tuned.changes.length, 0);
+    assert.equal(tuned.thresholds.confidenceFloor, DEFAULT_THRESHOLDS.confidenceFloor);
+    assert.equal(tuned.thresholds.promotionSuccessRate, DEFAULT_THRESHOLDS.promotionSuccessRate);
 });

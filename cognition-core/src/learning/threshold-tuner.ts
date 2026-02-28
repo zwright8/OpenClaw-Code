@@ -48,6 +48,29 @@ function minimumCalibrationSampleSize(minSampleSize: number): number {
     return clamp(Math.ceil(normalized / 2), 3, 10);
 }
 
+function asNonNegativeCount(value: unknown, fallback = 0): number {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) {
+        return Math.max(0, Math.round(fallback));
+    }
+    return Math.max(0, Math.round(numeric));
+}
+
+function resolveTerminalOutcomeCount(metrics: EvaluatorResult['metrics']): number {
+    const terminalOutcomes = (metrics as { terminalOutcomes?: unknown }).terminalOutcomes;
+    if (terminalOutcomes !== undefined && terminalOutcomes !== null) {
+        return asNonNegativeCount(terminalOutcomes, 0);
+    }
+
+    // Legacy compatibility: if terminalOutcomes is absent, derive it from total - nonTerminal.
+    const totalOutcomes = asNonNegativeCount(metrics.totalOutcomes, 0);
+    const nonTerminalOutcomes = asNonNegativeCount(
+        (metrics as { nonTerminalOutcomes?: unknown }).nonTerminalOutcomes,
+        0
+    );
+    return Math.max(0, totalOutcomes - nonTerminalOutcomes);
+}
+
 function withChange(
     result: ThresholdTuningResult,
     field: keyof EvaluationThresholds,
@@ -80,19 +103,17 @@ export function tuneThresholds(
     };
 
     const { metrics } = evaluation;
-    const mappedOutcomes = Number.isFinite(metrics.mappedOutcomes)
-        ? Math.max(0, Math.round(metrics.mappedOutcomes))
-        : 0;
-    const minimumCalibrationSamples = minimumCalibrationSampleSize(result.thresholds.minSampleSize);
-    const hasCalibrationEvidence = mappedOutcomes >= minimumCalibrationSamples;
-
-    const effectiveOutcomeCount = Number.isFinite((metrics as { terminalOutcomes?: number }).terminalOutcomes)
-        ? Math.max(0, Math.round((metrics as { terminalOutcomes?: number }).terminalOutcomes ?? 0))
-        : metrics.totalOutcomes;
-
-    if (effectiveOutcomeCount < result.thresholds.minSampleSize) {
+    const terminalOutcomes = resolveTerminalOutcomeCount(metrics);
+    if (terminalOutcomes < result.thresholds.minSampleSize) {
         return result;
     }
+
+    const mappedOutcomes = Math.min(
+        terminalOutcomes,
+        asNonNegativeCount(metrics.mappedOutcomes, 0)
+    );
+    const minimumCalibrationSamples = minimumCalibrationSampleSize(result.thresholds.minSampleSize);
+    const hasCalibrationEvidence = mappedOutcomes >= minimumCalibrationSamples;
 
     const calibrationWithinBounds =
         hasCalibrationEvidence &&
