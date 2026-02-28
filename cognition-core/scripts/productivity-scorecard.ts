@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { buildRemediationTasks } from '../src/remediation-task-planner.js';
 
 type OverallStatus = 'strong' | 'improving' | 'needs_attention';
 type Priority = 'P1' | 'P2' | 'P3';
@@ -43,10 +45,33 @@ interface ThresholdBreach {
 }
 
 interface RemediationItem {
+  metric: BenchmarkMetricName;
   priority: Priority;
   title: string;
   rationale: string;
   action: string;
+}
+
+interface RemediationTaskArtifact {
+  taskId: string;
+  metric: BenchmarkMetricName;
+  priority: Priority;
+  threshold: number;
+  actual: number;
+  gap: number;
+  target: string;
+  swarmPriority: string;
+  task: string;
+  title: string;
+  action: string;
+}
+
+interface RemediationTaskPlanArtifact {
+  generatedAt: string;
+  sourceReport: string;
+  count: number;
+  tasks: unknown[];
+  artifacts: RemediationTaskArtifact[];
 }
 
 interface Scorecard {
@@ -74,6 +99,7 @@ interface Scorecard {
   thresholdChecks: Record<BenchmarkMetricName, ThresholdCheck>;
   thresholdBreaches: ThresholdBreach[];
   remediationPlan: RemediationItem[];
+  remediationTaskArtifacts: RemediationTaskArtifact[];
   artifactPaths: Record<string, string>;
 }
 
@@ -86,6 +112,15 @@ const BENCHMARK_THRESHOLDS: Record<BenchmarkMetricName, { comparison: ThresholdC
   cognitionSuccessRate: { comparison: 'gte', threshold: 60, unit: 'percent' },
   swarmSimSuccessRate: { comparison: 'gte', threshold: 75, unit: 'percent' },
   skillUtilityComposite: { comparison: 'gte', threshold: 80, unit: 'percent' }
+};
+
+const METRIC_PRECISION: Record<BenchmarkMetricName, number> = {
+  productivityIndex: 2,
+  cycleTimeSec: 3,
+  automationCoverage: 2,
+  cognitionSuccessRate: 2,
+  swarmSimSuccessRate: 2,
+  skillUtilityComposite: 2
 };
 
 function readJsonIfExists(filePath: string): JsonObject | null {
@@ -122,6 +157,42 @@ function toPct(v: number): number {
 
 function toSignedPct(v: number): number {
   return round(v * 100, 2);
+}
+
+function deterministicUuid(seed: string): string {
+  const hex = createHash('sha256').update(seed).digest('hex');
+  const variantByte = ((parseInt(hex.slice(16, 18), 16) & 0x3f) | 0x80).toString(16).padStart(2, '0');
+
+  return [
+    hex.slice(0, 8),
+    hex.slice(8, 12),
+    `5${hex.slice(13, 16)}`,
+    `${variantByte}${hex.slice(18, 20)}`,
+    hex.slice(20, 32)
+  ].join('-');
+}
+
+export function buildDeterministicBenchmarkDeltas(
+  actuals: Record<BenchmarkMetricName, number>
+): Record<BenchmarkMetricName, BenchmarkDelta> {
+  const entries = (Object.keys(BENCHMARK_THRESHOLDS) as BenchmarkMetricName[]).map((metric) => {
+    const config = BENCHMARK_THRESHOLDS[metric];
+    const digits = METRIC_PRECISION[metric];
+    const before = round(config.threshold, digits);
+    const after = round(actuals[metric], digits);
+    const deltaRaw = config.comparison === 'gte' ? after - before : before - after;
+
+    return [
+      metric,
+      {
+        before,
+        after,
+        delta: round(deltaRaw, digits)
+      }
+    ] as const;
+  });
+
+  return Object.fromEntries(entries) as Record<BenchmarkMetricName, BenchmarkDelta>;
 }
 
 function getRemediationTemplate(metric: BenchmarkMetricName): { title: string; action: string } {
@@ -179,15 +250,16 @@ function makeThresholdCheck(
   actual: number
 ): { check: ThresholdCheck; breach: ThresholdBreach | null } {
   const config = BENCHMARK_THRESHOLDS[metric];
+  const digits = METRIC_PRECISION[metric];
   const distance = config.comparison === 'gte'
-    ? round(actual - config.threshold, 3)
-    : round(config.threshold - actual, 3);
+    ? round(actual - config.threshold, digits)
+    : round(config.threshold - actual, digits);
   const breached = distance < 0;
 
   const check: ThresholdCheck = {
     comparison: config.comparison,
     threshold: config.threshold,
-    actual: round(actual, 3),
+    actual: round(actual, digits),
     distance,
     breached,
     unit: config.unit
@@ -197,7 +269,7 @@ function makeThresholdCheck(
     return { check, breach: null };
   }
 
-  const gap = round(Math.abs(distance), 3);
+  const gap = round(Math.abs(distance), digits);
   const template = getRemediationTemplate(metric);
 
   return {
@@ -206,13 +278,65 @@ function makeThresholdCheck(
       metric,
       comparison: config.comparison,
       threshold: config.threshold,
-      actual: round(actual, 3),
+      actual: round(actual, digits),
       gap,
       priority: breachPriority(metric, gap),
       title: template.title,
-      rationale: `${metric} is outside benchmark (${config.comparison} ${config.threshold}); observed ${round(actual, 3)}.`,
+      rationale: `${metric} is outside benchmark (${config.comparison} ${config.threshold}); observed ${round(actual, digits)}.`,
       action: template.action
     }
+  };
+}
+
+export function buildRemediationTaskPlanArtifact(
+  remediationPlan: RemediationItem[],
+  thresholdBreaches: ThresholdBreach[],
+  sourceReport: string,
+  generatedAt: string
+): RemediationTaskPlanArtifact {
+  const seedTime = parseIsoMs(generatedAt) ?? Date.now();
+  const sourceSeed = `${sourceReport}|${generatedAt}`;
+
+  const tasks = buildRemediationTasks(remediationPlan, {
+    fromAgentId: 'agent:main',
+    sourceReport,
+    targetMap: {
+      P1: 'agent:ops:critical',
+      P2: 'agent:ops',
+      P3: 'agent:backlog'
+    },
+    defaultTarget: 'agent:ops',
+    maxItems: remediationPlan.length,
+    nowFactory: () => seedTime,
+    idFactory: (index: number, item: { priority: string; title: string; action: string }) =>
+      deterministicUuid(`${sourceSeed}|${index}|${item.priority}|${item.title}|${item.action}`)
+  }) as unknown[];
+
+  const artifacts = remediationPlan.map((item, index) => {
+    const breach = thresholdBreaches[index] ?? thresholdBreaches.find((candidate) => candidate.metric === item.metric);
+    const task = (tasks[index] ?? {}) as Record<string, unknown>;
+
+    return {
+      taskId: String(task.id ?? deterministicUuid(`${sourceSeed}|fallback|${index}|${item.metric}`)),
+      metric: item.metric,
+      priority: item.priority,
+      threshold: breach?.threshold ?? NaN,
+      actual: breach?.actual ?? NaN,
+      gap: breach?.gap ?? NaN,
+      target: String(task.target ?? ''),
+      swarmPriority: String(task.priority ?? ''),
+      task: String(task.task ?? ''),
+      title: item.title,
+      action: item.action
+    };
+  });
+
+  return {
+    generatedAt,
+    sourceReport,
+    count: tasks.length,
+    tasks,
+    artifacts
   };
 }
 
@@ -226,10 +350,10 @@ function makeMarkdown(scorecard: Scorecard): string {
       .join('\n')
     : '- None';
 
-  return `# Productivity Scorecard\n\nGenerated: ${scorecard.generatedAt}\n\n## Summary\n- Overall: **${scorecard.summary.overall}**\n- Productivity Index: **${scorecard.summary.productivityIndex.toFixed(1)} / 100**\n- Message: ${scorecard.summary.keyMessage}\n\n## Core Metrics\n- Cycle Time (cognition run): **${m.cycleTimeSec.toFixed(2)}s**\n- Automation Coverage (packaged+blocked over planned tasks): **${m.automationCoverage.toFixed(2)}%**\n- Dispatch Count: **${m.dispatchCount}**\n- Blocked Approvals: **${m.blockedApprovals}**\n- Cognition Outcome Success Rate: **${m.cognitionSuccessRate.toFixed(2)}%**\n- Swarm Simulation Success Rate: **${m.swarmSimSuccessRate.toFixed(2)}%**\n- Skill Utility Composite: **${m.skillUtilityComposite.toFixed(2)}%**\n\n## Improvement Deltas\n- Skill Utility Delta: **${d.skillUtilityDelta.toFixed(2)}%**\n- Estimated Operator Step Reduction: **${d.stepReductionEstimate.toFixed(2)}%**\n\n## Deterministic Benchmark Deltas (Before → After)\n- Productivity Index: **${b.productivityIndex.before.toFixed(2)} → ${b.productivityIndex.after.toFixed(2)}** (Δ ${b.productivityIndex.delta.toFixed(2)})\n- Cycle Time (s): **${b.cycleTimeSec.before.toFixed(3)} → ${b.cycleTimeSec.after.toFixed(3)}** (Δ ${b.cycleTimeSec.delta.toFixed(3)})\n- Automation Coverage (%): **${b.automationCoverage.before.toFixed(2)} → ${b.automationCoverage.after.toFixed(2)}** (Δ ${b.automationCoverage.delta.toFixed(2)})\n- Cognition Success Rate (%): **${b.cognitionSuccessRate.before.toFixed(2)} → ${b.cognitionSuccessRate.after.toFixed(2)}** (Δ ${b.cognitionSuccessRate.delta.toFixed(2)})\n- Swarm Sim Success Rate (%): **${b.swarmSimSuccessRate.before.toFixed(2)} → ${b.swarmSimSuccessRate.after.toFixed(2)}** (Δ ${b.swarmSimSuccessRate.delta.toFixed(2)})\n- Skill Utility Composite (%): **${b.skillUtilityComposite.before.toFixed(2)} → ${b.skillUtilityComposite.after.toFixed(2)}** (Δ ${b.skillUtilityComposite.delta.toFixed(2)})\n\n## Threshold Breaches\n${breachLines}\n\n## Artifacts\n- Run manifest: \`${scorecard.artifactPaths.runManifest}\`\n- Dispatch report: \`${scorecard.artifactPaths.dispatchReport}\`\n- Cognition daily: \`${scorecard.artifactPaths.cognitionDaily}\`\n- Swarm benchmark: \`${scorecard.artifactPaths.swarmBenchmark}\`\n- Skill utility scorecard: \`${scorecard.artifactPaths.skillUtility}\`\n`;
+  return `# Productivity Scorecard\n\nGenerated: ${scorecard.generatedAt}\n\n## Summary\n- Overall: **${scorecard.summary.overall}**\n- Productivity Index: **${scorecard.summary.productivityIndex.toFixed(1)} / 100**\n- Message: ${scorecard.summary.keyMessage}\n\n## Core Metrics\n- Cycle Time (cognition run): **${m.cycleTimeSec.toFixed(2)}s**\n- Automation Coverage (packaged+blocked over planned tasks): **${m.automationCoverage.toFixed(2)}%**\n- Dispatch Count: **${m.dispatchCount}**\n- Blocked Approvals: **${m.blockedApprovals}**\n- Cognition Outcome Success Rate: **${m.cognitionSuccessRate.toFixed(2)}%**\n- Swarm Simulation Success Rate: **${m.swarmSimSuccessRate.toFixed(2)}%**\n- Skill Utility Composite: **${m.skillUtilityComposite.toFixed(2)}%**\n\n## Improvement Deltas\n- Skill Utility Delta: **${d.skillUtilityDelta.toFixed(2)}%**\n- Estimated Operator Step Reduction: **${d.stepReductionEstimate.toFixed(2)}%**\n\n## Deterministic Benchmark Deltas (Benchmark Threshold → Observed)\n- Productivity Index: **${b.productivityIndex.before.toFixed(2)} → ${b.productivityIndex.after.toFixed(2)}** (Δ ${b.productivityIndex.delta.toFixed(2)})\n- Cycle Time (s): **${b.cycleTimeSec.before.toFixed(3)} → ${b.cycleTimeSec.after.toFixed(3)}** (Δ ${b.cycleTimeSec.delta.toFixed(3)})\n- Automation Coverage (%): **${b.automationCoverage.before.toFixed(2)} → ${b.automationCoverage.after.toFixed(2)}** (Δ ${b.automationCoverage.delta.toFixed(2)})\n- Cognition Success Rate (%): **${b.cognitionSuccessRate.before.toFixed(2)} → ${b.cognitionSuccessRate.after.toFixed(2)}** (Δ ${b.cognitionSuccessRate.delta.toFixed(2)})\n- Swarm Sim Success Rate (%): **${b.swarmSimSuccessRate.before.toFixed(2)} → ${b.swarmSimSuccessRate.after.toFixed(2)}** (Δ ${b.swarmSimSuccessRate.delta.toFixed(2)})\n- Skill Utility Composite (%): **${b.skillUtilityComposite.before.toFixed(2)} → ${b.skillUtilityComposite.after.toFixed(2)}** (Δ ${b.skillUtilityComposite.delta.toFixed(2)})\n\n> Delta is comparator-aware: positive means better vs benchmark (\`gte\`: above threshold, \`lte\`: below threshold).\n\n## Threshold Breaches\n${breachLines}\n\n## Artifacts\n- Run manifest: \`${scorecard.artifactPaths.runManifest}\`\n- Dispatch report: \`${scorecard.artifactPaths.dispatchReport}\`\n- Cognition daily: \`${scorecard.artifactPaths.cognitionDaily}\`\n- Swarm benchmark: \`${scorecard.artifactPaths.swarmBenchmark}\`\n- Skill utility scorecard: \`${scorecard.artifactPaths.skillUtility}\`\n- Remediation task plan: \`${scorecard.artifactPaths.remediationTaskPlan}\`\n`;
 }
 
-(async () => {
+export async function generateProductivityScorecard(): Promise<Scorecard> {
   const scriptDir = path.dirname(fileURLToPath(import.meta.url));
   const repoRoot = path.resolve(scriptDir, '../..');
 
@@ -240,8 +364,7 @@ function makeMarkdown(scorecard: Scorecard): string {
   const skillUtilityPath = path.join(repoRoot, 'skills/state/skills-utility-scorecard.json');
   const outJsonLatest = path.join(repoRoot, 'cognition-core/reports/productivity-scorecard.latest.json');
   const outMdLatest = path.join(repoRoot, 'cognition-core/reports/productivity-scorecard.latest.md');
-
-  const previousScorecard = readJsonIfExists(outJsonLatest);
+  const outRemediationLatest = path.join(repoRoot, 'cognition-core/reports/remediation-tasks.latest.json');
 
   const runManifest = readJsonIfExists(runManifestPath);
   const dispatchReport = readJsonIfExists(dispatchReportPath);
@@ -308,41 +431,14 @@ function makeMarkdown(scorecard: Scorecard): string {
     skillUtilityComposite: toPct(postComposite)
   };
 
-  const previousSummary = (previousScorecard?.summary as JsonObject | undefined) ?? {};
-  const previousMetrics = (previousScorecard?.metrics as JsonObject | undefined) ?? {};
-
-  const benchmarkDeltas: Record<BenchmarkMetricName, BenchmarkDelta> = {
-    productivityIndex: {
-      before: round(num(previousSummary.productivityIndex, round(productivityIndex, 2)), 2),
-      after: round(productivityIndex, 2),
-      delta: round(round(productivityIndex, 2) - num(previousSummary.productivityIndex, round(productivityIndex, 2)), 2)
-    },
-    cycleTimeSec: {
-      before: round(num(previousMetrics.cycleTimeSec, metrics.cycleTimeSec), 3),
-      after: metrics.cycleTimeSec,
-      delta: round(metrics.cycleTimeSec - num(previousMetrics.cycleTimeSec, metrics.cycleTimeSec), 3)
-    },
-    automationCoverage: {
-      before: round(num(previousMetrics.automationCoverage, metrics.automationCoverage), 2),
-      after: metrics.automationCoverage,
-      delta: round(metrics.automationCoverage - num(previousMetrics.automationCoverage, metrics.automationCoverage), 2)
-    },
-    cognitionSuccessRate: {
-      before: round(num(previousMetrics.cognitionSuccessRate, metrics.cognitionSuccessRate), 2),
-      after: metrics.cognitionSuccessRate,
-      delta: round(metrics.cognitionSuccessRate - num(previousMetrics.cognitionSuccessRate, metrics.cognitionSuccessRate), 2)
-    },
-    swarmSimSuccessRate: {
-      before: round(num(previousMetrics.swarmSimSuccessRate, metrics.swarmSimSuccessRate), 2),
-      after: metrics.swarmSimSuccessRate,
-      delta: round(metrics.swarmSimSuccessRate - num(previousMetrics.swarmSimSuccessRate, metrics.swarmSimSuccessRate), 2)
-    },
-    skillUtilityComposite: {
-      before: round(num(previousMetrics.skillUtilityComposite, metrics.skillUtilityComposite), 2),
-      after: metrics.skillUtilityComposite,
-      delta: round(metrics.skillUtilityComposite - num(previousMetrics.skillUtilityComposite, metrics.skillUtilityComposite), 2)
-    }
-  };
+  const benchmarkDeltas = buildDeterministicBenchmarkDeltas({
+    productivityIndex: round(productivityIndex, 2),
+    cycleTimeSec: metrics.cycleTimeSec,
+    automationCoverage: metrics.automationCoverage,
+    cognitionSuccessRate: metrics.cognitionSuccessRate,
+    swarmSimSuccessRate: metrics.swarmSimSuccessRate,
+    skillUtilityComposite: metrics.skillUtilityComposite
+  });
 
   const thresholdChecks = {
     productivityIndex: makeThresholdCheck('productivityIndex', round(productivityIndex, 2)),
@@ -357,15 +453,17 @@ function makeMarkdown(scorecard: Scorecard): string {
     .map((item) => item.breach)
     .filter((item): item is ThresholdBreach => item !== null);
 
-  const remediationPlan = thresholdBreaches.map((breach) => ({
+  const remediationPlan: RemediationItem[] = thresholdBreaches.map((breach) => ({
+    metric: breach.metric,
     priority: breach.priority,
     title: breach.title,
     rationale: breach.rationale,
     action: breach.action
   }));
 
+  const generatedAt = new Date().toISOString();
   const scorecard: Scorecard = {
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     summary: {
       overall,
       productivityIndex: round(productivityIndex, 2),
@@ -395,25 +493,54 @@ function makeMarkdown(scorecard: Scorecard): string {
     },
     thresholdBreaches,
     remediationPlan,
+    remediationTaskArtifacts: [],
     artifactPaths: {
       runManifest: runManifestPath,
       dispatchReport: dispatchReportPath,
       cognitionDaily: cognitionDailyPath,
       swarmBenchmark: swarmBenchmarkPath,
-      skillUtility: skillUtilityPath
+      skillUtility: skillUtilityPath,
+      remediationTaskPlan: outRemediationLatest
     }
   };
 
-  const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const remediationTaskPlan = buildRemediationTaskPlanArtifact(
+    remediationPlan,
+    thresholdBreaches,
+    outJsonLatest,
+    generatedAt
+  );
+  scorecard.remediationTaskArtifacts = remediationTaskPlan.artifacts;
+
+  const stamp = generatedAt.replace(/[:.]/g, '-');
   const outJsonStamped = path.join(repoRoot, `cognition-core/reports/productivity-scorecard-${stamp}.json`);
+  const outRemediationStamped = path.join(repoRoot, `cognition-core/reports/remediation-tasks-${stamp}.json`);
 
   fs.mkdirSync(path.dirname(outJsonLatest), { recursive: true });
   fs.writeFileSync(outJsonLatest, JSON.stringify(scorecard, null, 2));
   fs.writeFileSync(outJsonStamped, JSON.stringify(scorecard, null, 2));
   fs.writeFileSync(outMdLatest, makeMarkdown(scorecard));
+  fs.writeFileSync(outRemediationLatest, JSON.stringify(remediationTaskPlan, null, 2));
+  fs.writeFileSync(outRemediationStamped, JSON.stringify(remediationTaskPlan, null, 2));
 
   console.log(`[productivity-scorecard] ${scorecard.summary.overall} index=${scorecard.summary.productivityIndex.toFixed(2)} generated`);
   console.log(`[productivity-scorecard] breaches=${scorecard.thresholdBreaches.length} remediation=${scorecard.remediationPlan.length}`);
   console.log(`[productivity-scorecard] json=${outJsonLatest}`);
   console.log(`[productivity-scorecard] md=${outMdLatest}`);
+  console.log(`[productivity-scorecard] remediation=${outRemediationLatest}`);
+
+  return scorecard;
+}
+
+const isMain = (() => {
+  if (!process.argv[1]) return false;
+  return path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 })();
+
+if (isMain) {
+  generateProductivityScorecard().catch((error: unknown) => {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[productivity-scorecard] failed: ${message}`);
+    process.exit(1);
+  });
+}

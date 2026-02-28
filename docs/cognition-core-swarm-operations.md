@@ -38,6 +38,9 @@ Run manifest:
 - Evaluation state: `skills/state/cognition-evaluation.json`
 - Daily report: `cognition-core/reports/cognition-daily.json`
 - Swarm journal: `swarm-protocol/state/tasks.journal.jsonl`
+- Productivity scorecard JSON: `cognition-core/reports/productivity-scorecard.latest.json`
+- Productivity scorecard Markdown: `cognition-core/reports/productivity-scorecard.latest.md`
+- Remediation task plan artifact: `cognition-core/reports/remediation-tasks.latest.json`
 
 ## Approval gate handling
 
@@ -81,6 +84,29 @@ Machine-readable mode:
 ```bash
 npm --prefix cognition-core run status -- --json
 ```
+
+## Scorecard closure + remediation automation
+
+Run scorecard generation (this now also emits a remediation task plan artifact):
+
+```bash
+npm --prefix cognition-core run scorecard
+```
+
+Optional explicit regeneration of remediation tasks from the latest scorecard:
+
+```bash
+npm --prefix cognition-core run plan:tasks -- --report reports/productivity-scorecard.latest.json --out reports/remediation-tasks.latest.json
+```
+
+Interpretation guide:
+
+- `deltas.benchmarkDeltas.<metric>.before` = fixed benchmark threshold (deterministic baseline).
+- `deltas.benchmarkDeltas.<metric>.after` = current observed metric from the latest artifacts.
+- `deltas.benchmarkDeltas.<metric>.delta` = comparator-aware delta (`gte`: `after - before`, `lte`: `before - after`).
+  - Positive is better than benchmark, zero is at benchmark, negative is below benchmark.
+- `thresholdBreaches[]` is the canonical breach list for remediation routing.
+- `remediationTaskArtifacts[]` and `remediation-tasks.latest.json` map each breach to an explicit generated swarm task (`taskId`, `target`, `priority`).
 
 ## Troubleshooting
 
