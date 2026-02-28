@@ -117,3 +117,143 @@ test('filters stale heartbeats based on max staleness', () => {
     assert.equal(staleEntry.eligible, false);
     assert.equal(staleEntry.reason, 'stale_heartbeat');
 });
+
+test('applies benchmark-aware weighting when base routing signals are tied', () => {
+    const task = buildTaskRequest({
+        id: '44444444-4444-4444-8444-444444444444',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Summarize benchmark regressions',
+        priority: 'normal',
+        createdAt: 40_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:slow-risky',
+            status: 'idle',
+            load: 0.3,
+            capabilities: ['analysis'],
+            timestamp: 40_000,
+            benchmark: {
+                samples: 80,
+                successRate: 0.66,
+                timeoutRate: 0.24,
+                failureRate: 0.2,
+                avgLatencyMs: 470,
+                p95LatencyMs: 860
+            }
+        },
+        {
+            id: 'agent:fast-reliable',
+            status: 'idle',
+            load: 0.3,
+            capabilities: ['analysis'],
+            timestamp: 40_000,
+            benchmark: {
+                samples: 80,
+                successRate: 0.95,
+                timeoutRate: 0.03,
+                failureRate: 0.02,
+                avgLatencyMs: 130,
+                p95LatencyMs: 240
+            }
+        }
+    ];
+
+    const ranked = rankAgentsForTask(task, agents, { nowMs: 40_010 });
+    assert.equal(ranked[0].agentId, 'agent:fast-reliable');
+    assert.ok(ranked[0].benchmarkAdjustment > ranked[1].benchmarkAdjustment);
+
+    const selected = selectBestAgentForTask(task, agents, { nowMs: 40_010 });
+    assert.equal(selected.selectedAgentId, 'agent:fast-reliable');
+});
+
+test('uses deterministic tie-breakers when scores are equal', () => {
+    const task = buildTaskRequest({
+        id: '55555555-5555-4555-8555-555555555555',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Resolve deterministic ordering',
+        priority: 'normal',
+        createdAt: 50_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:zeta',
+            status: 'idle',
+            load: 0.4,
+            capabilities: ['analysis'],
+            timestamp: 50_000
+        },
+        {
+            id: 'agent:alpha',
+            status: 'idle',
+            load: 0.4,
+            capabilities: ['analysis'],
+            timestamp: 50_000
+        }
+    ];
+
+    const ranked = rankAgentsForTask(task, agents, { nowMs: 50_000 });
+    assert.deepEqual(ranked.map((entry) => entry.agentId), ['agent:alpha', 'agent:zeta']);
+
+    const selected = selectBestAgentForTask(task, agents, { nowMs: 50_000 });
+    assert.equal(selected.selectedAgentId, 'agent:alpha');
+});
+
+test('hardens invalid and future heartbeat handling while keeping missing-heartbeat agents eligible', () => {
+    const task = buildTaskRequest({
+        id: '66666666-6666-4666-8666-666666666666',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Evaluate heartbeat hygiene',
+        priority: 'normal',
+        createdAt: 60_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:missing-heartbeat',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['analysis']
+        },
+        {
+            id: 'agent:future-heartbeat',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['analysis'],
+            timestamp: 120_000
+        },
+        {
+            id: 'agent:invalid-heartbeat',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['analysis'],
+            timestamp: 'not-a-number'
+        }
+    ];
+
+    const ranked = rankAgentsForTask(task, agents, {
+        nowMs: 60_000,
+        maxFutureSkewMs: 2_000
+    });
+
+    const missing = ranked.find((entry) => entry.agentId === 'agent:missing-heartbeat');
+    const future = ranked.find((entry) => entry.agentId === 'agent:future-heartbeat');
+    const invalid = ranked.find((entry) => entry.agentId === 'agent:invalid-heartbeat');
+
+    assert.equal(missing.eligible, true);
+    assert.equal(future.eligible, false);
+    assert.equal(future.reason, 'invalid_heartbeat');
+    assert.equal(invalid.eligible, false);
+    assert.equal(invalid.reason, 'invalid_heartbeat');
+
+    const selected = selectBestAgentForTask(task, agents, {
+        nowMs: 60_000,
+        maxFutureSkewMs: 2_000
+    });
+    assert.equal(selected.selectedAgentId, 'agent:missing-heartbeat');
+});
