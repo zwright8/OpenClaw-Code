@@ -203,6 +203,85 @@ test('uses deterministic tie-breakers when scores are equal', () => {
     assert.equal(selected.selectedAgentId, 'agent:alpha');
 });
 
+test('applies a score penalty for older but still-eligible heartbeats', () => {
+    const task = buildTaskRequest({
+        id: '77777777-7777-4777-8777-777777777777',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Prioritize freshest worker',
+        priority: 'normal',
+        createdAt: 70_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:fresher',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['analysis'],
+            timestamp: 69_950
+        },
+        {
+            id: 'agent:older',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['analysis'],
+            timestamp: 69_000
+        }
+    ];
+
+    const ranked = rankAgentsForTask(task, agents, {
+        nowMs: 70_000,
+        maxStalenessMs: 2_000
+    });
+
+    assert.equal(ranked[0].agentId, 'agent:fresher');
+    assert.ok(ranked[0].stalenessPenalty < ranked[1].stalenessPenalty);
+    assert.ok(ranked[0].score > ranked[1].score);
+});
+
+test('penalizes load and failure history when choosing between otherwise-compatible agents', () => {
+    const task = buildTaskRequest({
+        id: '88888888-8888-4888-8888-888888888888',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Choose resilient low-load analyst',
+        priority: 'high',
+        createdAt: 80_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:heavy-risky',
+            status: 'idle',
+            load: 0.85,
+            capabilities: ['analysis'],
+            timestamp: 80_000,
+            failureRate: 0.4,
+            timeoutRate: 0.3,
+            successRate: 0.55
+        },
+        {
+            id: 'agent:light-reliable',
+            status: 'idle',
+            load: 0.15,
+            capabilities: ['analysis'],
+            timestamp: 80_000,
+            failureRate: 0.03,
+            timeoutRate: 0.02,
+            successRate: 0.96
+        }
+    ];
+
+    const ranked = rankAgentsForTask(task, agents, { nowMs: 80_020 });
+    assert.equal(ranked[0].agentId, 'agent:light-reliable');
+    assert.ok(ranked[0].loadPenalty < ranked[1].loadPenalty);
+    assert.ok(ranked[0].reliabilityPenalty < ranked[1].reliabilityPenalty);
+
+    const selected = selectBestAgentForTask(task, agents, { nowMs: 80_020 });
+    assert.equal(selected.selectedAgentId, 'agent:light-reliable');
+});
+
 test('hardens invalid and future heartbeat handling while keeping missing-heartbeat agents eligible', () => {
     const task = buildTaskRequest({
         id: '66666666-6666-4666-8666-666666666666',

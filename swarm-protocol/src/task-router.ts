@@ -18,6 +18,11 @@ const DEFAULT_BENCHMARK_WEIGHTS = Object.freeze({
     avgLatencyMs: 10,
     p95LatencyMs: 6
 });
+const DEFAULT_LOAD_PENALTY_WEIGHT = 60;
+const DEFAULT_STALENESS_PENALTY_WEIGHT = 10;
+const DEFAULT_MISSING_HEARTBEAT_PENALTY = 6;
+const DEFAULT_FAILURE_PENALTY_WEIGHT = 18;
+const DEFAULT_TIMEOUT_PENALTY_WEIGHT = 12;
 
 function safeNumber(value, fallback = null) {
     const parsed = Number(value);
@@ -46,6 +51,17 @@ function resolvePositiveOption(value, fallback) {
     const parsed = Number(value);
     if (!Number.isFinite(parsed) || parsed <= 0) return fallback;
     return parsed;
+}
+
+function resolveNonNegativeOption(value, fallback) {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed) || parsed < 0) return fallback;
+    return parsed;
+}
+
+function compareText(a, b) {
+    if (a === b) return 0;
+    return a < b ? -1 : 1;
 }
 
 function normalizeBenchmarkThresholds(options) {
@@ -179,7 +195,15 @@ function resolveBenchmarkStats(agent, context) {
         agent?.benchmark,
         agent?.benchmarks,
         agent?.performance,
-        agent?.metrics
+        agent?.metrics,
+        {
+            samples: agent?.sampleSize ?? agent?.samples,
+            successRate: agent?.successRate,
+            timeoutRate: agent?.timeoutRate,
+            failureRate: agent?.failureRate,
+            avgLatencyMs: agent?.avgLatencyMs,
+            p95LatencyMs: agent?.p95LatencyMs
+        }
     ];
 
     for (const candidate of candidates) {
@@ -239,6 +263,22 @@ function scoreBenchmark(stats, context) {
         confidence,
         stats
     };
+}
+
+
+function scoreReliabilityPenalty(stats, context) {
+    if (!stats?.hasAny) {
+        return 0;
+    }
+
+    const failurePenalty = stats.failureRate === null
+        ? 0
+        : stats.failureRate * context.failurePenaltyWeight;
+    const timeoutPenalty = stats.timeoutRate === null
+        ? 0
+        : stats.timeoutRate * context.timeoutPenaltyWeight;
+
+    return Number((failurePenalty + timeoutPenalty).toFixed(4));
 }
 
 function evaluateHeartbeat(agent, context) {
@@ -364,7 +404,8 @@ function scoreAgent(taskRequest, agent, context) {
     const priority = taskRequest.priority || 'normal';
     let score = 100;
 
-    score -= load * 60;
+    const loadPenalty = Number((load * context.loadPenaltyWeight).toFixed(4));
+    score -= loadPenalty;
 
     if (status === 'idle') score += 15;
     if (status === 'busy') score -= 5;
@@ -381,11 +422,18 @@ function scoreAgent(taskRequest, agent, context) {
         score -= 5;
     }
 
-    if (heartbeat.state === 'missing') {
-        score -= 6;
-    }
+    const stalenessPenalty = heartbeat.state === 'missing'
+        ? context.missingHeartbeatPenalty
+        : Number.isFinite(heartbeat.stalenessMs)
+            ? Number((clamp(heartbeat.stalenessMs / context.maxStalenessMs, 0, 1) * context.stalenessPenaltyWeight).toFixed(4))
+            : 0;
+    score -= stalenessPenalty;
 
-    const benchmark = scoreBenchmark(resolveBenchmarkStats(agent, context), context);
+    const benchmarkStats = resolveBenchmarkStats(agent, context);
+    const reliabilityPenalty = scoreReliabilityPenalty(benchmarkStats, context);
+    score -= reliabilityPenalty;
+
+    const benchmark = scoreBenchmark(benchmarkStats, context);
     score += benchmark.adjustment;
 
     return {
@@ -395,6 +443,9 @@ function scoreAgent(taskRequest, agent, context) {
         missingCapabilities: [],
         benchmarkConfidence: benchmark.confidence,
         benchmarkAdjustment: benchmark.adjustment,
+        loadPenalty,
+        stalenessPenalty,
+        reliabilityPenalty,
         heartbeatStalenessMs: heartbeat.stalenessMs
     };
 }
@@ -408,7 +459,12 @@ function buildScoringContext(options = {}) {
         maxFutureSkewMs: resolvePositiveOption(options.maxFutureSkewMs, DEFAULT_MAX_FUTURE_SKEW_MS),
         benchmarkThresholds: normalizeBenchmarkThresholds(options),
         benchmarkWeights: normalizeBenchmarkWeights(options),
-        minSamplesForFullConfidence: resolvePositiveOption(options.minSamplesForFullConfidence, 20)
+        minSamplesForFullConfidence: resolvePositiveOption(options.minSamplesForFullConfidence, 20),
+        loadPenaltyWeight: resolveNonNegativeOption(options.loadPenaltyWeight, DEFAULT_LOAD_PENALTY_WEIGHT),
+        stalenessPenaltyWeight: resolveNonNegativeOption(options.stalenessPenaltyWeight, DEFAULT_STALENESS_PENALTY_WEIGHT),
+        missingHeartbeatPenalty: resolveNonNegativeOption(options.missingHeartbeatPenalty, DEFAULT_MISSING_HEARTBEAT_PENALTY),
+        failurePenaltyWeight: resolveNonNegativeOption(options.failurePenaltyWeight, DEFAULT_FAILURE_PENALTY_WEIGHT),
+        timeoutPenaltyWeight: resolveNonNegativeOption(options.timeoutPenaltyWeight, DEFAULT_TIMEOUT_PENALTY_WEIGHT)
     };
 }
 
@@ -455,7 +511,7 @@ function compareRankedAgents(a, b) {
 
     const idA = typeof a.agentId === 'string' ? a.agentId : '';
     const idB = typeof b.agentId === 'string' ? b.agentId : '';
-    const idCompare = idA.localeCompare(idB);
+    const idCompare = compareText(idA, idB);
     if (idCompare !== 0) return idCompare;
 
     return (a._sortIndex || 0) - (b._sortIndex || 0);
