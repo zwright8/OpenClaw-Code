@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-28T05:53:35.220Z",
+  "generatedAt": "2026-02-28T08:50:25.944Z",
   "count": 4,
   "recommendations": [
     {
@@ -24,6 +24,25 @@
           "disable planner telemetry flag",
           "restore prior telemetry config"
         ]
+      },
+      "expectedSuccessProbability": 0.68,
+      "confidence": 0.63,
+      "verificationPlan": {
+        "checks": [
+          "threshold_check: sample_size >= 10",
+          "threshold_check: success_rate >= 0.7",
+          "threshold_check: brier_score <= 0.2",
+          "threshold_check: calibration_gap <= 0.2",
+          "threshold_check: confidence >= 0.6"
+        ],
+        "thresholdFeedbackChecks": {
+          "minSampleSize": 10,
+          "holdSuccessRate": 0.7,
+          "maxBrierScore": 0.2,
+          "maxCalibrationGap": 0.2,
+          "confidenceFloor": 0.6,
+          "evaluatedAt": "2026-02-28T08:50:24.723Z"
+        }
       }
     },
     {
@@ -50,9 +69,24 @@
       "verificationPlan": {
         "checks": [
           "high-risk task retains approval metadata in context",
-          "pending approvals are reported as blocked"
-        ]
-      }
+          "pending approvals are reported as blocked",
+          "threshold_check: sample_size >= 10",
+          "threshold_check: success_rate >= 0.7",
+          "threshold_check: brier_score <= 0.2",
+          "threshold_check: calibration_gap <= 0.2",
+          "threshold_check: confidence >= 0.6"
+        ],
+        "thresholdFeedbackChecks": {
+          "minSampleSize": 10,
+          "holdSuccessRate": 0.7,
+          "maxBrierScore": 0.2,
+          "maxCalibrationGap": 0.2,
+          "confidenceFloor": 0.6,
+          "evaluatedAt": "2026-02-28T08:50:24.724Z"
+        }
+      },
+      "expectedSuccessProbability": 0.53,
+      "confidence": 0.6
     },
     {
       "recommendationId": "rec-retry-circuit-breakers",
@@ -71,8 +105,21 @@
       "verificationPlan": {
         "checks": [
           "dispatch retries capped within policy window",
-          "circuit breaker opens under sustained errors"
-        ]
+          "circuit breaker opens under sustained errors",
+          "threshold_check: sample_size >= 10",
+          "threshold_check: success_rate >= 0.7",
+          "threshold_check: brier_score <= 0.2",
+          "threshold_check: calibration_gap <= 0.2",
+          "threshold_check: confidence >= 0.6"
+        ],
+        "thresholdFeedbackChecks": {
+          "minSampleSize": 10,
+          "holdSuccessRate": 0.7,
+          "maxBrierScore": 0.2,
+          "maxCalibrationGap": 0.2,
+          "confidenceFloor": 0.6,
+          "evaluatedAt": "2026-02-28T08:50:24.724Z"
+        }
       },
       "rollbackPlan": {
         "trigger": "dispatch throughput drops below baseline",
@@ -81,7 +128,9 @@
           "disable circuit-breaker policy override"
         ],
         "dataRecovery": "restore pre-change dispatch profile snapshot"
-      }
+      },
+      "expectedSuccessProbability": 0.56,
+      "confidence": 0.6
     },
     {
       "recommendationId": "rec-routing-optimizer",
@@ -100,7 +149,26 @@
       "successCriteria": [
         "packaged tasks include deterministic target routing",
         "owner-tagged tasks map to configured routing table"
-      ]
+      ],
+      "expectedSuccessProbability": 0.68,
+      "confidence": 0.63,
+      "verificationPlan": {
+        "checks": [
+          "threshold_check: sample_size >= 10",
+          "threshold_check: success_rate >= 0.7",
+          "threshold_check: brier_score <= 0.2",
+          "threshold_check: calibration_gap <= 0.2",
+          "threshold_check: confidence >= 0.6"
+        ],
+        "thresholdFeedbackChecks": {
+          "minSampleSize": 10,
+          "holdSuccessRate": 0.7,
+          "maxBrierScore": 0.2,
+          "maxCalibrationGap": 0.2,
+          "confidenceFloor": 0.6,
+          "evaluatedAt": "2026-02-28T08:50:24.724Z"
+        }
+      }
     }
   ]
 }

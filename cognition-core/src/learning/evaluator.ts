@@ -27,6 +27,8 @@ export interface ExecutionOutcome {
 
 export interface EvaluatorMetrics {
     totalOutcomes: number;
+    terminalOutcomes: number;
+    nonTerminalOutcomes: number;
     successfulOutcomes: number;
     failedOutcomes: number;
     successRate: number;
@@ -69,9 +71,23 @@ function toProbability(value: unknown, fallback = 0.5): number {
     return clamp(asFiniteNumber(value, fallback), 0, 1);
 }
 
-function outcomeToLabel(status: EvaluationStatus): number {
-    if (status === 'completed') return 1;
-    if (status === 'partial') return 0.5;
+const TERMINAL_OUTCOME_STATUSES = new Set<Lowercase<EvaluationStatus>>([
+    'completed',
+    'partial',
+    'failed',
+    'timed_out',
+    'rejected',
+    'transport_error'
+]);
+
+function outcomeToLabel(status: EvaluationStatus): number | null {
+    const normalized = String(status ?? '').trim().toLowerCase() as Lowercase<EvaluationStatus>;
+    if (!TERMINAL_OUTCOME_STATUSES.has(normalized)) {
+        return null;
+    }
+
+    if (normalized === 'completed') return 1;
+    if (normalized === 'partial') return 0.5;
     return 0;
 }
 
@@ -128,10 +144,18 @@ export function evaluateRecommendations(
     const mappedLabels: Array<{ prediction: number; actual: number }> = [];
     const attempts: number[] = [];
     const latencies: number[] = [];
+    let terminalOutcomeCount = 0;
+    let nonTerminalOutcomeCount = 0;
     let successCount = 0;
 
     for (const outcome of outcomes) {
         const actualLabel = outcomeToLabel(outcome.status);
+        if (actualLabel === null) {
+            nonTerminalOutcomeCount += 1;
+            continue;
+        }
+
+        terminalOutcomeCount += 1;
         if (actualLabel > 0) successCount++;
 
         attempts.push(Math.max(0, asFiniteNumber(outcome.attempts, 0)));
@@ -180,11 +204,13 @@ export function evaluateRecommendations(
 
     const metrics: EvaluatorMetrics = {
         totalOutcomes: outcomes.length,
+        terminalOutcomes: terminalOutcomeCount,
+        nonTerminalOutcomes: nonTerminalOutcomeCount,
         successfulOutcomes: successCount,
-        failedOutcomes: Math.max(0, outcomes.length - successCount),
-        successRate: outcomes.length > 0 ? round(successCount / outcomes.length) : 0,
+        failedOutcomes: Math.max(0, terminalOutcomeCount - successCount),
+        successRate: terminalOutcomeCount > 0 ? round(successCount / terminalOutcomeCount) : 0,
         mappedOutcomes: mappedLabels.length,
-        mappingRate: outcomes.length > 0 ? round(mappedLabels.length / outcomes.length) : 0,
+        mappingRate: terminalOutcomeCount > 0 ? round(mappedLabels.length / terminalOutcomeCount) : 0,
         averageAttempts: attempts.length > 0 ? round(mean(attempts), 2) : 0,
         averageLatencyMs: latencies.length > 0 ? round(mean(latencies), 2) : 0,
         meanPredictedSuccess: mappedLabels.length > 0 ? round(mean(mappedLabels.map((item) => item.prediction))) : null,

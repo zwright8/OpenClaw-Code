@@ -86,7 +86,11 @@ export function tuneThresholds(
     const minimumCalibrationSamples = minimumCalibrationSampleSize(result.thresholds.minSampleSize);
     const hasCalibrationEvidence = mappedOutcomes >= minimumCalibrationSamples;
 
-    if (metrics.totalOutcomes < result.thresholds.minSampleSize) {
+    const effectiveOutcomeCount = Number.isFinite((metrics as { terminalOutcomes?: number }).terminalOutcomes)
+        ? Math.max(0, Math.round((metrics as { terminalOutcomes?: number }).terminalOutcomes ?? 0))
+        : metrics.totalOutcomes;
+
+    if (effectiveOutcomeCount < result.thresholds.minSampleSize) {
         return result;
     }
 

@@ -41,31 +41,42 @@ function classify(
 
 export function buildScoreboard(loopResult: FeedbackLoopResult): Scoreboard {
     const metrics = loopResult.evaluation.metrics;
+    const terminalOutcomes = Number.isFinite((metrics as { terminalOutcomes?: number }).terminalOutcomes)
+        ? Math.max(0, Math.round((metrics as { terminalOutcomes?: number }).terminalOutcomes ?? 0))
+        : metrics.totalOutcomes;
 
     const rows: ScoreboardRow[] = [
         {
             metric: 'success_rate',
             label: 'Outcome success rate',
-            value: round(metrics.successRate),
+            value: terminalOutcomes > 0 ? round(metrics.successRate) : null,
             target: '>= 0.80',
-            status: classify(
-                metrics.successRate,
-                (value) => value >= 0.8,
-                (value) => value >= 0.7
-            ),
-            detail: `${metrics.successfulOutcomes}/${metrics.totalOutcomes} successful outcomes`
+            status: terminalOutcomes > 0
+                ? classify(
+                    metrics.successRate,
+                    (value) => value >= 0.8,
+                    (value) => value >= 0.7
+                )
+                : 'n/a',
+            detail: terminalOutcomes > 0
+                ? `${metrics.successfulOutcomes}/${terminalOutcomes} successful terminal outcomes`
+                : 'No terminal outcomes yet; awaiting execution completion/approval.'
         },
         {
             metric: 'mapping_rate',
             label: 'Recommendation coverage',
-            value: round(metrics.mappingRate),
+            value: terminalOutcomes > 0 ? round(metrics.mappingRate) : null,
             target: '>= 0.70',
-            status: classify(
-                metrics.mappingRate,
-                (value) => value >= 0.7,
-                (value) => value >= 0.5
-            ),
-            detail: `${metrics.mappedOutcomes}/${metrics.totalOutcomes} outcomes mapped to predictions`
+            status: terminalOutcomes > 0
+                ? classify(
+                    metrics.mappingRate,
+                    (value) => value >= 0.7,
+                    (value) => value >= 0.5
+                )
+                : 'n/a',
+            detail: terminalOutcomes > 0
+                ? `${metrics.mappedOutcomes}/${terminalOutcomes} terminal outcomes mapped to predictions`
+                : 'Coverage unavailable until terminal outcomes are recorded.'
         },
         {
             metric: 'brier_score',

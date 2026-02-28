@@ -38,9 +38,28 @@ test('evaluateRecommendations handles empty mappings safely', () => {
     const result = evaluateRecommendations([], [{ status: 'failed' }]);
 
     assert.equal(result.metrics.totalOutcomes, 1);
+    assert.equal(result.metrics.terminalOutcomes, 1);
+    assert.equal(result.metrics.nonTerminalOutcomes, 0);
     assert.equal(result.metrics.mappedOutcomes, 0);
     assert.equal(result.metrics.brierScore, null);
     assert.equal(result.metrics.calibrationGap, null);
+});
+
+test('evaluateRecommendations excludes awaiting approval outcomes from fail-rate math', () => {
+    const result = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.7 }],
+        [
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { recommendationId: 'r1', status: 'completed' }
+        ]
+    );
+
+    assert.equal(result.metrics.totalOutcomes, 2);
+    assert.equal(result.metrics.terminalOutcomes, 1);
+    assert.equal(result.metrics.nonTerminalOutcomes, 1);
+    assert.equal(result.metrics.successfulOutcomes, 1);
+    assert.equal(result.metrics.failedOutcomes, 0);
+    assert.equal(result.metrics.successRate, 1);
 });
 
 
