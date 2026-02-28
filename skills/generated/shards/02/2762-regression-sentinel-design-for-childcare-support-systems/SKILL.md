@@ -5,69 +5,123 @@ description: Operate the "regression sentinel design for childcare support syste
 
 # regression sentinel design for childcare support systems
 
-## Why This Skill Exists
-This skill hardens a generated capability for production execution so regression sentinel design for childcare support systems workflows remain deterministic, auditable, and fail-closed under risk.
+## Metadata
+```yaml
+skill_id: u2762
+skill_name: u2762-regression-sentinel-design-for-childcare-support-systems
+shard_lane: "02"
+operation: regression sentinel design
+domain: childcare support systems
+intent: "Run repeatable, policy-aware execution for this capability and hand off validated artifacts."
+```
 
-## When To Use
-Use this skill only when the request explicitly needs `regression sentinel design for childcare support systems` and a downstream consumer requires contract-bound artifacts.
+## Allowed Tools
+```yaml
+required:
+  - read
+  - write
+  - edit
+  - exec
+policy_note: "Use only tools allowed by the active runtime policy. If required access is missing, stop and escalate."
+```
 
-## Step-by-Step Implementation Guide
-1. Validate production trigger criteria: explicit capability request, approved source-tagged inputs, and named downstream consumer.
-2. Enforce deterministic normalization workflow with pinned mapping/ruleset versions and stable serialization order.
-3. Apply explicit determinism tolerance checks (score delta <= 0.005 absolute; identical input must produce zero artifact hash drift).
-4. Execute fail-closed validation gates (schema, determinism, policy-risk) and block output on any failure.
-5. Require explicit human sign-off token for high-risk runs before publication or downstream routing.
-6. Emit handoff envelope with artifact paths, gate results, risk tier, and approval state for the next stage.
+## Inputs (formatted)
+```yaml
+required:
+  mission_request:
+    type: string
+    description: "Clear request that explicitly maps to this capability."
+  source_signals:
+    type: array<object>
+    description: "Operational inputs with provenance and timestamps."
+  success_criteria:
+    type: array<string>
+    description: "Measurable acceptance criteria for this run."
+  downstream_consumer:
+    type: string
+    description: "Team, workflow, or system receiving the handoff package."
+optional:
+  evidence_refs:
+    type: array<string>
+  constraints:
+    type: array<string>
+  risk_level:
+    type: enum[low, medium, high]
+  approval_token:
+    type: string
+    required_when: "risk_level=high"
+```
 
-## Deterministic Workflow Constraints
-- Replay score variance: <= 0.005 absolute per item.
-- Artifact hash drift for identical replay: 0 allowed.
-- Time-dependent fields allowed only in metadata and excluded from scoring.
+## Outputs (formatted)
+```yaml
+required:
+  execution_summary:
+    type: object
+    includes: [scope, decisions, assumptions, run_timestamp]
+  artifact_bundle:
+    type: array<object>
+    description: "Primary artifacts produced by this capability run."
+  validation_report:
+    type: object
+    includes: [schema_gate, determinism_gate, policy_gate, status]
+  handoff_packet:
+    type: object
+    includes: [consumer, readiness, next_actions, owner]
+optional:
+  quarantine_report:
+    type: object
+    emitted_when: "any validation gate fails"
+```
 
-## Validation Gates
-1. **schema-gate** — all required fields present and schema-valid; otherwise block and return error bundle.
-2. **determinism-gate** — replay output within tolerance; otherwise quarantine and escalate.
-3. **policy-risk-gate** — policy and risk checks pass; otherwise block routing.
-4. **approval-gate-high-risk** — if risk is high, require human sign-off token; otherwise fail closed.
+## Guidelines
+1. Start with a short intake pass: confirm scope, owner, deadline, and success criteria.
+2. Normalize inputs before processing so daily reruns stay consistent and comparable.
+3. Keep assumptions explicit and versioned in the execution summary.
+4. Prefer small, reversible actions for day-to-day operations; avoid large unreviewed jumps.
+5. Use fail-closed behavior for missing evidence, policy conflicts, or ambiguous ownership.
+6. Capture run metrics so weekly reviews can identify drift and bottlenecks.
+7. Write handoff notes for the next operator, not just for the current run.
 
-## Handoff Contract
-- Inputs: source-tagged signals, claims, evidence, confidence traces, run context.
-- Outputs: deterministic artifact, scorecard, and handoff envelope with approval metadata.
-- Routing rule: forward only when every gate passes; high-risk requires explicit sign-off token.
+## Musts
+- Must verify the request truly requires **regression sentinel design for childcare support systems** before execution.
+- Must enforce schema + policy + determinism checks before declaring readiness.
+- Must include provenance for all material inputs and derived outputs.
+- Must require explicit human approval when risk is high.
+- Must provide a handoff packet with owner and next action.
 
-## Immediate Hardening Additions
-- Fixture: `fixtures/minimal-valid.json`
-- Regression case: `tests/regression-case.md`
-- Machine-readable summary: `hardening-summary.json`
+## Targets (day/week/month operating cadence)
+| Cadence | Target | Practical Check |
+|---|---|---|
+| Day | Execute incoming runs, resolve blockers quickly, and publish validated handoffs. | No unowned high-priority items at end of day. |
+| Week | Review failures, retries, and drift; tune thresholds and playbooks. | Trend review completed with action items assigned. |
+| Month | Re-baseline quality metrics, archive evidence, and update operating assumptions. | Baseline + controls refreshed and documented. |
 
-## Trigger Checklist
-- [ ] The request explicitly needs **regression sentinel design for childcare support systems** outcomes (not generic brainstorming).
-- [ ] Inputs are sufficient to execute in **childcare support systems" capability in production for regression sentinel design for childcare support systems workflows** with measurable acceptance criteria.
-- [ ] A downstream consumer is identified for the output artifacts (operator/orchestrator/audit log).
-- [ ] If any item is false, route to discovery/scoping first instead of invoking this skill.
+## Common Actions
+1. **Qualify Request** -> confirm capability fit, risk tier, and downstream consumer.
+2. **Prepare Inputs** -> normalize payloads, dedupe signals, and record provenance.
+3. **Run Capability Pass** -> produce core artifacts against explicit success criteria.
+4. **Validate Gates** -> run schema, determinism, policy, and approval checks.
+5. **Publish Handoff** -> send execution summary + artifact bundle + next actions.
+6. **Escalate or Quarantine** -> block release and route to owner when checks fail.
 
-## Operational Cadence (Day / Week / Month)
-- **Daily:** Run when new childcare support systems" capability in production for regression sentinel design for childcare support systems workflows signals arrive or when active decisions depend on this capability.
-- **Weekly:** Review thresholds, drift, and failure telemetry; calibrate decision rules and retry policy.
-- **Monthly:** Re-baseline deterministic expectations, archive evidence, and refresh approval/handoff assumptions.
+## External Tool Calls Needed
+- None required by default.
+- If external data is truly required, obtain operator approval and document the call in `validation_report`.
 
-## Practical Usage Examples
-1. **Incident stabilization in childcare support systems" capability in production for regression sentinel design for childcare support systems workflows**
-   - Input: noisy upstream payload requiring regression sentinel design for childcare support systems normalization/assessment.
-   - Expected output: schema-valid artifact bundle + scorecard + explicit next-hop routing hint.
-   - Handoff: orchestrator receives deterministic result package for gated downstream execution.
-2. **Planned delivery quality check**
-   - Input: scheduled batch with known baseline and acceptance metrics.
-   - Expected output: pass/fail gate results, variance notes, and publish/no-publish recommendation.
-   - Handoff: operator receives execution summary with risk/confidence and approval requirements.
-
-## Anti-Patterns (Do Not Use)
-- Do **not** use for open-ended ideation where success metrics and contracts are undefined.
-- Do **not** bypass schema/policy gates to force output publication under time pressure.
-- Do **not** treat non-deterministic or partial outputs as release-ready artifacts.
-- Do **not** invoke this skill when a different capability family is the true bottleneck.
-
-## Output Contract
-- `primary_artifact_bundle` (structured-report, consumer=orchestrator, guaranteed=true)
-- `execution_scorecard` (scorecard, consumer=operator, guaranteed=true)
-- `handoff_packet` (machine-readable, consumer=downstream-skill, guaranteed=true)
+## Validation & Handoff
+```yaml
+validation_sequence:
+  - schema_gate
+  - determinism_gate
+  - policy_gate
+  - approval_gate_if_high_risk
+handoff_requirements:
+  required_fields:
+    - consumer
+    - owner
+    - readiness
+    - next_actions
+    - artifact_references
+  release_rule: "Release only when all required gates pass."
+  fail_closed: true
+```

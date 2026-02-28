@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-02-28T00:33:13.455436-05:00",
+  "lanes": {
+    "02": {
+      "skillCount": 1000,
+      "sampleFirst": "skills/generated/shards/02/2000-handoff-contracting-for-knowledge-management-systems/SKILL.md",
+      "sampleLast": "skills/generated/shards/02/2999-memory-consolidation-for-knowledge-management-systems/SKILL.md"
+    },
+    "03": {
+      "skillCount": 1000,
+      "sampleFirst": "skills/generated/shards/03/3000-memory-consolidation-for-knowledge-management-systems/SKILL.md",
+      "sampleLast": "skills/generated/shards/03/3999-conflict-resolution-coaching-for-knowledge-management-systems/SKILL.md"
+    }
+  },
+  "totalSkillsUpgraded": 2000,
+  "requiredSections": [
+    "Metadata",
+    "Allowed Tools",
+    "Inputs (formatted)",
+    "Outputs (formatted)",
+    "Guidelines",
+    "Musts",
+    "Targets (day/week/month operating cadence)",
+    "Common Actions",
+    "External Tool Calls Needed",
+    "Validation & Handoff"
+  ],
+  "validation": {
+    "skills_validate": "pass",
+    "validate_10000_skill_improvements": "pass"
+  },
+  "constraints": {
+    "editedOutsideAssignedLanes": false,
+    "reportFiles": [
+      "reports/skills-utility-upgrade-02-03.md",
+      "reports/skills-utility-upgrade-02-03.json"
+    ]
+  }
+}
