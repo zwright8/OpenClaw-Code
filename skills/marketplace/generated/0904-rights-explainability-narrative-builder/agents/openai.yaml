@@ -1,4 +1,0 @@
-interface:
-  display_name: "Rights Explainability Narrative Builder"
-  short_description: "Reason synthesis and abstraction for Legal, Rights, and Compliance with guardrails and measurable outcomes."
-  default_prompt: "Use Rights Explainability Narrative Builder to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

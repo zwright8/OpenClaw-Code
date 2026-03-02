@@ -1,4 +1,0 @@
-interface:
-  display_name: "Scientific Hypothesis Prioritization for marketing and st..."
-  short_description: "Scientific hypothesis prioritization for marketing and storytelling with guardrails and measurable outcomes."
-  default_prompt: "Use Scientific Hypothesis Prioritization for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

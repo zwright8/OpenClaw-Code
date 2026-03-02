@@ -1,0 +1,4 @@
+interface:
+  display_name: "Federation Risk-Aware Scheduler"
+  short_description: "Risk-weighted sequencing for Federation and Interoperability with guardrails and measurable outcomes."
+  default_prompt: "Use Federation Risk-Aware Scheduler to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "A/B Rollout Governance for education support services"
+  short_description: "A/b rollout governance for education support services with guardrails and measurable outcomes."
+  default_prompt: "Use A/B Rollout Governance for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

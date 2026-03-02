@@ -1,4 +1,0 @@
-interface:
-  display_name: "Creative Ideation Facilitation for healthcare operations"
-  short_description: "Creative ideation facilitation for healthcare operations with guardrails and measurable outcomes."
-  default_prompt: "Use Creative Ideation Facilitation for healthcare operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

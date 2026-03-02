@@ -1,4 +1,0 @@
-interface:
-  display_name: "Rights Disaster Recovery Orchestrator"
-  short_description: "Failover and restoration sequencing for Legal, Rights, and Compliance with guardrails and measurable outcomes."
-  default_prompt: "Use Rights Disaster Recovery Orchestrator to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

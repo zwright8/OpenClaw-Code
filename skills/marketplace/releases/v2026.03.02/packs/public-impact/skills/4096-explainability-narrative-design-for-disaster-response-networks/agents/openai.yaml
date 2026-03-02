@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explainability Narrative Design for disaster response net..."
+  short_description: "Explainability narrative design for disaster response networks with guardrails and measurable outcomes."
+  default_prompt: "Use Explainability Narrative Design for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

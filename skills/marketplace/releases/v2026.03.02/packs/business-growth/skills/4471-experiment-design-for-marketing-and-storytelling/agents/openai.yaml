@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Design for marketing and storytelling"
+  short_description: "Experiment design for marketing and storytelling with guardrails and measurable outcomes."
+  default_prompt: "Use Experiment Design for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

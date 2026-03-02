@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Graph Linking for design and user research"
+  short_description: "Knowledge graph linking for design and user research with guardrails and measurable outcomes."
+  default_prompt: "Use Knowledge Graph Linking for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

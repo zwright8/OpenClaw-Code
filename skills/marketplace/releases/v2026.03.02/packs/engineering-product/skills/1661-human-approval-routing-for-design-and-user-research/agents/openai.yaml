@@ -1,0 +1,4 @@
+interface:
+  display_name: "Human Approval Routing for design and user research"
+  short_description: "Human approval routing for design and user research with guardrails and measurable outcomes."
+  default_prompt: "Use Human Approval Routing for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

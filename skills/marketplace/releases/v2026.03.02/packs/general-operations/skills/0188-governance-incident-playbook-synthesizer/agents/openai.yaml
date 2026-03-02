@@ -1,0 +1,4 @@
+interface:
+  display_name: "Governance Incident Playbook Synthesizer"
+  short_description: "Pattern-to-playbook synthesis for Safety and Governance with guardrails and measurable outcomes."
+  default_prompt: "Use Governance Incident Playbook Synthesizer to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

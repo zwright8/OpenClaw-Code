@@ -1,4 +1,0 @@
-interface:
-  display_name: "Retry And Backoff Orchestration for sales and client success"
-  short_description: "Retry and backoff orchestration for sales and client success with guardrails and measurable outcomes."
-  default_prompt: "Use Retry And Backoff Orchestration for sales and client success to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

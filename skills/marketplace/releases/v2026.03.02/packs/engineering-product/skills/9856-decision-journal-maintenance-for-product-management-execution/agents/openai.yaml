@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decision Journal Maintenance for product management execu..."
+  short_description: "Decision journal maintenance for product management execution with guardrails and measurable outcomes."
+  default_prompt: "Use Decision Journal Maintenance for product management execution to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conflict Resolution Coaching for cybersecurity operations"
+  short_description: "Conflict resolution coaching for cybersecurity operations with guardrails and measurable outcomes."
+  default_prompt: "Use Conflict Resolution Coaching for cybersecurity operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

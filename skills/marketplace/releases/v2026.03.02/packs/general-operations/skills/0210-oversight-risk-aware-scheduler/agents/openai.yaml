@@ -1,0 +1,4 @@
+interface:
+  display_name: "Oversight Risk-Aware Scheduler"
+  short_description: "Risk-weighted sequencing for Human Oversight and Operator UX with guardrails and measurable outcomes."
+  default_prompt: "Use Oversight Risk-Aware Scheduler to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

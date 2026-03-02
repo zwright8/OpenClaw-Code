@@ -1,4 +1,0 @@
-interface:
-  display_name: "Learning Curriculum Composition for marketing and storyte..."
-  short_description: "Learning curriculum composition for marketing and storytelling with guardrails and measurable outcomes."
-  default_prompt: "Use Learning Curriculum Composition for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."
