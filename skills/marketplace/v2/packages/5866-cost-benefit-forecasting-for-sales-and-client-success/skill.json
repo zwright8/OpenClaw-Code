@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5866,
+    "name": "openclaw-v2-5866-cost-benefit-forecasting",
+    "title": "Cost-Benefit Forecasting for sales and client success",
+    "domain": "sales and client success",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "cost-benefit forecasting",
+    "archetype": "forecasting-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 83,
+    "roiScore": 72.95,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5866-cost-benefit-forecasting-for-sales-and-client-success/SKILL.md"
+  }
+}

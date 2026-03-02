@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 9326,
+    "name": "openclaw-v2-9326-mentoring-and-coaching-design",
+    "title": "Mentoring And Coaching Design for cybersecurity operations",
+    "domain": "cybersecurity operations",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "mentoring and coaching design",
+    "archetype": "coaching-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 75.16,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/9326-mentoring-and-coaching-design-for-cybersecurity-operations/SKILL.md"
+  }
+}

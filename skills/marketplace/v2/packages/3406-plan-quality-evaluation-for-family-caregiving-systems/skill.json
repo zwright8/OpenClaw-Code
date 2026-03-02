@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3406,
+    "name": "openclaw-v2-3406-plan-quality-evaluation",
+    "title": "Plan Quality Evaluation for family caregiving systems",
+    "domain": "family caregiving systems",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "plan quality evaluation",
+    "archetype": "evaluation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 63,
+    "roiScore": 64.19,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3406-plan-quality-evaluation-for-family-caregiving-systems/SKILL.md"
+  }
+}

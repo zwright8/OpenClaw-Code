@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 9901,
+    "name": "openclaw-v2-9901-decision-journal-maintenance",
+    "title": "Decision Journal Maintenance for climate adaptation initiatives",
+    "domain": "climate adaptation initiatives",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "decision journal maintenance",
+    "archetype": "journal-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 79,
+    "roiScore": 70.55,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/9901-decision-journal-maintenance-for-climate-adaptation-initiatives/SKILL.md"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4071,
+    "name": "openclaw-v2-4071-explainability-narrative-design",
+    "title": "Explainability Narrative Design for marketing and storytelling",
+    "domain": "marketing and storytelling",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "explainability narrative design",
+    "archetype": "narrative-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 81,
+    "roiScore": 67.15,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4071-explainability-narrative-design-for-marketing-and-storytelling/SKILL.md"
+  }
+}

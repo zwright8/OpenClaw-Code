@@ -1,0 +1,26 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1681
+  name: "openclaw-v2-1681-human-approval-routing"
+  title: "Human Approval Routing for healthcare operations"
+  domain: "healthcare operations"
+  vertical_id: "health-learning"
+  vertical_name: "Health and Learning Systems"
+  method: "human approval routing"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 99
+  roi_score: 81.45
+  trust_badges:
+    - "Verified-Quality"
+    - "Reliability-Proven"
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1681-human-approval-routing-for-healthcare-operations/SKILL.md"

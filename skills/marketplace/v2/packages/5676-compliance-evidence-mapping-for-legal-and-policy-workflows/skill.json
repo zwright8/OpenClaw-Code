@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5676,
+    "name": "openclaw-v2-5676-compliance-evidence-mapping",
+    "title": "Compliance Evidence Mapping for legal and policy workflows",
+    "domain": "legal and policy workflows",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "compliance evidence mapping",
+    "archetype": "mapping-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 99,
+    "roiScore": 86.83,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5676-compliance-evidence-mapping-for-legal-and-policy-workflows/SKILL.md"
+  }
+}

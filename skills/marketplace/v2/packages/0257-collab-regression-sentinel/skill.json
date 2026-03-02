@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 257,
+    "name": "openclaw-v2-0257-baseline-delta-detection",
+    "title": "Collab Regression Sentinel",
+    "domain": "Collaboration and Negotiation",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "baseline-delta detection",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 62,
+    "roiScore": 57.46,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0257-collab-regression-sentinel/SKILL.md"
+  }
+}

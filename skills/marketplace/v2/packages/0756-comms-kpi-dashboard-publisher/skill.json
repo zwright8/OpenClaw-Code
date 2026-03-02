@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 756,
+    "name": "openclaw-v2-0756-metric-synthesis-and-publication",
+    "title": "Comms KPI Dashboard Publisher",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "metric synthesis and publication",
+    "archetype": "communication-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 64,
+    "roiScore": 65.2,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0756-comms-kpi-dashboard-publisher/SKILL.md"
+  }
+}

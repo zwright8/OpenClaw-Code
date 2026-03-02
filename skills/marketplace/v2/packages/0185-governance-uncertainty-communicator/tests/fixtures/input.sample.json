@@ -1,0 +1,13 @@
+{
+  "task": "Execute confidence-bound communication templates",
+  "objective": "Deliver Governance Uncertainty Communicator outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 5286
+  name: "openclaw-v2-5286-privacy-preserving-data-brokering"
+  title: "Privacy-Preserving Data Brokering for education support services"
+  domain: "education support services"
+  vertical_id: "health-learning"
+  vertical_name: "Health and Learning Systems"
+  method: "privacy-preserving data brokering"
+  archetype: "privacy-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 96
+  roi_score: 81.43
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/5286-privacy-preserving-data-brokering-for-education-support-services/SKILL.md"

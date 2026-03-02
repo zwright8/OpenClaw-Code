@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 193,
+    "name": "openclaw-v2-0193-cost-impact-simulation",
+    "title": "Governance Cost-Benefit Forecaster",
+    "domain": "Safety and Governance",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "cost-impact simulation",
+    "archetype": "simulation-lab"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 70,
+    "roiScore": 78.2,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0193-governance-cost-benefit-forecaster/SKILL.md"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4291,
+    "name": "openclaw-v2-4291-uncertainty-communication",
+    "title": "Uncertainty Communication for nonprofit program delivery",
+    "domain": "nonprofit program delivery",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "uncertainty communication",
+    "archetype": "communication-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 81,
+    "roiScore": 78.11,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4291-uncertainty-communication-for-nonprofit-program-delivery/SKILL.md"
+  }
+}

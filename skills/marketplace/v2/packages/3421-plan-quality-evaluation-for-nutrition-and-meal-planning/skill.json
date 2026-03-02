@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3421,
+    "name": "openclaw-v2-3421-plan-quality-evaluation",
+    "title": "Plan Quality Evaluation for nutrition and meal planning",
+    "domain": "nutrition and meal planning",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "plan quality evaluation",
+    "archetype": "evaluation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 72,
+    "roiScore": 65.83,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3421-plan-quality-evaluation-for-nutrition-and-meal-planning/SKILL.md"
+  }
+}

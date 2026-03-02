@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 9536
+  name: "openclaw-v2-9536-negotiation-strategy-crafting"
+  title: "Negotiation Strategy Crafting for scientific publishing pipelines"
+  domain: "scientific publishing pipelines"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "negotiation strategy crafting"
+  archetype: "negotiation-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 73
+  roi_score: 67.22
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/9536-negotiation-strategy-crafting-for-scientific-publishing-pipelines/SKILL.md"

@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7456,
+    "name": "openclaw-v2-7456-autonomous-workflow-authoring",
+    "title": "Autonomous Workflow Authoring for product management execution",
+    "domain": "product management execution",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "autonomous workflow authoring",
+    "archetype": "orchestration-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 100,
+    "roiScore": 90.81,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7456-autonomous-workflow-authoring-for-product-management-execution/SKILL.md"
+  }
+}

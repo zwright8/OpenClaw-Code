@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 410,
+    "name": "openclaw-v2-0410-risk-weighted-sequencing",
+    "title": "PublicService Risk-Aware Scheduler",
+    "domain": "Healthcare and Public Services",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "risk-weighted sequencing",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 68.99,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0410-publicservice-risk-aware-scheduler/SKILL.md"
+  }
+}

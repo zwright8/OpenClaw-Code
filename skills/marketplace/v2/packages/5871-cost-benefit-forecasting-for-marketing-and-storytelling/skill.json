@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5871,
+    "name": "openclaw-v2-5871-cost-benefit-forecasting",
+    "title": "Cost-Benefit Forecasting for marketing and storytelling",
+    "domain": "marketing and storytelling",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "cost-benefit forecasting",
+    "archetype": "forecasting-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 83,
+    "roiScore": 77.31,
+    "trustBadges": [
+      "Reliability-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5871-cost-benefit-forecasting-for-marketing-and-storytelling/SKILL.md"
+  }
+}

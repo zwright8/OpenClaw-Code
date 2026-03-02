@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2926
+  name: "openclaw-v2-2926-memory-consolidation"
+  title: "Memory Consolidation for cybersecurity operations"
+  domain: "cybersecurity operations"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "memory consolidation"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 87
+  roi_score: 85.44
+  trust_badges:
+    - "Reliability-Proven"
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2926-memory-consolidation-for-cybersecurity-operations/SKILL.md"

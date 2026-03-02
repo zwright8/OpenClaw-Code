@@ -1,0 +1,13 @@
+{
+  "task": "Execute schema mapping and validation",
+  "objective": "Deliver Governance Signal Ingestion Normalizer outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

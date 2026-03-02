@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 4046
+  name: "openclaw-v2-4046-explainability-narrative-design"
+  title: "Explainability Narrative Design for entrepreneurship operations"
+  domain: "entrepreneurship operations"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "explainability narrative design"
+  archetype: "narrative-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 81
+  roi_score: 64.49
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/4046-explainability-narrative-design-for-entrepreneurship-operations/SKILL.md"

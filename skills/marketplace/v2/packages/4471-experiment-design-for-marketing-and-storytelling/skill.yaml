@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 4471
+  name: "openclaw-v2-4471-experiment-design"
+  title: "Experiment Design for marketing and storytelling"
+  domain: "marketing and storytelling"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "experiment design"
+  archetype: "experimentation-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 83
+  roi_score: 74.14
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/4471-experiment-design-for-marketing-and-storytelling/SKILL.md"

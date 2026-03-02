@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 4296
+  name: "openclaw-v2-4296-uncertainty-communication"
+  title: "Uncertainty Communication for disaster response networks"
+  domain: "disaster response networks"
+  vertical_id: "public-impact"
+  vertical_name: "Public Impact and Resilience"
+  method: "uncertainty communication"
+  archetype: "communication-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 95
+  roi_score: 82.41
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/4296-uncertainty-communication-for-disaster-response-networks/SKILL.md"

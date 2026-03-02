@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2056,
+    "name": "openclaw-v2-2056-tool-health-monitoring",
+    "title": "Tool Health Monitoring for product management execution",
+    "domain": "product management execution",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "tool health monitoring",
+    "archetype": "monitoring-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 65.65,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2056-tool-health-monitoring-for-product-management-execution/SKILL.md"
+  }
+}

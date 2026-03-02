@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 430,
+    "name": "openclaw-v2-0430-policy-scoped-data-mediation",
+    "title": "PublicService Privacy Preserving Data Broker",
+    "domain": "Healthcare and Public Services",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "policy-scoped data mediation",
+    "archetype": "collaboration-mediator"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 53.99,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0430-publicservice-privacy-preserving-data-broker/SKILL.md"
+  }
+}

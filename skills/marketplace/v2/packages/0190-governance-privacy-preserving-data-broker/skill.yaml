@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 190
+  name: "openclaw-v2-0190-policy-scoped-data-mediation"
+  title: "Governance Privacy Preserving Data Broker"
+  domain: "Safety and Governance"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "policy-scoped data mediation"
+  archetype: "collaboration-mediator"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 74
+  roi_score: 71.93
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0190-governance-privacy-preserving-data-broker/SKILL.md"

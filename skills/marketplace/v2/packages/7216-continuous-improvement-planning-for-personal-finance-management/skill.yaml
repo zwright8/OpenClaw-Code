@@ -1,0 +1,26 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 7216
+  name: "openclaw-v2-7216-continuous-improvement-planning"
+  title: "Continuous Improvement Planning for personal finance management"
+  domain: "personal finance management"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "continuous improvement planning"
+  archetype: "improvement-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 95
+  roi_score: 86.25
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Enterprise-Ready"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/7216-continuous-improvement-planning-for-personal-finance-management/SKILL.md"

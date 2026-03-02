@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7256,
+    "name": "openclaw-v2-7256-continuous-improvement-planning",
+    "title": "Continuous Improvement Planning for product management execution",
+    "domain": "product management execution",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "continuous improvement planning",
+    "archetype": "improvement-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 81,
+    "roiScore": 71.36,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7256-continuous-improvement-planning-for-product-management-execution/SKILL.md"
+  }
+}

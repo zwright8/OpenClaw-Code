@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7691,
+    "name": "openclaw-v2-7691-personal-habit-optimization",
+    "title": "Personal Habit Optimization for nonprofit program delivery",
+    "domain": "nonprofit program delivery",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "personal habit optimization",
+    "archetype": "habit-optimization-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 83,
+    "roiScore": 69.64,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7691-personal-habit-optimization-for-nonprofit-program-delivery/SKILL.md"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 9876,
+    "name": "openclaw-v2-9876-decision-journal-maintenance",
+    "title": "Decision Journal Maintenance for legal and policy workflows",
+    "domain": "legal and policy workflows",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "decision journal maintenance",
+    "archetype": "journal-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 93,
+    "roiScore": 80.54,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/9876-decision-journal-maintenance-for-legal-and-policy-workflows/SKILL.md"
+  }
+}
