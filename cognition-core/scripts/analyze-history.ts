@@ -132,6 +132,8 @@ function formatMarkdown(summary) {
     lines.push(`- Tool calls: ${summary.toolCalls}`);
     lines.push(`- Tool results: ${summary.toolResults}`);
     lines.push(`- Errors: ${summary.errors}`);
+    lines.push(`- Unresolved tool calls: ${summary.unresolvedToolCalls || 0}`);
+    lines.push(`- Orphan tool results: ${summary.orphanToolResults || 0}`);
     lines.push(`- Malformed lines: ${summary.malformedLines}`);
     lines.push(`- Reliability score: ${summary.reliabilityScore}/100`);
     lines.push('');
@@ -166,6 +168,8 @@ function formatMarkdown(summary) {
             toolCalls: 'Tool Calls',
             toolResults: 'Tool Results',
             malformedLines: 'Malformed Lines',
+            unresolvedToolCalls: 'Unresolved Tool Calls',
+            orphanToolResults: 'Orphan Tool Results',
             errorRate: 'Error Rate (%)'
         };
 

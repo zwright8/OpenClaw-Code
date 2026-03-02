@@ -9,6 +9,8 @@ function createToolStats() {
         calls: 0,
         results: 0,
         errors: 0,
+        unresolvedCalls: 0,
+        orphanResults: 0,
         totalDurationMs: 0,
         durationSamples: 0,
         maxDurationMs: 0
@@ -56,17 +58,23 @@ function ensureToolSummary(raw) {
             calls: 0,
             results: 0,
             errors: 0,
+            unresolvedCalls: 0,
+            orphanResults: 0,
             totalDurationMs: 0,
             durationSamples: 0,
             maxDurationMs: 0,
             avgDurationMs: null,
-            errorRate: 0
+            errorRate: 0,
+            unresolvedRate: 0,
+            orphanResultRate: 0
         };
     }
 
     const calls = Number(raw.calls) || 0;
     const results = Number(raw.results) || 0;
     const errors = Number(raw.errors) || 0;
+    const unresolvedCalls = Number(raw.unresolvedCalls) || 0;
+    const orphanResults = Number(raw.orphanResults) || 0;
     const totalDurationMs = Number(raw.totalDurationMs) || 0;
     const durationSamples = Number(raw.durationSamples) || 0;
     const maxDurationMs = Number(raw.maxDurationMs) || 0;
@@ -76,16 +84,26 @@ function ensureToolSummary(raw) {
     const errorRate = raw.errorRate === undefined
         ? roundNumber(safePercent(errors, calls), 2)
         : Number(raw.errorRate);
+    const unresolvedRate = raw.unresolvedRate === undefined
+        ? roundNumber(safePercent(unresolvedCalls, calls), 2)
+        : Number(raw.unresolvedRate);
+    const orphanResultRate = raw.orphanResultRate === undefined
+        ? roundNumber(safePercent(orphanResults, results), 2)
+        : Number(raw.orphanResultRate);
 
     return {
         calls,
         results,
         errors,
+        unresolvedCalls,
+        orphanResults,
         totalDurationMs,
         durationSamples,
         maxDurationMs,
         avgDurationMs: Number.isFinite(avgDurationMs) ? avgDurationMs : null,
-        errorRate: Number.isFinite(errorRate) ? errorRate : 0
+        errorRate: Number.isFinite(errorRate) ? errorRate : 0,
+        unresolvedRate: Number.isFinite(unresolvedRate) ? unresolvedRate : 0,
+        orphanResultRate: Number.isFinite(orphanResultRate) ? orphanResultRate : 0
     };
 }
 
@@ -107,6 +125,8 @@ export function buildComparison(currentSummary, baselineSummary) {
         toolCalls: metricDelta(Number(currentSummary.toolCalls) || 0, Number(baselineSummary.toolCalls) || 0),
         toolResults: metricDelta(Number(currentSummary.toolResults) || 0, Number(baselineSummary.toolResults) || 0),
         malformedLines: metricDelta(Number(currentSummary.malformedLines) || 0, Number(baselineSummary.malformedLines) || 0),
+        unresolvedToolCalls: metricDelta(Number(currentSummary.unresolvedToolCalls) || 0, Number(baselineSummary.unresolvedToolCalls) || 0),
+        orphanToolResults: metricDelta(Number(currentSummary.orphanToolResults) || 0, Number(baselineSummary.orphanToolResults) || 0),
         errorRate: metricDelta(currentErrorRate, baselineErrorRate)
     };
 
@@ -122,6 +142,7 @@ export function buildComparison(currentSummary, baselineSummary) {
         const baselineTool = ensureToolSummary(baselineSummary.tools?.[name]);
         const callDelta = currentTool.calls - baselineTool.calls;
         const errorRateDelta = roundNumber(currentTool.errorRate - baselineTool.errorRate, 2);
+        const unresolvedRateDelta = roundNumber(currentTool.unresolvedRate - baselineTool.unresolvedRate, 2);
         const avgDurationDelta = currentTool.avgDurationMs === null || baselineTool.avgDurationMs === null
             ? null
             : roundNumber(currentTool.avgDurationMs - baselineTool.avgDurationMs, 1);
@@ -135,6 +156,9 @@ export function buildComparison(currentSummary, baselineSummary) {
         }
         if (callDelta > 0) {
             regressionScore += Math.min(callDelta / 10, 2);
+        }
+        if (unresolvedRateDelta > 0 && currentTool.calls >= 3) {
+            regressionScore += unresolvedRateDelta * 1.5;
         }
 
         let improvementScore = 0;
@@ -153,6 +177,9 @@ export function buildComparison(currentSummary, baselineSummary) {
             currentErrorRate: currentTool.errorRate,
             baselineErrorRate: baselineTool.errorRate,
             errorRateDelta,
+            currentUnresolvedRate: currentTool.unresolvedRate,
+            baselineUnresolvedRate: baselineTool.unresolvedRate,
+            unresolvedRateDelta,
             currentAvgDurationMs: currentTool.avgDurationMs,
             baselineAvgDurationMs: baselineTool.avgDurationMs,
             avgDurationDeltaMs: avgDurationDelta
@@ -248,6 +275,26 @@ export function buildRemediationPlan(currentSummary, comparison = null) {
         );
     }
 
+    if ((currentSummary.unresolvedToolCalls || 0) > 0) {
+        add(
+            'P1',
+            'Resolve dangling tool calls',
+            `${currentSummary.unresolvedToolCalls} tool calls had no matching toolResult event.`,
+            'Ensure every toolCall carries a stable call id and that toolResult events always emit for success/failure terminal states.',
+            currentSummary.unresolvedToolCalls
+        );
+    }
+
+    if ((currentSummary.orphanToolResults || 0) > 0) {
+        add(
+            'P2',
+            'Investigate orphan tool results',
+            `${currentSummary.orphanToolResults} toolResult events arrived without a visible prior toolCall in the same session stream.`,
+            'Audit message ordering and replay behavior to guarantee call/result pairing remains in-order and lossless.',
+            currentSummary.orphanToolResults
+        );
+    }
+
     const tools = Object.entries(currentSummary.tools || {})
         .map(([name, data]) => ({ name, ...ensureToolSummary(data) }))
         .sort((a, b) => b.calls - a.calls);
@@ -268,6 +315,16 @@ export function buildRemediationPlan(currentSummary, comparison = null) {
                 `${tool.name} error rate is ${tool.errorRate}% over ${tool.calls} calls.`,
                 `Set alert thresholds and run focused test cases for ${tool.name} to prevent escalation.`,
                 tool.errorRate
+            );
+        }
+
+        if (tool.calls >= 5 && tool.unresolvedRate >= 5) {
+            add(
+                'P1',
+                `Close ${tool.name} tool-call/result gaps`,
+                `${tool.name} has ${tool.unresolvedRate}% unresolved calls (${tool.unresolvedCalls}/${tool.calls}).`,
+                `Patch ${tool.name} call-id propagation and enforce terminal toolResult emission in all error/timeout paths.`,
+                tool.unresolvedRate
             );
         }
     }
@@ -365,6 +422,8 @@ export class LogAnalyzerV2 {
             toolCalls: 0,
             toolResults: 0,
             errors: 0,
+            unresolvedToolCalls: 0,
+            orphanToolResults: 0,
             tools: {},
             models: {},
             providers: {},
@@ -488,6 +547,11 @@ export class LogAnalyzerV2 {
     }
 
     async _processSessionFile(filePath) {
+        const sessionState = {
+            pendingById: new Map(),
+            pendingByTool: {}
+        };
+
         const fileStream = fs.createReadStream(filePath);
         const rl = readline.createInterface({
             input: fileStream,
@@ -500,14 +564,16 @@ export class LogAnalyzerV2 {
 
             try {
                 const event = JSON.parse(line);
-                this._processEvent(event);
+                this._processEvent(event, sessionState);
             } catch {
                 this.stats.malformedLines++;
             }
         }
+
+        this._flushPendingToolCalls(sessionState);
     }
 
-    _processEvent(event) {
+    _processEvent(event, sessionState = null) {
         if (!event || typeof event !== 'object') return;
 
         if (event.type === 'model_change' && typeof event.modelId === 'string') {
@@ -540,7 +606,8 @@ export class LogAnalyzerV2 {
                 if (!item || typeof item !== 'object') continue;
                 if ((item.type === 'toolCall' || item.type === 'tool_call' || item.type === 'function_call')
                     && typeof item.name === 'string' && item.name.trim()) {
-                    this._countToolCall(item.name, timestampMs);
+                    const callId = this._extractToolCallId(item);
+                    this._countToolCall(item.name, timestampMs, { callId, sessionState });
                 }
             }
         }
@@ -561,18 +628,29 @@ export class LogAnalyzerV2 {
                 bucket.maxDurationMs = Math.max(bucket.maxDurationMs, durationMs);
             }
 
+            if (sessionState) {
+                const matched = this._matchToolResult(toolName, msg, sessionState);
+                if (!matched) {
+                    this._countOrphanResult(toolName);
+                }
+            }
+
             if (msg.isError) {
                 this._countError(toolName, timestampMs);
             }
         }
     }
 
-    _countToolCall(name, timestampMs) {
+    _countToolCall(name, timestampMs, options = {}) {
         const bucket = this._getToolBucket(name);
         bucket.calls++;
         this.stats.toolCalls++;
         this._countDay(timestampMs, 'toolCalls');
         this._countHour(timestampMs, 'toolCalls');
+
+        if (options.sessionState) {
+            this._enqueuePendingToolCall(name, options.callId, options.sessionState);
+        }
     }
 
     _countError(name, timestampMs) {
@@ -583,6 +661,18 @@ export class LogAnalyzerV2 {
         this._countHour(timestampMs, 'errors');
     }
 
+    _countUnresolvedCall(name) {
+        const bucket = this._getToolBucket(name);
+        bucket.unresolvedCalls++;
+        this.stats.unresolvedToolCalls++;
+    }
+
+    _countOrphanResult(name) {
+        const bucket = this._getToolBucket(name);
+        bucket.orphanResults++;
+        this.stats.orphanToolResults++;
+    }
+
     _getToolBucket(name) {
         if (!this.stats.tools[name]) this.stats.tools[name] = createToolStats();
         return this.stats.tools[name];
@@ -590,6 +680,81 @@ export class LogAnalyzerV2 {
 
     _countMap(map, key) {
         map[key] = (map[key] || 0) + 1;
+    }
+
+    _enqueuePendingToolCall(toolName, rawCallId, sessionState) {
+        const callId = this._normalizeToolCallId(rawCallId);
+        if (callId) {
+            sessionState.pendingById.set(callId, { toolName });
+            return;
+        }
+
+        if (!sessionState.pendingByTool[toolName]) {
+            sessionState.pendingByTool[toolName] = [];
+        }
+        sessionState.pendingByTool[toolName].push({ toolName });
+    }
+
+    _extractToolCallId(item) {
+        if (!item || typeof item !== 'object') return null;
+
+        return this._normalizeToolCallId(
+            item.id
+            ?? item.callId
+            ?? item.toolCallId
+            ?? item.tool_call_id
+            ?? item.request?.id
+        );
+    }
+
+    _extractToolResultCallId(message) {
+        if (!message || typeof message !== 'object') return null;
+
+        return this._normalizeToolCallId(
+            message.callId
+            ?? message.toolCallId
+            ?? message.tool_call_id
+            ?? message.details?.callId
+            ?? message.details?.toolCallId
+            ?? message.details?.tool_call_id
+        );
+    }
+
+    _normalizeToolCallId(value) {
+        if (typeof value !== 'string') return null;
+        const trimmed = value.trim();
+        return trimmed ? trimmed : null;
+    }
+
+    _matchToolResult(toolName, message, sessionState) {
+        const resultCallId = this._extractToolResultCallId(message);
+        if (resultCallId && sessionState.pendingById.has(resultCallId)) {
+            sessionState.pendingById.delete(resultCallId);
+            return true;
+        }
+
+        const queue = sessionState.pendingByTool[toolName];
+        if (Array.isArray(queue) && queue.length > 0) {
+            queue.shift();
+            return true;
+        }
+
+        return false;
+    }
+
+    _flushPendingToolCalls(sessionState) {
+        for (const pending of sessionState.pendingById.values()) {
+            this._countUnresolvedCall(pending.toolName || 'unknown');
+        }
+        sessionState.pendingById.clear();
+
+        for (const [toolName, queue] of Object.entries(sessionState.pendingByTool)) {
+            if (!Array.isArray(queue) || queue.length === 0) continue;
+            for (let i = 0; i < queue.length; i++) {
+                this._countUnresolvedCall(toolName);
+            }
+            queue.length = 0;
+        }
     }
 
     _normalizeTimestamp(input) {
@@ -634,11 +799,19 @@ export class LogAnalyzerV2 {
             const errorRate = data.calls > 0
                 ? roundNumber((data.errors / data.calls) * 100, 2)
                 : 0;
+            const unresolvedRate = data.calls > 0
+                ? roundNumber((data.unresolvedCalls / data.calls) * 100, 2)
+                : 0;
+            const orphanResultRate = data.results > 0
+                ? roundNumber((data.orphanResults / data.results) * 100, 2)
+                : 0;
 
             result[name] = {
                 ...data,
                 avgDurationMs,
-                errorRate
+                errorRate,
+                unresolvedRate,
+                orphanResultRate
             };
         }
 
@@ -660,8 +833,9 @@ export class LogAnalyzerV2 {
         const errorRate = this.stats.errors / Math.max(this.stats.toolResults || this.stats.toolCalls, 1);
         const malformedRate = this.stats.malformedLines / Math.max(this.stats.linesProcessed, 1);
         const missingSessionRate = this.stats.sessionsMissingFile / Math.max(this.stats.sessionsConsidered, 1);
+        const unresolvedRate = this.stats.unresolvedToolCalls / Math.max(this.stats.toolCalls, 1);
 
-        const score = 100 - (errorRate * 70) - (malformedRate * 20) - (missingSessionRate * 10);
+        const score = 100 - (errorRate * 65) - (malformedRate * 15) - (missingSessionRate * 10) - (unresolvedRate * 10);
         return roundNumber(Math.max(0, Math.min(100, score)), 1);
     }
 
@@ -676,6 +850,12 @@ export class LogAnalyzerV2 {
             }
             if (data.avgDurationMs !== null && data.calls >= 5 && data.avgDurationMs >= 5000) {
                 insights.push(`Slow tool: ${tool} averages ${data.avgDurationMs}ms over ${data.calls} calls.`);
+            }
+            if (data.calls >= 5 && data.unresolvedRate >= 5) {
+                insights.push(`Unresolved tool calls: ${tool} has ${data.unresolvedCalls}/${data.calls} calls without matching results (${data.unresolvedRate}%).`);
+            }
+            if (data.results >= 5 && data.orphanResultRate >= 5) {
+                insights.push(`Orphan tool results: ${tool} has ${data.orphanResults}/${data.results} results without visible calls (${data.orphanResultRate}%).`);
             }
         }
 
@@ -728,6 +908,8 @@ export class LogAnalyzerV2 {
         console.log(`Lines Processed:  ${summary.linesProcessed}`);
         console.log(`Malformed Lines:  ${summary.malformedLines}`);
         console.log(`Total Errors:     ${summary.errors}`);
+        console.log(`Unresolved Calls: ${summary.unresolvedToolCalls}`);
+        console.log(`Orphan Results:   ${summary.orphanToolResults}`);
         console.log(`Reliability:      ${summary.reliabilityScore}/100`);
         console.log('\nTool Performance:');
 

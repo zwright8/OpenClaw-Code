@@ -283,6 +283,76 @@ test('captures hourly activity and concentration insight for bursty windows', as
     assert.ok(summary.insights.some((line) => line.includes('concentrated around 14:00')));
 });
 
+test('tracks unresolved tool calls and orphan tool results per session', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const now = Date.now() - 5_000;
+    const sessionId = '99999999-9999-4999-8999-999999999999';
+    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
+    const sessionsFile = path.join(dir, 'sessions.json');
+
+    writeJsonl(sessionFile, [
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'assistant',
+                content: [
+                    { type: 'toolCall', id: 'call-1', name: 'exec' },
+                    { type: 'toolCall', name: 'read' },
+                    { type: 'toolCall', id: 'missing-call', name: 'browser' }
+                ],
+                timestamp: now
+            }
+        }),
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'exec',
+                callId: 'call-1',
+                details: { durationMs: 120 },
+                timestamp: now + 10
+            }
+        }),
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'read',
+                details: { durationMs: 80 },
+                timestamp: now + 20
+            }
+        }),
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'write',
+                details: { durationMs: 55 },
+                timestamp: now + 30
+            }
+        })
+    ]);
+
+    writeJson(sessionsFile, {
+        unresolved: { sessionId, updatedAt: now }
+    });
+
+    const analyzer = new LogAnalyzerV2(sessionsFile);
+    await analyzer.analyze(1);
+    const summary = analyzer.toJSON();
+
+    assert.equal(summary.toolCalls, 3);
+    assert.equal(summary.toolResults, 3);
+    assert.equal(summary.unresolvedToolCalls, 1);
+    assert.equal(summary.orphanToolResults, 1);
+    assert.equal(summary.tools.browser.unresolvedCalls, 1);
+    assert.equal(summary.tools.write.orphanResults, 1);
+    assert.equal(summary.tools.browser.unresolvedRate, 100);
+    assert.equal(summary.tools.write.orphanResultRate, 100);
+});
+
 test('builds trend comparison and prioritized remediation plan', () => {
     const current = {
         startIso: '2026-02-20T00:00:00.000Z',
@@ -294,20 +364,30 @@ test('builds trend comparison and prioritized remediation plan', () => {
         toolResults: 30,
         malformedLines: 2,
         sessionsMissingFile: 1,
+        unresolvedToolCalls: 4,
+        orphanToolResults: 1,
         tools: {
             exec: {
                 calls: 20,
                 errors: 6,
+                unresolvedCalls: 4,
+                orphanResults: 1,
                 results: 18,
                 avgDurationMs: 4200,
-                errorRate: 30
+                errorRate: 30,
+                unresolvedRate: 20,
+                orphanResultRate: 5.56
             },
             read: {
                 calls: 10,
                 errors: 0,
+                unresolvedCalls: 0,
+                orphanResults: 0,
                 results: 0,
                 avgDurationMs: null,
-                errorRate: 0
+                errorRate: 0,
+                unresolvedRate: 0,
+                orphanResultRate: 0
             }
         }
     };
@@ -321,20 +401,30 @@ test('builds trend comparison and prioritized remediation plan', () => {
         toolResults: 32,
         malformedLines: 0,
         sessionsMissingFile: 0,
+        unresolvedToolCalls: 0,
+        orphanToolResults: 0,
         tools: {
             exec: {
                 calls: 18,
                 errors: 1,
+                unresolvedCalls: 0,
+                orphanResults: 0,
                 results: 18,
                 avgDurationMs: 1200,
-                errorRate: 5.56
+                errorRate: 5.56,
+                unresolvedRate: 0,
+                orphanResultRate: 0
             },
             read: {
                 calls: 12,
                 errors: 0,
+                unresolvedCalls: 0,
+                orphanResults: 0,
                 results: 0,
                 avgDurationMs: null,
-                errorRate: 0
+                errorRate: 0,
+                unresolvedRate: 0,
+                orphanResultRate: 0
             }
         }
     };
@@ -345,9 +435,12 @@ test('builds trend comparison and prioritized remediation plan', () => {
     assert.ok(comparison.topRegressions.length > 0);
     assert.equal(comparison.topRegressions[0].tool, 'exec');
     assert.ok(comparison.topRegressions[0].errorRateDelta > 0);
+    assert.ok(comparison.kpis.unresolvedToolCalls.delta > 0);
+    assert.ok(comparison.kpis.orphanToolResults.delta > 0);
 
     const remediation = buildRemediationPlan(current, comparison);
     assert.ok(remediation.length > 0);
     assert.equal(remediation[0].priority, 'P1');
     assert.ok(remediation.some((item) => item.title.includes('exec')));
+    assert.ok(remediation.some((item) => item.title.includes('dangling tool calls')));
 });
