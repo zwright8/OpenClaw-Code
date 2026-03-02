@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Graph Linking for personal finance management"
+  short_description: "Knowledge graph linking for personal finance management with guardrails and measurable outcomes."
+  default_prompt: "Use Knowledge Graph Linking for personal finance management to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

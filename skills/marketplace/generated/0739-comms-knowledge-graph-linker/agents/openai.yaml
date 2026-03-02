@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comms Knowledge Graph Linker"
+  short_description: "Entity and relation linking for Communication and Explainability with guardrails and measurable outcomes."
+  default_prompt: "Use Comms Knowledge Graph Linker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Design for software engineering delivery"
+  short_description: "Experiment design for software engineering delivery with guardrails and measurable outcomes."
+  default_prompt: "Use Experiment Design for software engineering delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

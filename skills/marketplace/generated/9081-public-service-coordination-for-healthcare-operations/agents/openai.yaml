@@ -1,0 +1,4 @@
+interface:
+  display_name: "Public Service Coordination for healthcare operations"
+  short_description: "Public service coordination for healthcare operations with guardrails and measurable outcomes."
+  default_prompt: "Use Public Service Coordination for healthcare operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

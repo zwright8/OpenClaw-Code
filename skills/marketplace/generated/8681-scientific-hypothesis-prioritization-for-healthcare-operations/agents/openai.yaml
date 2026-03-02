@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Hypothesis Prioritization for healthcare opera..."
+  short_description: "Scientific hypothesis prioritization for healthcare operations with guardrails and measurable outcomes."
+  default_prompt: "Use Scientific Hypothesis Prioritization for healthcare operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."
