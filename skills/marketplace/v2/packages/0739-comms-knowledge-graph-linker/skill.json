@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 739,
+    "name": "openclaw-v2-0739-entity-and-relation-linking",
+    "title": "Comms Knowledge Graph Linker",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "entity and relation linking",
+    "archetype": "general-capability"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 66,
+    "roiScore": 74.61,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0739-comms-knowledge-graph-linker/SKILL.md"
+  }
+}

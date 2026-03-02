@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3296,
+    "name": "openclaw-v2-3296-semantic-retrieval-ranking",
+    "title": "Semantic Retrieval Ranking for disaster response networks",
+    "domain": "disaster response networks",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "semantic retrieval ranking",
+    "archetype": "retrieval-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 99,
+    "roiScore": 84.11,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3296-semantic-retrieval-ranking-for-disaster-response-networks/SKILL.md"
+  }
+}

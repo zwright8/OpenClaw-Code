@@ -1,0 +1,24 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 8326
+  name: "openclaw-v2-8326-beauty-pattern-detection"
+  title: "Beauty Pattern Detection for cybersecurity operations"
+  domain: "cybersecurity operations"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "beauty pattern detection"
+  archetype: "aesthetic-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 87
+  roi_score: 81.69
+  trust_badges:
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/8326-beauty-pattern-detection-for-cybersecurity-operations/SKILL.md"

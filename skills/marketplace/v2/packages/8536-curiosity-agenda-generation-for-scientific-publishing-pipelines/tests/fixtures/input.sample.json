@@ -1,0 +1,13 @@
+{
+  "task": "Execute curiosity agenda generation",
+  "objective": "Deliver Curiosity Agenda Generation for scientific publishing pipelines outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 760,
+    "name": "openclaw-v2-0760-closed-loop-prioritization",
+    "title": "Comms Continuous Improvement Planner",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "closed-loop prioritization",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 62,
+    "roiScore": 69.46,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0760-comms-continuous-improvement-planner/SKILL.md"
+  }
+}

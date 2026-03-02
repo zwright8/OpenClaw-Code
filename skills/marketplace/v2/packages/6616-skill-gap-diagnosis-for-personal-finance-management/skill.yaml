@@ -1,0 +1,26 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 6616
+  name: "openclaw-v2-6616-skill-gap-diagnosis"
+  title: "Skill Gap Diagnosis for personal finance management"
+  domain: "personal finance management"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "skill gap diagnosis"
+  archetype: "diagnostic-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 95
+  roi_score: 87.95
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Enterprise-Ready"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/6616-skill-gap-diagnosis-for-personal-finance-management/SKILL.md"

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 110,
+    "name": "openclaw-v2-0110-policy-scoped-data-mediation",
+    "title": "Memory Privacy Preserving Data Broker",
+    "domain": "Memory and Knowledge Operations",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "policy-scoped data mediation",
+    "archetype": "collaboration-mediator"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 68.11,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0110-memory-privacy-preserving-data-broker/SKILL.md"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 8736,
+    "name": "openclaw-v2-8736-scientific-hypothesis-prioritization",
+    "title": "Scientific Hypothesis Prioritization for scientific publishing pipelines",
+    "domain": "scientific publishing pipelines",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "scientific hypothesis prioritization",
+    "archetype": "hypothesis-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 73.15,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/8736-scientific-hypothesis-prioritization-for-scientific-publishing-pipelines/SKILL.md"
+  }
+}

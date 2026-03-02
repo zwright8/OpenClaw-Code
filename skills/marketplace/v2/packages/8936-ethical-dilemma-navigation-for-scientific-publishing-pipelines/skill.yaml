@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 8936
+  name: "openclaw-v2-8936-ethical-dilemma-navigation"
+  title: "Ethical Dilemma Navigation for scientific publishing pipelines"
+  domain: "scientific publishing pipelines"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "ethical dilemma navigation"
+  archetype: "ethics-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 73
+  roi_score: 73.79
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/8936-ethical-dilemma-navigation-for-scientific-publishing-pipelines/SKILL.md"

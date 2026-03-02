@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4416,
+    "name": "openclaw-v2-4416-experiment-design",
+    "title": "Experiment Design for personal finance management",
+    "domain": "personal finance management",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "experiment design",
+    "archetype": "experimentation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 97,
+    "roiScore": 72.85,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4416-experiment-design-for-personal-finance-management/SKILL.md"
+  }
+}

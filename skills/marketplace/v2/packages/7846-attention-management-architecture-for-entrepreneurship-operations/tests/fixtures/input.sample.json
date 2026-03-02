@@ -1,0 +1,13 @@
+{
+  "task": "Execute attention management architecture",
+  "objective": "Deliver Attention Management Architecture for entrepreneurship operations outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

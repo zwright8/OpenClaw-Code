@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 189,
+    "name": "openclaw-v2-0189-failover-and-restoration-sequencing",
+    "title": "Governance Disaster Recovery Orchestrator",
+    "domain": "Safety and Governance",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "failover and restoration sequencing",
+    "archetype": "general-capability"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 72,
+    "roiScore": 70.61,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0189-governance-disaster-recovery-orchestrator/SKILL.md"
+  }
+}

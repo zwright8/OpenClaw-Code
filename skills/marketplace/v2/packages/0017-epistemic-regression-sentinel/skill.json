@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 17,
+    "name": "openclaw-v2-0017-baseline-delta-detection",
+    "title": "Epistemic Regression Sentinel",
+    "domain": "Truth-Seeking and Epistemics",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "baseline-delta detection",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 62,
+    "roiScore": 61.78,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0017-epistemic-regression-sentinel/SKILL.md"
+  }
+}

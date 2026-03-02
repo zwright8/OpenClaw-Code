@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 162,
+    "name": "openclaw-v2-0162-importance-scoring",
+    "title": "Governance Context Window Prioritizer",
+    "domain": "Safety and Governance",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "importance scoring",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 72.66,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0162-governance-context-window-prioritizer/SKILL.md"
+  }
+}

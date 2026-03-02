@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Gap Diagnosis for disaster response networksInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task",
+    "objective",
+    "constraints",
+    "context"
+  ],
+  "properties": {
+    "task": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 300
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 600
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 280
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "urgency",
+        "riskTolerance",
+        "budgetTier"
+      ],
+      "properties": {
+        "urgency": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "riskTolerance": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "budgetTier": {
+          "type": "string",
+          "enum": [
+            "small",
+            "medium",
+            "large"
+          ]
+        }
+      }
+    }
+  }
+}

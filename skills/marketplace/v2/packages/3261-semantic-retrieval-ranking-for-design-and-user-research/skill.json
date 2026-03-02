@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3261,
+    "name": "openclaw-v2-3261-semantic-retrieval-ranking",
+    "title": "Semantic Retrieval Ranking for design and user research",
+    "domain": "design and user research",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "semantic retrieval ranking",
+    "archetype": "retrieval-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 94,
+    "roiScore": 83,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3261-semantic-retrieval-ranking-for-design-and-user-research/SKILL.md"
+  }
+}

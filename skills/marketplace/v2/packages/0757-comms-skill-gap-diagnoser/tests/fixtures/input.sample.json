@@ -1,0 +1,13 @@
+{
+  "task": "Execute competency coverage analysis",
+  "objective": "Deliver Comms Skill Gap Diagnoser outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

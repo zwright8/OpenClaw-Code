@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 20
+  name: "openclaw-v2-0020-semantic-relevance-scoring"
+  title: "Epistemic Semantic Retrieval Ranker"
+  domain: "Truth-Seeking and Epistemics"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "semantic relevance scoring"
+  archetype: "planning-router"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 58
+  roi_score: 67.61
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0020-epistemic-semantic-retrieval-ranker/SKILL.md"

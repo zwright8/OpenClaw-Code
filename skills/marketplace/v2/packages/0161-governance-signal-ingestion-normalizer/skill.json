@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 161,
+    "name": "openclaw-v2-0161-schema-mapping-and-validation",
+    "title": "Governance Signal Ingestion Normalizer",
+    "domain": "Safety and Governance",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "schema mapping and validation",
+    "archetype": "normalization-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 62.59,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0161-governance-signal-ingestion-normalizer/SKILL.md"
+  }
+}

@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 3086
+  name: "openclaw-v2-3086-knowledge-graph-linking"
+  title: "Knowledge Graph Linking for education support services"
+  domain: "education support services"
+  vertical_id: "health-learning"
+  vertical_name: "Health and Learning Systems"
+  method: "knowledge graph linking"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 94
+  roi_score: 72.75
+  trust_badges:
+    - "Verified-Quality"
+    - "Reliability-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/3086-knowledge-graph-linking-for-education-support-services/SKILL.md"

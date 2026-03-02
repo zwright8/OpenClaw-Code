@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3526,
+    "name": "openclaw-v2-3526-plan-quality-evaluation",
+    "title": "Plan Quality Evaluation for cybersecurity operations",
+    "domain": "cybersecurity operations",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "plan quality evaluation",
+    "archetype": "evaluation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 71.74,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3526-plan-quality-evaluation-for-cybersecurity-operations/SKILL.md"
+  }
+}

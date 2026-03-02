@@ -1,0 +1,13 @@
+{
+  "task": "Execute pattern-to-playbook synthesis",
+  "objective": "Deliver Governance Incident Playbook Synthesizer outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

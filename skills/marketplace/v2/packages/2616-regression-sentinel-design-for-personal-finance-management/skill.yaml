@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2616
+  name: "openclaw-v2-2616-regression-sentinel-design"
+  title: "Regression Sentinel Design for personal finance management"
+  domain: "personal finance management"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "regression sentinel design"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 100
+  roi_score: 82.18
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2616-regression-sentinel-design-for-personal-finance-management/SKILL.md"

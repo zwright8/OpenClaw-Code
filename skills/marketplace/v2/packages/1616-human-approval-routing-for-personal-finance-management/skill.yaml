@@ -1,0 +1,26 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1616
+  name: "openclaw-v2-1616-human-approval-routing"
+  title: "Human Approval Routing for personal finance management"
+  domain: "personal finance management"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "human approval routing"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 99
+  roi_score: 91.85
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Enterprise-Ready"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1616-human-approval-routing-for-personal-finance-management/SKILL.md"

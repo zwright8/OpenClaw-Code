@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6681,
+    "name": "openclaw-v2-6681-skill-gap-diagnosis",
+    "title": "Skill Gap Diagnosis for healthcare operations",
+    "domain": "healthcare operations",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "skill gap diagnosis",
+    "archetype": "diagnostic-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 95,
+    "roiScore": 78.11,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6681-skill-gap-diagnosis-for-healthcare-operations/SKILL.md"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 13,
+    "name": "openclaw-v2-0013-contracted-payload-schemas",
+    "title": "Epistemic Task Handoff Contractor",
+    "domain": "Truth-Seeking and Epistemics",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "contracted payload schemas",
+    "archetype": "contract-compiler"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 58,
+    "roiScore": 59.94,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0013-epistemic-task-handoff-contractor/SKILL.md"
+  }
+}

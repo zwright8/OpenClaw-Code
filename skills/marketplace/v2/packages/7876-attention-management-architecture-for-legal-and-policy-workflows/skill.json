@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7876,
+    "name": "openclaw-v2-7876-attention-management-architecture",
+    "title": "Attention Management Architecture for legal and policy workflows",
+    "domain": "legal and policy workflows",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "attention management architecture",
+    "archetype": "attention-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 93,
+    "roiScore": 78.71,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7876-attention-management-architecture-for-legal-and-policy-workflows/SKILL.md"
+  }
+}

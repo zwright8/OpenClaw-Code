@@ -1,0 +1,13 @@
+{
+  "task": "Execute human approval routing",
+  "objective": "Deliver Human Approval Routing for design and user research outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

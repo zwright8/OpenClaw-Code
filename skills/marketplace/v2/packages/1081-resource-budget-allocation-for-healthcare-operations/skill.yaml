@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1081
+  name: "openclaw-v2-1081-resource-budget-allocation"
+  title: "Resource Budget Allocation for healthcare operations"
+  domain: "healthcare operations"
+  vertical_id: "health-learning"
+  vertical_name: "Health and Learning Systems"
+  method: "resource budget allocation"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 87
+  roi_score: 86.25
+  trust_badges:
+    - "ROI-Proven"
+    - "Enterprise-Ready"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1081-resource-budget-allocation-for-healthcare-operations/SKILL.md"

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 165,
+    "name": "openclaw-v2-0165-calibration-curves-and-error-bins",
+    "title": "Governance Confidence Calibration Engine",
+    "domain": "Safety and Governance",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "calibration curves and error bins",
+    "archetype": "optimization-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 64,
+    "roiScore": 74.08,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0165-governance-confidence-calibration-engine/SKILL.md"
+  }
+}

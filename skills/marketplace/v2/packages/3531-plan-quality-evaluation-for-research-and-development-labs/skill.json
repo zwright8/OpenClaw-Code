@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3531,
+    "name": "openclaw-v2-3531-plan-quality-evaluation",
+    "title": "Plan Quality Evaluation for research and development labs",
+    "domain": "research and development labs",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "plan quality evaluation",
+    "archetype": "evaluation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 68.61,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3531-plan-quality-evaluation-for-research-and-development-labs/SKILL.md"
+  }
+}

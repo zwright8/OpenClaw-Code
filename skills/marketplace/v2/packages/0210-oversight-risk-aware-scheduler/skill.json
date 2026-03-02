@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 210,
+    "name": "openclaw-v2-0210-risk-weighted-sequencing",
+    "title": "Oversight Risk-Aware Scheduler",
+    "domain": "Human Oversight and Operator UX",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "risk-weighted sequencing",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 70.16,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0210-oversight-risk-aware-scheduler/SKILL.md"
+  }
+}

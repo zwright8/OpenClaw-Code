@@ -1,0 +1,13 @@
+{
+  "task": "Execute retry and backoff orchestration",
+  "objective": "Deliver Retry And Backoff Orchestration for healthcare operations outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

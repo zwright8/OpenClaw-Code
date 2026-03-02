@@ -1,0 +1,34 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7476,
+    "name": "openclaw-v2-7476-autonomous-workflow-authoring",
+    "title": "Autonomous Workflow Authoring for legal and policy workflows",
+    "domain": "legal and policy workflows",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "autonomous workflow authoring",
+    "archetype": "orchestration-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 100,
+    "roiScore": 91.84,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7476-autonomous-workflow-authoring-for-legal-and-policy-workflows/SKILL.md"
+  }
+}

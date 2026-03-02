@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6661,
+    "name": "openclaw-v2-6661-skill-gap-diagnosis",
+    "title": "Skill Gap Diagnosis for design and user research",
+    "domain": "design and user research",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "skill gap diagnosis",
+    "archetype": "diagnostic-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 90,
+    "roiScore": 77.14,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6661-skill-gap-diagnosis-for-design-and-user-research/SKILL.md"
+  }
+}

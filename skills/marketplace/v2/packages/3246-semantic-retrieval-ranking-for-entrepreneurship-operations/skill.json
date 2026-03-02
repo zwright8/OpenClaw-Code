@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3246,
+    "name": "openclaw-v2-3246-semantic-retrieval-ranking",
+    "title": "Semantic Retrieval Ranking for entrepreneurship operations",
+    "domain": "entrepreneurship operations",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "semantic retrieval ranking",
+    "archetype": "retrieval-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 85,
+    "roiScore": 77.69,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3246-semantic-retrieval-ranking-for-entrepreneurship-operations/SKILL.md"
+  }
+}

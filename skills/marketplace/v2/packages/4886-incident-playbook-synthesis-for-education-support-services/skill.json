@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4886,
+    "name": "openclaw-v2-4886-incident-playbook-synthesis",
+    "title": "Incident Playbook Synthesis for education support services",
+    "domain": "education support services",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "incident playbook synthesis",
+    "archetype": "incident-response-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 99,
+    "roiScore": 88.85,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4886-incident-playbook-synthesis-for-education-support-services/SKILL.md"
+  }
+}

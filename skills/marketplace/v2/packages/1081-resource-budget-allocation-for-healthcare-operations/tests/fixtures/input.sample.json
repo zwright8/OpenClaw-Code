@@ -1,0 +1,13 @@
+{
+  "task": "Execute resource budget allocation",
+  "objective": "Deliver Resource Budget Allocation for healthcare operations outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

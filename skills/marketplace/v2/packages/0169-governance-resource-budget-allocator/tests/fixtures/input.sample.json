@@ -1,0 +1,13 @@
+{
+  "task": "Execute capacity-aware allocation",
+  "objective": "Deliver Governance Resource Budget Allocator outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "generatedAt": "2026-03-02T23:24:46.228Z",
+  "count": 3,
+  "results": [
+    {
+      "id": 7416,
+      "packageName": "openclaw-v2-7416-autonomous-workflow-authoring",
+      "result": {
+        "spec": {
+          "packageVersion": "2.0.0",
+          "schemaVersion": 1,
+          "skill": {
+            "id": 7416,
+            "name": "openclaw-v2-7416-autonomous-workflow-authoring",
+            "title": "Autonomous Workflow Authoring for personal finance management",
+            "domain": "personal finance management",
+            "verticalId": "business-growth",
+            "verticalName": "Business and Growth",
+            "method": "autonomous workflow authoring",
+            "archetype": "orchestration-engine"
+          },
+          "contracts": {
+            "inputSchemaPath": "input.schema.json",
+            "outputSchemaPath": "output.schema.json"
+          },
+          "quality": {
+            "score": 100,
+            "roiScore": 89.86,
+            "trustBadges": [
+              "Verified-Quality",
+              "ROI-Proven",
+              "Enterprise-Ready",
+              "Autopilot-Ready",
+              "Safety-Hardened"
+            ]
+          },
+          "references": {
+            "implementationPath": "references/implementation.json",
+            "sourceMarketplacePath": "skills/marketplace/generated/7416-autonomous-workflow-authoring-for-personal-finance-management/SKILL.md"
+          }
+        },
+        "input": {
+          "task": "Run a production-grade skill package execution",
+          "objective": "Produce an operational plan with explicit controls, KPI targets, and ready-to-execute actions.",
+          "constraints": [
+            "Use fail-closed contract validation",
+            "Include audit-ready evidence for every recommendation",
+            "Escalate if risk posture conflicts with urgency"
+          ],
+          "context": {
+            "urgency": "high",
+            "riskTolerance": "low",
+            "budgetTier": "large"
+          }
+        },
+        "output": {
+          "status": "needs_review",
+          "summary": "Autonomous Workflow Authoring for personal finance management: Produce an operational plan with explicit controls, KPI targets, and ready-to-execute actions.. Method=autonomous workflow authoring; Archetype=orchestration-engine; Vertical=Business and Growth.",
+          "plan": [
+            "1. Define measurable outcomes for Autonomous Workflow Authoring for personal finance management, including baseline and target metrics for personal finance management.",
+            "2. Specify structured inputs/outputs for autonomous workflow authoring and validate schema contract edge cases.",
+            "3. Implement the core autonomous workflow authoring logic with deterministic scoring and reproducible execution traces.",
+            "4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.",
+            "5. Run unit, integration, simulation, and regression suites for Autonomous Workflow Authoring for personal finance management under maximally truth-seeking conditions.",
+            "6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes."
+          ],
+          "controls": [
+            "[quality] Require unit and integration validations before promoting Autonomous Workflow Authoring for personal finance management.",
+            "[reliability] Trigger rollback on critical posture or repeated failures.",
+            "[compliance] Require policy and approval gates prior to autonomous deployment.",
+            "[safety] Block production action when risk posture is critical until human oversight review."
+          ],
+          "kpis": [
+            "accuracy lift",
+            "contradiction reduction",
+            "evidence coverage in personal finance management"
+          ],
+          "evidence": {
+            "sourceSkillId": 7416,
+            "sourceImplementationPath": "references/implementation.json",
+            "generatedAt": "2026-03-02T23:24:46.226Z"
+          }
+        },
+        "validation": {
+          "inputValid": true,
+          "outputValid": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "id": 7446,
+      "packageName": "openclaw-v2-7446-autonomous-workflow-authoring",
+      "result": {
+        "spec": {
+          "packageVersion": "2.0.0",
+          "schemaVersion": 1,
+          "skill": {
+            "id": 7446,
+            "name": "openclaw-v2-7446-autonomous-workflow-authoring",
+            "title": "Autonomous Workflow Authoring for entrepreneurship operations",
+            "domain": "entrepreneurship operations",
+            "verticalId": "business-growth",
+            "verticalName": "Business and Growth",
+            "method": "autonomous workflow authoring",
+            "archetype": "orchestration-engine"
+          },
+          "contracts": {
+            "inputSchemaPath": "input.schema.json",
+            "outputSchemaPath": "output.schema.json"
+          },
+          "quality": {
+            "score": 100,
+            "roiScore": 76.93,
+            "trustBadges": [
+              "Verified-Quality",
+              "Autopilot-Ready",
+              "Safety-Hardened"
+            ]
+          },
+          "references": {
+            "implementationPath": "references/implementation.json",
+            "sourceMarketplacePath": "skills/marketplace/generated/7446-autonomous-workflow-authoring-for-entrepreneurship-operations/SKILL.md"
+          }
+        },
+        "input": {
+          "task": "Run a production-grade skill package execution",
+          "objective": "Produce an operational plan with explicit controls, KPI targets, and ready-to-execute actions.",
+          "constraints": [
+            "Use fail-closed contract validation",
+            "Include audit-ready evidence for every recommendation",
+            "Escalate if risk posture conflicts with urgency"
+          ],
+          "context": {
+            "urgency": "medium",
+            "riskTolerance": "medium",
+            "budgetTier": "medium"
+          }
+        },
+        "output": {
+          "status": "ready",
+          "summary": "Autonomous Workflow Authoring for entrepreneurship operations: Produce an operational plan with explicit controls, KPI targets, and ready-to-execute actions.. Method=autonomous workflow authoring; Archetype=orchestration-engine; Vertical=Business and Growth.",
+          "plan": [
+            "1. Define measurable outcomes for Autonomous Workflow Authoring for entrepreneurship operations, including baseline and target metrics for entrepreneurship operations.",
+            "2. Specify structured inputs/outputs for autonomous workflow authoring and validate schema contract edge cases.",
+            "3. Implement the core autonomous workflow authoring logic with deterministic scoring and reproducible execution traces.",
+            "4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.",
+            "5. Run unit, integration, simulation, and regression suites for Autonomous Workflow Authoring for entrepreneurship operations under maximally truth-seeking conditions.",
+            "6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes."
+          ],
+          "controls": [
+            "[quality] Require unit and integration validations before promoting Autonomous Workflow Authoring for entrepreneurship operations.",
+            "[reliability] Trigger rollback on critical posture or repeated failures.",
+            "[compliance] Require policy and approval gates prior to autonomous deployment.",
+            "[cost] Respect bounded resource pressure and execution budget during scaling."
+          ],
+          "kpis": [
+            "accuracy lift",
+            "contradiction reduction",
+            "evidence coverage in entrepreneurship operations"
+          ],
+          "evidence": {
+            "sourceSkillId": 7446,
+            "sourceImplementationPath": "references/implementation.json",
+            "generatedAt": "2026-03-02T23:24:46.228Z"
+          }
+        },
+        "validation": {
+          "inputValid": true,
+          "outputValid": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "id": 7451,
+      "packageName": "openclaw-v2-7451-autonomous-workflow-authoring",
+      "result": {
+        "spec": {
+          "packageVersion": "2.0.0",
+          "schemaVersion": 1,
+          "skill": {
+            "id": 7451,
+            "name": "openclaw-v2-7451-autonomous-workflow-authoring",
+            "title": "Autonomous Workflow Authoring for software engineering delivery",
+            "domain": "software engineering delivery",
+            "verticalId": "engineering-product",
+            "verticalName": "Engineering and Product",
+            "method": "autonomous workflow authoring",
+            "archetype": "orchestration-engine"
+          },
+          "contracts": {
+            "inputSchemaPath": "input.schema.json",
+            "outputSchemaPath": "output.schema.json"
+          },
+          "quality": {
+            "score": 100,
+            "roiScore": 87.44,
+            "trustBadges": [
+              "Verified-Quality",
+              "ROI-Proven",
+              "Enterprise-Ready",
+              "Autopilot-Ready",
+              "Safety-Hardened"
+            ]
+          },
+          "references": {
+            "implementationPath": "references/implementation.json",
+            "sourceMarketplacePath": "skills/marketplace/generated/7451-autonomous-workflow-authoring-for-software-engineering-delivery/SKILL.md"
+          }
+        },
+        "input": {
+          "task": "Run a production-grade skill package execution",
+          "objective": "Produce an operational plan with explicit controls, KPI targets, and ready-to-execute actions.",
+          "constraints": [
+            "Use fail-closed contract validation",
+            "Include audit-ready evidence for every recommendation",
+            "Escalate if risk posture conflicts with urgency"
+          ],
+          "context": {
+            "urgency": "low",
+            "riskTolerance": "high",
+            "budgetTier": "small"
+          }
+        },
+        "output": {
+          "status": "ready",
+          "summary": "Autonomous Workflow Authoring for software engineering delivery: Produce an operational plan with explicit controls, KPI targets, and ready-to-execute actions.. Method=autonomous workflow authoring; Archetype=orchestration-engine; Vertical=Engineering and Product.",
+          "plan": [
+            "1. Define measurable outcomes for Autonomous Workflow Authoring for software engineering delivery, including baseline and target metrics for software engineering delivery.",
+            "2. Specify structured inputs/outputs for autonomous workflow authoring and validate schema contract edge cases.",
+            "3. Implement the core autonomous workflow authoring logic with deterministic scoring and reproducible execution traces.",
+            "4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.",
+            "5. Run unit, integration, simulation, and regression suites for Autonomous Workflow Authoring for software engineering delivery under maximally truth-seeking conditions.",
+            "6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes."
+          ],
+          "controls": [
+            "[quality] Require unit and integration validations before promoting Autonomous Workflow Authoring for software engineering delivery.",
+            "[reliability] Trigger rollback on critical posture or repeated failures.",
+            "[compliance] Require policy and approval gates prior to autonomous deployment.",
+            "[cost] Respect bounded resource pressure and execution budget during scaling."
+          ],
+          "kpis": [
+            "accuracy lift",
+            "contradiction reduction",
+            "evidence coverage in software engineering delivery"
+          ],
+          "evidence": {
+            "sourceSkillId": 7451,
+            "sourceImplementationPath": "references/implementation.json",
+            "generatedAt": "2026-03-02T23:24:46.228Z"
+          }
+        },
+        "validation": {
+          "inputValid": true,
+          "outputValid": true,
+          "errors": []
+        }
+      }
+    }
+  ]
+}

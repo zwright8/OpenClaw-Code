@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2276,
+    "name": "openclaw-v2-2276-retry-and-backoff-orchestration",
+    "title": "Retry And Backoff Orchestration for legal and policy workflows",
+    "domain": "legal and policy workflows",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "retry and backoff orchestration",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 86.5,
+    "trustBadges": [
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2276-retry-and-backoff-orchestration-for-legal-and-policy-workflows/SKILL.md"
+  }
+}

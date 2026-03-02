@@ -1,0 +1,23 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 3251
+  name: "openclaw-v2-3251-semantic-retrieval-ranking"
+  title: "Semantic Retrieval Ranking for software engineering delivery"
+  domain: "software engineering delivery"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "semantic retrieval ranking"
+  archetype: "retrieval-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 85
+  roi_score: 81.35
+  trust_badges:
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/3251-semantic-retrieval-ranking-for-software-engineering-delivery/SKILL.md"

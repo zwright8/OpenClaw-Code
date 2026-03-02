@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1451
+  name: "openclaw-v2-1451-constraint-compilation"
+  title: "Constraint Compilation for software engineering delivery"
+  domain: "software engineering delivery"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "constraint compilation"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 73
+  roi_score: 76.16
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1451-constraint-compilation-for-software-engineering-delivery/SKILL.md"

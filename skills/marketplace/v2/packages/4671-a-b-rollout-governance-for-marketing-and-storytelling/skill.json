@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4671,
+    "name": "openclaw-v2-4671-a-b-rollout-governance",
+    "title": "A/B Rollout Governance for marketing and storytelling",
+    "domain": "marketing and storytelling",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "a/b rollout governance",
+    "archetype": "governance-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 96,
+    "roiScore": 82.54,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4671-a-b-rollout-governance-for-marketing-and-storytelling/SKILL.md"
+  }
+}

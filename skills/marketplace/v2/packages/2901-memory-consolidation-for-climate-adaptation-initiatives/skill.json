@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2901,
+    "name": "openclaw-v2-2901-memory-consolidation",
+    "title": "Memory Consolidation for climate adaptation initiatives",
+    "domain": "climate adaptation initiatives",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "memory consolidation",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 78.44,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2901-memory-consolidation-for-climate-adaptation-initiatives/SKILL.md"
+  }
+}

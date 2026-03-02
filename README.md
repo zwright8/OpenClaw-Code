@@ -197,6 +197,21 @@ Run the full packaging chain:
 npm run skills:marketplace:ship
 ```
 
+Build executable Skill Package v2 artifacts (contract-first, runner-backed, certifiable):
+```bash
+npm run skills:marketplace:v2:build
+npm run skills:marketplace:v2:validate
+npm run skills:marketplace:v2:demo
+```
+This writes:
+- `skills/marketplace/v2/catalog.json` (500 package registry with trust badges)
+- `skills/marketplace/v2/packages/<skill>/skill.yaml` + `skill.json`
+- `skills/marketplace/v2/packages/<skill>/input.schema.json` + `output.schema.json`
+- `skills/marketplace/v2/packages/<skill>/guardrails.yaml` + `observability.yaml`
+- `skills/marketplace/v2/packages/<skill>/runner.ts` + `tests/fixtures/input.sample.json`
+- `skills/marketplace/v2/validation.report.json` + `skills/marketplace/v2/validation.report.md`
+- `skills/marketplace/v2/demo/demo-output.json` + `skills/marketplace/v2/demo/DEMO.md`
+
 Enforce hardening policy during bot/autonomy execution:
 ```bash
 cd cognition-core

@@ -1,0 +1,13 @@
+{
+  "task": "Execute disaster recovery orchestration",
+  "objective": "Deliver Disaster Recovery Orchestration for product management execution outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

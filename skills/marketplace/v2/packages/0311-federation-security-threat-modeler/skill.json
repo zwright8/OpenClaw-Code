@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 311,
+    "name": "openclaw-v2-0311-attack-surface-modeling",
+    "title": "Federation Security Threat Modeler",
+    "domain": "Federation and Interoperability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "attack-surface modeling",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 67.59,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0311-federation-security-threat-modeler/SKILL.md"
+  }
+}

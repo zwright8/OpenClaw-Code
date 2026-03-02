@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 5291
+  name: "openclaw-v2-5291-privacy-preserving-data-brokering"
+  title: "Privacy-Preserving Data Brokering for nonprofit program delivery"
+  domain: "nonprofit program delivery"
+  vertical_id: "public-impact"
+  vertical_name: "Public Impact and Resilience"
+  method: "privacy-preserving data brokering"
+  archetype: "privacy-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 87
+  roi_score: 65.06
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/5291-privacy-preserving-data-brokering-for-nonprofit-program-delivery/SKILL.md"

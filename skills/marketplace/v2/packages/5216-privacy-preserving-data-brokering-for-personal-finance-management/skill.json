@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5216,
+    "name": "openclaw-v2-5216-privacy-preserving-data-brokering",
+    "title": "Privacy-Preserving Data Brokering for personal finance management",
+    "domain": "personal finance management",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "privacy-preserving data brokering",
+    "archetype": "privacy-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 100,
+    "roiScore": 76.35,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5216-privacy-preserving-data-brokering-for-personal-finance-management/SKILL.md"
+  }
+}

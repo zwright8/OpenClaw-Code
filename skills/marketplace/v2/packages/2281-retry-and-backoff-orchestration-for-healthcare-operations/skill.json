@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2281,
+    "name": "openclaw-v2-2281-retry-and-backoff-orchestration",
+    "title": "Retry And Backoff Orchestration for healthcare operations",
+    "domain": "healthcare operations",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "retry and backoff orchestration",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 84.58,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2281-retry-and-backoff-orchestration-for-healthcare-operations/SKILL.md"
+  }
+}

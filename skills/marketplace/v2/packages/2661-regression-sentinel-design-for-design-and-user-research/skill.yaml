@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2661
+  name: "openclaw-v2-2661-regression-sentinel-design"
+  title: "Regression Sentinel Design for design and user research"
+  domain: "design and user research"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "regression sentinel design"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 98
+  roi_score: 76.19
+  trust_badges:
+    - "Verified-Quality"
+    - "Reliability-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2661-regression-sentinel-design-for-design-and-user-research/SKILL.md"

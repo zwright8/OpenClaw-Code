@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1246
+  name: "openclaw-v2-1246-risk-aware-scheduling"
+  title: "Risk-Aware Scheduling for entrepreneurship operations"
+  domain: "entrepreneurship operations"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "risk-aware scheduling"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 87
+  roi_score: 70.63
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1246-risk-aware-scheduling-for-entrepreneurship-operations/SKILL.md"

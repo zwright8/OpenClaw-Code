@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5076,
+    "name": "openclaw-v2-5076-disaster-recovery-orchestration",
+    "title": "Disaster Recovery Orchestration for legal and policy workflows",
+    "domain": "legal and policy workflows",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "disaster recovery orchestration",
+    "archetype": "resilience-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 99,
+    "roiScore": 79.43,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5076-disaster-recovery-orchestration-for-legal-and-policy-workflows/SKILL.md"
+  }
+}

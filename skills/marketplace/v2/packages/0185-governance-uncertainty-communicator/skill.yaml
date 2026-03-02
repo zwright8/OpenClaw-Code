@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 185
+  name: "openclaw-v2-0185-confidence-bound-communication-templates"
+  title: "Governance Uncertainty Communicator"
+  domain: "Safety and Governance"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "confidence-bound communication templates"
+  archetype: "communication-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 68
+  roi_score: 76.38
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0185-governance-uncertainty-communicator/SKILL.md"

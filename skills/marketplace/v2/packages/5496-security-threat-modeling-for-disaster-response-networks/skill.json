@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5496,
+    "name": "openclaw-v2-5496-security-threat-modeling",
+    "title": "Security Threat Modeling for disaster response networks",
+    "domain": "disaster response networks",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "security threat modeling",
+    "archetype": "modeling-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 100,
+    "roiScore": 77.26,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5496-security-threat-modeling-for-disaster-response-networks/SKILL.md"
+  }
+}

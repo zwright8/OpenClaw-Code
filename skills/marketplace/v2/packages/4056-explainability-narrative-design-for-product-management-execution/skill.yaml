@@ -1,0 +1,23 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 4056
+  name: "openclaw-v2-4056-explainability-narrative-design"
+  title: "Explainability Narrative Design for product management execution"
+  domain: "product management execution"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "explainability narrative design"
+  archetype: "narrative-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 81
+  roi_score: 82.35
+  trust_badges:
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/4056-explainability-narrative-design-for-product-management-execution/SKILL.md"
