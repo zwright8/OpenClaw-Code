@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rights Regression Sentinel"
+  short_description: "Baseline-delta detection for Legal, Rights, and Compliance with guardrails and measurable outcomes."
+  default_prompt: "Use Rights Regression Sentinel to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

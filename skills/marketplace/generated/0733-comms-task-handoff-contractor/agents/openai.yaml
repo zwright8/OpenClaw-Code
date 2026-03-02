@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comms Task Handoff Contractor"
+  short_description: "Contracted payload schemas for Communication and Explainability with guardrails and measurable outcomes."
+  default_prompt: "Use Comms Task Handoff Contractor to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

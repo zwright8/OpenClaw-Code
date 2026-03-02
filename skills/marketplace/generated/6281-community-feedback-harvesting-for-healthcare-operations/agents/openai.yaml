@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Feedback Harvesting for healthcare operations"
+  short_description: "Community feedback harvesting for healthcare operations with guardrails and measurable outcomes."
+  default_prompt: "Use Community Feedback Harvesting for healthcare operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

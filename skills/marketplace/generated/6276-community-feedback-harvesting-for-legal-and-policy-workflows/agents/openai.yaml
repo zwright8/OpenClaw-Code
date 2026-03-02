@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Feedback Harvesting for legal and policy workflows"
+  short_description: "Community feedback harvesting for legal and policy workflows with guardrails and measurable outcomes."
+  default_prompt: "Use Community Feedback Harvesting for legal and policy workflows to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

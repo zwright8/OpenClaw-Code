@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mentoring And Coaching Design for nonprofit program delivery"
+  short_description: "Mentoring and coaching design for nonprofit program delivery with guardrails and measurable outcomes."
+  default_prompt: "Use Mentoring And Coaching Design for nonprofit program delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

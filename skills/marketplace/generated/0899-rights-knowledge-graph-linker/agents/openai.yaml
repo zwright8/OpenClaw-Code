@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rights Knowledge Graph Linker"
+  short_description: "Entity and relation linking for Legal, Rights, and Compliance with guardrails and measurable outcomes."
+  default_prompt: "Use Rights Knowledge Graph Linker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

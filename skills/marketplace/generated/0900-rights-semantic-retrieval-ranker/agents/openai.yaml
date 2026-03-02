@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rights Semantic Retrieval Ranker"
+  short_description: "Semantic relevance scoring for Legal, Rights, and Compliance with guardrails and measurable outcomes."
+  default_prompt: "Use Rights Semantic Retrieval Ranker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

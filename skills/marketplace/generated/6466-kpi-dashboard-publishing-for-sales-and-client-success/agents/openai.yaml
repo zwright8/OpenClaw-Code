@@ -1,0 +1,4 @@
+interface:
+  display_name: "KPI Dashboard Publishing for sales and client success"
+  short_description: "Kpi dashboard publishing for sales and client success with guardrails and measurable outcomes."
+  default_prompt: "Use KPI Dashboard Publishing for sales and client success to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

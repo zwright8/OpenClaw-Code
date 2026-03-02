@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rights Experiment Design Generator"
+  short_description: "Hypothesis-driven design for Legal, Rights, and Compliance with guardrails and measurable outcomes."
+  default_prompt: "Use Rights Experiment Design Generator to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."
