@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decision Journal Maintenance for climate adaptation initi..."
+  short_description: "Decision journal maintenance for climate adaptation initiatives with guardrails and measurable outcomes."
+  default_prompt: "Use Decision Journal Maintenance for climate adaptation initiatives to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Feedback Harvesting for urban planning and mobi..."
+  short_description: "Community feedback harvesting for urban planning and mobility with guardrails and measurable outcomes."
+  default_prompt: "Use Community Feedback Harvesting for urban planning and mobility to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

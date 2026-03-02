@@ -1,0 +1,4 @@
+interface:
+  display_name: "Planning Security Threat Modeler"
+  short_description: "Attack-surface modeling for Strategic Planning and Decomposition with guardrails and measurable outcomes."
+  default_prompt: "Use Planning Security Threat Modeler to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

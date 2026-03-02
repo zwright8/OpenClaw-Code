@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tooling Regression Sentinel"
+  short_description: "Baseline-delta detection for Tool Reliability and Execution Quality with guardrails and measurable outcomes."
+  default_prompt: "Use Tooling Regression Sentinel to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

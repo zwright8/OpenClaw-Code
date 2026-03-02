@@ -1,0 +1,4 @@
+interface:
+  display_name: "Privacy-Preserving Data Brokering for disaster response n..."
+  short_description: "Privacy-preserving data brokering for disaster response networks with guardrails and measurable outcomes."
+  default_prompt: "Use Privacy-Preserving Data Brokering for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

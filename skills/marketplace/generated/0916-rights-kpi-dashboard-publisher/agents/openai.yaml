@@ -1,4 +1,0 @@
-interface:
-  display_name: "Rights KPI Dashboard Publisher"
-  short_description: "Metric synthesis and publication for Legal, Rights, and Compliance with guardrails and measurable outcomes."
-  default_prompt: "Use Rights KPI Dashboard Publisher to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

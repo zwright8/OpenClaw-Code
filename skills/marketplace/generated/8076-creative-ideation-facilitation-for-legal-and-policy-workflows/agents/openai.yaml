@@ -1,4 +1,0 @@
-interface:
-  display_name: "Creative Ideation Facilitation for legal and policy workf..."
-  short_description: "Creative ideation facilitation for legal and policy workflows with guardrails and measurable outcomes."
-  default_prompt: "Use Creative Ideation Facilitation for legal and policy workflows to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

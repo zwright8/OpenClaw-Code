@@ -1,0 +1,910 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-02T22:49:54.089Z",
+  "verticalId": "public-impact",
+  "verticalName": "Public Impact and Resilience",
+  "description": "Public service operations, climate resilience, and civic outcomes.",
+  "count": 90,
+  "entries": [
+    {
+      "id": 1091,
+      "marketplaceSkillName": "openclaw-1091-resource-budget-allocation",
+      "title": "Resource Budget Allocation for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1091-resource-budget-allocation-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1091-resource-budget-allocation-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1096,
+      "marketplaceSkillName": "openclaw-1096-resource-budget-allocation",
+      "title": "Resource Budget Allocation for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1096-resource-budget-allocation-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1096-resource-budget-allocation-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 1101,
+      "marketplaceSkillName": "openclaw-1101-resource-budget-allocation",
+      "title": "Resource Budget Allocation for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1101-resource-budget-allocation-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1101-resource-budget-allocation-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 1106,
+      "marketplaceSkillName": "openclaw-1106-resource-budget-allocation",
+      "title": "Resource Budget Allocation for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1106-resource-budget-allocation-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1106-resource-budget-allocation-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 1111,
+      "marketplaceSkillName": "openclaw-1111-resource-budget-allocation",
+      "title": "Resource Budget Allocation for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1111-resource-budget-allocation-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1111-resource-budget-allocation-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 1291,
+      "marketplaceSkillName": "openclaw-1291-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/1291-risk-aware-scheduling-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1291-risk-aware-scheduling-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1296,
+      "marketplaceSkillName": "openclaw-1296-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/1296-risk-aware-scheduling-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1296-risk-aware-scheduling-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 1491,
+      "marketplaceSkillName": "openclaw-1491-constraint-compilation",
+      "title": "Constraint Compilation for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1491-constraint-compilation-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1491-constraint-compilation-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1496,
+      "marketplaceSkillName": "openclaw-1496-constraint-compilation",
+      "title": "Constraint Compilation for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1496-constraint-compilation-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1496-constraint-compilation-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 1501,
+      "marketplaceSkillName": "openclaw-1501-constraint-compilation",
+      "title": "Constraint Compilation for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1501-constraint-compilation-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1501-constraint-compilation-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 1506,
+      "marketplaceSkillName": "openclaw-1506-constraint-compilation",
+      "title": "Constraint Compilation for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1506-constraint-compilation-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1506-constraint-compilation-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 1511,
+      "marketplaceSkillName": "openclaw-1511-constraint-compilation",
+      "title": "Constraint Compilation for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1511-constraint-compilation-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1511-constraint-compilation-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 1691,
+      "marketplaceSkillName": "openclaw-1691-human-approval-routing",
+      "title": "Human Approval Routing for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1691-human-approval-routing-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1691-human-approval-routing-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1696,
+      "marketplaceSkillName": "openclaw-1696-human-approval-routing",
+      "title": "Human Approval Routing for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1696-human-approval-routing-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1696-human-approval-routing-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 1891,
+      "marketplaceSkillName": "openclaw-1891-handoff-contracting",
+      "title": "Handoff Contracting for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1891-handoff-contracting-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1891-handoff-contracting-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1896,
+      "marketplaceSkillName": "openclaw-1896-handoff-contracting",
+      "title": "Handoff Contracting for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1896-handoff-contracting-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1896-handoff-contracting-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 2091,
+      "marketplaceSkillName": "openclaw-2091-tool-health-monitoring",
+      "title": "Tool Health Monitoring for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2091-tool-health-monitoring-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2091-tool-health-monitoring-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2096,
+      "marketplaceSkillName": "openclaw-2096-tool-health-monitoring",
+      "title": "Tool Health Monitoring for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2096-tool-health-monitoring-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2096-tool-health-monitoring-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 2101,
+      "marketplaceSkillName": "openclaw-2101-tool-health-monitoring",
+      "title": "Tool Health Monitoring for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2101-tool-health-monitoring-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2101-tool-health-monitoring-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 2106,
+      "marketplaceSkillName": "openclaw-2106-tool-health-monitoring",
+      "title": "Tool Health Monitoring for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2106-tool-health-monitoring-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2106-tool-health-monitoring-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 2111,
+      "marketplaceSkillName": "openclaw-2111-tool-health-monitoring",
+      "title": "Tool Health Monitoring for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2111-tool-health-monitoring-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2111-tool-health-monitoring-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 2291,
+      "marketplaceSkillName": "openclaw-2291-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2291-retry-and-backoff-orchestration-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2291-retry-and-backoff-orchestration-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2296,
+      "marketplaceSkillName": "openclaw-2296-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2296-retry-and-backoff-orchestration-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2296-retry-and-backoff-orchestration-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 2301,
+      "marketplaceSkillName": "openclaw-2301-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2301-retry-and-backoff-orchestration-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2301-retry-and-backoff-orchestration-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 2306,
+      "marketplaceSkillName": "openclaw-2306-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2306-retry-and-backoff-orchestration-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2306-retry-and-backoff-orchestration-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 2311,
+      "marketplaceSkillName": "openclaw-2311-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2311-retry-and-backoff-orchestration-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2311-retry-and-backoff-orchestration-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 2491,
+      "marketplaceSkillName": "openclaw-2491-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2491-failure-root-cause-mining-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2491-failure-root-cause-mining-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2496,
+      "marketplaceSkillName": "openclaw-2496-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2496-failure-root-cause-mining-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2496-failure-root-cause-mining-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 2691,
+      "marketplaceSkillName": "openclaw-2691-regression-sentinel-design",
+      "title": "Regression Sentinel Design for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2691-regression-sentinel-design-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2691-regression-sentinel-design-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2696,
+      "marketplaceSkillName": "openclaw-2696-regression-sentinel-design",
+      "title": "Regression Sentinel Design for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2696-regression-sentinel-design-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2696-regression-sentinel-design-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 2901,
+      "marketplaceSkillName": "openclaw-2901-memory-consolidation",
+      "title": "Memory Consolidation for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2901-memory-consolidation-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2901-memory-consolidation-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 2906,
+      "marketplaceSkillName": "openclaw-2906-memory-consolidation",
+      "title": "Memory Consolidation for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2906-memory-consolidation-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2906-memory-consolidation-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 2911,
+      "marketplaceSkillName": "openclaw-2911-memory-consolidation",
+      "title": "Memory Consolidation for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2911-memory-consolidation-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2911-memory-consolidation-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 3091,
+      "marketplaceSkillName": "openclaw-3091-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3091-knowledge-graph-linking-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3091-knowledge-graph-linking-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 3096,
+      "marketplaceSkillName": "openclaw-3096-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3096-knowledge-graph-linking-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3096-knowledge-graph-linking-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 3291,
+      "marketplaceSkillName": "openclaw-3291-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3291-semantic-retrieval-ranking-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3291-semantic-retrieval-ranking-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 3296,
+      "marketplaceSkillName": "openclaw-3296-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3296-semantic-retrieval-ranking-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3296-semantic-retrieval-ranking-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 3501,
+      "marketplaceSkillName": "openclaw-3501-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3501-plan-quality-evaluation-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3501-plan-quality-evaluation-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 3506,
+      "marketplaceSkillName": "openclaw-3506-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3506-plan-quality-evaluation-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3506-plan-quality-evaluation-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 3511,
+      "marketplaceSkillName": "openclaw-3511-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3511-plan-quality-evaluation-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3511-plan-quality-evaluation-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 3701,
+      "marketplaceSkillName": "openclaw-3701-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "multi-agent negotiation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3701-multi-agent-negotiation-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3701-multi-agent-negotiation-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 3706,
+      "marketplaceSkillName": "openclaw-3706-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "multi-agent negotiation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3706-multi-agent-negotiation-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3706-multi-agent-negotiation-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 3711,
+      "marketplaceSkillName": "openclaw-3711-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "multi-agent negotiation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3711-multi-agent-negotiation-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3711-multi-agent-negotiation-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 3901,
+      "marketplaceSkillName": "openclaw-3901-conflict-resolution-coaching",
+      "title": "Conflict Resolution Coaching for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "conflict resolution coaching",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3901-conflict-resolution-coaching-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3901-conflict-resolution-coaching-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 3906,
+      "marketplaceSkillName": "openclaw-3906-conflict-resolution-coaching",
+      "title": "Conflict Resolution Coaching for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "conflict resolution coaching",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3906-conflict-resolution-coaching-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3906-conflict-resolution-coaching-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 3911,
+      "marketplaceSkillName": "openclaw-3911-conflict-resolution-coaching",
+      "title": "Conflict Resolution Coaching for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "conflict resolution coaching",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3911-conflict-resolution-coaching-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3911-conflict-resolution-coaching-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 4091,
+      "marketplaceSkillName": "openclaw-4091-explainability-narrative-design",
+      "title": "Explainability Narrative Design for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4091-explainability-narrative-design-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4091-explainability-narrative-design-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4096,
+      "marketplaceSkillName": "openclaw-4096-explainability-narrative-design",
+      "title": "Explainability Narrative Design for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4096-explainability-narrative-design-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4096-explainability-narrative-design-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 4291,
+      "marketplaceSkillName": "openclaw-4291-uncertainty-communication",
+      "title": "Uncertainty Communication for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4291-uncertainty-communication-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4291-uncertainty-communication-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4296,
+      "marketplaceSkillName": "openclaw-4296-uncertainty-communication",
+      "title": "Uncertainty Communication for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4296-uncertainty-communication-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4296-uncertainty-communication-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 4491,
+      "marketplaceSkillName": "openclaw-4491-experiment-design",
+      "title": "Experiment Design for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/4491-experiment-design-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4491-experiment-design-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4496,
+      "marketplaceSkillName": "openclaw-4496-experiment-design",
+      "title": "Experiment Design for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/4496-experiment-design-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4496-experiment-design-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 4691,
+      "marketplaceSkillName": "openclaw-4691-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/4691-a-b-rollout-governance-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4691-a-b-rollout-governance-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4696,
+      "marketplaceSkillName": "openclaw-4696-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/4696-a-b-rollout-governance-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4696-a-b-rollout-governance-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 4891,
+      "marketplaceSkillName": "openclaw-4891-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/4891-incident-playbook-synthesis-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4891-incident-playbook-synthesis-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4896,
+      "marketplaceSkillName": "openclaw-4896-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/4896-incident-playbook-synthesis-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4896-incident-playbook-synthesis-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 5091,
+      "marketplaceSkillName": "openclaw-5091-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5091-disaster-recovery-orchestration-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5091-disaster-recovery-orchestration-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5096,
+      "marketplaceSkillName": "openclaw-5096-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5096-disaster-recovery-orchestration-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5096-disaster-recovery-orchestration-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 5291,
+      "marketplaceSkillName": "openclaw-5291-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5291-privacy-preserving-data-brokering-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5291-privacy-preserving-data-brokering-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5296,
+      "marketplaceSkillName": "openclaw-5296-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5296-privacy-preserving-data-brokering-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5296-privacy-preserving-data-brokering-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 5491,
+      "marketplaceSkillName": "openclaw-5491-security-threat-modeling",
+      "title": "Security Threat Modeling for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5491-security-threat-modeling-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5491-security-threat-modeling-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5496,
+      "marketplaceSkillName": "openclaw-5496-security-threat-modeling",
+      "title": "Security Threat Modeling for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5496-security-threat-modeling-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5496-security-threat-modeling-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 5691,
+      "marketplaceSkillName": "openclaw-5691-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5691-compliance-evidence-mapping-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5691-compliance-evidence-mapping-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5696,
+      "marketplaceSkillName": "openclaw-5696-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5696-compliance-evidence-mapping-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5696-compliance-evidence-mapping-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 5891,
+      "marketplaceSkillName": "openclaw-5891-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/5891-cost-benefit-forecasting-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5891-cost-benefit-forecasting-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5896,
+      "marketplaceSkillName": "openclaw-5896-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/5896-cost-benefit-forecasting-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5896-cost-benefit-forecasting-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 6101,
+      "marketplaceSkillName": "openclaw-6101-equity-impact-scoring",
+      "title": "Equity Impact Scoring for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "equity impact scoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/6101-equity-impact-scoring-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6101-equity-impact-scoring-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 6106,
+      "marketplaceSkillName": "openclaw-6106-equity-impact-scoring",
+      "title": "Equity Impact Scoring for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "equity impact scoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/6106-equity-impact-scoring-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6106-equity-impact-scoring-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 6111,
+      "marketplaceSkillName": "openclaw-6111-equity-impact-scoring",
+      "title": "Equity Impact Scoring for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "equity impact scoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/6111-equity-impact-scoring-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6111-equity-impact-scoring-for-agriculture-and-food-systems/agents/openai.yaml"
+    },
+    {
+      "id": 6301,
+      "marketplaceSkillName": "openclaw-6301-community-feedback-harvesting",
+      "title": "Community Feedback Harvesting for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "community feedback harvesting",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/6301-community-feedback-harvesting-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6301-community-feedback-harvesting-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 6306,
+      "marketplaceSkillName": "openclaw-6306-community-feedback-harvesting",
+      "title": "Community Feedback Harvesting for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "community feedback harvesting",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/6306-community-feedback-harvesting-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6306-community-feedback-harvesting-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 6491,
+      "marketplaceSkillName": "openclaw-6491-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/6491-kpi-dashboard-publishing-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6491-kpi-dashboard-publishing-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 6496,
+      "marketplaceSkillName": "openclaw-6496-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/6496-kpi-dashboard-publishing-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6496-kpi-dashboard-publishing-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 6691,
+      "marketplaceSkillName": "openclaw-6691-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/6691-skill-gap-diagnosis-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6691-skill-gap-diagnosis-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 6696,
+      "marketplaceSkillName": "openclaw-6696-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/6696-skill-gap-diagnosis-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6696-skill-gap-diagnosis-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 7291,
+      "marketplaceSkillName": "openclaw-7291-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/7291-continuous-improvement-planning-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7291-continuous-improvement-planning-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7296,
+      "marketplaceSkillName": "openclaw-7296-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/7296-continuous-improvement-planning-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7296-continuous-improvement-planning-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 7491,
+      "marketplaceSkillName": "openclaw-7491-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "marketplacePath": "skills/marketplace/generated/7491-autonomous-workflow-authoring-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7491-autonomous-workflow-authoring-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7496,
+      "marketplaceSkillName": "openclaw-7496-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "marketplacePath": "skills/marketplace/generated/7496-autonomous-workflow-authoring-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7496-autonomous-workflow-authoring-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 7691,
+      "marketplaceSkillName": "openclaw-7691-personal-habit-optimization",
+      "title": "Personal Habit Optimization for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/7691-personal-habit-optimization-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7691-personal-habit-optimization-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7696,
+      "marketplaceSkillName": "openclaw-7696-personal-habit-optimization",
+      "title": "Personal Habit Optimization for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/7696-personal-habit-optimization-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7696-personal-habit-optimization-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 7891,
+      "marketplaceSkillName": "openclaw-7891-attention-management-architecture",
+      "title": "Attention Management Architecture for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/7891-attention-management-architecture-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7891-attention-management-architecture-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7896,
+      "marketplaceSkillName": "openclaw-7896-attention-management-architecture",
+      "title": "Attention Management Architecture for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/7896-attention-management-architecture-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7896-attention-management-architecture-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 7901,
+      "marketplaceSkillName": "openclaw-7901-attention-management-architecture",
+      "title": "Attention Management Architecture for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/7901-attention-management-architecture-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7901-attention-management-architecture-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 7906,
+      "marketplaceSkillName": "openclaw-7906-attention-management-architecture",
+      "title": "Attention Management Architecture for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/7906-attention-management-architecture-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7906-attention-management-architecture-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 9891,
+      "marketplaceSkillName": "openclaw-9891-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for nonprofit program delivery",
+      "domain": "nonprofit program delivery",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9891-decision-journal-maintenance-for-nonprofit-program-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9891-decision-journal-maintenance-for-nonprofit-program-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 9896,
+      "marketplaceSkillName": "openclaw-9896-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for disaster response networks",
+      "domain": "disaster response networks",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9896-decision-journal-maintenance-for-disaster-response-networks/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9896-decision-journal-maintenance-for-disaster-response-networks/agents/openai.yaml"
+    },
+    {
+      "id": 9901,
+      "marketplaceSkillName": "openclaw-9901-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for climate adaptation initiatives",
+      "domain": "climate adaptation initiatives",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9901-decision-journal-maintenance-for-climate-adaptation-initiatives/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9901-decision-journal-maintenance-for-climate-adaptation-initiatives/agents/openai.yaml"
+    },
+    {
+      "id": 9906,
+      "marketplaceSkillName": "openclaw-9906-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for urban planning and mobility",
+      "domain": "urban planning and mobility",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9906-decision-journal-maintenance-for-urban-planning-and-mobility/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9906-decision-journal-maintenance-for-urban-planning-and-mobility/agents/openai.yaml"
+    },
+    {
+      "id": 9911,
+      "marketplaceSkillName": "openclaw-9911-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for agriculture and food systems",
+      "domain": "agriculture and food systems",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9911-decision-journal-maintenance-for-agriculture-and-food-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9911-decision-journal-maintenance-for-agriculture-and-food-systems/agents/openai.yaml"
+    }
+  ]
+}

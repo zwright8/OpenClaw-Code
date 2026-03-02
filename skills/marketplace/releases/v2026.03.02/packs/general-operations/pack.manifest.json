@@ -1,0 +1,821 @@
+{
+  "version": 1,
+  "releaseVersion": "v2026.03.02",
+  "verticalId": "general-operations",
+  "verticalName": "General Operations",
+  "description": "Cross-domain operational skills not mapped to a specific vertical.",
+  "count": 90,
+  "generatedAt": "2026-03-02T22:49:55.594Z",
+  "skills": [
+    {
+      "id": 10,
+      "marketplaceSkillName": "openclaw-0010-risk-weighted-sequencing",
+      "title": "Epistemic Risk-Aware Scheduler",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0010-epistemic-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 13,
+      "marketplaceSkillName": "openclaw-0013-contracted-payload-schemas",
+      "title": "Epistemic Task Handoff Contractor",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "contracted payload schemas",
+      "score": 8,
+      "path": "packs/general-operations/skills/0013-epistemic-task-handoff-contractor/SKILL.md"
+    },
+    {
+      "id": 17,
+      "marketplaceSkillName": "openclaw-0017-baseline-delta-detection",
+      "title": "Epistemic Regression Sentinel",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0017-epistemic-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 19,
+      "marketplaceSkillName": "openclaw-0019-entity-and-relation-linking",
+      "title": "Epistemic Knowledge Graph Linker",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "entity and relation linking",
+      "score": 8,
+      "path": "packs/general-operations/skills/0019-epistemic-knowledge-graph-linker/SKILL.md"
+    },
+    {
+      "id": 20,
+      "marketplaceSkillName": "openclaw-0020-semantic-relevance-scoring",
+      "title": "Epistemic Semantic Retrieval Ranker",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "semantic relevance scoring",
+      "score": 8,
+      "path": "packs/general-operations/skills/0020-epistemic-semantic-retrieval-ranker/SKILL.md"
+    },
+    {
+      "id": 28,
+      "marketplaceSkillName": "openclaw-0028-pattern-to-playbook-synthesis",
+      "title": "Epistemic Incident Playbook Synthesizer",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "pattern-to-playbook synthesis",
+      "score": 8,
+      "path": "packs/general-operations/skills/0028-epistemic-incident-playbook-synthesizer/SKILL.md"
+    },
+    {
+      "id": 29,
+      "marketplaceSkillName": "openclaw-0029-failover-and-restoration-sequencing",
+      "title": "Epistemic Disaster Recovery Orchestrator",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "failover and restoration sequencing",
+      "score": 8,
+      "path": "packs/general-operations/skills/0029-epistemic-disaster-recovery-orchestrator/SKILL.md"
+    },
+    {
+      "id": 30,
+      "marketplaceSkillName": "openclaw-0030-policy-scoped-data-mediation",
+      "title": "Epistemic Privacy Preserving Data Broker",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0030-epistemic-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 31,
+      "marketplaceSkillName": "openclaw-0031-attack-surface-modeling",
+      "title": "Epistemic Security Threat Modeler",
+      "domain": "Truth-Seeking and Epistemics",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0031-epistemic-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 50,
+      "marketplaceSkillName": "openclaw-0050-risk-weighted-sequencing",
+      "title": "Planning Risk-Aware Scheduler",
+      "domain": "Strategic Planning and Decomposition",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0050-planning-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 57,
+      "marketplaceSkillName": "openclaw-0057-baseline-delta-detection",
+      "title": "Planning Regression Sentinel",
+      "domain": "Strategic Planning and Decomposition",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0057-planning-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 70,
+      "marketplaceSkillName": "openclaw-0070-policy-scoped-data-mediation",
+      "title": "Planning Privacy Preserving Data Broker",
+      "domain": "Strategic Planning and Decomposition",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0070-planning-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 71,
+      "marketplaceSkillName": "openclaw-0071-attack-surface-modeling",
+      "title": "Planning Security Threat Modeler",
+      "domain": "Strategic Planning and Decomposition",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0071-planning-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 90,
+      "marketplaceSkillName": "openclaw-0090-risk-weighted-sequencing",
+      "title": "Memory Risk-Aware Scheduler",
+      "domain": "Memory and Knowledge Operations",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0090-memory-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 97,
+      "marketplaceSkillName": "openclaw-0097-baseline-delta-detection",
+      "title": "Memory Regression Sentinel",
+      "domain": "Memory and Knowledge Operations",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0097-memory-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 110,
+      "marketplaceSkillName": "openclaw-0110-policy-scoped-data-mediation",
+      "title": "Memory Privacy Preserving Data Broker",
+      "domain": "Memory and Knowledge Operations",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0110-memory-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 111,
+      "marketplaceSkillName": "openclaw-0111-attack-surface-modeling",
+      "title": "Memory Security Threat Modeler",
+      "domain": "Memory and Knowledge Operations",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0111-memory-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 130,
+      "marketplaceSkillName": "openclaw-0130-risk-weighted-sequencing",
+      "title": "Tooling Risk-Aware Scheduler",
+      "domain": "Tool Reliability and Execution Quality",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0130-tooling-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 137,
+      "marketplaceSkillName": "openclaw-0137-baseline-delta-detection",
+      "title": "Tooling Regression Sentinel",
+      "domain": "Tool Reliability and Execution Quality",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0137-tooling-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 150,
+      "marketplaceSkillName": "openclaw-0150-policy-scoped-data-mediation",
+      "title": "Tooling Privacy Preserving Data Broker",
+      "domain": "Tool Reliability and Execution Quality",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0150-tooling-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 151,
+      "marketplaceSkillName": "openclaw-0151-attack-surface-modeling",
+      "title": "Tooling Security Threat Modeler",
+      "domain": "Tool Reliability and Execution Quality",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0151-tooling-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 161,
+      "marketplaceSkillName": "openclaw-0161-schema-mapping-and-validation",
+      "title": "Governance Signal Ingestion Normalizer",
+      "domain": "Safety and Governance",
+      "coreMethod": "schema mapping and validation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0161-governance-signal-ingestion-normalizer/SKILL.md"
+    },
+    {
+      "id": 162,
+      "marketplaceSkillName": "openclaw-0162-importance-scoring",
+      "title": "Governance Context Window Prioritizer",
+      "domain": "Safety and Governance",
+      "coreMethod": "importance scoring",
+      "score": 9,
+      "path": "packs/general-operations/skills/0162-governance-context-window-prioritizer/SKILL.md"
+    },
+    {
+      "id": 163,
+      "marketplaceSkillName": "openclaw-0163-signed-provenance-links",
+      "title": "Governance Evidence Provenance Tracker",
+      "domain": "Safety and Governance",
+      "coreMethod": "signed provenance links",
+      "score": 9,
+      "path": "packs/general-operations/skills/0163-governance-evidence-provenance-tracker/SKILL.md"
+    },
+    {
+      "id": 164,
+      "marketplaceSkillName": "openclaw-0164-cross-claim-consistency-checks",
+      "title": "Governance Contradiction Detector",
+      "domain": "Safety and Governance",
+      "coreMethod": "cross-claim consistency checks",
+      "score": 9,
+      "path": "packs/general-operations/skills/0164-governance-contradiction-detector/SKILL.md"
+    },
+    {
+      "id": 165,
+      "marketplaceSkillName": "openclaw-0165-calibration-curves-and-error-bins",
+      "title": "Governance Confidence Calibration Engine",
+      "domain": "Safety and Governance",
+      "coreMethod": "calibration curves and error bins",
+      "score": 11,
+      "path": "packs/general-operations/skills/0165-governance-confidence-calibration-engine/SKILL.md"
+    },
+    {
+      "id": 166,
+      "marketplaceSkillName": "openclaw-0166-counterfactual-replay",
+      "title": "Governance Counterfactual Simulator",
+      "domain": "Safety and Governance",
+      "coreMethod": "counterfactual replay",
+      "score": 9,
+      "path": "packs/general-operations/skills/0166-governance-counterfactual-simulator/SKILL.md"
+    },
+    {
+      "id": 167,
+      "marketplaceSkillName": "openclaw-0167-hierarchical-decomposition",
+      "title": "Governance Goal Decomposer",
+      "domain": "Safety and Governance",
+      "coreMethod": "hierarchical decomposition",
+      "score": 9,
+      "path": "packs/general-operations/skills/0167-governance-goal-decomposer/SKILL.md"
+    },
+    {
+      "id": 168,
+      "marketplaceSkillName": "openclaw-0168-dependency-graph-compilation",
+      "title": "Governance Dependency DAG Planner",
+      "domain": "Safety and Governance",
+      "coreMethod": "dependency graph compilation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0168-governance-dependency-dag-planner/SKILL.md"
+    },
+    {
+      "id": 169,
+      "marketplaceSkillName": "openclaw-0169-capacity-aware-allocation",
+      "title": "Governance Resource Budget Allocator",
+      "domain": "Safety and Governance",
+      "coreMethod": "capacity-aware allocation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0169-governance-resource-budget-allocator/SKILL.md"
+    },
+    {
+      "id": 170,
+      "marketplaceSkillName": "openclaw-0170-risk-weighted-sequencing",
+      "title": "Governance Risk-Aware Scheduler",
+      "domain": "Safety and Governance",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0170-governance-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 173,
+      "marketplaceSkillName": "openclaw-0173-contracted-payload-schemas",
+      "title": "Governance Task Handoff Contractor",
+      "domain": "Safety and Governance",
+      "coreMethod": "contracted payload schemas",
+      "score": 15,
+      "path": "packs/general-operations/skills/0173-governance-task-handoff-contractor/SKILL.md"
+    },
+    {
+      "id": 177,
+      "marketplaceSkillName": "openclaw-0177-baseline-delta-detection",
+      "title": "Governance Regression Sentinel",
+      "domain": "Safety and Governance",
+      "coreMethod": "baseline-delta detection",
+      "score": 17,
+      "path": "packs/general-operations/skills/0177-governance-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 179,
+      "marketplaceSkillName": "openclaw-0179-entity-and-relation-linking",
+      "title": "Governance Knowledge Graph Linker",
+      "domain": "Safety and Governance",
+      "coreMethod": "entity and relation linking",
+      "score": 15,
+      "path": "packs/general-operations/skills/0179-governance-knowledge-graph-linker/SKILL.md"
+    },
+    {
+      "id": 180,
+      "marketplaceSkillName": "openclaw-0180-semantic-relevance-scoring",
+      "title": "Governance Semantic Retrieval Ranker",
+      "domain": "Safety and Governance",
+      "coreMethod": "semantic relevance scoring",
+      "score": 15,
+      "path": "packs/general-operations/skills/0180-governance-semantic-retrieval-ranker/SKILL.md"
+    },
+    {
+      "id": 184,
+      "marketplaceSkillName": "openclaw-0184-reason-synthesis-and-abstraction",
+      "title": "Governance Explainability Narrative Builder",
+      "domain": "Safety and Governance",
+      "coreMethod": "reason synthesis and abstraction",
+      "score": 13,
+      "path": "packs/general-operations/skills/0184-governance-explainability-narrative-builder/SKILL.md"
+    },
+    {
+      "id": 185,
+      "marketplaceSkillName": "openclaw-0185-confidence-bound-communication-templates",
+      "title": "Governance Uncertainty Communicator",
+      "domain": "Safety and Governance",
+      "coreMethod": "confidence-bound communication templates",
+      "score": 13,
+      "path": "packs/general-operations/skills/0185-governance-uncertainty-communicator/SKILL.md"
+    },
+    {
+      "id": 186,
+      "marketplaceSkillName": "openclaw-0186-hypothesis-driven-design",
+      "title": "Governance Experiment Design Generator",
+      "domain": "Safety and Governance",
+      "coreMethod": "hypothesis-driven design",
+      "score": 14,
+      "path": "packs/general-operations/skills/0186-governance-experiment-design-generator/SKILL.md"
+    },
+    {
+      "id": 187,
+      "marketplaceSkillName": "openclaw-0187-staged-rollout-policies",
+      "title": "Governance A/B Rollout Governor",
+      "domain": "Safety and Governance",
+      "coreMethod": "staged rollout policies",
+      "score": 14,
+      "path": "packs/general-operations/skills/0187-governance-a-b-rollout-governor/SKILL.md"
+    },
+    {
+      "id": 188,
+      "marketplaceSkillName": "openclaw-0188-pattern-to-playbook-synthesis",
+      "title": "Governance Incident Playbook Synthesizer",
+      "domain": "Safety and Governance",
+      "coreMethod": "pattern-to-playbook synthesis",
+      "score": 15,
+      "path": "packs/general-operations/skills/0188-governance-incident-playbook-synthesizer/SKILL.md"
+    },
+    {
+      "id": 189,
+      "marketplaceSkillName": "openclaw-0189-failover-and-restoration-sequencing",
+      "title": "Governance Disaster Recovery Orchestrator",
+      "domain": "Safety and Governance",
+      "coreMethod": "failover and restoration sequencing",
+      "score": 15,
+      "path": "packs/general-operations/skills/0189-governance-disaster-recovery-orchestrator/SKILL.md"
+    },
+    {
+      "id": 190,
+      "marketplaceSkillName": "openclaw-0190-policy-scoped-data-mediation",
+      "title": "Governance Privacy Preserving Data Broker",
+      "domain": "Safety and Governance",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 16,
+      "path": "packs/general-operations/skills/0190-governance-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 191,
+      "marketplaceSkillName": "openclaw-0191-attack-surface-modeling",
+      "title": "Governance Security Threat Modeler",
+      "domain": "Safety and Governance",
+      "coreMethod": "attack-surface modeling",
+      "score": 16,
+      "path": "packs/general-operations/skills/0191-governance-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 192,
+      "marketplaceSkillName": "openclaw-0192-requirement-to-evidence-mapping",
+      "title": "Governance Compliance Evidence Mapper",
+      "domain": "Safety and Governance",
+      "coreMethod": "requirement-to-evidence mapping",
+      "score": 15,
+      "path": "packs/general-operations/skills/0192-governance-compliance-evidence-mapper/SKILL.md"
+    },
+    {
+      "id": 193,
+      "marketplaceSkillName": "openclaw-0193-cost-impact-simulation",
+      "title": "Governance Cost-Benefit Forecaster",
+      "domain": "Safety and Governance",
+      "coreMethod": "cost-impact simulation",
+      "score": 14,
+      "path": "packs/general-operations/skills/0193-governance-cost-benefit-forecaster/SKILL.md"
+    },
+    {
+      "id": 196,
+      "marketplaceSkillName": "openclaw-0196-metric-synthesis-and-publication",
+      "title": "Governance KPI Dashboard Publisher",
+      "domain": "Safety and Governance",
+      "coreMethod": "metric synthesis and publication",
+      "score": 14,
+      "path": "packs/general-operations/skills/0196-governance-kpi-dashboard-publisher/SKILL.md"
+    },
+    {
+      "id": 197,
+      "marketplaceSkillName": "openclaw-0197-competency-coverage-analysis",
+      "title": "Governance Skill Gap Diagnoser",
+      "domain": "Safety and Governance",
+      "coreMethod": "competency coverage analysis",
+      "score": 13,
+      "path": "packs/general-operations/skills/0197-governance-skill-gap-diagnoser/SKILL.md"
+    },
+    {
+      "id": 198,
+      "marketplaceSkillName": "openclaw-0198-sequenced-learning-path-design",
+      "title": "Governance Training Curriculum Composer",
+      "domain": "Safety and Governance",
+      "coreMethod": "sequenced learning path design",
+      "score": 13,
+      "path": "packs/general-operations/skills/0198-governance-training-curriculum-composer/SKILL.md"
+    },
+    {
+      "id": 200,
+      "marketplaceSkillName": "openclaw-0200-closed-loop-prioritization",
+      "title": "Governance Continuous Improvement Planner",
+      "domain": "Safety and Governance",
+      "coreMethod": "closed-loop prioritization",
+      "score": 13,
+      "path": "packs/general-operations/skills/0200-governance-continuous-improvement-planner/SKILL.md"
+    },
+    {
+      "id": 210,
+      "marketplaceSkillName": "openclaw-0210-risk-weighted-sequencing",
+      "title": "Oversight Risk-Aware Scheduler",
+      "domain": "Human Oversight and Operator UX",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0210-oversight-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 217,
+      "marketplaceSkillName": "openclaw-0217-baseline-delta-detection",
+      "title": "Oversight Regression Sentinel",
+      "domain": "Human Oversight and Operator UX",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0217-oversight-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 230,
+      "marketplaceSkillName": "openclaw-0230-policy-scoped-data-mediation",
+      "title": "Oversight Privacy Preserving Data Broker",
+      "domain": "Human Oversight and Operator UX",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0230-oversight-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 231,
+      "marketplaceSkillName": "openclaw-0231-attack-surface-modeling",
+      "title": "Oversight Security Threat Modeler",
+      "domain": "Human Oversight and Operator UX",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0231-oversight-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 250,
+      "marketplaceSkillName": "openclaw-0250-risk-weighted-sequencing",
+      "title": "Collab Risk-Aware Scheduler",
+      "domain": "Collaboration and Negotiation",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0250-collab-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 257,
+      "marketplaceSkillName": "openclaw-0257-baseline-delta-detection",
+      "title": "Collab Regression Sentinel",
+      "domain": "Collaboration and Negotiation",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0257-collab-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 270,
+      "marketplaceSkillName": "openclaw-0270-policy-scoped-data-mediation",
+      "title": "Collab Privacy Preserving Data Broker",
+      "domain": "Collaboration and Negotiation",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0270-collab-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 271,
+      "marketplaceSkillName": "openclaw-0271-attack-surface-modeling",
+      "title": "Collab Security Threat Modeler",
+      "domain": "Collaboration and Negotiation",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0271-collab-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 290,
+      "marketplaceSkillName": "openclaw-0290-risk-weighted-sequencing",
+      "title": "Federation Risk-Aware Scheduler",
+      "domain": "Federation and Interoperability",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0290-federation-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 297,
+      "marketplaceSkillName": "openclaw-0297-baseline-delta-detection",
+      "title": "Federation Regression Sentinel",
+      "domain": "Federation and Interoperability",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0297-federation-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 310,
+      "marketplaceSkillName": "openclaw-0310-policy-scoped-data-mediation",
+      "title": "Federation Privacy Preserving Data Broker",
+      "domain": "Federation and Interoperability",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0310-federation-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 311,
+      "marketplaceSkillName": "openclaw-0311-attack-surface-modeling",
+      "title": "Federation Security Threat Modeler",
+      "domain": "Federation and Interoperability",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0311-federation-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 330,
+      "marketplaceSkillName": "openclaw-0330-risk-weighted-sequencing",
+      "title": "Economic Risk-Aware Scheduler",
+      "domain": "Economic Optimization",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0330-economic-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 337,
+      "marketplaceSkillName": "openclaw-0337-baseline-delta-detection",
+      "title": "Economic Regression Sentinel",
+      "domain": "Economic Optimization",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0337-economic-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 350,
+      "marketplaceSkillName": "openclaw-0350-policy-scoped-data-mediation",
+      "title": "Economic Privacy Preserving Data Broker",
+      "domain": "Economic Optimization",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0350-economic-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 351,
+      "marketplaceSkillName": "openclaw-0351-attack-surface-modeling",
+      "title": "Economic Security Threat Modeler",
+      "domain": "Economic Optimization",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0351-economic-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 370,
+      "marketplaceSkillName": "openclaw-0370-risk-weighted-sequencing",
+      "title": "Logistics Risk-Aware Scheduler",
+      "domain": "Resource Allocation and Logistics",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0370-logistics-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 377,
+      "marketplaceSkillName": "openclaw-0377-baseline-delta-detection",
+      "title": "Logistics Regression Sentinel",
+      "domain": "Resource Allocation and Logistics",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0377-logistics-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 390,
+      "marketplaceSkillName": "openclaw-0390-policy-scoped-data-mediation",
+      "title": "Logistics Privacy Preserving Data Broker",
+      "domain": "Resource Allocation and Logistics",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0390-logistics-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 391,
+      "marketplaceSkillName": "openclaw-0391-attack-surface-modeling",
+      "title": "Logistics Security Threat Modeler",
+      "domain": "Resource Allocation and Logistics",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0391-logistics-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 410,
+      "marketplaceSkillName": "openclaw-0410-risk-weighted-sequencing",
+      "title": "PublicService Risk-Aware Scheduler",
+      "domain": "Healthcare and Public Services",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 9,
+      "path": "packs/general-operations/skills/0410-publicservice-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 417,
+      "marketplaceSkillName": "openclaw-0417-baseline-delta-detection",
+      "title": "PublicService Regression Sentinel",
+      "domain": "Healthcare and Public Services",
+      "coreMethod": "baseline-delta detection",
+      "score": 10,
+      "path": "packs/general-operations/skills/0417-publicservice-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 430,
+      "marketplaceSkillName": "openclaw-0430-policy-scoped-data-mediation",
+      "title": "PublicService Privacy Preserving Data Broker",
+      "domain": "Healthcare and Public Services",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 9,
+      "path": "packs/general-operations/skills/0430-publicservice-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 431,
+      "marketplaceSkillName": "openclaw-0431-attack-surface-modeling",
+      "title": "PublicService Security Threat Modeler",
+      "domain": "Healthcare and Public Services",
+      "coreMethod": "attack-surface modeling",
+      "score": 9,
+      "path": "packs/general-operations/skills/0431-publicservice-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 730,
+      "marketplaceSkillName": "openclaw-0730-risk-weighted-sequencing",
+      "title": "Comms Risk-Aware Scheduler",
+      "domain": "Communication and Explainability",
+      "coreMethod": "risk-weighted sequencing",
+      "score": 13,
+      "path": "packs/general-operations/skills/0730-comms-risk-aware-scheduler/SKILL.md"
+    },
+    {
+      "id": 733,
+      "marketplaceSkillName": "openclaw-0733-contracted-payload-schemas",
+      "title": "Comms Task Handoff Contractor",
+      "domain": "Communication and Explainability",
+      "coreMethod": "contracted payload schemas",
+      "score": 12,
+      "path": "packs/general-operations/skills/0733-comms-task-handoff-contractor/SKILL.md"
+    },
+    {
+      "id": 737,
+      "marketplaceSkillName": "openclaw-0737-baseline-delta-detection",
+      "title": "Comms Regression Sentinel",
+      "domain": "Communication and Explainability",
+      "coreMethod": "baseline-delta detection",
+      "score": 14,
+      "path": "packs/general-operations/skills/0737-comms-regression-sentinel/SKILL.md"
+    },
+    {
+      "id": 739,
+      "marketplaceSkillName": "openclaw-0739-entity-and-relation-linking",
+      "title": "Comms Knowledge Graph Linker",
+      "domain": "Communication and Explainability",
+      "coreMethod": "entity and relation linking",
+      "score": 12,
+      "path": "packs/general-operations/skills/0739-comms-knowledge-graph-linker/SKILL.md"
+    },
+    {
+      "id": 740,
+      "marketplaceSkillName": "openclaw-0740-semantic-relevance-scoring",
+      "title": "Comms Semantic Retrieval Ranker",
+      "domain": "Communication and Explainability",
+      "coreMethod": "semantic relevance scoring",
+      "score": 12,
+      "path": "packs/general-operations/skills/0740-comms-semantic-retrieval-ranker/SKILL.md"
+    },
+    {
+      "id": 746,
+      "marketplaceSkillName": "openclaw-0746-hypothesis-driven-design",
+      "title": "Comms Experiment Design Generator",
+      "domain": "Communication and Explainability",
+      "coreMethod": "hypothesis-driven design",
+      "score": 11,
+      "path": "packs/general-operations/skills/0746-comms-experiment-design-generator/SKILL.md"
+    },
+    {
+      "id": 747,
+      "marketplaceSkillName": "openclaw-0747-staged-rollout-policies",
+      "title": "Comms A/B Rollout Governor",
+      "domain": "Communication and Explainability",
+      "coreMethod": "staged rollout policies",
+      "score": 11,
+      "path": "packs/general-operations/skills/0747-comms-a-b-rollout-governor/SKILL.md"
+    },
+    {
+      "id": 748,
+      "marketplaceSkillName": "openclaw-0748-pattern-to-playbook-synthesis",
+      "title": "Comms Incident Playbook Synthesizer",
+      "domain": "Communication and Explainability",
+      "coreMethod": "pattern-to-playbook synthesis",
+      "score": 12,
+      "path": "packs/general-operations/skills/0748-comms-incident-playbook-synthesizer/SKILL.md"
+    },
+    {
+      "id": 749,
+      "marketplaceSkillName": "openclaw-0749-failover-and-restoration-sequencing",
+      "title": "Comms Disaster Recovery Orchestrator",
+      "domain": "Communication and Explainability",
+      "coreMethod": "failover and restoration sequencing",
+      "score": 12,
+      "path": "packs/general-operations/skills/0749-comms-disaster-recovery-orchestrator/SKILL.md"
+    },
+    {
+      "id": 750,
+      "marketplaceSkillName": "openclaw-0750-policy-scoped-data-mediation",
+      "title": "Comms Privacy Preserving Data Broker",
+      "domain": "Communication and Explainability",
+      "coreMethod": "policy-scoped data mediation",
+      "score": 13,
+      "path": "packs/general-operations/skills/0750-comms-privacy-preserving-data-broker/SKILL.md"
+    },
+    {
+      "id": 751,
+      "marketplaceSkillName": "openclaw-0751-attack-surface-modeling",
+      "title": "Comms Security Threat Modeler",
+      "domain": "Communication and Explainability",
+      "coreMethod": "attack-surface modeling",
+      "score": 13,
+      "path": "packs/general-operations/skills/0751-comms-security-threat-modeler/SKILL.md"
+    },
+    {
+      "id": 752,
+      "marketplaceSkillName": "openclaw-0752-requirement-to-evidence-mapping",
+      "title": "Comms Compliance Evidence Mapper",
+      "domain": "Communication and Explainability",
+      "coreMethod": "requirement-to-evidence mapping",
+      "score": 12,
+      "path": "packs/general-operations/skills/0752-comms-compliance-evidence-mapper/SKILL.md"
+    },
+    {
+      "id": 753,
+      "marketplaceSkillName": "openclaw-0753-cost-impact-simulation",
+      "title": "Comms Cost-Benefit Forecaster",
+      "domain": "Communication and Explainability",
+      "coreMethod": "cost-impact simulation",
+      "score": 11,
+      "path": "packs/general-operations/skills/0753-comms-cost-benefit-forecaster/SKILL.md"
+    },
+    {
+      "id": 756,
+      "marketplaceSkillName": "openclaw-0756-metric-synthesis-and-publication",
+      "title": "Comms KPI Dashboard Publisher",
+      "domain": "Communication and Explainability",
+      "coreMethod": "metric synthesis and publication",
+      "score": 11,
+      "path": "packs/general-operations/skills/0756-comms-kpi-dashboard-publisher/SKILL.md"
+    },
+    {
+      "id": 757,
+      "marketplaceSkillName": "openclaw-0757-competency-coverage-analysis",
+      "title": "Comms Skill Gap Diagnoser",
+      "domain": "Communication and Explainability",
+      "coreMethod": "competency coverage analysis",
+      "score": 10,
+      "path": "packs/general-operations/skills/0757-comms-skill-gap-diagnoser/SKILL.md"
+    },
+    {
+      "id": 758,
+      "marketplaceSkillName": "openclaw-0758-sequenced-learning-path-design",
+      "title": "Comms Training Curriculum Composer",
+      "domain": "Communication and Explainability",
+      "coreMethod": "sequenced learning path design",
+      "score": 10,
+      "path": "packs/general-operations/skills/0758-comms-training-curriculum-composer/SKILL.md"
+    },
+    {
+      "id": 760,
+      "marketplaceSkillName": "openclaw-0760-closed-loop-prioritization",
+      "title": "Comms Continuous Improvement Planner",
+      "domain": "Communication and Explainability",
+      "coreMethod": "closed-loop prioritization",
+      "score": 10,
+      "path": "packs/general-operations/skills/0760-comms-continuous-improvement-planner/SKILL.md"
+    }
+  ]
+}

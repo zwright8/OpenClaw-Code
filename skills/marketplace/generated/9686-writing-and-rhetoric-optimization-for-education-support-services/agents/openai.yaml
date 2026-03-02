@@ -1,4 +1,0 @@
-interface:
-  display_name: "Writing And Rhetoric Optimization for education support s..."
-  short_description: "Writing and rhetoric optimization for education support services with guardrails and measurable outcomes."
-  default_prompt: "Use Writing And Rhetoric Optimization for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

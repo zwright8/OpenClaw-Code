@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comms Incident Playbook Synthesizer"
+  short_description: "Pattern-to-playbook synthesis for Communication and Explainability with guardrails and measurable outcomes."
+  default_prompt: "Use Comms Incident Playbook Synthesizer to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

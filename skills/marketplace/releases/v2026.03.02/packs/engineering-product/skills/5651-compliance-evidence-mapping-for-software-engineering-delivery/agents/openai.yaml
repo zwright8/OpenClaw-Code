@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compliance Evidence Mapping for software engineering deli..."
+  short_description: "Compliance evidence mapping for software engineering delivery with guardrails and measurable outcomes."
+  default_prompt: "Use Compliance Evidence Mapping for software engineering delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

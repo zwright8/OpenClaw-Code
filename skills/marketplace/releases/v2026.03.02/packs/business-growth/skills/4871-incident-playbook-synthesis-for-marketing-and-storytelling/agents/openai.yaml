@@ -1,0 +1,4 @@
+interface:
+  display_name: "Incident Playbook Synthesis for marketing and storytelling"
+  short_description: "Incident playbook synthesis for marketing and storytelling with guardrails and measurable outcomes."
+  default_prompt: "Use Incident Playbook Synthesis for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

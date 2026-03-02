@@ -1,0 +1,4 @@
+interface:
+  display_name: "Disaster Recovery Orchestration for healthcare operations"
+  short_description: "Disaster recovery orchestration for healthcare operations with guardrails and measurable outcomes."
+  default_prompt: "Use Disaster Recovery Orchestration for healthcare operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

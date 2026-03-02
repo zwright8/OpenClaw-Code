@@ -1,0 +1,4 @@
+interface:
+  display_name: "KPI Dashboard Publishing for education support services"
+  short_description: "Kpi dashboard publishing for education support services with guardrails and measurable outcomes."
+  default_prompt: "Use KPI Dashboard Publishing for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

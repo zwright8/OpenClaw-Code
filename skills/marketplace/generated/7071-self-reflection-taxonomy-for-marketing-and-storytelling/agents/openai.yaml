@@ -1,4 +1,0 @@
-interface:
-  display_name: "Self-Reflection Taxonomy for marketing and storytelling"
-  short_description: "Self-reflection taxonomy for marketing and storytelling with guardrails and measurable outcomes."
-  default_prompt: "Use Self-Reflection Taxonomy for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

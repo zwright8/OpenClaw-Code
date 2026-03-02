@@ -1,0 +1,4 @@
+interface:
+  display_name: "Privacy-Preserving Data Brokering for sales and client su..."
+  short_description: "Privacy-preserving data brokering for sales and client success with guardrails and measurable outcomes."
+  default_prompt: "Use Privacy-Preserving Data Brokering for sales and client success to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

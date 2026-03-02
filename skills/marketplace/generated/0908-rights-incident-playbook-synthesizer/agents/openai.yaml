@@ -1,4 +1,0 @@
-interface:
-  display_name: "Rights Incident Playbook Synthesizer"
-  short_description: "Pattern-to-playbook synthesis for Legal, Rights, and Compliance with guardrails and measurable outcomes."
-  default_prompt: "Use Rights Incident Playbook Synthesizer to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."
