@@ -136,3 +136,77 @@ test('remediation artifact bundle maps breached metrics to explicit tasks', () =
     assert.ok(bundle.artifacts[0].task.includes('Increase automation coverage'));
     assert.equal(bundle.artifacts[1].metric, 'cognitionSuccessRate');
 });
+
+test('scoreboard surfaces deterministic calibration suppression diagnostics', () => {
+    const loop = runFeedbackLoop(
+        [{ recommendationId: 'rec-1', owner: 'agent:a', confidence: 1 }],
+        [
+            { taskId: 't1', recommendationId: 'rec-1', status: 'failed' },
+            { taskId: 't2', status: 'completed' },
+            { taskId: 't3', status: 'completed' },
+            { taskId: 't4', status: 'completed' },
+            { taskId: 't5', status: 'completed' },
+            { taskId: 't6', status: 'completed' },
+            { taskId: 't7', status: 'completed' },
+            { taskId: 't8', status: 'completed' },
+            { taskId: 't9', status: 'completed' },
+            { taskId: 't10', status: 'completed' }
+        ],
+        {
+            generatedAt: '2026-03-01T00:00:00.000Z',
+            thresholds: { minSampleSize: 1 }
+        }
+    );
+
+    const scoreboard = buildScoreboard(loop);
+    const brierRow = scoreboard.rows.find((row) => row.metric === 'brier_score');
+    const calibrationRow = scoreboard.rows.find((row) => row.metric === 'calibration_gap');
+
+    assert.ok(brierRow);
+    assert.ok(calibrationRow);
+    assert.match(brierRow.detail, /mapped sample 1 is below minimum 3/);
+    assert.match(calibrationRow.detail, /mapped sample 1 is below minimum 3/);
+    assert.match(brierRow.detail, /readiness=insufficient_sample_size/);
+    assert.match(calibrationRow.detail, /mapped=1\/10/);
+    assert.match(brierRow.detail, /Confidence envelope \(95% hoeffding\)/);
+    assert.match(calibrationRow.detail, /calibration_gap=\[0, 1\]/);
+
+    const report = buildDailyJsonReport(loop, scoreboard, {
+        evaluationStatePath: 'skills/state/cognition-evaluation.json',
+        jsonReportPath: 'cognition-core/reports/cognition-daily.json',
+        markdownReportPath: 'cognition-core/reports/cognition-daily.md'
+    });
+
+    const markdown = renderDailyMarkdownReport(report);
+    assert.ok(markdown.includes('mapped sample 1 is below minimum 3'));
+    assert.ok(markdown.includes('mapped=1/10'));
+});
+
+
+test('scoreboard reports deterministic confidence envelope when calibration is active', () => {
+    const loop = runFeedbackLoop(
+        [{ recommendationId: 'rec-1', owner: 'agent:a', confidence: 0.8 }],
+        [
+            { taskId: 't1', recommendationId: 'rec-1', status: 'completed' },
+            { taskId: 't2', recommendationId: 'rec-1', status: 'failed' },
+            { taskId: 't3', recommendationId: 'rec-1', status: 'completed' }
+        ],
+        {
+            generatedAt: '2026-03-01T00:00:00.000Z',
+            thresholds: { minSampleSize: 1 }
+        }
+    );
+
+    const scoreboard = buildScoreboard(loop);
+    const brierRow = scoreboard.rows.find((row) => row.metric === 'brier_score');
+    const calibrationRow = scoreboard.rows.find((row) => row.metric === 'calibration_gap');
+
+    assert.ok(brierRow);
+    assert.ok(calibrationRow);
+    assert.equal(loop.evaluation.metrics.calibrationDiagnostics?.readiness, 'ready');
+    assert.equal(loop.evaluation.metrics.brierScore, 0.24);
+    assert.equal(loop.evaluation.metrics.calibrationGap, 0.1333);
+    assert.match(brierRow.detail, /Confidence envelope \(95% hoeffding\)/);
+    assert.match(brierRow.detail, /means\(predicted=0\.8, observed=0\.6667\)/);
+    assert.match(calibrationRow.detail, /calibration_gap=\[0, 0\.8\]/);
+});
