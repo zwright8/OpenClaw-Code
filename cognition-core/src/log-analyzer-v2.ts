@@ -13,6 +13,7 @@ function createToolStats() {
         orphanResults: 0,
         totalDurationMs: 0,
         durationSamples: 0,
+        durationSampleValuesMs: [],
         maxDurationMs: 0
     };
 }
@@ -44,6 +45,30 @@ function safePercent(numerator, denominator) {
     return (numerator / denominator) * 100;
 }
 
+function computePercentile(values, percentile) {
+    if (!Array.isArray(values) || values.length === 0) return null;
+    if (!Number.isFinite(percentile) || percentile < 0 || percentile > 1) return null;
+
+    const sorted = [...values]
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value) && value >= 0)
+        .sort((a, b) => a - b);
+
+    if (sorted.length === 0) return null;
+    if (sorted.length === 1) return roundNumber(sorted[0], 1);
+
+    const index = (sorted.length - 1) * percentile;
+    const lower = Math.floor(index);
+    const upper = Math.ceil(index);
+    if (lower === upper) {
+        return roundNumber(sorted[lower], 1);
+    }
+
+    const weight = index - lower;
+    const value = sorted[lower] + ((sorted[upper] - sorted[lower]) * weight);
+    return roundNumber(value, 1);
+}
+
 function metricDelta(current, baseline) {
     const delta = roundNumber(current - baseline, 2);
     const pctDelta = baseline === 0
@@ -62,8 +87,11 @@ function ensureToolSummary(raw) {
             orphanResults: 0,
             totalDurationMs: 0,
             durationSamples: 0,
+            durationSampleValuesMs: [],
             maxDurationMs: 0,
             avgDurationMs: null,
+            p50DurationMs: null,
+            p95DurationMs: null,
             errorRate: 0,
             unresolvedRate: 0,
             orphanResultRate: 0
@@ -77,10 +105,21 @@ function ensureToolSummary(raw) {
     const orphanResults = Number(raw.orphanResults) || 0;
     const totalDurationMs = Number(raw.totalDurationMs) || 0;
     const durationSamples = Number(raw.durationSamples) || 0;
+    const durationSampleValuesMs = Array.isArray(raw.durationSampleValuesMs)
+        ? raw.durationSampleValuesMs
+            .map((value) => Number(value))
+            .filter((value) => Number.isFinite(value) && value >= 0)
+        : [];
     const maxDurationMs = Number(raw.maxDurationMs) || 0;
     const avgDurationMs = raw.avgDurationMs === null || raw.avgDurationMs === undefined
         ? (durationSamples > 0 ? roundNumber(totalDurationMs / durationSamples, 1) : null)
         : Number(raw.avgDurationMs);
+    const p50DurationMs = raw.p50DurationMs === null || raw.p50DurationMs === undefined
+        ? computePercentile(durationSampleValuesMs, 0.5)
+        : Number(raw.p50DurationMs);
+    const p95DurationMs = raw.p95DurationMs === null || raw.p95DurationMs === undefined
+        ? computePercentile(durationSampleValuesMs, 0.95)
+        : Number(raw.p95DurationMs);
     const errorRate = raw.errorRate === undefined
         ? roundNumber(safePercent(errors, calls), 2)
         : Number(raw.errorRate);
@@ -99,8 +138,11 @@ function ensureToolSummary(raw) {
         orphanResults,
         totalDurationMs,
         durationSamples,
+        durationSampleValuesMs,
         maxDurationMs,
         avgDurationMs: Number.isFinite(avgDurationMs) ? avgDurationMs : null,
+        p50DurationMs: Number.isFinite(p50DurationMs) ? p50DurationMs : null,
+        p95DurationMs: Number.isFinite(p95DurationMs) ? p95DurationMs : null,
         errorRate: Number.isFinite(errorRate) ? errorRate : 0,
         unresolvedRate: Number.isFinite(unresolvedRate) ? unresolvedRate : 0,
         orphanResultRate: Number.isFinite(orphanResultRate) ? orphanResultRate : 0
@@ -146,6 +188,9 @@ export function buildComparison(currentSummary, baselineSummary) {
         const avgDurationDelta = currentTool.avgDurationMs === null || baselineTool.avgDurationMs === null
             ? null
             : roundNumber(currentTool.avgDurationMs - baselineTool.avgDurationMs, 1);
+        const p95DurationDelta = currentTool.p95DurationMs === null || baselineTool.p95DurationMs === null
+            ? null
+            : roundNumber(currentTool.p95DurationMs - baselineTool.p95DurationMs, 1);
 
         let regressionScore = 0;
         if (errorRateDelta > 0 && currentTool.calls >= 3) {
@@ -153,6 +198,9 @@ export function buildComparison(currentSummary, baselineSummary) {
         }
         if (avgDurationDelta !== null && avgDurationDelta > 0 && currentTool.calls >= 3) {
             regressionScore += avgDurationDelta / 1000;
+        }
+        if (p95DurationDelta !== null && p95DurationDelta > 0 && currentTool.calls >= 3) {
+            regressionScore += p95DurationDelta / 2000;
         }
         if (callDelta > 0) {
             regressionScore += Math.min(callDelta / 10, 2);
@@ -168,6 +216,9 @@ export function buildComparison(currentSummary, baselineSummary) {
         if (avgDurationDelta !== null && avgDurationDelta < 0 && baselineTool.calls >= 3) {
             improvementScore += Math.abs(avgDurationDelta) / 1000;
         }
+        if (p95DurationDelta !== null && p95DurationDelta < 0 && baselineTool.calls >= 3) {
+            improvementScore += Math.abs(p95DurationDelta) / 2000;
+        }
 
         const entry = {
             tool: name,
@@ -182,7 +233,12 @@ export function buildComparison(currentSummary, baselineSummary) {
             unresolvedRateDelta,
             currentAvgDurationMs: currentTool.avgDurationMs,
             baselineAvgDurationMs: baselineTool.avgDurationMs,
-            avgDurationDeltaMs: avgDurationDelta
+            avgDurationDeltaMs: avgDurationDelta,
+            currentP50DurationMs: currentTool.p50DurationMs,
+            baselineP50DurationMs: baselineTool.p50DurationMs,
+            currentP95DurationMs: currentTool.p95DurationMs,
+            baselineP95DurationMs: baselineTool.p95DurationMs,
+            p95DurationDeltaMs: p95DurationDelta
         };
 
         if (regressionScore > 0) {
@@ -339,6 +395,16 @@ export function buildRemediationPlan(currentSummary, comparison = null) {
                 tool.avgDurationMs / 1000
             );
         }
+
+        if (tool.calls >= 5 && tool.p95DurationMs !== null && tool.p95DurationMs >= 8000) {
+            add(
+                'P2',
+                `Reduce ${tool.name} tail latency`,
+                `${tool.name} p95 duration is ${tool.p95DurationMs}ms across ${tool.calls} calls.`,
+                `Inspect slowest ${tool.name} traces and introduce bounded fallbacks for outlier paths.`,
+                tool.p95DurationMs / 1000
+            );
+        }
     }
 
     if (comparison) {
@@ -369,6 +435,14 @@ export function buildRemediationPlan(currentSummary, comparison = null) {
                     `${regression.tool} average duration increased by ${regression.avgDurationDeltaMs}ms.`,
                     `Audit upstream dependencies used by ${regression.tool} and introduce timeout/fallback paths.`,
                     regression.avgDurationDeltaMs / 1000
+                );
+            } else if ((regression.p95DurationDeltaMs || 0) >= 2000) {
+                add(
+                    'P2',
+                    `Regressed tail latency in ${regression.tool}`,
+                    `${regression.tool} p95 duration increased by ${regression.p95DurationDeltaMs}ms.`,
+                    `Identify outlier traces for ${regression.tool}, then cap long-tail operations with staged fallbacks.`,
+                    regression.p95DurationDeltaMs / 2000
                 );
             }
         }
@@ -625,6 +699,7 @@ export class LogAnalyzerV2 {
             if (Number.isFinite(durationMs) && durationMs >= 0) {
                 bucket.totalDurationMs += durationMs;
                 bucket.durationSamples++;
+                bucket.durationSampleValuesMs.push(durationMs);
                 bucket.maxDurationMs = Math.max(bucket.maxDurationMs, durationMs);
             }
 
@@ -796,6 +871,8 @@ export class LogAnalyzerV2 {
             const avgDurationMs = data.durationSamples > 0
                 ? roundNumber(data.totalDurationMs / data.durationSamples, 1)
                 : null;
+            const p50DurationMs = computePercentile(data.durationSampleValuesMs, 0.5);
+            const p95DurationMs = computePercentile(data.durationSampleValuesMs, 0.95);
             const errorRate = data.calls > 0
                 ? roundNumber((data.errors / data.calls) * 100, 2)
                 : 0;
@@ -807,8 +884,17 @@ export class LogAnalyzerV2 {
                 : 0;
 
             result[name] = {
-                ...data,
+                calls: data.calls,
+                results: data.results,
+                errors: data.errors,
+                unresolvedCalls: data.unresolvedCalls,
+                orphanResults: data.orphanResults,
+                totalDurationMs: data.totalDurationMs,
+                durationSamples: data.durationSamples,
+                maxDurationMs: data.maxDurationMs,
                 avgDurationMs,
+                p50DurationMs,
+                p95DurationMs,
                 errorRate,
                 unresolvedRate,
                 orphanResultRate
@@ -850,6 +936,9 @@ export class LogAnalyzerV2 {
             }
             if (data.avgDurationMs !== null && data.calls >= 5 && data.avgDurationMs >= 5000) {
                 insights.push(`Slow tool: ${tool} averages ${data.avgDurationMs}ms over ${data.calls} calls.`);
+            }
+            if (data.p95DurationMs !== null && data.calls >= 5 && data.p95DurationMs >= 8000) {
+                insights.push(`Tail latency risk: ${tool} p95 is ${data.p95DurationMs}ms over ${data.calls} calls.`);
             }
             if (data.calls >= 5 && data.unresolvedRate >= 5) {
                 insights.push(`Unresolved tool calls: ${tool} has ${data.unresolvedCalls}/${data.calls} calls without matching results (${data.unresolvedRate}%).`);
@@ -918,15 +1007,16 @@ export class LogAnalyzerV2 {
 
         if (sortedTools.length === 0) console.log('  (No tool calls detected)');
 
-        console.log(`  ${'TOOL'.padEnd(20)} | ${'CALLS'.padEnd(6)} | ${'ERRORS'.padEnd(6)} | ${'RATE'.padEnd(8)} | ${'AVG_MS'.padEnd(8)}`);
-        console.log('  ' + '-'.repeat(64));
+        console.log(`  ${'TOOL'.padEnd(20)} | ${'CALLS'.padEnd(6)} | ${'ERRORS'.padEnd(6)} | ${'RATE'.padEnd(8)} | ${'AVG_MS'.padEnd(8)} | ${'P95_MS'.padEnd(8)}`);
+        console.log('  ' + '-'.repeat(76));
 
         for (const [tool, data] of sortedTools) {
             const rate = `${data.errorRate.toFixed(1)}%`;
             const avgDuration = data.avgDurationMs === null ? '-' : String(data.avgDurationMs);
-            console.log(`  ${tool.padEnd(20)} | ${String(data.calls).padEnd(6)} | ${String(data.errors).padEnd(6)} | ${rate.padEnd(8)} | ${avgDuration.padEnd(8)}`);
+            const p95Duration = data.p95DurationMs === null ? '-' : String(data.p95DurationMs);
+            console.log(`  ${tool.padEnd(20)} | ${String(data.calls).padEnd(6)} | ${String(data.errors).padEnd(6)} | ${rate.padEnd(8)} | ${avgDuration.padEnd(8)} | ${p95Duration.padEnd(8)}`);
         }
-        console.log('----------------------------------------------------------------');
+        console.log('----------------------------------------------------------------------------');
 
         const activeHours = summary.topActiveHours || [];
         if (activeHours.length > 0) {

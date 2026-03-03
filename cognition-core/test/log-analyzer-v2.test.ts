@@ -74,6 +74,8 @@ test('uses sessionId fallback and tracks malformed lines and tool errors', async
     assert.equal(summary.tools.exec.calls, 1);
     assert.equal(summary.tools.exec.errors, 1);
     assert.equal(summary.tools.exec.avgDurationMs, 250);
+    assert.equal(summary.tools.exec.p50DurationMs, 250);
+    assert.equal(summary.tools.exec.p95DurationMs, 250);
     assert.equal(summary.stopReasons.toolUse, 1);
     assert.equal(summary.providers.google, 1);
     assert.ok(summary.reliabilityScore >= 0 && summary.reliabilityScore <= 100);
@@ -283,6 +285,59 @@ test('captures hourly activity and concentration insight for bursty windows', as
     assert.ok(summary.insights.some((line) => line.includes('concentrated around 14:00')));
 });
 
+test('detects tail latency percentiles and emits remediation guidance', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const now = Date.now() - 5_000;
+    const sessionId = '12121212-1212-4121-8121-121212121212';
+    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
+    const sessionsFile = path.join(dir, 'sessions.json');
+
+    const durations = [100, 150, 200, 250, 10000];
+    const lines = [];
+
+    for (let i = 0; i < durations.length; i++) {
+        const ts = now + (i * 10);
+        lines.push(JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'assistant',
+                content: [{ type: 'toolCall', id: `call-${i}`, name: 'exec' }],
+                timestamp: ts
+            }
+        }));
+        lines.push(JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'exec',
+                callId: `call-${i}`,
+                details: { durationMs: durations[i] },
+                timestamp: ts + 1
+            }
+        }));
+    }
+
+    writeJsonl(sessionFile, lines);
+    writeJson(sessionsFile, {
+        tailLatency: { sessionId, updatedAt: now }
+    });
+
+    const analyzer = new LogAnalyzerV2(sessionsFile);
+    await analyzer.analyze(1);
+    const summary = analyzer.toJSON();
+
+    assert.equal(summary.tools.exec.calls, 5);
+    assert.equal(summary.tools.exec.durationSamples, 5);
+    assert.equal(summary.tools.exec.p50DurationMs, 200);
+    assert.equal(summary.tools.exec.p95DurationMs, 8050);
+    assert.ok(summary.insights.some((line) => line.includes('Tail latency risk: exec p95 is 8050ms')));
+
+    const remediation = buildRemediationPlan(summary);
+    assert.ok(remediation.some((item) => item.title === 'Reduce exec tail latency'));
+});
+
 test('tracks unresolved tool calls and orphan tool results per session', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -374,6 +429,8 @@ test('builds trend comparison and prioritized remediation plan', () => {
                 orphanResults: 1,
                 results: 18,
                 avgDurationMs: 4200,
+                p50DurationMs: 1800,
+                p95DurationMs: 9000,
                 errorRate: 30,
                 unresolvedRate: 20,
                 orphanResultRate: 5.56
@@ -411,6 +468,8 @@ test('builds trend comparison and prioritized remediation plan', () => {
                 orphanResults: 0,
                 results: 18,
                 avgDurationMs: 1200,
+                p50DurationMs: 700,
+                p95DurationMs: 2000,
                 errorRate: 5.56,
                 unresolvedRate: 0,
                 orphanResultRate: 0
@@ -435,6 +494,7 @@ test('builds trend comparison and prioritized remediation plan', () => {
     assert.ok(comparison.topRegressions.length > 0);
     assert.equal(comparison.topRegressions[0].tool, 'exec');
     assert.ok(comparison.topRegressions[0].errorRateDelta > 0);
+    assert.ok(comparison.topRegressions[0].p95DurationDeltaMs > 0);
     assert.ok(comparison.kpis.unresolvedToolCalls.delta > 0);
     assert.ok(comparison.kpis.orphanToolResults.delta > 0);
 

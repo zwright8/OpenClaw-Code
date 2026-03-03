@@ -139,14 +139,15 @@ function formatMarkdown(summary) {
     lines.push('');
     lines.push('## Top Tools');
     lines.push('');
-    lines.push('| Tool | Calls | Errors | Error Rate | Avg Duration (ms) |');
-    lines.push('| --- | ---: | ---: | ---: | ---: |');
+    lines.push('| Tool | Calls | Errors | Error Rate | Avg Duration (ms) | P95 Duration (ms) |');
+    lines.push('| --- | ---: | ---: | ---: | ---: | ---: |');
     for (const tool of summary.topTools || []) {
         const avgDuration = tool.avgDurationMs === null ? '-' : tool.avgDurationMs;
-        lines.push(`| ${tool.name} | ${tool.calls} | ${tool.errors} | ${formatPercent(tool.errorRate)} | ${avgDuration} |`);
+        const p95Duration = tool.p95DurationMs === null ? '-' : tool.p95DurationMs;
+        lines.push(`| ${tool.name} | ${tool.calls} | ${tool.errors} | ${formatPercent(tool.errorRate)} | ${avgDuration} | ${p95Duration} |`);
     }
     if ((summary.topTools || []).length === 0) {
-        lines.push('| (no tools) | 0 | 0 | 0.00% | - |');
+        lines.push('| (no tools) | 0 | 0 | 0.00% | - | - |');
     }
     lines.push('');
 
@@ -181,14 +182,15 @@ function formatMarkdown(summary) {
 
         lines.push('### Top Regressions');
         lines.push('');
-        lines.push('| Tool | Calls Delta | Error Rate Delta (pp) | Avg Duration Delta (ms) |');
-        lines.push('| --- | ---: | ---: | ---: |');
+        lines.push('| Tool | Calls Delta | Error Rate Delta (pp) | Avg Duration Delta (ms) | P95 Duration Delta (ms) |');
+        lines.push('| --- | ---: | ---: | ---: | ---: |');
         for (const regression of comparison.topRegressions || []) {
             const durationDelta = regression.avgDurationDeltaMs === null ? 'n/a' : regression.avgDurationDeltaMs;
-            lines.push(`| ${regression.tool} | ${formatDelta(regression.callDelta)} | ${formatDelta(regression.errorRateDelta)} | ${formatDelta(durationDelta)} |`);
+            const p95DurationDelta = regression.p95DurationDeltaMs === null ? 'n/a' : regression.p95DurationDeltaMs;
+            lines.push(`| ${regression.tool} | ${formatDelta(regression.callDelta)} | ${formatDelta(regression.errorRateDelta)} | ${formatDelta(durationDelta)} | ${formatDelta(p95DurationDelta)} |`);
         }
         if ((comparison.topRegressions || []).length === 0) {
-            lines.push('| (none) | 0 | 0 | n/a |');
+            lines.push('| (none) | 0 | 0 | n/a | n/a |');
         }
         lines.push('');
     }
@@ -259,7 +261,8 @@ function printComparison(comparison) {
         console.log('\nTop Regressions:');
         for (const regression of comparison.topRegressions) {
             const durationDelta = regression.avgDurationDeltaMs === null ? 'n/a' : `${formatDelta(regression.avgDurationDeltaMs)}ms`;
-            console.log(`  - ${regression.tool}: calls ${formatDelta(regression.callDelta)}, error rate ${formatDelta(regression.errorRateDelta)}pp, avg duration ${durationDelta}`);
+            const p95DurationDelta = regression.p95DurationDeltaMs === null ? 'n/a' : `${formatDelta(regression.p95DurationDeltaMs)}ms`;
+            console.log(`  - ${regression.tool}: calls ${formatDelta(regression.callDelta)}, error rate ${formatDelta(regression.errorRateDelta)}pp, avg duration ${durationDelta}, p95 ${p95DurationDelta}`);
         }
     }
 }
