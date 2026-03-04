@@ -1,0 +1,36 @@
+rank,tool,command_hint,type,access,description,homepage,license
+1517,zsh-history-substring-search,zsh-history-substring-search,cli,local-installable,Zsh port of Fish shell's history search,https://github.com/zsh-users/zsh-history-substring-search,BSD-3-Clause
+1518,wtfutil,wtfutil,cli,local-installable,Personal information dashboard for your terminal,https://wtfutil.com,MPL-2.0
+1550,zplug,zplug,cli,local-installable,Next-generation plugin manager for zsh,https://github.com/zplug/zplug/,MIT
+1565,brew-gem,brew-gem,cli,local-installable,Install RubyGems as Homebrew formulae,https://github.com/sportngin/brew-gem,MIT
+1573,tcsh,tcsh,cli,local-installable,"Enhanced, fully compatible version of the Berkeley C shell",https://www.tcsh.org/,BSD-3-Clause
+1581,ttyd,ttyd,cli,local-installable,Command-line tool for sharing terminal over the web,https://tsl0922.github.io/ttyd/,MIT
+1589,rich-cli,rich-cli,cli,local-installable,Command-line toolbox for fancy output in the terminal,https://github.com/textualize/rich-cli,MIT
+1593,picocom,picocom,cli,local-installable,Minimal dumb-terminal emulation program,https://github.com/npat-efault/picocom,GPL-2.0-or-later
+1604,irssi,irssi,cli,local-installable,Modular IRC client,https://irssi.org/,GPL-2.0-or-later WITH openvpn-openssl-exception
+1611,terminator,terminator,cli,local-installable,Multiple GNOME terminals in one window,https://gnome-terminator.org,GPL-2.0-only
+1633,kimi-cli,kimi-cli,cli,local-installable,CLI agent for MoonshotAI Kimi platform,https://github.com/MoonshotAI/kimi-cli,Apache-2.0
+1636,virtualenvwrapper,virtualenvwrapper,cli,local-installable,Python virtualenv extensions,https://virtualenvwrapper.readthedocs.io/,MIT
+1645,tmuxp,tmuxp,cli,local-installable,Tmux session manager. Built on libtmux,https://tmuxp.git-pull.com/,MIT
+1663,sesh,sesh,cli,local-installable,Smart session manager for the terminal,https://github.com/joshmedeski/sesh,MIT
+1666,foreman,foreman,cli,local-installable,Manage Procfile-based applications,https://ddollar.github.io/foreman/,MIT
+1667,zx,zx,cli,local-installable,Tool for writing better scripts,https://google.github.io/zx/,Apache-2.0
+1681,mprocs,mprocs,cli,local-installable,Run multiple commands in parallel,https://github.com/pvolok/mprocs,MIT
+1687,copyparty,copyparty,service/daemon,local-installable,Portable file server,https://github.com/9001/copyparty,MIT
+1710,checkbashisms,checkbashisms,cli,local-installable,Checks for bashisms in shell scripts,https://launchpad.net/ubuntu/+source/devscripts/,GPL-2.0-or-later
+1731,mcfly,mcfly,cli,local-installable,Fly through your shell history,https://github.com/cantino/mcfly,MIT
+1804,zsh-fast-syntax-highlighting,zsh-fast-syntax-highlighting,cli,local-installable,Feature-rich syntax highlighting for Zsh,https://github.com/zdharma-continuum/fast-syntax-highlighting,BSD-3-Clause
+1810,hunspell,hunspell,cli,local-installable,Spell checker and morphological analyzer,https://hunspell.github.io,MPL-1.1 OR GPL-2.0-or-later OR LGPL-2.1-or-later
+1815,notmuch,notmuch,cli,local-installable,"Thread-based email index, search, and tagging",https://notmuchmail.org/,GPL-3.0-or-later
+1820,pip-tools,pip-tools,cli,local-installable,Locking and sync for Pip requirements files,https://pip-tools.readthedocs.io,BSD-3-Clause
+1825,mcpm,mcpm,service/daemon,local-installable,"Open source, community-driven MCP server and client manager",https://mcpm.sh/,MIT
+1829,python-argcomplete,python-argcomplete,cli,local-installable,Tab completion for Python argparse,https://kislyuk.github.io/argcomplete/,Apache-2.0
+1830,dockutil,dockutil,cli,local-installable,Tool for managing dock items,https://github.com/kcrawford/dockutil,Apache-2.0
+1831,brew-php-switcher,brew-php-switcher,cli,local-installable,Switch Apache / Valet / CLI configs between PHP versions,https://github.com/philcook/brew-php-switcher,MIT
+1840,autogen,autogen,cli,local-installable,Automated text file generator,https://autogen.sourceforge.net/,GPL-3.0-or-later
+1871,makensis,makensis,cli,local-installable,System to create Windows installers,https://nsis.sourceforge.net/,Zlib
+1883,reattach-to-user-namespace,reattach-to-user-namespace,cli,local-installable,"Reattach process (e.g., tmux) to background",https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard,BSD-2-Clause
+1933,bkt,bkt,cli,local-installable,CLI utility for caching the output of subprocesses,https://github.com/dimo414/bkt,MIT
+1960,sc-im,sc-im,cli,local-installable,"Spreadsheet program for the terminal, using ncurses",https://github.com/andmarti1424/sc-im,BSD-4-Clause
+1976,bat-extras,bat-extras,cli,local-installable,Bash scripts that integrate bat with various command-line tools,https://github.com/eth-p/bat-extras,MIT
+1988,rbenv-bundler,rbenv-bundler,cli,local-installable,Makes shims aware of bundle install paths,https://github.com/carsomyr/rbenv-bundler,Apache-2.0

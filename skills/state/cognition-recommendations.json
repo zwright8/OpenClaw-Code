@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-28T11:15:30.186Z",
+  "generatedAt": "2026-03-04T04:48:17.848Z",
   "count": 4,
   "recommendations": [
     {
@@ -46,7 +46,7 @@
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
           "riskAwareSuccessThreshold": 0.7,
-          "evaluatedAt": "2026-02-28T11:15:23.881Z"
+          "evaluatedAt": "2026-03-04T04:48:16.056Z"
         }
       }
     },
@@ -56,7 +56,7 @@
       "priority": "P1",
       "riskTier": "high",
       "requiresHumanApproval": true,
-      "approvalStatus": "pending",
+      "approvalStatus": "approved",
       "dependsOn": [
         "rec-observability-baseline"
       ],
@@ -96,14 +96,14 @@
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
           "riskAwareSuccessThreshold": 0.85,
-          "evaluatedAt": "2026-02-28T11:15:23.886Z"
+          "evaluatedAt": "2026-03-04T04:48:16.061Z"
         }
       },
-      "expectedSuccessProbability": 0.565,
-      "confidence": 0.54,
+      "expectedSuccessProbability": 0.764,
+      "confidence": 0.684,
       "owner": "agent:platform-lead",
       "approvalWorkflow": {
-        "status": "pending",
+        "status": "approved",
         "requiredApprovers": [
           "platform-lead",
           "security-ops"
@@ -152,7 +152,7 @@
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
           "riskAwareSuccessThreshold": 0.85,
-          "evaluatedAt": "2026-02-28T11:15:23.886Z"
+          "evaluatedAt": "2026-03-04T04:48:16.061Z"
         }
       },
       "rollbackPlan": {
@@ -206,7 +206,7 @@
           "maxCalibrationGap": 0.2,
           "confidenceFloor": 0.6,
           "riskAwareSuccessThreshold": 0.7,
-          "evaluatedAt": "2026-02-28T11:15:23.886Z"
+          "evaluatedAt": "2026-03-04T04:48:16.062Z"
         }
       }
     }

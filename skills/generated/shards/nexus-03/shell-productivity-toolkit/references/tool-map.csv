@@ -1,0 +1,22 @@
+rank,tool,installs_365d,percent_365d,access,description,homepage,license
+1004,lf,9005,0.01,local-installable,Terminal file manager,https://godoc.org/github.com/gokcehan/lf,MIT
+1037,ranger,8597,0.01,local-installable,File browser,https://ranger.github.io,GPL-3.0-or-later
+1040,brotli,8525,0.01,local-installed,Generic-purpose lossless compression algorithm by Google,https://github.com/google/brotli,MIT
+1080,sd,8010,0.01,local-installable,Intuitive find & replace CLI,https://github.com/chmln/sd,MIT
+1085,pstree,7966,0.01,local-installable,Show ps output as a tree,https://github.com/FredHucht/pstree,GPL-3.0-only
+1099,pure,7805,0.01,local-installable,"Pretty, minimal and fast ZSH prompt",https://github.com/sindresorhus/pure,MIT
+1105,libadwaita,7735,0.01,local-installable,Building blocks for modern adaptive GNOME applications,https://gnome.pages.gitlab.gnome.org/libadwaita/,LGPL-2.1-or-later
+1128,nnn,7413,0.01,local-installable,"Tiny, lightning fast, feature-packed file manager",https://github.com/jarun/nnn,BSD-2-Clause
+1129,tmuxinator,7411,0.01,local-installable,Manage complex tmux sessions easily,https://github.com/tmuxinator/tmuxinator,MIT
+1140,gzip,7341,0.01,local-installable,Popular GNU data compression program,https://www.gnu.org/software/gzip/,GPL-3.0-or-later
+1183,gpatch,6903,0.01,local-installable,Apply a diff file to an original,https://savannah.gnu.org/projects/patch/,GPL-3.0-or-later
+1208,spaceship,6588,0.01,local-installable,Zsh prompt for Astronauts,https://spaceship-prompt.sh/,MIT
+1225,neovide,6482,0.01,local-installable,No Nonsense Neovim Client in Rust,https://neovide.dev/,MIT
+1239,antidote,6360,0.01,local-installable,"Plugin manager for zsh, inspired by antigen and antibody",https://antidote.sh/,MIT
+1273,moor,6036,0.01,local-installable,Nice to use pager for humans,https://github.com/walles/moor,BSD-2-Clause
+1352,fisher,5356,0.01,local-installable,Plugin manager for the Fish shell,https://github.com/jorgebucaran/fisher,MIT
+1353,byobu,5356,0.01,local-installable,Text-based window manager and terminal multiplexer,https://github.com/dustinkirkland/byobu,GPL-3.0-only
+1362,z,5289,0.01,local-installable,Tracks most-used directories to make cd smarter,https://github.com/rupa/z,WTFPL
+1411,peco,4987,0.01,local-installable,Simplistic interactive filtering tool,https://github.com/peco/peco,MIT
+1424,ed,4870,0.01,local-installable,Classic UNIX line editor,https://www.gnu.org/software/ed/ed.html,GPL-3.0-or-later
+1436,sheldon,4776,0,local-installable,"Fast, configurable, shell plugin manager",https://sheldon.cli.rs,Apache-2.0 OR MIT

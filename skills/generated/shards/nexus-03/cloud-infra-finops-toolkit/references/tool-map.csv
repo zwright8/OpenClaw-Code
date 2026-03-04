@@ -1,0 +1,19 @@
+rank,tool,installs_365d,percent_365d,access,description,homepage,license
+1031,awscli-local,8700,0.01,local-installable,Thin wrapper around the `aws` command-line interface for use with LocalStack,https://www.localstack.cloud/,Apache-2.0
+1042,s3cmd,8518,0.01,local-installable,Command-line tool for the Amazon S3 service,https://s3tools.org/s3cmd,GPL-2.0-or-later
+1053,aws-nuke,8421,0.01,local-installable,Nuke a whole AWS account and delete all its resources,https://github.com/ekristen/aws-nuke,MIT
+1155,neonctl,7195,0.01,local-installable,Neon CLI tool,https://neon.tech/docs/reference/neon-cli,Apache-2.0
+1211,b2-tools,6561,0.01,local-installable,B2 Cloud Storage Command-Line Tools,https://github.com/Backblaze/B2_Command_Line_Tool,MIT
+1213,minio,6546,0.01,local-installable,"High Performance, Kubernetes Native Object Storage",https://min.io,AGPL-3.0-or-later
+1219,render,6532,0.01,local-installable,Command-line interface for Render,https://render.com/docs/cli,Apache-2.0
+1250,terraformer,6243,0.01,local-installable,CLI tool to generate terraform files from existing infrastructure,https://github.com/GoogleCloudPlatform/terraformer,Apache-2.0
+1272,aws-sdk-cpp,6067,0.01,local-installable,AWS SDK for C++,https://github.com/aws/aws-sdk-cpp,Apache-2.0
+1309,openstackclient,5699,0.01,local-installable,Command-line client for OpenStack,https://openstack.org,Apache-2.0
+1377,infracost,5182,0.01,local-installable,Cost estimates for Terraform,https://www.infracost.io/docs/,Apache-2.0
+1384,cloud-nuke,5113,0.01,local-installable,CLI tool to nuke (delete) cloud resources,https://gruntwork.io/,MIT
+1386,terraform-ls,5109,0.01,local-installable,Terraform Language Server,https://github.com/hashicorp/terraform-ls,MPL-2.0
+1390,awscurl,5084,0.01,local-installable,Curl like simplicity to access AWS resources,https://github.com/okigan/awscurl,MIT
+1410,gimme-aws-creds,4992,0.01,local-installable,CLI to retrieve AWS credentials from Okta,https://github.com/Nike-Inc/gimme-aws-creds,Apache-2.0
+1437,mongocli,4775,0,local-installable,MongoDB CLI enables you to manage your MongoDB in the Cloud,https://www.mongodb.com/docs/mongocli/current/,Apache-2.0
+1459,doppler,4678,0,local-installable,CLI for interacting with Doppler secrets and configuration,https://docs.doppler.com/docs,Apache-2.0
+1489,sf,4417,0,local-installable,Command-line toolkit for Salesforce development,https://developer.salesforce.com/tools/salesforcecli,BSD-3-Clause

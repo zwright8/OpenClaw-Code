@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4390,censys,local-installable,Command-line interface for the Censys APIs (censys.io),https://github.com/censys/censys-python,Apache-2.0
+4391,remarshal,local-installable,"Convert between TOML, YAML and JSON",https://github.com/remarshal-project/remarshal,MIT
+4392,libsvg,local-installable,Library for SVG files,https://cairographics.org/,LGPL-2.1-or-later
+4394,codesnap,local-installable,Generates code snapshots in various formats,https://github.com/codesnap-rs/codesnap,MIT
+4395,kea,local-installable,DHCP server,https://www.isc.org/kea/,MPL-2.0
+4396,klavaro,local-installable,Free touch typing tutor program,https://klavaro.sourceforge.io/,GPL-3.0-or-later
+4397,addons-linter,local-installable,"Firefox Add-ons linter, written in JavaScript",https://github.com/mozilla/addons-linter,MPL-2.0
+4398,gyb,local-installable,CLI for backing up and restoring Gmail messages,https://github.com/GAM-team/got-your-back/,Apache-2.0
+4400,qtlocation,local-installable,Provides C++ interfaces to retrieve location and navigational information,https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND BSD-3-Clause
+4401,qtlottie,local-installable,Display graphics and animations exported by the Bodymovin plugin,https://www.qt.io/,GPL-3.0-only AND BSD-3-Clause
+4403,qcli,local-installable,Report audiovisual metrics via libavfilter,https://bavc.org/preserve-media/preservation-tools,GPL-3.0-or-later
+4404,tmt,local-installable,Test Management Tool,https://tmt.readthedocs.io,MIT
+4405,dockerfilegraph,local-installable,Visualize your multi-stage Dockerfiles,https://github.com/patrickhoefler/dockerfilegraph,MIT
+4406,znc,local-installable,Advanced IRC bouncer,https://wiki.znc.in/ZNC,Apache-2.0
+4407,rattler-index,local-installable,Index conda channels using rattler,https://github.com/conda/rattler,BSD-3-Clause
+4409,boring,local-installable,Simple command-line SSH tunnel manager that just works,https://github.com/alebeck/boring,MIT
+4410,leapp-cli,local-installable,Cloud credentials manager cli,https://github.com/noovolari/leapp,MPL-2.0
+4413,gwenhywfar,local-installable,Utility library required by aqbanking and related software,https://www.aquamaniac.de/rdm/projects/gwenhywfar,LGPL-2.1-or-later
+4414,html-xml-utils,local-installable,Tools for manipulating HTML and XML files,https://www.w3.org/Tools/HTML-XML-utils/,W3C
+4415,elm,local-installable,Functional programming language for building browser-based GUIs,https://elm-lang.org,BSD-3-Clause
+4416,nyan,local-installable,Colorizing `cat` command with syntax highlighting,https://github.com/toshimaru/nyan,MIT
+4417,bbftp-client,local-installable,"Secure file transfer software, optimized for large files",https://gitlab.in2p3.fr/cc-in2p3-hpss-service/bbftp,GPL-2.0-or-later
+4418,gforth,local-installable,Implementation of the ANS Forth language,https://www.gnu.org/software/gforth/,GPL-3.0-or-later
+4419,qthttpserver,local-installable,Framework for embedding an HTTP server into a Qt application,https://www.qt.io/,GPL-3.0-only AND BSD-3-Clause
+4420,quantlib,local-installable,Library for quantitative finance,https://www.quantlib.org/,BSD-3-Clause
+4421,lv,local-installable,Powerful multi-lingual file viewer/grep,https://salsa.debian.org/debian/lv,GPL-2.0-or-later

@@ -1,0 +1,36 @@
+---
+name: ai-assistant-and-coding-clis
+description: Operate terminal-first AI coding assistants and wrapper CLIs. Use when tasks involve AI pair-programming, local model prompting, or exposing coding assistants through API wrappers.
+---
+
+# ai-assistant-and-coding-clis
+
+Execute this playbook whenever work in this tool family is requested.
+
+## 1) Triage quickly
+- Confirm target environment (local, container, cluster, remote host, or cloud account).
+- Confirm risk level before mutating operations.
+- Confirm whether operation is read-only, change, or destructive.
+
+## 2) Select the right tool fast
+- Read `references/tools.md`.
+- Match the requested outcome to the smallest capable tool.
+- Prefer deterministic CLIs over ad-hoc manual steps.
+
+## 3) Run with safe defaults
+- Start with `--help` / `--version` if command behavior is uncertain.
+- Use dry-run/check modes when available.
+- Scope commands to specific files/resources first, then widen.
+
+## 4) Verify and report
+- Capture key command output and exit status.
+- Validate expected side effects (service state, artifact creation, config diff, or logs).
+- Summarize what changed, what did not change, and next recommended action.
+
+## Command patterns
+- Discover: `{tool} --help`
+- Validate env: `{tool} --version`
+- Safe inspect first: read/list/status subcommands before apply/delete operations.
+
+## Included tools
+See `references/tools.md` for the complete catalog for this skill (rank, description, homepage, license).

@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3367,aws-lc,local-installable,General-purpose cryptographic library,https://github.com/aws/aws-lc,Apache-2.0 AND ISC AND OpenSSL AND MIT AND BSD-3-Clause
+3368,gupnp-tools,local-installable,Free replacements of Intel's UPnP tools,https://wiki.gnome.org/GUPnP/,GPL-2.0-or-later AND LGPL-2.0-or-later
+3371,media-control,local-installable,Control and observe media playback from the command-line,https://github.com/ungive/media-control,BSD-3-Clause
+3372,lazyjj,local-installable,TUI for Jujutsu/jj,https://github.com/Cretezy/lazyjj,Apache-2.0
+3373,open-scene-graph,local-installable,3D graphics toolkit,https://github.com/openscenegraph/OpenSceneGraph,LGPL-2.1-or-later WITH WxWindows-exception-3.1
+3374,bochs,local-installable,Open source IA-32 (x86) PC emulator written in C++,https://bochs.sourceforge.io/,LGPL-2.0-or-later
+3375,bashdb,local-installable,Bash shell debugger,https://bashdb.sourceforge.net/,GPL-2.0-or-later
+3376,rojo,local-installable,Professional grade Roblox development tools,https://rojo.space/,MPL-2.0
+3377,gitlogue,local-installable,Cinematic Git commit replay tool,https://github.com/unhappychoice/gitlogue,ISC
+3378,gdcm,local-installable,Grassroots DICOM library and utilities for medical files,https://sourceforge.net/projects/gdcm/,BSD-3-Clause
+3379,srecord,local-installable,Tools for manipulating EPROM load files,https://srecord.sourceforge.net/,GPL-3.0-or-later AND LGPL-3.0-or-later
+3380,spatialite-gui,local-installable,GUI tool supporting SpatiaLite,https://www.gaia-gis.it/fossil/spatialite_gui/index,GPL-3.0-or-later
+3382,cookcli,local-installable,CLI-tool for cooking recipes formated using Cooklang,https://cooklang.org,MIT
+3383,hbase,local-installable,"Hadoop database: a distributed, scalable, big data store",https://hbase.apache.org,Apache-2.0 AND GPL-3.0-or-later
+3384,most,local-installable,Powerful paging program,https://www.jedsoft.org/most/,GPL-2.0-or-later
+3385,vulkan-profiles,local-installable,Tools for Vulkan profiles,https://github.com/KhronosGroup/Vulkan-Profiles,Apache-2.0
+3386,openvdb,local-installable,Sparse volumetric data processing toolkit,https://www.openvdb.org/,MPL-2.0
+3387,somo,local-installable,Human-friendly alternative to netstat for socket and port monitoring,https://github.com/theopfr/somo,MIT
+3388,vgmstream,local-installable,Library for playing streamed audio formats from video games,https://vgmstream.org,ISC
+3390,gmime,local-installable,MIME mail utilities,https://github.com/jstedfast/gmime,LGPL-2.1-or-later
+3391,zsh-git-prompt,local-installable,Informative git prompt for zsh,https://github.com/olivierverdier/zsh-git-prompt,MIT
+3393,dotnet@9,local-installable,.NET Core,https://dotnet.microsoft.com/,MIT
+3394,dovi_tool,local-installable,CLI tool for Dolby Vision metadata on video streams,https://github.com/quietvoid/dovi_tool/,MIT
+3396,snapcast,local-installable,Synchronous multiroom audio player,https://github.com/badaix/snapcast,GPL-3.0-or-later
+3397,erlang@27,local-installable,Programming language for highly scalable real-time systems,https://www.erlang.org/,Apache-2.0
+3399,ldcli,local-installable,CLI for managing LaunchDarkly feature flags,https://launchdarkly.com/docs/home/getting-started/ldcli,Apache-2.0

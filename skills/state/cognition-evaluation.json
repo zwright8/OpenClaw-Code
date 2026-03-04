@@ -1,38 +1,60 @@
 {
-  "generatedAt": "2026-02-28T11:15:35.153Z",
+  "generatedAt": "2026-03-04T04:48:18.634Z",
   "evaluation": {
-    "generatedAt": "2026-02-28T11:15:35.153Z",
+    "generatedAt": "2026-03-04T04:48:18.634Z",
     "metrics": {
       "totalOutcomes": 4,
-      "terminalOutcomes": 0,
-      "nonTerminalOutcomes": 4,
-      "successfulOutcomes": 0,
+      "terminalOutcomes": 1,
+      "nonTerminalOutcomes": 3,
+      "successfulOutcomes": 1,
       "failedOutcomes": 0,
-      "successRate": 0,
-      "mappedOutcomes": 0,
-      "mappingRate": 0,
+      "successRate": 1,
+      "mappedOutcomes": 1,
+      "mappingRate": 1,
+      "calibrationSampleSize": 1,
       "averageAttempts": 0,
-      "averageLatencyMs": 0,
+      "averageLatencyMs": 36205,
       "meanPredictedSuccess": null,
       "brierScore": null,
-      "calibrationGap": null
+      "calibrationGap": null,
+      "calibrationDiagnostics": {
+        "readiness": "insufficient_sample_size",
+        "reason": "Calibration metrics deferred: mapped sample 1 is below minimum 3.",
+        "minimumSampleSize": 3,
+        "minimumMappingRate": 0.35,
+        "observedTerminalOutcomes": 1,
+        "observedMappedOutcomes": 1,
+        "observedSampleSize": 1,
+        "observedMappingRate": 1,
+        "confidenceEnvelope": {
+          "confidenceLevel": 0.95,
+          "method": "hoeffding",
+          "sampleSize": 1,
+          "predictedSuccessMean": 0.764,
+          "observedSuccessMean": 1,
+          "observedSuccessLowerBound": 0,
+          "observedSuccessUpperBound": 1,
+          "calibrationGapLowerBound": 0,
+          "calibrationGapUpperBound": 0.764
+        }
+      }
     },
     "recommendations": [
+      {
+        "recommendationId": "rec-policy-gating-hardening",
+        "owner": "agent:platform-lead",
+        "riskTier": "high",
+        "predictedSuccessProbability": 0.764,
+        "outcomes": 1,
+        "successes": 1,
+        "failures": 0,
+        "successRate": 1
+      },
       {
         "recommendationId": "rec-observability-baseline",
         "owner": "agent:observability",
         "riskTier": "medium",
         "predictedSuccessProbability": 0.74,
-        "outcomes": 0,
-        "successes": 0,
-        "failures": 0,
-        "successRate": 0
-      },
-      {
-        "recommendationId": "rec-policy-gating-hardening",
-        "owner": "agent:platform-lead",
-        "riskTier": "high",
-        "predictedSuccessProbability": 0.565,
         "outcomes": 0,
         "successes": 0,
         "failures": 0,
@@ -72,5 +94,13 @@
     },
     "changes": []
   },
-  "skillSignals": []
+  "skillSignals": [
+    {
+      "owner": "agent:platform-lead",
+      "outcomes": 1,
+      "successRate": 1,
+      "signal": "hold",
+      "rationale": "Insufficient evidence (1 outcomes, requires 10)."
+    }
+  ]
 }

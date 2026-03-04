@@ -22,7 +22,8 @@
     "status": "tsx scripts/status.ts",
     "run:dispatch": "tsx scripts/run.ts --dispatch true",
     "scorecard": "tsx scripts/productivity-scorecard.ts",
-    "tune:recommendations": "tsx scripts/tune-recommendations.ts"
+    "tune:recommendations": "tsx scripts/tune-recommendations.ts",
+    "full:utilization": "tsx scripts/full-utilization.ts"
   },
   "keywords": [
     "agent",
