@@ -32,6 +32,16 @@ interface ThresholdCheck {
   unit: Unit;
 }
 
+interface ThresholdBreachReasonPayload {
+  code: 'THRESHOLD_BREACH';
+  metric: BenchmarkMetricName;
+  comparison: ThresholdComparison;
+  threshold: number;
+  actual: number;
+  miss: number;
+  unit: Unit;
+}
+
 interface ThresholdBreach {
   metric: BenchmarkMetricName;
   comparison: ThresholdComparison;
@@ -41,7 +51,33 @@ interface ThresholdBreach {
   priority: Priority;
   title: string;
   rationale: string;
+  reasonPayload: ThresholdBreachReasonPayload;
   action: string;
+}
+
+interface RegressionGateCheck {
+  metric: BenchmarkMetricName;
+  comparison: ThresholdComparison;
+  threshold: number;
+  actual: number;
+  delta: number;
+  unit: Unit;
+  passed: boolean;
+  priority: Priority;
+  reason: string;
+  reasonPayload: ThresholdBreachReasonPayload | null;
+}
+
+interface RegressionGateSummary {
+  passed: boolean;
+  failureCount: number;
+  checks: Record<BenchmarkMetricName, RegressionGateCheck>;
+  failures: Array<{
+    metric: BenchmarkMetricName;
+    priority: Priority;
+    reason: string;
+    reasonPayload: ThresholdBreachReasonPayload;
+  }>;
 }
 
 interface RemediationItem {
@@ -56,9 +92,11 @@ interface RemediationTaskArtifact {
   taskId: string;
   metric: BenchmarkMetricName;
   priority: Priority;
-  threshold: number;
-  actual: number;
-  gap: number;
+  threshold: number | null;
+  actual: number | null;
+  gap: number | null;
+  regressionReason: string;
+  regressionReasonPayload: ThresholdBreachReasonPayload | null;
   target: string;
   swarmPriority: string;
   task: string;
@@ -245,6 +283,34 @@ function breachPriority(metric: BenchmarkMetricName, gap: number): Priority {
   return 'P3';
 }
 
+function formatReasonValue(metric: BenchmarkMetricName, value: number): number {
+  return round(value, METRIC_PRECISION[metric]);
+}
+
+function buildThresholdBreachReasonPayload(
+  metric: BenchmarkMetricName,
+  comparison: ThresholdComparison,
+  threshold: number,
+  actual: number,
+  miss: number,
+  unit: Unit
+): ThresholdBreachReasonPayload {
+  return {
+    code: 'THRESHOLD_BREACH',
+    metric,
+    comparison,
+    threshold: formatReasonValue(metric, threshold),
+    actual: formatReasonValue(metric, actual),
+    miss: formatReasonValue(metric, miss),
+    unit
+  };
+}
+
+function buildThresholdFailureReason(payload: ThresholdBreachReasonPayload): string {
+  return `Threshold breach for ${payload.metric}: expected ${payload.comparison} ${payload.threshold} ${payload.unit}, actual ${payload.actual} ${payload.unit}, miss ${payload.miss} ${payload.unit}.`;
+}
+
+
 function makeThresholdCheck(
   metric: BenchmarkMetricName,
   actual: number
@@ -270,6 +336,15 @@ function makeThresholdCheck(
   }
 
   const gap = round(Math.abs(distance), digits);
+  const actualRounded = round(actual, digits);
+  const reasonPayload = buildThresholdBreachReasonPayload(
+    metric,
+    config.comparison,
+    config.threshold,
+    actualRounded,
+    gap,
+    config.unit
+  );
   const template = getRemediationTemplate(metric);
 
   return {
@@ -278,13 +353,92 @@ function makeThresholdCheck(
       metric,
       comparison: config.comparison,
       threshold: config.threshold,
-      actual: round(actual, digits),
+      actual: actualRounded,
       gap,
       priority: breachPriority(metric, gap),
       title: template.title,
-      rationale: `${metric} is outside benchmark (${config.comparison} ${config.threshold}); observed ${round(actual, digits)}.`,
+      rationale: buildThresholdFailureReason(reasonPayload),
+      reasonPayload,
       action: template.action
     }
+  };
+}
+
+export function buildRegressionGateSummary(
+  thresholdChecks: Record<BenchmarkMetricName, ThresholdCheck>,
+  thresholdBreaches: ThresholdBreach[]
+): RegressionGateSummary {
+  const breachByMetric = new Map<BenchmarkMetricName, ThresholdBreach>();
+  thresholdBreaches.forEach((breach) => breachByMetric.set(breach.metric, breach));
+
+  const checks = Object.fromEntries(
+    (Object.keys(BENCHMARK_THRESHOLDS) as BenchmarkMetricName[]).map((metric) => {
+      const check = thresholdChecks[metric];
+      const breach = breachByMetric.get(metric);
+      const delta = round(check.distance, METRIC_PRECISION[metric]);
+      const missDistance = round(Math.abs(delta), METRIC_PRECISION[metric]);
+      const synthesizedPayload = buildThresholdBreachReasonPayload(
+        metric,
+        check.comparison,
+        check.threshold,
+        check.actual,
+        missDistance,
+        check.unit
+      );
+      const reasonPayload = check.breached ? (breach?.reasonPayload ?? synthesizedPayload) : null;
+      const defaultFailureReason = buildThresholdFailureReason(reasonPayload ?? synthesizedPayload);
+      const thresholdValue = formatReasonValue(metric, check.threshold);
+      const actualValue = formatReasonValue(metric, check.actual);
+      const marginValue = formatReasonValue(metric, delta);
+
+      const reason = check.breached
+        ? defaultFailureReason
+        : `No threshold breach for ${metric}: expected ${check.comparison} ${thresholdValue} ${check.unit}, actual ${actualValue} ${check.unit}, margin ${marginValue} ${check.unit}.`;
+
+      return [
+        metric,
+        {
+          metric,
+          comparison: check.comparison,
+          threshold: check.threshold,
+          actual: check.actual,
+          delta,
+          unit: check.unit,
+          passed: !check.breached,
+          priority: breach?.priority ?? (check.breached ? breachPriority(metric, missDistance) : 'P3'),
+          reason,
+          reasonPayload
+        }
+      ] as const;
+    })
+  ) as Record<BenchmarkMetricName, RegressionGateCheck>;
+
+  const failures = (Object.values(checks) as RegressionGateCheck[])
+    .filter((check) => !check.passed)
+    .map((check) => ({
+      metric: check.metric,
+      priority: check.priority,
+      reason: check.reason,
+      reasonPayload: check.reasonPayload ?? buildThresholdBreachReasonPayload(
+        check.metric,
+        check.comparison,
+        check.threshold,
+        check.actual,
+        Math.abs(check.delta),
+        check.unit
+      )
+    }))
+    .sort((left, right) => (
+      comparePriority(left.priority, right.priority) ||
+      compareString(left.metric, right.metric) ||
+      compareString(left.reason, right.reason)
+    ));
+
+  return {
+    passed: failures.length === 0,
+    failureCount: failures.length,
+    checks,
+    failures
   };
 }
 
@@ -320,9 +474,11 @@ export function buildRemediationTaskPlanArtifact(
       taskId: String(task.id ?? deterministicUuid(`${sourceSeed}|fallback|${index}|${item.metric}`)),
       metric: item.metric,
       priority: item.priority,
-      threshold: breach?.threshold ?? NaN,
-      actual: breach?.actual ?? NaN,
-      gap: breach?.gap ?? NaN,
+      threshold: toFiniteOrNull(breach?.threshold, 3),
+      actual: toFiniteOrNull(breach?.actual, 3),
+      gap: toFiniteOrNull(breach?.gap, 3),
+      regressionReason: breach?.rationale ?? item.rationale,
+      regressionReasonPayload: breach?.reasonPayload ?? null,
       target: String(task.target ?? ''),
       swarmPriority: String(task.priority ?? ''),
       task: String(task.task ?? ''),
