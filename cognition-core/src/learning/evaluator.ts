@@ -135,6 +135,31 @@ const MIN_CALIBRATION_SAMPLE_SIZE = 3;
 const MIN_CALIBRATION_MAPPING_RATE = 0.35;
 const CALIBRATION_ENVELOPE_CONFIDENCE_LEVEL = 0.95;
 
+function formatDiagnosticsNumber(value: number): string {
+    return `${round(value)}`;
+}
+
+function normalizeCalibrationPair(pair: CalibrationPair): CalibrationPair {
+    return {
+        prediction: toProbability(pair.prediction),
+        actual: clamp(asFiniteNumber(pair.actual, 0), 0, 1)
+    };
+}
+
+function sortCalibrationPairs(pairs: CalibrationPair[]): CalibrationPair[] {
+    return [...pairs].sort((left, right) => {
+        if (left.prediction !== right.prediction) {
+            return left.prediction - right.prediction;
+        }
+
+        return left.actual - right.actual;
+    });
+}
+
+function formatReadinessFlags(sampleReadiness: CalibrationSampleReadiness): string {
+    return `readiness_flags(sample_size_ready=${sampleReadiness.isSampleSizeReady},mapping_rate_ready=${sampleReadiness.isMappingRateReady},sample_size_shortfall=${sampleReadiness.sampleSizeShortfall},mapping_rate_shortfall=${formatDiagnosticsNumber(sampleReadiness.mappingRateShortfall)})`;
+}
+
 interface CalibrationPair {
     prediction: number;
     actual: number;
@@ -158,7 +183,8 @@ function buildHoeffdingEnvelope(
 }
 
 function buildCalibrationConfidenceEnvelope(mappedLabels: CalibrationPair[]): CalibrationConfidenceEnvelope {
-    const sampleSize = mappedLabels.length;
+    const normalizedMappedLabels = sortCalibrationPairs(mappedLabels.map(normalizeCalibrationPair));
+    const sampleSize = normalizedMappedLabels.length;
     if (sampleSize === 0) {
         return {
             confidenceLevel: CALIBRATION_ENVELOPE_CONFIDENCE_LEVEL,
@@ -173,8 +199,8 @@ function buildCalibrationConfidenceEnvelope(mappedLabels: CalibrationPair[]): Ca
         };
     }
 
-    const predictedSuccessMean = round(mean(mappedLabels.map((item) => item.prediction)));
-    const observedSuccessMean = round(mean(mappedLabels.map((item) => item.actual)));
+    const predictedSuccessMean = round(mean(normalizedMappedLabels.map((item) => item.prediction)));
+    const observedSuccessMean = round(mean(normalizedMappedLabels.map((item) => item.actual)));
     const observedEnvelope = buildHoeffdingEnvelope(observedSuccessMean, sampleSize);
 
     if (!observedEnvelope) {
@@ -245,7 +271,7 @@ function buildCalibrationDiagnostics(
     if (observedTerminalOutcomes === 0) {
         return {
             readiness: 'no_terminal_outcomes',
-            reason: 'Calibration metrics deferred: no terminal outcomes yet.',
+            reason: `Calibration metrics deferred: no terminal outcomes yet; sample_size_shortfall=${sampleSizeShortfall}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
             ...baseDiagnostics
         };
     }
@@ -253,7 +279,7 @@ function buildCalibrationDiagnostics(
     if (observedMappedOutcomes === 0) {
         return {
             readiness: 'no_mapped_outcomes',
-            reason: 'Calibration metrics deferred: no mapped terminal outcomes.',
+            reason: `Calibration metrics deferred: no mapped terminal outcomes; sample_size_shortfall=${sampleSizeShortfall}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
             ...baseDiagnostics
         };
     }
@@ -261,7 +287,7 @@ function buildCalibrationDiagnostics(
     if (observedMappedOutcomes < MIN_CALIBRATION_SAMPLE_SIZE) {
         return {
             readiness: 'insufficient_sample_size',
-            reason: `Calibration metrics deferred: mapped sample ${observedMappedOutcomes} is below minimum ${MIN_CALIBRATION_SAMPLE_SIZE}.`,
+            reason: `Calibration metrics deferred: mapped sample ${observedMappedOutcomes} is below minimum ${MIN_CALIBRATION_SAMPLE_SIZE}; sample_size_shortfall=${sampleSizeShortfall}; mapping_rate=${formatDiagnosticsNumber(observedMappingRateRaw)}; minimum_mapping_rate=${formatDiagnosticsNumber(MIN_CALIBRATION_MAPPING_RATE)}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
             ...baseDiagnostics
         };
     }
@@ -269,14 +295,14 @@ function buildCalibrationDiagnostics(
     if (calibrationMappingRate < MIN_CALIBRATION_MAPPING_RATE) {
         return {
             readiness: 'insufficient_mapping_rate',
-            reason: `Calibration metrics deferred: mapping rate ${round(calibrationMappingRate)} is below minimum ${MIN_CALIBRATION_MAPPING_RATE}.`,
+            reason: `Calibration metrics deferred: mapping rate ${formatDiagnosticsNumber(observedMappingRateRaw)} is below minimum ${formatDiagnosticsNumber(MIN_CALIBRATION_MAPPING_RATE)}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}; mapped_outcomes=${observedMappedOutcomes}; minimum_sample_size=${MIN_CALIBRATION_SAMPLE_SIZE}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
             ...baseDiagnostics
         };
     }
 
     return {
         readiness: 'ready',
-        reason: 'Calibration metrics active: sample-size and mapping-rate gates satisfied.',
+        reason: `Calibration metrics active: sample-size and mapping-rate gates satisfied; mapped_outcomes=${observedMappedOutcomes}; terminal_outcomes=${observedTerminalOutcomes}; mapping_rate=${formatDiagnosticsNumber(observedMappingRateRaw)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
         ...baseDiagnostics
     };
 }

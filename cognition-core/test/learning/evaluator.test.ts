@@ -34,6 +34,14 @@ test('evaluateRecommendations computes core metrics and recommendation rollups',
     assert.ok(result.metrics.brierScore !== null);
     assert.ok(result.metrics.calibrationGap !== null);
     assert.equal(result.metrics.calibrationDiagnostics?.readiness, 'ready');
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /Calibration metrics active: sample-size and mapping-rate gates satisfied; mapped_outcomes=3; terminal_outcomes=4; mapping_rate=0\.75\./
+    );
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /readiness_flags\(sample_size_ready=true,mapping_rate_ready=true,sample_size_shortfall=0,mapping_rate_shortfall=0\)\./
+    );
     assert.equal(result.metrics.calibrationDiagnostics?.observedTerminalOutcomes, 4);
     assert.equal(result.metrics.calibrationDiagnostics?.observedMappedOutcomes, 3);
     assert.equal(result.metrics.calibrationDiagnostics?.observedSampleSize, 3);
@@ -59,6 +67,14 @@ test('evaluateRecommendations handles empty mappings safely', () => {
     assert.equal(result.metrics.brierScore, null);
     assert.equal(result.metrics.calibrationGap, null);
     assert.equal(result.metrics.calibrationDiagnostics?.readiness, 'no_mapped_outcomes');
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /Calibration metrics deferred: no mapped terminal outcomes; sample_size_shortfall=3; mapping_rate_shortfall=0\.35\./
+    );
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /readiness_flags\(sample_size_ready=false,mapping_rate_ready=false,sample_size_shortfall=3,mapping_rate_shortfall=0\.35\)\./
+    );
     assert.equal(result.metrics.calibrationDiagnostics?.observedTerminalOutcomes, 1);
     assert.equal(result.metrics.calibrationDiagnostics?.observedMappedOutcomes, 0);
     assert.equal(result.metrics.calibrationDiagnostics?.observedSampleSize, 0);
@@ -68,6 +84,43 @@ test('evaluateRecommendations handles empty mappings safely', () => {
     assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.observedSuccessMean, null);
     assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.observedSuccessLowerBound, null);
     assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.observedSuccessUpperBound, null);
+    assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.calibrationGapLowerBound, null);
+    assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.calibrationGapUpperBound, null);
+});
+
+test('evaluateRecommendations preserves confidence envelope diagnostics when no terminal outcomes exist', () => {
+    const result = evaluateRecommendations(
+        [{ recommendationId: 'r1', confidence: 0.4 }],
+        [
+            { recommendationId: 'r1', status: 'awaiting_approval' },
+            { status: 'awaiting_approval' }
+        ]
+    );
+
+    assert.equal(result.metrics.totalOutcomes, 2);
+    assert.equal(result.metrics.terminalOutcomes, 0);
+    assert.equal(result.metrics.nonTerminalOutcomes, 2);
+    assert.equal(result.metrics.calibrationDiagnostics?.readiness, 'no_terminal_outcomes');
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /Calibration metrics deferred: no terminal outcomes yet; sample_size_shortfall=3; mapping_rate_shortfall=0\.35\./
+    );
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /readiness_flags\(sample_size_ready=false,mapping_rate_ready=false,sample_size_shortfall=3,mapping_rate_shortfall=0\.35\)\./
+    );
+    assert.equal(result.metrics.calibrationDiagnostics?.observedTerminalOutcomes, 0);
+    assert.equal(result.metrics.calibrationDiagnostics?.observedMappedOutcomes, 0);
+    assert.equal(result.metrics.calibrationDiagnostics?.observedSampleSize, 0);
+    assert.equal(result.metrics.calibrationDiagnostics?.observedMappingRate, 0);
+    assert.equal(result.metrics.calibrationDiagnostics?.sampleReadiness.isSampleSizeReady, false);
+    assert.equal(result.metrics.calibrationDiagnostics?.sampleReadiness.isMappingRateReady, false);
+    assert.equal(result.metrics.calibrationDiagnostics?.sampleReadiness.sampleSizeShortfall, 3);
+    assert.equal(result.metrics.calibrationDiagnostics?.sampleReadiness.mappingRateShortfall, 0.35);
+    assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.sampleSize, 0);
+    assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.method, 'hoeffding');
+    assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.predictedSuccessMean, null);
+    assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.observedSuccessMean, null);
     assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.calibrationGapLowerBound, null);
     assert.equal(result.metrics.calibrationDiagnostics?.confidenceEnvelope?.calibrationGapUpperBound, null);
 });
@@ -97,6 +150,14 @@ test('evaluateRecommendations suppresses calibration metrics for sparse mapped s
     assert.equal(result.metrics.brierScore, null);
     assert.equal(result.metrics.calibrationGap, null);
     assert.equal(result.metrics.calibrationDiagnostics?.readiness, 'insufficient_sample_size');
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /Calibration metrics deferred: mapped sample 1 is below minimum 3; sample_size_shortfall=2; mapping_rate=0\.1; minimum_mapping_rate=0\.35; mapping_rate_shortfall=0\.25\./
+    );
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /readiness_flags\(sample_size_ready=false,mapping_rate_ready=false,sample_size_shortfall=2,mapping_rate_shortfall=0\.25\)\./
+    );
     assert.equal(result.metrics.calibrationDiagnostics?.observedTerminalOutcomes, 10);
     assert.equal(result.metrics.calibrationDiagnostics?.observedMappedOutcomes, 1);
     assert.equal(result.metrics.calibrationDiagnostics?.observedSampleSize, 1);
@@ -136,6 +197,14 @@ test('evaluateRecommendations suppresses calibration metrics when mapping covera
     assert.equal(result.metrics.brierScore, null);
     assert.equal(result.metrics.calibrationGap, null);
     assert.equal(result.metrics.calibrationDiagnostics?.readiness, 'insufficient_mapping_rate');
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /Calibration metrics deferred: mapping rate 0\.3 is below minimum 0\.35; mapping_rate_shortfall=0\.05; mapped_outcomes=3; minimum_sample_size=3\./
+    );
+    assert.match(
+        result.metrics.calibrationDiagnostics?.reason ?? '',
+        /readiness_flags\(sample_size_ready=true,mapping_rate_ready=false,sample_size_shortfall=0,mapping_rate_shortfall=0\.05\)\./
+    );
     assert.equal(result.metrics.calibrationDiagnostics?.observedTerminalOutcomes, 10);
     assert.equal(result.metrics.calibrationDiagnostics?.observedMappedOutcomes, 3);
     assert.equal(result.metrics.calibrationDiagnostics?.observedSampleSize, 3);
