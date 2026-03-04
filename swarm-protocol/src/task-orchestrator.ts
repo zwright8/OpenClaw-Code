@@ -39,6 +39,315 @@ function safeNonNegativeNumber(value, fallback = 0) {
     return Number.isFinite(value) && value >= 0 ? Number(value) : fallback;
 }
 
+function normalizeReasonToken(value, fallback = 'unknown') {
+    if (value === null || value === undefined) return fallback;
+    const normalized = String(value)
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+
+    return normalized || fallback;
+}
+
+function normalizeReasonContext(value) {
+    return normalizeReasonToken(value, null);
+}
+
+function parseReason(value, fallbackCode = 'unknown') {
+    if (value === null || value === undefined) {
+        return {
+            raw: null,
+            code: fallbackCode,
+            context: null
+        };
+    }
+
+    const raw = String(value).trim();
+    if (!raw) {
+        return {
+            raw: null,
+            code: fallbackCode,
+            context: null
+        };
+    }
+
+    const [codeCandidate, ...contextParts] = raw.split(':');
+    const contextRaw = contextParts.join(':').trim();
+
+    return {
+        raw,
+        code: normalizeReasonToken(codeCandidate, fallbackCode),
+        context: contextRaw ? normalizeReasonToken(contextRaw, null) : null
+    };
+}
+
+function formatReasonToken(code, context = null, fallbackCode = 'unknown') {
+    const normalizedCode = normalizeReasonToken(code, fallbackCode);
+    const normalizedContext = normalizeReasonToken(context, null);
+    return normalizedContext ? `${normalizedCode}:${normalizedContext}` : normalizedCode;
+}
+
+function canonicalizeReason(value, fallbackCode = 'unknown') {
+    const parsed = parseReason(value, fallbackCode);
+    return formatReasonToken(parsed.code, parsed.context, fallbackCode);
+}
+
+function canonicalizeTerminalReasonCode(code) {
+    const normalized = normalizeReasonToken(code, null);
+    if (!normalized) return null;
+    return TERMINAL_REASON_CANONICAL_CODE_BY_ALIAS.get(normalized) || normalized;
+}
+
+function deriveTerminalStatusFromReason(reasonCode, reasonContext) {
+    const normalizedCode = canonicalizeTerminalReasonCode(reasonCode);
+    const normalizedContext = canonicalizeTerminalReasonCode(reasonContext);
+
+    if (
+        normalizedCode === 'retry_budget_exhausted'
+        || normalizedCode === 'retry_cycle_guard'
+        || normalizedCode === 'timeout'
+    ) {
+        if (
+            normalizedContext === 'transport_failure'
+            || normalizedContext === 'approval_release_failed'
+        ) {
+            return 'transport_error';
+        }
+
+        if (
+            normalizedContext === 'approval_denied'
+            || normalizedContext === 'rejected_by_worker'
+        ) {
+            return 'rejected';
+        }
+
+        if (
+            normalizedContext === 'completed'
+            || normalizedContext === 'partial'
+            || normalizedContext === 'failed'
+        ) {
+            return normalizedContext;
+        }
+    }
+
+    if (normalizedCode && TERMINAL_STATUS_BY_REASON_CODE.has(normalizedCode)) {
+        return TERMINAL_STATUS_BY_REASON_CODE.get(normalizedCode);
+    }
+
+    if (normalizedContext && TERMINAL_STATUS_BY_REASON_CODE.has(normalizedContext)) {
+        return TERMINAL_STATUS_BY_REASON_CODE.get(normalizedContext);
+    }
+
+    return null;
+}
+
+function normalizeTerminalReason(status, reason, fallbackCode = 'unknown') {
+    const normalizedStatusInput = normalizeReasonToken(status, null);
+    const parsed = parseReason(reason, normalizedStatusInput ?? fallbackCode);
+
+    let code = canonicalizeTerminalReasonCode(parsed.code)
+        ?? normalizeReasonToken(parsed.code, normalizeReasonToken(fallbackCode, 'unknown'));
+    let context = canonicalizeTerminalReasonCode(parsed.context);
+
+    const inferredStatus = inferTerminalClassification({
+        status: normalizedStatusInput,
+        reasonCode: code,
+        reasonContext: context,
+        fallback: normalizeReasonToken(fallbackCode, 'unknown')
+    });
+
+    const normalizedStatus = TERMINAL_STATUSES.has(inferredStatus)
+        ? inferredStatus
+        : normalizeReasonToken(fallbackCode, 'unknown');
+
+    const fallbackReasonCode = TERMINAL_REASON_DEFAULT_CODE_BY_STATUS.get(normalizedStatus)
+        ?? normalizeReasonToken(fallbackCode, 'unknown');
+    const allowedCodes = TERMINAL_REASON_ALLOWED_CODES_BY_STATUS.get(normalizedStatus)
+        ?? new Set([fallbackReasonCode]);
+
+    if (!allowedCodes.has(code)) {
+        context = context ?? code;
+        code = fallbackReasonCode;
+    }
+
+    const normalizedCode = normalizeReasonToken(code, fallbackReasonCode);
+    const normalizedContext = normalizeReasonToken(context, null);
+
+    return {
+        status: normalizedStatus,
+        code: normalizedCode,
+        context: normalizedContext,
+        raw: formatReasonToken(normalizedCode, normalizedContext, fallbackReasonCode)
+    };
+}
+
+function canonicalRetryScheduleReason(reason) {
+    const parsed = parseReason(reason, 'timeout');
+    return RETRY_SCHEDULE_REASON_BY_CODE.get(parsed.code) || 'timeout';
+}
+
+function canonicalRetryDispatchReason(reason) {
+    const parsed = parseReason(reason, 'timeout');
+    return RETRY_DISPATCH_REASON_BY_CODE.get(parsed.code) || 'timeout_retry';
+}
+
+function buildTerminalReasonCountKey(reason, reasonCode, reasonContext, fallbackCode = 'unknown') {
+    if (reasonCode || reasonContext) {
+        return formatReasonToken(reasonCode ?? fallbackCode, reasonContext, fallbackCode);
+    }
+
+    if (reason === null || reason === undefined) {
+        return null;
+    }
+
+    return canonicalizeReason(reason, fallbackCode);
+}
+
+function inferTerminalClassification({
+    status,
+    reasonCode,
+    reasonContext,
+    fallback = 'non_terminal'
+} = {}) {
+    const normalizedStatus = normalizeReasonToken(status, null);
+    const normalizedReasonCode = canonicalizeTerminalReasonCode(reasonCode);
+    const normalizedReasonContext = canonicalizeTerminalReasonCode(reasonContext);
+    const derivedStatus = deriveTerminalStatusFromReason(normalizedReasonCode, normalizedReasonContext);
+
+    if (derivedStatus && TERMINAL_STATUSES.has(derivedStatus)) {
+        return derivedStatus;
+    }
+
+    if (normalizedStatus && TERMINAL_STATUSES.has(normalizedStatus)) {
+        return normalizedStatus;
+    }
+
+    return normalizeReasonToken(fallback, 'non_terminal');
+}
+
+function buildRetryTransitionSchema({
+    state,
+    attemptIndex,
+    retryAttemptIndex,
+    scheduledCount,
+    dispatchCount,
+    reason,
+    reasonCode,
+    reasonContext,
+    delayMs,
+    nextRetryAt,
+    terminalClassification,
+    terminalReason,
+    terminalReasonCode,
+    terminalReasonContext
+}) {
+    const normalizedState = normalizeReasonToken(state, 'unknown');
+
+    const fallbackReasonCode = normalizeReasonToken(
+        reasonCode,
+        normalizeReasonToken(normalizedState, 'unknown')
+    );
+    const parsedReason = parseReason(reason, fallbackReasonCode);
+    const normalizedReasonCode = normalizedState === 'scheduled'
+        ? canonicalRetryScheduleReason(parsedReason.code)
+        : normalizedState === 'dispatching'
+            ? canonicalRetryDispatchReason(parsedReason.code)
+            : normalizeReasonToken(parsedReason.code, fallbackReasonCode);
+    const normalizedReasonContext = parsedReason.context ?? normalizeReasonContext(reasonContext);
+
+    const fallbackTerminalReasonCode = normalizeReasonToken(terminalReasonCode, 'unknown');
+    const parsedTerminalReason = parseReason(terminalReason, fallbackTerminalReasonCode);
+    const normalizedTerminalReasonCode = canonicalizeTerminalReasonCode(parsedTerminalReason.code);
+    const normalizedTerminalReasonContext = parsedTerminalReason.context ?? normalizeReasonContext(terminalReasonContext);
+    const normalizedTerminalClassification = inferTerminalClassification({
+        status: terminalClassification,
+        reasonCode: normalizedTerminalReasonCode,
+        reasonContext: normalizedTerminalReasonContext,
+        fallback: 'non_terminal'
+    });
+
+    return {
+        version: 2,
+        state: normalizedState,
+        attemptIndex: safeNonNegativeInteger(attemptIndex, 0),
+        retryAttemptIndex: safeNonNegativeInteger(retryAttemptIndex, 0),
+        attemptCounters: {
+            scheduledRetries: safeNonNegativeInteger(scheduledCount, 0),
+            retryDispatches: safeNonNegativeInteger(dispatchCount, 0)
+        },
+        reason: {
+            raw: formatReasonToken(
+                normalizedReasonCode,
+                normalizedReasonContext,
+                fallbackReasonCode
+            ),
+            code: normalizedReasonCode,
+            context: normalizedReasonContext
+        },
+        delayMs: Number.isFinite(delayMs) ? Number(delayMs) : null,
+        nextRetryAt: Number.isFinite(nextRetryAt) ? Number(nextRetryAt) : null,
+        terminalClassification: normalizedTerminalClassification,
+        terminalReason: {
+            raw: formatReasonToken(
+                normalizedTerminalReasonCode,
+                normalizedTerminalReasonContext,
+                fallbackTerminalReasonCode
+            ),
+            code: normalizedTerminalReasonCode,
+            context: normalizedTerminalReasonContext
+        }
+    };
+}
+
+function sortNumericRecord(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+        return {};
+    }
+
+    const sorted = {};
+    for (const key of Object.keys(value).sort()) {
+        sorted[key] = value[key];
+    }
+
+    return sorted;
+}
+
+function sanitizeTelemetryCounterMap(value, canonicalizeKey = (key) => normalizeReasonToken(key, null)) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+        return {};
+    }
+
+    const sanitized = {};
+    for (const [key, count] of Object.entries(value)) {
+        const normalizedKey = canonicalizeKey(key);
+        if (!normalizedKey) continue;
+
+        const normalizedCount = safeNonNegativeInteger(count, 0);
+        if (normalizedCount <= 0) continue;
+
+        sanitized[normalizedKey] = safeNonNegativeInteger(sanitized[normalizedKey], 0) + normalizedCount;
+    }
+
+    return sortNumericRecord(sanitized);
+}
+
+function incrementTelemetryCounter(map, key) {
+    const normalizedKey = normalizeReasonToken(key, null);
+    if (!normalizedKey) return;
+    map[normalizedKey] = safeNonNegativeInteger(map[normalizedKey], 0) + 1;
+}
+
+function mergeCounterMaps(into, from, canonicalizeKey = (key) => normalizeReasonToken(key, null)) {
+    if (!from || typeof from !== 'object') return into;
+    for (const [key, count] of Object.entries(from).sort(([left], [right]) => left.localeCompare(right))) {
+        const normalizedKey = canonicalizeKey(key);
+        if (!normalizedKey) continue;
+        into[normalizedKey] = safeNonNegativeInteger(into[normalizedKey], 0) + safeNonNegativeInteger(count, 0);
+    }
+    return sortNumericRecord(into);
+}
+
 function stableHash(value) {
     const input = String(value ?? '');
     let hash = 2166136261;
