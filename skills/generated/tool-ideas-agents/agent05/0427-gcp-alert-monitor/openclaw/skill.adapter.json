@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 427,
+  "name": "gcp-alert-monitor",
+  "title": "GCP Alert Monitor",
+  "description": "Monitors key GCP signals and raises actionable alerts.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0427-gcp-alert-monitor/SKILL.md",
+    "entrypoint": "agent05/0427-gcp-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gcp alert monitor",
+    "gcp alert monitor workflow",
+    "gcp alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0427-gcp-alert-monitor"
+  }
+}

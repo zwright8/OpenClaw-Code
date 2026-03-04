@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 419,
+  "name": "azure-approval-router",
+  "title": "Azure Approval Router",
+  "description": "Routes Azure-driven decisions to the right approvers.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0419-azure-approval-router/SKILL.md",
+    "entrypoint": "agent05/0419-azure-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure approval router",
+    "azure approval router workflow",
+    "azure approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0419-azure-approval-router"
+  }
+}

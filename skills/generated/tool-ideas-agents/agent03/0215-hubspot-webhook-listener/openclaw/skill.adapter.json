@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 215,
+  "name": "hubspot-webhook-listener",
+  "title": "HubSpot Webhook Listener",
+  "description": "Captures, verifies, and routes HubSpot webhook events.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0215-hubspot-webhook-listener/SKILL.md",
+    "entrypoint": "agent03/0215-hubspot-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hubspot webhook listener",
+    "hubspot webhook listener workflow",
+    "hubspot webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0215-hubspot-webhook-listener"
+  }
+}

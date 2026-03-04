@@ -1,0 +1,708 @@
+{
+  "agent": "agent10",
+  "start": 901,
+  "end": 1000,
+  "count": 100,
+  "items": [
+    {
+      "id": 901,
+      "tool": "WordPress Connector",
+      "purpose": "Unified read/write connector for WordPress APIs and data.",
+      "folder": "0901-wordpress-connector",
+      "skillPath": "agent10/0901-wordpress-connector/SKILL.md"
+    },
+    {
+      "id": 902,
+      "tool": "WordPress Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for WordPress records.",
+      "folder": "0902-wordpress-sync-orchestrator",
+      "skillPath": "agent10/0902-wordpress-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 903,
+      "tool": "WordPress Data Exporter",
+      "purpose": "Exports WordPress entities into clean, typed datasets.",
+      "folder": "0903-wordpress-data-exporter",
+      "skillPath": "agent10/0903-wordpress-data-exporter/SKILL.md"
+    },
+    {
+      "id": 904,
+      "tool": "WordPress Data Importer",
+      "purpose": "Validates and imports bulk updates into WordPress.",
+      "folder": "0904-wordpress-data-importer",
+      "skillPath": "agent10/0904-wordpress-data-importer/SKILL.md"
+    },
+    {
+      "id": 905,
+      "tool": "WordPress Webhook Listener",
+      "purpose": "Captures, verifies, and routes WordPress webhook events.",
+      "folder": "0905-wordpress-webhook-listener",
+      "skillPath": "agent10/0905-wordpress-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 906,
+      "tool": "WordPress Report Builder",
+      "purpose": "Generates operational and KPI reports from WordPress activity.",
+      "folder": "0906-wordpress-report-builder",
+      "skillPath": "agent10/0906-wordpress-report-builder/SKILL.md"
+    },
+    {
+      "id": 907,
+      "tool": "WordPress Alert Monitor",
+      "purpose": "Monitors key WordPress signals and raises actionable alerts.",
+      "folder": "0907-wordpress-alert-monitor",
+      "skillPath": "agent10/0907-wordpress-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 908,
+      "tool": "WordPress Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using WordPress.",
+      "folder": "0908-wordpress-workflow-automator",
+      "skillPath": "agent10/0908-wordpress-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 909,
+      "tool": "WordPress Approval Router",
+      "purpose": "Routes WordPress-driven decisions to the right approvers.",
+      "folder": "0909-wordpress-approval-router",
+      "skillPath": "agent10/0909-wordpress-approval-router/SKILL.md"
+    },
+    {
+      "id": 910,
+      "tool": "WordPress Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from WordPress.",
+      "folder": "0910-wordpress-migration-assistant",
+      "skillPath": "agent10/0910-wordpress-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 911,
+      "tool": "Webflow Connector",
+      "purpose": "Unified read/write connector for Webflow APIs and data.",
+      "folder": "0911-webflow-connector",
+      "skillPath": "agent10/0911-webflow-connector/SKILL.md"
+    },
+    {
+      "id": 912,
+      "tool": "Webflow Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Webflow records.",
+      "folder": "0912-webflow-sync-orchestrator",
+      "skillPath": "agent10/0912-webflow-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 913,
+      "tool": "Webflow Data Exporter",
+      "purpose": "Exports Webflow entities into clean, typed datasets.",
+      "folder": "0913-webflow-data-exporter",
+      "skillPath": "agent10/0913-webflow-data-exporter/SKILL.md"
+    },
+    {
+      "id": 914,
+      "tool": "Webflow Data Importer",
+      "purpose": "Validates and imports bulk updates into Webflow.",
+      "folder": "0914-webflow-data-importer",
+      "skillPath": "agent10/0914-webflow-data-importer/SKILL.md"
+    },
+    {
+      "id": 915,
+      "tool": "Webflow Webhook Listener",
+      "purpose": "Captures, verifies, and routes Webflow webhook events.",
+      "folder": "0915-webflow-webhook-listener",
+      "skillPath": "agent10/0915-webflow-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 916,
+      "tool": "Webflow Report Builder",
+      "purpose": "Generates operational and KPI reports from Webflow activity.",
+      "folder": "0916-webflow-report-builder",
+      "skillPath": "agent10/0916-webflow-report-builder/SKILL.md"
+    },
+    {
+      "id": 917,
+      "tool": "Webflow Alert Monitor",
+      "purpose": "Monitors key Webflow signals and raises actionable alerts.",
+      "folder": "0917-webflow-alert-monitor",
+      "skillPath": "agent10/0917-webflow-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 918,
+      "tool": "Webflow Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Webflow.",
+      "folder": "0918-webflow-workflow-automator",
+      "skillPath": "agent10/0918-webflow-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 919,
+      "tool": "Webflow Approval Router",
+      "purpose": "Routes Webflow-driven decisions to the right approvers.",
+      "folder": "0919-webflow-approval-router",
+      "skillPath": "agent10/0919-webflow-approval-router/SKILL.md"
+    },
+    {
+      "id": 920,
+      "tool": "Webflow Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Webflow.",
+      "folder": "0920-webflow-migration-assistant",
+      "skillPath": "agent10/0920-webflow-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 921,
+      "tool": "Ghost Connector",
+      "purpose": "Unified read/write connector for Ghost APIs and data.",
+      "folder": "0921-ghost-connector",
+      "skillPath": "agent10/0921-ghost-connector/SKILL.md"
+    },
+    {
+      "id": 922,
+      "tool": "Ghost Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Ghost records.",
+      "folder": "0922-ghost-sync-orchestrator",
+      "skillPath": "agent10/0922-ghost-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 923,
+      "tool": "Ghost Data Exporter",
+      "purpose": "Exports Ghost entities into clean, typed datasets.",
+      "folder": "0923-ghost-data-exporter",
+      "skillPath": "agent10/0923-ghost-data-exporter/SKILL.md"
+    },
+    {
+      "id": 924,
+      "tool": "Ghost Data Importer",
+      "purpose": "Validates and imports bulk updates into Ghost.",
+      "folder": "0924-ghost-data-importer",
+      "skillPath": "agent10/0924-ghost-data-importer/SKILL.md"
+    },
+    {
+      "id": 925,
+      "tool": "Ghost Webhook Listener",
+      "purpose": "Captures, verifies, and routes Ghost webhook events.",
+      "folder": "0925-ghost-webhook-listener",
+      "skillPath": "agent10/0925-ghost-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 926,
+      "tool": "Ghost Report Builder",
+      "purpose": "Generates operational and KPI reports from Ghost activity.",
+      "folder": "0926-ghost-report-builder",
+      "skillPath": "agent10/0926-ghost-report-builder/SKILL.md"
+    },
+    {
+      "id": 927,
+      "tool": "Ghost Alert Monitor",
+      "purpose": "Monitors key Ghost signals and raises actionable alerts.",
+      "folder": "0927-ghost-alert-monitor",
+      "skillPath": "agent10/0927-ghost-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 928,
+      "tool": "Ghost Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Ghost.",
+      "folder": "0928-ghost-workflow-automator",
+      "skillPath": "agent10/0928-ghost-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 929,
+      "tool": "Ghost Approval Router",
+      "purpose": "Routes Ghost-driven decisions to the right approvers.",
+      "folder": "0929-ghost-approval-router",
+      "skillPath": "agent10/0929-ghost-approval-router/SKILL.md"
+    },
+    {
+      "id": 930,
+      "tool": "Ghost Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Ghost.",
+      "folder": "0930-ghost-migration-assistant",
+      "skillPath": "agent10/0930-ghost-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 931,
+      "tool": "Medium Connector",
+      "purpose": "Unified read/write connector for Medium APIs and data.",
+      "folder": "0931-medium-connector",
+      "skillPath": "agent10/0931-medium-connector/SKILL.md"
+    },
+    {
+      "id": 932,
+      "tool": "Medium Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Medium records.",
+      "folder": "0932-medium-sync-orchestrator",
+      "skillPath": "agent10/0932-medium-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 933,
+      "tool": "Medium Data Exporter",
+      "purpose": "Exports Medium entities into clean, typed datasets.",
+      "folder": "0933-medium-data-exporter",
+      "skillPath": "agent10/0933-medium-data-exporter/SKILL.md"
+    },
+    {
+      "id": 934,
+      "tool": "Medium Data Importer",
+      "purpose": "Validates and imports bulk updates into Medium.",
+      "folder": "0934-medium-data-importer",
+      "skillPath": "agent10/0934-medium-data-importer/SKILL.md"
+    },
+    {
+      "id": 935,
+      "tool": "Medium Webhook Listener",
+      "purpose": "Captures, verifies, and routes Medium webhook events.",
+      "folder": "0935-medium-webhook-listener",
+      "skillPath": "agent10/0935-medium-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 936,
+      "tool": "Medium Report Builder",
+      "purpose": "Generates operational and KPI reports from Medium activity.",
+      "folder": "0936-medium-report-builder",
+      "skillPath": "agent10/0936-medium-report-builder/SKILL.md"
+    },
+    {
+      "id": 937,
+      "tool": "Medium Alert Monitor",
+      "purpose": "Monitors key Medium signals and raises actionable alerts.",
+      "folder": "0937-medium-alert-monitor",
+      "skillPath": "agent10/0937-medium-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 938,
+      "tool": "Medium Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Medium.",
+      "folder": "0938-medium-workflow-automator",
+      "skillPath": "agent10/0938-medium-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 939,
+      "tool": "Medium Approval Router",
+      "purpose": "Routes Medium-driven decisions to the right approvers.",
+      "folder": "0939-medium-approval-router",
+      "skillPath": "agent10/0939-medium-approval-router/SKILL.md"
+    },
+    {
+      "id": 940,
+      "tool": "Medium Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Medium.",
+      "folder": "0940-medium-migration-assistant",
+      "skillPath": "agent10/0940-medium-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 941,
+      "tool": "Substack Connector",
+      "purpose": "Unified read/write connector for Substack APIs and data.",
+      "folder": "0941-substack-connector",
+      "skillPath": "agent10/0941-substack-connector/SKILL.md"
+    },
+    {
+      "id": 942,
+      "tool": "Substack Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Substack records.",
+      "folder": "0942-substack-sync-orchestrator",
+      "skillPath": "agent10/0942-substack-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 943,
+      "tool": "Substack Data Exporter",
+      "purpose": "Exports Substack entities into clean, typed datasets.",
+      "folder": "0943-substack-data-exporter",
+      "skillPath": "agent10/0943-substack-data-exporter/SKILL.md"
+    },
+    {
+      "id": 944,
+      "tool": "Substack Data Importer",
+      "purpose": "Validates and imports bulk updates into Substack.",
+      "folder": "0944-substack-data-importer",
+      "skillPath": "agent10/0944-substack-data-importer/SKILL.md"
+    },
+    {
+      "id": 945,
+      "tool": "Substack Webhook Listener",
+      "purpose": "Captures, verifies, and routes Substack webhook events.",
+      "folder": "0945-substack-webhook-listener",
+      "skillPath": "agent10/0945-substack-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 946,
+      "tool": "Substack Report Builder",
+      "purpose": "Generates operational and KPI reports from Substack activity.",
+      "folder": "0946-substack-report-builder",
+      "skillPath": "agent10/0946-substack-report-builder/SKILL.md"
+    },
+    {
+      "id": 947,
+      "tool": "Substack Alert Monitor",
+      "purpose": "Monitors key Substack signals and raises actionable alerts.",
+      "folder": "0947-substack-alert-monitor",
+      "skillPath": "agent10/0947-substack-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 948,
+      "tool": "Substack Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Substack.",
+      "folder": "0948-substack-workflow-automator",
+      "skillPath": "agent10/0948-substack-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 949,
+      "tool": "Substack Approval Router",
+      "purpose": "Routes Substack-driven decisions to the right approvers.",
+      "folder": "0949-substack-approval-router",
+      "skillPath": "agent10/0949-substack-approval-router/SKILL.md"
+    },
+    {
+      "id": 950,
+      "tool": "Substack Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Substack.",
+      "folder": "0950-substack-migration-assistant",
+      "skillPath": "agent10/0950-substack-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 951,
+      "tool": "PDF Connector",
+      "purpose": "Unified read/write connector for PDF APIs and data.",
+      "folder": "0951-pdf-connector",
+      "skillPath": "agent10/0951-pdf-connector/SKILL.md"
+    },
+    {
+      "id": 952,
+      "tool": "PDF Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for PDF records.",
+      "folder": "0952-pdf-sync-orchestrator",
+      "skillPath": "agent10/0952-pdf-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 953,
+      "tool": "PDF Data Exporter",
+      "purpose": "Exports PDF entities into clean, typed datasets.",
+      "folder": "0953-pdf-data-exporter",
+      "skillPath": "agent10/0953-pdf-data-exporter/SKILL.md"
+    },
+    {
+      "id": 954,
+      "tool": "PDF Data Importer",
+      "purpose": "Validates and imports bulk updates into PDF.",
+      "folder": "0954-pdf-data-importer",
+      "skillPath": "agent10/0954-pdf-data-importer/SKILL.md"
+    },
+    {
+      "id": 955,
+      "tool": "PDF Webhook Listener",
+      "purpose": "Captures, verifies, and routes PDF webhook events.",
+      "folder": "0955-pdf-webhook-listener",
+      "skillPath": "agent10/0955-pdf-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 956,
+      "tool": "PDF Report Builder",
+      "purpose": "Generates operational and KPI reports from PDF activity.",
+      "folder": "0956-pdf-report-builder",
+      "skillPath": "agent10/0956-pdf-report-builder/SKILL.md"
+    },
+    {
+      "id": 957,
+      "tool": "PDF Alert Monitor",
+      "purpose": "Monitors key PDF signals and raises actionable alerts.",
+      "folder": "0957-pdf-alert-monitor",
+      "skillPath": "agent10/0957-pdf-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 958,
+      "tool": "PDF Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using PDF.",
+      "folder": "0958-pdf-workflow-automator",
+      "skillPath": "agent10/0958-pdf-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 959,
+      "tool": "PDF Approval Router",
+      "purpose": "Routes PDF-driven decisions to the right approvers.",
+      "folder": "0959-pdf-approval-router",
+      "skillPath": "agent10/0959-pdf-approval-router/SKILL.md"
+    },
+    {
+      "id": 960,
+      "tool": "PDF Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from PDF.",
+      "folder": "0960-pdf-migration-assistant",
+      "skillPath": "agent10/0960-pdf-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 961,
+      "tool": "DOCX Connector",
+      "purpose": "Unified read/write connector for DOCX APIs and data.",
+      "folder": "0961-docx-connector",
+      "skillPath": "agent10/0961-docx-connector/SKILL.md"
+    },
+    {
+      "id": 962,
+      "tool": "DOCX Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for DOCX records.",
+      "folder": "0962-docx-sync-orchestrator",
+      "skillPath": "agent10/0962-docx-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 963,
+      "tool": "DOCX Data Exporter",
+      "purpose": "Exports DOCX entities into clean, typed datasets.",
+      "folder": "0963-docx-data-exporter",
+      "skillPath": "agent10/0963-docx-data-exporter/SKILL.md"
+    },
+    {
+      "id": 964,
+      "tool": "DOCX Data Importer",
+      "purpose": "Validates and imports bulk updates into DOCX.",
+      "folder": "0964-docx-data-importer",
+      "skillPath": "agent10/0964-docx-data-importer/SKILL.md"
+    },
+    {
+      "id": 965,
+      "tool": "DOCX Webhook Listener",
+      "purpose": "Captures, verifies, and routes DOCX webhook events.",
+      "folder": "0965-docx-webhook-listener",
+      "skillPath": "agent10/0965-docx-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 966,
+      "tool": "DOCX Report Builder",
+      "purpose": "Generates operational and KPI reports from DOCX activity.",
+      "folder": "0966-docx-report-builder",
+      "skillPath": "agent10/0966-docx-report-builder/SKILL.md"
+    },
+    {
+      "id": 967,
+      "tool": "DOCX Alert Monitor",
+      "purpose": "Monitors key DOCX signals and raises actionable alerts.",
+      "folder": "0967-docx-alert-monitor",
+      "skillPath": "agent10/0967-docx-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 968,
+      "tool": "DOCX Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using DOCX.",
+      "folder": "0968-docx-workflow-automator",
+      "skillPath": "agent10/0968-docx-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 969,
+      "tool": "DOCX Approval Router",
+      "purpose": "Routes DOCX-driven decisions to the right approvers.",
+      "folder": "0969-docx-approval-router",
+      "skillPath": "agent10/0969-docx-approval-router/SKILL.md"
+    },
+    {
+      "id": 970,
+      "tool": "DOCX Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from DOCX.",
+      "folder": "0970-docx-migration-assistant",
+      "skillPath": "agent10/0970-docx-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 971,
+      "tool": "Spreadsheet Connector",
+      "purpose": "Unified read/write connector for Spreadsheet APIs and data.",
+      "folder": "0971-spreadsheet-connector",
+      "skillPath": "agent10/0971-spreadsheet-connector/SKILL.md"
+    },
+    {
+      "id": 972,
+      "tool": "Spreadsheet Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Spreadsheet records.",
+      "folder": "0972-spreadsheet-sync-orchestrator",
+      "skillPath": "agent10/0972-spreadsheet-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 973,
+      "tool": "Spreadsheet Data Exporter",
+      "purpose": "Exports Spreadsheet entities into clean, typed datasets.",
+      "folder": "0973-spreadsheet-data-exporter",
+      "skillPath": "agent10/0973-spreadsheet-data-exporter/SKILL.md"
+    },
+    {
+      "id": 974,
+      "tool": "Spreadsheet Data Importer",
+      "purpose": "Validates and imports bulk updates into Spreadsheet.",
+      "folder": "0974-spreadsheet-data-importer",
+      "skillPath": "agent10/0974-spreadsheet-data-importer/SKILL.md"
+    },
+    {
+      "id": 975,
+      "tool": "Spreadsheet Webhook Listener",
+      "purpose": "Captures, verifies, and routes Spreadsheet webhook events.",
+      "folder": "0975-spreadsheet-webhook-listener",
+      "skillPath": "agent10/0975-spreadsheet-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 976,
+      "tool": "Spreadsheet Report Builder",
+      "purpose": "Generates operational and KPI reports from Spreadsheet activity.",
+      "folder": "0976-spreadsheet-report-builder",
+      "skillPath": "agent10/0976-spreadsheet-report-builder/SKILL.md"
+    },
+    {
+      "id": 977,
+      "tool": "Spreadsheet Alert Monitor",
+      "purpose": "Monitors key Spreadsheet signals and raises actionable alerts.",
+      "folder": "0977-spreadsheet-alert-monitor",
+      "skillPath": "agent10/0977-spreadsheet-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 978,
+      "tool": "Spreadsheet Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Spreadsheet.",
+      "folder": "0978-spreadsheet-workflow-automator",
+      "skillPath": "agent10/0978-spreadsheet-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 979,
+      "tool": "Spreadsheet Approval Router",
+      "purpose": "Routes Spreadsheet-driven decisions to the right approvers.",
+      "folder": "0979-spreadsheet-approval-router",
+      "skillPath": "agent10/0979-spreadsheet-approval-router/SKILL.md"
+    },
+    {
+      "id": 980,
+      "tool": "Spreadsheet Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Spreadsheet.",
+      "folder": "0980-spreadsheet-migration-assistant",
+      "skillPath": "agent10/0980-spreadsheet-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 981,
+      "tool": "CSV Connector",
+      "purpose": "Unified read/write connector for CSV APIs and data.",
+      "folder": "0981-csv-connector",
+      "skillPath": "agent10/0981-csv-connector/SKILL.md"
+    },
+    {
+      "id": 982,
+      "tool": "CSV Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for CSV records.",
+      "folder": "0982-csv-sync-orchestrator",
+      "skillPath": "agent10/0982-csv-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 983,
+      "tool": "CSV Data Exporter",
+      "purpose": "Exports CSV entities into clean, typed datasets.",
+      "folder": "0983-csv-data-exporter",
+      "skillPath": "agent10/0983-csv-data-exporter/SKILL.md"
+    },
+    {
+      "id": 984,
+      "tool": "CSV Data Importer",
+      "purpose": "Validates and imports bulk updates into CSV.",
+      "folder": "0984-csv-data-importer",
+      "skillPath": "agent10/0984-csv-data-importer/SKILL.md"
+    },
+    {
+      "id": 985,
+      "tool": "CSV Webhook Listener",
+      "purpose": "Captures, verifies, and routes CSV webhook events.",
+      "folder": "0985-csv-webhook-listener",
+      "skillPath": "agent10/0985-csv-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 986,
+      "tool": "CSV Report Builder",
+      "purpose": "Generates operational and KPI reports from CSV activity.",
+      "folder": "0986-csv-report-builder",
+      "skillPath": "agent10/0986-csv-report-builder/SKILL.md"
+    },
+    {
+      "id": 987,
+      "tool": "CSV Alert Monitor",
+      "purpose": "Monitors key CSV signals and raises actionable alerts.",
+      "folder": "0987-csv-alert-monitor",
+      "skillPath": "agent10/0987-csv-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 988,
+      "tool": "CSV Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using CSV.",
+      "folder": "0988-csv-workflow-automator",
+      "skillPath": "agent10/0988-csv-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 989,
+      "tool": "CSV Approval Router",
+      "purpose": "Routes CSV-driven decisions to the right approvers.",
+      "folder": "0989-csv-approval-router",
+      "skillPath": "agent10/0989-csv-approval-router/SKILL.md"
+    },
+    {
+      "id": 990,
+      "tool": "CSV Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from CSV.",
+      "folder": "0990-csv-migration-assistant",
+      "skillPath": "agent10/0990-csv-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 991,
+      "tool": "JSON Connector",
+      "purpose": "Unified read/write connector for JSON APIs and data.",
+      "folder": "0991-json-connector",
+      "skillPath": "agent10/0991-json-connector/SKILL.md"
+    },
+    {
+      "id": 992,
+      "tool": "JSON Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for JSON records.",
+      "folder": "0992-json-sync-orchestrator",
+      "skillPath": "agent10/0992-json-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 993,
+      "tool": "JSON Data Exporter",
+      "purpose": "Exports JSON entities into clean, typed datasets.",
+      "folder": "0993-json-data-exporter",
+      "skillPath": "agent10/0993-json-data-exporter/SKILL.md"
+    },
+    {
+      "id": 994,
+      "tool": "JSON Data Importer",
+      "purpose": "Validates and imports bulk updates into JSON.",
+      "folder": "0994-json-data-importer",
+      "skillPath": "agent10/0994-json-data-importer/SKILL.md"
+    },
+    {
+      "id": 995,
+      "tool": "JSON Webhook Listener",
+      "purpose": "Captures, verifies, and routes JSON webhook events.",
+      "folder": "0995-json-webhook-listener",
+      "skillPath": "agent10/0995-json-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 996,
+      "tool": "JSON Report Builder",
+      "purpose": "Generates operational and KPI reports from JSON activity.",
+      "folder": "0996-json-report-builder",
+      "skillPath": "agent10/0996-json-report-builder/SKILL.md"
+    },
+    {
+      "id": 997,
+      "tool": "JSON Alert Monitor",
+      "purpose": "Monitors key JSON signals and raises actionable alerts.",
+      "folder": "0997-json-alert-monitor",
+      "skillPath": "agent10/0997-json-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 998,
+      "tool": "JSON Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using JSON.",
+      "folder": "0998-json-workflow-automator",
+      "skillPath": "agent10/0998-json-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 999,
+      "tool": "JSON Approval Router",
+      "purpose": "Routes JSON-driven decisions to the right approvers.",
+      "folder": "0999-json-approval-router",
+      "skillPath": "agent10/0999-json-approval-router/SKILL.md"
+    },
+    {
+      "id": 1000,
+      "tool": "JSON Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from JSON.",
+      "folder": "1000-json-migration-assistant",
+      "skillPath": "agent10/1000-json-migration-assistant/SKILL.md"
+    }
+  ]
+}

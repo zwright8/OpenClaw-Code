@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 139,
+  "name": "microsoft-calendar-approval-router",
+  "title": "Microsoft Calendar Approval Router",
+  "description": "Routes Microsoft Calendar-driven decisions to the right approvers.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0139-microsoft-calendar-approval-router/SKILL.md",
+    "entrypoint": "agent02/0139-microsoft-calendar-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft calendar approval router",
+    "microsoft calendar approval router workflow",
+    "microsoft calendar approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0139-microsoft-calendar-approval-router"
+  }
+}

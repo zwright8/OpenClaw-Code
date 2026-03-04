@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 472,
+  "name": "digitalocean-sync-orchestrator",
+  "title": "DigitalOcean Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for DigitalOcean records.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0472-digitalocean-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent05/0472-digitalocean-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digitalocean sync orchestrator",
+    "digitalocean sync orchestrator workflow",
+    "digitalocean sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0472-digitalocean-sync-orchestrator"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 404,
+  "name": "aws-data-importer",
+  "title": "AWS Data Importer",
+  "description": "Validates and imports bulk updates into AWS.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0404-aws-data-importer/SKILL.md",
+    "entrypoint": "agent05/0404-aws-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "aws data importer",
+    "aws data importer workflow",
+    "aws data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0404-aws-data-importer"
+  }
+}

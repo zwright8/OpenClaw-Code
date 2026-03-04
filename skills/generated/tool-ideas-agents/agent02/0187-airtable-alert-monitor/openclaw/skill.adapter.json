@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 187,
+  "name": "airtable-alert-monitor",
+  "title": "Airtable Alert Monitor",
+  "description": "Monitors key Airtable signals and raises actionable alerts.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0187-airtable-alert-monitor/SKILL.md",
+    "entrypoint": "agent02/0187-airtable-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airtable alert monitor",
+    "airtable alert monitor workflow",
+    "airtable alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0187-airtable-alert-monitor"
+  }
+}

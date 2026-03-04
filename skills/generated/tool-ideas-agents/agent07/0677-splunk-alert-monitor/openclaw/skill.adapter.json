@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 677,
+  "name": "splunk-alert-monitor",
+  "title": "Splunk Alert Monitor",
+  "description": "Monitors key Splunk signals and raises actionable alerts.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0677-splunk-alert-monitor/SKILL.md",
+    "entrypoint": "agent07/0677-splunk-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "splunk alert monitor",
+    "splunk alert monitor workflow",
+    "splunk alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0677-splunk-alert-monitor"
+  }
+}

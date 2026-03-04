@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 165,
+  "name": "dropbox-webhook-listener",
+  "title": "Dropbox Webhook Listener",
+  "description": "Captures, verifies, and routes Dropbox webhook events.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0165-dropbox-webhook-listener/SKILL.md",
+    "entrypoint": "agent02/0165-dropbox-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dropbox webhook listener",
+    "dropbox webhook listener workflow",
+    "dropbox webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0165-dropbox-webhook-listener"
+  }
+}

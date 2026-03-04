@@ -1,0 +1,708 @@
+{
+  "agent": "agent04",
+  "start": 301,
+  "end": 400,
+  "count": 100,
+  "items": [
+    {
+      "id": 301,
+      "tool": "Shopify Connector",
+      "purpose": "Unified read/write connector for Shopify APIs and data.",
+      "folder": "0301-shopify-connector",
+      "skillPath": "agent04/0301-shopify-connector/SKILL.md"
+    },
+    {
+      "id": 302,
+      "tool": "Shopify Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Shopify records.",
+      "folder": "0302-shopify-sync-orchestrator",
+      "skillPath": "agent04/0302-shopify-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 303,
+      "tool": "Shopify Data Exporter",
+      "purpose": "Exports Shopify entities into clean, typed datasets.",
+      "folder": "0303-shopify-data-exporter",
+      "skillPath": "agent04/0303-shopify-data-exporter/SKILL.md"
+    },
+    {
+      "id": 304,
+      "tool": "Shopify Data Importer",
+      "purpose": "Validates and imports bulk updates into Shopify.",
+      "folder": "0304-shopify-data-importer",
+      "skillPath": "agent04/0304-shopify-data-importer/SKILL.md"
+    },
+    {
+      "id": 305,
+      "tool": "Shopify Webhook Listener",
+      "purpose": "Captures, verifies, and routes Shopify webhook events.",
+      "folder": "0305-shopify-webhook-listener",
+      "skillPath": "agent04/0305-shopify-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 306,
+      "tool": "Shopify Report Builder",
+      "purpose": "Generates operational and KPI reports from Shopify activity.",
+      "folder": "0306-shopify-report-builder",
+      "skillPath": "agent04/0306-shopify-report-builder/SKILL.md"
+    },
+    {
+      "id": 307,
+      "tool": "Shopify Alert Monitor",
+      "purpose": "Monitors key Shopify signals and raises actionable alerts.",
+      "folder": "0307-shopify-alert-monitor",
+      "skillPath": "agent04/0307-shopify-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 308,
+      "tool": "Shopify Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Shopify.",
+      "folder": "0308-shopify-workflow-automator",
+      "skillPath": "agent04/0308-shopify-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 309,
+      "tool": "Shopify Approval Router",
+      "purpose": "Routes Shopify-driven decisions to the right approvers.",
+      "folder": "0309-shopify-approval-router",
+      "skillPath": "agent04/0309-shopify-approval-router/SKILL.md"
+    },
+    {
+      "id": 310,
+      "tool": "Shopify Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Shopify.",
+      "folder": "0310-shopify-migration-assistant",
+      "skillPath": "agent04/0310-shopify-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 311,
+      "tool": "WooCommerce Connector",
+      "purpose": "Unified read/write connector for WooCommerce APIs and data.",
+      "folder": "0311-woocommerce-connector",
+      "skillPath": "agent04/0311-woocommerce-connector/SKILL.md"
+    },
+    {
+      "id": 312,
+      "tool": "WooCommerce Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for WooCommerce records.",
+      "folder": "0312-woocommerce-sync-orchestrator",
+      "skillPath": "agent04/0312-woocommerce-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 313,
+      "tool": "WooCommerce Data Exporter",
+      "purpose": "Exports WooCommerce entities into clean, typed datasets.",
+      "folder": "0313-woocommerce-data-exporter",
+      "skillPath": "agent04/0313-woocommerce-data-exporter/SKILL.md"
+    },
+    {
+      "id": 314,
+      "tool": "WooCommerce Data Importer",
+      "purpose": "Validates and imports bulk updates into WooCommerce.",
+      "folder": "0314-woocommerce-data-importer",
+      "skillPath": "agent04/0314-woocommerce-data-importer/SKILL.md"
+    },
+    {
+      "id": 315,
+      "tool": "WooCommerce Webhook Listener",
+      "purpose": "Captures, verifies, and routes WooCommerce webhook events.",
+      "folder": "0315-woocommerce-webhook-listener",
+      "skillPath": "agent04/0315-woocommerce-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 316,
+      "tool": "WooCommerce Report Builder",
+      "purpose": "Generates operational and KPI reports from WooCommerce activity.",
+      "folder": "0316-woocommerce-report-builder",
+      "skillPath": "agent04/0316-woocommerce-report-builder/SKILL.md"
+    },
+    {
+      "id": 317,
+      "tool": "WooCommerce Alert Monitor",
+      "purpose": "Monitors key WooCommerce signals and raises actionable alerts.",
+      "folder": "0317-woocommerce-alert-monitor",
+      "skillPath": "agent04/0317-woocommerce-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 318,
+      "tool": "WooCommerce Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using WooCommerce.",
+      "folder": "0318-woocommerce-workflow-automator",
+      "skillPath": "agent04/0318-woocommerce-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 319,
+      "tool": "WooCommerce Approval Router",
+      "purpose": "Routes WooCommerce-driven decisions to the right approvers.",
+      "folder": "0319-woocommerce-approval-router",
+      "skillPath": "agent04/0319-woocommerce-approval-router/SKILL.md"
+    },
+    {
+      "id": 320,
+      "tool": "WooCommerce Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from WooCommerce.",
+      "folder": "0320-woocommerce-migration-assistant",
+      "skillPath": "agent04/0320-woocommerce-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 321,
+      "tool": "BigCommerce Connector",
+      "purpose": "Unified read/write connector for BigCommerce APIs and data.",
+      "folder": "0321-bigcommerce-connector",
+      "skillPath": "agent04/0321-bigcommerce-connector/SKILL.md"
+    },
+    {
+      "id": 322,
+      "tool": "BigCommerce Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for BigCommerce records.",
+      "folder": "0322-bigcommerce-sync-orchestrator",
+      "skillPath": "agent04/0322-bigcommerce-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 323,
+      "tool": "BigCommerce Data Exporter",
+      "purpose": "Exports BigCommerce entities into clean, typed datasets.",
+      "folder": "0323-bigcommerce-data-exporter",
+      "skillPath": "agent04/0323-bigcommerce-data-exporter/SKILL.md"
+    },
+    {
+      "id": 324,
+      "tool": "BigCommerce Data Importer",
+      "purpose": "Validates and imports bulk updates into BigCommerce.",
+      "folder": "0324-bigcommerce-data-importer",
+      "skillPath": "agent04/0324-bigcommerce-data-importer/SKILL.md"
+    },
+    {
+      "id": 325,
+      "tool": "BigCommerce Webhook Listener",
+      "purpose": "Captures, verifies, and routes BigCommerce webhook events.",
+      "folder": "0325-bigcommerce-webhook-listener",
+      "skillPath": "agent04/0325-bigcommerce-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 326,
+      "tool": "BigCommerce Report Builder",
+      "purpose": "Generates operational and KPI reports from BigCommerce activity.",
+      "folder": "0326-bigcommerce-report-builder",
+      "skillPath": "agent04/0326-bigcommerce-report-builder/SKILL.md"
+    },
+    {
+      "id": 327,
+      "tool": "BigCommerce Alert Monitor",
+      "purpose": "Monitors key BigCommerce signals and raises actionable alerts.",
+      "folder": "0327-bigcommerce-alert-monitor",
+      "skillPath": "agent04/0327-bigcommerce-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 328,
+      "tool": "BigCommerce Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using BigCommerce.",
+      "folder": "0328-bigcommerce-workflow-automator",
+      "skillPath": "agent04/0328-bigcommerce-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 329,
+      "tool": "BigCommerce Approval Router",
+      "purpose": "Routes BigCommerce-driven decisions to the right approvers.",
+      "folder": "0329-bigcommerce-approval-router",
+      "skillPath": "agent04/0329-bigcommerce-approval-router/SKILL.md"
+    },
+    {
+      "id": 330,
+      "tool": "BigCommerce Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from BigCommerce.",
+      "folder": "0330-bigcommerce-migration-assistant",
+      "skillPath": "agent04/0330-bigcommerce-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 331,
+      "tool": "Amazon Seller Connector",
+      "purpose": "Unified read/write connector for Amazon Seller APIs and data.",
+      "folder": "0331-amazon-seller-connector",
+      "skillPath": "agent04/0331-amazon-seller-connector/SKILL.md"
+    },
+    {
+      "id": 332,
+      "tool": "Amazon Seller Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Amazon Seller records.",
+      "folder": "0332-amazon-seller-sync-orchestrator",
+      "skillPath": "agent04/0332-amazon-seller-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 333,
+      "tool": "Amazon Seller Data Exporter",
+      "purpose": "Exports Amazon Seller entities into clean, typed datasets.",
+      "folder": "0333-amazon-seller-data-exporter",
+      "skillPath": "agent04/0333-amazon-seller-data-exporter/SKILL.md"
+    },
+    {
+      "id": 334,
+      "tool": "Amazon Seller Data Importer",
+      "purpose": "Validates and imports bulk updates into Amazon Seller.",
+      "folder": "0334-amazon-seller-data-importer",
+      "skillPath": "agent04/0334-amazon-seller-data-importer/SKILL.md"
+    },
+    {
+      "id": 335,
+      "tool": "Amazon Seller Webhook Listener",
+      "purpose": "Captures, verifies, and routes Amazon Seller webhook events.",
+      "folder": "0335-amazon-seller-webhook-listener",
+      "skillPath": "agent04/0335-amazon-seller-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 336,
+      "tool": "Amazon Seller Report Builder",
+      "purpose": "Generates operational and KPI reports from Amazon Seller activity.",
+      "folder": "0336-amazon-seller-report-builder",
+      "skillPath": "agent04/0336-amazon-seller-report-builder/SKILL.md"
+    },
+    {
+      "id": 337,
+      "tool": "Amazon Seller Alert Monitor",
+      "purpose": "Monitors key Amazon Seller signals and raises actionable alerts.",
+      "folder": "0337-amazon-seller-alert-monitor",
+      "skillPath": "agent04/0337-amazon-seller-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 338,
+      "tool": "Amazon Seller Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Amazon Seller.",
+      "folder": "0338-amazon-seller-workflow-automator",
+      "skillPath": "agent04/0338-amazon-seller-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 339,
+      "tool": "Amazon Seller Approval Router",
+      "purpose": "Routes Amazon Seller-driven decisions to the right approvers.",
+      "folder": "0339-amazon-seller-approval-router",
+      "skillPath": "agent04/0339-amazon-seller-approval-router/SKILL.md"
+    },
+    {
+      "id": 340,
+      "tool": "Amazon Seller Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Amazon Seller.",
+      "folder": "0340-amazon-seller-migration-assistant",
+      "skillPath": "agent04/0340-amazon-seller-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 341,
+      "tool": "eBay Seller Connector",
+      "purpose": "Unified read/write connector for eBay Seller APIs and data.",
+      "folder": "0341-ebay-seller-connector",
+      "skillPath": "agent04/0341-ebay-seller-connector/SKILL.md"
+    },
+    {
+      "id": 342,
+      "tool": "eBay Seller Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for eBay Seller records.",
+      "folder": "0342-ebay-seller-sync-orchestrator",
+      "skillPath": "agent04/0342-ebay-seller-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 343,
+      "tool": "eBay Seller Data Exporter",
+      "purpose": "Exports eBay Seller entities into clean, typed datasets.",
+      "folder": "0343-ebay-seller-data-exporter",
+      "skillPath": "agent04/0343-ebay-seller-data-exporter/SKILL.md"
+    },
+    {
+      "id": 344,
+      "tool": "eBay Seller Data Importer",
+      "purpose": "Validates and imports bulk updates into eBay Seller.",
+      "folder": "0344-ebay-seller-data-importer",
+      "skillPath": "agent04/0344-ebay-seller-data-importer/SKILL.md"
+    },
+    {
+      "id": 345,
+      "tool": "eBay Seller Webhook Listener",
+      "purpose": "Captures, verifies, and routes eBay Seller webhook events.",
+      "folder": "0345-ebay-seller-webhook-listener",
+      "skillPath": "agent04/0345-ebay-seller-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 346,
+      "tool": "eBay Seller Report Builder",
+      "purpose": "Generates operational and KPI reports from eBay Seller activity.",
+      "folder": "0346-ebay-seller-report-builder",
+      "skillPath": "agent04/0346-ebay-seller-report-builder/SKILL.md"
+    },
+    {
+      "id": 347,
+      "tool": "eBay Seller Alert Monitor",
+      "purpose": "Monitors key eBay Seller signals and raises actionable alerts.",
+      "folder": "0347-ebay-seller-alert-monitor",
+      "skillPath": "agent04/0347-ebay-seller-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 348,
+      "tool": "eBay Seller Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using eBay Seller.",
+      "folder": "0348-ebay-seller-workflow-automator",
+      "skillPath": "agent04/0348-ebay-seller-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 349,
+      "tool": "eBay Seller Approval Router",
+      "purpose": "Routes eBay Seller-driven decisions to the right approvers.",
+      "folder": "0349-ebay-seller-approval-router",
+      "skillPath": "agent04/0349-ebay-seller-approval-router/SKILL.md"
+    },
+    {
+      "id": 350,
+      "tool": "eBay Seller Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from eBay Seller.",
+      "folder": "0350-ebay-seller-migration-assistant",
+      "skillPath": "agent04/0350-ebay-seller-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 351,
+      "tool": "Klaviyo Connector",
+      "purpose": "Unified read/write connector for Klaviyo APIs and data.",
+      "folder": "0351-klaviyo-connector",
+      "skillPath": "agent04/0351-klaviyo-connector/SKILL.md"
+    },
+    {
+      "id": 352,
+      "tool": "Klaviyo Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Klaviyo records.",
+      "folder": "0352-klaviyo-sync-orchestrator",
+      "skillPath": "agent04/0352-klaviyo-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 353,
+      "tool": "Klaviyo Data Exporter",
+      "purpose": "Exports Klaviyo entities into clean, typed datasets.",
+      "folder": "0353-klaviyo-data-exporter",
+      "skillPath": "agent04/0353-klaviyo-data-exporter/SKILL.md"
+    },
+    {
+      "id": 354,
+      "tool": "Klaviyo Data Importer",
+      "purpose": "Validates and imports bulk updates into Klaviyo.",
+      "folder": "0354-klaviyo-data-importer",
+      "skillPath": "agent04/0354-klaviyo-data-importer/SKILL.md"
+    },
+    {
+      "id": 355,
+      "tool": "Klaviyo Webhook Listener",
+      "purpose": "Captures, verifies, and routes Klaviyo webhook events.",
+      "folder": "0355-klaviyo-webhook-listener",
+      "skillPath": "agent04/0355-klaviyo-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 356,
+      "tool": "Klaviyo Report Builder",
+      "purpose": "Generates operational and KPI reports from Klaviyo activity.",
+      "folder": "0356-klaviyo-report-builder",
+      "skillPath": "agent04/0356-klaviyo-report-builder/SKILL.md"
+    },
+    {
+      "id": 357,
+      "tool": "Klaviyo Alert Monitor",
+      "purpose": "Monitors key Klaviyo signals and raises actionable alerts.",
+      "folder": "0357-klaviyo-alert-monitor",
+      "skillPath": "agent04/0357-klaviyo-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 358,
+      "tool": "Klaviyo Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Klaviyo.",
+      "folder": "0358-klaviyo-workflow-automator",
+      "skillPath": "agent04/0358-klaviyo-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 359,
+      "tool": "Klaviyo Approval Router",
+      "purpose": "Routes Klaviyo-driven decisions to the right approvers.",
+      "folder": "0359-klaviyo-approval-router",
+      "skillPath": "agent04/0359-klaviyo-approval-router/SKILL.md"
+    },
+    {
+      "id": 360,
+      "tool": "Klaviyo Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Klaviyo.",
+      "folder": "0360-klaviyo-migration-assistant",
+      "skillPath": "agent04/0360-klaviyo-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 361,
+      "tool": "Mailchimp Connector",
+      "purpose": "Unified read/write connector for Mailchimp APIs and data.",
+      "folder": "0361-mailchimp-connector",
+      "skillPath": "agent04/0361-mailchimp-connector/SKILL.md"
+    },
+    {
+      "id": 362,
+      "tool": "Mailchimp Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Mailchimp records.",
+      "folder": "0362-mailchimp-sync-orchestrator",
+      "skillPath": "agent04/0362-mailchimp-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 363,
+      "tool": "Mailchimp Data Exporter",
+      "purpose": "Exports Mailchimp entities into clean, typed datasets.",
+      "folder": "0363-mailchimp-data-exporter",
+      "skillPath": "agent04/0363-mailchimp-data-exporter/SKILL.md"
+    },
+    {
+      "id": 364,
+      "tool": "Mailchimp Data Importer",
+      "purpose": "Validates and imports bulk updates into Mailchimp.",
+      "folder": "0364-mailchimp-data-importer",
+      "skillPath": "agent04/0364-mailchimp-data-importer/SKILL.md"
+    },
+    {
+      "id": 365,
+      "tool": "Mailchimp Webhook Listener",
+      "purpose": "Captures, verifies, and routes Mailchimp webhook events.",
+      "folder": "0365-mailchimp-webhook-listener",
+      "skillPath": "agent04/0365-mailchimp-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 366,
+      "tool": "Mailchimp Report Builder",
+      "purpose": "Generates operational and KPI reports from Mailchimp activity.",
+      "folder": "0366-mailchimp-report-builder",
+      "skillPath": "agent04/0366-mailchimp-report-builder/SKILL.md"
+    },
+    {
+      "id": 367,
+      "tool": "Mailchimp Alert Monitor",
+      "purpose": "Monitors key Mailchimp signals and raises actionable alerts.",
+      "folder": "0367-mailchimp-alert-monitor",
+      "skillPath": "agent04/0367-mailchimp-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 368,
+      "tool": "Mailchimp Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Mailchimp.",
+      "folder": "0368-mailchimp-workflow-automator",
+      "skillPath": "agent04/0368-mailchimp-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 369,
+      "tool": "Mailchimp Approval Router",
+      "purpose": "Routes Mailchimp-driven decisions to the right approvers.",
+      "folder": "0369-mailchimp-approval-router",
+      "skillPath": "agent04/0369-mailchimp-approval-router/SKILL.md"
+    },
+    {
+      "id": 370,
+      "tool": "Mailchimp Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Mailchimp.",
+      "folder": "0370-mailchimp-migration-assistant",
+      "skillPath": "agent04/0370-mailchimp-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 371,
+      "tool": "Twilio Connector",
+      "purpose": "Unified read/write connector for Twilio APIs and data.",
+      "folder": "0371-twilio-connector",
+      "skillPath": "agent04/0371-twilio-connector/SKILL.md"
+    },
+    {
+      "id": 372,
+      "tool": "Twilio Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Twilio records.",
+      "folder": "0372-twilio-sync-orchestrator",
+      "skillPath": "agent04/0372-twilio-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 373,
+      "tool": "Twilio Data Exporter",
+      "purpose": "Exports Twilio entities into clean, typed datasets.",
+      "folder": "0373-twilio-data-exporter",
+      "skillPath": "agent04/0373-twilio-data-exporter/SKILL.md"
+    },
+    {
+      "id": 374,
+      "tool": "Twilio Data Importer",
+      "purpose": "Validates and imports bulk updates into Twilio.",
+      "folder": "0374-twilio-data-importer",
+      "skillPath": "agent04/0374-twilio-data-importer/SKILL.md"
+    },
+    {
+      "id": 375,
+      "tool": "Twilio Webhook Listener",
+      "purpose": "Captures, verifies, and routes Twilio webhook events.",
+      "folder": "0375-twilio-webhook-listener",
+      "skillPath": "agent04/0375-twilio-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 376,
+      "tool": "Twilio Report Builder",
+      "purpose": "Generates operational and KPI reports from Twilio activity.",
+      "folder": "0376-twilio-report-builder",
+      "skillPath": "agent04/0376-twilio-report-builder/SKILL.md"
+    },
+    {
+      "id": 377,
+      "tool": "Twilio Alert Monitor",
+      "purpose": "Monitors key Twilio signals and raises actionable alerts.",
+      "folder": "0377-twilio-alert-monitor",
+      "skillPath": "agent04/0377-twilio-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 378,
+      "tool": "Twilio Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Twilio.",
+      "folder": "0378-twilio-workflow-automator",
+      "skillPath": "agent04/0378-twilio-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 379,
+      "tool": "Twilio Approval Router",
+      "purpose": "Routes Twilio-driven decisions to the right approvers.",
+      "folder": "0379-twilio-approval-router",
+      "skillPath": "agent04/0379-twilio-approval-router/SKILL.md"
+    },
+    {
+      "id": 380,
+      "tool": "Twilio Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Twilio.",
+      "folder": "0380-twilio-migration-assistant",
+      "skillPath": "agent04/0380-twilio-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 381,
+      "tool": "SendGrid Connector",
+      "purpose": "Unified read/write connector for SendGrid APIs and data.",
+      "folder": "0381-sendgrid-connector",
+      "skillPath": "agent04/0381-sendgrid-connector/SKILL.md"
+    },
+    {
+      "id": 382,
+      "tool": "SendGrid Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for SendGrid records.",
+      "folder": "0382-sendgrid-sync-orchestrator",
+      "skillPath": "agent04/0382-sendgrid-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 383,
+      "tool": "SendGrid Data Exporter",
+      "purpose": "Exports SendGrid entities into clean, typed datasets.",
+      "folder": "0383-sendgrid-data-exporter",
+      "skillPath": "agent04/0383-sendgrid-data-exporter/SKILL.md"
+    },
+    {
+      "id": 384,
+      "tool": "SendGrid Data Importer",
+      "purpose": "Validates and imports bulk updates into SendGrid.",
+      "folder": "0384-sendgrid-data-importer",
+      "skillPath": "agent04/0384-sendgrid-data-importer/SKILL.md"
+    },
+    {
+      "id": 385,
+      "tool": "SendGrid Webhook Listener",
+      "purpose": "Captures, verifies, and routes SendGrid webhook events.",
+      "folder": "0385-sendgrid-webhook-listener",
+      "skillPath": "agent04/0385-sendgrid-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 386,
+      "tool": "SendGrid Report Builder",
+      "purpose": "Generates operational and KPI reports from SendGrid activity.",
+      "folder": "0386-sendgrid-report-builder",
+      "skillPath": "agent04/0386-sendgrid-report-builder/SKILL.md"
+    },
+    {
+      "id": 387,
+      "tool": "SendGrid Alert Monitor",
+      "purpose": "Monitors key SendGrid signals and raises actionable alerts.",
+      "folder": "0387-sendgrid-alert-monitor",
+      "skillPath": "agent04/0387-sendgrid-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 388,
+      "tool": "SendGrid Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using SendGrid.",
+      "folder": "0388-sendgrid-workflow-automator",
+      "skillPath": "agent04/0388-sendgrid-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 389,
+      "tool": "SendGrid Approval Router",
+      "purpose": "Routes SendGrid-driven decisions to the right approvers.",
+      "folder": "0389-sendgrid-approval-router",
+      "skillPath": "agent04/0389-sendgrid-approval-router/SKILL.md"
+    },
+    {
+      "id": 390,
+      "tool": "SendGrid Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from SendGrid.",
+      "folder": "0390-sendgrid-migration-assistant",
+      "skillPath": "agent04/0390-sendgrid-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 391,
+      "tool": "Postmark Connector",
+      "purpose": "Unified read/write connector for Postmark APIs and data.",
+      "folder": "0391-postmark-connector",
+      "skillPath": "agent04/0391-postmark-connector/SKILL.md"
+    },
+    {
+      "id": 392,
+      "tool": "Postmark Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Postmark records.",
+      "folder": "0392-postmark-sync-orchestrator",
+      "skillPath": "agent04/0392-postmark-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 393,
+      "tool": "Postmark Data Exporter",
+      "purpose": "Exports Postmark entities into clean, typed datasets.",
+      "folder": "0393-postmark-data-exporter",
+      "skillPath": "agent04/0393-postmark-data-exporter/SKILL.md"
+    },
+    {
+      "id": 394,
+      "tool": "Postmark Data Importer",
+      "purpose": "Validates and imports bulk updates into Postmark.",
+      "folder": "0394-postmark-data-importer",
+      "skillPath": "agent04/0394-postmark-data-importer/SKILL.md"
+    },
+    {
+      "id": 395,
+      "tool": "Postmark Webhook Listener",
+      "purpose": "Captures, verifies, and routes Postmark webhook events.",
+      "folder": "0395-postmark-webhook-listener",
+      "skillPath": "agent04/0395-postmark-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 396,
+      "tool": "Postmark Report Builder",
+      "purpose": "Generates operational and KPI reports from Postmark activity.",
+      "folder": "0396-postmark-report-builder",
+      "skillPath": "agent04/0396-postmark-report-builder/SKILL.md"
+    },
+    {
+      "id": 397,
+      "tool": "Postmark Alert Monitor",
+      "purpose": "Monitors key Postmark signals and raises actionable alerts.",
+      "folder": "0397-postmark-alert-monitor",
+      "skillPath": "agent04/0397-postmark-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 398,
+      "tool": "Postmark Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Postmark.",
+      "folder": "0398-postmark-workflow-automator",
+      "skillPath": "agent04/0398-postmark-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 399,
+      "tool": "Postmark Approval Router",
+      "purpose": "Routes Postmark-driven decisions to the right approvers.",
+      "folder": "0399-postmark-approval-router",
+      "skillPath": "agent04/0399-postmark-approval-router/SKILL.md"
+    },
+    {
+      "id": 400,
+      "tool": "Postmark Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Postmark.",
+      "folder": "0400-postmark-migration-assistant",
+      "skillPath": "agent04/0400-postmark-migration-assistant/SKILL.md"
+    }
+  ]
+}

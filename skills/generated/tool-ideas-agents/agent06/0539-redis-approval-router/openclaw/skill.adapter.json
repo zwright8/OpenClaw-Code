@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 539,
+  "name": "redis-approval-router",
+  "title": "Redis Approval Router",
+  "description": "Routes Redis-driven decisions to the right approvers.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0539-redis-approval-router/SKILL.md",
+    "entrypoint": "agent06/0539-redis-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "redis approval router",
+    "redis approval router workflow",
+    "redis approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0539-redis-approval-router"
+  }
+}
