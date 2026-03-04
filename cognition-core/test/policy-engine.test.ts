@@ -20,18 +20,45 @@ function makeRecommendation(overrides: Partial<CognitionRecommendation> = {}): C
     };
 }
 
-test('fail-closed validation rejects missing or unknown risk metadata', () => {
+test('fail-closed validation emits machine-parseable deterministic diagnostics', () => {
     const missingTier = validateRiskMetadata({ confidence: 0.6, evidence: [{ source: 'x', detail: 'y' }] });
     assert.equal(missingTier.ok, false);
-    assert.match(String(missingTier.reason), /Missing risk tier/);
+    assert.equal(missingTier.code, 'missing_risk_tier');
+    assert.equal(missingTier.reason, '[missing_risk_tier] Missing risk tier (fail-closed).');
 
     const unknownTier = validateRiskMetadata({ riskTier: 'severe', confidence: 0.8, evidence: [{ source: 'x', detail: 'y' }] });
     assert.equal(unknownTier.ok, false);
-    assert.match(String(unknownTier.reason), /Unknown risk tier/);
+    assert.equal(unknownTier.code, 'unknown_risk_tier');
+    assert.equal(unknownTier.reason, '[unknown_risk_tier] Unknown risk tier "severe" (fail-closed).');
 
     const missingEvidence = validateRiskMetadata({ riskTier: 'low', confidence: 0.8, evidence: [] });
     assert.equal(missingEvidence.ok, false);
-    assert.match(String(missingEvidence.reason), /Missing evidence/);
+    assert.equal(missingEvidence.code, 'missing_evidence');
+    assert.equal(missingEvidence.reason, '[missing_evidence] Missing evidence payload (fail-closed).');
+});
+
+
+test('fail-closed validation normalizes tier tokens and treats null confidence as missing', () => {
+    const normalizedTier = validateRiskMetadata({
+        riskTier: '  HIGH  ',
+        confidence: '0.88',
+        evidence: [{ source: 'x', detail: 'y' }]
+    });
+
+    assert.equal(normalizedTier.ok, true);
+    if (!normalizedTier.ok) return;
+    assert.equal(normalizedTier.riskTier, 'high');
+    assert.equal(normalizedTier.confidence, 0.88);
+
+    const nullConfidence = validateRiskMetadata({
+        riskTier: 'high',
+        confidence: null,
+        evidence: [{ source: 'x', detail: 'y' }]
+    });
+
+    assert.equal(nullConfidence.ok, false);
+    assert.equal(nullConfidence.code, 'missing_confidence');
+    assert.equal(nullConfidence.reason, '[missing_confidence] Missing confidence score (fail-closed).');
 });
 
 test('approval gates compute expected requirements', () => {
