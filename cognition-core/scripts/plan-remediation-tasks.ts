@@ -44,243 +44,6 @@ function deterministicUuid(seed) {
     ].join('-');
 }
 
-function parseFiniteNumberOrNull(value) {
-    const numeric = Number(value);
-    return Number.isFinite(numeric) ? numeric : null;
-}
-
-function round(value, digits = 2) {
-    if (!Number.isFinite(value)) return 0;
-    return Number(value.toFixed(digits));
-}
-
-function hasExplicitThresholdDetails(reason) {
-    if (typeof reason !== 'string') return false;
-    const normalized = reason.toLowerCase();
-    return normalized.includes('expected') && normalized.includes('actual') && normalized.includes('miss');
-}
-
-const METRIC_UNIT_MAP = {
-    productivityIndex: 'index',
-    cycleTimeSec: 'seconds',
-    automationCoverage: 'percent',
-    cognitionSuccessRate: 'percent',
-    swarmSimSuccessRate: 'percent',
-    skillUtilityComposite: 'percent'
-};
-
-const METRIC_PRECISION_MAP = {
-    productivityIndex: 2,
-    cycleTimeSec: 3,
-    automationCoverage: 2,
-    cognitionSuccessRate: 2,
-    swarmSimSuccessRate: 2,
-    skillUtilityComposite: 2
-};
-
-function normalizeWhitespace(value) {
-    if (typeof value !== 'string') return '';
-    return value.replace(/\s+/g, ' ').trim();
-}
-
-function formatMetricValue(metric, value) {
-    const digits = METRIC_PRECISION_MAP[metric] ?? 2;
-    return round(value, digits);
-}
-
-function normalizeThresholdReasonPayload(payload) {
-    if (!payload || typeof payload !== 'object') {
-        return null;
-    }
-
-    const metric = typeof payload.metric === 'string' ? payload.metric : null;
-    const comparison = typeof payload.comparison === 'string' ? payload.comparison : null;
-    const threshold = parseFiniteNumberOrNull(payload.threshold);
-    const actual = parseFiniteNumberOrNull(payload.actual);
-    const miss = parseFiniteNumberOrNull(payload.miss);
-    const unit = typeof payload.unit === 'string' ? payload.unit : null;
-
-    if (!metric || !comparison || threshold === null || actual === null || miss === null || !unit) {
-        return null;
-    }
-
-    return {
-        code: 'THRESHOLD_BREACH',
-        metric,
-        comparison,
-        threshold: formatMetricValue(metric, threshold),
-        actual: formatMetricValue(metric, actual),
-        miss: formatMetricValue(metric, Math.abs(miss)),
-        unit
-    };
-}
-
-function buildThresholdReasonPayload(breach) {
-    const metric = typeof breach?.metric === 'string' ? breach.metric : null;
-    const comparison = typeof breach?.comparison === 'string' ? breach.comparison : null;
-    const threshold = parseFiniteNumberOrNull(breach?.threshold);
-    const actual = parseFiniteNumberOrNull(breach?.actual);
-    const gap = parseFiniteNumberOrNull(breach?.gap);
-
-    if (!metric || !comparison || threshold === null || actual === null) {
-        return null;
-    }
-
-    const missRaw = gap !== null
-        ? Math.abs(gap)
-        : Math.abs((comparison === 'gte' ? threshold - actual : actual - threshold));
-    const unit = METRIC_UNIT_MAP[metric] ?? 'units';
-
-    return {
-        code: 'THRESHOLD_BREACH',
-        metric,
-        comparison,
-        threshold: formatMetricValue(metric, threshold),
-        actual: formatMetricValue(metric, actual),
-        miss: formatMetricValue(metric, missRaw),
-        unit
-    };
-}
-
-function buildReasonFromPayload(payload) {
-    if (!payload) {
-        return null;
-    }
-
-    return `Threshold breach for ${payload.metric}: expected ${payload.comparison} ${payload.threshold} ${payload.unit}, actual ${payload.actual} ${payload.unit}, miss ${payload.miss} ${payload.unit}.`;
-}
-
-function buildExplicitRegressionReasonBundle(breach, fallbackReason = '') {
-    const reasonPayload =
-        normalizeThresholdReasonPayload(breach?.reasonPayload) ??
-        buildThresholdReasonPayload(breach);
-
-    const reasonFromPayload = buildReasonFromPayload(reasonPayload);
-    if (reasonFromPayload) {
-        return {
-            reason: reasonFromPayload,
-            reasonPayload
-        };
-    }
-
-    const fallback = normalizeWhitespace(fallbackReason);
-    if (fallback.length > 0) {
-        if (hasExplicitThresholdDetails(fallback)) {
-            return {
-                reason: fallback,
-                reasonPayload: null
-            };
-        }
-        return {
-            reason: `Threshold breach details unavailable: ${fallback}`,
-            reasonPayload: null
-        };
-    }
-
-    return {
-        reason: 'Threshold breach details unavailable.',
-        reasonPayload: null
-    };
-}
-
-const PRIORITY_ORDER = {
-    P1: 0,
-    P2: 1,
-    P3: 2
-};
-
-function compareString(left, right) {
-    if (left === right) return 0;
-    return left < right ? -1 : 1;
-}
-
-function compareNumber(left, right) {
-    if (left === right) return 0;
-    return left < right ? -1 : 1;
-}
-
-function comparePriority(left, right) {
-    const leftRank = PRIORITY_ORDER[left] ?? PRIORITY_ORDER.P3;
-    const rightRank = PRIORITY_ORDER[right] ?? PRIORITY_ORDER.P3;
-    return compareNumber(leftRank, rightRank);
-}
-
-function compareRemediationItems(left, right) {
-    return (
-        comparePriority(left?.priority, right?.priority) ||
-        compareString(String(left?.metric ?? ''), String(right?.metric ?? '')) ||
-        compareString(String(left?.title ?? '').trim(), String(right?.title ?? '').trim()) ||
-        compareString(String(left?.action ?? '').trim(), String(right?.action ?? '').trim())
-    );
-}
-
-function compareThresholdBreaches(left, right) {
-    return (
-        comparePriority(left?.priority, right?.priority) ||
-        compareString(String(left?.metric ?? ''), String(right?.metric ?? '')) ||
-        compareString(String(left?.title ?? '').trim(), String(right?.title ?? '').trim()) ||
-        compareString(String(left?.action ?? '').trim(), String(right?.action ?? '').trim()) ||
-        compareNumber(parseFiniteNumberOrNull(left?.threshold) ?? 0, parseFiniteNumberOrNull(right?.threshold) ?? 0) ||
-        compareNumber(parseFiniteNumberOrNull(left?.actual) ?? 0, parseFiniteNumberOrNull(right?.actual) ?? 0) ||
-        compareNumber(parseFiniteNumberOrNull(left?.gap) ?? 0, parseFiniteNumberOrNull(right?.gap) ?? 0)
-    );
-}
-
-function remediationSignature(item) {
-    if (!item || typeof item !== 'object') {
-        return null;
-    }
-    const metric = typeof item.metric === 'string' ? item.metric : '';
-    const priority = typeof item.priority === 'string' ? item.priority : 'P3';
-    const title = typeof item.title === 'string' ? item.title.trim() : '';
-    const action = typeof item.action === 'string' ? item.action.trim() : '';
-
-    return [metric, priority, title, action].join('|');
-}
-
-function dequeue(queue) {
-    if (!Array.isArray(queue) || queue.length === 0) {
-        return null;
-    }
-    return queue.shift() ?? null;
-}
-
-function stableRemediationSeed(remediationPlan, thresholdBreaches) {
-    const canonicalRemediationPlan = Array.isArray(remediationPlan)
-        ? remediationPlan.map((item) => ({
-            metric: typeof item?.metric === 'string' ? item.metric : null,
-            priority: typeof item?.priority === 'string' ? item.priority : 'P3',
-            title: typeof item?.title === 'string' ? item.title.trim() : '',
-            action: typeof item?.action === 'string' ? item.action.trim() : ''
-        })).sort(compareRemediationItems)
-        : [];
-
-    const canonicalThresholdBreaches = Array.isArray(thresholdBreaches)
-        ? thresholdBreaches.map((breach) => ({
-            metric: typeof breach?.metric === 'string' ? breach.metric : null,
-            priority: typeof breach?.priority === 'string' ? breach.priority : 'P3',
-            comparison: typeof breach?.comparison === 'string' ? breach.comparison : null,
-            threshold: parseFiniteNumberOrNull(breach?.threshold),
-            actual: parseFiniteNumberOrNull(breach?.actual),
-            gap: parseFiniteNumberOrNull(breach?.gap),
-            title: typeof breach?.title === 'string' ? breach.title.trim() : '',
-            action: typeof breach?.action === 'string' ? breach.action.trim() : ''
-        })).sort(compareThresholdBreaches)
-        : [];
-
-    const canonicalPayload = {
-        remediationPlan: canonicalRemediationPlan,
-        thresholdBreaches: canonicalThresholdBreaches
-    };
-
-    return createHash('sha256').update(JSON.stringify(canonicalPayload)).digest('hex');
-}
-
-function deterministicSeedTime(remediationPlan, thresholdBreaches) {
-    const fingerprint = stableRemediationSeed(remediationPlan, thresholdBreaches).slice(0, 12);
-    return Number.parseInt(fingerprint, 16);
-}
-
 function parseArgs(argv) {
     const options = {
         reportPath: path.resolve(process.cwd(), 'reports/productivity-scorecard.latest.json'),
@@ -384,7 +147,6 @@ function normalizeThresholdBreach(item, index) {
         actual: Number(item.actual),
         gap: Number(item.gap),
         comparison: typeof item.comparison === 'string' ? item.comparison : null,
-        reasonPayload: normalizeThresholdReasonPayload(item.reasonPayload),
         index
     };
 }
@@ -497,8 +259,6 @@ export function buildRemediationTaskArtifacts(reportPayload, options = {}) {
             : null;
         const breach = thresholdBreaches[index] ?? breachByMetric ?? null;
 
-        const { reason, reasonPayload } = buildExplicitRegressionReasonBundle(breach, remediation?.rationale ?? '');
-
         return {
             taskId: task.id,
             sourceReport: reportPath,
@@ -509,12 +269,10 @@ export function buildRemediationTaskArtifacts(reportPayload, options = {}) {
             task: task.task,
             title: remediation?.title ?? breach?.title ?? '',
             action: remediation?.action ?? breach?.action ?? '',
-            threshold: parseFiniteNumberOrNull(breach?.threshold),
-            actual: parseFiniteNumberOrNull(breach?.actual),
-            gap: parseFiniteNumberOrNull(breach?.gap),
-            comparison: breach?.comparison ?? null,
-            regressionReason: reason,
-            regressionReasonPayload: reasonPayload
+            threshold: breach?.threshold ?? null,
+            actual: breach?.actual ?? null,
+            gap: breach?.gap ?? null,
+            comparison: breach?.comparison ?? null
         };
     });
 
