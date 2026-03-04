@@ -23,6 +23,33 @@ const DEFAULT_STALENESS_PENALTY_WEIGHT = 10;
 const DEFAULT_MISSING_HEARTBEAT_PENALTY = 6;
 const DEFAULT_FAILURE_PENALTY_WEIGHT = 18;
 const DEFAULT_TIMEOUT_PENALTY_WEIGHT = 12;
+const DEFAULT_LOAD_SOFT_CAP = 0.7;
+const DEFAULT_STALENESS_SOFT_RATIO = 0.5;
+const DEFAULT_RELIABILITY_OVERAGE_MULTIPLIER = 2;
+const DEFAULT_LOAD_SURGE_EXPONENT = 2.4;
+const DEFAULT_STALENESS_SURGE_EXPONENT = 2.2;
+const DEFAULT_LOAD_CRITICAL_THRESHOLD = 0.9;
+const DEFAULT_STALENESS_CRITICAL_RATIO = 0.85;
+const DEFAULT_LOAD_CRITICAL_MULTIPLIER = 1.1;
+const DEFAULT_STALENESS_CRITICAL_MULTIPLIER = 0.9;
+const DEFAULT_LOW_SAMPLE_OVERAGE_MULTIPLIER = 0.5;
+const DEFAULT_RELIABILITY_FLOOR_MIN_SAMPLES = 8;
+const DEFAULT_RELIABILITY_FLOOR_SUCCESS_RATIO = 0.92;
+const DEFAULT_RELIABILITY_FLOOR_OVERAGE_RATIO = 1.05;
+const DEFAULT_RELIABILITY_FLOOR_COMBINED_ERROR_MULTIPLIER = 1.15;
+const DEFAULT_TIMEOUT_PRESSURE_WEIGHT = 16;
+const DEFAULT_TIMEOUT_PRESSURE_TRIGGER_RATIO = 0.45;
+const DEFAULT_TIMEOUT_PRESSURE_EXPONENT = 2.1;
+const DEFAULT_TIMEOUT_PRESSURE_FULL_CONFIDENCE_SAMPLES = 20;
+const DEFAULT_P95_TIMEOUT_PRESSURE_WEIGHT = 6;
+const DEFAULT_P95_TIMEOUT_PRESSURE_TRIGGER_RATIO = 0.7;
+const DEFAULT_P95_TIMEOUT_PRESSURE_EXPONENT = 2;
+const DEFAULT_DEGRADED_FALLBACK_REASONS = Object.freeze([
+    'stale_heartbeat',
+    'reliability_floor_breach'
+]);
+const KNOWN_DEGRADED_FALLBACK_REASON_SET = new Set(DEFAULT_DEGRADED_FALLBACK_REASONS);
+const SCORE_EPSILON = 1e-6;
 
 function safeNumber(value, fallback = null) {
     const parsed = Number(value);
@@ -47,6 +74,12 @@ function extractRequiredCapabilities(taskRequest) {
     return normalizeCapabilities(required);
 }
 
+function normalizeFallbackReason(value) {
+    if (typeof value !== 'string') return null;
+    const normalized = value.trim().toLowerCase();
+    return normalized || null;
+}
+
 function resolvePositiveOption(value, fallback) {
     const parsed = Number(value);
     if (!Number.isFinite(parsed) || parsed <= 0) return fallback;
@@ -62,6 +95,181 @@ function resolveNonNegativeOption(value, fallback) {
 function compareText(a, b) {
     if (a === b) return 0;
     return a < b ? -1 : 1;
+}
+
+function compareNumberAscending(a, b, epsilon = SCORE_EPSILON) {
+    if (!Number.isFinite(a) && !Number.isFinite(b)) return 0;
+    if (!Number.isFinite(a)) return 1;
+    if (!Number.isFinite(b)) return -1;
+    if (Math.abs(a - b) <= epsilon) return 0;
+    return a < b ? -1 : 1;
+}
+
+function compareNumberDescending(a, b, epsilon = SCORE_EPSILON) {
+    return compareNumberAscending(b, a, epsilon);
+}
+
+function formatFiniteNumber(value, digits = 4) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed.toFixed(digits) : 'na';
+}
+
+function buildTieBreakKey(candidate) {
+    const normalizedCapabilities = normalizeCapabilities(candidate?.capabilities).sort((a, b) => compareText(a, b));
+    const missingCapabilities = normalizeCapabilities(candidate?.missingCapabilities).sort((a, b) => compareText(a, b));
+    const id = typeof candidate?.agentId === 'string' && candidate.agentId.trim()
+        ? candidate.agentId.trim()
+        : 'unknown-agent';
+    const status = typeof candidate?.status === 'string' && candidate.status.trim()
+        ? candidate.status.trim()
+        : 'unknown-status';
+    const reason = typeof candidate?.reason === 'string' && candidate.reason.trim()
+        ? candidate.reason.trim()
+        : 'no-reason';
+    const eligibility = candidate?.eligible ? 'eligible' : 'ineligible';
+
+    return [
+        id,
+        status,
+        eligibility,
+        reason,
+        formatFiniteNumber(candidate?.score),
+        formatFiniteNumber(candidate?.load),
+        formatFiniteNumber(candidate?.benchmarkConfidence),
+        formatFiniteNumber(candidate?.loadPenalty),
+        formatFiniteNumber(candidate?.stalenessPenalty),
+        formatFiniteNumber(candidate?.reliabilityPenalty),
+        formatFiniteNumber(candidate?.timeoutPressurePenalty),
+        formatFiniteNumber(candidate?.heartbeatStalenessMs),
+        normalizedCapabilities.join(','),
+        missingCapabilities.join(',')
+    ].join('|');
+}
+
+function resolveFallbackReasonConfig(options) {
+    const configured = [];
+    for (const reason of normalizeCapabilities(options?.degradedFallbackReasons)) {
+        const normalized = normalizeFallbackReason(reason);
+        if (!normalized) continue;
+        if (!KNOWN_DEGRADED_FALLBACK_REASON_SET.has(normalized)) continue;
+        if (configured.includes(normalized)) continue;
+        configured.push(normalized);
+    }
+
+    const orderedReasons = configured.length > 0
+        ? configured
+        : [...DEFAULT_DEGRADED_FALLBACK_REASONS];
+
+    return {
+        orderedReasons,
+        allowedReasonSet: new Set(orderedReasons),
+        reasonRankByReason: new Map(orderedReasons.map((reason, index) => [reason, index]))
+    };
+}
+
+function compareDegradedFallbackCandidates(a, b, reasonRankByReason) {
+    const reasonRankA = reasonRankByReason.get(a.reason) ?? Number.MAX_SAFE_INTEGER;
+    const reasonRankB = reasonRankByReason.get(b.reason) ?? Number.MAX_SAFE_INTEGER;
+    const reasonRankCompare = compareNumberAscending(reasonRankA, reasonRankB, 0);
+    if (reasonRankCompare !== 0) {
+        return reasonRankCompare;
+    }
+
+    const reliabilitySeverityCompare = compareNumberAscending(
+        a.reliabilityFloorSeverity,
+        b.reliabilityFloorSeverity
+    );
+    if (reliabilitySeverityCompare !== 0) {
+        return reliabilitySeverityCompare;
+    }
+
+    const timeoutPressureCompare = compareNumberAscending(a.timeoutPressurePenalty, b.timeoutPressurePenalty);
+    if (timeoutPressureCompare !== 0) {
+        return timeoutPressureCompare;
+    }
+
+    const reliabilityPenaltyCompare = compareNumberAscending(a.reliabilityPenalty, b.reliabilityPenalty);
+    if (reliabilityPenaltyCompare !== 0) {
+        return reliabilityPenaltyCompare;
+    }
+
+    const confidenceCompare = compareNumberDescending(a.benchmarkConfidence, b.benchmarkConfidence);
+    if (confidenceCompare !== 0) {
+        return confidenceCompare;
+    }
+
+    const statusRankA = a.status === 'idle' ? 2 : a.status === 'busy' ? 1 : 0;
+    const statusRankB = b.status === 'idle' ? 2 : b.status === 'busy' ? 1 : 0;
+    const statusCompare = compareNumberDescending(statusRankA, statusRankB, 0);
+    if (statusCompare !== 0) {
+        return statusCompare;
+    }
+
+    const loadA = Number.isFinite(Number(a.load)) ? Number(a.load) : 1;
+    const loadB = Number.isFinite(Number(b.load)) ? Number(b.load) : 1;
+    const loadCompare = compareNumberAscending(loadA, loadB);
+    if (loadCompare !== 0) {
+        return loadCompare;
+    }
+
+    const stalenessA = Number.isFinite(a.heartbeatStalenessMs)
+        ? Number(a.heartbeatStalenessMs)
+        : Number.POSITIVE_INFINITY;
+    const stalenessB = Number.isFinite(b.heartbeatStalenessMs)
+        ? Number(b.heartbeatStalenessMs)
+        : Number.POSITIVE_INFINITY;
+    const stalenessCompare = compareNumberAscending(stalenessA, stalenessB);
+    if (stalenessCompare !== 0) {
+        return stalenessCompare;
+    }
+
+    const idA = typeof a.agentId === 'string' ? a.agentId : '';
+    const idB = typeof b.agentId === 'string' ? b.agentId : '';
+    const idCompare = compareText(idA, idB);
+    if (idCompare !== 0) {
+        return idCompare;
+    }
+
+    const tieBreakKeyCompare = compareText(a._tieBreakKey || '', b._tieBreakKey || '');
+    if (tieBreakKeyCompare !== 0) {
+        return tieBreakKeyCompare;
+    }
+
+    return 0;
+}
+
+function selectDegradedFallbackCandidate(taskRequest, ranked, options = {}) {
+    const fallbackConfig = resolveFallbackReasonConfig(options);
+    const priority = normalizePriority(taskRequest?.priority);
+
+    const candidates = [];
+
+    for (const candidate of ranked) {
+        if (!candidate || candidate.eligible) continue;
+        if (typeof candidate.agentId !== 'string' || !candidate.agentId.trim()) continue;
+
+        const missingCapabilities = normalizeCapabilities(candidate.missingCapabilities);
+        if (missingCapabilities.length > 0) continue;
+
+        if (!fallbackConfig.allowedReasonSet.has(candidate.reason)) continue;
+
+        if (candidate.reason === 'reliability_floor_breach') {
+            if (priority === 'critical' && options.allowCriticalReliabilityFallback !== true) {
+                continue;
+            }
+
+            if (priority === 'high' && options.allowHighReliabilityFallback !== true) {
+                continue;
+            }
+        }
+
+        candidates.push(candidate);
+    }
+
+    if (candidates.length === 0) return null;
+
+    candidates.sort((a, b) => compareDegradedFallbackCandidates(a, b, fallbackConfig.reasonRankByReason));
+    return candidates[0] || null;
 }
 
 function normalizeBenchmarkThresholds(options) {
