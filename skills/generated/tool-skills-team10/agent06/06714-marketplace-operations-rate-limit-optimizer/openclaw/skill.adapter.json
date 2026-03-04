@@ -5,7 +5,7 @@
   "id": 6714,
   "name": "marketplace-operations-rate-limit-optimizer",
   "title": "Marketplace Operations Rate Limit Optimizer",
-  "description": "Design and run marketplace operations workflows with rate limit optimizer controls.",
+  "description": "OpenClaw extension adapter for marketplace operations rate limit optimizer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 6232,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Marketplace Operations",
+  "capability": "Rate Limit Optimizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.857Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/marketplace-operations.md",
+    "capability": "../../resources/capabilities/rate-limit-optimizer.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 6933,
   "name": "revenue-recognition-reliability-scorer",
   "title": "Revenue Recognition Reliability Scorer",
-  "description": "Design and run revenue recognition workflows with reliability scorer controls.",
+  "description": "OpenClaw extension adapter for revenue recognition reliability scorer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10357,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Revenue Recognition",
+  "capability": "Reliability Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.899Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/revenue-recognition.md",
+    "capability": "../../resources/capabilities/reliability-scorer.md"
+  }
 }

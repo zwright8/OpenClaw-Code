@@ -5,7 +5,7 @@
   "id": 3473,
   "name": "procure-to-pay-artifact-publisher",
   "title": "Procure to Pay Artifact Publisher",
-  "description": "Design and run procure to pay workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for procure to pay artifact publisher with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9174,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Procure to Pay",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.060Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/procure-to-pay.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

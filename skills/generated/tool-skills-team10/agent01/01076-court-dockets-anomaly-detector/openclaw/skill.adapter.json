@@ -5,7 +5,7 @@
   "id": 1076,
   "name": "court-dockets-anomaly-detector",
   "title": "Court Dockets Anomaly Detector",
-  "description": "Design and run court dockets workflows with anomaly detector controls.",
+  "description": "OpenClaw extension adapter for court dockets anomaly detector with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 5283,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Court Dockets",
+  "capability": "Anomaly Detector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.454Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/court-dockets.md",
+    "capability": "../../resources/capabilities/anomaly-detector.md"
+  }
 }

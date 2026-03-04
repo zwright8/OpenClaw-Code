@@ -5,7 +5,7 @@
   "id": 736,
   "name": "loom-report-builder",
   "title": "Loom Report Builder",
-  "description": "Generates operational and KPI reports from Loom activity.",
+  "description": "OpenClaw extension adapter for loom report builder with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 12837,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Loom",
+  "capability": "Report Builder",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.349Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/loom.md",
+    "capability": "../../resources/capabilities/report-builder.md"
+  }
 }

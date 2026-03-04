@@ -5,7 +5,7 @@
   "id": 6868,
   "name": "dunning-workflows-conflict-resolver",
   "title": "Dunning Workflows Conflict Resolver",
-  "description": "Design and run dunning workflows workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for dunning workflows conflict resolver with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10326,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Dunning Workflows",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.887Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/dunning-workflows.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

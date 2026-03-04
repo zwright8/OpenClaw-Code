@@ -5,7 +5,7 @@
   "id": 1868,
   "name": "warehouse-robotics-conflict-resolver",
   "title": "Warehouse Robotics Conflict Resolver",
-  "description": "Design and run warehouse robotics workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for warehouse robotics conflict resolver with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 8646,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Warehouse Robotics",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.641Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/warehouse-robotics.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

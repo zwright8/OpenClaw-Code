@@ -5,7 +5,7 @@
   "id": 11522,
   "name": "field-service-ops-version-tracker",
   "title": "Field Service Ops Version Tracker",
-  "description": "Design and run field service ops workflows with version tracker controls.",
+  "description": "OpenClaw extension adapter for field service ops version tracker with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 12008,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Field Service Ops",
+  "capability": "Version Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.115Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/field-service-ops.md",
+    "capability": "../../resources/capabilities/version-tracker.md"
+  }
 }

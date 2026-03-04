@@ -5,7 +5,7 @@
   "id": 6886,
   "name": "dunning-workflows-risk-scorer",
   "title": "Dunning Workflows Risk Scorer",
-  "description": "Design and run dunning workflows workflows with risk scorer controls.",
+  "description": "OpenClaw extension adapter for dunning workflows risk scorer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 1610,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Dunning Workflows",
+  "capability": "Risk Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.890Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/dunning-workflows.md",
+    "capability": "../../resources/capabilities/risk-scorer.md"
+  }
 }

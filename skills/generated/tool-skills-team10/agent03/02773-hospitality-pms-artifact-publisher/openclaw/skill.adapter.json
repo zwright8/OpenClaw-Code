@@ -5,7 +5,7 @@
   "id": 2773,
   "name": "hospitality-pms-artifact-publisher",
   "title": "Hospitality PMS Artifact Publisher",
-  "description": "Design and run hospitality pms workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for hospitality pms artifact publisher with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 8964,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Hospitality PMS",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.869Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/hospitality-pms.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

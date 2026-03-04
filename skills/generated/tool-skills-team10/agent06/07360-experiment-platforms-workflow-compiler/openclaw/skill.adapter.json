@@ -5,7 +5,7 @@
   "id": 7360,
   "name": "experiment-platforms-workflow-compiler",
   "title": "Experiment Platforms Workflow Compiler",
-  "description": "Design and run experiment platforms workflows with workflow compiler controls.",
+  "description": "OpenClaw extension adapter for experiment platforms workflow compiler with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 1137,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Experiment Platforms",
+  "capability": "Workflow Compiler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.015Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/experiment-platforms.md",
+    "capability": "../../resources/capabilities/workflow-compiler.md"
+  }
 }

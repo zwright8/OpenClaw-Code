@@ -5,7 +5,7 @@
   "id": 5523,
   "name": "data-catalogs-artifact-publisher",
   "title": "Data Catalogs Artifact Publisher",
-  "description": "Design and run data catalogs workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for data catalogs artifact publisher with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 9846,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Data Catalogs",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.566Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/data-catalogs.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 11088,
   "name": "edi-pipelines-pii-redactor",
   "title": "EDI Pipelines PII Redactor",
-  "description": "Design and run edi pipelines workflows with pii redactor controls.",
+  "description": "OpenClaw extension adapter for edi pipelines pii redactor with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 3866,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "EDI Pipelines",
+  "capability": "PII Redactor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.998Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/edi-pipelines.md",
+    "capability": "../../resources/capabilities/pii-redactor.md"
+  }
 }

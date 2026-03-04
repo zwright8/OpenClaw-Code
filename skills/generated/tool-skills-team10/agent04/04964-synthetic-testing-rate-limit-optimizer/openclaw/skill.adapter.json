@@ -5,7 +5,7 @@
   "id": 4964,
   "name": "synthetic-testing-rate-limit-optimizer",
   "title": "Synthetic Testing Rate Limit Optimizer",
-  "description": "Design and run synthetic testing workflows with rate limit optimizer controls.",
+  "description": "OpenClaw extension adapter for synthetic testing rate limit optimizer with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 6085,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Synthetic Testing",
+  "capability": "Rate Limit Optimizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.405Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/synthetic-testing.md",
+    "capability": "../../resources/capabilities/rate-limit-optimizer.md"
+  }
 }

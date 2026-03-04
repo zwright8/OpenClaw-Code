@@ -5,7 +5,7 @@
   "id": 7712,
   "name": "in-app-messaging-job-scheduler",
   "title": "In-App Messaging Job Scheduler",
-  "description": "Design and run in-app messaging workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for in-app messaging job scheduler with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 5096,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "In-App Messaging",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.110Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/in-app-messaging.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

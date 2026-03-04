@@ -5,7 +5,7 @@
   "id": 2628,
   "name": "construction-pm-forecast-engine",
   "title": "Construction PM Forecast Engine",
-  "description": "Design and run construction pm workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for construction pm forecast engine with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 8925,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Construction PM",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.842Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/construction-pm.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

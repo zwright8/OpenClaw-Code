@@ -5,7 +5,7 @@
   "id": 8082,
   "name": "genomics-tooling-latency-analyzer",
   "title": "Genomics Tooling Latency Analyzer",
-  "description": "Design and run genomics tooling workflows with latency analyzer controls.",
+  "description": "OpenClaw extension adapter for genomics tooling latency analyzer with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 10818,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Genomics Tooling",
+  "capability": "Latency Analyzer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.245Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/genomics-tooling.md",
+    "capability": "../../resources/capabilities/latency-analyzer.md"
+  }
 }

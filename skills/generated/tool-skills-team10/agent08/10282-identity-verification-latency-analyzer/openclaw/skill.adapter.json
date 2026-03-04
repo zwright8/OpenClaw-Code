@@ -5,7 +5,7 @@
   "id": 10282,
   "name": "identity-verification-latency-analyzer",
   "title": "Identity Verification Latency Analyzer",
-  "description": "Design and run identity verification workflows with latency analyzer controls.",
+  "description": "OpenClaw extension adapter for identity verification latency analyzer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 6552,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Identity Verification",
+  "capability": "Latency Analyzer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.785Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/identity-verification.md",
+    "capability": "../../resources/capabilities/latency-analyzer.md"
+  }
 }

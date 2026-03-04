@@ -5,7 +5,7 @@
   "id": 12318,
   "name": "benchmark-repositories-conflict-resolver",
   "title": "Benchmark Repositories Conflict Resolver",
-  "description": "Design and run benchmark repositories workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for benchmark repositories conflict resolver with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 12279,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Benchmark Repositories",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.307Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/benchmark-repositories.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

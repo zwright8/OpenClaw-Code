@@ -5,7 +5,7 @@
   "id": 7593,
   "name": "app-store-management-remediation-planner",
   "title": "App Store Management Remediation Planner",
-  "description": "Design and run app store management workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for app store management remediation planner with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 2890,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "App Store Management",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.081Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/app-store-management.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

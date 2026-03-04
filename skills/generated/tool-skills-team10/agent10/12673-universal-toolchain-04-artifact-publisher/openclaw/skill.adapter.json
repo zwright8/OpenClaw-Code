@@ -5,7 +5,7 @@
   "id": 12673,
   "name": "universal-toolchain-04-artifact-publisher",
   "title": "Universal Toolchain 04 Artifact Publisher",
-  "description": "Design and run universal toolchain 04 workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for universal toolchain 04 artifact publisher with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 8264,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Universal Toolchain 04",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.411Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/universal-toolchain-04.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

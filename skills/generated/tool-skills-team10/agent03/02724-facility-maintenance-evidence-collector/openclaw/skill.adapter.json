@@ -5,7 +5,7 @@
   "id": 2724,
   "name": "facility-maintenance-evidence-collector",
   "title": "Facility Maintenance Evidence Collector",
-  "description": "Design and run facility maintenance workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for facility maintenance evidence collector with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 3235,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Facility Maintenance",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.860Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/facility-maintenance.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

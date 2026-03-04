@@ -5,7 +5,7 @@
   "id": 7787,
   "name": "desktop-fleet-mgmt-compliance-mapper",
   "title": "Desktop Fleet Mgmt Compliance Mapper",
-  "description": "Design and run desktop fleet mgmt workflows with compliance mapper controls.",
+  "description": "OpenClaw extension adapter for desktop fleet mgmt compliance mapper with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 1885,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Desktop Fleet Mgmt",
+  "capability": "Compliance Mapper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.126Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/desktop-fleet-mgmt.md",
+    "capability": "../../resources/capabilities/compliance-mapper.md"
+  }
 }

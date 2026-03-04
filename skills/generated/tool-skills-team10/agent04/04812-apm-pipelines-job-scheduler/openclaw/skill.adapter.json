@@ -5,7 +5,7 @@
   "id": 4812,
   "name": "apm-pipelines-job-scheduler",
   "title": "APM Pipelines Job Scheduler",
-  "description": "Design and run apm pipelines workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for apm pipelines job scheduler with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 4992,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "APM Pipelines",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.376Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/apm-pipelines.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

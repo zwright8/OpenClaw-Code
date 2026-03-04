@@ -5,7 +5,7 @@
   "id": 7200,
   "name": "regulatory-feeds-outcome-synthesizer",
   "title": "Regulatory Feeds Outcome Synthesizer",
-  "description": "Design and run regulatory feeds workflows with outcome synthesizer controls.",
+  "description": "OpenClaw extension adapter for regulatory feeds outcome synthesizer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 7004,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Regulatory Feeds",
+  "capability": "Outcome Synthesizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.982Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/regulatory-feeds.md",
+    "capability": "../../resources/capabilities/outcome-synthesizer.md"
+  }
 }

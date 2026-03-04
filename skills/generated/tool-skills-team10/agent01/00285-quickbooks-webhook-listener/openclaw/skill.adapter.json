@@ -5,7 +5,7 @@
   "id": 285,
   "name": "quickbooks-webhook-listener",
   "title": "QuickBooks Webhook Listener",
-  "description": "Captures, verifies, and routes QuickBooks webhook events.",
+  "description": "OpenClaw extension adapter for quickbooks webhook listener with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 12542,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "QuickBooks",
+  "capability": "Webhook Listener",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.237Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/quickbooks.md",
+    "capability": "../../resources/capabilities/webhook-listener.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 10444,
   "name": "document-verification-postmortem-drafting",
   "title": "Document Verification Postmortem Drafting",
-  "description": "Design and run document verification workflows with postmortem drafting controls.",
+  "description": "OpenClaw extension adapter for document verification postmortem drafting with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 11619,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Document Verification",
+  "capability": "Postmortem Drafting",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.818Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/document-verification.md",
+    "capability": "../../resources/capabilities/postmortem-drafting.md"
+  }
 }

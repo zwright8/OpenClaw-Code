@@ -5,7 +5,7 @@
   "id": 1369,
   "name": "lab-information-systems-rollback-coordinator",
   "title": "Lab Information Systems Rollback Coordinator",
-  "description": "Design and run lab information systems workflows with rollback coordinator controls.",
+  "description": "OpenClaw extension adapter for lab information systems rollback coordinator with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 4883,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Lab Information Systems",
+  "capability": "Rollback Coordinator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.514Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/lab-information-systems.md",
+    "capability": "../../resources/capabilities/rollback-coordinator.md"
+  }
 }

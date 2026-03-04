@@ -5,7 +5,7 @@
   "id": 8059,
   "name": "genomics-tooling-dependency-resolver",
   "title": "Genomics Tooling Dependency Resolver",
-  "description": "Design and run genomics tooling workflows with dependency resolver controls.",
+  "description": "OpenClaw extension adapter for genomics tooling dependency resolver with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 10806,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Genomics Tooling",
+  "capability": "Dependency Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.238Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/genomics-tooling.md",
+    "capability": "../../resources/capabilities/dependency-resolver.md"
+  }
 }

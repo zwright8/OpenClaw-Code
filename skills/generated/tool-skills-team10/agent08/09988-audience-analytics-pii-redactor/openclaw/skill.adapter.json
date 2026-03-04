@@ -5,7 +5,7 @@
   "id": 9988,
   "name": "audience-analytics-pii-redactor",
   "title": "Audience Analytics PII Redactor",
-  "description": "Design and run audience analytics workflows with pii redactor controls.",
+  "description": "OpenClaw extension adapter for audience analytics pii redactor with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 3781,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Audience Analytics",
+  "capability": "PII Redactor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.714Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/audience-analytics.md",
+    "capability": "../../resources/capabilities/pii-redactor.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 4769,
   "name": "observability-stacks-rollback-coordinator",
   "title": "Observability Stacks Rollback Coordinator",
-  "description": "Design and run observability stacks workflows with rollback coordinator controls.",
+  "description": "OpenClaw extension adapter for observability stacks rollback coordinator with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 2553,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Observability Stacks",
+  "capability": "Rollback Coordinator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.368Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/observability-stacks.md",
+    "capability": "../../resources/capabilities/rollback-coordinator.md"
+  }
 }

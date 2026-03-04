@@ -5,7 +5,7 @@
   "id": 7633,
   "name": "device-labs-reliability-scorer",
   "title": "Device Labs Reliability Scorer",
-  "description": "Design and run device labs workflows with reliability scorer controls.",
+  "description": "OpenClaw extension adapter for device labs reliability scorer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10630,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Device Labs",
+  "capability": "Reliability Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.096Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/device-labs.md",
+    "capability": "../../resources/capabilities/reliability-scorer.md"
+  }
 }

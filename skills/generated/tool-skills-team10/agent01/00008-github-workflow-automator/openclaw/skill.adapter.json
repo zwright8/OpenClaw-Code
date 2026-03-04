@@ -5,7 +5,7 @@
   "id": 8,
   "name": "github-workflow-automator",
   "title": "GitHub Workflow Automator",
-  "description": "Executes repeatable multi-step workflows using GitHub.",
+  "description": "OpenClaw extension adapter for github workflow automator with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 7859,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "GitHub",
+  "capability": "Workflow Automator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.177Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/github.md",
+    "capability": "../../resources/capabilities/workflow-automator.md"
+  }
 }

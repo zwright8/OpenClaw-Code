@@ -5,7 +5,7 @@
   "id": 12474,
   "name": "autonomy-control-evidence-collector",
   "title": "Autonomy Control Evidence Collector",
-  "description": "Design and run autonomy control workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for autonomy control evidence collector with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 6745,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Autonomy Control",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.337Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/autonomy-control.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

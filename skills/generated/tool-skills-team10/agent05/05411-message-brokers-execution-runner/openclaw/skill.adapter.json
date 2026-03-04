@@ -5,7 +5,7 @@
   "id": 5411,
   "name": "message-brokers-execution-runner",
   "title": "Message Brokers Execution Runner",
-  "description": "Design and run message brokers workflows with execution runner controls.",
+  "description": "OpenClaw extension adapter for message brokers execution runner with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 1344,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Message Brokers",
+  "capability": "Execution Runner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.515Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/message-brokers.md",
+    "capability": "../../resources/capabilities/execution-runner.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 5060,
   "name": "serverless-runtimes-workflow-compiler",
   "title": "Serverless Runtimes Workflow Compiler",
-  "description": "Design and run serverless runtimes workflows with workflow compiler controls.",
+  "description": "OpenClaw extension adapter for serverless runtimes workflow compiler with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 1096,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Serverless Runtimes",
+  "capability": "Workflow Compiler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.448Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/serverless-runtimes.md",
+    "capability": "../../resources/capabilities/workflow-compiler.md"
+  }
 }

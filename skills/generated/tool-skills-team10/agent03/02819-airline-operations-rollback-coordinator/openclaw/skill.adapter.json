@@ -5,7 +5,7 @@
   "id": 2819,
   "name": "airline-operations-rollback-coordinator",
   "title": "Airline Operations Rollback Coordinator",
-  "description": "Design and run airline operations workflows with rollback coordinator controls.",
+  "description": "OpenClaw extension adapter for airline operations rollback coordinator with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 2533,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Airline Operations",
+  "capability": "Rollback Coordinator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.877Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/airline-operations.md",
+    "capability": "../../resources/capabilities/rollback-coordinator.md"
+  }
 }

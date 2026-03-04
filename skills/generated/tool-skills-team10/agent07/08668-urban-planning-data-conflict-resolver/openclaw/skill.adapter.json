@@ -5,7 +5,7 @@
   "id": 8668,
   "name": "urban-planning-data-conflict-resolver",
   "title": "Urban Planning Data Conflict Resolver",
-  "description": "Design and run urban planning data workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for urban planning data conflict resolver with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 11019,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Urban Planning Data",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.381Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/urban-planning-data.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

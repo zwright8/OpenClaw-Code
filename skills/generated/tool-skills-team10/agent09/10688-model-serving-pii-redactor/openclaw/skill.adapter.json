@@ -5,7 +5,7 @@
   "id": 10688,
   "name": "model-serving-pii-redactor",
   "title": "Model Serving PII Redactor",
-  "description": "Design and run model serving workflows with pii redactor controls.",
+  "description": "OpenClaw extension adapter for model serving pii redactor with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 3833,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Model Serving",
+  "capability": "PII Redactor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.894Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/model-serving.md",
+    "capability": "../../resources/capabilities/pii-redactor.md"
+  }
 }

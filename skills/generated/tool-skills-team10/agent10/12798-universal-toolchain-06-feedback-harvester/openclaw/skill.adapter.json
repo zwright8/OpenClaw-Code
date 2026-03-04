@@ -5,7 +5,7 @@
   "id": 12798,
   "name": "universal-toolchain-06-feedback-harvester",
   "title": "Universal Toolchain 06 Feedback Harvester",
-  "description": "Design and run universal toolchain 06 workflows with feedback harvester controls.",
+  "description": "OpenClaw extension adapter for universal toolchain 06 feedback harvester with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 8320,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Universal Toolchain 06",
+  "capability": "Feedback Harvester",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.438Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/universal-toolchain-06.md",
+    "capability": "../../resources/capabilities/feedback-harvester.md"
+  }
 }

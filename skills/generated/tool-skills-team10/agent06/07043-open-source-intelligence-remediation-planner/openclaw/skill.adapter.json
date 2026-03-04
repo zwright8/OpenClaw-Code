@@ -5,7 +5,7 @@
   "id": 7043,
   "name": "open-source-intelligence-remediation-planner",
   "title": "Open Source Intelligence Remediation Planner",
-  "description": "Design and run open source intelligence workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for open source intelligence remediation planner with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 2870,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Open Source Intelligence",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.946Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/open-source-intelligence.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

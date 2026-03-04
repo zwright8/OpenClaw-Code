@@ -5,7 +5,7 @@
   "id": 8961,
   "name": "legislative-tracking-execution-runner",
   "title": "Legislative Tracking Execution Runner",
-  "description": "Design and run legislative tracking workflows with execution runner controls.",
+  "description": "OpenClaw extension adapter for legislative tracking execution runner with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 1411,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Legislative Tracking",
+  "capability": "Execution Runner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.441Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/legislative-tracking.md",
+    "capability": "../../resources/capabilities/execution-runner.md"
+  }
 }

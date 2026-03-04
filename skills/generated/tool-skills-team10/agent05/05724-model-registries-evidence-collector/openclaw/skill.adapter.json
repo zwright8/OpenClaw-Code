@@ -5,7 +5,7 @@
   "id": 5724,
   "name": "model-registries-evidence-collector",
   "title": "Model Registries Evidence Collector",
-  "description": "Design and run model registries workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for model registries evidence collector with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 6141,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Model Registries",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.606Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/model-registries.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

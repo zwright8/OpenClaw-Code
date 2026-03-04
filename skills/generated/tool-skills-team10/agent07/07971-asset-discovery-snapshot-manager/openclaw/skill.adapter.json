@@ -5,7 +5,7 @@
   "id": 7971,
   "name": "asset-discovery-snapshot-manager",
   "title": "Asset Discovery Snapshot Manager",
-  "description": "Design and run asset discovery workflows with snapshot manager controls.",
+  "description": "OpenClaw extension adapter for asset discovery snapshot manager with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 10768,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Asset Discovery",
+  "capability": "Snapshot Manager",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.165Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/asset-discovery.md",
+    "capability": "../../resources/capabilities/snapshot-manager.md"
+  }
 }

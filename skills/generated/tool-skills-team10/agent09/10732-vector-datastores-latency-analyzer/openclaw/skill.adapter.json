@@ -5,7 +5,7 @@
   "id": 10732,
   "name": "vector-datastores-latency-analyzer",
   "title": "Vector Datastores Latency Analyzer",
-  "description": "Design and run vector datastores workflows with latency analyzer controls.",
+  "description": "OpenClaw extension adapter for vector datastores latency analyzer with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 11700,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Vector Datastores",
+  "capability": "Latency Analyzer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.902Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/vector-datastores.md",
+    "capability": "../../resources/capabilities/latency-analyzer.md"
+  }
 }

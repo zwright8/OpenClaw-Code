@@ -5,7 +5,7 @@
   "id": 8280,
   "name": "nonprofit-program-ops-budget-guardrail",
   "title": "Nonprofit Program Ops Budget Guardrail",
-  "description": "Design and run nonprofit program ops workflows with budget guardrail controls.",
+  "description": "OpenClaw extension adapter for nonprofit program ops budget guardrail with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 5543,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Nonprofit Program Ops",
+  "capability": "Budget Guardrail",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.285Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/nonprofit-program-ops.md",
+    "capability": "../../resources/capabilities/budget-guardrail.md"
+  }
 }

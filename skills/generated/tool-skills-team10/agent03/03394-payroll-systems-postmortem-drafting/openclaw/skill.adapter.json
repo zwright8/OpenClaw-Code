@@ -5,7 +5,7 @@
   "id": 3394,
   "name": "payroll-systems-postmortem-drafting",
   "title": "Payroll Systems Postmortem Drafting",
-  "description": "Design and run payroll systems workflows with postmortem drafting controls.",
+  "description": "OpenClaw extension adapter for payroll systems postmortem drafting with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9141,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Payroll Systems",
+  "capability": "Postmortem Drafting",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.016Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/payroll-systems.md",
+    "capability": "../../resources/capabilities/postmortem-drafting.md"
+  }
 }

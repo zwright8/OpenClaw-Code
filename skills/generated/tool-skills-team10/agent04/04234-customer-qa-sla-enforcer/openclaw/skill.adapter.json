@@ -5,7 +5,7 @@
   "id": 4234,
   "name": "customer-qa-sla-enforcer",
   "title": "Customer QA SLA Enforcer",
-  "description": "Design and run customer qa workflows with sla enforcer controls.",
+  "description": "OpenClaw extension adapter for customer qa sla enforcer with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 9434,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Customer QA",
+  "capability": "SLA Enforcer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.233Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/customer-qa.md",
+    "capability": "../../resources/capabilities/sla-enforcer.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 11341,
   "name": "churn-prevention-incident-triage",
   "title": "Churn Prevention Incident Triage",
-  "description": "Design and run churn prevention workflows with incident triage controls.",
+  "description": "OpenClaw extension adapter for churn prevention incident triage with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 2254,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Churn Prevention",
+  "capability": "Incident Triage",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.048Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/churn-prevention.md",
+    "capability": "../../resources/capabilities/incident-triage.md"
+  }
 }

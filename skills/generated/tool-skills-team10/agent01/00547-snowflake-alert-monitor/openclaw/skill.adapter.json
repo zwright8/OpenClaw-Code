@@ -5,7 +5,7 @@
   "id": 547,
   "name": "snowflake-alert-monitor",
   "title": "Snowflake Alert Monitor",
-  "description": "Monitors key Snowflake signals and raises actionable alerts.",
+  "description": "OpenClaw extension adapter for snowflake alert monitor with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 8122,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Snowflake",
+  "capability": "Alert Monitor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.309Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/snowflake.md",
+    "capability": "../../resources/capabilities/alert-monitor.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 12289,
   "name": "ai-evaluation-markets-secret-scanner",
   "title": "AI Evaluation Markets Secret Scanner",
-  "description": "Design and run ai evaluation markets workflows with secret scanner controls.",
+  "description": "OpenClaw extension adapter for ai evaluation markets secret scanner with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 1980,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "AI Evaluation Markets",
+  "capability": "Secret Scanner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.300Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ai-evaluation-markets.md",
+    "capability": "../../resources/capabilities/secret-scanner.md"
+  }
 }

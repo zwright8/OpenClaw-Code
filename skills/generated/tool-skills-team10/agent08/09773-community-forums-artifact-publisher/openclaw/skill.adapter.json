@@ -5,7 +5,7 @@
   "id": 9773,
   "name": "community-forums-artifact-publisher",
   "title": "Community Forums Artifact Publisher",
-  "description": "Design and run community forums workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for community forums artifact publisher with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11379,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Community Forums",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.662Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/community-forums.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

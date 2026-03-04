@@ -5,7 +5,7 @@
   "id": 7612,
   "name": "device-labs-job-scheduler",
   "title": "Device Labs Job Scheduler",
-  "description": "Design and run device labs workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for device labs job scheduler with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 5092,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Device Labs",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.090Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/device-labs.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

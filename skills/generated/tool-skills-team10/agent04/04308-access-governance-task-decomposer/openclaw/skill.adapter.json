@@ -5,7 +5,7 @@
   "id": 4308,
   "name": "access-governance-task-decomposer",
   "title": "Access Governance Task Decomposer",
-  "description": "Design and run access governance workflows with task decomposer controls.",
+  "description": "OpenClaw extension adapter for access governance task decomposer with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 9440,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Access Governance",
+  "capability": "Task Decomposer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.250Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/access-governance.md",
+    "capability": "../../resources/capabilities/task-decomposer.md"
+  }
 }

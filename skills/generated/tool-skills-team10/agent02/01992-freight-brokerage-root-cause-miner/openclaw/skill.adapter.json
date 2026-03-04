@@ -5,7 +5,7 @@
   "id": 1992,
   "name": "freight-brokerage-root-cause-miner",
   "title": "Freight Brokerage Root Cause Miner",
-  "description": "Design and run freight brokerage workflows with root cause miner controls.",
+  "description": "OpenClaw extension adapter for freight brokerage root cause miner with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 4503,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Freight Brokerage",
+  "capability": "Root Cause Miner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.685Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/freight-brokerage.md",
+    "capability": "../../resources/capabilities/root-cause-miner.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 11549,
   "name": "field-service-ops-quality-gatekeeper",
   "title": "Field Service Ops Quality Gatekeeper",
-  "description": "Design and run field service ops workflows with quality gatekeeper controls.",
+  "description": "OpenClaw extension adapter for field service ops quality gatekeeper with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 5650,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Field Service Ops",
+  "capability": "Quality Gatekeeper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.120Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/field-service-ops.md",
+    "capability": "../../resources/capabilities/quality-gatekeeper.md"
+  }
 }

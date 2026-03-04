@@ -5,7 +5,7 @@
   "id": 5075,
   "name": "serverless-runtimes-provenance-tracker",
   "title": "Serverless Runtimes Provenance Tracker",
-  "description": "Design and run serverless runtimes workflows with provenance tracker controls.",
+  "description": "OpenClaw extension adapter for serverless runtimes provenance tracker with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 9700,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Serverless Runtimes",
+  "capability": "Provenance Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.451Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/serverless-runtimes.md",
+    "capability": "../../resources/capabilities/provenance-tracker.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 2791,
   "name": "hospitality-pms-incident-triage",
   "title": "Hospitality PMS Incident Triage",
-  "description": "Design and run hospitality pms workflows with incident triage controls.",
+  "description": "OpenClaw extension adapter for hospitality pms incident triage with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 2038,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Hospitality PMS",
+  "capability": "Incident Triage",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.872Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/hospitality-pms.md",
+    "capability": "../../resources/capabilities/incident-triage.md"
+  }
 }

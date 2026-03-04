@@ -5,7 +5,7 @@
   "id": 6101,
   "name": "esignature-systems-access-auditor",
   "title": "eSignature Systems Access Auditor",
-  "description": "Design and run esignature systems workflows with access auditor controls.",
+  "description": "OpenClaw extension adapter for esignature systems access auditor with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 10068,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "eSignature Systems",
+  "capability": "Access Auditor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.708Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/esignature-systems.md",
+    "capability": "../../resources/capabilities/access-auditor.md"
+  }
 }

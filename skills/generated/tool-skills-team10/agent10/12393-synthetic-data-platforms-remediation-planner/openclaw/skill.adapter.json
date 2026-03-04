@@ -5,7 +5,7 @@
   "id": 12393,
   "name": "synthetic-data-platforms-remediation-planner",
   "title": "Synthetic Data Platforms Remediation Planner",
-  "description": "Design and run synthetic data platforms workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for synthetic data platforms remediation planner with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 3075,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Synthetic Data Platforms",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.321Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/synthetic-data-platforms.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 1361,
   "name": "lab-information-systems-execution-runner",
   "title": "Lab Information Systems Execution Runner",
-  "description": "Design and run lab information systems workflows with execution runner controls.",
+  "description": "OpenClaw extension adapter for lab information systems execution runner with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 1269,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Lab Information Systems",
+  "capability": "Execution Runner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.512Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/lab-information-systems.md",
+    "capability": "../../resources/capabilities/execution-runner.md"
+  }
 }

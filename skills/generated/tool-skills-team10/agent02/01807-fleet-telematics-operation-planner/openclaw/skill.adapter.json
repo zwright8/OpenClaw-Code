@@ -5,7 +5,7 @@
   "id": 1807,
   "name": "fleet-telematics-operation-planner",
   "title": "Fleet Telematics Operation Planner",
-  "description": "Design and run fleet telematics workflows with operation planner controls.",
+  "description": "OpenClaw extension adapter for fleet telematics operation planner with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 8620,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Fleet Telematics",
+  "capability": "Operation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.629Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/fleet-telematics.md",
+    "capability": "../../resources/capabilities/operation-planner.md"
+  }
 }

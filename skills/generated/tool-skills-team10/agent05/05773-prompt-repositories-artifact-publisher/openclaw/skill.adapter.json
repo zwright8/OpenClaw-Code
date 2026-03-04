@@ -5,7 +5,7 @@
   "id": 5773,
   "name": "prompt-repositories-artifact-publisher",
   "title": "Prompt Repositories Artifact Publisher",
-  "description": "Design and run prompt repositories workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for prompt repositories artifact publisher with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 9930,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Prompt Repositories",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.619Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/prompt-repositories.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

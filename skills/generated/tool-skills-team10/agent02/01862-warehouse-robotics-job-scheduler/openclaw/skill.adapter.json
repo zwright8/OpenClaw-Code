@@ -5,7 +5,7 @@
   "id": 1862,
   "name": "warehouse-robotics-job-scheduler",
   "title": "Warehouse Robotics Job Scheduler",
-  "description": "Design and run warehouse robotics workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for warehouse robotics job scheduler with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 4898,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Warehouse Robotics",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.640Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/warehouse-robotics.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

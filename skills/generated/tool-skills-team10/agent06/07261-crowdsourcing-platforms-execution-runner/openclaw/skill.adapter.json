@@ -5,7 +5,7 @@
   "id": 7261,
   "name": "crowdsourcing-platforms-execution-runner",
   "title": "Crowdsourcing Platforms Execution Runner",
-  "description": "Design and run crowdsourcing platforms workflows with execution runner controls.",
+  "description": "OpenClaw extension adapter for crowdsourcing platforms execution runner with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 1380,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Crowdsourcing Platforms",
+  "capability": "Execution Runner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.994Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/crowdsourcing-platforms.md",
+    "capability": "../../resources/capabilities/execution-runner.md"
+  }
 }

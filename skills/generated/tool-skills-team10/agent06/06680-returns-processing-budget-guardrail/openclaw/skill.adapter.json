@@ -5,7 +5,7 @@
   "id": 6680,
   "name": "returns-processing-budget-guardrail",
   "title": "Returns Processing Budget Guardrail",
-  "description": "Design and run returns processing workflows with budget guardrail controls.",
+  "description": "OpenClaw extension adapter for returns processing budget guardrail with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 7503,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Returns Processing",
+  "capability": "Budget Guardrail",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.850Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/returns-processing.md",
+    "capability": "../../resources/capabilities/budget-guardrail.md"
+  }
 }

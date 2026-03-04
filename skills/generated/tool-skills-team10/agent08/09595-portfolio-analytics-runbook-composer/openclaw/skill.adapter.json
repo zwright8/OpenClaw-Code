@@ -5,7 +5,7 @@
   "id": 9595,
   "name": "portfolio-analytics-runbook-composer",
   "title": "Portfolio Analytics Runbook Composer",
-  "description": "Design and run portfolio analytics workflows with runbook composer controls.",
+  "description": "OpenClaw extension adapter for portfolio analytics runbook composer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 6480,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Portfolio Analytics",
+  "capability": "Runbook Composer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.626Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/portfolio-analytics.md",
+    "capability": "../../resources/capabilities/runbook-composer.md"
+  }
 }

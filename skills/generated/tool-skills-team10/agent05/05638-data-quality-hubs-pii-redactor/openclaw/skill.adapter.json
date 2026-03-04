@@ -5,7 +5,7 @@
   "id": 5638,
   "name": "data-quality-hubs-pii-redactor",
   "title": "Data Quality Hubs PII Redactor",
-  "description": "Design and run data quality hubs workflows with pii redactor controls.",
+  "description": "OpenClaw extension adapter for data quality hubs pii redactor with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 1585,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Data Quality Hubs",
+  "capability": "PII Redactor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.590Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/data-quality-hubs.md",
+    "capability": "../../resources/capabilities/pii-redactor.md"
+  }
 }

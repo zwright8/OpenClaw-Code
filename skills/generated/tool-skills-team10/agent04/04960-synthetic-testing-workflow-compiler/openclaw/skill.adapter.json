@@ -5,7 +5,7 @@
   "id": 4960,
   "name": "synthetic-testing-workflow-compiler",
   "title": "Synthetic Testing Workflow Compiler",
-  "description": "Design and run synthetic testing workflows with workflow compiler controls.",
+  "description": "OpenClaw extension adapter for synthetic testing workflow compiler with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 1095,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Synthetic Testing",
+  "capability": "Workflow Compiler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.405Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/synthetic-testing.md",
+    "capability": "../../resources/capabilities/workflow-compiler.md"
+  }
 }

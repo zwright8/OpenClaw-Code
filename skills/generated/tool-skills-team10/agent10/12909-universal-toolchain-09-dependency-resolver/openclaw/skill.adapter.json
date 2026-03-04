@@ -5,7 +5,7 @@
   "id": 12909,
   "name": "universal-toolchain-09-dependency-resolver",
   "title": "Universal Toolchain 09 Dependency Resolver",
-  "description": "Design and run universal toolchain 09 workflows with dependency resolver controls.",
+  "description": "OpenClaw extension adapter for universal toolchain 09 dependency resolver with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 8368,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Universal Toolchain 09",
+  "capability": "Dependency Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.461Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/universal-toolchain-09.md",
+    "capability": "../../resources/capabilities/dependency-resolver.md"
+  }
 }

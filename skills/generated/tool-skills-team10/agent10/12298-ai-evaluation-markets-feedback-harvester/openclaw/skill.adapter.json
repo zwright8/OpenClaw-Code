@@ -5,7 +5,7 @@
   "id": 12298,
   "name": "ai-evaluation-markets-feedback-harvester",
   "title": "AI Evaluation Markets Feedback Harvester",
-  "description": "Design and run ai evaluation markets workflows with feedback harvester controls.",
+  "description": "OpenClaw extension adapter for ai evaluation markets feedback harvester with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 7770,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "AI Evaluation Markets",
+  "capability": "Feedback Harvester",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.302Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ai-evaluation-markets.md",
+    "capability": "../../resources/capabilities/feedback-harvester.md"
+  }
 }

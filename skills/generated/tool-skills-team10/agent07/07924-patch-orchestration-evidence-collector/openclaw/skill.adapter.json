@@ -5,7 +5,7 @@
   "id": 7924,
   "name": "patch-orchestration-evidence-collector",
   "title": "Patch Orchestration Evidence Collector",
-  "description": "Design and run patch orchestration workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for patch orchestration evidence collector with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 6343,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Patch Orchestration",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.152Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/patch-orchestration.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

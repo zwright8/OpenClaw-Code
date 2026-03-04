@@ -5,7 +5,7 @@
   "id": 9574,
   "name": "portfolio-analytics-evidence-collector",
   "title": "Portfolio Analytics Evidence Collector",
-  "description": "Design and run portfolio analytics workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for portfolio analytics evidence collector with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 6479,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Portfolio Analytics",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.622Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/portfolio-analytics.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

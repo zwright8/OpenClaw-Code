@@ -5,7 +5,7 @@
   "id": 9100,
   "name": "localization-qa-outcome-synthesizer",
   "title": "Localization QA Outcome Synthesizer",
-  "description": "Design and run localization qa workflows with outcome synthesizer controls.",
+  "description": "OpenClaw extension adapter for localization qa outcome synthesizer with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 7058,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Localization QA",
+  "capability": "Outcome Synthesizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.499Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/localization-qa.md",
+    "capability": "../../resources/capabilities/outcome-synthesizer.md"
+  }
 }

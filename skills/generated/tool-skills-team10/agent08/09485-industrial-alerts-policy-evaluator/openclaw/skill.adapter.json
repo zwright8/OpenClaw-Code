@@ -5,7 +5,7 @@
   "id": 9485,
   "name": "industrial-alerts-policy-evaluator",
   "title": "Industrial Alerts Policy Evaluator",
-  "description": "Design and run industrial alerts workflows with policy evaluator controls.",
+  "description": "OpenClaw extension adapter for industrial alerts policy evaluator with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 3743,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Industrial Alerts",
+  "capability": "Policy Evaluator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.591Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/industrial-alerts.md",
+    "capability": "../../resources/capabilities/policy-evaluator.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 5915,
   "name": "rpa-platforms-queue-balancer",
   "title": "RPA Platforms Queue Balancer",
-  "description": "Design and run rpa platforms workflows with queue balancer controls.",
+  "description": "OpenClaw extension adapter for rpa platforms queue balancer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 9988,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "RPA Platforms",
+  "capability": "Queue Balancer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.646Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/rpa-platforms.md",
+    "capability": "../../resources/capabilities/queue-balancer.md"
+  }
 }

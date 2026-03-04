@@ -5,7 +5,7 @@
   "id": 1128,
   "name": "patent-filings-forecast-engine",
   "title": "Patent Filings Forecast Engine",
-  "description": "Design and run patent filings workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for patent filings forecast engine with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 8442,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Patent Filings",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.464Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/patent-filings.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

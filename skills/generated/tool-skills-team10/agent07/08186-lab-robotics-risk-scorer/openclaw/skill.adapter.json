@@ -5,7 +5,7 @@
   "id": 8186,
   "name": "lab-robotics-risk-scorer",
   "title": "Lab Robotics Risk Scorer",
-  "description": "Design and run lab robotics workflows with risk scorer controls.",
+  "description": "OpenClaw extension adapter for lab robotics risk scorer with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 1639,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Lab Robotics",
+  "capability": "Risk Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.267Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/lab-robotics.md",
+    "capability": "../../resources/capabilities/risk-scorer.md"
+  }
 }

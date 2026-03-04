@@ -5,7 +5,7 @@
   "id": 4164,
   "name": "incident-queues-rate-limit-optimizer",
   "title": "Incident Queues Rate Limit Optimizer",
-  "description": "Design and run incident queues workflows with rate limit optimizer controls.",
+  "description": "OpenClaw extension adapter for incident queues rate limit optimizer with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 2546,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Incident Queues",
+  "capability": "Rate Limit Optimizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.221Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/incident-queues.md",
+    "capability": "../../resources/capabilities/rate-limit-optimizer.md"
+  }
 }

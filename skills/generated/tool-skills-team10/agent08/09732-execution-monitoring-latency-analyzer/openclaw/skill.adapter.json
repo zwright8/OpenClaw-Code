@@ -5,7 +5,7 @@
   "id": 9732,
   "name": "execution-monitoring-latency-analyzer",
   "title": "Execution Monitoring Latency Analyzer",
-  "description": "Design and run execution monitoring workflows with latency analyzer controls.",
+  "description": "OpenClaw extension adapter for execution monitoring latency analyzer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11364,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Execution Monitoring",
+  "capability": "Latency Analyzer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.654Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/execution-monitoring.md",
+    "capability": "../../resources/capabilities/latency-analyzer.md"
+  }
 }

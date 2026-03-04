@@ -5,7 +5,7 @@
   "id": 11418,
   "name": "qbr-automation-conflict-resolver",
   "title": "QBR Automation Conflict Resolver",
-  "description": "Design and run qbr automation workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for qbr automation conflict resolver with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 11964,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "QBR Automation",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.062Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/qbr-automation.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

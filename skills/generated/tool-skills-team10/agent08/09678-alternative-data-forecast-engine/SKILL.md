@@ -1,36 +1,55 @@
 ---
 name: alternative-data-forecast-engine
-description: Use when tasks require alternative data forecast engine capabilities and related automation workflows.
+description: Use when tasks require alternative data forecast engine with production-grade validation, rollback safety, and OpenClaw extension controls.
 ---
 
 # Alternative Data Forecast Engine
 
 ## Purpose
-Design and run alternative data workflows with forecast engine controls.
+Design and execute alternative data workflows using forecast engine controls with validated outcomes.
 
-## Priority Context
+## Precision Profile
+- Domain: Alternative Data
+- Capability: Forecast Engine
 - Score: 57
 - Rank: 11340
 - Priority band: P3
 
-## Use This Skill When
-- A task requires alternative data forecast engine operations.
-- You need a repeatable workflow that combines planning, execution, and validation.
-- You want to integrate external tools while keeping OpenClaw core behavior unchanged.
+## Required Inputs
+- Objective and scope boundaries
+- Source systems, target systems, and identity keys
+- Auth method and permission scope
+- Success criteria and rollback constraints
 
 ## Workflow
-1. Define objective, scope, and expected outputs.
-2. Perform auth/session checks and confirm required permissions.
-3. Execute smallest valid operation first (read-only where possible).
-4. Expand to write operations with explicit validation and rollback plan.
-5. Capture artifacts, logs, and next actions for handoff.
+1. Confirm objective, scope, and non-goals.
+2. Validate access and permission boundaries before execution.
+3. Run read-only preflight checks and capture baseline state.
+4. Execute forecast engine actions with minimal blast radius.
+5. Validate outputs against schema, business rules, and side effects.
+6. If validation fails, execute rollback/recovery path and re-verify.
+7. Capture artifacts, logs, and decision evidence.
+8. Return structured status with follow-up actions.
 
-## Safety Rules
-- Do not duplicate OpenClaw core utilities; use extension-layer wrappers only.
-- Enforce least privilege and redact sensitive values in logs.
-- Validate side effects before marking tasks complete.
+## Validation Checklist
+- Input contract validated
+- Auth scope confirmed
+- Preflight recorded
+- Post-execution checks passed
+- Sensitive values redacted
+- Recovery path tested or documented
+
+## Resources
+- Baseline: [TOOL_SKILL_BASELINE.md](../../resources/TOOL_SKILL_BASELINE.md)
+- Domain: [Alternative Data](../../resources/domains/alternative-data.md)
+- Capability: [Forecast Engine](../../resources/capabilities/forecast-engine.md)
 
 ## Output Contract
 - summary: concise result and status
-- artifacts: files, links, or IDs generated
-- follow_up: next steps or blockers
+- artifacts: files, IDs, links, logs, or evidence references
+- follow_up: next actions, blockers, and remediation tasks
+
+## Guardrails
+- Do not duplicate OpenClaw core utilities; remain an extension layer.
+- Prefer deterministic execution and auditable outputs.
+- Escalate when required permissions or prerequisites are unavailable.

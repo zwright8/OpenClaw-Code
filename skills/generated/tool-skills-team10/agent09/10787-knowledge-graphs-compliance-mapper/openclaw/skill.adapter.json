@@ -5,7 +5,7 @@
   "id": 10787,
   "name": "knowledge-graphs-compliance-mapper",
   "title": "Knowledge Graphs Compliance Mapper",
-  "description": "Design and run knowledge graphs workflows with compliance mapper controls.",
+  "description": "OpenClaw extension adapter for knowledge graphs compliance mapper with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 787,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Knowledge Graphs",
+  "capability": "Compliance Mapper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.912Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/knowledge-graphs.md",
+    "capability": "../../resources/capabilities/compliance-mapper.md"
+  }
 }

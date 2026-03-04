@@ -5,7 +5,7 @@
   "id": 6158,
   "name": "records-retention-task-decomposer",
   "title": "Records Retention Task Decomposer",
-  "description": "Design and run records retention workflows with task decomposer controls.",
+  "description": "OpenClaw extension adapter for records retention task decomposer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 10091,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Records Retention",
+  "capability": "Task Decomposer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.723Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/records-retention.md",
+    "capability": "../../resources/capabilities/task-decomposer.md"
+  }
 }

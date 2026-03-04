@@ -5,7 +5,7 @@
   "id": 497,
   "name": "docker-alert-monitor",
   "title": "Docker Alert Monitor",
-  "description": "Monitors key Docker signals and raises actionable alerts.",
+  "description": "OpenClaw extension adapter for docker alert monitor with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 8117,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Docker",
+  "capability": "Alert Monitor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.297Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/docker.md",
+    "capability": "../../resources/capabilities/alert-monitor.md"
+  }
 }

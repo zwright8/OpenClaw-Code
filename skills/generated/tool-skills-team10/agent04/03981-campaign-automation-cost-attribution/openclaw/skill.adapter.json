@@ -5,7 +5,7 @@
   "id": 3981,
   "name": "campaign-automation-cost-attribution",
   "title": "Campaign Automation Cost Attribution",
-  "description": "Design and run campaign automation workflows with cost attribution controls.",
+  "description": "OpenClaw extension adapter for campaign automation cost attribution with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 7390,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Campaign Automation",
+  "capability": "Cost Attribution",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.184Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/campaign-automation.md",
+    "capability": "../../resources/capabilities/cost-attribution.md"
+  }
 }

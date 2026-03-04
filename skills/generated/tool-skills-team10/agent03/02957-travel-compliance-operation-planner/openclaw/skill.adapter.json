@@ -5,7 +5,7 @@
   "id": 2957,
   "name": "travel-compliance-operation-planner",
   "title": "Travel Compliance Operation Planner",
-  "description": "Design and run travel compliance workflows with operation planner controls.",
+  "description": "OpenClaw extension adapter for travel compliance operation planner with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 6772,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Travel Compliance",
+  "capability": "Operation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.906Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/travel-compliance.md",
+    "capability": "../../resources/capabilities/operation-planner.md"
+  }
 }

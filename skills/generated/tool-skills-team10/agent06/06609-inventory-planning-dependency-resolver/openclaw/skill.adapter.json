@@ -5,7 +5,7 @@
   "id": 6609,
   "name": "inventory-planning-dependency-resolver",
   "title": "Inventory Planning Dependency Resolver",
-  "description": "Design and run inventory planning workflows with dependency resolver controls.",
+  "description": "OpenClaw extension adapter for inventory planning dependency resolver with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10239,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Inventory Planning",
+  "capability": "Dependency Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.836Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/inventory-planning.md",
+    "capability": "../../resources/capabilities/dependency-resolver.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 4312,
   "name": "access-governance-job-scheduler",
   "title": "Access Governance Job Scheduler",
-  "description": "Design and run access governance workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for access governance job scheduler with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 4975,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Access Governance",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.251Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/access-governance.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

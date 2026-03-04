@@ -5,7 +5,7 @@
   "id": 652,
   "name": "pagerduty-sync-orchestrator",
   "title": "PagerDuty Sync Orchestrator",
-  "description": "Schedules and reconciles two-way sync for PagerDuty records.",
+  "description": "OpenClaw extension adapter for pagerduty sync orchestrator with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 12777,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "PagerDuty",
+  "capability": "Sync Orchestrator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.330Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/pagerduty.md",
+    "capability": "../../resources/capabilities/sync-orchestrator.md"
+  }
 }

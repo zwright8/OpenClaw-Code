@@ -5,7 +5,7 @@
   "id": 10222,
   "name": "settlement-reconciliation-version-tracker",
   "title": "Settlement Reconciliation Version Tracker",
-  "description": "Design and run settlement reconciliation workflows with version tracker controls.",
+  "description": "OpenClaw extension adapter for settlement reconciliation version tracker with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11546,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Settlement Reconciliation",
+  "capability": "Version Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.774Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/settlement-reconciliation.md",
+    "capability": "../../resources/capabilities/version-tracker.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 11493,
   "name": "reference-programs-remediation-planner",
   "title": "Reference Programs Remediation Planner",
-  "description": "Design and run reference programs workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for reference programs remediation planner with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 3040,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Reference Programs",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.080Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/reference-programs.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

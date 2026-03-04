@@ -5,7 +5,7 @@
   "id": 5442,
   "name": "message-brokers-root-cause-miner",
   "title": "Message Brokers Root Cause Miner",
-  "description": "Design and run message brokers workflows with root cause miner controls.",
+  "description": "OpenClaw extension adapter for message brokers root cause miner with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 4610,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Message Brokers",
+  "capability": "Root Cause Miner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.523Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/message-brokers.md",
+    "capability": "../../resources/capabilities/root-cause-miner.md"
+  }
 }

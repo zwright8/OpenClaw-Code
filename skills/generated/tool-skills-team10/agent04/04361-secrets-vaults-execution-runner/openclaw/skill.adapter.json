@@ -5,7 +5,7 @@
   "id": 4361,
   "name": "secrets-vaults-execution-runner",
   "title": "Secrets Vaults Execution Runner",
-  "description": "Design and run secrets vaults workflows with execution runner controls.",
+  "description": "OpenClaw extension adapter for secrets vaults execution runner with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 1326,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Secrets Vaults",
+  "capability": "Execution Runner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.261Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/secrets-vaults.md",
+    "capability": "../../resources/capabilities/execution-runner.md"
+  }
 }

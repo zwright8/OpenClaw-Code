@@ -5,7 +5,7 @@
   "id": 12116,
   "name": "sensitive-data-governance-state-reconciler",
   "title": "Sensitive Data Governance State Reconciler",
-  "description": "Design and run sensitive data governance workflows with state reconciler controls.",
+  "description": "OpenClaw extension adapter for sensitive data governance state reconciler with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 4441,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Sensitive Data Governance",
+  "capability": "State Reconciler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.265Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/sensitive-data-governance.md",
+    "capability": "../../resources/capabilities/state-reconciler.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 11284,
   "name": "renewal-management-sla-enforcer",
   "title": "Renewal Management SLA Enforcer",
-  "description": "Design and run renewal management workflows with sla enforcer controls.",
+  "description": "OpenClaw extension adapter for renewal management sla enforcer with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 11912,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Renewal Management",
+  "capability": "SLA Enforcer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.037Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/renewal-management.md",
+    "capability": "../../resources/capabilities/sla-enforcer.md"
+  }
 }

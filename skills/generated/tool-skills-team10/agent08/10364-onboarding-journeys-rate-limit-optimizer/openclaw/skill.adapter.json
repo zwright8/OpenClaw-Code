@@ -5,7 +5,7 @@
   "id": 10364,
   "name": "onboarding-journeys-rate-limit-optimizer",
   "title": "Onboarding Journeys Rate Limit Optimizer",
-  "description": "Design and run onboarding journeys workflows with rate limit optimizer controls.",
+  "description": "OpenClaw extension adapter for onboarding journeys rate limit optimizer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 6564,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Onboarding Journeys",
+  "capability": "Rate Limit Optimizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.801Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/onboarding-journeys.md",
+    "capability": "../../resources/capabilities/rate-limit-optimizer.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 11428,
   "name": "qbr-automation-forecast-engine",
   "title": "QBR Automation Forecast Engine",
-  "description": "Design and run qbr automation workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for qbr automation forecast engine with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 11970,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "QBR Automation",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.067Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/qbr-automation.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

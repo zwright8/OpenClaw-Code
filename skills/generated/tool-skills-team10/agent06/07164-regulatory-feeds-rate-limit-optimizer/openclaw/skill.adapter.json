@@ -5,7 +5,7 @@
   "id": 7164,
   "name": "regulatory-feeds-rate-limit-optimizer",
   "title": "Regulatory Feeds Rate Limit Optimizer",
-  "description": "Design and run regulatory feeds workflows with rate limit optimizer controls.",
+  "description": "OpenClaw extension adapter for regulatory feeds rate limit optimizer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 6272,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Regulatory Feeds",
+  "capability": "Rate Limit Optimizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.973Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/regulatory-feeds.md",
+    "capability": "../../resources/capabilities/rate-limit-optimizer.md"
+  }
 }

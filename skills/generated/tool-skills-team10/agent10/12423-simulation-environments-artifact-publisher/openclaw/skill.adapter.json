@@ -5,7 +5,7 @@
   "id": 12423,
   "name": "simulation-environments-artifact-publisher",
   "title": "Simulation Environments Artifact Publisher",
-  "description": "Design and run simulation environments workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for simulation environments artifact publisher with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 12324,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Simulation Environments",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.327Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/simulation-environments.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

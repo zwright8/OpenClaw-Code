@@ -5,7 +5,7 @@
   "id": 12048,
   "name": "ethics-review-boards-feedback-harvester",
   "title": "Ethics Review Boards Feedback Harvester",
-  "description": "Design and run ethics review boards workflows with feedback harvester controls.",
+  "description": "OpenClaw extension adapter for ethics review boards feedback harvester with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 12230,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Ethics Review Boards",
+  "capability": "Feedback Harvester",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.252Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ethics-review-boards.md",
+    "capability": "../../resources/capabilities/feedback-harvester.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 1692,
   "name": "research-repositories-root-cause-miner",
   "title": "Research Repositories Root Cause Miner",
-  "description": "Design and run research repositories workflows with root cause miner controls.",
+  "description": "OpenClaw extension adapter for research repositories root cause miner with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 4491,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Research Repositories",
+  "capability": "Root Cause Miner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.607Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/research-repositories.md",
+    "capability": "../../resources/capabilities/root-cause-miner.md"
+  }
 }

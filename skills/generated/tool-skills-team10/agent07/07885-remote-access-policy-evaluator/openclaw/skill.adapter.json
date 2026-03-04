@@ -5,7 +5,7 @@
   "id": 7885,
   "name": "remote-access-policy-evaluator",
   "title": "Remote Access Policy Evaluator",
-  "description": "Design and run remote access workflows with policy evaluator controls.",
+  "description": "OpenClaw extension adapter for remote access policy evaluator with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 3618,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Remote Access",
+  "capability": "Policy Evaluator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.145Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/remote-access.md",
+    "capability": "../../resources/capabilities/policy-evaluator.md"
+  }
 }

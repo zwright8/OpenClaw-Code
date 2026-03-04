@@ -5,7 +5,7 @@
   "id": 80,
   "name": "slack-migration-assistant",
   "title": "Slack Migration Assistant",
-  "description": "Plans and executes safe migrations to or from Slack.",
+  "description": "OpenClaw extension adapter for slack migration assistant with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 12412,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Slack",
+  "capability": "Migration Assistant",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.193Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/slack.md",
+    "capability": "../../resources/capabilities/migration-assistant.md"
+  }
 }

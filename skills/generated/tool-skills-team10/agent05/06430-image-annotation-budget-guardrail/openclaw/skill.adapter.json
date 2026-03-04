@@ -5,7 +5,7 @@
   "id": 6430,
   "name": "image-annotation-budget-guardrail",
   "title": "Image Annotation Budget Guardrail",
-  "description": "Design and run image annotation workflows with budget guardrail controls.",
+  "description": "OpenClaw extension adapter for image annotation budget guardrail with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 7499,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Image Annotation",
+  "capability": "Budget Guardrail",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.775Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/image-annotation.md",
+    "capability": "../../resources/capabilities/budget-guardrail.md"
+  }
 }

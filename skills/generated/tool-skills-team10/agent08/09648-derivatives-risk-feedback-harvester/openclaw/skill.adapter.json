@@ -5,7 +5,7 @@
   "id": 9648,
   "name": "derivatives-risk-feedback-harvester",
   "title": "Derivatives Risk Feedback Harvester",
-  "description": "Design and run derivatives risk workflows with feedback harvester controls.",
+  "description": "OpenClaw extension adapter for derivatives risk feedback harvester with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 7087,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Derivatives Risk",
+  "capability": "Feedback Harvester",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.637Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/derivatives-risk.md",
+    "capability": "../../resources/capabilities/feedback-harvester.md"
+  }
 }

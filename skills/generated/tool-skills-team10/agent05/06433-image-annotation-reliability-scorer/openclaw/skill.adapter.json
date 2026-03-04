@@ -5,7 +5,7 @@
   "id": 6433,
   "name": "image-annotation-reliability-scorer",
   "title": "Image Annotation Reliability Scorer",
-  "description": "Design and run image annotation workflows with reliability scorer controls.",
+  "description": "OpenClaw extension adapter for image annotation reliability scorer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 10189,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Image Annotation",
+  "capability": "Reliability Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.775Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/image-annotation.md",
+    "capability": "../../resources/capabilities/reliability-scorer.md"
+  }
 }

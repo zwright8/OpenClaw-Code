@@ -5,7 +5,7 @@
   "id": 2424,
   "name": "esg-reporting-evidence-collector",
   "title": "ESG Reporting Evidence Collector",
-  "description": "Design and run esg reporting workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for esg reporting evidence collector with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 5843,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "ESG Reporting",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.799Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/esg-reporting.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

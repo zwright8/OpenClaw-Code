@@ -5,7 +5,7 @@
   "id": 288,
   "name": "quickbooks-workflow-automator",
   "title": "QuickBooks Workflow Automator",
-  "description": "Executes repeatable multi-step workflows using QuickBooks.",
+  "description": "OpenClaw extension adapter for quickbooks workflow automator with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 7885,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "QuickBooks",
+  "capability": "Workflow Automator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.238Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/quickbooks.md",
+    "capability": "../../resources/capabilities/workflow-automator.md"
+  }
 }

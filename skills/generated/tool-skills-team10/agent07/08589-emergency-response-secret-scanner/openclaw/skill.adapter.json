@@ -5,7 +5,7 @@
   "id": 8589,
   "name": "emergency-response-secret-scanner",
   "title": "Emergency Response Secret Scanner",
-  "description": "Design and run emergency response workflows with secret scanner controls.",
+  "description": "OpenClaw extension adapter for emergency response secret scanner with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 2929,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Emergency Response",
+  "capability": "Secret Scanner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.366Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/emergency-response.md",
+    "capability": "../../resources/capabilities/secret-scanner.md"
+  }
 }

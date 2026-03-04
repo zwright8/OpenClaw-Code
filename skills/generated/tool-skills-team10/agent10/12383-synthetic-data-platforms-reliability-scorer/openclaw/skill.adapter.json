@@ -5,7 +5,7 @@
   "id": 12383,
   "name": "synthetic-data-platforms-reliability-scorer",
   "title": "Synthetic Data Platforms Reliability Scorer",
-  "description": "Design and run synthetic data platforms workflows with reliability scorer controls.",
+  "description": "OpenClaw extension adapter for synthetic data platforms reliability scorer with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 12310,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Synthetic Data Platforms",
+  "capability": "Reliability Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.319Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/synthetic-data-platforms.md",
+    "capability": "../../resources/capabilities/reliability-scorer.md"
+  }
 }

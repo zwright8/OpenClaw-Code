@@ -5,7 +5,7 @@
   "id": 9258,
   "name": "iot-device-clouds-task-decomposer",
   "title": "IoT Device Clouds Task Decomposer",
-  "description": "Design and run iot device clouds workflows with task decomposer controls.",
+  "description": "OpenClaw extension adapter for iot device clouds task decomposer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 7572,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "IoT Device Clouds",
+  "capability": "Task Decomposer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.531Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/iot-device-clouds.md",
+    "capability": "../../resources/capabilities/task-decomposer.md"
+  }
 }

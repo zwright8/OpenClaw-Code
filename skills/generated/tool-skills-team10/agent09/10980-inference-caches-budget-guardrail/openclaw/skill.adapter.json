@@ -5,7 +5,7 @@
   "id": 10980,
   "name": "inference-caches-budget-guardrail",
   "title": "Inference Caches Budget Guardrail",
-  "description": "Design and run inference caches workflows with budget guardrail controls.",
+  "description": "OpenClaw extension adapter for inference caches budget guardrail with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 7703,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Inference Caches",
+  "capability": "Budget Guardrail",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.950Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/inference-caches.md",
+    "capability": "../../resources/capabilities/budget-guardrail.md"
+  }
 }

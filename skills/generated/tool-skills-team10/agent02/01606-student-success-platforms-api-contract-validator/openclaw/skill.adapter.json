@@ -5,7 +5,7 @@
   "id": 1606,
   "name": "student-success-platforms-api-contract-validator",
   "title": "Student Success Platforms API Contract Validator",
-  "description": "Design and run student success platforms workflows with api contract validator controls.",
+  "description": "OpenClaw extension adapter for student success platforms api contract validator with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 73,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Student Success Platforms",
+  "capability": "API Contract Validator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.590Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/student-success-platforms.md",
+    "capability": "../../resources/capabilities/api-contract-validator.md"
+  }
 }

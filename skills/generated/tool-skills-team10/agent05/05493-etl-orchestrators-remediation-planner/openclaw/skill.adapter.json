@@ -5,7 +5,7 @@
   "id": 5493,
   "name": "etl-orchestrators-remediation-planner",
   "title": "ETL Orchestrators Remediation Planner",
-  "description": "Design and run etl orchestrators workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for etl orchestrators remediation planner with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 2806,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "ETL Orchestrators",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.559Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/etl-orchestrators.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

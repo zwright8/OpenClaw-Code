@@ -5,7 +5,7 @@
   "id": 836,
   "name": "azure-openai-report-builder",
   "title": "Azure OpenAI Report Builder",
-  "description": "Generates operational and KPI reports from Azure OpenAI activity.",
+  "description": "OpenClaw extension adapter for azure openai report builder with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 8169,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Azure OpenAI",
+  "capability": "Report Builder",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.368Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/azure-openai.md",
+    "capability": "../../resources/capabilities/report-builder.md"
+  }
 }

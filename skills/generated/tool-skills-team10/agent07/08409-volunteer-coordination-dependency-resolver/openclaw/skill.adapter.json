@@ -5,7 +5,7 @@
   "id": 8409,
   "name": "volunteer-coordination-dependency-resolver",
   "title": "Volunteer Coordination Dependency Resolver",
-  "description": "Design and run volunteer coordination workflows with dependency resolver controls.",
+  "description": "OpenClaw extension adapter for volunteer coordination dependency resolver with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 10932,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Volunteer Coordination",
+  "capability": "Dependency Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.314Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/volunteer-coordination.md",
+    "capability": "../../resources/capabilities/dependency-resolver.md"
+  }
 }

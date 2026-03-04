@@ -5,7 +5,7 @@
   "id": 10849,
   "name": "semantic-retrieval-quality-gatekeeper",
   "title": "Semantic Retrieval Quality Gatekeeper",
-  "description": "Design and run semantic retrieval workflows with quality gatekeeper controls.",
+  "description": "OpenClaw extension adapter for semantic retrieval quality gatekeeper with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 5622,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Semantic Retrieval",
+  "capability": "Quality Gatekeeper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.926Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/semantic-retrieval.md",
+    "capability": "../../resources/capabilities/quality-gatekeeper.md"
+  }
 }

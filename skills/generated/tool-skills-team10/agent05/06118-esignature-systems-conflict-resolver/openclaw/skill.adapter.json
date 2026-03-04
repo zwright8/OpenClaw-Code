@@ -5,7 +5,7 @@
   "id": 6118,
   "name": "esignature-systems-conflict-resolver",
   "title": "eSignature Systems Conflict Resolver",
-  "description": "Design and run esignature systems workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for esignature systems conflict resolver with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 10074,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "eSignature Systems",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.716Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/esignature-systems.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

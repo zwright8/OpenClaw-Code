@@ -5,7 +5,7 @@
   "id": 5899,
   "name": "workflow-engines-quality-gatekeeper",
   "title": "Workflow Engines Quality Gatekeeper",
-  "description": "Design and run workflow engines workflows with quality gatekeeper controls.",
+  "description": "OpenClaw extension adapter for workflow engines quality gatekeeper with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 5456,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Workflow Engines",
+  "capability": "Quality Gatekeeper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.643Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/workflow-engines.md",
+    "capability": "../../resources/capabilities/quality-gatekeeper.md"
+  }
 }

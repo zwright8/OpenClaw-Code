@@ -5,7 +5,7 @@
   "id": 5636,
   "name": "data-quality-hubs-risk-scorer",
   "title": "Data Quality Hubs Risk Scorer",
-  "description": "Design and run data quality hubs workflows with risk scorer controls.",
+  "description": "OpenClaw extension adapter for data quality hubs risk scorer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 491,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Data Quality Hubs",
+  "capability": "Risk Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.590Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/data-quality-hubs.md",
+    "capability": "../../resources/capabilities/risk-scorer.md"
+  }
 }

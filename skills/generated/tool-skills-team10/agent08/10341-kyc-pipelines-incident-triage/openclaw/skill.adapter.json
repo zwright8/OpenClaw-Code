@@ -5,7 +5,7 @@
   "id": 10341,
   "name": "kyc-pipelines-incident-triage",
   "title": "KYC Pipelines Incident Triage",
-  "description": "Design and run kyc pipelines workflows with incident triage controls.",
+  "description": "OpenClaw extension adapter for kyc pipelines incident triage with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 2225,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "KYC Pipelines",
+  "capability": "Incident Triage",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.797Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/kyc-pipelines.md",
+    "capability": "../../resources/capabilities/incident-triage.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 3849,
   "name": "ad-platforms-quality-gatekeeper",
   "title": "Ad Platforms Quality Gatekeeper",
-  "description": "Design and run ad platforms workflows with quality gatekeeper controls.",
+  "description": "OpenClaw extension adapter for ad platforms quality gatekeeper with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 5392,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Ad Platforms",
+  "capability": "Quality Gatekeeper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.132Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ad-platforms.md",
+    "capability": "../../resources/capabilities/quality-gatekeeper.md"
+  }
 }

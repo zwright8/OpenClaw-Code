@@ -5,7 +5,7 @@
   "id": 10194,
   "name": "chargeback-ops-postmortem-drafting",
   "title": "Chargeback Ops Postmortem Drafting",
-  "description": "Design and run chargeback ops workflows with postmortem drafting controls.",
+  "description": "OpenClaw extension adapter for chargeback ops postmortem drafting with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11535,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Chargeback Ops",
+  "capability": "Postmortem Drafting",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.768Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/chargeback-ops.md",
+    "capability": "../../resources/capabilities/postmortem-drafting.md"
+  }
 }

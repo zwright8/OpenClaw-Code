@@ -5,7 +5,7 @@
   "id": 4485,
   "name": "endpoint-security-policy-evaluator",
   "title": "Endpoint Security Policy Evaluator",
-  "description": "Design and run endpoint security workflows with policy evaluator controls.",
+  "description": "OpenClaw extension adapter for endpoint security policy evaluator with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 1240,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Endpoint Security",
+  "capability": "Policy Evaluator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.309Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/endpoint-security.md",
+    "capability": "../../resources/capabilities/policy-evaluator.md"
+  }
 }

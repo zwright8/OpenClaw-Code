@@ -5,7 +5,7 @@
   "id": 5420,
   "name": "message-brokers-migration-planner",
   "title": "Message Brokers Migration Planner",
-  "description": "Design and run message brokers workflows with migration planner controls.",
+  "description": "OpenClaw extension adapter for message brokers migration planner with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 4609,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Message Brokers",
+  "capability": "Migration Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.517Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/message-brokers.md",
+    "capability": "../../resources/capabilities/migration-planner.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 1206,
   "name": "procurement-portals-api-contract-validator",
   "title": "Procurement Portals API Contract Validator",
-  "description": "Design and run procurement portals workflows with api contract validator controls.",
+  "description": "OpenClaw extension adapter for procurement portals api contract validator with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 33,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Procurement Portals",
+  "capability": "API Contract Validator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.480Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/procurement-portals.md",
+    "capability": "../../resources/capabilities/api-contract-validator.md"
+  }
 }

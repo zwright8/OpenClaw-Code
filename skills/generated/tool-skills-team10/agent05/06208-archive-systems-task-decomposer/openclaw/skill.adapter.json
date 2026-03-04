@@ -5,7 +5,7 @@
   "id": 6208,
   "name": "archive-systems-task-decomposer",
   "title": "Archive Systems Task Decomposer",
-  "description": "Design and run archive systems workflows with task decomposer controls.",
+  "description": "OpenClaw extension adapter for archive systems task decomposer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 10112,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Archive Systems",
+  "capability": "Task Decomposer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.733Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/archive-systems.md",
+    "capability": "../../resources/capabilities/task-decomposer.md"
+  }
 }

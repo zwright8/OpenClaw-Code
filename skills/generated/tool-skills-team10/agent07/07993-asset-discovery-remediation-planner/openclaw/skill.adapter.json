@@ -5,7 +5,7 @@
   "id": 7993,
   "name": "asset-discovery-remediation-planner",
   "title": "Asset Discovery Remediation Planner",
-  "description": "Design and run asset discovery workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for asset discovery remediation planner with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 2906,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Asset Discovery",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.225Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/asset-discovery.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

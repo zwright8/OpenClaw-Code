@@ -5,7 +5,7 @@
   "id": 3520,
   "name": "crm-intelligence-migration-planner",
   "title": "CRM Intelligence Migration Planner",
-  "description": "Design and run crm intelligence workflows with migration planner controls.",
+  "description": "OpenClaw extension adapter for crm intelligence migration planner with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 4551,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "CRM Intelligence",
+  "capability": "Migration Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.069Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/crm-intelligence.md",
+    "capability": "../../resources/capabilities/migration-planner.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 8755,
   "name": "legal-matter-mgmt-spec-drift-detector",
   "title": "Legal Matter Mgmt Spec Drift Detector",
-  "description": "Design and run legal matter mgmt workflows with spec drift detector controls.",
+  "description": "OpenClaw extension adapter for legal matter mgmt spec drift detector with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 2407,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Legal Matter Mgmt",
+  "capability": "Spec Drift Detector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.399Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/legal-matter-mgmt.md",
+    "capability": "../../resources/capabilities/spec-drift-detector.md"
+  }
 }

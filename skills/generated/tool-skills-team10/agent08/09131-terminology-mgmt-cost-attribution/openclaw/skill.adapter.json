@@ -5,7 +5,7 @@
   "id": 9131,
   "name": "terminology-mgmt-cost-attribution",
   "title": "Terminology Mgmt Cost Attribution",
-  "description": "Design and run terminology mgmt workflows with cost attribution controls.",
+  "description": "OpenClaw extension adapter for terminology mgmt cost attribution with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11174,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Terminology Mgmt",
+  "capability": "Cost Attribution",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.505Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/terminology-mgmt.md",
+    "capability": "../../resources/capabilities/cost-attribution.md"
+  }
 }

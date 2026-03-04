@@ -5,7 +5,7 @@
   "id": 1272,
   "name": "healthcare-ehr-version-tracker",
   "title": "Healthcare EHR Version Tracker",
-  "description": "Design and run healthcare ehr workflows with version tracker controls.",
+  "description": "OpenClaw extension adapter for healthcare ehr version tracker with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 7187,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Healthcare EHR",
+  "capability": "Version Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.495Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/healthcare-ehr.md",
+    "capability": "../../resources/capabilities/version-tracker.md"
+  }
 }

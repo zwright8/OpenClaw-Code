@@ -5,7 +5,7 @@
   "id": 6336,
   "name": "video-processing-risk-scorer",
   "title": "Video Processing Risk Scorer",
-  "description": "Design and run video processing workflows with risk scorer controls.",
+  "description": "OpenClaw extension adapter for video processing risk scorer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 1599,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Video Processing",
+  "capability": "Risk Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.757Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/video-processing.md",
+    "capability": "../../resources/capabilities/risk-scorer.md"
+  }
 }

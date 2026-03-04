@@ -5,7 +5,7 @@
   "id": 3051,
   "name": "treasury-management-access-auditor",
   "title": "Treasury Management Access Auditor",
-  "description": "Design and run treasury management workflows with access auditor controls.",
+  "description": "OpenClaw extension adapter for treasury management access auditor with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9018,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Treasury Management",
+  "capability": "Access Auditor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.949Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/treasury-management.md",
+    "capability": "../../resources/capabilities/access-auditor.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 12728,
   "name": "universal-toolchain-05-forecast-engine",
   "title": "Universal Toolchain 05 Forecast Engine",
-  "description": "Design and run universal toolchain 05 workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for universal toolchain 05 forecast engine with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 8289,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Universal Toolchain 05",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.422Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/universal-toolchain-05.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

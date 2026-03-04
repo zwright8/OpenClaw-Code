@@ -5,7 +5,7 @@
   "id": 5318,
   "name": "service-mesh-conflict-resolver",
   "title": "Service Mesh Conflict Resolver",
-  "description": "Design and run service mesh workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for service mesh conflict resolver with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 9759,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Service Mesh",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.498Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/service-mesh.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

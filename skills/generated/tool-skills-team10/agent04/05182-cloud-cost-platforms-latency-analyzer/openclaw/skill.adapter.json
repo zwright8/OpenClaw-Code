@@ -5,7 +5,7 @@
   "id": 5182,
   "name": "cloud-cost-platforms-latency-analyzer",
   "title": "Cloud Cost Platforms Latency Analyzer",
-  "description": "Design and run cloud cost platforms workflows with latency analyzer controls.",
+  "description": "OpenClaw extension adapter for cloud cost platforms latency analyzer with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 7472,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Cloud Cost Platforms",
+  "capability": "Latency Analyzer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.473Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/cloud-cost-platforms.md",
+    "capability": "../../resources/capabilities/latency-analyzer.md"
+  }
 }

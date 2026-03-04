@@ -5,7 +5,7 @@
   "id": 3663,
   "name": "partner-portals-retry-governor",
   "title": "Partner Portals Retry Governor",
-  "description": "Design and run partner portals workflows with retry governor controls.",
+  "description": "OpenClaw extension adapter for partner portals retry governor with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 5941,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Partner Portals",
+  "capability": "Retry Governor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.097Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/partner-portals.md",
+    "capability": "../../resources/capabilities/retry-governor.md"
+  }
 }

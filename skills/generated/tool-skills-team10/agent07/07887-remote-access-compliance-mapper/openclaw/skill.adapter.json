@@ -5,7 +5,7 @@
   "id": 7887,
   "name": "remote-access-compliance-mapper",
   "title": "Remote Access Compliance Mapper",
-  "description": "Design and run remote access workflows with compliance mapper controls.",
+  "description": "OpenClaw extension adapter for remote access compliance mapper with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 1887,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Remote Access",
+  "capability": "Compliance Mapper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.145Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/remote-access.md",
+    "capability": "../../resources/capabilities/compliance-mapper.md"
+  }
 }

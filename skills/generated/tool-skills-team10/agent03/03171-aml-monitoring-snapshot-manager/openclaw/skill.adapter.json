@@ -5,7 +5,7 @@
   "id": 3171,
   "name": "aml-monitoring-snapshot-manager",
   "title": "AML Monitoring Snapshot Manager",
-  "description": "Design and run aml monitoring workflows with snapshot manager controls.",
+  "description": "OpenClaw extension adapter for aml monitoring snapshot manager with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9046,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "AML Monitoring",
+  "capability": "Snapshot Manager",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.973Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/aml-monitoring.md",
+    "capability": "../../resources/capabilities/snapshot-manager.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 12033,
   "name": "ethics-review-boards-reliability-scorer",
   "title": "Ethics Review Boards Reliability Scorer",
-  "description": "Design and run ethics review boards workflows with reliability scorer controls.",
+  "description": "OpenClaw extension adapter for ethics review boards reliability scorer with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 12226,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Ethics Review Boards",
+  "capability": "Reliability Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.249Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ethics-review-boards.md",
+    "capability": "../../resources/capabilities/reliability-scorer.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 7097,
   "name": "news-monitoring-human-handoff-router",
   "title": "News Monitoring Human Handoff Router",
-  "description": "Design and run news monitoring workflows with human handoff router controls.",
+  "description": "OpenClaw extension adapter for news monitoring human handoff router with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10423,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "News Monitoring",
+  "capability": "Human Handoff Router",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.957Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/news-monitoring.md",
+    "capability": "../../resources/capabilities/human-handoff-router.md"
+  }
 }

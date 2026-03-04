@@ -5,7 +5,7 @@
   "id": 7441,
   "name": "a-b-testing-incident-triage",
   "title": "A/B Testing Incident Triage",
-  "description": "Design and run a/b testing workflows with incident triage controls.",
+  "description": "OpenClaw extension adapter for a/b testing incident triage with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 2154,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "A/B Testing",
+  "capability": "Incident Triage",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.030Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/a-b-testing.md",
+    "capability": "../../resources/capabilities/incident-triage.md"
+  }
 }

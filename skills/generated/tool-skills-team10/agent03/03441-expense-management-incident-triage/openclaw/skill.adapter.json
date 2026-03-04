@@ -5,7 +5,7 @@
   "id": 3441,
   "name": "expense-management-incident-triage",
   "title": "Expense Management Incident Triage",
-  "description": "Design and run expense management workflows with incident triage controls.",
+  "description": "OpenClaw extension adapter for expense management incident triage with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 2059,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Expense Management",
+  "capability": "Incident Triage",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.027Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/expense-management.md",
+    "capability": "../../resources/capabilities/incident-triage.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 6424,
   "name": "image-annotation-evidence-collector",
   "title": "Image Annotation Evidence Collector",
-  "description": "Design and run image annotation workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for image annotation evidence collector with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 6207,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Image Annotation",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.773Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/image-annotation.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

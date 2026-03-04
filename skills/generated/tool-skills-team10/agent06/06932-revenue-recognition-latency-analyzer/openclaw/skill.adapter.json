@@ -5,7 +5,7 @@
   "id": 6932,
   "name": "revenue-recognition-latency-analyzer",
   "title": "Revenue Recognition Latency Analyzer",
-  "description": "Design and run revenue recognition workflows with latency analyzer controls.",
+  "description": "OpenClaw extension adapter for revenue recognition latency analyzer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10356,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Revenue Recognition",
+  "capability": "Latency Analyzer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.899Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/revenue-recognition.md",
+    "capability": "../../resources/capabilities/latency-analyzer.md"
+  }
 }

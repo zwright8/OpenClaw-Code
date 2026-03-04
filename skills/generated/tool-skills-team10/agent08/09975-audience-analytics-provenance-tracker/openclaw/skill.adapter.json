@@ -5,7 +5,7 @@
   "id": 9975,
   "name": "audience-analytics-provenance-tracker",
   "title": "Audience Analytics Provenance Tracker",
-  "description": "Design and run audience analytics workflows with provenance tracker controls.",
+  "description": "OpenClaw extension adapter for audience analytics provenance tracker with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11464,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Audience Analytics",
+  "capability": "Provenance Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.700Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/audience-analytics.md",
+    "capability": "../../resources/capabilities/provenance-tracker.md"
+  }
 }

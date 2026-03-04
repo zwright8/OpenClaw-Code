@@ -5,7 +5,7 @@
   "id": 6436,
   "name": "image-annotation-risk-scorer",
   "title": "Image Annotation Risk Scorer",
-  "description": "Design and run image annotation workflows with risk scorer controls.",
+  "description": "OpenClaw extension adapter for image annotation risk scorer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 1601,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Image Annotation",
+  "capability": "Risk Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.776Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/image-annotation.md",
+    "capability": "../../resources/capabilities/risk-scorer.md"
+  }
 }

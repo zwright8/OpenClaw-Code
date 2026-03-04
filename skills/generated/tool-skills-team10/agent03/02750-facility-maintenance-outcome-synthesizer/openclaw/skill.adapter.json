@@ -5,7 +5,7 @@
   "id": 2750,
   "name": "facility-maintenance-outcome-synthesizer",
   "title": "Facility Maintenance Outcome Synthesizer",
-  "description": "Design and run facility maintenance workflows with outcome synthesizer controls.",
+  "description": "OpenClaw extension adapter for facility maintenance outcome synthesizer with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 4086,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Facility Maintenance",
+  "capability": "Outcome Synthesizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.865Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/facility-maintenance.md",
+    "capability": "../../resources/capabilities/outcome-synthesizer.md"
+  }
 }

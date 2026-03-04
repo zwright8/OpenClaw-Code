@@ -5,7 +5,7 @@
   "id": 11828,
   "name": "protocol-management-forecast-engine",
   "title": "Protocol Management Forecast Engine",
-  "description": "Design and run protocol management workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for protocol management forecast engine with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 12138,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Protocol Management",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.177Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/protocol-management.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

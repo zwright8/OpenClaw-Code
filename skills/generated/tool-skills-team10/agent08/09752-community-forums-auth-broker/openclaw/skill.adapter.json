@@ -5,7 +5,7 @@
   "id": 9752,
   "name": "community-forums-auth-broker",
   "title": "Community Forums Auth Broker",
-  "description": "Design and run community forums workflows with auth broker controls.",
+  "description": "OpenClaw extension adapter for community forums auth broker with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 962,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Community Forums",
+  "capability": "Auth Broker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.658Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/community-forums.md",
+    "capability": "../../resources/capabilities/auth-broker.md"
+  }
 }

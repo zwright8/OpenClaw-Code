@@ -5,7 +5,7 @@
   "id": 12441,
   "name": "simulation-environments-incident-triage",
   "title": "Simulation Environments Incident Triage",
-  "description": "Design and run simulation environments workflows with incident triage controls.",
+  "description": "OpenClaw extension adapter for simulation environments incident triage with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 2283,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Simulation Environments",
+  "capability": "Incident Triage",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.330Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/simulation-environments.md",
+    "capability": "../../resources/capabilities/incident-triage.md"
+  }
 }

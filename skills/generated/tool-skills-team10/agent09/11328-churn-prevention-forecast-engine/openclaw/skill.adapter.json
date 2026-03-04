@@ -5,7 +5,7 @@
   "id": 11328,
   "name": "churn-prevention-forecast-engine",
   "title": "Churn Prevention Forecast Engine",
-  "description": "Design and run churn prevention workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for churn prevention forecast engine with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 11928,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Churn Prevention",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.045Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/churn-prevention.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

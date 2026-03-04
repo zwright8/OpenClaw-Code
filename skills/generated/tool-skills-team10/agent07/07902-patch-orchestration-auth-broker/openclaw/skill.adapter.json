@@ -5,7 +5,7 @@
   "id": 7902,
   "name": "patch-orchestration-auth-broker",
   "title": "Patch Orchestration Auth Broker",
-  "description": "Design and run patch orchestration workflows with auth broker controls.",
+  "description": "OpenClaw extension adapter for patch orchestration auth broker with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 926,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Patch Orchestration",
+  "capability": "Auth Broker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.148Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/patch-orchestration.md",
+    "capability": "../../resources/capabilities/auth-broker.md"
+  }
 }

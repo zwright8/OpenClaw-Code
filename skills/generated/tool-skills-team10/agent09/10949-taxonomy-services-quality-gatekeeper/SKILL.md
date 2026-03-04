@@ -1,36 +1,55 @@
 ---
 name: taxonomy-services-quality-gatekeeper
-description: Use when tasks require taxonomy services quality gatekeeper capabilities and related automation workflows.
+description: Use when tasks require taxonomy services quality gatekeeper with production-grade validation, rollback safety, and OpenClaw extension controls.
 ---
 
 # Taxonomy Services Quality Gatekeeper
 
 ## Purpose
-Design and run taxonomy services workflows with quality gatekeeper controls.
+Design and execute taxonomy services workflows using quality gatekeeper controls with validated outcomes.
 
-## Priority Context
+## Precision Profile
+- Domain: Taxonomy Services
+- Capability: Quality Gatekeeper
 - Score: 68
 - Rank: 5626
 - Priority band: P3
 
-## Use This Skill When
-- A task requires taxonomy services quality gatekeeper operations.
-- You need a repeatable workflow that combines planning, execution, and validation.
-- You want to integrate external tools while keeping OpenClaw core behavior unchanged.
+## Required Inputs
+- Objective and scope boundaries
+- Source systems, target systems, and identity keys
+- Auth method and permission scope
+- Success criteria and rollback constraints
 
 ## Workflow
-1. Define objective, scope, and expected outputs.
-2. Perform auth/session checks and confirm required permissions.
-3. Execute smallest valid operation first (read-only where possible).
-4. Expand to write operations with explicit validation and rollback plan.
-5. Capture artifacts, logs, and next actions for handoff.
+1. Confirm objective, scope, and non-goals.
+2. Validate access and permission boundaries before execution.
+3. Run read-only preflight checks and capture baseline state.
+4. Execute quality gatekeeper actions with minimal blast radius.
+5. Validate outputs against schema, business rules, and side effects.
+6. If validation fails, execute rollback/recovery path and re-verify.
+7. Capture artifacts, logs, and decision evidence.
+8. Return structured status with follow-up actions.
 
-## Safety Rules
-- Do not duplicate OpenClaw core utilities; use extension-layer wrappers only.
-- Enforce least privilege and redact sensitive values in logs.
-- Validate side effects before marking tasks complete.
+## Validation Checklist
+- Input contract validated
+- Auth scope confirmed
+- Preflight recorded
+- Post-execution checks passed
+- Sensitive values redacted
+- Recovery path tested or documented
+
+## Resources
+- Baseline: [TOOL_SKILL_BASELINE.md](../../resources/TOOL_SKILL_BASELINE.md)
+- Domain: [Taxonomy Services](../../resources/domains/taxonomy-services.md)
+- Capability: [Quality Gatekeeper](../../resources/capabilities/quality-gatekeeper.md)
 
 ## Output Contract
 - summary: concise result and status
-- artifacts: files, links, or IDs generated
-- follow_up: next steps or blockers
+- artifacts: files, IDs, links, logs, or evidence references
+- follow_up: next actions, blockers, and remediation tasks
+
+## Guardrails
+- Do not duplicate OpenClaw core utilities; remain an extension layer.
+- Prefer deterministic execution and auditable outputs.
+- Escalate when required permissions or prerequisites are unavailable.

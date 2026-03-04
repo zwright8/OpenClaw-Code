@@ -5,7 +5,7 @@
   "id": 1966,
   "name": "freight-brokerage-state-reconciler",
   "title": "Freight Brokerage State Reconciler",
-  "description": "Design and run freight brokerage workflows with state reconciler controls.",
+  "description": "OpenClaw extension adapter for freight brokerage state reconciler with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 4061,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Freight Brokerage",
+  "capability": "State Reconciler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.681Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/freight-brokerage.md",
+    "capability": "../../resources/capabilities/state-reconciler.md"
+  }
 }

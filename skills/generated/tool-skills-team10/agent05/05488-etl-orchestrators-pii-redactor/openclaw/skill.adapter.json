@@ -5,7 +5,7 @@
   "id": 5488,
   "name": "etl-orchestrators-pii-redactor",
   "title": "ETL Orchestrators PII Redactor",
-  "description": "Design and run etl orchestrators workflows with pii redactor controls.",
+  "description": "OpenClaw extension adapter for etl orchestrators pii redactor with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 3441,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "ETL Orchestrators",
+  "capability": "PII Redactor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.558Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/etl-orchestrators.md",
+    "capability": "../../resources/capabilities/pii-redactor.md"
+  }
 }

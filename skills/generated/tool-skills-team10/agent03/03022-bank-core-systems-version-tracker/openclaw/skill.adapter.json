@@ -5,7 +5,7 @@
   "id": 3022,
   "name": "bank-core-systems-version-tracker",
   "title": "Bank Core Systems Version Tracker",
-  "description": "Design and run bank core systems workflows with version tracker controls.",
+  "description": "OpenClaw extension adapter for bank core systems version tracker with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9005,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Bank Core Systems",
+  "capability": "Version Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.944Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/bank-core-systems.md",
+    "capability": "../../resources/capabilities/version-tracker.md"
+  }
 }

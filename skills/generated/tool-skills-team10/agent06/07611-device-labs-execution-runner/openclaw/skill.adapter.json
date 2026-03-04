@@ -5,7 +5,7 @@
   "id": 7611,
   "name": "device-labs-execution-runner",
   "title": "Device Labs Execution Runner",
-  "description": "Design and run device labs workflows with execution runner controls.",
+  "description": "OpenClaw extension adapter for device labs execution runner with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 1387,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Device Labs",
+  "capability": "Execution Runner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.090Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/device-labs.md",
+    "capability": "../../resources/capabilities/execution-runner.md"
+  }
 }

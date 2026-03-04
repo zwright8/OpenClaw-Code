@@ -5,7 +5,7 @@
   "id": 336,
   "name": "amazon-seller-report-builder",
   "title": "Amazon Seller Report Builder",
-  "description": "Generates operational and KPI reports from Amazon Seller activity.",
+  "description": "OpenClaw extension adapter for amazon seller report builder with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 12578,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Amazon Seller",
+  "capability": "Report Builder",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.248Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/amazon-seller.md",
+    "capability": "../../resources/capabilities/report-builder.md"
+  }
 }

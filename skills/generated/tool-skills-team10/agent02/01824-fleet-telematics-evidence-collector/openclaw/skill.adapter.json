@@ -5,7 +5,7 @@
   "id": 1824,
   "name": "fleet-telematics-evidence-collector",
   "title": "Fleet Telematics Evidence Collector",
-  "description": "Design and run fleet telematics workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for fleet telematics evidence collector with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 5793,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Fleet Telematics",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.632Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/fleet-telematics.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

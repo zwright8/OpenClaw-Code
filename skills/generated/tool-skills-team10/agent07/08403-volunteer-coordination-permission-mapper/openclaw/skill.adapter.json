@@ -5,7 +5,7 @@
   "id": 8403,
   "name": "volunteer-coordination-permission-mapper",
   "title": "Volunteer Coordination Permission Mapper",
-  "description": "Design and run volunteer coordination workflows with permission mapper controls.",
+  "description": "OpenClaw extension adapter for volunteer coordination permission mapper with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 3659,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Volunteer Coordination",
+  "capability": "Permission Mapper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.312Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/volunteer-coordination.md",
+    "capability": "../../resources/capabilities/permission-mapper.md"
+  }
 }

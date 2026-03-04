@@ -5,7 +5,7 @@
   "id": 4496,
   "name": "endpoint-security-approval-orchestrator",
   "title": "Endpoint Security Approval Orchestrator",
-  "description": "Design and run endpoint security workflows with approval orchestrator controls.",
+  "description": "OpenClaw extension adapter for endpoint security approval orchestrator with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 2384,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Endpoint Security",
+  "capability": "Approval Orchestrator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.311Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/endpoint-security.md",
+    "capability": "../../resources/capabilities/approval-orchestrator.md"
+  }
 }

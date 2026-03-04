@@ -5,7 +5,7 @@
   "id": 9434,
   "name": "predictive-maintenance-sla-enforcer",
   "title": "Predictive Maintenance SLA Enforcer",
-  "description": "Design and run predictive maintenance workflows with sla enforcer controls.",
+  "description": "OpenClaw extension adapter for predictive maintenance sla enforcer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 7611,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Predictive Maintenance",
+  "capability": "SLA Enforcer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.565Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/predictive-maintenance.md",
+    "capability": "../../resources/capabilities/sla-enforcer.md"
+  }
 }

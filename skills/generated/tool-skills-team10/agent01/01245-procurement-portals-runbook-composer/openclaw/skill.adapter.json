@@ -5,7 +5,7 @@
   "id": 1245,
   "name": "procurement-portals-runbook-composer",
   "title": "Procurement Portals Runbook Composer",
-  "description": "Design and run procurement portals workflows with runbook composer controls.",
+  "description": "OpenClaw extension adapter for procurement portals runbook composer with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 3983,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Procurement Portals",
+  "capability": "Runbook Composer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.488Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/procurement-portals.md",
+    "capability": "../../resources/capabilities/runbook-composer.md"
+  }
 }

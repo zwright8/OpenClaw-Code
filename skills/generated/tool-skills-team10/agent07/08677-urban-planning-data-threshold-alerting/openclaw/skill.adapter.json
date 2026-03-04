@@ -5,7 +5,7 @@
   "id": 8677,
   "name": "urban-planning-data-threshold-alerting",
   "title": "Urban Planning Data Threshold Alerting",
-  "description": "Design and run urban planning data workflows with threshold alerting controls.",
+  "description": "OpenClaw extension adapter for urban planning data threshold alerting with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 11024,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Urban Planning Data",
+  "capability": "Threshold Alerting",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.383Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/urban-planning-data.md",
+    "capability": "../../resources/capabilities/threshold-alerting.md"
+  }
 }

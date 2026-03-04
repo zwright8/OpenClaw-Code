@@ -5,7 +5,7 @@
   "id": 11988,
   "name": "peer-review-ops-pii-redactor",
   "title": "Peer Review Ops PII Redactor",
-  "description": "Design and run peer review ops workflows with pii redactor controls.",
+  "description": "OpenClaw extension adapter for peer review ops pii redactor with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 3938,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Peer Review Ops",
+  "capability": "PII Redactor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.212Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/peer-review-ops.md",
+    "capability": "../../resources/capabilities/pii-redactor.md"
+  }
 }

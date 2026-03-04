@@ -5,7 +5,7 @@
   "id": 2293,
   "name": "energy-grid-ops-remediation-planner",
   "title": "Energy Grid Ops Remediation Planner",
-  "description": "Design and run energy grid ops workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for energy grid ops remediation planner with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 2686,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Energy Grid Ops",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.747Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/energy-grid-ops.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

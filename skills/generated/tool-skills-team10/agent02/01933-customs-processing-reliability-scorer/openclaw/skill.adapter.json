@@ -5,7 +5,7 @@
   "id": 1933,
   "name": "customs-processing-reliability-scorer",
   "title": "Customs Processing Reliability Scorer",
-  "description": "Design and run customs processing workflows with reliability scorer controls.",
+  "description": "OpenClaw extension adapter for customs processing reliability scorer with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 8677,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Customs Processing",
+  "capability": "Reliability Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.667Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/customs-processing.md",
+    "capability": "../../resources/capabilities/reliability-scorer.md"
+  }
 }

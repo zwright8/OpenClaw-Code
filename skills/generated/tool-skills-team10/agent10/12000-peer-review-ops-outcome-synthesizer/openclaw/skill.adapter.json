@@ -5,7 +5,7 @@
   "id": 12000,
   "name": "peer-review-ops-outcome-synthesizer",
   "title": "Peer Review Ops Outcome Synthesizer",
-  "description": "Design and run peer review ops workflows with outcome synthesizer controls.",
+  "description": "OpenClaw extension adapter for peer review ops outcome synthesizer with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 7150,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Peer Review Ops",
+  "capability": "Outcome Synthesizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.236Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/peer-review-ops.md",
+    "capability": "../../resources/capabilities/outcome-synthesizer.md"
+  }
 }

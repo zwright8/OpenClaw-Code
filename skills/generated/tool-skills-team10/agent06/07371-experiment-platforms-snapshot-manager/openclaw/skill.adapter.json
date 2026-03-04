@@ -5,7 +5,7 @@
   "id": 7371,
   "name": "experiment-platforms-snapshot-manager",
   "title": "Experiment Platforms Snapshot Manager",
-  "description": "Design and run experiment platforms workflows with snapshot manager controls.",
+  "description": "OpenClaw extension adapter for experiment platforms snapshot manager with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10516,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Experiment Platforms",
+  "capability": "Snapshot Manager",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.017Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/experiment-platforms.md",
+    "capability": "../../resources/capabilities/snapshot-manager.md"
+  }
 }

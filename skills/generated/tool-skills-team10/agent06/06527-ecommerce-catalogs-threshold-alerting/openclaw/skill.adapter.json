@@ -5,7 +5,7 @@
   "id": 6527,
   "name": "ecommerce-catalogs-threshold-alerting",
   "title": "Ecommerce Catalogs Threshold Alerting",
-  "description": "Design and run ecommerce catalogs workflows with threshold alerting controls.",
+  "description": "OpenClaw extension adapter for ecommerce catalogs threshold alerting with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 8004,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Ecommerce Catalogs",
+  "capability": "Threshold Alerting",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.820Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ecommerce-catalogs.md",
+    "capability": "../../resources/capabilities/threshold-alerting.md"
+  }
 }

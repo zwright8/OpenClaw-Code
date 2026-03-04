@@ -5,7 +5,7 @@
   "id": 3829,
   "name": "ad-platforms-capacity-planner",
   "title": "Ad Platforms Capacity Planner",
-  "description": "Design and run ad platforms workflows with capacity planner controls.",
+  "description": "OpenClaw extension adapter for ad platforms capacity planner with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9304,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Ad Platforms",
+  "capability": "Capacity Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.129Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ad-platforms.md",
+    "capability": "../../resources/capabilities/capacity-planner.md"
+  }
 }

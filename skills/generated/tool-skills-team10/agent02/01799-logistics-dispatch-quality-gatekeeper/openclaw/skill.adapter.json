@@ -5,7 +5,7 @@
   "id": 1799,
   "name": "logistics-dispatch-quality-gatekeeper",
   "title": "Logistics Dispatch Quality Gatekeeper",
-  "description": "Design and run logistics dispatch workflows with quality gatekeeper controls.",
+  "description": "OpenClaw extension adapter for logistics dispatch quality gatekeeper with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 5304,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Logistics Dispatch",
+  "capability": "Quality Gatekeeper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.627Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/logistics-dispatch.md",
+    "capability": "../../resources/capabilities/quality-gatekeeper.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 738,
   "name": "loom-workflow-automator",
   "title": "Loom Workflow Automator",
-  "description": "Executes repeatable multi-step workflows using Loom.",
+  "description": "OpenClaw extension adapter for loom workflow automator with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 7927,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Loom",
+  "capability": "Workflow Automator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.349Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/loom.md",
+    "capability": "../../resources/capabilities/workflow-automator.md"
+  }
 }

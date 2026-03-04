@@ -5,7 +5,7 @@
   "id": 6915,
   "name": "revenue-recognition-queue-balancer",
   "title": "Revenue Recognition Queue Balancer",
-  "description": "Design and run revenue recognition workflows with queue balancer controls.",
+  "description": "OpenClaw extension adapter for revenue recognition queue balancer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10345,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Revenue Recognition",
+  "capability": "Queue Balancer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.896Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/revenue-recognition.md",
+    "capability": "../../resources/capabilities/queue-balancer.md"
+  }
 }

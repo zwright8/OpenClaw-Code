@@ -5,7 +5,7 @@
   "id": 10805,
   "name": "semantic-retrieval-spec-drift-detector",
   "title": "Semantic Retrieval Spec Drift Detector",
-  "description": "Design and run semantic retrieval workflows with spec drift detector controls.",
+  "description": "OpenClaw extension adapter for semantic retrieval spec drift detector with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 4388,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Semantic Retrieval",
+  "capability": "Spec Drift Detector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.916Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/semantic-retrieval.md",
+    "capability": "../../resources/capabilities/spec-drift-detector.md"
+  }
 }

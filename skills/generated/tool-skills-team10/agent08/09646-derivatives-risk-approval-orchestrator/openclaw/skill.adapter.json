@@ -5,7 +5,7 @@
   "id": 9646,
   "name": "derivatives-risk-approval-orchestrator",
   "title": "Derivatives Risk Approval Orchestrator",
-  "description": "Design and run derivatives risk workflows with approval orchestrator controls.",
+  "description": "OpenClaw extension adapter for derivatives risk approval orchestrator with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 2595,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Derivatives Risk",
+  "capability": "Approval Orchestrator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.637Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/derivatives-risk.md",
+    "capability": "../../resources/capabilities/approval-orchestrator.md"
+  }
 }

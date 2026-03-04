@@ -5,7 +5,7 @@
   "id": 2307,
   "name": "utility-billing-operation-planner",
   "title": "Utility Billing Operation Planner",
-  "description": "Design and run utility billing workflows with operation planner controls.",
+  "description": "OpenClaw extension adapter for utility billing operation planner with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 7201,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Utility Billing",
+  "capability": "Operation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.750Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/utility-billing.md",
+    "capability": "../../resources/capabilities/operation-planner.md"
+  }
 }

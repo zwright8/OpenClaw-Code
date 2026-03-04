@@ -5,7 +5,7 @@
   "id": 320,
   "name": "woocommerce-migration-assistant",
   "title": "WooCommerce Migration Assistant",
-  "description": "Plans and executes safe migrations to or from WooCommerce.",
+  "description": "OpenClaw extension adapter for woocommerce migration assistant with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 12566,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "WooCommerce",
+  "capability": "Migration Assistant",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.244Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/woocommerce.md",
+    "capability": "../../resources/capabilities/migration-assistant.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 3602,
   "name": "revops-systems-auth-broker",
   "title": "RevOps Systems Auth Broker",
-  "description": "Design and run revops systems workflows with auth broker controls.",
+  "description": "OpenClaw extension adapter for revops systems auth broker with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 847,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "RevOps Systems",
+  "capability": "Auth Broker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.085Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/revops-systems.md",
+    "capability": "../../resources/capabilities/auth-broker.md"
+  }
 }

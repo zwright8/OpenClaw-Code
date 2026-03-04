@@ -5,7 +5,7 @@
   "id": 3746,
   "name": "customer-data-platforms-approval-orchestrator",
   "title": "Customer Data Platforms Approval Orchestrator",
-  "description": "Design and run customer data platforms workflows with approval orchestrator controls.",
+  "description": "OpenClaw extension adapter for customer data platforms approval orchestrator with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 5950,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Customer Data Platforms",
+  "capability": "Approval Orchestrator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.113Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/customer-data-platforms.md",
+    "capability": "../../resources/capabilities/approval-orchestrator.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 4956,
   "name": "synthetic-testing-api-contract-validator",
   "title": "Synthetic Testing API Contract Validator",
-  "description": "Design and run synthetic testing workflows with api contract validator controls.",
+  "description": "OpenClaw extension adapter for synthetic testing api contract validator with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 132,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Synthetic Testing",
+  "capability": "API Contract Validator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.404Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/synthetic-testing.md",
+    "capability": "../../resources/capabilities/api-contract-validator.md"
+  }
 }

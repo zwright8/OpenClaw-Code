@@ -5,7 +5,7 @@
   "id": 3685,
   "name": "partner-portals-policy-evaluator",
   "title": "Partner Portals Policy Evaluator",
-  "description": "Design and run partner portals workflows with policy evaluator controls.",
+  "description": "OpenClaw extension adapter for partner portals policy evaluator with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 3306,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Partner Portals",
+  "capability": "Policy Evaluator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.102Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/partner-portals.md",
+    "capability": "../../resources/capabilities/policy-evaluator.md"
+  }
 }

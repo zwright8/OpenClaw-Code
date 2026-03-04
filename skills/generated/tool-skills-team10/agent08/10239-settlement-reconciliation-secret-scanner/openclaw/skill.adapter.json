@@ -5,7 +5,7 @@
   "id": 10239,
   "name": "settlement-reconciliation-secret-scanner",
   "title": "Settlement Reconciliation Secret Scanner",
-  "description": "Design and run settlement reconciliation workflows with secret scanner controls.",
+  "description": "OpenClaw extension adapter for settlement reconciliation secret scanner with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 2991,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Settlement Reconciliation",
+  "capability": "Secret Scanner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.777Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/settlement-reconciliation.md",
+    "capability": "../../resources/capabilities/secret-scanner.md"
+  }
 }

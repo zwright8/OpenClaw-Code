@@ -5,7 +5,7 @@
   "id": 10084,
   "name": "pos-systems-sla-enforcer",
   "title": "POS Systems SLA Enforcer",
-  "description": "Design and run pos systems workflows with sla enforcer controls.",
+  "description": "OpenClaw extension adapter for pos systems sla enforcer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11513,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "POS Systems",
+  "capability": "SLA Enforcer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.747Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/pos-systems.md",
+    "capability": "../../resources/capabilities/sla-enforcer.md"
+  }
 }

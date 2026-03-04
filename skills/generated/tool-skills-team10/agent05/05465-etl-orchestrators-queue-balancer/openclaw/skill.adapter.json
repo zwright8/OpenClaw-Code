@@ -5,7 +5,7 @@
   "id": 5465,
   "name": "etl-orchestrators-queue-balancer",
   "title": "ETL Orchestrators Queue Balancer",
-  "description": "Design and run etl orchestrators workflows with queue balancer controls.",
+  "description": "OpenClaw extension adapter for etl orchestrators queue balancer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 9820,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "ETL Orchestrators",
+  "capability": "Queue Balancer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.526Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/etl-orchestrators.md",
+    "capability": "../../resources/capabilities/queue-balancer.md"
+  }
 }

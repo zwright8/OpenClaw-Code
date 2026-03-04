@@ -5,7 +5,7 @@
   "id": 3802,
   "name": "ad-platforms-auth-broker",
   "title": "Ad Platforms Auth Broker",
-  "description": "Design and run ad platforms workflows with auth broker controls.",
+  "description": "OpenClaw extension adapter for ad platforms auth broker with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 851,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Ad Platforms",
+  "capability": "Auth Broker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.124Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ad-platforms.md",
+    "capability": "../../resources/capabilities/auth-broker.md"
+  }
 }

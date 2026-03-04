@@ -5,7 +5,7 @@
   "id": 9531,
   "name": "trading-platforms-cost-attribution",
   "title": "Trading Platforms Cost Attribution",
-  "description": "Design and run trading platforms workflows with cost attribution controls.",
+  "description": "OpenClaw extension adapter for trading platforms cost attribution with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 11300,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Trading Platforms",
+  "capability": "Cost Attribution",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.614Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/trading-platforms.md",
+    "capability": "../../resources/capabilities/cost-attribution.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 4335,
   "name": "access-governance-policy-evaluator",
   "title": "Access Governance Policy Evaluator",
-  "description": "Design and run access governance workflows with policy evaluator controls.",
+  "description": "OpenClaw extension adapter for access governance policy evaluator with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 3351,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Access Governance",
+  "capability": "Policy Evaluator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.256Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/access-governance.md",
+    "capability": "../../resources/capabilities/policy-evaluator.md"
+  }
 }

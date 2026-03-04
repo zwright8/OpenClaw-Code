@@ -5,7 +5,7 @@
   "id": 2442,
   "name": "esg-reporting-root-cause-miner",
   "title": "ESG Reporting Root Cause Miner",
-  "description": "Design and run esg reporting workflows with root cause miner controls.",
+  "description": "OpenClaw extension adapter for esg reporting root cause miner with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 4518,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "ESG Reporting",
+  "capability": "Root Cause Miner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.803Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/esg-reporting.md",
+    "capability": "../../resources/capabilities/root-cause-miner.md"
+  }
 }

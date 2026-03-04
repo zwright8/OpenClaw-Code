@@ -5,7 +5,7 @@
   "id": 12521,
   "name": "universal-toolchain-01-snapshot-manager",
   "title": "Universal Toolchain 01 Snapshot Manager",
-  "description": "Design and run universal toolchain 01 workflows with snapshot manager controls.",
+  "description": "OpenClaw extension adapter for universal toolchain 01 snapshot manager with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 8196,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Universal Toolchain 01",
+  "capability": "Snapshot Manager",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.381Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/universal-toolchain-01.md",
+    "capability": "../../resources/capabilities/snapshot-manager.md"
+  }
 }

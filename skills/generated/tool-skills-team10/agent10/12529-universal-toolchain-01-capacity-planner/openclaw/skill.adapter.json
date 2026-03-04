@@ -5,7 +5,7 @@
   "id": 12529,
   "name": "universal-toolchain-01-capacity-planner",
   "title": "Universal Toolchain 01 Capacity Planner",
-  "description": "Design and run universal toolchain 01 workflows with capacity planner controls.",
+  "description": "OpenClaw extension adapter for universal toolchain 01 capacity planner with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 8202,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Universal Toolchain 01",
+  "capability": "Capacity Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.382Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/universal-toolchain-01.md",
+    "capability": "../../resources/capabilities/capacity-planner.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 2688,
   "name": "bim-coordination-pii-redactor",
   "title": "BIM Coordination PII Redactor",
-  "description": "Design and run bim coordination workflows with pii redactor controls.",
+  "description": "OpenClaw extension adapter for bim coordination pii redactor with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 3231,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "BIM Coordination",
+  "capability": "PII Redactor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.853Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/bim-coordination.md",
+    "capability": "../../resources/capabilities/pii-redactor.md"
+  }
 }

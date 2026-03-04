@@ -5,7 +5,7 @@
   "id": 3417,
   "name": "expense-management-delta-calculator",
   "title": "Expense Management Delta Calculator",
-  "description": "Design and run expense management workflows with delta calculator controls.",
+  "description": "OpenClaw extension adapter for expense management delta calculator with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9149,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Expense Management",
+  "capability": "Delta Calculator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.022Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/expense-management.md",
+    "capability": "../../resources/capabilities/delta-calculator.md"
+  }
 }

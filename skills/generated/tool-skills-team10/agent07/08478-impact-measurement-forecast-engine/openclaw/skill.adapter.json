@@ -5,7 +5,7 @@
   "id": 8478,
   "name": "impact-measurement-forecast-engine",
   "title": "Impact Measurement Forecast Engine",
-  "description": "Design and run impact measurement workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for impact measurement forecast engine with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 10962,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Impact Measurement",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.341Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/impact-measurement.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

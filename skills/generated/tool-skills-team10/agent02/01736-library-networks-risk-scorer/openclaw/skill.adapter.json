@@ -5,7 +5,7 @@
   "id": 1736,
   "name": "library-networks-risk-scorer",
   "title": "Library Networks Risk Scorer",
-  "description": "Design and run library networks workflows with risk scorer controls.",
+  "description": "OpenClaw extension adapter for library networks risk scorer with validated execution workflow.",
   "agent": "agent02",
   "scoring": {
     "rank": 1500,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Library Networks",
+  "capability": "Risk Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.615Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/library-networks.md",
+    "capability": "../../resources/capabilities/risk-scorer.md"
+  }
 }

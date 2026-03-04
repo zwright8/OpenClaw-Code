@@ -5,7 +5,7 @@
   "id": 3699,
   "name": "partner-portals-quality-gatekeeper",
   "title": "Partner Portals Quality Gatekeeper",
-  "description": "Design and run partner portals workflows with quality gatekeeper controls.",
+  "description": "OpenClaw extension adapter for partner portals quality gatekeeper with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 5388,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Partner Portals",
+  "capability": "Quality Gatekeeper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.105Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/partner-portals.md",
+    "capability": "../../resources/capabilities/quality-gatekeeper.md"
+  }
 }

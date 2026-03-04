@@ -5,7 +5,7 @@
   "id": 1228,
   "name": "procurement-portals-forecast-engine",
   "title": "Procurement Portals Forecast Engine",
-  "description": "Design and run procurement portals workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for procurement portals forecast engine with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 7787,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Procurement Portals",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.484Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/procurement-portals.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

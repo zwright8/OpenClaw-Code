@@ -5,7 +5,7 @@
   "id": 6846,
   "name": "billing-recovery-approval-orchestrator",
   "title": "Billing Recovery Approval Orchestrator",
-  "description": "Design and run billing recovery workflows with approval orchestrator controls.",
+  "description": "OpenClaw extension adapter for billing recovery approval orchestrator with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 2862,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Billing Recovery",
+  "capability": "Approval Orchestrator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.883Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/billing-recovery.md",
+    "capability": "../../resources/capabilities/approval-orchestrator.md"
+  }
 }

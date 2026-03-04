@@ -5,7 +5,7 @@
   "id": 8967,
   "name": "legislative-tracking-delta-calculator",
   "title": "Legislative Tracking Delta Calculator",
-  "description": "Design and run legislative tracking workflows with delta calculator controls.",
+  "description": "OpenClaw extension adapter for legislative tracking delta calculator with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 11123,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Legislative Tracking",
+  "capability": "Delta Calculator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.442Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/legislative-tracking.md",
+    "capability": "../../resources/capabilities/delta-calculator.md"
+  }
 }

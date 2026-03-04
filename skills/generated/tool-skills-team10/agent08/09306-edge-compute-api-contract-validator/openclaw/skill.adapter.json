@@ -5,7 +5,7 @@
   "id": 9306,
   "name": "edge-compute-api-contract-validator",
   "title": "Edge Compute API Contract Validator",
-  "description": "Design and run edge compute workflows with api contract validator controls.",
+  "description": "OpenClaw extension adapter for edge compute api contract validator with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 211,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Edge Compute",
+  "capability": "API Contract Validator",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.541Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/edge-compute.md",
+    "capability": "../../resources/capabilities/api-contract-validator.md"
+  }
 }

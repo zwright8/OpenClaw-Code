@@ -5,7 +5,7 @@
   "id": 12345,
   "name": "benchmark-repositories-runbook-composer",
   "title": "Benchmark Repositories Runbook Composer",
-  "description": "Design and run benchmark repositories workflows with runbook composer controls.",
+  "description": "OpenClaw extension adapter for benchmark repositories runbook composer with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 6731,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Benchmark Repositories",
+  "capability": "Runbook Composer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.312Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/benchmark-repositories.md",
+    "capability": "../../resources/capabilities/runbook-composer.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 861,
   "name": "elevenlabs-connector",
   "title": "ElevenLabs Connector",
-  "description": "Unified read/write connector for ElevenLabs APIs and data.",
+  "description": "OpenClaw extension adapter for elevenlabs connector with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 433,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "ElevenLabs",
+  "capability": "Connector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.374Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/elevenlabs.md",
+    "capability": "../../resources/capabilities/connector.md"
+  }
 }

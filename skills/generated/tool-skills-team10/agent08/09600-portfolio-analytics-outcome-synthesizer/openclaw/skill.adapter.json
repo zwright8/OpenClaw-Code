@@ -5,7 +5,7 @@
   "id": 9600,
   "name": "portfolio-analytics-outcome-synthesizer",
   "title": "Portfolio Analytics Outcome Synthesizer",
-  "description": "Design and run portfolio analytics workflows with outcome synthesizer controls.",
+  "description": "OpenClaw extension adapter for portfolio analytics outcome synthesizer with validated execution workflow.",
   "agent": "agent08",
   "scoring": {
     "rank": 7066,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Portfolio Analytics",
+  "capability": "Outcome Synthesizer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.627Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/portfolio-analytics.md",
+    "capability": "../../resources/capabilities/outcome-synthesizer.md"
+  }
 }

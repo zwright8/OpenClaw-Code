@@ -5,7 +5,7 @@
   "id": 11468,
   "name": "reference-programs-conflict-resolver",
   "title": "Reference Programs Conflict Resolver",
-  "description": "Design and run reference programs workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for reference programs conflict resolver with validated execution workflow.",
   "agent": "agent09",
   "scoring": {
     "rank": 11985,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Reference Programs",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.076Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/reference-programs.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

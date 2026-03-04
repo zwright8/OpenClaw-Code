@@ -5,7 +5,7 @@
   "id": 8774,
   "name": "legal-matter-mgmt-evidence-collector",
   "title": "Legal Matter Mgmt Evidence Collector",
-  "description": "Design and run legal matter mgmt workflows with evidence collector controls.",
+  "description": "OpenClaw extension adapter for legal matter mgmt evidence collector with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 3687,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Legal Matter Mgmt",
+  "capability": "Evidence Collector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.403Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/legal-matter-mgmt.md",
+    "capability": "../../resources/capabilities/evidence-collector.md"
+  }
 }

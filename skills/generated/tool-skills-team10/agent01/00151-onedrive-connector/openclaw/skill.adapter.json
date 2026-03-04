@@ -5,7 +5,7 @@
   "id": 151,
   "name": "onedrive-connector",
   "title": "OneDrive Connector",
-  "description": "Unified read/write connector for OneDrive APIs and data.",
+  "description": "OpenClaw extension adapter for onedrive connector with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 369,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "OneDrive",
+  "capability": "Connector",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.208Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/onedrive.md",
+    "capability": "../../resources/capabilities/connector.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 5023,
   "name": "kubernetes-platforms-artifact-publisher",
   "title": "Kubernetes Platforms Artifact Publisher",
-  "description": "Design and run kubernetes platforms workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for kubernetes platforms artifact publisher with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 7443,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Kubernetes Platforms",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.440Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/kubernetes-platforms.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

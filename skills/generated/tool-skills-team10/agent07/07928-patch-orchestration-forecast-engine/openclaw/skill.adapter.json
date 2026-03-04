@@ -5,7 +5,7 @@
   "id": 7928,
   "name": "patch-orchestration-forecast-engine",
   "title": "Patch Orchestration Forecast Engine",
-  "description": "Design and run patch orchestration workflows with forecast engine controls.",
+  "description": "OpenClaw extension adapter for patch orchestration forecast engine with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 10752,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Patch Orchestration",
+  "capability": "Forecast Engine",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.152Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/patch-orchestration.md",
+    "capability": "../../resources/capabilities/forecast-engine.md"
+  }
 }

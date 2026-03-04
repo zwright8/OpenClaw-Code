@@ -5,7 +5,7 @@
   "id": 8562,
   "name": "emergency-response-job-scheduler",
   "title": "Emergency Response Job Scheduler",
-  "description": "Design and run emergency response workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for emergency response job scheduler with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 5128,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Emergency Response",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.360Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/emergency-response.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

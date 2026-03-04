@@ -5,7 +5,7 @@
   "id": 8012,
   "name": "bioinformatics-pipelines-job-scheduler",
   "title": "Bioinformatics Pipelines Job Scheduler",
-  "description": "Design and run bioinformatics pipelines workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for bioinformatics pipelines job scheduler with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 5108,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Bioinformatics Pipelines",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.228Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/bioinformatics-pipelines.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

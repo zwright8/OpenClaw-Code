@@ -5,7 +5,7 @@
   "id": 12199,
   "name": "audit-trails-quality-gatekeeper",
   "title": "Audit Trails Quality Gatekeeper",
-  "description": "Design and run audit trails workflows with quality gatekeeper controls.",
+  "description": "OpenClaw extension adapter for audit trails quality gatekeeper with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 3068,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Audit Trails",
+  "capability": "Quality Gatekeeper",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.284Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/audit-trails.md",
+    "capability": "../../resources/capabilities/quality-gatekeeper.md"
+  }
 }

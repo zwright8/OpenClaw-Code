@@ -5,7 +5,7 @@
   "id": 7472,
   "name": "behavior-analytics-version-tracker",
   "title": "Behavior Analytics Version Tracker",
-  "description": "Design and run behavior analytics workflows with version tracker controls.",
+  "description": "OpenClaw extension adapter for behavior analytics version tracker with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10559,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Behavior Analytics",
+  "capability": "Version Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.048Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/behavior-analytics.md",
+    "capability": "../../resources/capabilities/version-tracker.md"
+  }
 }

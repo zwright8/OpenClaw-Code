@@ -5,7 +5,7 @@
   "id": 8936,
   "name": "policy-drafting-risk-scorer",
   "title": "Policy Drafting Risk Scorer",
-  "description": "Design and run policy drafting workflows with risk scorer controls.",
+  "description": "OpenClaw extension adapter for policy drafting risk scorer with validated execution workflow.",
   "agent": "agent07",
   "scoring": {
     "rank": 1651,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Policy Drafting",
+  "capability": "Risk Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.436Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/policy-drafting.md",
+    "capability": "../../resources/capabilities/risk-scorer.md"
+  }
 }

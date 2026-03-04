@@ -5,7 +5,7 @@
   "id": 6483,
   "name": "3d-asset-pipelines-reliability-scorer",
   "title": "3D Asset Pipelines Reliability Scorer",
-  "description": "Design and run 3d asset pipelines workflows with reliability scorer controls.",
+  "description": "OpenClaw extension adapter for 3d asset pipelines reliability scorer with validated execution workflow.",
   "agent": "agent05",
   "scoring": {
     "rank": 10210,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "3D Asset Pipelines",
+  "capability": "Reliability Scorer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.812Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/3d-asset-pipelines.md",
+    "capability": "../../resources/capabilities/reliability-scorer.md"
+  }
 }

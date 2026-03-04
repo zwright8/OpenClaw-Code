@@ -5,7 +5,7 @@
   "id": 7523,
   "name": "mobile-release-ops-artifact-publisher",
   "title": "Mobile Release Ops Artifact Publisher",
-  "description": "Design and run mobile release ops workflows with artifact publisher controls.",
+  "description": "OpenClaw extension adapter for mobile release ops artifact publisher with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 10581,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Mobile Release Ops",
+  "capability": "Artifact Publisher",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.068Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/mobile-release-ops.md",
+    "capability": "../../resources/capabilities/artifact-publisher.md"
+  }
 }

@@ -5,7 +5,7 @@
   "id": 11718,
   "name": "service-quality-conflict-resolver",
   "title": "Service Quality Conflict Resolver",
-  "description": "Design and run service quality workflows with conflict resolver controls.",
+  "description": "OpenClaw extension adapter for service quality conflict resolver with validated execution workflow.",
   "agent": "agent10",
   "scoring": {
     "rank": 12090,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Service Quality",
+  "capability": "Conflict Resolver",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:28.155Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/service-quality.md",
+    "capability": "../../resources/capabilities/conflict-resolver.md"
+  }
 }

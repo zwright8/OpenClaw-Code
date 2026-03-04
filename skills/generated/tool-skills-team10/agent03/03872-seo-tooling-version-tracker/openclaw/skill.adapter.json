@@ -5,7 +5,7 @@
   "id": 3872,
   "name": "seo-tooling-version-tracker",
   "title": "SEO Tooling Version Tracker",
-  "description": "Design and run seo tooling workflows with version tracker controls.",
+  "description": "OpenClaw extension adapter for seo tooling version tracker with validated execution workflow.",
   "agent": "agent03",
   "scoring": {
     "rank": 9320,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "SEO Tooling",
+  "capability": "Version Tracker",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.137Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/seo-tooling.md",
+    "capability": "../../resources/capabilities/version-tracker.md"
+  }
 }

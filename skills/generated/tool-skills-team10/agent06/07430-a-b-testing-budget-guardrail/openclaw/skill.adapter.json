@@ -5,7 +5,7 @@
   "id": 7430,
   "name": "a-b-testing-budget-guardrail",
   "title": "A/B Testing Budget Guardrail",
-  "description": "Design and run a/b testing workflows with budget guardrail controls.",
+  "description": "OpenClaw extension adapter for a/b testing budget guardrail with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 7516,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "A/B Testing",
+  "capability": "Budget Guardrail",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:27.028Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/a-b-testing.md",
+    "capability": "../../resources/capabilities/budget-guardrail.md"
+  }
 }

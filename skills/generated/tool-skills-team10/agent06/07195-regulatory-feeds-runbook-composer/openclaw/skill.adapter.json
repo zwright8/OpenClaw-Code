@@ -5,7 +5,7 @@
   "id": 7195,
   "name": "regulatory-feeds-runbook-composer",
   "title": "Regulatory Feeds Runbook Composer",
-  "description": "Design and run regulatory feeds workflows with runbook composer controls.",
+  "description": "OpenClaw extension adapter for regulatory feeds runbook composer with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 6274,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Regulatory Feeds",
+  "capability": "Runbook Composer",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.980Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/regulatory-feeds.md",
+    "capability": "../../resources/capabilities/runbook-composer.md"
+  }
 }

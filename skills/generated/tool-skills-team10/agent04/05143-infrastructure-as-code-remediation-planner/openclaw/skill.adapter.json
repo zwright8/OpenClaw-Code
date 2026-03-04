@@ -5,7 +5,7 @@
   "id": 5143,
   "name": "infrastructure-as-code-remediation-planner",
   "title": "Infrastructure as Code Remediation Planner",
-  "description": "Design and run infrastructure as code workflows with remediation planner controls.",
+  "description": "OpenClaw extension adapter for infrastructure as code remediation planner with validated execution workflow.",
   "agent": "agent04",
   "scoring": {
     "rank": 2794,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Infrastructure as Code",
+  "capability": "Remediation Planner",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.465Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/infrastructure-as-code.md",
+    "capability": "../../resources/capabilities/remediation-planner.md"
+  }
 }

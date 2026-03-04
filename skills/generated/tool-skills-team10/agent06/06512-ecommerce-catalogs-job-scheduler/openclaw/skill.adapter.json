@@ -5,7 +5,7 @@
   "id": 6512,
   "name": "ecommerce-catalogs-job-scheduler",
   "title": "Ecommerce Catalogs Job Scheduler",
-  "description": "Design and run ecommerce catalogs workflows with job scheduler controls.",
+  "description": "OpenClaw extension adapter for ecommerce catalogs job scheduler with validated execution workflow.",
   "agent": "agent06",
   "scoring": {
     "rank": 3518,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "Ecommerce Catalogs",
+  "capability": "Job Scheduler",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:26.817Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/ecommerce-catalogs.md",
+    "capability": "../../resources/capabilities/job-scheduler.md"
+  }
 }

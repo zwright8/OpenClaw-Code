@@ -5,7 +5,7 @@
   "id": 657,
   "name": "pagerduty-alert-monitor",
   "title": "PagerDuty Alert Monitor",
-  "description": "Monitors key PagerDuty signals and raises actionable alerts.",
+  "description": "OpenClaw extension adapter for pagerduty alert monitor with validated execution workflow.",
   "agent": "agent01",
   "scoring": {
     "rank": 8133,
@@ -34,5 +34,22 @@
     "Do not duplicate openclaw/openclaw core utilities.",
     "Use least privilege and redact sensitive values in logs.",
     "Validate side effects before completion."
-  ]
+  ],
+  "domain": "PagerDuty",
+  "capability": "Alert Monitor",
+  "quality": {
+    "version": "v2",
+    "testedAt": "2026-03-04T23:36:25.331Z",
+    "checks": [
+      "frontmatter-valid",
+      "workflow-sections-present",
+      "resource-links-resolve",
+      "adapter-shape-valid"
+    ]
+  },
+  "resources": {
+    "baseline": "../../resources/TOOL_SKILL_BASELINE.md",
+    "domain": "../../resources/domains/pagerduty.md",
+    "capability": "../../resources/capabilities/alert-monitor.md"
+  }
 }
