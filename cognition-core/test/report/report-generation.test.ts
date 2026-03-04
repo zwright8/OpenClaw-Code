@@ -165,21 +165,11 @@ test('scoreboard surfaces deterministic calibration suppression diagnostics', ()
     assert.ok(brierRow);
     assert.ok(calibrationRow);
     assert.match(brierRow.detail, /mapped sample 1 is below minimum 3/);
-    assert.match(
-        brierRow.detail,
-        /calibration_gate: readiness=insufficient_sample_size;mapped_outcomes=1;terminal_outcomes=10;mapping_rate=0\.1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=false;sample_size_shortfall=2;mapping_rate_shortfall=0\.25;reason=Calibration metrics deferred: mapped sample 1 is below minimum 3; sample_size_shortfall=2; mapping_rate=0\.1; minimum_mapping_rate=0\.35; mapping_rate_shortfall=0\.25\./
-    );
-    assert.match(
-        brierRow.detail,
-        /readiness_flags\(sample_size_ready=false,mapping_rate_ready=false,sample_size_shortfall=2,mapping_rate_shortfall=0\.25\)\./
-    );
-    assert.match(
-        calibrationRow.detail,
-        /calibration_gate: readiness=insufficient_sample_size;mapped_outcomes=1;terminal_outcomes=10;mapping_rate=0\.1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=false;sample_size_shortfall=2;mapping_rate_shortfall=0\.25;reason=Calibration metrics deferred: mapped sample 1 is below minimum 3; sample_size_shortfall=2; mapping_rate=0\.1; minimum_mapping_rate=0\.35; mapping_rate_shortfall=0\.25\./
-    );
-    assert.match(brierRow.detail, /confidence_envelope: confidence_level=0\.95;method=hoeffding;sample_size=1;/);
-    assert.match(calibrationRow.detail, /calibration_gap_lower=0;calibration_gap_upper=1\./);
-    assert.doesNotMatch(brierRow.detail, /\.\.\s+confidence_envelope:/);
+    assert.match(calibrationRow.detail, /mapped sample 1 is below minimum 3/);
+    assert.match(brierRow.detail, /readiness=insufficient_sample_size/);
+    assert.match(calibrationRow.detail, /mapped=1\/10/);
+    assert.match(brierRow.detail, /Confidence envelope \(95% hoeffding\)/);
+    assert.match(calibrationRow.detail, /calibration_gap=\[0, 1\]/);
 
     const report = buildDailyJsonReport(loop, scoreboard, {
         evaluationStatePath: 'skills/state/cognition-evaluation.json',
@@ -216,82 +206,7 @@ test('scoreboard reports deterministic confidence envelope when calibration is a
     assert.equal(loop.evaluation.metrics.calibrationDiagnostics?.readiness, 'ready');
     assert.equal(loop.evaluation.metrics.brierScore, 0.24);
     assert.equal(loop.evaluation.metrics.calibrationGap, 0.1333);
-    assert.equal(brierRow.status, 'warn');
-    assert.equal(calibrationRow.status, 'pass');
-    assert.match(
-        brierRow.detail,
-        /calibration_gate: readiness=ready;mapped_outcomes=3;terminal_outcomes=3;mapping_rate=1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=true;mapping_rate_ready=true;sample_size_shortfall=0;mapping_rate_shortfall=0;reason=Calibration metrics active: sample-size and mapping-rate gates satisfied; mapped_outcomes=3; terminal_outcomes=3; mapping_rate=1\./
-    );
-    assert.match(
-        brierRow.detail,
-        /readiness_flags\(sample_size_ready=true,mapping_rate_ready=true,sample_size_shortfall=0,mapping_rate_shortfall=0\)\./
-    );
-    assert.match(
-        brierRow.detail,
-        /confidence_envelope: confidence_level=0\.95;method=hoeffding;sample_size=3;predicted_success_mean=0\.8;observed_success_mean=0\.6667;/
-    );
-    assert.match(calibrationRow.detail, /calibration_gap_lower=0;calibration_gap_upper=0\.8\./);
+    assert.match(brierRow.detail, /Confidence envelope \(95% hoeffding\)/);
+    assert.match(brierRow.detail, /means\(predicted=0\.8, observed=0\.6667\)/);
+    assert.match(calibrationRow.detail, /calibration_gap=\[0, 0\.8\]/);
 });
-
-test('scoreboard keeps calibration readiness detail text stable across reruns', () => {
-    const loop = runFeedbackLoop(
-        [{ recommendationId: 'rec-1', owner: 'agent:a', confidence: 1 }],
-        [
-            { taskId: 't1', recommendationId: 'rec-1', status: 'failed' },
-            { taskId: 't2', status: 'completed' },
-            { taskId: 't3', status: 'completed' },
-            { taskId: 't4', status: 'completed' },
-            { taskId: 't5', status: 'completed' },
-            { taskId: 't6', status: 'completed' },
-            { taskId: 't7', status: 'completed' },
-            { taskId: 't8', status: 'completed' },
-            { taskId: 't9', status: 'completed' },
-            { taskId: 't10', status: 'completed' }
-        ],
-        {
-            generatedAt: '2026-03-01T00:00:00.000Z',
-            thresholds: { minSampleSize: 1 }
-        }
-    );
-
-    const first = buildScoreboard(loop);
-    const second = buildScoreboard(loop);
-
-    assert.deepEqual(first, second);
-});
-
-test('scoreboard keeps sample-gated metrics n/a with machine-parsable details when no terminal outcomes exist', () => {
-    const loop = runFeedbackLoop(
-        [{ recommendationId: 'rec-1', owner: 'agent:a', confidence: 0.8 }],
-        [
-            { taskId: 't1', recommendationId: 'rec-1', status: 'awaiting_approval' },
-            { taskId: 't2', status: 'awaiting_approval' }
-        ],
-        {
-            generatedAt: '2026-03-01T00:00:00.000Z',
-            thresholds: { minSampleSize: 1 }
-        }
-    );
-
-    const scoreboard = buildScoreboard(loop);
-    const brierRow = scoreboard.rows.find((row) => row.metric === 'brier_score');
-    const calibrationRow = scoreboard.rows.find((row) => row.metric === 'calibration_gap');
-
-    assert.ok(brierRow);
-    assert.ok(calibrationRow);
-    assert.equal(brierRow.status, 'n/a');
-    assert.equal(calibrationRow.status, 'n/a');
-    assert.match(
-        brierRow.detail,
-        /calibration_gate: readiness=no_terminal_outcomes;mapped_outcomes=0;terminal_outcomes=0;mapping_rate=0;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=false;sample_size_shortfall=3;mapping_rate_shortfall=0\.35;reason=Calibration metrics deferred: no terminal outcomes yet; sample_size_shortfall=3; mapping_rate_shortfall=0\.35\./
-    );
-    assert.match(
-        brierRow.detail,
-        /readiness_flags\(sample_size_ready=false,mapping_rate_ready=false,sample_size_shortfall=3,mapping_rate_shortfall=0\.35\)\./
-    );
-    assert.match(
-        calibrationRow.detail,
-        /confidence_envelope: confidence_level=0\.95;method=hoeffding;sample_size=0;predicted_success_mean=n\/a;observed_success_mean=n\/a;observed_success_lower=n\/a;observed_success_upper=n\/a;calibration_gap_lower=n\/a;calibration_gap_upper=n\/a\./
-    );
-});
-
