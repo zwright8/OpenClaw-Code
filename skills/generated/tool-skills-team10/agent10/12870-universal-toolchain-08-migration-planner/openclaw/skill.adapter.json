@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12870,
+  "name": "universal-toolchain-08-migration-planner",
+  "title": "Universal Toolchain 08 Migration Planner",
+  "description": "Design and run universal toolchain 08 workflows with migration planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4466,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12870-universal-toolchain-08-migration-planner/SKILL.md",
+    "entrypoint": "agent10/12870-universal-toolchain-08-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 migration planner",
+    "universal toolchain 08 migration planner workflow",
+    "universal toolchain 08 migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

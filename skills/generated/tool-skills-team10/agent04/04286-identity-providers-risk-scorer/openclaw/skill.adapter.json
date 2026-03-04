@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4286,
+  "name": "identity-providers-risk-scorer",
+  "title": "Identity Providers Risk Scorer",
+  "description": "Design and run identity providers workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 336,
+    "score": 91,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04286-identity-providers-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/04286-identity-providers-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers risk scorer",
+    "identity providers risk scorer workflow",
+    "identity providers risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

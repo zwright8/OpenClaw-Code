@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10265,
+  "name": "identity-verification-queue-balancer",
+  "title": "Identity Verification Queue Balancer",
+  "description": "Design and run identity verification workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6541,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10265-identity-verification-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/10265-identity-verification-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification queue balancer",
+    "identity verification queue balancer workflow",
+    "identity verification queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

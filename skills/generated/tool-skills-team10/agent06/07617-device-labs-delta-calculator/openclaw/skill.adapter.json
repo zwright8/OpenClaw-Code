@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7617,
+  "name": "device-labs-delta-calculator",
+  "title": "Device Labs Delta Calculator",
+  "description": "Design and run device labs workflows with delta calculator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10619,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07617-device-labs-delta-calculator/SKILL.md",
+    "entrypoint": "agent06/07617-device-labs-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs delta calculator",
+    "device labs delta calculator workflow",
+    "device labs delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

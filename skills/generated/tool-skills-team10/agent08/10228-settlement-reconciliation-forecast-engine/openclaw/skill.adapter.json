@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10228,
+  "name": "settlement-reconciliation-forecast-engine",
+  "title": "Settlement Reconciliation Forecast Engine",
+  "description": "Design and run settlement reconciliation workflows with forecast engine controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11550,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10228-settlement-reconciliation-forecast-engine/SKILL.md",
+    "entrypoint": "agent08/10228-settlement-reconciliation-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation forecast engine",
+    "settlement reconciliation forecast engine workflow",
+    "settlement reconciliation forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

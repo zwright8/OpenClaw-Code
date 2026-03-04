@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1514,
+  "name": "education-lms-rate-limit-optimizer",
+  "title": "Education LMS Rate Limit Optimizer",
+  "description": "Design and run education lms workflows with rate limit optimizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3987,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01514-education-lms-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent02/01514-education-lms-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms rate limit optimizer",
+    "education lms rate limit optimizer workflow",
+    "education lms rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

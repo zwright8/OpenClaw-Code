@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10785,
+  "name": "knowledge-graphs-policy-evaluator",
+  "title": "Knowledge Graphs Policy Evaluator",
+  "description": "Design and run knowledge graphs workflows with policy evaluator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2241,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10785-knowledge-graphs-policy-evaluator/SKILL.md",
+    "entrypoint": "agent09/10785-knowledge-graphs-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs policy evaluator",
+    "knowledge graphs policy evaluator workflow",
+    "knowledge graphs policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

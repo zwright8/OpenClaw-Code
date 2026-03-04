@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10963,
+  "name": "inference-caches-retry-governor",
+  "title": "Inference Caches Retry Governor",
+  "description": "Design and run inference caches workflows with retry governor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6608,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10963-inference-caches-retry-governor/SKILL.md",
+    "entrypoint": "agent09/10963-inference-caches-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches retry governor",
+    "inference caches retry governor workflow",
+    "inference caches retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

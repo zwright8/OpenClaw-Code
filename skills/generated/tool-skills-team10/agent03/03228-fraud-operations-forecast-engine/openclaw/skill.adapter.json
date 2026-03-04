@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3228,
+  "name": "fraud-operations-forecast-engine",
+  "title": "Fraud Operations Forecast Engine",
+  "description": "Design and run fraud operations workflows with forecast engine controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9072,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03228-fraud-operations-forecast-engine/SKILL.md",
+    "entrypoint": "agent03/03228-fraud-operations-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations forecast engine",
+    "fraud operations forecast engine workflow",
+    "fraud operations forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

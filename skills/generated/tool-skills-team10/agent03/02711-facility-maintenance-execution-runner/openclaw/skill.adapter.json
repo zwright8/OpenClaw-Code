@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2711,
+  "name": "facility-maintenance-execution-runner",
+  "title": "Facility Maintenance Execution Runner",
+  "description": "Design and run facility maintenance workflows with execution runner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 505,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/02711-facility-maintenance-execution-runner/SKILL.md",
+    "entrypoint": "agent03/02711-facility-maintenance-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance execution runner",
+    "facility maintenance execution runner workflow",
+    "facility maintenance execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1453,
+  "name": "insurance-claims-permission-mapper",
+  "title": "Insurance Claims Permission Mapper",
+  "description": "Design and run insurance claims workflows with permission mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2005,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01453-insurance-claims-permission-mapper/SKILL.md",
+    "entrypoint": "agent02/01453-insurance-claims-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims permission mapper",
+    "insurance claims permission mapper workflow",
+    "insurance claims permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

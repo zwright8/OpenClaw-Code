@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2406,
+  "name": "esg-reporting-api-contract-validator",
+  "title": "ESG Reporting API Contract Validator",
+  "description": "Design and run esg reporting workflows with api contract validator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 88,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent02/02406-esg-reporting-api-contract-validator/SKILL.md",
+    "entrypoint": "agent02/02406-esg-reporting-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting api contract validator",
+    "esg reporting api contract validator workflow",
+    "esg reporting api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

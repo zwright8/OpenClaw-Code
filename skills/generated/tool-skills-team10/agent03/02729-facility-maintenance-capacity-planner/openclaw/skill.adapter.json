@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2729,
+  "name": "facility-maintenance-capacity-planner",
+  "title": "Facility Maintenance Capacity Planner",
+  "description": "Design and run facility maintenance workflows with capacity planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7303,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02729-facility-maintenance-capacity-planner/SKILL.md",
+    "entrypoint": "agent03/02729-facility-maintenance-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance capacity planner",
+    "facility maintenance capacity planner workflow",
+    "facility maintenance capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

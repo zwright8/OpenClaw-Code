@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7313,
+  "name": "survey-systems-retry-governor",
+  "title": "Survey Systems Retry Governor",
+  "description": "Design and run survey systems workflows with retry governor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6281,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07313-survey-systems-retry-governor/SKILL.md",
+    "entrypoint": "agent06/07313-survey-systems-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems retry governor",
+    "survey systems retry governor workflow",
+    "survey systems retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

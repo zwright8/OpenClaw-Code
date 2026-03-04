@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4975,
+  "name": "synthetic-testing-provenance-tracker",
+  "title": "Synthetic Testing Provenance Tracker",
+  "description": "Design and run synthetic testing workflows with provenance tracker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9679,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04975-synthetic-testing-provenance-tracker/SKILL.md",
+    "entrypoint": "agent04/04975-synthetic-testing-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic testing provenance tracker",
+    "synthetic testing provenance tracker workflow",
+    "synthetic testing provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

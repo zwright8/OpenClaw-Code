@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6808,
+  "name": "billing-recovery-task-decomposer",
+  "title": "Billing Recovery Task Decomposer",
+  "description": "Design and run billing recovery workflows with task decomposer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7223,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06808-billing-recovery-task-decomposer/SKILL.md",
+    "entrypoint": "agent06/06808-billing-recovery-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery task decomposer",
+    "billing recovery task decomposer workflow",
+    "billing recovery task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

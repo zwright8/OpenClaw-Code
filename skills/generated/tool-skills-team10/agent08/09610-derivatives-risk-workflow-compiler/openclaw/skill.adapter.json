@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9610,
+  "name": "derivatives-risk-workflow-compiler",
+  "title": "Derivatives Risk Workflow Compiler",
+  "description": "Design and run derivatives risk workflows with workflow compiler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 321,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09610-derivatives-risk-workflow-compiler/SKILL.md",
+    "entrypoint": "agent08/09610-derivatives-risk-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk workflow compiler",
+    "derivatives risk workflow compiler workflow",
+    "derivatives risk workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

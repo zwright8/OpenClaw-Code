@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9579,
+  "name": "portfolio-analytics-capacity-planner",
+  "title": "Portfolio Analytics Capacity Planner",
+  "description": "Design and run portfolio analytics workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11320,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09579-portfolio-analytics-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/09579-portfolio-analytics-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics capacity planner",
+    "portfolio analytics capacity planner workflow",
+    "portfolio analytics capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

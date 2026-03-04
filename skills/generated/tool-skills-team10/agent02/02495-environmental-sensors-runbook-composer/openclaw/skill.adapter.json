@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2495,
+  "name": "environmental-sensors-runbook-composer",
+  "title": "Environmental Sensors Runbook Composer",
+  "description": "Design and run environmental sensors workflows with runbook composer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5849,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02495-environmental-sensors-runbook-composer/SKILL.md",
+    "entrypoint": "agent02/02495-environmental-sensors-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors runbook composer",
+    "environmental sensors runbook composer workflow",
+    "environmental sensors runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

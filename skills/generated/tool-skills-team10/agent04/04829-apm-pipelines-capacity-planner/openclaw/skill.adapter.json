@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4829,
+  "name": "apm-pipelines-capacity-planner",
+  "title": "APM Pipelines Capacity Planner",
+  "description": "Design and run apm pipelines workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9619,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04829-apm-pipelines-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/04829-apm-pipelines-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "apm pipelines capacity planner",
+    "apm pipelines capacity planner workflow",
+    "apm pipelines capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

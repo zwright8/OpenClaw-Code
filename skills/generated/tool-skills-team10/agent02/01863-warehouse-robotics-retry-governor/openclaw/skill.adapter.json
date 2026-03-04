@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1863,
+  "name": "warehouse-robotics-retry-governor",
+  "title": "Warehouse Robotics Retry Governor",
+  "description": "Design and run warehouse robotics workflows with retry governor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5796,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01863-warehouse-robotics-retry-governor/SKILL.md",
+    "entrypoint": "agent02/01863-warehouse-robotics-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics retry governor",
+    "warehouse robotics retry governor workflow",
+    "warehouse robotics retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

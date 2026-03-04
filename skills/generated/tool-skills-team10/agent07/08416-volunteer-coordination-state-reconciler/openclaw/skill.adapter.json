@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8416,
+  "name": "volunteer-coordination-state-reconciler",
+  "title": "Volunteer Coordination State Reconciler",
+  "description": "Design and run volunteer coordination workflows with state reconciler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4302,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08416-volunteer-coordination-state-reconciler/SKILL.md",
+    "entrypoint": "agent07/08416-volunteer-coordination-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination state reconciler",
+    "volunteer coordination state reconciler workflow",
+    "volunteer coordination state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

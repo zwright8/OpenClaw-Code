@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10735,
+  "name": "vector-datastores-policy-evaluator",
+  "title": "Vector Datastores Policy Evaluator",
+  "description": "Design and run vector datastores workflows with policy evaluator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3836,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10735-vector-datastores-policy-evaluator/SKILL.md",
+    "entrypoint": "agent09/10735-vector-datastores-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores policy evaluator",
+    "vector datastores policy evaluator workflow",
+    "vector datastores policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11814,
+  "name": "protocol-management-rate-limit-optimizer",
+  "title": "Protocol Management Rate Limit Optimizer",
+  "description": "Design and run protocol management workflows with rate limit optimizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6694,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11814-protocol-management-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent10/11814-protocol-management-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management rate limit optimizer",
+    "protocol management rate limit optimizer workflow",
+    "protocol management rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

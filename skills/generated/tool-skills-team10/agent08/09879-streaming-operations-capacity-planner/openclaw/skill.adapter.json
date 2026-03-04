@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9879,
+  "name": "streaming-operations-capacity-planner",
+  "title": "Streaming Operations Capacity Planner",
+  "description": "Design and run streaming operations workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11425,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09879-streaming-operations-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/09879-streaming-operations-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations capacity planner",
+    "streaming operations capacity planner workflow",
+    "streaming operations capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

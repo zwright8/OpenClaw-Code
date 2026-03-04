@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8746,
+  "name": "mobility-platforms-approval-orchestrator",
+  "title": "Mobility Platforms Approval Orchestrator",
+  "description": "Design and run mobility platforms workflows with approval orchestrator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6415,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08746-mobility-platforms-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent07/08746-mobility-platforms-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobility platforms approval orchestrator",
+    "mobility platforms approval orchestrator workflow",
+    "mobility platforms approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

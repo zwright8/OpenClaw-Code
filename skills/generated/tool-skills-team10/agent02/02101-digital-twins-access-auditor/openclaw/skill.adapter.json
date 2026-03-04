@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2101,
+  "name": "digital-twins-access-auditor",
+  "title": "Digital Twins Access Auditor",
+  "description": "Design and run digital twins workflows with access auditor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8745,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02101-digital-twins-access-auditor/SKILL.md",
+    "entrypoint": "agent02/02101-digital-twins-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins access auditor",
+    "digital twins access auditor workflow",
+    "digital twins access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

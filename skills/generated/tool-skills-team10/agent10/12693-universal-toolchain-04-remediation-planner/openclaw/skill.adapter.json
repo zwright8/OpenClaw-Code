@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12693,
+  "name": "universal-toolchain-04-remediation-planner",
+  "title": "Universal Toolchain 04 Remediation Planner",
+  "description": "Design and run universal toolchain 04 workflows with remediation planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2619,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12693-universal-toolchain-04-remediation-planner/SKILL.md",
+    "entrypoint": "agent10/12693-universal-toolchain-04-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 04 remediation planner",
+    "universal toolchain 04 remediation planner workflow",
+    "universal toolchain 04 remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

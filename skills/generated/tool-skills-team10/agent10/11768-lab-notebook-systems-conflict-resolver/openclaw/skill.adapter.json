@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11768,
+  "name": "lab-notebook-systems-conflict-resolver",
+  "title": "Lab Notebook Systems Conflict Resolver",
+  "description": "Design and run lab notebook systems workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12111,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11768-lab-notebook-systems-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/11768-lab-notebook-systems-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems conflict resolver",
+    "lab notebook systems conflict resolver workflow",
+    "lab notebook systems conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

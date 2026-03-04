@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8845,
+  "name": "discovery-pipelines-runbook-composer",
+  "title": "Discovery Pipelines Runbook Composer",
+  "description": "Design and run discovery pipelines workflows with runbook composer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6419,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08845-discovery-pipelines-runbook-composer/SKILL.md",
+    "entrypoint": "agent07/08845-discovery-pipelines-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines runbook composer",
+    "discovery pipelines runbook composer workflow",
+    "discovery pipelines runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

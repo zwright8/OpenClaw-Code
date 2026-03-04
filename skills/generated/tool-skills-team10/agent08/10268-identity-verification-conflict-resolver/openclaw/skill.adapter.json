@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10268,
+  "name": "identity-verification-conflict-resolver",
+  "title": "Identity Verification Conflict Resolver",
+  "description": "Design and run identity verification workflows with conflict resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6543,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10268-identity-verification-conflict-resolver/SKILL.md",
+    "entrypoint": "agent08/10268-identity-verification-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification conflict resolver",
+    "identity verification conflict resolver workflow",
+    "identity verification conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

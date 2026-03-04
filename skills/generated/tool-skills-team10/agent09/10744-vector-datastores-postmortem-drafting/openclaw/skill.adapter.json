@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10744,
+  "name": "vector-datastores-postmortem-drafting",
+  "title": "Vector Datastores Postmortem Drafting",
+  "description": "Design and run vector datastores workflows with postmortem drafting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11703,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10744-vector-datastores-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent09/10744-vector-datastores-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores postmortem drafting",
+    "vector datastores postmortem drafting workflow",
+    "vector datastores postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6861,
+  "name": "dunning-workflows-execution-runner",
+  "title": "Dunning Workflows Execution Runner",
+  "description": "Design and run dunning workflows workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1371,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06861-dunning-workflows-execution-runner/SKILL.md",
+    "entrypoint": "agent06/06861-dunning-workflows-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dunning workflows execution runner",
+    "dunning workflows execution runner workflow",
+    "dunning workflows execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

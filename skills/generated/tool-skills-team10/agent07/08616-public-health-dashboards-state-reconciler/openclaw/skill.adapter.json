@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8616,
+  "name": "public-health-dashboards-state-reconciler",
+  "title": "Public Health Dashboards State Reconciler",
+  "description": "Design and run public health dashboards workflows with state reconciler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2490,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08616-public-health-dashboards-state-reconciler/SKILL.md",
+    "entrypoint": "agent07/08616-public-health-dashboards-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards state reconciler",
+    "public health dashboards state reconciler workflow",
+    "public health dashboards state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

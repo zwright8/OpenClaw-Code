@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3799,
+  "name": "marketing-attribution-quality-gatekeeper",
+  "title": "Marketing Attribution Quality Gatekeeper",
+  "description": "Design and run marketing attribution workflows with quality gatekeeper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 3994,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03799-marketing-attribution-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent03/03799-marketing-attribution-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketing attribution quality gatekeeper",
+    "marketing attribution quality gatekeeper workflow",
+    "marketing attribution quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

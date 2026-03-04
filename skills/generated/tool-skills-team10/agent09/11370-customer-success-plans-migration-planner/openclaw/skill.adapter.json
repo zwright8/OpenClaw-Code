@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11370,
+  "name": "customer-success-plans-migration-planner",
+  "title": "Customer Success Plans Migration Planner",
+  "description": "Design and run customer success plans workflows with migration planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4816,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11370-customer-success-plans-migration-planner/SKILL.md",
+    "entrypoint": "agent09/11370-customer-success-plans-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans migration planner",
+    "customer success plans migration planner workflow",
+    "customer success plans migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

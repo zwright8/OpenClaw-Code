@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8220,
+  "name": "scientific-publishing-migration-planner",
+  "title": "Scientific Publishing Migration Planner",
+  "description": "Design and run scientific publishing workflows with migration planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4712,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08220-scientific-publishing-migration-planner/SKILL.md",
+    "entrypoint": "agent07/08220-scientific-publishing-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scientific publishing migration planner",
+    "scientific publishing migration planner workflow",
+    "scientific publishing migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

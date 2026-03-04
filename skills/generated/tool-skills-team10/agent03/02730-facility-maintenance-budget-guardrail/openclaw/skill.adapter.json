@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2730,
+  "name": "facility-maintenance-budget-guardrail",
+  "title": "Facility Maintenance Budget Guardrail",
+  "description": "Design and run facility maintenance workflows with budget guardrail controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7304,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02730-facility-maintenance-budget-guardrail/SKILL.md",
+    "entrypoint": "agent03/02730-facility-maintenance-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance budget guardrail",
+    "facility maintenance budget guardrail workflow",
+    "facility maintenance budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6976,
+  "name": "forecasting-models-anomaly-detector",
+  "title": "Forecasting Models Anomaly Detector",
+  "description": "Design and run forecasting models workflows with anomaly detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5493,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06976-forecasting-models-anomaly-detector/SKILL.md",
+    "entrypoint": "agent06/06976-forecasting-models-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "forecasting models anomaly detector",
+    "forecasting models anomaly detector workflow",
+    "forecasting models anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

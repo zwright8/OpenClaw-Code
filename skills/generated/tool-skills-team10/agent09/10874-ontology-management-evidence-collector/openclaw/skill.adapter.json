@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10874,
+  "name": "ontology-management-evidence-collector",
+  "title": "Ontology Management Evidence Collector",
+  "description": "Design and run ontology management workflows with evidence collector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6600,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10874-ontology-management-evidence-collector/SKILL.md",
+    "entrypoint": "agent09/10874-ontology-management-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management evidence collector",
+    "ontology management evidence collector workflow",
+    "ontology management evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

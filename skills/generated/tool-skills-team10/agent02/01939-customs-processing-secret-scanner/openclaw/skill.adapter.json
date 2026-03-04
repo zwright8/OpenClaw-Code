@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1939,
+  "name": "customs-processing-secret-scanner",
+  "title": "Customs Processing Secret Scanner",
+  "description": "Design and run customs processing workflows with secret scanner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2673,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01939-customs-processing-secret-scanner/SKILL.md",
+    "entrypoint": "agent02/01939-customs-processing-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing secret scanner",
+    "customs processing secret scanner workflow",
+    "customs processing secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

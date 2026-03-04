@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10304,
+  "name": "kyc-pipelines-schema-introspector",
+  "title": "KYC Pipelines Schema Introspector",
+  "description": "Design and run kyc pipelines workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 719,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10304-kyc-pipelines-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/10304-kyc-pipelines-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines schema introspector",
+    "kyc pipelines schema introspector workflow",
+    "kyc pipelines schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

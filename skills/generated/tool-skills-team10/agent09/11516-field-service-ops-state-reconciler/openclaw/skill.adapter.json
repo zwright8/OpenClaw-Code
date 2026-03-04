@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11516,
+  "name": "field-service-ops-state-reconciler",
+  "title": "Field Service Ops State Reconciler",
+  "description": "Design and run field service ops workflows with state reconciler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4417,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11516-field-service-ops-state-reconciler/SKILL.md",
+    "entrypoint": "agent09/11516-field-service-ops-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops state reconciler",
+    "field service ops state reconciler workflow",
+    "field service ops state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

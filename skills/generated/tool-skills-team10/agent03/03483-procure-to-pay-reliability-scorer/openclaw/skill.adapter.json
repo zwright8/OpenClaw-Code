@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3483,
+  "name": "procure-to-pay-reliability-scorer",
+  "title": "Procure to Pay Reliability Scorer",
+  "description": "Design and run procure to pay workflows with reliability scorer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9181,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03483-procure-to-pay-reliability-scorer/SKILL.md",
+    "entrypoint": "agent03/03483-procure-to-pay-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay reliability scorer",
+    "procure to pay reliability scorer workflow",
+    "procure to pay reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

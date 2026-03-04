@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6291,
+  "name": "media-asset-management-incident-triage",
+  "title": "Media Asset Management Incident Triage",
+  "description": "Design and run media asset management workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1243,
+    "score": 83,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06291-media-asset-management-incident-triage/SKILL.md",
+    "entrypoint": "agent05/06291-media-asset-management-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management incident triage",
+    "media asset management incident triage workflow",
+    "media asset management incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

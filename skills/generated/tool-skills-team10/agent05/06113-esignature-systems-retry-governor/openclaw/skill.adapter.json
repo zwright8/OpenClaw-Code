@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6113,
+  "name": "esignature-systems-retry-governor",
+  "title": "eSignature Systems Retry Governor",
+  "description": "Design and run esignature systems workflows with retry governor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6179,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06113-esignature-systems-retry-governor/SKILL.md",
+    "entrypoint": "agent05/06113-esignature-systems-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems retry governor",
+    "esignature systems retry governor workflow",
+    "esignature systems retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

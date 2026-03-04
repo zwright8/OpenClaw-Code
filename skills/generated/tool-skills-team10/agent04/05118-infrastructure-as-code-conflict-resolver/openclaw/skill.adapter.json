@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5118,
+  "name": "infrastructure-as-code-conflict-resolver",
+  "title": "Infrastructure as Code Conflict Resolver",
+  "description": "Design and run infrastructure as code workflows with conflict resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9717,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05118-infrastructure-as-code-conflict-resolver/SKILL.md",
+    "entrypoint": "agent04/05118-infrastructure-as-code-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code conflict resolver",
+    "infrastructure as code conflict resolver workflow",
+    "infrastructure as code conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

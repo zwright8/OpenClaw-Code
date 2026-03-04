@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2948,
+  "name": "maritime-routing-feedback-harvester",
+  "title": "Maritime Routing Feedback Harvester",
+  "description": "Design and run maritime routing workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8996,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02948-maritime-routing-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/02948-maritime-routing-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing feedback harvester",
+    "maritime routing feedback harvester workflow",
+    "maritime routing feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

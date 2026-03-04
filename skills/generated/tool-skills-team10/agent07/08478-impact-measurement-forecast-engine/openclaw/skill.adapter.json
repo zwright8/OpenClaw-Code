@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8478,
+  "name": "impact-measurement-forecast-engine",
+  "title": "Impact Measurement Forecast Engine",
+  "description": "Design and run impact measurement workflows with forecast engine controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10962,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08478-impact-measurement-forecast-engine/SKILL.md",
+    "entrypoint": "agent07/08478-impact-measurement-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement forecast engine",
+    "impact measurement forecast engine workflow",
+    "impact measurement forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5481,
+  "name": "etl-orchestrators-cost-attribution",
+  "title": "ETL Orchestrators Cost Attribution",
+  "description": "Design and run etl orchestrators workflows with cost attribution controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9830,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05481-etl-orchestrators-cost-attribution/SKILL.md",
+    "entrypoint": "agent05/05481-etl-orchestrators-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators cost attribution",
+    "etl orchestrators cost attribution workflow",
+    "etl orchestrators cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

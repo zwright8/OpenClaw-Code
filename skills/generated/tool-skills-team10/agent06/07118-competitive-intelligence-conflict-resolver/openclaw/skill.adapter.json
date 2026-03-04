@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7118,
+  "name": "competitive-intelligence-conflict-resolver",
+  "title": "Competitive Intelligence Conflict Resolver",
+  "description": "Design and run competitive intelligence workflows with conflict resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10431,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07118-competitive-intelligence-conflict-resolver/SKILL.md",
+    "entrypoint": "agent06/07118-competitive-intelligence-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "competitive intelligence conflict resolver",
+    "competitive intelligence conflict resolver workflow",
+    "competitive intelligence conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

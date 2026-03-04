@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10981,
+  "name": "inference-caches-cost-attribution",
+  "title": "Inference Caches Cost Attribution",
+  "description": "Design and run inference caches workflows with cost attribution controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11783,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10981-inference-caches-cost-attribution/SKILL.md",
+    "entrypoint": "agent09/10981-inference-caches-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches cost attribution",
+    "inference caches cost attribution workflow",
+    "inference caches cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

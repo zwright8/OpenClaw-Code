@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7051,
+  "name": "news-monitoring-access-auditor",
+  "title": "News Monitoring Access Auditor",
+  "description": "Design and run news monitoring workflows with access auditor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10404,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07051-news-monitoring-access-auditor/SKILL.md",
+    "entrypoint": "agent06/07051-news-monitoring-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring access auditor",
+    "news monitoring access auditor workflow",
+    "news monitoring access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3210,
+  "name": "fraud-operations-workflow-compiler",
+  "title": "Fraud Operations Workflow Compiler",
+  "description": "Design and run fraud operations workflows with workflow compiler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1061,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03210-fraud-operations-workflow-compiler/SKILL.md",
+    "entrypoint": "agent03/03210-fraud-operations-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations workflow compiler",
+    "fraud operations workflow compiler workflow",
+    "fraud operations workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

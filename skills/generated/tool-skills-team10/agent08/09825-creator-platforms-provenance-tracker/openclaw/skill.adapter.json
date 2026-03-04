@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9825,
+  "name": "creator-platforms-provenance-tracker",
+  "title": "Creator Platforms Provenance Tracker",
+  "description": "Design and run creator platforms workflows with provenance tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11401,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09825-creator-platforms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent08/09825-creator-platforms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms provenance tracker",
+    "creator platforms provenance tracker workflow",
+    "creator platforms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

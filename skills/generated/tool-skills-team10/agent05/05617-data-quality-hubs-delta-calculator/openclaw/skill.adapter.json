@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5617,
+  "name": "data-quality-hubs-delta-calculator",
+  "title": "Data Quality Hubs Delta Calculator",
+  "description": "Design and run data quality hubs workflows with delta calculator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6961,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05617-data-quality-hubs-delta-calculator/SKILL.md",
+    "entrypoint": "agent05/05617-data-quality-hubs-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs delta calculator",
+    "data quality hubs delta calculator workflow",
+    "data quality hubs delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

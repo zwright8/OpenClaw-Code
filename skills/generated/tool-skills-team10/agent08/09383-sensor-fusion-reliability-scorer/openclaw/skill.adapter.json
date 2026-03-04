@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9383,
+  "name": "sensor-fusion-reliability-scorer",
+  "title": "Sensor Fusion Reliability Scorer",
+  "description": "Design and run sensor fusion workflows with reliability scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11260,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09383-sensor-fusion-reliability-scorer/SKILL.md",
+    "entrypoint": "agent08/09383-sensor-fusion-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion reliability scorer",
+    "sensor fusion reliability scorer workflow",
+    "sensor fusion reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

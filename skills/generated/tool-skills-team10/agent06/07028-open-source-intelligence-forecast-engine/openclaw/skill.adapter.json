@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7028,
+  "name": "open-source-intelligence-forecast-engine",
+  "title": "Open Source Intelligence Forecast Engine",
+  "description": "Design and run open source intelligence workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10395,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07028-open-source-intelligence-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/07028-open-source-intelligence-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence forecast engine",
+    "open source intelligence forecast engine workflow",
+    "open source intelligence forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

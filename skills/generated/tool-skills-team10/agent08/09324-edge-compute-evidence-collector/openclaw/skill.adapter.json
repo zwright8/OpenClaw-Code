@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9324,
+  "name": "edge-compute-evidence-collector",
+  "title": "Edge Compute Evidence Collector",
+  "description": "Design and run edge compute workflows with evidence collector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6459,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09324-edge-compute-evidence-collector/SKILL.md",
+    "entrypoint": "agent08/09324-edge-compute-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute evidence collector",
+    "edge compute evidence collector workflow",
+    "edge compute evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

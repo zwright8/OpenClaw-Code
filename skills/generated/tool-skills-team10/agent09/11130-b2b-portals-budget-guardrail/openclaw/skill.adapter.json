@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11130,
+  "name": "b2b-portals-budget-guardrail",
+  "title": "B2B Portals Budget Guardrail",
+  "description": "Design and run b2b portals workflows with budget guardrail controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7706,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11130-b2b-portals-budget-guardrail/SKILL.md",
+    "entrypoint": "agent09/11130-b2b-portals-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals budget guardrail",
+    "b2b portals budget guardrail workflow",
+    "b2b portals budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

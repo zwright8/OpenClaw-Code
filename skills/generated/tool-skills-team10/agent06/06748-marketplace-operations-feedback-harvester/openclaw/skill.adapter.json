@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6748,
+  "name": "marketplace-operations-feedback-harvester",
+  "title": "Marketplace Operations Feedback Harvester",
+  "description": "Design and run marketplace operations workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10298,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06748-marketplace-operations-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/06748-marketplace-operations-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketplace operations feedback harvester",
+    "marketplace operations feedback harvester workflow",
+    "marketplace operations feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

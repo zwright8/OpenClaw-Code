@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4204,
+  "name": "customer-qa-schema-introspector",
+  "title": "Customer QA Schema Introspector",
+  "description": "Design and run customer qa workflows with schema introspector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 603,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04204-customer-qa-schema-introspector/SKILL.md",
+    "entrypoint": "agent04/04204-customer-qa-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa schema introspector",
+    "customer qa schema introspector workflow",
+    "customer qa schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

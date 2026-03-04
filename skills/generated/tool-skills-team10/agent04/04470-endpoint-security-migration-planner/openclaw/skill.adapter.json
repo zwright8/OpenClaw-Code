@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4470,
+  "name": "endpoint-security-migration-planner",
+  "title": "Endpoint Security Migration Planner",
+  "description": "Design and run endpoint security workflows with migration planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1817,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04470-endpoint-security-migration-planner/SKILL.md",
+    "entrypoint": "agent04/04470-endpoint-security-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security migration planner",
+    "endpoint security migration planner workflow",
+    "endpoint security migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

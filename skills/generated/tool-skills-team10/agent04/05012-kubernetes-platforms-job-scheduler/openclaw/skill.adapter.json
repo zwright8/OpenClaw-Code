@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5012,
+  "name": "kubernetes-platforms-job-scheduler",
+  "title": "Kubernetes Platforms Job Scheduler",
+  "description": "Design and run kubernetes platforms workflows with job scheduler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2554,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05012-kubernetes-platforms-job-scheduler/SKILL.md",
+    "entrypoint": "agent04/05012-kubernetes-platforms-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms job scheduler",
+    "kubernetes platforms job scheduler workflow",
+    "kubernetes platforms job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

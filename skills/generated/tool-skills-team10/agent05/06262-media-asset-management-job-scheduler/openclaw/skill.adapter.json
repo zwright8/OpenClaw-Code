@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6262,
+  "name": "media-asset-management-job-scheduler",
+  "title": "Media Asset Management Job Scheduler",
+  "description": "Design and run media asset management workflows with job scheduler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3500,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06262-media-asset-management-job-scheduler/SKILL.md",
+    "entrypoint": "agent05/06262-media-asset-management-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management job scheduler",
+    "media asset management job scheduler workflow",
+    "media asset management job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

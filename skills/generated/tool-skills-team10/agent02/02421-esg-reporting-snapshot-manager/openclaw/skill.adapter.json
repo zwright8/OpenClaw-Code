@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2421,
+  "name": "esg-reporting-snapshot-manager",
+  "title": "ESG Reporting Snapshot Manager",
+  "description": "Design and run esg reporting workflows with snapshot manager controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8836,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02421-esg-reporting-snapshot-manager/SKILL.md",
+    "entrypoint": "agent02/02421-esg-reporting-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting snapshot manager",
+    "esg reporting snapshot manager workflow",
+    "esg reporting snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

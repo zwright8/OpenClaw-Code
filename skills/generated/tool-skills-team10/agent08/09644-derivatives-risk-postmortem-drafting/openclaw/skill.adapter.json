@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9644,
+  "name": "derivatives-risk-postmortem-drafting",
+  "title": "Derivatives Risk Postmortem Drafting",
+  "description": "Design and run derivatives risk workflows with postmortem drafting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7085,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09644-derivatives-risk-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent08/09644-derivatives-risk-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk postmortem drafting",
+    "derivatives risk postmortem drafting workflow",
+    "derivatives risk postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

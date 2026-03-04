@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6805,
+  "name": "billing-recovery-spec-drift-detector",
+  "title": "Billing Recovery Spec Drift Detector",
+  "description": "Design and run billing recovery workflows with spec drift detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2325,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06805-billing-recovery-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent06/06805-billing-recovery-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery spec drift detector",
+    "billing recovery spec drift detector workflow",
+    "billing recovery spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

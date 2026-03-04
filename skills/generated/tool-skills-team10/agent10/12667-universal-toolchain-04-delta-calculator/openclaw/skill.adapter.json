@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12667,
+  "name": "universal-toolchain-04-delta-calculator",
+  "title": "Universal Toolchain 04 Delta Calculator",
+  "description": "Design and run universal toolchain 04 workflows with delta calculator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8260,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12667-universal-toolchain-04-delta-calculator/SKILL.md",
+    "entrypoint": "agent10/12667-universal-toolchain-04-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 04 delta calculator",
+    "universal toolchain 04 delta calculator workflow",
+    "universal toolchain 04 delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

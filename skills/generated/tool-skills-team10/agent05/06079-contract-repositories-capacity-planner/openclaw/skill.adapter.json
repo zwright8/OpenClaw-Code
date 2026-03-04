@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6079,
+  "name": "contract-repositories-capacity-planner",
+  "title": "Contract Repositories Capacity Planner",
+  "description": "Design and run contract repositories workflows with capacity planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10060,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06079-contract-repositories-capacity-planner/SKILL.md",
+    "entrypoint": "agent05/06079-contract-repositories-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "contract repositories capacity planner",
+    "contract repositories capacity planner workflow",
+    "contract repositories capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10787,
+  "name": "knowledge-graphs-compliance-mapper",
+  "title": "Knowledge Graphs Compliance Mapper",
+  "description": "Design and run knowledge graphs workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 787,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10787-knowledge-graphs-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/10787-knowledge-graphs-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs compliance mapper",
+    "knowledge graphs compliance mapper workflow",
+    "knowledge graphs compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

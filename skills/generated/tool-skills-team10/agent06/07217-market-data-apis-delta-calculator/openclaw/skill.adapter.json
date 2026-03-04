@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7217,
+  "name": "market-data-apis-delta-calculator",
+  "title": "Market Data APIs Delta Calculator",
+  "description": "Design and run market data apis workflows with delta calculator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7010,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07217-market-data-apis-delta-calculator/SKILL.md",
+    "entrypoint": "agent06/07217-market-data-apis-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis delta calculator",
+    "market data apis delta calculator workflow",
+    "market data apis delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

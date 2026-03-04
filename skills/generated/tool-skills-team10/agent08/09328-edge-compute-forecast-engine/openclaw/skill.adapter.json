@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9328,
+  "name": "edge-compute-forecast-engine",
+  "title": "Edge Compute Forecast Engine",
+  "description": "Design and run edge compute workflows with forecast engine controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11235,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09328-edge-compute-forecast-engine/SKILL.md",
+    "entrypoint": "agent08/09328-edge-compute-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute forecast engine",
+    "edge compute forecast engine workflow",
+    "edge compute forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

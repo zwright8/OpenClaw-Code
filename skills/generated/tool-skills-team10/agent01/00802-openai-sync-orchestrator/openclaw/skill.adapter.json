@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 802,
+  "name": "openai-sync-orchestrator",
+  "title": "OpenAI Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for OpenAI records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8148,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00802-openai-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00802-openai-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "openai sync orchestrator",
+    "openai sync orchestrator workflow",
+    "openai sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

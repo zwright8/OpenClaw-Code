@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1767,
+  "name": "logistics-dispatch-delta-calculator",
+  "title": "Logistics Dispatch Delta Calculator",
+  "description": "Design and run logistics dispatch workflows with delta calculator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8603,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01767-logistics-dispatch-delta-calculator/SKILL.md",
+    "entrypoint": "agent02/01767-logistics-dispatch-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch delta calculator",
+    "logistics dispatch delta calculator workflow",
+    "logistics dispatch delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

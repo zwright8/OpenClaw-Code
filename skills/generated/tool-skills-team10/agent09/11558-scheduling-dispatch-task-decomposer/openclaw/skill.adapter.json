@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11558,
+  "name": "scheduling-dispatch-task-decomposer",
+  "title": "Scheduling Dispatch Task Decomposer",
+  "description": "Design and run scheduling dispatch workflows with task decomposer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12023,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11558-scheduling-dispatch-task-decomposer/SKILL.md",
+    "entrypoint": "agent09/11558-scheduling-dispatch-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch task decomposer",
+    "scheduling dispatch task decomposer workflow",
+    "scheduling dispatch task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

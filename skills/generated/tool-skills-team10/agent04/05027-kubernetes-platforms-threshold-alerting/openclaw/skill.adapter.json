@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5027,
+  "name": "kubernetes-platforms-threshold-alerting",
+  "title": "Kubernetes Platforms Threshold Alerting",
+  "description": "Design and run kubernetes platforms workflows with threshold alerting controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7445,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05027-kubernetes-platforms-threshold-alerting/SKILL.md",
+    "entrypoint": "agent04/05027-kubernetes-platforms-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms threshold alerting",
+    "kubernetes platforms threshold alerting workflow",
+    "kubernetes platforms threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

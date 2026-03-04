@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8106,
+  "name": "chemical-informatics-api-contract-validator",
+  "title": "Chemical Informatics API Contract Validator",
+  "description": "Design and run chemical informatics workflows with api contract validator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 192,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent07/08106-chemical-informatics-api-contract-validator/SKILL.md",
+    "entrypoint": "agent07/08106-chemical-informatics-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chemical informatics api contract validator",
+    "chemical informatics api contract validator workflow",
+    "chemical informatics api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

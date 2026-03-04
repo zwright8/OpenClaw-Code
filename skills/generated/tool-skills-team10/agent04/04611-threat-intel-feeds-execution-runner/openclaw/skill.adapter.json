@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4611,
+  "name": "threat-intel-feeds-execution-runner",
+  "title": "Threat Intel Feeds Execution Runner",
+  "description": "Design and run threat intel feeds workflows with execution runner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1330,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04611-threat-intel-feeds-execution-runner/SKILL.md",
+    "entrypoint": "agent04/04611-threat-intel-feeds-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds execution runner",
+    "threat intel feeds execution runner workflow",
+    "threat intel feeds execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

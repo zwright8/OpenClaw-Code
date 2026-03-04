@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5220,
+  "name": "release-orchestration-migration-planner",
+  "title": "Release Orchestration Migration Planner",
+  "description": "Design and run release orchestration workflows with migration planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4603,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05220-release-orchestration-migration-planner/SKILL.md",
+    "entrypoint": "agent05/05220-release-orchestration-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration migration planner",
+    "release orchestration migration planner workflow",
+    "release orchestration migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

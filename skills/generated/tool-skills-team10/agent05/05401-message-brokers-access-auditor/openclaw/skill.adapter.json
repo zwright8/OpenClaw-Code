@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5401,
+  "name": "message-brokers-access-auditor",
+  "title": "Message Brokers Access Auditor",
+  "description": "Design and run message brokers workflows with access auditor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9795,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05401-message-brokers-access-auditor/SKILL.md",
+    "entrypoint": "agent05/05401-message-brokers-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers access auditor",
+    "message brokers access auditor workflow",
+    "message brokers access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

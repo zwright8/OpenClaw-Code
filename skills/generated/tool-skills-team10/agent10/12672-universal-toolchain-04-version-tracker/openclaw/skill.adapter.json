@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12672,
+  "name": "universal-toolchain-04-version-tracker",
+  "title": "Universal Toolchain 04 Version Tracker",
+  "description": "Design and run universal toolchain 04 workflows with version tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8263,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12672-universal-toolchain-04-version-tracker/SKILL.md",
+    "entrypoint": "agent10/12672-universal-toolchain-04-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 04 version tracker",
+    "universal toolchain 04 version tracker workflow",
+    "universal toolchain 04 version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

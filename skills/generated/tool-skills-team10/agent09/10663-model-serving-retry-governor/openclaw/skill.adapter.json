@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10663,
+  "name": "model-serving-retry-governor",
+  "title": "Model Serving Retry Governor",
+  "description": "Design and run model serving workflows with retry governor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6583,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10663-model-serving-retry-governor/SKILL.md",
+    "entrypoint": "agent09/10663-model-serving-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving retry governor",
+    "model serving retry governor workflow",
+    "model serving retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

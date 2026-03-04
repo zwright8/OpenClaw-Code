@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12472,
+  "name": "autonomy-control-version-tracker",
+  "title": "Autonomy Control Version Tracker",
+  "description": "Design and run autonomy control workflows with version tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12344,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12472-autonomy-control-version-tracker/SKILL.md",
+    "entrypoint": "agent10/12472-autonomy-control-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control version tracker",
+    "autonomy control version tracker workflow",
+    "autonomy control version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

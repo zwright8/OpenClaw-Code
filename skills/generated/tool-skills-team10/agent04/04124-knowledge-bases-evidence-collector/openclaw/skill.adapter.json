@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4124,
+  "name": "knowledge-bases-evidence-collector",
+  "title": "Knowledge Bases Evidence Collector",
+  "description": "Design and run knowledge bases workflows with evidence collector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5979,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04124-knowledge-bases-evidence-collector/SKILL.md",
+    "entrypoint": "agent04/04124-knowledge-bases-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge bases evidence collector",
+    "knowledge bases evidence collector workflow",
+    "knowledge bases evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

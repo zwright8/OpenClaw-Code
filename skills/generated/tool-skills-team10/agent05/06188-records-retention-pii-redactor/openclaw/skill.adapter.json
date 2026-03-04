@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6188,
+  "name": "records-retention-pii-redactor",
+  "title": "Records Retention PII Redactor",
+  "description": "Design and run records retention workflows with pii redactor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3494,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06188-records-retention-pii-redactor/SKILL.md",
+    "entrypoint": "agent05/06188-records-retention-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention pii redactor",
+    "records retention pii redactor workflow",
+    "records retention pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

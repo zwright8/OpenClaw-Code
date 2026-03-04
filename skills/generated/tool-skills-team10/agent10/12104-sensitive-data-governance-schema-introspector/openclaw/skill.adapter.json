@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12104,
+  "name": "sensitive-data-governance-schema-introspector",
+  "title": "Sensitive Data Governance Schema Introspector",
+  "description": "Design and run sensitive data governance workflows with schema introspector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 755,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12104-sensitive-data-governance-schema-introspector/SKILL.md",
+    "entrypoint": "agent10/12104-sensitive-data-governance-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance schema introspector",
+    "sensitive data governance schema introspector workflow",
+    "sensitive data governance schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2074,
+  "name": "scada-monitoring-evidence-collector",
+  "title": "SCADA Monitoring Evidence Collector",
+  "description": "Design and run scada monitoring workflows with evidence collector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5818,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02074-scada-monitoring-evidence-collector/SKILL.md",
+    "entrypoint": "agent02/02074-scada-monitoring-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring evidence collector",
+    "scada monitoring evidence collector workflow",
+    "scada monitoring evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

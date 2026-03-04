@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11410,
+  "name": "qbr-automation-workflow-compiler",
+  "title": "QBR Automation Workflow Compiler",
+  "description": "Design and run qbr automation workflows with workflow compiler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1211,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11410-qbr-automation-workflow-compiler/SKILL.md",
+    "entrypoint": "agent09/11410-qbr-automation-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation workflow compiler",
+    "qbr automation workflow compiler workflow",
+    "qbr automation workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

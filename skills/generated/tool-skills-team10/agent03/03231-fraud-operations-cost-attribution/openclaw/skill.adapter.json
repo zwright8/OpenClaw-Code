@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3231,
+  "name": "fraud-operations-cost-attribution",
+  "title": "Fraud Operations Cost Attribution",
+  "description": "Design and run fraud operations workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9074,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03231-fraud-operations-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/03231-fraud-operations-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations cost attribution",
+    "fraud operations cost attribution workflow",
+    "fraud operations cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

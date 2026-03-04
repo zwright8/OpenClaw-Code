@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4778,
+  "name": "observability-stacks-forecast-engine",
+  "title": "Observability Stacks Forecast Engine",
+  "description": "Design and run observability stacks workflows with forecast engine controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7421,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04778-observability-stacks-forecast-engine/SKILL.md",
+    "entrypoint": "agent04/04778-observability-stacks-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks forecast engine",
+    "observability stacks forecast engine workflow",
+    "observability stacks forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

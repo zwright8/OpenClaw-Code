@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2206,
+  "name": "quality-management-api-contract-validator",
+  "title": "Quality Management API Contract Validator",
+  "description": "Design and run quality management workflows with api contract validator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 85,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent02/02206-quality-management-api-contract-validator/SKILL.md",
+    "entrypoint": "agent02/02206-quality-management-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quality management api contract validator",
+    "quality management api contract validator workflow",
+    "quality management api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

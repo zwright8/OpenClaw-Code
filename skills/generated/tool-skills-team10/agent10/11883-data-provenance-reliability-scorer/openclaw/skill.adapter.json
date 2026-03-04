@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11883,
+  "name": "data-provenance-reliability-scorer",
+  "title": "Data Provenance Reliability Scorer",
+  "description": "Design and run data provenance workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12163,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11883-data-provenance-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/11883-data-provenance-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance reliability scorer",
+    "data provenance reliability scorer workflow",
+    "data provenance reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

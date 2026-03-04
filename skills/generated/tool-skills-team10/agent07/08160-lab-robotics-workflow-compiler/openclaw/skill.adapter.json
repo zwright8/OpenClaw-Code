@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8160,
+  "name": "lab-robotics-workflow-compiler",
+  "title": "Lab Robotics Workflow Compiler",
+  "description": "Design and run lab robotics workflows with workflow compiler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1153,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08160-lab-robotics-workflow-compiler/SKILL.md",
+    "entrypoint": "agent07/08160-lab-robotics-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics workflow compiler",
+    "lab robotics workflow compiler workflow",
+    "lab robotics workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

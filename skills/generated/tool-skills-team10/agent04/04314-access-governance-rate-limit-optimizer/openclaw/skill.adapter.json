@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4314,
+  "name": "access-governance-rate-limit-optimizer",
+  "title": "Access Governance Rate Limit Optimizer",
+  "description": "Design and run access governance workflows with rate limit optimizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6009,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04314-access-governance-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent04/04314-access-governance-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance rate limit optimizer",
+    "access governance rate limit optimizer workflow",
+    "access governance rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

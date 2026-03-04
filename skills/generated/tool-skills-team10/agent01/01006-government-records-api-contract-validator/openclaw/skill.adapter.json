@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1006,
+  "name": "government-records-api-contract-validator",
+  "title": "Government Records API Contract Validator",
+  "description": "Design and run government records workflows with api contract validator controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 13,
+    "score": 102,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent01/01006-government-records-api-contract-validator/SKILL.md",
+    "entrypoint": "agent01/01006-government-records-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "government records api contract validator",
+    "government records api contract validator workflow",
+    "government records api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

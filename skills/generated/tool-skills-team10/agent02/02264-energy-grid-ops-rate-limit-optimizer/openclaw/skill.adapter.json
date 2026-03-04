@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2264,
+  "name": "energy-grid-ops-rate-limit-optimizer",
+  "title": "Energy Grid Ops Rate Limit Optimizer",
+  "description": "Design and run energy grid ops workflows with rate limit optimizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5832,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02264-energy-grid-ops-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent02/02264-energy-grid-ops-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "energy grid ops rate limit optimizer",
+    "energy grid ops rate limit optimizer workflow",
+    "energy grid ops rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

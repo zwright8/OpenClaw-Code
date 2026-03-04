@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2876,
+  "name": "rail-scheduling-anomaly-detector",
+  "title": "Rail Scheduling Anomaly Detector",
+  "description": "Design and run rail scheduling workflows with anomaly detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2712,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02876-rail-scheduling-anomaly-detector/SKILL.md",
+    "entrypoint": "agent03/02876-rail-scheduling-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling anomaly detector",
+    "rail scheduling anomaly detector workflow",
+    "rail scheduling anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

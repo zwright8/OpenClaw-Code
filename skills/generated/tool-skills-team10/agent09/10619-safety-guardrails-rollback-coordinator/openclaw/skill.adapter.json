@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10619,
+  "name": "safety-guardrails-rollback-coordinator",
+  "title": "Safety Guardrails Rollback Coordinator",
+  "description": "Design and run safety guardrails workflows with rollback coordinator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2605,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10619-safety-guardrails-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent09/10619-safety-guardrails-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails rollback coordinator",
+    "safety guardrails rollback coordinator workflow",
+    "safety guardrails rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4191,
+  "name": "incident-queues-incident-triage",
+  "title": "Incident Queues Incident Triage",
+  "description": "Design and run incident queues workflows with incident triage controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2078,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04191-incident-queues-incident-triage/SKILL.md",
+    "entrypoint": "agent04/04191-incident-queues-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues incident triage",
+    "incident queues incident triage workflow",
+    "incident queues incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

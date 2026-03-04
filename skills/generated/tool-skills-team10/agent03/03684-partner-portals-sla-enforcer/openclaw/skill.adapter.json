@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3684,
+  "name": "partner-portals-sla-enforcer",
+  "title": "Partner Portals SLA Enforcer",
+  "description": "Design and run partner portals workflows with sla enforcer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9266,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03684-partner-portals-sla-enforcer/SKILL.md",
+    "entrypoint": "agent03/03684-partner-portals-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals sla enforcer",
+    "partner portals sla enforcer workflow",
+    "partner portals sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

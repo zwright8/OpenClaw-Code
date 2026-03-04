@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 646,
+  "name": "prometheus-report-builder",
+  "title": "Prometheus Report Builder",
+  "description": "Generates operational and KPI reports from Prometheus activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12774,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00646-prometheus-report-builder/SKILL.md",
+    "entrypoint": "agent01/00646-prometheus-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prometheus report builder",
+    "prometheus report builder workflow",
+    "prometheus report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

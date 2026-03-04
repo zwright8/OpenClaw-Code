@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9851,
+  "name": "streaming-operations-access-auditor",
+  "title": "Streaming Operations Access Auditor",
+  "description": "Design and run streaming operations workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11412,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09851-streaming-operations-access-auditor/SKILL.md",
+    "entrypoint": "agent08/09851-streaming-operations-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations access auditor",
+    "streaming operations access auditor workflow",
+    "streaming operations access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

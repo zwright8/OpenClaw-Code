@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8523,
+  "name": "civic-engagement-artifact-publisher",
+  "title": "Civic Engagement Artifact Publisher",
+  "description": "Design and run civic engagement workflows with artifact publisher controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10980,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08523-civic-engagement-artifact-publisher/SKILL.md",
+    "entrypoint": "agent07/08523-civic-engagement-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement artifact publisher",
+    "civic engagement artifact publisher workflow",
+    "civic engagement artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1251,
+  "name": "healthcare-ehr-access-auditor",
+  "title": "Healthcare EHR Access Auditor",
+  "description": "Design and run healthcare ehr workflows with access auditor controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7179,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01251-healthcare-ehr-access-auditor/SKILL.md",
+    "entrypoint": "agent01/01251-healthcare-ehr-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr access auditor",
+    "healthcare ehr access auditor workflow",
+    "healthcare ehr access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

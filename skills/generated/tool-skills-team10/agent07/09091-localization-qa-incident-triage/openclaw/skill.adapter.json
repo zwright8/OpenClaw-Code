@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9091,
+  "name": "localization-qa-incident-triage",
+  "title": "Localization QA Incident Triage",
+  "description": "Design and run localization qa workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2191,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/09091-localization-qa-incident-triage/SKILL.md",
+    "entrypoint": "agent07/09091-localization-qa-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa incident triage",
+    "localization qa incident triage workflow",
+    "localization qa incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

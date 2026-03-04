@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1204,
+  "name": "procurement-portals-schema-introspector",
+  "title": "Procurement Portals Schema Introspector",
+  "description": "Design and run procurement portals workflows with schema introspector controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 306,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/01204-procurement-portals-schema-introspector/SKILL.md",
+    "entrypoint": "agent01/01204-procurement-portals-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procurement portals schema introspector",
+    "procurement portals schema introspector workflow",
+    "procurement portals schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

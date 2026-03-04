@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1874,
+  "name": "warehouse-robotics-evidence-collector",
+  "title": "Warehouse Robotics Evidence Collector",
+  "description": "Design and run warehouse robotics workflows with evidence collector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5798,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01874-warehouse-robotics-evidence-collector/SKILL.md",
+    "entrypoint": "agent02/01874-warehouse-robotics-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics evidence collector",
+    "warehouse robotics evidence collector workflow",
+    "warehouse robotics evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

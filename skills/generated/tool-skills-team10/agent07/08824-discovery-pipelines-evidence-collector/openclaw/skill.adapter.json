@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8824,
+  "name": "discovery-pipelines-evidence-collector",
+  "title": "Discovery Pipelines Evidence Collector",
+  "description": "Design and run discovery pipelines workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6418,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08824-discovery-pipelines-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/08824-discovery-pipelines-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines evidence collector",
+    "discovery pipelines evidence collector workflow",
+    "discovery pipelines evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

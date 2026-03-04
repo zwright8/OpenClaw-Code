@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10356,
+  "name": "onboarding-journeys-api-contract-validator",
+  "title": "Onboarding Journeys API Contract Validator",
+  "description": "Design and run onboarding journeys workflows with api contract validator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 231,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent08/10356-onboarding-journeys-api-contract-validator/SKILL.md",
+    "entrypoint": "agent08/10356-onboarding-journeys-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys api contract validator",
+    "onboarding journeys api contract validator workflow",
+    "onboarding journeys api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6828,
+  "name": "billing-recovery-forecast-engine",
+  "title": "Billing Recovery Forecast Engine",
+  "description": "Design and run billing recovery workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7233,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06828-billing-recovery-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/06828-billing-recovery-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery forecast engine",
+    "billing recovery forecast engine workflow",
+    "billing recovery forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

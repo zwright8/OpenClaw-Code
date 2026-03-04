@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8666,
+  "name": "urban-planning-data-state-reconciler",
+  "title": "Urban Planning Data State Reconciler",
+  "description": "Design and run urban planning data workflows with state reconciler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4310,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08666-urban-planning-data-state-reconciler/SKILL.md",
+    "entrypoint": "agent07/08666-urban-planning-data-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data state reconciler",
+    "urban planning data state reconciler workflow",
+    "urban planning data state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

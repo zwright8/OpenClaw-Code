@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1829,
+  "name": "fleet-telematics-capacity-planner",
+  "title": "Fleet Telematics Capacity Planner",
+  "description": "Design and run fleet telematics workflows with capacity planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8632,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01829-fleet-telematics-capacity-planner/SKILL.md",
+    "entrypoint": "agent02/01829-fleet-telematics-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics capacity planner",
+    "fleet telematics capacity planner workflow",
+    "fleet telematics capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

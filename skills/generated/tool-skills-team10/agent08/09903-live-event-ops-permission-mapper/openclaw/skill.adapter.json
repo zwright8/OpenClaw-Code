@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9903,
+  "name": "live-event-ops-permission-mapper",
+  "title": "Live Event Ops Permission Mapper",
+  "description": "Design and run live event ops workflows with permission mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3775,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09903-live-event-ops-permission-mapper/SKILL.md",
+    "entrypoint": "agent08/09903-live-event-ops-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "live event ops permission mapper",
+    "live event ops permission mapper workflow",
+    "live event ops permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

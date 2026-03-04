@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4433,
+  "name": "certificate-management-reliability-scorer",
+  "title": "Certificate Management Reliability Scorer",
+  "description": "Design and run certificate management workflows with reliability scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9496,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04433-certificate-management-reliability-scorer/SKILL.md",
+    "entrypoint": "agent04/04433-certificate-management-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management reliability scorer",
+    "certificate management reliability scorer workflow",
+    "certificate management reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

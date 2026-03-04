@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2717,
+  "name": "facility-maintenance-delta-calculator",
+  "title": "Facility Maintenance Delta Calculator",
+  "description": "Design and run facility maintenance workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7295,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02717-facility-maintenance-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/02717-facility-maintenance-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance delta calculator",
+    "facility maintenance delta calculator workflow",
+    "facility maintenance delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

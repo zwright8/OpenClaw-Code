@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6487,
+  "name": "3d-asset-pipelines-compliance-mapper",
+  "title": "3D Asset Pipelines Compliance Mapper",
+  "description": "Design and run 3d asset pipelines workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1858,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06487-3d-asset-pipelines-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/06487-3d-asset-pipelines-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines compliance mapper",
+    "3d asset pipelines compliance mapper workflow",
+    "3d asset pipelines compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

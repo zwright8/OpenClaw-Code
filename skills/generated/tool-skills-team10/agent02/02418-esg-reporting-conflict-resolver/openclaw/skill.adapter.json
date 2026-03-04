@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2418,
+  "name": "esg-reporting-conflict-resolver",
+  "title": "ESG Reporting Conflict Resolver",
+  "description": "Design and run esg reporting workflows with conflict resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8835,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02418-esg-reporting-conflict-resolver/SKILL.md",
+    "entrypoint": "agent02/02418-esg-reporting-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting conflict resolver",
+    "esg reporting conflict resolver workflow",
+    "esg reporting conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

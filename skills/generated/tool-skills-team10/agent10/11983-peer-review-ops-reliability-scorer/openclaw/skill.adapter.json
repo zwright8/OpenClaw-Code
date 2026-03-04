@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11983,
+  "name": "peer-review-ops-reliability-scorer",
+  "title": "Peer Review Ops Reliability Scorer",
+  "description": "Design and run peer review ops workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12205,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11983-peer-review-ops-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/11983-peer-review-ops-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops reliability scorer",
+    "peer review ops reliability scorer workflow",
+    "peer review ops reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

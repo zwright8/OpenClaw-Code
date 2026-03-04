@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1776,
+  "name": "logistics-dispatch-anomaly-detector",
+  "title": "Logistics Dispatch Anomaly Detector",
+  "description": "Design and run logistics dispatch workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5303,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01776-logistics-dispatch-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/01776-logistics-dispatch-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch anomaly detector",
+    "logistics dispatch anomaly detector workflow",
+    "logistics dispatch anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

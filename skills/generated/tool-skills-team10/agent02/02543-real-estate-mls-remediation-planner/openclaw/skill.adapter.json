@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2543,
+  "name": "real-estate-mls-remediation-planner",
+  "title": "Real Estate MLS Remediation Planner",
+  "description": "Design and run real estate mls workflows with remediation planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2699,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02543-real-estate-mls-remediation-planner/SKILL.md",
+    "entrypoint": "agent02/02543-real-estate-mls-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls remediation planner",
+    "real estate mls remediation planner workflow",
+    "real estate mls remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

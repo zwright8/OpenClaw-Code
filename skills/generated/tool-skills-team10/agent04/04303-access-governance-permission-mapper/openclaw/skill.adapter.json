@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4303,
+  "name": "access-governance-permission-mapper",
+  "title": "Access Governance Permission Mapper",
+  "description": "Design and run access governance workflows with permission mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3350,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04303-access-governance-permission-mapper/SKILL.md",
+    "entrypoint": "agent04/04303-access-governance-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance permission mapper",
+    "access governance permission mapper workflow",
+    "access governance permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

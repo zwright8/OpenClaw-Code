@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11210,
+  "name": "channel-operations-workflow-compiler",
+  "title": "Channel Operations Workflow Compiler",
+  "description": "Design and run channel operations workflows with workflow compiler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1207,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11210-channel-operations-workflow-compiler/SKILL.md",
+    "entrypoint": "agent09/11210-channel-operations-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "channel operations workflow compiler",
+    "channel operations workflow compiler workflow",
+    "channel operations workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12318,
+  "name": "benchmark-repositories-conflict-resolver",
+  "title": "Benchmark Repositories Conflict Resolver",
+  "description": "Design and run benchmark repositories workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12279,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12318-benchmark-repositories-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/12318-benchmark-repositories-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "benchmark repositories conflict resolver",
+    "benchmark repositories conflict resolver workflow",
+    "benchmark repositories conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

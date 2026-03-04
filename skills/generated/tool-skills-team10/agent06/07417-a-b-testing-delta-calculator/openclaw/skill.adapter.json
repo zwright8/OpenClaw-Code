@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7417,
+  "name": "a-b-testing-delta-calculator",
+  "title": "A/B Testing Delta Calculator",
+  "description": "Design and run a/b testing workflows with delta calculator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10535,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07417-a-b-testing-delta-calculator/SKILL.md",
+    "entrypoint": "agent06/07417-a-b-testing-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing delta calculator",
+    "a/b testing delta calculator workflow",
+    "a/b testing delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

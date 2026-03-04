@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1545,
+  "name": "education-lms-runbook-composer",
+  "title": "Education LMS Runbook Composer",
+  "description": "Design and run education lms workflows with runbook composer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3989,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01545-education-lms-runbook-composer/SKILL.md",
+    "entrypoint": "agent02/01545-education-lms-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms runbook composer",
+    "education lms runbook composer workflow",
+    "education lms runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2133,
+  "name": "digital-twins-reliability-scorer",
+  "title": "Digital Twins Reliability Scorer",
+  "description": "Design and run digital twins workflows with reliability scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8761,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02133-digital-twins-reliability-scorer/SKILL.md",
+    "entrypoint": "agent02/02133-digital-twins-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins reliability scorer",
+    "digital twins reliability scorer workflow",
+    "digital twins reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

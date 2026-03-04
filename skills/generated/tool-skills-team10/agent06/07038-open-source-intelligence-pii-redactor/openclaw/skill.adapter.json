@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7038,
+  "name": "open-source-intelligence-pii-redactor",
+  "title": "Open Source Intelligence PII Redactor",
+  "description": "Design and run open source intelligence workflows with pii redactor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3554,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07038-open-source-intelligence-pii-redactor/SKILL.md",
+    "entrypoint": "agent06/07038-open-source-intelligence-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence pii redactor",
+    "open source intelligence pii redactor workflow",
+    "open source intelligence pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

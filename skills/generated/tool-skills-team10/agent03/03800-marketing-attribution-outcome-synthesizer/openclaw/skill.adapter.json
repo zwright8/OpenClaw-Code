@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3800,
+  "name": "marketing-attribution-outcome-synthesizer",
+  "title": "Marketing Attribution Outcome Synthesizer",
+  "description": "Design and run marketing attribution workflows with outcome synthesizer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4960,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03800-marketing-attribution-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent03/03800-marketing-attribution-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketing attribution outcome synthesizer",
+    "marketing attribution outcome synthesizer workflow",
+    "marketing attribution outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

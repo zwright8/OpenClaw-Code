@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10718,
+  "name": "vector-datastores-conflict-resolver",
+  "title": "Vector Datastores Conflict Resolver",
+  "description": "Design and run vector datastores workflows with conflict resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11691,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10718-vector-datastores-conflict-resolver/SKILL.md",
+    "entrypoint": "agent09/10718-vector-datastores-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores conflict resolver",
+    "vector datastores conflict resolver workflow",
+    "vector datastores conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

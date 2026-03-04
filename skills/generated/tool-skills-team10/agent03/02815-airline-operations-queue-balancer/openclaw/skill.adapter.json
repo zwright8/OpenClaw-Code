@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2815,
+  "name": "airline-operations-queue-balancer",
+  "title": "Airline Operations Queue Balancer",
+  "description": "Design and run airline operations workflows with queue balancer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7317,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02815-airline-operations-queue-balancer/SKILL.md",
+    "entrypoint": "agent03/02815-airline-operations-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations queue balancer",
+    "airline operations queue balancer workflow",
+    "airline operations queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

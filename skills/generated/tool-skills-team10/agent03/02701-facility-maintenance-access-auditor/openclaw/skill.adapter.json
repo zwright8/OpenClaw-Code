@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2701,
+  "name": "facility-maintenance-access-auditor",
+  "title": "Facility Maintenance Access Auditor",
+  "description": "Design and run facility maintenance workflows with access auditor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7290,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02701-facility-maintenance-access-auditor/SKILL.md",
+    "entrypoint": "agent03/02701-facility-maintenance-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance access auditor",
+    "facility maintenance access auditor workflow",
+    "facility maintenance access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

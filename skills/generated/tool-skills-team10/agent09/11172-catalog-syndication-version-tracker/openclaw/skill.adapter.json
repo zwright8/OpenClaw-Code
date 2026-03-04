@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11172,
+  "name": "catalog-syndication-version-tracker",
+  "title": "Catalog Syndication Version Tracker",
+  "description": "Design and run catalog syndication workflows with version tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11861,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11172-catalog-syndication-version-tracker/SKILL.md",
+    "entrypoint": "agent09/11172-catalog-syndication-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication version tracker",
+    "catalog syndication version tracker workflow",
+    "catalog syndication version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

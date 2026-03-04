@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3104,
+  "name": "risk-engines-schema-introspector",
+  "title": "Risk Engines Schema Introspector",
+  "description": "Design and run risk engines workflows with schema introspector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 98,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent03/03104-risk-engines-schema-introspector/SKILL.md",
+    "entrypoint": "agent03/03104-risk-engines-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines schema introspector",
+    "risk engines schema introspector workflow",
+    "risk engines schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

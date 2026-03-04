@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12341,
+  "name": "benchmark-repositories-incident-triage",
+  "title": "Benchmark Repositories Incident Triage",
+  "description": "Design and run benchmark repositories workflows with incident triage controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2281,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12341-benchmark-repositories-incident-triage/SKILL.md",
+    "entrypoint": "agent10/12341-benchmark-repositories-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "benchmark repositories incident triage",
+    "benchmark repositories incident triage workflow",
+    "benchmark repositories incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

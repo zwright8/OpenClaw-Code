@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11180,
+  "name": "catalog-syndication-budget-guardrail",
+  "title": "Catalog Syndication Budget Guardrail",
+  "description": "Design and run catalog syndication workflows with budget guardrail controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7707,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11180-catalog-syndication-budget-guardrail/SKILL.md",
+    "entrypoint": "agent09/11180-catalog-syndication-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication budget guardrail",
+    "catalog syndication budget guardrail workflow",
+    "catalog syndication budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

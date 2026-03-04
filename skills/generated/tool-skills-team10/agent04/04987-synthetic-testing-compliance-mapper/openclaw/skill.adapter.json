@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4987,
+  "name": "synthetic-testing-compliance-mapper",
+  "title": "Synthetic Testing Compliance Mapper",
+  "description": "Design and run synthetic testing workflows with compliance mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1829,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04987-synthetic-testing-compliance-mapper/SKILL.md",
+    "entrypoint": "agent04/04987-synthetic-testing-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic testing compliance mapper",
+    "synthetic testing compliance mapper workflow",
+    "synthetic testing compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

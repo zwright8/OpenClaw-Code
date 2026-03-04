@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12979,
+  "name": "universal-toolchain-10-capacity-planner",
+  "title": "Universal Toolchain 10 Capacity Planner",
+  "description": "Design and run universal toolchain 10 workflows with capacity planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8400,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12979-universal-toolchain-10-capacity-planner/SKILL.md",
+    "entrypoint": "agent10/12979-universal-toolchain-10-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 10 capacity planner",
+    "universal toolchain 10 capacity planner workflow",
+    "universal toolchain 10 capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

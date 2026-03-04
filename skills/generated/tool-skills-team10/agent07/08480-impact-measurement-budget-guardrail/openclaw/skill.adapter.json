@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8480,
+  "name": "impact-measurement-budget-guardrail",
+  "title": "Impact Measurement Budget Guardrail",
+  "description": "Design and run impact measurement workflows with budget guardrail controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7536,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08480-impact-measurement-budget-guardrail/SKILL.md",
+    "entrypoint": "agent07/08480-impact-measurement-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement budget guardrail",
+    "impact measurement budget guardrail workflow",
+    "impact measurement budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

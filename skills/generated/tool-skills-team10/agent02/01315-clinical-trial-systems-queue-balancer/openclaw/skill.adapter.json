@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1315,
+  "name": "clinical-trial-systems-queue-balancer",
+  "title": "Clinical Trial Systems Queue Balancer",
+  "description": "Design and run clinical trial systems workflows with queue balancer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8455,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01315-clinical-trial-systems-queue-balancer/SKILL.md",
+    "entrypoint": "agent02/01315-clinical-trial-systems-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clinical trial systems queue balancer",
+    "clinical trial systems queue balancer workflow",
+    "clinical trial systems queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8599,
+  "name": "emergency-response-quality-gatekeeper",
+  "title": "Emergency Response Quality Gatekeeper",
+  "description": "Design and run emergency response workflows with quality gatekeeper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5555,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08599-emergency-response-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent07/08599-emergency-response-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response quality gatekeeper",
+    "emergency response quality gatekeeper workflow",
+    "emergency response quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

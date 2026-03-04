@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5325,
+  "name": "service-mesh-provenance-tracker",
+  "title": "Service Mesh Provenance Tracker",
+  "description": "Design and run service mesh workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9763,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05325-service-mesh-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05325-service-mesh-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service mesh provenance tracker",
+    "service mesh provenance tracker workflow",
+    "service mesh provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

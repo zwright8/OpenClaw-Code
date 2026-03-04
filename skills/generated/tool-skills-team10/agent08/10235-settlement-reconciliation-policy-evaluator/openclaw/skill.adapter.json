@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10235,
+  "name": "settlement-reconciliation-policy-evaluator",
+  "title": "Settlement Reconciliation Policy Evaluator",
+  "description": "Design and run settlement reconciliation workflows with policy evaluator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3797,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10235-settlement-reconciliation-policy-evaluator/SKILL.md",
+    "entrypoint": "agent08/10235-settlement-reconciliation-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation policy evaluator",
+    "settlement reconciliation policy evaluator workflow",
+    "settlement reconciliation policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

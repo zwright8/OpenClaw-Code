@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6456,
+  "name": "3d-asset-pipelines-api-contract-validator",
+  "title": "3D Asset Pipelines API Contract Validator",
+  "description": "Design and run 3d asset pipelines workflows with api contract validator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 160,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent05/06456-3d-asset-pipelines-api-contract-validator/SKILL.md",
+    "entrypoint": "agent05/06456-3d-asset-pipelines-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines api contract validator",
+    "3d asset pipelines api contract validator workflow",
+    "3d asset pipelines api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

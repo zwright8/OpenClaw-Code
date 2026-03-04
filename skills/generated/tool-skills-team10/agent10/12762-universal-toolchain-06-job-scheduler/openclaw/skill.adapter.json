@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12762,
+  "name": "universal-toolchain-06-job-scheduler",
+  "title": "Universal Toolchain 06 Job Scheduler",
+  "description": "Design and run universal toolchain 06 workflows with job scheduler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4866,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12762-universal-toolchain-06-job-scheduler/SKILL.md",
+    "entrypoint": "agent10/12762-universal-toolchain-06-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 06 job scheduler",
+    "universal toolchain 06 job scheduler workflow",
+    "universal toolchain 06 job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

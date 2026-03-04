@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1027,
+  "name": "government-records-threshold-alerting",
+  "title": "Government Records Threshold Alerting",
+  "description": "Design and run government records workflows with threshold alerting controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7169,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01027-government-records-threshold-alerting/SKILL.md",
+    "entrypoint": "agent01/01027-government-records-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "government records threshold alerting",
+    "government records threshold alerting workflow",
+    "government records threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

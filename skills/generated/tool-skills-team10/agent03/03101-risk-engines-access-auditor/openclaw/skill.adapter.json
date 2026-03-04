@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3101,
+  "name": "risk-engines-access-auditor",
+  "title": "Risk Engines Access Auditor",
+  "description": "Design and run risk engines workflows with access auditor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6853,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03101-risk-engines-access-auditor/SKILL.md",
+    "entrypoint": "agent03/03101-risk-engines-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines access auditor",
+    "risk engines access auditor workflow",
+    "risk engines access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

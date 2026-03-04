@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5025,
+  "name": "kubernetes-platforms-provenance-tracker",
+  "title": "Kubernetes Platforms Provenance Tracker",
+  "description": "Design and run kubernetes platforms workflows with provenance tracker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7444,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05025-kubernetes-platforms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent04/05025-kubernetes-platforms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms provenance tracker",
+    "kubernetes platforms provenance tracker workflow",
+    "kubernetes platforms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

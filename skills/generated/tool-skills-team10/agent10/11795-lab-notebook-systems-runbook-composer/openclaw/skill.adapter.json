@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11795,
+  "name": "lab-notebook-systems-runbook-composer",
+  "title": "Lab Notebook Systems Runbook Composer",
+  "description": "Design and run lab notebook systems workflows with runbook composer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6691,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11795-lab-notebook-systems-runbook-composer/SKILL.md",
+    "entrypoint": "agent10/11795-lab-notebook-systems-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems runbook composer",
+    "lab notebook systems runbook composer workflow",
+    "lab notebook systems runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2523,
+  "name": "real-estate-mls-artifact-publisher",
+  "title": "Real Estate MLS Artifact Publisher",
+  "description": "Design and run real estate mls workflows with artifact publisher controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8880,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02523-real-estate-mls-artifact-publisher/SKILL.md",
+    "entrypoint": "agent02/02523-real-estate-mls-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls artifact publisher",
+    "real estate mls artifact publisher workflow",
+    "real estate mls artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

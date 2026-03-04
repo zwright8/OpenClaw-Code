@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1875,
+  "name": "warehouse-robotics-provenance-tracker",
+  "title": "Warehouse Robotics Provenance Tracker",
+  "description": "Design and run warehouse robotics workflows with provenance tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8650,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01875-warehouse-robotics-provenance-tracker/SKILL.md",
+    "entrypoint": "agent02/01875-warehouse-robotics-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics provenance tracker",
+    "warehouse robotics provenance tracker workflow",
+    "warehouse robotics provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

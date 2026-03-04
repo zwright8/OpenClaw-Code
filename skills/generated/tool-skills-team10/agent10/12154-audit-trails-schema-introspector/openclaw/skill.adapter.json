@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12154,
+  "name": "audit-trails-schema-introspector",
+  "title": "Audit Trails Schema Introspector",
+  "description": "Design and run audit trails workflows with schema introspector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 302,
+    "score": 93,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12154-audit-trails-schema-introspector/SKILL.md",
+    "entrypoint": "agent10/12154-audit-trails-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails schema introspector",
+    "audit trails schema introspector workflow",
+    "audit trails schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

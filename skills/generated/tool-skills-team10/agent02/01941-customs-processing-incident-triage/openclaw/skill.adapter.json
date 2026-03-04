@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1941,
+  "name": "customs-processing-incident-triage",
+  "title": "Customs Processing Incident Triage",
+  "description": "Design and run customs processing workflows with incident triage controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2018,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01941-customs-processing-incident-triage/SKILL.md",
+    "entrypoint": "agent02/01941-customs-processing-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing incident triage",
+    "customs processing incident triage workflow",
+    "customs processing incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

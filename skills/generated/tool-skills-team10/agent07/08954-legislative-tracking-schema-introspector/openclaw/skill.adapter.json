@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8954,
+  "name": "legislative-tracking-schema-introspector",
+  "title": "Legislative Tracking Schema Introspector",
+  "description": "Design and run legislative tracking workflows with schema introspector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 694,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/08954-legislative-tracking-schema-introspector/SKILL.md",
+    "entrypoint": "agent07/08954-legislative-tracking-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legislative tracking schema introspector",
+    "legislative tracking schema introspector workflow",
+    "legislative tracking schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

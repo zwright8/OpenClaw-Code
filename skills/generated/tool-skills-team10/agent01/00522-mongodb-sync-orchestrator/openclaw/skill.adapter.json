@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 522,
+  "name": "mongodb-sync-orchestrator",
+  "title": "MongoDB Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for MongoDB records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12686,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00522-mongodb-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00522-mongodb-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mongodb sync orchestrator",
+    "mongodb sync orchestrator workflow",
+    "mongodb sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

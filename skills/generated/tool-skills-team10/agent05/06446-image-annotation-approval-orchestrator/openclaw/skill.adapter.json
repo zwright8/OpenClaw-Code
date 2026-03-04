@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6446,
+  "name": "image-annotation-approval-orchestrator",
+  "title": "Image Annotation Approval Orchestrator",
+  "description": "Design and run image annotation workflows with approval orchestrator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6209,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06446-image-annotation-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent05/06446-image-annotation-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation approval orchestrator",
+    "image annotation approval orchestrator workflow",
+    "image annotation approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

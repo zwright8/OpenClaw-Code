@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1112,
+  "name": "patent-filings-job-scheduler",
+  "title": "Patent Filings Job Scheduler",
+  "description": "Design and run patent filings workflows with job scheduler controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 4878,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01112-patent-filings-job-scheduler/SKILL.md",
+    "entrypoint": "agent01/01112-patent-filings-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings job scheduler",
+    "patent filings job scheduler workflow",
+    "patent filings job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

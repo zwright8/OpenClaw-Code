@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4795,
+  "name": "observability-stacks-runbook-composer",
+  "title": "Observability Stacks Runbook Composer",
+  "description": "Design and run observability stacks workflows with runbook composer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3386,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04795-observability-stacks-runbook-composer/SKILL.md",
+    "entrypoint": "agent04/04795-observability-stacks-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks runbook composer",
+    "observability stacks runbook composer workflow",
+    "observability stacks runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

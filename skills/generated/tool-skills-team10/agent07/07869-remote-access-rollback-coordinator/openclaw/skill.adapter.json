@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7869,
+  "name": "remote-access-rollback-coordinator",
+  "title": "Remote Access Rollback Coordinator",
+  "description": "Design and run remote access workflows with rollback coordinator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5103,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07869-remote-access-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent07/07869-remote-access-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access rollback coordinator",
+    "remote access rollback coordinator workflow",
+    "remote access rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

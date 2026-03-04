@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7021,
+  "name": "open-source-intelligence-snapshot-manager",
+  "title": "Open Source Intelligence Snapshot Manager",
+  "description": "Design and run open source intelligence workflows with snapshot manager controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10390,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07021-open-source-intelligence-snapshot-manager/SKILL.md",
+    "entrypoint": "agent06/07021-open-source-intelligence-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence snapshot manager",
+    "open source intelligence snapshot manager workflow",
+    "open source intelligence snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

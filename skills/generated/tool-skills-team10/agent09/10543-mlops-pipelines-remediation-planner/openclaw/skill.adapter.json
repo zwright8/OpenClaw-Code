@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10543,
+  "name": "mlops-pipelines-remediation-planner",
+  "title": "MLOps Pipelines Remediation Planner",
+  "description": "Design and run mlops pipelines workflows with remediation planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1940,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10543-mlops-pipelines-remediation-planner/SKILL.md",
+    "entrypoint": "agent09/10543-mlops-pipelines-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mlops pipelines remediation planner",
+    "mlops pipelines remediation planner workflow",
+    "mlops pipelines remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

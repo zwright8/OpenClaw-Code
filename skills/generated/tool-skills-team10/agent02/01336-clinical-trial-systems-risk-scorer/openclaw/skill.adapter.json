@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1336,
+  "name": "clinical-trial-systems-risk-scorer",
+  "title": "Clinical Trial Systems Risk Scorer",
+  "description": "Design and run clinical trial systems workflows with risk scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1494,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01336-clinical-trial-systems-risk-scorer/SKILL.md",
+    "entrypoint": "agent02/01336-clinical-trial-systems-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clinical trial systems risk scorer",
+    "clinical trial systems risk scorer workflow",
+    "clinical trial systems risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

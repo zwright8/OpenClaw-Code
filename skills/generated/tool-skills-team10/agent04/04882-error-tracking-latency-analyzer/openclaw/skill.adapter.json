@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4882,
+  "name": "error-tracking-latency-analyzer",
+  "title": "Error Tracking Latency Analyzer",
+  "description": "Design and run error tracking workflows with latency analyzer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9642,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04882-error-tracking-latency-analyzer/SKILL.md",
+    "entrypoint": "agent04/04882-error-tracking-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "error tracking latency analyzer",
+    "error tracking latency analyzer workflow",
+    "error tracking latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

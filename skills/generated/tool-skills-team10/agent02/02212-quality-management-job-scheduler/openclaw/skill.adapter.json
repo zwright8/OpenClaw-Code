@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2212,
+  "name": "quality-management-job-scheduler",
+  "title": "Quality Management Job Scheduler",
+  "description": "Design and run quality management workflows with job scheduler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4910,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02212-quality-management-job-scheduler/SKILL.md",
+    "entrypoint": "agent02/02212-quality-management-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quality management job scheduler",
+    "quality management job scheduler workflow",
+    "quality management job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9177,
+  "name": "accessibility-auditing-threshold-alerting",
+  "title": "Accessibility Auditing Threshold Alerting",
+  "description": "Design and run accessibility auditing workflows with threshold alerting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11192,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09177-accessibility-auditing-threshold-alerting/SKILL.md",
+    "entrypoint": "agent08/09177-accessibility-auditing-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing threshold alerting",
+    "accessibility auditing threshold alerting workflow",
+    "accessibility auditing threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8530,
+  "name": "civic-engagement-budget-guardrail",
+  "title": "Civic Engagement Budget Guardrail",
+  "description": "Design and run civic engagement workflows with budget guardrail controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7537,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08530-civic-engagement-budget-guardrail/SKILL.md",
+    "entrypoint": "agent07/08530-civic-engagement-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement budget guardrail",
+    "civic engagement budget guardrail workflow",
+    "civic engagement budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

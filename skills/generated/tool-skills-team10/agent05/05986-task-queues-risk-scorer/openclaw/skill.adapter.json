@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5986,
+  "name": "task-queues-risk-scorer",
+  "title": "Task Queues Risk Scorer",
+  "description": "Design and run task queues workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1593,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05986-task-queues-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/05986-task-queues-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues risk scorer",
+    "task queues risk scorer workflow",
+    "task queues risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

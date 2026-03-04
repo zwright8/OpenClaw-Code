@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8597,
+  "name": "emergency-response-human-handoff-router",
+  "title": "Emergency Response Human Handoff Router",
+  "description": "Design and run emergency response workflows with human handoff router controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11011,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08597-emergency-response-human-handoff-router/SKILL.md",
+    "entrypoint": "agent07/08597-emergency-response-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response human handoff router",
+    "emergency response human handoff router workflow",
+    "emergency response human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

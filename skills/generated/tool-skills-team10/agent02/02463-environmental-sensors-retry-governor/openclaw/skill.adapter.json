@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2463,
+  "name": "environmental-sensors-retry-governor",
+  "title": "Environmental Sensors Retry Governor",
+  "description": "Design and run environmental sensors workflows with retry governor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5846,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02463-environmental-sensors-retry-governor/SKILL.md",
+    "entrypoint": "agent02/02463-environmental-sensors-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors retry governor",
+    "environmental sensors retry governor workflow",
+    "environmental sensors retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

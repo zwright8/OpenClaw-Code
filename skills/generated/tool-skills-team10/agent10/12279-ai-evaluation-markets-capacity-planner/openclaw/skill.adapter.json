@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12279,
+  "name": "ai-evaluation-markets-capacity-planner",
+  "title": "AI Evaluation Markets Capacity Planner",
+  "description": "Design and run ai evaluation markets workflows with capacity planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7762,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12279-ai-evaluation-markets-capacity-planner/SKILL.md",
+    "entrypoint": "agent10/12279-ai-evaluation-markets-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets capacity planner",
+    "ai evaluation markets capacity planner workflow",
+    "ai evaluation markets capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

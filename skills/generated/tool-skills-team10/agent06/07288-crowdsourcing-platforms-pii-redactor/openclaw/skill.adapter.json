@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7288,
+  "name": "crowdsourcing-platforms-pii-redactor",
+  "title": "Crowdsourcing Platforms PII Redactor",
+  "description": "Design and run crowdsourcing platforms workflows with pii redactor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3571,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07288-crowdsourcing-platforms-pii-redactor/SKILL.md",
+    "entrypoint": "agent06/07288-crowdsourcing-platforms-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms pii redactor",
+    "crowdsourcing platforms pii redactor workflow",
+    "crowdsourcing platforms pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

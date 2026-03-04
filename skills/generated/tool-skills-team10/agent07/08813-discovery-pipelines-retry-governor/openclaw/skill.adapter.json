@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8813,
+  "name": "discovery-pipelines-retry-governor",
+  "title": "Discovery Pipelines Retry Governor",
+  "description": "Design and run discovery pipelines workflows with retry governor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6416,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08813-discovery-pipelines-retry-governor/SKILL.md",
+    "entrypoint": "agent07/08813-discovery-pipelines-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines retry governor",
+    "discovery pipelines retry governor workflow",
+    "discovery pipelines retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

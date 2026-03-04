@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8541,
+  "name": "civic-engagement-incident-triage",
+  "title": "Civic Engagement Incident Triage",
+  "description": "Design and run civic engagement workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2177,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08541-civic-engagement-incident-triage/SKILL.md",
+    "entrypoint": "agent07/08541-civic-engagement-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement incident triage",
+    "civic engagement incident triage workflow",
+    "civic engagement incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

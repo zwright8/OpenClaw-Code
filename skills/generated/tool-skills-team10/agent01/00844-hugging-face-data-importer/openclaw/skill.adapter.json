@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 844,
+  "name": "hugging-face-data-importer",
+  "title": "Hugging Face Data Importer",
+  "description": "Validates and imports bulk updates into Hugging Face.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12891,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00844-hugging-face-data-importer/SKILL.md",
+    "entrypoint": "agent01/00844-hugging-face-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hugging face data importer",
+    "hugging face data importer workflow",
+    "hugging face data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 707,
+  "name": "figma-alert-monitor",
+  "title": "Figma Alert Monitor",
+  "description": "Monitors key Figma signals and raises actionable alerts.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8138,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00707-figma-alert-monitor/SKILL.md",
+    "entrypoint": "agent01/00707-figma-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "figma alert monitor",
+    "figma alert monitor workflow",
+    "figma alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

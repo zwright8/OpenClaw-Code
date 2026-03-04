@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10131,
+  "name": "merchant-risk-cost-attribution",
+  "title": "Merchant Risk Cost Attribution",
+  "description": "Design and run merchant risk workflows with cost attribution controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7111,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10131-merchant-risk-cost-attribution/SKILL.md",
+    "entrypoint": "agent08/10131-merchant-risk-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk cost attribution",
+    "merchant risk cost attribution workflow",
+    "merchant risk cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

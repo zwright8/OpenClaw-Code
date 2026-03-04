@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8594,
+  "name": "emergency-response-postmortem-drafting",
+  "title": "Emergency Response Postmortem Drafting",
+  "description": "Design and run emergency response workflows with postmortem drafting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11010,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08594-emergency-response-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent07/08594-emergency-response-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response postmortem drafting",
+    "emergency response postmortem drafting workflow",
+    "emergency response postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9116,
+  "name": "terminology-mgmt-state-reconciler",
+  "title": "Terminology Mgmt State Reconciler",
+  "description": "Design and run terminology mgmt workflows with state reconciler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4330,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09116-terminology-mgmt-state-reconciler/SKILL.md",
+    "entrypoint": "agent08/09116-terminology-mgmt-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "terminology mgmt state reconciler",
+    "terminology mgmt state reconciler workflow",
+    "terminology mgmt state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

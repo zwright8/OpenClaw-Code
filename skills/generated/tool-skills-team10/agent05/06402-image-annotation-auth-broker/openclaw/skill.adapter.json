@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6402,
+  "name": "image-annotation-auth-broker",
+  "title": "Image Annotation Auth Broker",
+  "description": "Design and run image annotation workflows with auth broker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 898,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent05/06402-image-annotation-auth-broker/SKILL.md",
+    "entrypoint": "agent05/06402-image-annotation-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation auth broker",
+    "image annotation auth broker workflow",
+    "image annotation auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

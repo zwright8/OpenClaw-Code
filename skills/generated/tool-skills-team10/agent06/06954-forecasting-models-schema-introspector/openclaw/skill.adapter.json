@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6954,
+  "name": "forecasting-models-schema-introspector",
+  "title": "Forecasting Models Schema Introspector",
+  "description": "Design and run forecasting models workflows with schema introspector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 654,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/06954-forecasting-models-schema-introspector/SKILL.md",
+    "entrypoint": "agent06/06954-forecasting-models-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "forecasting models schema introspector",
+    "forecasting models schema introspector workflow",
+    "forecasting models schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

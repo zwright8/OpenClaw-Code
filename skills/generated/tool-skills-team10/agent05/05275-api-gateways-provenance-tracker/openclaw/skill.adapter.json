@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5275,
+  "name": "api-gateways-provenance-tracker",
+  "title": "API Gateways Provenance Tracker",
+  "description": "Design and run api gateways workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6939,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05275-api-gateways-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05275-api-gateways-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways provenance tracker",
+    "api gateways provenance tracker workflow",
+    "api gateways provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

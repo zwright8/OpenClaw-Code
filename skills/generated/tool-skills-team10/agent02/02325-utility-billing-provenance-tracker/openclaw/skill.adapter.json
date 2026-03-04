@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2325,
+  "name": "utility-billing-provenance-tracker",
+  "title": "Utility Billing Provenance Tracker",
+  "description": "Design and run utility billing workflows with provenance tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7210,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02325-utility-billing-provenance-tracker/SKILL.md",
+    "entrypoint": "agent02/02325-utility-billing-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing provenance tracker",
+    "utility billing provenance tracker workflow",
+    "utility billing provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

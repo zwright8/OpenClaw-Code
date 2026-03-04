@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8463,
+  "name": "impact-measurement-retry-governor",
+  "title": "Impact Measurement Retry Governor",
+  "description": "Design and run impact measurement workflows with retry governor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6391,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08463-impact-measurement-retry-governor/SKILL.md",
+    "entrypoint": "agent07/08463-impact-measurement-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement retry governor",
+    "impact measurement retry governor workflow",
+    "impact measurement retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

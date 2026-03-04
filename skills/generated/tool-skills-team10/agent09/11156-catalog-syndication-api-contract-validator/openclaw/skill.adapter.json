@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11156,
+  "name": "catalog-syndication-api-contract-validator",
+  "title": "Catalog Syndication API Contract Validator",
+  "description": "Design and run catalog syndication workflows with api contract validator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 244,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent09/11156-catalog-syndication-api-contract-validator/SKILL.md",
+    "entrypoint": "agent09/11156-catalog-syndication-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication api contract validator",
+    "catalog syndication api contract validator workflow",
+    "catalog syndication api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

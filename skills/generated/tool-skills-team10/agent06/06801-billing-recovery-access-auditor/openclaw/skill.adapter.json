@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6801,
+  "name": "billing-recovery-access-auditor",
+  "title": "Billing Recovery Access Auditor",
+  "description": "Design and run billing recovery workflows with access auditor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7221,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06801-billing-recovery-access-auditor/SKILL.md",
+    "entrypoint": "agent06/06801-billing-recovery-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery access auditor",
+    "billing recovery access auditor workflow",
+    "billing recovery access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

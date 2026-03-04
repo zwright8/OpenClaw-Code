@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5159,
+  "name": "cloud-cost-platforms-dependency-resolver",
+  "title": "Cloud Cost Platforms Dependency Resolver",
+  "description": "Design and run cloud cost platforms workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7460,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05159-cloud-cost-platforms-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/05159-cloud-cost-platforms-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms dependency resolver",
+    "cloud cost platforms dependency resolver workflow",
+    "cloud cost platforms dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

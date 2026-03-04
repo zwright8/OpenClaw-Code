@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6571,
+  "name": "order-management-snapshot-manager",
+  "title": "Order Management Snapshot Manager",
+  "description": "Design and run order management workflows with snapshot manager controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10222,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06571-order-management-snapshot-manager/SKILL.md",
+    "entrypoint": "agent06/06571-order-management-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management snapshot manager",
+    "order management snapshot manager workflow",
+    "order management snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

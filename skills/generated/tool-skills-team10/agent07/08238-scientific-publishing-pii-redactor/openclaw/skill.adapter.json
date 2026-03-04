@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8238,
+  "name": "scientific-publishing-pii-redactor",
+  "title": "Scientific Publishing PII Redactor",
+  "description": "Design and run scientific publishing workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3647,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08238-scientific-publishing-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/08238-scientific-publishing-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scientific publishing pii redactor",
+    "scientific publishing pii redactor workflow",
+    "scientific publishing pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

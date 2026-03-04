@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12333,
+  "name": "benchmark-repositories-reliability-scorer",
+  "title": "Benchmark Repositories Reliability Scorer",
+  "description": "Design and run benchmark repositories workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12289,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12333-benchmark-repositories-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12333-benchmark-repositories-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "benchmark repositories reliability scorer",
+    "benchmark repositories reliability scorer workflow",
+    "benchmark repositories reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

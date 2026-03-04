@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10477,
+  "name": "biometric-systems-threshold-alerting",
+  "title": "Biometric Systems Threshold Alerting",
+  "description": "Design and run biometric systems workflows with threshold alerting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11633,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10477-biometric-systems-threshold-alerting/SKILL.md",
+    "entrypoint": "agent09/10477-biometric-systems-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems threshold alerting",
+    "biometric systems threshold alerting workflow",
+    "biometric systems threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

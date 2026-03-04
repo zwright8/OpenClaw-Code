@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4086,
+  "name": "call-center-ops-risk-scorer",
+  "title": "Call Center Ops Risk Scorer",
+  "description": "Design and run call center ops workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1547,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04086-call-center-ops-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/04086-call-center-ops-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "call center ops risk scorer",
+    "call center ops risk scorer workflow",
+    "call center ops risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

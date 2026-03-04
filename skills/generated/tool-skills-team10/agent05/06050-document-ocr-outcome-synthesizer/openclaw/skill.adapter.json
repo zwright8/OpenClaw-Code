@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6050,
+  "name": "document-ocr-outcome-synthesizer",
+  "title": "Document OCR Outcome Synthesizer",
+  "description": "Design and run document ocr workflows with outcome synthesizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6984,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06050-document-ocr-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent05/06050-document-ocr-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr outcome synthesizer",
+    "document ocr outcome synthesizer workflow",
+    "document ocr outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

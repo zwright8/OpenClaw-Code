@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12256,
+  "name": "ai-evaluation-markets-api-contract-validator",
+  "title": "AI Evaluation Markets API Contract Validator",
+  "description": "Design and run ai evaluation markets workflows with api contract validator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 32,
+    "score": 101,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent10/12256-ai-evaluation-markets-api-contract-validator/SKILL.md",
+    "entrypoint": "agent10/12256-ai-evaluation-markets-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets api contract validator",
+    "ai evaluation markets api contract validator workflow",
+    "ai evaluation markets api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10253,
+  "name": "identity-verification-permission-mapper",
+  "title": "Identity Verification Permission Mapper",
+  "description": "Design and run identity verification workflows with permission mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1246,
+    "score": 83,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10253-identity-verification-permission-mapper/SKILL.md",
+    "entrypoint": "agent08/10253-identity-verification-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification permission mapper",
+    "identity verification permission mapper workflow",
+    "identity verification permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

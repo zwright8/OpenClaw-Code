@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 545,
+  "name": "snowflake-webhook-listener",
+  "title": "Snowflake Webhook Listener",
+  "description": "Captures, verifies, and routes Snowflake webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12703,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00545-snowflake-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00545-snowflake-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "snowflake webhook listener",
+    "snowflake webhook listener workflow",
+    "snowflake webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

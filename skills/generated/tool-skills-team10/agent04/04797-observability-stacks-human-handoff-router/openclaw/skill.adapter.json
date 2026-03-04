@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4797,
+  "name": "observability-stacks-human-handoff-router",
+  "title": "Observability Stacks Human Handoff Router",
+  "description": "Design and run observability stacks workflows with human handoff router controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7428,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04797-observability-stacks-human-handoff-router/SKILL.md",
+    "entrypoint": "agent04/04797-observability-stacks-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks human handoff router",
+    "observability stacks human handoff router workflow",
+    "observability stacks human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7312,
+  "name": "survey-systems-job-scheduler",
+  "title": "Survey Systems Job Scheduler",
+  "description": "Design and run survey systems workflows with job scheduler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5080,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07312-survey-systems-job-scheduler/SKILL.md",
+    "entrypoint": "agent06/07312-survey-systems-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems job scheduler",
+    "survey systems job scheduler workflow",
+    "survey systems job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

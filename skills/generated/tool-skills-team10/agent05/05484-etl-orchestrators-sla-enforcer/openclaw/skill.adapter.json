@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5484,
+  "name": "etl-orchestrators-sla-enforcer",
+  "title": "ETL Orchestrators SLA Enforcer",
+  "description": "Design and run etl orchestrators workflows with sla enforcer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9833,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05484-etl-orchestrators-sla-enforcer/SKILL.md",
+    "entrypoint": "agent05/05484-etl-orchestrators-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators sla enforcer",
+    "etl orchestrators sla enforcer workflow",
+    "etl orchestrators sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

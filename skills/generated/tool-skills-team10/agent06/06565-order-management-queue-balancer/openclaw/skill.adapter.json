@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6565,
+  "name": "order-management-queue-balancer",
+  "title": "Order Management Queue Balancer",
+  "description": "Design and run order management workflows with queue balancer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10219,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06565-order-management-queue-balancer/SKILL.md",
+    "entrypoint": "agent06/06565-order-management-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management queue balancer",
+    "order management queue balancer workflow",
+    "order management queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

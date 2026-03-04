@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3020,
+  "name": "bank-core-systems-migration-planner",
+  "title": "Bank Core Systems Migration Planner",
+  "description": "Design and run bank core systems workflows with migration planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4533,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03020-bank-core-systems-migration-planner/SKILL.md",
+    "entrypoint": "agent03/03020-bank-core-systems-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems migration planner",
+    "bank core systems migration planner workflow",
+    "bank core systems migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

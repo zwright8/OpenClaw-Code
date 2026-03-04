@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4369,
+  "name": "secrets-vaults-rollback-coordinator",
+  "title": "Secrets Vaults Rollback Coordinator",
+  "description": "Design and run secrets vaults workflows with rollback coordinator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4978,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04369-secrets-vaults-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent04/04369-secrets-vaults-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "secrets vaults rollback coordinator",
+    "secrets vaults rollback coordinator workflow",
+    "secrets vaults rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

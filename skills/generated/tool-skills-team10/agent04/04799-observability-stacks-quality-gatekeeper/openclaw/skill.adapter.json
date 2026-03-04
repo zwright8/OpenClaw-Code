@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4799,
+  "name": "observability-stacks-quality-gatekeeper",
+  "title": "Observability Stacks Quality Gatekeeper",
+  "description": "Design and run observability stacks workflows with quality gatekeeper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2780,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04799-observability-stacks-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent04/04799-observability-stacks-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks quality gatekeeper",
+    "observability stacks quality gatekeeper workflow",
+    "observability stacks quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

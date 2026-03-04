@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5287,
+  "name": "api-gateways-compliance-mapper",
+  "title": "API Gateways Compliance Mapper",
+  "description": "Design and run api gateways workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 516,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent05/05287-api-gateways-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/05287-api-gateways-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways compliance mapper",
+    "api gateways compliance mapper workflow",
+    "api gateways compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

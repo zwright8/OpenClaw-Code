@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4912,
+  "name": "uptime-monitors-job-scheduler",
+  "title": "Uptime Monitors Job Scheduler",
+  "description": "Design and run uptime monitors workflows with job scheduler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4996,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04912-uptime-monitors-job-scheduler/SKILL.md",
+    "entrypoint": "agent04/04912-uptime-monitors-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "uptime monitors job scheduler",
+    "uptime monitors job scheduler workflow",
+    "uptime monitors job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

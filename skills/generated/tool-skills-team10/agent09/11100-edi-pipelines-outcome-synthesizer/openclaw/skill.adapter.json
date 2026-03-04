@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11100,
+  "name": "edi-pipelines-outcome-synthesizer",
+  "title": "EDI Pipelines Outcome Synthesizer",
+  "description": "Design and run edi pipelines workflows with outcome synthesizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7132,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11100-edi-pipelines-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent09/11100-edi-pipelines-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edi pipelines outcome synthesizer",
+    "edi pipelines outcome synthesizer workflow",
+    "edi pipelines outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

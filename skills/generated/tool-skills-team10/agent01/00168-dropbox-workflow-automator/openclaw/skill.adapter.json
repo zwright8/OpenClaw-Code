@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 168,
+  "name": "dropbox-workflow-automator",
+  "title": "Dropbox Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Dropbox.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7874,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00168-dropbox-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00168-dropbox-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dropbox workflow automator",
+    "dropbox workflow automator workflow",
+    "dropbox workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7329,
+  "name": "survey-systems-capacity-planner",
+  "title": "Survey Systems Capacity Planner",
+  "description": "Design and run survey systems workflows with capacity planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10501,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07329-survey-systems-capacity-planner/SKILL.md",
+    "entrypoint": "agent06/07329-survey-systems-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems capacity planner",
+    "survey systems capacity planner workflow",
+    "survey systems capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

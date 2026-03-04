@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6386,
+  "name": "audio-pipelines-risk-scorer",
+  "title": "Audio Pipelines Risk Scorer",
+  "description": "Design and run audio pipelines workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1600,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06386-audio-pipelines-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/06386-audio-pipelines-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines risk scorer",
+    "audio pipelines risk scorer workflow",
+    "audio pipelines risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

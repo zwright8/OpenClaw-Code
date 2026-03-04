@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7811,
+  "name": "vdi-platforms-execution-runner",
+  "title": "VDI Platforms Execution Runner",
+  "description": "Design and run vdi platforms workflows with execution runner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1391,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/07811-vdi-platforms-execution-runner/SKILL.md",
+    "entrypoint": "agent07/07811-vdi-platforms-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms execution runner",
+    "vdi platforms execution runner workflow",
+    "vdi platforms execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

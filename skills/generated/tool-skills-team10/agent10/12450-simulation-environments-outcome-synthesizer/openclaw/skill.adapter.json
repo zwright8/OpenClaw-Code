@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12450,
+  "name": "simulation-environments-outcome-synthesizer",
+  "title": "Simulation Environments Outcome Synthesizer",
+  "description": "Design and run simulation environments workflows with outcome synthesizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7156,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12450-simulation-environments-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent10/12450-simulation-environments-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments outcome synthesizer",
+    "simulation environments outcome synthesizer workflow",
+    "simulation environments outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

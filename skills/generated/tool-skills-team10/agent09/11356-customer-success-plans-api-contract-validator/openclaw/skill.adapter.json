@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11356,
+  "name": "customer-success-plans-api-contract-validator",
+  "title": "Customer Success Plans API Contract Validator",
+  "description": "Design and run customer success plans workflows with api contract validator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 248,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent09/11356-customer-success-plans-api-contract-validator/SKILL.md",
+    "entrypoint": "agent09/11356-customer-success-plans-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans api contract validator",
+    "customer success plans api contract validator workflow",
+    "customer success plans api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

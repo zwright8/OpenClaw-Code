@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3121,
+  "name": "risk-engines-snapshot-manager",
+  "title": "Risk Engines Snapshot Manager",
+  "description": "Design and run risk engines workflows with snapshot manager controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6860,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03121-risk-engines-snapshot-manager/SKILL.md",
+    "entrypoint": "agent03/03121-risk-engines-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines snapshot manager",
+    "risk engines snapshot manager workflow",
+    "risk engines snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

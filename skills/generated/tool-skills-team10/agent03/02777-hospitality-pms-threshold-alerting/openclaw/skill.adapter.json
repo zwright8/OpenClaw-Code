@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2777,
+  "name": "hospitality-pms-threshold-alerting",
+  "title": "Hospitality PMS Threshold Alerting",
+  "description": "Design and run hospitality pms workflows with threshold alerting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8966,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02777-hospitality-pms-threshold-alerting/SKILL.md",
+    "entrypoint": "agent03/02777-hospitality-pms-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hospitality pms threshold alerting",
+    "hospitality pms threshold alerting workflow",
+    "hospitality pms threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

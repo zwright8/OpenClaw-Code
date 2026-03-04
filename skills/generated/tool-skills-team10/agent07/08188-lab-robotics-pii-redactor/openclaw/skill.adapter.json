@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8188,
+  "name": "lab-robotics-pii-redactor",
+  "title": "Lab Robotics PII Redactor",
+  "description": "Design and run lab robotics workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3643,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08188-lab-robotics-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/08188-lab-robotics-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics pii redactor",
+    "lab robotics pii redactor workflow",
+    "lab robotics pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

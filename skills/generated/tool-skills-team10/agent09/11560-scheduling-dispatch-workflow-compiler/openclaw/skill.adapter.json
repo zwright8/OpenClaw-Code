@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11560,
+  "name": "scheduling-dispatch-workflow-compiler",
+  "title": "Scheduling Dispatch Workflow Compiler",
+  "description": "Design and run scheduling dispatch workflows with workflow compiler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1214,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11560-scheduling-dispatch-workflow-compiler/SKILL.md",
+    "entrypoint": "agent09/11560-scheduling-dispatch-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch workflow compiler",
+    "scheduling dispatch workflow compiler workflow",
+    "scheduling dispatch workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

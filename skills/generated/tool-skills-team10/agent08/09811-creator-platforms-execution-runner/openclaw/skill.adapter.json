@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9811,
+  "name": "creator-platforms-execution-runner",
+  "title": "Creator Platforms Execution Runner",
+  "description": "Design and run creator platforms workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1426,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09811-creator-platforms-execution-runner/SKILL.md",
+    "entrypoint": "agent08/09811-creator-platforms-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms execution runner",
+    "creator platforms execution runner workflow",
+    "creator platforms execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11769,
+  "name": "lab-notebook-systems-rollback-coordinator",
+  "title": "Lab Notebook Systems Rollback Coordinator",
+  "description": "Design and run lab notebook systems workflows with rollback coordinator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5240,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11769-lab-notebook-systems-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent10/11769-lab-notebook-systems-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems rollback coordinator",
+    "lab notebook systems rollback coordinator workflow",
+    "lab notebook systems rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

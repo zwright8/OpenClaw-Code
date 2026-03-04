@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3381,
+  "name": "payroll-systems-cost-attribution",
+  "title": "Payroll Systems Cost Attribution",
+  "description": "Design and run payroll systems workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9137,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03381-payroll-systems-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/03381-payroll-systems-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems cost attribution",
+    "payroll systems cost attribution workflow",
+    "payroll systems cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2095,
+  "name": "scada-monitoring-runbook-composer",
+  "title": "SCADA Monitoring Runbook Composer",
+  "description": "Design and run scada monitoring workflows with runbook composer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5819,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02095-scada-monitoring-runbook-composer/SKILL.md",
+    "entrypoint": "agent02/02095-scada-monitoring-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring runbook composer",
+    "scada monitoring runbook composer workflow",
+    "scada monitoring runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

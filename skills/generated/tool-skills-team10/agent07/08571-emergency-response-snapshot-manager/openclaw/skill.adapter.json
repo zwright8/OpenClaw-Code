@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8571,
+  "name": "emergency-response-snapshot-manager",
+  "title": "Emergency Response Snapshot Manager",
+  "description": "Design and run emergency response workflows with snapshot manager controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10999,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08571-emergency-response-snapshot-manager/SKILL.md",
+    "entrypoint": "agent07/08571-emergency-response-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response snapshot manager",
+    "emergency response snapshot manager workflow",
+    "emergency response snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5148,
+  "name": "infrastructure-as-code-feedback-harvester",
+  "title": "Infrastructure as Code Feedback Harvester",
+  "description": "Design and run infrastructure as code workflows with feedback harvester controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9731,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05148-infrastructure-as-code-feedback-harvester/SKILL.md",
+    "entrypoint": "agent04/05148-infrastructure-as-code-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code feedback harvester",
+    "infrastructure as code feedback harvester workflow",
+    "infrastructure as code feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

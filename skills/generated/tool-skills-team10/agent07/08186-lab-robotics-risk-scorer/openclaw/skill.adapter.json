@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8186,
+  "name": "lab-robotics-risk-scorer",
+  "title": "Lab Robotics Risk Scorer",
+  "description": "Design and run lab robotics workflows with risk scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1639,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08186-lab-robotics-risk-scorer/SKILL.md",
+    "entrypoint": "agent07/08186-lab-robotics-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics risk scorer",
+    "lab robotics risk scorer workflow",
+    "lab robotics risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

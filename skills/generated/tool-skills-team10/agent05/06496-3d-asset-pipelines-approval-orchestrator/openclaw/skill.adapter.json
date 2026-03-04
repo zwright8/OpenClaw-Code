@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6496,
+  "name": "3d-asset-pipelines-approval-orchestrator",
+  "title": "3D Asset Pipelines Approval Orchestrator",
+  "description": "Design and run 3d asset pipelines workflows with approval orchestrator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6214,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06496-3d-asset-pipelines-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent05/06496-3d-asset-pipelines-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines approval orchestrator",
+    "3d asset pipelines approval orchestrator workflow",
+    "3d asset pipelines approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

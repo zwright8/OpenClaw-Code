@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4459,
+  "name": "endpoint-security-dependency-resolver",
+  "title": "Endpoint Security Dependency Resolver",
+  "description": "Design and run endpoint security workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6026,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04459-endpoint-security-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/04459-endpoint-security-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security dependency resolver",
+    "endpoint security dependency resolver workflow",
+    "endpoint security dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12423,
+  "name": "simulation-environments-artifact-publisher",
+  "title": "Simulation Environments Artifact Publisher",
+  "description": "Design and run simulation environments workflows with artifact publisher controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12324,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12423-simulation-environments-artifact-publisher/SKILL.md",
+    "entrypoint": "agent10/12423-simulation-environments-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments artifact publisher",
+    "simulation environments artifact publisher workflow",
+    "simulation environments artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3380,
+  "name": "payroll-systems-budget-guardrail",
+  "title": "Payroll Systems Budget Guardrail",
+  "description": "Design and run payroll systems workflows with budget guardrail controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7364,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03380-payroll-systems-budget-guardrail/SKILL.md",
+    "entrypoint": "agent03/03380-payroll-systems-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems budget guardrail",
+    "payroll systems budget guardrail workflow",
+    "payroll systems budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5733,
+  "name": "model-registries-reliability-scorer",
+  "title": "Model Registries Reliability Scorer",
+  "description": "Design and run model registries workflows with reliability scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9916,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05733-model-registries-reliability-scorer/SKILL.md",
+    "entrypoint": "agent05/05733-model-registries-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries reliability scorer",
+    "model registries reliability scorer workflow",
+    "model registries reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

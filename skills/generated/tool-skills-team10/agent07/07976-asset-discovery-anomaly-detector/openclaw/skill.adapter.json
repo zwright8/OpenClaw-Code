@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7976,
+  "name": "asset-discovery-anomaly-detector",
+  "title": "Asset Discovery Anomaly Detector",
+  "description": "Design and run asset discovery workflows with anomaly detector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5531,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07976-asset-discovery-anomaly-detector/SKILL.md",
+    "entrypoint": "agent07/07976-asset-discovery-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery anomaly detector",
+    "asset discovery anomaly detector workflow",
+    "asset discovery anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10165,
+  "name": "chargeback-ops-queue-balancer",
+  "title": "Chargeback Ops Queue Balancer",
+  "description": "Design and run chargeback ops workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11521,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10165-chargeback-ops-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/10165-chargeback-ops-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chargeback ops queue balancer",
+    "chargeback ops queue balancer workflow",
+    "chargeback ops queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2387,
+  "name": "carbon-accounting-compliance-mapper",
+  "title": "Carbon Accounting Compliance Mapper",
+  "description": "Design and run carbon accounting workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1771,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02387-carbon-accounting-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02387-carbon-accounting-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting compliance mapper",
+    "carbon accounting compliance mapper workflow",
+    "carbon accounting compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

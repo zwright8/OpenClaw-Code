@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1810,
+  "name": "fleet-telematics-workflow-compiler",
+  "title": "Fleet Telematics Workflow Compiler",
+  "description": "Design and run fleet telematics workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1036,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01810-fleet-telematics-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/01810-fleet-telematics-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics workflow compiler",
+    "fleet telematics workflow compiler workflow",
+    "fleet telematics workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

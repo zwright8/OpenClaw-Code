@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4138,
+  "name": "knowledge-bases-pii-redactor",
+  "title": "Knowledge Bases PII Redactor",
+  "description": "Design and run knowledge bases workflows with pii redactor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3342,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04138-knowledge-bases-pii-redactor/SKILL.md",
+    "entrypoint": "agent04/04138-knowledge-bases-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge bases pii redactor",
+    "knowledge bases pii redactor workflow",
+    "knowledge bases pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

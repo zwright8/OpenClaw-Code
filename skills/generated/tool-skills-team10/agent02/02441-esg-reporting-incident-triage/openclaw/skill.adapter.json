@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2441,
+  "name": "esg-reporting-incident-triage",
+  "title": "ESG Reporting Incident Triage",
+  "description": "Design and run esg reporting workflows with incident triage controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2028,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02441-esg-reporting-incident-triage/SKILL.md",
+    "entrypoint": "agent02/02441-esg-reporting-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting incident triage",
+    "esg reporting incident triage workflow",
+    "esg reporting incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
