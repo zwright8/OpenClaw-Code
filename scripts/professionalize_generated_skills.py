@@ -93,6 +93,114 @@ def fmt_weights(weights: Dict[str, Any]) -> str:
     return ", ".join(items)
 
 
+def make_service(name: str, role: str, auth_mode: str, auth_required: str, api_key: str) -> Dict[str, str]:
+    return {
+        "service": name,
+        "role": role,
+        "authMode": auth_mode,
+        "authRequired": auth_required,
+        "apiKey": api_key,
+    }
+
+
+def classify_external_stack(core_method: str, domain: str, title: str) -> Dict[str, Any]:
+    method = clean(core_method).lower()
+    d = clean(domain).lower()
+
+    tool_primary = {
+        "class": "tool-primary",
+        "priority": "P0",
+        "rationale": "Deterministic infrastructure and system primitives outperform model-only execution for reliability and auditability.",
+    }
+    hybrid = {
+        "class": "hybrid",
+        "priority": "P1",
+        "rationale": "Use external systems for persistence/enforcement/math and frontier models for synthesis and language-heavy reasoning.",
+    }
+    model_primary = {
+        "class": "model-primary",
+        "priority": "P2",
+        "rationale": "Primary value is language reasoning/communication; external services are optional accelerators.",
+    }
+
+    if any(k in method for k in ["retrieval", "ranking", "relevance", "context window"]):
+        base = tool_primary
+        services = [
+            make_service("OpenSearch/Elasticsearch", "lexical retrieval and filtering", "account/session credentials", "yes", "no"),
+            make_service("Qdrant/Weaviate/pgvector", "vector retrieval and nearest-neighbor recall", "account/session credentials", "yes", "no"),
+            make_service("Cohere/Jina reranker", "cross-encoder reranking quality lift", "API key", "yes", "yes"),
+        ]
+    elif any(k in method for k in ["knowledge graph", "entity and relation linking", "dependency graph", "graph compilation"]):
+        base = tool_primary
+        services = [
+            make_service("Neo4j/Memgraph", "graph storage and traversal", "account/session credentials", "yes", "no"),
+            make_service("RDF/SPARQL store", "ontology-aligned semantic joins", "account/session credentials", "yes", "no"),
+            make_service("NetworkX/graph-tool", "offline graph analytics and diagnostics", "none/local runtime", "no", "no"),
+        ]
+    elif any(k in method for k in ["kpi", "dashboard", "telemetry", "slo", "regression sentinel", "tool health", "metric synthesis"]):
+        base = tool_primary
+        services = [
+            make_service("Prometheus + Alertmanager", "metrics ingestion, alert thresholds, and SLO burn-rate checks", "account/session credentials", "yes", "no"),
+            make_service("OpenTelemetry Collector", "trace/span/log normalization pipeline", "account/session credentials", "yes", "no"),
+            make_service("Grafana/Metabase/Superset", "deterministic dashboard publication", "account/session credentials", "yes", "no"),
+        ]
+    elif any(k in method for k in ["a/b rollout", "rollout", "experiment design", "hypothesis", "calibration"]):
+        base = tool_primary
+        services = [
+            make_service("LaunchDarkly/Unleash", "feature flagging and staged rollout safety", "account/session credentials", "yes", "no"),
+            make_service("Statsig/Optimizely", "experiment assignment and decision stats", "account/session credentials", "yes", "no"),
+            make_service("SciPy/Statsmodels", "significance and confidence interval checks", "none/local runtime", "no", "no"),
+        ]
+    elif any(k in method for k in ["retry", "backoff", "orchestration", "handoff", "scheduler", "allocation", "disaster recovery", "playbook", "failover"]):
+        base = tool_primary
+        services = [
+            make_service("Temporal/Prefect/Airflow", "workflow state + retries + durable scheduling", "account/session credentials", "yes", "no"),
+            make_service("Argo Workflows/Kubernetes Jobs", "execution coordination and rollbacks", "account/session credentials", "yes", "no"),
+            make_service("Redis/Kafka queue", "decoupled task transport and backpressure", "account/session credentials", "yes", "no"),
+        ]
+    elif any(k in method for k in ["policy", "compliance", "privacy", "security", "approval", "threat modeling", "evidence mapping"]):
+        base = hybrid
+        services = [
+            make_service("OPA/Rego", "policy decision enforcement", "account/session credentials", "yes", "no"),
+            make_service("Vault/KMS", "secret and key lifecycle management", "account/session credentials", "yes", "no"),
+            make_service("SIEM (Elastic/Splunk)", "security event evidence and audit trails", "account/session credentials", "yes", "no"),
+        ]
+    elif any(k in method for k in ["cost-benefit", "equity impact", "plan quality", "scoring", "resource budget", "optimization"]):
+        base = hybrid
+        services = [
+            make_service("OR-Tools/Pyomo", "constraint optimization and budget allocation", "none/local runtime", "no", "no"),
+            make_service("Pandas/Polars", "deterministic metric computations", "none/local runtime", "no", "no"),
+            make_service("Great Expectations", "data quality assertions before scoring", "none/local runtime", "no", "no"),
+        ]
+    elif any(k in method for k in ["coaching", "negotiation", "communication", "writing", "rhetoric", "creative", "curiosity", "mentoring", "dilemma", "beauty"]):
+        base = model_primary
+        services = [
+            make_service("Frontier model runtime", "primary synthesis, tone, and judgment", "model provider credentials", "yes", "yes"),
+            make_service("Vector memory store (optional)", "long-term retrieval augmentation", "account/session credentials", "maybe", "no"),
+        ]
+    else:
+        base = hybrid
+        services = [
+            make_service("Frontier model runtime", "reasoning and synthesis", "model provider credentials", "yes", "yes"),
+            make_service("Task/workflow orchestrator", "durable execution and retries", "account/session credentials", "yes", "no"),
+            make_service("Telemetry store", "evidence and observability", "account/session credentials", "yes", "no"),
+        ]
+
+    # Domain overlays for regulated/critical contexts.
+    if any(k in d for k in ["healthcare", "public services", "legal", "rights", "security", "governance", "crisis"]):
+        services.append(make_service("Audit log + immutable storage", "compliance-grade evidence retention", "account/session credentials", "yes", "no"))
+
+    return {
+        **base,
+        "services": services,
+        "migrationChecklist": [
+            "Provision service credentials and validate non-expired auth before first run.",
+            "Wire service outputs into validation/handoff artifacts.",
+            "Enable credential reuse; prompt user only on missing/invalid/expired credentials.",
+        ],
+    }
+
+
 def build_numeric_skill_doc(skill_path: Path, impl: Dict[str, Any]) -> str:
     runtime = impl.get("runtimeProfile", {}) if isinstance(impl.get("runtimeProfile"), dict) else {}
     improvement = impl.get("improvementProfile", {}) if isinstance(impl.get("improvementProfile"), dict) else {}
@@ -260,36 +368,16 @@ def build_numeric_skill_doc(skill_path: Path, impl: Dict[str, Any]) -> str:
         "Telemetry and trace references are attached for auditability.",
     ]
 
-    external_text = " ".join([
-        title,
-        domain,
-        core_method,
-        primary_artifact,
-        routing_tag,
-        " ".join(required_signals),
-        " ".join(str(x) for x in guide),
-        " ".join(str(x) for x in preflight),
-        " ".join(str(x) for x in execution),
-    ]).lower()
-    external_patterns = [
-        r"\bapi\b", r"\bwebhook\b", r"\bhttp\b", r"\bhttps\b", r"\bendpoint\b",
-        r"\boauth\b", r"\btoken\b", r"\bcredential\b", r"\bexternal service\b",
-        r"\bapi integration\b", r"\bconnector\b", r"\bthird[- ]party\b", r"\bcloud service\b",
-    ]
-    external_clues = []
-    for p in external_patterns:
-        if re.search(p, external_text):
-            external_clues.append(p.replace("\\b", ""))
-    # Ignore false-positive "token" hits that are clearly context-window budget references.
-    if "token" in external_clues and "token budget" in external_text:
-        external_clues = [x for x in external_clues if x != "token"]
+    external_profile = classify_external_stack(core_method, domain, title)
+    external_required = "yes" if any(s.get("authRequired") in {"yes", "maybe"} for s in external_profile["services"]) else "no"
+    api_key_required = "yes" if any(s.get("apiKey") in {"yes", "maybe"} for s in external_profile["services"]) else "no"
+    external_hint = external_profile["rationale"]
 
-    external_required = "yes" if external_clues else "no"
-    external_hint = (
-        "Potential external/API dependency signals detected in this skill profile; validate service auth before execution."
-        if external_clues else
-        "No mandatory external API dependency inferred from current profile data; still verify environment/session credentials for connected runtimes."
+    external_service_rows = "\n".join(
+        f"| {clean(s.get('service'))} | {clean(s.get('role'))} | {clean(s.get('authMode'))} | {clean(s.get('authRequired'))} | {clean(s.get('apiKey'))} |"
+        for s in external_profile["services"]
     )
+    migration_steps = "\n".join(f"- {clean(x)}" for x in external_profile["migrationChecklist"])
 
     return f"""---
 name: {yaml_escape(skill_name)}
@@ -398,15 +486,25 @@ description: {yaml_escape(desc)}
 ## Acceptance Checklist
 {render_checklist(acceptance_items)}
 
-## External/API Dependency & Credential Reuse Policy
+## External Tool Stack Recommendation
 | Field | Value |
 |---|---|
-| External/API required by profile | `{external_required}` |
-| Detection hint | {external_hint} |
-| Clues found | {", ".join(f'`{clean(c)}`' for c in external_clues) if external_clues else "`none-detected`"} |
+| Recommendation class | `{external_profile['class']}` |
+| Migration priority | `{external_profile['priority']}` |
+| External auth required | `{external_required}` |
+| API key likely required | `{api_key_required}` |
+| Rationale | {external_hint} |
 
-- Reuse previously provided credentials by default; do not ask for a new API key/token when a valid one already exists.
-- Before prompting, check configured environment/session secret stores and run a lightweight auth validation.
+| Service | Why in stack | Auth mode | Auth required | API key likely |
+|---|---|---|---|---|
+{external_service_rows}
+
+## External Integration Migration Checklist
+{migration_steps}
+
+## Credential Reuse Policy
+- Reuse previously provided credentials by default; do not ask for new credentials when a valid credential/session already exists.
+- Before prompting, check environment/session secret stores and run lightweight auth validation.
 - Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
 
 ## Practical Usage Examples
@@ -910,6 +1008,7 @@ def main() -> None:
     modified = 0
     numeric_count = 0
     nexus_count = 0
+    migration_rows: List[Dict[str, str]] = []
 
     for skill_path in skill_files:
         old = skill_path.read_text(encoding="utf-8")
@@ -921,6 +1020,29 @@ def main() -> None:
             numeric_count += 1
             impl = load_json(impl_path)
             new = build_numeric_skill_doc(skill_path, impl)
+
+            profile = classify_external_stack(
+                clean((impl.get("runtimeProfile") or {}).get("coreMethod") if isinstance(impl.get("runtimeProfile"), dict) else ""),
+                clean(impl.get("domain") or ""),
+                clean(impl.get("title") or ""),
+            )
+            services = profile.get("services") or []
+            auth_required = "yes" if any(s.get("authRequired") in {"yes", "maybe"} for s in services) else "no"
+            api_key_likely = "yes" if any(s.get("apiKey") in {"yes", "maybe"} for s in services) else "no"
+            migration_rows.append({
+                "skill_id": str(impl.get("skillId", "")),
+                "skill_name": clean(impl.get("skillName") or skill_path.parent.name),
+                "title": clean(impl.get("title") or ""),
+                "domain": clean(impl.get("domain") or ""),
+                "core_method": clean((impl.get("runtimeProfile") or {}).get("coreMethod") if isinstance(impl.get("runtimeProfile"), dict) else ""),
+                "recommendation_class": clean(profile.get("class") or "hybrid"),
+                "migration_priority": clean(profile.get("priority") or "P1"),
+                "auth_required": auth_required,
+                "api_key_likely": api_key_likely,
+                "external_services": " | ".join(clean(s.get("service")) for s in services),
+                "service_auth_modes": " | ".join(clean(s.get("authMode")) for s in services),
+                "skill_path": str(skill_path),
+            })
         else:
             nexus_count += 1
             new = build_nexus_skill_doc(skill_path, old)
@@ -976,6 +1098,81 @@ def main() -> None:
     md.extend([f"- `{h}`" for h in REQUIRED_HEADINGS])
     md.append("")
     REPORT_MD_PATH.write_text("\n".join(md), encoding="utf-8")
+
+    # External-stack migration checklist (per-skill).
+    migration_csv = ROOT / "reports" / "external-stack-migration-by-skill.csv"
+    migration_md = ROOT / "reports" / "external-stack-migration-checklist.md"
+    migration_rows_sorted = sorted(
+        migration_rows,
+        key=lambda r: (
+            {"P0": 0, "P1": 1, "P2": 2}.get(r.get("migration_priority", "P2"), 9),
+            r.get("core_method", ""),
+            r.get("skill_name", ""),
+        ),
+    )
+
+    fields = [
+        "skill_id",
+        "skill_name",
+        "title",
+        "domain",
+        "core_method",
+        "recommendation_class",
+        "migration_priority",
+        "auth_required",
+        "api_key_likely",
+        "external_services",
+        "service_auth_modes",
+        "skill_path",
+    ]
+    with migration_csv.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(migration_rows_sorted)
+
+    by_priority = {"P0": 0, "P1": 0, "P2": 0}
+    by_class = {"tool-primary": 0, "hybrid": 0, "model-primary": 0}
+    auth_required_count = 0
+    api_key_count = 0
+    for r in migration_rows_sorted:
+        by_priority[r.get("migration_priority", "P2")] = by_priority.get(r.get("migration_priority", "P2"), 0) + 1
+        by_class[r.get("recommendation_class", "hybrid")] = by_class.get(r.get("recommendation_class", "hybrid"), 0) + 1
+        if r.get("auth_required") == "yes":
+            auth_required_count += 1
+        if r.get("api_key_likely") == "yes":
+            api_key_count += 1
+
+    top_p0 = [r for r in migration_rows_sorted if r.get("migration_priority") == "P0"][:40]
+    checklist_lines = [
+        "# External Stack Migration Checklist",
+        "",
+        f"Generated: {report['generatedAt']}",
+        "",
+        "## Summary",
+        f"- Skills analyzed: **{len(migration_rows_sorted)}**",
+        f"- P0 migrations (tool-primary): **{by_priority.get('P0', 0)}**",
+        f"- P1 migrations (hybrid): **{by_priority.get('P1', 0)}**",
+        f"- P2 migrations (model-primary): **{by_priority.get('P2', 0)}**",
+        f"- Skills needing auth/session setup: **{auth_required_count}**",
+        f"- Skills with likely API-key dependency: **{api_key_count}**",
+        "",
+        "## Class distribution",
+        f"- tool-primary: **{by_class.get('tool-primary', 0)}**",
+        f"- hybrid: **{by_class.get('hybrid', 0)}**",
+        f"- model-primary: **{by_class.get('model-primary', 0)}**",
+        "",
+        "## Top P0 migration candidates (first 40)",
+    ]
+    for r in top_p0:
+        checklist_lines.append(
+            f"- `{r['skill_name']}` ({r['core_method']}) -> services: {r['external_services']}"
+        )
+    checklist_lines.extend([
+        "",
+        "## Files",
+        f"- Per-skill matrix: `{migration_csv.relative_to(ROOT)}`",
+    ])
+    migration_md.write_text("\n".join(checklist_lines) + "\n", encoding="utf-8")
 
     print(json.dumps(report, indent=2))
 

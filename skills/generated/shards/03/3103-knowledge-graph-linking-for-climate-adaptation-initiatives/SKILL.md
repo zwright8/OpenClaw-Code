@@ -136,15 +136,29 @@ Use knowledge graph linking in climate adaptation initiatives with emphasis on c
 - [ ] Handoff owner confirms artifact usability without additional clarification.
 - [ ] Telemetry and trace references are attached for auditability.
 
-## External/API Dependency & Credential Reuse Policy
+## External Tool Stack Recommendation
 | Field | Value |
 |---|---|
-| External/API required by profile | `no` |
-| Detection hint | No mandatory external API dependency inferred from current profile data; still verify environment/session credentials for connected runtimes. |
-| Clues found | `none-detected` |
+| Recommendation class | `tool-primary` |
+| Migration priority | `P0` |
+| External auth required | `yes` |
+| API key likely required | `no` |
+| Rationale | Deterministic infrastructure and system primitives outperform model-only execution for reliability and auditability. |
 
-- Reuse previously provided credentials by default; do not ask for a new API key/token when a valid one already exists.
-- Before prompting, check configured environment/session secret stores and run a lightweight auth validation.
+| Service | Why in stack | Auth mode | Auth required | API key likely |
+|---|---|---|---|---|
+| Neo4j/Memgraph | graph storage and traversal | account/session credentials | yes | no |
+| RDF/SPARQL store | ontology-aligned semantic joins | account/session credentials | yes | no |
+| NetworkX/graph-tool | offline graph analytics and diagnostics | none/local runtime | no | no |
+
+## External Integration Migration Checklist
+- Provision service credentials and validate non-expired auth before first run.
+- Wire service outputs into validation/handoff artifacts.
+- Enable credential reuse; prompt user only on missing/invalid/expired credentials.
+
+## Credential Reuse Policy
+- Reuse previously provided credentials by default; do not ask for new credentials when a valid credential/session already exists.
+- Before prompting, check environment/session secret stores and run lightweight auth validation.
 - Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
 
 ## Practical Usage Examples

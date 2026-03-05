@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-03-05T02:28:11.972961+00:00",
+  "generatedAt": "2026-03-05T02:58:14.654388+00:00",
   "scanRoot": "skills/generated/shards",
   "skillCount": 10553,
   "numericSkills": 10000,
   "nexusSkills": 553,
-  "modifiedFiles": 25,
+  "modifiedFiles": 0,
   "requiredHeadings": [
     "## Quick Reference",
     "## Trigger Checklist",
