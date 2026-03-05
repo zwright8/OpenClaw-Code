@@ -1,6 +1,6 @@
 # OpenClaw-Code Improvement Blueprint (Canonical)
 
-Last updated: 2026-03-04 08:24 America/New_York (cron cycle: openclaw-code-architecture-6h)
+Last updated: 2026-03-05 03:30 America/New_York (cron cycle: openclaw-code-architecture-6h)
 Owner: main orchestrator
 Scope: `cognition-core`, `swarm-protocol`, skills/runtime reliability, evaluation loops
 
@@ -9,39 +9,43 @@ Scope: `cognition-core`, `swarm-protocol`, skills/runtime reliability, evaluatio
 ## 1) Research Inputs (This Cycle)
 
 ### 1.1 Required `web_search` execution
-Executed required `web_search` for latest architecture/agent-system patterns.
+Executed required `web_search` queries focused on:
+- cognition-core architecture + evaluation loops
+- swarm orchestration reliability patterns
+- skills/runtime observability and deterministic recovery
+- practical OSS agent-system implementations
 
-Result: provider error on every attempt (`Kimi API 429 exceeded_current_quota_error`: account suspended for insufficient balance).
+Observed result on all queries: `Kimi API error (429) exceeded_current_quota_error` (account suspended/insufficient balance).
 
-### 1.2 Practical OSS fallback research used (factual sources)
-Because `web_search` was unavailable, this cycle used direct docs/repo fetches:
-- LangGraph durable execution guidance: persistence/checkpointing + deterministic replay + idempotent side effects.
-- Temporal workflow docs: deterministic constraints + event history replay for long-running resilient flows.
-- Anthropic “Building effective agents”: prefer simple composable workflows first, increase autonomy only when measurable.
-- AutoGen OSS README patterns: bounded tool iterations, explicit multi-agent orchestration, MCP integration caution.
-- CrewAI docs/README: event-driven flow control + observability and production control plane emphasis.
+### 1.2 Fallback practical OSS research used (via `web_fetch`)
+Because `web_search` is currently unavailable, this cycle used direct fetches from authoritative docs/OSS READMEs:
+- LangGraph durable execution docs (`docs.langchain.com/oss/python/langgraph/durable-execution`)
+- Temporal Workflow docs (`docs.temporal.io/workflows`)
+- Anthropic engineering note (`anthropic.com/engineering/building-effective-agents`)
+- Microsoft AutoGen OSS (`github.com/microsoft/autogen`)
+- CrewAI OSS (`github.com/crewAIInc/crewAI`)
 
-### 1.3 Applied architecture insights
-1. Reliability before autonomy: deterministic replay + idempotent side effects remain non-negotiable.
-2. Keep orchestration minimal and composable: avoid framework-driven complexity unless benchmarked gains exist.
-3. Enforce explicit terminal reason taxonomies + retry schemas to stabilize swarm analytics.
-4. Treat evaluation as a dual-loop gate: quality scorecard + swarm benchmark floor with machine-parseable breach reasons.
-5. Keep human-approval/rollback metadata fail-closed for high-risk recommendations.
+### 1.3 Research insights applied to OpenClaw-Code
+1. **Determinism + replay safety must be explicit** (checkpointing alone is not enough): side effects and non-deterministic branches need strict isolation and stable re-entry points.
+2. **Keep orchestration simple-first**: prefer predictable workflows and bounded autonomy; only increase dynamic behavior where scorecard data justifies it.
+3. **Bounded tool-iteration + terminal reason taxonomy** improves drift control and postmortem quality.
+4. **Observability must be machine-parseable and action-oriented**: traces/logs should map directly to remediation plans.
+5. **Production reliability favors durable state + resumability** over one-shot “successful run” snapshots.
 
 ---
 
 ## 2) Current Baseline Metrics (Fresh Snapshot)
 
 Artifact anchors:
-- `cognition-core/reports/productivity-scorecard.latest.json` (`generatedAt`: `2026-03-04T12:48:17.245Z`)
-- `cognition-core/reports/cognition-daily.json` (`generatedAt`: `2026-03-04T12:48:16.653Z`)
-- `cognition-core/reports/failed-outcome-audit.latest.json` (`generatedAt`: `2026-03-04T12:48:14.094Z`)
+- `cognition-core/reports/productivity-scorecard.latest.json` (`generatedAt`: `2026-03-05T07:43:31.647Z`)
+- `cognition-core/reports/cognition-daily.json` (`generatedAt`: `2026-03-05T07:43:31.046Z`)
+- `cognition-core/reports/failed-outcome-audit.latest.json` (`generatedAt`: `2026-03-05T07:43:28.557Z`)
 - `swarm-protocol/state/simulation-benchmark.json`
 
 ### 2.1 Productivity baseline
 - Overall: **strong**
-- Productivity index: **98.15 / 100**
-- Cycle time: **2.278s**
+- Productivity index: **98.16 / 100**
+- Cycle time: **2.212s**
 - Automation coverage: **100%**
 - Dispatch count: **4**
 - Blocked approvals: **0**
@@ -59,6 +63,7 @@ Artifact anchors:
 - Brier score: **N/A** (insufficient sample)
 - Calibration gap: **N/A** (insufficient sample)
 - Calibration readiness: **insufficient_sample_size** (`minimumSampleSize=3`, observed mapped outcomes=1)
+- Confidence envelope (95% Hoeffding): observed success `[0,1]`, calibration gap `[0,0.764]`
 
 ### 2.3 Quality gaps (failed outcome audit)
 Global gaps:
@@ -81,10 +86,10 @@ Blocked approval queue:
 - Threshold check: **ok=true**, breaches=`[]`
 
 ### 2.5 Delta vs previous 6h baseline (prior blueprint snapshot)
-- Productivity index: `98.09 -> 98.15` (**+0.06**)
-- Cycle time: `2.748s -> 2.278s` (**-0.470s**)
-- Swarm min success: `0.75 -> 0.75` (flat)
-- Swarm p95 latency: `405ms -> 405ms` (flat)
+- Productivity index: `98.15 -> 98.16` (**+0.01**)
+- Cycle time: `2.274s -> 2.212s` (**-0.062s**)
+- Swarm min success: `0.75 -> 0.75` (**flat**)
+- Swarm p95 latency: `405ms -> 405ms` (**flat**)
 - Calibration readiness: unchanged (`insufficient_sample_size`)
 
 ---
@@ -93,61 +98,61 @@ Blocked approval queue:
 
 ### P0
 1. Calibration remains non-actionable due sparse terminal evidence.
-2. High-risk recommendation metadata gaps (`requiredApprovers`, `rollbackPlan`) still present.
-3. Swarm reliability floor is brittle (`successRateMin=0.75`, timeout spikes to `0.125`).
+2. High-risk recommendation metadata gaps persist (`requiredApprovers`, `rollbackPlan`).
+3. Swarm reliability floor remains brittle (`successRateMin=0.75`, timeout spikes to `0.125`).
 
 ### P1
-4. Tail latency unchanged at `p95=405ms`.
-5. Retry/backoff telemetry consistency still vulnerable to taxonomy drift.
-6. Multi-lane merge drift risk if rebase-first + lane-pure discipline is not strictly enforced.
+4. Tail latency remains unchanged at `p95=405ms` despite cycle-time gains.
+5. Retry/backoff + terminal reason telemetry still needs strict canonicalization.
+6. Multi-lane merge drift risk persists unless rebase-first + lane-pure commits are enforced.
 
 ### P2
-7. Productivity plateau now depends on reliability/data quality, not throughput.
+7. Productivity index is already near ceiling; additional gains depend on reliability and evidence quality, not throughput inflation.
 
 ---
 
 ## 4) Target Architecture Changes
 
 ### 4.1 Cognition-core
-- Make low-sample calibration diagnostics deterministic and explicit (confidence envelope + readiness rationale).
-- Raise terminal-outcome observability signal quality.
+- Make low-sample calibration diagnostics deterministic and schema-stable.
+- Increase terminal-outcome observability and enforce risk metadata completeness.
 
 ### 4.2 Swarm-protocol
-- Harden degraded-mode routing/timeout handling under adverse seeds.
-- Canonicalize retry/backoff + terminal reason telemetry end-to-end.
+- Harden degraded-mode routing behavior under adverse seeds.
+- Canonicalize retry/backoff and terminal reason payloads across orchestrator + audit layers.
 
 ### 4.3 Skills/runtime reliability
-- Enforce fail-closed behavior for high-risk recommendations missing approval/rollback fields.
-- Keep diagnostics machine-parseable and deterministic.
+- Keep fail-closed checks for high-risk recommendations strict and explicit.
+- Preserve machine-parseable diagnostics for remediation automation.
 
 ### 4.4 Evaluation loop
-- Ensure scorecard/remediation outputs are deterministic across reruns.
-- Emit explicit threshold-breach rationale payloads for operator auditability.
+- Stabilize scorecard + remediation outputs across reruns.
+- Emit explicit threshold-breach reason payloads with deterministic ordering.
 
 ---
 
 ## 5) Implementation Phases
 
-### Phase 0 — Safety and lane hygiene
-1. Rebase each lane from latest `main` before code changes.
-2. Enforce lane-pure file ownership (no overlap).
-3. Require handoff bundle: changed files, validation outputs, commit SHA, known risks.
+### Phase 0 — Safety + lane hygiene
+1. Rebase each lane from latest `main` before coding.
+2. Enforce lane-pure ownership (no overlap).
+3. Require handoff bundle: changed files, validation output, commit SHA, known risks.
 
-### Phase 1 — Calibration readiness and confidence diagnostics
-1. Strengthen low-sample readiness logic and deterministic report text.
-2. Verify no schema regressions.
+### Phase 1 — Calibration readiness and deterministic diagnostics
+1. Strengthen low-sample readiness logic and confidence envelope reporting.
+2. Preserve report schema compatibility.
 
-### Phase 2 — Swarm floor reliability hardening
-1. Improve degraded routing + timeout fallback behavior.
+### Phase 2 — Swarm floor hardening
+1. Improve degraded routing + timeout fallback determinism.
 2. Re-run simulation benchmark and compare floor/tail metrics.
 
-### Phase 3 — Fail-closed policy contract hardening
-1. Block high-risk recommendations with missing metadata.
+### Phase 3 — Fail-closed policy contracts
+1. Block high-risk recommendations with incomplete metadata.
 2. Preserve downstream report compatibility.
 
 ### Phase 4 — Deterministic scorecard/remediation loop
 1. Stabilize remediation IDs/order and breach messaging.
-2. Ensure rerun-stable outputs.
+2. Verify rerun-stable artifacts.
 
 ---
 
@@ -200,8 +205,8 @@ Pass criteria:
 ## 8) Expected Productivity Impact (Next 1–2 cycles)
 
 Primary targets:
-- Productivity index: **98.15 -> >= 98.60**
-- Cycle time: **2.278s -> <= 2.10s**
+- Productivity index: **98.16 -> >= 98.60**
+- Cycle time: **2.212s -> <= 2.00s**
 - Calibration readiness: **insufficient_sample_size -> ready**
 - Terminal outcomes/cycle: **1 -> >= 2**
 - Swarm min success floor: **0.75 -> >= 0.85**
@@ -222,7 +227,7 @@ Global lane rules:
 - Handoff must include changed files, validations, commit SHA, and known risks.
 
 ### Lane 1 — Calibration readiness + deterministic diagnostics
-- Label: `occ-20260304-0824-lane-01-calibration-readiness`
+- Label: `occ-20260305-0330-lane-01-calibration-readiness`
 - Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane01`
 - Scope files:
   - `cognition-core/src/learning/evaluator.ts`
@@ -235,10 +240,10 @@ Global lane rules:
   - `npm --prefix cognition-core run evaluate`
 - Commit criteria:
   - deterministic low-sample calibration diagnostics
-  - stable confidence envelope output
+  - stable confidence envelope output and wording
 
 ### Lane 2 — Swarm degraded routing floor hardening
-- Label: `occ-20260304-0824-lane-02-routing-floor`
+- Label: `occ-20260305-0330-lane-02-routing-floor`
 - Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane02`
 - Scope files:
   - `swarm-protocol/src/task-router.ts`
@@ -251,10 +256,10 @@ Global lane rules:
   - `npm --prefix swarm-protocol run benchmark:simulate`
 - Commit criteria:
   - deterministic degraded fallback behavior
-  - stable or improved benchmark floor/timeout rates
+  - stable/improved benchmark floor and timeout rates
 
 ### Lane 3 — Retry/backoff telemetry taxonomy normalization
-- Label: `occ-20260304-0824-lane-03-retry-telemetry`
+- Label: `occ-20260305-0330-lane-03-retry-telemetry`
 - Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane03`
 - Scope files:
   - `swarm-protocol/src/task-orchestrator.ts`
@@ -270,7 +275,7 @@ Global lane rules:
   - terminal reason taxonomy stable across reruns
 
 ### Lane 4 — Fail-closed high-risk recommendation contracts
-- Label: `occ-20260304-0824-lane-04-fail-closed-contracts`
+- Label: `occ-20260305-0330-lane-04-fail-closed-contracts`
 - Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane04`
 - Scope files:
   - `cognition-core/src/contracts/recommendations.ts`
@@ -283,11 +288,11 @@ Global lane rules:
   - `npm --prefix cognition-core test -- test/policy-engine.test.ts`
   - `npm --prefix cognition-core run dispatch`
 - Commit criteria:
-  - high-risk actions without required metadata are blocked
+  - high-risk actions with missing metadata are blocked
   - deterministic rejection diagnostics
 
 ### Lane 5 — Deterministic scorecard/remediation breach messaging
-- Label: `occ-20260304-0824-lane-05-scorecard-loop`
+- Label: `occ-20260305-0330-lane-05-scorecard-loop`
 - Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane05`
 - Scope files:
   - `cognition-core/scripts/productivity-scorecard.ts`
