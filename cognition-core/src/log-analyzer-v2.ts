@@ -30,7 +30,28 @@ function createHourStats() {
     return {
         messages: 0,
         toolCalls: 0,
-        errors: 0
+        errors: 0,
+        tools: {}
+    };
+}
+
+function createHourToolStats() {
+    return {
+        toolCalls: 0,
+        errors: 0,
+        durationSamples: 0,
+        totalDurationMs: 0,
+        durationSampleValuesMs: [],
+        maxDurationMs: 0
+    };
+}
+
+function createHourWindowStats() {
+    return {
+        messages: 0,
+        toolCalls: 0,
+        errors: 0,
+        tools: {}
     };
 }
 
@@ -69,12 +90,182 @@ function computePercentile(values, percentile) {
     return roundNumber(value, 1);
 }
 
+function computeMedian(values) {
+    if (!Array.isArray(values) || values.length === 0) return null;
+    const sorted = [...values]
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value))
+        .sort((a, b) => a - b);
+
+    if (sorted.length === 0) return null;
+    const mid = Math.floor(sorted.length / 2);
+    if (sorted.length % 2 === 0) {
+        return roundNumber((sorted[mid - 1] + sorted[mid]) / 2, 2);
+    }
+    return roundNumber(sorted[mid], 2);
+}
+
 function metricDelta(current, baseline) {
     const delta = roundNumber(current - baseline, 2);
     const pctDelta = baseline === 0
         ? null
         : roundNumber((delta / Math.abs(baseline)) * 100, 2);
     return { current, baseline, delta, pctDelta };
+}
+
+
+function summarizeHourTool(raw) {
+    if (!raw || typeof raw !== 'object') {
+        return {
+            calls: 0,
+            errors: 0,
+            errorRate: 0,
+            durationSamples: 0,
+            p95DurationMs: null
+        };
+    }
+
+    const calls = Number(raw.toolCalls) || 0;
+    const errors = Number(raw.errors) || 0;
+    const durationSamples = Number(raw.durationSamples) || 0;
+    const durationValues = Array.isArray(raw.durationSampleValuesMs)
+        ? raw.durationSampleValuesMs
+            .map((value) => Number(value))
+            .filter((value) => Number.isFinite(value) && value >= 0)
+        : [];
+
+    return {
+        calls,
+        errors,
+        errorRate: roundNumber(safePercent(errors, calls), 2),
+        durationSamples,
+        p95DurationMs: computePercentile(durationValues, 0.95)
+    };
+}
+
+function detectHourlyIncidents(hourlyWindows, options = {}) {
+    if (!hourlyWindows || typeof hourlyWindows !== 'object') return [];
+
+    const minCalls = Number.isFinite(Number(options.minCalls))
+        ? Number(options.minCalls)
+        : 5;
+    const minDurationSamples = Number.isFinite(Number(options.minDurationSamples))
+        ? Number(options.minDurationSamples)
+        : 5;
+    const baselineLookback = Number.isFinite(Number(options.baselineLookback))
+        ? Number(options.baselineLookback)
+        : 24;
+    const minBaselineSamples = Number.isFinite(Number(options.minBaselineSamples))
+        ? Number(options.minBaselineSamples)
+        : 3;
+
+    const incidents = [];
+    const toolSeries = {};
+
+    const sortedWindows = Object.entries(hourlyWindows)
+        .sort(([left], [right]) => left.localeCompare(right));
+
+    for (const [windowStartIso, bucket] of sortedWindows) {
+        const hourUtc = windowStartIso.slice(11, 13);
+
+        for (const [toolName, rawTool] of Object.entries(bucket?.tools || {})) {
+            const snapshot = {
+                windowStartIso,
+                hourUtc,
+                ...summarizeHourTool(rawTool)
+            };
+
+            if (!toolSeries[toolName]) {
+                toolSeries[toolName] = [];
+            }
+
+            const history = toolSeries[toolName];
+            const baseline = history.slice(-baselineLookback);
+
+            const errorBaseline = baseline.filter((entry) => entry.calls >= minCalls);
+            if (snapshot.calls >= minCalls && errorBaseline.length >= minBaselineSamples) {
+                const baselineMedianErrorRate = computeMedian(errorBaseline.map((entry) => entry.errorRate)) || 0;
+                const absoluteErrorThreshold = Math.max(15, baselineMedianErrorRate + 10);
+                const relativeErrorThreshold = baselineMedianErrorRate > 0
+                    ? baselineMedianErrorRate * 2
+                    : absoluteErrorThreshold;
+                const triggered = snapshot.errorRate >= Math.max(absoluteErrorThreshold, relativeErrorThreshold)
+                    && snapshot.errors >= 2;
+
+                if (triggered) {
+                    const delta = roundNumber(snapshot.errorRate - baselineMedianErrorRate, 2);
+                    const severityScore = roundNumber((delta * 1.2) + (snapshot.errors * 3), 2);
+                    incidents.push({
+                        type: 'error_spike',
+                        severity: severityScore >= 35 ? 'high' : 'medium',
+                        severityScore,
+                        tool: toolName,
+                        windowStartIso,
+                        hourUtc,
+                        observed: {
+                            calls: snapshot.calls,
+                            errors: snapshot.errors,
+                            errorRate: snapshot.errorRate
+                        },
+                        baseline: {
+                            sampleCount: errorBaseline.length,
+                            medianErrorRate: baselineMedianErrorRate
+                        },
+                        summary: `${toolName} error spike at ${windowStartIso} (${snapshot.errorRate}% vs baseline ${baselineMedianErrorRate}%).`
+                    });
+                }
+            }
+
+            const latencyBaseline = baseline
+                .filter((entry) => entry.durationSamples >= minDurationSamples && Number.isFinite(entry.p95DurationMs));
+            if (snapshot.durationSamples >= minDurationSamples
+                && Number.isFinite(snapshot.p95DurationMs)
+                && latencyBaseline.length >= minBaselineSamples) {
+                const baselineMedianP95 = computeMedian(latencyBaseline.map((entry) => entry.p95DurationMs)) || 0;
+                const deltaP95 = roundNumber(snapshot.p95DurationMs - baselineMedianP95, 1);
+                const absoluteThreshold = Math.max(5000, baselineMedianP95 + 1500);
+                const relativeThreshold = baselineMedianP95 > 0
+                    ? baselineMedianP95 * 1.75
+                    : absoluteThreshold;
+
+                const triggered = snapshot.p95DurationMs >= Math.max(absoluteThreshold, relativeThreshold)
+                    && deltaP95 >= 1500;
+
+                if (triggered) {
+                    const severityScore = roundNumber((deltaP95 / 250) + (snapshot.durationSamples * 0.5), 2);
+                    incidents.push({
+                        type: 'latency_spike',
+                        severity: severityScore >= 35 ? 'high' : 'medium',
+                        severityScore,
+                        tool: toolName,
+                        windowStartIso,
+                        hourUtc,
+                        observed: {
+                            calls: snapshot.calls,
+                            durationSamples: snapshot.durationSamples,
+                            p95DurationMs: snapshot.p95DurationMs
+                        },
+                        baseline: {
+                            sampleCount: latencyBaseline.length,
+                            medianP95DurationMs: baselineMedianP95
+                        },
+                        summary: `${toolName} latency spike at ${windowStartIso} (p95 ${snapshot.p95DurationMs}ms vs baseline ${baselineMedianP95}ms).`
+                    });
+                }
+            }
+
+            history.push(snapshot);
+        }
+    }
+
+    return incidents
+        .sort((a, b) => {
+            if (b.severityScore !== a.severityScore) {
+                return b.severityScore - a.severityScore;
+            }
+            return b.windowStartIso.localeCompare(a.windowStartIso);
+        })
+        .slice(0, 25);
 }
 
 function ensureToolSummary(raw) {
@@ -321,6 +512,29 @@ export function buildRemediationPlan(currentSummary, comparison = null) {
         );
     }
 
+    const incidents = Array.isArray(currentSummary.incidents)
+        ? currentSummary.incidents
+        : [];
+    for (const incident of incidents.slice(0, 5)) {
+        if (incident.type === 'error_spike') {
+            add(
+                'P1',
+                `Contain ${incident.tool} error spike (${incident.hourUtc}:00 UTC)`,
+                incident.summary,
+                `Inspect ${incident.tool} traces for ${incident.windowStartIso}, identify the triggering change, and deploy rollback/fix plus an hourly alert guardrail.`,
+                incident.severityScore || 0
+            );
+        } else if (incident.type === 'latency_spike') {
+            add(
+                'P1',
+                `Contain ${incident.tool} latency spike (${incident.hourUtc}:00 UTC)`,
+                incident.summary,
+                `Profile the slowest ${incident.tool} executions during ${incident.windowStartIso}, cap tail execution time, and add fallback paths before the next run window.`,
+                incident.severityScore || 0
+            );
+        }
+    }
+
     if ((currentSummary.sessionsMissingFile || 0) > 0) {
         add(
             'P2',
@@ -477,6 +691,7 @@ export class LogAnalyzerV2 {
         this.sessionsPath = sessionsJsonPath;
         this.sessionsDir = path.dirname(sessionsJsonPath);
         this.stats = this._createEmptyStats();
+        this.hourlyWindows = {};
     }
 
     _createEmptyStats() {
@@ -504,6 +719,8 @@ export class LogAnalyzerV2 {
             stopReasons: {},
             byDay: {},
             hourlyActivity: {},
+            incidents: [],
+            incidentCount: 0,
             cutoffIso: null,
             startIso: null,
             endIso: null,
@@ -518,6 +735,7 @@ export class LogAnalyzerV2 {
         }
 
         this.stats = this._createEmptyStats();
+        this.hourlyWindows = {};
 
         if (!fs.existsSync(this.sessionsPath)) {
             throw new Error(`Sessions file not found: ${this.sessionsPath}`);
@@ -562,6 +780,8 @@ export class LogAnalyzerV2 {
         }
 
         this.stats.generatedAt = new Date(rangeEndMs).toISOString();
+        this.stats.incidents = detectHourlyIncidents(this.hourlyWindows);
+        this.stats.incidentCount = this.stats.incidents.length;
         return this.toJSON();
     }
 
@@ -701,6 +921,7 @@ export class LogAnalyzerV2 {
                 bucket.durationSamples++;
                 bucket.durationSampleValuesMs.push(durationMs);
                 bucket.maxDurationMs = Math.max(bucket.maxDurationMs, durationMs);
+                this._recordHourDuration(timestampMs, toolName, durationMs);
             }
 
             if (sessionState) {
@@ -721,7 +942,7 @@ export class LogAnalyzerV2 {
         bucket.calls++;
         this.stats.toolCalls++;
         this._countDay(timestampMs, 'toolCalls');
-        this._countHour(timestampMs, 'toolCalls');
+        this._countHour(timestampMs, 'toolCalls', name);
 
         if (options.sessionState) {
             this._enqueuePendingToolCall(name, options.callId, options.sessionState);
@@ -733,7 +954,7 @@ export class LogAnalyzerV2 {
         bucket.errors++;
         this.stats.errors++;
         this._countDay(timestampMs, 'errors');
-        this._countHour(timestampMs, 'errors');
+        this._countHour(timestampMs, 'errors', name);
     }
 
     _countUnresolvedCall(name) {
@@ -857,11 +1078,61 @@ export class LogAnalyzerV2 {
         this.stats.byDay[day][key]++;
     }
 
-    _countHour(timestampMs, key) {
+    _countHour(timestampMs, key, toolName = null) {
         if (!Number.isFinite(timestampMs)) return;
         const hour = new Date(timestampMs).toISOString().slice(11, 13);
         if (!this.stats.hourlyActivity[hour]) this.stats.hourlyActivity[hour] = createHourStats();
-        this.stats.hourlyActivity[hour][key]++;
+
+        const hourStats = this.stats.hourlyActivity[hour];
+        hourStats[key]++;
+
+        if (toolName) {
+            if (!hourStats.tools[toolName]) {
+                hourStats.tools[toolName] = { toolCalls: 0, errors: 0 };
+            }
+            if (key === 'toolCalls') hourStats.tools[toolName].toolCalls++;
+            if (key === 'errors') hourStats.tools[toolName].errors++;
+        }
+
+        const windowStats = this._getHourWindowBucket(timestampMs);
+        windowStats[key]++;
+
+        if (toolName) {
+            if (!windowStats.tools[toolName]) {
+                windowStats.tools[toolName] = createHourToolStats();
+            }
+            if (key === 'toolCalls') windowStats.tools[toolName].toolCalls++;
+            if (key === 'errors') windowStats.tools[toolName].errors++;
+        }
+    }
+
+    _getHourWindowKey(timestampMs) {
+        return `${new Date(timestampMs).toISOString().slice(0, 13)}:00:00.000Z`;
+    }
+
+    _getHourWindowBucket(timestampMs) {
+        const key = this._getHourWindowKey(timestampMs);
+        if (!this.hourlyWindows[key]) {
+            this.hourlyWindows[key] = createHourWindowStats();
+        }
+        return this.hourlyWindows[key];
+    }
+
+    _recordHourDuration(timestampMs, toolName, durationMs) {
+        if (!Number.isFinite(timestampMs)) return;
+        if (!Number.isFinite(durationMs) || durationMs < 0) return;
+        if (typeof toolName !== 'string' || !toolName.trim()) return;
+
+        const windowStats = this._getHourWindowBucket(timestampMs);
+        if (!windowStats.tools[toolName]) {
+            windowStats.tools[toolName] = createHourToolStats();
+        }
+
+        const toolStats = windowStats.tools[toolName];
+        toolStats.durationSamples++;
+        toolStats.totalDurationMs += durationMs;
+        toolStats.durationSampleValuesMs.push(durationMs);
+        toolStats.maxDurationMs = Math.max(toolStats.maxDurationMs, durationMs);
     }
 
     _toolSummary() {
@@ -956,6 +1227,15 @@ export class LogAnalyzerV2 {
             }
         }
 
+        const incidents = Array.isArray(this.stats.incidents) ? this.stats.incidents : [];
+        for (const incident of incidents.slice(0, 3)) {
+            if (incident.type === 'error_spike') {
+                insights.push(`Incident detected: ${incident.tool} error spike at ${incident.windowStartIso} (${incident.observed.errorRate}% vs baseline ${incident.baseline.medianErrorRate}%).`);
+            } else if (incident.type === 'latency_spike') {
+                insights.push(`Incident detected: ${incident.tool} latency spike at ${incident.windowStartIso} (p95 ${incident.observed.p95DurationMs}ms vs baseline ${incident.baseline.medianP95DurationMs}ms).`);
+            }
+        }
+
         if (this.stats.sessionsMissingFile > 0) {
             insights.push(`Session metadata references missing files (${this.stats.sessionsMissingFile}).`);
         }
@@ -999,6 +1279,7 @@ export class LogAnalyzerV2 {
         console.log(`Total Errors:     ${summary.errors}`);
         console.log(`Unresolved Calls: ${summary.unresolvedToolCalls}`);
         console.log(`Orphan Results:   ${summary.orphanToolResults}`);
+        console.log(`Incidents:        ${summary.incidentCount || 0}`);
         console.log(`Reliability:      ${summary.reliabilityScore}/100`);
         console.log('\nTool Performance:');
 
@@ -1023,6 +1304,14 @@ export class LogAnalyzerV2 {
             console.log('\nTop Active UTC Hours:');
             for (const hour of activeHours) {
                 console.log(`  - ${hour.hourUtc}:00 | tool calls ${hour.toolCalls}, messages ${hour.messages}, errors ${hour.errors}`);
+            }
+        }
+
+        const incidents = Array.isArray(summary.incidents) ? summary.incidents : [];
+        if (incidents.length > 0) {
+            console.log('\nDetected Incidents:');
+            for (const incident of incidents.slice(0, 5)) {
+                console.log(`  - [${incident.type}] ${incident.summary}`);
             }
         }
 

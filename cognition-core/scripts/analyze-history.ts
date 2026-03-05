@@ -135,6 +135,7 @@ function formatMarkdown(summary) {
     lines.push(`- Unresolved tool calls: ${summary.unresolvedToolCalls || 0}`);
     lines.push(`- Orphan tool results: ${summary.orphanToolResults || 0}`);
     lines.push(`- Malformed lines: ${summary.malformedLines}`);
+    lines.push(`- Incidents detected: ${summary.incidentCount || 0}`);
     lines.push(`- Reliability score: ${summary.reliabilityScore}/100`);
     lines.push('');
     lines.push('## Top Tools');
@@ -148,6 +149,24 @@ function formatMarkdown(summary) {
     }
     if ((summary.topTools || []).length === 0) {
         lines.push('| (no tools) | 0 | 0 | 0.00% | - | - |');
+    }
+    lines.push('');
+
+    lines.push('## Detected Incidents');
+    lines.push('');
+    lines.push('| Type | Tool | Window Start (UTC) | Observed | Baseline | Severity |');
+    lines.push('| --- | --- | --- | --- | --- | ---: |');
+    for (const incident of summary.incidents || []) {
+        const observed = incident.type === 'error_spike'
+            ? `${incident.observed.errorRate}% (${incident.observed.errors}/${incident.observed.calls})`
+            : `p95 ${incident.observed.p95DurationMs}ms`;
+        const baseline = incident.type === 'error_spike'
+            ? `${incident.baseline.medianErrorRate}%`
+            : `p95 ${incident.baseline.medianP95DurationMs}ms`;
+        lines.push(`| ${incident.type} | ${incident.tool} | ${incident.windowStartIso} | ${observed} | ${baseline} | ${incident.severityScore} |`);
+    }
+    if ((summary.incidents || []).length === 0) {
+        lines.push('| (none) | - | - | - | - | 0 |');
     }
     lines.push('');
 
