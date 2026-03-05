@@ -147,6 +147,28 @@ We need this skill because complex systems require explanations humans can act o
 | Pandas/Polars | deterministic metric computations | none/local runtime | no | no |
 | Great Expectations | data quality assertions before scoring | none/local runtime | no | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| OR-Tools/Pyomo | constraint optimization and budget allocation | read+write | yes |
+| Pandas/Polars | deterministic metric computations | read+write | yes |
+| Great Expectations | data quality assertions before scoring | read/query | no |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| OR-Tools/Pyomo | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+| Pandas/Polars | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+| Great Expectations | HTTPS/REST | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `OR-Tools/Pyomo` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `plan quality scorecards`.
+2. `Pandas/Polars` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `plan quality scorecards`.
+3. `Great Expectations` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `plan quality scorecards`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

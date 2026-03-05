@@ -153,6 +153,31 @@ Use equity impact scoring in healthcare operations with emphasis on evidence qua
 | Great Expectations | data quality assertions before scoring | none/local runtime | no | no |
 | Audit log + immutable storage | compliance-grade evidence retention | account/session credentials | yes | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| OR-Tools/Pyomo | constraint optimization and budget allocation | read+write | yes |
+| Pandas/Polars | deterministic metric computations | read+write | yes |
+| Great Expectations | data quality assertions before scoring | read/query | no |
+| Audit log + immutable storage | compliance-grade evidence retention | read/query | no |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| OR-Tools/Pyomo | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+| Pandas/Polars | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+| Great Expectations | HTTPS/REST | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+| Audit log + immutable storage | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `OR-Tools/Pyomo` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `equity-impact-scoring-artifact-healthcare-operations`.
+2. `Pandas/Polars` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `equity-impact-scoring-artifact-healthcare-operations`.
+3. `Great Expectations` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `equity-impact-scoring-artifact-healthcare-operations`.
+4. `Audit log + immutable storage` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `equity-impact-scoring-artifact-healthcare-operations`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

@@ -1,6 +1,6 @@
 # Skills Professionalization Report
 
-Generated: 2026-03-05T02:58:14.654388+00:00
+Generated: 2026-03-05T07:20:46.995178+00:00
 
 ## Scope
 - Root: `skills/generated/shards`
@@ -12,6 +12,14 @@ Generated: 2026-03-05T02:58:14.654388+00:00
 ## Professionalization Rubric Coverage
 - Before: **10553 / 10553** (100.0%)
 - After: **10553 / 10553** (100.0%)
+
+## Tool/API Call Coverage
+- Tool+API sections before: **10553 / 10553** (100.0%)
+- Tool+API sections after: **10553 / 10553** (100.0%)
+- Tool call implementation before: **10553 / 10553** (100.0%)
+- Tool call implementation after: **10553 / 10553** (100.0%)
+- Credential reuse policy before: **10553 / 10553** (100.0%)
+- Credential reuse policy after: **10553 / 10553** (100.0%)
 
 ## Required Headings
 - `## Quick Reference`

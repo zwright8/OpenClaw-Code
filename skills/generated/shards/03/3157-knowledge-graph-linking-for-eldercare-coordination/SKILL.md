@@ -151,6 +151,28 @@ Use knowledge graph linking in eldercare coordination with emphasis on safety, d
 | RDF/SPARQL store | ontology-aligned semantic joins | account/session credentials | yes | no |
 | NetworkX/graph-tool | offline graph analytics and diagnostics | none/local runtime | no | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| Neo4j/Memgraph | graph storage and traversal | read/query | no |
+| RDF/SPARQL store | ontology-aligned semantic joins | read/query | no |
+| NetworkX/graph-tool | offline graph analytics and diagnostics | read/query | no |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| Neo4j/Memgraph | Bolt, HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| RDF/SPARQL store | SPARQL over HTTP | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| NetworkX/graph-tool | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `Neo4j/Memgraph` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `knowledge-graph-linking-artifact-eldercare-coordination`.
+2. `RDF/SPARQL store` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `knowledge-graph-linking-artifact-eldercare-coordination`.
+3. `NetworkX/graph-tool` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `knowledge-graph-linking-artifact-eldercare-coordination`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

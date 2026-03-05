@@ -152,6 +152,28 @@ Use regression sentinel design in personal health routines with emphasis on thro
 | OpenTelemetry Collector | trace/span/log normalization pipeline | account/session credentials | yes | no |
 | Grafana/Metabase/Superset | deterministic dashboard publication | account/session credentials | yes | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| Prometheus + Alertmanager | metrics ingestion, alert thresholds, and SLO burn-rate checks | read/query | no |
+| OpenTelemetry Collector | trace/span/log normalization pipeline | read+write | yes |
+| Grafana/Metabase/Superset | deterministic dashboard publication | read+write/orchestrate | yes |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| Prometheus + Alertmanager | HTTPS/REST, PromQL | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| OpenTelemetry Collector | OTLP/gRPC, OTLP/HTTP | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Grafana/Metabase/Superset | HTTPS/REST, SQL datasource | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `Prometheus + Alertmanager` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `regression-sentinel-design-artifact-personal-health-routines`.
+2. `OpenTelemetry Collector` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `regression-sentinel-design-artifact-personal-health-routines`.
+3. `Grafana/Metabase/Superset` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `regression-sentinel-design-artifact-personal-health-routines`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

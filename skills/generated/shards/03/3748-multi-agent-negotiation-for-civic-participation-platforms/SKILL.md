@@ -150,6 +150,25 @@ Use multi-agent negotiation in civic participation platforms with emphasis on cl
 | Frontier model runtime | primary synthesis, tone, and judgment | model provider credentials | yes | yes |
 | Vector memory store (optional) | long-term retrieval augmentation | account/session credentials | maybe | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| Frontier model runtime | primary synthesis, tone, and judgment | model inference | no |
+| Vector memory store (optional) | long-term retrieval augmentation | read/query | no |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| Frontier model runtime | HTTPS/REST | model provider credentials | yes | yes | Check existing API key first; validate with lightweight auth request; prompt only if missing/invalid/expired. |
+| Vector memory store (optional) | HTTPS/REST or local runtime | account/session credentials | maybe | no | Reuse current account/session credentials; validate context before execution. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `Frontier model runtime` -> auth preflight, execute model inference call(s), normalize output, and attach trace to `multi-agent-negotiation-artifact-civic-participation-platforms`.
+2. `Vector memory store (optional)` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `multi-agent-negotiation-artifact-civic-participation-platforms`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

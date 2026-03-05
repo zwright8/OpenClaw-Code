@@ -153,6 +153,31 @@ Use a/b rollout governance in healthcare operations with emphasis on best-in-cla
 | SciPy/Statsmodels | significance and confidence interval checks | none/local runtime | no | no |
 | Audit log + immutable storage | compliance-grade evidence retention | account/session credentials | yes | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| LaunchDarkly/Unleash | feature flagging and staged rollout safety | read+write/orchestrate | yes |
+| Statsig/Optimizely | experiment assignment and decision stats | read+write/orchestrate | yes |
+| SciPy/Statsmodels | significance and confidence interval checks | read/query | no |
+| Audit log + immutable storage | compliance-grade evidence retention | read/query | no |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| LaunchDarkly/Unleash | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Statsig/Optimizely | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| SciPy/Statsmodels | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+| Audit log + immutable storage | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `LaunchDarkly/Unleash` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `a-b-rollout-governance-artifact-healthcare-operations`.
+2. `Statsig/Optimizely` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `a-b-rollout-governance-artifact-healthcare-operations`.
+3. `SciPy/Statsmodels` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `a-b-rollout-governance-artifact-healthcare-operations`.
+4. `Audit log + immutable storage` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `a-b-rollout-governance-artifact-healthcare-operations`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

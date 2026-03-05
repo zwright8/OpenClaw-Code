@@ -151,6 +151,28 @@ Use semantic retrieval ranking in career development pathways with emphasis on t
 | Qdrant/Weaviate/pgvector | vector retrieval and nearest-neighbor recall | account/session credentials | yes | no |
 | Cohere/Jina reranker | cross-encoder reranking quality lift | API key | yes | yes |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| OpenSearch/Elasticsearch | lexical retrieval and filtering | read/query | no |
+| Qdrant/Weaviate/pgvector | vector retrieval and nearest-neighbor recall | read/query | no |
+| Cohere/Jina reranker | cross-encoder reranking quality lift | read+write | yes |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| OpenSearch/Elasticsearch | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Qdrant/Weaviate/pgvector | HTTPS/REST, gRPC | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Cohere/Jina reranker | HTTPS/REST | API key | yes | yes | Check existing API key first; validate with lightweight auth request; prompt only if missing/invalid/expired. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `OpenSearch/Elasticsearch` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `semantic-retrieval-ranking-artifact-career-development-pathways`.
+2. `Qdrant/Weaviate/pgvector` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `semantic-retrieval-ranking-artifact-career-development-pathways`.
+3. `Cohere/Jina reranker` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `semantic-retrieval-ranking-artifact-career-development-pathways`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

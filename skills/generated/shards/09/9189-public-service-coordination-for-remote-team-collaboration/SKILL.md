@@ -151,6 +151,28 @@ Use public service coordination in remote team collaboration with emphasis on th
 | Task/workflow orchestrator | durable execution and retries | account/session credentials | yes | no |
 | Telemetry store | evidence and observability | account/session credentials | yes | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| Frontier model runtime | reasoning and synthesis | model inference | no |
+| Task/workflow orchestrator | durable execution and retries | read+write | yes |
+| Telemetry store | evidence and observability | read+write | yes |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| Frontier model runtime | HTTPS/REST | model provider credentials | yes | yes | Check existing API key first; validate with lightweight auth request; prompt only if missing/invalid/expired. |
+| Task/workflow orchestrator | HTTPS/REST, gRPC | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Telemetry store | HTTPS/REST, OTLP or SQL | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `Frontier model runtime` -> auth preflight, execute model inference call(s), normalize output, and attach trace to `public-service-coordination-artifact-remote-team-collaboration`.
+2. `Task/workflow orchestrator` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `public-service-coordination-artifact-remote-team-collaboration`.
+3. `Telemetry store` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `public-service-coordination-artifact-remote-team-collaboration`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

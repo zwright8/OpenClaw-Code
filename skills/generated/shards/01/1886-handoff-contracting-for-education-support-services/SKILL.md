@@ -152,6 +152,28 @@ Use handoff contracting in education support services with emphasis on evidence 
 | Argo Workflows/Kubernetes Jobs | execution coordination and rollbacks | account/session credentials | yes | no |
 | Redis/Kafka queue | decoupled task transport and backpressure | account/session credentials | yes | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| Temporal/Prefect/Airflow | workflow state + retries + durable scheduling | read+write/orchestrate | yes |
+| Argo Workflows/Kubernetes Jobs | execution coordination and rollbacks | read+write/orchestrate | yes |
+| Redis/Kafka queue | decoupled task transport and backpressure | read+write/orchestrate | yes |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| Temporal/Prefect/Airflow | gRPC, HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Argo Workflows/Kubernetes Jobs | Kubernetes API (HTTPS/REST) | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Redis/Kafka queue | RESP (Redis protocol) | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `Temporal/Prefect/Airflow` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `handoff-contracting-artifact-education-support-services`.
+2. `Argo Workflows/Kubernetes Jobs` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `handoff-contracting-artifact-education-support-services`.
+3. `Redis/Kafka queue` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `handoff-contracting-artifact-education-support-services`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

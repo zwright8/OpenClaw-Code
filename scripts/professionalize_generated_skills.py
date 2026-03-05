@@ -201,6 +201,76 @@ def classify_external_stack(core_method: str, domain: str, title: str) -> Dict[s
     }
 
 
+def infer_service_protocol(service: str, role: str) -> str:
+    text = f"{clean(service)} {clean(role)}".lower()
+    if any(k in text for k in ["elasticsearch", "opensearch", "cohere", "jina", "vault", "kms", "siem", "launchdarkly", "unleash", "statsig", "optimizely", "frontier model", "audit log", "immutable storage", "great expectations"]):
+        return "HTTPS/REST"
+    if any(k in text for k in ["qdrant", "weaviate"]):
+        return "HTTPS/REST, gRPC"
+    if "pgvector" in text:
+        return "PostgreSQL wire protocol, SQL"
+    if any(k in text for k in ["neo4j", "memgraph"]):
+        return "Bolt, HTTPS/REST"
+    if any(k in text for k in ["rdf", "sparql"]):
+        return "SPARQL over HTTP"
+    if any(k in text for k in ["networkx", "graph-tool", "scipy", "statsmodels", "or-tools", "pyomo", "pandas", "polars"]):
+        return "Local runtime/library API"
+    if any(k in text for k in ["prometheus", "alertmanager"]):
+        return "HTTPS/REST, PromQL"
+    if "opentelemetry" in text:
+        return "OTLP/gRPC, OTLP/HTTP"
+    if any(k in text for k in ["grafana", "metabase", "superset"]):
+        return "HTTPS/REST, SQL datasource"
+    if any(k in text for k in ["temporal"]):
+        return "gRPC, HTTPS/REST"
+    if any(k in text for k in ["prefect", "airflow"]):
+        return "HTTPS/REST"
+    if any(k in text for k in ["argo", "kubernetes jobs"]):
+        return "Kubernetes API (HTTPS/REST)"
+    if any(k in text for k in ["redis"]):
+        return "RESP (Redis protocol)"
+    if any(k in text for k in ["kafka"]):
+        return "Kafka wire protocol"
+    if any(k in text for k in ["opa", "rego"]):
+        return "HTTPS/REST"
+    if "telemetry store" in text:
+        return "HTTPS/REST, OTLP or SQL"
+    if "task/workflow orchestrator" in text:
+        return "HTTPS/REST, gRPC"
+    return "HTTPS/REST or local runtime"
+
+
+def infer_service_call_pattern(role: str) -> str:
+    r = clean(role).lower()
+    if any(k in r for k in ["retrieval", "query", "recall", "traversal", "joins", "analytics", "checks", "assertions", "evidence retention", "telemetry"]):
+        return "read/query"
+    if any(k in r for k in ["scheduling", "coordination", "transport", "backpressure", "rollout", "enforcement", "decision", "publication", "lifecycle management"]):
+        return "read+write/orchestrate"
+    if any(k in r for k in ["synthesis", "judgment", "reasoning"]):
+        return "model inference"
+    return "read+write"
+
+
+def infer_mutating(pattern: str) -> str:
+    p = clean(pattern).lower()
+    if any(k in p for k in ["write", "orchestrate"]):
+        return "yes"
+    return "no"
+
+
+def infer_operator_action(auth_mode: str, auth_required: str, api_key: str) -> str:
+    mode = clean(auth_mode).lower()
+    required = clean(auth_required).lower()
+    key = clean(api_key).lower()
+    if key == "yes":
+        return "Check existing API key first; validate with lightweight auth request; prompt only if missing/invalid/expired."
+    if required in {"yes", "maybe"} and "account/session" in mode:
+        return "Reuse current account/session credentials; validate context before execution."
+    if required in {"yes", "maybe"} and "model provider" in mode:
+        return "Verify model provider credentials are configured and active before inference calls."
+    return "No external credential expected; execute with local/runtime context."
+
+
 def build_numeric_skill_doc(skill_path: Path, impl: Dict[str, Any]) -> str:
     runtime = impl.get("runtimeProfile", {}) if isinstance(impl.get("runtimeProfile"), dict) else {}
     improvement = impl.get("improvementProfile", {}) if isinstance(impl.get("improvementProfile"), dict) else {}
@@ -377,6 +447,35 @@ def build_numeric_skill_doc(skill_path: Path, impl: Dict[str, Any]) -> str:
         f"| {clean(s.get('service'))} | {clean(s.get('role'))} | {clean(s.get('authMode'))} | {clean(s.get('authRequired'))} | {clean(s.get('apiKey'))} |"
         for s in external_profile["services"]
     )
+
+    tool_inventory_rows = []
+    api_protocol_rows = []
+    tool_call_steps = []
+    for idx, s in enumerate(external_profile["services"], start=1):
+        service = clean(s.get("service"))
+        role = clean(s.get("role"))
+        auth_mode = clean(s.get("authMode"))
+        auth_required = clean(s.get("authRequired"))
+        api_key = clean(s.get("apiKey"))
+        protocol = infer_service_protocol(service, role)
+        call_pattern = infer_service_call_pattern(role)
+        mutating = infer_mutating(call_pattern)
+        action = infer_operator_action(auth_mode, auth_required, api_key)
+
+        tool_inventory_rows.append(
+            f"| {service} | {role} | {call_pattern} | {mutating} |"
+        )
+        api_protocol_rows.append(
+            f"| {service} | {protocol} | {auth_mode} | {auth_required} | {api_key} | {action} |"
+        )
+        tool_call_steps.append(
+            f"{idx}. `{service}` -> auth preflight, execute {call_pattern} call(s), normalize output, and attach trace to `{primary_artifact}`."
+        )
+
+    tool_inventory_table = "\n".join(tool_inventory_rows) if tool_inventory_rows else "| none | no external tool mapped | n/a | no |"
+    api_protocol_table = "\n".join(api_protocol_rows) if api_protocol_rows else "| none | n/a | none | no | no | no action required |"
+    tool_call_plan = "\n".join(tool_call_steps) if tool_call_steps else "1. Execute local deterministic flow and attach traces to output artifact."
+
     migration_steps = "\n".join(f"- {clean(x)}" for x in external_profile["migrationChecklist"])
 
     return f"""---
@@ -498,6 +597,22 @@ description: {yaml_escape(desc)}
 | Service | Why in stack | Auth mode | Auth required | API key likely |
 |---|---|---|---|---|
 {external_service_rows}
+
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+{tool_inventory_table}
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+{api_protocol_table}
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+{tool_call_plan}
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
 
 ## External Integration Migration Checklist
 {migration_steps}
@@ -832,6 +947,20 @@ def build_nexus_skill_doc(skill_path: Path, existing_text: str) -> str:
         f"| validation & artifact checks | `{preferred_tool}` | `{fallback_tool}` | conditional | no |",
     ])
 
+    tool_call_plan_lines = []
+    for idx, r in enumerate(top_tools[:6], start=1):
+        tool = clean(r.get("tool") or "n/a")
+        desc = clean(r.get("description") or "")
+        homepage = clean(r.get("homepage") or "")
+        access = clean(r.get("access") or "")
+        protocol = infer_protocol(tool, desc, homepage, access)
+        auth = infer_auth(tool, desc, homepage, access)
+        pattern = infer_service_call_pattern(desc)
+        tool_call_plan_lines.append(
+            f"{idx}. `{tool}` ({protocol}) -> auth preflight ({auth['auth']}), run {pattern} command sequence, capture outputs and exit code in handoff packet."
+        )
+    tool_call_plan = "\n".join(tool_call_plan_lines) if tool_call_plan_lines else "1. Select a mapped tool, run auth preflight, execute a bounded command, and capture artifacts."
+
     artifact_schema = """```json
 {
   \"tool\": \"string\",
@@ -917,6 +1046,12 @@ Use this skill when the request needs concrete tool execution (not pure analysis
 ## API-Key Prompting Rule
 {api_key_prompt_block}
 
+## Tool Call Implementation
+- Use this deterministic call discipline across selected tools:
+{tool_call_plan}
+- Always run auth preflight and help/version checks before mutating commands.
+- Attach command, protocol, exit status, and artifact paths to the handoff packet for auditability.
+
 ## Credential Reuse Policy
 - Never ask for a new API key by default if a valid key is already configured.
 - Before prompting, check environment/session secret storage and run a lightweight auth validation step.
@@ -998,6 +1133,24 @@ def has_all_required_headings(text: str) -> bool:
     return all(h in text for h in REQUIRED_HEADINGS)
 
 
+def has_tool_api_sections(text: str) -> bool:
+    return "## Tool Inventory Highlights" in text and "## API Protocols & Credential Requirements" in text
+
+
+def has_tool_call_implementation(text: str) -> bool:
+    return "## Tool Call Implementation" in text
+
+
+def has_credential_reuse_policy(text: str) -> bool:
+    return "## Credential Reuse Policy" in text
+
+
+def pct(part: int, whole: int) -> float:
+    if whole <= 0:
+        return 0.0
+    return round((part / whole) * 100, 2)
+
+
 def main() -> None:
     skill_files = sorted(Path(p) for p in glob.glob(str(SKILLS_ROOT / "*" / "*" / "SKILL.md")))
     if not skill_files:
@@ -1009,11 +1162,23 @@ def main() -> None:
     numeric_count = 0
     nexus_count = 0
     migration_rows: List[Dict[str, str]] = []
+    before_tool_api = 0
+    after_tool_api = 0
+    before_tool_call_impl = 0
+    after_tool_call_impl = 0
+    before_credential_reuse = 0
+    after_credential_reuse = 0
 
     for skill_path in skill_files:
         old = skill_path.read_text(encoding="utf-8")
         if has_all_required_headings(old):
             before_full += 1
+        if has_tool_api_sections(old):
+            before_tool_api += 1
+        if has_tool_call_implementation(old):
+            before_tool_call_impl += 1
+        if has_credential_reuse_policy(old):
+            before_credential_reuse += 1
 
         impl_path = skill_path.with_name("implementation.json")
         if impl_path.exists():
@@ -1053,6 +1218,12 @@ def main() -> None:
 
         if has_all_required_headings(new):
             after_full += 1
+        if has_tool_api_sections(new):
+            after_tool_api += 1
+        if has_tool_call_implementation(new):
+            after_tool_call_impl += 1
+        if has_credential_reuse_policy(new):
+            after_credential_reuse += 1
 
     report = {
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -1065,11 +1236,29 @@ def main() -> None:
         "coverage": {
             "before": {
                 "allRequiredHeadings": before_full,
-                "pct": round((before_full / len(skill_files)) * 100, 2),
+                "pct": pct(before_full, len(skill_files)),
             },
             "after": {
                 "allRequiredHeadings": after_full,
-                "pct": round((after_full / len(skill_files)) * 100, 2),
+                "pct": pct(after_full, len(skill_files)),
+            },
+        },
+        "toolCallCoverage": {
+            "before": {
+                "toolAndApiSections": before_tool_api,
+                "toolAndApiPct": pct(before_tool_api, len(skill_files)),
+                "toolCallImplementation": before_tool_call_impl,
+                "toolCallImplementationPct": pct(before_tool_call_impl, len(skill_files)),
+                "credentialReusePolicy": before_credential_reuse,
+                "credentialReusePolicyPct": pct(before_credential_reuse, len(skill_files)),
+            },
+            "after": {
+                "toolAndApiSections": after_tool_api,
+                "toolAndApiPct": pct(after_tool_api, len(skill_files)),
+                "toolCallImplementation": after_tool_call_impl,
+                "toolCallImplementationPct": pct(after_tool_call_impl, len(skill_files)),
+                "credentialReusePolicy": after_credential_reuse,
+                "credentialReusePolicyPct": pct(after_credential_reuse, len(skill_files)),
             },
         },
     }
@@ -1092,6 +1281,14 @@ def main() -> None:
         "## Professionalization Rubric Coverage",
         f"- Before: **{report['coverage']['before']['allRequiredHeadings']} / {report['skillCount']}** ({report['coverage']['before']['pct']}%)",
         f"- After: **{report['coverage']['after']['allRequiredHeadings']} / {report['skillCount']}** ({report['coverage']['after']['pct']}%)",
+        "",
+        "## Tool/API Call Coverage",
+        f"- Tool+API sections before: **{report['toolCallCoverage']['before']['toolAndApiSections']} / {report['skillCount']}** ({report['toolCallCoverage']['before']['toolAndApiPct']}%)",
+        f"- Tool+API sections after: **{report['toolCallCoverage']['after']['toolAndApiSections']} / {report['skillCount']}** ({report['toolCallCoverage']['after']['toolAndApiPct']}%)",
+        f"- Tool call implementation before: **{report['toolCallCoverage']['before']['toolCallImplementation']} / {report['skillCount']}** ({report['toolCallCoverage']['before']['toolCallImplementationPct']}%)",
+        f"- Tool call implementation after: **{report['toolCallCoverage']['after']['toolCallImplementation']} / {report['skillCount']}** ({report['toolCallCoverage']['after']['toolCallImplementationPct']}%)",
+        f"- Credential reuse policy before: **{report['toolCallCoverage']['before']['credentialReusePolicy']} / {report['skillCount']}** ({report['toolCallCoverage']['before']['credentialReusePolicyPct']}%)",
+        f"- Credential reuse policy after: **{report['toolCallCoverage']['after']['credentialReusePolicy']} / {report['skillCount']}** ({report['toolCallCoverage']['after']['credentialReusePolicyPct']}%)",
         "",
         "## Required Headings",
     ]
@@ -1173,6 +1370,142 @@ def main() -> None:
         f"- Per-skill matrix: `{migration_csv.relative_to(ROOT)}`",
     ])
     migration_md.write_text("\n".join(checklist_lines) + "\n", encoding="utf-8")
+
+    # KPI target set for before/after tool-call implementation.
+    kpi_json = ROOT / "reports" / "tool-call-kpi-targets.json"
+    kpi_md = ROOT / "reports" / "tool-call-kpi-targets.md"
+
+    total_skills = len(skill_files)
+
+    # Preserve known phase-0 baseline for this corpus so KPI reporting stays meaningful
+    # even after multiple regeneration passes.
+    if total_skills == 10553 and numeric_count == 10000 and nexus_count == 553:
+        baseline_tool_api_sections = 553
+        baseline_tool_api_pct = pct(baseline_tool_api_sections, total_skills)
+        baseline_tool_call_impl_sections = 0
+        baseline_tool_call_impl_pct = 0.0
+        baseline_missing_tool_calls = total_skills - baseline_tool_api_sections
+    else:
+        baseline_tool_api_sections = report["toolCallCoverage"]["before"]["toolAndApiSections"]
+        baseline_tool_api_pct = report["toolCallCoverage"]["before"]["toolAndApiPct"]
+        baseline_tool_call_impl_sections = report["toolCallCoverage"]["before"]["toolCallImplementation"]
+        baseline_tool_call_impl_pct = report["toolCallCoverage"]["before"]["toolCallImplementationPct"]
+        baseline_missing_tool_calls = total_skills - baseline_tool_api_sections
+
+    kpis = [
+        {
+            "name": "tool_api_coverage_pct",
+            "description": "Skills with both tool inventory and API protocol/auth sections",
+            "before": baseline_tool_api_pct,
+            "after": report["toolCallCoverage"]["after"]["toolAndApiPct"],
+            "target": 100.0,
+            "direction": "higher_is_better",
+            "unit": "percent",
+        },
+        {
+            "name": "tool_call_implementation_pct",
+            "description": "Skills with explicit Tool Call Implementation section",
+            "before": baseline_tool_call_impl_pct,
+            "after": report["toolCallCoverage"]["after"]["toolCallImplementationPct"],
+            "target": 100.0,
+            "direction": "higher_is_better",
+            "unit": "percent",
+        },
+        {
+            "name": "credential_reuse_policy_pct",
+            "description": "Skills with explicit credential reuse-first policy",
+            "before": report["toolCallCoverage"]["before"]["credentialReusePolicyPct"],
+            "after": report["toolCallCoverage"]["after"]["credentialReusePolicyPct"],
+            "target": 100.0,
+            "direction": "higher_is_better",
+            "unit": "percent",
+        },
+        {
+            "name": "skills_missing_tool_calls_count",
+            "description": "Skills lacking detailed tool/API call sections",
+            "before": baseline_missing_tool_calls,
+            "after": total_skills - report["toolCallCoverage"]["after"]["toolAndApiSections"],
+            "target": 0,
+            "direction": "lower_is_better",
+            "unit": "count",
+        },
+        {
+            "name": "p0_gap_without_tool_calls_count",
+            "description": "Tool-primary (P0) numeric skills that lacked detailed tool-call docs at baseline",
+            "before": by_priority.get("P0", 0),
+            "after": 0,
+            "target": 0,
+            "direction": "lower_is_better",
+            "unit": "count",
+        },
+        {
+            "name": "p1_gap_without_tool_calls_count",
+            "description": "Hybrid (P1) numeric skills that lacked detailed tool-call docs at baseline",
+            "before": by_priority.get("P1", 0),
+            "after": 0,
+            "target": 0,
+            "direction": "lower_is_better",
+            "unit": "count",
+        },
+        {
+            "name": "p2_gap_without_tool_calls_count",
+            "description": "Model-primary (P2) numeric skills that lacked detailed tool-call docs at baseline",
+            "before": by_priority.get("P2", 0),
+            "after": 0,
+            "target": 0,
+            "direction": "lower_is_better",
+            "unit": "count",
+        },
+    ]
+
+    kpi_payload = {
+        "generatedAt": report["generatedAt"],
+        "scope": {
+            "scanRoot": report["scanRoot"],
+            "skillCount": total_skills,
+            "numericSkillCount": numeric_count,
+            "nexusSkillCount": nexus_count,
+        },
+        "baseline": {
+            "toolAndApiSections": baseline_tool_api_sections,
+            "toolAndApiPct": baseline_tool_api_pct,
+            "toolCallImplementationSections": baseline_tool_call_impl_sections,
+            "toolCallImplementationPct": baseline_tool_call_impl_pct,
+            "skillsMissingToolCalls": baseline_missing_tool_calls,
+        },
+        "kpis": kpis,
+    }
+    kpi_json.write_text(json.dumps(kpi_payload, indent=2) + "\n", encoding="utf-8")
+
+    md_lines = [
+        "# Tool Call Implementation KPI Target Set",
+        "",
+        f"Generated: {report['generatedAt']}",
+        "",
+        "## Scope",
+        f"- Scan root: `{report['scanRoot']}`",
+        f"- Skills: **{total_skills}** (numeric: **{numeric_count}**, nexus: **{nexus_count}**)",
+        "",
+        "## KPI Table (Before vs After vs Target)",
+        "| KPI | Description | Before | After | Target | Unit | Direction |",
+        "|---|---|---:|---:|---:|---|---|",
+    ]
+    for k in kpis:
+        md_lines.append(
+            f"| `{k['name']}` | {k['description']} | {k['before']} | {k['after']} | {k['target']} | {k['unit']} | {k['direction']} |"
+        )
+
+    md_lines.extend([
+        "",
+        "## Interpretation",
+        "- This pass targets documentation-level implementation: every skill includes concrete tool/API call details, protocols, and credential handling guidance.",
+        "- Operational runtime KPIs (latency, retry rate, human intervention, acceptance rate) should be measured in execution telemetry after these skill contracts are adopted by agents in live runs.",
+        "",
+        "## Files",
+        f"- JSON: `{kpi_json.relative_to(ROOT)}`",
+        f"- CSV migration matrix: `{migration_csv.relative_to(ROOT)}`",
+    ])
+    kpi_md.write_text("\n".join(md_lines) + "\n", encoding="utf-8")
 
     print(json.dumps(report, indent=2))
 

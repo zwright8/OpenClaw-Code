@@ -153,6 +153,31 @@ Use human approval routing in healthcare operations with emphasis on clarity, ha
 | SIEM (Elastic/Splunk) | security event evidence and audit trails | account/session credentials | yes | no |
 | Audit log + immutable storage | compliance-grade evidence retention | account/session credentials | yes | no |
 
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| OPA/Rego | policy decision enforcement | read+write/orchestrate | yes |
+| Vault/KMS | secret and key lifecycle management | read+write/orchestrate | yes |
+| SIEM (Elastic/Splunk) | security event evidence and audit trails | read+write | yes |
+| Audit log + immutable storage | compliance-grade evidence retention | read/query | no |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| OPA/Rego | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Vault/KMS | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| SIEM (Elastic/Splunk) | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Audit log + immutable storage | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `OPA/Rego` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `human-approval-routing-artifact-healthcare-operations`.
+2. `Vault/KMS` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `human-approval-routing-artifact-healthcare-operations`.
+3. `SIEM (Elastic/Splunk)` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `human-approval-routing-artifact-healthcare-operations`.
+4. `Audit log + immutable storage` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `human-approval-routing-artifact-healthcare-operations`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
 ## External Integration Migration Checklist
 - Provision service credentials and validate non-expired auth before first run.
 - Wire service outputs into validation/handoff artifacts.

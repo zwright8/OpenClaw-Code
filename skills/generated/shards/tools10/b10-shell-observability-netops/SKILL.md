@@ -117,6 +117,17 @@ Use this skill when the request needs concrete tool execution (not pure analysis
 ## API-Key Prompting Rule
 - No pack tools were detected as API-key-required by heuristic scan. Still verify credentials for cloud/account-backed operations.
 
+## Tool Call Implementation
+- Use this deterministic call discipline across selected tools:
+1. `qtquicktimeline` (QUIC, CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+2. `oils-for-unix` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+3. `victorialogs` (SQL/DB protocol, CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+4. `diceware` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+5. `snakeviz` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+6. `chkbit` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+- Always run auth preflight and help/version checks before mutating commands.
+- Attach command, protocol, exit status, and artifact paths to the handoff packet for auditability.
+
 ## Credential Reuse Policy
 - Never ask for a new API key by default if a valid key is already configured.
 - Before prompting, check environment/session secret storage and run a lightweight auth validation step.

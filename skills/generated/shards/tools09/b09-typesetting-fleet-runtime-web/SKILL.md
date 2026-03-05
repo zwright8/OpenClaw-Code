@@ -121,6 +121,17 @@ Use this skill when the request needs concrete tool execution (not pure analysis
 - `ata`: Reuse previously provided key/token by default. Check env/session secrets and validate auth first; ask user only when missing, invalid, or expired.
 - `ipinfo-cli`: Reuse previously provided key/token by default. Check env/session secrets and validate auth first; ask user only when missing, invalid, or expired.
 
+## Tool Call Implementation
+- Use this deterministic call discipline across selected tools:
+1. `sile` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+2. `fleet-cli` (HTTPS/REST, CLI/stdin-stdout) -> auth preflight (Account/session credentials), run read+write command sequence, capture outputs and exit code in handoff packet.
+3. `primesieve` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+4. `ata` (HTTPS/REST, CLI/stdin-stdout) -> auth preflight (API key), run read+write command sequence, capture outputs and exit code in handoff packet.
+5. `drogon` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+6. `humanlog` (CLI/stdin-stdout) -> auth preflight (None or local runtime), run read+write command sequence, capture outputs and exit code in handoff packet.
+- Always run auth preflight and help/version checks before mutating commands.
+- Attach command, protocol, exit status, and artifact paths to the handoff packet for auditability.
+
 ## Credential Reuse Policy
 - Never ask for a new API key by default if a valid key is already configured.
 - Before prompting, check environment/session secret storage and run a lightweight auth validation step.

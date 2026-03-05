@@ -1,6 +1,6 @@
 # External Stack Migration Checklist
 
-Generated: 2026-03-05T02:58:14.654388+00:00
+Generated: 2026-03-05T07:20:46.995178+00:00
 
 ## Summary
 - Skills analyzed: **10000**
