@@ -110,6 +110,55 @@ test('validateCognitionRecommendation fails closed for high-risk recommendation 
 });
 
 
+test('validateCognitionRecommendation fails closed when high-risk recommendation sets requiresHumanApproval=false', () => {
+    const result = validateCognitionRecommendation({
+        recommendationId: 'rec-high-approval-flag-missing',
+        title: 'Roll key material in production',
+        reasoning: 'Critical risk requires explicit human approval gating.',
+        evidence: [
+            {
+                evidenceId: 'e-high-approval-flag',
+                type: 'event',
+                reference: 'evt-high-approval-flag',
+                confidence: 0.9
+            }
+        ],
+        priority: 'P0',
+        riskTier: 'critical',
+        requiresHumanApproval: false,
+        estimatedImpact: {
+            metric: 'credential_risk_window',
+            unit: 'minutes',
+            expectedDelta: -30,
+            confidence: 0.8
+        },
+        verificationPlan: {
+            steps: [
+                {
+                    stepId: 'verify-high-approval-flag',
+                    description: 'Confirm controlled rollout verification checks.'
+                }
+            ]
+        },
+        metadata: {
+            requiredApprovers: ['security-ops', 'executive-ops'],
+            rollbackPlan: {
+                trigger: 'Rollback gate triggered',
+                steps: ['Revert key material to previous version.']
+            }
+        }
+    });
+
+    assert.equal(result.ok, false);
+    if (result.ok) return;
+
+    assert.equal(
+        result.errors.find((issue) => issue.path === 'requiresHumanApproval')?.message,
+        '[high_risk_human_approval_required] requiresHumanApproval must be true for high-risk recommendations (fail-closed approval contract).'
+    );
+});
+
+
 test('validateCognitionRecommendation fails closed for high-risk recommendation with incomplete rollback metadata', () => {
     const result = validateCognitionRecommendation({
         recommendationId: 'rec-high-incomplete-rollback',

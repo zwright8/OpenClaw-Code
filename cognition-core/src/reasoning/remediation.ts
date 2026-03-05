@@ -120,6 +120,10 @@ function buildRecommendationMetadata(
     }
 
     const requiredApprovers = requiredApproversForRiskTier(riskTier);
+    const normalizedRequiredApprovers = requiredApprovers.length > 0
+        ? requiredApprovers
+        : ['security-ops'];
+
     const rollbackSteps = normalizeStepList([
         rollbackPlan,
         ...verificationSteps.map((step) => `Rollback validation: ${step}`)
@@ -127,7 +131,7 @@ function buildRecommendationMetadata(
 
     return {
         requiresHumanApproval: true,
-        requiredApprovers,
+        requiredApprovers: normalizedRequiredApprovers,
         rollbackPlan: {
             trigger: HIGH_RISK_ROLLBACK_TRIGGER,
             steps: rollbackSteps.length > 0
@@ -137,7 +141,7 @@ function buildRecommendationMetadata(
         policyGate: {
             requiresHumanApproval: true,
             passthrough: {
-                requiredApprovers
+                requiredApprovers: normalizedRequiredApprovers
             }
         }
     };

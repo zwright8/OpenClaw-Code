@@ -166,6 +166,8 @@ function metadataRequiresHumanApproval(metadata: Record<string, unknown>): boole
 const HIGH_RISK_RECOMMENDATION_TIERS = new Set<CognitionRiskTier>(['high', 'critical']);
 
 const RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES = {
+    highRiskHumanApprovalRequired:
+        '[high_risk_human_approval_required] requiresHumanApproval must be true for high-risk recommendations (fail-closed approval contract).',
     requiredApproversMissing:
         '[required_approvers_missing] requiredApprovers are required for high-risk recommendations (fail-closed approval contract).',
     rollbackMetadataMissing:
@@ -486,6 +488,13 @@ export function validateCognitionRecommendation(value: unknown): ContractValidat
     }
 
     if (riskTier && HIGH_RISK_RECOMMENDATION_TIERS.has(riskTier)) {
+        if (requiresHumanApproval !== true) {
+            errors.push({
+                path: 'requiresHumanApproval',
+                message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.highRiskHumanApprovalRequired
+            });
+        }
+
         const requiredApprovers = metadata ? extractRequiredApproversFromTaskMetadata(metadata) : [];
         if (requiredApprovers.length === 0) {
             errors.push({
