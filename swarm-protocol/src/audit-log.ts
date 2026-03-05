@@ -23,6 +23,29 @@ function toHexDigest(input) {
     return createHash('sha256').update(input).digest('hex');
 }
 
+function sortKeysDeep(value) {
+    if (Array.isArray(value)) {
+        return value.map((item) => sortKeysDeep(item));
+    }
+
+    if (value && typeof value === 'object') {
+        const sorted = {};
+        for (const key of Object.keys(value).sort()) {
+            const normalized = sortKeysDeep(value[key]);
+            if (normalized !== undefined) {
+                sorted[key] = normalized;
+            }
+        }
+        return sorted;
+    }
+
+    return value;
+}
+
+function stableStringify(value) {
+    return JSON.stringify(sortKeysDeep(value));
+}
+
 function signDigest(secret, digest, previousHash) {
     const message = `${digest}|${previousHash || ''}`;
     return createHmac('sha256', secret).update(message).digest('hex');
@@ -221,7 +244,7 @@ export class FileAuditLogStore {
 
     append(entry) {
         fs.mkdirSync(path.dirname(this.filePath), { recursive: true });
-        fs.appendFileSync(this.filePath, `${JSON.stringify(entry)}\n`);
+        fs.appendFileSync(this.filePath, `${stableStringify(entry)}\n`);
     }
 
     loadEntries() {
@@ -250,5 +273,7 @@ export class FileAuditLogStore {
 export const __auditInternals = {
     canonicalize,
     toHexDigest,
-    signDigest
+    signDigest,
+    sortKeysDeep,
+    stableStringify
 };

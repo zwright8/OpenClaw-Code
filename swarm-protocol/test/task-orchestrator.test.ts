@@ -321,6 +321,111 @@ test('retry cycle guard terminalizes malformed retry lifecycle and prevents loop
 });
 
 
+test('retry_state emits canonical retry/backoff payloads', async () => {
+    const clock = createClock(12_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 25,
+        maxRetries: 2,
+        retryDelayMs: 5,
+        maxRetryDelayMs: 5,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-transition',
+        task: 'Exercise retry transition payload schema'
+    });
+
+    clock.set(12_050);
+    await orchestrator.runMaintenance(clock.now());
+
+    let current = orchestrator.getTask(task.taskId);
+    let retryStateEvents = current.history.filter((entry) => entry.event === 'retry_state');
+    const scheduledTransition = retryStateEvents[retryStateEvents.length - 1];
+    assert.equal(scheduledTransition.state, 'scheduled');
+    assert.equal(scheduledTransition.reasonCode, 'timeout');
+    assert.equal(scheduledTransition.retryTransition.version, 2);
+    assert.equal(scheduledTransition.retryTransition.reason.code, 'timeout');
+    assert.equal(scheduledTransition.retryTransition.attemptCounters.scheduledRetries, 1);
+    assert.equal(scheduledTransition.terminalClassification, 'non_terminal');
+
+    clock.set(current.nextRetryAt);
+    await orchestrator.runMaintenance(clock.now());
+
+    current = orchestrator.getTask(task.taskId);
+    retryStateEvents = current.history.filter((entry) => entry.event === 'retry_state');
+    const dispatchTransition = retryStateEvents[retryStateEvents.length - 2];
+    assert.equal(dispatchTransition.state, 'dispatching');
+    assert.equal(dispatchTransition.reasonCode, 'timeout_retry');
+    assert.equal(dispatchTransition.retryTransition.reason.code, 'timeout_retry');
+    assert.equal(dispatchTransition.retryTransition.attemptCounters.retryDispatches, 1);
+});
+
+test('hydrate normalizes legacy terminal reason aliases into stable taxonomy', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const store = new FileTaskStore({ filePath: path.join(dir, 'tasks.jsonl') });
+    const clock = createClock(13_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        store,
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 0,
+        retryDelayMs: 0,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-hydrate',
+        task: 'Hydrate retry taxonomy'
+    });
+
+    const mutable = orchestrator.tasks.get(task.taskId);
+    mutable.status = 'transport_error';
+    mutable.updatedAt = clock.now();
+    mutable.closedAt = clock.now();
+    mutable.retryLifecycle.state = 'terminalized';
+    mutable.retryLifecycle.terminalReason = 'retry_exhausted:transport_error';
+    mutable.retryLifecycle.terminalReasonCode = null;
+    mutable.retryLifecycle.terminalReasonContext = null;
+
+    await orchestrator.flush();
+    await store.saveRecord(mutable);
+
+    const restored = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        store,
+        now: clock.now
+    });
+
+    const hydrated = await restored.hydrate();
+    assert.equal(hydrated.loaded, 1);
+
+    const loadedTask = restored.getTask(task.taskId);
+    assert.equal(loadedTask.retryLifecycle.terminalReason, 'retry_budget_exhausted:transport_failure');
+    assert.equal(loadedTask.retryLifecycle.terminalReasonCode, 'retry_budget_exhausted');
+    assert.equal(loadedTask.retryLifecycle.terminalReasonContext, 'transport_failure');
+    assert.equal(loadedTask.retryLifecycle.terminalClassification, 'transport_error');
+
+    const metrics = restored.getMetrics();
+    assert.equal(metrics.terminalReasonCounts['retry_budget_exhausted:transport_failure'], 1);
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({

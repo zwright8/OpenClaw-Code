@@ -22,6 +22,81 @@ const DEFAULT_MAX_RETRY_DELAY_MULTIPLIER = 32;
 const DEFAULT_RETRY_JITTER_RATIO = 0.2;
 const RETRY_CYCLE_GUARD_MULTIPLIER = 4;
 
+const RETRY_SCHEDULE_REASON_BY_CODE = new Map([
+    ['timeout', 'timeout'],
+    ['timed_out', 'timeout'],
+    ['timeout_retry', 'timeout'],
+    ['retry_timeout', 'timeout'],
+    ['transport_failure', 'transport_failure'],
+    ['transport_error', 'transport_failure'],
+    ['transport_failure_retry', 'transport_failure'],
+    ['approval_release_failed', 'approval_release_failed'],
+    ['approval_release_retry', 'approval_release_failed'],
+    ['approval_release', 'approval_release_failed']
+]);
+
+const RETRY_DISPATCH_REASON_BY_CODE = new Map([
+    ['timeout_retry', 'timeout_retry'],
+    ['timeout', 'timeout_retry'],
+    ['transport_failure_retry', 'transport_failure_retry'],
+    ['transport_failure', 'transport_failure_retry'],
+    ['transport_error', 'transport_failure_retry'],
+    ['approval_release_retry', 'approval_release_retry'],
+    ['approval_release_failed', 'approval_release_retry'],
+    ['approval_release', 'approval_release_retry']
+]);
+
+const TERMINAL_REASON_CANONICAL_CODE_BY_ALIAS = new Map([
+    ['success', 'completed'],
+    ['completed_successfully', 'completed'],
+    ['error', 'failed'],
+    ['failure', 'failed'],
+    ['timed_out', 'timeout'],
+    ['timeout_retry', 'timeout'],
+    ['transport_error', 'transport_failure'],
+    ['transport_failure_retry', 'transport_failure'],
+    ['denied', 'approval_denied'],
+    ['approval_rejected', 'approval_denied'],
+    ['retry_exhausted', 'retry_budget_exhausted'],
+    ['retry_budget_exceeded', 'retry_budget_exhausted']
+]);
+
+const TERMINAL_STATUS_BY_REASON_CODE = new Map([
+    ['completed', 'completed'],
+    ['partial', 'partial'],
+    ['failed', 'failed'],
+    ['approval_denied', 'rejected'],
+    ['rejected_by_worker', 'rejected'],
+    ['timeout', 'timed_out'],
+    ['retry_budget_exhausted', 'timed_out'],
+    ['retry_cycle_guard', 'timed_out'],
+    ['transport_failure', 'transport_error'],
+    ['approval_release_failed', 'transport_error']
+]);
+
+const TERMINAL_REASON_DEFAULT_CODE_BY_STATUS = new Map([
+    ['completed', 'completed'],
+    ['partial', 'partial'],
+    ['failed', 'failed'],
+    ['rejected', 'rejected_by_worker'],
+    ['timed_out', 'timeout'],
+    ['transport_error', 'transport_failure']
+]);
+
+const TERMINAL_REASON_ALLOWED_CODES_BY_STATUS = new Map([
+    ['completed', new Set(['completed'])],
+    ['partial', new Set(['partial'])],
+    ['failed', new Set(['failed'])],
+    ['rejected', new Set(['approval_denied', 'rejected_by_worker'])],
+    ['timed_out', new Set(['timeout', 'retry_budget_exhausted', 'retry_cycle_guard'])],
+    ['transport_error', new Set([
+        'transport_failure',
+        'approval_release_failed',
+        'retry_budget_exhausted',
+        'retry_cycle_guard'
+    ])]
+]);
+
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
 }
@@ -376,14 +451,21 @@ function ensureRetryLifecycle(record, fallbackMaxRetries = 0) {
             consecutiveFailures: 0,
             maxCycles: minGuardCycles,
             lastReason: null,
+            lastReasonCode: null,
+            lastReasonContext: null,
             lastDelayMs: null,
             nextRetryAt: null,
             terminalReason: null,
+            terminalReasonCode: null,
+            terminalReasonContext: null,
+            terminalClassification: 'non_terminal',
+            lastTransition: null,
             lastTransitionAt: null
         };
 
-    lifecycle.state = typeof lifecycle.state === 'string' && lifecycle.state.trim()
-        ? lifecycle.state
+    const normalizedState = normalizeReasonToken(lifecycle.state, 'idle');
+    lifecycle.state = ['idle', 'scheduled', 'dispatching', 'terminalized'].includes(normalizedState)
+        ? normalizedState
         : 'idle';
     lifecycle.scheduledCount = safeNonNegativeInteger(lifecycle.scheduledCount, 0);
     lifecycle.dispatchCount = safeNonNegativeInteger(lifecycle.dispatchCount, 0);
@@ -392,14 +474,62 @@ function ensureRetryLifecycle(record, fallbackMaxRetries = 0) {
         minGuardCycles,
         safeNonNegativeInteger(lifecycle.maxCycles, minGuardCycles)
     );
-    lifecycle.lastReason = lifecycle.lastReason ?? null;
+
+    const parsedLastReason = parseReason(lifecycle.lastReason, null);
+    let normalizedLastReasonCode = normalizeReasonToken(lifecycle.lastReasonCode, null)
+        ?? parsedLastReason.code;
+    if (lifecycle.state === 'scheduled') {
+        normalizedLastReasonCode = canonicalRetryScheduleReason(normalizedLastReasonCode ?? 'timeout');
+    } else if (lifecycle.state === 'dispatching') {
+        normalizedLastReasonCode = canonicalRetryDispatchReason(normalizedLastReasonCode ?? 'timeout_retry');
+    } else {
+        normalizedLastReasonCode = normalizeReasonToken(normalizedLastReasonCode, null);
+    }
+    const normalizedLastReasonContext = normalizeReasonContext(lifecycle.lastReasonContext)
+        ?? parsedLastReason.context
+        ?? null;
+
+    lifecycle.lastReasonCode = normalizedLastReasonCode;
+    lifecycle.lastReasonContext = normalizedLastReasonContext;
+    lifecycle.lastReason = normalizedLastReasonCode
+        ? formatReasonToken(normalizedLastReasonCode, normalizedLastReasonContext, normalizedLastReasonCode)
+        : null;
+
     lifecycle.lastDelayMs = Number.isFinite(lifecycle.lastDelayMs)
         ? Number(lifecycle.lastDelayMs)
         : null;
     lifecycle.nextRetryAt = Number.isFinite(lifecycle.nextRetryAt)
         ? Number(lifecycle.nextRetryAt)
         : null;
-    lifecycle.terminalReason = lifecycle.terminalReason ?? null;
+
+    const normalizedStatus = normalizeReasonToken(record?.status, null);
+    const terminalReasonInput = buildTerminalReasonCountKey(
+        lifecycle.terminalReason,
+        lifecycle.terminalReasonCode,
+        lifecycle.terminalReasonContext,
+        normalizedStatus ?? 'unknown'
+    );
+
+    if (terminalReasonInput || TERMINAL_STATUSES.has(normalizedStatus) || lifecycle.state === 'terminalized') {
+        const normalizedTerminal = normalizeTerminalReason(
+            normalizedStatus,
+            terminalReasonInput,
+            normalizedStatus ?? 'unknown'
+        );
+        lifecycle.terminalReason = normalizedTerminal.raw;
+        lifecycle.terminalReasonCode = normalizedTerminal.code;
+        lifecycle.terminalReasonContext = normalizedTerminal.context;
+        lifecycle.terminalClassification = normalizedTerminal.status;
+    } else {
+        lifecycle.terminalReason = null;
+        lifecycle.terminalReasonCode = null;
+        lifecycle.terminalReasonContext = null;
+        lifecycle.terminalClassification = 'non_terminal';
+    }
+
+    lifecycle.lastTransition = lifecycle.lastTransition && typeof lifecycle.lastTransition === 'object'
+        ? clone(lifecycle.lastTransition)
+        : null;
     lifecycle.lastTransitionAt = Number.isFinite(lifecycle.lastTransitionAt)
         ? Number(lifecycle.lastTransitionAt)
         : null;
@@ -638,12 +768,30 @@ export class TaskOrchestrator {
         const lifecycle = this._normalizeRetryLifecycle(record);
         if (!lifecycle) return null;
 
-        const changed = lifecycle.state !== state;
-        lifecycle.state = state;
+        const normalizedStateToken = normalizeReasonToken(state, 'idle');
+        const normalizedState = ['idle', 'scheduled', 'dispatching', 'terminalized'].includes(normalizedStateToken)
+            ? normalizedStateToken
+            : 'idle';
+        const changed = lifecycle.state !== normalizedState;
+        lifecycle.state = normalizedState;
         lifecycle.lastTransitionAt = at;
 
         if (Object.prototype.hasOwnProperty.call(details, 'reason')) {
             lifecycle.lastReason = details.reason ?? null;
+            if (!Object.prototype.hasOwnProperty.call(details, 'reasonCode')) {
+                lifecycle.lastReasonCode = null;
+            }
+            if (!Object.prototype.hasOwnProperty.call(details, 'reasonContext')) {
+                lifecycle.lastReasonContext = null;
+            }
+        }
+
+        if (Object.prototype.hasOwnProperty.call(details, 'reasonCode')) {
+            lifecycle.lastReasonCode = details.reasonCode ?? null;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(details, 'reasonContext')) {
+            lifecycle.lastReasonContext = details.reasonContext ?? null;
         }
 
         if (Object.prototype.hasOwnProperty.call(details, 'delayMs')) {
@@ -660,17 +808,100 @@ export class TaskOrchestrator {
 
         if (Object.prototype.hasOwnProperty.call(details, 'terminalReason')) {
             lifecycle.terminalReason = details.terminalReason ?? null;
+            if (!Object.prototype.hasOwnProperty.call(details, 'terminalReasonCode')) {
+                lifecycle.terminalReasonCode = null;
+            }
+            if (!Object.prototype.hasOwnProperty.call(details, 'terminalReasonContext')) {
+                lifecycle.terminalReasonContext = null;
+            }
         }
+
+        if (Object.prototype.hasOwnProperty.call(details, 'terminalReasonCode')) {
+            lifecycle.terminalReasonCode = details.terminalReasonCode ?? null;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(details, 'terminalReasonContext')) {
+            lifecycle.terminalReasonContext = details.terminalReasonContext ?? null;
+        }
+
+        const parsedReason = parseReason(lifecycle.lastReason, null);
+        let reasonCode = normalizeReasonToken(lifecycle.lastReasonCode, null) ?? parsedReason.code;
+        if (lifecycle.state === 'scheduled') {
+            reasonCode = canonicalRetryScheduleReason(reasonCode ?? 'timeout');
+        } else if (lifecycle.state === 'dispatching') {
+            reasonCode = canonicalRetryDispatchReason(reasonCode ?? 'timeout_retry');
+        } else {
+            reasonCode = normalizeReasonToken(reasonCode, null);
+        }
+        const reasonContext = normalizeReasonContext(lifecycle.lastReasonContext)
+            ?? parsedReason.context
+            ?? null;
+
+        lifecycle.lastReasonCode = reasonCode;
+        lifecycle.lastReasonContext = reasonContext;
+        lifecycle.lastReason = reasonCode
+            ? formatReasonToken(reasonCode, reasonContext, reasonCode)
+            : null;
+
+        const terminalReasonInput = buildTerminalReasonCountKey(
+            lifecycle.terminalReason,
+            lifecycle.terminalReasonCode,
+            lifecycle.terminalReasonContext,
+            normalizeReasonToken(record?.status, 'unknown')
+        );
+        const terminalStatusHint = details.terminalStatus ?? record?.status;
+
+        if (terminalReasonInput || lifecycle.state === 'terminalized' || TERMINAL_STATUSES.has(normalizeReasonToken(terminalStatusHint, null))) {
+            const normalizedTerminal = normalizeTerminalReason(
+                terminalStatusHint,
+                terminalReasonInput,
+                normalizeReasonToken(terminalStatusHint, 'unknown')
+            );
+            lifecycle.terminalReason = normalizedTerminal.raw;
+            lifecycle.terminalReasonCode = normalizedTerminal.code;
+            lifecycle.terminalReasonContext = normalizedTerminal.context;
+            lifecycle.terminalClassification = normalizedTerminal.status;
+        } else {
+            lifecycle.terminalReason = null;
+            lifecycle.terminalReasonCode = null;
+            lifecycle.terminalReasonContext = null;
+            lifecycle.terminalClassification = 'non_terminal';
+        }
+
+        const transition = buildRetryTransitionSchema({
+            state: lifecycle.state,
+            attemptIndex: safeNonNegativeInteger(record?.attempts, 0),
+            retryAttemptIndex: safeNonNegativeInteger(lifecycle.dispatchCount, 0),
+            scheduledCount: safeNonNegativeInteger(lifecycle.scheduledCount, 0),
+            dispatchCount: safeNonNegativeInteger(lifecycle.dispatchCount, 0),
+            reason: lifecycle.lastReason,
+            reasonCode: lifecycle.lastReasonCode,
+            reasonContext: lifecycle.lastReasonContext,
+            delayMs: lifecycle.lastDelayMs,
+            nextRetryAt: lifecycle.nextRetryAt,
+            terminalClassification: lifecycle.terminalClassification,
+            terminalReason: lifecycle.terminalReason,
+            terminalReasonCode: lifecycle.terminalReasonCode,
+            terminalReasonContext: lifecycle.terminalReasonContext
+        });
+        lifecycle.lastTransition = transition;
 
         if (changed || details.forceHistory === true) {
             record.history.push({
                 at,
                 event: 'retry_state',
-                state,
+                state: lifecycle.state,
                 reason: lifecycle.lastReason,
+                reasonCode: lifecycle.lastReasonCode,
+                reasonContext: lifecycle.lastReasonContext,
                 delayMs: lifecycle.lastDelayMs,
                 nextRetryAt: lifecycle.nextRetryAt,
-                terminalReason: lifecycle.terminalReason
+                terminalReason: lifecycle.terminalReason,
+                terminalReasonCode: lifecycle.terminalReasonCode,
+                terminalReasonContext: lifecycle.terminalReasonContext,
+                terminalClassification: lifecycle.terminalClassification,
+                attemptCounters: clone(transition.attemptCounters),
+                retryTransition: transition
             });
         }
 
@@ -691,21 +922,25 @@ export class TaskOrchestrator {
         auditEvent,
         auditPayload
     }) {
-        this._setRetryLifecycleState(record, 'terminalized', nowMs, {
-            reason,
-            terminalReason: reason,
-            nextRetryAt: null,
-            forceHistory: true
-        });
-
         record.status = status;
         record.updatedAt = nowMs;
         record.closedAt = nowMs;
         record.nextRetryAt = null;
+
+        const lifecycle = this._setRetryLifecycleState(record, 'terminalized', nowMs, {
+            reason,
+            terminalReason: reason,
+            terminalStatus: status,
+            nextRetryAt: null,
+            forceHistory: true
+        });
+
         record.history.push({
             at: nowMs,
             event,
-            reason,
+            reason: lifecycle?.terminalReason ?? reason,
+            reasonCode: lifecycle?.terminalReasonCode ?? null,
+            reasonContext: lifecycle?.terminalReasonContext ?? null,
             error: record.lastError
         });
         this._persistRecord(record);
@@ -713,6 +948,10 @@ export class TaskOrchestrator {
             taskId: record.taskId,
             target: record.target,
             attempts: record.attempts,
+            reason: lifecycle?.terminalReason ?? reason,
+            reasonCode: lifecycle?.terminalReasonCode ?? null,
+            reasonContext: lifecycle?.terminalReasonContext ?? null,
+            terminalClassification: lifecycle?.terminalClassification ?? status,
             ...(auditPayload || {})
         }, nowMs);
     }
@@ -846,9 +1085,15 @@ export class TaskOrchestrator {
                 consecutiveFailures: 0,
                 maxCycles: Math.max(1, (this.maxRetries + 1) * RETRY_CYCLE_GUARD_MULTIPLIER),
                 lastReason: null,
+                lastReasonCode: null,
+                lastReasonContext: null,
                 lastDelayMs: null,
                 nextRetryAt: null,
                 terminalReason: null,
+                terminalReasonCode: null,
+                terminalReasonContext: null,
+                terminalClassification: 'non_terminal',
+                lastTransition: null,
                 lastTransitionAt: request.createdAt
             },
             createdAt: request.createdAt,
@@ -952,22 +1197,39 @@ export class TaskOrchestrator {
         if (!approved) {
             record.status = 'rejected';
             record.closedAt = reviewedAt;
+
+            const deniedReasonContext = normalizeReasonContext(decision.reason);
+            const terminalReason = deniedReasonContext && deniedReasonContext !== 'approval_denied'
+                ? formatReasonToken('approval_denied', deniedReasonContext, 'approval_denied')
+                : 'approval_denied';
+
             this._setRetryLifecycleState(record, 'terminalized', reviewedAt, {
-                reason: decision.reason || 'approval_denied',
-                terminalReason: 'approval_denied',
+                reason: terminalReason,
+                reasonCode: 'approval_denied',
+                reasonContext: deniedReasonContext,
+                terminalReason,
+                terminalReasonCode: 'approval_denied',
+                terminalReasonContext: deniedReasonContext,
+                terminalStatus: 'rejected',
                 nextRetryAt: null,
                 forceHistory: true
             });
             record.history.push({
                 at: reviewedAt,
                 event: 'approval_denied',
-                reason: decision.reason || 'denied'
+                reason: decision.reason || 'denied',
+                terminalReason,
+                reasonCode: 'approval_denied',
+                reasonContext: deniedReasonContext
             });
             this._persistRecord(record);
             this._emitAudit('task_approval_denied', {
                 taskId: record.taskId,
                 reviewer: record.approval.reviewer,
-                reason: record.approval.reviewReason
+                reason: terminalReason,
+                reasonCode: 'approval_denied',
+                reasonContext: deniedReasonContext,
+                reviewReason: record.approval.reviewReason
             }, reviewedAt);
             return this.getTask(taskId);
         }
@@ -1003,11 +1265,28 @@ export class TaskOrchestrator {
     async _sendTask(record, reason) {
         const sendAt = safeNow(this.now);
         const lifecycle = this._normalizeRetryLifecycle(record);
+        const normalizedReason = normalizeReasonToken(reason, 'dispatch');
+        const parsedReason = parseReason(normalizedReason, normalizedReason);
+        const dispatchReasonCode = canonicalRetryDispatchReason(parsedReason.code);
+        const dispatchReasonContext = parsedReason.context ?? null;
+        const dispatchReason = formatReasonToken(
+            dispatchReasonCode,
+            dispatchReasonContext,
+            dispatchReasonCode
+        );
+        const isRetryDispatch = (
+            reason === 'timeout_retry'
+            || reason === 'transport_failure_retry'
+            || reason === 'approval_release_failed'
+            || reason === 'approval_release_retry'
+        );
 
-        if (reason === 'timeout_retry' || reason === 'transport_failure_retry' || reason === 'approval_release_failed') {
+        if (isRetryDispatch) {
             lifecycle.dispatchCount += 1;
             this._setRetryLifecycleState(record, 'dispatching', sendAt, {
-                reason,
+                reason: dispatchReason,
+                reasonCode: dispatchReasonCode,
+                reasonContext: dispatchReasonContext,
                 forceHistory: true
             });
         }
@@ -1017,13 +1296,17 @@ export class TaskOrchestrator {
         record.history.push({
             at: sendAt,
             event: 'send_attempt',
-            reason,
+            reason: isRetryDispatch ? dispatchReason : normalizedReason,
+            reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code,
+            reasonContext: parsedReason.context ?? null,
             attempt: record.attempts
         });
         this._emitAudit('task_send_attempt', {
             taskId: record.taskId,
             target: record.target,
-            reason,
+            reason: isRetryDispatch ? dispatchReason : normalizedReason,
+            reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code,
+            reasonContext: parsedReason.context ?? null,
             attempt: record.attempts
         }, sendAt);
 
@@ -1035,7 +1318,9 @@ export class TaskOrchestrator {
             record.lastError = null;
             lifecycle.consecutiveFailures = 0;
             this._setRetryLifecycleState(record, 'idle', sendAt, {
-                reason,
+                reason: isRetryDispatch ? dispatchReason : normalizedReason,
+                reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code,
+                reasonContext: parsedReason.context ?? null,
                 nextRetryAt: null
             });
             record.history.push({
@@ -1088,22 +1373,38 @@ export class TaskOrchestrator {
         if (!receipt.accepted) {
             record.status = 'rejected';
             record.closedAt = receipt.timestamp;
+
+            const rejectionContext = normalizeReasonContext(receipt.reason);
+            const rejectionReason = rejectionContext && rejectionContext !== 'rejected_by_worker'
+                ? formatReasonToken('rejected_by_worker', rejectionContext, 'rejected_by_worker')
+                : 'rejected_by_worker';
+
             this._setRetryLifecycleState(record, 'terminalized', receipt.timestamp, {
-                reason: receipt.reason || 'rejected_by_worker',
-                terminalReason: 'rejected_by_worker',
+                reason: rejectionReason,
+                reasonCode: 'rejected_by_worker',
+                reasonContext: rejectionContext,
+                terminalReason: rejectionReason,
+                terminalReasonCode: 'rejected_by_worker',
+                terminalReasonContext: rejectionContext,
+                terminalStatus: 'rejected',
                 nextRetryAt: null,
                 forceHistory: true
             });
             record.history.push({
                 at: receipt.timestamp,
                 event: 'rejected',
-                reason: receipt.reason || 'rejected_by_worker'
+                reason: receipt.reason || 'rejected_by_worker',
+                terminalReason: rejectionReason,
+                reasonCode: 'rejected_by_worker',
+                reasonContext: rejectionContext
             });
             this._persistRecord(record);
             this._emitAudit('task_rejected', {
                 taskId: record.taskId,
                 from: receipt.from,
-                reason: receipt.reason || 'rejected_by_worker'
+                reason: rejectionReason,
+                reasonCode: 'rejected_by_worker',
+                reasonContext: rejectionContext
             }, receipt.timestamp);
             return true;
         }
@@ -1144,9 +1445,10 @@ export class TaskOrchestrator {
             record.status = 'failed';
         }
 
-        this._setRetryLifecycleState(record, 'terminalized', result.completedAt, {
+        const lifecycle = this._setRetryLifecycleState(record, 'terminalized', result.completedAt, {
             reason: result.status,
             terminalReason: result.status,
+            terminalStatus: record.status,
             nextRetryAt: null,
             forceHistory: true
         });
@@ -1154,13 +1456,20 @@ export class TaskOrchestrator {
         record.history.push({
             at: result.completedAt,
             event: 'result',
-            resultStatus: result.status
+            resultStatus: result.status,
+            terminalReason: lifecycle?.terminalReason ?? null,
+            reasonCode: lifecycle?.terminalReasonCode ?? null,
+            reasonContext: lifecycle?.terminalReasonContext ?? null
         });
         this._persistRecord(record);
         this._emitAudit('task_result', {
             taskId: record.taskId,
             from: result.from,
-            status: result.status
+            status: result.status,
+            terminalReason: lifecycle?.terminalReason ?? null,
+            reasonCode: lifecycle?.terminalReasonCode ?? null,
+            reasonContext: lifecycle?.terminalReasonContext ?? null,
+            terminalClassification: lifecycle?.terminalClassification ?? record.status
         }, result.completedAt);
 
         return true;
@@ -1208,10 +1517,11 @@ export class TaskOrchestrator {
 
     _scheduleRetry(record, nowMs, reason = 'timeout') {
         const lifecycle = this._normalizeRetryLifecycle(record);
+        const scheduleReason = canonicalRetryScheduleReason(reason);
 
         if (this._isRetryBudgetExhausted(record)) {
-            const terminalReason = `retry_budget_exhausted:${reason}`;
-            const status = reason === 'transport_failure' || reason === 'approval_release_failed'
+            const terminalReason = `retry_budget_exhausted:${scheduleReason}`;
+            const status = scheduleReason === 'transport_failure' || scheduleReason === 'approval_release_failed'
                 ? 'transport_error'
                 : 'timed_out';
 
@@ -1230,8 +1540,8 @@ export class TaskOrchestrator {
         }
 
         if (this._isRetryCycleExhausted(record)) {
-            const terminalReason = `retry_cycle_guard:${reason}`;
-            const status = reason === 'transport_failure' || reason === 'approval_release_failed'
+            const terminalReason = `retry_cycle_guard:${scheduleReason}`;
+            const status = scheduleReason === 'transport_failure' || scheduleReason === 'approval_release_failed'
                 ? 'transport_error'
                 : 'timed_out';
 
@@ -1249,11 +1559,13 @@ export class TaskOrchestrator {
             return null;
         }
 
-        const delayMs = this._computeRetryDelayMs(record, reason);
+        const delayMs = this._computeRetryDelayMs(record, scheduleReason);
         const nextRetryAt = nowMs + delayMs;
 
         lifecycle.scheduledCount += 1;
-        lifecycle.lastReason = reason;
+        lifecycle.lastReason = scheduleReason;
+        lifecycle.lastReasonCode = scheduleReason;
+        lifecycle.lastReasonContext = null;
         lifecycle.lastDelayMs = delayMs;
         lifecycle.nextRetryAt = nextRetryAt;
 
@@ -1261,7 +1573,8 @@ export class TaskOrchestrator {
         record.nextRetryAt = nextRetryAt;
         record.updatedAt = nowMs;
         this._setRetryLifecycleState(record, 'scheduled', nowMs, {
-            reason,
+            reason: scheduleReason,
+            reasonCode: scheduleReason,
             delayMs,
             nextRetryAt,
             forceHistory: true
@@ -1269,7 +1582,9 @@ export class TaskOrchestrator {
         record.history.push({
             at: nowMs,
             event: 'retry_scheduled',
-            reason,
+            reason: scheduleReason,
+            reasonCode: scheduleReason,
+            reasonContext: null,
             delayMs,
             nextRetryAt,
             retryCount: lifecycle.scheduledCount
@@ -1278,10 +1593,13 @@ export class TaskOrchestrator {
         this._emitAudit('task_retry_scheduled', {
             taskId: record.taskId,
             target: record.target,
-            reason,
+            reason: scheduleReason,
+            reasonCode: scheduleReason,
+            reasonContext: null,
             delayMs,
             nextRetryAt,
-            retryCount: lifecycle.scheduledCount
+            retryCount: lifecycle.scheduledCount,
+            retryTransition: lifecycle.lastTransition ? clone(lifecycle.lastTransition) : null
         }, nowMs);
 
         return nextRetryAt;
@@ -1396,24 +1714,75 @@ export class TaskOrchestrator {
             open: 0,
             terminal: 0,
             byStatus: {},
-            avgAttempts: 0
+            avgAttempts: 0,
+            retryStateCounts: {},
+            retryScheduleReasonCounts: {},
+            retryDispatchReasonCounts: {},
+            terminalReasonCounts: {}
         };
 
         let attemptsTotal = 0;
+        const retryStateCounts = {};
+        const retryScheduleReasonCounts = {};
+        const retryDispatchReasonCounts = {};
+        const terminalReasonCounts = {};
+
         for (const record of this.tasks.values()) {
+            const lifecycle = this._normalizeRetryLifecycle(record);
             attemptsTotal += safeNonNegativeNumber(record.attempts, 0);
             metrics.byStatus[record.status] = (metrics.byStatus[record.status] || 0) + 1;
 
             if (TERMINAL_STATUSES.has(record.status)) {
                 metrics.terminal++;
+
+                const terminalReasonKey = buildTerminalReasonCountKey(
+                    lifecycle?.terminalReason,
+                    lifecycle?.terminalReasonCode,
+                    lifecycle?.terminalReasonContext,
+                    normalizeReasonToken(record.status, 'unknown')
+                );
+                if (terminalReasonKey) {
+                    terminalReasonCounts[terminalReasonKey] = safeNonNegativeInteger(
+                        terminalReasonCounts[terminalReasonKey],
+                        0
+                    ) + 1;
+                }
             } else {
                 metrics.open++;
+            }
+
+            if (lifecycle?.state) {
+                incrementTelemetryCounter(retryStateCounts, lifecycle.state);
+
+                if (lifecycle.state === 'scheduled') {
+                    incrementTelemetryCounter(
+                        retryScheduleReasonCounts,
+                        canonicalRetryScheduleReason(lifecycle.lastReasonCode ?? lifecycle.lastReason)
+                    );
+                }
+
+                if (lifecycle.state === 'dispatching') {
+                    incrementTelemetryCounter(
+                        retryDispatchReasonCounts,
+                        canonicalRetryDispatchReason(lifecycle.lastReasonCode ?? lifecycle.lastReason)
+                    );
+                }
             }
         }
 
         metrics.avgAttempts = this.tasks.size > 0
             ? Number((attemptsTotal / this.tasks.size).toFixed(2))
             : 0;
+        metrics.retryStateCounts = sortNumericRecord(retryStateCounts);
+        metrics.retryScheduleReasonCounts = sanitizeTelemetryCounterMap(
+            retryScheduleReasonCounts,
+            canonicalRetryScheduleReason
+        );
+        metrics.retryDispatchReasonCounts = sanitizeTelemetryCounterMap(
+            retryDispatchReasonCounts,
+            canonicalRetryDispatchReason
+        );
+        metrics.terminalReasonCounts = sortNumericRecord(terminalReasonCounts);
 
         return metrics;
     }
