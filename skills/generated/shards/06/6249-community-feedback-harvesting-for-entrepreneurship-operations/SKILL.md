@@ -1,92 +1,178 @@
 ---
 name: u06249-community-feedback-harvesting-for-entrepreneurship-operations
-description: Build and operate the "Community Feedback Harvesting for entrepreneurship operations" capability for entrepreneurship operations. Use when this exact capability is required by autonomous or human-guided missions.
+description: Run the Community Feedback Harvesting for entrepreneurship operations capability for entrepreneurship operations with deterministic outputs, policy-gated release, and handoff-ready operational artifacts. Use when mission execution explicitly requires this capability.
 ---
+
 # Community Feedback Harvesting for entrepreneurship operations
 
-## Metadata
-- skill_id: `u06249-community-feedback-harvesting-for-entrepreneurship-operations`
-- capability: `Community Feedback Harvesting for entrepreneurship operations`
-- domain: `entrepreneurship operations`
-- operating_mode: `production`
-- delivery_contract: `deterministic, auditable, handoff-ready`
+## Quick Reference
+| Field | Value |
+|---|---|
+| Skill ID | `6249` |
+| Domain | `entrepreneurship operations` |
+| Runtime archetype | `feedback-engine` |
+| Core method | `community feedback harvesting` |
+| Primary artifact | `community-feedback-harvesting-artifact-entrepreneurship-operatio` |
+| Routing tag | `entrepreneurship-operations:feedback-engine` |
+| Feature flag | `skill_06249_community-feedback-harvesting` |
+| Release cycles | `2` |
 
-## Allowed Tools
-Use only tools enabled by the active runtime policy.
-Preferred local-first toolset:
-- `read`, `write`, `edit`
-- `exec`, `process`
-- `web_search`, `web_fetch` (only when external verification is required)
+## Why This Skill Exists
+Use community feedback harvesting in entrepreneurship operations with emphasis on throughput, reliability, leverage, and execution speed.
 
-## Inputs (formatted)
-| Field | Type | Required | Format | Purpose |
-|---|---|---:|---|---|
-| `mission_request` | string | yes | concise objective + constraints | Defines the requested outcome. |
-| `capability_trigger` | string | yes | exact capability name | Confirms this skill is the correct lane. |
-| `source_signals` | array<object> | yes | source-tagged records | Provides normalized working inputs. |
-| `evidence_refs` | array<string> | yes | IDs/URLs/file paths | Supports factual traceability. |
-| `acceptance_criteria` | array<string> | yes | measurable checks | Defines pass/fail conditions. |
-| `downstream_consumer` | string | yes | team/agent/system name | Identifies handoff target. |
-| `risk_tier` | enum | yes | `low`/`medium`/`high` | Sets approval and routing strictness. |
-| `approval_token` | string | conditional | signed token or ticket ID | Required when `risk_tier=high`. |
+## Trigger Checklist
+- [ ] The task explicitly needs Community Feedback Harvesting for entrepreneurship operations (not generic brainstorming).
+- [ ] Inputs are sufficient and source provenance is available.
+- [ ] Success criteria are measurable and agreed before execution.
+- [ ] A downstream owner/consumer for handoff is identified.
+- [ ] If risk is high, human approval path is available before publish.
 
-## Outputs (formatted)
-| Output | Type | Format | Consumer | Required |
-|---|---|---|---|---:|
-| `primary_artifact_bundle` | object | versioned JSON/Markdown bundle | orchestrator | yes |
-| `execution_scorecard` | object | gate-by-gate status + metrics | operator | yes |
-| `handoff_packet` | object | machine-readable envelope | downstream skill/system | yes |
-| `exceptions_log` | array<object> | structured error list | operator/audit | no |
+## Inputs (contract)
+| Input | Type | Required | Source |
+|---|---|---|---|
+| queue load | signal | yes | upstream/operator |
+| cycle time | signal | yes | upstream/operator |
+| throughput metrics | signal | yes | upstream/operator |
 
-## Guidelines
-- Keep execution deterministic: same input should yield materially identical decisions.
-- Preserve provenance on every claim, score, and recommendation.
-- Prefer minimal viable output that passes gates over verbose narrative.
-- Escalate quickly when inputs are incomplete, contradictory, or policy-sensitive.
-- Optimize for day-to-day operability: clear status, clear blockers, clear next action.
+## Outputs (contract)
+| Output | Type | Guaranteed | Consumer |
+|---|---|---|---|
+| community-feedback-harvesting-artifact-entrepreneurship-operatio | structured-artifact | yes | downstream orchestrator |
+| community-feedback-harvesting-artifact-entrepreneurship-operatio-scorecard | scorecard | yes | operator / reviewer |
+| community-feedback-harvesting-artifact-entrepreneurship-operatio-handoff | handoff-packet | yes | next owner |
 
-## Musts
-- [ ] Confirm the request explicitly matches `Community Feedback Harvesting for entrepreneurship operations` in `entrepreneurship operations`.
-- [ ] Validate schema and required fields before scoring or transformation.
-- [ ] Run policy/risk checks before publication or downstream routing.
-- [ ] Fail closed on missing evidence, failed validation, or unmet approval.
-- [ ] Include a complete handoff packet with owner, status, and next step.
+## Implementation Guide
+1. Define measurable outcomes for Community Feedback Harvesting for entrepreneurship operations, including baseline and target metrics for entrepreneurship operations.
+2. Specify structured inputs/outputs for community feedback harvesting and validate schema contract edge cases.
+3. Implement the core community feedback harvesting logic with deterministic scoring and reproducible execution traces.
+4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
+5. Run unit, integration, simulation, and regression suites for Community Feedback Harvesting for entrepreneurship operations under hyper-productive autonomy conditions.
+6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
-## Targets (day/week/month operating cadence)
-- **Day:** Triage incoming work, execute validated runs, and hand off only gate-passing outputs.
-- **Week:** Review failures/retries, tune thresholds and rules, and close recurring quality gaps.
-- **Month:** Re-baseline acceptance criteria, refresh playbooks, and archive audit-ready evidence.
+## Operational Runbook
+### Preflight
+- Validate mission scope, contracts, and required inputs.
+- Verify feature flag posture, dependencies, and approval prerequisites.
 
-## Common Actions
-1. Intake and classify request against capability trigger.
-2. Normalize inputs and attach evidence references.
-3. Execute core transformation/scoring workflow.
-4. Run validation gates (schema, determinism, policy-risk, approval).
-5. Build output artifacts and issue handoff packet.
-6. Record outcomes for weekly and monthly review.
+### Execution
+- Execute community feedback harvesting workflow with deterministic scoring and trace capture.
+- Track posture transitions and preserve reproducible evidence artifacts.
 
-## External Tool Calls Needed
-None required by default.
-Use external calls only when fresh outside evidence is necessary, and log each call in `evidence_refs`.
+### Recovery
+- Apply rollback strategy if posture is critical or guardrails fail.
+- Escalate blocked execution to oversight with incident packet and trace references.
 
-## Validation & Handoff
-Validation sequence:
-1. `schema-gate` — required fields present and well-typed.
-2. `determinism-gate` — repeat run is stable within configured tolerance.
-3. `policy-risk-gate` — legal/policy/risk checks pass.
-4. `approval-gate` — high-risk runs include explicit human approval token.
+### Handoff
+- Publish outcome report, scorecard, and telemetry links.
+- Queue follow-up tasks for unresolved risks, approvals, or optimization work.
 
-Handoff minimum contract:
-```json
-{
-  "skill_id": "u06249-community-feedback-harvesting-for-entrepreneurship-operations",
-  "capability": "Community Feedback Harvesting for entrepreneurship operations",
-  "domain": "entrepreneurship operations",
-  "status": "pass|fail|blocked",
-  "consumer": "<downstream_consumer>",
-  "artifacts": ["primary_artifact_bundle", "execution_scorecard"],
-  "next_action": "<clear owner action>",
-  "evidence_refs": []
-}
-```
+## Operator Use Cases
+- Run Community Feedback Harvesting for entrepreneurship operations as a repeatable production workflow for humans and agents.
+- Use Community Feedback Harvesting for entrepreneurship operations to accelerate decisions while preserving safety, quality, and auditability.
 
+## Guardrail Policy Matrix
+| Guardrail Type | Policy Rule | Automation Hook |
+|---|---|---|
+| quality | Require unit and integration validations before promoting Community Feedback Harvesting for entrepreneurship operations. | run-validation:unit+integration+simulation+regression-baseline |
+| reliability | Trigger rollback on critical posture or repeated failures. | rollback:rollback-to-last-stable-baseline |
+| cost | Respect bounded resource pressure and execution budget during scaling. | budget-guard:resource-pressure-cap |
+
+## Posture Playbook
+- **Ready posture (score >= 74):** release artifacts after validation pass and route to `entrepreneurship-operations:feedback-engine`.
+- **Review posture (score >= 54 or risk >= 62):** require human review before publish, with explicit remediation notes.
+- **Critical posture (risk >= 81):** fail closed, execute `rollback-to-last-stable-baseline`, and escalate with incident packet.
+
+## Traceability Map
+- **Scope:** Define measurable outcomes for Community Feedback Harvesting for entrepreneurship operations, including baseline and target metrics for entrepreneurship operations.
+- **Contract:** Specify structured inputs/outputs for community feedback harvesting and validate schema contract edge cases.
+- **Core:** Implement the core community feedback harvesting logic with deterministic scoring and reproducible execution traces.
+- **Orchestration:** Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
+- **Validation:** Run unit, integration, simulation, and regression suites for Community Feedback Harvesting for entrepreneurship operations under hyper-productive autonomy conditions.
+- **Rollout:** Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
+
+## Decision & Scoring Policy
+- Scoring weights: `truth=0.20, execution=0.45, safety=0.15, impact=0.20`
+- Posture thresholds:
+  - `ready`: score >= 74
+  - `review`: score >= 54
+  - `review_risk`: risk >= 62
+  - `critical_risk`: risk >= 81
+- Retry policy: max attempts `4`, base delay `750ms`, backoff `exponential`.
+- Approval gates: `policy-constraint-check`, `human-approval-router`.
+
+## Validation Gates & Test Matrix
+| Gate | Purpose | On Fail |
+|---|---|---|
+| schema-contract-check | Ensure required inputs and contract shape are valid. | block release |
+| determinism-check | Replay identical input and compare output hash/score delta. | escalate + quarantine |
+| policy-approval-check | Verify policy constraints and approval tokens. | block publish |
+| reliability-check | Validate retry budget and rollback readiness. | rollback to stable baseline |
+
+- Required validation suites: unit, integration, simulation, regression-baseline
+
+## Failure Modes & Recovery Playbook
+- `E_INPUT_SCHEMA`: required signal missing or malformed -> reject payload and request corrected input.
+- `E_NON_DETERMINISM`: replay mismatch or unstable score delta -> quarantine output and escalate for human review.
+- `E_POLICY_BLOCK`: approval/policy gate unsatisfied -> keep publish blocked until explicit approval is attached.
+- `E_DEPENDENCY_TIMEOUT`: transient timeout -> apply retry budget; if unresolved, execute `rollback-to-last-stable-baseline` and issue incident packet.
+
+## Human Approval & Escalation
+- High-risk or policy-sensitive runs require an explicit approval token before release.
+- Escalate to human reviewer when any gate fails twice or critical risk posture is reached.
+- Escalation packet must include: scope, failed gate, evidence links, retry history, and recommended decision.
+
+## Automation Envelope
+| Setting | Value |
+|---|---|
+| Maturity tier | `foundation` |
+| Autopilot ready | `yes` |
+| Parallelism | `4` |
+| Max cycle minutes | `25` |
+| Required approvals | `policy-constraint-check`, `human-approval-router` |
+
+## Acceptance Checklist
+- [ ] Schema, determinism, policy, and reliability gates all pass.
+- [ ] Output artifact bundle includes scorecard, risks, and next actions.
+- [ ] Handoff owner confirms artifact usability without additional clarification.
+- [ ] Telemetry and trace references are attached for auditability.
+
+## External/API Dependency & Credential Reuse Policy
+| Field | Value |
+|---|---|
+| External/API required by profile | `no` |
+| Detection hint | No mandatory external API dependency inferred from current profile data; still verify environment/session credentials for connected runtimes. |
+| Clues found | `none-detected` |
+
+- Reuse previously provided credentials by default; do not ask for a new API key/token when a valid one already exists.
+- Before prompting, check configured environment/session secret stores and run a lightweight auth validation.
+- Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
+
+## Practical Usage Examples
+1. Incident recovery in entrepreneurship operations: ingest noisy signals, execute community feedback harvesting, produce an operator-ready scorecard and remediation queue.
+2. Scheduled quality pass: run Community Feedback Harvesting for entrepreneurship operations against baseline data, compare drift, and publish release/no-release recommendation with evidence links.
+3. Pre-deployment gate: validate artifacts for entrepreneurship-operations:feedback-engine, enforce approvals, then handoff to downstream orchestrator with next actions.
+
+## Anti-Patterns
+- Do not publish artifacts when any validation gate fails.
+- Do not bypass approval gates for high-risk runs.
+- Do not run with missing provenance, schema, or success criteria.
+- Do not treat partial/non-deterministic outputs as production-ready.
+
+## Handoff Contract
+- **Produces:** `community-feedback-harvesting-artifact-entrepreneurship-operatio`, scorecard, risk/confidence metadata, remediation backlog.
+- **Consumes:** `queue load`, `cycle time`, `throughput metrics`.
+- **Readiness rule:** release only when schema, determinism, policy, and reliability gates all pass.
+- **Downstream hint:** route only to `entrepreneurship-operations:feedback-engine` consumers with approval context attached.
+
+## Observability & Continuous Improvement
+- SLO: >=99.5% successful runs per 7-day window
+- Error budget: <=0.5% critical failures per 7-day window
+- Alert triggers:
+- critical posture exceeds baseline trend
+- validation regression crosses threshold
+- hardening or approval bottlenecks persist
+- KPI focus: `cycle time reduction`, `throughput gain`, `automation leverage in entrepreneurship operations`
+- Primary outcome metric: `cycle time reduction`
+- Secondary metrics: `throughput gain`, `automation leverage in entrepreneurship operations`
+- Review cadence: `weekly`
+- Weekly review: tune thresholds, retries, and approval friction based on telemetry and incident learnings.

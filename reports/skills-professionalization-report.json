@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-03-05T02:28:11.972961+00:00",
+  "scanRoot": "skills/generated/shards",
+  "skillCount": 10553,
+  "numericSkills": 10000,
+  "nexusSkills": 553,
+  "modifiedFiles": 25,
+  "requiredHeadings": [
+    "## Quick Reference",
+    "## Trigger Checklist",
+    "## Operational Runbook",
+    "## Practical Usage Examples",
+    "## Anti-Patterns",
+    "## Validation Gates & Test Matrix",
+    "## Handoff Contract"
+  ],
+  "coverage": {
+    "before": {
+      "allRequiredHeadings": 10553,
+      "pct": 100.0
+    },
+    "after": {
+      "allRequiredHeadings": 10553,
+      "pct": 100.0
+    }
+  }
+}

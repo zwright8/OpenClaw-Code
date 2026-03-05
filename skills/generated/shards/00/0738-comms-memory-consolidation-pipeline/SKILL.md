@@ -1,14 +1,50 @@
 ---
 name: u0738-comms-memory-consolidation-pipeline
-description: Operate the "Comms Memory Consolidation Pipeline" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Run the Comms Memory Consolidation Pipeline capability for Communication and Explainability with deterministic outputs, policy-gated release, and handoff-ready operational artifacts. Use when mission execution explicitly requires this capability.
 ---
 
 # Comms Memory Consolidation Pipeline
 
+## Quick Reference
+| Field | Value |
+|---|---|
+| Skill ID | `738` |
+| Domain | `Communication and Explainability` |
+| Runtime archetype | `general-capability` |
+| Core method | `episodic-to-semantic consolidation` |
+| Primary artifact | `consolidated memory snapshots` |
+| Routing tag | `communication-and-explainability:general-capability` |
+| Feature flag | `skill_0738_comms-memory-consolidation-pipel` |
+| Release cycles | `2` |
+
 ## Why This Skill Exists
 We need this skill because complex systems require explanations humans can act on quickly. This specific skill turns raw logs into durable reusable memory.
 
-## Step-by-Step Implementation Guide
+## Trigger Checklist
+- [ ] The task explicitly needs Comms Memory Consolidation Pipeline (not generic brainstorming).
+- [ ] Inputs are sufficient and source provenance is available.
+- [ ] Success criteria are measurable and agreed before execution.
+- [ ] A downstream owner/consumer for handoff is identified.
+- [ ] If risk is high, human approval path is available before publish.
+
+## Inputs (contract)
+| Input | Type | Required | Source |
+|---|---|---|---|
+| decision factors | signal | yes | upstream/operator |
+| uncertainty markers | signal | yes | upstream/operator |
+| audience summaries | signal | yes | upstream/operator |
+| claims | signal | yes | upstream/operator |
+| evidence | signal | yes | upstream/operator |
+| confidence traces | signal | yes | upstream/operator |
+
+## Outputs (contract)
+| Output | Type | Guaranteed | Consumer |
+|---|---|---|---|
+| consolidated memory snapshots | structured-artifact | yes | downstream orchestrator |
+| consolidated memory snapshots-scorecard | scorecard | yes | operator / reviewer |
+| consolidated memory snapshots-handoff | handoff-packet | yes | next owner |
+
+## Implementation Guide
 1. Define the scope and success metrics for `Comms Memory Consolidation Pipeline`, including at least three measurable KPIs tied to misinterpretation and trust erosion.
 2. Design and version the input/output contract for decision factors, uncertainty markers, and audience summaries, then add schema validation and failure-mode handling.
 3. Implement the core capability using episodic-to-semantic consolidation, and produce consolidated memory snapshots with deterministic scoring.
@@ -16,88 +52,121 @@ We need this skill because complex systems require explanations humans can act o
 5. Add unit, integration, and simulation tests that explicitly cover misinterpretation and trust erosion, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## Metadata
-- **Skill ID:** `738`
-- **Skill Name:** `u0738-comms-memory-consolidation-pipeline`
-- **Domain:** `Communication and Explainability`
-- **Domain Slug:** `communication-and-explainability`
-- **Archetype:** `general-capability`
-- **Core Method:** `episodic-to-semantic consolidation`
-- **Primary Artifact:** `consolidated memory snapshots`
-- **Routing Tag:** `communication-and-explainability:general-capability`
-- **Feature Flag:** `skill_0738_comms-memory-consolidation-pipel`
-- **Release Cycles:** `2`
+## Operational Runbook
+### Preflight
+- Confirm scope, owner, and success criteria for Comms Memory Consolidation Pipeline.
 
-## Allowed Tools
-- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
-- `exec`, `process` for deterministic execution, validation suites, and regression checks.
-- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
-- Use messaging or publishing tools only after policy approval gates are satisfied.
+### Execution
+- Execute episodic-to-semantic consolidation deterministically and capture reproducible traces.
 
-## Inputs (formatted)
-| name | type | required | source |
-|---|---|---|---|
-| decision factors | signal | true | upstream |
-| uncertainty markers | signal | true | upstream |
-| audience summaries | signal | true | upstream |
-| claims | signal | true | upstream |
-| evidence | signal | true | upstream |
-| confidence traces | signal | true | upstream |
+### Recovery
+- Apply retry policy then rollback-to-last-stable-baseline when posture remains critical.
 
-## Outputs (formatted)
-| name | type | guaranteed | consumer |
-|---|---|---|---|
-| consolidated_memory_snapshots_report | structured-report | true | orchestrator |
-| consolidated_memory_snapshots_scorecard | scorecard | true | operator |
+### Handoff
+- Publish artifact bundle, scorecard, and next actions with clear ownership.
 
-## Guidelines
-1. Validate required inputs before execution and reject non-conforming payloads early.
-2. Run `episodic-to-semantic consolidation` with deterministic settings and trace capture enabled.
-3. Produce `consolidated memory snapshots` outputs in machine-readable form for orchestrator/operator use.
-4. Keep routing aligned with `communication-and-explainability:general-capability` and include approval context.
-5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
+## Operator Use Cases
+- Operate Comms Memory Consolidation Pipeline as a reliable, reusable production workflow.
 
-## Musts
-- Enforce approval gates: `policy-constraint-check`, `human-approval-router`.
-- Apply retry policy: maxAttempts=`3`, baseDelayMs=`1050`, backoff=`exponential`.
-- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
-- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
-- Preserve reproducible evidence artifacts for audits and downstream handoff.
+## Guardrail Policy Matrix
+| Guardrail Type | Policy Rule | Automation Hook |
+|---|---|---|
+| general | Enforce deterministic quality and policy constraints. | validation+approval gates |
 
-## Targets (day/week/month operating cadence)
-- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
-- **Week:** Review KPI focus (`misinterpretation`, `trust erosion`, `decision drift`), failure trends, and approval/retry performance.
-- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
+## Posture Playbook
+- **Ready posture (score >= 79):** release artifacts after validation pass and route to `communication-and-explainability:general-capability`.
+- **Review posture (score >= 53 or risk >= 50):** require human review before publish, with explicit remediation notes.
+- **Critical posture (risk >= 76):** fail closed, execute `rollback-to-last-stable-baseline`, and escalate with incident packet.
 
-## Common Actions
-1. **Intake Check:** Confirm all required signals are present and schema-valid.
-2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
-3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
-4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
-5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
+## Traceability Map
+- **Scope:** Define the scope and success metrics for `Comms Memory Consolidation Pipeline`, including at least three measurable KPIs tied to misinterpretation and trust erosion.
+- **Contract:** Design and version the input/output contract for decision factors, uncertainty markers, and audience summaries, then add schema validation and failure-mode handling.
+- **Core:** Implement the core capability using episodic-to-semantic consolidation, and produce consolidated memory snapshots with deterministic scoring.
+- **Orchestration:** Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
+- **Validation:** Add unit, integration, and simulation tests that explicitly cover misinterpretation and trust erosion, then run regression baselines.
+- **Rollout:** Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## External Tool Calls Needed
-- None required by default.
-- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
+## Decision & Scoring Policy
+- Scoring weights: `truth=0.37, execution=0.21, safety=0.14, impact=0.28`
+- Posture thresholds:
+  - `ready`: score >= 79
+  - `review`: score >= 53
+  - `review_risk`: risk >= 50
+  - `critical_risk`: risk >= 76
+- Retry policy: max attempts `3`, base delay `1050ms`, backoff `exponential`.
+- Approval gates: `policy-constraint-check`, `human-approval-router`.
 
-## Validation & Handoff
-### Validation Gates
-- `schema-contract-check`: All required input signals present and schema-valid (on fail: `quarantine`)
-- `determinism-check`: Repeated run on same inputs yields stable scoring and artifacts (on fail: `escalate`)
-- `policy-approval-check`: Approval gates satisfied before publish-level outputs (on fail: `retry`)
+## Validation Gates & Test Matrix
+| Gate | Purpose | On Fail |
+|---|---|---|
+| schema-contract-check | Ensure required inputs and contract shape are valid. | block release |
+| determinism-check | Replay identical input and compare output hash/score delta. | escalate + quarantine |
+| policy-approval-check | Verify policy constraints and approval tokens. | block publish |
+| reliability-check | Validate retry budget and rollback readiness. | rollback to stable baseline |
 
-### Validation Suites
-- `unit`
-- `integration`
-- `simulation`
-- `regression-baseline`
+- Required validation suites: unit, integration, simulation, regression-baseline
 
-### Failure Handling
-- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
-- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
-- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
+## Failure Modes & Recovery Playbook
+- `E_INPUT_SCHEMA`: required signal missing or malformed -> reject payload and request corrected input.
+- `E_NON_DETERMINISM`: replay mismatch or unstable score delta -> quarantine output and escalate for human review.
+- `E_POLICY_BLOCK`: approval/policy gate unsatisfied -> keep publish blocked until explicit approval is attached.
+- `E_DEPENDENCY_TIMEOUT`: transient timeout -> apply retry budget; if unresolved, execute `rollback-to-last-stable-baseline` and issue incident packet.
 
-### Handoff Contract
-- **Produces:** `Comms Memory Consolidation Pipeline normalized artifacts`, `execution scorecard`, `risk posture`
-- **Consumes:** `decision factors`, `uncertainty markers`, `audience summaries`, `claims`, `evidence`, `confidence traces`
-- **Downstream Hint:** Route next to communication-and-explainability:general-capability consumers with approval-gate context
+## Human Approval & Escalation
+- High-risk or policy-sensitive runs require an explicit approval token before release.
+- Escalate to human reviewer when any gate fails twice or critical risk posture is reached.
+- Escalation packet must include: scope, failed gate, evidence links, retry history, and recommended decision.
+
+## Automation Envelope
+| Setting | Value |
+|---|---|
+| Maturity tier | `standard` |
+| Autopilot ready | `no` |
+| Parallelism | `1` |
+| Max cycle minutes | `n/a` |
+| Required approvals | `policy-constraint-check`, `human-approval-router` |
+
+## Acceptance Checklist
+- [ ] Schema, determinism, policy, and reliability gates all pass.
+- [ ] Output artifact bundle includes scorecard, risks, and next actions.
+- [ ] Handoff owner confirms artifact usability without additional clarification.
+- [ ] Telemetry and trace references are attached for auditability.
+
+## External/API Dependency & Credential Reuse Policy
+| Field | Value |
+|---|---|
+| External/API required by profile | `no` |
+| Detection hint | No mandatory external API dependency inferred from current profile data; still verify environment/session credentials for connected runtimes. |
+| Clues found | `none-detected` |
+
+- Reuse previously provided credentials by default; do not ask for a new API key/token when a valid one already exists.
+- Before prompting, check configured environment/session secret stores and run a lightweight auth validation.
+- Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
+
+## Practical Usage Examples
+1. Incident recovery in Communication and Explainability: ingest noisy signals, execute episodic-to-semantic consolidation, produce an operator-ready scorecard and remediation queue.
+2. Scheduled quality pass: run Comms Memory Consolidation Pipeline against baseline data, compare drift, and publish release/no-release recommendation with evidence links.
+3. Pre-deployment gate: validate artifacts for communication-and-explainability:general-capability, enforce approvals, then handoff to downstream orchestrator with next actions.
+
+## Anti-Patterns
+- Do not publish artifacts when any validation gate fails.
+- Do not bypass approval gates for high-risk runs.
+- Do not run with missing provenance, schema, or success criteria.
+- Do not treat partial/non-deterministic outputs as production-ready.
+
+## Handoff Contract
+- **Produces:** `consolidated memory snapshots`, scorecard, risk/confidence metadata, remediation backlog.
+- **Consumes:** `decision factors`, `uncertainty markers`, `audience summaries`, `claims`, `evidence`, `confidence traces`.
+- **Readiness rule:** release only when schema, determinism, policy, and reliability gates all pass.
+- **Downstream hint:** route only to `communication-and-explainability:general-capability` consumers with approval context attached.
+
+## Observability & Continuous Improvement
+- SLO: >=99.5% successful runs per 7-day window
+- Error budget: <=0.5% critical failures per 7-day window
+- Alert triggers:
+- Trigger alerts on repeated critical posture or validation regression spikes.
+- KPI focus: `misinterpretation`, `trust erosion`, `decision drift`
+- Primary outcome metric: `misinterpretation`
+- Secondary metrics: `trust erosion`, `decision drift`
+- Review cadence: `weekly`
+- Weekly review: tune thresholds, retries, and approval friction based on telemetry and incident learnings.

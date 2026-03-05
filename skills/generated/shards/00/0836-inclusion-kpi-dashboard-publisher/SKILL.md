@@ -1,14 +1,50 @@
 ---
 name: u0836-inclusion-kpi-dashboard-publisher
-description: Operate the "Inclusion KPI Dashboard Publisher" capability in production for  workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Run the Inclusion KPI Dashboard Publisher capability for Accessibility and Inclusion with deterministic outputs, policy-gated release, and handoff-ready operational artifacts. Use when mission execution explicitly requires this capability.
 ---
 
 # Inclusion KPI Dashboard Publisher
 
+## Quick Reference
+| Field | Value |
+|---|---|
+| Skill ID | `836` |
+| Domain | `Accessibility and Inclusion` |
+| Runtime archetype | `communication-engine` |
+| Core method | `metric synthesis and publication` |
+| Primary artifact | `operator KPI dashboards` |
+| Routing tag | `accessibility-and-inclusion:communication-engine` |
+| Feature flag | `skill_0836_inclusion-kpi-dashboard-publishe` |
+| Release cycles | `2` |
+
 ## Why This Skill Exists
 We need this skill because systems must be operable and understandable for diverse users. This specific skill keeps mission status observable in real time.
 
-## Step-by-Step Implementation Guide
+## Trigger Checklist
+- [ ] The task explicitly needs Inclusion KPI Dashboard Publisher (not generic brainstorming).
+- [ ] Inputs are sufficient and source provenance is available.
+- [ ] Success criteria are measurable and agreed before execution.
+- [ ] A downstream owner/consumer for handoff is identified.
+- [ ] If risk is high, human approval path is available before publish.
+
+## Inputs (contract)
+| Input | Type | Required | Source |
+|---|---|---|---|
+| accessibility audits | signal | yes | upstream/operator |
+| accommodations | signal | yes | upstream/operator |
+| usability feedback | signal | yes | upstream/operator |
+| claims | signal | yes | upstream/operator |
+| evidence | signal | yes | upstream/operator |
+| confidence traces | signal | yes | upstream/operator |
+
+## Outputs (contract)
+| Output | Type | Guaranteed | Consumer |
+|---|---|---|---|
+| operator KPI dashboards | structured-artifact | yes | downstream orchestrator |
+| operator KPI dashboards-scorecard | scorecard | yes | operator / reviewer |
+| operator KPI dashboards-handoff | handoff-packet | yes | next owner |
+
+## Implementation Guide
 1. Define the scope and success metrics for `Inclusion KPI Dashboard Publisher`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.
 2. Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.
 3. Implement the core capability using metric synthesis and publication, and produce operator KPI dashboards with deterministic scoring.
@@ -16,88 +52,121 @@ We need this skill because systems must be operable and understandable for diver
 5. Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## Metadata
-- **Skill ID:** `836`
-- **Skill Name:** `u0836-inclusion-kpi-dashboard-publisher`
-- **Domain:** `Accessibility and Inclusion`
-- **Domain Slug:** `accessibility-and-inclusion`
-- **Archetype:** `communication-engine`
-- **Core Method:** `metric synthesis and publication`
-- **Primary Artifact:** `operator KPI dashboards`
-- **Routing Tag:** `accessibility-and-inclusion:communication-engine`
-- **Feature Flag:** `skill_0836_inclusion-kpi-dashboard-publishe`
-- **Release Cycles:** `2`
+## Operational Runbook
+### Preflight
+- Confirm scope, owner, and success criteria for Inclusion KPI Dashboard Publisher.
 
-## Allowed Tools
-- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
-- `exec`, `process` for deterministic execution, validation suites, and regression checks.
-- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
-- Use messaging or publishing tools only after policy approval gates are satisfied.
+### Execution
+- Execute metric synthesis and publication deterministically and capture reproducible traces.
 
-## Inputs (formatted)
-| name | type | required | source |
-|---|---|---|---|
-| accessibility audits | signal | true | upstream |
-| accommodations | signal | true | upstream |
-| usability feedback | signal | true | upstream |
-| claims | signal | true | upstream |
-| evidence | signal | true | upstream |
-| confidence traces | signal | true | upstream |
+### Recovery
+- Apply retry policy then rollback-to-last-stable-baseline when posture remains critical.
 
-## Outputs (formatted)
-| name | type | guaranteed | consumer |
-|---|---|---|---|
-| operator_kpi_dashboards_report | structured-report | true | orchestrator |
-| operator_kpi_dashboards_scorecard | scorecard | true | operator |
+### Handoff
+- Publish artifact bundle, scorecard, and next actions with clear ownership.
 
-## Guidelines
-1. Validate required inputs before execution and reject non-conforming payloads early.
-2. Run `metric synthesis and publication` with deterministic settings and trace capture enabled.
-3. Produce `operator KPI dashboards` outputs in machine-readable form for orchestrator/operator use.
-4. Keep routing aligned with `accessibility-and-inclusion:communication-engine` and include approval context.
-5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
+## Operator Use Cases
+- Operate Inclusion KPI Dashboard Publisher as a reliable, reusable production workflow.
 
-## Musts
-- Enforce approval gates: `policy-constraint-check`, `human-approval-router`.
-- Apply retry policy: maxAttempts=`3`, baseDelayMs=`750`, backoff=`exponential`.
-- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
-- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
-- Preserve reproducible evidence artifacts for audits and downstream handoff.
+## Guardrail Policy Matrix
+| Guardrail Type | Policy Rule | Automation Hook |
+|---|---|---|
+| general | Enforce deterministic quality and policy constraints. | validation+approval gates |
 
-## Targets (day/week/month operating cadence)
-- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
-- **Week:** Review KPI focus (`barriers for disabled`, `underserved groups`, `decision drift`), failure trends, and approval/retry performance.
-- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
+## Posture Playbook
+- **Ready posture (score >= 80):** release artifacts after validation pass and route to `accessibility-and-inclusion:communication-engine`.
+- **Review posture (score >= 61 or risk >= 57):** require human review before publish, with explicit remediation notes.
+- **Critical posture (risk >= 88):** fail closed, execute `rollback-to-last-stable-baseline`, and escalate with incident packet.
 
-## Common Actions
-1. **Intake Check:** Confirm all required signals are present and schema-valid.
-2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
-3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
-4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
-5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
+## Traceability Map
+- **Scope:** Define the scope and success metrics for `Inclusion KPI Dashboard Publisher`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.
+- **Contract:** Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.
+- **Core:** Implement the core capability using metric synthesis and publication, and produce operator KPI dashboards with deterministic scoring.
+- **Orchestration:** Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
+- **Validation:** Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.
+- **Rollout:** Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## External Tool Calls Needed
-- None required by default.
-- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
+## Decision & Scoring Policy
+- Scoring weights: `truth=0.29, execution=0.20, safety=0.25, impact=0.26`
+- Posture thresholds:
+  - `ready`: score >= 80
+  - `review`: score >= 61
+  - `review_risk`: risk >= 57
+  - `critical_risk`: risk >= 88
+- Retry policy: max attempts `3`, base delay `750ms`, backoff `exponential`.
+- Approval gates: `policy-constraint-check`, `human-approval-router`.
 
-## Validation & Handoff
-### Validation Gates
-- `schema-contract-check`: All required input signals present and schema-valid (on fail: `quarantine`)
-- `determinism-check`: Repeated run on same inputs yields stable scoring and artifacts (on fail: `escalate`)
-- `policy-approval-check`: Approval gates satisfied before publish-level outputs (on fail: `retry`)
+## Validation Gates & Test Matrix
+| Gate | Purpose | On Fail |
+|---|---|---|
+| schema-contract-check | Ensure required inputs and contract shape are valid. | block release |
+| determinism-check | Replay identical input and compare output hash/score delta. | escalate + quarantine |
+| policy-approval-check | Verify policy constraints and approval tokens. | block publish |
+| reliability-check | Validate retry budget and rollback readiness. | rollback to stable baseline |
 
-### Validation Suites
-- `unit`
-- `integration`
-- `simulation`
-- `regression-baseline`
+- Required validation suites: unit, integration, simulation, regression-baseline
 
-### Failure Handling
-- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
-- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
-- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
+## Failure Modes & Recovery Playbook
+- `E_INPUT_SCHEMA`: required signal missing or malformed -> reject payload and request corrected input.
+- `E_NON_DETERMINISM`: replay mismatch or unstable score delta -> quarantine output and escalate for human review.
+- `E_POLICY_BLOCK`: approval/policy gate unsatisfied -> keep publish blocked until explicit approval is attached.
+- `E_DEPENDENCY_TIMEOUT`: transient timeout -> apply retry budget; if unresolved, execute `rollback-to-last-stable-baseline` and issue incident packet.
 
-### Handoff Contract
-- **Produces:** `Inclusion KPI Dashboard Publisher normalized artifacts`, `execution scorecard`, `risk posture`
-- **Consumes:** `accessibility audits`, `accommodations`, `usability feedback`, `claims`, `evidence`, `confidence traces`
-- **Downstream Hint:** Route next to accessibility-and-inclusion:communication-engine consumers with approval-gate context
+## Human Approval & Escalation
+- High-risk or policy-sensitive runs require an explicit approval token before release.
+- Escalate to human reviewer when any gate fails twice or critical risk posture is reached.
+- Escalation packet must include: scope, failed gate, evidence links, retry history, and recommended decision.
+
+## Automation Envelope
+| Setting | Value |
+|---|---|
+| Maturity tier | `standard` |
+| Autopilot ready | `no` |
+| Parallelism | `1` |
+| Max cycle minutes | `n/a` |
+| Required approvals | `policy-constraint-check`, `human-approval-router` |
+
+## Acceptance Checklist
+- [ ] Schema, determinism, policy, and reliability gates all pass.
+- [ ] Output artifact bundle includes scorecard, risks, and next actions.
+- [ ] Handoff owner confirms artifact usability without additional clarification.
+- [ ] Telemetry and trace references are attached for auditability.
+
+## External/API Dependency & Credential Reuse Policy
+| Field | Value |
+|---|---|
+| External/API required by profile | `no` |
+| Detection hint | No mandatory external API dependency inferred from current profile data; still verify environment/session credentials for connected runtimes. |
+| Clues found | `none-detected` |
+
+- Reuse previously provided credentials by default; do not ask for a new API key/token when a valid one already exists.
+- Before prompting, check configured environment/session secret stores and run a lightweight auth validation.
+- Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
+
+## Practical Usage Examples
+1. Incident recovery in Accessibility and Inclusion: ingest noisy signals, execute metric synthesis and publication, produce an operator-ready scorecard and remediation queue.
+2. Scheduled quality pass: run Inclusion KPI Dashboard Publisher against baseline data, compare drift, and publish release/no-release recommendation with evidence links.
+3. Pre-deployment gate: validate artifacts for accessibility-and-inclusion:communication-engine, enforce approvals, then handoff to downstream orchestrator with next actions.
+
+## Anti-Patterns
+- Do not publish artifacts when any validation gate fails.
+- Do not bypass approval gates for high-risk runs.
+- Do not run with missing provenance, schema, or success criteria.
+- Do not treat partial/non-deterministic outputs as production-ready.
+
+## Handoff Contract
+- **Produces:** `operator KPI dashboards`, scorecard, risk/confidence metadata, remediation backlog.
+- **Consumes:** `accessibility audits`, `accommodations`, `usability feedback`, `claims`, `evidence`, `confidence traces`.
+- **Readiness rule:** release only when schema, determinism, policy, and reliability gates all pass.
+- **Downstream hint:** route only to `accessibility-and-inclusion:communication-engine` consumers with approval context attached.
+
+## Observability & Continuous Improvement
+- SLO: >=99.5% successful runs per 7-day window
+- Error budget: <=0.5% critical failures per 7-day window
+- Alert triggers:
+- Trigger alerts on repeated critical posture or validation regression spikes.
+- KPI focus: `barriers for disabled`, `underserved groups`, `decision drift`
+- Primary outcome metric: `barriers for disabled`
+- Secondary metrics: `underserved groups`, `decision drift`
+- Review cadence: `weekly`
+- Weekly review: tune thresholds, retries, and approval friction based on telemetry and incident learnings.
