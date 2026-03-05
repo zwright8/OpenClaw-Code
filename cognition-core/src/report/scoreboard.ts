@@ -43,22 +43,78 @@ function formatNullable(value: number | null): string {
     return value === null ? 'n/a' : `${round(value)}`;
 }
 
-function describeConfidenceEnvelope(metrics: FeedbackLoopResult['evaluation']['metrics']): string {
-    const envelope = metrics.calibrationDiagnostics?.confidenceEnvelope;
-    if (!envelope || envelope.sampleSize <= 0) {
+function formatBoolean(value: boolean | undefined): string {
+    return value === undefined ? 'n/a' : String(value);
+}
+
+function toFiniteInteger(value: unknown, fallback = 0): number {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) {
+        return Math.max(0, Math.round(fallback));
+    }
+
+    return Math.max(0, Math.round(parsed));
+}
+
+function toNullableFiniteNumber(value: unknown): number | null {
+    if (value === null || value === undefined) {
+        return null;
+    }
+
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+}
+
+const DEFAULT_CALIBRATION_ENVELOPE_METHOD = 'hoeffding';
+
+function normalizeDetailSegment(segment: string): string {
+    return segment.trim().replace(/[.\s]+$/g, '');
+}
+
+function composeDetail(...segments: Array<string | null | undefined>): string {
+    const normalized = segments
+        .map((segment) => (segment ?? '').trim())
+        .filter((segment) => segment.length > 0)
+        .map(normalizeDetailSegment);
+
+    if (normalized.length === 0) {
         return '';
     }
 
-    return ` Confidence envelope (${Math.round(envelope.confidenceLevel * 100)}% ${envelope.method}): observed_success=[${formatNullable(envelope.observedSuccessLowerBound)}, ${formatNullable(envelope.observedSuccessUpperBound)}]; calibration_gap=[${formatNullable(envelope.calibrationGapLowerBound)}, ${formatNullable(envelope.calibrationGapUpperBound)}]; means(predicted=${formatNullable(envelope.predictedSuccessMean)}, observed=${formatNullable(envelope.observedSuccessMean)}).`;
+    return `${normalized.join('. ')}.`;
 }
 
-function describeCalibrationSuppression(
-    metrics: FeedbackLoopResult['evaluation']['metrics'],
-    fallback: string
-): string {
+function resolveTerminalOutcomes(metrics: FeedbackLoopResult['evaluation']['metrics']): number {
+    return Number.isFinite((metrics as { terminalOutcomes?: number }).terminalOutcomes)
+        ? Math.max(0, Math.round((metrics as { terminalOutcomes?: number }).terminalOutcomes ?? 0))
+        : metrics.totalOutcomes;
+}
+
+function describeConfidenceEnvelope(metrics: FeedbackLoopResult['evaluation']['metrics']): string {
     const diagnostics = metrics.calibrationDiagnostics;
-    if (!diagnostics || diagnostics.readiness === 'ready') {
-        return fallback;
+    const envelope = diagnostics?.confidenceEnvelope;
+
+    if (!diagnostics && !envelope) {
+        return '';
+    }
+
+    const envelopeRecord = (envelope ?? {}) as Record<string, unknown>;
+    const methodCandidate = envelopeRecord.method;
+    const method = typeof methodCandidate === 'string' && methodCandidate.trim().length > 0
+        ? methodCandidate.trim()
+        : DEFAULT_CALIBRATION_ENVELOPE_METHOD;
+
+    const fallbackSampleSize = diagnostics
+        ? toFiniteInteger((diagnostics as { observedSampleSize?: unknown }).observedSampleSize, 0)
+        : 0;
+
+    return `confidence_envelope: confidence_level=${formatNullable(toNullableFiniteNumber(envelopeRecord.confidenceLevel ?? null))};method=${method};sample_size=${toFiniteInteger(envelopeRecord.sampleSize, fallbackSampleSize)};predicted_success_mean=${formatNullable(toNullableFiniteNumber(envelopeRecord.predictedSuccessMean ?? null))};observed_success_mean=${formatNullable(toNullableFiniteNumber(envelopeRecord.observedSuccessMean ?? null))};observed_success_lower=${formatNullable(toNullableFiniteNumber(envelopeRecord.observedSuccessLowerBound ?? null))};observed_success_upper=${formatNullable(toNullableFiniteNumber(envelopeRecord.observedSuccessUpperBound ?? null))};calibration_gap_lower=${formatNullable(toNullableFiniteNumber(envelopeRecord.calibrationGapLowerBound ?? null))};calibration_gap_upper=${formatNullable(toNullableFiniteNumber(envelopeRecord.calibrationGapUpperBound ?? null))}`;
+}
+
+function describeCalibrationGate(metrics: FeedbackLoopResult['evaluation']['metrics']): string {
+    const diagnostics = metrics.calibrationDiagnostics;
+    if (!diagnostics) {
+        return 'calibration_gate: readiness=unknown;mapped_outcomes=n/a;terminal_outcomes=n/a;mapping_rate=n/a;min_sample_size=n/a;min_mapping_rate=n/a;sample_size_ready=n/a;mapping_rate_ready=n/a;sample_size_shortfall=n/a;mapping_rate_shortfall=n/a';
     }
 
     const observedMappedOutcomes = Number.isFinite((diagnostics as { observedMappedOutcomes?: number }).observedMappedOutcomes)
@@ -67,18 +123,46 @@ function describeCalibrationSuppression(
 
     const observedTerminalOutcomes = Number.isFinite((diagnostics as { observedTerminalOutcomes?: number }).observedTerminalOutcomes)
         ? Math.max(0, Math.round((diagnostics as { observedTerminalOutcomes?: number }).observedTerminalOutcomes ?? 0))
-        : Math.max(0, Math.round(Number.isFinite((metrics as { terminalOutcomes?: number }).terminalOutcomes)
-            ? (metrics as { terminalOutcomes?: number }).terminalOutcomes ?? 0
-            : metrics.totalOutcomes));
+        : resolveTerminalOutcomes(metrics);
 
-    return `${diagnostics.reason} Snapshot: readiness=${diagnostics.readiness}; mapped=${observedMappedOutcomes}/${observedTerminalOutcomes}; mapping_rate=${round(diagnostics.observedMappingRate)}; minimums(sample=${diagnostics.minimumSampleSize}, mapping_rate=${diagnostics.minimumMappingRate}).${describeConfidenceEnvelope(metrics)}`;
+    const sampleReadiness = diagnostics.sampleReadiness;
+
+    return `calibration_gate: readiness=${diagnostics.readiness};mapped_outcomes=${observedMappedOutcomes};terminal_outcomes=${observedTerminalOutcomes};mapping_rate=${round(diagnostics.observedMappingRate)};min_sample_size=${diagnostics.minimumSampleSize};min_mapping_rate=${round(diagnostics.minimumMappingRate)};sample_size_ready=${formatBoolean(sampleReadiness?.isSampleSizeReady)};mapping_rate_ready=${formatBoolean(sampleReadiness?.isMappingRateReady)};sample_size_shortfall=${sampleReadiness ? sampleReadiness.sampleSizeShortfall : 'n/a'};mapping_rate_shortfall=${sampleReadiness ? formatNullable(sampleReadiness.mappingRateShortfall) : 'n/a'};reason=${diagnostics.reason}`;
+}
+
+function describeCalibrationSuppression(
+    metrics: FeedbackLoopResult['evaluation']['metrics'],
+    fallback: string
+): string {
+    const diagnostics = metrics.calibrationDiagnostics;
+    if (!diagnostics || diagnostics.readiness === 'ready') {
+        return composeDetail(fallback);
+    }
+
+    return composeDetail(
+        fallback,
+        describeCalibrationGate(metrics),
+        describeConfidenceEnvelope(metrics)
+    );
+}
+
+function classifyCalibrationMetric(
+    metrics: FeedbackLoopResult['evaluation']['metrics'],
+    value: number | null,
+    pass: (v: number) => boolean,
+    warn: (v: number) => boolean
+): ScoreStatus {
+    const readiness = metrics.calibrationDiagnostics?.readiness;
+    if (readiness && readiness !== 'ready') {
+        return 'n/a';
+    }
+
+    return classify(value, pass, warn);
 }
 
 export function buildScoreboard(loopResult: FeedbackLoopResult): Scoreboard {
     const metrics = loopResult.evaluation.metrics;
-    const terminalOutcomes = Number.isFinite((metrics as { terminalOutcomes?: number }).terminalOutcomes)
-        ? Math.max(0, Math.round((metrics as { terminalOutcomes?: number }).terminalOutcomes ?? 0))
-        : metrics.totalOutcomes;
+    const terminalOutcomes = resolveTerminalOutcomes(metrics);
     const confidenceEnvelopeDetail = describeConfidenceEnvelope(metrics);
 
     const rows: ScoreboardRow[] = [
@@ -119,28 +203,38 @@ export function buildScoreboard(loopResult: FeedbackLoopResult): Scoreboard {
             label: 'Prediction reliability (Brier)',
             value: metrics.brierScore,
             target: '<= 0.20',
-            status: classify(
+            status: classifyCalibrationMetric(
+                metrics,
                 metrics.brierScore,
                 (value) => value <= 0.2,
                 (value) => value <= 0.3
             ),
             detail: metrics.brierScore === null
                 ? describeCalibrationSuppression(metrics, 'No mapped predictions to score')
-                : `Lower is better. Current Brier score ${metrics.brierScore}.${confidenceEnvelopeDetail}`
+                : composeDetail(
+                    `Lower is better. Current Brier score ${metrics.brierScore}`,
+                    describeCalibrationGate(metrics),
+                    confidenceEnvelopeDetail
+                )
         },
         {
             metric: 'calibration_gap',
             label: 'Calibration gap',
             value: metrics.calibrationGap,
             target: '<= 0.20',
-            status: classify(
+            status: classifyCalibrationMetric(
+                metrics,
                 metrics.calibrationGap,
                 (value) => value <= 0.2,
                 (value) => value <= 0.3
             ),
             detail: metrics.calibrationGap === null
                 ? describeCalibrationSuppression(metrics, 'No mapped predictions to calibrate')
-                : `Difference between predicted and observed success: ${metrics.calibrationGap}.${confidenceEnvelopeDetail}`
+                : composeDetail(
+                    `Difference between predicted and observed success: ${metrics.calibrationGap}`,
+                    describeCalibrationGate(metrics),
+                    confidenceEnvelopeDetail
+                )
         }
     ];
 
