@@ -600,8 +600,11 @@ export class TaskOrchestrator {
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
-        circuitBreaker = null,
+        retryBackoffMultiplier = 2,
+        maxRetryDelayMs = 30_000,
+        retryJitter = 'full',
         now = Date.now,
+        random = Math.random,
         logger = console
     }) {
         if (!localAgentId || typeof localAgentId !== 'string') {
@@ -631,163 +634,98 @@ export class TaskOrchestrator {
         this.retryDelayMs = Number.isFinite(retryDelayMs) && retryDelayMs >= 0
             ? Number(retryDelayMs)
             : 500;
-        this.circuitBreaker = this._buildCircuitBreaker(circuitBreaker);
+        this.retryBackoffMultiplier = Number.isFinite(retryBackoffMultiplier) && retryBackoffMultiplier >= 1
+            ? Number(retryBackoffMultiplier)
+            : 2;
+        this.maxRetryDelayMs = Number.isFinite(maxRetryDelayMs) && maxRetryDelayMs >= this.retryDelayMs
+            ? Number(maxRetryDelayMs)
+            : Math.max(30_000, this.retryDelayMs);
+        this.retryJitter = retryJitter === 'none' || retryJitter === 'full'
+            ? retryJitter
+            : 'full';
         this.now = typeof now === 'function' ? now : Date.now;
+        this.random = typeof random === 'function' ? random : Math.random;
         this.logger = logger;
         this.tasks = new Map();
         this.targetCircuits = new Map();
         this._persistenceQueue = Promise.resolve();
     }
 
-    _buildCircuitBreaker(config) {
-        if (config === false) {
-            return {
-                enabled: false
-            };
-        }
-
-        const raw = config && typeof config === 'object' ? config : {};
-        return {
-            enabled: raw.enabled !== false,
-            failureThreshold: Number.isInteger(raw.failureThreshold) && raw.failureThreshold > 0
-                ? raw.failureThreshold
-                : 3,
-            cooldownMs: Number.isFinite(raw.cooldownMs) && raw.cooldownMs > 0
-                ? Number(raw.cooldownMs)
-                : 10_000,
-            halfOpenMaxInFlight: Number.isInteger(raw.halfOpenMaxInFlight) && raw.halfOpenMaxInFlight > 0
-                ? raw.halfOpenMaxInFlight
-                : 1,
-            halfOpenSuccessesToClose: Number.isInteger(raw.halfOpenSuccessesToClose) && raw.halfOpenSuccessesToClose > 0
-                ? raw.halfOpenSuccessesToClose
-                : 1
-        };
+    _rand01() {
+        const value = Number(this.random());
+        if (!Number.isFinite(value)) return 0.5;
+        if (value < 0) return 0;
+        if (value > 1) return 1;
+        return value;
     }
 
-    _getTargetCircuit(target) {
-        let circuit = this.targetCircuits.get(target);
-        if (!circuit) {
-            circuit = {
-                state: CIRCUIT_CLOSED,
-                consecutiveFailures: 0,
-                consecutiveSuccesses: 0,
-                openedAt: null,
-                nextAttemptAt: null,
-                halfOpenInFlight: 0,
-                lastStateChangeAt: safeNow(this.now)
-            };
-            this.targetCircuits.set(target, circuit);
+    _computeRetryDelay(record, { hintDelayMs = null } = {}) {
+        if (Number.isFinite(hintDelayMs) && hintDelayMs >= 0) {
+            return Number(hintDelayMs);
         }
-        return circuit;
+
+        const retryAttempt = Math.max(1, record.attempts);
+        const exponential = this.retryDelayMs * Math.pow(this.retryBackoffMultiplier, retryAttempt - 1);
+        const capped = Math.min(this.maxRetryDelayMs, exponential);
+        const jittered = this.retryJitter === 'none'
+            ? capped
+            : Math.floor(this._rand01() * capped);
+
+        return Math.max(0, Number.isFinite(jittered) ? jittered : this.retryDelayMs);
     }
 
-    _setCircuitState(target, circuit, nextState, at) {
-        if (circuit.state === nextState) return;
-        const prev = circuit.state;
-        circuit.state = nextState;
-        circuit.lastStateChangeAt = at;
-
-        if (nextState === CIRCUIT_OPEN) {
-            circuit.openedAt = at;
-            circuit.nextAttemptAt = at + this.circuitBreaker.cooldownMs;
-            circuit.halfOpenInFlight = 0;
-            circuit.consecutiveSuccesses = 0;
-            this._emitAudit('target_circuit_opened', {
-                target,
-                previousState: prev,
-                failureThreshold: this.circuitBreaker.failureThreshold,
-                nextAttemptAt: circuit.nextAttemptAt
-            }, at);
-            return;
-        }
-
-        if (nextState === CIRCUIT_HALF_OPEN) {
-            circuit.consecutiveSuccesses = 0;
-            circuit.halfOpenInFlight = 0;
-            this._emitAudit('target_circuit_half_open', {
-                target,
-                previousState: prev,
-                halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight
-            }, at);
-            return;
-        }
-
-        circuit.openedAt = null;
-        circuit.nextAttemptAt = null;
-        circuit.halfOpenInFlight = 0;
-        circuit.consecutiveFailures = 0;
-        circuit.consecutiveSuccesses = 0;
-        this._emitAudit('target_circuit_closed', {
-            target,
-            previousState: prev
-        }, at);
+    _resolveRetryTime(record, { nowMs = safeNow(this.now), hintDelayMs = null } = {}) {
+        return nowMs + this._computeRetryDelay(record, { hintDelayMs });
     }
 
-    _beginSendAttemptForTarget(target, at) {
-        if (!this.circuitBreaker.enabled) return null;
-        const circuit = this._getTargetCircuit(target);
+    _parseRetryAfterHint(reason, nowMs = safeNow(this.now)) {
+        if (typeof reason !== 'string' || !reason.trim()) return null;
+        const text = reason.trim();
 
-        if (circuit.state === CIRCUIT_OPEN) {
-            if (circuit.nextAttemptAt !== null && at >= circuit.nextAttemptAt) {
-                this._setCircuitState(target, circuit, CIRCUIT_HALF_OPEN, at);
-            } else {
-                throw new TaskOrchestratorError(
-                    'CIRCUIT_OPEN',
-                    `Target ${target} circuit is open`,
-                    {
-                        target,
-                        nextAttemptAt: circuit.nextAttemptAt
-                    }
-                );
+        const msMatch = text.match(/retry[_-]?after(?:[_-]?ms)?\s*[:=]\s*(\d+)\s*ms/i);
+        if (msMatch) return Number(msMatch[1]);
+
+        const secMatch = text.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?/i);
+        if (secMatch) return Number(secMatch[1]) * 1000;
+
+        const dateMatch = text.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},.+)$/i);
+        if (dateMatch) {
+            const dateMs = Date.parse(dateMatch[1].trim());
+            if (Number.isFinite(dateMs)) {
+                return Math.max(0, dateMs - nowMs);
             }
         }
 
-        if (circuit.state === CIRCUIT_HALF_OPEN) {
-            if (circuit.halfOpenInFlight >= this.circuitBreaker.halfOpenMaxInFlight) {
-                throw new TaskOrchestratorError(
-                    'CIRCUIT_HALF_OPEN_LIMIT',
-                    `Target ${target} circuit probe capacity reached`,
-                    {
-                        target,
-                        halfOpenInFlight: circuit.halfOpenInFlight,
-                        halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight
-                    }
-                );
-            }
-            circuit.halfOpenInFlight += 1;
-        }
-
-        return circuit;
+        return null;
     }
 
-    _recordSendSuccess(target, at, circuit = this._getTargetCircuit(target)) {
-        if (!this.circuitBreaker.enabled || !circuit) return;
-
-        if (circuit.state === CIRCUIT_HALF_OPEN) {
-            circuit.halfOpenInFlight = Math.max(0, circuit.halfOpenInFlight - 1);
-            circuit.consecutiveSuccesses += 1;
-            if (circuit.consecutiveSuccesses >= this.circuitBreaker.halfOpenSuccessesToClose) {
-                this._setCircuitState(target, circuit, CIRCUIT_CLOSED, at);
-            }
-            return;
+    _isTransientRejection(receipt) {
+        if (Number.isFinite(receipt.etaMs) && Number(receipt.etaMs) >= 0) {
+            return true;
         }
 
-        circuit.consecutiveFailures = 0;
-    }
+        const reason = (receipt.reason || '').toLowerCase();
+        if (!reason) return false;
 
-    _recordSendFailure(target, at, circuit = this._getTargetCircuit(target)) {
-        if (!this.circuitBreaker.enabled || !circuit) return;
+        const transientMarkers = [
+            'overload',
+            'overloaded',
+            'busy',
+            'throttle',
+            'rate_limit',
+            'rate-limit',
+            'retry_after',
+            'retry-after',
+            'temporar',
+            'unavailable',
+            'try_again',
+            'try-again',
+            'queue_full',
+            'queue-full',
+            'capacity'
+        ];
 
-        if (circuit.state === CIRCUIT_HALF_OPEN) {
-            circuit.halfOpenInFlight = Math.max(0, circuit.halfOpenInFlight - 1);
-            this._setCircuitState(target, circuit, CIRCUIT_OPEN, at);
-            return;
-        }
-
-        circuit.consecutiveFailures += 1;
-        if (circuit.consecutiveFailures >= this.circuitBreaker.failureThreshold) {
-            this._setCircuitState(target, circuit, CIRCUIT_OPEN, at);
-        }
+        return transientMarkers.some((marker) => reason.includes(marker));
     }
 
     async hydrate({ replace = true } = {}) {
@@ -1838,167 +1776,9 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'approval_release');
         } catch (error) {
-            if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
-                const scheduled = this._scheduleRetry(record, reviewedAt, {
-                    reason: 'approval_release_circuit_open',
-                    event: 'approval_release_circuit_open_retry_scheduled',
-                    hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
-                });
-                if (!scheduled.scheduled) {
-                    if (scheduled.blockedBy === 'retry_window' || scheduled.blockedBy === 'retry_budget') {
-                        this._markTimedOut(record, reviewedAt, {
-                            event: scheduled.blockedBy === 'retry_budget'
-                                ? 'timed_out_retry_budget_exhausted'
-                                : 'timed_out_retry_window_exhausted',
-                            reason: 'approval_release_circuit_open'
-                        });
-                    }
-                }
-                return this.getTask(taskId);
-            }
-            if (error instanceof TaskOrchestratorError && error.code === 'ADAPTIVE_CONCURRENCY_LIMIT') {
-                const scheduled = this._scheduleRetry(record, reviewedAt, {
-                    reason: 'approval_release_adaptive_concurrency_limited',
-                    event: 'approval_release_concurrency_limited_retry_scheduled',
-                    hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
-                });
-                if (!scheduled.scheduled) {
-                    if (scheduled.blockedBy === 'retry_window' || scheduled.blockedBy === 'retry_budget') {
-                        this._markTimedOut(record, reviewedAt, {
-                            event: scheduled.blockedBy === 'retry_budget'
-                                ? 'timed_out_retry_budget_exhausted'
-                                : 'timed_out_retry_window_exhausted',
-                            reason: 'approval_release_adaptive_concurrency_limited'
-                        });
-                    }
-                }
-                return this.getTask(taskId);
-            }
-            const scheduled = this._scheduleRetry(record, reviewedAt, {
-                reason: 'approval_release_failed',
-                event: 'approval_release_retry_scheduled',
-                consumeThrottleToken: true,
-                retryCost: this.retryThrottling.transportRetryCost,
-                metadata: {
-                    error: error.message
-                }
-            });
-            if (!scheduled.scheduled) {
-                if (scheduled.blockedBy === 'retry_window') {
-                    this._markTimedOut(record, reviewedAt, {
-                        event: 'timed_out_retry_window_exhausted',
-                        reason: 'approval_release_failed'
-                    });
-                } else {
-                    record.status = 'transport_error';
-                    record.updatedAt = reviewedAt;
-                    record.closedAt = reviewedAt;
-                    record.history.push({
-                        at: reviewedAt,
-                        event: scheduled.blockedBy === 'retry_budget'
-                            ? 'approval_release_retry_budget_exhausted'
-                            : 'approval_release_retry_throttled',
-                        error: error.message
-                    });
-                    this._persistRecord(record);
-                    this._emitAudit('task_transport_error', {
-                        taskId: record.taskId,
-                        target: record.target,
-                        error: error.message
-                    }, reviewedAt);
-                }
-            }
-        }
-
-        return this.getTask(taskId);
-    }
-
-    async cancelTask(taskId, {
-        reason = 'cancelled_by_operator',
-        cancelledBy = this.localAgentId,
-        timestamp = safeNow(this.now),
-        propagate = true
-    } = {}) {
-        const record = this.tasks.get(taskId);
-        if (!record) return null;
-        if (TERMINAL_STATUSES.has(record.status)) {
-            return this.getTask(taskId);
-        }
-
-        const cancelledAt = Number.isFinite(Number(timestamp)) ? Number(timestamp) : safeNow(this.now);
-        const previousStatus = record.status;
-        const reasonText = typeof reason === 'string' && reason.trim()
-            ? reason.trim()
-            : 'cancelled_by_operator';
-        const actor = typeof cancelledBy === 'string' && cancelledBy.trim()
-            ? cancelledBy.trim()
-            : this.localAgentId;
-
-        this._releaseAdaptiveConcurrencySlot(record, cancelledAt, 'neutral');
-        record.status = 'cancelled';
-        record.updatedAt = cancelledAt;
-        record.closedAt = cancelledAt;
-        record.nextRetryAt = null;
-        record.history.push({
-            at: cancelledAt,
-            event: 'cancelled',
-            reason: reasonText,
-            cancelledBy: actor
-        });
-        this._persistRecord(record);
-        this._emitAudit('task_cancelled', {
-            taskId: record.taskId,
-            target: record.target,
-            reason: reasonText,
-            cancelledBy: actor,
-            previousStatus
-        }, cancelledAt);
-
-        const shouldPropagate = propagate
-            && previousStatus !== APPROVAL_PENDING_STATUS
-            && record.attempts > 0;
-        if (!shouldPropagate) {
-            return this.getTask(taskId);
-        }
-
-        const cancelEnvelope = {
-            kind: 'task_cancel',
-            taskId: record.taskId,
-            from: this.localAgentId,
-            target: record.target,
-            reason: reasonText,
-            timestamp: cancelledAt
-        };
-
-        try {
-            let via = null;
-            if (typeof this.transport.cancel === 'function') {
-                await this.transport.cancel(record.target, cancelEnvelope);
-                via = 'cancel';
-            } else if (typeof this.transport.send === 'function') {
-                await this.transport.send(record.target, cancelEnvelope);
-                via = 'send';
-            }
-
-            if (via) {
-                const signalAt = safeNow(this.now);
-                record.updatedAt = signalAt;
-                record.history.push({
-                    at: signalAt,
-                    event: 'cancel_signal_sent',
-                    via
-                });
-                this._persistRecord(record);
-                this._emitAudit('task_cancel_signal_sent', {
-                    taskId: record.taskId,
-                    target: record.target,
-                    via
-                }, signalAt);
-            }
-        } catch (error) {
-            const failedAt = safeNow(this.now);
-            const message = error?.message || 'Failed to propagate cancellation';
-            record.updatedAt = failedAt;
+            record.status = 'retry_scheduled';
+            record.nextRetryAt = this._resolveRetryTime(record, { nowMs: reviewedAt });
+            record.updatedAt = reviewedAt;
             record.history.push({
                 at: failedAt,
                 event: 'cancel_signal_failed',
@@ -2110,71 +1890,33 @@ export class TaskOrchestrator {
         record.updatedAt = receipt.timestamp;
 
         if (!receipt.accepted) {
-            const reason = receipt.reason || 'rejected_by_worker';
-            const receiptHintMs = Number.isFinite(receipt.etaMs) ? Number(receipt.etaMs) : null;
-            const retryDirective = this._parseRetryDirectiveFromReason(reason);
-            const reasonHintMs = Number.isFinite(retryDirective.hintMs) ? Number(retryDirective.hintMs) : null;
-            const retryHintMs = receiptHintMs !== null ? receiptHintMs : reasonHintMs;
-            const transient = this._isTransientRejectionReason(reason);
-
-            if (retryDirective.noRetryPushback) {
-                this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, transient ? 'overload' : 'neutral');
-                record.status = 'rejected';
-                record.closedAt = receipt.timestamp;
+            const transient = this._isTransientRejection(receipt);
+            const canRetry = transient && record.attempts <= record.maxRetries;
+            if (canRetry) {
+                const hintDelayMs = Number.isFinite(receipt.etaMs)
+                    ? Number(receipt.etaMs)
+                    : this._parseRetryAfterHint(receipt.reason, receipt.timestamp);
+                record.status = 'retry_scheduled';
+                record.nextRetryAt = this._resolveRetryTime(record, {
+                    nowMs: receipt.timestamp,
+                    hintDelayMs
+                });
                 record.history.push({
                     at: receipt.timestamp,
-                    event: 'rejected_no_retry_pushback',
-                    reason
+                    event: 'rejected_retry_scheduled',
+                    reason: receipt.reason || 'transient_rejection',
+                    nextRetryAt: record.nextRetryAt
                 });
                 this._persistRecord(record);
-                this._emitAudit('task_rejected_no_retry_pushback', {
+                this._emitAudit('task_rejected_retry_scheduled', {
                     taskId: record.taskId,
                     from: receipt.from,
-                    reason
+                    reason: receipt.reason || 'transient_rejection',
+                    nextRetryAt: record.nextRetryAt
                 }, receipt.timestamp);
                 return true;
             }
 
-            if (transient && this._canRetry(record)) {
-                const scheduled = this._scheduleRetry(record, receipt.timestamp, {
-                    reason: 'rejected_transient',
-                    event: 'rejected_retry_scheduled',
-                    hintMs: retryHintMs,
-                    auditEvent: 'task_rejected_retry_scheduled',
-                    consumeThrottleToken: true,
-                    retryCost: this.retryThrottling.throttlingRetryCost,
-                    metadata: {
-                        from: receipt.from,
-                        rejectionReason: reason
-                    }
-                });
-
-                if (!scheduled.scheduled) {
-                    if (scheduled.blockedBy === 'retry_window') {
-                        this._markTimedOut(record, receipt.timestamp, {
-                            event: 'timed_out_retry_window_exhausted',
-                            reason
-                        });
-                        return true;
-                    }
-                    this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, 'overload');
-                    record.status = 'rejected';
-                    record.closedAt = receipt.timestamp;
-                    record.history.push({
-                        at: receipt.timestamp,
-                        event: scheduled.blockedBy === 'retry_budget'
-                            ? 'retry_budget_exhausted'
-                            : 'retry_throttled',
-                        reason
-                    });
-                    this._persistRecord(record);
-                    return true;
-                }
-                this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, 'overload');
-                return true;
-            }
-
-            this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, transient ? 'overload' : 'neutral');
             record.status = 'rejected';
             record.closedAt = receipt.timestamp;
             record.history.push({
@@ -2453,9 +2195,11 @@ export class TaskOrchestrator {
             }
 
             if (record.nextRetryAt === null) {
-                this._releaseAdaptiveConcurrencySlot(record, nowMs, 'overload');
-                const scheduled = this._scheduleRetry(record, nowMs, {
-                    reason: 'deadline_exceeded',
+                record.status = 'retry_scheduled';
+                record.nextRetryAt = this._resolveRetryTime(record, { nowMs });
+                record.updatedAt = nowMs;
+                record.history.push({
+                    at: nowMs,
                     event: 'retry_scheduled',
                     consumeThrottleToken: true,
                     retryCost: this.retryThrottling.timeoutRetryCost
@@ -2508,11 +2252,7 @@ export class TaskOrchestrator {
                     }, nowMs);
                 } else {
                     record.status = 'retry_scheduled';
-                    const blockerNextAttemptAt = error?.details?.nextAttemptAt;
-                    const nextRetryAt = nowMs + this.retryDelayMs;
-                    record.nextRetryAt = Number.isFinite(blockerNextAttemptAt)
-                        ? Math.max(nextRetryAt, Number(blockerNextAttemptAt))
-                        : nextRetryAt;
+                    record.nextRetryAt = this._resolveRetryTime(record, { nowMs });
                     record.updatedAt = nowMs;
                     this._persistRecord(record);
                     this._emitAudit('task_retry_scheduled', {

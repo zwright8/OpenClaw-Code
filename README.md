@@ -392,7 +392,11 @@ const orchestrator = new TaskOrchestrator({
     required: taskRequest.priority === 'critical',
     reason: 'critical_priority',
     reviewerGroup: 'ops-review'
-  })
+  }),
+  retryDelayMs: 250,
+  retryBackoffMultiplier: 2,
+  maxRetryDelayMs: 10_000,
+  retryJitter: 'full' // 'full' | 'none'
 });
 
 const task = await orchestrator.dispatchTask({
@@ -414,29 +418,10 @@ await orchestrator.cancelTask(taskId, {
 });
 ```
 
-`circuitBreaker` prevents repeated dispatch attempts to an unhealthy target by opening per-target circuits after consecutive send failures and only probing again after cooldown.
-When the half-open probe budget is exhausted before recovery, the breaker now re-opens (instead of remaining stuck half-open). You can also enable progressive cooldown backoff with `cooldownBackoffMultiplier` + `maxCooldownMs` to reduce pressure on persistently unhealthy targets.
-`adaptiveConcurrency` adds per-target additive-increase/multiplicative-decrease (AIMD) flow control so dispatches are deferred before overload cascades. Healthy completions increase the limit gradually; transient overload signals/timeouts/sustained high latency decrease it.
-`dispatchDeduplication.inFlightWindowMs` (optional) extends duplicate suppression for still-open tasks beyond the base `windowMs`, which helps collapse bursts into one canonical in-flight execution.
-`dispatchDeduplication.coalesceOpenUntilTerminal` enables true singleflight behavior for open tasks, so duplicate submissions are coalesced until the original task reaches a terminal state.
-When combined with `dispatchDeduplication.inFlightWindowMs`, that value acts as a lock-age escape hatch for long-running or potentially stuck work before allowing a fresh dispatch.
-`dispatchDeduplication.terminalWindowMs` lets the orchestrator treat recently closed tasks as idempotent replays so duplicate submissions can reuse recent outcomes instead of re-dispatching side-effecting work.
-Cancelled tasks are intentionally excluded from terminal replay, so an operator-aborted task never suppresses a fresh follow-up dispatch.
-`transportSendTimeoutMs` bounds each `transport.send()` attempt so hung downstream transports fail fast and re-enter existing retry/circuit-breaker handling instead of stalling orchestration loops.
-`retryBudget` adds Envoy-style retry concurrency budgeting so retries remain bounded relative to live primary workload (`ratio`) with optional floor/ceiling controls (`minRetries`/`maxRetries`).
-`terminalTaskRetention` keeps long-running bot processes from accumulating unbounded terminal task history by pruning old/excess completed, failed, rejected, and timed-out records during maintenance.
-`queueCapacity` adds admission control with global (`maxOpenTasks`) and per-target (`maxOpenTasksPerTarget`) limits so overload is rejected early (`CAPACITY_EXCEEDED`) instead of allowing unbounded open-task growth.
-`queueCapacity.reservedOpenSlotsByPriority` reserves part of global open-task capacity for higher priorities (`high`/`critical`) so low-priority floods cannot consume all open slots.
-`staleTaskPolicy` expires tasks that have aged past `maxAgeMs`, including approval-gated tasks, so stale work does not occupy queue capacity forever.
-Set `staleTaskPolicy.terminalStatus='cancelled'` to propagate cooperative `task_cancel` signals for stale dispatched tasks; use `'timed_out'` for local fail-closed expiry.
-`cancelTask(taskId, options)` provides explicit cooperative cancellation for stale/superseded work and emits a best-effort cancellation signal (`task_cancel`) to workers after a task has been dispatched.
-
-Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`) and `x-ratelimit-reset`/`ratelimit-reset` hints in either delta-seconds or Unix epoch timestamp form.
-By default, these explicit server hints are honored as-is; set `maxRetryHintMs` if you want to impose an upper bound.
-Transient detection also recognizes retryable HTTP status signals (`408`, `425`, `429`, `500`, `502`, `503`, `504`) and retryable gRPC status signals (`DEADLINE_EXCEEDED`/`4`, `RESOURCE_EXHAUSTED`/`8`, `UNAVAILABLE`/`14`) when encoded in receipt reasons.
-Transient receipt reasons may also include gRPC pushback hints via `grpc-retry-pushback-ms`; non-negative values override retry delay, and negative values disable retries for that rejection.
-When `retryJitter` is set to `decorrelated`, retries use decorrelated jitter to reduce retry synchronization across many agents; explicit `Retry-After` hints are still honored exactly.
-Set `overallTimeoutMs` to enforce an end-to-end deadline across dispatch, receipt waits, and retries; retry hints are capped to the remaining budget and stale tasks fail closed once the overall deadline is exceeded.
+Retry behavior notes:
+- Retries now use truncated exponential backoff with optional full jitter to reduce synchronized retry spikes.
+- Transient worker rejections (`overloaded`, `rate_limit`, `retry_after`, or `etaMs`) are scheduled for retry instead of being terminally rejected when retry budget remains.
+- If a worker includes `etaMs` on a rejected receipt, the orchestrator honors that as the retry delay hint.
 
 Safety policy integration:
 ```js
