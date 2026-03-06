@@ -83,6 +83,36 @@ function extractRequiredCapabilities(taskRequest) {
     return normalizeCapabilities(required);
 }
 
+function normalizeRoutingPolicy(options = {}) {
+    const policy = options?.routingPolicy && typeof options.routingPolicy === 'object'
+        ? options.routingPolicy
+        : options;
+    return {
+        minSamplesForReliability: resolvePositiveOption(policy.minSamplesForReliability, 3),
+        latencyPenaltyStartMs: resolvePositiveOption(policy.latencyPenaltyStartMs, 1_500),
+        latencyPenaltyCapMs: resolvePositiveOption(policy.latencyPenaltyCapMs, 15_000),
+        overloadThreshold: resolveUnitIntervalOption(policy.overloadThreshold, 0.92)
+    };
+}
+
+function normalizeRoutingHints(agent) {
+    const hints = agent?.routingHints && typeof agent.routingHints === 'object'
+        ? agent.routingHints
+        : {};
+    const successRate = safeNumber(hints.successRate, 1);
+    const attempts = safeNumber(hints.attempts, 0);
+    const consecutiveFailures = safeNumber(hints.consecutiveFailures, 0);
+    const cooldownUntilMs = safeNumber(hints.cooldownUntilMs, 0);
+    const ewmaLatencyMs = safeNumber(hints.ewmaLatencyMs, null);
+    return {
+        successRate: clamp(successRate, 0, 1),
+        attempts: Math.max(0, attempts),
+        consecutiveFailures: Math.max(0, consecutiveFailures),
+        cooldownUntilMs: Math.max(0, cooldownUntilMs),
+        ewmaLatencyMs: Number.isFinite(ewmaLatencyMs) ? Math.max(0, ewmaLatencyMs) : null
+    };
+}
+
 function normalizeFallbackReason(value) {
     if (typeof value !== 'string') return null;
     const normalized = value.trim().toLowerCase();
@@ -841,6 +871,30 @@ function scoreAgent(taskRequest, agent, context) {
     const load = Number.isFinite(Number(agent.load))
         ? Math.max(0, Math.min(1, Number(agent.load)))
         : 0.5;
+    const routingPolicy = context.routingPolicy;
+    const priority = normalizePriority(taskRequest.priority);
+    if (priority !== 'critical' && load >= routingPolicy.overloadThreshold) {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: 'load_shed',
+            missingCapabilities: [],
+            benchmarkConfidence: 0,
+            timeoutPressurePenalty: 0
+        };
+    }
+
+    const routingHints = normalizeRoutingHints(agent);
+    if (context.nowMs < routingHints.cooldownUntilMs) {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: 'circuit_open',
+            missingCapabilities: [],
+            benchmarkConfidence: 0,
+            timeoutPressurePenalty: 0
+        };
+    }
 
     const capabilities = normalizeCapabilities(agent.capabilities);
     const requiredCapabilities = extractRequiredCapabilities(taskRequest);
@@ -856,7 +910,6 @@ function scoreAgent(taskRequest, agent, context) {
         };
     }
 
-    const priority = normalizePriority(taskRequest.priority);
     const benchmarkStats = resolveBenchmarkStats(agent, context);
     const benchmark = scoreBenchmark(benchmarkStats, context);
     const reliabilityPenalty = scoreReliabilityPenalty(benchmarkStats, context);
@@ -926,6 +979,24 @@ function scoreAgent(taskRequest, agent, context) {
 
     score += benchmark.adjustment;
 
+    if (routingHints.attempts >= routingPolicy.minSamplesForReliability) {
+        score += (routingHints.successRate - 0.5) * 40;
+    }
+
+    if (routingHints.consecutiveFailures > 0) {
+        score -= Math.min(30, routingHints.consecutiveFailures * 8);
+    }
+
+    if (Number.isFinite(routingHints.ewmaLatencyMs) && routingHints.ewmaLatencyMs > routingPolicy.latencyPenaltyStartMs) {
+        const penaltyRange = Math.max(1, routingPolicy.latencyPenaltyCapMs - routingPolicy.latencyPenaltyStartMs);
+        const normalizedLatencyPenalty = clamp(
+            (routingHints.ewmaLatencyMs - routingPolicy.latencyPenaltyStartMs) / penaltyRange,
+            0,
+            1
+        );
+        score -= normalizedLatencyPenalty * 20;
+    }
+
     return {
         eligible: true,
         score: Number(score.toFixed(4)),
@@ -938,7 +1009,8 @@ function scoreAgent(taskRequest, agent, context) {
         missingHeartbeatPriorityPenalty,
         reliabilityPenalty,
         timeoutPressurePenalty,
-        heartbeatStalenessMs: heartbeat.stalenessMs
+        heartbeatStalenessMs: heartbeat.stalenessMs,
+        routingHints
     };
 }
 
@@ -1019,7 +1091,8 @@ function buildScoringContext(options = {}) {
         p95TimeoutPressureExponent: resolvePositiveOption(
             options.p95TimeoutPressureExponent,
             DEFAULT_P95_TIMEOUT_PRESSURE_EXPONENT
-        )
+        ),
+        routingPolicy: normalizeRoutingPolicy(options)
     };
 }
 
