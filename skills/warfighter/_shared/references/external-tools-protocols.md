@@ -74,6 +74,23 @@ Use profile selections that fit the mission domain:
 - Security assistance integration: partner readiness systems + logistics trackers + NATO APP-11/ADatP-3 + USMTF
 - Mega-city sustainment: urban logistics overlays + civil infrastructure feeds + OGC/CoT/API
 - Arctic corridor deconfliction: weather/ice data + maritime/air COP + AIS/NMEA + Link 16 + USMTF
+- Expeditionary advanced base operations: naval C2 + littoral ISR + sustainment COP + Link 16/CoT/USMTF
+- Strategic aerial refueling allocation: tanker planning systems + ATO tools + fuel dashboards + Link 16/USMTF/API
+- Personnel recovery coordination: PR C2 tools + authentication workflows + airspace planners + VMF/USMTF/Link 16
+- Contested biometrics identity ops: ABIS/identity tools + access-control logs + CI feeds + API/JSON/USMTF
+- Airbase passive defense and restoration: base defense COP + runway repair systems + sortie generators + CoT/USMTF/API
+- Long-range fires deconfliction: fires C2 + airspace control systems + no-strike validation tools + VMF/USMTF/Link 16
+- Expeditionary network transport: SATCOM/LOS planners + tactical network management + cyber telemetry + API/JSON/STIX
+- Contested aviation maintenance recovery: maintenance MIS + supply status + sortie scheduling + API/JSON/USMTF
+- Under-ice submarine support: undersea mission tools + ice and ocean forecasts + acoustic tracking + Link 16/USMTF/AIS
+- Human-machine teaming robotics: UxS mission managers + command COP + safety telemetry + CoT/API/USMTF
+- Denied-terrain CASEVAC integration: med regulation systems + UxS control + route-risk tools + USMTF/API/HL7
+- Foreign disclosure and releasability: disclosure workflow systems + coalition release ledgers + NATO APP-11/USMTF
+- Electronic protection frequency management: spectrum planning tools + EW consoles + signal intelligence feeds + Link 16/API/USMTF
+- Launch range defense coordination: SDA warning + range security systems + cyber defense telemetry + API/JSON/USMTF
+- Strategic aeromedical flow: patient movement systems + bed management + airlift scheduling + USMTF/HL7/API
+- Maritime convoy and sea-lane defense: fleet C2 + AIS + ASW feeds + Link 16/AIS/USMTF
+- Counter-space electronic attack response: SATCOM monitoring + EW indicators + network defense tools + API/JSON/USMTF/STIX
 
 ## Integration Interfaces and Transports
 
@@ -104,3 +121,4 @@ Include these fields in outputs when tool integration is used:
 - Confidence and known gaps
 - Classification/handling caveat placeholder (unclassified by default unless user specifies)
 - Tool Invocation Packet fields for each critical tool dependency
+- Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback

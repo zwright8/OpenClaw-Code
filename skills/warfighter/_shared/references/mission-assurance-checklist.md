@@ -50,9 +50,16 @@ Use this checklist before delivering any mission recommendation.
 - `Known gaps:`
 - `Fallback if tool unavailable:`
 - `Classification/Handling:`
+- `Escalation hooks (trigger/owner/format/fallback):`
 
 ## 7) Machine-Readable Handoff Quality
 
 - Validate the handoff block includes: `mission_id`, `decision_window_utc`, `recommendation_id`, `option_rank`, and `confidence`.
 - Confirm each staff action has `owner`, `action`, and `due_utc` fields populated.
 - Confirm degraded-mode output explicitly states fallback tools, expected delay, and confidence penalty.
+
+## 8) Cross-Domain Escalation Coverage
+
+- Confirm at least two adjacent cells are identified for escalation based on mission risk thresholds.
+- Confirm each escalation trigger is measurable and includes an owner plus required report format.
+- Confirm each escalation path has a no-fail comms fallback and expected delay annotation.

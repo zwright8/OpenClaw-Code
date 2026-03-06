@@ -59,6 +59,12 @@ Primary products for this skill: humanitarian corridor control plan, movement de
 - Structure tasking entries as `owner`, `action`, `due_utc`, `status`, and `dependency` to enable direct ingestion by workflow systems.
 - Include an explicit `degraded_mode` object listing fallback tools, expected delay, and confidence penalty when integrations fail.
 
+## Cross-Domain Escalation Hooks
+
+- Identify at least two adjacent cells or staff functions that must be notified when risk crosses thresholds (for example fires, intel, cyber, logistics, legal, coalition liaison).
+- Include escalation triggers in measurable terms and map each trigger to an owner and required report format.
+- Provide a no-fail communication fallback for each escalation path (alternate network, voice relay, or courier) with expected delay.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.

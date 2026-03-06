@@ -4,9 +4,10 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 150
+- Total warfighter skills in this repo: 175
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
+- All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
 
 ## Domain Coverage Matrix
 
@@ -110,3 +111,31 @@ Every skill output should include:
 - contested-medical-telemetry-and-remote-triage
 - seabed-surveillance-and-maritime-chokepoint-monitor
 - strategic-cyber-effects-deconfliction-cell
+
+## New Expansion Wave (2026-03-06, Full-Spectrum Operations Expansion)
+
+- expeditionary-advanced-base-operations-cell
+- strategic-aerial-refueling-allocation-cell
+- joint-personnel-recovery-isolation-coordination-cell
+- contested-biometrics-identity-management-cell
+- integrated-airbase-passive-defense-cell
+- long-range-precision-fires-deconfliction-cell
+- expeditionary-fiber-and-line-of-sight-network-planner
+- contested-aviation-maintenance-recovery-cell
+- aerial-port-contested-throughput-manager
+- under-ice-submarine-operations-support
+- tactical-human-machine-teaming-robotics-cell
+- denied-terrain-casualty-evacuation-uncrewed-integration
+- foreign-disclosure-and-releasability-governance-cell
+- joint-electronic-protection-frequency-management-cell
+- space-launch-range-defense-coordination-cell
+- strategic-aeromedical-evacuation-flow-manager
+- military-working-dog-mission-employment-cell
+- electromagnetic-battle-damage-assessment-cell
+- expeditionary-bulk-fuel-terminal-defense-cell
+- critical-infrastructure-civil-grid-restoration-support
+- theater-reserve-stock-and-prepositioned-set-integrator
+- joint-forcible-entry-airborne-assault-cell
+- high-altitude-platform-isr-integration-cell
+- maritime-convoy-escort-and-sea-lane-defense-cell
+- counter-space-electronic-attack-response-cell

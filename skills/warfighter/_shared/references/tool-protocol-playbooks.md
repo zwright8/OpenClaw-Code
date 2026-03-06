@@ -13,6 +13,16 @@ For each external system action, provide:
 - Transport: delivery format and path (`USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`, `API/JSON`)
 - Failure mode: fallback procedure, expected delay, and confidence degradation
 
+## Standard Escalation Packet
+
+For each cross-domain escalation, provide:
+
+- Trigger: measurable threshold or event condition
+- Receiving cell: owning cell or staff function responsible for response
+- Report format: message format (`USMTF`, `VMF`, `CoT`, `STIX/TAXII`, or approved local format)
+- Delivery path: primary and alternate transport route
+- No-fail fallback: voice/courier/manual relay with expected delay
+
 ## Domain Playbooks
 
 ### Joint C2 and Battle Rhythm
@@ -38,6 +48,24 @@ For each external system action, provide:
 - Primary systems: afloat C2 suites, AIS feeds, mine/ASW mission systems
 - Action pattern: fuse track picture, evaluate chokepoint risk, publish maritime control measures
 - Protocol baseline: `AIS/NMEA`, `Link 16 J-series`, `USMTF`
+
+### Space, Launch, and Counter-Space Response
+
+- Primary systems: SDA catalogs, SATCOM monitors, launch range defense boards, EW interference telemetry
+- Action pattern: detect attack/interference indicators, triage impacted services, issue restoration and protection tasks
+- Protocol baseline: `API/JSON`, `USMTF`, `STIX/TAXII`, `Link 16 J-series` where applicable
+
+### Personnel Recovery and Aeromedical Flow
+
+- Primary systems: PR coordination tools, patient movement systems, bed and lift planners
+- Action pattern: authenticate isolated personnel/casualties, prioritize movement windows, synchronize recovery and treatment flow
+- Protocol baseline: `USMTF`, `VMF`, `HL7/FHIR` where available
+
+### Airbase and Expeditionary Basing Resilience
+
+- Primary systems: base defense COP, runway restoration trackers, logistics and engineering readiness tools
+- Action pattern: posture passive defenses, sequence restoration actions, trigger displacement and sustainment branches
+- Protocol baseline: `USMTF`, `CoT`, `API/JSON`
 
 ### Cyber, EMSO, and Information Operations
 
