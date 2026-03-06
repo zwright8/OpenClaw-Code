@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1880,
+  "name": "warehouse-robotics-budget-guardrail",
+  "title": "Warehouse Robotics Budget Guardrail",
+  "description": "Design and run warehouse robotics workflows with budget guardrail controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7275,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01880-warehouse-robotics-budget-guardrail/SKILL.md",
+    "entrypoint": "agent02/01880-warehouse-robotics-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics budget guardrail",
+    "warehouse robotics budget guardrail workflow",
+    "warehouse robotics budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

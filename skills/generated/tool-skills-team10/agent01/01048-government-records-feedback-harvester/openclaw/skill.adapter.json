@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1048,
+  "name": "government-records-feedback-harvester",
+  "title": "Government Records Feedback Harvester",
+  "description": "Design and run government records workflows with feedback harvester controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7178,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01048-government-records-feedback-harvester/SKILL.md",
+    "entrypoint": "agent01/01048-government-records-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "government records feedback harvester",
+    "government records feedback harvester workflow",
+    "government records feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

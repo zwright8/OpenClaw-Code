@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9421,
+  "name": "predictive-maintenance-snapshot-manager",
+  "title": "Predictive Maintenance Snapshot Manager",
+  "description": "Design and run predictive maintenance workflows with snapshot manager controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7600,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09421-predictive-maintenance-snapshot-manager/SKILL.md",
+    "entrypoint": "agent08/09421-predictive-maintenance-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance snapshot manager",
+    "predictive maintenance snapshot manager workflow",
+    "predictive maintenance snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

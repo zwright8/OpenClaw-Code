@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3615,
+  "name": "revops-systems-queue-balancer",
+  "title": "RevOps Systems Queue Balancer",
+  "description": "Design and run revops systems workflows with queue balancer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9232,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03615-revops-systems-queue-balancer/SKILL.md",
+    "entrypoint": "agent03/03615-revops-systems-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revops systems queue balancer",
+    "revops systems queue balancer workflow",
+    "revops systems queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

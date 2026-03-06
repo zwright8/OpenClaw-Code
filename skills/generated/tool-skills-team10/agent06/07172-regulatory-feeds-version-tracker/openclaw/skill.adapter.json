@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7172,
+  "name": "regulatory-feeds-version-tracker",
+  "title": "Regulatory Feeds Version Tracker",
+  "description": "Design and run regulatory feeds workflows with version tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10454,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07172-regulatory-feeds-version-tracker/SKILL.md",
+    "entrypoint": "agent06/07172-regulatory-feeds-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds version tracker",
+    "regulatory feeds version tracker workflow",
+    "regulatory feeds version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

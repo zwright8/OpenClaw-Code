@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1896,
+  "name": "warehouse-robotics-approval-orchestrator",
+  "title": "Warehouse Robotics Approval Orchestrator",
+  "description": "Design and run warehouse robotics workflows with approval orchestrator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5800,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01896-warehouse-robotics-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent02/01896-warehouse-robotics-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics approval orchestrator",
+    "warehouse robotics approval orchestrator workflow",
+    "warehouse robotics approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8176,
+  "name": "lab-robotics-anomaly-detector",
+  "title": "Lab Robotics Anomaly Detector",
+  "description": "Design and run lab robotics workflows with anomaly detector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5539,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08176-lab-robotics-anomaly-detector/SKILL.md",
+    "entrypoint": "agent07/08176-lab-robotics-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics anomaly detector",
+    "lab robotics anomaly detector workflow",
+    "lab robotics anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

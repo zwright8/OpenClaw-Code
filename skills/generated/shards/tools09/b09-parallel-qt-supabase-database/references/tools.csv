@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4231,pdsh,local-installable,"Efficient rsh-like utility, for using hosts in parallel",https://github.com/chaos/pdsh,GPL-2.0-or-later
+4233,qtscxml,local-installable,Provides functionality to create state machines from SCXML files,https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND (GPL-3.0-only WITH Qt-GPL-exception-1.0) AND BSD-3-Clause
+4234,gtranslator,local-installable,GNOME gettext PO file editor,https://wiki.gnome.org/Design/Apps/Translator,GPL-3.0-or-later
+4236,supabase-mcp-server,local-installable,MCP Server for Supabase,https://supabase.com/docs/guides/getting-started/mcp,MIT
+4237,pgxnclient,local-installable,Command-line client for the PostgreSQL Extension Network,https://pgxn.github.io/pgxnclient/,BSD-3-Clause
+4238,qtconnectivity,local-installable,Provides access to Bluetooth hardware,https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND BSD-3-Clause
+4241,cpr,local-installable,"C++ Requests, a spiritual port of Python Requests",https://docs.libcpr.org/,MIT
+4242,mjml,local-installable,JavaScript framework that makes responsive-email easy,https://mjml.io,MIT
+4243,dockerfmt,local-installable,Dockerfile format and parser. a modern dockfmt,https://github.com/reteps/dockerfmt,MIT
+4244,sloc,local-installable,Simple tool to count source lines of code,https://github.com/flosse/sloc,MIT
+4245,avro-cpp,local-installable,Data serialization system,https://avro.apache.org/,Apache-2.0
+4246,m1ddc,local-installable,Control external displays (USB-C/DisplayPort Alt Mode) using DDC/CI on M1 Macs,https://github.com/waydabber/m1ddc,MIT
+4247,zsv,local-installable,Tabular data swiss-army knife CLI,https://github.com/liquidaty/zsv,MIT
+4248,cpio,local-installable,Copies files into or out of a cpio or tar archive,https://www.gnu.org/software/cpio/,GPL-3.0-or-later
+4249,libshumate,local-installable,Shumate is a GTK toolkit providing widgets for embedded maps,https://gitlab.gnome.org/GNOME/libshumate,LGPL-2.1-or-later
+4250,pgsync,local-installable,Sync Postgres data between databases,https://github.com/ankane/pgsync,MIT
+4251,osm-pbf,local-installable,Tools related to PBF (an alternative to XML format),https://wiki.openstreetmap.org/wiki/PBF_Format,LGPL-3.0-or-later
+4252,jid,local-installable,Json incremental digger,https://github.com/simeji/jid,MIT
+4253,msc-generator,local-installable,Draws signalling charts from textual description,https://gitlab.com/msc-generator/msc-generator,AGPL-3.0-or-later
+4254,dotbot,local-installable,Tool that bootstraps your dotfiles,https://github.com/anishathalye/dotbot,MIT
+4255,moon-buggy,local-installable,Drive some car across the moon,https://www.seehuhn.de/programs/moon-buggy,GPL-2.0-or-later OR GPL-3.0-or-later
+4257,rhino,local-installable,JavaScript engine,https://mozilla.github.io/rhino/,MPL-2.0
+4258,docker-gen,local-installable,Generate files from docker container metadata,https://github.com/nginx-proxy/docker-gen,MIT
+4259,gitlint,local-installable,Linting for your git commit messages,https://jorisroovers.com/gitlint/,MIT
+4260,kondo,local-installable,Save disk space by cleaning non-essential files from software projects,https://github.com/tbillington/kondo,MIT
+4261,qtsensors,local-installable,Provides access to sensors via QML and C++ interfaces,https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND BSD-3-Clause

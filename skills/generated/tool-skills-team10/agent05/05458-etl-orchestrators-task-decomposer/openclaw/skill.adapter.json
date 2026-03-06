@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5458,
+  "name": "etl-orchestrators-task-decomposer",
+  "title": "ETL Orchestrators Task Decomposer",
+  "description": "Design and run etl orchestrators workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9818,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05458-etl-orchestrators-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/05458-etl-orchestrators-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators task decomposer",
+    "etl orchestrators task decomposer workflow",
+    "etl orchestrators task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

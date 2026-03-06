@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5237,
+  "name": "release-orchestration-compliance-mapper",
+  "title": "Release Orchestration Compliance Mapper",
+  "description": "Design and run release orchestration workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1836,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05237-release-orchestration-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/05237-release-orchestration-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration compliance mapper",
+    "release orchestration compliance mapper workflow",
+    "release orchestration compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10324,
+  "name": "kyc-pipelines-evidence-collector",
+  "title": "KYC Pipelines Evidence Collector",
+  "description": "Design and run kyc pipelines workflows with evidence collector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6560,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10324-kyc-pipelines-evidence-collector/SKILL.md",
+    "entrypoint": "agent08/10324-kyc-pipelines-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines evidence collector",
+    "kyc pipelines evidence collector workflow",
+    "kyc pipelines evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

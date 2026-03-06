@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 899,
+  "name": "playwright-approval-router",
+  "title": "Playwright Approval Router",
+  "description": "Routes Playwright-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12929,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00899-playwright-approval-router/SKILL.md",
+    "entrypoint": "agent01/00899-playwright-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "playwright approval router",
+    "playwright approval router workflow",
+    "playwright approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

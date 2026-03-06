@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3066,
+  "name": "treasury-management-state-reconciler",
+  "title": "Treasury Management State Reconciler",
+  "description": "Design and run treasury management workflows with state reconciler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4096,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03066-treasury-management-state-reconciler/SKILL.md",
+    "entrypoint": "agent03/03066-treasury-management-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "treasury management state reconciler",
+    "treasury management state reconciler workflow",
+    "treasury management state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

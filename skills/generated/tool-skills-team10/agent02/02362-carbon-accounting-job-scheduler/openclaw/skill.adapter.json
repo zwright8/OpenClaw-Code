@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2362,
+  "name": "carbon-accounting-job-scheduler",
+  "title": "Carbon Accounting Job Scheduler",
+  "description": "Design and run carbon accounting workflows with job scheduler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4914,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02362-carbon-accounting-job-scheduler/SKILL.md",
+    "entrypoint": "agent02/02362-carbon-accounting-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting job scheduler",
+    "carbon accounting job scheduler workflow",
+    "carbon accounting job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

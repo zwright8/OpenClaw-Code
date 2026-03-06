@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6583,
+  "name": "order-management-reliability-scorer",
+  "title": "Order Management Reliability Scorer",
+  "description": "Design and run order management workflows with reliability scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10231,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06583-order-management-reliability-scorer/SKILL.md",
+    "entrypoint": "agent06/06583-order-management-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management reliability scorer",
+    "order management reliability scorer workflow",
+    "order management reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

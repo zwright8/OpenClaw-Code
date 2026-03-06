@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1203,
+  "name": "procurement-portals-permission-mapper",
+  "title": "Procurement Portals Permission Mapper",
+  "description": "Design and run procurement portals workflows with permission mapper controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 2289,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01203-procurement-portals-permission-mapper/SKILL.md",
+    "entrypoint": "agent01/01203-procurement-portals-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procurement portals permission mapper",
+    "procurement portals permission mapper workflow",
+    "procurement portals permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

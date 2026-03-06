@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6236,
+  "name": "archive-systems-risk-scorer",
+  "title": "Archive Systems Risk Scorer",
+  "description": "Design and run archive systems workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1598,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06236-archive-systems-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/06236-archive-systems-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "archive systems risk scorer",
+    "archive systems risk scorer workflow",
+    "archive systems risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

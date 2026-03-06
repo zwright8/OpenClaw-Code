@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2470,
+  "name": "environmental-sensors-migration-planner",
+  "title": "Environmental Sensors Migration Planner",
+  "description": "Design and run environmental sensors workflows with migration planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4519,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02470-environmental-sensors-migration-planner/SKILL.md",
+    "entrypoint": "agent02/02470-environmental-sensors-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors migration planner",
+    "environmental sensors migration planner workflow",
+    "environmental sensors migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

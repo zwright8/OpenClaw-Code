@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 393,
+  "name": "postmark-data-exporter",
+  "title": "Postmark Data Exporter",
+  "description": "Exports Postmark entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12610,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00393-postmark-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00393-postmark-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "postmark data exporter",
+    "postmark data exporter workflow",
+    "postmark data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4965,
+  "name": "synthetic-testing-queue-balancer",
+  "title": "Synthetic Testing Queue Balancer",
+  "description": "Design and run synthetic testing workflows with queue balancer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9673,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04965-synthetic-testing-queue-balancer/SKILL.md",
+    "entrypoint": "agent04/04965-synthetic-testing-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic testing queue balancer",
+    "synthetic testing queue balancer workflow",
+    "synthetic testing queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

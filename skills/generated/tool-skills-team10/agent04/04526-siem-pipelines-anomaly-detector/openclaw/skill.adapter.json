@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4526,
+  "name": "siem-pipelines-anomaly-detector",
+  "title": "SIEM Pipelines Anomaly Detector",
+  "description": "Design and run siem pipelines workflows with anomaly detector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5411,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04526-siem-pipelines-anomaly-detector/SKILL.md",
+    "entrypoint": "agent04/04526-siem-pipelines-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "siem pipelines anomaly detector",
+    "siem pipelines anomaly detector workflow",
+    "siem pipelines anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

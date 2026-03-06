@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3813,
+  "name": "ad-platforms-retry-governor",
+  "title": "Ad Platforms Retry Governor",
+  "description": "Design and run ad platforms workflows with retry governor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5952,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03813-ad-platforms-retry-governor/SKILL.md",
+    "entrypoint": "agent03/03813-ad-platforms-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ad platforms retry governor",
+    "ad platforms retry governor workflow",
+    "ad platforms retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

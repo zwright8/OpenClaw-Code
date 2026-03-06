@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4637,
+  "name": "threat-intel-feeds-compliance-mapper",
+  "title": "Threat Intel Feeds Compliance Mapper",
+  "description": "Design and run threat intel feeds workflows with compliance mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1821,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04637-threat-intel-feeds-compliance-mapper/SKILL.md",
+    "entrypoint": "agent04/04637-threat-intel-feeds-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds compliance mapper",
+    "threat intel feeds compliance mapper workflow",
+    "threat intel feeds compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

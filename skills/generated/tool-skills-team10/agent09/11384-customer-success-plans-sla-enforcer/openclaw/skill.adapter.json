@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11384,
+  "name": "customer-success-plans-sla-enforcer",
+  "title": "Customer Success Plans SLA Enforcer",
+  "description": "Design and run customer success plans workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11954,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11384-customer-success-plans-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/11384-customer-success-plans-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans sla enforcer",
+    "customer success plans sla enforcer workflow",
+    "customer success plans sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

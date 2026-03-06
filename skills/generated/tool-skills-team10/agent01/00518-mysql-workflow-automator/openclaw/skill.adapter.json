@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 518,
+  "name": "mysql-workflow-automator",
+  "title": "MySQL Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using MySQL.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7905,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00518-mysql-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00518-mysql-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mysql workflow automator",
+    "mysql workflow automator workflow",
+    "mysql workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

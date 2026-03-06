@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1485,
+  "name": "insurance-claims-policy-evaluator",
+  "title": "Insurance Claims Policy Evaluator",
+  "description": "Design and run insurance claims workflows with policy evaluator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2006,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01485-insurance-claims-policy-evaluator/SKILL.md",
+    "entrypoint": "agent02/01485-insurance-claims-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims policy evaluator",
+    "insurance claims policy evaluator workflow",
+    "insurance claims policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

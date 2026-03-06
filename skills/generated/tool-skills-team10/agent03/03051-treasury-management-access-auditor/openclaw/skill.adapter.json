@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3051,
+  "name": "treasury-management-access-auditor",
+  "title": "Treasury Management Access Auditor",
+  "description": "Design and run treasury management workflows with access auditor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9018,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03051-treasury-management-access-auditor/SKILL.md",
+    "entrypoint": "agent03/03051-treasury-management-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "treasury management access auditor",
+    "treasury management access auditor workflow",
+    "treasury management access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

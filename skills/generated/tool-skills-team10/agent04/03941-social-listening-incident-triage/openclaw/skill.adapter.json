@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3941,
+  "name": "social-listening-incident-triage",
+  "title": "Social Listening Incident Triage",
+  "description": "Design and run social listening workflows with incident triage controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2068,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/03941-social-listening-incident-triage/SKILL.md",
+    "entrypoint": "agent04/03941-social-listening-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening incident triage",
+    "social listening incident triage workflow",
+    "social listening incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

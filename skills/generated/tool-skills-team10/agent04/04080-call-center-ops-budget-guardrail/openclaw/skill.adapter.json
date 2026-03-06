@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4080,
+  "name": "call-center-ops-budget-guardrail",
+  "title": "Call Center Ops Budget Guardrail",
+  "description": "Design and run call center ops workflows with budget guardrail controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7398,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04080-call-center-ops-budget-guardrail/SKILL.md",
+    "entrypoint": "agent04/04080-call-center-ops-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "call center ops budget guardrail",
+    "call center ops budget guardrail workflow",
+    "call center ops budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

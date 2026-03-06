@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6533,
+  "name": "ecommerce-catalogs-reliability-scorer",
+  "title": "Ecommerce Catalogs Reliability Scorer",
+  "description": "Design and run ecommerce catalogs workflows with reliability scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 8009,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06533-ecommerce-catalogs-reliability-scorer/SKILL.md",
+    "entrypoint": "agent06/06533-ecommerce-catalogs-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs reliability scorer",
+    "ecommerce catalogs reliability scorer workflow",
+    "ecommerce catalogs reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

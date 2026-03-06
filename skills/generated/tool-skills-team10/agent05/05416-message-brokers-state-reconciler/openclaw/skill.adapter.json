@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5416,
+  "name": "message-brokers-state-reconciler",
+  "title": "Message Brokers State Reconciler",
+  "description": "Design and run message brokers workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4182,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05416-message-brokers-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05416-message-brokers-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers state reconciler",
+    "message brokers state reconciler workflow",
+    "message brokers state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

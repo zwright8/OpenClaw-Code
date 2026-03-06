@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6091,
+  "name": "contract-repositories-incident-triage",
+  "title": "Contract Repositories Incident Triage",
+  "description": "Design and run contract repositories workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2129,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06091-contract-repositories-incident-triage/SKILL.md",
+    "entrypoint": "agent05/06091-contract-repositories-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "contract repositories incident triage",
+    "contract repositories incident triage workflow",
+    "contract repositories incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 269,
+  "name": "stripe-approval-router",
+  "title": "Stripe Approval Router",
+  "description": "Routes Stripe-driven decisions to the right approvers.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0269-stripe-approval-router/SKILL.md",
+    "entrypoint": "agent03/0269-stripe-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "stripe approval router",
+    "stripe approval router workflow",
+    "stripe approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0269-stripe-approval-router"
+  }
+}

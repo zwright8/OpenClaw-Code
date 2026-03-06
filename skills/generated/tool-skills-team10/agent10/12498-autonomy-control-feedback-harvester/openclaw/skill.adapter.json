@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12498,
+  "name": "autonomy-control-feedback-harvester",
+  "title": "Autonomy Control Feedback Harvester",
+  "description": "Design and run autonomy control workflows with feedback harvester controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12356,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12498-autonomy-control-feedback-harvester/SKILL.md",
+    "entrypoint": "agent10/12498-autonomy-control-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control feedback harvester",
+    "autonomy control feedback harvester workflow",
+    "autonomy control feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

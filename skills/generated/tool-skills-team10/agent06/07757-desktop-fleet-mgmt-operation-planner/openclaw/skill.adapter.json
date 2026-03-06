@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7757,
+  "name": "desktop-fleet-mgmt-operation-planner",
+  "title": "Desktop Fleet Mgmt Operation Planner",
+  "description": "Design and run desktop fleet mgmt workflows with operation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10678,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07757-desktop-fleet-mgmt-operation-planner/SKILL.md",
+    "entrypoint": "agent06/07757-desktop-fleet-mgmt-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "desktop fleet mgmt operation planner",
+    "desktop fleet mgmt operation planner workflow",
+    "desktop fleet mgmt operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

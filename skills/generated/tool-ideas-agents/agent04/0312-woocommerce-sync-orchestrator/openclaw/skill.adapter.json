@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 312,
+  "name": "woocommerce-sync-orchestrator",
+  "title": "WooCommerce Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for WooCommerce records.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0312-woocommerce-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent04/0312-woocommerce-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "woocommerce sync orchestrator",
+    "woocommerce sync orchestrator workflow",
+    "woocommerce sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0312-woocommerce-sync-orchestrator"
+  }
+}

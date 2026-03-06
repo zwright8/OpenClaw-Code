@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9766,
+  "name": "community-forums-state-reconciler",
+  "title": "Community Forums State Reconciler",
+  "description": "Design and run community forums workflows with state reconciler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4353,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09766-community-forums-state-reconciler/SKILL.md",
+    "entrypoint": "agent08/09766-community-forums-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums state reconciler",
+    "community forums state reconciler workflow",
+    "community forums state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

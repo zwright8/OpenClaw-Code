@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6656,
+  "name": "returns-processing-api-contract-validator",
+  "title": "Returns Processing API Contract Validator",
+  "description": "Design and run returns processing workflows with api contract validator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 163,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent06/06656-returns-processing-api-contract-validator/SKILL.md",
+    "entrypoint": "agent06/06656-returns-processing-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "returns processing api contract validator",
+    "returns processing api contract validator workflow",
+    "returns processing api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

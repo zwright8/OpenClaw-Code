@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8915,
+  "name": "policy-drafting-queue-balancer",
+  "title": "Policy Drafting Queue Balancer",
+  "description": "Design and run policy drafting workflows with queue balancer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11101,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08915-policy-drafting-queue-balancer/SKILL.md",
+    "entrypoint": "agent07/08915-policy-drafting-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy drafting queue balancer",
+    "policy drafting queue balancer workflow",
+    "policy drafting queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

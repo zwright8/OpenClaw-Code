@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4274,
+  "name": "identity-providers-evidence-collector",
+  "title": "Identity Providers Evidence Collector",
+  "description": "Design and run identity providers workflows with evidence collector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2377,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04274-identity-providers-evidence-collector/SKILL.md",
+    "entrypoint": "agent04/04274-identity-providers-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers evidence collector",
+    "identity providers evidence collector workflow",
+    "identity providers evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

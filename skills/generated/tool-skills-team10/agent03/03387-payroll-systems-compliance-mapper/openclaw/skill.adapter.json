@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3387,
+  "name": "payroll-systems-compliance-mapper",
+  "title": "Payroll Systems Compliance Mapper",
+  "description": "Design and run payroll systems workflows with compliance mapper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1795,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03387-payroll-systems-compliance-mapper/SKILL.md",
+    "entrypoint": "agent03/03387-payroll-systems-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems compliance mapper",
+    "payroll systems compliance mapper workflow",
+    "payroll systems compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

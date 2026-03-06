@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5587,
+  "name": "metadata-stores-compliance-mapper",
+  "title": "Metadata Stores Compliance Mapper",
+  "description": "Design and run metadata stores workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1842,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05587-metadata-stores-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/05587-metadata-stores-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores compliance mapper",
+    "metadata stores compliance mapper workflow",
+    "metadata stores compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

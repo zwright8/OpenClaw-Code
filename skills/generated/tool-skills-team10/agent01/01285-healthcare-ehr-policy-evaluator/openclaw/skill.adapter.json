@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1285,
+  "name": "healthcare-ehr-policy-evaluator",
+  "title": "Healthcare EHR Policy Evaluator",
+  "description": "Design and run healthcare ehr workflows with policy evaluator controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 1743,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01285-healthcare-ehr-policy-evaluator/SKILL.md",
+    "entrypoint": "agent01/01285-healthcare-ehr-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr policy evaluator",
+    "healthcare ehr policy evaluator workflow",
+    "healthcare ehr policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

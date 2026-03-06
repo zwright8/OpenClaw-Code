@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7348,
+  "name": "survey-systems-feedback-harvester",
+  "title": "Survey Systems Feedback Harvester",
+  "description": "Design and run survey systems workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10508,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07348-survey-systems-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/07348-survey-systems-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems feedback harvester",
+    "survey systems feedback harvester workflow",
+    "survey systems feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

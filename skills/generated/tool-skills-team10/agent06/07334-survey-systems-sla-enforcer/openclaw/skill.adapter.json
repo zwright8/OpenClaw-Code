@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7334,
+  "name": "survey-systems-sla-enforcer",
+  "title": "Survey Systems SLA Enforcer",
+  "description": "Design and run survey systems workflows with sla enforcer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10505,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07334-survey-systems-sla-enforcer/SKILL.md",
+    "entrypoint": "agent06/07334-survey-systems-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems sla enforcer",
+    "survey systems sla enforcer workflow",
+    "survey systems sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

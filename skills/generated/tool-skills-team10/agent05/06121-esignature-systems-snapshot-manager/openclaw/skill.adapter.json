@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6121,
+  "name": "esignature-systems-snapshot-manager",
+  "title": "eSignature Systems Snapshot Manager",
+  "description": "Design and run esignature systems workflows with snapshot manager controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10075,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06121-esignature-systems-snapshot-manager/SKILL.md",
+    "entrypoint": "agent05/06121-esignature-systems-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems snapshot manager",
+    "esignature systems snapshot manager workflow",
+    "esignature systems snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

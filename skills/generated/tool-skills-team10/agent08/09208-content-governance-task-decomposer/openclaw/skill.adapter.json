@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9208,
+  "name": "content-governance-task-decomposer",
+  "title": "Content Governance Task Decomposer",
+  "description": "Design and run content governance workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11204,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09208-content-governance-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/09208-content-governance-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "content governance task decomposer",
+    "content governance task decomposer workflow",
+    "content governance task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

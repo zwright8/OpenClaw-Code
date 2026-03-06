@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5235,
+  "name": "release-orchestration-policy-evaluator",
+  "title": "Release Orchestration Policy Evaluator",
+  "description": "Design and run release orchestration workflows with policy evaluator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3423,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05235-release-orchestration-policy-evaluator/SKILL.md",
+    "entrypoint": "agent05/05235-release-orchestration-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration policy evaluator",
+    "release orchestration policy evaluator workflow",
+    "release orchestration policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

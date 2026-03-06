@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1550,
+  "name": "education-lms-outcome-synthesizer",
+  "title": "Education LMS Outcome Synthesizer",
+  "description": "Design and run education lms workflows with outcome synthesizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4485,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01550-education-lms-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent02/01550-education-lms-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms outcome synthesizer",
+    "education lms outcome synthesizer workflow",
+    "education lms outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

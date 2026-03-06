@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5375,
+  "name": "event-streams-provenance-tracker",
+  "title": "Event Streams Provenance Tracker",
+  "description": "Design and run event streams workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9784,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05375-event-streams-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05375-event-streams-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams provenance tracker",
+    "event streams provenance tracker workflow",
+    "event streams provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

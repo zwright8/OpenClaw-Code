@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11132,
+  "name": "b2b-portals-latency-analyzer",
+  "title": "B2B Portals Latency Analyzer",
+  "description": "Design and run b2b portals workflows with latency analyzer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11847,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11132-b2b-portals-latency-analyzer/SKILL.md",
+    "entrypoint": "agent09/11132-b2b-portals-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals latency analyzer",
+    "b2b portals latency analyzer workflow",
+    "b2b portals latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

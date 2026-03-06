@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7010,
+  "name": "open-source-intelligence-workflow-compiler",
+  "title": "Open Source Intelligence Workflow Compiler",
+  "description": "Design and run open source intelligence workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1131,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07010-open-source-intelligence-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/07010-open-source-intelligence-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence workflow compiler",
+    "open source intelligence workflow compiler workflow",
+    "open source intelligence workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

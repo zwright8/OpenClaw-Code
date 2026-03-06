@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10434,
+  "name": "document-verification-sla-enforcer",
+  "title": "Document Verification SLA Enforcer",
+  "description": "Design and run document verification workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11618,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10434-document-verification-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/10434-document-verification-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification sla enforcer",
+    "document verification sla enforcer workflow",
+    "document verification sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

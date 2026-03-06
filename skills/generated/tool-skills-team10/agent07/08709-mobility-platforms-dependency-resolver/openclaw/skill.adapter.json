@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8709,
+  "name": "mobility-platforms-dependency-resolver",
+  "title": "Mobility Platforms Dependency Resolver",
+  "description": "Design and run mobility platforms workflows with dependency resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11037,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08709-mobility-platforms-dependency-resolver/SKILL.md",
+    "entrypoint": "agent07/08709-mobility-platforms-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobility platforms dependency resolver",
+    "mobility platforms dependency resolver workflow",
+    "mobility platforms dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

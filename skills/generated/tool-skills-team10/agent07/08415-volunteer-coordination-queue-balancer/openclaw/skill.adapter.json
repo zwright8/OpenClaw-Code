@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8415,
+  "name": "volunteer-coordination-queue-balancer",
+  "title": "Volunteer Coordination Queue Balancer",
+  "description": "Design and run volunteer coordination workflows with queue balancer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10933,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08415-volunteer-coordination-queue-balancer/SKILL.md",
+    "entrypoint": "agent07/08415-volunteer-coordination-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination queue balancer",
+    "volunteer coordination queue balancer workflow",
+    "volunteer coordination queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 68,
+  "name": "confluence-workflow-automator",
+  "title": "Confluence Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Confluence.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0068-confluence-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/0068-confluence-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "confluence workflow automator",
+    "confluence workflow automator workflow",
+    "confluence workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0068-confluence-workflow-automator"
+  }
+}

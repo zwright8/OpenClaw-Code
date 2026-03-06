@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8710,
+  "name": "mobility-platforms-workflow-compiler",
+  "title": "Mobility Platforms Workflow Compiler",
+  "description": "Design and run mobility platforms workflows with workflow compiler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1164,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08710-mobility-platforms-workflow-compiler/SKILL.md",
+    "entrypoint": "agent07/08710-mobility-platforms-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobility platforms workflow compiler",
+    "mobility platforms workflow compiler workflow",
+    "mobility platforms workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7454,
+  "name": "behavior-analytics-schema-introspector",
+  "title": "Behavior Analytics Schema Introspector",
+  "description": "Design and run behavior analytics workflows with schema introspector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 664,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/07454-behavior-analytics-schema-introspector/SKILL.md",
+    "entrypoint": "agent06/07454-behavior-analytics-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics schema introspector",
+    "behavior analytics schema introspector workflow",
+    "behavior analytics schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

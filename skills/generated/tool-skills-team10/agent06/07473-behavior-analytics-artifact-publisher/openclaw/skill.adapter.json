@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7473,
+  "name": "behavior-analytics-artifact-publisher",
+  "title": "Behavior Analytics Artifact Publisher",
+  "description": "Design and run behavior analytics workflows with artifact publisher controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10560,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07473-behavior-analytics-artifact-publisher/SKILL.md",
+    "entrypoint": "agent06/07473-behavior-analytics-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics artifact publisher",
+    "behavior analytics artifact publisher workflow",
+    "behavior analytics artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

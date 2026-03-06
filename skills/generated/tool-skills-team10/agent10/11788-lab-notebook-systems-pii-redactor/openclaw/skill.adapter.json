@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11788,
+  "name": "lab-notebook-systems-pii-redactor",
+  "title": "Lab Notebook Systems PII Redactor",
+  "description": "Design and run lab notebook systems workflows with pii redactor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3922,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11788-lab-notebook-systems-pii-redactor/SKILL.md",
+    "entrypoint": "agent10/11788-lab-notebook-systems-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems pii redactor",
+    "lab notebook systems pii redactor workflow",
+    "lab notebook systems pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

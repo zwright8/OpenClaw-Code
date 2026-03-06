@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1313,
+  "name": "clinical-trial-systems-retry-governor",
+  "title": "Clinical Trial Systems Retry Governor",
+  "description": "Design and run clinical trial systems workflows with retry governor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5751,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01313-clinical-trial-systems-retry-governor/SKILL.md",
+    "entrypoint": "agent02/01313-clinical-trial-systems-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clinical trial systems retry governor",
+    "clinical trial systems retry governor workflow",
+    "clinical trial systems retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

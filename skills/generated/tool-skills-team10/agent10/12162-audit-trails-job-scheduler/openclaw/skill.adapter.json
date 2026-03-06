@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12162,
+  "name": "audit-trails-job-scheduler",
+  "title": "Audit Trails Job Scheduler",
+  "description": "Design and run audit trails workflows with job scheduler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2608,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12162-audit-trails-job-scheduler/SKILL.md",
+    "entrypoint": "agent10/12162-audit-trails-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails job scheduler",
+    "audit trails job scheduler workflow",
+    "audit trails job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11450,
+  "name": "qbr-automation-outcome-synthesizer",
+  "title": "QBR Automation Outcome Synthesizer",
+  "description": "Design and run qbr automation workflows with outcome synthesizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7139,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11450-qbr-automation-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent09/11450-qbr-automation-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation outcome synthesizer",
+    "qbr automation outcome synthesizer workflow",
+    "qbr automation outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

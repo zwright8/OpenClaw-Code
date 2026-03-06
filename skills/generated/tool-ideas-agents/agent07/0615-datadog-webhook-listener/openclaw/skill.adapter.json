@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 615,
+  "name": "datadog-webhook-listener",
+  "title": "Datadog Webhook Listener",
+  "description": "Captures, verifies, and routes Datadog webhook events.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0615-datadog-webhook-listener/SKILL.md",
+    "entrypoint": "agent07/0615-datadog-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "datadog webhook listener",
+    "datadog webhook listener workflow",
+    "datadog webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0615-datadog-webhook-listener"
+  }
+}

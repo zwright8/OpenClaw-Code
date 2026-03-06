@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7485,
+  "name": "behavior-analytics-policy-evaluator",
+  "title": "Behavior Analytics Policy Evaluator",
+  "description": "Design and run behavior analytics workflows with policy evaluator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3586,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07485-behavior-analytics-policy-evaluator/SKILL.md",
+    "entrypoint": "agent06/07485-behavior-analytics-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics policy evaluator",
+    "behavior analytics policy evaluator workflow",
+    "behavior analytics policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

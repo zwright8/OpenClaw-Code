@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5586,
+  "name": "metadata-stores-risk-scorer",
+  "title": "Metadata Stores Risk Scorer",
+  "description": "Design and run metadata stores workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1582,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05586-metadata-stores-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/05586-metadata-stores-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores risk scorer",
+    "metadata stores risk scorer workflow",
+    "metadata stores risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

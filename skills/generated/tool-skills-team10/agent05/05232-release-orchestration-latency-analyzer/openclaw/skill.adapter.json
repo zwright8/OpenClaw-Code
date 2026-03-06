@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5232,
+  "name": "release-orchestration-latency-analyzer",
+  "title": "Release Orchestration Latency Analyzer",
+  "description": "Design and run release orchestration workflows with latency analyzer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9747,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05232-release-orchestration-latency-analyzer/SKILL.md",
+    "entrypoint": "agent05/05232-release-orchestration-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration latency analyzer",
+    "release orchestration latency analyzer workflow",
+    "release orchestration latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

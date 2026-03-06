@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8646,
+  "name": "public-health-dashboards-approval-orchestrator",
+  "title": "Public Health Dashboards Approval Orchestrator",
+  "description": "Design and run public health dashboards workflows with approval orchestrator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4009,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08646-public-health-dashboards-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent07/08646-public-health-dashboards-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards approval orchestrator",
+    "public health dashboards approval orchestrator workflow",
+    "public health dashboards approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

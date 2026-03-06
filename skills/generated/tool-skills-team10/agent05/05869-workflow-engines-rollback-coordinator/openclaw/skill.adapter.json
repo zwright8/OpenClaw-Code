@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5869,
+  "name": "workflow-engines-rollback-coordinator",
+  "title": "Workflow Engines Rollback Coordinator",
+  "description": "Design and run workflow engines workflows with rollback coordinator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5029,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05869-workflow-engines-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent05/05869-workflow-engines-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines rollback coordinator",
+    "workflow engines rollback coordinator workflow",
+    "workflow engines rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

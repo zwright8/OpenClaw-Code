@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9850,
+  "name": "creator-platforms-outcome-synthesizer",
+  "title": "Creator Platforms Outcome Synthesizer",
+  "description": "Design and run creator platforms workflows with outcome synthesizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7091,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09850-creator-platforms-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent08/09850-creator-platforms-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms outcome synthesizer",
+    "creator platforms outcome synthesizer workflow",
+    "creator platforms outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

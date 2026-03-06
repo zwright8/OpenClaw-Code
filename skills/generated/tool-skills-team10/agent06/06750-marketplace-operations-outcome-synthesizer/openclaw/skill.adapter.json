@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6750,
+  "name": "marketplace-operations-outcome-synthesizer",
+  "title": "Marketplace Operations Outcome Synthesizer",
+  "description": "Design and run marketplace operations workflows with outcome synthesizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6996,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06750-marketplace-operations-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent06/06750-marketplace-operations-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketplace operations outcome synthesizer",
+    "marketplace operations outcome synthesizer workflow",
+    "marketplace operations outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4295,teller,local-installable,Secrets management tool for developers,https://github.com/tellerops/teller,Apache-2.0
+4296,shntool,local-installable,Multi-purpose tool for manipulating and analyzing WAV files,http://shnutils.freeshell.org/shntool/,GPL-2.0-or-later
+4297,qtcharts,local-installable,UI Components for displaying visually pleasing charts,https://www.qt.io/,GPL-3.0-only AND BSD-3-Clause
+4298,qtserialport,local-installable,Provides classes to interact with hardware and virtual serial ports,https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND BSD-3-Clause
+4299,moarvm,local-installable,"VM with adaptive optimization and JIT compilation, built for Rakudo",https://moarvm.org,Artistic-2.0
+4300,gnome-online-accounts,local-installable,Single sign-on framework for GNOME,https://gitlab.gnome.org/GNOME/gnome-online-accounts,LGPL-2.0-or-later
+4301,texi2html,local-installable,Convert TeXinfo files to HTML,https://www.nongnu.org/texi2html/,GPL-2.0-or-later
+4303,google-authenticator-libpam,local-installable,PAM module for two-factor authentication,https://github.com/google/google-authenticator-libpam,Apache-2.0
+4304,atool,local-installable,Archival front-end,https://savannah.nongnu.org/projects/atool/,GPL-2.0-or-later
+4305,pandocomatic,local-installable,Automate the use of pandoc,https://heerdebeer.org/Software/markdown/pandocomatic/,GPL-3.0-or-later
+4306,gl2ps,local-installable,OpenGL to PostScript printing library,https://www.geuz.org/gl2ps/,GL2PS
+4307,gnunet,local-installable,"Framework for distributed, secure and privacy-preserving applications",https://gnunet.org/,AGPL-3.0-or-later
+4308,libspelling,local-installable,Spellcheck library for GTK 4,https://gitlab.gnome.org/GNOME/libspelling,LGPL-2.1-or-later
+4309,qtspeech,local-installable,Enables access to text-to-speech engines,https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND BSD-3-Clause
+4310,libnatpmp,local-installable,NAT port mapping protocol library,https://miniupnp.tuxfamily.org/libnatpmp.html,BSD-3-Clause
+4311,markdown-toc,local-installable,Generate a markdown TOC (table of contents) with Remarkable,https://github.com/jonschlinkert/markdown-toc,MIT
+4312,docx2txt,local-installable,Converts Microsoft Office docx documents to equivalent text documents,https://docx2txt.sourceforge.net/,GPL-3.0-or-later
+4314,libcec,local-installable,Control devices with TV remote control and HDMI cabling,https://libcec.pulse-eight.com/,GPL-2.0-or-later
+4317,hfsutils,local-installable,Tools for reading and writing Macintosh volumes,https://www.mars.org/home/rob/proj/hfs/,GPL-2.0-or-later
+4318,airshare,local-installable,Cross-platform content sharing in a local network,https://airshare.readthedocs.io/,MIT
+4319,ortp,local-installable,"Real-time transport protocol (RTP, RFC3550) library",https://linphone.org/,AGPL-3.0-or-later AND GPL-3.0-or-later
+4320,kapp,local-installable,CLI tool for Kubernetes users to group and manage bulk resources,https://carvel.dev/kapp/,Apache-2.0
+4321,qtremoteobjects,local-installable,Provides APIs for inter-process communication,https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND (GPL-3.0-only WITH Qt-GPL-exception-1.0) AND BSD-3-Clause
+4322,iconsur,local-installable,macOS Big Sur Adaptive Icon Generator,https://github.com/rikumi/iconsur,MIT
+4323,kubergrunt,local-installable,"Collection of commands to fill in the gaps between Terraform, Helm, and Kubectl",https://github.com/gruntwork-io/kubergrunt,Apache-2.0
+4324,libolm,local-installable,Implementation of the Double Ratchet cryptographic ratchet,https://gitlab.matrix.org/matrix-org/olm,Apache-2.0

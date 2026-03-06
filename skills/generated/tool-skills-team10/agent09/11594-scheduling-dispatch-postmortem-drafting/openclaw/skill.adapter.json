@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11594,
+  "name": "scheduling-dispatch-postmortem-drafting",
+  "title": "Scheduling Dispatch Postmortem Drafting",
+  "description": "Design and run scheduling dispatch workflows with postmortem drafting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12039,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11594-scheduling-dispatch-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent09/11594-scheduling-dispatch-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch postmortem drafting",
+    "scheduling dispatch postmortem drafting workflow",
+    "scheduling dispatch postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

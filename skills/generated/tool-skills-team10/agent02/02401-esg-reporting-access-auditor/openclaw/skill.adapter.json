@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2401,
+  "name": "esg-reporting-access-auditor",
+  "title": "ESG Reporting Access Auditor",
+  "description": "Design and run esg reporting workflows with access auditor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8829,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02401-esg-reporting-access-auditor/SKILL.md",
+    "entrypoint": "agent02/02401-esg-reporting-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting access auditor",
+    "esg reporting access auditor workflow",
+    "esg reporting access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

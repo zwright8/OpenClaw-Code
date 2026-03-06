@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9241,
+  "name": "content-governance-incident-triage",
+  "title": "Content Governance Incident Triage",
+  "description": "Design and run content governance workflows with incident triage controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2194,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09241-content-governance-incident-triage/SKILL.md",
+    "entrypoint": "agent08/09241-content-governance-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "content governance incident triage",
+    "content governance incident triage workflow",
+    "content governance incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

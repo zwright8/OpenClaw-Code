@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11111,
+  "name": "b2b-portals-execution-runner",
+  "title": "B2B Portals Execution Runner",
+  "description": "Design and run b2b portals workflows with execution runner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1449,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11111-b2b-portals-execution-runner/SKILL.md",
+    "entrypoint": "agent09/11111-b2b-portals-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals execution runner",
+    "b2b portals execution runner workflow",
+    "b2b portals execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

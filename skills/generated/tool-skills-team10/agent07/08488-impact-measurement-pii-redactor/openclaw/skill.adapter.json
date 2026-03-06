@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8488,
+  "name": "impact-measurement-pii-redactor",
+  "title": "Impact Measurement PII Redactor",
+  "description": "Design and run impact measurement workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3665,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08488-impact-measurement-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/08488-impact-measurement-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement pii redactor",
+    "impact measurement pii redactor workflow",
+    "impact measurement pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

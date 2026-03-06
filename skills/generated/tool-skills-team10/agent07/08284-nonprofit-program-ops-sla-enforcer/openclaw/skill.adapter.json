@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8284,
+  "name": "nonprofit-program-ops-sla-enforcer",
+  "title": "Nonprofit Program Ops SLA Enforcer",
+  "description": "Design and run nonprofit program ops workflows with sla enforcer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7834,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08284-nonprofit-program-ops-sla-enforcer/SKILL.md",
+    "entrypoint": "agent07/08284-nonprofit-program-ops-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "nonprofit program ops sla enforcer",
+    "nonprofit program ops sla enforcer workflow",
+    "nonprofit program ops sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

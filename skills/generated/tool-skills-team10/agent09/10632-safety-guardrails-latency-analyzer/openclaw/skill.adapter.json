@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10632,
+  "name": "safety-guardrails-latency-analyzer",
+  "title": "Safety Guardrails Latency Analyzer",
+  "description": "Design and run safety guardrails workflows with latency analyzer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7671,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10632-safety-guardrails-latency-analyzer/SKILL.md",
+    "entrypoint": "agent09/10632-safety-guardrails-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails latency analyzer",
+    "safety guardrails latency analyzer workflow",
+    "safety guardrails latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

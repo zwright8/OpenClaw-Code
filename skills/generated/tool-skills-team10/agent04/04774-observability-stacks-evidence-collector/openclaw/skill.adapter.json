@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4774,
+  "name": "observability-stacks-evidence-collector",
+  "title": "Observability Stacks Evidence Collector",
+  "description": "Design and run observability stacks workflows with evidence collector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3385,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04774-observability-stacks-evidence-collector/SKILL.md",
+    "entrypoint": "agent04/04774-observability-stacks-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks evidence collector",
+    "observability stacks evidence collector workflow",
+    "observability stacks evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

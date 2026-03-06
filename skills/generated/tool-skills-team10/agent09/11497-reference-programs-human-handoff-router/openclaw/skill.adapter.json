@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11497,
+  "name": "reference-programs-human-handoff-router",
+  "title": "Reference Programs Human Handoff Router",
+  "description": "Design and run reference programs workflows with human handoff router controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11998,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11497-reference-programs-human-handoff-router/SKILL.md",
+    "entrypoint": "agent09/11497-reference-programs-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs human handoff router",
+    "reference programs human handoff router workflow",
+    "reference programs human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

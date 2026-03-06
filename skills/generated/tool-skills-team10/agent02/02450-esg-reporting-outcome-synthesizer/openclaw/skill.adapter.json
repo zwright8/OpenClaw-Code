@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2450,
+  "name": "esg-reporting-outcome-synthesizer",
+  "title": "ESG Reporting Outcome Synthesizer",
+  "description": "Design and run esg reporting workflows with outcome synthesizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 6843,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02450-esg-reporting-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent02/02450-esg-reporting-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting outcome synthesizer",
+    "esg reporting outcome synthesizer workflow",
+    "esg reporting outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2020,
+  "name": "manufacturing-mes-migration-planner",
+  "title": "Manufacturing MES Migration Planner",
+  "description": "Design and run manufacturing mes workflows with migration planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4504,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02020-manufacturing-mes-migration-planner/SKILL.md",
+    "entrypoint": "agent02/02020-manufacturing-mes-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "manufacturing mes migration planner",
+    "manufacturing mes migration planner workflow",
+    "manufacturing mes migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

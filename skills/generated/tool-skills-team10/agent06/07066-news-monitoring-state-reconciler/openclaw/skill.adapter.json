@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7066,
+  "name": "news-monitoring-state-reconciler",
+  "title": "News Monitoring State Reconciler",
+  "description": "Design and run news monitoring workflows with state reconciler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4251,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07066-news-monitoring-state-reconciler/SKILL.md",
+    "entrypoint": "agent06/07066-news-monitoring-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring state reconciler",
+    "news monitoring state reconciler workflow",
+    "news monitoring state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

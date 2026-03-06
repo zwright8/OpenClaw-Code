@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9764,
+  "name": "community-forums-rate-limit-optimizer",
+  "title": "Community Forums Rate Limit Optimizer",
+  "description": "Design and run community forums workflows with rate limit optimizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6493,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09764-community-forums-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent08/09764-community-forums-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums rate limit optimizer",
+    "community forums rate limit optimizer workflow",
+    "community forums rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

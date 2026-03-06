@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5186,
+  "name": "cloud-cost-platforms-risk-scorer",
+  "title": "Cloud Cost Platforms Risk Scorer",
+  "description": "Design and run cloud cost platforms workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 620,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/05186-cloud-cost-platforms-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/05186-cloud-cost-platforms-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms risk scorer",
+    "cloud cost platforms risk scorer workflow",
+    "cloud cost platforms risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

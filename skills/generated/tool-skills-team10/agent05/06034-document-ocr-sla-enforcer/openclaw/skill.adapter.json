@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6034,
+  "name": "document-ocr-sla-enforcer",
+  "title": "Document OCR SLA Enforcer",
+  "description": "Design and run document ocr workflows with sla enforcer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10043,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06034-document-ocr-sla-enforcer/SKILL.md",
+    "entrypoint": "agent05/06034-document-ocr-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr sla enforcer",
+    "document ocr sla enforcer workflow",
+    "document ocr sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

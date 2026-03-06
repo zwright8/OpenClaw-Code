@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5828,
+  "name": "agent-registries-forecast-engine",
+  "title": "Agent Registries Forecast Engine",
+  "description": "Design and run agent registries workflows with forecast engine controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9954,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05828-agent-registries-forecast-engine/SKILL.md",
+    "entrypoint": "agent05/05828-agent-registries-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries forecast engine",
+    "agent registries forecast engine workflow",
+    "agent registries forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

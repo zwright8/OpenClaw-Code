@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6652,
+  "name": "returns-processing-auth-broker",
+  "title": "Returns Processing Auth Broker",
+  "description": "Design and run returns processing workflows with auth broker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 903,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/06652-returns-processing-auth-broker/SKILL.md",
+    "entrypoint": "agent06/06652-returns-processing-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "returns processing auth broker",
+    "returns processing auth broker workflow",
+    "returns processing auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

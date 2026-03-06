@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6460,
+  "name": "3d-asset-pipelines-workflow-compiler",
+  "title": "3D Asset Pipelines Workflow Compiler",
+  "description": "Design and run 3d asset pipelines workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1121,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06460-3d-asset-pipelines-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/06460-3d-asset-pipelines-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines workflow compiler",
+    "3d asset pipelines workflow compiler workflow",
+    "3d asset pipelines workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

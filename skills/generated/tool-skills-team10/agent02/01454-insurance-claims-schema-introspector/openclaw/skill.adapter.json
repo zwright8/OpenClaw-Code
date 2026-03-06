@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1454,
+  "name": "insurance-claims-schema-introspector",
+  "title": "Insurance Claims Schema Introspector",
+  "description": "Design and run insurance claims workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 279,
+    "score": 93,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01454-insurance-claims-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/01454-insurance-claims-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims schema introspector",
+    "insurance claims schema introspector workflow",
+    "insurance claims schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

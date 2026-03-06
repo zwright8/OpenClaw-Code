@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11987,
+  "name": "peer-review-ops-compliance-mapper",
+  "title": "Peer Review Ops Compliance Mapper",
+  "description": "Design and run peer review ops workflows with compliance mapper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1971,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/11987-peer-review-ops-compliance-mapper/SKILL.md",
+    "entrypoint": "agent10/11987-peer-review-ops-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops compliance mapper",
+    "peer review ops compliance mapper workflow",
+    "peer review ops compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

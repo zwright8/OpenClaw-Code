@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11151,
+  "name": "catalog-syndication-access-auditor",
+  "title": "Catalog Syndication Access Auditor",
+  "description": "Design and run catalog syndication workflows with access auditor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11853,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11151-catalog-syndication-access-auditor/SKILL.md",
+    "entrypoint": "agent09/11151-catalog-syndication-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication access auditor",
+    "catalog syndication access auditor workflow",
+    "catalog syndication access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

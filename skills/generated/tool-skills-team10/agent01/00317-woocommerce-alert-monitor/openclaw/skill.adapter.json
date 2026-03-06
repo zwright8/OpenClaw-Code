@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 317,
+  "name": "woocommerce-alert-monitor",
+  "title": "WooCommerce Alert Monitor",
+  "description": "Monitors key WooCommerce signals and raises actionable alerts.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8080,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00317-woocommerce-alert-monitor/SKILL.md",
+    "entrypoint": "agent01/00317-woocommerce-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "woocommerce alert monitor",
+    "woocommerce alert monitor workflow",
+    "woocommerce alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

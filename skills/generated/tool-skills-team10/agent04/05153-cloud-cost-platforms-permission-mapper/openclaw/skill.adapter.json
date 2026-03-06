@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5153,
+  "name": "cloud-cost-platforms-permission-mapper",
+  "title": "Cloud Cost Platforms Permission Mapper",
+  "description": "Design and run cloud cost platforms workflows with permission mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2106,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05153-cloud-cost-platforms-permission-mapper/SKILL.md",
+    "entrypoint": "agent04/05153-cloud-cost-platforms-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms permission mapper",
+    "cloud cost platforms permission mapper workflow",
+    "cloud cost platforms permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

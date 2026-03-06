@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8941,
+  "name": "policy-drafting-incident-triage",
+  "title": "Policy Drafting Incident Triage",
+  "description": "Design and run policy drafting workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2189,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08941-policy-drafting-incident-triage/SKILL.md",
+    "entrypoint": "agent07/08941-policy-drafting-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy drafting incident triage",
+    "policy drafting incident triage workflow",
+    "policy drafting incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

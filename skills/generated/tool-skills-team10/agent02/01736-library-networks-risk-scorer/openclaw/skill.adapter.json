@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1736,
+  "name": "library-networks-risk-scorer",
+  "title": "Library Networks Risk Scorer",
+  "description": "Design and run library networks workflows with risk scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1500,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01736-library-networks-risk-scorer/SKILL.md",
+    "entrypoint": "agent02/01736-library-networks-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "library networks risk scorer",
+    "library networks risk scorer workflow",
+    "library networks risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

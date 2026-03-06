@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2848,
+  "name": "airline-operations-feedback-harvester",
+  "title": "Airline Operations Feedback Harvester",
+  "description": "Design and run airline operations workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7334,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02848-airline-operations-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/02848-airline-operations-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations feedback harvester",
+    "airline operations feedback harvester workflow",
+    "airline operations feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

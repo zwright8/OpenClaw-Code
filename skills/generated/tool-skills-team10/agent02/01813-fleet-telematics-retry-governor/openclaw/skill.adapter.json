@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1813,
+  "name": "fleet-telematics-retry-governor",
+  "title": "Fleet Telematics Retry Governor",
+  "description": "Design and run fleet telematics workflows with retry governor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5791,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01813-fleet-telematics-retry-governor/SKILL.md",
+    "entrypoint": "agent02/01813-fleet-telematics-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics retry governor",
+    "fleet telematics retry governor workflow",
+    "fleet telematics retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

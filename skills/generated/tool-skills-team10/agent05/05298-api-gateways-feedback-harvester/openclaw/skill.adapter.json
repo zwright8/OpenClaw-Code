@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5298,
+  "name": "api-gateways-feedback-harvester",
+  "title": "API Gateways Feedback Harvester",
+  "description": "Design and run api gateways workflows with feedback harvester controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6949,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05298-api-gateways-feedback-harvester/SKILL.md",
+    "entrypoint": "agent05/05298-api-gateways-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways feedback harvester",
+    "api gateways feedback harvester workflow",
+    "api gateways feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

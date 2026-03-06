@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5613,
+  "name": "data-quality-hubs-retry-governor",
+  "title": "Data Quality Hubs Retry Governor",
+  "description": "Design and run data quality hubs workflows with retry governor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2563,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05613-data-quality-hubs-retry-governor/SKILL.md",
+    "entrypoint": "agent05/05613-data-quality-hubs-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs retry governor",
+    "data quality hubs retry governor workflow",
+    "data quality hubs retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

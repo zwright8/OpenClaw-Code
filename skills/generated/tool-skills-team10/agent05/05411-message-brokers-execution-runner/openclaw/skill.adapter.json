@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5411,
+  "name": "message-brokers-execution-runner",
+  "title": "Message Brokers Execution Runner",
+  "description": "Design and run message brokers workflows with execution runner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1344,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05411-message-brokers-execution-runner/SKILL.md",
+    "entrypoint": "agent05/05411-message-brokers-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers execution runner",
+    "message brokers execution runner workflow",
+    "message brokers execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

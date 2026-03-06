@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 629,
+  "name": "new-relic-approval-router",
+  "title": "New Relic Approval Router",
+  "description": "Routes New Relic-driven decisions to the right approvers.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0629-new-relic-approval-router/SKILL.md",
+    "entrypoint": "agent07/0629-new-relic-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "new relic approval router",
+    "new relic approval router workflow",
+    "new relic approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0629-new-relic-approval-router"
+  }
+}

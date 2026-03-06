@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8699,
+  "name": "urban-planning-data-quality-gatekeeper",
+  "title": "Urban Planning Data Quality Gatekeeper",
+  "description": "Design and run urban planning data workflows with quality gatekeeper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2491,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08699-urban-planning-data-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent07/08699-urban-planning-data-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data quality gatekeeper",
+    "urban planning data quality gatekeeper workflow",
+    "urban planning data quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

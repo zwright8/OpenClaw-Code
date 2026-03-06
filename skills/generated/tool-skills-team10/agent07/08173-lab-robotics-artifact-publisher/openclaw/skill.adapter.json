@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8173,
+  "name": "lab-robotics-artifact-publisher",
+  "title": "Lab Robotics Artifact Publisher",
+  "description": "Design and run lab robotics workflows with artifact publisher controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10854,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08173-lab-robotics-artifact-publisher/SKILL.md",
+    "entrypoint": "agent07/08173-lab-robotics-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics artifact publisher",
+    "lab robotics artifact publisher workflow",
+    "lab robotics artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

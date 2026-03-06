@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4995,
+  "name": "synthetic-testing-runbook-composer",
+  "title": "Synthetic Testing Runbook Composer",
+  "description": "Design and run synthetic testing workflows with runbook composer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6087,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04995-synthetic-testing-runbook-composer/SKILL.md",
+    "entrypoint": "agent04/04995-synthetic-testing-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic testing runbook composer",
+    "synthetic testing runbook composer workflow",
+    "synthetic testing runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

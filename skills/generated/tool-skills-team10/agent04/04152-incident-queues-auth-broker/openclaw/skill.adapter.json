@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4152,
+  "name": "incident-queues-auth-broker",
+  "title": "Incident Queues Auth Broker",
+  "description": "Design and run incident queues workflows with auth broker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 287,
+    "score": 93,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04152-incident-queues-auth-broker/SKILL.md",
+    "entrypoint": "agent04/04152-incident-queues-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues auth broker",
+    "incident queues auth broker workflow",
+    "incident queues auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

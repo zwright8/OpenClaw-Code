@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2847,
+  "name": "airline-operations-human-handoff-router",
+  "title": "Airline Operations Human Handoff Router",
+  "description": "Design and run airline operations workflows with human handoff router controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7333,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02847-airline-operations-human-handoff-router/SKILL.md",
+    "entrypoint": "agent03/02847-airline-operations-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations human handoff router",
+    "airline operations human handoff router workflow",
+    "airline operations human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

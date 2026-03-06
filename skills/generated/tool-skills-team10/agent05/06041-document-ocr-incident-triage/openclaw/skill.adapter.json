@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6041,
+  "name": "document-ocr-incident-triage",
+  "title": "Document OCR Incident Triage",
+  "description": "Design and run document ocr workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2128,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06041-document-ocr-incident-triage/SKILL.md",
+    "entrypoint": "agent05/06041-document-ocr-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr incident triage",
+    "document ocr incident triage workflow",
+    "document ocr incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

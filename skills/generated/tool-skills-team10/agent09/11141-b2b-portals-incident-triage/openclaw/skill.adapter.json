@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11141,
+  "name": "b2b-portals-incident-triage",
+  "title": "B2B Portals Incident Triage",
+  "description": "Design and run b2b portals workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2250,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11141-b2b-portals-incident-triage/SKILL.md",
+    "entrypoint": "agent09/11141-b2b-portals-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals incident triage",
+    "b2b portals incident triage workflow",
+    "b2b portals incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

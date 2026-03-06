@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12453,
+  "name": "autonomy-control-permission-mapper",
+  "title": "Autonomy Control Permission Mapper",
+  "description": "Design and run autonomy control workflows with permission mapper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3974,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12453-autonomy-control-permission-mapper/SKILL.md",
+    "entrypoint": "agent10/12453-autonomy-control-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control permission mapper",
+    "autonomy control permission mapper workflow",
+    "autonomy control permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

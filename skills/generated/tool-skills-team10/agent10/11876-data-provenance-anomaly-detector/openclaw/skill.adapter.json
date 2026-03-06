@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11876,
+  "name": "data-provenance-anomaly-detector",
+  "title": "Data Provenance Anomaly Detector",
+  "description": "Design and run data provenance workflows with anomaly detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5663,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11876-data-provenance-anomaly-detector/SKILL.md",
+    "entrypoint": "agent10/11876-data-provenance-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance anomaly detector",
+    "data provenance anomaly detector workflow",
+    "data provenance anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

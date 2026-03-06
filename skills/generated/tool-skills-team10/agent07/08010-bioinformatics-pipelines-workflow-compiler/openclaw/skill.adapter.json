@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8010,
+  "name": "bioinformatics-pipelines-workflow-compiler",
+  "title": "Bioinformatics Pipelines Workflow Compiler",
+  "description": "Design and run bioinformatics pipelines workflows with workflow compiler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1150,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08010-bioinformatics-pipelines-workflow-compiler/SKILL.md",
+    "entrypoint": "agent07/08010-bioinformatics-pipelines-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines workflow compiler",
+    "bioinformatics pipelines workflow compiler workflow",
+    "bioinformatics pipelines workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

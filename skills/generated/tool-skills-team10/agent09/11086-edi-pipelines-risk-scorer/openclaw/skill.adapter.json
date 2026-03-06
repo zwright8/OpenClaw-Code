@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11086,
+  "name": "edi-pipelines-risk-scorer",
+  "title": "EDI Pipelines Risk Scorer",
+  "description": "Design and run edi pipelines workflows with risk scorer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1697,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11086-edi-pipelines-risk-scorer/SKILL.md",
+    "entrypoint": "agent09/11086-edi-pipelines-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edi pipelines risk scorer",
+    "edi pipelines risk scorer workflow",
+    "edi pipelines risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

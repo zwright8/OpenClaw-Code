@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11681,
+  "name": "spare-parts-planning-cost-attribution",
+  "title": "Spare Parts Planning Cost Attribution",
+  "description": "Design and run spare parts planning workflows with cost attribution controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12077,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11681-spare-parts-planning-cost-attribution/SKILL.md",
+    "entrypoint": "agent09/11681-spare-parts-planning-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "spare parts planning cost attribution",
+    "spare parts planning cost attribution workflow",
+    "spare parts planning cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

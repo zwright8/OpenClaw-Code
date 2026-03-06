@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2332,
+  "name": "utility-billing-latency-analyzer",
+  "title": "Utility Billing Latency Analyzer",
+  "description": "Design and run utility billing workflows with latency analyzer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7215,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02332-utility-billing-latency-analyzer/SKILL.md",
+    "entrypoint": "agent02/02332-utility-billing-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing latency analyzer",
+    "utility billing latency analyzer workflow",
+    "utility billing latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

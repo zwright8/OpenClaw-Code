@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7605,
+  "name": "device-labs-spec-drift-detector",
+  "title": "Device Labs Spec Drift Detector",
+  "description": "Design and run device labs workflows with spec drift detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4271,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07605-device-labs-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent06/07605-device-labs-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs spec drift detector",
+    "device labs spec drift detector workflow",
+    "device labs spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

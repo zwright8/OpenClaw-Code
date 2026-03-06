@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6008,
+  "name": "document-ocr-task-decomposer",
+  "title": "Document OCR Task Decomposer",
+  "description": "Design and run document ocr workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10028,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06008-document-ocr-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/06008-document-ocr-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr task decomposer",
+    "document ocr task decomposer workflow",
+    "document ocr task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

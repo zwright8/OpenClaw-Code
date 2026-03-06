@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2599,
+  "name": "property-management-quality-gatekeeper",
+  "title": "Property Management Quality Gatekeeper",
+  "description": "Design and run property management workflows with quality gatekeeper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5354,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02599-property-management-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent02/02599-property-management-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management quality gatekeeper",
+    "property management quality gatekeeper workflow",
+    "property management quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

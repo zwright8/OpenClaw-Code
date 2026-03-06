@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1536,
+  "name": "education-lms-risk-scorer",
+  "title": "Education LMS Risk Scorer",
+  "description": "Design and run education lms workflows with risk scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 766,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01536-education-lms-risk-scorer/SKILL.md",
+    "entrypoint": "agent02/01536-education-lms-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms risk scorer",
+    "education lms risk scorer workflow",
+    "education lms risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

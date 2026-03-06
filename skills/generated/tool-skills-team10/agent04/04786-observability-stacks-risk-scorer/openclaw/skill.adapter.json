@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4786,
+  "name": "observability-stacks-risk-scorer",
+  "title": "Observability Stacks Risk Scorer",
+  "description": "Design and run observability stacks workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 612,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04786-observability-stacks-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/04786-observability-stacks-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks risk scorer",
+    "observability stacks risk scorer workflow",
+    "observability stacks risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

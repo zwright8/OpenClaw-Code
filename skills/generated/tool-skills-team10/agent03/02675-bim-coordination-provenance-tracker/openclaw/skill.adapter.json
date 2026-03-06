@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2675,
+  "name": "bim-coordination-provenance-tracker",
+  "title": "BIM Coordination Provenance Tracker",
+  "description": "Design and run bim coordination workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8944,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02675-bim-coordination-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/02675-bim-coordination-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination provenance tracker",
+    "bim coordination provenance tracker workflow",
+    "bim coordination provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 349,
+  "name": "ebay-seller-approval-router",
+  "title": "eBay Seller Approval Router",
+  "description": "Routes eBay Seller-driven decisions to the right approvers.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0349-ebay-seller-approval-router/SKILL.md",
+    "entrypoint": "agent04/0349-ebay-seller-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ebay seller approval router",
+    "ebay seller approval router workflow",
+    "ebay seller approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0349-ebay-seller-approval-router"
+  }
+}

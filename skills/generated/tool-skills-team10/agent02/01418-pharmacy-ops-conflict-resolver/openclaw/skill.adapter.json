@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1418,
+  "name": "pharmacy-ops-conflict-resolver",
+  "title": "Pharmacy Ops Conflict Resolver",
+  "description": "Design and run pharmacy ops workflows with conflict resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8499,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01418-pharmacy-ops-conflict-resolver/SKILL.md",
+    "entrypoint": "agent02/01418-pharmacy-ops-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops conflict resolver",
+    "pharmacy ops conflict resolver workflow",
+    "pharmacy ops conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

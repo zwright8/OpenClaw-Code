@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2591,
+  "name": "property-management-incident-triage",
+  "title": "Property Management Incident Triage",
+  "description": "Design and run property management workflows with incident triage controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2031,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02591-property-management-incident-triage/SKILL.md",
+    "entrypoint": "agent02/02591-property-management-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management incident triage",
+    "property management incident triage workflow",
+    "property management incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

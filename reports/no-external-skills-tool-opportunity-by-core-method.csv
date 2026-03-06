@@ -1,0 +1,86 @@
+core_method,skills_count,recommendation,external_tool_stack,rationale
+a/b rollout governance,200,tool-primary,LaunchDarkly/Unleash | Statsig/Optimizely | Sequential testing libs (SciPy/Statsmodels),Experiment assignment and statistical guardrails should be system-enforced.
+attention management architecture,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+autonomous workflow authoring,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+beauty pattern detection,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+community feedback harvesting,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+compliance evidence mapping,200,hybrid,OPA/Rego | HashiCorp Vault/KMS | SIEM (Splunk/Elastic Security) | Cloud IAM/Audit logs,"LLM helps reasoning, but enforcement/evidence should come from policy/security systems."
+conflict resolution coaching,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+constraint compilation,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+continuous improvement planning,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+cost-benefit forecasting,200,hybrid,OR-Tools/Pyomo | Pandas/Polars | Great Expectations,Quantitative scoring benefits from deterministic numeric tooling.
+creative ideation facilitation,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+curiosity agenda generation,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+decision journal maintenance,200,hybrid,Vector DB + embeddings | Obsidian/Notion/SQLite journal,Use external stores for persistence/retrieval; model for synthesis.
+disaster recovery orchestration,200,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+equity impact scoring,200,hybrid,OR-Tools/Pyomo | Pandas/Polars | Great Expectations,Quantitative scoring benefits from deterministic numeric tooling.
+ethical dilemma navigation,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+experiment design,200,tool-primary,LaunchDarkly/Unleash | Statsig/Optimizely | Sequential testing libs (SciPy/Statsmodels),Experiment assignment and statistical guardrails should be system-enforced.
+explainability narrative design,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+failure root cause mining,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+handoff contracting,200,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+human approval routing,200,hybrid,OPA/Rego | HashiCorp Vault/KMS | SIEM (Splunk/Elastic Security) | Cloud IAM/Audit logs,"LLM helps reasoning, but enforcement/evidence should come from policy/security systems."
+incident playbook synthesis,200,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+knowledge graph linking,200,tool-primary,Neo4j/Memgraph | RDF/SPARQL stores | NetworkX/graph-tool,Graph persistence and query semantics outperform pure LLM memory.
+kpi dashboard publishing,200,tool-primary,Prometheus+Alertmanager | OpenTelemetry | Grafana/Superset/Metabase | Evidently/WhyLabs,Metrics ingestion/alerting/visualization are deterministic system functions.
+learning curriculum composition,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+memory consolidation,200,hybrid,Vector DB + embeddings | Obsidian/Notion/SQLite journal,Use external stores for persistence/retrieval; model for synthesis.
+mentoring and coaching design,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+multi-agent negotiation,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+negotiation strategy crafting,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+personal habit optimization,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+plan quality evaluation,200,hybrid,OR-Tools/Pyomo | Pandas/Polars | Great Expectations,Quantitative scoring benefits from deterministic numeric tooling.
+privacy-preserving data brokering,200,hybrid,OPA/Rego | HashiCorp Vault/KMS | SIEM (Splunk/Elastic Security) | Cloud IAM/Audit logs,"LLM helps reasoning, but enforcement/evidence should come from policy/security systems."
+public service coordination,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+regression sentinel design,200,tool-primary,Prometheus+Alertmanager | OpenTelemetry | Grafana/Superset/Metabase | Evidently/WhyLabs,Metrics ingestion/alerting/visualization are deterministic system functions.
+resource budget allocation,200,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+retry and backoff orchestration,200,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+risk-aware scheduling,200,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+scientific hypothesis prioritization,200,tool-primary,LaunchDarkly/Unleash | Statsig/Optimizely | Sequential testing libs (SciPy/Statsmodels),Experiment assignment and statistical guardrails should be system-enforced.
+security threat modeling,200,hybrid,OPA/Rego | HashiCorp Vault/KMS | SIEM (Splunk/Elastic Security) | Cloud IAM/Audit logs,"LLM helps reasoning, but enforcement/evidence should come from policy/security systems."
+self-reflection taxonomy,200,hybrid,Vector DB + embeddings | Obsidian/Notion/SQLite journal,Use external stores for persistence/retrieval; model for synthesis.
+semantic retrieval ranking,200,tool-primary,OpenSearch/Elasticsearch (BM25) | Qdrant/Weaviate/pgvector (vector search) | Cohere/Jina rerankers,Search+ranking quality and latency are better with dedicated IR stacks.
+skill gap diagnosis,200,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+tool health monitoring,200,tool-primary,Prometheus+Alertmanager | OpenTelemetry | Grafana/Superset/Metabase | Evidently/WhyLabs,Metrics ingestion/alerting/visualization are deterministic system functions.
+uncertainty communication,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+writing and rhetoric optimization,200,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+adaptive backoff control,25,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+attack-surface modeling,25,hybrid,OPA/Rego | HashiCorp Vault/KMS | SIEM (Splunk/Elastic Security) | Cloud IAM/Audit logs,"LLM helps reasoning, but enforcement/evidence should come from policy/security systems."
+baseline-delta detection,25,tool-primary,Prometheus+Alertmanager | OpenTelemetry | Grafana/Superset/Metabase | Evidently/WhyLabs,Metrics ingestion/alerting/visualization are deterministic system functions.
+calibration curves and error bins,25,hybrid,OR-Tools/Pyomo | Pandas/Polars | Great Expectations,Quantitative scoring benefits from deterministic numeric tooling.
+capacity-aware allocation,25,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+closed-loop prioritization,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+competency coverage analysis,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+confidence-bound communication templates,25,model-primary,Frontier model + optional memory/RAG,Language quality and synthesis are frontier-model strengths.
+contracted payload schemas,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+cost-impact simulation,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+counterfactual replay,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+cross-claim consistency checks,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+dependency graph compilation,25,tool-primary,Neo4j/Memgraph | RDF/SPARQL stores | NetworkX/graph-tool,Graph persistence and query semantics outperform pure LLM memory.
+entity and relation linking,25,tool-primary,Neo4j/Memgraph | RDF/SPARQL stores | NetworkX/graph-tool,Graph persistence and query semantics outperform pure LLM memory.
+episodic-to-semantic consolidation,25,tool-primary,OpenSearch/Elasticsearch (BM25) | Qdrant/Weaviate/pgvector (vector search) | Cohere/Jina rerankers,Search+ranking quality and latency are better with dedicated IR stacks.
+error pattern mining,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+failover and restoration sequencing,25,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+failure-type clustering,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+feedback normalization and clustering,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+group-level impact scoring,25,hybrid,OR-Tools/Pyomo | Pandas/Polars | Great Expectations,Quantitative scoring benefits from deterministic numeric tooling.
+guided mediation prompts,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+hierarchical decomposition,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+hypothesis-driven design,25,tool-primary,LaunchDarkly/Unleash | Statsig/Optimizely | Sequential testing libs (SciPy/Statsmodels),Experiment assignment and statistical guardrails should be system-enforced.
+importance scoring,25,hybrid,OR-Tools/Pyomo | Pandas/Polars | Great Expectations,Quantitative scoring benefits from deterministic numeric tooling.
+metric synthesis and publication,25,tool-primary,Prometheus+Alertmanager | OpenTelemetry | Grafana/Superset/Metabase | Evidently/WhyLabs,Metrics ingestion/alerting/visualization are deterministic system functions.
+multi-criteria plan scoring,25,hybrid,OR-Tools/Pyomo | Pandas/Polars | Great Expectations,Quantitative scoring benefits from deterministic numeric tooling.
+pattern-to-playbook synthesis,25,tool-primary,Temporal/Prefect/Airflow | Celery/queues | Kubernetes CronJobs | Argo Workflows,Workflow execution/retries/state are safer in orchestration engines.
+policy-scoped data mediation,25,hybrid,OPA/Rego | HashiCorp Vault/KMS | SIEM (Splunk/Elastic Security) | Cloud IAM/Audit logs,"LLM helps reasoning, but enforcement/evidence should come from policy/security systems."
+reason synthesis and abstraction,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+requirement-to-evidence mapping,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+reviewer routing policies,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+risk-weighted sequencing,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+rule compilation,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+schema mapping and validation,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+semantic relevance scoring,25,tool-primary,OpenSearch/Elasticsearch (BM25) | Qdrant/Weaviate/pgvector (vector search) | Cohere/Jina rerankers,Search+ranking quality and latency are better with dedicated IR stacks.
+sequenced learning path design,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+signed provenance links,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+staged rollout policies,25,tool-primary,LaunchDarkly/Unleash | Statsig/Optimizely | Sequential testing libs (SciPy/Statsmodels),Experiment assignment and statistical guardrails should be system-enforced.
+structured bargaining protocols,25,hybrid,Frontier model + targeted deterministic services,Default to hybrid unless capability is purely linguistic or purely systems execution.
+telemetry aggregation and SLO checks,25,tool-primary,Prometheus+Alertmanager | OpenTelemetry | Grafana/Superset/Metabase | Evidently/WhyLabs,Metrics ingestion/alerting/visualization are deterministic system functions.

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9341,
+  "name": "edge-compute-incident-triage",
+  "title": "Edge Compute Incident Triage",
+  "description": "Design and run edge compute workflows with incident triage controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2199,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09341-edge-compute-incident-triage/SKILL.md",
+    "entrypoint": "agent08/09341-edge-compute-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute incident triage",
+    "edge compute incident triage workflow",
+    "edge compute incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

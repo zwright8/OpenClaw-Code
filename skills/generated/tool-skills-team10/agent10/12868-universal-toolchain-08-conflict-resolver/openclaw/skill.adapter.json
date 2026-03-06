@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12868,
+  "name": "universal-toolchain-08-conflict-resolver",
+  "title": "Universal Toolchain 08 Conflict Resolver",
+  "description": "Design and run universal toolchain 08 workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8349,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12868-universal-toolchain-08-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/12868-universal-toolchain-08-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 conflict resolver",
+    "universal toolchain 08 conflict resolver workflow",
+    "universal toolchain 08 conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

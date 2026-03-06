@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8847,
+  "name": "discovery-pipelines-human-handoff-router",
+  "title": "Discovery Pipelines Human Handoff Router",
+  "description": "Design and run discovery pipelines workflows with human handoff router controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11074,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08847-discovery-pipelines-human-handoff-router/SKILL.md",
+    "entrypoint": "agent07/08847-discovery-pipelines-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines human handoff router",
+    "discovery pipelines human handoff router workflow",
+    "discovery pipelines human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

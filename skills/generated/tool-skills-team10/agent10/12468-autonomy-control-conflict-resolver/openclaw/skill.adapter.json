@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12468,
+  "name": "autonomy-control-conflict-resolver",
+  "title": "Autonomy Control Conflict Resolver",
+  "description": "Design and run autonomy control workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12342,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12468-autonomy-control-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/12468-autonomy-control-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control conflict resolver",
+    "autonomy control conflict resolver workflow",
+    "autonomy control conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

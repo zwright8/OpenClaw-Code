@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4409,
+  "name": "certificate-management-dependency-resolver",
+  "title": "Certificate Management Dependency Resolver",
+  "description": "Design and run certificate management workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9483,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04409-certificate-management-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/04409-certificate-management-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management dependency resolver",
+    "certificate management dependency resolver workflow",
+    "certificate management dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

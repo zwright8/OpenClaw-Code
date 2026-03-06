@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7841,
+  "name": "vdi-platforms-incident-triage",
+  "title": "VDI Platforms Incident Triage",
+  "description": "Design and run vdi platforms workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2162,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/07841-vdi-platforms-incident-triage/SKILL.md",
+    "entrypoint": "agent07/07841-vdi-platforms-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms incident triage",
+    "vdi platforms incident triage workflow",
+    "vdi platforms incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

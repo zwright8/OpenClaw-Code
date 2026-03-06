@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9495,
+  "name": "industrial-alerts-runbook-composer",
+  "title": "Industrial Alerts Runbook Composer",
+  "description": "Design and run industrial alerts workflows with runbook composer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6470,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09495-industrial-alerts-runbook-composer/SKILL.md",
+    "entrypoint": "agent08/09495-industrial-alerts-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts runbook composer",
+    "industrial alerts runbook composer workflow",
+    "industrial alerts runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

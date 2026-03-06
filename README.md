@@ -32,7 +32,7 @@ Adds a capability marketplace with metadata contracts, live probing, and stale/f
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
-Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
+Adds an autonomous recovery supervisor for incident detection, retry-budget enforcement, and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
@@ -318,6 +318,12 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
+  maxRetries: 2,
+  retryStrategy: 'exponential',
+  retryBackoffMultiplier: 2,
+  retryDelayMs: 250,
+  circuitFailureThreshold: 3,
+  circuitCooldownMs: 15_000,
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9650,
+  "name": "derivatives-risk-outcome-synthesizer",
+  "title": "Derivatives Risk Outcome Synthesizer",
+  "description": "Design and run derivatives risk workflows with outcome synthesizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3754,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09650-derivatives-risk-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent08/09650-derivatives-risk-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk outcome synthesizer",
+    "derivatives risk outcome synthesizer workflow",
+    "derivatives risk outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

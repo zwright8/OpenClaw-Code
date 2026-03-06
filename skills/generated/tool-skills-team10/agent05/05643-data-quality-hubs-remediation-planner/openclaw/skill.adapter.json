@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5643,
+  "name": "data-quality-hubs-remediation-planner",
+  "title": "Data Quality Hubs Remediation Planner",
+  "description": "Design and run data quality hubs workflows with remediation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1349,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05643-data-quality-hubs-remediation-planner/SKILL.md",
+    "entrypoint": "agent05/05643-data-quality-hubs-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs remediation planner",
+    "data quality hubs remediation planner workflow",
+    "data quality hubs remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

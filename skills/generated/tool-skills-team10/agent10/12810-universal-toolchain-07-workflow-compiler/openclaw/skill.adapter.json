@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12810,
+  "name": "universal-toolchain-07-workflow-compiler",
+  "title": "Universal Toolchain 07 Workflow Compiler",
+  "description": "Design and run universal toolchain 07 workflows with workflow compiler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1020,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12810-universal-toolchain-07-workflow-compiler/SKILL.md",
+    "entrypoint": "agent10/12810-universal-toolchain-07-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 07 workflow compiler",
+    "universal toolchain 07 workflow compiler workflow",
+    "universal toolchain 07 workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

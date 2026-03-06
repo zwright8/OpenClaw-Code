@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 320,
+  "name": "woocommerce-migration-assistant",
+  "title": "WooCommerce Migration Assistant",
+  "description": "Plans and executes safe migrations to or from WooCommerce.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12566,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00320-woocommerce-migration-assistant/SKILL.md",
+    "entrypoint": "agent01/00320-woocommerce-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "woocommerce migration assistant",
+    "woocommerce migration assistant workflow",
+    "woocommerce migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

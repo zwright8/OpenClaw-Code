@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9338,
+  "name": "edge-compute-pii-redactor",
+  "title": "Edge Compute PII Redactor",
+  "description": "Design and run edge compute workflows with pii redactor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3731,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09338-edge-compute-pii-redactor/SKILL.md",
+    "entrypoint": "agent08/09338-edge-compute-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute pii redactor",
+    "edge compute pii redactor workflow",
+    "edge compute pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

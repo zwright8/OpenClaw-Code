@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9587,
+  "name": "portfolio-analytics-compliance-mapper",
+  "title": "Portfolio Analytics Compliance Mapper",
+  "description": "Design and run portfolio analytics workflows with compliance mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1921,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09587-portfolio-analytics-compliance-mapper/SKILL.md",
+    "entrypoint": "agent08/09587-portfolio-analytics-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics compliance mapper",
+    "portfolio analytics compliance mapper workflow",
+    "portfolio analytics compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

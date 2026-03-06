@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12259,
+  "name": "ai-evaluation-markets-dependency-resolver",
+  "title": "AI Evaluation Markets Dependency Resolver",
+  "description": "Design and run ai evaluation markets workflows with dependency resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7752,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12259-ai-evaluation-markets-dependency-resolver/SKILL.md",
+    "entrypoint": "agent10/12259-ai-evaluation-markets-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets dependency resolver",
+    "ai evaluation markets dependency resolver workflow",
+    "ai evaluation markets dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

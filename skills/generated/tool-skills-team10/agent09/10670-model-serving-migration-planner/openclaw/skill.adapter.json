@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10670,
+  "name": "model-serving-migration-planner",
+  "title": "Model Serving Migration Planner",
+  "description": "Design and run model serving workflows with migration planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4790,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10670-model-serving-migration-planner/SKILL.md",
+    "entrypoint": "agent09/10670-model-serving-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving migration planner",
+    "model serving migration planner workflow",
+    "model serving migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

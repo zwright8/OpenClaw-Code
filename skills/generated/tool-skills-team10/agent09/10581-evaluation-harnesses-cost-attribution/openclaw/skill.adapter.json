@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10581,
+  "name": "evaluation-harnesses-cost-attribution",
+  "title": "Evaluation Harnesses Cost Attribution",
+  "description": "Design and run evaluation harnesses workflows with cost attribution controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11657,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10581-evaluation-harnesses-cost-attribution/SKILL.md",
+    "entrypoint": "agent09/10581-evaluation-harnesses-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "evaluation harnesses cost attribution",
+    "evaluation harnesses cost attribution workflow",
+    "evaluation harnesses cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

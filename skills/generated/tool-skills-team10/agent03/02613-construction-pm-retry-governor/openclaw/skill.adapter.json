@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2613,
+  "name": "construction-pm-retry-governor",
+  "title": "Construction PM Retry Governor",
+  "description": "Design and run construction pm workflows with retry governor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5861,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02613-construction-pm-retry-governor/SKILL.md",
+    "entrypoint": "agent03/02613-construction-pm-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm retry governor",
+    "construction pm retry governor workflow",
+    "construction pm retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

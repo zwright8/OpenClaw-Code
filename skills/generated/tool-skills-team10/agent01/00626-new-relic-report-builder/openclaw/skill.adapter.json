@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 626,
+  "name": "new-relic-report-builder",
+  "title": "New Relic Report Builder",
+  "description": "Generates operational and KPI reports from New Relic activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12760,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00626-new-relic-report-builder/SKILL.md",
+    "entrypoint": "agent01/00626-new-relic-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "new relic report builder",
+    "new relic report builder workflow",
+    "new relic report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10262,
+  "name": "identity-verification-job-scheduler",
+  "title": "Identity Verification Job Scheduler",
+  "description": "Design and run identity verification workflows with job scheduler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2223,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10262-identity-verification-job-scheduler/SKILL.md",
+    "entrypoint": "agent08/10262-identity-verification-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification job scheduler",
+    "identity verification job scheduler workflow",
+    "identity verification job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9058,
+  "name": "localization-qa-task-decomposer",
+  "title": "Localization QA Task Decomposer",
+  "description": "Design and run localization qa workflows with task decomposer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11141,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09058-localization-qa-task-decomposer/SKILL.md",
+    "entrypoint": "agent07/09058-localization-qa-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa task decomposer",
+    "localization qa task decomposer workflow",
+    "localization qa task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

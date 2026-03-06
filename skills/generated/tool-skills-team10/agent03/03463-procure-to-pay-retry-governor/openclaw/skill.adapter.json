@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3463,
+  "name": "procure-to-pay-retry-governor",
+  "title": "Procure to Pay Retry Governor",
+  "description": "Design and run procure to pay workflows with retry governor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5921,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03463-procure-to-pay-retry-governor/SKILL.md",
+    "entrypoint": "agent03/03463-procure-to-pay-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay retry governor",
+    "procure to pay retry governor workflow",
+    "procure to pay retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

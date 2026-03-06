@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10887,
+  "name": "ontology-management-compliance-mapper",
+  "title": "Ontology Management Compliance Mapper",
+  "description": "Design and run ontology management workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1949,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10887-ontology-management-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/10887-ontology-management-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management compliance mapper",
+    "ontology management compliance mapper workflow",
+    "ontology management compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

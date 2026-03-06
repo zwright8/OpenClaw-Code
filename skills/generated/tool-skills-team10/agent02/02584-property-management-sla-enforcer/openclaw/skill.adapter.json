@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2584,
+  "name": "property-management-sla-enforcer",
+  "title": "Property Management SLA Enforcer",
+  "description": "Design and run property management workflows with sla enforcer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8909,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02584-property-management-sla-enforcer/SKILL.md",
+    "entrypoint": "agent02/02584-property-management-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management sla enforcer",
+    "property management sla enforcer workflow",
+    "property management sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

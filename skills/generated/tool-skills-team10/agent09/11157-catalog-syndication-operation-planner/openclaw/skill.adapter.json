@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11157,
+  "name": "catalog-syndication-operation-planner",
+  "title": "Catalog Syndication Operation Planner",
+  "description": "Design and run catalog syndication workflows with operation planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11854,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11157-catalog-syndication-operation-planner/SKILL.md",
+    "entrypoint": "agent09/11157-catalog-syndication-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication operation planner",
+    "catalog syndication operation planner workflow",
+    "catalog syndication operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

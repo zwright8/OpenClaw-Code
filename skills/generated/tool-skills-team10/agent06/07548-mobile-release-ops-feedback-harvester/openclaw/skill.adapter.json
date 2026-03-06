@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7548,
+  "name": "mobile-release-ops-feedback-harvester",
+  "title": "Mobile Release Ops Feedback Harvester",
+  "description": "Design and run mobile release ops workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10592,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07548-mobile-release-ops-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/07548-mobile-release-ops-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops feedback harvester",
+    "mobile release ops feedback harvester workflow",
+    "mobile release ops feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

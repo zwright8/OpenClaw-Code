@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12688,
+  "name": "universal-toolchain-04-pii-redactor",
+  "title": "Universal Toolchain 04 PII Redactor",
+  "description": "Design and run universal toolchain 04 workflows with pii redactor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3094,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12688-universal-toolchain-04-pii-redactor/SKILL.md",
+    "entrypoint": "agent10/12688-universal-toolchain-04-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 04 pii redactor",
+    "universal toolchain 04 pii redactor workflow",
+    "universal toolchain 04 pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10669,
+  "name": "model-serving-rollback-coordinator",
+  "title": "Model Serving Rollback Coordinator",
+  "description": "Design and run model serving workflows with rollback coordinator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5197,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10669-model-serving-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent09/10669-model-serving-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving rollback coordinator",
+    "model serving rollback coordinator workflow",
+    "model serving rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

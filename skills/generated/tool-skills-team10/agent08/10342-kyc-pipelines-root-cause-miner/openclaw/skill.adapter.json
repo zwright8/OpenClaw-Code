@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10342,
+  "name": "kyc-pipelines-root-cause-miner",
+  "title": "KYC Pipelines Root Cause Miner",
+  "description": "Design and run kyc pipelines workflows with root cause miner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4781,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10342-kyc-pipelines-root-cause-miner/SKILL.md",
+    "entrypoint": "agent08/10342-kyc-pipelines-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines root cause miner",
+    "kyc pipelines root cause miner workflow",
+    "kyc pipelines root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

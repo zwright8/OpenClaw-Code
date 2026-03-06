@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4898,stuntman,local-installable,Implementation of the STUN protocol,https://www.stunprotocol.org,Apache-2.0
+4899,ox,local-installable,Independent Rust text editor that runs in your terminal,https://github.com/curlpipe/ox,GPL-2.0-only
+4901,jimtcl,local-installable,Small footprint implementation of Tcl,https://jim.tcl.tk/index.html,BSD-2-Clause
+4902,cloudformation-guard,local-installable,Checks CloudFormation templates for compliance using a declarative syntax,https://github.com/aws-cloudformation/cloudformation-guard,Apache-2.0
+4903,enigma,local-installable,Puzzle game inspired by Oxyd and Rock'n'Roll,https://www.nongnu.org/enigma/,GPL-2.0-or-later
+4907,nqp,local-installable,Lightweight Raku-like environment for virtual machines,https://github.com/Raku/nqp,Artistic-2.0
+4908,lsix,local-installable,Shows thumbnails in terminal using sixel graphics,https://github.com/hackerb9/lsix,GPL-3.0-or-later OR X11
+4909,lowdown,local-installable,Simple markdown translator,https://kristaps.bsd.lv/lowdown,ISC
+4910,run,local-installable,Easily manage and invoke small scripts and wrappers,https://github.com/TekWizely/run,MIT
+4914,lhasa,local-installable,LHA implementation to decompress .lzh and .lzs archives,https://fragglet.github.io/lhasa/,ISC
+4915,urlscan,local-installable,View/select the URLs in an email message or file,https://github.com/firecat53/urlscan,GPL-2.0-or-later
+4916,filen-cli,local-installable,"Interface with Filen, an end-to-end encrypted cloud storage service",https://github.com/FilenCloudDienste/filen-cli,AGPL-3.0-or-later
+4917,cf-terraforming,local-installable,CLI to facilitate terraforming your existing Cloudflare resources,https://github.com/cloudflare/cf-terraforming,MPL-2.0
+4918,kubernetes-mcp-server,local-installable,MCP server for Kubernetes,https://github.com/containers/kubernetes-mcp-server,Apache-2.0
+4919,proxytunnel,local-installable,Create TCP tunnels through HTTPS proxies,https://github.com/proxytunnel/proxytunnel,GPL-2.0-or-later WITH openvpn-openssl-exception
+4920,sequoia-sq,local-installable,Sequoia-PGP command-line tool,https://sequoia-pgp.org,LGPL-2.0-or-later
+4921,cppi,local-installable,Indent C preprocessor directives to reflect their nesting,https://www.gnu.org/software/cppi/,GPL-3.0-or-later
+4922,dotdrop,local-installable,"Save your dotfiles once, deploy them everywhere",https://github.com/deadc0de6/dotdrop,GPL-3.0-or-later
+4923,kyma-cli,local-installable,Kyma command-line interface,https://kyma-project.io,Apache-2.0
+4924,ccrypt,local-installable,Encrypt and decrypt files and streams,https://ccrypt.sourceforge.net/,GPL-2.0-or-later
+4925,github-release,local-installable,Create and edit releases on Github (and upload artifacts),https://github.com/github-release/github-release,MIT
+4927,libgweather,local-installable,"GNOME library for weather, locations and timezones",https://wiki.gnome.org/Projects/LibGWeather,GPL-2.0-or-later AND LGPL-2.1-or-later
+4928,megacmd,local-installable,Command-line client for mega.co.nz storage service,https://github.com/t3rm1n4l/megacmd,MIT
+4931,freedink,local-installable,Portable version of the Dink Smallwood game engine,https://www.gnu.org/software/freedink/,GPL-3.0-or-later
+4932,lacework-cli,local-installable,CLI for managing Lacework,https://docs.lacework.com/cli,Apache-2.0
+4933,hatari,local-installable,Atari ST/STE/TT/Falcon emulator,https://www.hatari-emu.org/,GPL-2.0-or-later

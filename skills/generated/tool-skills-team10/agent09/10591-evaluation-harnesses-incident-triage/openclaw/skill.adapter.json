@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10591,
+  "name": "evaluation-harnesses-incident-triage",
+  "title": "Evaluation Harnesses Incident Triage",
+  "description": "Design and run evaluation harnesses workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2233,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10591-evaluation-harnesses-incident-triage/SKILL.md",
+    "entrypoint": "agent09/10591-evaluation-harnesses-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "evaluation harnesses incident triage",
+    "evaluation harnesses incident triage workflow",
+    "evaluation harnesses incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

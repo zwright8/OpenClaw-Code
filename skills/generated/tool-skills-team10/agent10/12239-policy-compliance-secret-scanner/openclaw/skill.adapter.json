@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12239,
+  "name": "policy-compliance-secret-scanner",
+  "title": "Policy Compliance Secret Scanner",
+  "description": "Design and run policy compliance workflows with secret scanner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1250,
+    "score": 83,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12239-policy-compliance-secret-scanner/SKILL.md",
+    "entrypoint": "agent10/12239-policy-compliance-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance secret scanner",
+    "policy compliance secret scanner workflow",
+    "policy compliance secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

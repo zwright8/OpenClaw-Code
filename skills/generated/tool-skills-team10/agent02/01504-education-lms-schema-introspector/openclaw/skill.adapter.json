@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1504,
+  "name": "education-lms-schema-introspector",
+  "title": "Education LMS Schema Introspector",
+  "description": "Design and run education lms workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 308,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01504-education-lms-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/01504-education-lms-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms schema introspector",
+    "education lms schema introspector workflow",
+    "education lms schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

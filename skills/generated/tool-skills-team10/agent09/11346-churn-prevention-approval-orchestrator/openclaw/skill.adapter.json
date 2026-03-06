@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11346,
+  "name": "churn-prevention-approval-orchestrator",
+  "title": "Churn Prevention Approval Orchestrator",
+  "description": "Design and run churn prevention workflows with approval orchestrator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6647,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11346-churn-prevention-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent09/11346-churn-prevention-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "churn prevention approval orchestrator",
+    "churn prevention approval orchestrator workflow",
+    "churn prevention approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

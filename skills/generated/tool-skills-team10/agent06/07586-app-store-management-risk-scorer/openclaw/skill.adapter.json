@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7586,
+  "name": "app-store-management-risk-scorer",
+  "title": "App Store Management Risk Scorer",
+  "description": "Design and run app store management workflows with risk scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1627,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07586-app-store-management-risk-scorer/SKILL.md",
+    "entrypoint": "agent06/07586-app-store-management-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "app store management risk scorer",
+    "app store management risk scorer workflow",
+    "app store management risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

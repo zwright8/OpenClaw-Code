@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3272,
+  "name": "accounting-ledgers-version-tracker",
+  "title": "Accounting Ledgers Version Tracker",
+  "description": "Design and run accounting ledgers workflows with version tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9089,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03272-accounting-ledgers-version-tracker/SKILL.md",
+    "entrypoint": "agent03/03272-accounting-ledgers-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers version tracker",
+    "accounting ledgers version tracker workflow",
+    "accounting ledgers version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

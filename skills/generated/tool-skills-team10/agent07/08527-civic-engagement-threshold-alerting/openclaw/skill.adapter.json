@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8527,
+  "name": "civic-engagement-threshold-alerting",
+  "title": "Civic Engagement Threshold Alerting",
+  "description": "Design and run civic engagement workflows with threshold alerting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10982,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08527-civic-engagement-threshold-alerting/SKILL.md",
+    "entrypoint": "agent07/08527-civic-engagement-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement threshold alerting",
+    "civic engagement threshold alerting workflow",
+    "civic engagement threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

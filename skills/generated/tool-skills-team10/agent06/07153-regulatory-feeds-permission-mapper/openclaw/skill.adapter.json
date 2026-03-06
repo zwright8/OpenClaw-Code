@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7153,
+  "name": "regulatory-feeds-permission-mapper",
+  "title": "Regulatory Feeds Permission Mapper",
+  "description": "Design and run regulatory feeds workflows with permission mapper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3564,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07153-regulatory-feeds-permission-mapper/SKILL.md",
+    "entrypoint": "agent06/07153-regulatory-feeds-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds permission mapper",
+    "regulatory feeds permission mapper workflow",
+    "regulatory feeds permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

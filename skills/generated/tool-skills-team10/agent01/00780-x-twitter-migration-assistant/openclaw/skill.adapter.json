@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 780,
+  "name": "x-twitter-migration-assistant",
+  "title": "X Twitter Migration Assistant",
+  "description": "Plans and executes safe migrations to or from X Twitter.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12867,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00780-x-twitter-migration-assistant/SKILL.md",
+    "entrypoint": "agent01/00780-x-twitter-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "x twitter migration assistant",
+    "x twitter migration assistant workflow",
+    "x twitter migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

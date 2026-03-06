@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8850,
+  "name": "discovery-pipelines-outcome-synthesizer",
+  "title": "Discovery Pipelines Outcome Synthesizer",
+  "description": "Design and run discovery pipelines workflows with outcome synthesizer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7054,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08850-discovery-pipelines-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent07/08850-discovery-pipelines-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines outcome synthesizer",
+    "discovery pipelines outcome synthesizer workflow",
+    "discovery pipelines outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

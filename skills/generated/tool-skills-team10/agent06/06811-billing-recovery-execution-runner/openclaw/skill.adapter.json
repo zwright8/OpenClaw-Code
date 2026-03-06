@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6811,
+  "name": "billing-recovery-execution-runner",
+  "title": "Billing Recovery Execution Runner",
+  "description": "Design and run billing recovery workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 494,
+    "score": 89,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/06811-billing-recovery-execution-runner/SKILL.md",
+    "entrypoint": "agent06/06811-billing-recovery-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery execution runner",
+    "billing recovery execution runner workflow",
+    "billing recovery execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

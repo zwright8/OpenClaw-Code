@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8883,
+  "name": "case-collaboration-reliability-scorer",
+  "title": "Case Collaboration Reliability Scorer",
+  "description": "Design and run case collaboration workflows with reliability scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11092,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08883-case-collaboration-reliability-scorer/SKILL.md",
+    "entrypoint": "agent07/08883-case-collaboration-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "case collaboration reliability scorer",
+    "case collaboration reliability scorer workflow",
+    "case collaboration reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

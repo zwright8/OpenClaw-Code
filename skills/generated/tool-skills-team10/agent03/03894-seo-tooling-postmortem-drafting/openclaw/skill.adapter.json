@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3894,
+  "name": "seo-tooling-postmortem-drafting",
+  "title": "SEO Tooling Postmortem Drafting",
+  "description": "Design and run seo tooling workflows with postmortem drafting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9330,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03894-seo-tooling-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent03/03894-seo-tooling-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling postmortem drafting",
+    "seo tooling postmortem drafting workflow",
+    "seo tooling postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10411,
+  "name": "document-verification-execution-runner",
+  "title": "Document Verification Execution Runner",
+  "description": "Design and run document verification workflows with execution runner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1438,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10411-document-verification-execution-runner/SKILL.md",
+    "entrypoint": "agent09/10411-document-verification-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification execution runner",
+    "document verification execution runner workflow",
+    "document verification execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

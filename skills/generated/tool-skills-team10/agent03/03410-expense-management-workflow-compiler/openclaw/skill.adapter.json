@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3410,
+  "name": "expense-management-workflow-compiler",
+  "title": "Expense Management Workflow Compiler",
+  "description": "Design and run expense management workflows with workflow compiler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1065,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03410-expense-management-workflow-compiler/SKILL.md",
+    "entrypoint": "agent03/03410-expense-management-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "expense management workflow compiler",
+    "expense management workflow compiler workflow",
+    "expense management workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

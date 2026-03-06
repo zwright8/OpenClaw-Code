@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6177,
+  "name": "records-retention-threshold-alerting",
+  "title": "Records Retention Threshold Alerting",
+  "description": "Design and run records retention workflows with threshold alerting controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10100,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06177-records-retention-threshold-alerting/SKILL.md",
+    "entrypoint": "agent05/06177-records-retention-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention threshold alerting",
+    "records retention threshold alerting workflow",
+    "records retention threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

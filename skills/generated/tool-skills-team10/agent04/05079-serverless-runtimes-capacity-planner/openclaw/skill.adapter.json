@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5079,
+  "name": "serverless-runtimes-capacity-planner",
+  "title": "Serverless Runtimes Capacity Planner",
+  "description": "Design and run serverless runtimes workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9703,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05079-serverless-runtimes-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/05079-serverless-runtimes-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "serverless runtimes capacity planner",
+    "serverless runtimes capacity planner workflow",
+    "serverless runtimes capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

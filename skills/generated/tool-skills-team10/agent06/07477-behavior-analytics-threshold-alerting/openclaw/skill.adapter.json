@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7477,
+  "name": "behavior-analytics-threshold-alerting",
+  "title": "Behavior Analytics Threshold Alerting",
+  "description": "Design and run behavior analytics workflows with threshold alerting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10562,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07477-behavior-analytics-threshold-alerting/SKILL.md",
+    "entrypoint": "agent06/07477-behavior-analytics-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics threshold alerting",
+    "behavior analytics threshold alerting workflow",
+    "behavior analytics threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

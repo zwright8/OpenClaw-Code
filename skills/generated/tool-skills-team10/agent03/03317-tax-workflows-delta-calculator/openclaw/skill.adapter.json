@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3317,
+  "name": "tax-workflows-delta-calculator",
+  "title": "Tax Workflows Delta Calculator",
+  "description": "Design and run tax workflows workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9107,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03317-tax-workflows-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/03317-tax-workflows-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tax workflows delta calculator",
+    "tax workflows delta calculator workflow",
+    "tax workflows delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

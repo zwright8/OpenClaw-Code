@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 196,
+  "name": "coda-report-builder",
+  "title": "Coda Report Builder",
+  "description": "Generates operational and KPI reports from Coda activity.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0196-coda-report-builder/SKILL.md",
+    "entrypoint": "agent02/0196-coda-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "coda report builder",
+    "coda report builder workflow",
+    "coda report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0196-coda-report-builder"
+  }
+}

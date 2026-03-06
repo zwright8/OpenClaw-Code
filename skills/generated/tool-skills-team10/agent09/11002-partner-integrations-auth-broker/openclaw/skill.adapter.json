@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11002,
+  "name": "partner-integrations-auth-broker",
+  "title": "Partner Integrations Auth Broker",
+  "description": "Design and run partner integrations workflows with auth broker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 985,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/11002-partner-integrations-auth-broker/SKILL.md",
+    "entrypoint": "agent09/11002-partner-integrations-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner integrations auth broker",
+    "partner integrations auth broker workflow",
+    "partner integrations auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

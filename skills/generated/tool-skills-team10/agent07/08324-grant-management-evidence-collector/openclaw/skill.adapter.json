@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8324,
+  "name": "grant-management-evidence-collector",
+  "title": "Grant Management Evidence Collector",
+  "description": "Design and run grant management workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6378,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08324-grant-management-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/08324-grant-management-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grant management evidence collector",
+    "grant management evidence collector workflow",
+    "grant management evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

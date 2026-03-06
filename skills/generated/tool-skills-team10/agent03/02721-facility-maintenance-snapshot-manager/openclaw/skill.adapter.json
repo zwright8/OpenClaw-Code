@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2721,
+  "name": "facility-maintenance-snapshot-manager",
+  "title": "Facility Maintenance Snapshot Manager",
+  "description": "Design and run facility maintenance workflows with snapshot manager controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7297,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02721-facility-maintenance-snapshot-manager/SKILL.md",
+    "entrypoint": "agent03/02721-facility-maintenance-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance snapshot manager",
+    "facility maintenance snapshot manager workflow",
+    "facility maintenance snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

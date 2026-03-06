@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10460,
+  "name": "biometric-systems-workflow-compiler",
+  "title": "Biometric Systems Workflow Compiler",
+  "description": "Design and run biometric systems workflows with workflow compiler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1195,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10460-biometric-systems-workflow-compiler/SKILL.md",
+    "entrypoint": "agent09/10460-biometric-systems-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems workflow compiler",
+    "biometric systems workflow compiler workflow",
+    "biometric systems workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 475,
+  "name": "digitalocean-webhook-listener",
+  "title": "DigitalOcean Webhook Listener",
+  "description": "Captures, verifies, and routes DigitalOcean webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12661,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00475-digitalocean-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00475-digitalocean-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digitalocean webhook listener",
+    "digitalocean webhook listener workflow",
+    "digitalocean webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

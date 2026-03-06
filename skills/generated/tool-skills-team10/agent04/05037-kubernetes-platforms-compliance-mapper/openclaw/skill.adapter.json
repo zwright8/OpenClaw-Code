@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5037,
+  "name": "kubernetes-platforms-compliance-mapper",
+  "title": "Kubernetes Platforms Compliance Mapper",
+  "description": "Design and run kubernetes platforms workflows with compliance mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 774,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/05037-kubernetes-platforms-compliance-mapper/SKILL.md",
+    "entrypoint": "agent04/05037-kubernetes-platforms-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms compliance mapper",
+    "kubernetes platforms compliance mapper workflow",
+    "kubernetes platforms compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

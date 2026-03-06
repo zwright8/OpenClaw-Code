@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11994,
+  "name": "peer-review-ops-postmortem-drafting",
+  "title": "Peer Review Ops Postmortem Drafting",
+  "description": "Design and run peer review ops workflows with postmortem drafting controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12207,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11994-peer-review-ops-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent10/11994-peer-review-ops-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops postmortem drafting",
+    "peer review ops postmortem drafting workflow",
+    "peer review ops postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

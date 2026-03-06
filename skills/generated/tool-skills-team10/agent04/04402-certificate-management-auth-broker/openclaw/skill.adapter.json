@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4402,
+  "name": "certificate-management-auth-broker",
+  "title": "Certificate Management Auth Broker",
+  "description": "Design and run certificate management workflows with auth broker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 861,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04402-certificate-management-auth-broker/SKILL.md",
+    "entrypoint": "agent04/04402-certificate-management-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management auth broker",
+    "certificate management auth broker workflow",
+    "certificate management auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

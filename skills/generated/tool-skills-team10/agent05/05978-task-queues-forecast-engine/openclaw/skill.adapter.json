@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5978,
+  "name": "task-queues-forecast-engine",
+  "title": "Task Queues Forecast Engine",
+  "description": "Design and run task queues workflows with forecast engine controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10017,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05978-task-queues-forecast-engine/SKILL.md",
+    "entrypoint": "agent05/05978-task-queues-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues forecast engine",
+    "task queues forecast engine workflow",
+    "task queues forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

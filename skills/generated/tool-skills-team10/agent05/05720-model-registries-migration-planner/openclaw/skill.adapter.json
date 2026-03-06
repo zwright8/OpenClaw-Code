@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5720,
+  "name": "model-registries-migration-planner",
+  "title": "Model Registries Migration Planner",
+  "description": "Design and run model registries workflows with migration planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4619,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05720-model-registries-migration-planner/SKILL.md",
+    "entrypoint": "agent05/05720-model-registries-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries migration planner",
+    "model registries migration planner workflow",
+    "model registries migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5606,
+  "name": "data-quality-hubs-api-contract-validator",
+  "title": "Data Quality Hubs API Contract Validator",
+  "description": "Design and run data quality hubs workflows with api contract validator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10,
+    "score": 103,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent05/05606-data-quality-hubs-api-contract-validator/SKILL.md",
+    "entrypoint": "agent05/05606-data-quality-hubs-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs api contract validator",
+    "data quality hubs api contract validator workflow",
+    "data quality hubs api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

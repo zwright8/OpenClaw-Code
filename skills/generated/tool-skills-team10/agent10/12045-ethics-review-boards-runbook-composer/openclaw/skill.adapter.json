@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12045,
+  "name": "ethics-review-boards-runbook-composer",
+  "title": "Ethics Review Boards Runbook Composer",
+  "description": "Design and run ethics review boards workflows with runbook composer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6716,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12045-ethics-review-boards-runbook-composer/SKILL.md",
+    "entrypoint": "agent10/12045-ethics-review-boards-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards runbook composer",
+    "ethics review boards runbook composer workflow",
+    "ethics review boards runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

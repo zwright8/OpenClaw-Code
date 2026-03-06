@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7728,
+  "name": "in-app-messaging-forecast-engine",
+  "title": "In-App Messaging Forecast Engine",
+  "description": "Design and run in-app messaging workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10668,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07728-in-app-messaging-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/07728-in-app-messaging-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging forecast engine",
+    "in-app messaging forecast engine workflow",
+    "in-app messaging forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

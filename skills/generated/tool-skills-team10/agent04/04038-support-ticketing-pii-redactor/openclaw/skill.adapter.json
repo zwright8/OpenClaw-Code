@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4038,
+  "name": "support-ticketing-pii-redactor",
+  "title": "Support Ticketing PII Redactor",
+  "description": "Design and run support ticketing workflows with pii redactor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3334,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04038-support-ticketing-pii-redactor/SKILL.md",
+    "entrypoint": "agent04/04038-support-ticketing-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing pii redactor",
+    "support ticketing pii redactor workflow",
+    "support ticketing pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

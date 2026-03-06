@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5872,
+  "name": "workflow-engines-version-tracker",
+  "title": "Workflow Engines Version Tracker",
+  "description": "Design and run workflow engines workflows with version tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9971,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05872-workflow-engines-version-tracker/SKILL.md",
+    "entrypoint": "agent05/05872-workflow-engines-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines version tracker",
+    "workflow engines version tracker workflow",
+    "workflow engines version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

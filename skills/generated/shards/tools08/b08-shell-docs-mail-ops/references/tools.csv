@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3502,runit,local-installable,Collection of tools for managing UNIX services,https://smarden.org/runit/,BSD-3-Clause
+3505,plakar,local-installable,"Create backups with compression, encryption and deduplication",https://plakar.io,ISC
+3507,ydiff,local-installable,View colored diff with side by side and auto pager support,https://github.com/ymattw/ydiff,BSD-3-Clause
+3508,pdf2image,local-installable,Convert PDFs to images,https://code.google.com/p/pdf2image/,FSFUL
+3513,gitup,local-installable,Update multiple git repositories at once,https://github.com/earwig/git-repo-updater,MIT
+3514,apprise,local-installable,Send notifications from the command-line to popular notification services,https://pypi.org/project/apprise/,BSD-3-Clause
+3516,cargo-llvm-cov,local-installable,Cargo subcommand to easily use LLVM source-based code coverage,https://github.com/taiki-e/cargo-llvm-cov,Apache-2.0 OR MIT
+3517,mad,local-installable,MPEG audio decoder,https://codeberg.org/tenacityteam/libmad,GPL-2.0-or-later
+3522,ford,local-installable,Automatic documentation generator for modern Fortran programs,https://github.com/Fortran-FOSS-Programmers/ford,GPL-3.0-or-later
+3523,clisp,local-installable,"GNU CLISP, a Common Lisp implementation",https://clisp.sourceforge.io/,GPL-2.0-or-later
+3524,mob,local-installable,Tool for smooth Git handover in mob programming sessions,https://mob.sh,MIT
+3526,walk,local-installable,Terminal navigator,https://github.com/antonmedv/walk,MIT
+3528,pugixml,local-installable,Light-weight C++ XML processing library,https://pugixml.org/,MIT
+3529,click,local-installable,Command-line interactive controller for Kubernetes,https://github.com/databricks/click,Apache-2.0
+3530,mcp-publisher,local-installable,Publisher CLI tool for the Official Model Context Protocol (MCP) Registry,https://github.com/modelcontextprotocol/registry,MIT
+3531,dovecot,local-installable,IMAP/POP3 server,https://dovecot.org/,BSD-3-Clause AND LGPL-2.1-or-later AND MIT AND Unicode-DFS-2016 AND LicenseRef-Homebrew-public-domain
+3532,tccutil,local-installable,Utility to modify the macOS Accessibility Database (TCC.db),https://github.com/jacobsalmela/tccutil,GPL-2.0-or-later
+3533,cargo-outdated,local-installable,Cargo subcommand for displaying when Rust dependencies are out of date,https://github.com/kbknapp/cargo-outdated,MIT
+3535,cariddi,local-installable,"Scan for endpoints, secrets, API keys, file extensions, tokens and more",https://github.com/edoardottt/cariddi,GPL-3.0-or-later
+3536,rpds-py,local-installable,Python bindings to Rust's persistent data structures,https://rpds.readthedocs.io/en/latest/,MIT
+3537,lcdf-typetools,local-installable,Manipulate OpenType and multiple-master fonts,https://www.lcdf.org/type/,GPL-2.0-or-later
+3538,xeyes,local-installable,Follow the mouse X demo using the X SHAPE extension,https://gitlab.freedesktop.org/xorg/app/xeyes,X11
+3539,arxiv_latex_cleaner,local-installable,Clean LaTeX code to submit to arXiv,https://github.com/google-research/arxiv-latex-cleaner,Apache-2.0
+3542,nixfmt,local-installable,Command-line tool to format Nix language code,https://github.com/NixOS/nixfmt,MPL-2.0
+3543,easyrpg-player,local-installable,RPG Maker 2000/2003 games interpreter,https://easyrpg.org/,GPL-3.0-or-later
+3544,gat,local-installable,Cat alternative written in Go,https://github.com/koki-develop/gat,MIT

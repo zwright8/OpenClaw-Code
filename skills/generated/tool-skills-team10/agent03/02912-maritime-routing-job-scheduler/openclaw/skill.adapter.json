@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2912,
+  "name": "maritime-routing-job-scheduler",
+  "title": "Maritime Routing Job Scheduler",
+  "description": "Design and run maritime routing workflows with job scheduler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4930,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02912-maritime-routing-job-scheduler/SKILL.md",
+    "entrypoint": "agent03/02912-maritime-routing-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing job scheduler",
+    "maritime routing job scheduler workflow",
+    "maritime routing job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

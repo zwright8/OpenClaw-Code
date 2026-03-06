@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11222,
+  "name": "channel-operations-version-tracker",
+  "title": "Channel Operations Version Tracker",
+  "description": "Design and run channel operations workflows with version tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11882,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11222-channel-operations-version-tracker/SKILL.md",
+    "entrypoint": "agent09/11222-channel-operations-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "channel operations version tracker",
+    "channel operations version tracker workflow",
+    "channel operations version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2927,
+  "name": "maritime-routing-threshold-alerting",
+  "title": "Maritime Routing Threshold Alerting",
+  "description": "Design and run maritime routing workflows with threshold alerting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8987,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02927-maritime-routing-threshold-alerting/SKILL.md",
+    "entrypoint": "agent03/02927-maritime-routing-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing threshold alerting",
+    "maritime routing threshold alerting workflow",
+    "maritime routing threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

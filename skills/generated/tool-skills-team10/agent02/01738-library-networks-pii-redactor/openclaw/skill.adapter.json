@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1738,
+  "name": "library-networks-pii-redactor",
+  "title": "Library Networks PII Redactor",
+  "description": "Design and run library networks workflows with pii redactor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3163,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01738-library-networks-pii-redactor/SKILL.md",
+    "entrypoint": "agent02/01738-library-networks-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "library networks pii redactor",
+    "library networks pii redactor workflow",
+    "library networks pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

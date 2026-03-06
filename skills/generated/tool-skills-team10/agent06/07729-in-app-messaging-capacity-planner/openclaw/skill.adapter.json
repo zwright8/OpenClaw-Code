@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7729,
+  "name": "in-app-messaging-capacity-planner",
+  "title": "In-App Messaging Capacity Planner",
+  "description": "Design and run in-app messaging workflows with capacity planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10669,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07729-in-app-messaging-capacity-planner/SKILL.md",
+    "entrypoint": "agent06/07729-in-app-messaging-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging capacity planner",
+    "in-app messaging capacity planner workflow",
+    "in-app messaging capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

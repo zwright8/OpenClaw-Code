@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4760,
+  "name": "observability-stacks-workflow-compiler",
+  "title": "Observability Stacks Workflow Compiler",
+  "description": "Design and run observability stacks workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 461,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04760-observability-stacks-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04760-observability-stacks-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks workflow compiler",
+    "observability stacks workflow compiler workflow",
+    "observability stacks workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

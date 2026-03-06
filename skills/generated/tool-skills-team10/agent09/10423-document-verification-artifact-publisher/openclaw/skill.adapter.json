@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10423,
+  "name": "document-verification-artifact-publisher",
+  "title": "Document Verification Artifact Publisher",
+  "description": "Design and run document verification workflows with artifact publisher controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11610,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10423-document-verification-artifact-publisher/SKILL.md",
+    "entrypoint": "agent09/10423-document-verification-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification artifact publisher",
+    "document verification artifact publisher workflow",
+    "document verification artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

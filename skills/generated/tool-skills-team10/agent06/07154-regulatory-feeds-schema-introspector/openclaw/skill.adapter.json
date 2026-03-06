@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7154,
+  "name": "regulatory-feeds-schema-introspector",
+  "title": "Regulatory Feeds Schema Introspector",
+  "description": "Design and run regulatory feeds workflows with schema introspector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 658,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/07154-regulatory-feeds-schema-introspector/SKILL.md",
+    "entrypoint": "agent06/07154-regulatory-feeds-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds schema introspector",
+    "regulatory feeds schema introspector workflow",
+    "regulatory feeds schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

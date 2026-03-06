@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12571,
+  "name": "universal-toolchain-02-snapshot-manager",
+  "title": "Universal Toolchain 02 Snapshot Manager",
+  "description": "Design and run universal toolchain 02 workflows with snapshot manager controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8218,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12571-universal-toolchain-02-snapshot-manager/SKILL.md",
+    "entrypoint": "agent10/12571-universal-toolchain-02-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 02 snapshot manager",
+    "universal toolchain 02 snapshot manager workflow",
+    "universal toolchain 02 snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

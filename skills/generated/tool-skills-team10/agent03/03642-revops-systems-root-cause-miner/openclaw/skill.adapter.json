@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3642,
+  "name": "revops-systems-root-cause-miner",
+  "title": "RevOps Systems Root Cause Miner",
+  "description": "Design and run revops systems workflows with root cause miner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4556,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03642-revops-systems-root-cause-miner/SKILL.md",
+    "entrypoint": "agent03/03642-revops-systems-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revops systems root cause miner",
+    "revops systems root cause miner workflow",
+    "revops systems root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

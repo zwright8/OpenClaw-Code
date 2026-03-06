@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 342,
+  "name": "ebay-seller-sync-orchestrator",
+  "title": "eBay Seller Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for eBay Seller records.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0342-ebay-seller-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent04/0342-ebay-seller-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ebay seller sync orchestrator",
+    "ebay seller sync orchestrator workflow",
+    "ebay seller sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0342-ebay-seller-sync-orchestrator"
+  }
+}

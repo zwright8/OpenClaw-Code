@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3946,
+  "name": "social-listening-approval-orchestrator",
+  "title": "Social Listening Approval Orchestrator",
+  "description": "Design and run social listening workflows with approval orchestrator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5966,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03946-social-listening-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent04/03946-social-listening-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening approval orchestrator",
+    "social listening approval orchestrator workflow",
+    "social listening approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

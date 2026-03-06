@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2818,
+  "name": "airline-operations-conflict-resolver",
+  "title": "Airline Operations Conflict Resolver",
+  "description": "Design and run airline operations workflows with conflict resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7319,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02818-airline-operations-conflict-resolver/SKILL.md",
+    "entrypoint": "agent03/02818-airline-operations-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations conflict resolver",
+    "airline operations conflict resolver workflow",
+    "airline operations conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

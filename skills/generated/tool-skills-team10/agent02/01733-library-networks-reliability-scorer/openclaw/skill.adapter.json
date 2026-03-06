@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1733,
+  "name": "library-networks-reliability-scorer",
+  "title": "Library Networks Reliability Scorer",
+  "description": "Design and run library networks workflows with reliability scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8593,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01733-library-networks-reliability-scorer/SKILL.md",
+    "entrypoint": "agent02/01733-library-networks-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "library networks reliability scorer",
+    "library networks reliability scorer workflow",
+    "library networks reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

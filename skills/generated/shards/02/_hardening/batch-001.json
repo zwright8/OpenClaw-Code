@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 1,
+  "range": {
+    "start": "u2000-handoff-contracting-for-knowledge-management-systems",
+    "end": "u2049-tool-health-monitoring-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2000-handoff-contracting-for-knowledge-management-systems",
+      "path": "generated/shards/02/2000-handoff-contracting-for-knowledge-management-systems",
+      "skill_md_sha256": "af2b5f8d276328957a54df61d25a565e2603213430c8d67bbbad52c60a4075c5",
+      "summary_sha256": "6baf3498931edb431e9debc5ca8c7bd630eab74beda69850c79cc4afe03d22f5"
+    },
+    {
+      "skill_id": "u2001-tool-health-monitoring-for-personal-health-routines",
+      "path": "generated/shards/02/2001-tool-health-monitoring-for-personal-health-routines",
+      "skill_md_sha256": "16f25cc5c5102d3f522b3b1823cb868cf611311e6a710a0298646379a1c37285",
+      "summary_sha256": "9de7e13ca5785023b84c8c483c55e9ca69e414424c43e156747446fd4d9a4a36"
+    },
+    {
+      "skill_id": "u2002-tool-health-monitoring-for-personal-health-routines",
+      "path": "generated/shards/02/2002-tool-health-monitoring-for-personal-health-routines",
+      "skill_md_sha256": "16adac7feaed69fa1a48dbb54c1fd93e1dc3241d3eecfb9c963a1fe6a574bdc8",
+      "summary_sha256": "7b38aa3a97e4e966991a6f8b122bfde2161482403ecfc8f6c0f2d841b2327091"
+    },
+    {
+      "skill_id": "u2003-tool-health-monitoring-for-personal-health-routines",
+      "path": "generated/shards/02/2003-tool-health-monitoring-for-personal-health-routines",
+      "skill_md_sha256": "16d460708ee2f271472c58a7f712f4dc26e495be9200dcac24b48ed0c009d4b8",
+      "summary_sha256": "c785c1bc2c1fe71edc1fd7c504cfcb30bfdc5265f5905080b512868ade41aab2"
+    },
+    {
+      "skill_id": "u2004-tool-health-monitoring-for-personal-health-routines",
+      "path": "generated/shards/02/2004-tool-health-monitoring-for-personal-health-routines",
+      "skill_md_sha256": "b40b754166851d4d6624281a2b5ba347255515d0b1979dbb8550a899f4f50a48",
+      "summary_sha256": "e46d119764bbb7d70c6963787024489e04838646bade1945c32493a38880bfd2"
+    },
+    {
+      "skill_id": "u2005-tool-health-monitoring-for-personal-health-routines",
+      "path": "generated/shards/02/2005-tool-health-monitoring-for-personal-health-routines",
+      "skill_md_sha256": "6db2d5e31acc4fe66ce8ed9f95684de67d1c8f214f9c7e106c65815f7dc1088a",
+      "summary_sha256": "aaa91b7a519227b89f28d2a2f97b2711e7d04dfd84667d7e354b5e47e4a1f5c1"
+    },
+    {
+      "skill_id": "u2006-tool-health-monitoring-for-family-caregiving-systems",
+      "path": "generated/shards/02/2006-tool-health-monitoring-for-family-caregiving-systems",
+      "skill_md_sha256": "a0cf040384d963ba4db4f2e4ab756f9cb7252ad0b5b35d188c5aab4517c54f40",
+      "summary_sha256": "93d2e9f578add270e61a8f75b5b8a776bcb5c8d680b816ac38afed5a10281088"
+    },
+    {
+      "skill_id": "u2007-tool-health-monitoring-for-family-caregiving-systems",
+      "path": "generated/shards/02/2007-tool-health-monitoring-for-family-caregiving-systems",
+      "skill_md_sha256": "9e84447b25e45f0c2cdddbf71f8d9986e815d0f7ff4f3dcd63abc42aa9d13cbd",
+      "summary_sha256": "f1376be69d1ada9e778f96e7480725f2e7bf7c8607a41c198b214c89feb16f55"
+    },
+    {
+      "skill_id": "u2008-tool-health-monitoring-for-family-caregiving-systems",
+      "path": "generated/shards/02/2008-tool-health-monitoring-for-family-caregiving-systems",
+      "skill_md_sha256": "8fd39b51b1d90067217e410695ea48be2c24215b15c4d7c992f680d4f454dd93",
+      "summary_sha256": "140b498d5af23eae7e3684af750a64fc275ac7985b2fb29f0f6d341912062a32"
+    },
+    {
+      "skill_id": "u2009-tool-health-monitoring-for-family-caregiving-systems",
+      "path": "generated/shards/02/2009-tool-health-monitoring-for-family-caregiving-systems",
+      "skill_md_sha256": "6ecb2f75ea9675c7dd8e5055990baed1825c17be533da5c79b3b14e12397e1d0",
+      "summary_sha256": "04bff9d1673e52da98ab18422efc64626c74baddd7edd3fe9a46e4d33fa40fde"
+    },
+    {
+      "skill_id": "u2010-tool-health-monitoring-for-family-caregiving-systems",
+      "path": "generated/shards/02/2010-tool-health-monitoring-for-family-caregiving-systems",
+      "skill_md_sha256": "63578d1da1749de5f0c221e745e57aa607714b89c06c646b59ac9266fb30da30",
+      "summary_sha256": "f65b6996139f284084614f0ad3e037522a42c6abf2e855f90130da2ae8fb6d4a"
+    },
+    {
+      "skill_id": "u2011-tool-health-monitoring-for-household-logistics",
+      "path": "generated/shards/02/2011-tool-health-monitoring-for-household-logistics",
+      "skill_md_sha256": "619cf7725dfc1d0a53b62852b441d7dbc918e5d3c3a0a61edf76c1eabef0f8bb",
+      "summary_sha256": "dc53571f9e83fdd2b4fd7be17edf8109bccbdfb76d070d5c024b743f559f8584"
+    },
+    {
+      "skill_id": "u2012-tool-health-monitoring-for-household-logistics",
+      "path": "generated/shards/02/2012-tool-health-monitoring-for-household-logistics",
+      "skill_md_sha256": "1b8b64c481de7a87e43e66213f483eb4101c4a5b741c59ada64d364561c3fae4",
+      "summary_sha256": "64677fa80907cabd20a62097543ab811876d5e453a00a5e63d3d8121df9aef1f"
+    },
+    {
+      "skill_id": "u2013-tool-health-monitoring-for-household-logistics",
+      "path": "generated/shards/02/2013-tool-health-monitoring-for-household-logistics",
+      "skill_md_sha256": "4e8f03d1ea105f03d71e1d915486c0cd0bcc51ede4610b33560a11b798c34520",
+      "summary_sha256": "225839cb2ea463282a25cbe2a26f2fde934b9f38ed3e2f975cf376aacdf21cbe"
+    },
+    {
+      "skill_id": "u2014-tool-health-monitoring-for-household-logistics",
+      "path": "generated/shards/02/2014-tool-health-monitoring-for-household-logistics",
+      "skill_md_sha256": "e45ae1d84d16d242faffd174c7ca393e054132cb34a6ceb10ce0b274eb6f2843",
+      "summary_sha256": "f3859ed50cc2e48118d25055be522077313b98938eba88c84af85209bc4ffa9e"
+    },
+    {
+      "skill_id": "u2015-tool-health-monitoring-for-household-logistics",
+      "path": "generated/shards/02/2015-tool-health-monitoring-for-household-logistics",
+      "skill_md_sha256": "249000f0950632d2ea74c73e22226b75bfae037910537433ec9d32e75fbb6da6",
+      "summary_sha256": "c0e616564403f1a5e8beb0a7919c019c590bbafd45ceeeef0a9b718c898f9ffa"
+    },
+    {
+      "skill_id": "u2016-tool-health-monitoring-for-personal-finance-management",
+      "path": "generated/shards/02/2016-tool-health-monitoring-for-personal-finance-management",
+      "skill_md_sha256": "1db444a616c4c31c790aff70824c0a42db3882add20a357fea2ddc3a0d76662d",
+      "summary_sha256": "52040fa634c85f505b4bc879bb690662b8c8ffb8b727244205bdf8b810c5896b"
+    },
+    {
+      "skill_id": "u2017-tool-health-monitoring-for-personal-finance-management",
+      "path": "generated/shards/02/2017-tool-health-monitoring-for-personal-finance-management",
+      "skill_md_sha256": "c4243902e66d91193d5b05976805c544895e2bd59efec250f3d723e5634fbb5a",
+      "summary_sha256": "a2d39095e27e189c8442bfab78bba4737a1ad8db260fe04be7a0a47cdbf64685"
+    },
+    {
+      "skill_id": "u2018-tool-health-monitoring-for-personal-finance-management",
+      "path": "generated/shards/02/2018-tool-health-monitoring-for-personal-finance-management",
+      "skill_md_sha256": "a6ad93744a9466b308cf4ba5b649a5e134cfb515627b8c131bc4f2e8edfffe78",
+      "summary_sha256": "bfecd90dbdb5350dec2c83d5308707009b565cfe748c7225aa9bed9b163aeea3"
+    },
+    {
+      "skill_id": "u2019-tool-health-monitoring-for-personal-finance-management",
+      "path": "generated/shards/02/2019-tool-health-monitoring-for-personal-finance-management",
+      "skill_md_sha256": "73db22c6ce1a1512cb58f7def8e3b41df9326c0bf50f6aa8249f8595c5a4beea",
+      "summary_sha256": "cf64f8f56368d22feb223f7528dc03ba6474a047e3c53ba2650e406cb76e7c9e"
+    },
+    {
+      "skill_id": "u2020-tool-health-monitoring-for-personal-finance-management",
+      "path": "generated/shards/02/2020-tool-health-monitoring-for-personal-finance-management",
+      "skill_md_sha256": "3bdac5aa435d403e23f72227f0e2ea7bee36d2b6fac9fa980f05b49382200df1",
+      "summary_sha256": "90eed580d1a0f81e7a56c32d6b90694abe08d0cdcd0b0aaf50e50d949b01f669"
+    },
+    {
+      "skill_id": "u2021-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2021-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "e52babb87d4e9733269780c973c4aa0b91f1f5d0c5c6ea849716ada9edeff666",
+      "summary_sha256": "4c279c8ee47f881a2e11dd8513c5a9736fb6a4367c5def707d38582b1fb75bf0"
+    },
+    {
+      "skill_id": "u2022-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2022-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "5c6168a330a2f0334005e771c86bff41c44e8142736ff1cb429d28716adcd92f",
+      "summary_sha256": "068638cfd8f068c7c23f0882b1c96940d83d0e1847341068b7d88a130ca509fc"
+    },
+    {
+      "skill_id": "u2023-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2023-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "f9561c2c631a4bf12d85cdd0a3ebfd5ac61b4e00ba67c28f150b2cc3fb792e03",
+      "summary_sha256": "462eececf988ad8c79561ac3dade252bd4b30dc8fb5ce018635f1be4798c4071"
+    },
+    {
+      "skill_id": "u2024-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2024-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "f21d85951321e0f32596dfb13536daeb6c1cc6e443ce70d41906042f2704763a",
+      "summary_sha256": "b02e5440af132ca926bf85380056b5a8ddfee2e97b5dc8b83c2e6fd53939f2fd"
+    },
+    {
+      "skill_id": "u2025-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2025-tool-health-monitoring-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "d3292ef5833a7ced48dc9637360f93cfb9cb2260c39f0394f792b3f6fb52f531",
+      "summary_sha256": "37d820710a3a9647acff14bfc0f5059fb70797cd3d3fd07132e4fb2100bc6a77"
+    },
+    {
+      "skill_id": "u2026-tool-health-monitoring-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2026-tool-health-monitoring-for-fitness-and-recovery-training",
+      "skill_md_sha256": "4b4458811d999f019d5be784de24289893e46ee7af889c8a4d53bc4ba08dd542",
+      "summary_sha256": "eeaae7b874d9966578428d1436c0d9f065a31da3f53aba9fca5ad59754552ade"
+    },
+    {
+      "skill_id": "u2027-tool-health-monitoring-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2027-tool-health-monitoring-for-fitness-and-recovery-training",
+      "skill_md_sha256": "20e562e323a97decb9be4793f562844c894eec7b72de6859cb43f8628c986fb4",
+      "summary_sha256": "54852df6546d4178e57d9b62ed97a7a2fc35561422135cc87e602cd57d144e72"
+    },
+    {
+      "skill_id": "u2028-tool-health-monitoring-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2028-tool-health-monitoring-for-fitness-and-recovery-training",
+      "skill_md_sha256": "0327dda14bcb570ed29fc906d21c0f6fc3f15e230aebd83ad530a894d8cfbc83",
+      "summary_sha256": "7d95f5860b68a44495b515f164fe88a7da88fff28fe95bf1d3f6b7c4be11fbc7"
+    },
+    {
+      "skill_id": "u2029-tool-health-monitoring-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2029-tool-health-monitoring-for-fitness-and-recovery-training",
+      "skill_md_sha256": "0afe460957b06640379a840d7cecc01afc104c6245075327f29e505faba311ba",
+      "summary_sha256": "1ecd382f6d4976c7b56e0b5733066ff44ef9da2ce3c07fd6e18a3cdf40bf9a22"
+    },
+    {
+      "skill_id": "u2030-tool-health-monitoring-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2030-tool-health-monitoring-for-fitness-and-recovery-training",
+      "skill_md_sha256": "01889cefbd6f4a0b86a62ede537a30e33f97792c92654396579602ce15a59c3e",
+      "summary_sha256": "4054a0692b1f328971c17d1eea79482d23d65dca149bce1c930404828374d68e"
+    },
+    {
+      "skill_id": "u2031-tool-health-monitoring-for-mental-well-being-practices",
+      "path": "generated/shards/02/2031-tool-health-monitoring-for-mental-well-being-practices",
+      "skill_md_sha256": "a2923e3ffc0ac9c32b8d8adfcf6a99faa6ddf4b857c0a0f943b1186722cc07fe",
+      "summary_sha256": "71474e47d52fdd1c6f9c4741731f5503de0beb4216668749d39fec3686148c48"
+    },
+    {
+      "skill_id": "u2032-tool-health-monitoring-for-mental-well-being-practices",
+      "path": "generated/shards/02/2032-tool-health-monitoring-for-mental-well-being-practices",
+      "skill_md_sha256": "854bf1d1a60d6cfb58a39e5713beb66b5a58fc616904678924b5453b6d3240bc",
+      "summary_sha256": "7f5beb5aecb5756a24a91fff76e721bc92d54ebb48db6a1f2b2fbafcbe40ab30"
+    },
+    {
+      "skill_id": "u2033-tool-health-monitoring-for-mental-well-being-practices",
+      "path": "generated/shards/02/2033-tool-health-monitoring-for-mental-well-being-practices",
+      "skill_md_sha256": "0a4236e4136edfd0ffb766f96ef384be0db2b9717ebc6ed238a6cb2fead59f79",
+      "summary_sha256": "913b3583a000d0998cb00db76c2921664d82dda49556dc50a2927b222324e514"
+    },
+    {
+      "skill_id": "u2034-tool-health-monitoring-for-mental-well-being-practices",
+      "path": "generated/shards/02/2034-tool-health-monitoring-for-mental-well-being-practices",
+      "skill_md_sha256": "e209ab67830837c917456b9160c43f37a4fb89fb9d74597bb85c7d7ec9d91830",
+      "summary_sha256": "f08bbb94fb2e86cbb2476d4dec3a701fe68941c697d3e18bb6d6d6b7e566b88d"
+    },
+    {
+      "skill_id": "u2035-tool-health-monitoring-for-mental-well-being-practices",
+      "path": "generated/shards/02/2035-tool-health-monitoring-for-mental-well-being-practices",
+      "skill_md_sha256": "7946f84a3b115835c62e2a1c7b07958791fd4f13d595a3331f38475f44158fdc",
+      "summary_sha256": "2a6890152983734ccefc6be334b39e9d3b38b7690112790a9d073cc869028fd3"
+    },
+    {
+      "skill_id": "u2036-tool-health-monitoring-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2036-tool-health-monitoring-for-lifelong-learning-plans",
+      "skill_md_sha256": "296b76ca7b533bfb5596202e070aea7cdfcd30cd36070d6c77bef9a14ad4b59f",
+      "summary_sha256": "3b58fbd4f191bc00cba9f6fa4091cf1fe8e3a8263664e4a185cb8b19bb491829"
+    },
+    {
+      "skill_id": "u2037-tool-health-monitoring-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2037-tool-health-monitoring-for-lifelong-learning-plans",
+      "skill_md_sha256": "cbd1972f775cdb38db792676f003b79f2e882374ed6b2f0d75f0f4adf1a9a343",
+      "summary_sha256": "54904795436c9b020f8860119e666720abe71c31d5b9603e792801944de95836"
+    },
+    {
+      "skill_id": "u2038-tool-health-monitoring-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2038-tool-health-monitoring-for-lifelong-learning-plans",
+      "skill_md_sha256": "df88c206597d76e3b9d3c44aaf278b2b4d6fb60f043032015e13d961be01cc4b",
+      "summary_sha256": "259216a8cfda24c9da58666c820734cdcb34fa9aff6da7556d797b65b65afb7e"
+    },
+    {
+      "skill_id": "u2039-tool-health-monitoring-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2039-tool-health-monitoring-for-lifelong-learning-plans",
+      "skill_md_sha256": "4c49f06fa9162c86db1a7faf7f22e1bdbd2c6492793e846bd02399aa07693c9a",
+      "summary_sha256": "306f22cfdbfc83a5523e140ea1baf870dff5dec323d7379d46e4ded711d3f479"
+    },
+    {
+      "skill_id": "u2040-tool-health-monitoring-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2040-tool-health-monitoring-for-lifelong-learning-plans",
+      "skill_md_sha256": "81a2980e36bc915dc0a108daa14d84fd36fa3ce402729a036a1091982901e012",
+      "summary_sha256": "ae1d8b3e85fbcde217150b54f750e4c3f59667afa37fd254b85d8c0badce745b"
+    },
+    {
+      "skill_id": "u2041-tool-health-monitoring-for-career-development-pathways",
+      "path": "generated/shards/02/2041-tool-health-monitoring-for-career-development-pathways",
+      "skill_md_sha256": "c69c87ba75e797b0afc5ebd184e63fa4ea77d69656b66a0feb4190a877e316de",
+      "summary_sha256": "07704319a38a0a4c6b5c8ed34c70ecea7cd9578ac4d2a76d0c94651339d05ba5"
+    },
+    {
+      "skill_id": "u2042-tool-health-monitoring-for-career-development-pathways",
+      "path": "generated/shards/02/2042-tool-health-monitoring-for-career-development-pathways",
+      "skill_md_sha256": "6f6f0350084e69c40dd6c62a39db9858466ab2a677862ef91e1ecec63fb6545f",
+      "summary_sha256": "decd6cb05adfcd7921ed4d47d8b9bac3a0c90e3adcf2cb1635b693b4feed393d"
+    },
+    {
+      "skill_id": "u2043-tool-health-monitoring-for-career-development-pathways",
+      "path": "generated/shards/02/2043-tool-health-monitoring-for-career-development-pathways",
+      "skill_md_sha256": "17ba56e6f07457948acadeaa32ec1b2d3a5a505109420850bd339cf1e05a2fdc",
+      "summary_sha256": "5a90c06cb172030b112f92031dfbe53118880b542e58417388ea317db8889753"
+    },
+    {
+      "skill_id": "u2044-tool-health-monitoring-for-career-development-pathways",
+      "path": "generated/shards/02/2044-tool-health-monitoring-for-career-development-pathways",
+      "skill_md_sha256": "93e87e6a5e516480e8d31ce618df051c8e341db8d8bc89abaa4e282b51e00f44",
+      "summary_sha256": "b671c15c87e3616bfb7689cf7bccaa2795a428c6685884ea3807437c3d2b0b47"
+    },
+    {
+      "skill_id": "u2045-tool-health-monitoring-for-career-development-pathways",
+      "path": "generated/shards/02/2045-tool-health-monitoring-for-career-development-pathways",
+      "skill_md_sha256": "72aa076efb65e52c0136a96bea79325b75dad518a3c60f97e1da20dbf4e06ce4",
+      "summary_sha256": "bf4d5c60a498777a0a55eca8fb1cc5778f37fe3d56d08d270cd4b3b18d32fc28"
+    },
+    {
+      "skill_id": "u2046-tool-health-monitoring-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2046-tool-health-monitoring-for-entrepreneurship-operations",
+      "skill_md_sha256": "bedd9c8811149597ba5eec33b84d9a4cffe8abe7612a60084ad0c5c942704a5e",
+      "summary_sha256": "419bdff7eaf26127c5980d33b2990b64922aa3b4f1c2590db80fa2e2b927b87c"
+    },
+    {
+      "skill_id": "u2047-tool-health-monitoring-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2047-tool-health-monitoring-for-entrepreneurship-operations",
+      "skill_md_sha256": "42157ade76a5f5905b07027242b8027a4d49a8b0808efd4d169fb8df3b736dfa",
+      "summary_sha256": "6c934b71af93e27ea14a78d1d93bcf31f52a15c8dc5b16e5fc4741e19c19fc9c"
+    },
+    {
+      "skill_id": "u2048-tool-health-monitoring-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2048-tool-health-monitoring-for-entrepreneurship-operations",
+      "skill_md_sha256": "d7f470c33a5f806062f247b99195a6c595f8c8b43517401c63062c7835074de0",
+      "summary_sha256": "37d5616211bac1a41edef6da06e907e9dd13b1e9acc99e8b7b91bbf27fc4b6cf"
+    },
+    {
+      "skill_id": "u2049-tool-health-monitoring-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2049-tool-health-monitoring-for-entrepreneurship-operations",
+      "skill_md_sha256": "44bd35713b7b59ce7bdb9e8cdaf57192729acd76666e77c2143ca9b3f0f78283",
+      "summary_sha256": "01c7895389acbf16467f7da2664c32fd05d791bd10f994c93e50c5edf62bc229"
+    }
+  ]
+}

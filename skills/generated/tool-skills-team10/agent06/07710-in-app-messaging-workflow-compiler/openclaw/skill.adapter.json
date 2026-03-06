@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7710,
+  "name": "in-app-messaging-workflow-compiler",
+  "title": "In-App Messaging Workflow Compiler",
+  "description": "Design and run in-app messaging workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1144,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07710-in-app-messaging-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/07710-in-app-messaging-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging workflow compiler",
+    "in-app messaging workflow compiler workflow",
+    "in-app messaging workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

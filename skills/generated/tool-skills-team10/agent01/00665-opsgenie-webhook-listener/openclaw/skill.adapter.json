@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 665,
+  "name": "opsgenie-webhook-listener",
+  "title": "Opsgenie Webhook Listener",
+  "description": "Captures, verifies, and routes Opsgenie webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12787,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00665-opsgenie-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00665-opsgenie-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "opsgenie webhook listener",
+    "opsgenie webhook listener workflow",
+    "opsgenie webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

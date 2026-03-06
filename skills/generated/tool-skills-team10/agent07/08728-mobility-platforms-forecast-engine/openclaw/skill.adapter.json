@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8728,
+  "name": "mobility-platforms-forecast-engine",
+  "title": "Mobility Platforms Forecast Engine",
+  "description": "Design and run mobility platforms workflows with forecast engine controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11046,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08728-mobility-platforms-forecast-engine/SKILL.md",
+    "entrypoint": "agent07/08728-mobility-platforms-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobility platforms forecast engine",
+    "mobility platforms forecast engine workflow",
+    "mobility platforms forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

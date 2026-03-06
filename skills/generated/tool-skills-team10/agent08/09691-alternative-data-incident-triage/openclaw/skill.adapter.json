@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9691,
+  "name": "alternative-data-incident-triage",
+  "title": "Alternative Data Incident Triage",
+  "description": "Design and run alternative data workflows with incident triage controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2210,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09691-alternative-data-incident-triage/SKILL.md",
+    "entrypoint": "agent08/09691-alternative-data-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data incident triage",
+    "alternative data incident triage workflow",
+    "alternative data incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

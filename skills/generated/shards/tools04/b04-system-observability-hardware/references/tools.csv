@@ -1,0 +1,48 @@
+rank,tool,command_hint,type,access,description,homepage,license
+1522,tailspin,tailspin,cli,local-installable,Log file highlighter,https://github.com/bensadeh/tailspin,MIT
+1526,usbutils,usbutils,cli,local-installable,List detailed info about USB devices,http://www.linux-usb.org/,GPL-2.0-only AND GPL-2.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
+1531,valgrind,valgrind,cli,local-installable,"Dynamic analysis tools (memory, debug, profiling)",https://www.valgrind.org/,GPL-2.0-or-later
+1536,sleepwatcher,sleepwatcher,cli,local-installable,"Monitors sleep, wakeup, and idleness of a Mac",https://www.bernhard-baehr.de/,GPL-3.0-or-later
+1556,goaccess,goaccess,service/daemon,local-installable,Log analyzer and interactive viewer for the Apache Webserver,https://goaccess.io/,MIT
+1566,logstash,logstash,cli,local-installable,Tool for managing events and logs,https://www.elastic.co/products/logstash,Apache-2.0
+1609,asitop,asitop,cli,local-installable,Perf monitoring CLI tool for Apple Silicon,https://tlkh.github.io/asitop/,MIT
+1619,gperftools,gperftools,cli,local-installable,Multi-threaded malloc() and performance analysis tools,https://github.com/gperftools/gperftools,BSD-3-Clause
+1621,snap,snap,cli,local-installable,Tool to work with .snap files,https://snapcraft.io/,GPL-3.0-only
+1631,retry,retry,cli,local-installable,Repeat a command until the command succeeds,https://github.com/minfrin/retry,Apache-2.0
+1665,sane-backends,sane-backends,cli,local-installable,Backends for scanner access,http://www.sane-project.org/,GPL-2.0-or-later
+1688,grc,grc,cli,local-installable,Colorize logfiles and command output,https://kassiopeia.juls.savba.sk/~garabik/software/grc.html,GPL-2.0-or-later
+1700,macmon,macmon,cli,local-installable,Sudoless performance monitoring for Apple Silicon processors,https://github.com/vladkens/macmon,MIT
+1704,vivid,vivid,cli,local-installable,Generator for LS_COLORS with support for multiple color themes,https://github.com/sharkdp/vivid,MIT OR Apache-2.0
+1712,flock,flock,cli,local-installable,Lock file during command,https://github.com/discoteq/flock,ISC
+1728,xorriso,xorriso,cli,local-installable,ISO9660+RR manipulation tool,https://www.gnu.org/software/xorriso/,GPL-2.0-or-later
+1734,hyfetch,hyfetch,cli,local-installable,"Fast, highly customisable system info script with LGBTQ+ pride flags",https://github.com/hykilpikonna/hyfetch,MIT
+1755,hl,hl,cli,local-installable,Fast and powerful log viewer and processor,https://github.com/pamburus/hl,MIT
+1758,file-formula,file-formula,cli,local-installable,Utility to determine file types,https://darwinsys.com/file/,BSD-2-Clause-Darwin
+1763,socket_vmnet,socket_vmnet,service/daemon,local-installable,Daemon to provide vmnet.framework support for rootless QEMU,https://github.com/lima-vm/socket_vmnet,Apache-2.0
+1766,hexyl,hexyl,cli,local-installable,Command-line hex viewer,https://github.com/sharkdp/hexyl,Apache-2.0 OR MIT
+1778,crowdin,crowdin,cli,local-installable,Command-line tool that allows to manage your resources with crowdin.com,https://support.crowdin.com/cli-tool/,MIT
+1781,uhd,uhd,cli,local-installable,Hardware driver for all USRP devices,https://files.ettus.com/manual/,GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND BSD-3-Clause AND Apache-2.0
+1795,lesspipe,lesspipe,cli,local-installable,Input filter for the pager less,https://www-zeuthen.desy.de/~friebel/unix/lesspipe.html,GPL-2.0-only AND GPL-2.0-or-later AND MIT AND (Artistic-1.0-Perl OR GPL-1.0-or-later)
+1802,pcsc-lite,pcsc-lite,cli,local-installable,Middleware to access a smart card using SCard API,https://pcsclite.apdu.fr/,BSD-3-Clause AND GPL-3.0-or-later AND ISC
+1812,sniffnet,sniffnet,cli,local-installable,Cross-platform application to monitor your network traffic,https://sniffnet.net/,Apache-2.0 OR MIT
+1819,m-cli,m-cli,cli,local-installable,Swiss Army Knife for macOS,https://github.com/rgcr/m-cli,MIT
+1822,systemd,systemd,service/daemon,local-installable,System and service manager,https://systemd.io,LGPL-2.1-or-later AND GPL-2.0-or-later AND CC0-1.0 AND LGPL-2.0-or-later AND MIT AND MIT-0 AND LicenseRef-Homebrew-public-domain AND (LGPL-2.0-or-later WITH Linux-syscall-note) AND (GPL-1.0-or-later WITH Linux-syscall-note) AND (GPL-2.0-or-later WITH Linux-syscall-note) AND (GPL-2.0-only WITH Linux-syscall-note) AND (BSD-3-Clause OR (GPL-2.0-only WITH Linux-syscall-note)) AND (MIT OR (GPL-2.0-only WITH Linux-syscall-note)) AND (MIT OR (GPL-2.0-or-later WITH Linux-syscall-note)) AND (GPL-2.0-only OR BSD-2-Clause)
+1835,newrelic-infra-agent,newrelic-infra-agent,cli,local-installable,New Relic infrastructure agent,https://github.com/newrelic/infrastructure-agent,Apache-2.0
+1838,mecab-ipadic,mecab-ipadic,cli,local-installable,IPA dictionary compiled for MeCab,https://taku910.github.io/mecab/,NAIST-2003
+1851,brightness,brightness,cli,local-installable,Change macOS display brightness from the command-line,https://github.com/nriley/brightness,BSD-2-Clause
+1856,bandwhich,bandwhich,cli,local-installable,Terminal bandwidth utilization tool,https://github.com/imsnif/bandwhich,MIT
+1867,hyperkit,hyperkit,cli,local-installable,Toolkit for embedding hypervisor capabilities in your application,https://github.com/moby/hyperkit,BSD-2-Clause
+1879,muffet,muffet,cli,local-installable,Fast website link checker in Go,https://github.com/raviqqe/muffet,MIT
+1880,sysbench,sysbench,cli,local-installable,System performance benchmark tool,https://github.com/akopytov/sysbench,GPL-2.0-or-later
+1889,kanata,kanata,cli,local-installable,"Cross-platform software keyboard remapper for Linux, macOS and Windows",https://github.com/jtroo/kanata,LGPL-3.0-only
+1898,batt,batt,cli,local-installable,Control and limit battery charging on Apple Silicon MacBooks,https://github.com/charlie0129/batt,GPL-2.0-only
+1904,vfkit,vfkit,cli,local-installable,Command-line hypervisor using Apple's Virtualization Framework,https://github.com/crc-org/vfkit,Apache-2.0
+1913,axel,axel,cli,local-installable,Light UNIX download accelerator,https://github.com/axel-download-accelerator/axel,GPL-2.0-or-later WITH cryptsetup-OpenSSL-exception
+1919,gsmartcontrol,gsmartcontrol,cli,local-installable,Graphical user interface for smartctl,https://gsmartcontrol.shaduri.dev/,GPL-2.0-only OR GPL-3.0-only
+1934,bloaty,bloaty,cli,local-installable,Size profiler for binaries,https://github.com/google/bloaty,Apache-2.0
+1949,bpytop,bpytop,cli,local-installable,Linux/OSX/FreeBSD resource monitor,https://github.com/aristocratos/bpytop,Apache-2.0
+1966,wget2,wget2,cli,local-installable,"Successor of GNU Wget, a file and recursive website downloader",https://gitlab.com/gnuwget/wget2,GPL-3.0-or-later
+1974,duplicity,duplicity,cli,local-installable,Bandwidth-efficient encrypted backup,https://gitlab.com/duplicity/duplicity,GPL-2.0-or-later
+1984,filebeat,filebeat,cli,local-installable,File harvester to ship log files to Elasticsearch or Logstash,https://www.elastic.co/products/beats/filebeat,Apache-2.0
+1990,inxi,inxi,cli,local-installable,Full featured CLI system information tool,https://smxi.org/docs/inxi.htm,GPL-3.0-or-later
+1996,kopia,kopia,cli,local-installable,Fast and secure open-source backup,https://kopia.io,Apache-2.0

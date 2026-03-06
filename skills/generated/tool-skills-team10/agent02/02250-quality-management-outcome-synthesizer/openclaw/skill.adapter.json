@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2250,
+  "name": "quality-management-outcome-synthesizer",
+  "title": "Quality Management Outcome Synthesizer",
+  "description": "Design and run quality management workflows with outcome synthesizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 6840,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02250-quality-management-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent02/02250-quality-management-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quality management outcome synthesizer",
+    "quality management outcome synthesizer workflow",
+    "quality management outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

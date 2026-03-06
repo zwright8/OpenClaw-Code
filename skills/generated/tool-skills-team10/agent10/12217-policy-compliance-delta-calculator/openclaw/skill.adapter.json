@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12217,
+  "name": "policy-compliance-delta-calculator",
+  "title": "Policy Compliance Delta Calculator",
+  "description": "Design and run policy compliance workflows with delta calculator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6797,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12217-policy-compliance-delta-calculator/SKILL.md",
+    "entrypoint": "agent10/12217-policy-compliance-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance delta calculator",
+    "policy compliance delta calculator workflow",
+    "policy compliance delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

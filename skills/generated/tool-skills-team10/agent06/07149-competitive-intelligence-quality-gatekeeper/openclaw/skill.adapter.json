@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7149,
+  "name": "competitive-intelligence-quality-gatekeeper",
+  "title": "Competitive Intelligence Quality Gatekeeper",
+  "description": "Design and run competitive intelligence workflows with quality gatekeeper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5500,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07149-competitive-intelligence-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent06/07149-competitive-intelligence-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "competitive intelligence quality gatekeeper",
+    "competitive intelligence quality gatekeeper workflow",
+    "competitive intelligence quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

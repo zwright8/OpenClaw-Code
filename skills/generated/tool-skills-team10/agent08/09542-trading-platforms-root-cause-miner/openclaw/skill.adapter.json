@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9542,
+  "name": "trading-platforms-root-cause-miner",
+  "title": "Trading Platforms Root Cause Miner",
+  "description": "Design and run trading platforms workflows with root cause miner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4755,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09542-trading-platforms-root-cause-miner/SKILL.md",
+    "entrypoint": "agent08/09542-trading-platforms-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms root cause miner",
+    "trading platforms root cause miner workflow",
+    "trading platforms root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

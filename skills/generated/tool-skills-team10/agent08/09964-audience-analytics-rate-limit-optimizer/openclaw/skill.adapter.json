@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9964,
+  "name": "audience-analytics-rate-limit-optimizer",
+  "title": "Audience Analytics Rate Limit Optimizer",
+  "description": "Design and run audience analytics workflows with rate limit optimizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6513,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09964-audience-analytics-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent08/09964-audience-analytics-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics rate limit optimizer",
+    "audience analytics rate limit optimizer workflow",
+    "audience analytics rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

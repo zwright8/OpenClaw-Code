@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4436,
+  "name": "certificate-management-risk-scorer",
+  "title": "Certificate Management Risk Scorer",
+  "description": "Design and run certificate management workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1558,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04436-certificate-management-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/04436-certificate-management-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management risk scorer",
+    "certificate management risk scorer workflow",
+    "certificate management risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

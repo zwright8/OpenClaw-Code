@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7449,
+  "name": "a-b-testing-quality-gatekeeper",
+  "title": "A/B Testing Quality Gatekeeper",
+  "description": "Design and run a/b testing workflows with quality gatekeeper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5510,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07449-a-b-testing-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent06/07449-a-b-testing-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing quality gatekeeper",
+    "a/b testing quality gatekeeper workflow",
+    "a/b testing quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

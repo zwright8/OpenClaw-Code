@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2861,
+  "name": "rail-scheduling-execution-runner",
+  "title": "Rail Scheduling Execution Runner",
+  "description": "Design and run rail scheduling workflows with execution runner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 507,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/02861-rail-scheduling-execution-runner/SKILL.md",
+    "entrypoint": "agent03/02861-rail-scheduling-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling execution runner",
+    "rail scheduling execution runner workflow",
+    "rail scheduling execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

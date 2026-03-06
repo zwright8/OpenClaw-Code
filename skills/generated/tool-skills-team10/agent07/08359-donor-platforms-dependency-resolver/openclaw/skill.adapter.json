@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8359,
+  "name": "donor-platforms-dependency-resolver",
+  "title": "Donor Platforms Dependency Resolver",
+  "description": "Design and run donor platforms workflows with dependency resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10911,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08359-donor-platforms-dependency-resolver/SKILL.md",
+    "entrypoint": "agent07/08359-donor-platforms-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms dependency resolver",
+    "donor platforms dependency resolver workflow",
+    "donor platforms dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

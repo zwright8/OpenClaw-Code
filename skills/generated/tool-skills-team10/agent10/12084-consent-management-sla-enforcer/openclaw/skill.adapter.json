@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12084,
+  "name": "consent-management-sla-enforcer",
+  "title": "Consent Management SLA Enforcer",
+  "description": "Design and run consent management workflows with sla enforcer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12248,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12084-consent-management-sla-enforcer/SKILL.md",
+    "entrypoint": "agent10/12084-consent-management-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "consent management sla enforcer",
+    "consent management sla enforcer workflow",
+    "consent management sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

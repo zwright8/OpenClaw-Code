@@ -16,6 +16,16 @@ const TERMINAL_STATUSES = new Set([
     'transport_error'
 ]);
 
+const ROUTING_BEHAVIOR_PRIOR_SAMPLES = 14;
+const ROUTING_BEHAVIOR_PRIOR_RISK_SAMPLE_BOOST = 8;
+const ROUTING_BEHAVIOR_PRIOR_LOAD_SAMPLE_BOOST = 4;
+const ROUTING_RETRY_TIMEOUT_SIGNAL_WEIGHT = 0.85;
+const ROUTING_OVERDUE_TIMEOUT_SIGNAL_WEIGHT = 0.5;
+const ROUTING_CONSECUTIVE_FAILURE_TIMEOUT_WEIGHT = 0.2;
+const ROUTING_DISPATCH_FAILURE_SIGNAL_WEIGHT = 0.45;
+const ROUTING_TRANSPORT_FAILURE_SIGNAL_WEIGHT = 0.65;
+const ROUTING_ACTIVE_LOAD_TIMEOUT_SIGNAL_WEIGHT = 0.18;
+
 const AgentStatus = z.enum(['idle', 'busy', 'error', 'offline']);
 
 const SimulationTaskSchema = z.object({
@@ -176,6 +186,13 @@ function toAgentSnapshot(agentRuntime, nowMs) {
     };
 }
 
+function compareSnapshotIds(a, b) {
+    const idA = typeof a?.id === 'string' ? a.id : '';
+    const idB = typeof b?.id === 'string' ? b.id : '';
+    if (idA === idB) return 0;
+    return idA < idB ? -1 : 1;
+}
+
 function summarizeTasks(tasks) {
     const byStatus = {};
     const latencies = [];
@@ -247,6 +264,173 @@ function summarizeAgents(tasks, runtimeById) {
     return [...summaryById.values()].sort((a, b) => a.agentId.localeCompare(b.agentId));
 }
 
+function deriveBehaviorPriorSamples(runtime) {
+    const acceptRate = clamp(runtime?.behavior?.acceptRate ?? 1, 0, 1);
+    const timeoutRate = clamp(runtime?.behavior?.timeoutRate ?? 0, 0, 1);
+    const failureRate = clamp(runtime?.behavior?.failureRate ?? 0, 0, 1);
+    const rejectionRate = clamp(1 - acceptRate, 0, 1);
+
+    const riskScore = clamp(
+        (timeoutRate * 1.35)
+        + (failureRate * 1.05)
+        + (rejectionRate * 0.8),
+        0,
+        2
+    );
+    const riskRatio = clamp(riskScore / 1.2, 0, 1);
+
+    const overloadThreshold = clamp(runtime?.behavior?.overloadThreshold ?? 0.95, 0, 1);
+    const load = clamp(runtime?.load ?? 0, 0, 1);
+    const loadPressure = overloadThreshold <= 0
+        ? 1
+        : clamp(load / overloadThreshold, 0, 1.25);
+    const loadRatio = clamp((loadPressure - 0.6) / 0.65, 0, 1);
+
+    const priorSamples = ROUTING_BEHAVIOR_PRIOR_SAMPLES
+        + (riskRatio * ROUTING_BEHAVIOR_PRIOR_RISK_SAMPLE_BOOST)
+        + (loadRatio * ROUTING_BEHAVIOR_PRIOR_LOAD_SAMPLE_BOOST);
+
+    return Number(priorSamples.toFixed(4));
+}
+
+function buildRoutingBenchmarkByAgent(tasks, runtimeById = null, nowMs = null) {
+    const aggregateByAgent = new Map();
+
+    const ensureAggregate = (agentId) => {
+        if (!aggregateByAgent.has(agentId)) {
+            aggregateByAgent.set(agentId, {
+                samples: 0,
+                successes: 0,
+                timeouts: 0,
+                failures: 0,
+                latencies: []
+            });
+        }
+
+        return aggregateByAgent.get(agentId);
+    };
+
+    if (runtimeById instanceof Map) {
+        for (const runtime of runtimeById.values()) {
+            if (!runtime || typeof runtime.id !== 'string') continue;
+
+            const acceptRate = clamp(runtime.behavior?.acceptRate ?? 1, 0, 1);
+            const timeoutRate = clamp(runtime.behavior?.timeoutRate ?? 0, 0, 1);
+            const behaviorFailureRate = clamp(runtime.behavior?.failureRate ?? 0, 0, 1);
+            const rejectionRate = clamp(1 - acceptRate, 0, 1);
+            const failureRate = clamp(rejectionRate + (behaviorFailureRate * (1 - timeoutRate)), 0, 1);
+            const successRate = clamp(1 - timeoutRate - failureRate, 0, 1);
+
+            const priorSamples = deriveBehaviorPriorSamples(runtime);
+            const aggregate = ensureAggregate(runtime.id);
+            aggregate.samples += priorSamples;
+            aggregate.successes += successRate * priorSamples;
+            aggregate.timeouts += timeoutRate * priorSamples;
+            aggregate.failures += failureRate * priorSamples;
+
+            const activeLoadSignals = Math.max(0, (Number(runtime.activeTasks) || 0) - 1)
+                * ROUTING_ACTIVE_LOAD_TIMEOUT_SIGNAL_WEIGHT;
+            if (activeLoadSignals > 0) {
+                aggregate.samples += activeLoadSignals;
+                aggregate.timeouts += activeLoadSignals;
+            }
+        }
+    }
+
+    for (const task of tasks) {
+        if (!task || typeof task.target !== 'string' || !task.target.trim()) continue;
+
+        const aggregate = ensureAggregate(task.target);
+
+        if (TERMINAL_STATUSES.has(task.status)) {
+            aggregate.samples += 1;
+
+            if (task.status === 'completed' || task.status === 'partial') {
+                aggregate.successes += 1;
+            } else if (task.status === 'timed_out') {
+                aggregate.timeouts += 1;
+            } else if (task.status === 'failed' || task.status === 'transport_error' || task.status === 'rejected') {
+                aggregate.failures += 1;
+            }
+
+            if (Number.isFinite(task.closedAt) && Number.isFinite(task.createdAt)) {
+                aggregate.latencies.push(Math.max(0, task.closedAt - task.createdAt));
+            }
+            continue;
+        }
+
+        let timeoutSignals = 0;
+        let failureSignals = 0;
+
+        if (task.status === 'retry_scheduled') {
+            timeoutSignals += ROUTING_RETRY_TIMEOUT_SIGNAL_WEIGHT;
+        }
+
+        if ((task.status === 'dispatched' || task.status === 'acknowledged')
+            && Number.isFinite(nowMs)
+            && Number.isFinite(task.deadlineAt)
+            && Number(task.deadlineAt) <= Number(nowMs)) {
+            timeoutSignals += ROUTING_OVERDUE_TIMEOUT_SIGNAL_WEIGHT;
+        }
+
+        const lifecycle = task.retryLifecycle && typeof task.retryLifecycle === 'object'
+            ? task.retryLifecycle
+            : null;
+
+        const consecutiveFailures = lifecycle
+            ? Math.max(0, Number(lifecycle.consecutiveFailures) || 0)
+            : 0;
+        if (consecutiveFailures > 0) {
+            timeoutSignals += Math.min(1, consecutiveFailures * ROUTING_CONSECUTIVE_FAILURE_TIMEOUT_WEIGHT);
+        }
+
+        const history = Array.isArray(task.history) ? task.history : [];
+        for (const entry of history) {
+            if (!entry || typeof entry !== 'object') continue;
+
+            if (entry.event === 'send_failed') {
+                failureSignals += ROUTING_DISPATCH_FAILURE_SIGNAL_WEIGHT;
+            }
+
+            if (entry.event === 'transport_error') {
+                failureSignals += ROUTING_TRANSPORT_FAILURE_SIGNAL_WEIGHT;
+            }
+
+            if (entry.event === 'timed_out') {
+                timeoutSignals += ROUTING_RETRY_TIMEOUT_SIGNAL_WEIGHT;
+            }
+        }
+
+        const signalSamples = timeoutSignals + failureSignals;
+        if (signalSamples > 0) {
+            aggregate.samples += signalSamples;
+            aggregate.timeouts += timeoutSignals;
+            aggregate.failures += failureSignals;
+        }
+    }
+
+    const benchmarkByAgent = {};
+    for (const [agentId, aggregate] of aggregateByAgent.entries()) {
+        const samples = aggregate.samples;
+        if (!samples) continue;
+
+        benchmarkByAgent[agentId] = {
+            samples: Number(samples.toFixed(4)),
+            successRate: Number((aggregate.successes / samples).toFixed(4)),
+            timeoutRate: Number((aggregate.timeouts / samples).toFixed(4)),
+            failureRate: Number((aggregate.failures / samples).toFixed(4)),
+            avgLatencyMs: aggregate.latencies.length > 0
+                ? Number(mean(aggregate.latencies).toFixed(2))
+                : null,
+            p95LatencyMs: aggregate.latencies.length > 0
+                ? Number(percentile(aggregate.latencies, 95).toFixed(2))
+                : null
+        };
+    }
+
+    return benchmarkByAgent;
+}
+
 function applyRecovery(runtimeById) {
     for (const runtime of runtimeById.values()) {
         const recovery = clamp(runtime.behavior.recoveryPerTick, 0, 1);
@@ -285,13 +469,73 @@ export async function runSimulationScenario(scenarioPayload, options = {}) {
     const maintenanceHistory = [];
     const dispatchErrors = [];
 
+    let orchestrator = null;
+
     const routeTask = async (taskRequest) => {
-        const snapshots = [...runtimeById.values()].map((runtime) => toAgentSnapshot(runtime, clock.now()));
-        const routed = routeTaskRequest(taskRequest, snapshots, {
-            nowMs: clock.now(),
-            maxStalenessMs: scenario.maxStalenessMs
+        const nowMs = clock.now();
+        const snapshots = [...runtimeById.values()]
+            .map((runtime) => toAgentSnapshot(runtime, nowMs))
+            .sort(compareSnapshotIds);
+        const benchmarkByAgent = orchestrator
+            ? buildRoutingBenchmarkByAgent(orchestrator.listTasks(), runtimeById, nowMs)
+            : buildRoutingBenchmarkByAgent([], runtimeById, nowMs);
+
+        const strictRouteOptions = {
+            nowMs,
+            maxStalenessMs: scenario.maxStalenessMs,
+            benchmarkByAgent,
+            benchmarkThresholds: {
+                minSuccessRate: 0.72,
+                maxTimeoutRate: 0.24,
+                maxFailureRate: 0.2,
+                maxP95LatencyMs: 650
+            },
+            benchmarkWeights: {
+                successRate: 26,
+                timeoutRate: 18,
+                failureRate: 15,
+                avgLatencyMs: 8,
+                p95LatencyMs: 7
+            },
+            minSamplesForFullConfidence: 12,
+            statusWeights: {
+                idle: 100,
+                busy: 92,
+                degraded: 70,
+                error: 18,
+                offline: 0
+            },
+            loadPenaltyWeight: 2,
+            surgeLoadPenaltyWeight: 12,
+            timeoutPenaltyWeight: 22,
+            failurePenaltyWeight: 24,
+            timeoutPressureWeight: 24,
+            timeoutPressureTriggerRatio: 0.3,
+            timeoutPressureExponent: 2.35,
+            timeoutPressureFullConfidenceSamples: 12,
+            p95TimeoutPressureWeight: 8,
+            p95TimeoutPressureTriggerRatio: 0.58,
+            p95TimeoutPressureExponent: 2.2,
+            reliabilityFloorMinSamples: 6,
+            reliabilityFloorSuccessRatio: 0.95,
+            reliabilityFloorOverageRatio: 1.02
+        };
+
+        const strictRoute = routeTaskRequest(taskRequest, snapshots, strictRouteOptions);
+
+        if (strictRoute.selectedAgentId) {
+            return strictRoute.selectedAgentId;
+        }
+
+        const degradedRoute = routeTaskRequest(taskRequest, snapshots, {
+            ...strictRouteOptions,
+            allowDegradedFallback: true,
+            allowHighReliabilityFallback: false,
+            allowCriticalReliabilityFallback: false,
+            degradedFallbackReasons: ['stale_heartbeat', 'reliability_floor_breach']
         });
-        return routed.selectedAgentId;
+
+        return degradedRoute.selectedAgentId;
     };
 
     function scheduleEvent(event) {
@@ -377,7 +621,7 @@ export async function runSimulationScenario(scenarioPayload, options = {}) {
         });
     }
 
-    const orchestrator = new TaskOrchestrator({
+    orchestrator = new TaskOrchestrator({
         localAgentId: scenario.localAgentId,
         transport: {
             async send(target, request) {

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9883,
+  "name": "streaming-operations-reliability-scorer",
+  "title": "Streaming Operations Reliability Scorer",
+  "description": "Design and run streaming operations workflows with reliability scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11428,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09883-streaming-operations-reliability-scorer/SKILL.md",
+    "entrypoint": "agent08/09883-streaming-operations-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations reliability scorer",
+    "streaming operations reliability scorer workflow",
+    "streaming operations reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

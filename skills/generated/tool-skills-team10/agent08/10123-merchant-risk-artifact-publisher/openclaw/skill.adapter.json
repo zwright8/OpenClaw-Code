@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10123,
+  "name": "merchant-risk-artifact-publisher",
+  "title": "Merchant Risk Artifact Publisher",
+  "description": "Design and run merchant risk workflows with artifact publisher controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7106,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10123-merchant-risk-artifact-publisher/SKILL.md",
+    "entrypoint": "agent08/10123-merchant-risk-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk artifact publisher",
+    "merchant risk artifact publisher workflow",
+    "merchant risk artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

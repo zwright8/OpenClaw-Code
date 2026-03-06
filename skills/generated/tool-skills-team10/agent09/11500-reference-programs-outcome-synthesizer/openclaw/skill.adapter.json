@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11500,
+  "name": "reference-programs-outcome-synthesizer",
+  "title": "Reference Programs Outcome Synthesizer",
+  "description": "Design and run reference programs workflows with outcome synthesizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7140,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11500-reference-programs-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent09/11500-reference-programs-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs outcome synthesizer",
+    "reference programs outcome synthesizer workflow",
+    "reference programs outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

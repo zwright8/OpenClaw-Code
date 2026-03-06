@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5646,
+  "name": "data-quality-hubs-approval-orchestrator",
+  "title": "Data Quality Hubs Approval Orchestrator",
+  "description": "Design and run data quality hubs workflows with approval orchestrator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2567,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05646-data-quality-hubs-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent05/05646-data-quality-hubs-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs approval orchestrator",
+    "data quality hubs approval orchestrator workflow",
+    "data quality hubs approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

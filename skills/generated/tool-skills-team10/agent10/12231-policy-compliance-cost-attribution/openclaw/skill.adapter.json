@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12231,
+  "name": "policy-compliance-cost-attribution",
+  "title": "Policy Compliance Cost Attribution",
+  "description": "Design and run policy compliance workflows with cost attribution controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6806,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12231-policy-compliance-cost-attribution/SKILL.md",
+    "entrypoint": "agent10/12231-policy-compliance-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance cost attribution",
+    "policy compliance cost attribution workflow",
+    "policy compliance cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

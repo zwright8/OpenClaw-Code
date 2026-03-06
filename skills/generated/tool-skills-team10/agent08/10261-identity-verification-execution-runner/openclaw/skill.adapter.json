@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10261,
+  "name": "identity-verification-execution-runner",
+  "title": "Identity Verification Execution Runner",
+  "description": "Design and run identity verification workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 323,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10261-identity-verification-execution-runner/SKILL.md",
+    "entrypoint": "agent08/10261-identity-verification-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification execution runner",
+    "identity verification execution runner workflow",
+    "identity verification execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12863,
+  "name": "universal-toolchain-08-retry-governor",
+  "title": "Universal Toolchain 08 Retry Governor",
+  "description": "Design and run universal toolchain 08 workflows with retry governor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5718,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12863-universal-toolchain-08-retry-governor/SKILL.md",
+    "entrypoint": "agent10/12863-universal-toolchain-08-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 retry governor",
+    "universal toolchain 08 retry governor workflow",
+    "universal toolchain 08 retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

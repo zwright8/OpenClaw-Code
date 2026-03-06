@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4763,
+  "name": "observability-stacks-retry-governor",
+  "title": "Observability Stacks Retry Governor",
+  "description": "Design and run observability stacks workflows with retry governor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3383,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04763-observability-stacks-retry-governor/SKILL.md",
+    "entrypoint": "agent04/04763-observability-stacks-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks retry governor",
+    "observability stacks retry governor workflow",
+    "observability stacks retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

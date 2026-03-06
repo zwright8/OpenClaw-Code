@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4818,
+  "name": "apm-pipelines-conflict-resolver",
+  "title": "APM Pipelines Conflict Resolver",
+  "description": "Design and run apm pipelines workflows with conflict resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9612,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04818-apm-pipelines-conflict-resolver/SKILL.md",
+    "entrypoint": "agent04/04818-apm-pipelines-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "apm pipelines conflict resolver",
+    "apm pipelines conflict resolver workflow",
+    "apm pipelines conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

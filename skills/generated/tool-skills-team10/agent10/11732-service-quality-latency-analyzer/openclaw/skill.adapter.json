@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11732,
+  "name": "service-quality-latency-analyzer",
+  "title": "Service Quality Latency Analyzer",
+  "description": "Design and run service quality workflows with latency analyzer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12099,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11732-service-quality-latency-analyzer/SKILL.md",
+    "entrypoint": "agent10/11732-service-quality-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality latency analyzer",
+    "service quality latency analyzer workflow",
+    "service quality latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

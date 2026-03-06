@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8537,
+  "name": "civic-engagement-compliance-mapper",
+  "title": "Civic Engagement Compliance Mapper",
+  "description": "Design and run civic engagement workflows with compliance mapper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1899,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08537-civic-engagement-compliance-mapper/SKILL.md",
+    "entrypoint": "agent07/08537-civic-engagement-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement compliance mapper",
+    "civic engagement compliance mapper workflow",
+    "civic engagement compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2692,
+  "name": "bim-coordination-root-cause-miner",
+  "title": "BIM Coordination Root Cause Miner",
+  "description": "Design and run bim coordination workflows with root cause miner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4528,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02692-bim-coordination-root-cause-miner/SKILL.md",
+    "entrypoint": "agent03/02692-bim-coordination-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination root cause miner",
+    "bim coordination root cause miner workflow",
+    "bim coordination root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

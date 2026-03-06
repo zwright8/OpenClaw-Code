@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 17,
+  "range": {
+    "start": "u3800-multi-agent-negotiation-for-knowledge-management-systems",
+    "end": "u3849-conflict-resolution-coaching-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3800-multi-agent-negotiation-for-knowledge-management-systems",
+      "path": "generated/shards/03/3800-multi-agent-negotiation-for-knowledge-management-systems",
+      "skill_md_sha256": "11589fd653c8ac999e60b32fbe06033de60c29b9a79357f7bcbb535ee0deb305",
+      "summary_sha256": "394266a149940417b7ef393f013292e7c6743eb68e6772211b49a73eac3b88a1"
+    },
+    {
+      "skill_id": "u3801-conflict-resolution-coaching-for-personal-health-routines",
+      "path": "generated/shards/03/3801-conflict-resolution-coaching-for-personal-health-routines",
+      "skill_md_sha256": "b40325d20701d778e37df2b0ad76bb59f239eadad4090c937996399c5c131857",
+      "summary_sha256": "771459b42776ef6a7d1b93ccfdcfadd567403fa25a37be1a256a8fbcd443ad12"
+    },
+    {
+      "skill_id": "u3802-conflict-resolution-coaching-for-personal-health-routines",
+      "path": "generated/shards/03/3802-conflict-resolution-coaching-for-personal-health-routines",
+      "skill_md_sha256": "c3d97b51739cae237ec4323853220653af486af9a7160dfe5928f66b9de337db",
+      "summary_sha256": "e3d770d054319a68874517882132a2c668e93c34e34b8335c53e508e8ed5d692"
+    },
+    {
+      "skill_id": "u3803-conflict-resolution-coaching-for-personal-health-routines",
+      "path": "generated/shards/03/3803-conflict-resolution-coaching-for-personal-health-routines",
+      "skill_md_sha256": "2e92ba173c5e6c7c1f19ddd92060466234b74814d0fb99157572784bc21931c7",
+      "summary_sha256": "eeba5be8304887aca59821170b62dce75b4a5f448feab0b75b87e96aa8aa7678"
+    },
+    {
+      "skill_id": "u3804-conflict-resolution-coaching-for-personal-health-routines",
+      "path": "generated/shards/03/3804-conflict-resolution-coaching-for-personal-health-routines",
+      "skill_md_sha256": "c28c2da9159450c75179a37e29e9151e7062db31fdc14c4a2ad4502a7c05fe1d",
+      "summary_sha256": "11d5d63a3e3175a40daa2ac3c12a31b62340195459a57d3bba2722e432455720"
+    },
+    {
+      "skill_id": "u3805-conflict-resolution-coaching-for-personal-health-routines",
+      "path": "generated/shards/03/3805-conflict-resolution-coaching-for-personal-health-routines",
+      "skill_md_sha256": "e6e34816f076a3e5907ea90349c723e3b289ef37ababd3b8d16b42a6c7e38b4d",
+      "summary_sha256": "25d37cbe77799399d72138c43cb247219dfab81853a6312259be34e26855b3d9"
+    },
+    {
+      "skill_id": "u3806-conflict-resolution-coaching-for-family-caregiving-systems",
+      "path": "generated/shards/03/3806-conflict-resolution-coaching-for-family-caregiving-systems",
+      "skill_md_sha256": "1ed84a48e33d47ee69d0fcdaf0ea22c7b6cf6055d6f75cdf822ab344a03306d0",
+      "summary_sha256": "bee7833e8a796d7f97c754e902c3885c54263ff7cbdaaa643a06bfdeedc828d5"
+    },
+    {
+      "skill_id": "u3807-conflict-resolution-coaching-for-family-caregiving-systems",
+      "path": "generated/shards/03/3807-conflict-resolution-coaching-for-family-caregiving-systems",
+      "skill_md_sha256": "8543aa2e06f2bcd580db17dbe435bb8a51d2e516ed357fc1d842a3e147e9dc78",
+      "summary_sha256": "ba583c7bdc5e5e359764c1b541f56c8d8fdc4eeb6985e8e4fe613f22a7b7c7d8"
+    },
+    {
+      "skill_id": "u3808-conflict-resolution-coaching-for-family-caregiving-systems",
+      "path": "generated/shards/03/3808-conflict-resolution-coaching-for-family-caregiving-systems",
+      "skill_md_sha256": "8c1af4c68cc21014d718a30b77891721edbd5bc1656c332675ebf8517399dc68",
+      "summary_sha256": "bd47d84bf150e75f454264b1308c680b0bdf4765978e943e5979be2e1703840e"
+    },
+    {
+      "skill_id": "u3809-conflict-resolution-coaching-for-family-caregiving-systems",
+      "path": "generated/shards/03/3809-conflict-resolution-coaching-for-family-caregiving-systems",
+      "skill_md_sha256": "bf9e01b4b43527b2e22e76c081083ff58a9fa0c070dc69c49ad8a6b2de11d111",
+      "summary_sha256": "b66a34f0cbeafe85507fa7859c515d7da345eac1f303db2f6802a16022a1d351"
+    },
+    {
+      "skill_id": "u3810-conflict-resolution-coaching-for-family-caregiving-systems",
+      "path": "generated/shards/03/3810-conflict-resolution-coaching-for-family-caregiving-systems",
+      "skill_md_sha256": "7767c4221a31a22017d1a6393266db55de59e494e9de6f2ee0a14a15c8d9a032",
+      "summary_sha256": "110e2ac384eca1ea497d21f96b021d7d156c80796f7612689c9bca2fe006c201"
+    },
+    {
+      "skill_id": "u3811-conflict-resolution-coaching-for-household-logistics",
+      "path": "generated/shards/03/3811-conflict-resolution-coaching-for-household-logistics",
+      "skill_md_sha256": "2b31da54544cf66423f657d9ed2b43ce91cf745824910f5b1cc16ceaa60b4143",
+      "summary_sha256": "569e97a253404d016f075a49af0f9b9873e877b18ad77d3d559d9b25decc40a9"
+    },
+    {
+      "skill_id": "u3812-conflict-resolution-coaching-for-household-logistics",
+      "path": "generated/shards/03/3812-conflict-resolution-coaching-for-household-logistics",
+      "skill_md_sha256": "8e8d9fa1d751be68355d54e2a3bc8b709f249b492b061132523c88ccf9f51445",
+      "summary_sha256": "26d97bede6be9d9a736cfcc64d7f3f34100d0ecf975ce39a16a90f487f8c380b"
+    },
+    {
+      "skill_id": "u3813-conflict-resolution-coaching-for-household-logistics",
+      "path": "generated/shards/03/3813-conflict-resolution-coaching-for-household-logistics",
+      "skill_md_sha256": "740aa39372c930860c9179e1665dcf6fa64e1cd19fa7f74fd679c50509a3c35b",
+      "summary_sha256": "7da16fe3778898a592524931bb053a311ca013eb5bfdd6db130e5523f771eb9e"
+    },
+    {
+      "skill_id": "u3814-conflict-resolution-coaching-for-household-logistics",
+      "path": "generated/shards/03/3814-conflict-resolution-coaching-for-household-logistics",
+      "skill_md_sha256": "9b422c281eb95c3b3bc658ff107a62720f4cd500a2329e3a72a5157f99f84e10",
+      "summary_sha256": "3ab875d3a67c55fee44e4f81746587a6af2f89baa3277d230d8d7fbdd145d09c"
+    },
+    {
+      "skill_id": "u3815-conflict-resolution-coaching-for-household-logistics",
+      "path": "generated/shards/03/3815-conflict-resolution-coaching-for-household-logistics",
+      "skill_md_sha256": "c84722e281742e7c4620cbb414034b3baff54c20f41876f74bacbff625283c8f",
+      "summary_sha256": "f22f1cb221924656767df3d5451fdc768462b9c8a23fa5587cf353d38c5706a7"
+    },
+    {
+      "skill_id": "u3816-conflict-resolution-coaching-for-personal-finance-management",
+      "path": "generated/shards/03/3816-conflict-resolution-coaching-for-personal-finance-management",
+      "skill_md_sha256": "1d15a21861eeec2b98655996312ec28eafd58faacb43a8ff1b1c2b51ffa83bb8",
+      "summary_sha256": "5803496dff1982bfbf8eb857191d850b2560e8c120482c27f158f79e96146664"
+    },
+    {
+      "skill_id": "u3817-conflict-resolution-coaching-for-personal-finance-management",
+      "path": "generated/shards/03/3817-conflict-resolution-coaching-for-personal-finance-management",
+      "skill_md_sha256": "4f5a3a6e5ac52a1f9fe96ab3c611968ccfb2f064a83af0f07c8b19b434f46bd7",
+      "summary_sha256": "11038c721a001ec9b1ac1d5c06e5268d8e1df696a22336587abcbe20acd1fcbb"
+    },
+    {
+      "skill_id": "u3818-conflict-resolution-coaching-for-personal-finance-management",
+      "path": "generated/shards/03/3818-conflict-resolution-coaching-for-personal-finance-management",
+      "skill_md_sha256": "652ab9e0750c02c7de31a5e3610e42d320b08e115929ed291347653b0fc40282",
+      "summary_sha256": "2a3a68602fa81ed85a0c8db5c71c0da5888beaf43a6992b169ca08c7c14a0335"
+    },
+    {
+      "skill_id": "u3819-conflict-resolution-coaching-for-personal-finance-management",
+      "path": "generated/shards/03/3819-conflict-resolution-coaching-for-personal-finance-management",
+      "skill_md_sha256": "b71466b4bf21b6db14fd6d7b17072b4bf95a724af96f29ae8f6558192ddeeca9",
+      "summary_sha256": "ad6bd883356dadda3f214c84816a88bdd3adeaac9c30d9fc385bf2307a2eb43c"
+    },
+    {
+      "skill_id": "u3820-conflict-resolution-coaching-for-personal-finance-management",
+      "path": "generated/shards/03/3820-conflict-resolution-coaching-for-personal-finance-management",
+      "skill_md_sha256": "153e1e6f00fa3524fc61921c4d253bbd0ec01464f422b33ed14244882f4951ef",
+      "summary_sha256": "7b582ccb4b6236b2a55b9468e3c7471a237d0721522826636560640f75d9f1df"
+    },
+    {
+      "skill_id": "u3821-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3821-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "ccf7bbb160d33f3ce32d5564c13d8416c58a4f9a91ac592833fde41fb802ed68",
+      "summary_sha256": "2db66925632194304e8f0dc93b1cc942ace5b18764d8e43712062ee051c7569f"
+    },
+    {
+      "skill_id": "u3822-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3822-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "ebad0f368b973df21720f2f7dc9d6124509b49ed327cf08d39cb274a5bb001fa",
+      "summary_sha256": "12eae64bbc859d567af6592cd017803a9c07e0c4e72685f3837d3432ddcc33fa"
+    },
+    {
+      "skill_id": "u3823-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3823-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "e8025243bb4faa8bb6f0e1b2e5b54969c3498aaa507a41107b956ce5cf5019f7",
+      "summary_sha256": "c1f938d86ef4e391effc9942dad88dfdbb75f475de69f02f250d27af32bd7a3a"
+    },
+    {
+      "skill_id": "u3824-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3824-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "0d6884094bca165f969c4dbb3198acb61cdbe7b607ab293927d8cad268749691",
+      "summary_sha256": "4fb424333e76bfe55614526a5ec95289f6a0385d31db464e1a416310af856ffa"
+    },
+    {
+      "skill_id": "u3825-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3825-conflict-resolution-coaching-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "a5da936d2bfd0f68f4c0fd16d05d41f3f97f7508a1f22697782ad4249a337933",
+      "summary_sha256": "4a81c98636172f131edee4c5204d3034aae6d270a902c6d89e736780553bb7f0"
+    },
+    {
+      "skill_id": "u3826-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3826-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "skill_md_sha256": "d52fefb1dd7bbddd1d6b5a5a64a945e7732664f16e30b5c13b8b81f5c79700f9",
+      "summary_sha256": "5a0f87106293a5b1f762ba62597976bfc340b2afb0872f52bbf65d5d447b1295"
+    },
+    {
+      "skill_id": "u3827-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3827-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "skill_md_sha256": "6879e5529c17b420feb1937590c0e2d83422ee6ea038847c8deb1eba5f46617d",
+      "summary_sha256": "7c2e697bee79856c2de1abb8d2c1bdf5fb2804d1f203444c912d278d2df77568"
+    },
+    {
+      "skill_id": "u3828-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3828-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "skill_md_sha256": "d95c477edd8222d40be8b295e1d6562b56be86b721bc7d8d663a1ade8421bc8b",
+      "summary_sha256": "ca61ab7146c169d4b5c61b0241df0ef2ea182ae7cde225ccc7eca4237dddf804"
+    },
+    {
+      "skill_id": "u3829-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3829-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "skill_md_sha256": "1675d262e8d23c3853be28e38d75a516080b2fdb45fd4b3508dc2aaaef36062b",
+      "summary_sha256": "d065c41e069c796813d2f7ac6bd182d7b5912da3f8efd47efea6df19c80d97c2"
+    },
+    {
+      "skill_id": "u3830-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3830-conflict-resolution-coaching-for-fitness-and-recovery-training",
+      "skill_md_sha256": "d7372489b1d912f707469dec19e8e327c92505b7d78d72316303312313775e22",
+      "summary_sha256": "2c6ee6e9ff49e84d1ab3223c72d1203943517e3034427a7e09cb69022ebaa73e"
+    },
+    {
+      "skill_id": "u3831-conflict-resolution-coaching-for-mental-well-being-practices",
+      "path": "generated/shards/03/3831-conflict-resolution-coaching-for-mental-well-being-practices",
+      "skill_md_sha256": "65c8f1d3637d69d970ff5f6a358d4412826e6ecba3c15f6fb7de299197680733",
+      "summary_sha256": "3afb4d356d39517ca2b0867b17f678b317654e38209e4bb18d1794e45ae93072"
+    },
+    {
+      "skill_id": "u3832-conflict-resolution-coaching-for-mental-well-being-practices",
+      "path": "generated/shards/03/3832-conflict-resolution-coaching-for-mental-well-being-practices",
+      "skill_md_sha256": "e6dfe45de45fcca30cdc37cdfd222f4f7150a41bb80d4ab9c87c97be5c9a6c11",
+      "summary_sha256": "100dcb25691a557f5d55c05e1415086414b44a0af9890d3e6ecda13da96ab4f6"
+    },
+    {
+      "skill_id": "u3833-conflict-resolution-coaching-for-mental-well-being-practices",
+      "path": "generated/shards/03/3833-conflict-resolution-coaching-for-mental-well-being-practices",
+      "skill_md_sha256": "f7b708fc39293e649536061efc586532c87a72794e79642d58ced50bf8611257",
+      "summary_sha256": "91d9319ba10b3d26030b9414e747793b64b72266ca8b269bf2f3cde0bc510842"
+    },
+    {
+      "skill_id": "u3834-conflict-resolution-coaching-for-mental-well-being-practices",
+      "path": "generated/shards/03/3834-conflict-resolution-coaching-for-mental-well-being-practices",
+      "skill_md_sha256": "baf8631b0c4461fe7989b0a795c29a4807f9416933ce0a0c488a0f1d26e2cf37",
+      "summary_sha256": "1b5250de470ff0bea499ccd4a4d62e52459e6b458768ff9632bcd308874cdd46"
+    },
+    {
+      "skill_id": "u3835-conflict-resolution-coaching-for-mental-well-being-practices",
+      "path": "generated/shards/03/3835-conflict-resolution-coaching-for-mental-well-being-practices",
+      "skill_md_sha256": "31218a5b6cf31969ccc9b8c64e665844c890f4e20484b89a72807b04a33e1896",
+      "summary_sha256": "caeafb8375752593c9a7c9ddebc6b5057c8bc443bd2a33bca87fe5786ba3d07c"
+    },
+    {
+      "skill_id": "u3836-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3836-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "skill_md_sha256": "5ab6cb6e8f6bdd9c7275fdf19fb832fb80c77a85f06d377c291eb599e3514ba0",
+      "summary_sha256": "3464176b9918e375eef30af6b7a7cd8364bed24a88537186b9596b5c1b4e55ab"
+    },
+    {
+      "skill_id": "u3837-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3837-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "skill_md_sha256": "5cdf773b8a77387725b2873252d1a5d27a91eb1fbba1809d65f3bbca4318e485",
+      "summary_sha256": "ed6c05b99998e66d94757e2b7d8e81bdf9edc282dba4928492d976aa8c11a3f6"
+    },
+    {
+      "skill_id": "u3838-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3838-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "skill_md_sha256": "760f1e483155876d6d8abf793da6e53d6ca1ab1a5ab54db3ca48032377fdbab3",
+      "summary_sha256": "b5df8630ffdb57e84a28069c1d3e9f233e55f8f47a890dc4ae9783a505245dd1"
+    },
+    {
+      "skill_id": "u3839-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3839-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "skill_md_sha256": "e478ee25e4dd19b6c7c5900e6a014558d7fa4592be267a11b41dea70d65d10de",
+      "summary_sha256": "518874e1a55cf12fc00b526115ebd2e043a344f71d39931cd70b03e386ae5807"
+    },
+    {
+      "skill_id": "u3840-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3840-conflict-resolution-coaching-for-lifelong-learning-plans",
+      "skill_md_sha256": "ce20d6416ed6de8075d6197cc19354bca5f401538e34e21b1014d9320eba336d",
+      "summary_sha256": "7ab253ab4c617df88b527605010bb3efb44d02334eaac6566cb4a5876c954c1f"
+    },
+    {
+      "skill_id": "u3841-conflict-resolution-coaching-for-career-development-pathways",
+      "path": "generated/shards/03/3841-conflict-resolution-coaching-for-career-development-pathways",
+      "skill_md_sha256": "c3a69d106748693cf4950e75e7ae190fa26ec9f90c378975db78522b784e44ac",
+      "summary_sha256": "9121059dd378272cd3d7e3ce58e4996e551700f719e9cfab0fbd34b585a639f3"
+    },
+    {
+      "skill_id": "u3842-conflict-resolution-coaching-for-career-development-pathways",
+      "path": "generated/shards/03/3842-conflict-resolution-coaching-for-career-development-pathways",
+      "skill_md_sha256": "b811b3a61920180c9c77c4e693aa93f6d284e311770cbec76f11636c3cde1955",
+      "summary_sha256": "40d9ea501460dca397d222a28b9de1dc063d359eda2e4aca0978de2c0aaf04c4"
+    },
+    {
+      "skill_id": "u3843-conflict-resolution-coaching-for-career-development-pathways",
+      "path": "generated/shards/03/3843-conflict-resolution-coaching-for-career-development-pathways",
+      "skill_md_sha256": "1e1e8ddad644fec311c826e53e1d43ffd5ac56926724f215bf984e84112a99ca",
+      "summary_sha256": "78331297f51e78d1863167c8ef169a10a8dec7439b0d87226fed8f14fc49cab5"
+    },
+    {
+      "skill_id": "u3844-conflict-resolution-coaching-for-career-development-pathways",
+      "path": "generated/shards/03/3844-conflict-resolution-coaching-for-career-development-pathways",
+      "skill_md_sha256": "589ba35835315dc5b8e1e1c4bfcc3210ca433ddb413f0fc2015cc9396cb6617d",
+      "summary_sha256": "a09f52f4a50c0b627d8fe95cd8549ce47b0dd5cdb2d00f4db43826bb26e2d27f"
+    },
+    {
+      "skill_id": "u3845-conflict-resolution-coaching-for-career-development-pathways",
+      "path": "generated/shards/03/3845-conflict-resolution-coaching-for-career-development-pathways",
+      "skill_md_sha256": "6ffaa3fd1fce3c4285d5f585216b5e47825c0ffd135db1a3a7ff3fbf9c70173e",
+      "summary_sha256": "99acc4e77747376062f661836c470bbde1adc10195d4f579c90e1c17a9ff668b"
+    },
+    {
+      "skill_id": "u3846-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3846-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "skill_md_sha256": "0f393e4353fa0f8fbae8c5d8ddc86685cb5f590e68484ee14b63b4678d29b1de",
+      "summary_sha256": "602276c82fc844e3c75faf1bd27e98af312f1ebcc894a3c027f83d17e59542a6"
+    },
+    {
+      "skill_id": "u3847-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3847-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "skill_md_sha256": "e30edfdf7ba1beca836a441f8da841cb9d6d00841b2c1ff7bfdedbb918b63f60",
+      "summary_sha256": "6db4c6dcf18bd30a0d603f0de53d5b5b837fcb15ff831c9ccf2345037ca9d610"
+    },
+    {
+      "skill_id": "u3848-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3848-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "skill_md_sha256": "4652c36b1bea798006ff49243860e4d47779068ee926d2c2c679c4620bd6c269",
+      "summary_sha256": "a6fc34aa00f31de8424b64ab94255c7536150fc2af4c59002180bdccc47d1194"
+    },
+    {
+      "skill_id": "u3849-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3849-conflict-resolution-coaching-for-entrepreneurship-operations",
+      "skill_md_sha256": "db30b1bfd7177911aeeadbaa644566c54fd29c9639d0202da8ea7ce1deba221d",
+      "summary_sha256": "d4c539a2b75d7c843f46f3d517d177fc1522f0e8b6fb4f8151f52c5056e829bd"
+    }
+  ]
+}

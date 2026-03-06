@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9998,
+  "name": "audience-analytics-feedback-harvester",
+  "title": "Audience Analytics Feedback Harvester",
+  "description": "Design and run audience analytics workflows with feedback harvester controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11474,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09998-audience-analytics-feedback-harvester/SKILL.md",
+    "entrypoint": "agent08/09998-audience-analytics-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics feedback harvester",
+    "audience analytics feedback harvester workflow",
+    "audience analytics feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

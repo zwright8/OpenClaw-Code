@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12200,
+  "name": "audit-trails-outcome-synthesizer",
+  "title": "Audit Trails Outcome Synthesizer",
+  "description": "Design and run audit trails workflows with outcome synthesizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4442,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12200-audit-trails-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent10/12200-audit-trails-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails outcome synthesizer",
+    "audit trails outcome synthesizer workflow",
+    "audit trails outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

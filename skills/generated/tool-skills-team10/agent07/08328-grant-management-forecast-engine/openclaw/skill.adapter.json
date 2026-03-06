@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8328,
+  "name": "grant-management-forecast-engine",
+  "title": "Grant Management Forecast Engine",
+  "description": "Design and run grant management workflows with forecast engine controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10899,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08328-grant-management-forecast-engine/SKILL.md",
+    "entrypoint": "agent07/08328-grant-management-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grant management forecast engine",
+    "grant management forecast engine workflow",
+    "grant management forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

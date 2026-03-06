@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7049,
+  "name": "open-source-intelligence-quality-gatekeeper",
+  "title": "Open Source Intelligence Quality Gatekeeper",
+  "description": "Design and run open source intelligence workflows with quality gatekeeper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5496,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07049-open-source-intelligence-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent06/07049-open-source-intelligence-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence quality gatekeeper",
+    "open source intelligence quality gatekeeper workflow",
+    "open source intelligence quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

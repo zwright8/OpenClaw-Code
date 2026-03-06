@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7785,
+  "name": "desktop-fleet-mgmt-policy-evaluator",
+  "title": "Desktop Fleet Mgmt Policy Evaluator",
+  "description": "Design and run desktop fleet mgmt workflows with policy evaluator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3610,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07785-desktop-fleet-mgmt-policy-evaluator/SKILL.md",
+    "entrypoint": "agent06/07785-desktop-fleet-mgmt-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "desktop fleet mgmt policy evaluator",
+    "desktop fleet mgmt policy evaluator workflow",
+    "desktop fleet mgmt policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

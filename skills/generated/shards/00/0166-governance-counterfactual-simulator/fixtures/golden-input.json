@@ -1,0 +1,18 @@
+{
+  "skill": "u0166-governance-counterfactual-simulator",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "scenario_comparison_reports_report",
+    "scenario_comparison_reports_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

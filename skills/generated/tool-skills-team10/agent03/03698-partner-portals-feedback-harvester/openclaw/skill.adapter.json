@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3698,
+  "name": "partner-portals-feedback-harvester",
+  "title": "Partner Portals Feedback Harvester",
+  "description": "Design and run partner portals workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9269,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03698-partner-portals-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/03698-partner-portals-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals feedback harvester",
+    "partner portals feedback harvester workflow",
+    "partner portals feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

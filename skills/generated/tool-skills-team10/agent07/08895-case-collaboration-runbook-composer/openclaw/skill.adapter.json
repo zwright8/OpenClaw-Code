@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8895,
+  "name": "case-collaboration-runbook-composer",
+  "title": "Case Collaboration Runbook Composer",
+  "description": "Design and run case collaboration workflows with runbook composer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6424,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08895-case-collaboration-runbook-composer/SKILL.md",
+    "entrypoint": "agent07/08895-case-collaboration-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "case collaboration runbook composer",
+    "case collaboration runbook composer workflow",
+    "case collaboration runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

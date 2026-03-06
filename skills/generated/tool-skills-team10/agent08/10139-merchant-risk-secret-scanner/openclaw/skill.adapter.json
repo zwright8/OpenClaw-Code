@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10139,
+  "name": "merchant-risk-secret-scanner",
+  "title": "Merchant Risk Secret Scanner",
+  "description": "Design and run merchant risk workflows with secret scanner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1432,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10139-merchant-risk-secret-scanner/SKILL.md",
+    "entrypoint": "agent08/10139-merchant-risk-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk secret scanner",
+    "merchant risk secret scanner workflow",
+    "merchant risk secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

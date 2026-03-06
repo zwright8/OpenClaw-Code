@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2689,
+  "name": "bim-coordination-secret-scanner",
+  "title": "BIM Coordination Secret Scanner",
+  "description": "Design and run bim coordination workflows with secret scanner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2704,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02689-bim-coordination-secret-scanner/SKILL.md",
+    "entrypoint": "agent03/02689-bim-coordination-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination secret scanner",
+    "bim coordination secret scanner workflow",
+    "bim coordination secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

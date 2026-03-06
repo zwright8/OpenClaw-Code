@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6131,
+  "name": "esignature-systems-cost-attribution",
+  "title": "eSignature Systems Cost Attribution",
+  "description": "Design and run esignature systems workflows with cost attribution controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10082,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06131-esignature-systems-cost-attribution/SKILL.md",
+    "entrypoint": "agent05/06131-esignature-systems-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems cost attribution",
+    "esignature systems cost attribution workflow",
+    "esignature systems cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

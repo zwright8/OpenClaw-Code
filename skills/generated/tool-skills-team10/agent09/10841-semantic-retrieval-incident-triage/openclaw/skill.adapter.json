@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10841,
+  "name": "semantic-retrieval-incident-triage",
+  "title": "Semantic Retrieval Incident Triage",
+  "description": "Design and run semantic retrieval workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2244,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10841-semantic-retrieval-incident-triage/SKILL.md",
+    "entrypoint": "agent09/10841-semantic-retrieval-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval incident triage",
+    "semantic retrieval incident triage workflow",
+    "semantic retrieval incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

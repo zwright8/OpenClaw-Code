@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8071,
+  "name": "genomics-tooling-snapshot-manager",
+  "title": "Genomics Tooling Snapshot Manager",
+  "description": "Design and run genomics tooling workflows with snapshot manager controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10810,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08071-genomics-tooling-snapshot-manager/SKILL.md",
+    "entrypoint": "agent07/08071-genomics-tooling-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "genomics tooling snapshot manager",
+    "genomics tooling snapshot manager workflow",
+    "genomics tooling snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

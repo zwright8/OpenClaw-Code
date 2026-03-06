@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7099,
+  "name": "news-monitoring-quality-gatekeeper",
+  "title": "News Monitoring Quality Gatekeeper",
+  "description": "Design and run news monitoring workflows with quality gatekeeper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5498,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07099-news-monitoring-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent06/07099-news-monitoring-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring quality gatekeeper",
+    "news monitoring quality gatekeeper workflow",
+    "news monitoring quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

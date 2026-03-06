@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11965,
+  "name": "peer-review-ops-queue-balancer",
+  "title": "Peer Review Ops Queue Balancer",
+  "description": "Design and run peer review ops workflows with queue balancer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12193,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11965-peer-review-ops-queue-balancer/SKILL.md",
+    "entrypoint": "agent10/11965-peer-review-ops-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops queue balancer",
+    "peer review ops queue balancer workflow",
+    "peer review ops queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

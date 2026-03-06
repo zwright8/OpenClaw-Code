@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10073,
+  "name": "pos-systems-artifact-publisher",
+  "title": "POS Systems Artifact Publisher",
+  "description": "Design and run pos systems workflows with artifact publisher controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11505,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10073-pos-systems-artifact-publisher/SKILL.md",
+    "entrypoint": "agent08/10073-pos-systems-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pos systems artifact publisher",
+    "pos systems artifact publisher workflow",
+    "pos systems artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

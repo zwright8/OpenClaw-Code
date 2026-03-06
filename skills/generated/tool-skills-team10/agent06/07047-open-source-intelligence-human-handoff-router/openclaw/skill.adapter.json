@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7047,
+  "name": "open-source-intelligence-human-handoff-router",
+  "title": "Open Source Intelligence Human Handoff Router",
+  "description": "Design and run open source intelligence workflows with human handoff router controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10402,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07047-open-source-intelligence-human-handoff-router/SKILL.md",
+    "entrypoint": "agent06/07047-open-source-intelligence-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence human handoff router",
+    "open source intelligence human handoff router workflow",
+    "open source intelligence human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7387,
+  "name": "experiment-platforms-compliance-mapper",
+  "title": "Experiment Platforms Compliance Mapper",
+  "description": "Design and run experiment platforms workflows with compliance mapper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1877,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07387-experiment-platforms-compliance-mapper/SKILL.md",
+    "entrypoint": "agent06/07387-experiment-platforms-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms compliance mapper",
+    "experiment platforms compliance mapper workflow",
+    "experiment platforms compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

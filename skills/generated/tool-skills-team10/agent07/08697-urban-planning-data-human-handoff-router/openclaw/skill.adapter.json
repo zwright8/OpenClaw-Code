@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8697,
+  "name": "urban-planning-data-human-handoff-router",
+  "title": "Urban Planning Data Human Handoff Router",
+  "description": "Design and run urban planning data workflows with human handoff router controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11032,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08697-urban-planning-data-human-handoff-router/SKILL.md",
+    "entrypoint": "agent07/08697-urban-planning-data-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data human handoff router",
+    "urban planning data human handoff router workflow",
+    "urban planning data human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

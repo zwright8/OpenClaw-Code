@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8168,
+  "name": "lab-robotics-conflict-resolver",
+  "title": "Lab Robotics Conflict Resolver",
+  "description": "Design and run lab robotics workflows with conflict resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10851,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08168-lab-robotics-conflict-resolver/SKILL.md",
+    "entrypoint": "agent07/08168-lab-robotics-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics conflict resolver",
+    "lab robotics conflict resolver workflow",
+    "lab robotics conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

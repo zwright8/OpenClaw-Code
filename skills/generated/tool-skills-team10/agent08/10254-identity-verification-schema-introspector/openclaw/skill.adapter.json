@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10254,
+  "name": "identity-verification-schema-introspector",
+  "title": "Identity Verification Schema Introspector",
+  "description": "Design and run identity verification workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 44,
+    "score": 97,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent08/10254-identity-verification-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/10254-identity-verification-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification schema introspector",
+    "identity verification schema introspector workflow",
+    "identity verification schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1084,
+  "name": "court-dockets-sla-enforcer",
+  "title": "Court Dockets SLA Enforcer",
+  "description": "Design and run court dockets workflows with sla enforcer controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8426,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01084-court-dockets-sla-enforcer/SKILL.md",
+    "entrypoint": "agent01/01084-court-dockets-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets sla enforcer",
+    "court dockets sla enforcer workflow",
+    "court dockets sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

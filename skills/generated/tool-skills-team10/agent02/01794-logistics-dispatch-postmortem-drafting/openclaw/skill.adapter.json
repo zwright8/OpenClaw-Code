@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1794,
+  "name": "logistics-dispatch-postmortem-drafting",
+  "title": "Logistics Dispatch Postmortem Drafting",
+  "description": "Design and run logistics dispatch workflows with postmortem drafting controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8616,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01794-logistics-dispatch-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent02/01794-logistics-dispatch-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch postmortem drafting",
+    "logistics dispatch postmortem drafting workflow",
+    "logistics dispatch postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

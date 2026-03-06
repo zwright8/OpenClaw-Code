@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11316,
+  "name": "churn-prevention-state-reconciler",
+  "title": "Churn Prevention State Reconciler",
+  "description": "Design and run churn prevention workflows with state reconciler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4409,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11316-churn-prevention-state-reconciler/SKILL.md",
+    "entrypoint": "agent09/11316-churn-prevention-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "churn prevention state reconciler",
+    "churn prevention state reconciler workflow",
+    "churn prevention state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

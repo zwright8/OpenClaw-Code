@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9308,
+  "name": "edge-compute-task-decomposer",
+  "title": "Edge Compute Task Decomposer",
+  "description": "Design and run edge compute workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11225,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09308-edge-compute-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/09308-edge-compute-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute task decomposer",
+    "edge compute task decomposer workflow",
+    "edge compute task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

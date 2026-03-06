@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11871,
+  "name": "data-provenance-snapshot-manager",
+  "title": "Data Provenance Snapshot Manager",
+  "description": "Design and run data provenance workflows with snapshot manager controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12154,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11871-data-provenance-snapshot-manager/SKILL.md",
+    "entrypoint": "agent10/11871-data-provenance-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance snapshot manager",
+    "data provenance snapshot manager workflow",
+    "data provenance snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

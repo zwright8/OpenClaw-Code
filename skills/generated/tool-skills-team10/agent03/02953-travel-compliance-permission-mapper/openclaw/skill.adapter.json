@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2953,
+  "name": "travel-compliance-permission-mapper",
+  "title": "Travel Compliance Permission Mapper",
+  "description": "Design and run travel compliance workflows with permission mapper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1296,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02953-travel-compliance-permission-mapper/SKILL.md",
+    "entrypoint": "agent03/02953-travel-compliance-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance permission mapper",
+    "travel compliance permission mapper workflow",
+    "travel compliance permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

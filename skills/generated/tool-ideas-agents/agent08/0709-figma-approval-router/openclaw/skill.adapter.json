@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 709,
+  "name": "figma-approval-router",
+  "title": "Figma Approval Router",
+  "description": "Routes Figma-driven decisions to the right approvers.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0709-figma-approval-router/SKILL.md",
+    "entrypoint": "agent08/0709-figma-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "figma approval router",
+    "figma approval router workflow",
+    "figma approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0709-figma-approval-router"
+  }
+}
