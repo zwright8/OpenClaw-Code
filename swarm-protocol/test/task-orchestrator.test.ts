@@ -183,6 +183,92 @@ test('transient rejected receipt schedules retry with eta hint', async () => {
     assert.equal(sent.length, 2);
 });
 
+test('HTTP 429 rejected receipt is treated as transient and schedules retry', async () => {
+    const clock = createClock(3_720);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-429',
+        task: 'Handle upstream quota response'
+    });
+
+    clock.advance(10);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-429',
+        accepted: false,
+        reason: 'HTTP 429 Too Many Requests',
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.retryLifecycle.lastReasonCode, 'worker_transient_rejection');
+});
+
+test('repeated transient rejected receipts open target circuit and block immediate retry dispatch', async () => {
+    const clock = createClock(3_900);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 4,
+        retryDelayMs: 0,
+        retryJitterRatio: 0,
+        circuitFailureThreshold: 2,
+        circuitCooldownMs: 120
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-rejection-circuit',
+        task: 'Backpressure-aware transient rejection handling'
+    });
+
+    clock.advance(5);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-rejection-circuit',
+        accepted: false,
+        reason: 'service_unavailable',
+        timestamp: clock.now()
+    }));
+
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.attempts, 2);
+
+    clock.advance(5);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-rejection-circuit',
+        accepted: false,
+        reason: 'HTTP 503 Service Unavailable',
+        timestamp: clock.now()
+    }));
+
+    const blockedPass = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(blockedPass.blockedRetries, 1);
+    assert.equal(blockedPass.blockedByCircuit, 1);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.retryLifecycle.lastReasonCode, 'target_circuit_open');
+    assert.equal(orchestrator.getMetrics().circuits.open, 1);
+});
+
 test('auto retry safety mode blocks retries for explicitly non-idempotent tasks', async () => {
     const clock = createClock(3_800);
     const orchestrator = new TaskOrchestrator({

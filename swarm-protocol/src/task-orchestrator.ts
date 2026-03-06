@@ -36,10 +36,14 @@ const DEFAULT_RETRY_THROTTLE_MAX_TOKENS = 10;
 const DEFAULT_RETRY_THROTTLE_TOKEN_RATIO = 0.1;
 const DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO = 0.5;
 const TRANSIENT_REJECTION_REASON_MARKERS = [
+    '429',
+    '503',
     'overload',
     'overloaded',
     'busy',
     'throttle',
+    'too_many_requests',
+    'service_unavailable',
     'rate_limit',
     'rate-limit',
     'retry_after',
@@ -2002,6 +2006,15 @@ export class TaskOrchestrator {
                 || isTransientRejectionReason(receipt.reason);
 
             if (transientRejection) {
+                const retryThrottle = this._recordRetryThrottleFailure(
+                    record.target,
+                    receipt.timestamp
+                );
+                const circuit = this._recordCircuitFailure(
+                    record.target,
+                    receipt.timestamp,
+                    receipt.reason || 'worker_transient_rejection'
+                );
                 const scheduledAt = this._scheduleRetry(
                     record,
                     receipt.timestamp,
@@ -2017,7 +2030,9 @@ export class TaskOrchestrator {
                         reason: receipt.reason || 'worker_transient_rejection',
                         reasonCode: 'worker_transient_rejection',
                         reasonContext: normalizeReasonContext(receipt.reason),
-                        nextRetryAt: scheduledAt
+                        nextRetryAt: scheduledAt,
+                        retryThrottle,
+                        circuitState: circuit?.state || null
                     }, receipt.timestamp);
                     return true;
                 }

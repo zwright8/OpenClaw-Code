@@ -40,6 +40,7 @@ Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds per-target retry throttling (token-bucket) to suppress retry storms on unhealthy workers.
+Adds backpressure-aware transient rejection handling so repeated worker overload signals feed circuit protection and retry health.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
 Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.
