@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6350,
+  "name": "video-processing-outcome-synthesizer",
+  "title": "Video Processing Outcome Synthesizer",
+  "description": "Design and run video processing workflows with outcome synthesizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6989,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06350-video-processing-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent05/06350-video-processing-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing outcome synthesizer",
+    "video processing outcome synthesizer workflow",
+    "video processing outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

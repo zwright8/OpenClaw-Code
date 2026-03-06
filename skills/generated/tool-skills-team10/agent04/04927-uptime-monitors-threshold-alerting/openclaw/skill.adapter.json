@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4927,
+  "name": "uptime-monitors-threshold-alerting",
+  "title": "Uptime Monitors Threshold Alerting",
+  "description": "Design and run uptime monitors workflows with threshold alerting controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9659,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04927-uptime-monitors-threshold-alerting/SKILL.md",
+    "entrypoint": "agent04/04927-uptime-monitors-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "uptime monitors threshold alerting",
+    "uptime monitors threshold alerting workflow",
+    "uptime monitors threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

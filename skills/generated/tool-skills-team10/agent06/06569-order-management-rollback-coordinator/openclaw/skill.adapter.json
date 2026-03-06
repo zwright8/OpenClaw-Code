@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6569,
+  "name": "order-management-rollback-coordinator",
+  "title": "Order Management Rollback Coordinator",
+  "description": "Design and run order management workflows with rollback coordinator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5055,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06569-order-management-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent06/06569-order-management-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management rollback coordinator",
+    "order management rollback coordinator workflow",
+    "order management rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

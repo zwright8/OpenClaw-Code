@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2549,
+  "name": "real-estate-mls-quality-gatekeeper",
+  "title": "Real Estate MLS Quality Gatekeeper",
+  "description": "Design and run real estate mls workflows with quality gatekeeper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5352,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02549-real-estate-mls-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent02/02549-real-estate-mls-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls quality gatekeeper",
+    "real estate mls quality gatekeeper workflow",
+    "real estate mls quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

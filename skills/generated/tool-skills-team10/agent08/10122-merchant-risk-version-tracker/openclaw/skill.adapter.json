@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10122,
+  "name": "merchant-risk-version-tracker",
+  "title": "Merchant Risk Version Tracker",
+  "description": "Design and run merchant risk workflows with version tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7105,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10122-merchant-risk-version-tracker/SKILL.md",
+    "entrypoint": "agent08/10122-merchant-risk-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk version tracker",
+    "merchant risk version tracker workflow",
+    "merchant risk version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

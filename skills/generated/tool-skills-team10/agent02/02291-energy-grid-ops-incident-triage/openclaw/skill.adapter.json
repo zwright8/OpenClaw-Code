@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2291,
+  "name": "energy-grid-ops-incident-triage",
+  "title": "Energy Grid Ops Incident Triage",
+  "description": "Design and run energy grid ops workflows with incident triage controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2026,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02291-energy-grid-ops-incident-triage/SKILL.md",
+    "entrypoint": "agent02/02291-energy-grid-ops-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "energy grid ops incident triage",
+    "energy grid ops incident triage workflow",
+    "energy grid ops incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

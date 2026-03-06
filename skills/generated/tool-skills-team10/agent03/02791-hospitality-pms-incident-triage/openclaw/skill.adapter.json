@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2791,
+  "name": "hospitality-pms-incident-triage",
+  "title": "Hospitality PMS Incident Triage",
+  "description": "Design and run hospitality pms workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2038,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02791-hospitality-pms-incident-triage/SKILL.md",
+    "entrypoint": "agent03/02791-hospitality-pms-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hospitality pms incident triage",
+    "hospitality pms incident triage workflow",
+    "hospitality pms incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

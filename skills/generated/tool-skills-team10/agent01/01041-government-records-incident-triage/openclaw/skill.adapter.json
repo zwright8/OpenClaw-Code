@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1041,
+  "name": "government-records-incident-triage",
+  "title": "Government Records Incident Triage",
+  "description": "Design and run government records workflows with incident triage controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 762,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/01041-government-records-incident-triage/SKILL.md",
+    "entrypoint": "agent01/01041-government-records-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "government records incident triage",
+    "government records incident triage workflow",
+    "government records incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

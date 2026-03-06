@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3692,
+  "name": "partner-portals-root-cause-miner",
+  "title": "Partner Portals Root Cause Miner",
+  "description": "Design and run partner portals workflows with root cause miner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4558,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03692-partner-portals-root-cause-miner/SKILL.md",
+    "entrypoint": "agent03/03692-partner-portals-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals root cause miner",
+    "partner portals root cause miner workflow",
+    "partner portals root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

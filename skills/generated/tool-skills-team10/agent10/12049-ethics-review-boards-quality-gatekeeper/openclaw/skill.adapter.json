@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12049,
+  "name": "ethics-review-boards-quality-gatekeeper",
+  "title": "Ethics Review Boards Quality Gatekeeper",
+  "description": "Design and run ethics review boards workflows with quality gatekeeper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5670,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12049-ethics-review-boards-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent10/12049-ethics-review-boards-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards quality gatekeeper",
+    "ethics review boards quality gatekeeper workflow",
+    "ethics review boards quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

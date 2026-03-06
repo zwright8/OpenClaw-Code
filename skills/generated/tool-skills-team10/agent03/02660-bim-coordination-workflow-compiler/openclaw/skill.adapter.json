@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2660,
+  "name": "bim-coordination-workflow-compiler",
+  "title": "BIM Coordination Workflow Compiler",
+  "description": "Design and run bim coordination workflows with workflow compiler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1055,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02660-bim-coordination-workflow-compiler/SKILL.md",
+    "entrypoint": "agent03/02660-bim-coordination-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination workflow compiler",
+    "bim coordination workflow compiler workflow",
+    "bim coordination workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

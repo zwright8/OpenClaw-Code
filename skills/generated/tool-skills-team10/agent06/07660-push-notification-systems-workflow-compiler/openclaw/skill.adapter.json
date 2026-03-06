@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7660,
+  "name": "push-notification-systems-workflow-compiler",
+  "title": "Push Notification Systems Workflow Compiler",
+  "description": "Design and run push notification systems workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1143,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07660-push-notification-systems-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/07660-push-notification-systems-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems workflow compiler",
+    "push notification systems workflow compiler workflow",
+    "push notification systems workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

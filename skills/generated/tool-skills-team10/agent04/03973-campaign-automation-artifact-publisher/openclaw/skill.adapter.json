@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3973,
+  "name": "campaign-automation-artifact-publisher",
+  "title": "Campaign Automation Artifact Publisher",
+  "description": "Design and run campaign automation workflows with artifact publisher controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7384,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03973-campaign-automation-artifact-publisher/SKILL.md",
+    "entrypoint": "agent04/03973-campaign-automation-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation artifact publisher",
+    "campaign automation artifact publisher workflow",
+    "campaign automation artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

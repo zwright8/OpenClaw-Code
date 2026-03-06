@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-27T02:04:59.433Z",
+  "workflowPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/workflow.compiled.json",
+  "policyPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/execution-policy.json",
+  "failClosed": true,
+  "nodePolicies": [
+    {
+      "nodeId": "u0001-epistemic-signal-ingestion-normalizer",
+      "tier": "unknown",
+      "requiresHumanApproval": true,
+      "requiredApprovers": [
+        "workflow-operator"
+      ],
+      "allowedAutoActions": [
+        "dry-run"
+      ],
+      "reasons": [
+        "MISSING_RISK_METADATA:level,score"
+      ]
+    },
+    {
+      "nodeId": "u0003-epistemic-evidence-provenance-tracker",
+      "tier": "unknown",
+      "requiresHumanApproval": true,
+      "requiredApprovers": [
+        "workflow-operator"
+      ],
+      "allowedAutoActions": [
+        "dry-run"
+      ],
+      "reasons": [
+        "MISSING_RISK_METADATA:level,score"
+      ]
+    },
+    {
+      "nodeId": "u0008-epistemic-dependency-dag-planner",
+      "tier": "unknown",
+      "requiresHumanApproval": true,
+      "requiredApprovers": [
+        "workflow-operator"
+      ],
+      "allowedAutoActions": [
+        "dry-run"
+      ],
+      "reasons": [
+        "MISSING_RISK_METADATA:level,score"
+      ]
+    }
+  ],
+  "summary": {
+    "totalNodes": 3,
+    "approvalRequiredCount": 3,
+    "failClosedCount": 3
+  }
+}

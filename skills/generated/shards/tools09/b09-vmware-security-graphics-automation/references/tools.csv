@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4134,docker-machine-driver-vmware,local-installable,VMware Fusion & Workstation docker-machine driver,https://www.vmware.com/products/personal-desktop-virtualization.html,Apache-2.0
+4135,httm,local-installable,"Interactive, file-level Time Machine-like tool for ZFS/btrfs",https://github.com/kimono-koans/httm,MPL-2.0
+4136,reaver,local-installable,Implements brute force attack to recover WPA/WPA2 passkeys,https://github.com/t6x/reaver-wps-fork-t6x,GPL-2.0-or-later
+4137,gegl,local-installable,Graph based image processing framework,https://www.gegl.org/,LGPL-3.0-or-later AND GPL-3.0-or-later AND BSD-3-Clause AND MIT
+4138,ponyc,local-installable,"Object-oriented, actor-model, capabilities-secure programming language",https://www.ponylang.io/,BSD-2-Clause
+4141,csvq,local-installable,SQL-like query language for csv,https://mithrandie.github.io/csvq,MIT
+4142,gjs,local-installable,JavaScript Bindings for GNOME,https://gitlab.gnome.org/GNOME/gjs/wikis/Home,LGPL-2.0-or-later AND MIT
+4143,dita-ot,local-installable,DITA Open Toolkit is an implementation of the OASIS DITA specification,https://www.dita-ot.org/,Apache-2.0
+4144,simple-scan,local-installable,GNOME document scanning application,https://gitlab.gnome.org/GNOME/simple-scan,GPL-3.0-or-later
+4146,tt,local-installable,Command-line utility to manage Tarantool applications,https://github.com/tarantool/tt,BSD-2-Clause
+4147,file-roller,local-installable,GNOME archive manager,https://wiki.gnome.org/Apps/FileRoller,GPL-2.0-or-later
+4148,gbox,local-installable,Provides environments for AI Agents to operate computer and mobile devices,https://gbox.ai,Apache-2.0
+4149,terratag,local-installable,"CLI to automate tagging for AWS, Azure & GCP resources in Terraform",https://www.terratag.io/,MPL-2.0
+4150,mikutter,local-installable,Extensible Twitter client,https://mikutter.hachune.net/,MIT
+4152,vitetris,local-installable,Terminal-based Tetris clone,https://www.victornils.net/tetris/,BSD-2-Clause
+4153,abcde,local-installable,Better CD Encoder,https://abcde.einval.com,GPL-2.0-or-later
+4155,mdk,local-installable,GNU MIX development kit,https://www.gnu.org/software/mdk/mdk.html,GPL-3.0-or-later
+4157,asn,local-installable,Organization lookup and server tool (ASN / IPv4 / IPv6 / Prefix / AS Path),https://github.com/nitefood/asn,MIT
+4158,openh264,local-installable,H.264 codec from Cisco,https://www.openh264.org/,BSD-2-Clause
+4160,qtquick3d,local-installable,Provides a high-level API for creating 3D content or UIs based on Qt Quick,https://www.qt.io/,GPL-3.0-only AND (GPL-3.0-only WITH Qt-GPL-exception-1.0) AND Apache-2.0 AND BSD-3-Clause AND MIT
+4161,clangql,local-installable,Run a SQL like language to perform queries on C/C++ files,https://github.com/AmrDeveloper/ClangQL,MIT
+4163,kubernetes-cli@1.33,local-installable,Kubernetes command-line interface,https://kubernetes.io/docs/reference/kubectl/,Apache-2.0
+4164,sigstore,local-installable,Codesigning tool for Python packages,https://github.com/sigstore/sigstore-python,Apache-2.0
+4167,acme.sh,local-installable,ACME client,https://github.com/acmesh-official/acme.sh,GPL-3.0-only
+4168,gnome-recipes,local-installable,Formula for GNOME recipes,https://wiki.gnome.org/Apps/Recipes,GPL-3.0-or-later
+4169,git-graph,local-installable,Command-line tool to show clear git graphs arranged for your branching model,https://github.com/mlange-42/git-graph,MIT

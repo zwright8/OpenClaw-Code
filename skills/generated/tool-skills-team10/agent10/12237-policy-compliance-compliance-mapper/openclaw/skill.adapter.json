@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12237,
+  "name": "policy-compliance-compliance-mapper",
+  "title": "Policy Compliance Compliance Mapper",
+  "description": "Design and run policy compliance workflows with compliance mapper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1979,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12237-policy-compliance-compliance-mapper/SKILL.md",
+    "entrypoint": "agent10/12237-policy-compliance-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance compliance mapper",
+    "policy compliance compliance mapper workflow",
+    "policy compliance compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

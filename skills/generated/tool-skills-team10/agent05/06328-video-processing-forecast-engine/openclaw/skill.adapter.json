@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6328,
+  "name": "video-processing-forecast-engine",
+  "title": "Video Processing Forecast Engine",
+  "description": "Design and run video processing workflows with forecast engine controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10143,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06328-video-processing-forecast-engine/SKILL.md",
+    "entrypoint": "agent05/06328-video-processing-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing forecast engine",
+    "video processing forecast engine workflow",
+    "video processing forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

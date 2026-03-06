@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1678,
+  "name": "research-repositories-forecast-engine",
+  "title": "Research Repositories Forecast Engine",
+  "description": "Design and run research repositories workflows with forecast engine controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8568,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01678-research-repositories-forecast-engine/SKILL.md",
+    "entrypoint": "agent02/01678-research-repositories-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories forecast engine",
+    "research repositories forecast engine workflow",
+    "research repositories forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2506,
+  "name": "real-estate-mls-api-contract-validator",
+  "title": "Real Estate MLS API Contract Validator",
+  "description": "Design and run real estate mls workflows with api contract validator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 90,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent02/02506-real-estate-mls-api-contract-validator/SKILL.md",
+    "entrypoint": "agent02/02506-real-estate-mls-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls api contract validator",
+    "real estate mls api contract validator workflow",
+    "real estate mls api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

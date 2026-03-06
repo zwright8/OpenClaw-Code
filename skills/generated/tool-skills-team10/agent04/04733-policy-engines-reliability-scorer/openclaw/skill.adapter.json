@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4733,
+  "name": "policy-engines-reliability-scorer",
+  "title": "Policy Engines Reliability Scorer",
+  "description": "Design and run policy engines workflows with reliability scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9601,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04733-policy-engines-reliability-scorer/SKILL.md",
+    "entrypoint": "agent04/04733-policy-engines-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines reliability scorer",
+    "policy engines reliability scorer workflow",
+    "policy engines reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

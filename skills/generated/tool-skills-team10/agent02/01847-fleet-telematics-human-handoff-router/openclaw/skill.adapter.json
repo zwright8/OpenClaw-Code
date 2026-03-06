@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1847,
+  "name": "fleet-telematics-human-handoff-router",
+  "title": "Fleet Telematics Human Handoff Router",
+  "description": "Design and run fleet telematics workflows with human handoff router controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8638,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01847-fleet-telematics-human-handoff-router/SKILL.md",
+    "entrypoint": "agent02/01847-fleet-telematics-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics human handoff router",
+    "fleet telematics human handoff router workflow",
+    "fleet telematics human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

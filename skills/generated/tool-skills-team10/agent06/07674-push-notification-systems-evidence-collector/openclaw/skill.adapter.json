@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7674,
+  "name": "push-notification-systems-evidence-collector",
+  "title": "Push Notification Systems Evidence Collector",
+  "description": "Design and run push notification systems workflows with evidence collector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6318,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07674-push-notification-systems-evidence-collector/SKILL.md",
+    "entrypoint": "agent06/07674-push-notification-systems-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems evidence collector",
+    "push notification systems evidence collector workflow",
+    "push notification systems evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

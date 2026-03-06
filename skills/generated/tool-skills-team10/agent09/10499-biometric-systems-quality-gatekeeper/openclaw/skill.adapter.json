@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10499,
+  "name": "biometric-systems-quality-gatekeeper",
+  "title": "Biometric Systems Quality Gatekeeper",
+  "description": "Design and run biometric systems workflows with quality gatekeeper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5614,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10499-biometric-systems-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent09/10499-biometric-systems-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems quality gatekeeper",
+    "biometric systems quality gatekeeper workflow",
+    "biometric systems quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 886,
+  "name": "whisper-report-builder",
+  "title": "Whisper Report Builder",
+  "description": "Generates operational and KPI reports from Whisper activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12921,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00886-whisper-report-builder/SKILL.md",
+    "entrypoint": "agent01/00886-whisper-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "whisper report builder",
+    "whisper report builder workflow",
+    "whisper report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

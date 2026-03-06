@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2132,
+  "name": "digital-twins-latency-analyzer",
+  "title": "Digital Twins Latency Analyzer",
+  "description": "Design and run digital twins workflows with latency analyzer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8760,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02132-digital-twins-latency-analyzer/SKILL.md",
+    "entrypoint": "agent02/02132-digital-twins-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins latency analyzer",
+    "digital twins latency analyzer workflow",
+    "digital twins latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

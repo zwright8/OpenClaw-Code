@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10794,
+  "name": "knowledge-graphs-postmortem-drafting",
+  "title": "Knowledge Graphs Postmortem Drafting",
+  "description": "Design and run knowledge graphs workflows with postmortem drafting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7697,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10794-knowledge-graphs-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent09/10794-knowledge-graphs-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs postmortem drafting",
+    "knowledge graphs postmortem drafting workflow",
+    "knowledge graphs postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

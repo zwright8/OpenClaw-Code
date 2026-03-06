@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4868,dtrx,local-installable,Intelligent archive extraction,https://pypi.org/project/dtrx/,GPL-3.0-or-later
+4869,jabba,local-installable,Cross-platform Java Version Manager,https://github.com/Jabba-Team/jabba,Apache-2.0
+4871,gtree,local-installable,Generate directory trees and directories using Markdown or programmatically,https://ddddddo.github.io/gtree/,BSD-2-Clause
+4872,rdb,local-installable,Redis RDB parser,https://github.com/HDT3213/rdb/,Apache-2.0
+4873,ansiweather,local-installable,"Weather in your terminal, with ANSI colors and Unicode symbols",https://github.com/fcambus/ansiweather,BSD-2-Clause
+4874,glassfish,local-installable,Java EE application server,https://glassfish.org/,EPL-2.0
+4875,cabin,local-installable,Package manager and build system for C++,https://github.com/cabinpkg/cabin,Apache-2.0
+4876,fernflower,local-installable,Advanced decompiler for Java bytecode,https://github.com/JetBrains/fernflower,Apache-2.0
+4877,rbtools,local-installable,CLI and API for working with code and document reviews on Review Board,https://www.reviewboard.org/downloads/rbtools/,MIT
+4878,graphql-cli,local-installable,Command-line tool for common GraphQL development workflows,https://github.com/Urigo/graphql-cli,MIT
+4879,rawdog,local-installable,CLI tool to generate and run code with llms,https://mentat.ai,Apache-2.0
+4880,cryptominisat,local-installable,Advanced SAT solver,https://www.msoos.org/cryptominisat5/,MIT
+4882,parallel-disk-usage,local-installable,"Highly parallelized, blazing fast directory tree analyzer",https://github.com/KSXGitHub/parallel-disk-usage,Apache-2.0
+4883,sail,local-installable,CLI toolkit to provision and deploy WordPress applications to DigitalOcean,https://sailed.io,GPL-3.0-only
+4884,tabulate,local-installable,Table Maker for Modern C++,https://github.com/p-ranav/tabulate,MIT AND BSL-1.0 AND BSD-3-Clause
+4885,bedops,local-installable,Set and statistical operations on genomic data of arbitrary scale,https://github.com/bedops/bedops,GPL-2.0-or-later
+4887,mdp,local-installable,Command-line based markdown presentation tool,https://github.com/visit1985/mdp,GPL-3.0-or-later
+4888,pyinvoke,local-installable,Pythonic task management & command execution,https://www.pyinvoke.org/,BSD-2-Clause
+4889,apcupsd,local-installable,Daemon for controlling APC UPSes,http://www.apcupsd.org,GPL-2.0-only
+4890,ginac,local-installable,Not a Computer algebra system,https://www.ginac.de/,GPL-2.0-or-later
+4891,fricas,local-installable,Advanced computer algebra system,https://fricas.github.io,BSD-3-Clause
+4892,alloy-analyzer,local-installable,Open-source language and analyzer for software modeling,https://alloytools.org,Apache-2.0
+4893,gopass-jsonapi,local-installable,Gopass Browser Bindings,https://github.com/gopasspw/gopass-jsonapi,MIT
+4894,nagios,local-installable,Network monitoring and management system,https://www.nagios.org/,GPL-2.0-only
+4896,bigloo,local-installable,"Scheme implementation with object system, C, and Java interfaces",https://www-sop.inria.fr/indes/fp/Bigloo/,GPL-2.0-or-later
+4897,gnu-prolog,local-installable,Prolog compiler with constraint solving,http://www.gprolog.org/,LGPL-3.0-or-later OR GPL-2.0-or-later

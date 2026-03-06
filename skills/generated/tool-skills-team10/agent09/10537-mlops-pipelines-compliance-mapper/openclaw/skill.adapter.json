@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10537,
+  "name": "mlops-pipelines-compliance-mapper",
+  "title": "MLOps Pipelines Compliance Mapper",
+  "description": "Design and run mlops pipelines workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 785,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10537-mlops-pipelines-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/10537-mlops-pipelines-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mlops pipelines compliance mapper",
+    "mlops pipelines compliance mapper workflow",
+    "mlops pipelines compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 758,
+  "name": "tiktok-workflow-automator",
+  "title": "TikTok Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using TikTok.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0758-tiktok-workflow-automator/SKILL.md",
+    "entrypoint": "agent08/0758-tiktok-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tiktok workflow automator",
+    "tiktok workflow automator workflow",
+    "tiktok workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0758-tiktok-workflow-automator"
+  }
+}

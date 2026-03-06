@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11950,
+  "name": "reproducibility-tracking-outcome-synthesizer",
+  "title": "Reproducibility Tracking Outcome Synthesizer",
+  "description": "Design and run reproducibility tracking workflows with outcome synthesizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7149,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11950-reproducibility-tracking-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent10/11950-reproducibility-tracking-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reproducibility tracking outcome synthesizer",
+    "reproducibility tracking outcome synthesizer workflow",
+    "reproducibility tracking outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

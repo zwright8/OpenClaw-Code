@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 440,
+  "name": "cloudflare-migration-assistant",
+  "title": "Cloudflare Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Cloudflare.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0440-cloudflare-migration-assistant/SKILL.md",
+    "entrypoint": "agent05/0440-cloudflare-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloudflare migration assistant",
+    "cloudflare migration assistant workflow",
+    "cloudflare migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0440-cloudflare-migration-assistant"
+  }
+}

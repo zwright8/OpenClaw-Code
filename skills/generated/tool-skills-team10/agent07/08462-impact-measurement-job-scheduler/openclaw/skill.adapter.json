@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8462,
+  "name": "impact-measurement-job-scheduler",
+  "title": "Impact Measurement Job Scheduler",
+  "description": "Design and run impact measurement workflows with job scheduler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5124,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08462-impact-measurement-job-scheduler/SKILL.md",
+    "entrypoint": "agent07/08462-impact-measurement-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement job scheduler",
+    "impact measurement job scheduler workflow",
+    "impact measurement job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

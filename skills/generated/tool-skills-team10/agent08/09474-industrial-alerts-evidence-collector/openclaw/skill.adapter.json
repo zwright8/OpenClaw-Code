@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9474,
+  "name": "industrial-alerts-evidence-collector",
+  "title": "Industrial Alerts Evidence Collector",
+  "description": "Design and run industrial alerts workflows with evidence collector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6469,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09474-industrial-alerts-evidence-collector/SKILL.md",
+    "entrypoint": "agent08/09474-industrial-alerts-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts evidence collector",
+    "industrial alerts evidence collector workflow",
+    "industrial alerts evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

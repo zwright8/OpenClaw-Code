@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11085,
+  "name": "edi-pipelines-policy-evaluator",
+  "title": "EDI Pipelines Policy Evaluator",
+  "description": "Design and run edi pipelines workflows with policy evaluator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3865,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11085-edi-pipelines-policy-evaluator/SKILL.md",
+    "entrypoint": "agent09/11085-edi-pipelines-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edi pipelines policy evaluator",
+    "edi pipelines policy evaluator workflow",
+    "edi pipelines policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

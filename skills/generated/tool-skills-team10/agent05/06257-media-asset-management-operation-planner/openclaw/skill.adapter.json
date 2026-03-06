@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6257,
+  "name": "media-asset-management-operation-planner",
+  "title": "Media Asset Management Operation Planner",
+  "description": "Design and run media asset management workflows with operation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7973,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06257-media-asset-management-operation-planner/SKILL.md",
+    "entrypoint": "agent05/06257-media-asset-management-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management operation planner",
+    "media asset management operation planner workflow",
+    "media asset management operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

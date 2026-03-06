@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6281,
+  "name": "media-asset-management-cost-attribution",
+  "title": "Media Asset Management Cost Attribution",
+  "description": "Design and run media asset management workflows with cost attribution controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7986,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06281-media-asset-management-cost-attribution/SKILL.md",
+    "entrypoint": "agent05/06281-media-asset-management-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management cost attribution",
+    "media asset management cost attribution workflow",
+    "media asset management cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

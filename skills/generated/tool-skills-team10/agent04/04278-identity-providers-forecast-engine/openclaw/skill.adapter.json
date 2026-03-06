@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4278,
+  "name": "identity-providers-forecast-engine",
+  "title": "Identity Providers Forecast Engine",
+  "description": "Design and run identity providers workflows with forecast engine controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5999,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04278-identity-providers-forecast-engine/SKILL.md",
+    "entrypoint": "agent04/04278-identity-providers-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers forecast engine",
+    "identity providers forecast engine workflow",
+    "identity providers forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

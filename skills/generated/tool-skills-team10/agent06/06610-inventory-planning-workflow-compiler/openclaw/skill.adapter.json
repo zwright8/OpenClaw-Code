@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6610,
+  "name": "inventory-planning-workflow-compiler",
+  "title": "Inventory Planning Workflow Compiler",
+  "description": "Design and run inventory planning workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1124,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06610-inventory-planning-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/06610-inventory-planning-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inventory planning workflow compiler",
+    "inventory planning workflow compiler workflow",
+    "inventory planning workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

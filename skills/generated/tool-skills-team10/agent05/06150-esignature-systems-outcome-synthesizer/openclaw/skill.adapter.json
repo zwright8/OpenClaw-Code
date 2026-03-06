@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6150,
+  "name": "esignature-systems-outcome-synthesizer",
+  "title": "eSignature Systems Outcome Synthesizer",
+  "description": "Design and run esignature systems workflows with outcome synthesizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6986,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06150-esignature-systems-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent05/06150-esignature-systems-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems outcome synthesizer",
+    "esignature systems outcome synthesizer workflow",
+    "esignature systems outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

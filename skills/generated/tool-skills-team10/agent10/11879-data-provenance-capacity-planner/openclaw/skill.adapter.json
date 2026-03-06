@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11879,
+  "name": "data-provenance-capacity-planner",
+  "title": "Data Provenance Capacity Planner",
+  "description": "Design and run data provenance workflows with capacity planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12160,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11879-data-provenance-capacity-planner/SKILL.md",
+    "entrypoint": "agent10/11879-data-provenance-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance capacity planner",
+    "data provenance capacity planner workflow",
+    "data provenance capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

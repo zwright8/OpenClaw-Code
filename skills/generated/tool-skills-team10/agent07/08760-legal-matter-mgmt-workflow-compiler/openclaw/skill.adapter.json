@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8760,
+  "name": "legal-matter-mgmt-workflow-compiler",
+  "title": "Legal Matter Mgmt Workflow Compiler",
+  "description": "Design and run legal matter mgmt workflows with workflow compiler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 469,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/08760-legal-matter-mgmt-workflow-compiler/SKILL.md",
+    "entrypoint": "agent07/08760-legal-matter-mgmt-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt workflow compiler",
+    "legal matter mgmt workflow compiler workflow",
+    "legal matter mgmt workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

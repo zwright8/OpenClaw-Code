@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11729,
+  "name": "service-quality-capacity-planner",
+  "title": "Service Quality Capacity Planner",
+  "description": "Design and run service quality workflows with capacity planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12097,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11729-service-quality-capacity-planner/SKILL.md",
+    "entrypoint": "agent10/11729-service-quality-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality capacity planner",
+    "service quality capacity planner workflow",
+    "service quality capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

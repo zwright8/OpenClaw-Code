@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3531,
+  "name": "crm-intelligence-cost-attribution",
+  "title": "CRM Intelligence Cost Attribution",
+  "description": "Design and run crm intelligence workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9200,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03531-crm-intelligence-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/03531-crm-intelligence-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence cost attribution",
+    "crm intelligence cost attribution workflow",
+    "crm intelligence cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

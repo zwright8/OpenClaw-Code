@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6264,
+  "name": "media-asset-management-rate-limit-optimizer",
+  "title": "Media Asset Management Rate Limit Optimizer",
+  "description": "Design and run media asset management workflows with rate limit optimizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4215,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06264-media-asset-management-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent05/06264-media-asset-management-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management rate limit optimizer",
+    "media asset management rate limit optimizer workflow",
+    "media asset management rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

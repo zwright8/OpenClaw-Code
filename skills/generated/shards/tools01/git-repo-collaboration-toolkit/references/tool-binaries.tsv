@@ -1,0 +1,14 @@
+tool	binaries
+gh	gh
+git	git
+git-lfs	git-lfs
+lazygit	lazygit
+glab	glab
+gitleaks	gitleaks
+subversion	subversion
+git-filter-repo	git-filter-repo
+git-gui	git-gui
+git-crypt	git-crypt
+git-delta	git-delta
+mercurial	mercurial
+jj	jj

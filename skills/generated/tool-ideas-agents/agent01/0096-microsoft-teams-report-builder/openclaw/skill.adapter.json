@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 96,
+  "name": "microsoft-teams-report-builder",
+  "title": "Microsoft Teams Report Builder",
+  "description": "Generates operational and KPI reports from Microsoft Teams activity.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0096-microsoft-teams-report-builder/SKILL.md",
+    "entrypoint": "agent01/0096-microsoft-teams-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft teams report builder",
+    "microsoft teams report builder workflow",
+    "microsoft teams report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0096-microsoft-teams-report-builder"
+  }
+}

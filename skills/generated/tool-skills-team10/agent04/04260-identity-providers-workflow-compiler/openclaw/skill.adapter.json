@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4260,
+  "name": "identity-providers-workflow-compiler",
+  "title": "Identity Providers Workflow Compiler",
+  "description": "Design and run identity providers workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 273,
+    "score": 94,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04260-identity-providers-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04260-identity-providers-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers workflow compiler",
+    "identity providers workflow compiler workflow",
+    "identity providers workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,708 @@
+{
+  "agent": "agent07",
+  "start": 601,
+  "end": 700,
+  "count": 100,
+  "items": [
+    {
+      "id": 601,
+      "tool": "Sentry Connector",
+      "purpose": "Unified read/write connector for Sentry APIs and data.",
+      "folder": "0601-sentry-connector",
+      "skillPath": "agent07/0601-sentry-connector/SKILL.md"
+    },
+    {
+      "id": 602,
+      "tool": "Sentry Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Sentry records.",
+      "folder": "0602-sentry-sync-orchestrator",
+      "skillPath": "agent07/0602-sentry-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 603,
+      "tool": "Sentry Data Exporter",
+      "purpose": "Exports Sentry entities into clean, typed datasets.",
+      "folder": "0603-sentry-data-exporter",
+      "skillPath": "agent07/0603-sentry-data-exporter/SKILL.md"
+    },
+    {
+      "id": 604,
+      "tool": "Sentry Data Importer",
+      "purpose": "Validates and imports bulk updates into Sentry.",
+      "folder": "0604-sentry-data-importer",
+      "skillPath": "agent07/0604-sentry-data-importer/SKILL.md"
+    },
+    {
+      "id": 605,
+      "tool": "Sentry Webhook Listener",
+      "purpose": "Captures, verifies, and routes Sentry webhook events.",
+      "folder": "0605-sentry-webhook-listener",
+      "skillPath": "agent07/0605-sentry-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 606,
+      "tool": "Sentry Report Builder",
+      "purpose": "Generates operational and KPI reports from Sentry activity.",
+      "folder": "0606-sentry-report-builder",
+      "skillPath": "agent07/0606-sentry-report-builder/SKILL.md"
+    },
+    {
+      "id": 607,
+      "tool": "Sentry Alert Monitor",
+      "purpose": "Monitors key Sentry signals and raises actionable alerts.",
+      "folder": "0607-sentry-alert-monitor",
+      "skillPath": "agent07/0607-sentry-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 608,
+      "tool": "Sentry Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Sentry.",
+      "folder": "0608-sentry-workflow-automator",
+      "skillPath": "agent07/0608-sentry-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 609,
+      "tool": "Sentry Approval Router",
+      "purpose": "Routes Sentry-driven decisions to the right approvers.",
+      "folder": "0609-sentry-approval-router",
+      "skillPath": "agent07/0609-sentry-approval-router/SKILL.md"
+    },
+    {
+      "id": 610,
+      "tool": "Sentry Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Sentry.",
+      "folder": "0610-sentry-migration-assistant",
+      "skillPath": "agent07/0610-sentry-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 611,
+      "tool": "Datadog Connector",
+      "purpose": "Unified read/write connector for Datadog APIs and data.",
+      "folder": "0611-datadog-connector",
+      "skillPath": "agent07/0611-datadog-connector/SKILL.md"
+    },
+    {
+      "id": 612,
+      "tool": "Datadog Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Datadog records.",
+      "folder": "0612-datadog-sync-orchestrator",
+      "skillPath": "agent07/0612-datadog-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 613,
+      "tool": "Datadog Data Exporter",
+      "purpose": "Exports Datadog entities into clean, typed datasets.",
+      "folder": "0613-datadog-data-exporter",
+      "skillPath": "agent07/0613-datadog-data-exporter/SKILL.md"
+    },
+    {
+      "id": 614,
+      "tool": "Datadog Data Importer",
+      "purpose": "Validates and imports bulk updates into Datadog.",
+      "folder": "0614-datadog-data-importer",
+      "skillPath": "agent07/0614-datadog-data-importer/SKILL.md"
+    },
+    {
+      "id": 615,
+      "tool": "Datadog Webhook Listener",
+      "purpose": "Captures, verifies, and routes Datadog webhook events.",
+      "folder": "0615-datadog-webhook-listener",
+      "skillPath": "agent07/0615-datadog-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 616,
+      "tool": "Datadog Report Builder",
+      "purpose": "Generates operational and KPI reports from Datadog activity.",
+      "folder": "0616-datadog-report-builder",
+      "skillPath": "agent07/0616-datadog-report-builder/SKILL.md"
+    },
+    {
+      "id": 617,
+      "tool": "Datadog Alert Monitor",
+      "purpose": "Monitors key Datadog signals and raises actionable alerts.",
+      "folder": "0617-datadog-alert-monitor",
+      "skillPath": "agent07/0617-datadog-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 618,
+      "tool": "Datadog Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Datadog.",
+      "folder": "0618-datadog-workflow-automator",
+      "skillPath": "agent07/0618-datadog-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 619,
+      "tool": "Datadog Approval Router",
+      "purpose": "Routes Datadog-driven decisions to the right approvers.",
+      "folder": "0619-datadog-approval-router",
+      "skillPath": "agent07/0619-datadog-approval-router/SKILL.md"
+    },
+    {
+      "id": 620,
+      "tool": "Datadog Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Datadog.",
+      "folder": "0620-datadog-migration-assistant",
+      "skillPath": "agent07/0620-datadog-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 621,
+      "tool": "New Relic Connector",
+      "purpose": "Unified read/write connector for New Relic APIs and data.",
+      "folder": "0621-new-relic-connector",
+      "skillPath": "agent07/0621-new-relic-connector/SKILL.md"
+    },
+    {
+      "id": 622,
+      "tool": "New Relic Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for New Relic records.",
+      "folder": "0622-new-relic-sync-orchestrator",
+      "skillPath": "agent07/0622-new-relic-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 623,
+      "tool": "New Relic Data Exporter",
+      "purpose": "Exports New Relic entities into clean, typed datasets.",
+      "folder": "0623-new-relic-data-exporter",
+      "skillPath": "agent07/0623-new-relic-data-exporter/SKILL.md"
+    },
+    {
+      "id": 624,
+      "tool": "New Relic Data Importer",
+      "purpose": "Validates and imports bulk updates into New Relic.",
+      "folder": "0624-new-relic-data-importer",
+      "skillPath": "agent07/0624-new-relic-data-importer/SKILL.md"
+    },
+    {
+      "id": 625,
+      "tool": "New Relic Webhook Listener",
+      "purpose": "Captures, verifies, and routes New Relic webhook events.",
+      "folder": "0625-new-relic-webhook-listener",
+      "skillPath": "agent07/0625-new-relic-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 626,
+      "tool": "New Relic Report Builder",
+      "purpose": "Generates operational and KPI reports from New Relic activity.",
+      "folder": "0626-new-relic-report-builder",
+      "skillPath": "agent07/0626-new-relic-report-builder/SKILL.md"
+    },
+    {
+      "id": 627,
+      "tool": "New Relic Alert Monitor",
+      "purpose": "Monitors key New Relic signals and raises actionable alerts.",
+      "folder": "0627-new-relic-alert-monitor",
+      "skillPath": "agent07/0627-new-relic-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 628,
+      "tool": "New Relic Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using New Relic.",
+      "folder": "0628-new-relic-workflow-automator",
+      "skillPath": "agent07/0628-new-relic-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 629,
+      "tool": "New Relic Approval Router",
+      "purpose": "Routes New Relic-driven decisions to the right approvers.",
+      "folder": "0629-new-relic-approval-router",
+      "skillPath": "agent07/0629-new-relic-approval-router/SKILL.md"
+    },
+    {
+      "id": 630,
+      "tool": "New Relic Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from New Relic.",
+      "folder": "0630-new-relic-migration-assistant",
+      "skillPath": "agent07/0630-new-relic-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 631,
+      "tool": "Grafana Connector",
+      "purpose": "Unified read/write connector for Grafana APIs and data.",
+      "folder": "0631-grafana-connector",
+      "skillPath": "agent07/0631-grafana-connector/SKILL.md"
+    },
+    {
+      "id": 632,
+      "tool": "Grafana Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Grafana records.",
+      "folder": "0632-grafana-sync-orchestrator",
+      "skillPath": "agent07/0632-grafana-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 633,
+      "tool": "Grafana Data Exporter",
+      "purpose": "Exports Grafana entities into clean, typed datasets.",
+      "folder": "0633-grafana-data-exporter",
+      "skillPath": "agent07/0633-grafana-data-exporter/SKILL.md"
+    },
+    {
+      "id": 634,
+      "tool": "Grafana Data Importer",
+      "purpose": "Validates and imports bulk updates into Grafana.",
+      "folder": "0634-grafana-data-importer",
+      "skillPath": "agent07/0634-grafana-data-importer/SKILL.md"
+    },
+    {
+      "id": 635,
+      "tool": "Grafana Webhook Listener",
+      "purpose": "Captures, verifies, and routes Grafana webhook events.",
+      "folder": "0635-grafana-webhook-listener",
+      "skillPath": "agent07/0635-grafana-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 636,
+      "tool": "Grafana Report Builder",
+      "purpose": "Generates operational and KPI reports from Grafana activity.",
+      "folder": "0636-grafana-report-builder",
+      "skillPath": "agent07/0636-grafana-report-builder/SKILL.md"
+    },
+    {
+      "id": 637,
+      "tool": "Grafana Alert Monitor",
+      "purpose": "Monitors key Grafana signals and raises actionable alerts.",
+      "folder": "0637-grafana-alert-monitor",
+      "skillPath": "agent07/0637-grafana-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 638,
+      "tool": "Grafana Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Grafana.",
+      "folder": "0638-grafana-workflow-automator",
+      "skillPath": "agent07/0638-grafana-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 639,
+      "tool": "Grafana Approval Router",
+      "purpose": "Routes Grafana-driven decisions to the right approvers.",
+      "folder": "0639-grafana-approval-router",
+      "skillPath": "agent07/0639-grafana-approval-router/SKILL.md"
+    },
+    {
+      "id": 640,
+      "tool": "Grafana Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Grafana.",
+      "folder": "0640-grafana-migration-assistant",
+      "skillPath": "agent07/0640-grafana-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 641,
+      "tool": "Prometheus Connector",
+      "purpose": "Unified read/write connector for Prometheus APIs and data.",
+      "folder": "0641-prometheus-connector",
+      "skillPath": "agent07/0641-prometheus-connector/SKILL.md"
+    },
+    {
+      "id": 642,
+      "tool": "Prometheus Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Prometheus records.",
+      "folder": "0642-prometheus-sync-orchestrator",
+      "skillPath": "agent07/0642-prometheus-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 643,
+      "tool": "Prometheus Data Exporter",
+      "purpose": "Exports Prometheus entities into clean, typed datasets.",
+      "folder": "0643-prometheus-data-exporter",
+      "skillPath": "agent07/0643-prometheus-data-exporter/SKILL.md"
+    },
+    {
+      "id": 644,
+      "tool": "Prometheus Data Importer",
+      "purpose": "Validates and imports bulk updates into Prometheus.",
+      "folder": "0644-prometheus-data-importer",
+      "skillPath": "agent07/0644-prometheus-data-importer/SKILL.md"
+    },
+    {
+      "id": 645,
+      "tool": "Prometheus Webhook Listener",
+      "purpose": "Captures, verifies, and routes Prometheus webhook events.",
+      "folder": "0645-prometheus-webhook-listener",
+      "skillPath": "agent07/0645-prometheus-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 646,
+      "tool": "Prometheus Report Builder",
+      "purpose": "Generates operational and KPI reports from Prometheus activity.",
+      "folder": "0646-prometheus-report-builder",
+      "skillPath": "agent07/0646-prometheus-report-builder/SKILL.md"
+    },
+    {
+      "id": 647,
+      "tool": "Prometheus Alert Monitor",
+      "purpose": "Monitors key Prometheus signals and raises actionable alerts.",
+      "folder": "0647-prometheus-alert-monitor",
+      "skillPath": "agent07/0647-prometheus-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 648,
+      "tool": "Prometheus Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Prometheus.",
+      "folder": "0648-prometheus-workflow-automator",
+      "skillPath": "agent07/0648-prometheus-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 649,
+      "tool": "Prometheus Approval Router",
+      "purpose": "Routes Prometheus-driven decisions to the right approvers.",
+      "folder": "0649-prometheus-approval-router",
+      "skillPath": "agent07/0649-prometheus-approval-router/SKILL.md"
+    },
+    {
+      "id": 650,
+      "tool": "Prometheus Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Prometheus.",
+      "folder": "0650-prometheus-migration-assistant",
+      "skillPath": "agent07/0650-prometheus-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 651,
+      "tool": "PagerDuty Connector",
+      "purpose": "Unified read/write connector for PagerDuty APIs and data.",
+      "folder": "0651-pagerduty-connector",
+      "skillPath": "agent07/0651-pagerduty-connector/SKILL.md"
+    },
+    {
+      "id": 652,
+      "tool": "PagerDuty Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for PagerDuty records.",
+      "folder": "0652-pagerduty-sync-orchestrator",
+      "skillPath": "agent07/0652-pagerduty-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 653,
+      "tool": "PagerDuty Data Exporter",
+      "purpose": "Exports PagerDuty entities into clean, typed datasets.",
+      "folder": "0653-pagerduty-data-exporter",
+      "skillPath": "agent07/0653-pagerduty-data-exporter/SKILL.md"
+    },
+    {
+      "id": 654,
+      "tool": "PagerDuty Data Importer",
+      "purpose": "Validates and imports bulk updates into PagerDuty.",
+      "folder": "0654-pagerduty-data-importer",
+      "skillPath": "agent07/0654-pagerduty-data-importer/SKILL.md"
+    },
+    {
+      "id": 655,
+      "tool": "PagerDuty Webhook Listener",
+      "purpose": "Captures, verifies, and routes PagerDuty webhook events.",
+      "folder": "0655-pagerduty-webhook-listener",
+      "skillPath": "agent07/0655-pagerduty-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 656,
+      "tool": "PagerDuty Report Builder",
+      "purpose": "Generates operational and KPI reports from PagerDuty activity.",
+      "folder": "0656-pagerduty-report-builder",
+      "skillPath": "agent07/0656-pagerduty-report-builder/SKILL.md"
+    },
+    {
+      "id": 657,
+      "tool": "PagerDuty Alert Monitor",
+      "purpose": "Monitors key PagerDuty signals and raises actionable alerts.",
+      "folder": "0657-pagerduty-alert-monitor",
+      "skillPath": "agent07/0657-pagerduty-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 658,
+      "tool": "PagerDuty Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using PagerDuty.",
+      "folder": "0658-pagerduty-workflow-automator",
+      "skillPath": "agent07/0658-pagerduty-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 659,
+      "tool": "PagerDuty Approval Router",
+      "purpose": "Routes PagerDuty-driven decisions to the right approvers.",
+      "folder": "0659-pagerduty-approval-router",
+      "skillPath": "agent07/0659-pagerduty-approval-router/SKILL.md"
+    },
+    {
+      "id": 660,
+      "tool": "PagerDuty Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from PagerDuty.",
+      "folder": "0660-pagerduty-migration-assistant",
+      "skillPath": "agent07/0660-pagerduty-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 661,
+      "tool": "Opsgenie Connector",
+      "purpose": "Unified read/write connector for Opsgenie APIs and data.",
+      "folder": "0661-opsgenie-connector",
+      "skillPath": "agent07/0661-opsgenie-connector/SKILL.md"
+    },
+    {
+      "id": 662,
+      "tool": "Opsgenie Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Opsgenie records.",
+      "folder": "0662-opsgenie-sync-orchestrator",
+      "skillPath": "agent07/0662-opsgenie-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 663,
+      "tool": "Opsgenie Data Exporter",
+      "purpose": "Exports Opsgenie entities into clean, typed datasets.",
+      "folder": "0663-opsgenie-data-exporter",
+      "skillPath": "agent07/0663-opsgenie-data-exporter/SKILL.md"
+    },
+    {
+      "id": 664,
+      "tool": "Opsgenie Data Importer",
+      "purpose": "Validates and imports bulk updates into Opsgenie.",
+      "folder": "0664-opsgenie-data-importer",
+      "skillPath": "agent07/0664-opsgenie-data-importer/SKILL.md"
+    },
+    {
+      "id": 665,
+      "tool": "Opsgenie Webhook Listener",
+      "purpose": "Captures, verifies, and routes Opsgenie webhook events.",
+      "folder": "0665-opsgenie-webhook-listener",
+      "skillPath": "agent07/0665-opsgenie-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 666,
+      "tool": "Opsgenie Report Builder",
+      "purpose": "Generates operational and KPI reports from Opsgenie activity.",
+      "folder": "0666-opsgenie-report-builder",
+      "skillPath": "agent07/0666-opsgenie-report-builder/SKILL.md"
+    },
+    {
+      "id": 667,
+      "tool": "Opsgenie Alert Monitor",
+      "purpose": "Monitors key Opsgenie signals and raises actionable alerts.",
+      "folder": "0667-opsgenie-alert-monitor",
+      "skillPath": "agent07/0667-opsgenie-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 668,
+      "tool": "Opsgenie Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Opsgenie.",
+      "folder": "0668-opsgenie-workflow-automator",
+      "skillPath": "agent07/0668-opsgenie-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 669,
+      "tool": "Opsgenie Approval Router",
+      "purpose": "Routes Opsgenie-driven decisions to the right approvers.",
+      "folder": "0669-opsgenie-approval-router",
+      "skillPath": "agent07/0669-opsgenie-approval-router/SKILL.md"
+    },
+    {
+      "id": 670,
+      "tool": "Opsgenie Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Opsgenie.",
+      "folder": "0670-opsgenie-migration-assistant",
+      "skillPath": "agent07/0670-opsgenie-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 671,
+      "tool": "Splunk Connector",
+      "purpose": "Unified read/write connector for Splunk APIs and data.",
+      "folder": "0671-splunk-connector",
+      "skillPath": "agent07/0671-splunk-connector/SKILL.md"
+    },
+    {
+      "id": 672,
+      "tool": "Splunk Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Splunk records.",
+      "folder": "0672-splunk-sync-orchestrator",
+      "skillPath": "agent07/0672-splunk-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 673,
+      "tool": "Splunk Data Exporter",
+      "purpose": "Exports Splunk entities into clean, typed datasets.",
+      "folder": "0673-splunk-data-exporter",
+      "skillPath": "agent07/0673-splunk-data-exporter/SKILL.md"
+    },
+    {
+      "id": 674,
+      "tool": "Splunk Data Importer",
+      "purpose": "Validates and imports bulk updates into Splunk.",
+      "folder": "0674-splunk-data-importer",
+      "skillPath": "agent07/0674-splunk-data-importer/SKILL.md"
+    },
+    {
+      "id": 675,
+      "tool": "Splunk Webhook Listener",
+      "purpose": "Captures, verifies, and routes Splunk webhook events.",
+      "folder": "0675-splunk-webhook-listener",
+      "skillPath": "agent07/0675-splunk-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 676,
+      "tool": "Splunk Report Builder",
+      "purpose": "Generates operational and KPI reports from Splunk activity.",
+      "folder": "0676-splunk-report-builder",
+      "skillPath": "agent07/0676-splunk-report-builder/SKILL.md"
+    },
+    {
+      "id": 677,
+      "tool": "Splunk Alert Monitor",
+      "purpose": "Monitors key Splunk signals and raises actionable alerts.",
+      "folder": "0677-splunk-alert-monitor",
+      "skillPath": "agent07/0677-splunk-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 678,
+      "tool": "Splunk Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Splunk.",
+      "folder": "0678-splunk-workflow-automator",
+      "skillPath": "agent07/0678-splunk-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 679,
+      "tool": "Splunk Approval Router",
+      "purpose": "Routes Splunk-driven decisions to the right approvers.",
+      "folder": "0679-splunk-approval-router",
+      "skillPath": "agent07/0679-splunk-approval-router/SKILL.md"
+    },
+    {
+      "id": 680,
+      "tool": "Splunk Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Splunk.",
+      "folder": "0680-splunk-migration-assistant",
+      "skillPath": "agent07/0680-splunk-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 681,
+      "tool": "Sumo Logic Connector",
+      "purpose": "Unified read/write connector for Sumo Logic APIs and data.",
+      "folder": "0681-sumo-logic-connector",
+      "skillPath": "agent07/0681-sumo-logic-connector/SKILL.md"
+    },
+    {
+      "id": 682,
+      "tool": "Sumo Logic Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Sumo Logic records.",
+      "folder": "0682-sumo-logic-sync-orchestrator",
+      "skillPath": "agent07/0682-sumo-logic-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 683,
+      "tool": "Sumo Logic Data Exporter",
+      "purpose": "Exports Sumo Logic entities into clean, typed datasets.",
+      "folder": "0683-sumo-logic-data-exporter",
+      "skillPath": "agent07/0683-sumo-logic-data-exporter/SKILL.md"
+    },
+    {
+      "id": 684,
+      "tool": "Sumo Logic Data Importer",
+      "purpose": "Validates and imports bulk updates into Sumo Logic.",
+      "folder": "0684-sumo-logic-data-importer",
+      "skillPath": "agent07/0684-sumo-logic-data-importer/SKILL.md"
+    },
+    {
+      "id": 685,
+      "tool": "Sumo Logic Webhook Listener",
+      "purpose": "Captures, verifies, and routes Sumo Logic webhook events.",
+      "folder": "0685-sumo-logic-webhook-listener",
+      "skillPath": "agent07/0685-sumo-logic-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 686,
+      "tool": "Sumo Logic Report Builder",
+      "purpose": "Generates operational and KPI reports from Sumo Logic activity.",
+      "folder": "0686-sumo-logic-report-builder",
+      "skillPath": "agent07/0686-sumo-logic-report-builder/SKILL.md"
+    },
+    {
+      "id": 687,
+      "tool": "Sumo Logic Alert Monitor",
+      "purpose": "Monitors key Sumo Logic signals and raises actionable alerts.",
+      "folder": "0687-sumo-logic-alert-monitor",
+      "skillPath": "agent07/0687-sumo-logic-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 688,
+      "tool": "Sumo Logic Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Sumo Logic.",
+      "folder": "0688-sumo-logic-workflow-automator",
+      "skillPath": "agent07/0688-sumo-logic-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 689,
+      "tool": "Sumo Logic Approval Router",
+      "purpose": "Routes Sumo Logic-driven decisions to the right approvers.",
+      "folder": "0689-sumo-logic-approval-router",
+      "skillPath": "agent07/0689-sumo-logic-approval-router/SKILL.md"
+    },
+    {
+      "id": 690,
+      "tool": "Sumo Logic Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Sumo Logic.",
+      "folder": "0690-sumo-logic-migration-assistant",
+      "skillPath": "agent07/0690-sumo-logic-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 691,
+      "tool": "OpenSearch Connector",
+      "purpose": "Unified read/write connector for OpenSearch APIs and data.",
+      "folder": "0691-opensearch-connector",
+      "skillPath": "agent07/0691-opensearch-connector/SKILL.md"
+    },
+    {
+      "id": 692,
+      "tool": "OpenSearch Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for OpenSearch records.",
+      "folder": "0692-opensearch-sync-orchestrator",
+      "skillPath": "agent07/0692-opensearch-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 693,
+      "tool": "OpenSearch Data Exporter",
+      "purpose": "Exports OpenSearch entities into clean, typed datasets.",
+      "folder": "0693-opensearch-data-exporter",
+      "skillPath": "agent07/0693-opensearch-data-exporter/SKILL.md"
+    },
+    {
+      "id": 694,
+      "tool": "OpenSearch Data Importer",
+      "purpose": "Validates and imports bulk updates into OpenSearch.",
+      "folder": "0694-opensearch-data-importer",
+      "skillPath": "agent07/0694-opensearch-data-importer/SKILL.md"
+    },
+    {
+      "id": 695,
+      "tool": "OpenSearch Webhook Listener",
+      "purpose": "Captures, verifies, and routes OpenSearch webhook events.",
+      "folder": "0695-opensearch-webhook-listener",
+      "skillPath": "agent07/0695-opensearch-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 696,
+      "tool": "OpenSearch Report Builder",
+      "purpose": "Generates operational and KPI reports from OpenSearch activity.",
+      "folder": "0696-opensearch-report-builder",
+      "skillPath": "agent07/0696-opensearch-report-builder/SKILL.md"
+    },
+    {
+      "id": 697,
+      "tool": "OpenSearch Alert Monitor",
+      "purpose": "Monitors key OpenSearch signals and raises actionable alerts.",
+      "folder": "0697-opensearch-alert-monitor",
+      "skillPath": "agent07/0697-opensearch-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 698,
+      "tool": "OpenSearch Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using OpenSearch.",
+      "folder": "0698-opensearch-workflow-automator",
+      "skillPath": "agent07/0698-opensearch-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 699,
+      "tool": "OpenSearch Approval Router",
+      "purpose": "Routes OpenSearch-driven decisions to the right approvers.",
+      "folder": "0699-opensearch-approval-router",
+      "skillPath": "agent07/0699-opensearch-approval-router/SKILL.md"
+    },
+    {
+      "id": 700,
+      "tool": "OpenSearch Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from OpenSearch.",
+      "folder": "0700-opensearch-migration-assistant",
+      "skillPath": "agent07/0700-opensearch-migration-assistant/SKILL.md"
+    }
+  ]
+}

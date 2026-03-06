@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6143,
+  "name": "esignature-systems-remediation-planner",
+  "title": "eSignature Systems Remediation Planner",
+  "description": "Design and run esignature systems workflows with remediation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2830,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06143-esignature-systems-remediation-planner/SKILL.md",
+    "entrypoint": "agent05/06143-esignature-systems-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems remediation planner",
+    "esignature systems remediation planner workflow",
+    "esignature systems remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

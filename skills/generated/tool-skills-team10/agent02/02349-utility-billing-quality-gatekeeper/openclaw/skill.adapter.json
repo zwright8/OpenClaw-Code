@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2349,
+  "name": "utility-billing-quality-gatekeeper",
+  "title": "Utility Billing Quality Gatekeeper",
+  "description": "Design and run utility billing workflows with quality gatekeeper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2529,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02349-utility-billing-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent02/02349-utility-billing-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing quality gatekeeper",
+    "utility billing quality gatekeeper workflow",
+    "utility billing quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9937,
+  "name": "live-event-ops-compliance-mapper",
+  "title": "Live Event Ops Compliance Mapper",
+  "description": "Design and run live event ops workflows with compliance mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1927,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09937-live-event-ops-compliance-mapper/SKILL.md",
+    "entrypoint": "agent08/09937-live-event-ops-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "live event ops compliance mapper",
+    "live event ops compliance mapper workflow",
+    "live event ops compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

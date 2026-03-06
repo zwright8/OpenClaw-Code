@@ -1,0 +1,49 @@
+rank,tool,command_hint,type,access,description,homepage,license
+1519,php-code-sniffer,php-code-sniffer,cli,local-installable,"Check coding standards in PHP, JavaScript and CSS",https://github.com/PHPCSStandards/PHP_CodeSniffer,BSD-3-Clause
+1528,backlog-md,backlog-md,cli,local-installable,Markdown‑native Task Manager & Kanban visualizer for any Git repository,https://github.com/MrLesk/Backlog.md,MIT
+1530,rumdl,rumdl,cli,local-installable,Markdown Linter and Formatter written in Rust,https://github.com/rvben/rumdl,MIT
+1533,git-xet,git-xet,cli,local-installable,Git LFS plugin that uploads and downloads using the Xet protocol,https://github.com/huggingface/xet-core,Apache-2.0
+1538,diffoscope,diffoscope,cli,local-installable,"In-depth comparison of files, archives, and directories",https://diffoscope.org,GPL-3.0-or-later
+1539,codespell,codespell,cli,local-installable,Fix common misspellings in source code and text files,https://github.com/codespell-project/codespell,GPL-2.0-only
+1558,ctags,ctags,cli,local-installable,Reimplementation of ctags(1),https://ctags.sourceforge.net/,GPL-2.0-or-later AND LGPL-2.1-or-later
+1569,git-cliff,git-cliff,cli,local-installable,Highly customizable changelog generator,https://git-cliff.org/,Apache-2.0 AND MIT
+1578,zls,zls,service/daemon,local-installable,Language Server for Zig,https://zigtools.org/zls/,MIT
+1586,github-mcp-server,github-mcp-server,service/daemon,local-installable,GitHub Model Context Protocol server for AI tools,https://github.com/github/github-mcp-server,MIT
+1590,git-quick-stats,git-quick-stats,cli,local-installable,Simple and efficient way to access statistics in git,https://git-quick-stats.sh/,MIT
+1601,gofumpt,gofumpt,cli,local-installable,Stricter gofmt,https://github.com/mvdan/gofumpt,BSD-3-Clause
+1610,gitea,gitea,service/daemon,local-installable,Painless self-hosted all-in-one software development service,https://about.gitea.com/,MIT
+1617,bash-language-server,bash-language-server,service/daemon,local-installable,Language Server for Bash,https://github.com/bash-lsp/bash-language-server,MIT
+1622,ccls,ccls,service/daemon,local-installable,C/C++/ObjC language server,https://github.com/MaskRay/ccls,Apache-2.0
+1638,flow,flow,cli,local-installable,Static type checker for JavaScript,https://flow.org/,MIT
+1641,jjui,jjui,cli,local-installable,TUI for interacting with the Jujutsu version control system,https://github.com/idursun/jjui,MIT
+1662,astyle,astyle,cli,local-installable,"Source code beautifier for C, C++, C#, and Java",https://astyle.sourceforge.net/,MIT
+1670,stylelint,stylelint,cli,local-installable,Modern CSS linter,https://stylelint.io/,MIT
+1672,solargraph,solargraph,service/daemon,local-installable,Ruby language server,https://solargraph.org,MIT
+1684,git-annex,git-annex,cli,local-installable,Manage files with git without checking in file contents,https://git-annex.branchable.com/,AGPL-3.0-or-later AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-3.0-or-later AND MIT
+1685,asciidoc,asciidoc,cli,local-installable,Formatter/translator for text files to numerous formats,https://asciidoc-py.github.io/,GPL-2.0-or-later
+1694,ty,ty,cli,local-installable,"Extremely fast Python type checker, written in Rust",https://docs.astral.sh/ty/,MIT
+1743,cocogitto,cocogitto,cli,local-installable,Conventional Commits toolbox,https://docs.cocogitto.io/,MIT
+1754,uncrustify,uncrustify,cli,local-installable,Source code beautifier,https://uncrustify.sourceforge.net/,GPL-2.0-or-later
+1768,chroma,chroma,cli,local-installable,General purpose syntax highlighter in pure Go,https://github.com/alecthomas/chroma,MIT
+1773,taplo,taplo,cli,local-installable,TOML toolkit written in Rust,https://taplo.tamasfe.dev,MIT
+1784,goimports,goimports,cli,local-installable,Go formatter that additionally inserts import statements,https://pkg.go.dev/golang.org/x/tools/cmd/goimports,BSD-3-Clause
+1785,git-cola,git-cola,cli,local-installable,Highly caffeinated git GUI,https://git-cola.github.io/,GPL-2.0-or-later
+1789,fop,fop,cli,local-installable,XSL-FO print formatter for making PDF or PS documents,https://xmlgraphics.apache.org/fop/index.html,Apache-2.0
+1800,cpplint,cpplint,cli,local-installable,Static code checker for C++,https://pypi.org/project/cpplint/,Apache-2.0
+1816,buildozer,buildozer,cli,local-installable,Rewrite bazel BUILD files using standard commands,https://github.com/bazelbuild/buildtools,Apache-2.0
+1845,elixir-ls,elixir-ls,service/daemon,local-installable,Language Server and Debugger for Elixir,https://elixir-lsp.github.io/elixir-ls,Apache-2.0
+1859,pinact,pinact,cli,local-installable,Pins GitHub Actions to full hashes and versions,https://github.com/suzuki-shunsuke/pinact,MIT
+1862,checkstyle,checkstyle,cli,local-installable,Check Java source against a coding standard,https://checkstyle.sourceforge.io/,LGPL-2.1-or-later
+1884,tombi,tombi,service/daemon,local-installable,"TOML formatter, linter and language server",https://github.com/tombi-toml/tombi,MIT
+1891,tea,tea,service/daemon,local-installable,Command-line tool to interact with Gitea servers,https://gitea.com/gitea/tea,MIT
+1900,pyrefly,pyrefly,cli,local-installable,Fast type checker and IDE for Python,https://pyrefly.org/,MIT
+1925,git-absorb,git-absorb,cli,local-installable,Automatic git commit --fixup,https://github.com/tummychow/git-absorb,BSD-3-Clause
+1937,django-completion,django-completion,cli,local-installable,Bash completion for Django,https://www.djangoproject.com/,BSD-3-Clause
+1938,mergiraf,mergiraf,cli,local-installable,Syntax-aware git merge driver,https://mergiraf.org,GPL-3.0-only
+1939,dprint,dprint,cli,local-installable,Pluggable and configurable code formatting platform written in Rust,https://dprint.dev/,MIT
+1956,pgformatter,pgformatter,cli,local-installable,PostgreSQL syntax beautifier,https://sqlformat.darold.net/,PostgreSQL
+1957,ktfmt,ktfmt,cli,local-installable,Kotlin code formatter,https://facebook.github.io/ktfmt/,Apache-2.0
+1958,jsonlint,jsonlint,cli,local-installable,JSON parser and validator with a CLI,https://github.com/zaach/jsonlint,MIT
+1967,texlab,texlab,service/daemon,local-installable,Implementation of the Language Server Protocol for LaTeX,https://github.com/latex-lsp/texlab/,GPL-3.0-only
+1982,vsce,vsce,cli,local-installable,"Tool for packaging, publishing and managing VS Code extensions",https://code.visualstudio.com/api/working-with-extensions/publishing-extension#vsce,MIT
+1985,git-who,git-who,cli,local-installable,Git blame for file trees,https://github.com/sinclairtarget/git-who,MIT

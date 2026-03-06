@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7611,
+  "name": "device-labs-execution-runner",
+  "title": "Device Labs Execution Runner",
+  "description": "Design and run device labs workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1387,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07611-device-labs-execution-runner/SKILL.md",
+    "entrypoint": "agent06/07611-device-labs-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs execution runner",
+    "device labs execution runner workflow",
+    "device labs execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6360,
+  "name": "audio-pipelines-workflow-compiler",
+  "title": "Audio Pipelines Workflow Compiler",
+  "description": "Design and run audio pipelines workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1119,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06360-audio-pipelines-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/06360-audio-pipelines-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines workflow compiler",
+    "audio pipelines workflow compiler workflow",
+    "audio pipelines workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3227,
+  "name": "fraud-operations-threshold-alerting",
+  "title": "Fraud Operations Threshold Alerting",
+  "description": "Design and run fraud operations workflows with threshold alerting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9071,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03227-fraud-operations-threshold-alerting/SKILL.md",
+    "entrypoint": "agent03/03227-fraud-operations-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations threshold alerting",
+    "fraud operations threshold alerting workflow",
+    "fraud operations threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

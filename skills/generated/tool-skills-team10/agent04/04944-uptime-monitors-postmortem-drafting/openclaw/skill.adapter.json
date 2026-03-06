@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4944,
+  "name": "uptime-monitors-postmortem-drafting",
+  "title": "Uptime Monitors Postmortem Drafting",
+  "description": "Design and run uptime monitors workflows with postmortem drafting controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9666,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04944-uptime-monitors-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent04/04944-uptime-monitors-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "uptime monitors postmortem drafting",
+    "uptime monitors postmortem drafting workflow",
+    "uptime monitors postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

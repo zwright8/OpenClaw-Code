@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 652,
+  "name": "pagerduty-sync-orchestrator",
+  "title": "PagerDuty Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for PagerDuty records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12777,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00652-pagerduty-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00652-pagerduty-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pagerduty sync orchestrator",
+    "pagerduty sync orchestrator workflow",
+    "pagerduty sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

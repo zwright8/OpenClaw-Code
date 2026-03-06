@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8375,
+  "name": "donor-platforms-provenance-tracker",
+  "title": "Donor Platforms Provenance Tracker",
+  "description": "Design and run donor platforms workflows with provenance tracker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10918,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08375-donor-platforms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent07/08375-donor-platforms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms provenance tracker",
+    "donor platforms provenance tracker workflow",
+    "donor platforms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

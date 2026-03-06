@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10912,
+  "name": "taxonomy-services-job-scheduler",
+  "title": "Taxonomy Services Job Scheduler",
+  "description": "Design and run taxonomy services workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5205,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10912-taxonomy-services-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/10912-taxonomy-services-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services job scheduler",
+    "taxonomy services job scheduler workflow",
+    "taxonomy services job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

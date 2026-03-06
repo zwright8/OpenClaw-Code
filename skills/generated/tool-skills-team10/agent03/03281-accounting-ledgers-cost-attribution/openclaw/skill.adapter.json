@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3281,
+  "name": "accounting-ledgers-cost-attribution",
+  "title": "Accounting Ledgers Cost Attribution",
+  "description": "Design and run accounting ledgers workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9095,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03281-accounting-ledgers-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/03281-accounting-ledgers-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers cost attribution",
+    "accounting ledgers cost attribution workflow",
+    "accounting ledgers cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

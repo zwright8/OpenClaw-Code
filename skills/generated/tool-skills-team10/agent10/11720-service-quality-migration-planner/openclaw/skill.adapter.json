@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11720,
+  "name": "service-quality-migration-planner",
+  "title": "Service Quality Migration Planner",
+  "description": "Design and run service quality workflows with migration planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4830,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11720-service-quality-migration-planner/SKILL.md",
+    "entrypoint": "agent10/11720-service-quality-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality migration planner",
+    "service quality migration planner workflow",
+    "service quality migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3371,
+  "name": "payroll-systems-snapshot-manager",
+  "title": "Payroll Systems Snapshot Manager",
+  "description": "Design and run payroll systems workflows with snapshot manager controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9130,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03371-payroll-systems-snapshot-manager/SKILL.md",
+    "entrypoint": "agent03/03371-payroll-systems-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems snapshot manager",
+    "payroll systems snapshot manager workflow",
+    "payroll systems snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

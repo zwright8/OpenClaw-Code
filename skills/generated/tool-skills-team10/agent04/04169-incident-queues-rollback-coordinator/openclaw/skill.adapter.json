@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4169,
+  "name": "incident-queues-rollback-coordinator",
+  "title": "Incident Queues Rollback Coordinator",
+  "description": "Design and run incident queues workflows with rollback coordinator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2374,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04169-incident-queues-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent04/04169-incident-queues-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues rollback coordinator",
+    "incident queues rollback coordinator workflow",
+    "incident queues rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

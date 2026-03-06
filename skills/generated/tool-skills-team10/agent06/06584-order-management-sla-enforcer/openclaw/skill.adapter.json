@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6584,
+  "name": "order-management-sla-enforcer",
+  "title": "Order Management SLA Enforcer",
+  "description": "Design and run order management workflows with sla enforcer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10232,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06584-order-management-sla-enforcer/SKILL.md",
+    "entrypoint": "agent06/06584-order-management-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management sla enforcer",
+    "order management sla enforcer workflow",
+    "order management sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

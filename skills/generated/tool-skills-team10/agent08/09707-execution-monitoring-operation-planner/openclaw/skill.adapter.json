@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9707,
+  "name": "execution-monitoring-operation-planner",
+  "title": "Execution Monitoring Operation Planner",
+  "description": "Design and run execution monitoring workflows with operation planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11350,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09707-execution-monitoring-operation-planner/SKILL.md",
+    "entrypoint": "agent08/09707-execution-monitoring-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring operation planner",
+    "execution monitoring operation planner workflow",
+    "execution monitoring operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12000,
+  "name": "peer-review-ops-outcome-synthesizer",
+  "title": "Peer Review Ops Outcome Synthesizer",
+  "description": "Design and run peer review ops workflows with outcome synthesizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7150,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12000-peer-review-ops-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent10/12000-peer-review-ops-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops outcome synthesizer",
+    "peer review ops outcome synthesizer workflow",
+    "peer review ops outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

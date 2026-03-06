@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11015,
+  "name": "partner-integrations-queue-balancer",
+  "title": "Partner Integrations Queue Balancer",
+  "description": "Design and run partner integrations workflows with queue balancer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11794,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11015-partner-integrations-queue-balancer/SKILL.md",
+    "entrypoint": "agent09/11015-partner-integrations-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner integrations queue balancer",
+    "partner integrations queue balancer workflow",
+    "partner integrations queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8598,
+  "name": "emergency-response-feedback-harvester",
+  "title": "Emergency Response Feedback Harvester",
+  "description": "Design and run emergency response workflows with feedback harvester controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11012,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08598-emergency-response-feedback-harvester/SKILL.md",
+    "entrypoint": "agent07/08598-emergency-response-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response feedback harvester",
+    "emergency response feedback harvester workflow",
+    "emergency response feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

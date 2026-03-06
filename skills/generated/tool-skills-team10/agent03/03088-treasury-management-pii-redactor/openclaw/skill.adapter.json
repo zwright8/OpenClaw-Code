@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3088,
+  "name": "treasury-management-pii-redactor",
+  "title": "Treasury Management PII Redactor",
+  "description": "Design and run treasury management workflows with pii redactor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 3262,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03088-treasury-management-pii-redactor/SKILL.md",
+    "entrypoint": "agent03/03088-treasury-management-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "treasury management pii redactor",
+    "treasury management pii redactor workflow",
+    "treasury management pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3284,
+  "name": "accounting-ledgers-sla-enforcer",
+  "title": "Accounting Ledgers SLA Enforcer",
+  "description": "Design and run accounting ledgers workflows with sla enforcer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9098,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03284-accounting-ledgers-sla-enforcer/SKILL.md",
+    "entrypoint": "agent03/03284-accounting-ledgers-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers sla enforcer",
+    "accounting ledgers sla enforcer workflow",
+    "accounting ledgers sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

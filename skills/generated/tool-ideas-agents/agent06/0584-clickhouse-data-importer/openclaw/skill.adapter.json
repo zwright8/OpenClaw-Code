@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 584,
+  "name": "clickhouse-data-importer",
+  "title": "ClickHouse Data Importer",
+  "description": "Validates and imports bulk updates into ClickHouse.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0584-clickhouse-data-importer/SKILL.md",
+    "entrypoint": "agent06/0584-clickhouse-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clickhouse data importer",
+    "clickhouse data importer workflow",
+    "clickhouse data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0584-clickhouse-data-importer"
+  }
+}

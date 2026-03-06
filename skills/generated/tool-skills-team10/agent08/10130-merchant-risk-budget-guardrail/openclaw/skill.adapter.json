@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10130,
+  "name": "merchant-risk-budget-guardrail",
+  "title": "Merchant Risk Budget Guardrail",
+  "description": "Design and run merchant risk workflows with budget guardrail controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4366,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10130-merchant-risk-budget-guardrail/SKILL.md",
+    "entrypoint": "agent08/10130-merchant-risk-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk budget guardrail",
+    "merchant risk budget guardrail workflow",
+    "merchant risk budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

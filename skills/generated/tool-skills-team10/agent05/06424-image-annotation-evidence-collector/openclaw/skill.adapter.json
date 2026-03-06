@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6424,
+  "name": "image-annotation-evidence-collector",
+  "title": "Image Annotation Evidence Collector",
+  "description": "Design and run image annotation workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6207,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06424-image-annotation-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/06424-image-annotation-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation evidence collector",
+    "image annotation evidence collector workflow",
+    "image annotation evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

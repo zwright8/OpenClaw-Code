@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9789,
+  "name": "community-forums-secret-scanner",
+  "title": "Community Forums Secret Scanner",
+  "description": "Design and run community forums workflows with secret scanner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2975,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09789-community-forums-secret-scanner/SKILL.md",
+    "entrypoint": "agent08/09789-community-forums-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums secret scanner",
+    "community forums secret scanner workflow",
+    "community forums secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 243,
+  "name": "intercom-data-exporter",
+  "title": "Intercom Data Exporter",
+  "description": "Exports Intercom entities into clean, typed datasets.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0243-intercom-data-exporter/SKILL.md",
+    "entrypoint": "agent03/0243-intercom-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "intercom data exporter",
+    "intercom data exporter workflow",
+    "intercom data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0243-intercom-data-exporter"
+  }
+}

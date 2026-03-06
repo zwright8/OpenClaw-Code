@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7254,
+  "name": "crowdsourcing-platforms-schema-introspector",
+  "title": "Crowdsourcing Platforms Schema Introspector",
+  "description": "Design and run crowdsourcing platforms workflows with schema introspector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 660,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/07254-crowdsourcing-platforms-schema-introspector/SKILL.md",
+    "entrypoint": "agent06/07254-crowdsourcing-platforms-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms schema introspector",
+    "crowdsourcing platforms schema introspector workflow",
+    "crowdsourcing platforms schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

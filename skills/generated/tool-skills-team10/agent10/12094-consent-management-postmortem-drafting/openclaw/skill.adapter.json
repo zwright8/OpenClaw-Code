@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12094,
+  "name": "consent-management-postmortem-drafting",
+  "title": "Consent Management Postmortem Drafting",
+  "description": "Design and run consent management workflows with postmortem drafting controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12249,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12094-consent-management-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent10/12094-consent-management-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "consent management postmortem drafting",
+    "consent management postmortem drafting workflow",
+    "consent management postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

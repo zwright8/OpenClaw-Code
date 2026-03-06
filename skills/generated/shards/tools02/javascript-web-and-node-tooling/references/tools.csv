@@ -1,0 +1,13 @@
+rank,tool,description,access,license,homepage
+573,prettier,"Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML",local-installable,MIT,https://prettier.io/
+582,angular-cli,CLI tool for Angular,local-installable,MIT,https://angular.dev/cli/
+658,vite,Next generation frontend tooling. It's fast!,local-installable,MIT,https://vitejs.dev/
+680,typescript,Language for application scale JavaScript development,local-installable,Apache-2.0,https://www.typescriptlang.org/
+688,node-build,Install NodeJS versions,local-installable,MIT,https://github.com/nodenv/node-build
+710,eslint,AST-based pattern checker for JavaScript,local-installable,MIT,https://eslint.org
+797,markdownlint-cli,CLI for Node.js style checker and lint tool for Markdown files,local-installable,MIT,https://github.com/igorshubovych/markdownlint-cli
+818,n,Node version management,local-installable,MIT,https://github.com/tj/n
+838,nodenv,Node.js version manager,local-installable,MIT,https://github.com/nodenv/nodenv
+869,swagger-codegen,"Generate clients, server stubs, and docs from an OpenAPI spec",local-installable,Apache-2.0,https://swagger.io/tools/swagger-codegen/
+935,tailwindcss,Utility-first CSS framework,local-installable,MIT,https://tailwindcss.com
+938,stylua,Opinionated Lua code formatter,local-installable,MPL-2.0,https://github.com/JohnnyMorganz/StyLua

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10314,
+  "name": "kyc-pipelines-rate-limit-optimizer",
+  "title": "KYC Pipelines Rate Limit Optimizer",
+  "description": "Design and run kyc pipelines workflows with rate limit optimizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6559,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10314-kyc-pipelines-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent08/10314-kyc-pipelines-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines rate limit optimizer",
+    "kyc pipelines rate limit optimizer workflow",
+    "kyc pipelines rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

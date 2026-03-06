@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3863,
+  "name": "seo-tooling-retry-governor",
+  "title": "SEO Tooling Retry Governor",
+  "description": "Design and run seo tooling workflows with retry governor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5957,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03863-seo-tooling-retry-governor/SKILL.md",
+    "entrypoint": "agent03/03863-seo-tooling-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling retry governor",
+    "seo tooling retry governor workflow",
+    "seo tooling retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

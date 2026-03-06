@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4220,
+  "name": "customer-qa-migration-planner",
+  "title": "Customer QA Migration Planner",
+  "description": "Design and run customer qa workflows with migration planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4573,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04220-customer-qa-migration-planner/SKILL.md",
+    "entrypoint": "agent04/04220-customer-qa-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa migration planner",
+    "customer qa migration planner workflow",
+    "customer qa migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

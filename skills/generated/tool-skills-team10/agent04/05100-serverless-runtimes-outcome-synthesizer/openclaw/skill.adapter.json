@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5100,
+  "name": "serverless-runtimes-outcome-synthesizer",
+  "title": "Serverless Runtimes Outcome Synthesizer",
+  "description": "Design and run serverless runtimes workflows with outcome synthesizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6926,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05100-serverless-runtimes-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent04/05100-serverless-runtimes-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "serverless runtimes outcome synthesizer",
+    "serverless runtimes outcome synthesizer workflow",
+    "serverless runtimes outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

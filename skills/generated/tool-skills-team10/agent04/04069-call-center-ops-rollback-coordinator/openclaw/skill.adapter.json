@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4069,
+  "name": "call-center-ops-rollback-coordinator",
+  "title": "Call Center Ops Rollback Coordinator",
+  "description": "Design and run call center ops workflows with rollback coordinator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4970,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04069-call-center-ops-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent04/04069-call-center-ops-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "call center ops rollback coordinator",
+    "call center ops rollback coordinator workflow",
+    "call center ops rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

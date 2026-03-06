@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3474,
+  "name": "procure-to-pay-evidence-collector",
+  "title": "Procure to Pay Evidence Collector",
+  "description": "Design and run procure to pay workflows with evidence collector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5923,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03474-procure-to-pay-evidence-collector/SKILL.md",
+    "entrypoint": "agent03/03474-procure-to-pay-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay evidence collector",
+    "procure to pay evidence collector workflow",
+    "procure to pay evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

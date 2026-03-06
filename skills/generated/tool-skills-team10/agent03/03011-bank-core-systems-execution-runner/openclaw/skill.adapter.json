@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3011,
+  "name": "bank-core-systems-execution-runner",
+  "title": "Bank Core Systems Execution Runner",
+  "description": "Design and run bank core systems workflows with execution runner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1300,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03011-bank-core-systems-execution-runner/SKILL.md",
+    "entrypoint": "agent03/03011-bank-core-systems-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems execution runner",
+    "bank core systems execution runner workflow",
+    "bank core systems execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 819,
+  "name": "anthropic-approval-router",
+  "title": "Anthropic Approval Router",
+  "description": "Routes Anthropic-driven decisions to the right approvers.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "agent09/0819-anthropic-approval-router/SKILL.md",
+    "entrypoint": "agent09/0819-anthropic-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "anthropic approval router",
+    "anthropic approval router workflow",
+    "anthropic approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent09/0819-anthropic-approval-router"
+  }
+}

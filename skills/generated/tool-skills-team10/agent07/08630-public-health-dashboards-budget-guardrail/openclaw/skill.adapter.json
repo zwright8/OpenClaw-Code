@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8630,
+  "name": "public-health-dashboards-budget-guardrail",
+  "title": "Public Health Dashboards Budget Guardrail",
+  "description": "Design and run public health dashboards workflows with budget guardrail controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5556,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08630-public-health-dashboards-budget-guardrail/SKILL.md",
+    "entrypoint": "agent07/08630-public-health-dashboards-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards budget guardrail",
+    "public health dashboards budget guardrail workflow",
+    "public health dashboards budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

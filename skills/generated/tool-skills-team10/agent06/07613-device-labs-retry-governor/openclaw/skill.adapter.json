@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7613,
+  "name": "device-labs-retry-governor",
+  "title": "Device Labs Retry Governor",
+  "description": "Design and run device labs workflows with retry governor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6311,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07613-device-labs-retry-governor/SKILL.md",
+    "entrypoint": "agent06/07613-device-labs-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs retry governor",
+    "device labs retry governor workflow",
+    "device labs retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

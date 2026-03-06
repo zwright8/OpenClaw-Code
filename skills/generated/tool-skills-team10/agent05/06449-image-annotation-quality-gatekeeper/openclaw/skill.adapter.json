@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6449,
+  "name": "image-annotation-quality-gatekeeper",
+  "title": "Image Annotation Quality Gatekeeper",
+  "description": "Design and run image annotation workflows with quality gatekeeper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5476,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06449-image-annotation-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent05/06449-image-annotation-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation quality gatekeeper",
+    "image annotation quality gatekeeper workflow",
+    "image annotation quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

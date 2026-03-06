@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 299,
+  "name": "xero-approval-router",
+  "title": "Xero Approval Router",
+  "description": "Routes Xero-driven decisions to the right approvers.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0299-xero-approval-router/SKILL.md",
+    "entrypoint": "agent03/0299-xero-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "xero approval router",
+    "xero approval router workflow",
+    "xero approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0299-xero-approval-router"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7243,
+  "name": "market-data-apis-remediation-planner",
+  "title": "Market Data APIs Remediation Planner",
+  "description": "Design and run market data apis workflows with remediation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1379,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07243-market-data-apis-remediation-planner/SKILL.md",
+    "entrypoint": "agent06/07243-market-data-apis-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis remediation planner",
+    "market data apis remediation planner workflow",
+    "market data apis remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 991,
+  "name": "json-connector",
+  "title": "JSON Connector",
+  "description": "Unified read/write connector for JSON APIs and data.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "agent10/0991-json-connector/SKILL.md",
+    "entrypoint": "agent10/0991-json-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "json connector",
+    "json connector workflow",
+    "json connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent10/0991-json-connector"
+  }
+}

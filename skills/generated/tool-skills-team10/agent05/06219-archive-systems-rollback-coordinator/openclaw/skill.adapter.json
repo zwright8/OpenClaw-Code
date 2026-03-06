@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6219,
+  "name": "archive-systems-rollback-coordinator",
+  "title": "Archive Systems Rollback Coordinator",
+  "description": "Design and run archive systems workflows with rollback coordinator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5043,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06219-archive-systems-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent05/06219-archive-systems-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "archive systems rollback coordinator",
+    "archive systems rollback coordinator workflow",
+    "archive systems rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

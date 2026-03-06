@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12198,
+  "name": "audit-trails-feedback-harvester",
+  "title": "Audit Trails Feedback Harvester",
+  "description": "Design and run audit trails workflows with feedback harvester controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7748,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12198-audit-trails-feedback-harvester/SKILL.md",
+    "entrypoint": "agent10/12198-audit-trails-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails feedback harvester",
+    "audit trails feedback harvester workflow",
+    "audit trails feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9115,
+  "name": "terminology-mgmt-queue-balancer",
+  "title": "Terminology Mgmt Queue Balancer",
+  "description": "Design and run terminology mgmt workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11164,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09115-terminology-mgmt-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/09115-terminology-mgmt-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "terminology mgmt queue balancer",
+    "terminology mgmt queue balancer workflow",
+    "terminology mgmt queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3401,
+  "name": "expense-management-access-auditor",
+  "title": "Expense Management Access Auditor",
+  "description": "Design and run expense management workflows with access auditor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9144,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03401-expense-management-access-auditor/SKILL.md",
+    "entrypoint": "agent03/03401-expense-management-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "expense management access auditor",
+    "expense management access auditor workflow",
+    "expense management access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

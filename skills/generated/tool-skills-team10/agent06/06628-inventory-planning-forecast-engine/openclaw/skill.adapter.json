@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6628,
+  "name": "inventory-planning-forecast-engine",
+  "title": "Inventory Planning Forecast Engine",
+  "description": "Design and run inventory planning workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10248,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06628-inventory-planning-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/06628-inventory-planning-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inventory planning forecast engine",
+    "inventory planning forecast engine workflow",
+    "inventory planning forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9480,
+  "name": "industrial-alerts-budget-guardrail",
+  "title": "Industrial Alerts Budget Guardrail",
+  "description": "Design and run industrial alerts workflows with budget guardrail controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7615,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09480-industrial-alerts-budget-guardrail/SKILL.md",
+    "entrypoint": "agent08/09480-industrial-alerts-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts budget guardrail",
+    "industrial alerts budget guardrail workflow",
+    "industrial alerts budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

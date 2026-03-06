@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8418,
+  "name": "volunteer-coordination-conflict-resolver",
+  "title": "Volunteer Coordination Conflict Resolver",
+  "description": "Design and run volunteer coordination workflows with conflict resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10935,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08418-volunteer-coordination-conflict-resolver/SKILL.md",
+    "entrypoint": "agent07/08418-volunteer-coordination-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination conflict resolver",
+    "volunteer coordination conflict resolver workflow",
+    "volunteer coordination conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

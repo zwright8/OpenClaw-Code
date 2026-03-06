@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 526,
+  "name": "mongodb-report-builder",
+  "title": "MongoDB Report Builder",
+  "description": "Generates operational and KPI reports from MongoDB activity.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0526-mongodb-report-builder/SKILL.md",
+    "entrypoint": "agent06/0526-mongodb-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mongodb report builder",
+    "mongodb report builder workflow",
+    "mongodb report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0526-mongodb-report-builder"
+  }
+}

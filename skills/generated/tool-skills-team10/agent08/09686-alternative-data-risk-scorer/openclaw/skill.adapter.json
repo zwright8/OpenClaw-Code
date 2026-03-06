@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9686,
+  "name": "alternative-data-risk-scorer",
+  "title": "Alternative Data Risk Scorer",
+  "description": "Design and run alternative data workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1667,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09686-alternative-data-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09686-alternative-data-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data risk scorer",
+    "alternative data risk scorer workflow",
+    "alternative data risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

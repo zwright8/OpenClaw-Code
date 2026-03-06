@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4064,phoronix-test-suite,local-installable,Open-source automated testing/benchmarking software,https://www.phoronix-test-suite.com/,GPL-3.0-or-later
+4065,tdlib,local-installable,Cross-platform library for building Telegram clients,https://github.com/tdlib/td,BSL-1.0
+4066,diffoci,local-installable,Diff for Docker and OCI container images,https://github.com/reproducible-containers/diffoci,Apache-2.0
+4067,popt,local-installable,Library like getopt(3) with a number of enhancements,https://github.com/rpm-software-management/popt,MIT
+4068,dmtx-utils,local-installable,Read and write data matrix barcodes,https://github.com/dmtx/dmtx-utils,GPL-2.0-or-later AND LGPL-2.1-or-later
+4069,csview,local-installable,High performance csv viewer for cli,https://github.com/wfxr/csview,MIT OR Apache-2.0
+4071,packmol,local-installable,Packing optimization for molecular dynamics simulations,https://www.ime.unicamp.br/~martinez/packmol/,MIT
+4072,sparse,local-installable,Static C code analysis tool,https://sparse.wiki.kernel.org/,MIT
+4075,sendme,local-installable,"Tool to send files and directories, based on iroh",https://iroh.computer/sendme,MIT
+4077,libvidstab,local-installable,Transcode video stabilization plugin,https://github.com/georgmartius/vid.stab,GPL-2.0-or-later
+4079,cargo-zigbuild,local-installable,Compile Cargo project with zig as linker,https://github.com/rust-cross/cargo-zigbuild,MIT
+4080,yubikey-agent,local-installable,Seamless ssh-agent for YubiKeys and other PIV tokens,https://github.com/FiloSottile/yubikey-agent,BSD-3-Clause
+4081,xml-coreutils,local-installable,Powerful interactive system for text processing,https://xml-coreutils.sourceforge.net/,GPL-3.0-or-later
+4082,swagger-codegen@2,local-installable,"Generate clients, server stubs, and docs from an OpenAPI spec",https://swagger.io/tools/swagger-codegen/,Apache-2.0
+4083,coal,local-installable,Extension of the Flexible Collision Library,https://github.com/coal-library/coal,BSD-2-Clause
+4084,spirv-headers,local-installable,Headers for SPIR-V,https://github.com/KhronosGroup/SPIRV-Headers,MIT
+4085,pbzip2,local-installable,Parallel bzip2,http://compression.great-site.net/pbzip2/,bzip2-1.0.6
+4086,termshark,local-installable,"Terminal UI for tshark, inspired by Wireshark",https://termshark.io,MIT
+4087,clair,local-installable,Vulnerability Static Analysis for Containers,https://github.com/quay/clair,Apache-2.0
+4088,unisonlang,local-installable,Friendly programming language from the future,https://unison-lang.org/,MIT
+4089,cargo-shear,local-installable,Detect and remove unused dependencies from `Cargo.toml` in Rust projects,https://github.com/Boshen/cargo-shear,MIT
+4090,jena,local-installable,Framework for building semantic web and linked data apps,https://jena.apache.org/,Apache-2.0
+4091,mqttui,local-installable,Subscribe to a MQTT Topic or publish something quickly from the terminal,https://github.com/EdJoPaTo/mqttui,GPL-3.0-or-later
+4092,thanos,local-installable,Highly available Prometheus setup with long term storage capabilities,https://thanos.io,Apache-2.0
+4094,xtrans,local-installable,X.Org: X Network Transport layer shared code,https://www.x.org/,MIT
+4095,gnupg@1.4,local-installable,GNU Privacy Guard (OpenPGP),https://www.gnupg.org/,GPL-3.0-or-later

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2515,
+  "name": "real-estate-mls-queue-balancer",
+  "title": "Real Estate MLS Queue Balancer",
+  "description": "Design and run real estate mls workflows with queue balancer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8875,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02515-real-estate-mls-queue-balancer/SKILL.md",
+    "entrypoint": "agent02/02515-real-estate-mls-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls queue balancer",
+    "real estate mls queue balancer workflow",
+    "real estate mls queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

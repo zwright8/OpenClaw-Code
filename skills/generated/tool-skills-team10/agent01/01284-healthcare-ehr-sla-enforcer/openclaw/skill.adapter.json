@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1284,
+  "name": "healthcare-ehr-sla-enforcer",
+  "title": "Healthcare EHR SLA Enforcer",
+  "description": "Design and run healthcare ehr workflows with sla enforcer controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7196,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01284-healthcare-ehr-sla-enforcer/SKILL.md",
+    "entrypoint": "agent01/01284-healthcare-ehr-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr sla enforcer",
+    "healthcare ehr sla enforcer workflow",
+    "healthcare ehr sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

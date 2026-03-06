@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10924,
+  "name": "taxonomy-services-evidence-collector",
+  "title": "Taxonomy Services Evidence Collector",
+  "description": "Design and run taxonomy services workflows with evidence collector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6605,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10924-taxonomy-services-evidence-collector/SKILL.md",
+    "entrypoint": "agent09/10924-taxonomy-services-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services evidence collector",
+    "taxonomy services evidence collector workflow",
+    "taxonomy services evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

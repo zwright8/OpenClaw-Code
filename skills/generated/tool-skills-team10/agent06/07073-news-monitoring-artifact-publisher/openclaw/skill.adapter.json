@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7073,
+  "name": "news-monitoring-artifact-publisher",
+  "title": "News Monitoring Artifact Publisher",
+  "description": "Design and run news monitoring workflows with artifact publisher controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10413,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07073-news-monitoring-artifact-publisher/SKILL.md",
+    "entrypoint": "agent06/07073-news-monitoring-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring artifact publisher",
+    "news monitoring artifact publisher workflow",
+    "news monitoring artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

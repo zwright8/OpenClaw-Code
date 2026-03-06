@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6938,
+  "name": "revenue-recognition-pii-redactor",
+  "title": "Revenue Recognition PII Redactor",
+  "description": "Design and run revenue recognition workflows with pii redactor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3546,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06938-revenue-recognition-pii-redactor/SKILL.md",
+    "entrypoint": "agent06/06938-revenue-recognition-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revenue recognition pii redactor",
+    "revenue recognition pii redactor workflow",
+    "revenue recognition pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

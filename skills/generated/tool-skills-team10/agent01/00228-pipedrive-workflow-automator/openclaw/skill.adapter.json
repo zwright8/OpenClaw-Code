@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 228,
+  "name": "pipedrive-workflow-automator",
+  "title": "Pipedrive Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Pipedrive.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7879,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00228-pipedrive-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00228-pipedrive-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pipedrive workflow automator",
+    "pipedrive workflow automator workflow",
+    "pipedrive workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

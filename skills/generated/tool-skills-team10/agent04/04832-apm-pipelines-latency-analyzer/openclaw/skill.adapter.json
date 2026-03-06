@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4832,
+  "name": "apm-pipelines-latency-analyzer",
+  "title": "APM Pipelines Latency Analyzer",
+  "description": "Design and run apm pipelines workflows with latency analyzer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9621,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04832-apm-pipelines-latency-analyzer/SKILL.md",
+    "entrypoint": "agent04/04832-apm-pipelines-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "apm pipelines latency analyzer",
+    "apm pipelines latency analyzer workflow",
+    "apm pipelines latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

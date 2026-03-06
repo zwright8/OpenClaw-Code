@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7111,
+  "name": "competitive-intelligence-execution-runner",
+  "title": "Competitive Intelligence Execution Runner",
+  "description": "Design and run competitive intelligence workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1376,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07111-competitive-intelligence-execution-runner/SKILL.md",
+    "entrypoint": "agent06/07111-competitive-intelligence-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "competitive intelligence execution runner",
+    "competitive intelligence execution runner workflow",
+    "competitive intelligence execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

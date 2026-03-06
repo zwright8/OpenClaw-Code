@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7462,
+  "name": "behavior-analytics-job-scheduler",
+  "title": "Behavior Analytics Job Scheduler",
+  "description": "Design and run behavior analytics workflows with job scheduler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5086,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07462-behavior-analytics-job-scheduler/SKILL.md",
+    "entrypoint": "agent06/07462-behavior-analytics-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics job scheduler",
+    "behavior analytics job scheduler workflow",
+    "behavior analytics job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

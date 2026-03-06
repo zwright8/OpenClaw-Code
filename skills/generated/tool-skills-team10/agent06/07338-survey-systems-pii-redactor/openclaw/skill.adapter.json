@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7338,
+  "name": "survey-systems-pii-redactor",
+  "title": "Survey Systems PII Redactor",
+  "description": "Design and run survey systems workflows with pii redactor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3575,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07338-survey-systems-pii-redactor/SKILL.md",
+    "entrypoint": "agent06/07338-survey-systems-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems pii redactor",
+    "survey systems pii redactor workflow",
+    "survey systems pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

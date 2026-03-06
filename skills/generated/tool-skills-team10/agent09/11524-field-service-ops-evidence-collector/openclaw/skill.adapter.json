@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11524,
+  "name": "field-service-ops-evidence-collector",
+  "title": "Field Service Ops Evidence Collector",
+  "description": "Design and run field service ops workflows with evidence collector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6665,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11524-field-service-ops-evidence-collector/SKILL.md",
+    "entrypoint": "agent09/11524-field-service-ops-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops evidence collector",
+    "field service ops evidence collector workflow",
+    "field service ops evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

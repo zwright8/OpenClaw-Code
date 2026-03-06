@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6500,
+  "name": "3d-asset-pipelines-outcome-synthesizer",
+  "title": "3D Asset Pipelines Outcome Synthesizer",
+  "description": "Design and run 3d asset pipelines workflows with outcome synthesizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6992,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06500-3d-asset-pipelines-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent05/06500-3d-asset-pipelines-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines outcome synthesizer",
+    "3d asset pipelines outcome synthesizer workflow",
+    "3d asset pipelines outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

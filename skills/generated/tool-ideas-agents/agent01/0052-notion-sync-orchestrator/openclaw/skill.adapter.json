@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 52,
+  "name": "notion-sync-orchestrator",
+  "title": "Notion Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Notion records.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0052-notion-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/0052-notion-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "notion sync orchestrator",
+    "notion sync orchestrator workflow",
+    "notion sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0052-notion-sync-orchestrator"
+  }
+}

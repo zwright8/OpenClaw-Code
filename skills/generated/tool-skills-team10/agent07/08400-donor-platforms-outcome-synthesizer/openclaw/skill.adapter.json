@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8400,
+  "name": "donor-platforms-outcome-synthesizer",
+  "title": "Donor Platforms Outcome Synthesizer",
+  "description": "Design and run donor platforms workflows with outcome synthesizer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7047,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08400-donor-platforms-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent07/08400-donor-platforms-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms outcome synthesizer",
+    "donor platforms outcome synthesizer workflow",
+    "donor platforms outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

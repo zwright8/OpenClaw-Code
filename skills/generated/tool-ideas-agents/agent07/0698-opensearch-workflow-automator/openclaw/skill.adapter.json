@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 698,
+  "name": "opensearch-workflow-automator",
+  "title": "OpenSearch Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using OpenSearch.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0698-opensearch-workflow-automator/SKILL.md",
+    "entrypoint": "agent07/0698-opensearch-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "opensearch workflow automator",
+    "opensearch workflow automator workflow",
+    "opensearch workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0698-opensearch-workflow-automator"
+  }
+}

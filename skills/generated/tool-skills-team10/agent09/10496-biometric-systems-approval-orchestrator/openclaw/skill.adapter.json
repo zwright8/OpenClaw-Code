@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10496,
+  "name": "biometric-systems-approval-orchestrator",
+  "title": "Biometric Systems Approval Orchestrator",
+  "description": "Design and run biometric systems workflows with approval orchestrator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6577,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10496-biometric-systems-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent09/10496-biometric-systems-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems approval orchestrator",
+    "biometric systems approval orchestrator workflow",
+    "biometric systems approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

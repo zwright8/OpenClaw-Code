@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7287,
+  "name": "crowdsourcing-platforms-compliance-mapper",
+  "title": "Crowdsourcing Platforms Compliance Mapper",
+  "description": "Design and run crowdsourcing platforms workflows with compliance mapper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1875,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07287-crowdsourcing-platforms-compliance-mapper/SKILL.md",
+    "entrypoint": "agent06/07287-crowdsourcing-platforms-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms compliance mapper",
+    "crowdsourcing platforms compliance mapper workflow",
+    "crowdsourcing platforms compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

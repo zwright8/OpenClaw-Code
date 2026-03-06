@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7874,
+  "name": "remote-access-evidence-collector",
+  "title": "Remote Access Evidence Collector",
+  "description": "Design and run remote access workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6338,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07874-remote-access-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/07874-remote-access-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access evidence collector",
+    "remote access evidence collector workflow",
+    "remote access evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

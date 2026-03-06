@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2637,
+  "name": "construction-pm-compliance-mapper",
+  "title": "Construction PM Compliance Mapper",
+  "description": "Design and run construction pm workflows with compliance mapper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1776,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02637-construction-pm-compliance-mapper/SKILL.md",
+    "entrypoint": "agent03/02637-construction-pm-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm compliance mapper",
+    "construction pm compliance mapper workflow",
+    "construction pm compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7556,
+  "name": "app-store-management-api-contract-validator",
+  "title": "App Store Management API Contract Validator",
+  "description": "Design and run app store management workflows with api contract validator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 181,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent06/07556-app-store-management-api-contract-validator/SKILL.md",
+    "entrypoint": "agent06/07556-app-store-management-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "app store management api contract validator",
+    "app store management api contract validator workflow",
+    "app store management api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

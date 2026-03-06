@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9069,
+  "name": "localization-qa-rollback-coordinator",
+  "title": "Localization QA Rollback Coordinator",
+  "description": "Design and run localization qa workflows with rollback coordinator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5145,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09069-localization-qa-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent07/09069-localization-qa-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa rollback coordinator",
+    "localization qa rollback coordinator workflow",
+    "localization qa rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

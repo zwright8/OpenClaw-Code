@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5106,
+  "name": "infrastructure-as-code-api-contract-validator",
+  "title": "Infrastructure as Code API Contract Validator",
+  "description": "Design and run infrastructure as code workflows with api contract validator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 134,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/05106-infrastructure-as-code-api-contract-validator/SKILL.md",
+    "entrypoint": "agent04/05106-infrastructure-as-code-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code api contract validator",
+    "infrastructure as code api contract validator workflow",
+    "infrastructure as code api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

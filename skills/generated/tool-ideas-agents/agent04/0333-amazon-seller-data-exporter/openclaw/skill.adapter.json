@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 333,
+  "name": "amazon-seller-data-exporter",
+  "title": "Amazon Seller Data Exporter",
+  "description": "Exports Amazon Seller entities into clean, typed datasets.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0333-amazon-seller-data-exporter/SKILL.md",
+    "entrypoint": "agent04/0333-amazon-seller-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "amazon seller data exporter",
+    "amazon seller data exporter workflow",
+    "amazon seller data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0333-amazon-seller-data-exporter"
+  }
+}

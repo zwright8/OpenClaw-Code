@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1778,
+  "name": "logistics-dispatch-forecast-engine",
+  "title": "Logistics Dispatch Forecast Engine",
+  "description": "Design and run logistics dispatch workflows with forecast engine controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8610,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01778-logistics-dispatch-forecast-engine/SKILL.md",
+    "entrypoint": "agent02/01778-logistics-dispatch-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch forecast engine",
+    "logistics dispatch forecast engine workflow",
+    "logistics dispatch forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

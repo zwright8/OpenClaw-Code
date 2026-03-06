@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5546,
+  "name": "data-catalogs-approval-orchestrator",
+  "title": "Data Catalogs Approval Orchestrator",
+  "description": "Design and run data catalogs workflows with approval orchestrator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6128,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05546-data-catalogs-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent05/05546-data-catalogs-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data catalogs approval orchestrator",
+    "data catalogs approval orchestrator workflow",
+    "data catalogs approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

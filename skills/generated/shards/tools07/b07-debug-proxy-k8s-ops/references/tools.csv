@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3094,aarch64-elf-gdb,local-installable,GNU debugger for aarch64-elf cross development,https://www.gnu.org/software/gdb/,GPL-3.0-or-later
+3095,mcp-proxy,local-installable,Bridge between Streamable HTTP and stdio MCP transports,https://github.com/sparfenyuk/mcp-proxy,MIT
+3096,rsyslog,local-installable,"Enhanced, multi-threaded syslogd",https://www.rsyslog.com/,Apache-2.0 AND GPL-3.0-or-later AND LGPL-3.0-or-later
+3097,tofuenv,local-installable,OpenTofu version manager inspired by tfenv,https://tofuutils.github.io/tofuenv/,MIT
+3098,gprof2dot,local-installable,Convert the output from many profilers into a Graphviz dot graph,https://github.com/jrfonseca/gprof2dot,LGPL-3.0-or-later
+3099,msgpack,local-installable,Library for a binary-based efficient data interchange format,https://msgpack.org/,BSL-1.0
+3102,datafusion,local-installable,Apache Arrow DataFusion and Ballista query engines,https://arrow.apache.org/datafusion,Apache-2.0
+3103,boxes,local-installable,Draw boxes around text,https://boxes.thomasjensen.com/,GPL-3.0-only
+3104,sdl2_net,local-installable,Small sample cross-platform networking library,https://github.com/libsdl-org/SDL_net,Zlib
+3105,backgroundremover,local-installable,Remove background from images and video using AI,https://github.com/nadermx/backgroundremover,MIT
+3106,react-native-cli,local-installable,Tools for creating native apps for Android and iOS,https://facebook.github.io/react-native/,BSD-3-Clause
+3107,qmmp,local-installable,Qt-based Multimedia Player,https://qmmp.ylsoftware.com/,GPL-2.0-or-later
+3108,py-spy,local-installable,Sampling profiler for Python programs,https://github.com/benfred/py-spy,MIT
+3109,faad2,local-installable,ISO AAC audio decoder,https://sourceforge.net/projects/faac/,GPL-2.0-or-later
+3110,sambamba,local-installable,Tools for working with SAM/BAM data,https://lomereiter.github.io/sambamba/,GPL-2.0-or-later
+3111,datalad,local-installable,Data distribution geared toward scientific datasets,https://www.datalad.org,MIT
+3112,connect,local-installable,Provides SOCKS and HTTPS proxy support to SSH,https://github.com/gotoh/ssh-connect,GPL-2.0-or-later
+3113,libxft,local-installable,X.Org: X FreeType library,https://www.x.org/,MIT
+3114,secp256k1,local-installable,Optimized C library for EC operations on curve secp256k1,https://github.com/bitcoin-core/secp256k1,MIT
+3116,nuitka,local-installable,Python compiler written in Python,https://nuitka.net,Apache-2.0
+3117,phpbrew,local-installable,Brew & manage PHP versions in pure PHP at HOME,https://phpbrew.github.io/phpbrew,MIT
+3118,egctl,local-installable,Command-line utility for operating Envoy Gateway,https://gateway.envoyproxy.io/,Apache-2.0
+3119,faust,local-installable,Functional programming language for real time signal processing,https://faust.grame.fr,GPL-2.0-or-later
+3120,libosinfo,local-installable,Operating System information database,https://libosinfo.org/,LGPL-2.0-or-later
+3121,libpq@16,local-installable,Postgres C API library,https://www.postgresql.org/docs/16/libpq.html,PostgreSQL
+3122,cargo-udeps,local-installable,Find unused dependencies in Cargo.toml,https://github.com/est31/cargo-udeps,Apache-2.0 OR MIT

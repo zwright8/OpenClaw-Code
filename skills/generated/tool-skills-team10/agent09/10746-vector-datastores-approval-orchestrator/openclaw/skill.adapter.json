@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10746,
+  "name": "vector-datastores-approval-orchestrator",
+  "title": "Vector Datastores Approval Orchestrator",
+  "description": "Design and run vector datastores workflows with approval orchestrator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6592,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10746-vector-datastores-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent09/10746-vector-datastores-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores approval orchestrator",
+    "vector datastores approval orchestrator workflow",
+    "vector datastores approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 1,
+  "range": {
+    "start": "u3000-memory-consolidation-for-knowledge-management-systems",
+    "end": "u3049-knowledge-graph-linking-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3000-memory-consolidation-for-knowledge-management-systems",
+      "path": "generated/shards/03/3000-memory-consolidation-for-knowledge-management-systems",
+      "skill_md_sha256": "2d3b9c30be24d0a8f80e99ca2f63d87d80965fee3e7873ea77a202973fcc76d0",
+      "summary_sha256": "3529bf9299a348cd14f5bfcccc7fa89d9e064d8fe71c23a818e79e52933a9e77"
+    },
+    {
+      "skill_id": "u3001-knowledge-graph-linking-for-personal-health-routines",
+      "path": "generated/shards/03/3001-knowledge-graph-linking-for-personal-health-routines",
+      "skill_md_sha256": "93587d2900804363d3307f085ce3e3358975ab309906d21f92e01cd7f4664ef9",
+      "summary_sha256": "beb48704a683b0affee00b19bdf3de0de0ff787e9c7bf7a993a7c09a86b0adaf"
+    },
+    {
+      "skill_id": "u3002-knowledge-graph-linking-for-personal-health-routines",
+      "path": "generated/shards/03/3002-knowledge-graph-linking-for-personal-health-routines",
+      "skill_md_sha256": "0ee37dd6205aafcc5ac154584e718ee11252aac852819954b561363eb8c2a6d8",
+      "summary_sha256": "a0c56ac0259351c963b01afdfe6b0da68d9bab8333e8d8ddd936f8f56af82702"
+    },
+    {
+      "skill_id": "u3003-knowledge-graph-linking-for-personal-health-routines",
+      "path": "generated/shards/03/3003-knowledge-graph-linking-for-personal-health-routines",
+      "skill_md_sha256": "cd1e543df97c3ec85ada8cb03c5e814356e15c65e40a9f104d559f5c404deb25",
+      "summary_sha256": "2cfbac105607194b7bd12b19020d9dafe887f73116c787d67a888b2d620ad31e"
+    },
+    {
+      "skill_id": "u3004-knowledge-graph-linking-for-personal-health-routines",
+      "path": "generated/shards/03/3004-knowledge-graph-linking-for-personal-health-routines",
+      "skill_md_sha256": "de5e1fc7afccb0fe75c65ff3b687cb1c37c380e4087a0b4976d003d4af64e0f2",
+      "summary_sha256": "5576d523368ee77f14e965eb8ea91b2a0ad55021f173e09831e067bb1c87f47b"
+    },
+    {
+      "skill_id": "u3005-knowledge-graph-linking-for-personal-health-routines",
+      "path": "generated/shards/03/3005-knowledge-graph-linking-for-personal-health-routines",
+      "skill_md_sha256": "34b67df9d2a513f081308728a064a1447eb27a7be44cc5bc34b1699e317c5cb2",
+      "summary_sha256": "bb4a2a9abcebe8516c54430f244931103847323b533bcff7c1d9dc978b1bb683"
+    },
+    {
+      "skill_id": "u3006-knowledge-graph-linking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3006-knowledge-graph-linking-for-family-caregiving-systems",
+      "skill_md_sha256": "5fc0fee3d37b52f4a8c5482c4675c47f6133bcf78618f1dcbd9dd8a4b500983f",
+      "summary_sha256": "6686b09f5b2b49659c72a5e488bf60537057dabc229ba4f363f029e29594e822"
+    },
+    {
+      "skill_id": "u3007-knowledge-graph-linking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3007-knowledge-graph-linking-for-family-caregiving-systems",
+      "skill_md_sha256": "14ac1907594698003dbc05b441ceb85e379ad0c0970ba67bff358014a241c2be",
+      "summary_sha256": "83aa4cdeac975b047061e11eb5ebf89f60817bb6cf273a3a6214ada7b8678d19"
+    },
+    {
+      "skill_id": "u3008-knowledge-graph-linking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3008-knowledge-graph-linking-for-family-caregiving-systems",
+      "skill_md_sha256": "31687f468dfacd8fbaebcb8f985aff198c4b37384c92684ceb2958b4633c0bc1",
+      "summary_sha256": "566eb03e645edfe9033b427e21c730f3b31c17a4d754da639732beca321d8078"
+    },
+    {
+      "skill_id": "u3009-knowledge-graph-linking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3009-knowledge-graph-linking-for-family-caregiving-systems",
+      "skill_md_sha256": "7083cc0a5f1a54b433eb5845249d35c40c239b886c3db86847e649cfac8d1c31",
+      "summary_sha256": "b22a2cae553cc4f44e86a43165f06b8426eccbe9d220d2ca65dbd5f35ebb0bf2"
+    },
+    {
+      "skill_id": "u3010-knowledge-graph-linking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3010-knowledge-graph-linking-for-family-caregiving-systems",
+      "skill_md_sha256": "b892f9864dbc850561346f7a87935c7b966dc32f58c9fc38d27998995e7aa6d5",
+      "summary_sha256": "89b8737f3688d9f7b3765198c6ef708a2ff350763eb4068cb4b88fbbdc56dc05"
+    },
+    {
+      "skill_id": "u3011-knowledge-graph-linking-for-household-logistics",
+      "path": "generated/shards/03/3011-knowledge-graph-linking-for-household-logistics",
+      "skill_md_sha256": "6b164fa7f3fce63a390c66692d301dee5607016ca6b156120514646cf582ebd8",
+      "summary_sha256": "d708083d2c3c8267f43b3543d8b64ec70ff598a65c4d087d32eacf6970ab2855"
+    },
+    {
+      "skill_id": "u3012-knowledge-graph-linking-for-household-logistics",
+      "path": "generated/shards/03/3012-knowledge-graph-linking-for-household-logistics",
+      "skill_md_sha256": "065d37945a9c0e49cc8fd9c71aff965ba19c8e415251c4f2c506a9b08d1fac82",
+      "summary_sha256": "c8c29103a70ae2885c8ec3e0ead4ba2bf5004f048d8065b2d0a2f89ee6594343"
+    },
+    {
+      "skill_id": "u3013-knowledge-graph-linking-for-household-logistics",
+      "path": "generated/shards/03/3013-knowledge-graph-linking-for-household-logistics",
+      "skill_md_sha256": "0b8a49ef34ef249569937232a01e6b4e84801869249e460d70094f33ab52a759",
+      "summary_sha256": "31183bb335066f902f97e20233bbdbd2eca2352d6460f042857b391527d86e91"
+    },
+    {
+      "skill_id": "u3014-knowledge-graph-linking-for-household-logistics",
+      "path": "generated/shards/03/3014-knowledge-graph-linking-for-household-logistics",
+      "skill_md_sha256": "453ffc8b9b83a15cc08139d139281984276247f17352453d26f1ae6da80f49bf",
+      "summary_sha256": "b672d9a4ed20403f34a5949cefe10d774a8bf4dd428df00cf0b8505b1d8bbdaf"
+    },
+    {
+      "skill_id": "u3015-knowledge-graph-linking-for-household-logistics",
+      "path": "generated/shards/03/3015-knowledge-graph-linking-for-household-logistics",
+      "skill_md_sha256": "d031a16c91949b0f4bba2ba37948196d5acdf41d842e20bab91e671b9ae13925",
+      "summary_sha256": "b68adef7b8940b3b919e7b3ca3494e6adb55aba0ad491aac947f0414db1cee3c"
+    },
+    {
+      "skill_id": "u3016-knowledge-graph-linking-for-personal-finance-management",
+      "path": "generated/shards/03/3016-knowledge-graph-linking-for-personal-finance-management",
+      "skill_md_sha256": "7d543d1c3e391e68d1fa9ec1589c43fd750fc1f89d0eff9edf59a21c56a5db08",
+      "summary_sha256": "c0b92c6f02a0c3aeecc73613016a376be3ab040a96ae06af4e7621b68e669fd7"
+    },
+    {
+      "skill_id": "u3017-knowledge-graph-linking-for-personal-finance-management",
+      "path": "generated/shards/03/3017-knowledge-graph-linking-for-personal-finance-management",
+      "skill_md_sha256": "8954110d0f84b82dd29a1f0b5c7465f8443c9c4e95ed8e7e1e347eb592648efe",
+      "summary_sha256": "cc0dd8faac40295f065fa6b9b3913dd282cf9d7369f50f9f4f9d508afb67d6ee"
+    },
+    {
+      "skill_id": "u3018-knowledge-graph-linking-for-personal-finance-management",
+      "path": "generated/shards/03/3018-knowledge-graph-linking-for-personal-finance-management",
+      "skill_md_sha256": "80b23f53c3ac85494bde4398cdc7eb81b398a95a71dad12ea4c166a6070c5af7",
+      "summary_sha256": "e53f25f08bb7e6d92e96602c57ade8ca2707d58cacd49eb7bb571d37ceb04d29"
+    },
+    {
+      "skill_id": "u3019-knowledge-graph-linking-for-personal-finance-management",
+      "path": "generated/shards/03/3019-knowledge-graph-linking-for-personal-finance-management",
+      "skill_md_sha256": "314afa8ca41b1de2668a6b11adbc9fc13ade555ccac0585f4a39a158c7b9c201",
+      "summary_sha256": "217a6f663ccd89a1c9ed03faba54c602b6eeb4da6f0f9ded874fbbc506927401"
+    },
+    {
+      "skill_id": "u3020-knowledge-graph-linking-for-personal-finance-management",
+      "path": "generated/shards/03/3020-knowledge-graph-linking-for-personal-finance-management",
+      "skill_md_sha256": "8a0c8a8fa77cc098124bf129d4c277703376cd5bffbc326f68e613b62b90862c",
+      "summary_sha256": "110860a5f21b9fb3814aeafe9288625e4f7a538188805e6381f48090657acc32"
+    },
+    {
+      "skill_id": "u3021-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3021-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "1fa0818af852c4db1bb8eb112c8f90e7c7acb9984101aa23ab25184a9864c868",
+      "summary_sha256": "af59dc290a3e8b2f4c242390da042bf748b89141aae808bc5b5175727a8fc676"
+    },
+    {
+      "skill_id": "u3022-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3022-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "9c8c5ed37a2d4a3e6ebb25db1c3880de0ce43229170395d57386810c312e8825",
+      "summary_sha256": "71585a23e1b11d9a590897a918d6eaa765f6d1aacd94e50627680e55a9cef3f2"
+    },
+    {
+      "skill_id": "u3023-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3023-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "5d1c7a9eb4d0d5cb0dd1c6a92c0aeef1f993b0da61d74860ee0858b5a8d402bf",
+      "summary_sha256": "5c5558ef5a9e9586d40d0e5228fcffc6f89aaaae886993fa7784a53744942b29"
+    },
+    {
+      "skill_id": "u3024-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3024-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "23abd0da459e93b37712d91aa884c3793c08e27590d790cb6fb00ae0a4b73deb",
+      "summary_sha256": "892a93d9e28e10fcd570c636c8ae16ad19241bf0384c2a5da8f9ecd9d493158b"
+    },
+    {
+      "skill_id": "u3025-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3025-knowledge-graph-linking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "5c890986b411e1b49934aec95ec77e7987ec85a2e219c5f90a10b79911abae12",
+      "summary_sha256": "8e77fdc0bcba1706c18370e74aaf95cf47ba1f27cefd88d4d2788f110f6f08bc"
+    },
+    {
+      "skill_id": "u3026-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3026-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "de7f80c38281b2401a74d19185df765224e6eab0389c0451552027f7a1c6ad3e",
+      "summary_sha256": "a98320509bd3869c1f28aac49225ad52368382350daad325a5e212a5cfbf5454"
+    },
+    {
+      "skill_id": "u3027-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3027-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "c008655d6986fe335c0fee3db73b92f855e13c045ba42719e92cb6cf3501d113",
+      "summary_sha256": "8548417b25109e56a8d19317032ca3b6e7d7013e6f3ef591c9d1ea22abed9538"
+    },
+    {
+      "skill_id": "u3028-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3028-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "1dd063772e3898bd36d7dd9cb217e068c4fd9cba37658dabc1863c8fa12149fc",
+      "summary_sha256": "141f0f277911e71a823178c8eca50cb21f9b728cef5a016a9f11371ec639b1a5"
+    },
+    {
+      "skill_id": "u3029-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3029-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "7ce764d8e83d25b63cddb4ecf970b21cbd50d0052ef603c6c9c83b8b29dd6f6c",
+      "summary_sha256": "a8ccaaa7d8ec5d2901e5590b90724e850063c81cbc60ccd21a7931960c49c776"
+    },
+    {
+      "skill_id": "u3030-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3030-knowledge-graph-linking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "81e461ae2492afb99f356194b96072f08c5f72610b01835f8bee84c02085467b",
+      "summary_sha256": "b2ade39d47c13b7eea60cfc59d18ec7decb4e804429093367bb3b0ebd974f8c0"
+    },
+    {
+      "skill_id": "u3031-knowledge-graph-linking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3031-knowledge-graph-linking-for-mental-well-being-practices",
+      "skill_md_sha256": "8d05b0677e89dee1c62afdc2df2044b0e7b97801704210777a053946f2844994",
+      "summary_sha256": "3dcb8f59ae1748331d16d3b76bb4e2ee7c1a70d290db39d39c5defe420046c6b"
+    },
+    {
+      "skill_id": "u3032-knowledge-graph-linking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3032-knowledge-graph-linking-for-mental-well-being-practices",
+      "skill_md_sha256": "e1a6278c404a3012c4def616035e926b7afb1cd840d375906244580f5cae7b28",
+      "summary_sha256": "7f7221529f9bac57189a02745fbc240ce739e8853cb21cd115e4b7a3090c8bdd"
+    },
+    {
+      "skill_id": "u3033-knowledge-graph-linking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3033-knowledge-graph-linking-for-mental-well-being-practices",
+      "skill_md_sha256": "4cd00a299a6e889c4a0c8f5b704b7b762a247397010873e629022daf62876760",
+      "summary_sha256": "8935d9dd4f29527e3e8edf05f84a5482859f85f9895d5a286d0e0e821c86f603"
+    },
+    {
+      "skill_id": "u3034-knowledge-graph-linking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3034-knowledge-graph-linking-for-mental-well-being-practices",
+      "skill_md_sha256": "979ace01bfb855fba41b77923c3975a14d40441909b69cb11ef878f0596eca49",
+      "summary_sha256": "de885fcdffe52588f35ab9171636911ffa701a8c4b7d01750088f9d873a27373"
+    },
+    {
+      "skill_id": "u3035-knowledge-graph-linking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3035-knowledge-graph-linking-for-mental-well-being-practices",
+      "skill_md_sha256": "a46ccbd14ef02ec9d3ce558982426c7fc2cb315e8a2db97a63d78d04cb4650f0",
+      "summary_sha256": "0f3ff0a464b6ebdb30ee22da91ca9593904eeb4d0fa3199de9098719470e21fc"
+    },
+    {
+      "skill_id": "u3036-knowledge-graph-linking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3036-knowledge-graph-linking-for-lifelong-learning-plans",
+      "skill_md_sha256": "a1075ded83173792fb8f84f2a725a3d9ef61b1f7a6cf6a47b2c6368101d0b13d",
+      "summary_sha256": "d8f6d8c768cb957985bc549bc5d9d8e1cd940f6017086e5abc1905d7086895d6"
+    },
+    {
+      "skill_id": "u3037-knowledge-graph-linking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3037-knowledge-graph-linking-for-lifelong-learning-plans",
+      "skill_md_sha256": "700d26f00ab5be8cb150b6841e226c3bd349874a42930ea9e5f08d5183756774",
+      "summary_sha256": "502038686e63129433ff428d124ea84f36a6fc91247a4cda94ea664a8496e234"
+    },
+    {
+      "skill_id": "u3038-knowledge-graph-linking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3038-knowledge-graph-linking-for-lifelong-learning-plans",
+      "skill_md_sha256": "2f4a7fa82e3638e512b737cf96784d856bde75cb3072fd88b9030c654ceeb915",
+      "summary_sha256": "7b8f067b515e2f64b9ea072105faa34a5fb69964a086549eae4120ab94c1a0e5"
+    },
+    {
+      "skill_id": "u3039-knowledge-graph-linking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3039-knowledge-graph-linking-for-lifelong-learning-plans",
+      "skill_md_sha256": "6632b4b246e0cba72d943d13f581b38f7e43efb1f222864807478d1c9cffbcaf",
+      "summary_sha256": "a90e793869ac27283e03139615a2b50450a98dee2d2fcc07dca13c9238e29f98"
+    },
+    {
+      "skill_id": "u3040-knowledge-graph-linking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3040-knowledge-graph-linking-for-lifelong-learning-plans",
+      "skill_md_sha256": "65314893439ff75804a6a6665e7fd80c89c7c34c6f16670d44f5460bac5baf1a",
+      "summary_sha256": "d8cc64e8194b4042abde4133379530678eac5b9562b77be50973f812e56b0651"
+    },
+    {
+      "skill_id": "u3041-knowledge-graph-linking-for-career-development-pathways",
+      "path": "generated/shards/03/3041-knowledge-graph-linking-for-career-development-pathways",
+      "skill_md_sha256": "2e101b92225ae20d8ed941b43efb3f50e5655ca171bfd999fa1f1488bb9bdd63",
+      "summary_sha256": "fb92978295b59c9a0b3118ffb133047735eb18be1e789237dadde7d3eafe6aa6"
+    },
+    {
+      "skill_id": "u3042-knowledge-graph-linking-for-career-development-pathways",
+      "path": "generated/shards/03/3042-knowledge-graph-linking-for-career-development-pathways",
+      "skill_md_sha256": "9d09eb9d0125998b12657f2fd45a1aa4c760225530a0867c5ad62d294293129a",
+      "summary_sha256": "1f4527922fb1e294d1928aa8c23003908e9e7101b52a9d46b5a4cd0297552493"
+    },
+    {
+      "skill_id": "u3043-knowledge-graph-linking-for-career-development-pathways",
+      "path": "generated/shards/03/3043-knowledge-graph-linking-for-career-development-pathways",
+      "skill_md_sha256": "d4742b6fa7ddf44a1612273e11cd42f328e21c73c466240ddb01d07c362f089f",
+      "summary_sha256": "353ca154707ad881984b8687644d5f68d16bac8263024444b3a75a3d57d7c084"
+    },
+    {
+      "skill_id": "u3044-knowledge-graph-linking-for-career-development-pathways",
+      "path": "generated/shards/03/3044-knowledge-graph-linking-for-career-development-pathways",
+      "skill_md_sha256": "57c211f106d779c2c2987a1ec2f2bbd812b45b761ab70b649a2cb8c6351de8ed",
+      "summary_sha256": "64e95d99c76eaef16568b48f601856f27a8df495f3c2272755eacf861d052f2b"
+    },
+    {
+      "skill_id": "u3045-knowledge-graph-linking-for-career-development-pathways",
+      "path": "generated/shards/03/3045-knowledge-graph-linking-for-career-development-pathways",
+      "skill_md_sha256": "cc7aec0096564502d03fb38cfc6c08c6623619fb534f844b85d524b98007adf0",
+      "summary_sha256": "cf7b5fb3112aa0abc63d8bc0385327b8a0143a7fd4a5e22be8decd677f7e2f50"
+    },
+    {
+      "skill_id": "u3046-knowledge-graph-linking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3046-knowledge-graph-linking-for-entrepreneurship-operations",
+      "skill_md_sha256": "7539c256e3fa4132ee535cc5cd8e95f44d0052fd89a380733e10060cf074a24b",
+      "summary_sha256": "72717bf757f4f11f63beb8996003bc6bb0fb77bb69d2175bd61bc6006a0faec2"
+    },
+    {
+      "skill_id": "u3047-knowledge-graph-linking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3047-knowledge-graph-linking-for-entrepreneurship-operations",
+      "skill_md_sha256": "c742ed337ebffae9feb75a8fb2d62cd5be972ecb9c83ed9ade67df07d3d4e03c",
+      "summary_sha256": "f09d70f51337d1b406dc57ec8c646e5e5b0e58bd0619f875223c67a02327ddd9"
+    },
+    {
+      "skill_id": "u3048-knowledge-graph-linking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3048-knowledge-graph-linking-for-entrepreneurship-operations",
+      "skill_md_sha256": "ae85899bcf2b9c227936f79b8cfea4fe6717b422dd4f73875e7565910cb7b4f0",
+      "summary_sha256": "07c91c4be055f039d911e1e3ebca3dfe96554084b6533e19a20e5aca8d3877be"
+    },
+    {
+      "skill_id": "u3049-knowledge-graph-linking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3049-knowledge-graph-linking-for-entrepreneurship-operations",
+      "skill_md_sha256": "75d8bd4a6742ff8d86b9ad2c57e94fe6671be40d61a9ba13889983eb9111766d",
+      "summary_sha256": "241d3db851a4523747ba57415f275b5333dd83a4e8c8e1cd793ec2c0c8f45d35"
+    }
+  ]
+}

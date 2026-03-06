@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4715,
+  "name": "policy-engines-queue-balancer",
+  "title": "Policy Engines Queue Balancer",
+  "description": "Design and run policy engines workflows with queue balancer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9589,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04715-policy-engines-queue-balancer/SKILL.md",
+    "entrypoint": "agent04/04715-policy-engines-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines queue balancer",
+    "policy engines queue balancer workflow",
+    "policy engines queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

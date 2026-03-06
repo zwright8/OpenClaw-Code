@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11477,
+  "name": "reference-programs-threshold-alerting",
+  "title": "Reference Programs Threshold Alerting",
+  "description": "Design and run reference programs workflows with threshold alerting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11990,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11477-reference-programs-threshold-alerting/SKILL.md",
+    "entrypoint": "agent09/11477-reference-programs-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs threshold alerting",
+    "reference programs threshold alerting workflow",
+    "reference programs threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

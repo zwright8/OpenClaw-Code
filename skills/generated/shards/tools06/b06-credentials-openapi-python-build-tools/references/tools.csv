@@ -1,0 +1,26 @@
+rank,tool,access,license,homepage,description
+2852,usbredir,local-installable,GPL-2.0-or-later AND LGPL-2.0-or-later,https://www.spice-space.org,USB traffic redirection library
+2853,jump,local-installable,MIT,https://github.com/gsamokovarov/jump,Helps you navigate your file system faster by learning your habits
+2854,mailsy,local-installable,MIT,https://github.com/BalliAsghar/Mailsy,Quickly generate a temporary email address
+2855,knock,local-installable,GPL-2.0-or-later,https://github.com/jvinet/knock,Port-knock server
+2857,git-credential-libsecret,local-installable,GPL-2.0-or-later,https://git-scm.com,Git helper for accessing credentials via libsecret
+2858,libsmi,local-installable,TCL AND BSD-3-Clause AND Beerware,https://www.ibr.cs.tu-bs.de/projects/libsmi/,Library to Access SMI MIB Information
+2859,opencc,local-installable,Apache-2.0,https://github.com/BYVoid/OpenCC,Simplified-traditional Chinese conversion tool
+2860,mpc,local-installable,GPL-2.0-or-later,https://www.musicpd.org/clients/mpc/,Command-line music player client for mpd
+2861,storj-uplink,local-installable,AGPL-3.0-only,https://storj.io,Uplink CLI for the Storj network
+2862,faudio,local-installable,Zlib,https://fna-xna.github.io/,Accuracy-focused XAudio reimplementation for open platforms
+2864,btcli,local-installable,MIT,https://docs.bittensor.com/btcli,Bittensor command-line tool
+2865,xk6,local-installable,Apache-2.0,https://k6.io,Build k6 with extensions
+2866,gpsd,local-installable,BSD-2-Clause,https://gpsd.gitlab.io/gpsd/,Global Positioning System (GPS) daemon
+2867,openapi,local-installable,MIT,https://github.com/speakeasy-api/openapi,"CLI tools for working with OpenAPI, Arazzo and Overlay specifications"
+2868,lla,local-installable,MIT,https://github.com/chaqchase/lla,"High-performance, extensible alternative to ls"
+2869,cargo-audit,local-installable,Apache-2.0 OR MIT,https://rustsec.org/,Audit Cargo.lock files for crates with security vulnerabilities
+2870,linux-headers@5.15,local-installable,GPL-2.0-only,https://kernel.org/,Header files of the Linux kernel
+2871,pgrouting,local-installable,GPL-2.0-or-later,https://pgrouting.org/,Provides geospatial routing for PostGIS/PostgreSQL database
+2872,bookokrat,local-installable,AGPL-3.0-or-later,https://bugzmanov.github.io/bookokrat/index.html,Terminal EPUB Book Reader
+2873,mac-cleanup-py,local-installable,Apache-2.0,https://github.com/mac-cleanup/mac-cleanup-py,Python cleanup script for macOS
+2874,vlang,local-installable,MIT,https://vlang.io,V programming language
+2875,recode,local-installable,GPL-3.0-or-later,https://github.com/rrthomas/recode,Convert character set (charsets)
+2876,crosstool-ng,local-installable,GPL-2.0-only,https://crosstool-ng.github.io/,Tool for building toolchains
+2877,bazel@7,local-installable,Apache-2.0,https://bazel.build/,Google's own build tool
+2878,libpst,local-installable,GPL-2.0-or-later,https://www.five-ten-sg.com/libpst/,Utilities for the PST file format

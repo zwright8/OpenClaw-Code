@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3477,
+  "name": "procure-to-pay-threshold-alerting",
+  "title": "Procure to Pay Threshold Alerting",
+  "description": "Design and run procure to pay workflows with threshold alerting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9176,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03477-procure-to-pay-threshold-alerting/SKILL.md",
+    "entrypoint": "agent03/03477-procure-to-pay-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay threshold alerting",
+    "procure to pay threshold alerting workflow",
+    "procure to pay threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

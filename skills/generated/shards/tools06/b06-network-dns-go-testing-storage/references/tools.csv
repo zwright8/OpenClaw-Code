@@ -1,0 +1,26 @@
+rank,tool,access,license,homepage,description
+2910,libxrandr,local-installable,MIT,https://www.x.org/,"X.Org: X Resize, Rotate and Reflection extension library"
+2911,icann-rdap,local-installable,Apache-2.0 OR MIT,https://github.com/icann/icann-rdap/wiki,Full-rich client for the Registry Data Access Protocol (RDAP) sponsored by ICANN
+2912,dnstwist,local-installable,Apache-2.0,https://github.com/elceef/dnstwist,"Test domains for typo squatting, phishing and corporate espionage"
+2913,dwarfs,local-installable,GPL-3.0-or-later,https://github.com/mhx/dwarfs,"Fast high compression read-only file system for Linux, Windows, and macOS"
+2914,notcurses,local-installable,Apache-2.0,https://nick-black.com/dankwiki/index.php/Notcurses,Blingful character graphics/TUI library
+2915,jetty,local-installable,Apache-2.0 OR EPL-2.0,https://jetty.org/,Java servlet engine and webserver
+2917,hwatch,local-installable,MIT,https://github.com/blacknon/hwatch,Modern alternative to the watch command
+2918,cdncheck,local-installable,MIT,https://projectdiscovery.io,Utility to detect various technology for a given IP address
+2920,udunits,local-installable,UCAR,https://docs.unidata.ucar.edu/udunits/current/,Unidata unit conversion library
+2921,coredns,local-installable,Apache-2.0,https://coredns.io/,DNS server that chains plugins
+2922,bore-cli,local-installable,MIT,https://github.com/ekzhang/bore,"Modern, simple TCP tunnel in Rust that exposes local ports to a remote server"
+2923,par2,local-installable,GPL-2.0-or-later,https://github.com/Parchive/par2cmdline,Parchive: Parity Archive Volume Set for data recovery
+2925,gotestsum,local-installable,Apache-2.0,https://github.com/gotestyourself/gotestsum,Human friendly `go test` runner
+2926,jql,local-installable,Apache-2.0 OR MIT,https://github.com/yamafaktory/jql,JSON query language CLI tool
+2929,saxon,local-installable,BSD-3-Clause AND MIT AND MPL-2.0,https://github.com/Saxonica/Saxon-HE,XSLT and XQuery processor
+2930,ddns-go,local-installable,MIT,https://github.com/jeessy2/ddns-go,Simple and easy-to-use DDNS
+2931,rio-terminal,local-installable,MIT,https://rioterm.com/,Hardware-accelerated GPU terminal emulator powered by WebGPU
+2932,pipdeptree,local-installable,MIT,https://github.com/tox-dev/pipdeptree,CLI to display dependency tree of the installed Python packages
+2933,libpostal,local-installable,MIT,https://github.com/openvenues/libpostal,Library for parsing/normalizing street addresses around the world
+2934,chrome-devtools-mcp,local-installable,Apache-2.0,https://github.com/chromedevtools/chrome-devtools-mcp,Chrome DevTools for coding agents
+2935,ballerina,local-installable,Apache-2.0,https://ballerina.io,Programming Language for Network Distributed Applications
+2936,artillery,local-installable,MPL-2.0,https://www.artillery.io/,Cloud-native performance & reliability testing for developers and SREs
+2937,aravis,local-installable,LGPL-2.1-or-later,https://github.com/AravisProject/aravis,Vision library for genicam based cameras
+2938,patchutils,local-installable,GPL-2.0-or-later AND LGPL-2.1-or-later,https://cyberelk.net/tim/software/patchutils/,Small collection of programs that operate on patch files
+2939,seaweedfs,local-installable,Apache-2.0,https://github.com/seaweedfs/seaweedfs,Fast distributed storage system

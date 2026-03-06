@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3275,
+  "name": "accounting-ledgers-provenance-tracker",
+  "title": "Accounting Ledgers Provenance Tracker",
+  "description": "Design and run accounting ledgers workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9091,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03275-accounting-ledgers-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/03275-accounting-ledgers-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers provenance tracker",
+    "accounting ledgers provenance tracker workflow",
+    "accounting ledgers provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

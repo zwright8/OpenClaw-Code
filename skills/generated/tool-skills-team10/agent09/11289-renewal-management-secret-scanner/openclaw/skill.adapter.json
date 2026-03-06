@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11289,
+  "name": "renewal-management-secret-scanner",
+  "title": "Renewal Management Secret Scanner",
+  "description": "Design and run renewal management workflows with secret scanner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3031,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11289-renewal-management-secret-scanner/SKILL.md",
+    "entrypoint": "agent09/11289-renewal-management-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "renewal management secret scanner",
+    "renewal management secret scanner workflow",
+    "renewal management secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

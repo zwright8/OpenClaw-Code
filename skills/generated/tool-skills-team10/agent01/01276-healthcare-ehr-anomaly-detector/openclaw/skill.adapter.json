@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1276,
+  "name": "healthcare-ehr-anomaly-detector",
+  "title": "Healthcare EHR Anomaly Detector",
+  "description": "Design and run healthcare ehr workflows with anomaly detector controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 2522,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01276-healthcare-ehr-anomaly-detector/SKILL.md",
+    "entrypoint": "agent01/01276-healthcare-ehr-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr anomaly detector",
+    "healthcare ehr anomaly detector workflow",
+    "healthcare ehr anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

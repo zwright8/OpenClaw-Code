@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5370,
+  "name": "event-streams-migration-planner",
+  "title": "Event Streams Migration Planner",
+  "description": "Design and run event streams workflows with migration planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4607,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05370-event-streams-migration-planner/SKILL.md",
+    "entrypoint": "agent05/05370-event-streams-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams migration planner",
+    "event streams migration planner workflow",
+    "event streams migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4413,
+  "name": "certificate-management-retry-governor",
+  "title": "Certificate Management Retry Governor",
+  "description": "Design and run certificate management workflows with retry governor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6018,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04413-certificate-management-retry-governor/SKILL.md",
+    "entrypoint": "agent04/04413-certificate-management-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management retry governor",
+    "certificate management retry governor workflow",
+    "certificate management retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

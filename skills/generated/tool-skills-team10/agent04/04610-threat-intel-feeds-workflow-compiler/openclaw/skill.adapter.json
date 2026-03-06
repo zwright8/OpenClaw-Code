@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4610,
+  "name": "threat-intel-feeds-workflow-compiler",
+  "title": "Threat Intel Feeds Workflow Compiler",
+  "description": "Design and run threat intel feeds workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1089,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04610-threat-intel-feeds-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04610-threat-intel-feeds-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds workflow compiler",
+    "threat intel feeds workflow compiler workflow",
+    "threat intel feeds workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

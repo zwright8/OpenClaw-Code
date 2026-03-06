@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12573,
+  "name": "universal-toolchain-02-artifact-publisher",
+  "title": "Universal Toolchain 02 Artifact Publisher",
+  "description": "Design and run universal toolchain 02 workflows with artifact publisher controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8220,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12573-universal-toolchain-02-artifact-publisher/SKILL.md",
+    "entrypoint": "agent10/12573-universal-toolchain-02-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 02 artifact publisher",
+    "universal toolchain 02 artifact publisher workflow",
+    "universal toolchain 02 artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

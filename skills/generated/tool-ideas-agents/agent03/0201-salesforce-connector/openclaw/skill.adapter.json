@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 201,
+  "name": "salesforce-connector",
+  "title": "Salesforce Connector",
+  "description": "Unified read/write connector for Salesforce APIs and data.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0201-salesforce-connector/SKILL.md",
+    "entrypoint": "agent03/0201-salesforce-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "salesforce connector",
+    "salesforce connector workflow",
+    "salesforce connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0201-salesforce-connector"
+  }
+}

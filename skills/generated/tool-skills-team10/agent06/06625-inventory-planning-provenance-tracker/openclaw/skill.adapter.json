@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6625,
+  "name": "inventory-planning-provenance-tracker",
+  "title": "Inventory Planning Provenance Tracker",
+  "description": "Design and run inventory planning workflows with provenance tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10246,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06625-inventory-planning-provenance-tracker/SKILL.md",
+    "entrypoint": "agent06/06625-inventory-planning-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inventory planning provenance tracker",
+    "inventory planning provenance tracker workflow",
+    "inventory planning provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

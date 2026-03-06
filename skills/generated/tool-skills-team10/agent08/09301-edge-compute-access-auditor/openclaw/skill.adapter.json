@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9301,
+  "name": "edge-compute-access-auditor",
+  "title": "Edge Compute Access Auditor",
+  "description": "Design and run edge compute workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11223,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09301-edge-compute-access-auditor/SKILL.md",
+    "entrypoint": "agent08/09301-edge-compute-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute access auditor",
+    "edge compute access auditor workflow",
+    "edge compute access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

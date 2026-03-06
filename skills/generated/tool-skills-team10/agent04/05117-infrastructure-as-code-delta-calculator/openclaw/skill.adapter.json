@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5117,
+  "name": "infrastructure-as-code-delta-calculator",
+  "title": "Infrastructure as Code Delta Calculator",
+  "description": "Design and run infrastructure as code workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9716,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05117-infrastructure-as-code-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/05117-infrastructure-as-code-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code delta calculator",
+    "infrastructure as code delta calculator workflow",
+    "infrastructure as code delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

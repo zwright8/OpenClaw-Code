@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9502,
+  "name": "trading-platforms-auth-broker",
+  "title": "Trading Platforms Auth Broker",
+  "description": "Design and run trading platforms workflows with auth broker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 958,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09502-trading-platforms-auth-broker/SKILL.md",
+    "entrypoint": "agent08/09502-trading-platforms-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms auth broker",
+    "trading platforms auth broker workflow",
+    "trading platforms auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

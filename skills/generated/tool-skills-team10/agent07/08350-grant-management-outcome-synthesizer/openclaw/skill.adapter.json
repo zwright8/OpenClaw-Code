@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8350,
+  "name": "grant-management-outcome-synthesizer",
+  "title": "Grant Management Outcome Synthesizer",
+  "description": "Design and run grant management workflows with outcome synthesizer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7046,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08350-grant-management-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent07/08350-grant-management-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grant management outcome synthesizer",
+    "grant management outcome synthesizer workflow",
+    "grant management outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

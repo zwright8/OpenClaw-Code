@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3951,
+  "name": "campaign-automation-access-auditor",
+  "title": "Campaign Automation Access Auditor",
+  "description": "Design and run campaign automation workflows with access auditor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7375,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03951-campaign-automation-access-auditor/SKILL.md",
+    "entrypoint": "agent04/03951-campaign-automation-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation access auditor",
+    "campaign automation access auditor workflow",
+    "campaign automation access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

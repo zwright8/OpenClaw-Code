@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6047,
+  "name": "document-ocr-human-handoff-router",
+  "title": "Document OCR Human Handoff Router",
+  "description": "Design and run document ocr workflows with human handoff router controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10045,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06047-document-ocr-human-handoff-router/SKILL.md",
+    "entrypoint": "agent05/06047-document-ocr-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr human handoff router",
+    "document ocr human handoff router workflow",
+    "document ocr human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

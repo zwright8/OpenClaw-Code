@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11621,
+  "name": "work-order-systems-snapshot-manager",
+  "title": "Work Order Systems Snapshot Manager",
+  "description": "Design and run work order systems workflows with snapshot manager controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12049,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11621-work-order-systems-snapshot-manager/SKILL.md",
+    "entrypoint": "agent09/11621-work-order-systems-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "work order systems snapshot manager",
+    "work order systems snapshot manager workflow",
+    "work order systems snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

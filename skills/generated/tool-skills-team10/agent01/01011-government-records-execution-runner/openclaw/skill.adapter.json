@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1011,
+  "name": "government-records-execution-runner",
+  "title": "Government Records Execution Runner",
+  "description": "Design and run government records workflows with execution runner controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 481,
+    "score": 89,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/01011-government-records-execution-runner/SKILL.md",
+    "entrypoint": "agent01/01011-government-records-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "government records execution runner",
+    "government records execution runner workflow",
+    "government records execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

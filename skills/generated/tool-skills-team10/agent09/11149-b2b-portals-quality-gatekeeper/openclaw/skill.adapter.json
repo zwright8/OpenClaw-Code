@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11149,
+  "name": "b2b-portals-quality-gatekeeper",
+  "title": "B2B Portals Quality Gatekeeper",
+  "description": "Design and run b2b portals workflows with quality gatekeeper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5634,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11149-b2b-portals-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent09/11149-b2b-portals-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals quality gatekeeper",
+    "b2b portals quality gatekeeper workflow",
+    "b2b portals quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

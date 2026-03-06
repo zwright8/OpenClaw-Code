@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1929,
+  "name": "customs-processing-capacity-planner",
+  "title": "Customs Processing Capacity Planner",
+  "description": "Design and run customs processing workflows with capacity planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8674,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01929-customs-processing-capacity-planner/SKILL.md",
+    "entrypoint": "agent02/01929-customs-processing-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing capacity planner",
+    "customs processing capacity planner workflow",
+    "customs processing capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

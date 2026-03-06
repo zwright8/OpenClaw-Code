@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5045,
+  "name": "kubernetes-platforms-runbook-composer",
+  "title": "Kubernetes Platforms Runbook Composer",
+  "description": "Design and run kubernetes platforms workflows with runbook composer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3407,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05045-kubernetes-platforms-runbook-composer/SKILL.md",
+    "entrypoint": "agent04/05045-kubernetes-platforms-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms runbook composer",
+    "kubernetes platforms runbook composer workflow",
+    "kubernetes platforms runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

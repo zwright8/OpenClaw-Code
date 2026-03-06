@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11793,
+  "name": "lab-notebook-systems-remediation-planner",
+  "title": "Lab Notebook Systems Remediation Planner",
+  "description": "Design and run lab notebook systems workflows with remediation planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3052,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11793-lab-notebook-systems-remediation-planner/SKILL.md",
+    "entrypoint": "agent10/11793-lab-notebook-systems-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems remediation planner",
+    "lab notebook systems remediation planner workflow",
+    "lab notebook systems remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

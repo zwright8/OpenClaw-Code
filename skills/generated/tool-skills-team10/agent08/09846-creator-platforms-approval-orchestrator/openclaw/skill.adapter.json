@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9846,
+  "name": "creator-platforms-approval-orchestrator",
+  "title": "Creator Platforms Approval Orchestrator",
+  "description": "Design and run creator platforms workflows with approval orchestrator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6501,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09846-creator-platforms-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent08/09846-creator-platforms-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms approval orchestrator",
+    "creator platforms approval orchestrator workflow",
+    "creator platforms approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

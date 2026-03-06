@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 351,
+  "name": "klaviyo-connector",
+  "title": "Klaviyo Connector",
+  "description": "Unified read/write connector for Klaviyo APIs and data.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0351-klaviyo-connector/SKILL.md",
+    "entrypoint": "agent04/0351-klaviyo-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "klaviyo connector",
+    "klaviyo connector workflow",
+    "klaviyo connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0351-klaviyo-connector"
+  }
+}

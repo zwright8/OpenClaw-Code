@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10848,
+  "name": "semantic-retrieval-feedback-harvester",
+  "title": "Semantic Retrieval Feedback Harvester",
+  "description": "Design and run semantic retrieval workflows with feedback harvester controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11726,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10848-semantic-retrieval-feedback-harvester/SKILL.md",
+    "entrypoint": "agent09/10848-semantic-retrieval-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval feedback harvester",
+    "semantic retrieval feedback harvester workflow",
+    "semantic retrieval feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

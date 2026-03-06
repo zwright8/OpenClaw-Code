@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12851,
+  "name": "universal-toolchain-08-access-auditor",
+  "title": "Universal Toolchain 08 Access Auditor",
+  "description": "Design and run universal toolchain 08 workflows with access auditor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8343,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12851-universal-toolchain-08-access-auditor/SKILL.md",
+    "entrypoint": "agent10/12851-universal-toolchain-08-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 access auditor",
+    "universal toolchain 08 access auditor workflow",
+    "universal toolchain 08 access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

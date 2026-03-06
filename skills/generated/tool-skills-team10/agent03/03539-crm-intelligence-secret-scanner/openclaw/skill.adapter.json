@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3539,
+  "name": "crm-intelligence-secret-scanner",
+  "title": "CRM Intelligence Secret Scanner",
+  "description": "Design and run crm intelligence workflows with secret scanner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2735,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03539-crm-intelligence-secret-scanner/SKILL.md",
+    "entrypoint": "agent03/03539-crm-intelligence-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence secret scanner",
+    "crm intelligence secret scanner workflow",
+    "crm intelligence secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

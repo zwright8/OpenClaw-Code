@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7856,
+  "name": "remote-access-api-contract-validator",
+  "title": "Remote Access API Contract Validator",
+  "description": "Design and run remote access workflows with api contract validator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 187,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent07/07856-remote-access-api-contract-validator/SKILL.md",
+    "entrypoint": "agent07/07856-remote-access-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access api contract validator",
+    "remote access api contract validator workflow",
+    "remote access api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5823,
+  "name": "agent-registries-artifact-publisher",
+  "title": "Agent Registries Artifact Publisher",
+  "description": "Design and run agent registries workflows with artifact publisher controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9951,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05823-agent-registries-artifact-publisher/SKILL.md",
+    "entrypoint": "agent05/05823-agent-registries-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries artifact publisher",
+    "agent registries artifact publisher workflow",
+    "agent registries artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

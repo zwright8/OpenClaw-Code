@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10592,
+  "name": "evaluation-harnesses-root-cause-miner",
+  "title": "Evaluation Harnesses Root Cause Miner",
+  "description": "Design and run evaluation harnesses workflows with root cause miner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4789,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10592-evaluation-harnesses-root-cause-miner/SKILL.md",
+    "entrypoint": "agent09/10592-evaluation-harnesses-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "evaluation harnesses root cause miner",
+    "evaluation harnesses root cause miner workflow",
+    "evaluation harnesses root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

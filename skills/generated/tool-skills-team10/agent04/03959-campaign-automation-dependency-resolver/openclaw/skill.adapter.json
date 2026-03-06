@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3959,
+  "name": "campaign-automation-dependency-resolver",
+  "title": "Campaign Automation Dependency Resolver",
+  "description": "Design and run campaign automation workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7378,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03959-campaign-automation-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/03959-campaign-automation-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation dependency resolver",
+    "campaign automation dependency resolver workflow",
+    "campaign automation dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

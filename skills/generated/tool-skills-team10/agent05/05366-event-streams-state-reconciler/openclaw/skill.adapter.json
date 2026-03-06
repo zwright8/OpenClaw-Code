@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5366,
+  "name": "event-streams-state-reconciler",
+  "title": "Event Streams State Reconciler",
+  "description": "Design and run event streams workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4180,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05366-event-streams-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05366-event-streams-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams state reconciler",
+    "event streams state reconciler workflow",
+    "event streams state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

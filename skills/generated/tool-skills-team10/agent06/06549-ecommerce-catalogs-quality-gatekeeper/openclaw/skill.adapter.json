@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6549,
+  "name": "ecommerce-catalogs-quality-gatekeeper",
+  "title": "Ecommerce Catalogs Quality Gatekeeper",
+  "description": "Design and run ecommerce catalogs workflows with quality gatekeeper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3998,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06549-ecommerce-catalogs-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent06/06549-ecommerce-catalogs-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs quality gatekeeper",
+    "ecommerce catalogs quality gatekeeper workflow",
+    "ecommerce catalogs quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

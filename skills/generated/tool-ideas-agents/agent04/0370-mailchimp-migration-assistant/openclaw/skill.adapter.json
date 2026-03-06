@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 370,
+  "name": "mailchimp-migration-assistant",
+  "title": "Mailchimp Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Mailchimp.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0370-mailchimp-migration-assistant/SKILL.md",
+    "entrypoint": "agent04/0370-mailchimp-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mailchimp migration assistant",
+    "mailchimp migration assistant workflow",
+    "mailchimp migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0370-mailchimp-migration-assistant"
+  }
+}

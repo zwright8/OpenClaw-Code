@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11553,
+  "name": "scheduling-dispatch-permission-mapper",
+  "title": "Scheduling Dispatch Permission Mapper",
+  "description": "Design and run scheduling dispatch workflows with permission mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3904,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11553-scheduling-dispatch-permission-mapper/SKILL.md",
+    "entrypoint": "agent09/11553-scheduling-dispatch-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch permission mapper",
+    "scheduling dispatch permission mapper workflow",
+    "scheduling dispatch permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

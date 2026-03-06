@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1467,
+  "name": "insurance-claims-delta-calculator",
+  "title": "Insurance Claims Delta Calculator",
+  "description": "Design and run insurance claims workflows with delta calculator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7252,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01467-insurance-claims-delta-calculator/SKILL.md",
+    "entrypoint": "agent02/01467-insurance-claims-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims delta calculator",
+    "insurance claims delta calculator workflow",
+    "insurance claims delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

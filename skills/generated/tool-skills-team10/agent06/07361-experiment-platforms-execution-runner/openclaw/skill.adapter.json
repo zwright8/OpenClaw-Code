@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7361,
+  "name": "experiment-platforms-execution-runner",
+  "title": "Experiment Platforms Execution Runner",
+  "description": "Design and run experiment platforms workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1382,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07361-experiment-platforms-execution-runner/SKILL.md",
+    "entrypoint": "agent06/07361-experiment-platforms-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms execution runner",
+    "experiment platforms execution runner workflow",
+    "experiment platforms execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

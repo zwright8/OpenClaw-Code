@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5630,
+  "name": "data-quality-hubs-budget-guardrail",
+  "title": "Data Quality Hubs Budget Guardrail",
+  "description": "Design and run data quality hubs workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4189,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05630-data-quality-hubs-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/05630-data-quality-hubs-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs budget guardrail",
+    "data quality hubs budget guardrail workflow",
+    "data quality hubs budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

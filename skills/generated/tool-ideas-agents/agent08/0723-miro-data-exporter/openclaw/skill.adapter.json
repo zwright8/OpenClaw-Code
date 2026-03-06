@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 723,
+  "name": "miro-data-exporter",
+  "title": "Miro Data Exporter",
+  "description": "Exports Miro entities into clean, typed datasets.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0723-miro-data-exporter/SKILL.md",
+    "entrypoint": "agent08/0723-miro-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "miro data exporter",
+    "miro data exporter workflow",
+    "miro data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0723-miro-data-exporter"
+  }
+}

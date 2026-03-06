@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4956,
+  "name": "synthetic-testing-api-contract-validator",
+  "title": "Synthetic Testing API Contract Validator",
+  "description": "Design and run synthetic testing workflows with api contract validator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 132,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/04956-synthetic-testing-api-contract-validator/SKILL.md",
+    "entrypoint": "agent04/04956-synthetic-testing-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic testing api contract validator",
+    "synthetic testing api contract validator workflow",
+    "synthetic testing api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

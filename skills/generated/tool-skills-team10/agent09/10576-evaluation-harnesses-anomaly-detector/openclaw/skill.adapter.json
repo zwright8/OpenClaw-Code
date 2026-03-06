@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10576,
+  "name": "evaluation-harnesses-anomaly-detector",
+  "title": "Evaluation Harnesses Anomaly Detector",
+  "description": "Design and run evaluation harnesses workflows with anomaly detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5615,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10576-evaluation-harnesses-anomaly-detector/SKILL.md",
+    "entrypoint": "agent09/10576-evaluation-harnesses-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "evaluation harnesses anomaly detector",
+    "evaluation harnesses anomaly detector workflow",
+    "evaluation harnesses anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

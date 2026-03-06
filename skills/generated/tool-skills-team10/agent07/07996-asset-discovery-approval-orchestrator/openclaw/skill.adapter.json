@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7996,
+  "name": "asset-discovery-approval-orchestrator",
+  "title": "Asset Discovery Approval Orchestrator",
+  "description": "Design and run asset discovery workflows with approval orchestrator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6350,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07996-asset-discovery-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent07/07996-asset-discovery-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery approval orchestrator",
+    "asset discovery approval orchestrator workflow",
+    "asset discovery approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

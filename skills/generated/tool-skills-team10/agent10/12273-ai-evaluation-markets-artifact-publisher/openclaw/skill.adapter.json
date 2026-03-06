@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12273,
+  "name": "ai-evaluation-markets-artifact-publisher",
+  "title": "AI Evaluation Markets Artifact Publisher",
+  "description": "Design and run ai evaluation markets workflows with artifact publisher controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7758,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12273-ai-evaluation-markets-artifact-publisher/SKILL.md",
+    "entrypoint": "agent10/12273-ai-evaluation-markets-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets artifact publisher",
+    "ai evaluation markets artifact publisher workflow",
+    "ai evaluation markets artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1662,
+  "name": "research-repositories-job-scheduler",
+  "title": "Research Repositories Job Scheduler",
+  "description": "Design and run research repositories workflows with job scheduler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4890,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01662-research-repositories-job-scheduler/SKILL.md",
+    "entrypoint": "agent02/01662-research-repositories-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories job scheduler",
+    "research repositories job scheduler workflow",
+    "research repositories job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

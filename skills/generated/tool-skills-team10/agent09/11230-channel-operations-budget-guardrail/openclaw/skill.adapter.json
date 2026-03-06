@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11230,
+  "name": "channel-operations-budget-guardrail",
+  "title": "Channel Operations Budget Guardrail",
+  "description": "Design and run channel operations workflows with budget guardrail controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7708,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11230-channel-operations-budget-guardrail/SKILL.md",
+    "entrypoint": "agent09/11230-channel-operations-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "channel operations budget guardrail",
+    "channel operations budget guardrail workflow",
+    "channel operations budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

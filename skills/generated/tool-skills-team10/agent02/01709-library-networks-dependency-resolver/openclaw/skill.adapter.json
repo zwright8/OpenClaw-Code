@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1709,
+  "name": "library-networks-dependency-resolver",
+  "title": "Library Networks Dependency Resolver",
+  "description": "Design and run library networks workflows with dependency resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8580,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01709-library-networks-dependency-resolver/SKILL.md",
+    "entrypoint": "agent02/01709-library-networks-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "library networks dependency resolver",
+    "library networks dependency resolver workflow",
+    "library networks dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

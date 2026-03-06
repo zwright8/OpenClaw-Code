@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9407,
+  "name": "predictive-maintenance-operation-planner",
+  "title": "Predictive Maintenance Operation Planner",
+  "description": "Design and run predictive maintenance workflows with operation planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7594,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09407-predictive-maintenance-operation-planner/SKILL.md",
+    "entrypoint": "agent08/09407-predictive-maintenance-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance operation planner",
+    "predictive maintenance operation planner workflow",
+    "predictive maintenance operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

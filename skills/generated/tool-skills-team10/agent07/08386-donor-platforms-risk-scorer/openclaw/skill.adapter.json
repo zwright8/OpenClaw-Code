@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8386,
+  "name": "donor-platforms-risk-scorer",
+  "title": "Donor Platforms Risk Scorer",
+  "description": "Design and run donor platforms workflows with risk scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1642,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08386-donor-platforms-risk-scorer/SKILL.md",
+    "entrypoint": "agent07/08386-donor-platforms-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms risk scorer",
+    "donor platforms risk scorer workflow",
+    "donor platforms risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

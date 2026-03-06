@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3519,
+  "name": "crm-intelligence-rollback-coordinator",
+  "title": "CRM Intelligence Rollback Coordinator",
+  "description": "Design and run crm intelligence workflows with rollback coordinator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4951,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03519-crm-intelligence-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent03/03519-crm-intelligence-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence rollback coordinator",
+    "crm intelligence rollback coordinator workflow",
+    "crm intelligence rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4884,
+  "name": "error-tracking-sla-enforcer",
+  "title": "Error Tracking SLA Enforcer",
+  "description": "Design and run error tracking workflows with sla enforcer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9644,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04884-error-tracking-sla-enforcer/SKILL.md",
+    "entrypoint": "agent04/04884-error-tracking-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "error tracking sla enforcer",
+    "error tracking sla enforcer workflow",
+    "error tracking sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

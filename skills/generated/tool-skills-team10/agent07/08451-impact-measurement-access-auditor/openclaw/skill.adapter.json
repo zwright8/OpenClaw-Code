@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8451,
+  "name": "impact-measurement-access-auditor",
+  "title": "Impact Measurement Access Auditor",
+  "description": "Design and run impact measurement workflows with access auditor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10950,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08451-impact-measurement-access-auditor/SKILL.md",
+    "entrypoint": "agent07/08451-impact-measurement-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement access auditor",
+    "impact measurement access auditor workflow",
+    "impact measurement access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10684,
+  "name": "model-serving-sla-enforcer",
+  "title": "Model Serving SLA Enforcer",
+  "description": "Design and run model serving workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11681,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10684-model-serving-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/10684-model-serving-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving sla enforcer",
+    "model serving sla enforcer workflow",
+    "model serving sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

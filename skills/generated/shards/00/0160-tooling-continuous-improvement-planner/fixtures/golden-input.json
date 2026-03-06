@@ -1,0 +1,18 @@
+{
+  "skill": "u0160-tooling-continuous-improvement-planner",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "tool runs",
+    "error signatures",
+    "retry outcomes",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "improvement_roadmaps_report",
+    "improvement_roadmaps_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

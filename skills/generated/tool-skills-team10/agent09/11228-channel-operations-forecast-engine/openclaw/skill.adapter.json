@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11228,
+  "name": "channel-operations-forecast-engine",
+  "title": "Channel Operations Forecast Engine",
+  "description": "Design and run channel operations workflows with forecast engine controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11886,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11228-channel-operations-forecast-engine/SKILL.md",
+    "entrypoint": "agent09/11228-channel-operations-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "channel operations forecast engine",
+    "channel operations forecast engine workflow",
+    "channel operations forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

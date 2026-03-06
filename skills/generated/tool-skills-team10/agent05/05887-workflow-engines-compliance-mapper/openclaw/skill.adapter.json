@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5887,
+  "name": "workflow-engines-compliance-mapper",
+  "title": "Workflow Engines Compliance Mapper",
+  "description": "Design and run workflow engines workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1847,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05887-workflow-engines-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/05887-workflow-engines-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines compliance mapper",
+    "workflow engines compliance mapper workflow",
+    "workflow engines compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

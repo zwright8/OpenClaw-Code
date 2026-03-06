@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11078,
+  "name": "edi-pipelines-forecast-engine",
+  "title": "EDI Pipelines Forecast Engine",
+  "description": "Design and run edi pipelines workflows with forecast engine controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11823,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11078-edi-pipelines-forecast-engine/SKILL.md",
+    "entrypoint": "agent09/11078-edi-pipelines-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edi pipelines forecast engine",
+    "edi pipelines forecast engine workflow",
+    "edi pipelines forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

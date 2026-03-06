@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5893,
+  "name": "workflow-engines-remediation-planner",
+  "title": "Workflow Engines Remediation Planner",
+  "description": "Design and run workflow engines workflows with remediation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2820,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05893-workflow-engines-remediation-planner/SKILL.md",
+    "entrypoint": "agent05/05893-workflow-engines-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines remediation planner",
+    "workflow engines remediation planner workflow",
+    "workflow engines remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

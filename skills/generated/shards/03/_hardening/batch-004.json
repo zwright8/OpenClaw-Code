@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 4,
+  "range": {
+    "start": "u3150-knowledge-graph-linking-for-civic-participation-platforms",
+    "end": "u3199-knowledge-graph-linking-for-knowledge-management-systems",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3150-knowledge-graph-linking-for-civic-participation-platforms",
+      "path": "generated/shards/03/3150-knowledge-graph-linking-for-civic-participation-platforms",
+      "skill_md_sha256": "4022998c8f49f636a8a114415d64382c156f385532410db8cc4e61867f5f0449",
+      "summary_sha256": "d2b89c81177d39b1d4749fa19d1907a98b4aa73f1ccc305683a5b8b8f3f1f72e"
+    },
+    {
+      "skill_id": "u3151-knowledge-graph-linking-for-accessibility-services",
+      "path": "generated/shards/03/3151-knowledge-graph-linking-for-accessibility-services",
+      "skill_md_sha256": "dd8500fb4bd5b9926b2bcd1c92e2701289b438ce5a8227d0cef9f9950fc7aa09",
+      "summary_sha256": "84f714d0f704e4af9c3f77423995a792a6d1bd44d2a7a7f278f229ab93aabe6d"
+    },
+    {
+      "skill_id": "u3152-knowledge-graph-linking-for-accessibility-services",
+      "path": "generated/shards/03/3152-knowledge-graph-linking-for-accessibility-services",
+      "skill_md_sha256": "cfe266892a87fc2b8bd82f78d31e0225002f190a2e98ea9f078f15358a947736",
+      "summary_sha256": "c12002fd777c9f3a8d6c1a5a158a40225f12759db95a97332497e85947609139"
+    },
+    {
+      "skill_id": "u3153-knowledge-graph-linking-for-accessibility-services",
+      "path": "generated/shards/03/3153-knowledge-graph-linking-for-accessibility-services",
+      "skill_md_sha256": "10994ac513843e52ef251363a7c0654662ee1904324ab225b6a30d53163f7c42",
+      "summary_sha256": "7400a5b813fb04e3125c8f8eb29bb09ec2d28d332835cceb397bb77d94df3bd1"
+    },
+    {
+      "skill_id": "u3154-knowledge-graph-linking-for-accessibility-services",
+      "path": "generated/shards/03/3154-knowledge-graph-linking-for-accessibility-services",
+      "skill_md_sha256": "d0c887bb4e415e276ddc2466d9b4e8b91f7e82f5671ebd09b627e8980de1fb5c",
+      "summary_sha256": "9b2b1ae7d158a53fb164741589e0b20730fecdcb9236a7c7b5a4345010434034"
+    },
+    {
+      "skill_id": "u3155-knowledge-graph-linking-for-accessibility-services",
+      "path": "generated/shards/03/3155-knowledge-graph-linking-for-accessibility-services",
+      "skill_md_sha256": "62bf6582c8684bc351b494d8f8b8ca255d8fe1d108aa24b144fde725d55762a7",
+      "summary_sha256": "5db154558a54efbf32260faaaba84d19607c21a4eef709b3b80ad87d2ffc0077"
+    },
+    {
+      "skill_id": "u3156-knowledge-graph-linking-for-eldercare-coordination",
+      "path": "generated/shards/03/3156-knowledge-graph-linking-for-eldercare-coordination",
+      "skill_md_sha256": "a66b9ccfb74213d83db12413adb736fa3efa192bafecfd849a8bf15bc758aa93",
+      "summary_sha256": "35238cf1333c1c9ca4bb861c00bfefbad4297189d22cc13a8ec4cb93e5b89655"
+    },
+    {
+      "skill_id": "u3157-knowledge-graph-linking-for-eldercare-coordination",
+      "path": "generated/shards/03/3157-knowledge-graph-linking-for-eldercare-coordination",
+      "skill_md_sha256": "cf78267ad153285c5ecfee01b5321c195388bc942af3fd3929cbb083ac4a23c2",
+      "summary_sha256": "49c62c4d82e433d448b976adf71e4248ebfb83f9b1b01fd62a1a39352143389b"
+    },
+    {
+      "skill_id": "u3158-knowledge-graph-linking-for-eldercare-coordination",
+      "path": "generated/shards/03/3158-knowledge-graph-linking-for-eldercare-coordination",
+      "skill_md_sha256": "1773c821ff88065886cba94e080479391d27b15ce35326a92a429929a6b079be",
+      "summary_sha256": "9de4a4c83c1dabb28c64c3f644206c5480fe401052d34263d0fad50b205d8dbf"
+    },
+    {
+      "skill_id": "u3159-knowledge-graph-linking-for-eldercare-coordination",
+      "path": "generated/shards/03/3159-knowledge-graph-linking-for-eldercare-coordination",
+      "skill_md_sha256": "028818ac322fa68c9bd1edba314c7eadd2f7176311c2a11790394b5ecd280203",
+      "summary_sha256": "87639b8f61fdb121c95afb086b5c3fc96cb7bd7dda73d12f938bbcfbbf410493"
+    },
+    {
+      "skill_id": "u3160-knowledge-graph-linking-for-eldercare-coordination",
+      "path": "generated/shards/03/3160-knowledge-graph-linking-for-eldercare-coordination",
+      "skill_md_sha256": "e21e8d04864f486ea0156001c97a264c08360db06e789f8dd1c6739a845d9daf",
+      "summary_sha256": "422e8edfac01c9033312e558557b71bddc4ee69fdeddb0aedfd52fec6dce9326"
+    },
+    {
+      "skill_id": "u3161-knowledge-graph-linking-for-childcare-support-systems",
+      "path": "generated/shards/03/3161-knowledge-graph-linking-for-childcare-support-systems",
+      "skill_md_sha256": "24acb63860c9bb00aee19b450d254d81248dac19cc396cde23c150cfae08dde5",
+      "summary_sha256": "87a1c7fd951423fe20d8b7de207abdaa042a71f2a1324c90ad6ef1f7569ed8b8"
+    },
+    {
+      "skill_id": "u3162-knowledge-graph-linking-for-childcare-support-systems",
+      "path": "generated/shards/03/3162-knowledge-graph-linking-for-childcare-support-systems",
+      "skill_md_sha256": "67cc066bf31a88eb5b70b9846df1c0febe2389454e0ff208af39aa6b92557228",
+      "summary_sha256": "d82ccc860a79d2e7b1c8f9e8920293ea4ab4646218100dde44810478900d6381"
+    },
+    {
+      "skill_id": "u3163-knowledge-graph-linking-for-childcare-support-systems",
+      "path": "generated/shards/03/3163-knowledge-graph-linking-for-childcare-support-systems",
+      "skill_md_sha256": "e8f02453bc1779956a99ede8ea48b3f2c0fbbb287d8625d22720e7c3c854409a",
+      "summary_sha256": "a9ea07a0cd26383869ea4d2b7615ebe7c3ba1028e8f2dae1f70ce43881474a07"
+    },
+    {
+      "skill_id": "u3164-knowledge-graph-linking-for-childcare-support-systems",
+      "path": "generated/shards/03/3164-knowledge-graph-linking-for-childcare-support-systems",
+      "skill_md_sha256": "1ca585e46d30ec04474d6aa89ff12c6642058f174440da2d3c01608df9ee2107",
+      "summary_sha256": "f27af074ce832cff20bcd0a6e861c9683a5f16ca8b63afdae717e5ee5acb7b34"
+    },
+    {
+      "skill_id": "u3165-knowledge-graph-linking-for-childcare-support-systems",
+      "path": "generated/shards/03/3165-knowledge-graph-linking-for-childcare-support-systems",
+      "skill_md_sha256": "acb4402f363fd6002a1bd9cb4cdf2204fe335563bfeffa81da7eced5d88b6a84",
+      "summary_sha256": "b88fccbfb4ab0e6978133c3b55de4c3395beb309a29ef35a1658b0b1f6a95cd3"
+    },
+    {
+      "skill_id": "u3166-knowledge-graph-linking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3166-knowledge-graph-linking-for-arts-and-culture-programming",
+      "skill_md_sha256": "4f751214dd9adfe997fadf468e5a4328d05de5615db01b9a28b487c8f3bbc895",
+      "summary_sha256": "444281dd4e3f0da732240fe706cd372e381852441e3890eecde9a9791a109d93"
+    },
+    {
+      "skill_id": "u3167-knowledge-graph-linking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3167-knowledge-graph-linking-for-arts-and-culture-programming",
+      "skill_md_sha256": "2dbf4723b0628b02601f48ef7a25d790a59047c5f73f5714b4e139b43338653f",
+      "summary_sha256": "10729fed6155deb212d9602797fd4efc7836113fe472b5d5a221a2035bec8e8a"
+    },
+    {
+      "skill_id": "u3168-knowledge-graph-linking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3168-knowledge-graph-linking-for-arts-and-culture-programming",
+      "skill_md_sha256": "9f7d3cbe26c4a68eb81dfdce75b7dc1545e3006e6c8790a7bf2584065000ea73",
+      "summary_sha256": "80ec848225919b264b44e5d3f163f87183cf23c7ff6e91acb44b75fd63c5a13a"
+    },
+    {
+      "skill_id": "u3169-knowledge-graph-linking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3169-knowledge-graph-linking-for-arts-and-culture-programming",
+      "skill_md_sha256": "43f7c62f185b31ed170f8f02c2073f2970d82df2b407d720b5831393541f702b",
+      "summary_sha256": "3c28dbe3c79ade816f0453710b0d860d958d69eaad4e830b4dde1a9288416a15"
+    },
+    {
+      "skill_id": "u3170-knowledge-graph-linking-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3170-knowledge-graph-linking-for-arts-and-culture-programming",
+      "skill_md_sha256": "a9ab8668202b8a45786e8faf20dee6ffaf561f65a012bbf323ff816689bd223c",
+      "summary_sha256": "5c305d0bca2fe47a8e9d6f8176d17b74b258d08f7c9c0580e6112d7038fb1400"
+    },
+    {
+      "skill_id": "u3171-knowledge-graph-linking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3171-knowledge-graph-linking-for-music-and-creative-practice",
+      "skill_md_sha256": "76863b2715cca499df76b9a6333a5380f5645262250a12f5c2bf8f54062e8a30",
+      "summary_sha256": "c090ad6e87ade4d21db7607c5238202a74e55a30e5fdd1beb840bac43a694967"
+    },
+    {
+      "skill_id": "u3172-knowledge-graph-linking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3172-knowledge-graph-linking-for-music-and-creative-practice",
+      "skill_md_sha256": "476a8564ecc5ea962c7127ca24972939dd39970fdcf9739af65cd49f47fda141",
+      "summary_sha256": "873e6d990579c991471119996109d87a31627a2f8f1426cfe8b7118875f323ef"
+    },
+    {
+      "skill_id": "u3173-knowledge-graph-linking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3173-knowledge-graph-linking-for-music-and-creative-practice",
+      "skill_md_sha256": "7d86b5268ce99281551a98298d9710a19ae658a174e1a623010a868387118235",
+      "summary_sha256": "fa2079571db3f7fc84b89640087b24099c4acb72d2077c1cce630fd46d675110"
+    },
+    {
+      "skill_id": "u3174-knowledge-graph-linking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3174-knowledge-graph-linking-for-music-and-creative-practice",
+      "skill_md_sha256": "480b8b89dddf59689b33af0e9df88b169bf84d333b2fa52372c9925e241ff689",
+      "summary_sha256": "a126a868e7afd90a17e5c7a28f34ecc96326c5173895ad170d886dcba35ed170"
+    },
+    {
+      "skill_id": "u3175-knowledge-graph-linking-for-music-and-creative-practice",
+      "path": "generated/shards/03/3175-knowledge-graph-linking-for-music-and-creative-practice",
+      "skill_md_sha256": "4bb699e714cd0c1d0a7dfa1591cd751ed1622a676c4085989554402586088a48",
+      "summary_sha256": "663efa6d1a52485ef17ca11cb110d99a0fa0a569dbe2c2a83c3065e42094b63d"
+    },
+    {
+      "skill_id": "u3176-knowledge-graph-linking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3176-knowledge-graph-linking-for-journalism-and-public-communication",
+      "skill_md_sha256": "38535d1d32bd5b597a44c2a23f983a521f90a3d047c095aab5b514655446f754",
+      "summary_sha256": "f8552e358fc92d3dadc38d51967e2a837f7910b069d2877be45777d3e6bff5fc"
+    },
+    {
+      "skill_id": "u3177-knowledge-graph-linking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3177-knowledge-graph-linking-for-journalism-and-public-communication",
+      "skill_md_sha256": "0e8e6b1695e0b544230289b34a2170c17e374756e308eb0b6e0544399714fd2e",
+      "summary_sha256": "e5c6c7f8e45f9277bae200830b323cca4e6f9cac17574b6564700c2e0cd61803"
+    },
+    {
+      "skill_id": "u3178-knowledge-graph-linking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3178-knowledge-graph-linking-for-journalism-and-public-communication",
+      "skill_md_sha256": "9a50ab0b58308d44a5d2222276f4ae98328b2ef0bb839dd7880e147a9c409951",
+      "summary_sha256": "2e3f51055b951d9b8335116f7e0c71de29dbb4df0b191d5f59babdb9ccf3d4f8"
+    },
+    {
+      "skill_id": "u3179-knowledge-graph-linking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3179-knowledge-graph-linking-for-journalism-and-public-communication",
+      "skill_md_sha256": "b1ddb070bb1ce79261e5bed83f327ac2bbd4d3db54fccba56ebd2a37061fce51",
+      "summary_sha256": "e6e4bc60a9ff359a4a83b544f880c57d9bd6726295d0c55eeba5b08b396341dd"
+    },
+    {
+      "skill_id": "u3180-knowledge-graph-linking-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3180-knowledge-graph-linking-for-journalism-and-public-communication",
+      "skill_md_sha256": "c4a1d70acb2e757a0073656742b36d7934e0f58e0b566d5ed3f1ef130ca051e2",
+      "summary_sha256": "c2b7663a230240865c16dc17b72b6983f63439d777a60c2ee7aafeb2ec3f0fb7"
+    },
+    {
+      "skill_id": "u3181-knowledge-graph-linking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3181-knowledge-graph-linking-for-multilingual-translation-services",
+      "skill_md_sha256": "a7fc90812d36d6a951cf243aa7a8194d74e2430b3dfd63f2a94a3fce65b02754",
+      "summary_sha256": "8995a0c533a07d4da9cac1baf2d23cc0f32bc802764abd7865882184d8dd84b3"
+    },
+    {
+      "skill_id": "u3182-knowledge-graph-linking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3182-knowledge-graph-linking-for-multilingual-translation-services",
+      "skill_md_sha256": "9bc2eebb58fa68c2c1127c24636fa26d8be91293b4ab173dcd411af4d97d2c27",
+      "summary_sha256": "54151b2b482b71448aec8d8e92694c5f8120cf01b0a7ff47d806665abdbdfa49"
+    },
+    {
+      "skill_id": "u3183-knowledge-graph-linking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3183-knowledge-graph-linking-for-multilingual-translation-services",
+      "skill_md_sha256": "8aa2fbd7baf646eacb05ec0c69de5ab5ebe52d07c89a263d1567caa5fcec23d4",
+      "summary_sha256": "c685af51751f9a187ffd777f5a29709d9d0daf209877b8973f25a5228aa671a1"
+    },
+    {
+      "skill_id": "u3184-knowledge-graph-linking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3184-knowledge-graph-linking-for-multilingual-translation-services",
+      "skill_md_sha256": "d542aa4e81227f380c7ec2a8c72ca664b949f7a3545b1a94d89c2953f72b4d1f",
+      "summary_sha256": "063e61ee5f7f1782f673e98460b4efca9116397acaf51b731ff225b11148c64e"
+    },
+    {
+      "skill_id": "u3185-knowledge-graph-linking-for-multilingual-translation-services",
+      "path": "generated/shards/03/3185-knowledge-graph-linking-for-multilingual-translation-services",
+      "skill_md_sha256": "a99cbfbff3a885a5b98727776df6d352773b3fe32860dcc0744166f85fa8157e",
+      "summary_sha256": "1501dd267ea9aeefb1e3632fcbe8ed81c84c696df676f0429823f6bcd63e2024"
+    },
+    {
+      "skill_id": "u3186-knowledge-graph-linking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3186-knowledge-graph-linking-for-remote-team-collaboration",
+      "skill_md_sha256": "78f4d12c03ee1432e725c5fe5181a8c4cc498a6a6c7d1349ba89cdeb9cab65cc",
+      "summary_sha256": "c026746fbe0dba768d1db06ea2d9abc5a0652015f4e8ffa367411b9e896d569c"
+    },
+    {
+      "skill_id": "u3187-knowledge-graph-linking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3187-knowledge-graph-linking-for-remote-team-collaboration",
+      "skill_md_sha256": "d0f76931c536d0944a6725e432b658ffbb8d5f199182afbe04670a97916575b4",
+      "summary_sha256": "d0d9181246983669be23b0a10ccbaf9dc072dae95db244387527119be73c7e61"
+    },
+    {
+      "skill_id": "u3188-knowledge-graph-linking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3188-knowledge-graph-linking-for-remote-team-collaboration",
+      "skill_md_sha256": "a25ed0468998f5c948f2a9d5b343ad29065dfeadc8824633b905a2e5ac564b4e",
+      "summary_sha256": "b2604fe69ed97a5bfa7019add3557db2f774feaf2f2805852e5c0a894bd37a40"
+    },
+    {
+      "skill_id": "u3189-knowledge-graph-linking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3189-knowledge-graph-linking-for-remote-team-collaboration",
+      "skill_md_sha256": "c9870dac8a8b2f04c6d5165fd4d4fcd708f79a20d1c9e04c35b0a6b5a2de4822",
+      "summary_sha256": "7df20614dc3dba966082587df66bb0f7b30e50201bdd0a8af94a151a6e29d667"
+    },
+    {
+      "skill_id": "u3190-knowledge-graph-linking-for-remote-team-collaboration",
+      "path": "generated/shards/03/3190-knowledge-graph-linking-for-remote-team-collaboration",
+      "skill_md_sha256": "fa0f59f0467acf826bd1ce415f030a222f9603882d72a3f0a36a1a064be8802c",
+      "summary_sha256": "3eba9a82dd3ed1ff4e3166ef2b504906d26bf58c8fba44d4fe8263f43e70351a"
+    },
+    {
+      "skill_id": "u3191-knowledge-graph-linking-for-customer-support-operations",
+      "path": "generated/shards/03/3191-knowledge-graph-linking-for-customer-support-operations",
+      "skill_md_sha256": "676be557d96225c1bb8d1a7430a16fd8acf3c86c144ead65581aeb4c48ee91de",
+      "summary_sha256": "02e6fef2f52995e83bab0791eb7737163ae1abe632a08e46bb9016000f3c3900"
+    },
+    {
+      "skill_id": "u3192-knowledge-graph-linking-for-customer-support-operations",
+      "path": "generated/shards/03/3192-knowledge-graph-linking-for-customer-support-operations",
+      "skill_md_sha256": "83b8adb054a15fb0ed1f65446d6f3ea4d019c6819eed5cd5df6f984634972c70",
+      "summary_sha256": "ff3a8194c0269813fd5f59ef889f567fe5533ea5101d8db89eea412e4a24c017"
+    },
+    {
+      "skill_id": "u3193-knowledge-graph-linking-for-customer-support-operations",
+      "path": "generated/shards/03/3193-knowledge-graph-linking-for-customer-support-operations",
+      "skill_md_sha256": "3a86df9f8600667ae0f05a07d3bbf23e9ee18b2f2c632d0fa4bf4da1eace6fbe",
+      "summary_sha256": "8dad64aae68569a2a0db39d2041f1a8461e192ae45dc2185e7d7ac1614bed81e"
+    },
+    {
+      "skill_id": "u3194-knowledge-graph-linking-for-customer-support-operations",
+      "path": "generated/shards/03/3194-knowledge-graph-linking-for-customer-support-operations",
+      "skill_md_sha256": "237620c12a10df5c7118fd717cf733f21c0a0ae057879a7886c9b6cb502d9943",
+      "summary_sha256": "6d58658e2512cff73a0d581c851c6b3d8f9b4cfc101c268b699fa6344a05296a"
+    },
+    {
+      "skill_id": "u3195-knowledge-graph-linking-for-customer-support-operations",
+      "path": "generated/shards/03/3195-knowledge-graph-linking-for-customer-support-operations",
+      "skill_md_sha256": "09a1b551c2dca65a5b844ba9fa73738166b1b6785a71e5bfb3f1442457822fd7",
+      "summary_sha256": "c82fbdf8b649fe55ab936fb2fa5a21924f40de088a9c6ae35e3f3426fd081da3"
+    },
+    {
+      "skill_id": "u3196-knowledge-graph-linking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3196-knowledge-graph-linking-for-knowledge-management-systems",
+      "skill_md_sha256": "afc55865e04acc70f7d75ec2d639f9f8f7368c82c3f99aac7464935095ee5562",
+      "summary_sha256": "5b0cfc1c74245cc232003ee78b12c99e7913b4b56ff22035d45a4e02d9f24b68"
+    },
+    {
+      "skill_id": "u3197-knowledge-graph-linking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3197-knowledge-graph-linking-for-knowledge-management-systems",
+      "skill_md_sha256": "454abffea136cdaa31678c8a10e9cb073ce23ce4cf6dce0330a05a50cdb103f7",
+      "summary_sha256": "34891c8fb2377dbd9ecd8a74ed4848b4059b1ca306c87ce256c2ee1af93c93be"
+    },
+    {
+      "skill_id": "u3198-knowledge-graph-linking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3198-knowledge-graph-linking-for-knowledge-management-systems",
+      "skill_md_sha256": "ffb725e5578f8695d4da4b51d75d43b379db26a5efbefec00cb7e080845006eb",
+      "summary_sha256": "1a5a3b7eda1d2a76fd38bbda55c6c647c5f23c90a1c26f64f925411875b3d980"
+    },
+    {
+      "skill_id": "u3199-knowledge-graph-linking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3199-knowledge-graph-linking-for-knowledge-management-systems",
+      "skill_md_sha256": "70c4723447dedf19c4d3def1b544ced3b289b25220c6071ad36de35038c99bcb",
+      "summary_sha256": "afcfc0936bb2e8c0b88902285220fbc067e45f514494654df265af97270fa861"
+    }
+  ]
+}

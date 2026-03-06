@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6165,
+  "name": "records-retention-queue-balancer",
+  "title": "Records Retention Queue Balancer",
+  "description": "Design and run records retention workflows with queue balancer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10093,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06165-records-retention-queue-balancer/SKILL.md",
+    "entrypoint": "agent05/06165-records-retention-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention queue balancer",
+    "records retention queue balancer workflow",
+    "records retention queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

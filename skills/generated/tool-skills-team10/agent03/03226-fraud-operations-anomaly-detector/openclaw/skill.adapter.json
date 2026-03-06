@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3226,
+  "name": "fraud-operations-anomaly-detector",
+  "title": "Fraud Operations Anomaly Detector",
+  "description": "Design and run fraud operations workflows with anomaly detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5369,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03226-fraud-operations-anomaly-detector/SKILL.md",
+    "entrypoint": "agent03/03226-fraud-operations-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations anomaly detector",
+    "fraud operations anomaly detector workflow",
+    "fraud operations anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

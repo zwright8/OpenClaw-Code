@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5359,
+  "name": "event-streams-dependency-resolver",
+  "title": "Event Streams Dependency Resolver",
+  "description": "Design and run event streams workflows with dependency resolver controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9777,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05359-event-streams-dependency-resolver/SKILL.md",
+    "entrypoint": "agent05/05359-event-streams-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams dependency resolver",
+    "event streams dependency resolver workflow",
+    "event streams dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

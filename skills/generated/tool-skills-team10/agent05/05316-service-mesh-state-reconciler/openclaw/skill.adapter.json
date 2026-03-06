@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5316,
+  "name": "service-mesh-state-reconciler",
+  "title": "Service Mesh State Reconciler",
+  "description": "Design and run service mesh workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4178,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05316-service-mesh-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05316-service-mesh-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service mesh state reconciler",
+    "service mesh state reconciler workflow",
+    "service mesh state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

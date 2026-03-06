@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9664,
+  "name": "alternative-data-rate-limit-optimizer",
+  "title": "Alternative Data Rate Limit Optimizer",
+  "description": "Design and run alternative data workflows with rate limit optimizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6483,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09664-alternative-data-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent08/09664-alternative-data-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data rate limit optimizer",
+    "alternative data rate limit optimizer workflow",
+    "alternative data rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3361,
+  "name": "payroll-systems-execution-runner",
+  "title": "Payroll Systems Execution Runner",
+  "description": "Design and run payroll systems workflows with execution runner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1308,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03361-payroll-systems-execution-runner/SKILL.md",
+    "entrypoint": "agent03/03361-payroll-systems-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems execution runner",
+    "payroll systems execution runner workflow",
+    "payroll systems execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

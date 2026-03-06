@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 681,
+  "name": "sumo-logic-connector",
+  "title": "Sumo Logic Connector",
+  "description": "Unified read/write connector for Sumo Logic APIs and data.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0681-sumo-logic-connector/SKILL.md",
+    "entrypoint": "agent07/0681-sumo-logic-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sumo logic connector",
+    "sumo logic connector workflow",
+    "sumo logic connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0681-sumo-logic-connector"
+  }
+}

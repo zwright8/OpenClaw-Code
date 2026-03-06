@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11514,
+  "name": "field-service-ops-rate-limit-optimizer",
+  "title": "Field Service Ops Rate Limit Optimizer",
+  "description": "Design and run field service ops workflows with rate limit optimizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6664,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11514-field-service-ops-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent09/11514-field-service-ops-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops rate limit optimizer",
+    "field service ops rate limit optimizer workflow",
+    "field service ops rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

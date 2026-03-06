@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10933,
+  "name": "taxonomy-services-reliability-scorer",
+  "title": "Taxonomy Services Reliability Scorer",
+  "description": "Design and run taxonomy services workflows with reliability scorer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11764,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10933-taxonomy-services-reliability-scorer/SKILL.md",
+    "entrypoint": "agent09/10933-taxonomy-services-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services reliability scorer",
+    "taxonomy services reliability scorer workflow",
+    "taxonomy services reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

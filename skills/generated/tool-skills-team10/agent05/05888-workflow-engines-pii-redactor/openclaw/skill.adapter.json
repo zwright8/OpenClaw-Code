@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5888,
+  "name": "workflow-engines-pii-redactor",
+  "title": "Workflow Engines PII Redactor",
+  "description": "Design and run workflow engines workflows with pii redactor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3470,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05888-workflow-engines-pii-redactor/SKILL.md",
+    "entrypoint": "agent05/05888-workflow-engines-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines pii redactor",
+    "workflow engines pii redactor workflow",
+    "workflow engines pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

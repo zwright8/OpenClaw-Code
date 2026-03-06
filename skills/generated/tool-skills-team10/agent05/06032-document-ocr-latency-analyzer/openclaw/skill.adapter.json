@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6032,
+  "name": "document-ocr-latency-analyzer",
+  "title": "Document OCR Latency Analyzer",
+  "description": "Design and run document ocr workflows with latency analyzer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10041,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06032-document-ocr-latency-analyzer/SKILL.md",
+    "entrypoint": "agent05/06032-document-ocr-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr latency analyzer",
+    "document ocr latency analyzer workflow",
+    "document ocr latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

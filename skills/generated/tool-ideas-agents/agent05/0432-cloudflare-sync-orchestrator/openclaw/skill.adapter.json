@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 432,
+  "name": "cloudflare-sync-orchestrator",
+  "title": "Cloudflare Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Cloudflare records.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0432-cloudflare-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent05/0432-cloudflare-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloudflare sync orchestrator",
+    "cloudflare sync orchestrator workflow",
+    "cloudflare sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0432-cloudflare-sync-orchestrator"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 146,
+  "name": "google-drive-report-builder",
+  "title": "Google Drive Report Builder",
+  "description": "Generates operational and KPI reports from Google Drive activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12452,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00146-google-drive-report-builder/SKILL.md",
+    "entrypoint": "agent01/00146-google-drive-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google drive report builder",
+    "google drive report builder workflow",
+    "google drive report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6171,
+  "name": "records-retention-snapshot-manager",
+  "title": "Records Retention Snapshot Manager",
+  "description": "Design and run records retention workflows with snapshot manager controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10096,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06171-records-retention-snapshot-manager/SKILL.md",
+    "entrypoint": "agent05/06171-records-retention-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention snapshot manager",
+    "records retention snapshot manager workflow",
+    "records retention snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

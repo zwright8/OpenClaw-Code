@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10811,
+  "name": "semantic-retrieval-execution-runner",
+  "title": "Semantic Retrieval Execution Runner",
+  "description": "Design and run semantic retrieval workflows with execution runner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1443,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10811-semantic-retrieval-execution-runner/SKILL.md",
+    "entrypoint": "agent09/10811-semantic-retrieval-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval execution runner",
+    "semantic retrieval execution runner workflow",
+    "semantic retrieval execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

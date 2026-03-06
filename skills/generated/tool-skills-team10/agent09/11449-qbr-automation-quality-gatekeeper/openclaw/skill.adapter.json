@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11449,
+  "name": "qbr-automation-quality-gatekeeper",
+  "title": "QBR Automation Quality Gatekeeper",
+  "description": "Design and run qbr automation workflows with quality gatekeeper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5646,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11449-qbr-automation-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent09/11449-qbr-automation-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation quality gatekeeper",
+    "qbr automation quality gatekeeper workflow",
+    "qbr automation quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

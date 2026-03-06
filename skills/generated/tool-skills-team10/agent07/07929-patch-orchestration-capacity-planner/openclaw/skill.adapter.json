@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7929,
+  "name": "patch-orchestration-capacity-planner",
+  "title": "Patch Orchestration Capacity Planner",
+  "description": "Design and run patch orchestration workflows with capacity planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10753,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07929-patch-orchestration-capacity-planner/SKILL.md",
+    "entrypoint": "agent07/07929-patch-orchestration-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration capacity planner",
+    "patch orchestration capacity planner workflow",
+    "patch orchestration capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5919,
+  "name": "rpa-platforms-rollback-coordinator",
+  "title": "RPA Platforms Rollback Coordinator",
+  "description": "Design and run rpa platforms workflows with rollback coordinator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5031,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05919-rpa-platforms-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent05/05919-rpa-platforms-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rpa platforms rollback coordinator",
+    "rpa platforms rollback coordinator workflow",
+    "rpa platforms rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

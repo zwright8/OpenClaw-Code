@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1976,
+  "name": "freight-brokerage-anomaly-detector",
+  "title": "Freight Brokerage Anomaly Detector",
+  "description": "Design and run freight brokerage workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5311,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01976-freight-brokerage-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/01976-freight-brokerage-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage anomaly detector",
+    "freight brokerage anomaly detector workflow",
+    "freight brokerage anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

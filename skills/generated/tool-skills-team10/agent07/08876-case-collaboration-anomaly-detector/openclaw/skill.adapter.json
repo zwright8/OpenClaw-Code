@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8876,
+  "name": "case-collaboration-anomaly-detector",
+  "title": "Case Collaboration Anomaly Detector",
+  "description": "Design and run case collaboration workflows with anomaly detector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5562,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08876-case-collaboration-anomaly-detector/SKILL.md",
+    "entrypoint": "agent07/08876-case-collaboration-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "case collaboration anomaly detector",
+    "case collaboration anomaly detector workflow",
+    "case collaboration anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1391,
+  "name": "lab-information-systems-incident-triage",
+  "title": "Lab Information Systems Incident Triage",
+  "description": "Design and run lab information systems workflows with incident triage controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2003,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01391-lab-information-systems-incident-triage/SKILL.md",
+    "entrypoint": "agent02/01391-lab-information-systems-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems incident triage",
+    "lab information systems incident triage workflow",
+    "lab information systems incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

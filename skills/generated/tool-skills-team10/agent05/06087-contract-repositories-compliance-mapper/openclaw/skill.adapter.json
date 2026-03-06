@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6087,
+  "name": "contract-repositories-compliance-mapper",
+  "title": "Contract Repositories Compliance Mapper",
+  "description": "Design and run contract repositories workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1851,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06087-contract-repositories-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/06087-contract-repositories-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "contract repositories compliance mapper",
+    "contract repositories compliance mapper workflow",
+    "contract repositories compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

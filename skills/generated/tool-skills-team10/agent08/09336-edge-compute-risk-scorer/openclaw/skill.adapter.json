@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9336,
+  "name": "edge-compute-risk-scorer",
+  "title": "Edge Compute Risk Scorer",
+  "description": "Design and run edge compute workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1657,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09336-edge-compute-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09336-edge-compute-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute risk scorer",
+    "edge compute risk scorer workflow",
+    "edge compute risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

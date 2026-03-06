@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3249,
+  "name": "fraud-operations-quality-gatekeeper",
+  "title": "Fraud Operations Quality Gatekeeper",
+  "description": "Design and run fraud operations workflows with quality gatekeeper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5370,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03249-fraud-operations-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent03/03249-fraud-operations-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations quality gatekeeper",
+    "fraud operations quality gatekeeper workflow",
+    "fraud operations quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

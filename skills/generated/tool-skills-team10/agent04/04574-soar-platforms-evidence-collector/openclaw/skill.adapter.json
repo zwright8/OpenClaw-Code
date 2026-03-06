@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4574,
+  "name": "soar-platforms-evidence-collector",
+  "title": "SOAR Platforms Evidence Collector",
+  "description": "Design and run soar platforms workflows with evidence collector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6051,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04574-soar-platforms-evidence-collector/SKILL.md",
+    "entrypoint": "agent04/04574-soar-platforms-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "soar platforms evidence collector",
+    "soar platforms evidence collector workflow",
+    "soar platforms evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

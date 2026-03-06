@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12183,
+  "name": "audit-trails-reliability-scorer",
+  "title": "Audit Trails Reliability Scorer",
+  "description": "Design and run audit trails workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7744,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12183-audit-trails-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12183-audit-trails-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails reliability scorer",
+    "audit trails reliability scorer workflow",
+    "audit trails reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

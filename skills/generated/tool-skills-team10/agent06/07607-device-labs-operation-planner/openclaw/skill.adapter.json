@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7607,
+  "name": "device-labs-operation-planner",
+  "title": "Device Labs Operation Planner",
+  "description": "Design and run device labs workflows with operation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10615,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07607-device-labs-operation-planner/SKILL.md",
+    "entrypoint": "agent06/07607-device-labs-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs operation planner",
+    "device labs operation planner workflow",
+    "device labs operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

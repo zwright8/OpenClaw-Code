@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7347,
+  "name": "survey-systems-human-handoff-router",
+  "title": "Survey Systems Human Handoff Router",
+  "description": "Design and run survey systems workflows with human handoff router controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10507,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07347-survey-systems-human-handoff-router/SKILL.md",
+    "entrypoint": "agent06/07347-survey-systems-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems human handoff router",
+    "survey systems human handoff router workflow",
+    "survey systems human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

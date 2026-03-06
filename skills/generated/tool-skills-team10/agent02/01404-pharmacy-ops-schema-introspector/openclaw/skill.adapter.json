@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1404,
+  "name": "pharmacy-ops-schema-introspector",
+  "title": "Pharmacy Ops Schema Introspector",
+  "description": "Design and run pharmacy ops workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 551,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01404-pharmacy-ops-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/01404-pharmacy-ops-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops schema introspector",
+    "pharmacy ops schema introspector workflow",
+    "pharmacy ops schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8567,
+  "name": "emergency-response-delta-calculator",
+  "title": "Emergency Response Delta Calculator",
+  "description": "Design and run emergency response workflows with delta calculator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10997,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08567-emergency-response-delta-calculator/SKILL.md",
+    "entrypoint": "agent07/08567-emergency-response-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response delta calculator",
+    "emergency response delta calculator workflow",
+    "emergency response delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

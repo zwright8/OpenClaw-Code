@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4367,
+  "name": "secrets-vaults-delta-calculator",
+  "title": "Secrets Vaults Delta Calculator",
+  "description": "Design and run secrets vaults workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9464,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04367-secrets-vaults-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/04367-secrets-vaults-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "secrets vaults delta calculator",
+    "secrets vaults delta calculator workflow",
+    "secrets vaults delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4746,
+  "name": "policy-engines-approval-orchestrator",
+  "title": "Policy Engines Approval Orchestrator",
+  "description": "Design and run policy engines workflows with approval orchestrator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6068,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04746-policy-engines-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent04/04746-policy-engines-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines approval orchestrator",
+    "policy engines approval orchestrator workflow",
+    "policy engines approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

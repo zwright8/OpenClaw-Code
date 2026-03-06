@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8678,
+  "name": "urban-planning-data-forecast-engine",
+  "title": "Urban Planning Data Forecast Engine",
+  "description": "Design and run urban planning data workflows with forecast engine controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11025,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08678-urban-planning-data-forecast-engine/SKILL.md",
+    "entrypoint": "agent07/08678-urban-planning-data-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data forecast engine",
+    "urban planning data forecast engine workflow",
+    "urban planning data forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

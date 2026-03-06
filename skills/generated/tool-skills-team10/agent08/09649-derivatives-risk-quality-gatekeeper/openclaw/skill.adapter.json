@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9649,
+  "name": "derivatives-risk-quality-gatekeeper",
+  "title": "Derivatives Risk Quality Gatekeeper",
+  "description": "Design and run derivatives risk workflows with quality gatekeeper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2499,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09649-derivatives-risk-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent08/09649-derivatives-risk-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk quality gatekeeper",
+    "derivatives risk quality gatekeeper workflow",
+    "derivatives risk quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

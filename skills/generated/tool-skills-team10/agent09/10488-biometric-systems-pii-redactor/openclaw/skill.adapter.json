@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10488,
+  "name": "biometric-systems-pii-redactor",
+  "title": "Biometric Systems PII Redactor",
+  "description": "Design and run biometric systems workflows with pii redactor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3815,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10488-biometric-systems-pii-redactor/SKILL.md",
+    "entrypoint": "agent09/10488-biometric-systems-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems pii redactor",
+    "biometric systems pii redactor workflow",
+    "biometric systems pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

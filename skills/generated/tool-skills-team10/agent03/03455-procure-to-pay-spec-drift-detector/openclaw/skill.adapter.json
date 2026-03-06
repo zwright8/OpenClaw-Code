@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3455,
+  "name": "procure-to-pay-spec-drift-detector",
+  "title": "Procure to Pay Spec Drift Detector",
+  "description": "Design and run procure to pay workflows with spec drift detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4110,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03455-procure-to-pay-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent03/03455-procure-to-pay-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay spec drift detector",
+    "procure to pay spec drift detector workflow",
+    "procure to pay spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

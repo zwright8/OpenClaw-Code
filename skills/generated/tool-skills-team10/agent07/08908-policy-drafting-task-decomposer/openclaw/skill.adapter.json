@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8908,
+  "name": "policy-drafting-task-decomposer",
+  "title": "Policy Drafting Task Decomposer",
+  "description": "Design and run policy drafting workflows with task decomposer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11099,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08908-policy-drafting-task-decomposer/SKILL.md",
+    "entrypoint": "agent07/08908-policy-drafting-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy drafting task decomposer",
+    "policy drafting task decomposer workflow",
+    "policy drafting task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

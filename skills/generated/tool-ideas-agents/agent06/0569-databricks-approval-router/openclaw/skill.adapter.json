@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 569,
+  "name": "databricks-approval-router",
+  "title": "Databricks Approval Router",
+  "description": "Routes Databricks-driven decisions to the right approvers.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0569-databricks-approval-router/SKILL.md",
+    "entrypoint": "agent06/0569-databricks-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "databricks approval router",
+    "databricks approval router workflow",
+    "databricks approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0569-databricks-approval-router"
+  }
+}

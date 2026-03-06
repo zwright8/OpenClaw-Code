@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3312,
+  "name": "tax-workflows-job-scheduler",
+  "title": "Tax Workflows Job Scheduler",
+  "description": "Design and run tax workflows workflows with job scheduler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4942,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03312-tax-workflows-job-scheduler/SKILL.md",
+    "entrypoint": "agent03/03312-tax-workflows-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tax workflows job scheduler",
+    "tax workflows job scheduler workflow",
+    "tax workflows job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

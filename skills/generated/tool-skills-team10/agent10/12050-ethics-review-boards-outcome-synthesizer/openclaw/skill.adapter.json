@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12050,
+  "name": "ethics-review-boards-outcome-synthesizer",
+  "title": "Ethics Review Boards Outcome Synthesizer",
+  "description": "Design and run ethics review boards workflows with outcome synthesizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7151,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12050-ethics-review-boards-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent10/12050-ethics-review-boards-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards outcome synthesizer",
+    "ethics review boards outcome synthesizer workflow",
+    "ethics review boards outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

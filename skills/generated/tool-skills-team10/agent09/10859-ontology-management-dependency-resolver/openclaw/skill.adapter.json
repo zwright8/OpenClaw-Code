@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10859,
+  "name": "ontology-management-dependency-resolver",
+  "title": "Ontology Management Dependency Resolver",
+  "description": "Design and run ontology management workflows with dependency resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11730,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10859-ontology-management-dependency-resolver/SKILL.md",
+    "entrypoint": "agent09/10859-ontology-management-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management dependency resolver",
+    "ontology management dependency resolver workflow",
+    "ontology management dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

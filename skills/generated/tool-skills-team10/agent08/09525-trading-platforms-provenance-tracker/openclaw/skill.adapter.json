@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9525,
+  "name": "trading-platforms-provenance-tracker",
+  "title": "Trading Platforms Provenance Tracker",
+  "description": "Design and run trading platforms workflows with provenance tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11296,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09525-trading-platforms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent08/09525-trading-platforms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms provenance tracker",
+    "trading platforms provenance tracker workflow",
+    "trading platforms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

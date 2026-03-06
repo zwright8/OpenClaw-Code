@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7576,
+  "name": "app-store-management-anomaly-detector",
+  "title": "App Store Management Anomaly Detector",
+  "description": "Design and run app store management workflows with anomaly detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5515,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07576-app-store-management-anomaly-detector/SKILL.md",
+    "entrypoint": "agent06/07576-app-store-management-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "app store management anomaly detector",
+    "app store management anomaly detector workflow",
+    "app store management anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

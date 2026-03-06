@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3978,
+  "name": "campaign-automation-forecast-engine",
+  "title": "Campaign Automation Forecast Engine",
+  "description": "Design and run campaign automation workflows with forecast engine controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7387,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03978-campaign-automation-forecast-engine/SKILL.md",
+    "entrypoint": "agent04/03978-campaign-automation-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation forecast engine",
+    "campaign automation forecast engine workflow",
+    "campaign automation forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

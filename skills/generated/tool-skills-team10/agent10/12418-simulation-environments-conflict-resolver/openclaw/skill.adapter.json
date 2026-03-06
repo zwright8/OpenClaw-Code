@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12418,
+  "name": "simulation-environments-conflict-resolver",
+  "title": "Simulation Environments Conflict Resolver",
+  "description": "Design and run simulation environments workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12321,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12418-simulation-environments-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/12418-simulation-environments-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments conflict resolver",
+    "simulation environments conflict resolver workflow",
+    "simulation environments conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

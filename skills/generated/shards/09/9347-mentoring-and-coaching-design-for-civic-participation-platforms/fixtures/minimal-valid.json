@@ -1,0 +1,35 @@
+{
+  "skill_id": "u09347-mentoring-and-coaching-design-for-civic-participation-platforms",
+  "capability": "Mentoring And Coaching Design for civic participation platforms",
+  "domain": "civic participation platforms",
+  "inputs": {
+    "source_tagged_signals": [
+      {
+        "id": "sig-001",
+        "source": "trusted",
+        "content": "sample"
+      }
+    ],
+    "claims": [
+      {
+        "id": "clm-001",
+        "text": "sample claim",
+        "confidence": 0.8
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-001",
+        "type": "document",
+        "uri": "local://evidence/1"
+      }
+    ],
+    "run_context": {
+      "risk_tier": "low",
+      "request_id": "req-001"
+    }
+  },
+  "expected": {
+    "schema_valid": true
+  }
+}

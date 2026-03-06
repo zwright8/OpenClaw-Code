@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9122,
+  "name": "terminology-mgmt-version-tracker",
+  "title": "Terminology Mgmt Version Tracker",
+  "description": "Design and run terminology mgmt workflows with version tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11168,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09122-terminology-mgmt-version-tracker/SKILL.md",
+    "entrypoint": "agent08/09122-terminology-mgmt-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "terminology mgmt version tracker",
+    "terminology mgmt version tracker workflow",
+    "terminology mgmt version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

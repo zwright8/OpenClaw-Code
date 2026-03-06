@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12275,
+  "name": "ai-evaluation-markets-provenance-tracker",
+  "title": "AI Evaluation Markets Provenance Tracker",
+  "description": "Design and run ai evaluation markets workflows with provenance tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7759,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12275-ai-evaluation-markets-provenance-tracker/SKILL.md",
+    "entrypoint": "agent10/12275-ai-evaluation-markets-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets provenance tracker",
+    "ai evaluation markets provenance tracker workflow",
+    "ai evaluation markets provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

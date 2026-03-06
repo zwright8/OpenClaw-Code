@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10283,
+  "name": "identity-verification-reliability-scorer",
+  "title": "Identity Verification Reliability Scorer",
+  "description": "Design and run identity verification workflows with reliability scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6553,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10283-identity-verification-reliability-scorer/SKILL.md",
+    "entrypoint": "agent08/10283-identity-verification-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification reliability scorer",
+    "identity verification reliability scorer workflow",
+    "identity verification reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

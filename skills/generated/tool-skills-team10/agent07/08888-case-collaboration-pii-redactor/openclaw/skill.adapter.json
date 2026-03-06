@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8888,
+  "name": "case-collaboration-pii-redactor",
+  "title": "Case Collaboration PII Redactor",
+  "description": "Design and run case collaboration workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3696,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08888-case-collaboration-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/08888-case-collaboration-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "case collaboration pii redactor",
+    "case collaboration pii redactor workflow",
+    "case collaboration pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

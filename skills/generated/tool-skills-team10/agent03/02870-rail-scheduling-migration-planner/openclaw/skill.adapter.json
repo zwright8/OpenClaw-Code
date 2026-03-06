@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2870,
+  "name": "rail-scheduling-migration-planner",
+  "title": "Rail Scheduling Migration Planner",
+  "description": "Design and run rail scheduling workflows with migration planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2460,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02870-rail-scheduling-migration-planner/SKILL.md",
+    "entrypoint": "agent03/02870-rail-scheduling-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling migration planner",
+    "rail scheduling migration planner workflow",
+    "rail scheduling migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

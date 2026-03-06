@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5128,
+  "name": "infrastructure-as-code-forecast-engine",
+  "title": "Infrastructure as Code Forecast Engine",
+  "description": "Design and run infrastructure as code workflows with forecast engine controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9723,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05128-infrastructure-as-code-forecast-engine/SKILL.md",
+    "entrypoint": "agent04/05128-infrastructure-as-code-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code forecast engine",
+    "infrastructure as code forecast engine workflow",
+    "infrastructure as code forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

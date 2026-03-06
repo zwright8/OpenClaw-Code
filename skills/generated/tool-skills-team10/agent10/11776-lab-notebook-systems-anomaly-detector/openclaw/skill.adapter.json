@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11776,
+  "name": "lab-notebook-systems-anomaly-detector",
+  "title": "Lab Notebook Systems Anomaly Detector",
+  "description": "Design and run lab notebook systems workflows with anomaly detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5659,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11776-lab-notebook-systems-anomaly-detector/SKILL.md",
+    "entrypoint": "agent10/11776-lab-notebook-systems-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems anomaly detector",
+    "lab notebook systems anomaly detector workflow",
+    "lab notebook systems anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

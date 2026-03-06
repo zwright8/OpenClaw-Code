@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10029,
+  "name": "payment-gateways-capacity-planner",
+  "title": "Payment Gateways Capacity Planner",
+  "description": "Design and run payment gateways workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11488,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10029-payment-gateways-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/10029-payment-gateways-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways capacity planner",
+    "payment gateways capacity planner workflow",
+    "payment gateways capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1526,
+  "name": "education-lms-anomaly-detector",
+  "title": "Education LMS Anomaly Detector",
+  "description": "Design and run education lms workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3147,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01526-education-lms-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/01526-education-lms-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms anomaly detector",
+    "education lms anomaly detector workflow",
+    "education lms anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

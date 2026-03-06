@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5105,
+  "name": "infrastructure-as-code-spec-drift-detector",
+  "title": "Infrastructure as Code Spec Drift Detector",
+  "description": "Design and run infrastructure as code workflows with spec drift detector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4171,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05105-infrastructure-as-code-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent04/05105-infrastructure-as-code-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code spec drift detector",
+    "infrastructure as code spec drift detector workflow",
+    "infrastructure as code spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

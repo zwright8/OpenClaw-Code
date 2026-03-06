@@ -1,0 +1,284 @@
+{
+  "batches": [
+    {
+      "shard": "04",
+      "start_id": 4000,
+      "end_id": 4049,
+      "count": 50,
+      "skill_md_sha256": "e402d761f83fd99992bb31a30be70acaaed4d19c47fb0aa7611e48138e0092e8"
+    },
+    {
+      "shard": "04",
+      "start_id": 4050,
+      "end_id": 4099,
+      "count": 50,
+      "skill_md_sha256": "d267e66e3e650f8ce9a7bb0245a5527d93ca79b4a1443ca05c53a1242a043df5"
+    },
+    {
+      "shard": "04",
+      "start_id": 4100,
+      "end_id": 4149,
+      "count": 50,
+      "skill_md_sha256": "987d2d96c80b215d8c6e362f777d3955c574f9e02b8dd1867e3b10a063b752c0"
+    },
+    {
+      "shard": "04",
+      "start_id": 4150,
+      "end_id": 4199,
+      "count": 50,
+      "skill_md_sha256": "db50caef61fa15fbb0be620321370a523e21cc244e6772eda94487b490cfc370"
+    },
+    {
+      "shard": "04",
+      "start_id": 4200,
+      "end_id": 4249,
+      "count": 50,
+      "skill_md_sha256": "6b11b89bde1f7c167d97e810da9745c8b8fef721f5b6992f0f554c614c8c7fb3"
+    },
+    {
+      "shard": "04",
+      "start_id": 4250,
+      "end_id": 4299,
+      "count": 50,
+      "skill_md_sha256": "dc44245f2ac814d4b790890826c761304e52aa7595513484235e2adec42504a6"
+    },
+    {
+      "shard": "04",
+      "start_id": 4300,
+      "end_id": 4349,
+      "count": 50,
+      "skill_md_sha256": "f826642c6665ed21dd14075b53bf4902a0e01f37eb533f443a112d452bc1c491"
+    },
+    {
+      "shard": "04",
+      "start_id": 4350,
+      "end_id": 4399,
+      "count": 50,
+      "skill_md_sha256": "8d4822f6fc5f08fdd7ff69c8e91a0ed08b9183822b70f3198c9d725bb72e02f6"
+    },
+    {
+      "shard": "04",
+      "start_id": 4400,
+      "end_id": 4449,
+      "count": 50,
+      "skill_md_sha256": "828716bb217d11ae7417dc67e8bc5f19152a1966fef010c61f5c478a6645ec34"
+    },
+    {
+      "shard": "04",
+      "start_id": 4450,
+      "end_id": 4499,
+      "count": 50,
+      "skill_md_sha256": "7cfe06aff4b12bbfa3c58f834bdd6dbadb54f1d90444714a68a024ea59fafeae"
+    },
+    {
+      "shard": "04",
+      "start_id": 4500,
+      "end_id": 4549,
+      "count": 50,
+      "skill_md_sha256": "cb755ede1999142fe4ef9e9626ab7316d1345173cead4f6be2f92cb1b6c06a7d"
+    },
+    {
+      "shard": "04",
+      "start_id": 4550,
+      "end_id": 4599,
+      "count": 50,
+      "skill_md_sha256": "ce82665003ac6d9676d0cdc0f25efc3039128bdf6f3b0b59b973c271fbfd073d"
+    },
+    {
+      "shard": "04",
+      "start_id": 4600,
+      "end_id": 4649,
+      "count": 50,
+      "skill_md_sha256": "34bed68ac884ea84bc14c536693903a358777b8a82226aee80e0aa3175ba53d7"
+    },
+    {
+      "shard": "04",
+      "start_id": 4650,
+      "end_id": 4699,
+      "count": 50,
+      "skill_md_sha256": "1f1ffaa1fc830b2793cb179ae40bab5e85673d293df9602fc994ae9151780e9d"
+    },
+    {
+      "shard": "04",
+      "start_id": 4700,
+      "end_id": 4749,
+      "count": 50,
+      "skill_md_sha256": "e83613d2eca855aa04da88e299a8aa71939393206359bd0d1ad4f2ef98ce7f15"
+    },
+    {
+      "shard": "04",
+      "start_id": 4750,
+      "end_id": 4799,
+      "count": 50,
+      "skill_md_sha256": "eae9fae29483c93de70392453e28d45ea35dbf2c7a725ddc99915db26cf5d1cb"
+    },
+    {
+      "shard": "04",
+      "start_id": 4800,
+      "end_id": 4849,
+      "count": 50,
+      "skill_md_sha256": "ddf5d506e1bc7210439e6add0987fd84a12d9ed33a12d77552986bb7244ef641"
+    },
+    {
+      "shard": "04",
+      "start_id": 4850,
+      "end_id": 4899,
+      "count": 50,
+      "skill_md_sha256": "03351eac05f9f585c32e29e54501f8957e2fb882c48e356b6a76b84148d1c14b"
+    },
+    {
+      "shard": "04",
+      "start_id": 4900,
+      "end_id": 4949,
+      "count": 50,
+      "skill_md_sha256": "f851a4710280fe28f10d4890efd2ac9255ba272650f61c366cf690287e5493cb"
+    },
+    {
+      "shard": "04",
+      "start_id": 4950,
+      "end_id": 4999,
+      "count": 50,
+      "skill_md_sha256": "630c016d99bc8d6a3b86e5520d2a009574be8320f69c0f6f3d0e73673e359b82"
+    },
+    {
+      "shard": "05",
+      "start_id": 5000,
+      "end_id": 5049,
+      "count": 50,
+      "skill_md_sha256": "0624b236779d1015bff6b53928c8d605cae45397108d8b374caafa4ed1e65c0b"
+    },
+    {
+      "shard": "05",
+      "start_id": 5050,
+      "end_id": 5099,
+      "count": 50,
+      "skill_md_sha256": "ef407fd1ccd03f847e302e888f3abf0da3854f4d792106f30d855b86a35ed732"
+    },
+    {
+      "shard": "05",
+      "start_id": 5100,
+      "end_id": 5149,
+      "count": 50,
+      "skill_md_sha256": "ffbf6a6fae5ce1b543e37e66864e441bf54caf59c3bb6cb644bd3c2885c6eb24"
+    },
+    {
+      "shard": "05",
+      "start_id": 5150,
+      "end_id": 5199,
+      "count": 50,
+      "skill_md_sha256": "76437e17c87aa4892fac4afc9c57be8014e84c182b33cab3a2e28cd6b0b8ffe0"
+    },
+    {
+      "shard": "05",
+      "start_id": 5200,
+      "end_id": 5249,
+      "count": 50,
+      "skill_md_sha256": "d8a704dfbc89881041db44e3714d93a7fe50e9ed4f97de439b207d9b27fdf54f"
+    },
+    {
+      "shard": "05",
+      "start_id": 5250,
+      "end_id": 5299,
+      "count": 50,
+      "skill_md_sha256": "4e99b3fad847c528e797b9cbf65b5b18e30848e6bafc732c78356a417f77900d"
+    },
+    {
+      "shard": "05",
+      "start_id": 5300,
+      "end_id": 5349,
+      "count": 50,
+      "skill_md_sha256": "dd8ae052dc33a04d15c201fe0edf939941136f42b91d7dcd4790a1c0d13d2e3e"
+    },
+    {
+      "shard": "05",
+      "start_id": 5350,
+      "end_id": 5399,
+      "count": 50,
+      "skill_md_sha256": "1b6151bef555a8fe71343a31aed9bfb65f92453e61b639f793e0b4f3e0219ff9"
+    },
+    {
+      "shard": "05",
+      "start_id": 5400,
+      "end_id": 5449,
+      "count": 50,
+      "skill_md_sha256": "74c4bbcae2dc6f626b0a0b1df1fe94b5f6e94553ebb439777d724f6910878dbf"
+    },
+    {
+      "shard": "05",
+      "start_id": 5450,
+      "end_id": 5499,
+      "count": 50,
+      "skill_md_sha256": "977230d16ad51894620e15b3c939032c221b8c40395d1092d40f50d7000b937f"
+    },
+    {
+      "shard": "05",
+      "start_id": 5500,
+      "end_id": 5549,
+      "count": 50,
+      "skill_md_sha256": "052cdf935117a771e297ed4e35d69d946bf5572a6bebfc1e0fcedd1bc4778905"
+    },
+    {
+      "shard": "05",
+      "start_id": 5550,
+      "end_id": 5599,
+      "count": 50,
+      "skill_md_sha256": "3e0ad56783f3b6db77d7d48f6330d011e621c3ae6cdadb02fd008322ca2bcbf3"
+    },
+    {
+      "shard": "05",
+      "start_id": 5600,
+      "end_id": 5649,
+      "count": 50,
+      "skill_md_sha256": "1d3727594183686d407b27140b7f2225a8a8fb15ee03839e9d45bf852c942395"
+    },
+    {
+      "shard": "05",
+      "start_id": 5650,
+      "end_id": 5699,
+      "count": 50,
+      "skill_md_sha256": "e79b7d6960f385fde72bf6bfde178465ac421d2b5e34e3549a6f40053add88cc"
+    },
+    {
+      "shard": "05",
+      "start_id": 5700,
+      "end_id": 5749,
+      "count": 50,
+      "skill_md_sha256": "5a40ceaf10559b6c991f842e7c6ae402bed3f1f1ab0cab9ad102c6c495683d47"
+    },
+    {
+      "shard": "05",
+      "start_id": 5750,
+      "end_id": 5799,
+      "count": 50,
+      "skill_md_sha256": "ab5932d1f8efcddd00591684d88d9b9a7c8ace2fb46b28534ee0ef1de1a25580"
+    },
+    {
+      "shard": "05",
+      "start_id": 5800,
+      "end_id": 5849,
+      "count": 50,
+      "skill_md_sha256": "317d590ee09860abc606d3a4df03155d1e734cd4a6b4c56920b953ecf2a1316d"
+    },
+    {
+      "shard": "05",
+      "start_id": 5850,
+      "end_id": 5899,
+      "count": 50,
+      "skill_md_sha256": "515a7f20ad3b0d7e8e02fe33bcf12594832d46be3c1aa11a4c387863593eb7db"
+    },
+    {
+      "shard": "05",
+      "start_id": 5900,
+      "end_id": 5949,
+      "count": 50,
+      "skill_md_sha256": "6a858773c4f0fa1467d1b530d6b3643e09ab8a906c3ec16d3ed93e84f670b6ad"
+    },
+    {
+      "shard": "05",
+      "start_id": 5950,
+      "end_id": 5999,
+      "count": 50,
+      "skill_md_sha256": "23196702a10899aafe04d46e42be520c14bbed846298a8b7716673de98fdfc47"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12223,
+  "name": "policy-compliance-artifact-publisher",
+  "title": "Policy Compliance Artifact Publisher",
+  "description": "Design and run policy compliance workflows with artifact publisher controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6801,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12223-policy-compliance-artifact-publisher/SKILL.md",
+    "entrypoint": "agent10/12223-policy-compliance-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance artifact publisher",
+    "policy compliance artifact publisher workflow",
+    "policy compliance artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

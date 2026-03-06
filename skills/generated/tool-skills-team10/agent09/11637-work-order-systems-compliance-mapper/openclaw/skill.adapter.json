@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11637,
+  "name": "work-order-systems-compliance-mapper",
+  "title": "Work Order Systems Compliance Mapper",
+  "description": "Design and run work order systems workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1964,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11637-work-order-systems-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/11637-work-order-systems-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "work order systems compliance mapper",
+    "work order systems compliance mapper workflow",
+    "work order systems compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
