@@ -88,4 +88,4 @@
 
 ## TODO
 - README command list appears broader than current `package.json` scripts (for example `worker:loop`, `autonomous:run`, `iterate:plan`); confirm current owners before documenting additional commands here.
-- Warfighter expansion commits in the current history appear content-focused; no new root `package.json` script entrypoints identified in this run.
+- Since `a0a7afe947` (last AGENTS sync) through `ce96518424` (`origin/main` at this run), no `package.json` script-entrypoint changes were detected.
