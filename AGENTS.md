@@ -5,6 +5,9 @@
 - `npm run build` - runs root lint plus tests in both packages.
 - `npm run capabilities:blueprint` - regenerate capability blueprint artifacts.
 - `npm run capabilities:audit` - run capability deployability audit.
+- `npm run agent:quickstart` - print the local `AGENTS.md` quickstart guide.
+- `npm run agent:map` - print the local `AGENT_MAP.json` command map.
+- `npm run agent:validate` - run cross-package validation (`typecheck`, `cognition-core` tests, `swarm-protocol` unit tests).
 - `npm run skills:sync` - execute the full 1000-skill lifecycle pipeline.
 - `npm run skills:build` - generate the baseline 1000-skill artifacts.
 - `npm run skills:validate` - validate generated 1000-skill artifacts.
@@ -36,6 +39,10 @@
 - `npm run skills:marketplace:v2:build` - build marketplace skill packages v2.
 - `npm run skills:marketplace:v2:validate` - validate marketplace skill packages v2.
 - `npm run skills:marketplace:v2:demo` - run top-package demo for v2 outputs.
+- `npm run skills:registry:build` - generate the skill registry artifacts.
+- `npm run skills:registry:validate` - validate generated skill registry artifacts.
+- `npm run skills:route` - execute skill routing over the current registry/catalog inputs.
+- `npm run skills:run` - execute the skill run harness via `scripts/skillos-run.ts`.
 - `npm run skills:improve:10000` - generate improvement catalog for the 10k skill corpus.
 - `npm run skills:improve:10000:validate` - validate generated 10k skill improvement artifacts.
 - `npm run skills:harden:profile` - build the hardening/deployability profile.
@@ -49,6 +56,18 @@
 - `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
 - `npm --prefix cognition-core run analyze:quick` - generate 1-day fast cognition analysis.
 - `npm --prefix cognition-core run graph` - rebuild cognition graph artifacts.
+- `npm --prefix cognition-core run ingest` - ingest recent events (default `--since-hours 24`) into cognition inputs.
+- `npm --prefix cognition-core run status` - print cognition pipeline/state status.
+- `npm --prefix cognition-core run dispatch` - dispatch queued cognition tasks.
+- `npm --prefix cognition-core run run` - run the cognition pipeline orchestrator flow.
+- `npm --prefix cognition-core run run:dispatch` - run the cognition flow with dispatch enabled.
+- `npm --prefix cognition-core run evaluate` - evaluate cognition outcomes and quality signals.
+- `npm --prefix cognition-core run report` - generate cognition reports from current data.
+- `npm --prefix cognition-core run outcomes:export` - export swarm outcomes for cognition analysis.
+- `npm --prefix cognition-core run scorecard` - generate cognition productivity scorecard outputs.
+- `npm --prefix cognition-core run tune:recommendations` - tune recommendation outputs based on recent outcomes.
+- `npm --prefix cognition-core run full:utilization` - run full utilization analysis/report workflow.
+- `npm --prefix cognition-core run stability:whatsapp` - build 24-hour WhatsApp stability reports (JSON + Markdown).
 - `npm --prefix swarm-protocol run demo:orchestrator` - run orchestrator demo flow.
 - `npm --prefix swarm-protocol run approval:queue` - export approval queue reports.
 - `npm --prefix swarm-protocol run benchmark:simulate` - run simulation benchmark scenario.
