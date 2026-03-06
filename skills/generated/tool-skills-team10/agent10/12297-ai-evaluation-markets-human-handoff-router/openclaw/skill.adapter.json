@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12297,
+  "name": "ai-evaluation-markets-human-handoff-router",
+  "title": "AI Evaluation Markets Human Handoff Router",
+  "description": "Design and run ai evaluation markets workflows with human handoff router controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7769,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12297-ai-evaluation-markets-human-handoff-router/SKILL.md",
+    "entrypoint": "agent10/12297-ai-evaluation-markets-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets human handoff router",
+    "ai evaluation markets human handoff router workflow",
+    "ai evaluation markets human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

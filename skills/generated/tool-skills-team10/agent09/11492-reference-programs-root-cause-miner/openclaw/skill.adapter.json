@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11492,
+  "name": "reference-programs-root-cause-miner",
+  "title": "Reference Programs Root Cause Miner",
+  "description": "Design and run reference programs workflows with root cause miner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4821,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11492-reference-programs-root-cause-miner/SKILL.md",
+    "entrypoint": "agent09/11492-reference-programs-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs root cause miner",
+    "reference programs root cause miner workflow",
+    "reference programs root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6600,
+  "name": "order-management-outcome-synthesizer",
+  "title": "Order Management Outcome Synthesizer",
+  "description": "Design and run order management workflows with outcome synthesizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6993,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06600-order-management-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent06/06600-order-management-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management outcome synthesizer",
+    "order management outcome synthesizer workflow",
+    "order management outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

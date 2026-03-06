@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5566,
+  "name": "metadata-stores-state-reconciler",
+  "title": "Metadata Stores State Reconciler",
+  "description": "Design and run metadata stores workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4188,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05566-metadata-stores-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05566-metadata-stores-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores state reconciler",
+    "metadata stores state reconciler workflow",
+    "metadata stores state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

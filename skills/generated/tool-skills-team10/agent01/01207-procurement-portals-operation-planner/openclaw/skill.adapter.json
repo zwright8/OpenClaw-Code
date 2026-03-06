@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1207,
+  "name": "procurement-portals-operation-planner",
+  "title": "Procurement Portals Operation Planner",
+  "description": "Design and run procurement portals workflows with operation planner controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7776,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01207-procurement-portals-operation-planner/SKILL.md",
+    "entrypoint": "agent01/01207-procurement-portals-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procurement portals operation planner",
+    "procurement portals operation planner workflow",
+    "procurement portals operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

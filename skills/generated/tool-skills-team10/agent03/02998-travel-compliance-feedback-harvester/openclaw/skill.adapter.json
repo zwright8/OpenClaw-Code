@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2998,
+  "name": "travel-compliance-feedback-harvester",
+  "title": "Travel Compliance Feedback Harvester",
+  "description": "Design and run travel compliance workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6791,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02998-travel-compliance-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/02998-travel-compliance-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance feedback harvester",
+    "travel compliance feedback harvester workflow",
+    "travel compliance feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

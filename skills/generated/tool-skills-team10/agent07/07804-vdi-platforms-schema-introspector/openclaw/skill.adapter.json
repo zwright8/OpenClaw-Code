@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7804,
+  "name": "vdi-platforms-schema-introspector",
+  "title": "VDI Platforms Schema Introspector",
+  "description": "Design and run vdi platforms workflows with schema introspector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 671,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/07804-vdi-platforms-schema-introspector/SKILL.md",
+    "entrypoint": "agent07/07804-vdi-platforms-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms schema introspector",
+    "vdi platforms schema introspector workflow",
+    "vdi platforms schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

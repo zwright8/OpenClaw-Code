@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11554,
+  "name": "scheduling-dispatch-schema-introspector",
+  "title": "Scheduling Dispatch Schema Introspector",
+  "description": "Design and run scheduling dispatch workflows with schema introspector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 744,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/11554-scheduling-dispatch-schema-introspector/SKILL.md",
+    "entrypoint": "agent09/11554-scheduling-dispatch-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch schema introspector",
+    "scheduling dispatch schema introspector workflow",
+    "scheduling dispatch schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3904,
+  "name": "social-listening-schema-introspector",
+  "title": "Social Listening Schema Introspector",
+  "description": "Design and run social listening workflows with schema introspector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 598,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/03904-social-listening-schema-introspector/SKILL.md",
+    "entrypoint": "agent04/03904-social-listening-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening schema introspector",
+    "social listening schema introspector workflow",
+    "social listening schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

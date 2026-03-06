@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7722,
+  "name": "in-app-messaging-version-tracker",
+  "title": "In-App Messaging Version Tracker",
+  "description": "Design and run in-app messaging workflows with version tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10664,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07722-in-app-messaging-version-tracker/SKILL.md",
+    "entrypoint": "agent06/07722-in-app-messaging-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging version tracker",
+    "in-app messaging version tracker workflow",
+    "in-app messaging version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

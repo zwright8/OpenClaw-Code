@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7945,
+  "name": "patch-orchestration-runbook-composer",
+  "title": "Patch Orchestration Runbook Composer",
+  "description": "Design and run patch orchestration workflows with runbook composer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6344,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07945-patch-orchestration-runbook-composer/SKILL.md",
+    "entrypoint": "agent07/07945-patch-orchestration-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration runbook composer",
+    "patch orchestration runbook composer workflow",
+    "patch orchestration runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

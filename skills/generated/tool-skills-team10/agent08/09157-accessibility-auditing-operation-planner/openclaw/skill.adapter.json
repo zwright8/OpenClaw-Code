@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9157,
+  "name": "accessibility-auditing-operation-planner",
+  "title": "Accessibility Auditing Operation Planner",
+  "description": "Design and run accessibility auditing workflows with operation planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11182,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09157-accessibility-auditing-operation-planner/SKILL.md",
+    "entrypoint": "agent08/09157-accessibility-auditing-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing operation planner",
+    "accessibility auditing operation planner workflow",
+    "accessibility auditing operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

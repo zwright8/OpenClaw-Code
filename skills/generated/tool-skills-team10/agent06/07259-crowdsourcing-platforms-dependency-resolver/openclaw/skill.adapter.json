@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7259,
+  "name": "crowdsourcing-platforms-dependency-resolver",
+  "title": "Crowdsourcing Platforms Dependency Resolver",
+  "description": "Design and run crowdsourcing platforms workflows with dependency resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10470,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07259-crowdsourcing-platforms-dependency-resolver/SKILL.md",
+    "entrypoint": "agent06/07259-crowdsourcing-platforms-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms dependency resolver",
+    "crowdsourcing platforms dependency resolver workflow",
+    "crowdsourcing platforms dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3399,
+  "name": "payroll-systems-quality-gatekeeper",
+  "title": "Payroll Systems Quality Gatekeeper",
+  "description": "Design and run payroll systems workflows with quality gatekeeper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5376,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03399-payroll-systems-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent03/03399-payroll-systems-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems quality gatekeeper",
+    "payroll systems quality gatekeeper workflow",
+    "payroll systems quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

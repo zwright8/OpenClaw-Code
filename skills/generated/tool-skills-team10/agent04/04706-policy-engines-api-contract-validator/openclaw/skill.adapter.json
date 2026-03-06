@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4706,
+  "name": "policy-engines-api-contract-validator",
+  "title": "Policy Engines API Contract Validator",
+  "description": "Design and run policy engines workflows with api contract validator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 128,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/04706-policy-engines-api-contract-validator/SKILL.md",
+    "entrypoint": "agent04/04706-policy-engines-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines api contract validator",
+    "policy engines api contract validator workflow",
+    "policy engines api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

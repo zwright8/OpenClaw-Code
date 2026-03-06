@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6578,
+  "name": "order-management-forecast-engine",
+  "title": "Order Management Forecast Engine",
+  "description": "Design and run order management workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10227,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06578-order-management-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/06578-order-management-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management forecast engine",
+    "order management forecast engine workflow",
+    "order management forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

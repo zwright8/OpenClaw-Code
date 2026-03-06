@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6476,
+  "name": "3d-asset-pipelines-anomaly-detector",
+  "title": "3D Asset Pipelines Anomaly Detector",
+  "description": "Design and run 3d asset pipelines workflows with anomaly detector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5477,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06476-3d-asset-pipelines-anomaly-detector/SKILL.md",
+    "entrypoint": "agent05/06476-3d-asset-pipelines-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines anomaly detector",
+    "3d asset pipelines anomaly detector workflow",
+    "3d asset pipelines anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

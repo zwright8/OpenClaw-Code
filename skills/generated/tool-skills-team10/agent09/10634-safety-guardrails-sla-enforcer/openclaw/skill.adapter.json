@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10634,
+  "name": "safety-guardrails-sla-enforcer",
+  "title": "Safety Guardrails SLA Enforcer",
+  "description": "Design and run safety guardrails workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7673,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10634-safety-guardrails-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/10634-safety-guardrails-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails sla enforcer",
+    "safety guardrails sla enforcer workflow",
+    "safety guardrails sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

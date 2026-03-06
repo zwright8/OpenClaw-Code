@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8067,
+  "name": "genomics-tooling-delta-calculator",
+  "title": "Genomics Tooling Delta Calculator",
+  "description": "Design and run genomics tooling workflows with delta calculator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10808,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08067-genomics-tooling-delta-calculator/SKILL.md",
+    "entrypoint": "agent07/08067-genomics-tooling-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "genomics tooling delta calculator",
+    "genomics tooling delta calculator workflow",
+    "genomics tooling delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

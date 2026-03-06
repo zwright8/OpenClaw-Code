@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9023,
+  "name": "translation-pipelines-artifact-publisher",
+  "title": "Translation Pipelines Artifact Publisher",
+  "description": "Design and run translation pipelines workflows with artifact publisher controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 8023,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09023-translation-pipelines-artifact-publisher/SKILL.md",
+    "entrypoint": "agent07/09023-translation-pipelines-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "translation pipelines artifact publisher",
+    "translation pipelines artifact publisher workflow",
+    "translation pipelines artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

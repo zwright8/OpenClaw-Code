@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2872,
+  "name": "rail-scheduling-version-tracker",
+  "title": "Rail Scheduling Version Tracker",
+  "description": "Design and run rail scheduling workflows with version tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7343,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02872-rail-scheduling-version-tracker/SKILL.md",
+    "entrypoint": "agent03/02872-rail-scheduling-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling version tracker",
+    "rail scheduling version tracker workflow",
+    "rail scheduling version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

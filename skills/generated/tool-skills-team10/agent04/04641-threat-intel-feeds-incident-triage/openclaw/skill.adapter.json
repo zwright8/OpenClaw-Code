@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4641,
+  "name": "threat-intel-feeds-incident-triage",
+  "title": "Threat Intel Feeds Incident Triage",
+  "description": "Design and run threat intel feeds workflows with incident triage controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2089,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04641-threat-intel-feeds-incident-triage/SKILL.md",
+    "entrypoint": "agent04/04641-threat-intel-feeds-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds incident triage",
+    "threat intel feeds incident triage workflow",
+    "threat intel feeds incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

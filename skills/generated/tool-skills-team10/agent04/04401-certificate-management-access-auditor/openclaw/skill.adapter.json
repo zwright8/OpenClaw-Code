@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4401,
+  "name": "certificate-management-access-auditor",
+  "title": "Certificate Management Access Auditor",
+  "description": "Design and run certificate management workflows with access auditor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9480,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04401-certificate-management-access-auditor/SKILL.md",
+    "entrypoint": "agent04/04401-certificate-management-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management access auditor",
+    "certificate management access auditor workflow",
+    "certificate management access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

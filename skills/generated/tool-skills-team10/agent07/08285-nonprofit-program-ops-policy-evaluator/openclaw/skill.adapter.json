@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8285,
+  "name": "nonprofit-program-ops-policy-evaluator",
+  "title": "Nonprofit Program Ops Policy Evaluator",
+  "description": "Design and run nonprofit program ops workflows with policy evaluator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2330,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08285-nonprofit-program-ops-policy-evaluator/SKILL.md",
+    "entrypoint": "agent07/08285-nonprofit-program-ops-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "nonprofit program ops policy evaluator",
+    "nonprofit program ops policy evaluator workflow",
+    "nonprofit program ops policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

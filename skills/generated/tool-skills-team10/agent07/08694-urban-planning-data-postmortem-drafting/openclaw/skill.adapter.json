@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8694,
+  "name": "urban-planning-data-postmortem-drafting",
+  "title": "Urban Planning Data Postmortem Drafting",
+  "description": "Design and run urban planning data workflows with postmortem drafting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11031,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08694-urban-planning-data-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent07/08694-urban-planning-data-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data postmortem drafting",
+    "urban planning data postmortem drafting workflow",
+    "urban planning data postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9799,
+  "name": "community-forums-quality-gatekeeper",
+  "title": "Community Forums Quality Gatekeeper",
+  "description": "Design and run community forums workflows with quality gatekeeper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5590,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09799-community-forums-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent08/09799-community-forums-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums quality gatekeeper",
+    "community forums quality gatekeeper workflow",
+    "community forums quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

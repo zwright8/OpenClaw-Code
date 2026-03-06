@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5102,
+  "name": "infrastructure-as-code-auth-broker",
+  "title": "Infrastructure as Code Auth Broker",
+  "description": "Design and run infrastructure as code workflows with auth broker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 874,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/05102-infrastructure-as-code-auth-broker/SKILL.md",
+    "entrypoint": "agent04/05102-infrastructure-as-code-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code auth broker",
+    "infrastructure as code auth broker workflow",
+    "infrastructure as code auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

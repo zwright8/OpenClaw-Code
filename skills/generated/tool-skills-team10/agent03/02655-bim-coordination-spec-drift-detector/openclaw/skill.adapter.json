@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2655,
+  "name": "bim-coordination-spec-drift-detector",
+  "title": "BIM Coordination Spec Drift Detector",
+  "description": "Design and run bim coordination workflows with spec drift detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4084,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02655-bim-coordination-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent03/02655-bim-coordination-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination spec drift detector",
+    "bim coordination spec drift detector workflow",
+    "bim coordination spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

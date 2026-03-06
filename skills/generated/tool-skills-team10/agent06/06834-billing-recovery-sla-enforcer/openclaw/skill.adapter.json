@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6834,
+  "name": "billing-recovery-sla-enforcer",
+  "title": "Billing Recovery SLA Enforcer",
+  "description": "Design and run billing recovery workflows with sla enforcer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7238,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06834-billing-recovery-sla-enforcer/SKILL.md",
+    "entrypoint": "agent06/06834-billing-recovery-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery sla enforcer",
+    "billing recovery sla enforcer workflow",
+    "billing recovery sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5671,
+  "name": "feature-stores-snapshot-manager",
+  "title": "Feature Stores Snapshot Manager",
+  "description": "Design and run feature stores workflows with snapshot manager controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9886,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05671-feature-stores-snapshot-manager/SKILL.md",
+    "entrypoint": "agent05/05671-feature-stores-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "feature stores snapshot manager",
+    "feature stores snapshot manager workflow",
+    "feature stores snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

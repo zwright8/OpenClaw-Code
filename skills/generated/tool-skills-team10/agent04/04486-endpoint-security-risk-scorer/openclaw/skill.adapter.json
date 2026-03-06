@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4486,
+  "name": "endpoint-security-risk-scorer",
+  "title": "Endpoint Security Risk Scorer",
+  "description": "Design and run endpoint security workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 337,
+    "score": 91,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04486-endpoint-security-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/04486-endpoint-security-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security risk scorer",
+    "endpoint security risk scorer workflow",
+    "endpoint security risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

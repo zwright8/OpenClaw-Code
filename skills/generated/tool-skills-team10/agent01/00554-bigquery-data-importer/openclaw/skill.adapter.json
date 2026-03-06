@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 554,
+  "name": "bigquery-data-importer",
+  "title": "BigQuery Data Importer",
+  "description": "Validates and imports bulk updates into BigQuery.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12709,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00554-bigquery-data-importer/SKILL.md",
+    "entrypoint": "agent01/00554-bigquery-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bigquery data importer",
+    "bigquery data importer workflow",
+    "bigquery data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3646,
+  "name": "revops-systems-approval-orchestrator",
+  "title": "RevOps Systems Approval Orchestrator",
+  "description": "Design and run revops systems workflows with approval orchestrator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5940,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03646-revops-systems-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent03/03646-revops-systems-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revops systems approval orchestrator",
+    "revops systems approval orchestrator workflow",
+    "revops systems approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

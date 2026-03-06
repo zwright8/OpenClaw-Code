@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2619,
+  "name": "construction-pm-rollback-coordinator",
+  "title": "Construction PM Rollback Coordinator",
+  "description": "Design and run construction pm workflows with rollback coordinator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4925,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02619-construction-pm-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent03/02619-construction-pm-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm rollback coordinator",
+    "construction pm rollback coordinator workflow",
+    "construction pm rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

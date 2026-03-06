@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8445,
+  "name": "volunteer-coordination-runbook-composer",
+  "title": "Volunteer Coordination Runbook Composer",
+  "description": "Design and run volunteer coordination workflows with runbook composer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6389,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08445-volunteer-coordination-runbook-composer/SKILL.md",
+    "entrypoint": "agent07/08445-volunteer-coordination-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination runbook composer",
+    "volunteer coordination runbook composer workflow",
+    "volunteer coordination runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

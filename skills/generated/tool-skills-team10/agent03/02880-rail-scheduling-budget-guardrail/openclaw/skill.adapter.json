@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2880,
+  "name": "rail-scheduling-budget-guardrail",
+  "title": "Rail Scheduling Budget Guardrail",
+  "description": "Design and run rail scheduling workflows with budget guardrail controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7349,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02880-rail-scheduling-budget-guardrail/SKILL.md",
+    "entrypoint": "agent03/02880-rail-scheduling-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling budget guardrail",
+    "rail scheduling budget guardrail workflow",
+    "rail scheduling budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

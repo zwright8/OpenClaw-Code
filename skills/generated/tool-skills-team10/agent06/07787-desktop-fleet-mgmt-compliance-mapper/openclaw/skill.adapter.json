@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7787,
+  "name": "desktop-fleet-mgmt-compliance-mapper",
+  "title": "Desktop Fleet Mgmt Compliance Mapper",
+  "description": "Design and run desktop fleet mgmt workflows with compliance mapper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1885,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07787-desktop-fleet-mgmt-compliance-mapper/SKILL.md",
+    "entrypoint": "agent06/07787-desktop-fleet-mgmt-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "desktop fleet mgmt compliance mapper",
+    "desktop fleet mgmt compliance mapper workflow",
+    "desktop fleet mgmt compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

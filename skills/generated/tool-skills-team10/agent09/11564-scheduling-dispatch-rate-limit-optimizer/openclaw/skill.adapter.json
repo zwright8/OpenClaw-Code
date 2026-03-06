@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11564,
+  "name": "scheduling-dispatch-rate-limit-optimizer",
+  "title": "Scheduling Dispatch Rate Limit Optimizer",
+  "description": "Design and run scheduling dispatch workflows with rate limit optimizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6669,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11564-scheduling-dispatch-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent09/11564-scheduling-dispatch-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch rate limit optimizer",
+    "scheduling dispatch rate limit optimizer workflow",
+    "scheduling dispatch rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1788,
+  "name": "logistics-dispatch-pii-redactor",
+  "title": "Logistics Dispatch PII Redactor",
+  "description": "Design and run logistics dispatch workflows with pii redactor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3167,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01788-logistics-dispatch-pii-redactor/SKILL.md",
+    "entrypoint": "agent02/01788-logistics-dispatch-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch pii redactor",
+    "logistics dispatch pii redactor workflow",
+    "logistics dispatch pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

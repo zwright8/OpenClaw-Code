@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8548,
+  "name": "civic-engagement-feedback-harvester",
+  "title": "Civic Engagement Feedback Harvester",
+  "description": "Design and run civic engagement workflows with feedback harvester controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10991,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08548-civic-engagement-feedback-harvester/SKILL.md",
+    "entrypoint": "agent07/08548-civic-engagement-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement feedback harvester",
+    "civic engagement feedback harvester workflow",
+    "civic engagement feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

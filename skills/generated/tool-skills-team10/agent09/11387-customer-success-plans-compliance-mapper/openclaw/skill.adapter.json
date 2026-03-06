@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11387,
+  "name": "customer-success-plans-compliance-mapper",
+  "title": "Customer Success Plans Compliance Mapper",
+  "description": "Design and run customer success plans workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1959,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11387-customer-success-plans-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/11387-customer-success-plans-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans compliance mapper",
+    "customer success plans compliance mapper workflow",
+    "customer success plans compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

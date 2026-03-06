@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5162,
+  "name": "cloud-cost-platforms-job-scheduler",
+  "title": "Cloud Cost Platforms Job Scheduler",
+  "description": "Design and run cloud cost platforms workflows with job scheduler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2556,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05162-cloud-cost-platforms-job-scheduler/SKILL.md",
+    "entrypoint": "agent04/05162-cloud-cost-platforms-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms job scheduler",
+    "cloud cost platforms job scheduler workflow",
+    "cloud cost platforms job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

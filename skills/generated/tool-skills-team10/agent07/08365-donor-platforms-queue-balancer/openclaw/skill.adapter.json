@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8365,
+  "name": "donor-platforms-queue-balancer",
+  "title": "Donor Platforms Queue Balancer",
+  "description": "Design and run donor platforms workflows with queue balancer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10912,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08365-donor-platforms-queue-balancer/SKILL.md",
+    "entrypoint": "agent07/08365-donor-platforms-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms queue balancer",
+    "donor platforms queue balancer workflow",
+    "donor platforms queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

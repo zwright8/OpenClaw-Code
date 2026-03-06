@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10995,
+  "name": "inference-caches-runbook-composer",
+  "title": "Inference Caches Runbook Composer",
+  "description": "Design and run inference caches workflows with runbook composer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6611,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10995-inference-caches-runbook-composer/SKILL.md",
+    "entrypoint": "agent09/10995-inference-caches-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches runbook composer",
+    "inference caches runbook composer workflow",
+    "inference caches runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4751,
+  "name": "observability-stacks-access-auditor",
+  "title": "Observability Stacks Access Auditor",
+  "description": "Design and run observability stacks workflows with access auditor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7409,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04751-observability-stacks-access-auditor/SKILL.md",
+    "entrypoint": "agent04/04751-observability-stacks-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks access auditor",
+    "observability stacks access auditor workflow",
+    "observability stacks access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

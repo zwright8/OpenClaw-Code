@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2131,
+  "name": "digital-twins-cost-attribution",
+  "title": "Digital Twins Cost Attribution",
+  "description": "Design and run digital twins workflows with cost attribution controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8759,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02131-digital-twins-cost-attribution/SKILL.md",
+    "entrypoint": "agent02/02131-digital-twins-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins cost attribution",
+    "digital twins cost attribution workflow",
+    "digital twins cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

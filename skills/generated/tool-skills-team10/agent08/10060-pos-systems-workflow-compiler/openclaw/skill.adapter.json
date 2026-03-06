@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10060,
+  "name": "pos-systems-workflow-compiler",
+  "title": "POS Systems Workflow Compiler",
+  "description": "Design and run pos systems workflows with workflow compiler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1187,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10060-pos-systems-workflow-compiler/SKILL.md",
+    "entrypoint": "agent08/10060-pos-systems-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pos systems workflow compiler",
+    "pos systems workflow compiler workflow",
+    "pos systems workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

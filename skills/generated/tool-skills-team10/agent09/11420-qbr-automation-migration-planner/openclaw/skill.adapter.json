@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11420,
+  "name": "qbr-automation-migration-planner",
+  "title": "QBR Automation Migration Planner",
+  "description": "Design and run qbr automation workflows with migration planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4818,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11420-qbr-automation-migration-planner/SKILL.md",
+    "entrypoint": "agent09/11420-qbr-automation-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation migration planner",
+    "qbr automation migration planner workflow",
+    "qbr automation migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

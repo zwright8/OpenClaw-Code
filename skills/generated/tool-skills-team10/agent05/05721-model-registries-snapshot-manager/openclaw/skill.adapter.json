@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5721,
+  "name": "model-registries-snapshot-manager",
+  "title": "Model Registries Snapshot Manager",
+  "description": "Design and run model registries workflows with snapshot manager controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9907,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05721-model-registries-snapshot-manager/SKILL.md",
+    "entrypoint": "agent05/05721-model-registries-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries snapshot manager",
+    "model registries snapshot manager workflow",
+    "model registries snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

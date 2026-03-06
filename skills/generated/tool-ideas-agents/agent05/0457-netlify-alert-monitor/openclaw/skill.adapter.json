@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 457,
+  "name": "netlify-alert-monitor",
+  "title": "Netlify Alert Monitor",
+  "description": "Monitors key Netlify signals and raises actionable alerts.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0457-netlify-alert-monitor/SKILL.md",
+    "entrypoint": "agent05/0457-netlify-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "netlify alert monitor",
+    "netlify alert monitor workflow",
+    "netlify alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0457-netlify-alert-monitor"
+  }
+}

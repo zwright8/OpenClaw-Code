@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9188,
+  "name": "accessibility-auditing-pii-redactor",
+  "title": "Accessibility Auditing PII Redactor",
+  "description": "Design and run accessibility auditing workflows with pii redactor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3718,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09188-accessibility-auditing-pii-redactor/SKILL.md",
+    "entrypoint": "agent08/09188-accessibility-auditing-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing pii redactor",
+    "accessibility auditing pii redactor workflow",
+    "accessibility auditing pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

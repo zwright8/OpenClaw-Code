@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7282,
+  "name": "crowdsourcing-platforms-latency-analyzer",
+  "title": "Crowdsourcing Platforms Latency Analyzer",
+  "description": "Design and run crowdsourcing platforms workflows with latency analyzer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10482,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07282-crowdsourcing-platforms-latency-analyzer/SKILL.md",
+    "entrypoint": "agent06/07282-crowdsourcing-platforms-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms latency analyzer",
+    "crowdsourcing platforms latency analyzer workflow",
+    "crowdsourcing platforms latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

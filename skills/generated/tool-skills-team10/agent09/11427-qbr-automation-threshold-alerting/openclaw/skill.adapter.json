@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11427,
+  "name": "qbr-automation-threshold-alerting",
+  "title": "QBR Automation Threshold Alerting",
+  "description": "Design and run qbr automation workflows with threshold alerting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11969,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11427-qbr-automation-threshold-alerting/SKILL.md",
+    "entrypoint": "agent09/11427-qbr-automation-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation threshold alerting",
+    "qbr automation threshold alerting workflow",
+    "qbr automation threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

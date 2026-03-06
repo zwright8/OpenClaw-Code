@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5553,
+  "name": "metadata-stores-permission-mapper",
+  "title": "Metadata Stores Permission Mapper",
+  "description": "Design and run metadata stores workflows with permission mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3447,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05553-metadata-stores-permission-mapper/SKILL.md",
+    "entrypoint": "agent05/05553-metadata-stores-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores permission mapper",
+    "metadata stores permission mapper workflow",
+    "metadata stores permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

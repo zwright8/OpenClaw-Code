@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7561,
+  "name": "app-store-management-execution-runner",
+  "title": "App Store Management Execution Runner",
+  "description": "Design and run app store management workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1386,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07561-app-store-management-execution-runner/SKILL.md",
+    "entrypoint": "agent06/07561-app-store-management-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "app store management execution runner",
+    "app store management execution runner workflow",
+    "app store management execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7380,
+  "name": "experiment-platforms-budget-guardrail",
+  "title": "Experiment Platforms Budget Guardrail",
+  "description": "Design and run experiment platforms workflows with budget guardrail controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7515,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07380-experiment-platforms-budget-guardrail/SKILL.md",
+    "entrypoint": "agent06/07380-experiment-platforms-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms budget guardrail",
+    "experiment platforms budget guardrail workflow",
+    "experiment platforms budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

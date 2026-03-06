@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5624,
+  "name": "data-quality-hubs-evidence-collector",
+  "title": "Data Quality Hubs Evidence Collector",
+  "description": "Design and run data quality hubs workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2565,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05624-data-quality-hubs-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/05624-data-quality-hubs-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs evidence collector",
+    "data quality hubs evidence collector workflow",
+    "data quality hubs evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

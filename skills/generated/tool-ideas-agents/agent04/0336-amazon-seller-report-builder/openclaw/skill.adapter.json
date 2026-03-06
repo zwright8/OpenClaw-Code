@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 336,
+  "name": "amazon-seller-report-builder",
+  "title": "Amazon Seller Report Builder",
+  "description": "Generates operational and KPI reports from Amazon Seller activity.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0336-amazon-seller-report-builder/SKILL.md",
+    "entrypoint": "agent04/0336-amazon-seller-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "amazon seller report builder",
+    "amazon seller report builder workflow",
+    "amazon seller report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0336-amazon-seller-report-builder"
+  }
+}

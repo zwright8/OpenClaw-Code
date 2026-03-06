@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1334,
+  "name": "clinical-trial-systems-sla-enforcer",
+  "title": "Clinical Trial Systems SLA Enforcer",
+  "description": "Design and run clinical trial systems workflows with sla enforcer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8468,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01334-clinical-trial-systems-sla-enforcer/SKILL.md",
+    "entrypoint": "agent02/01334-clinical-trial-systems-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clinical trial systems sla enforcer",
+    "clinical trial systems sla enforcer workflow",
+    "clinical trial systems sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

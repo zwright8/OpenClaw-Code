@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3175,
+  "name": "aml-monitoring-provenance-tracker",
+  "title": "AML Monitoring Provenance Tracker",
+  "description": "Design and run aml monitoring workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9049,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03175-aml-monitoring-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/03175-aml-monitoring-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "aml monitoring provenance tracker",
+    "aml monitoring provenance tracker workflow",
+    "aml monitoring provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

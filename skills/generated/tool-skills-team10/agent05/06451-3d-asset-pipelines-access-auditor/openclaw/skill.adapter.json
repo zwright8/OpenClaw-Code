@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6451,
+  "name": "3d-asset-pipelines-access-auditor",
+  "title": "3D Asset Pipelines Access Auditor",
+  "description": "Design and run 3d asset pipelines workflows with access auditor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10194,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06451-3d-asset-pipelines-access-auditor/SKILL.md",
+    "entrypoint": "agent05/06451-3d-asset-pipelines-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines access auditor",
+    "3d asset pipelines access auditor workflow",
+    "3d asset pipelines access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

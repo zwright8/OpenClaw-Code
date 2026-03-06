@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7650,
+  "name": "device-labs-outcome-synthesizer",
+  "title": "Device Labs Outcome Synthesizer",
+  "description": "Design and run device labs workflows with outcome synthesizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7033,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07650-device-labs-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent06/07650-device-labs-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs outcome synthesizer",
+    "device labs outcome synthesizer workflow",
+    "device labs outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

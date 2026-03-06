@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4760,mkvdts2ac3,local-installable,Convert DTS audio to AC3 within a matroska file,https://github.com/JakeWharton/mkvdts2ac3,Apache-2.0
+4761,jsonschema2pojo,local-installable,Generates Java types from JSON Schema (or example JSON),https://www.jsonschema2pojo.org/,Apache-2.0
+4762,superlu,local-installable,"Solve large, sparse nonsymmetric systems of equations",https://portal.nersc.gov/project/sparse/superlu/,BSD-3-Clause-LBNL
+4763,ocp,local-installable,UNIX port of the Open Cubic Player,https://stian.cubic.org/project-ocp.php,GPL-2.0-or-later
+4764,libzzip,local-installable,Library providing read access on ZIP-archives,https://github.com/gdraheim/zziplib,LGPL-2.0-or-later OR MPL-1.1
+4765,mecab-ko-dic,local-installable,See mecab,https://bitbucket.org/eunjeon/mecab-ko-dic,Apache-2.0
+4767,iam-policy-json-to-terraform,local-installable,Convert a JSON IAM Policy into terraform,https://github.com/flosell/iam-policy-json-to-terraform,Apache-2.0
+4772,pdf-diff,local-installable,Tool for visualizing differences between two pdf files,https://github.com/serhack/pdf-diff,MIT
+4773,dillo,local-installable,Fast and small graphical web browser,https://dillo-browser.github.io/,GPL-3.0-or-later
+4774,minizip-ng,local-installable,Zip file manipulation library with minizip 1.x compatibility layer,https://github.com/zlib-ng/minizip-ng,Zlib
+4776,vultr,local-installable,Command-line tool for Vultr services,https://github.com/vultr/vultr-cli,Apache-2.0
+4777,age-plugin-yubikey,local-installable,Plugin for encrypting files with age and PIV tokens such as YubiKeys,https://github.com/str4d/age-plugin-yubikey,Apache-2.0 OR MIT
+4778,urdfdom,local-installable,Unified Robot Description Format (URDF) parser,https://wiki.ros.org/urdf/,BSD-3-Clause
+4780,shapelib,local-installable,Library for reading and writing ArcView Shapefiles,http://shapelib.maptools.org/,LGPL-2.0-or-later OR MIT
+4781,json5,local-installable,JSON enhanced with usability features,https://json5.org/,MIT
+4782,kwctl,local-installable,CLI tool for the Kubewarden policy engine for Kubernetes,https://www.kubewarden.io/,Apache-2.0
+4783,pass-git-helper,local-installable,Git credential helper interfacing with pass,https://github.com/languitar/pass-git-helper,LGPL-3.0-or-later
+4784,claude-code-templates,local-installable,CLI tool for configuring and monitoring Claude Code,https://www.aitmpl.com/agents,MIT
+4785,prism-cli,local-installable,Set of packages for API mocking and contract testing,https://stoplight.io/open-source/prism,Apache-2.0
+4787,rage,local-installable,"Simple, modern, secure file encryption",https://str4d.xyz/rage,MIT OR Apache-2.0
+4790,phive,local-installable,Phar Installation and Verification Environment (PHIVE),https://phar.io,BSD-3-Clause
+4791,libdazzle,local-installable,GNOME companion library to GObject and Gtk+,https://gitlab.gnome.org/GNOME/libdazzle,GPL-3.0-or-later
+4792,kubekey,local-installable,"Installer for Kubernetes and / or KubeSphere, and related cloud-native add-ons",https://kubesphere.io,Apache-2.0
+4793,scalingo,local-installable,CLI for working with Scalingo's PaaS,https://doc.scalingo.com/cli,BSD-4-Clause
+4794,sysaidmin,local-installable,GPT-powered sysadmin,https://github.com/skorokithakis/sysaidmin,AGPL-3.0-or-later
+4796,static-web-server,local-installable,High-performance and asynchronous web server for static files-serving,https://static-web-server.net,Apache-2.0 OR MIT

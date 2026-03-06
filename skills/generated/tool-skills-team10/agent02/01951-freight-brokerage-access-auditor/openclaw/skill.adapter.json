@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1951,
+  "name": "freight-brokerage-access-auditor",
+  "title": "Freight Brokerage Access Auditor",
+  "description": "Design and run freight brokerage workflows with access auditor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8682,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01951-freight-brokerage-access-auditor/SKILL.md",
+    "entrypoint": "agent02/01951-freight-brokerage-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage access auditor",
+    "freight brokerage access auditor workflow",
+    "freight brokerage access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

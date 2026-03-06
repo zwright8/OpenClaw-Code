@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 262,
+  "name": "stripe-sync-orchestrator",
+  "title": "Stripe Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Stripe records.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0262-stripe-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent03/0262-stripe-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "stripe sync orchestrator",
+    "stripe sync orchestrator workflow",
+    "stripe sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0262-stripe-sync-orchestrator"
+  }
+}

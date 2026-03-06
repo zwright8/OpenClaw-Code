@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 728,
+  "name": "miro-workflow-automator",
+  "title": "Miro Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Miro.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0728-miro-workflow-automator/SKILL.md",
+    "entrypoint": "agent08/0728-miro-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "miro workflow automator",
+    "miro workflow automator workflow",
+    "miro workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0728-miro-workflow-automator"
+  }
+}

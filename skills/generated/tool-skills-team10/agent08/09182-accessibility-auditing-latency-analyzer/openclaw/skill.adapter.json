@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9182,
+  "name": "accessibility-auditing-latency-analyzer",
+  "title": "Accessibility Auditing Latency Analyzer",
+  "description": "Design and run accessibility auditing workflows with latency analyzer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11196,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09182-accessibility-auditing-latency-analyzer/SKILL.md",
+    "entrypoint": "agent08/09182-accessibility-auditing-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing latency analyzer",
+    "accessibility auditing latency analyzer workflow",
+    "accessibility auditing latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 776,
+  "name": "x-twitter-report-builder",
+  "title": "X Twitter Report Builder",
+  "description": "Generates operational and KPI reports from X Twitter activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12865,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00776-x-twitter-report-builder/SKILL.md",
+    "entrypoint": "agent01/00776-x-twitter-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "x twitter report builder",
+    "x twitter report builder workflow",
+    "x twitter report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

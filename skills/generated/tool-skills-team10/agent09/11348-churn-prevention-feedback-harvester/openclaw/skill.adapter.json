@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11348,
+  "name": "churn-prevention-feedback-harvester",
+  "title": "Churn Prevention Feedback Harvester",
+  "description": "Design and run churn prevention workflows with feedback harvester controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11936,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11348-churn-prevention-feedback-harvester/SKILL.md",
+    "entrypoint": "agent09/11348-churn-prevention-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "churn prevention feedback harvester",
+    "churn prevention feedback harvester workflow",
+    "churn prevention feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

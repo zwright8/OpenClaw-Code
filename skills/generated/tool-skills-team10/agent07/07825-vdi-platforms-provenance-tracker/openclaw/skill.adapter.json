@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7825,
+  "name": "vdi-platforms-provenance-tracker",
+  "title": "VDI Platforms Provenance Tracker",
+  "description": "Design and run vdi platforms workflows with provenance tracker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10708,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07825-vdi-platforms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent07/07825-vdi-platforms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms provenance tracker",
+    "vdi platforms provenance tracker workflow",
+    "vdi platforms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

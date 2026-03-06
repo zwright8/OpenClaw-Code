@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10822,
+  "name": "semantic-retrieval-version-tracker",
+  "title": "Semantic Retrieval Version Tracker",
+  "description": "Design and run semantic retrieval workflows with version tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11714,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10822-semantic-retrieval-version-tracker/SKILL.md",
+    "entrypoint": "agent09/10822-semantic-retrieval-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval version tracker",
+    "semantic retrieval version tracker workflow",
+    "semantic retrieval version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

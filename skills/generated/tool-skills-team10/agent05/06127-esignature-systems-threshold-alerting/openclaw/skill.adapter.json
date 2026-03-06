@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6127,
+  "name": "esignature-systems-threshold-alerting",
+  "title": "eSignature Systems Threshold Alerting",
+  "description": "Design and run esignature systems workflows with threshold alerting controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10079,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06127-esignature-systems-threshold-alerting/SKILL.md",
+    "entrypoint": "agent05/06127-esignature-systems-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems threshold alerting",
+    "esignature systems threshold alerting workflow",
+    "esignature systems threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

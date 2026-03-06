@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1338,
+  "name": "clinical-trial-systems-pii-redactor",
+  "title": "Clinical Trial Systems PII Redactor",
+  "description": "Design and run clinical trial systems workflows with pii redactor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3132,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01338-clinical-trial-systems-pii-redactor/SKILL.md",
+    "entrypoint": "agent02/01338-clinical-trial-systems-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clinical trial systems pii redactor",
+    "clinical trial systems pii redactor workflow",
+    "clinical trial systems pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

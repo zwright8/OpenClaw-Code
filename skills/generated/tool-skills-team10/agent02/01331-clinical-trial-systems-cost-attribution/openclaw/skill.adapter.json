@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1331,
+  "name": "clinical-trial-systems-cost-attribution",
+  "title": "Clinical Trial Systems Cost Attribution",
+  "description": "Design and run clinical trial systems workflows with cost attribution controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8465,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01331-clinical-trial-systems-cost-attribution/SKILL.md",
+    "entrypoint": "agent02/01331-clinical-trial-systems-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clinical trial systems cost attribution",
+    "clinical trial systems cost attribution workflow",
+    "clinical trial systems cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

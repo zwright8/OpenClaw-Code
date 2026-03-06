@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12169,
+  "name": "audit-trails-rollback-coordinator",
+  "title": "Audit Trails Rollback Coordinator",
+  "description": "Design and run audit trails workflows with rollback coordinator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2609,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12169-audit-trails-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent10/12169-audit-trails-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails rollback coordinator",
+    "audit trails rollback coordinator workflow",
+    "audit trails rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

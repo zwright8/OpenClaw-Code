@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5178,
+  "name": "cloud-cost-platforms-forecast-engine",
+  "title": "Cloud Cost Platforms Forecast Engine",
+  "description": "Design and run cloud cost platforms workflows with forecast engine controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7469,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05178-cloud-cost-platforms-forecast-engine/SKILL.md",
+    "entrypoint": "agent04/05178-cloud-cost-platforms-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms forecast engine",
+    "cloud cost platforms forecast engine workflow",
+    "cloud cost platforms forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

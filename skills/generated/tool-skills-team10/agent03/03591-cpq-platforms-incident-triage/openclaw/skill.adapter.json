@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3591,
+  "name": "cpq-platforms-incident-triage",
+  "title": "CPQ Platforms Incident Triage",
+  "description": "Design and run cpq platforms workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2062,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03591-cpq-platforms-incident-triage/SKILL.md",
+    "entrypoint": "agent03/03591-cpq-platforms-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cpq platforms incident triage",
+    "cpq platforms incident triage workflow",
+    "cpq platforms incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

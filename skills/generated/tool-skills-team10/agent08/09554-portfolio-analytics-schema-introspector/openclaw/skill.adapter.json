@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9554,
+  "name": "portfolio-analytics-schema-introspector",
+  "title": "Portfolio Analytics Schema Introspector",
+  "description": "Design and run portfolio analytics workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 705,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09554-portfolio-analytics-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/09554-portfolio-analytics-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics schema introspector",
+    "portfolio analytics schema introspector workflow",
+    "portfolio analytics schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

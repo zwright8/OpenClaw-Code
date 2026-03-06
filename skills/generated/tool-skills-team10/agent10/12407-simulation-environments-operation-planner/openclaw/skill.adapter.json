@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12407,
+  "name": "simulation-environments-operation-planner",
+  "title": "Simulation Environments Operation Planner",
+  "description": "Design and run simulation environments workflows with operation planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12316,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12407-simulation-environments-operation-planner/SKILL.md",
+    "entrypoint": "agent10/12407-simulation-environments-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments operation planner",
+    "simulation environments operation planner workflow",
+    "simulation environments operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

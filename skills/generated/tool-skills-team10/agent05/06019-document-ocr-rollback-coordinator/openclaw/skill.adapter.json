@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6019,
+  "name": "document-ocr-rollback-coordinator",
+  "title": "Document OCR Rollback Coordinator",
+  "description": "Design and run document ocr workflows with rollback coordinator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5035,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06019-document-ocr-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent05/06019-document-ocr-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr rollback coordinator",
+    "document ocr rollback coordinator workflow",
+    "document ocr rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3456,
+  "name": "procure-to-pay-api-contract-validator",
+  "title": "Procure to Pay API Contract Validator",
+  "description": "Design and run procure to pay workflows with api contract validator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 105,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent03/03456-procure-to-pay-api-contract-validator/SKILL.md",
+    "entrypoint": "agent03/03456-procure-to-pay-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay api contract validator",
+    "procure to pay api contract validator workflow",
+    "procure to pay api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

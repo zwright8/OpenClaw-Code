@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3987,
+  "name": "campaign-automation-compliance-mapper",
+  "title": "Campaign Automation Compliance Mapper",
+  "description": "Design and run campaign automation workflows with compliance mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 772,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/03987-campaign-automation-compliance-mapper/SKILL.md",
+    "entrypoint": "agent04/03987-campaign-automation-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation compliance mapper",
+    "campaign automation compliance mapper workflow",
+    "campaign automation compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12358,
+  "name": "synthetic-data-platforms-task-decomposer",
+  "title": "Synthetic Data Platforms Task Decomposer",
+  "description": "Design and run synthetic data platforms workflows with task decomposer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12296,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12358-synthetic-data-platforms-task-decomposer/SKILL.md",
+    "entrypoint": "agent10/12358-synthetic-data-platforms-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms task decomposer",
+    "synthetic data platforms task decomposer workflow",
+    "synthetic data platforms task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

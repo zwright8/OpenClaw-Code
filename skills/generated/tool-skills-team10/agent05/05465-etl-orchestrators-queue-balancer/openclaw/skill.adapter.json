@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5465,
+  "name": "etl-orchestrators-queue-balancer",
+  "title": "ETL Orchestrators Queue Balancer",
+  "description": "Design and run etl orchestrators workflows with queue balancer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9820,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05465-etl-orchestrators-queue-balancer/SKILL.md",
+    "entrypoint": "agent05/05465-etl-orchestrators-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators queue balancer",
+    "etl orchestrators queue balancer workflow",
+    "etl orchestrators queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

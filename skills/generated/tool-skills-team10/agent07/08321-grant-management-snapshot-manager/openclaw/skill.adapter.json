@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8321,
+  "name": "grant-management-snapshot-manager",
+  "title": "Grant Management Snapshot Manager",
+  "description": "Design and run grant management workflows with snapshot manager controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10894,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08321-grant-management-snapshot-manager/SKILL.md",
+    "entrypoint": "agent07/08321-grant-management-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grant management snapshot manager",
+    "grant management snapshot manager workflow",
+    "grant management snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

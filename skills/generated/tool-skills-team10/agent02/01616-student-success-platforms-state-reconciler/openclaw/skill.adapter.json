@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1616,
+  "name": "student-success-platforms-state-reconciler",
+  "title": "Student Success Platforms State Reconciler",
+  "description": "Design and run student success platforms workflows with state reconciler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4047,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01616-student-success-platforms-state-reconciler/SKILL.md",
+    "entrypoint": "agent02/01616-student-success-platforms-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms state reconciler",
+    "student success platforms state reconciler workflow",
+    "student success platforms state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

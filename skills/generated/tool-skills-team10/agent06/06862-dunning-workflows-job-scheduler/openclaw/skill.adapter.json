@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6862,
+  "name": "dunning-workflows-job-scheduler",
+  "title": "Dunning Workflows Job Scheduler",
+  "description": "Design and run dunning workflows workflows with job scheduler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5064,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06862-dunning-workflows-job-scheduler/SKILL.md",
+    "entrypoint": "agent06/06862-dunning-workflows-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dunning workflows job scheduler",
+    "dunning workflows job scheduler workflow",
+    "dunning workflows job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

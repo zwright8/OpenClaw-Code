@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12013,
+  "name": "ethics-review-boards-retry-governor",
+  "title": "Ethics Review Boards Retry Governor",
+  "description": "Design and run ethics review boards workflows with retry governor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6713,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12013-ethics-review-boards-retry-governor/SKILL.md",
+    "entrypoint": "agent10/12013-ethics-review-boards-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards retry governor",
+    "ethics review boards retry governor workflow",
+    "ethics review boards retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10704,
+  "name": "vector-datastores-schema-introspector",
+  "title": "Vector Datastores Schema Introspector",
+  "description": "Design and run vector datastores workflows with schema introspector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 727,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10704-vector-datastores-schema-introspector/SKILL.md",
+    "entrypoint": "agent09/10704-vector-datastores-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores schema introspector",
+    "vector datastores schema introspector workflow",
+    "vector datastores schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

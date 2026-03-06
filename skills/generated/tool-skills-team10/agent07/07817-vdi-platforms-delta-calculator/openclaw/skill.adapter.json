@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7817,
+  "name": "vdi-platforms-delta-calculator",
+  "title": "VDI Platforms Delta Calculator",
+  "description": "Design and run vdi platforms workflows with delta calculator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10703,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07817-vdi-platforms-delta-calculator/SKILL.md",
+    "entrypoint": "agent07/07817-vdi-platforms-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms delta calculator",
+    "vdi platforms delta calculator workflow",
+    "vdi platforms delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

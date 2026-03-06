@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 453,
+  "name": "netlify-data-exporter",
+  "title": "Netlify Data Exporter",
+  "description": "Exports Netlify entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12645,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00453-netlify-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00453-netlify-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "netlify data exporter",
+    "netlify data exporter workflow",
+    "netlify data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3742,
+  "name": "customer-data-platforms-root-cause-miner",
+  "title": "Customer Data Platforms Root Cause Miner",
+  "description": "Design and run customer data platforms workflows with root cause miner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4560,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03742-customer-data-platforms-root-cause-miner/SKILL.md",
+    "entrypoint": "agent03/03742-customer-data-platforms-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer data platforms root cause miner",
+    "customer data platforms root cause miner workflow",
+    "customer data platforms root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

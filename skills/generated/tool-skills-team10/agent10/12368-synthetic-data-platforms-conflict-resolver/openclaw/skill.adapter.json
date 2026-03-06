@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12368,
+  "name": "synthetic-data-platforms-conflict-resolver",
+  "title": "Synthetic Data Platforms Conflict Resolver",
+  "description": "Design and run synthetic data platforms workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12300,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12368-synthetic-data-platforms-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/12368-synthetic-data-platforms-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms conflict resolver",
+    "synthetic data platforms conflict resolver workflow",
+    "synthetic data platforms conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

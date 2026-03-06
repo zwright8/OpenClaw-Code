@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10328,
+  "name": "kyc-pipelines-forecast-engine",
+  "title": "KYC Pipelines Forecast Engine",
+  "description": "Design and run kyc pipelines workflows with forecast engine controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11571,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10328-kyc-pipelines-forecast-engine/SKILL.md",
+    "entrypoint": "agent08/10328-kyc-pipelines-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines forecast engine",
+    "kyc pipelines forecast engine workflow",
+    "kyc pipelines forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

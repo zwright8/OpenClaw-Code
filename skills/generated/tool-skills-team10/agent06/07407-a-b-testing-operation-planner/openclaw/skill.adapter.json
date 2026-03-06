@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7407,
+  "name": "a-b-testing-operation-planner",
+  "title": "A/B Testing Operation Planner",
+  "description": "Design and run a/b testing workflows with operation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10531,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07407-a-b-testing-operation-planner/SKILL.md",
+    "entrypoint": "agent06/07407-a-b-testing-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing operation planner",
+    "a/b testing operation planner workflow",
+    "a/b testing operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

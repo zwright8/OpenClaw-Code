@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12017,
+  "name": "ethics-review-boards-delta-calculator",
+  "title": "Ethics Review Boards Delta Calculator",
+  "description": "Design and run ethics review boards workflows with delta calculator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12215,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12017-ethics-review-boards-delta-calculator/SKILL.md",
+    "entrypoint": "agent10/12017-ethics-review-boards-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards delta calculator",
+    "ethics review boards delta calculator workflow",
+    "ethics review boards delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

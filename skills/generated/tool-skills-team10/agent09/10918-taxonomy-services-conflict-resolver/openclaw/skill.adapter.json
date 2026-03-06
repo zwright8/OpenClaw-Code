@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10918,
+  "name": "taxonomy-services-conflict-resolver",
+  "title": "Taxonomy Services Conflict Resolver",
+  "description": "Design and run taxonomy services workflows with conflict resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11754,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10918-taxonomy-services-conflict-resolver/SKILL.md",
+    "entrypoint": "agent09/10918-taxonomy-services-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services conflict resolver",
+    "taxonomy services conflict resolver workflow",
+    "taxonomy services conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

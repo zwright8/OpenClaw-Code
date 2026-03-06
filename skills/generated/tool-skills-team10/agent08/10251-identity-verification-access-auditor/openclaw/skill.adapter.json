@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10251,
+  "name": "identity-verification-access-auditor",
+  "title": "Identity Verification Access Auditor",
+  "description": "Design and run identity verification workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6537,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10251-identity-verification-access-auditor/SKILL.md",
+    "entrypoint": "agent08/10251-identity-verification-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification access auditor",
+    "identity verification access auditor workflow",
+    "identity verification access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

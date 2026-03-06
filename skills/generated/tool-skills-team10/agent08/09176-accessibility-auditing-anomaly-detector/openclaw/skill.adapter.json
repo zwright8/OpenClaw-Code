@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9176,
+  "name": "accessibility-auditing-anomaly-detector",
+  "title": "Accessibility Auditing Anomaly Detector",
+  "description": "Design and run accessibility auditing workflows with anomaly detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5572,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09176-accessibility-auditing-anomaly-detector/SKILL.md",
+    "entrypoint": "agent08/09176-accessibility-auditing-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing anomaly detector",
+    "accessibility auditing anomaly detector workflow",
+    "accessibility auditing anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

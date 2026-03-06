@@ -104,6 +104,8 @@ export class RecoverySupervisor {
         timeoutRateThreshold = 0.18,
         failureRateThreshold = 0.2,
         avgAttemptsThreshold = 1.6,
+        retryBudgetRateThreshold = 0.2,
+        minRequestsForRetryBudget = 100,
         dispatchErrorThreshold = 3,
         agentSuccessRateThreshold = 0.6,
         agentTimeoutRateThreshold = 0.25,
@@ -132,6 +134,7 @@ export class RecoverySupervisor {
         const avgTimeoutRate = window.reduce((acc, row) => acc + row.simulation.timeoutRate, 0) / window.length;
         const avgFailureRate = window.reduce((acc, row) => acc + row.simulation.failureRate, 0) / window.length;
         const avgAttempts = window.reduce((acc, row) => acc + row.orchestrator.avgAttempts, 0) / window.length;
+        const avgRequests = window.reduce((acc, row) => acc + Math.max(0, row.orchestrator.total), 0) / window.length;
         const totalDispatchErrors = window.reduce((acc, row) => acc + row.simulation.dispatchErrorCount, 0);
         const totalWindowRequests = window.reduce((acc, row) => acc + row.orchestrator.terminal, 0);
 
@@ -213,6 +216,25 @@ export class RecoverySupervisor {
                 metrics: {
                     avgAttempts,
                     threshold: avgAttemptsThreshold
+                },
+                windowStartAt: startAt,
+                windowEndAt: endAt
+            });
+        }
+
+        const observedRetryRate = Math.max(0, avgAttempts - 1);
+        if (avgRequests >= minRequestsForRetryBudget && observedRetryRate >= retryBudgetRateThreshold) {
+            incidents.push({
+                code: 'retry_budget_exhausted',
+                priority: 'P1',
+                severity: 'high',
+                target: 'global',
+                summary: `Retry rate ${observedRetryRate.toFixed(4)} exceeded budget ${retryBudgetRateThreshold}`,
+                metrics: {
+                    observedRetryRate,
+                    threshold: retryBudgetRateThreshold,
+                    avgRequests,
+                    minRequestsForRetryBudget
                 },
                 windowStartAt: startAt,
                 windowEndAt: endAt
@@ -360,6 +382,25 @@ export class RecoverySupervisor {
                 });
             }
 
+            if (incident.code === 'retry_budget_exhausted') {
+                actions.push({
+                    incidentCode: incident.code,
+                    priority: 'P1',
+                    actionType: 'enforce_retry_budget',
+                    target: 'global',
+                    title: 'Enforce retry budgets and cap non-idempotent retries',
+                    description: incident.summary
+                });
+                actions.push({
+                    incidentCode: incident.code,
+                    priority: 'P1',
+                    actionType: 'shed_noncritical_load',
+                    target: 'global',
+                    title: 'Shed non-critical load to preserve critical task success',
+                    description: incident.summary
+                });
+            }
+
             if (incident.code === 'agent_overloaded' || incident.code === 'agent_timeout_hotspot') {
                 actions.push({
                     incidentCode: incident.code,
@@ -414,8 +455,8 @@ export class RecoverySupervisor {
             benchmark_rerun: 'agent:simulation',
             increase_retry_delay: 'agent:ops',
             tune_timeout_budget: 'agent:ops',
-            enable_circuit_breaker: 'agent:reliability',
-            enforce_full_jitter_backoff: 'agent:ops'
+            enforce_retry_budget: 'agent:ops',
+            shed_noncritical_load: 'agent:routing'
         }
     } = {}) {
         const items = Array.isArray(actions) ? actions : [];

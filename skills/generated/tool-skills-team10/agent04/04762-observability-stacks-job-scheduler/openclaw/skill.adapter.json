@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4762,
+  "name": "observability-stacks-job-scheduler",
+  "title": "Observability Stacks Job Scheduler",
+  "description": "Design and run observability stacks workflows with job scheduler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2552,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04762-observability-stacks-job-scheduler/SKILL.md",
+    "entrypoint": "agent04/04762-observability-stacks-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks job scheduler",
+    "observability stacks job scheduler workflow",
+    "observability stacks job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10989,
+  "name": "inference-caches-secret-scanner",
+  "title": "Inference Caches Secret Scanner",
+  "description": "Design and run inference caches workflows with secret scanner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3019,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10989-inference-caches-secret-scanner/SKILL.md",
+    "entrypoint": "agent09/10989-inference-caches-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches secret scanner",
+    "inference caches secret scanner workflow",
+    "inference caches secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

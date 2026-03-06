@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12916,
+  "name": "universal-toolchain-09-state-reconciler",
+  "title": "Universal Toolchain 09 State Reconciler",
+  "description": "Design and run universal toolchain 09 workflows with state reconciler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4030,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12916-universal-toolchain-09-state-reconciler/SKILL.md",
+    "entrypoint": "agent10/12916-universal-toolchain-09-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 09 state reconciler",
+    "universal toolchain 09 state reconciler workflow",
+    "universal toolchain 09 state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

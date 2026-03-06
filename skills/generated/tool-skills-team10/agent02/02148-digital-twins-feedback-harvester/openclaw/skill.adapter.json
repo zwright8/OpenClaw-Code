@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2148,
+  "name": "digital-twins-feedback-harvester",
+  "title": "Digital Twins Feedback Harvester",
+  "description": "Design and run digital twins workflows with feedback harvester controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8765,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02148-digital-twins-feedback-harvester/SKILL.md",
+    "entrypoint": "agent02/02148-digital-twins-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins feedback harvester",
+    "digital twins feedback harvester workflow",
+    "digital twins feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

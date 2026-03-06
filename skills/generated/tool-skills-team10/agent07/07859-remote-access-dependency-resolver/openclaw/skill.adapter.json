@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7859,
+  "name": "remote-access-dependency-resolver",
+  "title": "Remote Access Dependency Resolver",
+  "description": "Design and run remote access workflows with dependency resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10722,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07859-remote-access-dependency-resolver/SKILL.md",
+    "entrypoint": "agent07/07859-remote-access-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access dependency resolver",
+    "remote access dependency resolver workflow",
+    "remote access dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

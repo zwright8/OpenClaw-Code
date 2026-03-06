@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7742,
+  "name": "in-app-messaging-root-cause-miner",
+  "title": "In-App Messaging Root Cause Miner",
+  "description": "Design and run in-app messaging workflows with root cause miner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4693,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07742-in-app-messaging-root-cause-miner/SKILL.md",
+    "entrypoint": "agent06/07742-in-app-messaging-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging root cause miner",
+    "in-app messaging root cause miner workflow",
+    "in-app messaging root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

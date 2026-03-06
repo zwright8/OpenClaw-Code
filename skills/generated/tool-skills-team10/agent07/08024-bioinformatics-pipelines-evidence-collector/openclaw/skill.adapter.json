@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8024,
+  "name": "bioinformatics-pipelines-evidence-collector",
+  "title": "Bioinformatics Pipelines Evidence Collector",
+  "description": "Design and run bioinformatics pipelines workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6353,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08024-bioinformatics-pipelines-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/08024-bioinformatics-pipelines-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines evidence collector",
+    "bioinformatics pipelines evidence collector workflow",
+    "bioinformatics pipelines evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

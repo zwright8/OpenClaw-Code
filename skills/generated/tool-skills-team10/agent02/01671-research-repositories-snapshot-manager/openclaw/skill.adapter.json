@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1671,
+  "name": "research-repositories-snapshot-manager",
+  "title": "Research Repositories Snapshot Manager",
+  "description": "Design and run research repositories workflows with snapshot manager controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8563,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01671-research-repositories-snapshot-manager/SKILL.md",
+    "entrypoint": "agent02/01671-research-repositories-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories snapshot manager",
+    "research repositories snapshot manager workflow",
+    "research repositories snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

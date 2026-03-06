@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1169,
+  "name": "compliance-registries-rollback-coordinator",
+  "title": "Compliance Registries Rollback Coordinator",
+  "description": "Design and run compliance registries workflows with rollback coordinator controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 2288,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01169-compliance-registries-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent01/01169-compliance-registries-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "compliance registries rollback coordinator",
+    "compliance registries rollback coordinator workflow",
+    "compliance registries rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

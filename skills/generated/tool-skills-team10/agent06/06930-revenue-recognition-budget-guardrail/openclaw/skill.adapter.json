@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6930,
+  "name": "revenue-recognition-budget-guardrail",
+  "title": "Revenue Recognition Budget Guardrail",
+  "description": "Design and run revenue recognition workflows with budget guardrail controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7507,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06930-revenue-recognition-budget-guardrail/SKILL.md",
+    "entrypoint": "agent06/06930-revenue-recognition-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revenue recognition budget guardrail",
+    "revenue recognition budget guardrail workflow",
+    "revenue recognition budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

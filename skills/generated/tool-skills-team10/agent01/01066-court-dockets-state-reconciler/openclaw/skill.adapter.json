@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1066,
+  "name": "court-dockets-state-reconciler",
+  "title": "Court Dockets State Reconciler",
+  "description": "Design and run court dockets workflows with state reconciler controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 4034,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01066-court-dockets-state-reconciler/SKILL.md",
+    "entrypoint": "agent01/01066-court-dockets-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets state reconciler",
+    "court dockets state reconciler workflow",
+    "court dockets state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

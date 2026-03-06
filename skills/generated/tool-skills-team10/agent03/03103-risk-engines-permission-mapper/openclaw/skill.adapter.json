@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3103,
+  "name": "risk-engines-permission-mapper",
+  "title": "Risk Engines Permission Mapper",
+  "description": "Design and run risk engines workflows with permission mapper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1526,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03103-risk-engines-permission-mapper/SKILL.md",
+    "entrypoint": "agent03/03103-risk-engines-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines permission mapper",
+    "risk engines permission mapper workflow",
+    "risk engines permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

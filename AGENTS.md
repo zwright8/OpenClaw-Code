@@ -1,48 +1,39 @@
-# OpenClaw-Code Agent Guide
+# AGENTS.md
 
-This repository is an external capability pack for OpenClaw and other agentic bots.
-Use it as a toolkit, not as a standalone app.
+## Verified Workflows (Repo-Root)
+- `npm run typecheck` - typecheck root + `cognition-core` + `swarm-protocol`.
+- `npm run build` - runs root lint plus tests in both packages.
+- `npm run capabilities:blueprint` - regenerate capability blueprint artifacts.
+- `npm run capabilities:audit` - run capability deployability audit.
+- `npm run skills:sync` - execute the full 1000-skill lifecycle pipeline.
+- `npm run skills:marketplace:ship` - build/validate/package/validate/demo marketplace outputs.
+- `npm run skills:marketplace:build` - build marketplace skills output set.
+- `npm run skills:marketplace:validate` - validate marketplace skills output set.
+- `npm run skills:marketplace:analytics` - generate marketplace analytics outputs.
+- `npm run skills:marketplace:release` - package marketplace release artifacts.
+- `npm run skills:marketplace:release:validate` - validate packaged marketplace release.
+- `npm run skills:marketplace:v2:build` - build marketplace skill packages v2.
+- `npm run skills:marketplace:v2:validate` - validate marketplace skill packages v2.
+- `npm run skills:marketplace:v2:demo` - run top-package demo for v2 outputs.
+- `npm run skills:registry:build` - build the skill registry manifest.
+- `npm run skills:registry:validate` - validate the generated skill registry.
+- `npm run skills:route` - run skill routing against registry metadata.
+- `npm run skills:run` - execute SkillOS runtime entrypoint.
 
-## 1-Minute Start
+## Verified Package Workflows
+- `npm --prefix cognition-core run analyze` - generate 7-day cognition analysis.
+- `npm --prefix cognition-core run analyze:quick` - generate 1-day quick cognition analysis.
+- `npm --prefix cognition-core run plan:tasks` - emit remediation task requests.
+- `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
+- `npm --prefix cognition-core run outcomes:export` - export swarm outcomes for analysis.
+- `npm --prefix cognition-core run stability:whatsapp` - generate WhatsApp stability report.
+- `npm --prefix cognition-core run ingest` - ingest new telemetry/events.
+- `npm --prefix swarm-protocol run demo:orchestrator` - run orchestrator demo flow.
+- `npm --prefix swarm-protocol run approval:queue` - export approval queue reports.
+- `npm --prefix swarm-protocol run benchmark:simulate` - run simulation benchmark scenario.
+- `npm --prefix swarm-protocol run ops -- status` - inspect operator status.
+- `npm --prefix swarm-protocol run ops -- queue --limit 10` - inspect operator queue.
+- `npm --prefix swarm-protocol run ops -- tail --limit 20` - tail recent operator events.
 
-1. Read this file fully once.
-2. Parse [`AGENT_MAP.json`](./AGENT_MAP.json) for machine-routable commands.
-3. Run:
-   - `npm run agent:validate` before/after edits
-
-## What Lives Where
-
-- `cognition-core/`: telemetry analysis and learning-loop reports from task outcomes.
-- `swarm-protocol/`: runtime primitives (schemas, orchestration, routing, recovery).
-- `scripts/`: generators/maintenance workflows for large capability and skill surfaces.
-- `skills/`: generated skill artifacts and marketplace packs.
-
-## Intent -> Command Routing
-
-- Validate repo health:
-  - `npm run agent:validate`
-- Analyze recent operational history:
-  - `npm --prefix cognition-core run analyze:quick`
-- Generate learning-loop report from task journal:
-  - `npm --prefix cognition-core run learn:loop`
-- Run swarm protocol tests only:
-  - `npm --prefix swarm-protocol run test:unit`
-
-## Safe Editing Rules
-
-- Prefer editing:
-  - `cognition-core/src/*.ts`
-  - `swarm-protocol/src/*.ts`
-  - `scripts/*.ts` (only when changing generation logic)
-- Do not hand-edit generated outputs unless explicitly required:
-  - `skills/generated-10000/**`
-  - `skills/marketplace/v2/packages/**`
-  - large generated catalogs/manifests
-- If behavior appears duplicated in many generated files, change the source generator in `scripts/` instead of patching generated files one-by-one.
-
-## Definition of Done
-
-1. Changes are constrained to the smallest necessary surface area.
-2. `npm run agent:validate` passes.
-3. Docs or machine map updated if command paths changed.
-4. Commit message describes user-facing capability change, not only refactors.
+## TODO
+- Confirm command ownership for newly added `cognition-core` automation scripts (`evaluate`, `report`, `run`, `dispatch`, `status`, `scorecard`, `tune:recommendations`, `full:utilization`) before promoting them to default AGENTS workflows.

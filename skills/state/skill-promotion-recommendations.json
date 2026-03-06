@@ -1,0 +1,5045 @@
+{
+  "version": 1,
+  "sourcePerformanceVersion": 1,
+  "sourceCatalogGeneratedAt": "2026-02-26T22:10:25.263Z",
+  "sourceArtifacts": [
+    {
+      "file": "runtime.rollout-control.json",
+      "generatedAt": "2026-02-26T05:47:43.244Z"
+    },
+    {
+      "file": "runtime.rollout-optimized-control.json",
+      "generatedAt": "2026-02-26T05:47:43.244Z"
+    },
+    {
+      "file": "runtime.rollout-promotion-control.json",
+      "generatedAt": "2026-02-26T05:47:45.049Z"
+    },
+    {
+      "file": "runtime.rollout-selected-control.json",
+      "generatedAt": "2026-02-26T05:47:43.843Z"
+    }
+  ],
+  "thresholds": {
+    "minTerminalRuns": 2,
+    "promoteMinSuccessRate": 0.9,
+    "promoteMaxP95LatencyMs": 30000,
+    "promoteMaxApprovalPendingRatio": 0.25,
+    "promoteMaxFailureRatio": 0.1,
+    "demoteMaxSuccessRate": 0.6,
+    "demoteMinFailureRatio": 0.25,
+    "demoteMinApprovalPendingRatio": 0.4
+  },
+  "summary": {
+    "totalSkills": 1000,
+    "promoteCount": 276,
+    "holdCount": 566,
+    "demoteCount": 158
+  },
+  "promote": [
+    {
+      "skillId": 2,
+      "skillName": "u0002-epistemic-context-window-prioritizer",
+      "reason": "successRate=1.0000, p95=12454ms, approvalPendingRatio=0.1111, failureRatio=0.0000"
+    },
+    {
+      "skillId": 4,
+      "skillName": "u0004-epistemic-contradiction-detector",
+      "reason": "successRate=1.0000, p95=20850ms, approvalPendingRatio=0.1111, failureRatio=0.0000"
+    },
+    {
+      "skillId": 6,
+      "skillName": "u0006-epistemic-counterfactual-simulator",
+      "reason": "successRate=1.0000, p95=21610ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 7,
+      "skillName": "u0007-epistemic-goal-decomposer",
+      "reason": "successRate=1.0000, p95=23933ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 12,
+      "skillName": "u0012-epistemic-human-approval-router",
+      "reason": "successRate=1.0000, p95=27517ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 13,
+      "skillName": "u0013-epistemic-task-handoff-contractor",
+      "reason": "successRate=1.0000, p95=16707ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 16,
+      "skillName": "u0016-epistemic-failure-root-cause-miner",
+      "reason": "successRate=1.0000, p95=6297.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 17,
+      "skillName": "u0017-epistemic-regression-sentinel",
+      "reason": "successRate=1.0000, p95=20601ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 19,
+      "skillName": "u0019-epistemic-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=12565ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 21,
+      "skillName": "u0021-epistemic-plan-quality-evaluator",
+      "reason": "successRate=1.0000, p95=19195ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 26,
+      "skillName": "u0026-epistemic-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=24036.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 27,
+      "skillName": "u0027-epistemic-a-b-rollout-governor",
+      "reason": "successRate=1.0000, p95=13720ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 28,
+      "skillName": "u0028-epistemic-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=15872.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 30,
+      "skillName": "u0030-epistemic-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=18001.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 31,
+      "skillName": "u0031-epistemic-security-threat-modeler",
+      "reason": "successRate=1.0000, p95=27940ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 36,
+      "skillName": "u0036-epistemic-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=11883ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 38,
+      "skillName": "u0038-epistemic-training-curriculum-composer",
+      "reason": "successRate=1.0000, p95=13610ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 41,
+      "skillName": "u0041-planning-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=23421.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 42,
+      "skillName": "u0042-planning-context-window-prioritizer",
+      "reason": "successRate=1.0000, p95=19606.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 51,
+      "skillName": "u0051-planning-policy-constraint-compiler",
+      "reason": "successRate=1.0000, p95=22118ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 54,
+      "skillName": "u0054-planning-tool-health-monitor",
+      "reason": "successRate=1.0000, p95=9961ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 62,
+      "skillName": "u0062-planning-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=25427.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 63,
+      "skillName": "u0063-planning-conflict-resolution-coach",
+      "reason": "successRate=1.0000, p95=22158ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 64,
+      "skillName": "u0064-planning-explainability-narrative-builder",
+      "reason": "successRate=1.0000, p95=18111ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 65,
+      "skillName": "u0065-planning-uncertainty-communicator",
+      "reason": "successRate=1.0000, p95=21408.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 66,
+      "skillName": "u0066-planning-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=26324ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 81,
+      "skillName": "u0081-memory-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=20917.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 92,
+      "skillName": "u0092-memory-human-approval-router",
+      "reason": "successRate=1.0000, p95=18151.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 95,
+      "skillName": "u0095-memory-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=1.0000, p95=19641.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 99,
+      "skillName": "u0099-memory-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=22526ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 101,
+      "skillName": "u0101-memory-plan-quality-evaluator",
+      "reason": "successRate=1.0000, p95=10024ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 102,
+      "skillName": "u0102-memory-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=28524.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 109,
+      "skillName": "u0109-memory-disaster-recovery-orchestrator",
+      "reason": "successRate=1.0000, p95=7606.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 110,
+      "skillName": "u0110-memory-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=19647.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 119,
+      "skillName": "u0119-memory-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=14769ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 121,
+      "skillName": "u0121-tooling-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=22534.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 128,
+      "skillName": "u0128-tooling-dependency-dag-planner",
+      "reason": "successRate=1.0000, p95=23533.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 134,
+      "skillName": "u0134-tooling-tool-health-monitor",
+      "reason": "successRate=1.0000, p95=21484ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 135,
+      "skillName": "u0135-tooling-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=1.0000, p95=26564.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 137,
+      "skillName": "u0137-tooling-regression-sentinel",
+      "reason": "successRate=1.0000, p95=25943.75ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 138,
+      "skillName": "u0138-tooling-memory-consolidation-pipeline",
+      "reason": "successRate=1.0000, p95=19636.6ms, approvalPendingRatio=0.2500, failureRatio=0.0000"
+    },
+    {
+      "skillId": 140,
+      "skillName": "u0140-tooling-semantic-retrieval-ranker",
+      "reason": "successRate=1.0000, p95=20135ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 146,
+      "skillName": "u0146-tooling-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=27077ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 147,
+      "skillName": "u0147-tooling-a-b-rollout-governor",
+      "reason": "successRate=1.0000, p95=26512.05ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 148,
+      "skillName": "u0148-tooling-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=17792.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 150,
+      "skillName": "u0150-tooling-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=25909.35ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 159,
+      "skillName": "u0159-tooling-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=18159ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 161,
+      "skillName": "u0161-governance-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=21545ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 164,
+      "skillName": "u0164-governance-contradiction-detector",
+      "reason": "successRate=1.0000, p95=27208ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 165,
+      "skillName": "u0165-governance-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=18474.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 173,
+      "skillName": "u0173-governance-task-handoff-contractor",
+      "reason": "successRate=1.0000, p95=13109.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 174,
+      "skillName": "u0174-governance-tool-health-monitor",
+      "reason": "successRate=1.0000, p95=23749.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 178,
+      "skillName": "u0178-governance-memory-consolidation-pipeline",
+      "reason": "successRate=1.0000, p95=10411ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 188,
+      "skillName": "u0188-governance-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=16580.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 190,
+      "skillName": "u0190-governance-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=17756.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 192,
+      "skillName": "u0192-governance-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, p95=23023ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 198,
+      "skillName": "u0198-governance-training-curriculum-composer",
+      "reason": "successRate=1.0000, p95=17960.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 199,
+      "skillName": "u0199-governance-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=22554ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 200,
+      "skillName": "u0200-governance-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=22838.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 204,
+      "skillName": "u0204-oversight-contradiction-detector",
+      "reason": "successRate=1.0000, p95=19241ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 205,
+      "skillName": "u0205-oversight-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=19455.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 210,
+      "skillName": "u0210-oversight-risk-aware-scheduler",
+      "reason": "successRate=1.0000, p95=25567.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 211,
+      "skillName": "u0211-oversight-policy-constraint-compiler",
+      "reason": "successRate=1.0000, p95=22341ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 216,
+      "skillName": "u0216-oversight-failure-root-cause-miner",
+      "reason": "successRate=1.0000, p95=27800ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 217,
+      "skillName": "u0217-oversight-regression-sentinel",
+      "reason": "successRate=1.0000, p95=22541.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 219,
+      "skillName": "u0219-oversight-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=12566.45ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 221,
+      "skillName": "u0221-oversight-plan-quality-evaluator",
+      "reason": "successRate=1.0000, p95=25265ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 223,
+      "skillName": "u0223-oversight-conflict-resolution-coach",
+      "reason": "successRate=1.0000, p95=14614.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 227,
+      "skillName": "u0227-oversight-a-b-rollout-governor",
+      "reason": "successRate=1.0000, p95=25115.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 233,
+      "skillName": "u0233-oversight-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, p95=20140.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 234,
+      "skillName": "u0234-oversight-equity-impact-scorer",
+      "reason": "successRate=1.0000, p95=26538ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 236,
+      "skillName": "u0236-oversight-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=11032ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 240,
+      "skillName": "u0240-oversight-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=23108.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 241,
+      "skillName": "u0241-collab-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=25772ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 243,
+      "skillName": "u0243-collab-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=24680ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 244,
+      "skillName": "u0244-collab-contradiction-detector",
+      "reason": "successRate=1.0000, p95=14174ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 259,
+      "skillName": "u0259-collab-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=12382ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 261,
+      "skillName": "u0261-collab-plan-quality-evaluator",
+      "reason": "successRate=1.0000, p95=21801ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 262,
+      "skillName": "u0262-collab-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=29184ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 268,
+      "skillName": "u0268-collab-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=20222.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 270,
+      "skillName": "u0270-collab-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=15792.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 277,
+      "skillName": "u0277-collab-skill-gap-diagnoser",
+      "reason": "successRate=1.0000, p95=22902.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 279,
+      "skillName": "u0279-collab-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=26175.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 280,
+      "skillName": "u0280-collab-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=18496.05ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 281,
+      "skillName": "u0281-federation-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=14420ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 283,
+      "skillName": "u0283-federation-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=8561.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 286,
+      "skillName": "u0286-federation-counterfactual-simulator",
+      "reason": "successRate=1.0000, p95=26833ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 287,
+      "skillName": "u0287-federation-goal-decomposer",
+      "reason": "successRate=1.0000, p95=13090.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 292,
+      "skillName": "u0292-federation-human-approval-router",
+      "reason": "successRate=1.0000, p95=14725ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 294,
+      "skillName": "u0294-federation-tool-health-monitor",
+      "reason": "successRate=1.0000, p95=13770ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 298,
+      "skillName": "u0298-federation-memory-consolidation-pipeline",
+      "reason": "successRate=1.0000, p95=19050.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 306,
+      "skillName": "u0306-federation-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=27531ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 314,
+      "skillName": "u0314-federation-equity-impact-scorer",
+      "reason": "successRate=1.0000, p95=24582ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 316,
+      "skillName": "u0316-federation-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=25264.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 321,
+      "skillName": "u0321-economic-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=25886.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 326,
+      "skillName": "u0326-economic-counterfactual-simulator",
+      "reason": "successRate=1.0000, p95=24455.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 329,
+      "skillName": "u0329-economic-resource-budget-allocator",
+      "reason": "successRate=1.0000, p95=23449ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 332,
+      "skillName": "u0332-economic-human-approval-router",
+      "reason": "successRate=1.0000, p95=6984.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 336,
+      "skillName": "u0336-economic-failure-root-cause-miner",
+      "reason": "successRate=1.0000, p95=19746.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 337,
+      "skillName": "u0337-economic-regression-sentinel",
+      "reason": "successRate=1.0000, p95=17719.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 342,
+      "skillName": "u0342-economic-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=18311.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 345,
+      "skillName": "u0345-economic-uncertainty-communicator",
+      "reason": "successRate=1.0000, p95=24715.35ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 346,
+      "skillName": "u0346-economic-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=19941.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 349,
+      "skillName": "u0349-economic-disaster-recovery-orchestrator",
+      "reason": "successRate=1.0000, p95=22541.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 351,
+      "skillName": "u0351-economic-security-threat-modeler",
+      "reason": "successRate=1.0000, p95=26145ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 360,
+      "skillName": "u0360-economic-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=16647.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 361,
+      "skillName": "u0361-logistics-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=27896ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 362,
+      "skillName": "u0362-logistics-context-window-prioritizer",
+      "reason": "successRate=1.0000, p95=14064ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 363,
+      "skillName": "u0363-logistics-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=23929ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 370,
+      "skillName": "u0370-logistics-risk-aware-scheduler",
+      "reason": "successRate=1.0000, p95=12616ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 371,
+      "skillName": "u0371-logistics-policy-constraint-compiler",
+      "reason": "successRate=1.0000, p95=12679.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 379,
+      "skillName": "u0379-logistics-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=21825ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 381,
+      "skillName": "u0381-logistics-plan-quality-evaluator",
+      "reason": "successRate=1.0000, p95=10769.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 385,
+      "skillName": "u0385-logistics-uncertainty-communicator",
+      "reason": "successRate=1.0000, p95=17765.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 386,
+      "skillName": "u0386-logistics-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=6402.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 387,
+      "skillName": "u0387-logistics-a-b-rollout-governor",
+      "reason": "successRate=1.0000, p95=8057ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 391,
+      "skillName": "u0391-logistics-security-threat-modeler",
+      "reason": "successRate=1.0000, p95=24197ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 396,
+      "skillName": "u0396-logistics-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=7422.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 405,
+      "skillName": "u0405-publicservice-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=18621.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 406,
+      "skillName": "u0406-publicservice-counterfactual-simulator",
+      "reason": "successRate=1.0000, p95=23202ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 410,
+      "skillName": "u0410-publicservice-risk-aware-scheduler",
+      "reason": "successRate=1.0000, p95=18290ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 419,
+      "skillName": "u0419-publicservice-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=25437.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 421,
+      "skillName": "u0421-publicservice-plan-quality-evaluator",
+      "reason": "successRate=1.0000, p95=25090ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 422,
+      "skillName": "u0422-publicservice-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=23556.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 430,
+      "skillName": "u0430-publicservice-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=21190.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 433,
+      "skillName": "u0433-publicservice-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, p95=21645ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 440,
+      "skillName": "u0440-publicservice-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=15154ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 441,
+      "skillName": "u0441-education-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=17612ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 443,
+      "skillName": "u0443-education-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=12809.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 447,
+      "skillName": "u0447-education-goal-decomposer",
+      "reason": "successRate=1.0000, p95=28489ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 449,
+      "skillName": "u0449-education-resource-budget-allocator",
+      "reason": "successRate=1.0000, p95=18680ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 454,
+      "skillName": "u0454-education-tool-health-monitor",
+      "reason": "successRate=1.0000, p95=22247ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 457,
+      "skillName": "u0457-education-regression-sentinel",
+      "reason": "successRate=1.0000, p95=24336ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 465,
+      "skillName": "u0465-education-uncertainty-communicator",
+      "reason": "successRate=1.0000, p95=25660ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 466,
+      "skillName": "u0466-education-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=23405.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 470,
+      "skillName": "u0470-education-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=9622.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 472,
+      "skillName": "u0472-education-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, p95=27016ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 483,
+      "skillName": "u0483-research-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=27284ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 484,
+      "skillName": "u0484-research-contradiction-detector",
+      "reason": "successRate=1.0000, p95=19542ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 485,
+      "skillName": "u0485-research-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=25931.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 489,
+      "skillName": "u0489-research-resource-budget-allocator",
+      "reason": "successRate=1.0000, p95=10609ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 497,
+      "skillName": "u0497-research-regression-sentinel",
+      "reason": "successRate=1.0000, p95=8900.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 499,
+      "skillName": "u0499-research-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=18853.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 501,
+      "skillName": "u0501-research-plan-quality-evaluator",
+      "reason": "successRate=1.0000, p95=11099ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 505,
+      "skillName": "u0505-research-uncertainty-communicator",
+      "reason": "successRate=1.0000, p95=19642.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 512,
+      "skillName": "u0512-research-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, p95=10898ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 514,
+      "skillName": "u0514-research-equity-impact-scorer",
+      "reason": "successRate=1.0000, p95=18499.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 515,
+      "skillName": "u0515-research-community-feedback-harvester",
+      "reason": "successRate=1.0000, p95=28841.3ms, approvalPendingRatio=0.2500, failureRatio=0.0000"
+    },
+    {
+      "skillId": 516,
+      "skillName": "u0516-research-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=8987.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 524,
+      "skillName": "u0524-engineering-contradiction-detector",
+      "reason": "successRate=1.0000, p95=12017.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 525,
+      "skillName": "u0525-engineering-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=24905.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 527,
+      "skillName": "u0527-engineering-goal-decomposer",
+      "reason": "successRate=1.0000, p95=20183ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 532,
+      "skillName": "u0532-engineering-human-approval-router",
+      "reason": "successRate=1.0000, p95=23396.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 537,
+      "skillName": "u0537-engineering-regression-sentinel",
+      "reason": "successRate=1.0000, p95=22924ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 540,
+      "skillName": "u0540-engineering-semantic-retrieval-ranker",
+      "reason": "successRate=1.0000, p95=12592ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 546,
+      "skillName": "u0546-engineering-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=26150.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 548,
+      "skillName": "u0548-engineering-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=15125ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 552,
+      "skillName": "u0552-engineering-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, p95=24057ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 556,
+      "skillName": "u0556-engineering-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=14227ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 562,
+      "skillName": "u0562-observability-context-window-prioritizer",
+      "reason": "successRate=1.0000, p95=26077ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 563,
+      "skillName": "u0563-observability-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=21336ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 565,
+      "skillName": "u0565-observability-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=26518ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 567,
+      "skillName": "u0567-observability-goal-decomposer",
+      "reason": "successRate=1.0000, p95=14079ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 570,
+      "skillName": "u0570-observability-risk-aware-scheduler",
+      "reason": "successRate=1.0000, p95=23740ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 573,
+      "skillName": "u0573-observability-task-handoff-contractor",
+      "reason": "successRate=1.0000, p95=21618.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 575,
+      "skillName": "u0575-observability-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=1.0000, p95=24720ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 577,
+      "skillName": "u0577-observability-regression-sentinel",
+      "reason": "successRate=1.0000, p95=17068.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 582,
+      "skillName": "u0582-observability-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=18461ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 583,
+      "skillName": "u0583-observability-conflict-resolution-coach",
+      "reason": "successRate=1.0000, p95=19164.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 588,
+      "skillName": "u0588-observability-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=8432.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 589,
+      "skillName": "u0589-observability-disaster-recovery-orchestrator",
+      "reason": "successRate=1.0000, p95=25062ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 590,
+      "skillName": "u0590-observability-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=26255ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 591,
+      "skillName": "u0591-observability-security-threat-modeler",
+      "reason": "successRate=1.0000, p95=9129ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 596,
+      "skillName": "u0596-observability-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=18675.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 605,
+      "skillName": "u0605-security-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=17659.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 618,
+      "skillName": "u0618-security-memory-consolidation-pipeline",
+      "reason": "successRate=1.0000, p95=27942ms, approvalPendingRatio=0.2500, failureRatio=0.0000"
+    },
+    {
+      "skillId": 623,
+      "skillName": "u0623-security-conflict-resolution-coach",
+      "reason": "successRate=1.0000, p95=27442.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 628,
+      "skillName": "u0628-security-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=15550.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 631,
+      "skillName": "u0631-security-security-threat-modeler",
+      "reason": "successRate=1.0000, p95=23507.95ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 637,
+      "skillName": "u0637-security-skill-gap-diagnoser",
+      "reason": "successRate=1.0000, p95=17562ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 641,
+      "skillName": "u0641-crisis-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=20708.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 654,
+      "skillName": "u0654-crisis-tool-health-monitor",
+      "reason": "successRate=1.0000, p95=21787ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 660,
+      "skillName": "u0660-crisis-semantic-retrieval-ranker",
+      "reason": "successRate=1.0000, p95=16169ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 665,
+      "skillName": "u0665-crisis-uncertainty-communicator",
+      "reason": "successRate=1.0000, p95=26810ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 669,
+      "skillName": "u0669-crisis-disaster-recovery-orchestrator",
+      "reason": "successRate=1.0000, p95=22441ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 680,
+      "skillName": "u0680-crisis-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=25925ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 684,
+      "skillName": "u0684-impact-contradiction-detector",
+      "reason": "successRate=1.0000, p95=21933.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 687,
+      "skillName": "u0687-impact-goal-decomposer",
+      "reason": "successRate=1.0000, p95=14719ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 688,
+      "skillName": "u0688-impact-dependency-dag-planner",
+      "reason": "successRate=1.0000, p95=19817.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 691,
+      "skillName": "u0691-impact-policy-constraint-compiler",
+      "reason": "successRate=1.0000, p95=23329ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 692,
+      "skillName": "u0692-impact-human-approval-router",
+      "reason": "successRate=1.0000, p95=22656.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 696,
+      "skillName": "u0696-impact-failure-root-cause-miner",
+      "reason": "successRate=1.0000, p95=15688.45ms, approvalPendingRatio=0.2500, failureRatio=0.0000"
+    },
+    {
+      "skillId": 697,
+      "skillName": "u0697-impact-regression-sentinel",
+      "reason": "successRate=1.0000, p95=12003.95ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 698,
+      "skillName": "u0698-impact-memory-consolidation-pipeline",
+      "reason": "successRate=1.0000, p95=27955ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 699,
+      "skillName": "u0699-impact-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=27293ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 702,
+      "skillName": "u0702-impact-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=10779.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 708,
+      "skillName": "u0708-impact-incident-playbook-synthesizer",
+      "reason": "successRate=1.0000, p95=23068.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 709,
+      "skillName": "u0709-impact-disaster-recovery-orchestrator",
+      "reason": "successRate=1.0000, p95=22585ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 710,
+      "skillName": "u0710-impact-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=17955.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 713,
+      "skillName": "u0713-impact-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, p95=19831.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 714,
+      "skillName": "u0714-impact-equity-impact-scorer",
+      "reason": "successRate=1.0000, p95=21467.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 719,
+      "skillName": "u0719-impact-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=14256.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 720,
+      "skillName": "u0720-impact-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=15965ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 721,
+      "skillName": "u0721-comms-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=7845ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 725,
+      "skillName": "u0725-comms-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=23863ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 726,
+      "skillName": "u0726-comms-counterfactual-simulator",
+      "reason": "successRate=1.0000, p95=19537.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 727,
+      "skillName": "u0727-comms-goal-decomposer",
+      "reason": "successRate=1.0000, p95=12628.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 728,
+      "skillName": "u0728-comms-dependency-dag-planner",
+      "reason": "successRate=1.0000, p95=17602ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 730,
+      "skillName": "u0730-comms-risk-aware-scheduler",
+      "reason": "successRate=1.0000, p95=19432ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 735,
+      "skillName": "u0735-comms-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=1.0000, p95=22174ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 736,
+      "skillName": "u0736-comms-failure-root-cause-miner",
+      "reason": "successRate=1.0000, p95=17545ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 742,
+      "skillName": "u0742-comms-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=27398ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 749,
+      "skillName": "u0749-comms-disaster-recovery-orchestrator",
+      "reason": "successRate=1.0000, p95=18432ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 750,
+      "skillName": "u0750-comms-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=17516ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 756,
+      "skillName": "u0756-comms-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=21960.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 760,
+      "skillName": "u0760-comms-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=18798ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 761,
+      "skillName": "u0761-cultural-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=15125.8ms, approvalPendingRatio=0.2500, failureRatio=0.0000"
+    },
+    {
+      "skillId": 762,
+      "skillName": "u0762-cultural-context-window-prioritizer",
+      "reason": "successRate=1.0000, p95=24016.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 770,
+      "skillName": "u0770-cultural-risk-aware-scheduler",
+      "reason": "successRate=1.0000, p95=26406ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 784,
+      "skillName": "u0784-cultural-explainability-narrative-builder",
+      "reason": "successRate=1.0000, p95=21811ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 786,
+      "skillName": "u0786-cultural-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=21929.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 789,
+      "skillName": "u0789-cultural-disaster-recovery-orchestrator",
+      "reason": "successRate=1.0000, p95=11359.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 790,
+      "skillName": "u0790-cultural-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=23641.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 791,
+      "skillName": "u0791-cultural-security-threat-modeler",
+      "reason": "successRate=1.0000, p95=25289ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 792,
+      "skillName": "u0792-cultural-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, p95=21234ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 798,
+      "skillName": "u0798-cultural-training-curriculum-composer",
+      "reason": "successRate=1.0000, p95=24728ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 800,
+      "skillName": "u0800-cultural-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=22492ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 803,
+      "skillName": "u0803-inclusion-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=21498ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 814,
+      "skillName": "u0814-inclusion-tool-health-monitor",
+      "reason": "successRate=1.0000, p95=10970.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 827,
+      "skillName": "u0827-inclusion-a-b-rollout-governor",
+      "reason": "successRate=1.0000, p95=24164ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 833,
+      "skillName": "u0833-inclusion-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, p95=23024.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 838,
+      "skillName": "u0838-inclusion-training-curriculum-composer",
+      "reason": "successRate=1.0000, p95=23654ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 847,
+      "skillName": "u0847-community-goal-decomposer",
+      "reason": "successRate=1.0000, p95=24293.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 859,
+      "skillName": "u0859-community-knowledge-graph-linker",
+      "reason": "successRate=1.0000, p95=16352ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 864,
+      "skillName": "u0864-community-explainability-narrative-builder",
+      "reason": "successRate=1.0000, p95=23212.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 872,
+      "skillName": "u0872-community-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, p95=24570.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 873,
+      "skillName": "u0873-community-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, p95=24329.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 874,
+      "skillName": "u0874-community-equity-impact-scorer",
+      "reason": "successRate=1.0000, p95=23950ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 879,
+      "skillName": "u0879-community-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=12399ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 882,
+      "skillName": "u0882-rights-context-window-prioritizer",
+      "reason": "successRate=1.0000, p95=20648.4ms, approvalPendingRatio=0.2500, failureRatio=0.0000"
+    },
+    {
+      "skillId": 885,
+      "skillName": "u0885-rights-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=23706ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 888,
+      "skillName": "u0888-rights-dependency-dag-planner",
+      "reason": "successRate=1.0000, p95=14648ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 891,
+      "skillName": "u0891-rights-policy-constraint-compiler",
+      "reason": "successRate=1.0000, p95=16796ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 906,
+      "skillName": "u0906-rights-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=21859.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 907,
+      "skillName": "u0907-rights-a-b-rollout-governor",
+      "reason": "successRate=1.0000, p95=20756ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 914,
+      "skillName": "u0914-rights-equity-impact-scorer",
+      "reason": "successRate=1.0000, p95=16676.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 915,
+      "skillName": "u0915-rights-community-feedback-harvester",
+      "reason": "successRate=1.0000, p95=23508.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 916,
+      "skillName": "u0916-rights-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=19536ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 918,
+      "skillName": "u0918-rights-training-curriculum-composer",
+      "reason": "successRate=1.0000, p95=26636ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 919,
+      "skillName": "u0919-rights-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=25688.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 921,
+      "skillName": "u0921-infra-signal-ingestion-normalizer",
+      "reason": "successRate=1.0000, p95=28153ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 923,
+      "skillName": "u0923-infra-evidence-provenance-tracker",
+      "reason": "successRate=1.0000, p95=19975ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 929,
+      "skillName": "u0929-infra-resource-budget-allocator",
+      "reason": "successRate=1.0000, p95=22541.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 930,
+      "skillName": "u0930-infra-risk-aware-scheduler",
+      "reason": "successRate=1.0000, p95=25457ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 931,
+      "skillName": "u0931-infra-policy-constraint-compiler",
+      "reason": "successRate=1.0000, p95=7913ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 942,
+      "skillName": "u0942-infra-multi-agent-negotiation-mediator",
+      "reason": "successRate=1.0000, p95=27476ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 944,
+      "skillName": "u0944-infra-explainability-narrative-builder",
+      "reason": "successRate=1.0000, p95=27120.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 952,
+      "skillName": "u0952-infra-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, p95=25037.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 953,
+      "skillName": "u0953-infra-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, p95=23374ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 959,
+      "skillName": "u0959-infra-self-reflection-error-taxonomist",
+      "reason": "successRate=1.0000, p95=12186ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 960,
+      "skillName": "u0960-infra-continuous-improvement-planner",
+      "reason": "successRate=1.0000, p95=25157.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 965,
+      "skillName": "u0965-evolution-confidence-calibration-engine",
+      "reason": "successRate=1.0000, p95=27356ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 967,
+      "skillName": "u0967-evolution-goal-decomposer",
+      "reason": "successRate=1.0000, p95=19488.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 969,
+      "skillName": "u0969-evolution-resource-budget-allocator",
+      "reason": "successRate=1.0000, p95=27442.65ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 971,
+      "skillName": "u0971-evolution-policy-constraint-compiler",
+      "reason": "successRate=1.0000, p95=21454.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 977,
+      "skillName": "u0977-evolution-regression-sentinel",
+      "reason": "successRate=1.0000, p95=25680.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 983,
+      "skillName": "u0983-evolution-conflict-resolution-coach",
+      "reason": "successRate=1.0000, p95=19811ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 984,
+      "skillName": "u0984-evolution-explainability-narrative-builder",
+      "reason": "successRate=1.0000, p95=29241ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 985,
+      "skillName": "u0985-evolution-uncertainty-communicator",
+      "reason": "successRate=1.0000, p95=13642.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 986,
+      "skillName": "u0986-evolution-experiment-design-generator",
+      "reason": "successRate=1.0000, p95=19246.6ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 987,
+      "skillName": "u0987-evolution-a-b-rollout-governor",
+      "reason": "successRate=1.0000, p95=20499.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 990,
+      "skillName": "u0990-evolution-privacy-preserving-data-broker",
+      "reason": "successRate=1.0000, p95=21430ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 993,
+      "skillName": "u0993-evolution-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, p95=21995.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 996,
+      "skillName": "u0996-evolution-kpi-dashboard-publisher",
+      "reason": "successRate=1.0000, p95=25124.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 997,
+      "skillName": "u0997-evolution-skill-gap-diagnoser",
+      "reason": "successRate=1.0000, p95=28252ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 998,
+      "skillName": "u0998-evolution-training-curriculum-composer",
+      "reason": "successRate=1.0000, p95=16502ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    }
+  ],
+  "hold": [
+    {
+      "skillId": 1,
+      "skillName": "u0001-epistemic-signal-ingestion-normalizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=24215ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 3,
+      "skillName": "u0003-epistemic-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=50158ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 5,
+      "skillName": "u0005-epistemic-confidence-calibration-engine",
+      "reason": "mixed metrics: successRate=1.0000, p95=36775ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 11,
+      "skillName": "u0011-epistemic-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 14,
+      "skillName": "u0014-epistemic-tool-health-monitor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 15,
+      "skillName": "u0015-epistemic-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=25729.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 18,
+      "skillName": "u0018-epistemic-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 20,
+      "skillName": "u0020-epistemic-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 22,
+      "skillName": "u0022-epistemic-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 25,
+      "skillName": "u0025-epistemic-uncertainty-communicator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 29,
+      "skillName": "u0029-epistemic-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 33,
+      "skillName": "u0033-epistemic-cost-benefit-forecaster",
+      "reason": "mixed metrics: successRate=1.0000, p95=29772.5ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 34,
+      "skillName": "u0034-epistemic-equity-impact-scorer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 35,
+      "skillName": "u0035-epistemic-community-feedback-harvester",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 37,
+      "skillName": "u0037-epistemic-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=38125.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 39,
+      "skillName": "u0039-epistemic-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 40,
+      "skillName": "u0040-epistemic-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 43,
+      "skillName": "u0043-planning-evidence-provenance-tracker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 45,
+      "skillName": "u0045-planning-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 48,
+      "skillName": "u0048-planning-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 50,
+      "skillName": "u0050-planning-risk-aware-scheduler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 52,
+      "skillName": "u0052-planning-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 53,
+      "skillName": "u0053-planning-task-handoff-contractor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 55,
+      "skillName": "u0055-planning-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 56,
+      "skillName": "u0056-planning-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 58,
+      "skillName": "u0058-planning-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=31310.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 60,
+      "skillName": "u0060-planning-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 61,
+      "skillName": "u0061-planning-plan-quality-evaluator",
+      "reason": "mixed metrics: successRate=1.0000, p95=36524ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 67,
+      "skillName": "u0067-planning-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 68,
+      "skillName": "u0068-planning-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 70,
+      "skillName": "u0070-planning-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 74,
+      "skillName": "u0074-planning-equity-impact-scorer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 75,
+      "skillName": "u0075-planning-community-feedback-harvester",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 76,
+      "skillName": "u0076-planning-kpi-dashboard-publisher",
+      "reason": "mixed metrics: successRate=1.0000, p95=46640.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 77,
+      "skillName": "u0077-planning-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=45813ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 78,
+      "skillName": "u0078-planning-training-curriculum-composer",
+      "reason": "mixed metrics: successRate=1.0000, p95=47283ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 79,
+      "skillName": "u0079-planning-self-reflection-error-taxonomist",
+      "reason": "mixed metrics: successRate=1.0000, p95=37842.1ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 80,
+      "skillName": "u0080-planning-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 82,
+      "skillName": "u0082-memory-context-window-prioritizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 83,
+      "skillName": "u0083-memory-evidence-provenance-tracker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 84,
+      "skillName": "u0084-memory-contradiction-detector",
+      "reason": "mixed metrics: successRate=1.0000, p95=49085.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 86,
+      "skillName": "u0086-memory-counterfactual-simulator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 87,
+      "skillName": "u0087-memory-goal-decomposer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 89,
+      "skillName": "u0089-memory-resource-budget-allocator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 91,
+      "skillName": "u0091-memory-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 93,
+      "skillName": "u0093-memory-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 94,
+      "skillName": "u0094-memory-tool-health-monitor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 96,
+      "skillName": "u0096-memory-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 97,
+      "skillName": "u0097-memory-regression-sentinel",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 98,
+      "skillName": "u0098-memory-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 100,
+      "skillName": "u0100-memory-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 104,
+      "skillName": "u0104-memory-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 105,
+      "skillName": "u0105-memory-uncertainty-communicator",
+      "reason": "mixed metrics: successRate=1.0000, p95=42321ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 112,
+      "skillName": "u0112-memory-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 113,
+      "skillName": "u0113-memory-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 115,
+      "skillName": "u0115-memory-community-feedback-harvester",
+      "reason": "mixed metrics: successRate=1.0000, p95=24216ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 117,
+      "skillName": "u0117-memory-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 118,
+      "skillName": "u0118-memory-training-curriculum-composer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 120,
+      "skillName": "u0120-memory-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 122,
+      "skillName": "u0122-tooling-context-window-prioritizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 123,
+      "skillName": "u0123-tooling-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=19151ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 124,
+      "skillName": "u0124-tooling-contradiction-detector",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 125,
+      "skillName": "u0125-tooling-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 126,
+      "skillName": "u0126-tooling-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 127,
+      "skillName": "u0127-tooling-goal-decomposer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 129,
+      "skillName": "u0129-tooling-resource-budget-allocator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 130,
+      "skillName": "u0130-tooling-risk-aware-scheduler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 131,
+      "skillName": "u0131-tooling-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 132,
+      "skillName": "u0132-tooling-human-approval-router",
+      "reason": "mixed metrics: successRate=1.0000, p95=50704.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 133,
+      "skillName": "u0133-tooling-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 136,
+      "skillName": "u0136-tooling-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 142,
+      "skillName": "u0142-tooling-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 143,
+      "skillName": "u0143-tooling-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 144,
+      "skillName": "u0144-tooling-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 145,
+      "skillName": "u0145-tooling-uncertainty-communicator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 149,
+      "skillName": "u0149-tooling-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 152,
+      "skillName": "u0152-tooling-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 153,
+      "skillName": "u0153-tooling-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 154,
+      "skillName": "u0154-tooling-equity-impact-scorer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 156,
+      "skillName": "u0156-tooling-kpi-dashboard-publisher",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 158,
+      "skillName": "u0158-tooling-training-curriculum-composer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 160,
+      "skillName": "u0160-tooling-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 162,
+      "skillName": "u0162-governance-context-window-prioritizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 163,
+      "skillName": "u0163-governance-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=39858.3ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 166,
+      "skillName": "u0166-governance-counterfactual-simulator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 167,
+      "skillName": "u0167-governance-goal-decomposer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 168,
+      "skillName": "u0168-governance-dependency-dag-planner",
+      "reason": "mixed metrics: successRate=1.0000, p95=22491ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 169,
+      "skillName": "u0169-governance-resource-budget-allocator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 170,
+      "skillName": "u0170-governance-risk-aware-scheduler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 171,
+      "skillName": "u0171-governance-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 172,
+      "skillName": "u0172-governance-human-approval-router",
+      "reason": "mixed metrics: successRate=1.0000, p95=39363.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 175,
+      "skillName": "u0175-governance-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 176,
+      "skillName": "u0176-governance-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 177,
+      "skillName": "u0177-governance-regression-sentinel",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 179,
+      "skillName": "u0179-governance-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 180,
+      "skillName": "u0180-governance-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 181,
+      "skillName": "u0181-governance-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 182,
+      "skillName": "u0182-governance-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 184,
+      "skillName": "u0184-governance-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 185,
+      "skillName": "u0185-governance-uncertainty-communicator",
+      "reason": "mixed metrics: successRate=1.0000, p95=40301.2ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 186,
+      "skillName": "u0186-governance-experiment-design-generator",
+      "reason": "mixed metrics: successRate=1.0000, p95=24150.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 187,
+      "skillName": "u0187-governance-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 191,
+      "skillName": "u0191-governance-security-threat-modeler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 194,
+      "skillName": "u0194-governance-equity-impact-scorer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 195,
+      "skillName": "u0195-governance-community-feedback-harvester",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 196,
+      "skillName": "u0196-governance-kpi-dashboard-publisher",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 201,
+      "skillName": "u0201-oversight-signal-ingestion-normalizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=34101ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 202,
+      "skillName": "u0202-oversight-context-window-prioritizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 203,
+      "skillName": "u0203-oversight-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=44852ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 209,
+      "skillName": "u0209-oversight-resource-budget-allocator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 212,
+      "skillName": "u0212-oversight-human-approval-router",
+      "reason": "mixed metrics: successRate=1.0000, p95=28056.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 213,
+      "skillName": "u0213-oversight-task-handoff-contractor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 220,
+      "skillName": "u0220-oversight-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 222,
+      "skillName": "u0222-oversight-multi-agent-negotiation-mediator",
+      "reason": "mixed metrics: successRate=1.0000, p95=31930.7ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 224,
+      "skillName": "u0224-oversight-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 225,
+      "skillName": "u0225-oversight-uncertainty-communicator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 226,
+      "skillName": "u0226-oversight-experiment-design-generator",
+      "reason": "mixed metrics: successRate=1.0000, p95=30801.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 229,
+      "skillName": "u0229-oversight-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 230,
+      "skillName": "u0230-oversight-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 231,
+      "skillName": "u0231-oversight-security-threat-modeler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 232,
+      "skillName": "u0232-oversight-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 235,
+      "skillName": "u0235-oversight-community-feedback-harvester",
+      "reason": "mixed metrics: successRate=1.0000, p95=35908.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 237,
+      "skillName": "u0237-oversight-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 238,
+      "skillName": "u0238-oversight-training-curriculum-composer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 242,
+      "skillName": "u0242-collab-context-window-prioritizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 245,
+      "skillName": "u0245-collab-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 247,
+      "skillName": "u0247-collab-goal-decomposer",
+      "reason": "mixed metrics: successRate=1.0000, p95=44617ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 248,
+      "skillName": "u0248-collab-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 249,
+      "skillName": "u0249-collab-resource-budget-allocator",
+      "reason": "mixed metrics: successRate=1.0000, p95=29758ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 250,
+      "skillName": "u0250-collab-risk-aware-scheduler",
+      "reason": "mixed metrics: successRate=1.0000, p95=52340.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 251,
+      "skillName": "u0251-collab-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 253,
+      "skillName": "u0253-collab-task-handoff-contractor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 255,
+      "skillName": "u0255-collab-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=42089ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 256,
+      "skillName": "u0256-collab-failure-root-cause-miner",
+      "reason": "mixed metrics: successRate=1.0000, p95=24421.9ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 257,
+      "skillName": "u0257-collab-regression-sentinel",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 260,
+      "skillName": "u0260-collab-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 263,
+      "skillName": "u0263-collab-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 264,
+      "skillName": "u0264-collab-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 265,
+      "skillName": "u0265-collab-uncertainty-communicator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 266,
+      "skillName": "u0266-collab-experiment-design-generator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 267,
+      "skillName": "u0267-collab-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 269,
+      "skillName": "u0269-collab-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 271,
+      "skillName": "u0271-collab-security-threat-modeler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 272,
+      "skillName": "u0272-collab-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 274,
+      "skillName": "u0274-collab-equity-impact-scorer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 276,
+      "skillName": "u0276-collab-kpi-dashboard-publisher",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 278,
+      "skillName": "u0278-collab-training-curriculum-composer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 282,
+      "skillName": "u0282-federation-context-window-prioritizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 284,
+      "skillName": "u0284-federation-contradiction-detector",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 285,
+      "skillName": "u0285-federation-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 288,
+      "skillName": "u0288-federation-dependency-dag-planner",
+      "reason": "mixed metrics: successRate=1.0000, p95=24985.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 289,
+      "skillName": "u0289-federation-resource-budget-allocator",
+      "reason": "mixed metrics: successRate=1.0000, p95=45941.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 291,
+      "skillName": "u0291-federation-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 293,
+      "skillName": "u0293-federation-task-handoff-contractor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 295,
+      "skillName": "u0295-federation-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 296,
+      "skillName": "u0296-federation-failure-root-cause-miner",
+      "reason": "mixed metrics: successRate=1.0000, p95=32476.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 297,
+      "skillName": "u0297-federation-regression-sentinel",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 299,
+      "skillName": "u0299-federation-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 300,
+      "skillName": "u0300-federation-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 302,
+      "skillName": "u0302-federation-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 303,
+      "skillName": "u0303-federation-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 304,
+      "skillName": "u0304-federation-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 305,
+      "skillName": "u0305-federation-uncertainty-communicator",
+      "reason": "mixed metrics: successRate=1.0000, p95=44271ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 308,
+      "skillName": "u0308-federation-incident-playbook-synthesizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=29664.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 311,
+      "skillName": "u0311-federation-security-threat-modeler",
+      "reason": "mixed metrics: successRate=1.0000, p95=24432.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 312,
+      "skillName": "u0312-federation-compliance-evidence-mapper",
+      "reason": "mixed metrics: successRate=1.0000, p95=32927.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 313,
+      "skillName": "u0313-federation-cost-benefit-forecaster",
+      "reason": "mixed metrics: successRate=1.0000, p95=30910ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 315,
+      "skillName": "u0315-federation-community-feedback-harvester",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 317,
+      "skillName": "u0317-federation-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=44003.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 318,
+      "skillName": "u0318-federation-training-curriculum-composer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 319,
+      "skillName": "u0319-federation-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 322,
+      "skillName": "u0322-economic-context-window-prioritizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 323,
+      "skillName": "u0323-economic-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=46166.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 325,
+      "skillName": "u0325-economic-confidence-calibration-engine",
+      "reason": "mixed metrics: successRate=1.0000, p95=37987.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 327,
+      "skillName": "u0327-economic-goal-decomposer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 328,
+      "skillName": "u0328-economic-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 330,
+      "skillName": "u0330-economic-risk-aware-scheduler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 333,
+      "skillName": "u0333-economic-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 334,
+      "skillName": "u0334-economic-tool-health-monitor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 338,
+      "skillName": "u0338-economic-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 339,
+      "skillName": "u0339-economic-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 341,
+      "skillName": "u0341-economic-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 343,
+      "skillName": "u0343-economic-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 344,
+      "skillName": "u0344-economic-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 347,
+      "skillName": "u0347-economic-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 350,
+      "skillName": "u0350-economic-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 352,
+      "skillName": "u0352-economic-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 355,
+      "skillName": "u0355-economic-community-feedback-harvester",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 356,
+      "skillName": "u0356-economic-kpi-dashboard-publisher",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 357,
+      "skillName": "u0357-economic-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 358,
+      "skillName": "u0358-economic-training-curriculum-composer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 364,
+      "skillName": "u0364-logistics-contradiction-detector",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 365,
+      "skillName": "u0365-logistics-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 366,
+      "skillName": "u0366-logistics-counterfactual-simulator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 367,
+      "skillName": "u0367-logistics-goal-decomposer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 369,
+      "skillName": "u0369-logistics-resource-budget-allocator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 373,
+      "skillName": "u0373-logistics-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 374,
+      "skillName": "u0374-logistics-tool-health-monitor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 375,
+      "skillName": "u0375-logistics-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 376,
+      "skillName": "u0376-logistics-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 377,
+      "skillName": "u0377-logistics-regression-sentinel",
+      "reason": "mixed metrics: successRate=1.0000, p95=33615ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 378,
+      "skillName": "u0378-logistics-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=31482.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 382,
+      "skillName": "u0382-logistics-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 383,
+      "skillName": "u0383-logistics-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 388,
+      "skillName": "u0388-logistics-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 389,
+      "skillName": "u0389-logistics-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 390,
+      "skillName": "u0390-logistics-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 392,
+      "skillName": "u0392-logistics-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 393,
+      "skillName": "u0393-logistics-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 394,
+      "skillName": "u0394-logistics-equity-impact-scorer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 395,
+      "skillName": "u0395-logistics-community-feedback-harvester",
+      "reason": "mixed metrics: successRate=1.0000, p95=42419.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 397,
+      "skillName": "u0397-logistics-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 399,
+      "skillName": "u0399-logistics-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 401,
+      "skillName": "u0401-publicservice-signal-ingestion-normalizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 404,
+      "skillName": "u0404-publicservice-contradiction-detector",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 407,
+      "skillName": "u0407-publicservice-goal-decomposer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 408,
+      "skillName": "u0408-publicservice-dependency-dag-planner",
+      "reason": "mixed metrics: successRate=1.0000, p95=48075.7ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 409,
+      "skillName": "u0409-publicservice-resource-budget-allocator",
+      "reason": "mixed metrics: successRate=1.0000, p95=39415.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 411,
+      "skillName": "u0411-publicservice-policy-constraint-compiler",
+      "reason": "mixed metrics: successRate=1.0000, p95=27977ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 412,
+      "skillName": "u0412-publicservice-human-approval-router",
+      "reason": "mixed metrics: successRate=1.0000, p95=35875ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 413,
+      "skillName": "u0413-publicservice-task-handoff-contractor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 414,
+      "skillName": "u0414-publicservice-tool-health-monitor",
+      "reason": "mixed metrics: successRate=1.0000, p95=34658ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 416,
+      "skillName": "u0416-publicservice-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 418,
+      "skillName": "u0418-publicservice-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=45386.9ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 420,
+      "skillName": "u0420-publicservice-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 423,
+      "skillName": "u0423-publicservice-conflict-resolution-coach",
+      "reason": "mixed metrics: successRate=1.0000, p95=54163.5ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 424,
+      "skillName": "u0424-publicservice-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 425,
+      "skillName": "u0425-publicservice-uncertainty-communicator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 426,
+      "skillName": "u0426-publicservice-experiment-design-generator",
+      "reason": "mixed metrics: successRate=1.0000, p95=18473ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 427,
+      "skillName": "u0427-publicservice-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 429,
+      "skillName": "u0429-publicservice-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 432,
+      "skillName": "u0432-publicservice-compliance-evidence-mapper",
+      "reason": "mixed metrics: successRate=1.0000, p95=41541ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 435,
+      "skillName": "u0435-publicservice-community-feedback-harvester",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 437,
+      "skillName": "u0437-publicservice-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=42361ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 438,
+      "skillName": "u0438-publicservice-training-curriculum-composer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 442,
+      "skillName": "u0442-education-context-window-prioritizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 444,
+      "skillName": "u0444-education-contradiction-detector",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 445,
+      "skillName": "u0445-education-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 446,
+      "skillName": "u0446-education-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 448,
+      "skillName": "u0448-education-dependency-dag-planner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 450,
+      "skillName": "u0450-education-risk-aware-scheduler",
+      "reason": "mixed metrics: successRate=1.0000, p95=27609.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 452,
+      "skillName": "u0452-education-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 456,
+      "skillName": "u0456-education-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 458,
+      "skillName": "u0458-education-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 459,
+      "skillName": "u0459-education-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 460,
+      "skillName": "u0460-education-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 461,
+      "skillName": "u0461-education-plan-quality-evaluator",
+      "reason": "mixed metrics: successRate=1.0000, p95=42610ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 462,
+      "skillName": "u0462-education-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 464,
+      "skillName": "u0464-education-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 467,
+      "skillName": "u0467-education-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 468,
+      "skillName": "u0468-education-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 469,
+      "skillName": "u0469-education-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 471,
+      "skillName": "u0471-education-security-threat-modeler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 474,
+      "skillName": "u0474-education-equity-impact-scorer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 475,
+      "skillName": "u0475-education-community-feedback-harvester",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 476,
+      "skillName": "u0476-education-kpi-dashboard-publisher",
+      "reason": "mixed metrics: successRate=1.0000, p95=34122.8ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 477,
+      "skillName": "u0477-education-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 478,
+      "skillName": "u0478-education-training-curriculum-composer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 479,
+      "skillName": "u0479-education-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 480,
+      "skillName": "u0480-education-continuous-improvement-planner",
+      "reason": "mixed metrics: successRate=1.0000, p95=20081ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 481,
+      "skillName": "u0481-research-signal-ingestion-normalizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 482,
+      "skillName": "u0482-research-context-window-prioritizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=23109ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 487,
+      "skillName": "u0487-research-goal-decomposer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 490,
+      "skillName": "u0490-research-risk-aware-scheduler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 491,
+      "skillName": "u0491-research-policy-constraint-compiler",
+      "reason": "mixed metrics: successRate=1.0000, p95=21507ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 492,
+      "skillName": "u0492-research-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 493,
+      "skillName": "u0493-research-task-handoff-contractor",
+      "reason": "mixed metrics: successRate=1.0000, p95=29058.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 494,
+      "skillName": "u0494-research-tool-health-monitor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 495,
+      "skillName": "u0495-research-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 496,
+      "skillName": "u0496-research-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 498,
+      "skillName": "u0498-research-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=44527ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 500,
+      "skillName": "u0500-research-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 502,
+      "skillName": "u0502-research-multi-agent-negotiation-mediator",
+      "reason": "mixed metrics: successRate=1.0000, p95=15831.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 503,
+      "skillName": "u0503-research-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 506,
+      "skillName": "u0506-research-experiment-design-generator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 507,
+      "skillName": "u0507-research-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 508,
+      "skillName": "u0508-research-incident-playbook-synthesizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=36642.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 509,
+      "skillName": "u0509-research-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 510,
+      "skillName": "u0510-research-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 511,
+      "skillName": "u0511-research-security-threat-modeler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 513,
+      "skillName": "u0513-research-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 517,
+      "skillName": "u0517-research-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=30049.7ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 518,
+      "skillName": "u0518-research-training-curriculum-composer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 519,
+      "skillName": "u0519-research-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 520,
+      "skillName": "u0520-research-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 522,
+      "skillName": "u0522-engineering-context-window-prioritizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 523,
+      "skillName": "u0523-engineering-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=19917.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 526,
+      "skillName": "u0526-engineering-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 529,
+      "skillName": "u0529-engineering-resource-budget-allocator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 531,
+      "skillName": "u0531-engineering-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 533,
+      "skillName": "u0533-engineering-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 534,
+      "skillName": "u0534-engineering-tool-health-monitor",
+      "reason": "mixed metrics: successRate=1.0000, p95=32014.9ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 535,
+      "skillName": "u0535-engineering-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=44796.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 536,
+      "skillName": "u0536-engineering-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 538,
+      "skillName": "u0538-engineering-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=29763ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 539,
+      "skillName": "u0539-engineering-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 541,
+      "skillName": "u0541-engineering-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 543,
+      "skillName": "u0543-engineering-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 545,
+      "skillName": "u0545-engineering-uncertainty-communicator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 547,
+      "skillName": "u0547-engineering-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 550,
+      "skillName": "u0550-engineering-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 551,
+      "skillName": "u0551-engineering-security-threat-modeler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 553,
+      "skillName": "u0553-engineering-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 554,
+      "skillName": "u0554-engineering-equity-impact-scorer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 557,
+      "skillName": "u0557-engineering-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=31947ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 558,
+      "skillName": "u0558-engineering-training-curriculum-composer",
+      "reason": "mixed metrics: successRate=1.0000, p95=44291ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 559,
+      "skillName": "u0559-engineering-self-reflection-error-taxonomist",
+      "reason": "mixed metrics: successRate=1.0000, p95=27658.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 560,
+      "skillName": "u0560-engineering-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 564,
+      "skillName": "u0564-observability-contradiction-detector",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 568,
+      "skillName": "u0568-observability-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 569,
+      "skillName": "u0569-observability-resource-budget-allocator",
+      "reason": "mixed metrics: successRate=1.0000, p95=31973ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 571,
+      "skillName": "u0571-observability-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 572,
+      "skillName": "u0572-observability-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 576,
+      "skillName": "u0576-observability-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 578,
+      "skillName": "u0578-observability-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=30201.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 580,
+      "skillName": "u0580-observability-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 581,
+      "skillName": "u0581-observability-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 584,
+      "skillName": "u0584-observability-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 585,
+      "skillName": "u0585-observability-uncertainty-communicator",
+      "reason": "mixed metrics: successRate=1.0000, p95=48987ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 586,
+      "skillName": "u0586-observability-experiment-design-generator",
+      "reason": "mixed metrics: successRate=1.0000, p95=37832ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 587,
+      "skillName": "u0587-observability-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 594,
+      "skillName": "u0594-observability-equity-impact-scorer",
+      "reason": "mixed metrics: successRate=1.0000, p95=42650.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 597,
+      "skillName": "u0597-observability-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 598,
+      "skillName": "u0598-observability-training-curriculum-composer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 599,
+      "skillName": "u0599-observability-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 600,
+      "skillName": "u0600-observability-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 601,
+      "skillName": "u0601-security-signal-ingestion-normalizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 602,
+      "skillName": "u0602-security-context-window-prioritizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=15999ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 604,
+      "skillName": "u0604-security-contradiction-detector",
+      "reason": "mixed metrics: successRate=1.0000, p95=43517ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 606,
+      "skillName": "u0606-security-counterfactual-simulator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 607,
+      "skillName": "u0607-security-goal-decomposer",
+      "reason": "mixed metrics: successRate=1.0000, p95=38793.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 608,
+      "skillName": "u0608-security-dependency-dag-planner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 609,
+      "skillName": "u0609-security-resource-budget-allocator",
+      "reason": "mixed metrics: successRate=1.0000, p95=13451.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 611,
+      "skillName": "u0611-security-policy-constraint-compiler",
+      "reason": "mixed metrics: successRate=1.0000, p95=46935ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 612,
+      "skillName": "u0612-security-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 613,
+      "skillName": "u0613-security-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 615,
+      "skillName": "u0615-security-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=34410ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 616,
+      "skillName": "u0616-security-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 617,
+      "skillName": "u0617-security-regression-sentinel",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 619,
+      "skillName": "u0619-security-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 620,
+      "skillName": "u0620-security-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 622,
+      "skillName": "u0622-security-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 624,
+      "skillName": "u0624-security-explainability-narrative-builder",
+      "reason": "mixed metrics: successRate=1.0000, p95=34085.7ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 626,
+      "skillName": "u0626-security-experiment-design-generator",
+      "reason": "mixed metrics: successRate=1.0000, p95=25918.5ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 629,
+      "skillName": "u0629-security-disaster-recovery-orchestrator",
+      "reason": "mixed metrics: successRate=1.0000, p95=31956.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 632,
+      "skillName": "u0632-security-compliance-evidence-mapper",
+      "reason": "mixed metrics: successRate=1.0000, p95=27550.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 633,
+      "skillName": "u0633-security-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 634,
+      "skillName": "u0634-security-equity-impact-scorer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 636,
+      "skillName": "u0636-security-kpi-dashboard-publisher",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 639,
+      "skillName": "u0639-security-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 640,
+      "skillName": "u0640-security-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 642,
+      "skillName": "u0642-crisis-context-window-prioritizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 644,
+      "skillName": "u0644-crisis-contradiction-detector",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 645,
+      "skillName": "u0645-crisis-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 646,
+      "skillName": "u0646-crisis-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 647,
+      "skillName": "u0647-crisis-goal-decomposer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 648,
+      "skillName": "u0648-crisis-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 650,
+      "skillName": "u0650-crisis-risk-aware-scheduler",
+      "reason": "mixed metrics: successRate=1.0000, p95=25312ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 652,
+      "skillName": "u0652-crisis-human-approval-router",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 653,
+      "skillName": "u0653-crisis-task-handoff-contractor",
+      "reason": "mixed metrics: successRate=1.0000, p95=37118.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 655,
+      "skillName": "u0655-crisis-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=29250.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 656,
+      "skillName": "u0656-crisis-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 657,
+      "skillName": "u0657-crisis-regression-sentinel",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 658,
+      "skillName": "u0658-crisis-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 659,
+      "skillName": "u0659-crisis-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 661,
+      "skillName": "u0661-crisis-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 662,
+      "skillName": "u0662-crisis-multi-agent-negotiation-mediator",
+      "reason": "mixed metrics: successRate=1.0000, p95=31099.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 663,
+      "skillName": "u0663-crisis-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 664,
+      "skillName": "u0664-crisis-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 666,
+      "skillName": "u0666-crisis-experiment-design-generator",
+      "reason": "mixed metrics: successRate=1.0000, p95=32078ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 667,
+      "skillName": "u0667-crisis-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 668,
+      "skillName": "u0668-crisis-incident-playbook-synthesizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=21896.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 670,
+      "skillName": "u0670-crisis-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 671,
+      "skillName": "u0671-crisis-security-threat-modeler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 672,
+      "skillName": "u0672-crisis-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 673,
+      "skillName": "u0673-crisis-cost-benefit-forecaster",
+      "reason": "mixed metrics: successRate=1.0000, p95=32887.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 674,
+      "skillName": "u0674-crisis-equity-impact-scorer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 675,
+      "skillName": "u0675-crisis-community-feedback-harvester",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 676,
+      "skillName": "u0676-crisis-kpi-dashboard-publisher",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 677,
+      "skillName": "u0677-crisis-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 678,
+      "skillName": "u0678-crisis-training-curriculum-composer",
+      "reason": "mixed metrics: successRate=1.0000, p95=46122ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 679,
+      "skillName": "u0679-crisis-self-reflection-error-taxonomist",
+      "reason": "mixed metrics: successRate=1.0000, p95=46433.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 681,
+      "skillName": "u0681-impact-signal-ingestion-normalizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 683,
+      "skillName": "u0683-impact-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=19707.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 685,
+      "skillName": "u0685-impact-confidence-calibration-engine",
+      "reason": "mixed metrics: successRate=1.0000, p95=47829ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 686,
+      "skillName": "u0686-impact-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 689,
+      "skillName": "u0689-impact-resource-budget-allocator",
+      "reason": "mixed metrics: successRate=1.0000, p95=22229.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 690,
+      "skillName": "u0690-impact-risk-aware-scheduler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 693,
+      "skillName": "u0693-impact-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 694,
+      "skillName": "u0694-impact-tool-health-monitor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 695,
+      "skillName": "u0695-impact-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 700,
+      "skillName": "u0700-impact-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 701,
+      "skillName": "u0701-impact-plan-quality-evaluator",
+      "reason": "mixed metrics: successRate=1.0000, p95=32342.9ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 703,
+      "skillName": "u0703-impact-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 704,
+      "skillName": "u0704-impact-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 707,
+      "skillName": "u0707-impact-a-b-rollout-governor",
+      "reason": "mixed metrics: successRate=1.0000, p95=17829.7ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 711,
+      "skillName": "u0711-impact-security-threat-modeler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 712,
+      "skillName": "u0712-impact-compliance-evidence-mapper",
+      "reason": "mixed metrics: successRate=1.0000, p95=26747.7ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 715,
+      "skillName": "u0715-impact-community-feedback-harvester",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 717,
+      "skillName": "u0717-impact-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 718,
+      "skillName": "u0718-impact-training-curriculum-composer",
+      "reason": "mixed metrics: successRate=1.0000, p95=49771.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 723,
+      "skillName": "u0723-comms-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=33188.5ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 729,
+      "skillName": "u0729-comms-resource-budget-allocator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 731,
+      "skillName": "u0731-comms-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 732,
+      "skillName": "u0732-comms-human-approval-router",
+      "reason": "mixed metrics: successRate=1.0000, p95=25784ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 733,
+      "skillName": "u0733-comms-task-handoff-contractor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 734,
+      "skillName": "u0734-comms-tool-health-monitor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 737,
+      "skillName": "u0737-comms-regression-sentinel",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 739,
+      "skillName": "u0739-comms-knowledge-graph-linker",
+      "reason": "mixed metrics: successRate=1.0000, p95=36728.4ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 740,
+      "skillName": "u0740-comms-semantic-retrieval-ranker",
+      "reason": "mixed metrics: successRate=1.0000, p95=29035.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 743,
+      "skillName": "u0743-comms-conflict-resolution-coach",
+      "reason": "mixed metrics: successRate=1.0000, p95=46725.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 744,
+      "skillName": "u0744-comms-explainability-narrative-builder",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 745,
+      "skillName": "u0745-comms-uncertainty-communicator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 746,
+      "skillName": "u0746-comms-experiment-design-generator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 747,
+      "skillName": "u0747-comms-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 748,
+      "skillName": "u0748-comms-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 751,
+      "skillName": "u0751-comms-security-threat-modeler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 752,
+      "skillName": "u0752-comms-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 755,
+      "skillName": "u0755-comms-community-feedback-harvester",
+      "reason": "mixed metrics: successRate=1.0000, p95=31624.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 757,
+      "skillName": "u0757-comms-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=17997.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 758,
+      "skillName": "u0758-comms-training-curriculum-composer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 759,
+      "skillName": "u0759-comms-self-reflection-error-taxonomist",
+      "reason": "mixed metrics: successRate=1.0000, p95=21076ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 763,
+      "skillName": "u0763-cultural-evidence-provenance-tracker",
+      "reason": "mixed metrics: successRate=1.0000, p95=41399.7ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 764,
+      "skillName": "u0764-cultural-contradiction-detector",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 765,
+      "skillName": "u0765-cultural-confidence-calibration-engine",
+      "reason": "mixed metrics: successRate=1.0000, p95=35475.5ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 766,
+      "skillName": "u0766-cultural-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 767,
+      "skillName": "u0767-cultural-goal-decomposer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 768,
+      "skillName": "u0768-cultural-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 771,
+      "skillName": "u0771-cultural-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 772,
+      "skillName": "u0772-cultural-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 773,
+      "skillName": "u0773-cultural-task-handoff-contractor",
+      "reason": "mixed metrics: successRate=1.0000, p95=22663.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 775,
+      "skillName": "u0775-cultural-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=45236ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 776,
+      "skillName": "u0776-cultural-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 777,
+      "skillName": "u0777-cultural-regression-sentinel",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 778,
+      "skillName": "u0778-cultural-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 780,
+      "skillName": "u0780-cultural-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 781,
+      "skillName": "u0781-cultural-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 782,
+      "skillName": "u0782-cultural-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 783,
+      "skillName": "u0783-cultural-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 785,
+      "skillName": "u0785-cultural-uncertainty-communicator",
+      "reason": "mixed metrics: successRate=1.0000, p95=27462.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 788,
+      "skillName": "u0788-cultural-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 793,
+      "skillName": "u0793-cultural-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 794,
+      "skillName": "u0794-cultural-equity-impact-scorer",
+      "reason": "mixed metrics: successRate=1.0000, p95=39882ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 795,
+      "skillName": "u0795-cultural-community-feedback-harvester",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 796,
+      "skillName": "u0796-cultural-kpi-dashboard-publisher",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 797,
+      "skillName": "u0797-cultural-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=26395ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 799,
+      "skillName": "u0799-cultural-self-reflection-error-taxonomist",
+      "reason": "mixed metrics: successRate=1.0000, p95=43173.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 801,
+      "skillName": "u0801-inclusion-signal-ingestion-normalizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 802,
+      "skillName": "u0802-inclusion-context-window-prioritizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 804,
+      "skillName": "u0804-inclusion-contradiction-detector",
+      "reason": "mixed metrics: successRate=1.0000, p95=47625.9ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 805,
+      "skillName": "u0805-inclusion-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 806,
+      "skillName": "u0806-inclusion-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 807,
+      "skillName": "u0807-inclusion-goal-decomposer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 808,
+      "skillName": "u0808-inclusion-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 810,
+      "skillName": "u0810-inclusion-risk-aware-scheduler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 811,
+      "skillName": "u0811-inclusion-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 812,
+      "skillName": "u0812-inclusion-human-approval-router",
+      "reason": "mixed metrics: successRate=1.0000, p95=24691.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 813,
+      "skillName": "u0813-inclusion-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 815,
+      "skillName": "u0815-inclusion-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 817,
+      "skillName": "u0817-inclusion-regression-sentinel",
+      "reason": "mixed metrics: successRate=1.0000, p95=49592ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 818,
+      "skillName": "u0818-inclusion-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=36040ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 819,
+      "skillName": "u0819-inclusion-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 820,
+      "skillName": "u0820-inclusion-semantic-retrieval-ranker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 821,
+      "skillName": "u0821-inclusion-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 822,
+      "skillName": "u0822-inclusion-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 823,
+      "skillName": "u0823-inclusion-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 826,
+      "skillName": "u0826-inclusion-experiment-design-generator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 828,
+      "skillName": "u0828-inclusion-incident-playbook-synthesizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=47891.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 830,
+      "skillName": "u0830-inclusion-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 831,
+      "skillName": "u0831-inclusion-security-threat-modeler",
+      "reason": "mixed metrics: successRate=1.0000, p95=29922.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 834,
+      "skillName": "u0834-inclusion-equity-impact-scorer",
+      "reason": "mixed metrics: successRate=1.0000, p95=28063ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 835,
+      "skillName": "u0835-inclusion-community-feedback-harvester",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 837,
+      "skillName": "u0837-inclusion-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 839,
+      "skillName": "u0839-inclusion-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 840,
+      "skillName": "u0840-inclusion-continuous-improvement-planner",
+      "reason": "mixed metrics: successRate=1.0000, p95=42579ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 842,
+      "skillName": "u0842-community-context-window-prioritizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 843,
+      "skillName": "u0843-community-evidence-provenance-tracker",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 844,
+      "skillName": "u0844-community-contradiction-detector",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 845,
+      "skillName": "u0845-community-confidence-calibration-engine",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 846,
+      "skillName": "u0846-community-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 848,
+      "skillName": "u0848-community-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 851,
+      "skillName": "u0851-community-policy-constraint-compiler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 854,
+      "skillName": "u0854-community-tool-health-monitor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 855,
+      "skillName": "u0855-community-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=52211.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 856,
+      "skillName": "u0856-community-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 858,
+      "skillName": "u0858-community-memory-consolidation-pipeline",
+      "reason": "mixed metrics: successRate=1.0000, p95=23697.9ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 862,
+      "skillName": "u0862-community-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 863,
+      "skillName": "u0863-community-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 865,
+      "skillName": "u0865-community-uncertainty-communicator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 867,
+      "skillName": "u0867-community-a-b-rollout-governor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 868,
+      "skillName": "u0868-community-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 869,
+      "skillName": "u0869-community-disaster-recovery-orchestrator",
+      "reason": "mixed metrics: successRate=1.0000, p95=41193ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 870,
+      "skillName": "u0870-community-privacy-preserving-data-broker",
+      "reason": "mixed metrics: successRate=1.0000, p95=40554.1ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 871,
+      "skillName": "u0871-community-security-threat-modeler",
+      "reason": "mixed metrics: successRate=1.0000, p95=21234ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 876,
+      "skillName": "u0876-community-kpi-dashboard-publisher",
+      "reason": "mixed metrics: successRate=1.0000, p95=43487ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 877,
+      "skillName": "u0877-community-skill-gap-diagnoser",
+      "reason": "mixed metrics: successRate=1.0000, p95=13689.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 878,
+      "skillName": "u0878-community-training-curriculum-composer",
+      "reason": "mixed metrics: successRate=1.0000, p95=38117.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 880,
+      "skillName": "u0880-community-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 881,
+      "skillName": "u0881-rights-signal-ingestion-normalizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 883,
+      "skillName": "u0883-rights-evidence-provenance-tracker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 884,
+      "skillName": "u0884-rights-contradiction-detector",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 886,
+      "skillName": "u0886-rights-counterfactual-simulator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 887,
+      "skillName": "u0887-rights-goal-decomposer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 889,
+      "skillName": "u0889-rights-resource-budget-allocator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 890,
+      "skillName": "u0890-rights-risk-aware-scheduler",
+      "reason": "mixed metrics: successRate=1.0000, p95=21814.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 892,
+      "skillName": "u0892-rights-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 893,
+      "skillName": "u0893-rights-task-handoff-contractor",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 895,
+      "skillName": "u0895-rights-auto-retry-and-backoff-coordinator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 896,
+      "skillName": "u0896-rights-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 897,
+      "skillName": "u0897-rights-regression-sentinel",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 898,
+      "skillName": "u0898-rights-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 899,
+      "skillName": "u0899-rights-knowledge-graph-linker",
+      "reason": "mixed metrics: successRate=1.0000, p95=28261.9ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 900,
+      "skillName": "u0900-rights-semantic-retrieval-ranker",
+      "reason": "mixed metrics: successRate=1.0000, p95=44211ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 901,
+      "skillName": "u0901-rights-plan-quality-evaluator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 902,
+      "skillName": "u0902-rights-multi-agent-negotiation-mediator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 903,
+      "skillName": "u0903-rights-conflict-resolution-coach",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 905,
+      "skillName": "u0905-rights-uncertainty-communicator",
+      "reason": "mixed metrics: successRate=1.0000, p95=16949.8ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 908,
+      "skillName": "u0908-rights-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 909,
+      "skillName": "u0909-rights-disaster-recovery-orchestrator",
+      "reason": "mixed metrics: successRate=1.0000, p95=24750ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 910,
+      "skillName": "u0910-rights-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 911,
+      "skillName": "u0911-rights-security-threat-modeler",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 912,
+      "skillName": "u0912-rights-compliance-evidence-mapper",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 913,
+      "skillName": "u0913-rights-cost-benefit-forecaster",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 917,
+      "skillName": "u0917-rights-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 920,
+      "skillName": "u0920-rights-continuous-improvement-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 924,
+      "skillName": "u0924-infra-contradiction-detector",
+      "reason": "mixed metrics: successRate=1.0000, p95=34516.6ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 925,
+      "skillName": "u0925-infra-confidence-calibration-engine",
+      "reason": "mixed metrics: successRate=1.0000, p95=30809.5ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 926,
+      "skillName": "u0926-infra-counterfactual-simulator",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 927,
+      "skillName": "u0927-infra-goal-decomposer",
+      "reason": "mixed metrics: successRate=1.0000, p95=45308ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 928,
+      "skillName": "u0928-infra-dependency-dag-planner",
+      "reason": "mixed metrics: successRate=1.0000, p95=43052ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 933,
+      "skillName": "u0933-infra-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 934,
+      "skillName": "u0934-infra-tool-health-monitor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 935,
+      "skillName": "u0935-infra-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=26221.3ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 936,
+      "skillName": "u0936-infra-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 937,
+      "skillName": "u0937-infra-regression-sentinel",
+      "reason": "mixed metrics: successRate=1.0000, p95=33205.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 938,
+      "skillName": "u0938-infra-memory-consolidation-pipeline",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 939,
+      "skillName": "u0939-infra-knowledge-graph-linker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 940,
+      "skillName": "u0940-infra-semantic-retrieval-ranker",
+      "reason": "mixed metrics: successRate=1.0000, p95=13207.7ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 945,
+      "skillName": "u0945-infra-uncertainty-communicator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 946,
+      "skillName": "u0946-infra-experiment-design-generator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 948,
+      "skillName": "u0948-infra-incident-playbook-synthesizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=23930.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 949,
+      "skillName": "u0949-infra-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 950,
+      "skillName": "u0950-infra-privacy-preserving-data-broker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 951,
+      "skillName": "u0951-infra-security-threat-modeler",
+      "reason": "mixed metrics: successRate=1.0000, p95=49963ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 954,
+      "skillName": "u0954-infra-equity-impact-scorer",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 955,
+      "skillName": "u0955-infra-community-feedback-harvester",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 956,
+      "skillName": "u0956-infra-kpi-dashboard-publisher",
+      "reason": "mixed metrics: successRate=1.0000, p95=42272.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 957,
+      "skillName": "u0957-infra-skill-gap-diagnoser",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 958,
+      "skillName": "u0958-infra-training-curriculum-composer",
+      "reason": "mixed metrics: successRate=1.0000, p95=38677.4ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 961,
+      "skillName": "u0961-evolution-signal-ingestion-normalizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=40000ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 962,
+      "skillName": "u0962-evolution-context-window-prioritizer",
+      "reason": "mixed metrics: successRate=1.0000, p95=35385.9ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 963,
+      "skillName": "u0963-evolution-evidence-provenance-tracker",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 966,
+      "skillName": "u0966-evolution-counterfactual-simulator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 968,
+      "skillName": "u0968-evolution-dependency-dag-planner",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 972,
+      "skillName": "u0972-evolution-human-approval-router",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 973,
+      "skillName": "u0973-evolution-task-handoff-contractor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 974,
+      "skillName": "u0974-evolution-tool-health-monitor",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 975,
+      "skillName": "u0975-evolution-auto-retry-and-backoff-coordinator",
+      "reason": "mixed metrics: successRate=1.0000, p95=33998ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 976,
+      "skillName": "u0976-evolution-failure-root-cause-miner",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 979,
+      "skillName": "u0979-evolution-knowledge-graph-linker",
+      "reason": "mixed metrics: successRate=1.0000, p95=49826ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 980,
+      "skillName": "u0980-evolution-semantic-retrieval-ranker",
+      "reason": "mixed metrics: successRate=1.0000, p95=33642ms, approvalPendingRatio=0.0000, failureRatio=0.0000"
+    },
+    {
+      "skillId": 988,
+      "skillName": "u0988-evolution-incident-playbook-synthesizer",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 989,
+      "skillName": "u0989-evolution-disaster-recovery-orchestrator",
+      "reason": "insufficient terminal samples (0/2)"
+    },
+    {
+      "skillId": 994,
+      "skillName": "u0994-evolution-equity-impact-scorer",
+      "reason": "mixed metrics: successRate=1.0000, p95=18734ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    },
+    {
+      "skillId": 999,
+      "skillName": "u0999-evolution-self-reflection-error-taxonomist",
+      "reason": "insufficient terminal samples (1/2)"
+    },
+    {
+      "skillId": 1000,
+      "skillName": "u1000-evolution-continuous-improvement-planner",
+      "reason": "mixed metrics: successRate=1.0000, p95=29514.2ms, approvalPendingRatio=0.3333, failureRatio=0.0000"
+    }
+  ],
+  "demote": [
+    {
+      "skillId": 8,
+      "skillName": "u0008-epistemic-dependency-dag-planner",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 9,
+      "skillName": "u0009-epistemic-resource-budget-allocator",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 10,
+      "skillName": "u0010-epistemic-risk-aware-scheduler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 23,
+      "skillName": "u0023-epistemic-conflict-resolution-coach",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 24,
+      "skillName": "u0024-epistemic-explainability-narrative-builder",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 32,
+      "skillName": "u0032-epistemic-compliance-evidence-mapper",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 44,
+      "skillName": "u0044-planning-contradiction-detector",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 46,
+      "skillName": "u0046-planning-counterfactual-simulator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 47,
+      "skillName": "u0047-planning-goal-decomposer",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 49,
+      "skillName": "u0049-planning-resource-budget-allocator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 57,
+      "skillName": "u0057-planning-regression-sentinel",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 59,
+      "skillName": "u0059-planning-knowledge-graph-linker",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 69,
+      "skillName": "u0069-planning-disaster-recovery-orchestrator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 71,
+      "skillName": "u0071-planning-security-threat-modeler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 72,
+      "skillName": "u0072-planning-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 73,
+      "skillName": "u0073-planning-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 85,
+      "skillName": "u0085-memory-confidence-calibration-engine",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 88,
+      "skillName": "u0088-memory-dependency-dag-planner",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 90,
+      "skillName": "u0090-memory-risk-aware-scheduler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 103,
+      "skillName": "u0103-memory-conflict-resolution-coach",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 106,
+      "skillName": "u0106-memory-experiment-design-generator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 107,
+      "skillName": "u0107-memory-a-b-rollout-governor",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 108,
+      "skillName": "u0108-memory-incident-playbook-synthesizer",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 111,
+      "skillName": "u0111-memory-security-threat-modeler",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 114,
+      "skillName": "u0114-memory-equity-impact-scorer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 116,
+      "skillName": "u0116-memory-kpi-dashboard-publisher",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 139,
+      "skillName": "u0139-tooling-knowledge-graph-linker",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 141,
+      "skillName": "u0141-tooling-plan-quality-evaluator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 151,
+      "skillName": "u0151-tooling-security-threat-modeler",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 155,
+      "skillName": "u0155-tooling-community-feedback-harvester",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 157,
+      "skillName": "u0157-tooling-skill-gap-diagnoser",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 183,
+      "skillName": "u0183-governance-conflict-resolution-coach",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 189,
+      "skillName": "u0189-governance-disaster-recovery-orchestrator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 193,
+      "skillName": "u0193-governance-cost-benefit-forecaster",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 197,
+      "skillName": "u0197-governance-skill-gap-diagnoser",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 206,
+      "skillName": "u0206-oversight-counterfactual-simulator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 207,
+      "skillName": "u0207-oversight-goal-decomposer",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 208,
+      "skillName": "u0208-oversight-dependency-dag-planner",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 214,
+      "skillName": "u0214-oversight-tool-health-monitor",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 215,
+      "skillName": "u0215-oversight-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 218,
+      "skillName": "u0218-oversight-memory-consolidation-pipeline",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 228,
+      "skillName": "u0228-oversight-incident-playbook-synthesizer",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 239,
+      "skillName": "u0239-oversight-self-reflection-error-taxonomist",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 246,
+      "skillName": "u0246-collab-counterfactual-simulator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 252,
+      "skillName": "u0252-collab-human-approval-router",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 254,
+      "skillName": "u0254-collab-tool-health-monitor",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 258,
+      "skillName": "u0258-collab-memory-consolidation-pipeline",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 273,
+      "skillName": "u0273-collab-cost-benefit-forecaster",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 275,
+      "skillName": "u0275-collab-community-feedback-harvester",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 290,
+      "skillName": "u0290-federation-risk-aware-scheduler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 301,
+      "skillName": "u0301-federation-plan-quality-evaluator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 307,
+      "skillName": "u0307-federation-a-b-rollout-governor",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 309,
+      "skillName": "u0309-federation-disaster-recovery-orchestrator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 310,
+      "skillName": "u0310-federation-privacy-preserving-data-broker",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 320,
+      "skillName": "u0320-federation-continuous-improvement-planner",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 324,
+      "skillName": "u0324-economic-contradiction-detector",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 331,
+      "skillName": "u0331-economic-policy-constraint-compiler",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 335,
+      "skillName": "u0335-economic-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 340,
+      "skillName": "u0340-economic-semantic-retrieval-ranker",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 348,
+      "skillName": "u0348-economic-incident-playbook-synthesizer",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 353,
+      "skillName": "u0353-economic-cost-benefit-forecaster",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 354,
+      "skillName": "u0354-economic-equity-impact-scorer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 359,
+      "skillName": "u0359-economic-self-reflection-error-taxonomist",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 368,
+      "skillName": "u0368-logistics-dependency-dag-planner",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 372,
+      "skillName": "u0372-logistics-human-approval-router",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 380,
+      "skillName": "u0380-logistics-semantic-retrieval-ranker",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 384,
+      "skillName": "u0384-logistics-explainability-narrative-builder",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.2500"
+    },
+    {
+      "skillId": 398,
+      "skillName": "u0398-logistics-training-curriculum-composer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 400,
+      "skillName": "u0400-logistics-continuous-improvement-planner",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 402,
+      "skillName": "u0402-publicservice-context-window-prioritizer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 403,
+      "skillName": "u0403-publicservice-evidence-provenance-tracker",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 415,
+      "skillName": "u0415-publicservice-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 417,
+      "skillName": "u0417-publicservice-regression-sentinel",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 428,
+      "skillName": "u0428-publicservice-incident-playbook-synthesizer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 431,
+      "skillName": "u0431-publicservice-security-threat-modeler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 434,
+      "skillName": "u0434-publicservice-equity-impact-scorer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 436,
+      "skillName": "u0436-publicservice-kpi-dashboard-publisher",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 439,
+      "skillName": "u0439-publicservice-self-reflection-error-taxonomist",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 451,
+      "skillName": "u0451-education-policy-constraint-compiler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 453,
+      "skillName": "u0453-education-task-handoff-contractor",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 455,
+      "skillName": "u0455-education-auto-retry-and-backoff-coordinator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 463,
+      "skillName": "u0463-education-conflict-resolution-coach",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 473,
+      "skillName": "u0473-education-cost-benefit-forecaster",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 486,
+      "skillName": "u0486-research-counterfactual-simulator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 488,
+      "skillName": "u0488-research-dependency-dag-planner",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 504,
+      "skillName": "u0504-research-explainability-narrative-builder",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 521,
+      "skillName": "u0521-engineering-signal-ingestion-normalizer",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 528,
+      "skillName": "u0528-engineering-dependency-dag-planner",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 530,
+      "skillName": "u0530-engineering-risk-aware-scheduler",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 542,
+      "skillName": "u0542-engineering-multi-agent-negotiation-mediator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 544,
+      "skillName": "u0544-engineering-explainability-narrative-builder",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 549,
+      "skillName": "u0549-engineering-disaster-recovery-orchestrator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 555,
+      "skillName": "u0555-engineering-community-feedback-harvester",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 561,
+      "skillName": "u0561-observability-signal-ingestion-normalizer",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 566,
+      "skillName": "u0566-observability-counterfactual-simulator",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 574,
+      "skillName": "u0574-observability-tool-health-monitor",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 579,
+      "skillName": "u0579-observability-knowledge-graph-linker",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 592,
+      "skillName": "u0592-observability-compliance-evidence-mapper",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 593,
+      "skillName": "u0593-observability-cost-benefit-forecaster",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 595,
+      "skillName": "u0595-observability-community-feedback-harvester",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 603,
+      "skillName": "u0603-security-evidence-provenance-tracker",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 610,
+      "skillName": "u0610-security-risk-aware-scheduler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 614,
+      "skillName": "u0614-security-tool-health-monitor",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 621,
+      "skillName": "u0621-security-plan-quality-evaluator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 625,
+      "skillName": "u0625-security-uncertainty-communicator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 627,
+      "skillName": "u0627-security-a-b-rollout-governor",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 630,
+      "skillName": "u0630-security-privacy-preserving-data-broker",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 635,
+      "skillName": "u0635-security-community-feedback-harvester",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.2500"
+    },
+    {
+      "skillId": 638,
+      "skillName": "u0638-security-training-curriculum-composer",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 643,
+      "skillName": "u0643-crisis-evidence-provenance-tracker",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 649,
+      "skillName": "u0649-crisis-resource-budget-allocator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 651,
+      "skillName": "u0651-crisis-policy-constraint-compiler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 682,
+      "skillName": "u0682-impact-context-window-prioritizer",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 705,
+      "skillName": "u0705-impact-uncertainty-communicator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 706,
+      "skillName": "u0706-impact-experiment-design-generator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 716,
+      "skillName": "u0716-impact-kpi-dashboard-publisher",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 722,
+      "skillName": "u0722-comms-context-window-prioritizer",
+      "reason": "successRate=1.0000, failureRatio=0.0000, approvalPendingRatio=0.5000"
+    },
+    {
+      "skillId": 724,
+      "skillName": "u0724-comms-contradiction-detector",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 738,
+      "skillName": "u0738-comms-memory-consolidation-pipeline",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 741,
+      "skillName": "u0741-comms-plan-quality-evaluator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 753,
+      "skillName": "u0753-comms-cost-benefit-forecaster",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 754,
+      "skillName": "u0754-comms-equity-impact-scorer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 769,
+      "skillName": "u0769-cultural-resource-budget-allocator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 774,
+      "skillName": "u0774-cultural-tool-health-monitor",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 779,
+      "skillName": "u0779-cultural-knowledge-graph-linker",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 787,
+      "skillName": "u0787-cultural-a-b-rollout-governor",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 809,
+      "skillName": "u0809-inclusion-resource-budget-allocator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 816,
+      "skillName": "u0816-inclusion-failure-root-cause-miner",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 824,
+      "skillName": "u0824-inclusion-explainability-narrative-builder",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 825,
+      "skillName": "u0825-inclusion-uncertainty-communicator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 829,
+      "skillName": "u0829-inclusion-disaster-recovery-orchestrator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 832,
+      "skillName": "u0832-inclusion-compliance-evidence-mapper",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 836,
+      "skillName": "u0836-inclusion-kpi-dashboard-publisher",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 841,
+      "skillName": "u0841-community-signal-ingestion-normalizer",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 849,
+      "skillName": "u0849-community-resource-budget-allocator",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 850,
+      "skillName": "u0850-community-risk-aware-scheduler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 852,
+      "skillName": "u0852-community-human-approval-router",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 853,
+      "skillName": "u0853-community-task-handoff-contractor",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 857,
+      "skillName": "u0857-community-regression-sentinel",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 860,
+      "skillName": "u0860-community-semantic-retrieval-ranker",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 861,
+      "skillName": "u0861-community-plan-quality-evaluator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 866,
+      "skillName": "u0866-community-experiment-design-generator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.3333"
+    },
+    {
+      "skillId": 875,
+      "skillName": "u0875-community-community-feedback-harvester",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 894,
+      "skillName": "u0894-rights-tool-health-monitor",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 904,
+      "skillName": "u0904-rights-explainability-narrative-builder",
+      "reason": "successRate=0.5000, failureRatio=0.5000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 922,
+      "skillName": "u0922-infra-context-window-prioritizer",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 932,
+      "skillName": "u0932-infra-human-approval-router",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 941,
+      "skillName": "u0941-infra-plan-quality-evaluator",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 943,
+      "skillName": "u0943-infra-conflict-resolution-coach",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.2500"
+    },
+    {
+      "skillId": 947,
+      "skillName": "u0947-infra-a-b-rollout-governor",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 964,
+      "skillName": "u0964-evolution-contradiction-detector",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 970,
+      "skillName": "u0970-evolution-risk-aware-scheduler",
+      "reason": "successRate=0.7500, failureRatio=0.2500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 978,
+      "skillName": "u0978-evolution-memory-consolidation-pipeline",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 981,
+      "skillName": "u0981-evolution-plan-quality-evaluator",
+      "reason": "successRate=0.0000, failureRatio=1.0000, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 982,
+      "skillName": "u0982-evolution-multi-agent-negotiation-mediator",
+      "reason": "successRate=0.2500, failureRatio=0.7500, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 991,
+      "skillName": "u0991-evolution-security-threat-modeler",
+      "reason": "successRate=0.6667, failureRatio=0.3333, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 992,
+      "skillName": "u0992-evolution-compliance-evidence-mapper",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    },
+    {
+      "skillId": 995,
+      "skillName": "u0995-evolution-community-feedback-harvester",
+      "reason": "successRate=0.3333, failureRatio=0.6667, approvalPendingRatio=0.0000"
+    }
+  ]
+}

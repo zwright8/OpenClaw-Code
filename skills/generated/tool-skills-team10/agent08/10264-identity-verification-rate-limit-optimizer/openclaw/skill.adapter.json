@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10264,
+  "name": "identity-verification-rate-limit-optimizer",
+  "title": "Identity Verification Rate Limit Optimizer",
+  "description": "Design and run identity verification workflows with rate limit optimizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2422,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10264-identity-verification-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent08/10264-identity-verification-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification rate limit optimizer",
+    "identity verification rate limit optimizer workflow",
+    "identity verification rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,25 @@
+rank,tool,access,description,homepage,license
+3973,roswell,local-installable,Lisp installer and launcher for major environments,https://github.com/roswell/roswell,MIT
+3974,nexus,local-installable,Repository manager for binary software components,https://www.sonatype.com/,EPL-1.0
+3975,tre-command,local-installable,"Tree command, improved",https://github.com/dduan/tre,MIT
+3977,elfutils,local-installable,Libraries and utilities for handling ELF objects,https://fedorahosted.org/elfutils/,GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-only
+3978,aalib,local-installable,Portable ASCII art graphics library,https://aa-project.sourceforge.net/aalib/,GPL-2.0-or-later
+3979,libvncserver,local-installable,VNC server and client libraries,https://libvnc.github.io,GPL-2.0-or-later
+3980,nmrpflash,local-installable,Netgear Unbrick Utility,https://github.com/jclehner/nmrpflash,GPL-3.0-or-later
+3981,dzr,local-installable,Command-line Deezer.com player,https://github.com/yne/dzr,Unlicense
+3982,libepoxy,local-installable,Library for handling OpenGL function pointer management,https://github.com/anholt/libepoxy,MIT
+3984,varnish,local-installable,High-performance HTTP accelerator,https://www.varnish-cache.org/,BSD-2-Clause
+3986,http-prompt,local-installable,Interactive command-line HTTP client with autocomplete and syntax highlighting,https://http-prompt.com,MIT
+3987,qman,local-installable,Modern man page viewer,https://github.com/plp13/qman,BSD-2-Clause
+3988,claudekit,local-installable,Intelligent guardrails and workflow automation for Claude Code,https://github.com/carlrannaberg/claudekit,MIT
+3989,babl,local-installable,"Dynamic, any-to-any, pixel format translation library",https://www.gegl.org/babl/,LGPL-3.0-or-later
+3991,asc,local-installable,"Fast, lightweight CLI for App Store Connect",https://asccli.sh,MIT
+3992,kuzu,local-installable,Embeddable graph database management system built for query speed & scalability,https://github.com/kuzudb/kuzu,MIT
+3993,puzzles,local-installable,Collection of one-player puzzle games,https://www.chiark.greenend.org.uk/~sgtatham/puzzles/,MIT
+3994,ivy,local-installable,Agile dependency manager,https://ant.apache.org/ivy/,Apache-2.0
+3995,travis,local-installable,Command-line client for Travis CI,https://github.com/travis-ci/travis.rb/,MIT
+3996,nwchem,local-installable,High-performance computational chemistry tools,https://nwchemgit.github.io,ECL-2.0
+3997,opkssh,local-installable,Enables SSH to be used with OpenID Connect,https://eprint.iacr.org/2023/296,Apache-2.0
+3998,libcap,local-installable,User-space interfaces to POSIX 1003.1e capabilities,https://sites.google.com/site/fullycapable/,BSD-3-Clause AND GPL-2.0-or-later
+3999,criterion,local-installable,Cross-platform C and C++ unit testing framework for the 21st century,https://github.com/Snaipe/Criterion,MIT
+4000,libpaho-mqtt,local-installable,Eclipse Paho C client library for MQTT,https://eclipse-paho.github.io/paho.mqtt.c/MQTTClient/html/,EPL-2.0

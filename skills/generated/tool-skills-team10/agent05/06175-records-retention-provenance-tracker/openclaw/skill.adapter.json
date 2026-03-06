@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6175,
+  "name": "records-retention-provenance-tracker",
+  "title": "Records Retention Provenance Tracker",
+  "description": "Design and run records retention workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10099,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06175-records-retention-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/06175-records-retention-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention provenance tracker",
+    "records retention provenance tracker workflow",
+    "records retention provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

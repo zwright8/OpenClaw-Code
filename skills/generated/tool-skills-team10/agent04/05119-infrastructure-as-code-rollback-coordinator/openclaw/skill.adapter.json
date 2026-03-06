@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5119,
+  "name": "infrastructure-as-code-rollback-coordinator",
+  "title": "Infrastructure as Code Rollback Coordinator",
+  "description": "Design and run infrastructure as code workflows with rollback coordinator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5004,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05119-infrastructure-as-code-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent04/05119-infrastructure-as-code-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code rollback coordinator",
+    "infrastructure as code rollback coordinator workflow",
+    "infrastructure as code rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

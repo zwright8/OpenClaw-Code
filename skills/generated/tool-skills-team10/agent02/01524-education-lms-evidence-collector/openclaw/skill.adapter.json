@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1524,
+  "name": "education-lms-evidence-collector",
+  "title": "Education LMS Evidence Collector",
+  "description": "Design and run education lms workflows with evidence collector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3988,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01524-education-lms-evidence-collector/SKILL.md",
+    "entrypoint": "agent02/01524-education-lms-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms evidence collector",
+    "education lms evidence collector workflow",
+    "education lms evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

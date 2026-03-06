@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7748,
+  "name": "in-app-messaging-feedback-harvester",
+  "title": "In-App Messaging Feedback Harvester",
+  "description": "Design and run in-app messaging workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10676,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07748-in-app-messaging-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/07748-in-app-messaging-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging feedback harvester",
+    "in-app messaging feedback harvester workflow",
+    "in-app messaging feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

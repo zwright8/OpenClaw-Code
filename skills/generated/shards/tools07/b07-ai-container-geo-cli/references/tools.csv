@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3225,trzsz-ssh,local-installable,Alternative ssh client with additional features to meet your needs,https://trzsz.github.io/ssh,MIT
+3226,tgpt,local-installable,AI Chatbots in terminal without needing API keys,https://github.com/aandrew-me/tgpt,GPL-3.0-only
+3227,oxker,local-installable,Terminal User Interface (TUI) to view & control docker containers,https://github.com/mrjackwills/oxker,MIT
+3228,rasterio,local-installable,Reads and writes geospatial raster datasets,https://rasterio.readthedocs.io/en/stable/,BSD-3-Clause
+3229,apngasm,local-installable,"Next generation of apngasm, the APNG assembler",https://github.com/apngasm/apngasm,Zlib
+3231,h2,local-installable,Java SQL database,https://www.h2database.com/,MPL-2.0
+3232,rbenv-gemset,local-installable,KISS yet powerful gem / gemset management for rbenv,https://github.com/jf/rbenv-gemset,LicenseRef-Homebrew-public-domain
+3233,shtool,local-installable,GNU's portable shell tool,https://www.gnu.org/software/shtool/,GPL-2.0-or-later
+3234,rrdtool,local-installable,Round Robin Database,https://oss.oetiker.ch/rrdtool/,GPL-2.0-only
+3236,hercules,local-installable,"System/370, ESA/390 and z/Architecture Emulator",https://sdl-hercules-390.github.io/html/,QPL-1.0
+3237,libxfixes,local-installable,X.Org: Header files for the XFIXES extension,https://www.x.org/,MIT
+3241,clarinet,local-installable,Command-line tool and runtime for the Clarity smart contract language,https://stackslabs.com/,GPL-3.0-only
+3243,i2pd,local-installable,Full-featured C++ implementation of I2P client,https://i2pd.website/,BSD-3-Clause
+3244,imgproxy,local-installable,Fast and secure server for resizing and converting remote images,https://imgproxy.net,MIT
+3245,fail2ban,local-installable,Scan log files and ban IPs showing malicious signs,https://www.fail2ban.org/,GPL-2.0-or-later
+3247,context7-mcp,local-installable,Up-to-date code documentation for LLMs and AI code editors,https://github.com/upstash/context7,MIT
+3248,bkmr,local-installable,"Unified CLI Tool for Bookmark, Snippet, and Knowledge Management",https://github.com/sysid/bkmr,BSD-3-Clause
+3249,weaviate,local-installable,Open-source vector database that stores both objects and vectors,https://weaviate.io/developers/weaviate/,BSD-3-Clause
+3250,cri-tools,local-installable,CLI and validation tools for Kubelet Container Runtime Interface (CRI),https://github.com/kubernetes-sigs/cri-tools,Apache-2.0
+3251,liquidctl,local-installable,Cross-platform tool and drivers for liquid coolers and other devices,https://github.com/liquidctl/liquidctl,GPL-3.0-or-later
+3253,metis,local-installable,Programs that partition graphs and order matrices,https://karypis.github.io/glaros/software/metis/overview.html,Apache-2.0
+3254,ipv6calc,local-installable,Small utility for manipulating IPv6 addresses,https://www.deepspace6.net/projects/ipv6calc.html,GPL-2.0-only
+3256,jqp,local-installable,TUI playground to experiment and play with jq,https://github.com/noahgorstein/jqp,MIT
+3257,catimg,local-installable,Insanely fast image printing in your terminal,https://github.com/posva/catimg,MIT
+3258,beancount,local-installable,Double-entry accounting tool that works on plain text files,https://beancount.github.io/,GPL-2.0-only
+3259,quicktype,local-installable,"Generate types and converters from JSON, Schema, and GraphQL",https://github.com/glideapps/quicktype,Apache-2.0

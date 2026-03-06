@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6768,
+  "name": "subscription-platforms-conflict-resolver",
+  "title": "Subscription Platforms Conflict Resolver",
+  "description": "Design and run subscription platforms workflows with conflict resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10305,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06768-subscription-platforms-conflict-resolver/SKILL.md",
+    "entrypoint": "agent06/06768-subscription-platforms-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "subscription platforms conflict resolver",
+    "subscription platforms conflict resolver workflow",
+    "subscription platforms conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

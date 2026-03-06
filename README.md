@@ -45,8 +45,7 @@ Adds a capability marketplace with metadata contracts, live probing, and stale/f
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
-Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
-Recovery supervision now supports multi-window SLO error-budget burn-rate detection with low-traffic suppression and prescriptive circuit-breaker/jitter-backoff actions.
+Adds an autonomous recovery supervisor for incident detection, retry-budget enforcement, and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
@@ -262,7 +261,7 @@ Run learning-loop replay from task outcomes:
 ```bash
 npm run learn:loop
 ```
-This ingests task outcomes, runs counterfactual variants, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
+This ingests task outcomes, runs counterfactual variants, tracks p50/p95/p99 latency and confidence-bounded agent reliability, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
 
 Convert skill-growth recommendations into executable training/acquisition tasks:
 ```bash
@@ -332,6 +331,12 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
+  maxRetries: 2,
+  retryStrategy: 'exponential',
+  retryBackoffMultiplier: 2,
+  retryDelayMs: 250,
+  circuitFailureThreshold: 3,
+  circuitCooldownMs: 15_000,
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;

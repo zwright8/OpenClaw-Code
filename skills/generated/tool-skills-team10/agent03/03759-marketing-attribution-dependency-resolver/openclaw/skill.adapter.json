@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3759,
+  "name": "marketing-attribution-dependency-resolver",
+  "title": "Marketing Attribution Dependency Resolver",
+  "description": "Design and run marketing attribution workflows with dependency resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7954,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03759-marketing-attribution-dependency-resolver/SKILL.md",
+    "entrypoint": "agent03/03759-marketing-attribution-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketing attribution dependency resolver",
+    "marketing attribution dependency resolver workflow",
+    "marketing attribution dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

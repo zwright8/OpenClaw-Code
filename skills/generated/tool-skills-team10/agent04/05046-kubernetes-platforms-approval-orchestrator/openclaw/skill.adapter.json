@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5046,
+  "name": "kubernetes-platforms-approval-orchestrator",
+  "title": "Kubernetes Platforms Approval Orchestrator",
+  "description": "Design and run kubernetes platforms workflows with approval orchestrator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3408,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05046-kubernetes-platforms-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent04/05046-kubernetes-platforms-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms approval orchestrator",
+    "kubernetes platforms approval orchestrator workflow",
+    "kubernetes platforms approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

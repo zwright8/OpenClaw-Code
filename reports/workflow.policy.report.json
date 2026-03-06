@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-27T02:04:59.433Z",
+  "command": "apply-execution-policy",
+  "inputs": {
+    "workflowPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/workflow.compiled.json",
+    "policyPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/execution-policy.json",
+    "workflowSha256": "a541d73f6d7ae7925916728385d40f37b7bf30236e722a06b6b73f8d040c0c36",
+    "policySha256": "8bd9df54c54c1c1b24a2f0104db395400a4dbb24367e619363e25521e171121b"
+  },
+  "outputs": {
+    "evaluatedWorkflowPath": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code/skills/state/workflow.policy-evaluated.json",
+    "evaluatedWorkflowSha256": "c7f8441593f6e513fbf6c13c9694ce4051561efa4a46f798b4689fbb8879ac1a"
+  },
+  "summary": {
+    "totalNodes": 3,
+    "approvalRequiredCount": 3,
+    "failClosedCount": 3
+  }
+}

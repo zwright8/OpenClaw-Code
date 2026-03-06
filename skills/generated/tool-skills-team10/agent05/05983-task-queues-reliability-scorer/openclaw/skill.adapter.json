@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5983,
+  "name": "task-queues-reliability-scorer",
+  "title": "Task Queues Reliability Scorer",
+  "description": "Design and run task queues workflows with reliability scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10021,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05983-task-queues-reliability-scorer/SKILL.md",
+    "entrypoint": "agent05/05983-task-queues-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues reliability scorer",
+    "task queues reliability scorer workflow",
+    "task queues reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

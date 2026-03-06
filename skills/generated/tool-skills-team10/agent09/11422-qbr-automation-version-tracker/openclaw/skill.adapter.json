@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11422,
+  "name": "qbr-automation-version-tracker",
+  "title": "QBR Automation Version Tracker",
+  "description": "Design and run qbr automation workflows with version tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11966,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11422-qbr-automation-version-tracker/SKILL.md",
+    "entrypoint": "agent09/11422-qbr-automation-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation version tracker",
+    "qbr automation version tracker workflow",
+    "qbr automation version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

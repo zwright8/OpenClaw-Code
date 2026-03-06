@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8796,
+  "name": "legal-matter-mgmt-approval-orchestrator",
+  "title": "Legal Matter Mgmt Approval Orchestrator",
+  "description": "Design and run legal matter mgmt workflows with approval orchestrator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3689,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08796-legal-matter-mgmt-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent07/08796-legal-matter-mgmt-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt approval orchestrator",
+    "legal matter mgmt approval orchestrator workflow",
+    "legal matter mgmt approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6261,
+  "name": "media-asset-management-execution-runner",
+  "title": "Media Asset Management Execution Runner",
+  "description": "Design and run media asset management workflows with execution runner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 776,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent05/06261-media-asset-management-execution-runner/SKILL.md",
+    "entrypoint": "agent05/06261-media-asset-management-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management execution runner",
+    "media asset management execution runner workflow",
+    "media asset management execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

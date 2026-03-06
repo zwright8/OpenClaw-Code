@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2741,
+  "name": "facility-maintenance-incident-triage",
+  "title": "Facility Maintenance Incident Triage",
+  "description": "Design and run facility maintenance workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 831,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/02741-facility-maintenance-incident-triage/SKILL.md",
+    "entrypoint": "agent03/02741-facility-maintenance-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance incident triage",
+    "facility maintenance incident triage workflow",
+    "facility maintenance incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5891,
+  "name": "workflow-engines-incident-triage",
+  "title": "Workflow Engines Incident Triage",
+  "description": "Design and run workflow engines workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2125,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05891-workflow-engines-incident-triage/SKILL.md",
+    "entrypoint": "agent05/05891-workflow-engines-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines incident triage",
+    "workflow engines incident triage workflow",
+    "workflow engines incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

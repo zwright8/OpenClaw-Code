@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12695,
+  "name": "universal-toolchain-04-runbook-composer",
+  "title": "Universal Toolchain 04 Runbook Composer",
+  "description": "Design and run universal toolchain 04 workflows with runbook composer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5701,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12695-universal-toolchain-04-runbook-composer/SKILL.md",
+    "entrypoint": "agent10/12695-universal-toolchain-04-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 04 runbook composer",
+    "universal toolchain 04 runbook composer workflow",
+    "universal toolchain 04 runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

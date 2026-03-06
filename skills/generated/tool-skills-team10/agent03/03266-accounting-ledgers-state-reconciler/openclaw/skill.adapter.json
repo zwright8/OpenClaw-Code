@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3266,
+  "name": "accounting-ledgers-state-reconciler",
+  "title": "Accounting Ledgers State Reconciler",
+  "description": "Design and run accounting ledgers workflows with state reconciler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4103,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03266-accounting-ledgers-state-reconciler/SKILL.md",
+    "entrypoint": "agent03/03266-accounting-ledgers-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers state reconciler",
+    "accounting ledgers state reconciler workflow",
+    "accounting ledgers state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

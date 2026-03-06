@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10761,
+  "name": "knowledge-graphs-execution-runner",
+  "title": "Knowledge Graphs Execution Runner",
+  "description": "Design and run knowledge graphs workflows with execution runner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 530,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10761-knowledge-graphs-execution-runner/SKILL.md",
+    "entrypoint": "agent09/10761-knowledge-graphs-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs execution runner",
+    "knowledge graphs execution runner workflow",
+    "knowledge graphs execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

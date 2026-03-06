@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10405,
+  "name": "document-verification-spec-drift-detector",
+  "title": "Document Verification Spec Drift Detector",
+  "description": "Design and run document verification workflows with spec drift detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4375,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10405-document-verification-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent09/10405-document-verification-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification spec drift detector",
+    "document verification spec drift detector workflow",
+    "document verification spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

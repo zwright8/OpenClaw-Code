@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7603,
+  "name": "device-labs-permission-mapper",
+  "title": "Device Labs Permission Mapper",
+  "description": "Design and run device labs workflows with permission mapper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3597,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07603-device-labs-permission-mapper/SKILL.md",
+    "entrypoint": "agent06/07603-device-labs-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs permission mapper",
+    "device labs permission mapper workflow",
+    "device labs permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

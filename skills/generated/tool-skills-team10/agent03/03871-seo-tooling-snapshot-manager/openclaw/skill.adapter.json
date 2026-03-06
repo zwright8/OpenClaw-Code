@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3871,
+  "name": "seo-tooling-snapshot-manager",
+  "title": "SEO Tooling Snapshot Manager",
+  "description": "Design and run seo tooling workflows with snapshot manager controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9319,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03871-seo-tooling-snapshot-manager/SKILL.md",
+    "entrypoint": "agent03/03871-seo-tooling-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling snapshot manager",
+    "seo tooling snapshot manager workflow",
+    "seo tooling snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

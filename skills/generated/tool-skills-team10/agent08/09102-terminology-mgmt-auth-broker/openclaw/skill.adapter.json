@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9102,
+  "name": "terminology-mgmt-auth-broker",
+  "title": "Terminology Mgmt Auth Broker",
+  "description": "Design and run terminology mgmt workflows with auth broker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 950,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09102-terminology-mgmt-auth-broker/SKILL.md",
+    "entrypoint": "agent08/09102-terminology-mgmt-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "terminology mgmt auth broker",
+    "terminology mgmt auth broker workflow",
+    "terminology mgmt auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

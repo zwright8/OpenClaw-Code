@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1798,
+  "name": "logistics-dispatch-feedback-harvester",
+  "title": "Logistics Dispatch Feedback Harvester",
+  "description": "Design and run logistics dispatch workflows with feedback harvester controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8618,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01798-logistics-dispatch-feedback-harvester/SKILL.md",
+    "entrypoint": "agent02/01798-logistics-dispatch-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch feedback harvester",
+    "logistics dispatch feedback harvester workflow",
+    "logistics dispatch feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1543,
+  "name": "education-lms-remediation-planner",
+  "title": "Education LMS Remediation Planner",
+  "description": "Design and run education lms workflows with remediation planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2010,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01543-education-lms-remediation-planner/SKILL.md",
+    "entrypoint": "agent02/01543-education-lms-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms remediation planner",
+    "education lms remediation planner workflow",
+    "education lms remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1722,
+  "name": "library-networks-version-tracker",
+  "title": "Library Networks Version Tracker",
+  "description": "Design and run library networks workflows with version tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8585,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01722-library-networks-version-tracker/SKILL.md",
+    "entrypoint": "agent02/01722-library-networks-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "library networks version tracker",
+    "library networks version tracker workflow",
+    "library networks version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

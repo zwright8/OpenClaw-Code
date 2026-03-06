@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11508,
+  "name": "field-service-ops-task-decomposer",
+  "title": "Field Service Ops Task Decomposer",
+  "description": "Design and run field service ops workflows with task decomposer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12002,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11508-field-service-ops-task-decomposer/SKILL.md",
+    "entrypoint": "agent09/11508-field-service-ops-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops task decomposer",
+    "field service ops task decomposer workflow",
+    "field service ops task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

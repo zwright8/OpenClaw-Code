@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 835,
+  "name": "azure-openai-webhook-listener",
+  "title": "Azure OpenAI Webhook Listener",
+  "description": "Captures, verifies, and routes Azure OpenAI webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8168,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00835-azure-openai-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00835-azure-openai-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure openai webhook listener",
+    "azure openai webhook listener workflow",
+    "azure openai webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

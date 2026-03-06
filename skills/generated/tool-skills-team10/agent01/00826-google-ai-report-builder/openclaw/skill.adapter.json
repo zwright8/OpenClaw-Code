@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 826,
+  "name": "google-ai-report-builder",
+  "title": "Google AI Report Builder",
+  "description": "Generates operational and KPI reports from Google AI activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8161,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00826-google-ai-report-builder/SKILL.md",
+    "entrypoint": "agent01/00826-google-ai-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google ai report builder",
+    "google ai report builder workflow",
+    "google ai report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

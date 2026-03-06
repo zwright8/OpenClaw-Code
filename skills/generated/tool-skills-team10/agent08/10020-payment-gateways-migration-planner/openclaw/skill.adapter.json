@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10020,
+  "name": "payment-gateways-migration-planner",
+  "title": "Payment Gateways Migration Planner",
+  "description": "Design and run payment gateways workflows with migration planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4772,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10020-payment-gateways-migration-planner/SKILL.md",
+    "entrypoint": "agent08/10020-payment-gateways-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways migration planner",
+    "payment gateways migration planner workflow",
+    "payment gateways migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

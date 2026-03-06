@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1245,
+  "name": "procurement-portals-runbook-composer",
+  "title": "Procurement Portals Runbook Composer",
+  "description": "Design and run procurement portals workflows with runbook composer controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 3983,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01245-procurement-portals-runbook-composer/SKILL.md",
+    "entrypoint": "agent01/01245-procurement-portals-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procurement portals runbook composer",
+    "procurement portals runbook composer workflow",
+    "procurement portals runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

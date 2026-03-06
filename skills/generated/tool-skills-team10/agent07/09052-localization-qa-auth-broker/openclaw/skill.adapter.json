@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9052,
+  "name": "localization-qa-auth-broker",
+  "title": "Localization QA Auth Broker",
+  "description": "Design and run localization qa workflows with auth broker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 949,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/09052-localization-qa-auth-broker/SKILL.md",
+    "entrypoint": "agent07/09052-localization-qa-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa auth broker",
+    "localization qa auth broker workflow",
+    "localization qa auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

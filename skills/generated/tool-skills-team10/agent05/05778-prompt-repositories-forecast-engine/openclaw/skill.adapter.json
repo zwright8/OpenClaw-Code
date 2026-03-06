@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5778,
+  "name": "prompt-repositories-forecast-engine",
+  "title": "Prompt Repositories Forecast Engine",
+  "description": "Design and run prompt repositories workflows with forecast engine controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9933,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05778-prompt-repositories-forecast-engine/SKILL.md",
+    "entrypoint": "agent05/05778-prompt-repositories-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prompt repositories forecast engine",
+    "prompt repositories forecast engine workflow",
+    "prompt repositories forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

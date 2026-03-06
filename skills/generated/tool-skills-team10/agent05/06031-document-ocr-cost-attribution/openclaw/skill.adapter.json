@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6031,
+  "name": "document-ocr-cost-attribution",
+  "title": "Document OCR Cost Attribution",
+  "description": "Design and run document ocr workflows with cost attribution controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10040,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06031-document-ocr-cost-attribution/SKILL.md",
+    "entrypoint": "agent05/06031-document-ocr-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr cost attribution",
+    "document ocr cost attribution workflow",
+    "document ocr cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

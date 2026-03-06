@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8001,
+  "name": "bioinformatics-pipelines-access-auditor",
+  "title": "Bioinformatics Pipelines Access Auditor",
+  "description": "Design and run bioinformatics pipelines workflows with access auditor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10782,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08001-bioinformatics-pipelines-access-auditor/SKILL.md",
+    "entrypoint": "agent07/08001-bioinformatics-pipelines-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines access auditor",
+    "bioinformatics pipelines access auditor workflow",
+    "bioinformatics pipelines access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

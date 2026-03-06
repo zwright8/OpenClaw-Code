@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10932,
+  "name": "taxonomy-services-latency-analyzer",
+  "title": "Taxonomy Services Latency Analyzer",
+  "description": "Design and run taxonomy services workflows with latency analyzer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11763,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10932-taxonomy-services-latency-analyzer/SKILL.md",
+    "entrypoint": "agent09/10932-taxonomy-services-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services latency analyzer",
+    "taxonomy services latency analyzer workflow",
+    "taxonomy services latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

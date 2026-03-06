@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11819,
+  "name": "protocol-management-rollback-coordinator",
+  "title": "Protocol Management Rollback Coordinator",
+  "description": "Design and run protocol management workflows with rollback coordinator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5242,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11819-protocol-management-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent10/11819-protocol-management-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management rollback coordinator",
+    "protocol management rollback coordinator workflow",
+    "protocol management rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

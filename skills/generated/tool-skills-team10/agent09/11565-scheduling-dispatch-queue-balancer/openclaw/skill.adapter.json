@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11565,
+  "name": "scheduling-dispatch-queue-balancer",
+  "title": "Scheduling Dispatch Queue Balancer",
+  "description": "Design and run scheduling dispatch workflows with queue balancer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12025,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11565-scheduling-dispatch-queue-balancer/SKILL.md",
+    "entrypoint": "agent09/11565-scheduling-dispatch-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch queue balancer",
+    "scheduling dispatch queue balancer workflow",
+    "scheduling dispatch queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

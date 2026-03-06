@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4410,
+  "name": "certificate-management-workflow-compiler",
+  "title": "Certificate Management Workflow Compiler",
+  "description": "Design and run certificate management workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1084,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04410-certificate-management-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04410-certificate-management-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management workflow compiler",
+    "certificate management workflow compiler workflow",
+    "certificate management workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

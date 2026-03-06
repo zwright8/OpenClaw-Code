@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10030,
+  "name": "payment-gateways-budget-guardrail",
+  "title": "Payment Gateways Budget Guardrail",
+  "description": "Design and run payment gateways workflows with budget guardrail controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7625,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10030-payment-gateways-budget-guardrail/SKILL.md",
+    "entrypoint": "agent08/10030-payment-gateways-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways budget guardrail",
+    "payment gateways budget guardrail workflow",
+    "payment gateways budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

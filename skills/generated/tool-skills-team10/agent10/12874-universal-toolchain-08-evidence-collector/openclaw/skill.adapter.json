@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12874,
+  "name": "universal-toolchain-08-evidence-collector",
+  "title": "Universal Toolchain 08 Evidence Collector",
+  "description": "Design and run universal toolchain 08 workflows with evidence collector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5720,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12874-universal-toolchain-08-evidence-collector/SKILL.md",
+    "entrypoint": "agent10/12874-universal-toolchain-08-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 evidence collector",
+    "universal toolchain 08 evidence collector workflow",
+    "universal toolchain 08 evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

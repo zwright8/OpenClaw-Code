@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5564,
+  "name": "metadata-stores-rate-limit-optimizer",
+  "title": "Metadata Stores Rate Limit Optimizer",
+  "description": "Design and run metadata stores workflows with rate limit optimizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6130,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05564-metadata-stores-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent05/05564-metadata-stores-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores rate limit optimizer",
+    "metadata stores rate limit optimizer workflow",
+    "metadata stores rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

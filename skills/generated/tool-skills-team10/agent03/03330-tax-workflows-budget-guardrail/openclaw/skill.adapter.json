@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3330,
+  "name": "tax-workflows-budget-guardrail",
+  "title": "Tax Workflows Budget Guardrail",
+  "description": "Design and run tax workflows workflows with budget guardrail controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7363,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03330-tax-workflows-budget-guardrail/SKILL.md",
+    "entrypoint": "agent03/03330-tax-workflows-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tax workflows budget guardrail",
+    "tax workflows budget guardrail workflow",
+    "tax workflows budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

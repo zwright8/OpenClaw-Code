@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11545,
+  "name": "field-service-ops-runbook-composer",
+  "title": "Field Service Ops Runbook Composer",
+  "description": "Design and run field service ops workflows with runbook composer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6666,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11545-field-service-ops-runbook-composer/SKILL.md",
+    "entrypoint": "agent09/11545-field-service-ops-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops runbook composer",
+    "field service ops runbook composer workflow",
+    "field service ops runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10819,
+  "name": "semantic-retrieval-rollback-coordinator",
+  "title": "Semantic Retrieval Rollback Coordinator",
+  "description": "Design and run semantic retrieval workflows with rollback coordinator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5202,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10819-semantic-retrieval-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent09/10819-semantic-retrieval-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval rollback coordinator",
+    "semantic retrieval rollback coordinator workflow",
+    "semantic retrieval rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

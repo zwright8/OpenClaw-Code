@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12892,
+  "name": "universal-toolchain-08-root-cause-miner",
+  "title": "Universal Toolchain 08 Root Cause Miner",
+  "description": "Design and run universal toolchain 08 workflows with root cause miner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4467,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12892-universal-toolchain-08-root-cause-miner/SKILL.md",
+    "entrypoint": "agent10/12892-universal-toolchain-08-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 root cause miner",
+    "universal toolchain 08 root cause miner workflow",
+    "universal toolchain 08 root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

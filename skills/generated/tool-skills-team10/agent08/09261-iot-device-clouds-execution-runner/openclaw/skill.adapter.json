@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9261,
+  "name": "iot-device-clouds-execution-runner",
+  "title": "IoT Device Clouds Execution Runner",
+  "description": "Design and run iot device clouds workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 524,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09261-iot-device-clouds-execution-runner/SKILL.md",
+    "entrypoint": "agent08/09261-iot-device-clouds-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds execution runner",
+    "iot device clouds execution runner workflow",
+    "iot device clouds execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

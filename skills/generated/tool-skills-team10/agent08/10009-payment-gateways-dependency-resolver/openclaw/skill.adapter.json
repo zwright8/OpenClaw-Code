@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10009,
+  "name": "payment-gateways-dependency-resolver",
+  "title": "Payment Gateways Dependency Resolver",
+  "description": "Design and run payment gateways workflows with dependency resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11478,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10009-payment-gateways-dependency-resolver/SKILL.md",
+    "entrypoint": "agent08/10009-payment-gateways-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways dependency resolver",
+    "payment gateways dependency resolver workflow",
+    "payment gateways dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

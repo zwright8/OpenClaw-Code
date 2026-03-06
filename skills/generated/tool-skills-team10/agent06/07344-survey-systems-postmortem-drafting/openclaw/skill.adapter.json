@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7344,
+  "name": "survey-systems-postmortem-drafting",
+  "title": "Survey Systems Postmortem Drafting",
+  "description": "Design and run survey systems workflows with postmortem drafting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10506,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07344-survey-systems-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent06/07344-survey-systems-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems postmortem drafting",
+    "survey systems postmortem drafting workflow",
+    "survey systems postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

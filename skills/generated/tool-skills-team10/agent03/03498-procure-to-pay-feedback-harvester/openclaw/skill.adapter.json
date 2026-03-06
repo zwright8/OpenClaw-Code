@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3498,
+  "name": "procure-to-pay-feedback-harvester",
+  "title": "Procure to Pay Feedback Harvester",
+  "description": "Design and run procure to pay workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9185,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03498-procure-to-pay-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/03498-procure-to-pay-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay feedback harvester",
+    "procure to pay feedback harvester workflow",
+    "procure to pay feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

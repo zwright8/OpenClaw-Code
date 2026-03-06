@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9334,
+  "name": "edge-compute-sla-enforcer",
+  "title": "Edge Compute SLA Enforcer",
+  "description": "Design and run edge compute workflows with sla enforcer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11240,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09334-edge-compute-sla-enforcer/SKILL.md",
+    "entrypoint": "agent08/09334-edge-compute-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute sla enforcer",
+    "edge compute sla enforcer workflow",
+    "edge compute sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

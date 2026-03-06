@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7888,
+  "name": "remote-access-pii-redactor",
+  "title": "Remote Access PII Redactor",
+  "description": "Design and run remote access workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3619,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07888-remote-access-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/07888-remote-access-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access pii redactor",
+    "remote access pii redactor workflow",
+    "remote access pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

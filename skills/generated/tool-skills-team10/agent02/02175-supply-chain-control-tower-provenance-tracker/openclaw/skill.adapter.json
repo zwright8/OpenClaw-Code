@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2175,
+  "name": "supply-chain-control-tower-provenance-tracker",
+  "title": "Supply Chain Control Tower Provenance Tracker",
+  "description": "Design and run supply chain control tower workflows with provenance tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5329,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02175-supply-chain-control-tower-provenance-tracker/SKILL.md",
+    "entrypoint": "agent02/02175-supply-chain-control-tower-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower provenance tracker",
+    "supply chain control tower provenance tracker workflow",
+    "supply chain control tower provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

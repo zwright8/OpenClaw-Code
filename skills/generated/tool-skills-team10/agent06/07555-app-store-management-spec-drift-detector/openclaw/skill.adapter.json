@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7555,
+  "name": "app-store-management-spec-drift-detector",
+  "title": "App Store Management Spec Drift Detector",
+  "description": "Design and run app store management workflows with spec drift detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4269,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07555-app-store-management-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent06/07555-app-store-management-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "app store management spec drift detector",
+    "app store management spec drift detector workflow",
+    "app store management spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

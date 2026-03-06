@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9339,
+  "name": "edge-compute-secret-scanner",
+  "title": "Edge Compute Secret Scanner",
+  "description": "Design and run edge compute workflows with secret scanner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2959,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09339-edge-compute-secret-scanner/SKILL.md",
+    "entrypoint": "agent08/09339-edge-compute-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute secret scanner",
+    "edge compute secret scanner workflow",
+    "edge compute secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

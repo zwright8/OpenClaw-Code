@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6963,
+  "name": "forecasting-models-retry-governor",
+  "title": "Forecasting Models Retry Governor",
+  "description": "Design and run forecasting models workflows with retry governor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6251,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06963-forecasting-models-retry-governor/SKILL.md",
+    "entrypoint": "agent06/06963-forecasting-models-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "forecasting models retry governor",
+    "forecasting models retry governor workflow",
+    "forecasting models retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

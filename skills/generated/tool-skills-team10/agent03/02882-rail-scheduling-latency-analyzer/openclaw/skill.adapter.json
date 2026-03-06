@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2882,
+  "name": "rail-scheduling-latency-analyzer",
+  "title": "Rail Scheduling Latency Analyzer",
+  "description": "Design and run rail scheduling workflows with latency analyzer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7351,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02882-rail-scheduling-latency-analyzer/SKILL.md",
+    "entrypoint": "agent03/02882-rail-scheduling-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling latency analyzer",
+    "rail scheduling latency analyzer workflow",
+    "rail scheduling latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

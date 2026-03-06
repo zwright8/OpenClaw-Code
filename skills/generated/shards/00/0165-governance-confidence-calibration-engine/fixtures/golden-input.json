@@ -1,0 +1,18 @@
+{
+  "skill": "u0165-governance-confidence-calibration-engine",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "calibrated_confidence_scores_report",
+    "calibrated_confidence_scores_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

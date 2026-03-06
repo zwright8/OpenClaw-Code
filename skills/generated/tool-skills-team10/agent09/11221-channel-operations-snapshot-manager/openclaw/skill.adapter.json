@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11221,
+  "name": "channel-operations-snapshot-manager",
+  "title": "Channel Operations Snapshot Manager",
+  "description": "Design and run channel operations workflows with snapshot manager controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11881,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11221-channel-operations-snapshot-manager/SKILL.md",
+    "entrypoint": "agent09/11221-channel-operations-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "channel operations snapshot manager",
+    "channel operations snapshot manager workflow",
+    "channel operations snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

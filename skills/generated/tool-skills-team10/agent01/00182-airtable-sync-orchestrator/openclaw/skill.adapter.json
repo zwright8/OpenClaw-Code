@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 182,
+  "name": "airtable-sync-orchestrator",
+  "title": "Airtable Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Airtable records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8060,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00182-airtable-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00182-airtable-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airtable sync orchestrator",
+    "airtable sync orchestrator workflow",
+    "airtable sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

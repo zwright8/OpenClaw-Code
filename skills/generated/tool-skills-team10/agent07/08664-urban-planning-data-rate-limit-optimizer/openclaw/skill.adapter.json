@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8664,
+  "name": "urban-planning-data-rate-limit-optimizer",
+  "title": "Urban Planning Data Rate Limit Optimizer",
+  "description": "Design and run urban planning data workflows with rate limit optimizer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6407,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08664-urban-planning-data-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent07/08664-urban-planning-data-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data rate limit optimizer",
+    "urban planning data rate limit optimizer workflow",
+    "urban planning data rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

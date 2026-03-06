@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10132,
+  "name": "merchant-risk-latency-analyzer",
+  "title": "Merchant Risk Latency Analyzer",
+  "description": "Design and run merchant risk workflows with latency analyzer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7112,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10132-merchant-risk-latency-analyzer/SKILL.md",
+    "entrypoint": "agent08/10132-merchant-risk-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk latency analyzer",
+    "merchant risk latency analyzer workflow",
+    "merchant risk latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "skill": "u0159-tooling-self-reflection-error-taxonomist",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "tool runs",
+    "error signatures",
+    "retry outcomes",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "error_taxonomies_report",
+    "error_taxonomies_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

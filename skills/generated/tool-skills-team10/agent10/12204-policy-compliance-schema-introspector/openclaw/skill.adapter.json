@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12204,
+  "name": "policy-compliance-schema-introspector",
+  "title": "Policy Compliance Schema Introspector",
+  "description": "Design and run policy compliance workflows with schema introspector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 56,
+    "score": 96,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent10/12204-policy-compliance-schema-introspector/SKILL.md",
+    "entrypoint": "agent10/12204-policy-compliance-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance schema introspector",
+    "policy compliance schema introspector workflow",
+    "policy compliance schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

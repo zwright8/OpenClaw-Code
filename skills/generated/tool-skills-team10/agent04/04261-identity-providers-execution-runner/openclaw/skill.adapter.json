@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4261,
+  "name": "identity-providers-execution-runner",
+  "title": "Identity Providers Execution Runner",
+  "description": "Design and run identity providers workflows with execution runner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 313,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04261-identity-providers-execution-runner/SKILL.md",
+    "entrypoint": "agent04/04261-identity-providers-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers execution runner",
+    "identity providers execution runner workflow",
+    "identity providers execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

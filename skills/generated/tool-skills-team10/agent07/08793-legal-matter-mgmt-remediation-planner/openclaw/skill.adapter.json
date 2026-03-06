@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8793,
+  "name": "legal-matter-mgmt-remediation-planner",
+  "title": "Legal Matter Mgmt Remediation Planner",
+  "description": "Design and run legal matter mgmt workflows with remediation planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1904,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08793-legal-matter-mgmt-remediation-planner/SKILL.md",
+    "entrypoint": "agent07/08793-legal-matter-mgmt-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt remediation planner",
+    "legal matter mgmt remediation planner workflow",
+    "legal matter mgmt remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

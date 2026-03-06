@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8623,
+  "name": "public-health-dashboards-artifact-publisher",
+  "title": "Public Health Dashboards Artifact Publisher",
+  "description": "Design and run public health dashboards workflows with artifact publisher controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7847,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08623-public-health-dashboards-artifact-publisher/SKILL.md",
+    "entrypoint": "agent07/08623-public-health-dashboards-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards artifact publisher",
+    "public health dashboards artifact publisher workflow",
+    "public health dashboards artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

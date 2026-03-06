@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2856,
+  "name": "rail-scheduling-api-contract-validator",
+  "title": "Rail Scheduling API Contract Validator",
+  "description": "Design and run rail scheduling workflows with api contract validator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 20,
+    "score": 101,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent03/02856-rail-scheduling-api-contract-validator/SKILL.md",
+    "entrypoint": "agent03/02856-rail-scheduling-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling api contract validator",
+    "rail scheduling api contract validator workflow",
+    "rail scheduling api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

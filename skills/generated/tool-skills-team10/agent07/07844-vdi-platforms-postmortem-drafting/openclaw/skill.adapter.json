@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7844,
+  "name": "vdi-platforms-postmortem-drafting",
+  "title": "VDI Platforms Postmortem Drafting",
+  "description": "Design and run vdi platforms workflows with postmortem drafting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10716,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07844-vdi-platforms-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent07/07844-vdi-platforms-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms postmortem drafting",
+    "vdi platforms postmortem drafting workflow",
+    "vdi platforms postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

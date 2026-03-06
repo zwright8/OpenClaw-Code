@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4479,
+  "name": "endpoint-security-capacity-planner",
+  "title": "Endpoint Security Capacity Planner",
+  "description": "Design and run endpoint security workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6036,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04479-endpoint-security-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/04479-endpoint-security-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security capacity planner",
+    "endpoint security capacity planner workflow",
+    "endpoint security capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

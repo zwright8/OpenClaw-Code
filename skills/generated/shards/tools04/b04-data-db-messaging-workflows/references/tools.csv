@@ -1,0 +1,43 @@
+rank,tool,command_hint,type,access,description,homepage,license
+1520,lapack,lapack,cli,local-installable,Linear Algebra PACKage,https://www.netlib.org/lapack/,BSD-3-Clause-Open-MPI AND BSD-3-Clause
+1572,pocketbase,pocketbase,cli,local-installable,Open source backend for your next project in 1 file,https://pocketbase.io/,MIT
+1576,blast,blast,cli,local-installable,Basic Local Alignment Search Tool,https://blast.ncbi.nlm.nih.gov/,LicenseRef-Homebrew-public-domain
+1595,imapsync,imapsync,cli,local-installable,Migrate or backup IMAP mail accounts,https://imapsync.lamiral.info/,NLPL
+1597,xq,xq,cli,local-installable,Command-line XML and HTML beautifier and content extractor,https://github.com/sibprogrammer/xq,MIT
+1599,bruno-cli,bruno-cli,cli,local-installable,CLI of the open-source IDE For exploring and testing APIs,https://www.usebruno.com/,MIT
+1639,libdap,libdap,cli,local-installable,Framework for scientific data networking,https://www.opendap.org/,LGPL-2.1-or-later
+1650,postgrest,postgrest,cli,local-installable,Serves a fully RESTful API from any existing PostgreSQL database,https://github.com/PostgREST/postgrest,MIT
+1671,ledger,ledger,cli,local-installable,"Command-line, double-entry accounting tool",https://ledger-cli.org/,BSD-3-Clause
+1675,mdbtools,mdbtools,cli,local-installable,Tools to facilitate the use of Microsoft Access databases,https://github.com/mdbtools/mdbtools/,GPL-2.0-or-later
+1678,cjson,cjson,cli,local-installable,Ultralightweight JSON parser in ANSI C,https://github.com/DaveGamble/cJSON,MIT
+1682,xan,xan,cli,local-installable,CSV CLI magician written in Rust,https://github.com/medialab/xan,MIT OR Unlicense
+1692,calc,calc,cli,local-installable,Arbitrary precision calculator,http://www.isthe.com/chongo/tech/comp/calc/,LGPL-2.1-or-later
+1693,mcp-toolbox,mcp-toolbox,service/daemon,local-installable,MCP server for databases,https://github.com/googleapis/genai-toolbox,Apache-2.0
+1706,csvlens,csvlens,cli,local-installable,Command-line csv viewer,https://github.com/YS-L/csvlens,MIT
+1723,petsc,petsc,cli,local-installable,"Portable, Extensible Toolkit for Scientific Computation (real)",https://petsc.org/,BSD-2-Clause
+1733,cfitsio,cfitsio,cli,local-installable,C access to FITS data files with optional Fortran wrappers,https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html,CFITSIO
+1735,npm-check-updates,npm-check-updates,cli,local-installable,Find newer versions of dependencies than what your package.json allows,https://github.com/raineorshine/npm-check-updates,Apache-2.0
+1749,bcftools,bcftools,cli,local-installable,Tools for BCF/VCF files and variant calling from samtools,https://www.htslib.org/,GPL-3.0-or-later
+1777,json-c,json-c,cli,local-installable,JSON parser for C,https://github.com/json-c/json-c/wiki,MIT
+1788,redis@6.2,redis-server,cli,local-installable,"Persistent key-value database, with built-in net interface",https://redis.io/,BSD-3-Clause AND BSD-2-Clause AND BSL-1.0 AND MIT AND (CC0-1.0 OR BSD-2-Clause)
+1790,posting,posting,cli,local-installable,Modern API client that lives in your terminal,https://github.com/darrenburns/posting,Apache-2.0
+1805,cypher-shell,cypher-shell,cli,local-installable,Command-line shell where you can execute Cypher against Neo4j,https://neo4j.com,GPL-3.0-only
+1811,jc,jc,cli,local-installable,Serializes the output of command-line tools to structured JSON output,https://github.com/kellyjonbrazil/jc,MIT
+1818,harlequin,harlequin,cli,local-installable,"Easy, fast, and beautiful database client for the terminal",https://harlequin.sh,MIT
+1836,mmseqs2,mmseqs2,cli,local-installable,Software suite for very fast sequence search and clustering,https://mmseqs.com/,MIT
+1847,influxdb-cli,influxdb-cli,cli,local-installable,CLI for managing resources in InfluxDB v2,https://influxdata.com/time-series-platform/influxdb/,MIT
+1848,avro-tools,avro-tools,cli,local-installable,Avro command-line tools and utilities,https://avro.apache.org/,Apache-2.0
+1858,rover,rover,cli,local-installable,CLI for managing and maintaining data graphs with Apollo Studio,https://www.apollographql.com/docs/rover/,MIT
+1864,contentful-cli,contentful-cli,cli,local-installable,Contentful command-line tools,https://github.com/contentful/contentful-cli,MIT
+1872,rainfrog,rainfrog,cli,local-installable,Database management TUI for PostgreSQL/MySQL/SQLite,https://github.com/achristmascarl/rainfrog,MIT
+1874,curlie,curlie,cli,local-installable,"Power of curl, ease of use of httpie",https://rs.github.io/curlie/,MIT
+1878,scip,scip,cli,local-installable,Solver for mixed integer programming and mixed integer nonlinear programming,https://scipopt.org,Apache-2.0
+1888,oauth2l,oauth2l,cli,local-installable,Simple CLI for interacting with Google oauth tokens,https://github.com/google/oauth2l,Apache-2.0
+1890,rqlite,rqlite,cli,local-installable,"Lightweight, distributed relational database built on SQLite",https://www.rqlite.io/,MIT
+1892,newman,newman,cli,local-installable,Command-line collection runner for Postman,https://www.getpostman.com,Apache-2.0
+1922,cbc,cbc,cli,local-installable,Mixed integer linear programming solver,https://github.com/coin-or/Cbc,EPL-2.0
+1926,homebank,homebank,cli,local-installable,Manage your personal accounts at home,https://www.gethomebank.org/en/index.php,GPL-2.0-or-later
+1929,activemq,activemq,service/daemon,local-installable,Apache ActiveMQ: powerful open source messaging server,https://activemq.apache.org/,Apache-2.0
+1955,snakemake,snakemake,cli,local-installable,Pythonic workflow system,https://snakemake.readthedocs.io/,MIT
+1963,molecule,molecule,cli,local-installable,Automated testing for Ansible roles,https://molecule.readthedocs.io,MIT
+1980,psqlodbc,psqlodbc,cli,local-installable,Official PostgreSQL ODBC driver,https://odbc.postgresql.org,LGPL-2.0-or-later

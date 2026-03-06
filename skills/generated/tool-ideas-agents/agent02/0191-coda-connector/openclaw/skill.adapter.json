@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 191,
+  "name": "coda-connector",
+  "title": "Coda Connector",
+  "description": "Unified read/write connector for Coda APIs and data.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0191-coda-connector/SKILL.md",
+    "entrypoint": "agent02/0191-coda-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "coda connector",
+    "coda connector workflow",
+    "coda connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0191-coda-connector"
+  }
+}

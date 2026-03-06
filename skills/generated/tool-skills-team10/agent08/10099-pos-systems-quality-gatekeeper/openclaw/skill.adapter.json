@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10099,
+  "name": "pos-systems-quality-gatekeeper",
+  "title": "POS Systems Quality Gatekeeper",
+  "description": "Design and run pos systems workflows with quality gatekeeper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5602,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10099-pos-systems-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent08/10099-pos-systems-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pos systems quality gatekeeper",
+    "pos systems quality gatekeeper workflow",
+    "pos systems quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

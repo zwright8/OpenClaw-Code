@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5157,
+  "name": "cloud-cost-platforms-operation-planner",
+  "title": "Cloud Cost Platforms Operation Planner",
+  "description": "Design and run cloud cost platforms workflows with operation planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7458,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05157-cloud-cost-platforms-operation-planner/SKILL.md",
+    "entrypoint": "agent04/05157-cloud-cost-platforms-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms operation planner",
+    "cloud cost platforms operation planner workflow",
+    "cloud cost platforms operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

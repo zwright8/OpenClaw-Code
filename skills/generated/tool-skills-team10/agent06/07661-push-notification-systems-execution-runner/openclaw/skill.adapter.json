@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7661,
+  "name": "push-notification-systems-execution-runner",
+  "title": "Push Notification Systems Execution Runner",
+  "description": "Design and run push notification systems workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1388,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07661-push-notification-systems-execution-runner/SKILL.md",
+    "entrypoint": "agent06/07661-push-notification-systems-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems execution runner",
+    "push notification systems execution runner workflow",
+    "push notification systems execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

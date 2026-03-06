@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8584,
+  "name": "emergency-response-sla-enforcer",
+  "title": "Emergency Response SLA Enforcer",
+  "description": "Design and run emergency response workflows with sla enforcer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11009,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08584-emergency-response-sla-enforcer/SKILL.md",
+    "entrypoint": "agent07/08584-emergency-response-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response sla enforcer",
+    "emergency response sla enforcer workflow",
+    "emergency response sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

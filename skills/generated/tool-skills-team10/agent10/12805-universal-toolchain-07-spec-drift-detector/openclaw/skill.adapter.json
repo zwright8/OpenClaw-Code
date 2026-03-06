@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12805,
+  "name": "universal-toolchain-07-spec-drift-detector",
+  "title": "Universal Toolchain 07 Spec Drift Detector",
+  "description": "Design and run universal toolchain 07 workflows with spec drift detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4025,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12805-universal-toolchain-07-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent10/12805-universal-toolchain-07-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 07 spec drift detector",
+    "universal toolchain 07 spec drift detector workflow",
+    "universal toolchain 07 spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

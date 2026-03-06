@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9369,
+  "name": "sensor-fusion-rollback-coordinator",
+  "title": "Sensor Fusion Rollback Coordinator",
+  "description": "Design and run sensor fusion workflows with rollback coordinator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5156,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09369-sensor-fusion-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent08/09369-sensor-fusion-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion rollback coordinator",
+    "sensor fusion rollback coordinator workflow",
+    "sensor fusion rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3441,
+  "name": "expense-management-incident-triage",
+  "title": "Expense Management Incident Triage",
+  "description": "Design and run expense management workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2059,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03441-expense-management-incident-triage/SKILL.md",
+    "entrypoint": "agent03/03441-expense-management-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "expense management incident triage",
+    "expense management incident triage workflow",
+    "expense management incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4537,
+  "name": "siem-pipelines-compliance-mapper",
+  "title": "SIEM Pipelines Compliance Mapper",
+  "description": "Design and run siem pipelines workflows with compliance mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1819,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04537-siem-pipelines-compliance-mapper/SKILL.md",
+    "entrypoint": "agent04/04537-siem-pipelines-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "siem pipelines compliance mapper",
+    "siem pipelines compliance mapper workflow",
+    "siem pipelines compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

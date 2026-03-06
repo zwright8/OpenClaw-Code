@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6270,
+  "name": "media-asset-management-migration-planner",
+  "title": "Media Asset Management Migration Planner",
+  "description": "Design and run media asset management workflows with migration planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2835,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06270-media-asset-management-migration-planner/SKILL.md",
+    "entrypoint": "agent05/06270-media-asset-management-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management migration planner",
+    "media asset management migration planner workflow",
+    "media asset management migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

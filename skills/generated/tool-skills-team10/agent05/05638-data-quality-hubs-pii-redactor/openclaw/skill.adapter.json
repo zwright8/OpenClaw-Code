@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5638,
+  "name": "data-quality-hubs-pii-redactor",
+  "title": "Data Quality Hubs PII Redactor",
+  "description": "Design and run data quality hubs workflows with pii redactor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1585,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05638-data-quality-hubs-pii-redactor/SKILL.md",
+    "entrypoint": "agent05/05638-data-quality-hubs-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs pii redactor",
+    "data quality hubs pii redactor workflow",
+    "data quality hubs pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

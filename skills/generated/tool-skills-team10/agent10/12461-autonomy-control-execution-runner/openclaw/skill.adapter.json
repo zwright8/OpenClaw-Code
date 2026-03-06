@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12461,
+  "name": "autonomy-control-execution-runner",
+  "title": "Autonomy Control Execution Runner",
+  "description": "Design and run autonomy control workflows with execution runner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1477,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12461-autonomy-control-execution-runner/SKILL.md",
+    "entrypoint": "agent10/12461-autonomy-control-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control execution runner",
+    "autonomy control execution runner workflow",
+    "autonomy control execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

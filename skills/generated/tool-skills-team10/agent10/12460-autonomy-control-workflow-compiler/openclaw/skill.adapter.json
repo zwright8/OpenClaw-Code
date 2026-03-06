@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12460,
+  "name": "autonomy-control-workflow-compiler",
+  "title": "Autonomy Control Workflow Compiler",
+  "description": "Design and run autonomy control workflows with workflow compiler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1229,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12460-autonomy-control-workflow-compiler/SKILL.md",
+    "entrypoint": "agent10/12460-autonomy-control-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control workflow compiler",
+    "autonomy control workflow compiler workflow",
+    "autonomy control workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6184,
+  "name": "records-retention-sla-enforcer",
+  "title": "Records Retention SLA Enforcer",
+  "description": "Design and run records retention workflows with sla enforcer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10106,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06184-records-retention-sla-enforcer/SKILL.md",
+    "entrypoint": "agent05/06184-records-retention-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention sla enforcer",
+    "records retention sla enforcer workflow",
+    "records retention sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

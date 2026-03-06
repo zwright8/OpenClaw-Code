@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9682,
+  "name": "alternative-data-latency-analyzer",
+  "title": "Alternative Data Latency Analyzer",
+  "description": "Design and run alternative data workflows with latency analyzer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11343,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09682-alternative-data-latency-analyzer/SKILL.md",
+    "entrypoint": "agent08/09682-alternative-data-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data latency analyzer",
+    "alternative data latency analyzer workflow",
+    "alternative data latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

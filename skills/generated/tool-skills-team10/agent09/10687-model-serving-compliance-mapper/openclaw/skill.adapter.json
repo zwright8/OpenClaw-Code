@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10687,
+  "name": "model-serving-compliance-mapper",
+  "title": "Model Serving Compliance Mapper",
+  "description": "Design and run model serving workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1944,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10687-model-serving-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/10687-model-serving-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving compliance mapper",
+    "model serving compliance mapper workflow",
+    "model serving compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

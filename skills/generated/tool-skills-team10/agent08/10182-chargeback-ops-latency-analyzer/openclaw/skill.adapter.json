@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10182,
+  "name": "chargeback-ops-latency-analyzer",
+  "title": "Chargeback Ops Latency Analyzer",
+  "description": "Design and run chargeback ops workflows with latency analyzer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11532,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10182-chargeback-ops-latency-analyzer/SKILL.md",
+    "entrypoint": "agent08/10182-chargeback-ops-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chargeback ops latency analyzer",
+    "chargeback ops latency analyzer workflow",
+    "chargeback ops latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

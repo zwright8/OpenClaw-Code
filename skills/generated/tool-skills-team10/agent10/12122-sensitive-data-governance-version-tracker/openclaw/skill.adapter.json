@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12122,
+  "name": "sensitive-data-governance-version-tracker",
+  "title": "Sensitive Data Governance Version Tracker",
+  "description": "Design and run sensitive data governance workflows with version tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12260,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12122-sensitive-data-governance-version-tracker/SKILL.md",
+    "entrypoint": "agent10/12122-sensitive-data-governance-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance version tracker",
+    "sensitive data governance version tracker workflow",
+    "sensitive data governance version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4779,
+  "name": "observability-stacks-capacity-planner",
+  "title": "Observability Stacks Capacity Planner",
+  "description": "Design and run observability stacks workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7422,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04779-observability-stacks-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/04779-observability-stacks-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks capacity planner",
+    "observability stacks capacity planner workflow",
+    "observability stacks capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

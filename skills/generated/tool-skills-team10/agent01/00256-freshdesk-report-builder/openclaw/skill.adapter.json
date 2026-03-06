@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 256,
+  "name": "freshdesk-report-builder",
+  "title": "Freshdesk Report Builder",
+  "description": "Generates operational and KPI reports from Freshdesk activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12522,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00256-freshdesk-report-builder/SKILL.md",
+    "entrypoint": "agent01/00256-freshdesk-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freshdesk report builder",
+    "freshdesk report builder workflow",
+    "freshdesk report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1649,
+  "name": "student-success-platforms-quality-gatekeeper",
+  "title": "Student Success Platforms Quality Gatekeeper",
+  "description": "Design and run student success platforms workflows with quality gatekeeper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5298,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01649-student-success-platforms-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent02/01649-student-success-platforms-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms quality gatekeeper",
+    "student success platforms quality gatekeeper workflow",
+    "student success platforms quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

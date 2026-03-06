@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3247,
+  "name": "fraud-operations-human-handoff-router",
+  "title": "Fraud Operations Human Handoff Router",
+  "description": "Design and run fraud operations workflows with human handoff router controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9079,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03247-fraud-operations-human-handoff-router/SKILL.md",
+    "entrypoint": "agent03/03247-fraud-operations-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations human handoff router",
+    "fraud operations human handoff router workflow",
+    "fraud operations human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

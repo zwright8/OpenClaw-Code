@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11350,
+  "name": "churn-prevention-outcome-synthesizer",
+  "title": "Churn Prevention Outcome Synthesizer",
+  "description": "Design and run churn prevention workflows with outcome synthesizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7137,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11350-churn-prevention-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent09/11350-churn-prevention-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "churn prevention outcome synthesizer",
+    "churn prevention outcome synthesizer workflow",
+    "churn prevention outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11709,
+  "name": "service-quality-dependency-resolver",
+  "title": "Service Quality Dependency Resolver",
+  "description": "Design and run service quality workflows with dependency resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12087,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11709-service-quality-dependency-resolver/SKILL.md",
+    "entrypoint": "agent10/11709-service-quality-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality dependency resolver",
+    "service quality dependency resolver workflow",
+    "service quality dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

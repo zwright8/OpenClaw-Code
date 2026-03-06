@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2970,
+  "name": "travel-compliance-migration-planner",
+  "title": "Travel Compliance Migration Planner",
+  "description": "Design and run travel compliance workflows with migration planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2048,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02970-travel-compliance-migration-planner/SKILL.md",
+    "entrypoint": "agent03/02970-travel-compliance-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance migration planner",
+    "travel compliance migration planner workflow",
+    "travel compliance migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

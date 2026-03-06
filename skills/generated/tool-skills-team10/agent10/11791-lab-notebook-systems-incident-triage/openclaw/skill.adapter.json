@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11791,
+  "name": "lab-notebook-systems-incident-triage",
+  "title": "Lab Notebook Systems Incident Triage",
+  "description": "Design and run lab notebook systems workflows with incident triage controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2263,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/11791-lab-notebook-systems-incident-triage/SKILL.md",
+    "entrypoint": "agent10/11791-lab-notebook-systems-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems incident triage",
+    "lab notebook systems incident triage workflow",
+    "lab notebook systems incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

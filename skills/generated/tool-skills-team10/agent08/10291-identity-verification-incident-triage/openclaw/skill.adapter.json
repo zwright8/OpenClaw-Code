@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10291,
+  "name": "identity-verification-incident-triage",
+  "title": "Identity Verification Incident Triage",
+  "description": "Design and run identity verification workflows with incident triage controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 499,
+    "score": 89,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10291-identity-verification-incident-triage/SKILL.md",
+    "entrypoint": "agent08/10291-identity-verification-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification incident triage",
+    "identity verification incident triage workflow",
+    "identity verification incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

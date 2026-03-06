@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+    __learningLoopInternals,
     buildLearningRecommendations,
     evaluateLearningLoop,
     runCounterfactualReplay,
@@ -25,8 +26,10 @@ test('summarizeOutcomes builds aggregate and per-agent metrics', () => {
     assert.equal(result.summary.timedOut, 1);
     assert.equal(result.summary.failure, 3);
     assert.equal(result.summary.successRate, 0.4);
+    assert.equal(result.summary.latencyPercentiles.p95, 158);
     assert.ok(result.summary.byAgent['agent:a']);
     assert.ok(result.summary.byAgent['agent:b']);
+    assert.ok(result.summary.byAgent['agent:a'].successRateLower95 < result.summary.byAgent['agent:a'].successRate);
 });
 
 test('runCounterfactualReplay ranks variants by projected gain', () => {
@@ -67,6 +70,25 @@ test('buildLearningRecommendations emits prioritized actions', () => {
     assert.ok(recommendations.some((item) => item.category === 'counterfactual_winner'));
 });
 
+test('buildLearningRecommendations ignores low sample routing noise and flags tail latency', () => {
+    const outcomes = [
+        ...sampleOutcomes(),
+        { taskId: '6', target: 'agent:c', status: 'failed', attempts: 1, createdAt: 600, closedAt: 1800, request: { priority: 'normal' } }
+    ];
+    const summary = summarizeOutcomes(outcomes);
+    const replay = runCounterfactualReplay(summary);
+    const recommendations = buildLearningRecommendations(summary, replay, {
+        minTimeoutRateForAction: 0.05,
+        minAgentSuccessRate: 0.8,
+        maxAvgAttempts: 1.1,
+        minAgentSamplesForAction: 2,
+        minP95LatencyMsForAction: 200
+    });
+
+    assert.ok(recommendations.some((item) => item.category === 'tail_latency'));
+    assert.ok(!recommendations.some((item) => item.title.includes('agent:c')));
+});
+
 test('evaluateLearningLoop bundles summary, replay, and recommendations', () => {
     const result = evaluateLearningLoop(sampleOutcomes());
 
@@ -76,3 +98,11 @@ test('evaluateLearningLoop bundles summary, replay, and recommendations', () => 
     assert.ok(result.recommendations.length > 0);
 });
 
+test('learning-loop internals expose stable statistical helpers', () => {
+    const p = __learningLoopInternals.latencyPercentiles([100, 200, 300, 400, 500]);
+    assert.equal(p.p50, 300);
+    assert.equal(p.p95, 480);
+
+    const lower = __learningLoopInternals.wilsonLowerBound(8, 10);
+    assert.ok(lower > 0.49 && lower < 0.8);
+});

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1199,
+  "name": "compliance-registries-quality-gatekeeper",
+  "title": "Compliance Registries Quality Gatekeeper",
+  "description": "Design and run compliance registries workflows with quality gatekeeper controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 2350,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01199-compliance-registries-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent01/01199-compliance-registries-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "compliance registries quality gatekeeper",
+    "compliance registries quality gatekeeper workflow",
+    "compliance registries quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

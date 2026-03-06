@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 123,
+  "name": "google-calendar-data-exporter",
+  "title": "Google Calendar Data Exporter",
+  "description": "Exports Google Calendar entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12435,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00123-google-calendar-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00123-google-calendar-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google calendar data exporter",
+    "google calendar data exporter workflow",
+    "google calendar data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

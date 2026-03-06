@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3471,
+  "name": "procure-to-pay-snapshot-manager",
+  "title": "Procure to Pay Snapshot Manager",
+  "description": "Design and run procure to pay workflows with snapshot manager controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9172,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03471-procure-to-pay-snapshot-manager/SKILL.md",
+    "entrypoint": "agent03/03471-procure-to-pay-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay snapshot manager",
+    "procure to pay snapshot manager workflow",
+    "procure to pay snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

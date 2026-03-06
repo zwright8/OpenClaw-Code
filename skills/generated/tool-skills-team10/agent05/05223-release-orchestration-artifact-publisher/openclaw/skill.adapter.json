@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5223,
+  "name": "release-orchestration-artifact-publisher",
+  "title": "Release Orchestration Artifact Publisher",
+  "description": "Design and run release orchestration workflows with artifact publisher controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9741,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05223-release-orchestration-artifact-publisher/SKILL.md",
+    "entrypoint": "agent05/05223-release-orchestration-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration artifact publisher",
+    "release orchestration artifact publisher workflow",
+    "release orchestration artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

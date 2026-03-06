@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5751,
+  "name": "prompt-repositories-access-auditor",
+  "title": "Prompt Repositories Access Auditor",
+  "description": "Design and run prompt repositories workflows with access auditor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9921,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05751-prompt-repositories-access-auditor/SKILL.md",
+    "entrypoint": "agent05/05751-prompt-repositories-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prompt repositories access auditor",
+    "prompt repositories access auditor workflow",
+    "prompt repositories access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

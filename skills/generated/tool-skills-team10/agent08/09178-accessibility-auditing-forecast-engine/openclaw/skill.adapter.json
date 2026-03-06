@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9178,
+  "name": "accessibility-auditing-forecast-engine",
+  "title": "Accessibility Auditing Forecast Engine",
+  "description": "Design and run accessibility auditing workflows with forecast engine controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11193,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09178-accessibility-auditing-forecast-engine/SKILL.md",
+    "entrypoint": "agent08/09178-accessibility-auditing-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing forecast engine",
+    "accessibility auditing forecast engine workflow",
+    "accessibility auditing forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

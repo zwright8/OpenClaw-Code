@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3123,cppman,local-installable,C++ 98/11/14/17/20 manual pages from cplusplus.com and cppreference.com,https://github.com/aitjcize/cppman,GPL-3.0-or-later
+3124,clippy,local-installable,Copy files from your terminal that actually paste into GUI apps,https://github.com/neilberkman/clippy,MIT
+3125,minidlna,local-installable,"Media server software, compliant with DLNA/UPnP-AV clients",https://sourceforge.net/projects/minidlna/,GPL-2.0-only
+3127,fastnetmon,local-installable,"DDoS detection tool with sFlow, Netflow, IPFIX and port mirror support",https://github.com/pavel-odintsov/fastnetmon/,GPL-2.0-only
+3128,soapysdr,local-installable,Vendor and platform neutral SDR support library,https://github.com/pothosware/SoapySDR/wiki,BSL-1.0
+3129,cruft,local-installable,Utility that creates projects from templates and maintains the cruft afterwards,https://cruft.github.io/cruft/,MIT
+3130,dnsx,local-installable,DNS query and resolution tool,https://github.com/projectdiscovery/dnsx,MIT
+3131,ghorg,local-installable,Quickly clone an entire org's or user's repositories into one directory,https://github.com/gabrie30/ghorg,Apache-2.0
+3134,osm2pgrouting,local-installable,Import OSM data into pgRouting database,https://pgrouting.org/docs/tools/osm2pgrouting.html,GPL-2.0-or-later
+3135,cpdf,local-installable,PDF Command-line Tools,https://github.com/johnwhitington/cpdf-source,AGPL-3.0-only
+3136,dwarfutils,local-installable,Dump and produce DWARF debug information in ELF objects,https://www.prevanders.net/dwarf.html,BSD-2-Clause AND LGPL-2.1-or-later AND GPL-2.0-or-later
+3137,clinfo,local-installable,Print information about OpenCL platforms and devices,https://github.com/Oblomov/clinfo,CC0-1.0
+3138,ingress2gateway,local-installable,Convert Kubernetes Ingress resources to Kubernetes Gateway API resources,https://github.com/kubernetes-sigs/ingress2gateway,Apache-2.0
+3139,bagels,local-installable,Powerful expense tracker that lives in your terminal,https://github.com/EnhancedJax/Bagels,GPL-3.0-or-later
+3140,xdelta,local-installable,"Binary diff, differential compression tools",https://github.com/jmacd/xdelta,GPL-2.0-or-later
+3141,aws-c-s3,local-installable,C99 library implementation for communicating with the S3 service,https://github.com/awslabs/aws-c-s3,Apache-2.0
+3143,circumflex,local-installable,Hacker News in your terminal,https://github.com/bensadeh/circumflex,AGPL-3.0-only
+3144,undercutf1,local-installable,F1 Live Timing TUI for all F1 sessions with variable delay to sync to your TV,https://github.com/JustAman62/undercut-f1,GPL-3.0-only
+3145,moto,local-installable,Mock AWS services,http://getmoto.org/,Apache-2.0
+3146,evil-helix,local-installable,Soft fork of the helix editor,https://github.com/usagi-flow/evil-helix,MPL-2.0
+3147,ola,local-installable,Open Lighting Architecture for lighting control information,https://github.com/OpenLightingProject/ola,GPL-2.0-or-later AND LGPL-2.1-or-later
+3150,trzsz,local-installable,"Simple file transfer tools, similar to lrzsz (rz/sz), and compatible with tmux",https://trzsz.github.io,MIT
+3151,gcc@9,local-installable,GNU compiler collection,https://gcc.gnu.org/,GPL-3.0-or-later WITH GCC-exception-3.1
+3153,lc0,local-installable,Open source neural network based chess engine,https://lczero.org/,GPL-3.0-or-later
+3154,clang-build-analyzer,local-installable,Tool to analyze compilation time,https://github.com/aras-p/ClangBuildAnalyzer,Unlicense AND Zlib AND MIT AND BSL-1.0 AND BSD-3-Clause AND Apache-2.0 AND BSD-2-Clause AND (Apache-2.0 WITH LLVM-exception)
+3155,libimobiledevice-glue,local-installable,Library with common system API code for libimobiledevice projects,https://libimobiledevice.org/,LGPL-2.1-or-later

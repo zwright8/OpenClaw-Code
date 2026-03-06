@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5666,
+  "name": "feature-stores-state-reconciler",
+  "title": "Feature Stores State Reconciler",
+  "description": "Design and run feature stores workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4191,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05666-feature-stores-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05666-feature-stores-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "feature stores state reconciler",
+    "feature stores state reconciler workflow",
+    "feature stores state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

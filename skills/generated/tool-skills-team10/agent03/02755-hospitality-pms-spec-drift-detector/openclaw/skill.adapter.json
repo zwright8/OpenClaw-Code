@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2755,
+  "name": "hospitality-pms-spec-drift-detector",
+  "title": "Hospitality PMS Spec Drift Detector",
+  "description": "Design and run hospitality pms workflows with spec drift detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4087,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02755-hospitality-pms-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent03/02755-hospitality-pms-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hospitality pms spec drift detector",
+    "hospitality pms spec drift detector workflow",
+    "hospitality pms spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

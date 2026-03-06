@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 112,
+  "name": "outlook-sync-orchestrator",
+  "title": "Outlook Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Outlook records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12427,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00112-outlook-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00112-outlook-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "outlook sync orchestrator",
+    "outlook sync orchestrator workflow",
+    "outlook sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

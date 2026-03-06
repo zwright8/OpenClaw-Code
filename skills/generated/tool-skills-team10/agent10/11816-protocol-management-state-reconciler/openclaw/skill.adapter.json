@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11816,
+  "name": "protocol-management-state-reconciler",
+  "title": "Protocol Management State Reconciler",
+  "description": "Design and run protocol management workflows with state reconciler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4429,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11816-protocol-management-state-reconciler/SKILL.md",
+    "entrypoint": "agent10/11816-protocol-management-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management state reconciler",
+    "protocol management state reconciler workflow",
+    "protocol management state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11832,
+  "name": "protocol-management-latency-analyzer",
+  "title": "Protocol Management Latency Analyzer",
+  "description": "Design and run protocol management workflows with latency analyzer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12141,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11832-protocol-management-latency-analyzer/SKILL.md",
+    "entrypoint": "agent10/11832-protocol-management-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management latency analyzer",
+    "protocol management latency analyzer workflow",
+    "protocol management latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

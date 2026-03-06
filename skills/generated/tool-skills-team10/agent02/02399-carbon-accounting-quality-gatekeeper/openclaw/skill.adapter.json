@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2399,
+  "name": "carbon-accounting-quality-gatekeeper",
+  "title": "Carbon Accounting Quality Gatekeeper",
+  "description": "Design and run carbon accounting workflows with quality gatekeeper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5346,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02399-carbon-accounting-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent02/02399-carbon-accounting-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting quality gatekeeper",
+    "carbon accounting quality gatekeeper workflow",
+    "carbon accounting quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

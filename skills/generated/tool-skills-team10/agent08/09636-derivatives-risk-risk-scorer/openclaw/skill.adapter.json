@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9636,
+  "name": "derivatives-risk-risk-scorer",
+  "title": "Derivatives Risk Risk Scorer",
+  "description": "Design and run derivatives risk workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1664,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09636-derivatives-risk-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09636-derivatives-risk-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk risk scorer",
+    "derivatives risk risk scorer workflow",
+    "derivatives risk risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

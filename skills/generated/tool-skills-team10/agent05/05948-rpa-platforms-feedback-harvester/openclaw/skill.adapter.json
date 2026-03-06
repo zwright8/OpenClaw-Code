@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5948,
+  "name": "rpa-platforms-feedback-harvester",
+  "title": "RPA Platforms Feedback Harvester",
+  "description": "Design and run rpa platforms workflows with feedback harvester controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10004,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05948-rpa-platforms-feedback-harvester/SKILL.md",
+    "entrypoint": "agent05/05948-rpa-platforms-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rpa platforms feedback harvester",
+    "rpa platforms feedback harvester workflow",
+    "rpa platforms feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

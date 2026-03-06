@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10865,
+  "name": "ontology-management-queue-balancer",
+  "title": "Ontology Management Queue Balancer",
+  "description": "Design and run ontology management workflows with queue balancer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11731,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10865-ontology-management-queue-balancer/SKILL.md",
+    "entrypoint": "agent09/10865-ontology-management-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management queue balancer",
+    "ontology management queue balancer workflow",
+    "ontology management queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

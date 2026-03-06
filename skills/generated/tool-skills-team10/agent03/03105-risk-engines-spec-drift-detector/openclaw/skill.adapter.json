@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3105,
+  "name": "risk-engines-spec-drift-detector",
+  "title": "Risk Engines Spec Drift Detector",
+  "description": "Design and run risk engines workflows with spec drift detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2052,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03105-risk-engines-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent03/03105-risk-engines-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines spec drift detector",
+    "risk engines spec drift detector workflow",
+    "risk engines spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

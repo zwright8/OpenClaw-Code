@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12195,
+  "name": "audit-trails-runbook-composer",
+  "title": "Audit Trails Runbook Composer",
+  "description": "Design and run audit trails workflows with runbook composer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3955,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12195-audit-trails-runbook-composer/SKILL.md",
+    "entrypoint": "agent10/12195-audit-trails-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails runbook composer",
+    "audit trails runbook composer workflow",
+    "audit trails runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

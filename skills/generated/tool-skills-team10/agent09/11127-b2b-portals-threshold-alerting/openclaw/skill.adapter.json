@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11127,
+  "name": "b2b-portals-threshold-alerting",
+  "title": "B2B Portals Threshold Alerting",
+  "description": "Design and run b2b portals workflows with threshold alerting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11843,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11127-b2b-portals-threshold-alerting/SKILL.md",
+    "entrypoint": "agent09/11127-b2b-portals-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals threshold alerting",
+    "b2b portals threshold alerting workflow",
+    "b2b portals threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

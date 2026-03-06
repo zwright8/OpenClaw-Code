@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9483,
+  "name": "industrial-alerts-reliability-scorer",
+  "title": "Industrial Alerts Reliability Scorer",
+  "description": "Design and run industrial alerts workflows with reliability scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11281,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09483-industrial-alerts-reliability-scorer/SKILL.md",
+    "entrypoint": "agent08/09483-industrial-alerts-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts reliability scorer",
+    "industrial alerts reliability scorer workflow",
+    "industrial alerts reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

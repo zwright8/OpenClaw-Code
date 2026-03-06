@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2934,
+  "name": "maritime-routing-sla-enforcer",
+  "title": "Maritime Routing SLA Enforcer",
+  "description": "Design and run maritime routing workflows with sla enforcer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8993,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02934-maritime-routing-sla-enforcer/SKILL.md",
+    "entrypoint": "agent03/02934-maritime-routing-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing sla enforcer",
+    "maritime routing sla enforcer workflow",
+    "maritime routing sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

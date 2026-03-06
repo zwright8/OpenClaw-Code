@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2296,
+  "name": "energy-grid-ops-approval-orchestrator",
+  "title": "Energy Grid Ops Approval Orchestrator",
+  "description": "Design and run energy grid ops workflows with approval orchestrator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5835,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02296-energy-grid-ops-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent02/02296-energy-grid-ops-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "energy grid ops approval orchestrator",
+    "energy grid ops approval orchestrator workflow",
+    "energy grid ops approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2167,
+  "name": "supply-chain-control-tower-delta-calculator",
+  "title": "Supply Chain Control Tower Delta Calculator",
+  "description": "Design and run supply chain control tower workflows with delta calculator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5324,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02167-supply-chain-control-tower-delta-calculator/SKILL.md",
+    "entrypoint": "agent02/02167-supply-chain-control-tower-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower delta calculator",
+    "supply chain control tower delta calculator workflow",
+    "supply chain control tower delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

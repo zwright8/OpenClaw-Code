@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5560,
+  "name": "metadata-stores-workflow-compiler",
+  "title": "Metadata Stores Workflow Compiler",
+  "description": "Design and run metadata stores workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1104,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05560-metadata-stores-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/05560-metadata-stores-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores workflow compiler",
+    "metadata stores workflow compiler workflow",
+    "metadata stores workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

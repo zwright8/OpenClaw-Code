@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5860,
+  "name": "workflow-engines-workflow-compiler",
+  "title": "Workflow Engines Workflow Compiler",
+  "description": "Design and run workflow engines workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1109,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05860-workflow-engines-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/05860-workflow-engines-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines workflow compiler",
+    "workflow engines workflow compiler workflow",
+    "workflow engines workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

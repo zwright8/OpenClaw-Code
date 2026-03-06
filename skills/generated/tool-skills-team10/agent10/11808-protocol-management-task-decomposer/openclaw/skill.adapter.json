@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11808,
+  "name": "protocol-management-task-decomposer",
+  "title": "Protocol Management Task Decomposer",
+  "description": "Design and run protocol management workflows with task decomposer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12128,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11808-protocol-management-task-decomposer/SKILL.md",
+    "entrypoint": "agent10/11808-protocol-management-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management task decomposer",
+    "protocol management task decomposer workflow",
+    "protocol management task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

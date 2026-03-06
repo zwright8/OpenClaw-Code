@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9473,
+  "name": "industrial-alerts-artifact-publisher",
+  "title": "Industrial Alerts Artifact Publisher",
+  "description": "Design and run industrial alerts workflows with artifact publisher controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11274,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09473-industrial-alerts-artifact-publisher/SKILL.md",
+    "entrypoint": "agent08/09473-industrial-alerts-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts artifact publisher",
+    "industrial alerts artifact publisher workflow",
+    "industrial alerts artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

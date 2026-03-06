@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9642,
+  "name": "derivatives-risk-root-cause-miner",
+  "title": "Derivatives Risk Root Cause Miner",
+  "description": "Design and run derivatives risk workflows with root cause miner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2340,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09642-derivatives-risk-root-cause-miner/SKILL.md",
+    "entrypoint": "agent08/09642-derivatives-risk-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk root cause miner",
+    "derivatives risk root cause miner workflow",
+    "derivatives risk root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

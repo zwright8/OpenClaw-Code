@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5635,
+  "name": "data-quality-hubs-policy-evaluator",
+  "title": "Data Quality Hubs Policy Evaluator",
+  "description": "Design and run data quality hubs workflows with policy evaluator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1584,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05635-data-quality-hubs-policy-evaluator/SKILL.md",
+    "entrypoint": "agent05/05635-data-quality-hubs-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs policy evaluator",
+    "data quality hubs policy evaluator workflow",
+    "data quality hubs policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

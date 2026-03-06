@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9273,
+  "name": "iot-device-clouds-artifact-publisher",
+  "title": "IoT Device Clouds Artifact Publisher",
+  "description": "Design and run iot device clouds workflows with artifact publisher controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7579,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09273-iot-device-clouds-artifact-publisher/SKILL.md",
+    "entrypoint": "agent08/09273-iot-device-clouds-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds artifact publisher",
+    "iot device clouds artifact publisher workflow",
+    "iot device clouds artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

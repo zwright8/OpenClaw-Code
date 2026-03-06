@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 100,
+  "name": "microsoft-teams-migration-assistant",
+  "title": "Microsoft Teams Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Microsoft Teams.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12426,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00100-microsoft-teams-migration-assistant/SKILL.md",
+    "entrypoint": "agent01/00100-microsoft-teams-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft teams migration assistant",
+    "microsoft teams migration assistant workflow",
+    "microsoft teams migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

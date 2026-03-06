@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10113,
+  "name": "merchant-risk-retry-governor",
+  "title": "Merchant Risk Retry Governor",
+  "description": "Design and run merchant risk workflows with retry governor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2596,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10113-merchant-risk-retry-governor/SKILL.md",
+    "entrypoint": "agent08/10113-merchant-risk-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk retry governor",
+    "merchant risk retry governor workflow",
+    "merchant risk retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

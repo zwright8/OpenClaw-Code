@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 19,
+  "range": {
+    "start": "u2900-memory-consolidation-for-disaster-response-networks",
+    "end": "u2949-memory-consolidation-for-civic-participation-platforms",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2900-memory-consolidation-for-disaster-response-networks",
+      "path": "generated/shards/02/2900-memory-consolidation-for-disaster-response-networks",
+      "skill_md_sha256": "3cdbce43f1c7be60e1ba90c41ad75d22ca4a4d123cc861a98c813dcda599fb42",
+      "summary_sha256": "ab89b317fc4932f088f945e1bbaf2ad0441c52939aa04cd92a243693a14eeb01"
+    },
+    {
+      "skill_id": "u2901-memory-consolidation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2901-memory-consolidation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "1ecee8ce6f33f19b163c873c433a5db4041df48106a29a901ed24bb1dd5fa03d",
+      "summary_sha256": "981902711ee3b31536434e947eceae21fbb789e3e0cbd2f10e9765728b6a8e47"
+    },
+    {
+      "skill_id": "u2902-memory-consolidation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2902-memory-consolidation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "2bd7e91ce3cdc9e169062126ad8d3d07b81cc399800d009a37b3100513501916",
+      "summary_sha256": "898cd70b6e153005275450e88e10aef9249b6e2fd08bf82d0452821356d8db63"
+    },
+    {
+      "skill_id": "u2903-memory-consolidation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2903-memory-consolidation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "21e95dfbc9d781c33e2db3815daed1d91f0c32021928c6f846f3553b2d1c09c0",
+      "summary_sha256": "0e31b12662d78371a1da1a8aa31b5247423ade40e1ffbe42566f118b0bab781a"
+    },
+    {
+      "skill_id": "u2904-memory-consolidation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2904-memory-consolidation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "e31b50fbd880777863f13e20baf28d134f615990c49a453ba0b5be6a80472450",
+      "summary_sha256": "f212df1a9785d2401e75c7805066f03ae84c1a03a1024011b36cca8607e62489"
+    },
+    {
+      "skill_id": "u2905-memory-consolidation-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2905-memory-consolidation-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "a63af670beca839bd4cd446e14db13d7b31e158829aa0337cab5e86a18df70f2",
+      "summary_sha256": "30b70ba6317ece05342ff09f96692890e7a5c1d477f43ed3eb24e3b823013702"
+    },
+    {
+      "skill_id": "u2906-memory-consolidation-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2906-memory-consolidation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "eef74821a5e6a1463803c0c6938b316e1abae3f92ba4096f0ad26dc2b386f93e",
+      "summary_sha256": "362c94f871a0b768452794132ab9374d88a86942fea56a3999bd6e1c7a172131"
+    },
+    {
+      "skill_id": "u2907-memory-consolidation-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2907-memory-consolidation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "b04c0e90baf1f56f86e09ed4b0f96ea5f08bce3dd8386f8649c3b31944b758c2",
+      "summary_sha256": "9fa21d126d6c33c447af4f746c61eb75e26f600ee68f6e8ffa9e5b49cf5f74dd"
+    },
+    {
+      "skill_id": "u2908-memory-consolidation-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2908-memory-consolidation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "c5730289b5703bc49ba6fcfdd0c36ace614ed2ccf14a3fc2e0b5f8bdd7fc8d72",
+      "summary_sha256": "c14b811d3fd3b582655734a0cc65ed5614ac306bbca8ed4d6789bf8e455ec020"
+    },
+    {
+      "skill_id": "u2909-memory-consolidation-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2909-memory-consolidation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "c7788e8bfe61915c58bef5c4b4a2d6f4cecc66d890c439a325cce700f8d60c31",
+      "summary_sha256": "409be2beae5ca169b85fb160aba144be5bf6eb3ef5f2d7074e31851dd053203d"
+    },
+    {
+      "skill_id": "u2910-memory-consolidation-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2910-memory-consolidation-for-urban-planning-and-mobility",
+      "skill_md_sha256": "cea4a463a6d9a372166862f9751d1e644e7c0521984dc63fa390b2543c5143b1",
+      "summary_sha256": "2e1072687b607b9cf7318b4eb14d964f43c58b43f82602761e28c3c6addee875"
+    },
+    {
+      "skill_id": "u2911-memory-consolidation-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2911-memory-consolidation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "e097c33dd50b98ca8d2561384310891d12533a25d5bd4c05d1e0c36cf0f3e4ff",
+      "summary_sha256": "6a663a23830029f8e78377a1880e2f430e150ee26f8a8a90d3d58f690b6276b4"
+    },
+    {
+      "skill_id": "u2912-memory-consolidation-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2912-memory-consolidation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "c45f15d5ff5ed839dbdb179a71ddb532fdb475de37fca11e3dd6270d61cd7e75",
+      "summary_sha256": "36cbd59fdd6996521a653c68e8c223a6dfca1f015661dca98d64cf713016d311"
+    },
+    {
+      "skill_id": "u2913-memory-consolidation-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2913-memory-consolidation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "128da754f43863c5736a89289d3ccd3a27f692c5e8ff4643db4be03bb7cac71b",
+      "summary_sha256": "5f09768344ff0dedae9d6aab405f85dd34711f76232b76cdcb8540fda69e4156"
+    },
+    {
+      "skill_id": "u2914-memory-consolidation-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2914-memory-consolidation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "54d6ba2011af324275611dcc09944bffff4e2cb5c87b20214259e5f6413a030d",
+      "summary_sha256": "d0fd1c35c20d90ee338a4476b548ae0da7d06060544b8eafce89b078beb24afb"
+    },
+    {
+      "skill_id": "u2915-memory-consolidation-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2915-memory-consolidation-for-agriculture-and-food-systems",
+      "skill_md_sha256": "34fda11d107b9c1ad4cbd56d34ca2d6764a1aacaaa96da928358948d5b420eeb",
+      "summary_sha256": "795b52e71ed01975dc994b2115efe28f2ac677770cc4c42dbe56a51589ccaaaa"
+    },
+    {
+      "skill_id": "u2916-memory-consolidation-for-supply-chain-resilience",
+      "path": "generated/shards/02/2916-memory-consolidation-for-supply-chain-resilience",
+      "skill_md_sha256": "485d7d379f35e341638baf3ace8b57a8057754db95823935b31d6224237c9eaf",
+      "summary_sha256": "a48c68f83f1adfef5c0383416b5accfe355c453888b7476047ee026c403c6297"
+    },
+    {
+      "skill_id": "u2917-memory-consolidation-for-supply-chain-resilience",
+      "path": "generated/shards/02/2917-memory-consolidation-for-supply-chain-resilience",
+      "skill_md_sha256": "064070e6fb4d655bc20b1eab1d6ec8d37cf9ba8b838b1f0c39528e62ffdc80b0",
+      "summary_sha256": "826b3d053ce0e290dc5de5e6623ee8add1bcb82c5cc4fb5a1cee49d57e403cc6"
+    },
+    {
+      "skill_id": "u2918-memory-consolidation-for-supply-chain-resilience",
+      "path": "generated/shards/02/2918-memory-consolidation-for-supply-chain-resilience",
+      "skill_md_sha256": "ab9ceec4f69a5511635144eeac1999094c68f8209cda334266c3e59bbd9dd8ac",
+      "summary_sha256": "a067e5885ee02b629eed76795822caf1f818f8e1c4e841b6677291916b91e72a"
+    },
+    {
+      "skill_id": "u2919-memory-consolidation-for-supply-chain-resilience",
+      "path": "generated/shards/02/2919-memory-consolidation-for-supply-chain-resilience",
+      "skill_md_sha256": "7ce2106d5966e9cca364b4ec57ba9e91f8bb5a3f8b14cbebba8f5f09cdcee44e",
+      "summary_sha256": "feab336ac1dee12f1ec4708bf4e789ce5392bef0225ce7822ca3ac2bfa68c4e6"
+    },
+    {
+      "skill_id": "u2920-memory-consolidation-for-supply-chain-resilience",
+      "path": "generated/shards/02/2920-memory-consolidation-for-supply-chain-resilience",
+      "skill_md_sha256": "02b080b8e7e304e0653b5ce26b6cda0572a734ae5d2ab35e19b1e6d5a90976ae",
+      "summary_sha256": "f345aa90f715f1a2343a5239eb0e64ba813c66d2298ed555eaf788d0b2c7a532"
+    },
+    {
+      "skill_id": "u2921-memory-consolidation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2921-memory-consolidation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "df7e101b4d6be61cc898ac1473500698a13910e6b4b61e015fa86b3d6d2a7714",
+      "summary_sha256": "040b28f7a02dd76e097a7f91f2c70dd7241a4dfc933772dda356883a7d499621"
+    },
+    {
+      "skill_id": "u2922-memory-consolidation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2922-memory-consolidation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "c74c076ead5519cab412d8c365990f01dd5719b2791ef23838024178752d5638",
+      "summary_sha256": "dfd6dee94cd959832165413daa986b4ac6a93f9097449830207dcb6654725f4d"
+    },
+    {
+      "skill_id": "u2923-memory-consolidation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2923-memory-consolidation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "b264ec17e413cc045b411b96fce5f97f749b14f3a870f57e44abee6e11997628",
+      "summary_sha256": "997acef0a7a9789b937147138fcc00e08c6fd5bb094a65c75d97957e06c2012d"
+    },
+    {
+      "skill_id": "u2924-memory-consolidation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2924-memory-consolidation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "104875adfe2ccd599b87b57b28c98a76f27af5b4a2785d1588da862498160aff",
+      "summary_sha256": "f89769e0596602bd4eb8d172a9bc0b77fdd202bbd2c5194b3b56c9f838f0c1dd"
+    },
+    {
+      "skill_id": "u2925-memory-consolidation-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2925-memory-consolidation-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "daaa560a7224d5a83d7cc6062f688754ef7d81c68a50492deea8cd779bfe513f",
+      "summary_sha256": "ff4461e889f48dc75260dd682b0208105a4cfa3337daf1cdc086cddde42ab19e"
+    },
+    {
+      "skill_id": "u2926-memory-consolidation-for-cybersecurity-operations",
+      "path": "generated/shards/02/2926-memory-consolidation-for-cybersecurity-operations",
+      "skill_md_sha256": "7e3073a70e156ee46c0f894015bb03857a7e09bb7766803ca19fd8d6f8679eee",
+      "summary_sha256": "51c8a535d4333b61e8bb7dff811edba28ba2a8d273fdb5ba67970ee4131cd253"
+    },
+    {
+      "skill_id": "u2927-memory-consolidation-for-cybersecurity-operations",
+      "path": "generated/shards/02/2927-memory-consolidation-for-cybersecurity-operations",
+      "skill_md_sha256": "a21af194ae9f6311daa412e029fb2ac8a5194d77389766d94e00b376e85fc666",
+      "summary_sha256": "90f524c3676ef1305a20d2293ff1e143e5c01bf9b6dae461b48cd2f52d0508f1"
+    },
+    {
+      "skill_id": "u2928-memory-consolidation-for-cybersecurity-operations",
+      "path": "generated/shards/02/2928-memory-consolidation-for-cybersecurity-operations",
+      "skill_md_sha256": "3676cb211902439bcc47d536bcd37f15d0dd504707f5383469d14315877e3cfd",
+      "summary_sha256": "45cdbf80af284d14eff0dd3bf6f7929cefe794c398355cefff45b2cc15339ac2"
+    },
+    {
+      "skill_id": "u2929-memory-consolidation-for-cybersecurity-operations",
+      "path": "generated/shards/02/2929-memory-consolidation-for-cybersecurity-operations",
+      "skill_md_sha256": "540b2267c0710f4d6b9ed7cf0a029af36e7f4764f8eada5954a6d663c499722f",
+      "summary_sha256": "b69468641a8d502d4fe86ab5a416028aac659aecb85cf995119f743299ebdfcf"
+    },
+    {
+      "skill_id": "u2930-memory-consolidation-for-cybersecurity-operations",
+      "path": "generated/shards/02/2930-memory-consolidation-for-cybersecurity-operations",
+      "skill_md_sha256": "c6481d48050f9f1be72f20987c9e018cdbd7b3070fd901bdbf3abb0c1fe8f084",
+      "summary_sha256": "f21785214684bfdeb9929f452c912d3e57672a52674547eae158cebef6501436"
+    },
+    {
+      "skill_id": "u2931-memory-consolidation-for-research-and-development-labs",
+      "path": "generated/shards/02/2931-memory-consolidation-for-research-and-development-labs",
+      "skill_md_sha256": "53b5b07e0bdeb089b2105dac99708fb5c17966d604b494f6a1e7a18a1818f743",
+      "summary_sha256": "2e1dc35d636da49c439af93e47a7f888200f8871107387f8071aff0441e23ed8"
+    },
+    {
+      "skill_id": "u2932-memory-consolidation-for-research-and-development-labs",
+      "path": "generated/shards/02/2932-memory-consolidation-for-research-and-development-labs",
+      "skill_md_sha256": "ff3a287c1615321359c45092a144b8181f4d79cdc60ca2a4e2c462fbe00681b3",
+      "summary_sha256": "da1b844cf1395647d0daaec884a758aaf1a839fad62f5b28ecbd65b50ff557fa"
+    },
+    {
+      "skill_id": "u2933-memory-consolidation-for-research-and-development-labs",
+      "path": "generated/shards/02/2933-memory-consolidation-for-research-and-development-labs",
+      "skill_md_sha256": "7eb0501665d90b0a7f1fab460c5198bb4dfd0d210300221c7b0f5378dc17706a",
+      "summary_sha256": "c62a680248c8f97058ee584e620cf6aa64325eac90936dd6ee489560e706e4e7"
+    },
+    {
+      "skill_id": "u2934-memory-consolidation-for-research-and-development-labs",
+      "path": "generated/shards/02/2934-memory-consolidation-for-research-and-development-labs",
+      "skill_md_sha256": "948bcc9607c2b9994b4e1eb934fcc61dd0f58da76f975d2027740b23e6de73e1",
+      "summary_sha256": "351d9ab8eb24611aeb529b9bcfbe9a572280b970bc778c96061b1cf106cca1f8"
+    },
+    {
+      "skill_id": "u2935-memory-consolidation-for-research-and-development-labs",
+      "path": "generated/shards/02/2935-memory-consolidation-for-research-and-development-labs",
+      "skill_md_sha256": "410d7f592481f53c3ede32c1db6627c5b4225990ad63aebf7eff95766e47e6dc",
+      "summary_sha256": "035108b476cba41b3cf0fbcf7858e02b9107a75137a23a6feb8feecd57fb3c81"
+    },
+    {
+      "skill_id": "u2936-memory-consolidation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2936-memory-consolidation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "d79ef77e5bb4a3e688f3343e0f7898c3b00bda0a73a9154e75f915ab6e1c2e22",
+      "summary_sha256": "62d35e4a4bf6cb10afbfb9345bc3e7fc20f0ff5a92247e5f610b769f5874cc2b"
+    },
+    {
+      "skill_id": "u2937-memory-consolidation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2937-memory-consolidation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "0597be3e7d67af1ea7f6f28d75bfb8915752c1489a02671c521c85bb791b718c",
+      "summary_sha256": "7bf1374d5180e7a05eddc15baa294da48fbf03e150580ab05d86824269e5955d"
+    },
+    {
+      "skill_id": "u2938-memory-consolidation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2938-memory-consolidation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "6abc656f563b42ead2531669394a35ded1d84e33e1196a90acf626f0efb931f0",
+      "summary_sha256": "e8daa38e486f4e604030caea241e373031b0892fdaed0578f01494a76c567f2f"
+    },
+    {
+      "skill_id": "u2939-memory-consolidation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2939-memory-consolidation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "b616143c20fc9261265e7fc3096a8d3effc6cf1c1017ede115d5bd0f05ad95f1",
+      "summary_sha256": "21543177dd2d5c720b926b2e0e4497031a2344776469eefef293c5bb7a545d8d"
+    },
+    {
+      "skill_id": "u2940-memory-consolidation-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2940-memory-consolidation-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "d77287044e5cadb205bbee652df98fb44a7e1aa367180871cf3163cc2de54c12",
+      "summary_sha256": "b6443618ec9f525f107b3759d05e8c970b83b589c20344918ec26ce812a6180e"
+    },
+    {
+      "skill_id": "u2941-memory-consolidation-for-community-mediation-programs",
+      "path": "generated/shards/02/2941-memory-consolidation-for-community-mediation-programs",
+      "skill_md_sha256": "981be84e38cd9a795850691cd9075ac4dbd4a825ef3c67ebef9ee0645502cfa7",
+      "summary_sha256": "fff0858373505058adb39646e984fe0eb154371bb6251489943db8c7a207995f"
+    },
+    {
+      "skill_id": "u2942-memory-consolidation-for-community-mediation-programs",
+      "path": "generated/shards/02/2942-memory-consolidation-for-community-mediation-programs",
+      "skill_md_sha256": "2280893e3e49b0a3291dd69431c254d11f2e987a44a40a2dd8a514d1cd350056",
+      "summary_sha256": "706efc728023b5a9aa8c310d2b021a144d0b8f5404e4f33676d47112be986fe7"
+    },
+    {
+      "skill_id": "u2943-memory-consolidation-for-community-mediation-programs",
+      "path": "generated/shards/02/2943-memory-consolidation-for-community-mediation-programs",
+      "skill_md_sha256": "13b92fee1c26849a96c0de72c3e95672d9342ca7b943201d699cbf85451d2eb1",
+      "summary_sha256": "a718070af24a8d9ea6b2489c5e3a872f3da29fe92719251a756b58bb5b050904"
+    },
+    {
+      "skill_id": "u2944-memory-consolidation-for-community-mediation-programs",
+      "path": "generated/shards/02/2944-memory-consolidation-for-community-mediation-programs",
+      "skill_md_sha256": "2fca0b68e111717d14b08cea2a06f145a9416f743d21231cb320b05b9d90d9b2",
+      "summary_sha256": "a1273ede941ab8ba929dbd95f3b955d4f29f9d8220b8821be090f6eaf7d887aa"
+    },
+    {
+      "skill_id": "u2945-memory-consolidation-for-community-mediation-programs",
+      "path": "generated/shards/02/2945-memory-consolidation-for-community-mediation-programs",
+      "skill_md_sha256": "d6a143a0ff16a30ab9fb811ca0d7608c6f087e8894b5d24546c6abfde04e1062",
+      "summary_sha256": "0dd2b1e966f32d82b7538c96ae2ecc5343dbf82a03b851b2db0cbe561ccccc91"
+    },
+    {
+      "skill_id": "u2946-memory-consolidation-for-civic-participation-platforms",
+      "path": "generated/shards/02/2946-memory-consolidation-for-civic-participation-platforms",
+      "skill_md_sha256": "df4a57fa4e3e58ff3f3727df3ee589bf2a382b84ff78ef205174f970e58b15d0",
+      "summary_sha256": "3ad8a4b9c39b30a06c2442d7e3290207881763473b7401551ff616e7b3cf9680"
+    },
+    {
+      "skill_id": "u2947-memory-consolidation-for-civic-participation-platforms",
+      "path": "generated/shards/02/2947-memory-consolidation-for-civic-participation-platforms",
+      "skill_md_sha256": "93b263cef7cd60a142c1fcaddfe2a88197b139f2946e1f76443c4f0a14c39fbc",
+      "summary_sha256": "3bdef0a5f0dbd787c0b9ee32cde6163ae21dd9c079a78f8774679ae5fc370fcd"
+    },
+    {
+      "skill_id": "u2948-memory-consolidation-for-civic-participation-platforms",
+      "path": "generated/shards/02/2948-memory-consolidation-for-civic-participation-platforms",
+      "skill_md_sha256": "ba498ce6887b4ca82ad0a55d3d413a54e480efdf6349164c143773017e289186",
+      "summary_sha256": "42c4c22f399b54ad97e62fb90e9cdf20c283bf221d42a079c62729d1b28657ae"
+    },
+    {
+      "skill_id": "u2949-memory-consolidation-for-civic-participation-platforms",
+      "path": "generated/shards/02/2949-memory-consolidation-for-civic-participation-platforms",
+      "skill_md_sha256": "8196068f9bffe2c475791d47666d6c23786d73c4749b6cdd040d77201fbd4442",
+      "summary_sha256": "8006169d33eb19ea658641a371febb43962ebc2dafac54d55141b7612517b798"
+    }
+  ]
+}

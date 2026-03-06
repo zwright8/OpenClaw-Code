@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4753,
+  "name": "observability-stacks-permission-mapper",
+  "title": "Observability Stacks Permission Mapper",
+  "description": "Design and run observability stacks workflows with permission mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2092,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04753-observability-stacks-permission-mapper/SKILL.md",
+    "entrypoint": "agent04/04753-observability-stacks-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks permission mapper",
+    "observability stacks permission mapper workflow",
+    "observability stacks permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11261,
+  "name": "renewal-management-execution-runner",
+  "title": "Renewal Management Execution Runner",
+  "description": "Design and run renewal management workflows with execution runner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1452,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11261-renewal-management-execution-runner/SKILL.md",
+    "entrypoint": "agent09/11261-renewal-management-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "renewal management execution runner",
+    "renewal management execution runner workflow",
+    "renewal management execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

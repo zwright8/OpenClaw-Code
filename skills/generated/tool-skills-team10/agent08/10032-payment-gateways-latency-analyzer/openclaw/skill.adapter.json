@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10032,
+  "name": "payment-gateways-latency-analyzer",
+  "title": "Payment Gateways Latency Analyzer",
+  "description": "Design and run payment gateways workflows with latency analyzer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11490,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10032-payment-gateways-latency-analyzer/SKILL.md",
+    "entrypoint": "agent08/10032-payment-gateways-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways latency analyzer",
+    "payment gateways latency analyzer workflow",
+    "payment gateways latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

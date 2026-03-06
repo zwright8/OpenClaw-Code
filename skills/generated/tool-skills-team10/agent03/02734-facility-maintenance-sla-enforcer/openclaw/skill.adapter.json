@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2734,
+  "name": "facility-maintenance-sla-enforcer",
+  "title": "Facility Maintenance SLA Enforcer",
+  "description": "Design and run facility maintenance workflows with sla enforcer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7308,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02734-facility-maintenance-sla-enforcer/SKILL.md",
+    "entrypoint": "agent03/02734-facility-maintenance-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance sla enforcer",
+    "facility maintenance sla enforcer workflow",
+    "facility maintenance sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

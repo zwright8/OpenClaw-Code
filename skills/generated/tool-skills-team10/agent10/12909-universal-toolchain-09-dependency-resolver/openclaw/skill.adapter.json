@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12909,
+  "name": "universal-toolchain-09-dependency-resolver",
+  "title": "Universal Toolchain 09 Dependency Resolver",
+  "description": "Design and run universal toolchain 09 workflows with dependency resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8368,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12909-universal-toolchain-09-dependency-resolver/SKILL.md",
+    "entrypoint": "agent10/12909-universal-toolchain-09-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 09 dependency resolver",
+    "universal toolchain 09 dependency resolver workflow",
+    "universal toolchain 09 dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

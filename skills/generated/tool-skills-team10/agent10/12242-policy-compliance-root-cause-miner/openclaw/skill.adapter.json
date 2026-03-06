@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12242,
+  "name": "policy-compliance-root-cause-miner",
+  "title": "Policy Compliance Root Cause Miner",
+  "description": "Design and run policy compliance workflows with root cause miner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2276,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12242-policy-compliance-root-cause-miner/SKILL.md",
+    "entrypoint": "agent10/12242-policy-compliance-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance root cause miner",
+    "policy compliance root cause miner workflow",
+    "policy compliance root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

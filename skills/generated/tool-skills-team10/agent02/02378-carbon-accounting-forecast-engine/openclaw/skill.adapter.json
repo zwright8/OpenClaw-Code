@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2378,
+  "name": "carbon-accounting-forecast-engine",
+  "title": "Carbon Accounting Forecast Engine",
+  "description": "Design and run carbon accounting workflows with forecast engine controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8820,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02378-carbon-accounting-forecast-engine/SKILL.md",
+    "entrypoint": "agent02/02378-carbon-accounting-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting forecast engine",
+    "carbon accounting forecast engine workflow",
+    "carbon accounting forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

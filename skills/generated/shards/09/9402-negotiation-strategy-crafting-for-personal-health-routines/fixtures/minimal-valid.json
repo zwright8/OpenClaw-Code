@@ -1,0 +1,35 @@
+{
+  "skill_id": "u09402-negotiation-strategy-crafting-for-personal-health-routines",
+  "capability": "Negotiation Strategy Crafting for personal health routines",
+  "domain": "personal health routines",
+  "inputs": {
+    "source_tagged_signals": [
+      {
+        "id": "sig-001",
+        "source": "trusted",
+        "content": "sample"
+      }
+    ],
+    "claims": [
+      {
+        "id": "clm-001",
+        "text": "sample claim",
+        "confidence": 0.8
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-001",
+        "type": "document",
+        "uri": "local://evidence/1"
+      }
+    ],
+    "run_context": {
+      "risk_tier": "low",
+      "request_id": "req-001"
+    }
+  },
+  "expected": {
+    "schema_valid": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2728,
+  "name": "facility-maintenance-forecast-engine",
+  "title": "Facility Maintenance Forecast Engine",
+  "description": "Design and run facility maintenance workflows with forecast engine controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7302,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02728-facility-maintenance-forecast-engine/SKILL.md",
+    "entrypoint": "agent03/02728-facility-maintenance-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance forecast engine",
+    "facility maintenance forecast engine workflow",
+    "facility maintenance forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

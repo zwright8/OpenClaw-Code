@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4256,
+  "name": "identity-providers-api-contract-validator",
+  "title": "Identity Providers API Contract Validator",
+  "description": "Design and run identity providers workflows with api contract validator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2,
+    "score": 105,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/04256-identity-providers-api-contract-validator/SKILL.md",
+    "entrypoint": "agent04/04256-identity-providers-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers api contract validator",
+    "identity providers api contract validator workflow",
+    "identity providers api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12302,
+  "name": "benchmark-repositories-auth-broker",
+  "title": "Benchmark Repositories Auth Broker",
+  "description": "Design and run benchmark repositories workflows with auth broker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1010,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12302-benchmark-repositories-auth-broker/SKILL.md",
+    "entrypoint": "agent10/12302-benchmark-repositories-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "benchmark repositories auth broker",
+    "benchmark repositories auth broker workflow",
+    "benchmark repositories auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

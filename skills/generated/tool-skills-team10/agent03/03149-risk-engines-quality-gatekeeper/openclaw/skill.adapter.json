@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3149,
+  "name": "risk-engines-quality-gatekeeper",
+  "title": "Risk Engines Quality Gatekeeper",
+  "description": "Design and run risk engines workflows with quality gatekeeper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2468,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03149-risk-engines-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent03/03149-risk-engines-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines quality gatekeeper",
+    "risk engines quality gatekeeper workflow",
+    "risk engines quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

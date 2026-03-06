@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1067,
+  "name": "court-dockets-delta-calculator",
+  "title": "Court Dockets Delta Calculator",
+  "description": "Design and run court dockets workflows with delta calculator controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8414,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01067-court-dockets-delta-calculator/SKILL.md",
+    "entrypoint": "agent01/01067-court-dockets-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets delta calculator",
+    "court dockets delta calculator workflow",
+    "court dockets delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

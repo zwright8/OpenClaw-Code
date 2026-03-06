@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9697,
+  "name": "alternative-data-human-handoff-router",
+  "title": "Alternative Data Human Handoff Router",
+  "description": "Design and run alternative data workflows with human handoff router controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11347,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09697-alternative-data-human-handoff-router/SKILL.md",
+    "entrypoint": "agent08/09697-alternative-data-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data human handoff router",
+    "alternative data human handoff router workflow",
+    "alternative data human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

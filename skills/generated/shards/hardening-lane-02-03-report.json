@@ -1,0 +1,19 @@
+{
+  "lane": [
+    "02",
+    "03"
+  ],
+  "batch_size": 50,
+  "summary": [
+    {
+      "shard": "02",
+      "skills": 1000,
+      "batches": 20
+    },
+    {
+      "shard": "03",
+      "skills": 1000,
+      "batches": 20
+    }
+  ]
+}

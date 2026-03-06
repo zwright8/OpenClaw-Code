@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2545,
+  "name": "real-estate-mls-runbook-composer",
+  "title": "Real Estate MLS Runbook Composer",
+  "description": "Design and run real estate mls workflows with runbook composer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5854,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02545-real-estate-mls-runbook-composer/SKILL.md",
+    "entrypoint": "agent02/02545-real-estate-mls-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls runbook composer",
+    "real estate mls runbook composer workflow",
+    "real estate mls runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

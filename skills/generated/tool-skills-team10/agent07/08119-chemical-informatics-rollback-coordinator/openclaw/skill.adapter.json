@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8119,
+  "name": "chemical-informatics-rollback-coordinator",
+  "title": "Chemical Informatics Rollback Coordinator",
+  "description": "Design and run chemical informatics workflows with rollback coordinator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5113,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08119-chemical-informatics-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent07/08119-chemical-informatics-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chemical informatics rollback coordinator",
+    "chemical informatics rollback coordinator workflow",
+    "chemical informatics rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

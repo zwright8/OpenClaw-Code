@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3491,
+  "name": "procure-to-pay-incident-triage",
+  "title": "Procure to Pay Incident Triage",
+  "description": "Design and run procure to pay workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2060,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03491-procure-to-pay-incident-triage/SKILL.md",
+    "entrypoint": "agent03/03491-procure-to-pay-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay incident triage",
+    "procure to pay incident triage workflow",
+    "procure to pay incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

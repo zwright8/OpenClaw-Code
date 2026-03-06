@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2597,
+  "name": "property-management-human-handoff-router",
+  "title": "Property Management Human Handoff Router",
+  "description": "Design and run property management workflows with human handoff router controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8911,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02597-property-management-human-handoff-router/SKILL.md",
+    "entrypoint": "agent02/02597-property-management-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management human handoff router",
+    "property management human handoff router workflow",
+    "property management human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

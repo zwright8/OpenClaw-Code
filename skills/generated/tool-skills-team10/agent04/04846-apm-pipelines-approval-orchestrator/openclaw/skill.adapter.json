@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4846,
+  "name": "apm-pipelines-approval-orchestrator",
+  "title": "APM Pipelines Approval Orchestrator",
+  "description": "Design and run apm pipelines workflows with approval orchestrator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6073,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04846-apm-pipelines-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent04/04846-apm-pipelines-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "apm pipelines approval orchestrator",
+    "apm pipelines approval orchestrator workflow",
+    "apm pipelines approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

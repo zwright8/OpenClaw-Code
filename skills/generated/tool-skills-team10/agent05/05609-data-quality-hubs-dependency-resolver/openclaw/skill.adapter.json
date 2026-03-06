@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5609,
+  "name": "data-quality-hubs-dependency-resolver",
+  "title": "Data Quality Hubs Dependency Resolver",
+  "description": "Design and run data quality hubs workflows with dependency resolver controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6959,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05609-data-quality-hubs-dependency-resolver/SKILL.md",
+    "entrypoint": "agent05/05609-data-quality-hubs-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs dependency resolver",
+    "data quality hubs dependency resolver workflow",
+    "data quality hubs dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
