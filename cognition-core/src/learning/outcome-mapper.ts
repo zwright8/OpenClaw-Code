@@ -9,6 +9,18 @@ const TERMINAL_OUTCOME_STATUSES = new Set([
     'transport_error'
 ]);
 
+const STATUS_PRIORITY = new Map<string, number>([
+    ['completed', 80],
+    ['partial', 70],
+    ['failed', 60],
+    ['timed_out', 50],
+    ['rejected', 40],
+    ['transport_error', 30],
+    ['awaiting_approval', 20],
+    ['acknowledged', 10],
+    ['dispatched', 5]
+]);
+
 type RecommendationLookup = Map<string, string>;
 
 type SourceHint = 'journal' | 'package' | 'generic';
@@ -31,7 +43,7 @@ function asFiniteNumber(value: unknown): number | undefined {
     return Number.isFinite(parsed) ? parsed : undefined;
 }
 
-function normalizeStatus(value: unknown, sourceHint: SourceHint): EvaluationStatus {
+function normalizeStatus(value: unknown, _sourceHint: SourceHint): EvaluationStatus {
     const normalized = String(value ?? '').trim().toLowerCase();
 
     if (!normalized) {
@@ -46,6 +58,96 @@ function normalizeStatus(value: unknown, sourceHint: SourceHint): EvaluationStat
     }
 
     return normalized;
+}
+
+function normalizeStatusKey(status: unknown): string {
+    return String(status ?? '').trim().toLowerCase();
+}
+
+function statusPriority(status: unknown): number {
+    const normalized = normalizeStatusKey(status);
+    if (STATUS_PRIORITY.has(normalized)) {
+        return STATUS_PRIORITY.get(normalized) ?? 0;
+    }
+
+    return TERMINAL_OUTCOME_STATUSES.has(normalized) ? 1 : 0;
+}
+
+function asNullableFiniteNumber(value: unknown): number | null {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+}
+
+function compareNullableNumbers(a: number | null, b: number | null): number {
+    if (a !== null && b !== null && a !== b) {
+        return a > b ? 1 : -1;
+    }
+    if (a !== null && b === null) return 1;
+    if (a === null && b !== null) return -1;
+    return 0;
+}
+
+function isTerminalStatus(status: unknown): boolean {
+    return TERMINAL_OUTCOME_STATUSES.has(normalizeStatusKey(status));
+}
+
+function selectProgressiveStatus(
+    previousStatus: EvaluationStatus,
+    nextStatus: EvaluationStatus,
+    previousClosedAt?: number,
+    nextClosedAt?: number
+): EvaluationStatus {
+    const previousIsTerminal = isTerminalStatus(previousStatus);
+    const nextIsTerminal = isTerminalStatus(nextStatus);
+
+    if (previousIsTerminal !== nextIsTerminal) {
+        return previousIsTerminal ? previousStatus : nextStatus;
+    }
+
+    const timestampOrder = compareNullableNumbers(
+        asNullableFiniteNumber(previousClosedAt),
+        asNullableFiniteNumber(nextClosedAt)
+    );
+    if (timestampOrder !== 0) {
+        return timestampOrder > 0 ? previousStatus : nextStatus;
+    }
+
+    const previousPriority = statusPriority(previousStatus);
+    const nextPriority = statusPriority(nextStatus);
+    if (previousPriority !== nextPriority) {
+        return previousPriority > nextPriority ? previousStatus : nextStatus;
+    }
+
+    return nextStatus;
+}
+
+function selectProgressiveClosedAt(
+    previousStatus: EvaluationStatus,
+    nextStatus: EvaluationStatus,
+    selectedStatus: EvaluationStatus,
+    previousClosedAt?: number,
+    nextClosedAt?: number
+): number | undefined {
+    if (selectedStatus === previousStatus && selectedStatus !== nextStatus) {
+        return previousClosedAt;
+    }
+
+    if (selectedStatus === nextStatus && selectedStatus !== previousStatus) {
+        return nextClosedAt ?? previousClosedAt;
+    }
+
+    const timestampOrder = compareNullableNumbers(
+        asNullableFiniteNumber(previousClosedAt),
+        asNullableFiniteNumber(nextClosedAt)
+    );
+    if (timestampOrder > 0) {
+        return previousClosedAt ?? nextClosedAt;
+    }
+    if (timestampOrder < 0) {
+        return nextClosedAt ?? previousClosedAt;
+    }
+
+    return nextClosedAt ?? previousClosedAt;
 }
 
 function recommendationIdFromRow(row: Record<string, unknown>, taskId: string | undefined, recommendationByTaskId: RecommendationLookup): string | undefined {
@@ -228,9 +330,32 @@ export function outcomesFromJournalEntries(
             const taskId = asString(row.taskId);
             const record = asRecord(row.record);
             if (taskId) {
+                const previous = state.get(taskId) ?? { taskId };
+                const previousRecord = previous as Record<string, unknown>;
+                const previousStatus = normalizeStatus(previousRecord.status, 'journal');
+                const nextStatus = normalizeStatus(record.status, 'journal');
+                const previousClosedAt = asFiniteNumber(previousRecord.closedAt);
+                const nextClosedAt = asFiniteNumber(record.closedAt) ?? asFiniteNumber(record.completedAt);
+
+                const selectedStatus = selectProgressiveStatus(
+                    previousStatus,
+                    nextStatus,
+                    previousClosedAt,
+                    nextClosedAt
+                );
+
                 state.set(taskId, {
+                    ...previous,
                     taskId,
-                    ...record
+                    ...record,
+                    status: selectedStatus,
+                    closedAt: selectProgressiveClosedAt(
+                        previousStatus,
+                        nextStatus,
+                        selectedStatus,
+                        previousClosedAt,
+                        nextClosedAt
+                    )
                 });
             }
             continue;
@@ -242,12 +367,31 @@ export function outcomesFromJournalEntries(
             if (!taskId) continue;
 
             const previous = state.get(taskId) ?? { taskId };
+            const previousRecord = previous as Record<string, unknown>;
+            const previousStatus = normalizeStatus(previousRecord.status, 'journal');
+            const nextStatus = normalizeStatus(row.status, 'journal');
+            const previousClosedAt = asFiniteNumber(previousRecord.closedAt);
+            const nextClosedAt = asFiniteNumber(row.completedAt);
+
+            const selectedStatus = selectProgressiveStatus(
+                previousStatus,
+                nextStatus,
+                previousClosedAt,
+                nextClosedAt
+            );
+
             state.set(taskId, {
                 ...previous,
                 taskId,
-                status: normalizeStatus(row.status, 'journal'),
+                status: selectedStatus,
                 result: row,
-                closedAt: asFiniteNumber(row.completedAt) ?? asFiniteNumber((previous as Record<string, unknown>).closedAt)
+                closedAt: selectProgressiveClosedAt(
+                    previousStatus,
+                    nextStatus,
+                    selectedStatus,
+                    previousClosedAt,
+                    nextClosedAt
+                )
             });
             continue;
         }
@@ -257,24 +401,63 @@ export function outcomesFromJournalEntries(
             if (!taskId) continue;
 
             const previous = state.get(taskId) ?? { taskId };
+            const previousRecord = previous as Record<string, unknown>;
+            const previousStatus = normalizeStatus(previousRecord.status, 'journal');
             const accepted = row.accepted === true;
+            const nextStatus: EvaluationStatus = accepted ? 'acknowledged' : 'rejected';
+            const previousClosedAt = asFiniteNumber(previousRecord.closedAt);
+            const nextClosedAt = accepted ? undefined : asFiniteNumber(row.timestamp);
+
+            const selectedStatus = selectProgressiveStatus(
+                previousStatus,
+                nextStatus,
+                previousClosedAt,
+                nextClosedAt
+            );
+
             state.set(taskId, {
                 ...previous,
                 taskId,
-                status: accepted ? 'acknowledged' : 'rejected',
-                closedAt: accepted
-                    ? asFiniteNumber((previous as Record<string, unknown>).closedAt)
-                    : asFiniteNumber(row.timestamp) ?? asFiniteNumber((previous as Record<string, unknown>).closedAt)
+                status: selectedStatus,
+                closedAt: selectProgressiveClosedAt(
+                    previousStatus,
+                    nextStatus,
+                    selectedStatus,
+                    previousClosedAt,
+                    nextClosedAt
+                )
             });
             continue;
         }
 
         const taskId = asString(row.taskId) ?? asString(row.id);
         if (taskId && (row.status !== undefined || row.result !== undefined || row.reason !== undefined)) {
+            const previous = state.get(taskId) ?? { taskId };
+            const previousRecord = previous as Record<string, unknown>;
+            const previousStatus = normalizeStatus(previousRecord.status, 'journal');
+            const nextStatus = normalizeStatus(row.status ?? row.reason, 'journal');
+            const previousClosedAt = asFiniteNumber(previousRecord.closedAt);
+            const nextClosedAt = asFiniteNumber(row.closedAt) ?? asFiniteNumber(row.completedAt);
+
+            const selectedStatus = selectProgressiveStatus(
+                previousStatus,
+                nextStatus,
+                previousClosedAt,
+                nextClosedAt
+            );
+
             state.set(taskId, {
-                ...state.get(taskId),
+                ...previous,
                 ...row,
-                taskId
+                taskId,
+                status: selectedStatus,
+                closedAt: selectProgressiveClosedAt(
+                    previousStatus,
+                    nextStatus,
+                    selectedStatus,
+                    previousClosedAt,
+                    nextClosedAt
+                )
             });
         }
     }

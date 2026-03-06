@@ -196,3 +196,67 @@ test('outcomesFromGenericPayload infers ids from nested request metadata and avo
     assert.equal(outcomes[0]?.status, 'dispatched');
     assert.equal(outcomes[0]?.createdAt, 42);
 });
+
+test('outcomesFromJournalEntries keeps terminal status when later receipts are non-terminal', () => {
+    const entries = [
+        {
+            type: 'upsert',
+            taskId: 't1',
+            record: {
+                taskId: 't1',
+                status: 'dispatched',
+                request: { context: { recommendationId: 'rec-1' } }
+            }
+        },
+        {
+            kind: 'task_result',
+            taskId: 't1',
+            status: 'success',
+            completedAt: 200
+        },
+        {
+            kind: 'task_receipt',
+            taskId: 't1',
+            accepted: true,
+            timestamp: 210
+        }
+    ];
+
+    const outcomes = outcomesFromJournalEntries(entries);
+
+    assert.equal(outcomes.length, 1);
+    assert.equal(outcomes[0]?.taskId, 't1');
+    assert.equal(outcomes[0]?.status, 'completed');
+    assert.equal(outcomes[0]?.closedAt, 200);
+});
+
+test('outcomesFromJournalEntries preserves terminal closure against stale non-terminal upserts', () => {
+    const entries = [
+        {
+            type: 'upsert',
+            taskId: 't2',
+            record: {
+                taskId: 't2',
+                status: 'completed',
+                closedAt: 300,
+                request: { context: { recommendationId: 'rec-2' } }
+            }
+        },
+        {
+            type: 'upsert',
+            taskId: 't2',
+            record: {
+                taskId: 't2',
+                status: 'awaiting_approval',
+                closedAt: 100
+            }
+        }
+    ];
+
+    const outcomes = outcomesFromJournalEntries(entries);
+
+    assert.equal(outcomes.length, 1);
+    assert.equal(outcomes[0]?.taskId, 't2');
+    assert.equal(outcomes[0]?.status, 'completed');
+    assert.equal(outcomes[0]?.closedAt, 300);
+});
