@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 224
+- Total warfighter skills in this repo: 240
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -202,3 +202,22 @@ Every skill output should include:
 - resilient-mesh-network-self-healing-cell
 - joint-disaster-logistics-and-humanitarian-airbridge-cell
 - counter-autonomy-red-force-assessment-cell
+
+## New Expansion Wave (2026-03-06, Domain Tool Packet Expansion)
+
+- contested-logistics-ice-corridor-resilience-cell
+- joint-counter-drone-urban-airspace-shield-cell
+- expeditionary-rail-and-port-repair-prioritization-cell
+- cyber-electromagnetic-battle-damage-assessment-cell
+- tactical-lasercom-and-line-of-sight-network-manager
+- multi-domain-deception-indicator-warning-cell
+- joint-hostage-recovery-intelligence-fusion-cell
+- strategic-arctic-basing-and-prepositioning-cell
+- resilient-munition-production-and-quality-surveillance-cell
+- coalition-fires-clearance-and-digital-roe-cell
+- undersea-chokepoint-sensor-barrier-operations-cell
+- contested-megacity-essential-services-stabilization-cell
+- autonomous-casualty-evacuation-routing-cell
+- electromagnetic-signature-lifecycle-management-cell
+- contested-orbit-pnt-augmentation-cell
+- adversary-kill-web-vulnerability-mapping-cell

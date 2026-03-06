@@ -66,6 +66,12 @@ Primary products for this skill: ASW support plan, prosecution decision matrix, 
 - Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
 - Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
 
+## Domain Tool Packet Library
+
+- Use scenario packets in ../_shared/references/domain-tool-packet-library.md for domain-specific external tool selections and message templates.
+- Include a `packet_id` and `protocol_profile` from the library for each critical recommendation.
+- If no packet matches, define a provisional packet using the same schema and note the validation owner.
+
 ## Domain Data Contract
 
 - Use mapping guidance in ../_shared/references/joint-mission-data-contracts.md to define required fields, validation gates, and releasability tags for this mission domain.

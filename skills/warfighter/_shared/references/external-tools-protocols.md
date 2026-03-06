@@ -24,6 +24,8 @@ For each external tool recommendation, include:
 - Protocol/transport: format and delivery path (for example USMTF over message bus)
 - Fallback: manual workaround and confidence/timeline impact if the tool is unavailable
 
+Also map each critical dependency to a domain packet in `domain-tool-packet-library.md` by `packet_id` and `protocol_profile`.
+
 ## Tool Invocation Packet Template
 
 Use this compact packet format when recommending or invoking external tools:
@@ -166,6 +168,7 @@ Include these fields in outputs when tool integration is used:
 - Confidence and known gaps
 - Classification/handling caveat placeholder (unclassified by default unless user specifies)
 - Tool Invocation Packet fields for each critical tool dependency
+- Domain packet mapping (`packet_id` and `protocol_profile`) for each critical tool dependency
 - Adapter contract ID and endpoint class for each critical tool dependency
 
 ## Operational Safety and Governance Addendum
