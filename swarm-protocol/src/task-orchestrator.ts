@@ -2104,9 +2104,11 @@ export class TaskOrchestrator {
         if (!receipt.accepted) {
             const etaHintMs = Number.isFinite(receipt.etaMs) ? Number(receipt.etaMs) : null;
             const reasonHintMs = parseRetryHintMsFromReason(receipt.reason, receipt.timestamp);
-            const retryHintMs = Number.isFinite(etaHintMs)
-                ? etaHintMs
-                : reasonHintMs;
+            const retryHintMs = Number.isFinite(etaHintMs) && Number.isFinite(reasonHintMs)
+                ? Math.max(etaHintMs, reasonHintMs)
+                : Number.isFinite(etaHintMs)
+                    ? etaHintMs
+                    : reasonHintMs;
             const transientRejection = Number.isFinite(retryHintMs)
                 || isTransientRejectionReason(receipt.reason);
 

@@ -31,6 +31,7 @@ Also includes a task orchestrator for dispatch tracking, receipts, retries, time
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
+Adds bounded exponential retry backoff with optional jitter and `retry_after` hint awareness for transient worker overload responses.
 Includes a workflow DAG engine for dependency-based multi-step execution.
 Workflow telemetry includes per-node durations and critical path analysis.
 Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with migration helpers and read/write validation hooks.

@@ -282,6 +282,45 @@ test('retry hint is clamped to maxRetryHintMs to avoid unbounded delay', async (
     assert.equal(metrics.retryHint.clampCount, 1);
 });
 
+test('transient rejection uses the larger of etaMs and retry_after hint', async () => {
+    const clock = createClock(3_580);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-hint-merge',
+        task: 'Prefer safer retry hint when receipt provides multiple delays'
+    });
+
+    clock.advance(10);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-hint-merge',
+        accepted: false,
+        reason: 'HTTP 429 retry_after_ms:2000',
+        etaMs: 100,
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 5_590);
+
+    const retryEvents = current.history.filter((entry) => entry.event === 'retry_scheduled');
+    const lastRetryEvent = retryEvents[retryEvents.length - 1];
+    assert.equal(lastRetryEvent.retryHintOriginalMs, 2_000);
+    assert.equal(lastRetryEvent.retryHintMs, 2_000);
+    assert.equal(lastRetryEvent.retryHintClamped, false);
+});
+
 test('RateLimit-Reset delta seconds is parsed as retry hint', async () => {
     const clock = createClock(3_620);
     const orchestrator = new TaskOrchestrator({
