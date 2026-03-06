@@ -1,24 +1,24 @@
 # AGENTS.md
 
-## Purpose
-This file captures grounded, repeatable workflows and commands used in this repository.
+## Verified Workflows (Repo-Root)
+- `npm run typecheck` - typecheck root + `cognition-core` + `swarm-protocol`.
+- `npm run build` - runs root lint plus tests in both packages.
+- `npm run capabilities:blueprint` - regenerate capability blueprint artifacts.
+- `npm run capabilities:audit` - run capability deployability audit.
+- `npm run skills:sync` - execute the full 1000-skill lifecycle pipeline.
+- `npm run skills:marketplace:ship` - build/validate/package/validate/demo marketplace outputs.
+- `npm run skills:marketplace:v2:build` - build marketplace skill packages v2.
+- `npm run skills:marketplace:v2:validate` - validate marketplace skill packages v2.
+- `npm run skills:marketplace:v2:demo` - run top-package demo for v2 outputs.
 
-## Skill Marketplace Workflows
-- Full marketplace ship pipeline: `npm run skills:marketplace:ship`
-- Build v2 skill packages: `npm run skills:marketplace:v2:build`
-- Validate v2 skill packages: `npm run skills:marketplace:v2:validate`
-- Run v2 package demo: `npm run skills:marketplace:v2:demo`
-- Generate marketplace analytics: `npm run skills:marketplace:analytics`
-- Package marketplace release: `npm run skills:marketplace:release`
-- Validate marketplace release: `npm run skills:marketplace:release:validate`
-
-## Skill Hardening And Validation
-- Build hardening profile inputs: `npm run skills:harden:profile`
-- Apply hardening pass: `npm run skills:harden`
-- Validate skill outputs: `npm run skills:validate`
-
-## Basic Quality Check
-- Run type checks across workspace packages: `npm run typecheck`
+## Verified Package Workflows
+- `npm --prefix cognition-core run analyze` - generate 7-day cognition analysis.
+- `npm --prefix cognition-core run plan:tasks` - emit remediation task requests.
+- `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
+- `npm --prefix swarm-protocol run demo:orchestrator` - run orchestrator demo flow.
+- `npm --prefix swarm-protocol run approval:queue` - export approval queue reports.
+- `npm --prefix swarm-protocol run benchmark:simulate` - run simulation benchmark scenario.
+- `npm --prefix swarm-protocol run ops -- status` - inspect operator status.
 
 ## TODO
-- Merge these entries into the canonical AGENTS baseline if one exists outside this worktree.
+- README command list appears broader than current `package.json` scripts (for example `worker:loop`, `autonomous:run`, `iterate:plan`); confirm current owners before documenting additional commands here.
