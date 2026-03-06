@@ -351,6 +351,64 @@ test('global retry budget terminalizes retries when window budget is exhausted',
     assert.equal(sent.length, 1);
 });
 
+test('per-target retry throttle delays retries after repeated send failures', async () => {
+    const clock = createClock(6_500);
+    const sent = [];
+    let failSends = true;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+                if (failSends) {
+                    throw new Error('target overloaded');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 4,
+        retryDelayMs: 10,
+        retryJitterRatio: 0,
+        retryThrottleEnabled: true,
+        retryThrottleMaxTokens: 1,
+        retryThrottleTokenRatio: 0.5,
+        retryThrottleThresholdRatio: 0.5
+    });
+
+    failSends = false;
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-throttle',
+        task: 'Exercise retry throttle'
+    });
+
+    clock.set(6_650);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 1);
+
+    failSends = true;
+    clock.set(6_660);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const afterFailure = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.transportFailures, 1);
+    assert.equal(pass2.scheduledRetries, 1);
+    assert.equal(afterFailure.status, 'retry_scheduled');
+
+    clock.set(afterFailure.nextRetryAt);
+    const pass3 = await orchestrator.runMaintenance(clock.now());
+    const throttled = orchestrator.getTask(task.taskId);
+    assert.equal(pass3.blockedRetries, 1);
+    assert.equal(pass3.blockedByRetryThrottle, 1);
+    assert.equal(throttled.status, 'retry_scheduled');
+    assert.equal(throttled.retryLifecycle.lastReasonCode, 'target_retry_throttled');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retryThrottle.enabled, true);
+    assert.equal(metrics.retryThrottle.trackedTargets, 1);
+    assert.equal(metrics.retryThrottle.throttledTargets, 1);
+});
+
 
 test('retry scheduling uses bounded exponential backoff with jitter', async () => {
     const clock = createClock(70_000);

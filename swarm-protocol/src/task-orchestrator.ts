@@ -32,6 +32,9 @@ const DEFAULT_GLOBAL_RETRY_BUDGET_RATIO = 0.2;
 const DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS = 60_000;
 const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS = 5;
 const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES = 1;
+const DEFAULT_RETRY_THROTTLE_MAX_TOKENS = 10;
+const DEFAULT_RETRY_THROTTLE_TOKEN_RATIO = 0.1;
+const DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO = 0.5;
 const TRANSIENT_REJECTION_REASON_MARKERS = [
     'overload',
     'overloaded',
@@ -65,7 +68,9 @@ const RETRY_SCHEDULE_REASON_BY_CODE = new Map([
     ['target_circuit_open', 'target_circuit_open'],
     ['worker_transient_rejection', 'worker_transient_rejection'],
     ['bulkhead', 'bulkhead_limit'],
-    ['bulkhead_limit', 'bulkhead_limit']
+    ['bulkhead_limit', 'bulkhead_limit'],
+    ['retry_throttled', 'target_retry_throttled'],
+    ['target_retry_throttled', 'target_retry_throttled']
 ]);
 
 const RETRY_DISPATCH_REASON_BY_CODE = new Map([
@@ -82,7 +87,9 @@ const RETRY_DISPATCH_REASON_BY_CODE = new Map([
     ['worker_transient_rejection', 'worker_transient_rejection_retry'],
     ['worker_transient_rejection_retry', 'worker_transient_rejection_retry'],
     ['bulkhead_limit', 'bulkhead_limit_retry'],
-    ['bulkhead_limit_retry', 'bulkhead_limit_retry']
+    ['bulkhead_limit_retry', 'bulkhead_limit_retry'],
+    ['target_retry_throttled', 'target_retry_throttled_retry'],
+    ['target_retry_throttled_retry', 'target_retry_throttled_retry']
 ]);
 
 const TERMINAL_REASON_CANONICAL_CODE_BY_ALIAS = new Map([
@@ -774,6 +781,10 @@ export class TaskOrchestrator {
         globalRetryBudgetWindowMs = DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS,
         globalRetryBudgetMinBaseRequests = DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS,
         globalRetryBudgetMinRetries = DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES,
+        retryThrottleEnabled = false,
+        retryThrottleMaxTokens = DEFAULT_RETRY_THROTTLE_MAX_TOKENS,
+        retryThrottleTokenRatio = DEFAULT_RETRY_THROTTLE_TOKEN_RATIO,
+        retryThrottleThresholdRatio = DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO,
         circuitBreakerEnabled = true,
         circuitFailureThreshold = 3,
         circuitCooldownMs = 30_000,
@@ -832,6 +843,16 @@ export class TaskOrchestrator {
             globalRetryBudgetMinRetries,
             DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES
         );
+        this.retryThrottleEnabled = retryThrottleEnabled === true;
+        this.retryThrottleMaxTokens = Number.isFinite(retryThrottleMaxTokens) && retryThrottleMaxTokens > 0
+            ? Number(retryThrottleMaxTokens)
+            : DEFAULT_RETRY_THROTTLE_MAX_TOKENS;
+        this.retryThrottleTokenRatio = Number.isFinite(retryThrottleTokenRatio) && retryThrottleTokenRatio > 0
+            ? Number(retryThrottleTokenRatio)
+            : DEFAULT_RETRY_THROTTLE_TOKEN_RATIO;
+        this.retryThrottleThresholdRatio = Number.isFinite(retryThrottleThresholdRatio) && retryThrottleThresholdRatio >= 0
+            ? Math.min(Number(retryThrottleThresholdRatio), 1)
+            : DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO;
         this.circuitBreakerEnabled = circuitBreakerEnabled !== false;
         this.circuitFailureThreshold = Number.isInteger(circuitFailureThreshold) && circuitFailureThreshold >= 1
             ? Number(circuitFailureThreshold)
@@ -850,6 +871,7 @@ export class TaskOrchestrator {
         this.logger = logger;
         this.tasks = new Map();
         this.circuits = new Map();
+        this.retryThrottleBuckets = new Map();
         this.globalRetryBudgetEvents = [];
         this._persistenceQueue = Promise.resolve();
     }
@@ -921,6 +943,82 @@ export class TaskOrchestrator {
         return {
             allowed: true,
             snapshot: this._globalRetryBudgetSnapshot(nowMs)
+        };
+    }
+
+    _getRetryThrottleBucket(target) {
+        if (!this.retryThrottleEnabled || typeof target !== 'string' || !target.trim()) {
+            return null;
+        }
+
+        const existing = this.retryThrottleBuckets.get(target);
+        if (existing) return existing;
+
+        const bucket = {
+            target,
+            tokens: this.retryThrottleMaxTokens,
+            lastUpdatedAt: null
+        };
+        this.retryThrottleBuckets.set(target, bucket);
+        return bucket;
+    }
+
+    _retryThrottleThresholdTokens() {
+        return this.retryThrottleMaxTokens * this.retryThrottleThresholdRatio;
+    }
+
+    _recordRetryThrottleFailure(target, nowMs) {
+        const bucket = this._getRetryThrottleBucket(target);
+        if (!bucket) return null;
+
+        bucket.tokens = Math.max(0, bucket.tokens - 1);
+        bucket.lastUpdatedAt = nowMs;
+        return {
+            target: bucket.target,
+            tokens: bucket.tokens,
+            threshold: this._retryThrottleThresholdTokens(),
+            maxTokens: this.retryThrottleMaxTokens,
+            tokenRatio: this.retryThrottleTokenRatio
+        };
+    }
+
+    _recordRetryThrottleSuccess(target, nowMs) {
+        const bucket = this._getRetryThrottleBucket(target);
+        if (!bucket) return null;
+
+        bucket.tokens = Math.min(this.retryThrottleMaxTokens, bucket.tokens + this.retryThrottleTokenRatio);
+        bucket.lastUpdatedAt = nowMs;
+        return {
+            target: bucket.target,
+            tokens: bucket.tokens,
+            threshold: this._retryThrottleThresholdTokens(),
+            maxTokens: this.retryThrottleMaxTokens,
+            tokenRatio: this.retryThrottleTokenRatio
+        };
+    }
+
+    _canRetryDispatchForTarget(target, nowMs) {
+        const bucket = this._getRetryThrottleBucket(target);
+        if (!bucket) {
+            return {
+                allowed: true,
+                bucket: null
+            };
+        }
+
+        const threshold = this._retryThrottleThresholdTokens();
+        const allowed = bucket.tokens > threshold;
+        return {
+            allowed,
+            bucket: {
+                target: bucket.target,
+                tokens: bucket.tokens,
+                threshold,
+                maxTokens: this.retryThrottleMaxTokens,
+                tokenRatio: this.retryThrottleTokenRatio,
+                lastUpdatedAt: bucket.lastUpdatedAt,
+                at: nowMs
+            }
         };
     }
 
@@ -1740,6 +1838,20 @@ export class TaskOrchestrator {
             || reason === 'approval_release_retry'
         );
         if (isRetryDispatch) {
+            const throttleDecision = this._canRetryDispatchForTarget(record.target, sendAt);
+            if (!throttleDecision.allowed) {
+                throw new TaskOrchestratorError(
+                    'RETRY_THROTTLED',
+                    `Retry throttled for target ${record.target}`,
+                    {
+                        retryAfterMs: this.retryDelayMs,
+                        retryThrottle: throttleDecision.bucket
+                    }
+                );
+            }
+        }
+
+        if (isRetryDispatch) {
             const budgetDecision = this._canConsumeGlobalRetryBudget(sendAt);
             if (!budgetDecision.allowed) {
                 throw new TaskOrchestratorError(
@@ -1820,6 +1932,7 @@ export class TaskOrchestrator {
             record.nextRetryAt = null;
             record.lastError = null;
             lifecycle.consecutiveFailures = 0;
+            this._recordRetryThrottleSuccess(record.target, sendAt);
             this._recordCircuitSuccess(record.target, sendAt);
             this._setRetryLifecycleState(record, 'idle', sendAt, {
                 reason: isRetryDispatch ? dispatchReason : normalizedReason,
@@ -1841,6 +1954,7 @@ export class TaskOrchestrator {
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
             lifecycle.consecutiveFailures += 1;
+            const retryThrottle = this._recordRetryThrottleFailure(record.target, sendAt);
             const circuit = this._recordCircuitFailure(record.target, sendAt, message);
             record.lastError = message;
             record.updatedAt = safeNow(this.now);
@@ -1863,7 +1977,8 @@ export class TaskOrchestrator {
                 attempt: record.attempts,
                 cause: error,
                 circuitState: circuit?.state || null,
-                retryAfterMs: circuit?.retryAfterMs ?? null
+                retryAfterMs: circuit?.retryAfterMs ?? null,
+                retryThrottle
             });
         }
     }
@@ -2063,6 +2178,8 @@ export class TaskOrchestrator {
         const failureMultiplier = 1 + Math.min(consecutiveFailures, 4) * 0.15;
         const reasonMultiplier = reason === 'transport_failure' || reason === 'approval_release_failed'
             ? 1.25
+            : reason === 'target_retry_throttled'
+                ? 1.5
             : 1;
 
         const uncappedDelayMs = strategyDelayMs * failureMultiplier * reasonMultiplier;
@@ -2211,7 +2328,8 @@ export class TaskOrchestrator {
             retrySafetyDrops: 0,
             blockedRetries: 0,
             blockedByCircuit: 0,
-            blockedByBulkhead: 0
+            blockedByBulkhead: 0,
+            blockedByRetryThrottle: 0
         };
 
         for (const record of this.tasks.values()) {
@@ -2246,16 +2364,23 @@ export class TaskOrchestrator {
                     const isCircuitBlocked = error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN';
                     const isBulkheadBlocked = error instanceof TaskOrchestratorError
                         && error.code === 'BULKHEAD_LIMIT_EXCEEDED';
+                    const isRetryThrottled = error instanceof TaskOrchestratorError
+                        && error.code === 'RETRY_THROTTLED';
 
-                    if (isCircuitBlocked || isBulkheadBlocked) {
+                    if (isCircuitBlocked || isBulkheadBlocked || isRetryThrottled) {
                         summary.blockedRetries++;
                         if (isCircuitBlocked) summary.blockedByCircuit++;
                         if (isBulkheadBlocked) summary.blockedByBulkhead++;
+                        if (isRetryThrottled) summary.blockedByRetryThrottle++;
 
                         const scheduledAt = this._scheduleRetry(
                             record,
                             nowMs,
-                            isCircuitBlocked ? 'target_circuit_open' : 'bulkhead_limit',
+                            isCircuitBlocked
+                                ? 'target_circuit_open'
+                                : isBulkheadBlocked
+                                    ? 'bulkhead_limit'
+                                    : 'target_retry_throttled',
                             { error }
                         );
                         if (scheduledAt !== null) {
@@ -2384,6 +2509,14 @@ export class TaskOrchestrator {
                 globalLimit: Number.isFinite(this.maxInFlightGlobal) ? this.maxInFlightGlobal : null,
                 perTargetLimit: Number.isFinite(this.maxInFlightPerTarget) ? this.maxInFlightPerTarget : null,
                 saturatedTargets: 0
+            },
+            retryThrottle: {
+                enabled: this.retryThrottleEnabled,
+                maxTokens: this.retryThrottleMaxTokens,
+                tokenRatio: this.retryThrottleTokenRatio,
+                thresholdRatio: this.retryThrottleThresholdRatio,
+                trackedTargets: 0,
+                throttledTargets: 0
             }
         };
 
@@ -2470,6 +2603,15 @@ export class TaskOrchestrator {
             if (circuit.state === CIRCUIT_OPEN) metrics.circuits.open += 1;
             else if (circuit.state === CIRCUIT_HALF_OPEN) metrics.circuits.halfOpen += 1;
             else metrics.circuits.closed += 1;
+        }
+        metrics.retryThrottle.trackedTargets = this.retryThrottleBuckets.size;
+        if (this.retryThrottleEnabled) {
+            const threshold = this._retryThrottleThresholdTokens();
+            for (const bucket of this.retryThrottleBuckets.values()) {
+                if (Number.isFinite(bucket?.tokens) && bucket.tokens <= threshold) {
+                    metrics.retryThrottle.throttledTargets += 1;
+                }
+            }
         }
 
         return metrics;
