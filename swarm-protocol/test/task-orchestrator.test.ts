@@ -765,3 +765,104 @@ test('audit log records signed lifecycle entries', async () => {
     assert.ok(entries.length >= 4);
     assert.equal(auditLog.verifyChain(entries).ok, true);
 });
+
+test('circuit breaker opens after repeated transport failures and closes after recovery', async () => {
+    const clock = createClock(80_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount === 2 || sendCount === 3) {
+                    throw new Error('downstream unavailable');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 4,
+        retryDelayMs: 5,
+        maxRetryDelayMs: 5,
+        retryJitterRatio: 0,
+        circuitFailureThreshold: 2,
+        circuitCooldownMs: 100
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-circuit',
+        task: 'Exercise circuit breaker behavior'
+    });
+
+    clock.set(80_060);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 80_065);
+
+    clock.set(80_070);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 80_075);
+
+    clock.set(80_080);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 80_180);
+    assert.equal(orchestrator.getMetrics().circuits.open, 1);
+
+    clock.set(80_185);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.nextRetryAt, null);
+    assert.equal(orchestrator.getMetrics().circuits.open, 0);
+    assert.equal(orchestrator.getMetrics().circuits.closed, 1);
+});
+
+test('circuit breaker can be disabled to keep classic fixed-delay retries', async () => {
+    const clock = createClock(90_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount >= 2) {
+                    throw new Error('always failing');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 3,
+        retryDelayMs: 7,
+        maxRetryDelayMs: 7,
+        retryJitterRatio: 0,
+        circuitBreakerEnabled: false,
+        circuitFailureThreshold: 1,
+        circuitCooldownMs: 120
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-classic-retry',
+        task: 'Disable breaker and use fixed delay retries'
+    });
+
+    clock.set(90_060);
+    await orchestrator.runMaintenance(clock.now());
+
+    clock.set(90_070);
+    await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 90_077);
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.circuits.tracked, 0);
+    assert.equal(metrics.circuits.open, 0);
+});

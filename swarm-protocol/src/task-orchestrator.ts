@@ -18,6 +18,9 @@ const OPEN_STATUSES = new Set([
 ]);
 
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
+const CIRCUIT_CLOSED = 'closed';
+const CIRCUIT_OPEN = 'open';
+const CIRCUIT_HALF_OPEN = 'half_open';
 const DEFAULT_MAX_RETRY_DELAY_MULTIPLIER = 32;
 const DEFAULT_RETRY_JITTER_RATIO = 0.2;
 const RETRY_CYCLE_GUARD_MULTIPLIER = 4;
@@ -628,6 +631,10 @@ export class TaskOrchestrator {
         retryDelayMs = 500,
         maxRetryDelayMs = null,
         retryJitterRatio = DEFAULT_RETRY_JITTER_RATIO,
+        circuitBreakerEnabled = true,
+        circuitFailureThreshold = 3,
+        circuitCooldownMs = 30_000,
+        circuitHalfOpenMaxAttempts = 1,
         now = Date.now,
         logger = console
     }) {
@@ -661,9 +668,21 @@ export class TaskOrchestrator {
         this.retryJitterRatio = Number.isFinite(retryJitterRatio) && retryJitterRatio >= 0
             ? Math.min(Number(retryJitterRatio), 1)
             : DEFAULT_RETRY_JITTER_RATIO;
+        this.circuitBreakerEnabled = circuitBreakerEnabled !== false;
+        this.circuitFailureThreshold = Number.isInteger(circuitFailureThreshold) && circuitFailureThreshold >= 1
+            ? Number(circuitFailureThreshold)
+            : 3;
+        this.circuitCooldownMs = Number.isFinite(circuitCooldownMs) && circuitCooldownMs >= 0
+            ? Number(circuitCooldownMs)
+            : 30_000;
+        this.circuitHalfOpenMaxAttempts = Number.isInteger(circuitHalfOpenMaxAttempts)
+            && circuitHalfOpenMaxAttempts >= 1
+            ? Number(circuitHalfOpenMaxAttempts)
+            : 1;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
+        this.circuits = new Map();
         this._persistenceQueue = Promise.resolve();
     }
 
@@ -753,6 +772,135 @@ export class TaskOrchestrator {
 
     async flush() {
         await this._persistenceQueue;
+    }
+
+    _getCircuit(target) {
+        if (!this.circuitBreakerEnabled || typeof target !== 'string' || !target.trim()) {
+            return null;
+        }
+
+        const existing = this.circuits.get(target);
+        if (existing) return existing;
+
+        const circuit = {
+            target,
+            state: CIRCUIT_CLOSED,
+            consecutiveFailures: 0,
+            openedAt: null,
+            halfOpenAttempts: 0
+        };
+        this.circuits.set(target, circuit);
+        return circuit;
+    }
+
+    _canSendWithCircuit(target, nowMs) {
+        const circuit = this._getCircuit(target);
+        if (!circuit) return;
+
+        if (circuit.state === CIRCUIT_OPEN) {
+            const retryAt = (Number.isFinite(circuit.openedAt) ? circuit.openedAt : nowMs) + this.circuitCooldownMs;
+            if (nowMs < retryAt) {
+                throw new TaskOrchestratorError('CIRCUIT_OPEN', `Circuit open for target ${target}`, {
+                    target,
+                    circuitState: circuit.state,
+                    retryAfterMs: Math.max(0, retryAt - nowMs)
+                });
+            }
+
+            circuit.state = CIRCUIT_HALF_OPEN;
+            circuit.halfOpenAttempts = 0;
+            this._emitAudit('circuit_half_open', {
+                target,
+                openedAt: circuit.openedAt
+            }, nowMs);
+        }
+
+        if (circuit.state === CIRCUIT_HALF_OPEN) {
+            if (circuit.halfOpenAttempts >= this.circuitHalfOpenMaxAttempts) {
+                throw new TaskOrchestratorError('CIRCUIT_OPEN', `Circuit half-open probe budget exhausted for ${target}`, {
+                    target,
+                    circuitState: circuit.state,
+                    retryAfterMs: this.circuitCooldownMs
+                });
+            }
+
+            circuit.halfOpenAttempts += 1;
+        }
+    }
+
+    _recordCircuitFailure(target, nowMs, reason) {
+        const circuit = this._getCircuit(target);
+        if (!circuit) return null;
+
+        circuit.consecutiveFailures += 1;
+        const shouldOpen = circuit.state === CIRCUIT_HALF_OPEN
+            || circuit.consecutiveFailures >= this.circuitFailureThreshold;
+        if (!shouldOpen) {
+            return {
+                state: circuit.state,
+                consecutiveFailures: circuit.consecutiveFailures,
+                retryAfterMs: null
+            };
+        }
+
+        const wasOpen = circuit.state === CIRCUIT_OPEN;
+        circuit.state = CIRCUIT_OPEN;
+        circuit.openedAt = nowMs;
+        circuit.halfOpenAttempts = 0;
+
+        if (!wasOpen) {
+            this._emitAudit('circuit_opened', {
+                target,
+                reason: reason || 'send_failed',
+                consecutiveFailures: circuit.consecutiveFailures,
+                cooldownMs: this.circuitCooldownMs
+            }, nowMs);
+        }
+
+        return {
+            state: circuit.state,
+            consecutiveFailures: circuit.consecutiveFailures,
+            retryAfterMs: this.circuitCooldownMs
+        };
+    }
+
+    _recordCircuitSuccess(target, nowMs) {
+        const circuit = this._getCircuit(target);
+        if (!circuit) return;
+
+        const previousState = circuit.state;
+        const previousFailures = circuit.consecutiveFailures;
+        circuit.state = CIRCUIT_CLOSED;
+        circuit.consecutiveFailures = 0;
+        circuit.openedAt = null;
+        circuit.halfOpenAttempts = 0;
+
+        if (previousState !== CIRCUIT_CLOSED || previousFailures > 0) {
+            this._emitAudit('circuit_closed', {
+                target,
+                previousState,
+                previousFailures
+            }, nowMs);
+        }
+    }
+
+    _extractRetryHintMs(error) {
+        const visited = new Set();
+        let current = error;
+
+        while (current && typeof current === 'object' && !visited.has(current)) {
+            visited.add(current);
+
+            const direct = Number(current.retryAfterMs);
+            if (Number.isFinite(direct) && direct >= 0) return direct;
+
+            const detailsHint = Number(current?.details?.retryAfterMs);
+            if (Number.isFinite(detailsHint) && detailsHint >= 0) return detailsHint;
+
+            current = current.cause;
+        }
+
+        return null;
     }
 
     _normalizeRetryLifecycle(record) {
@@ -1256,7 +1404,9 @@ export class TaskOrchestrator {
                 error: error.message
             });
 
-            this._scheduleRetry(record, reviewedAt, 'approval_release_failed');
+            this._scheduleRetry(record, reviewedAt, 'approval_release_failed', {
+                error
+            });
         }
 
         return this.getTask(taskId);
@@ -1311,12 +1461,42 @@ export class TaskOrchestrator {
         }, sendAt);
 
         try {
+            this._canSendWithCircuit(record.target, sendAt);
+        } catch (error) {
+            const message = error?.message || 'Circuit is open';
+            record.lastError = message;
+            record.updatedAt = safeNow(this.now);
+            record.history.push({
+                at: record.updatedAt,
+                event: 'send_blocked',
+                reason: isRetryDispatch ? dispatchReason : normalizedReason,
+                reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code,
+                reasonContext: parsedReason.context ?? null,
+                attempt: record.attempts,
+                error: message
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_send_blocked', {
+                taskId: record.taskId,
+                target: record.target,
+                attempt: record.attempts,
+                reason: isRetryDispatch ? dispatchReason : normalizedReason,
+                reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code,
+                reasonContext: parsedReason.context ?? null,
+                error: message,
+                retryAfterMs: this._extractRetryHintMs(error)
+            }, record.updatedAt);
+            throw error;
+        }
+
+        try {
             await this.transport.send(record.target, record.request);
             record.status = 'dispatched';
             record.deadlineAt = sendAt + this.defaultTimeoutMs;
             record.nextRetryAt = null;
             record.lastError = null;
             lifecycle.consecutiveFailures = 0;
+            this._recordCircuitSuccess(record.target, sendAt);
             this._setRetryLifecycleState(record, 'idle', sendAt, {
                 reason: isRetryDispatch ? dispatchReason : normalizedReason,
                 reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code,
@@ -1337,6 +1517,7 @@ export class TaskOrchestrator {
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
             lifecycle.consecutiveFailures += 1;
+            const circuit = this._recordCircuitFailure(record.target, sendAt, message);
             record.lastError = message;
             record.updatedAt = safeNow(this.now);
             record.history.push({
@@ -1356,7 +1537,9 @@ export class TaskOrchestrator {
                 taskId: record.taskId,
                 target: record.target,
                 attempt: record.attempts,
-                cause: error
+                cause: error,
+                circuitState: circuit?.state || null,
+                retryAfterMs: circuit?.retryAfterMs ?? null
             });
         }
     }
@@ -1515,9 +1698,10 @@ export class TaskOrchestrator {
         return Math.min(maxDelayMs, Math.max(0, Math.round(jitteredDelayMs)));
     }
 
-    _scheduleRetry(record, nowMs, reason = 'timeout') {
+    _scheduleRetry(record, nowMs, reason = 'timeout', options = {}) {
         const lifecycle = this._normalizeRetryLifecycle(record);
         const scheduleReason = canonicalRetryScheduleReason(reason);
+        const retryHintMs = this._extractRetryHintMs(options?.error);
 
         if (this._isRetryBudgetExhausted(record)) {
             const terminalReason = `retry_budget_exhausted:${scheduleReason}`;
@@ -1559,7 +1743,10 @@ export class TaskOrchestrator {
             return null;
         }
 
-        const delayMs = this._computeRetryDelayMs(record, scheduleReason);
+        const computedDelayMs = this._computeRetryDelayMs(record, scheduleReason);
+        const delayMs = Number.isFinite(retryHintMs)
+            ? Math.max(computedDelayMs, retryHintMs)
+            : computedDelayMs;
         const nextRetryAt = nowMs + delayMs;
 
         lifecycle.scheduledCount += 1;
@@ -1586,6 +1773,7 @@ export class TaskOrchestrator {
             reasonCode: scheduleReason,
             reasonContext: null,
             delayMs,
+            retryHintMs: Number.isFinite(retryHintMs) ? retryHintMs : null,
             nextRetryAt,
             retryCount: lifecycle.scheduledCount
         });
@@ -1597,6 +1785,7 @@ export class TaskOrchestrator {
             reasonCode: scheduleReason,
             reasonContext: null,
             delayMs,
+            retryHintMs: Number.isFinite(retryHintMs) ? retryHintMs : null,
             nextRetryAt,
             retryCount: lifecycle.scheduledCount,
             retryTransition: lifecycle.lastTransition ? clone(lifecycle.lastTransition) : null
@@ -1675,7 +1864,9 @@ export class TaskOrchestrator {
                     `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
                 );
 
-                const scheduledAt = this._scheduleRetry(record, nowMs, 'transport_failure');
+                const scheduledAt = this._scheduleRetry(record, nowMs, 'transport_failure', {
+                    error
+                });
                 if (scheduledAt !== null) {
                     summary.scheduledRetries++;
                 } else if (record.status === 'timed_out') {
@@ -1718,7 +1909,13 @@ export class TaskOrchestrator {
             retryStateCounts: {},
             retryScheduleReasonCounts: {},
             retryDispatchReasonCounts: {},
-            terminalReasonCounts: {}
+            terminalReasonCounts: {},
+            circuits: {
+                tracked: 0,
+                closed: 0,
+                open: 0,
+                halfOpen: 0
+            }
         };
 
         let attemptsTotal = 0;
@@ -1783,6 +1980,12 @@ export class TaskOrchestrator {
             canonicalRetryDispatchReason
         );
         metrics.terminalReasonCounts = sortNumericRecord(terminalReasonCounts);
+        metrics.circuits.tracked = this.circuits.size;
+        for (const circuit of this.circuits.values()) {
+            if (circuit.state === CIRCUIT_OPEN) metrics.circuits.open += 1;
+            else if (circuit.state === CIRCUIT_HALF_OPEN) metrics.circuits.halfOpen += 1;
+            else metrics.circuits.closed += 1;
+        }
 
         return metrics;
     }
