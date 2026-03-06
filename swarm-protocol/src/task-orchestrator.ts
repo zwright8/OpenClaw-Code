@@ -24,6 +24,10 @@ const CIRCUIT_HALF_OPEN = 'half_open';
 const DEFAULT_MAX_RETRY_DELAY_MULTIPLIER = 32;
 const DEFAULT_RETRY_JITTER_RATIO = 0.2;
 const RETRY_CYCLE_GUARD_MULTIPLIER = 4;
+const DEFAULT_GLOBAL_RETRY_BUDGET_RATIO = 0.2;
+const DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS = 60_000;
+const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS = 5;
+const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES = 1;
 
 const RETRY_SCHEDULE_REASON_BY_CODE = new Map([
     ['timeout', 'timeout'],
@@ -633,6 +637,10 @@ export class TaskOrchestrator {
         retryBackoffMultiplier = 2,
         maxRetryDelayMs = null,
         retryJitterRatio = DEFAULT_RETRY_JITTER_RATIO,
+        globalRetryBudgetRatio = DEFAULT_GLOBAL_RETRY_BUDGET_RATIO,
+        globalRetryBudgetWindowMs = DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS,
+        globalRetryBudgetMinBaseRequests = DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS,
+        globalRetryBudgetMinRetries = DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES,
         circuitBreakerEnabled = true,
         circuitFailureThreshold = 3,
         circuitCooldownMs = 30_000,
@@ -674,6 +682,20 @@ export class TaskOrchestrator {
         this.retryJitterRatio = Number.isFinite(retryJitterRatio) && retryJitterRatio >= 0
             ? Math.min(Number(retryJitterRatio), 1)
             : DEFAULT_RETRY_JITTER_RATIO;
+        this.globalRetryBudgetRatio = Number.isFinite(globalRetryBudgetRatio) && globalRetryBudgetRatio >= 0
+            ? Math.min(Number(globalRetryBudgetRatio), 1)
+            : DEFAULT_GLOBAL_RETRY_BUDGET_RATIO;
+        this.globalRetryBudgetWindowMs = Number.isFinite(globalRetryBudgetWindowMs) && globalRetryBudgetWindowMs > 0
+            ? Number(globalRetryBudgetWindowMs)
+            : DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS;
+        this.globalRetryBudgetMinBaseRequests = safeNonNegativeInteger(
+            globalRetryBudgetMinBaseRequests,
+            DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS
+        );
+        this.globalRetryBudgetMinRetries = safeNonNegativeInteger(
+            globalRetryBudgetMinRetries,
+            DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES
+        );
         this.circuitBreakerEnabled = circuitBreakerEnabled !== false;
         this.circuitFailureThreshold = Number.isInteger(circuitFailureThreshold) && circuitFailureThreshold >= 1
             ? Number(circuitFailureThreshold)
@@ -689,7 +711,78 @@ export class TaskOrchestrator {
         this.logger = logger;
         this.tasks = new Map();
         this.circuits = new Map();
+        this.globalRetryBudgetEvents = [];
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _pruneGlobalRetryBudgetEvents(nowMs) {
+        const earliest = nowMs - this.globalRetryBudgetWindowMs;
+        this.globalRetryBudgetEvents = this.globalRetryBudgetEvents.filter(
+            (event) => Number.isFinite(event?.at) && event.at >= earliest
+        );
+    }
+
+    _recordGlobalRetryBudgetEvent(kind, at) {
+        this.globalRetryBudgetEvents.push({ kind, at });
+        this._pruneGlobalRetryBudgetEvents(at);
+    }
+
+    _globalRetryBudgetSnapshot(nowMs) {
+        this._pruneGlobalRetryBudgetEvents(nowMs);
+
+        let baseDispatches = 0;
+        let retryDispatches = 0;
+        for (const event of this.globalRetryBudgetEvents) {
+            if (event.kind === 'base_dispatch') {
+                baseDispatches += 1;
+            } else if (event.kind === 'retry_dispatch') {
+                retryDispatches += 1;
+            }
+        }
+
+        const warmupBypassed = baseDispatches < this.globalRetryBudgetMinBaseRequests;
+        const allowedRetryDispatches = warmupBypassed
+            ? Infinity
+            : Math.max(
+                this.globalRetryBudgetMinRetries,
+                Math.floor(baseDispatches * this.globalRetryBudgetRatio)
+            );
+
+        const remainingRetryDispatches = Number.isFinite(allowedRetryDispatches)
+            ? Math.max(0, allowedRetryDispatches - retryDispatches)
+            : Infinity;
+        const exhausted = Number.isFinite(allowedRetryDispatches)
+            ? retryDispatches >= allowedRetryDispatches
+            : false;
+
+        return {
+            windowMs: this.globalRetryBudgetWindowMs,
+            ratio: this.globalRetryBudgetRatio,
+            minBaseRequests: this.globalRetryBudgetMinBaseRequests,
+            minRetries: this.globalRetryBudgetMinRetries,
+            baseDispatches,
+            retryDispatches,
+            allowedRetryDispatches,
+            remainingRetryDispatches,
+            exhausted,
+            warmupBypassed
+        };
+    }
+
+    _canConsumeGlobalRetryBudget(nowMs) {
+        const snapshot = this._globalRetryBudgetSnapshot(nowMs);
+        if (snapshot.exhausted) {
+            return {
+                allowed: false,
+                snapshot
+            };
+        }
+
+        this._recordGlobalRetryBudgetEvent('retry_dispatch', nowMs);
+        return {
+            allowed: true,
+            snapshot: this._globalRetryBudgetSnapshot(nowMs)
+        };
     }
 
     async hydrate({ replace = true } = {}) {
@@ -1436,6 +1529,20 @@ export class TaskOrchestrator {
             || reason === 'approval_release_failed'
             || reason === 'approval_release_retry'
         );
+        if (isRetryDispatch) {
+            const budgetDecision = this._canConsumeGlobalRetryBudget(sendAt);
+            if (!budgetDecision.allowed) {
+                throw new TaskOrchestratorError(
+                    'GLOBAL_RETRY_BUDGET_EXHAUSTED',
+                    'Global retry budget exhausted',
+                    {
+                        budget: budgetDecision.snapshot
+                    }
+                );
+            }
+        } else {
+            this._recordGlobalRetryBudgetEvent('base_dispatch', sendAt);
+        }
 
         if (isRetryDispatch) {
             lifecycle.dispatchCount += 1;
@@ -1808,7 +1915,8 @@ export class TaskOrchestrator {
             scheduledRetries: 0,
             retried: 0,
             timedOut: 0,
-            transportFailures: 0
+            transportFailures: 0,
+            globalRetryBudgetDrops: 0
         };
 
         for (const record of this.tasks.values()) {
@@ -1867,6 +1975,23 @@ export class TaskOrchestrator {
                 await this._sendTask(record, 'timeout_retry');
                 summary.retried++;
             } catch (error) {
+                if (error instanceof TaskOrchestratorError && error.code === 'GLOBAL_RETRY_BUDGET_EXHAUSTED') {
+                    this._terminalizeRecordForRetry(record, {
+                        nowMs,
+                        status: 'timed_out',
+                        event: 'timed_out',
+                        reason: 'retry_budget_exhausted:global_window',
+                        auditEvent: 'task_timed_out',
+                        auditPayload: {
+                            retryGuard: 'global_retry_budget',
+                            budget: error.details?.budget || null
+                        }
+                    });
+                    summary.globalRetryBudgetDrops++;
+                    summary.timedOut++;
+                    continue;
+                }
+
                 summary.transportFailures++;
                 this.logger.warn?.(
                     `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
@@ -1918,6 +2043,7 @@ export class TaskOrchestrator {
             retryScheduleReasonCounts: {},
             retryDispatchReasonCounts: {},
             terminalReasonCounts: {},
+            globalRetryBudget: this._globalRetryBudgetSnapshot(safeNow(this.now)),
             circuits: {
                 tracked: 0,
                 closed: 0,

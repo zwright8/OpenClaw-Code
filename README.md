@@ -335,6 +335,9 @@ const orchestrator = new TaskOrchestrator({
   retryStrategy: 'exponential',
   retryBackoffMultiplier: 2,
   retryDelayMs: 250,
+  globalRetryBudgetRatio: 0.2,
+  globalRetryBudgetWindowMs: 60_000,
+  globalRetryBudgetMinBaseRequests: 5,
   circuitFailureThreshold: 3,
   circuitCooldownMs: 15_000,
   routeTask: async (taskRequest) => {

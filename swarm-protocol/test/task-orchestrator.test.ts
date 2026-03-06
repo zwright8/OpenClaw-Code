@@ -183,6 +183,46 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     assert.equal(sent.length, 2);
 });
 
+test('global retry budget terminalizes retries when window budget is exhausted', async () => {
+    const clock = createClock(6_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 10,
+        retryJitterRatio: 0,
+        globalRetryBudgetRatio: 0,
+        globalRetryBudgetMinBaseRequests: 0,
+        globalRetryBudgetMinRetries: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-budget-window',
+        task: 'Guard global retry window budget'
+    });
+
+    clock.set(6_150);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 1);
+
+    clock.set(6_170);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.globalRetryBudgetDrops, 1);
+    assert.equal(pass2.timedOut, 1);
+    assert.equal(current.status, 'timed_out');
+    assert.match(current.retryLifecycle.terminalReason, /retry_budget_exhausted:global_window/);
+    assert.equal(sent.length, 1);
+});
+
 
 test('retry scheduling uses bounded exponential backoff with jitter', async () => {
     const clock = createClock(70_000);
