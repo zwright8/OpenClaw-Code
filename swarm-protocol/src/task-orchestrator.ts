@@ -315,6 +315,71 @@ function canonicalRetryDispatchReason(reason) {
     return RETRY_DISPATCH_REASON_BY_CODE.get(parsed.code) || 'timeout_retry';
 }
 
+function normalizeRetrySafetyMode(value) {
+    if (typeof value !== 'string') return 'auto';
+    const normalized = normalizeReasonToken(value, 'auto');
+    if (normalized === 'always' || normalized === 'auto' || normalized === 'require_explicit_idempotency') {
+        return normalized;
+    }
+    return 'auto';
+}
+
+function normalizeConstraintTokens(constraints) {
+    if (!Array.isArray(constraints)) return [];
+    return constraints
+        .filter((item) => typeof item === 'string' && item.trim())
+        .map((item) => normalizeReasonToken(item, null))
+        .filter(Boolean);
+}
+
+function getRetrySafetySignal(taskRequest) {
+    const constraints = normalizeConstraintTokens(taskRequest?.constraints);
+    const context = taskRequest?.context && typeof taskRequest.context === 'object'
+        ? taskRequest.context
+        : {};
+
+    const hasConstraint = (token) => constraints.includes(token);
+    const hasAnyConstraintPrefix = (prefix) => constraints.some((item) => item.startsWith(prefix));
+
+    const contextIdempotent = typeof context.idempotent === 'boolean' ? context.idempotent : null;
+    const contextRetrySafe = typeof context.retrySafe === 'boolean' ? context.retrySafe : null;
+    const idempotencyKey = typeof context.idempotencyKey === 'string' && context.idempotencyKey.trim()
+        ? context.idempotencyKey.trim()
+        : null;
+
+    if (
+        contextIdempotent === false
+        || contextRetrySafe === false
+        || hasConstraint('non_idempotent')
+        || hasConstraint('no_retry')
+        || hasAnyConstraintPrefix('non_idempotent_')
+    ) {
+        return {
+            safe: false,
+            source: 'declared_non_idempotent'
+        };
+    }
+
+    if (
+        contextIdempotent === true
+        || contextRetrySafe === true
+        || Boolean(idempotencyKey)
+        || hasConstraint('idempotent')
+        || hasConstraint('retry_safe')
+        || hasAnyConstraintPrefix('idempotent_')
+    ) {
+        return {
+            safe: true,
+            source: idempotencyKey ? 'idempotency_key' : 'declared_idempotent'
+        };
+    }
+
+    return {
+        safe: null,
+        source: 'unknown'
+    };
+}
+
 function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
     if (typeof reason !== 'string' || !reason.trim()) return null;
     const text = reason.trim();
@@ -715,6 +780,7 @@ export class TaskOrchestrator {
         circuitHalfOpenMaxAttempts = 1,
         maxInFlightPerTarget = null,
         maxInFlightGlobal = null,
+        retrySafetyMode = 'auto',
         now = Date.now,
         logger = console
     }) {
@@ -779,6 +845,7 @@ export class TaskOrchestrator {
             : 1;
         this.maxInFlightPerTarget = safePositiveIntegerOrInfinity(maxInFlightPerTarget, Infinity);
         this.maxInFlightGlobal = safePositiveIntegerOrInfinity(maxInFlightGlobal, Infinity);
+        this.retrySafetyMode = normalizeRetrySafetyMode(retrySafetyMode);
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
@@ -1952,6 +2019,35 @@ export class TaskOrchestrator {
         return attempts > maxRetries;
     }
 
+    _isRetryAllowedBySafety(record) {
+        const signal = getRetrySafetySignal(record?.request);
+        if (this.retrySafetyMode === 'always') {
+            return {
+                allowed: true,
+                signal
+            };
+        }
+
+        if (signal.safe === false) {
+            return {
+                allowed: false,
+                signal
+            };
+        }
+
+        if (this.retrySafetyMode === 'require_explicit_idempotency') {
+            return {
+                allowed: signal.safe === true,
+                signal
+            };
+        }
+
+        return {
+            allowed: true,
+            signal
+        };
+    }
+
     _computeRetryDelayMs(record, reason = 'timeout') {
         const lifecycle = this._normalizeRetryLifecycle(record);
         const baseDelayMs = safeNonNegativeNumber(this.retryDelayMs, 0);
@@ -1994,6 +2090,24 @@ export class TaskOrchestrator {
         const retryHintMs = Number.isFinite(directRetryHintMs) && directRetryHintMs >= 0
             ? directRetryHintMs
             : this._extractRetryHintMs(options?.error);
+        const retrySafety = this._isRetryAllowedBySafety(record);
+
+        if (!retrySafety.allowed) {
+            this._terminalizeRecordForRetry(record, {
+                nowMs,
+                status: 'failed',
+                event: 'retry_blocked_non_idempotent',
+                reason: 'failed:retry_unsafe_non_idempotent',
+                auditEvent: 'task_retry_blocked_non_idempotent',
+                auditPayload: {
+                    retryGuard: 'idempotency_safety',
+                    retrySafetyMode: this.retrySafetyMode,
+                    retrySafetySignal: retrySafety.signal?.source || 'unknown',
+                    blockedReason: scheduleReason
+                }
+            });
+            return null;
+        }
 
         if (this._isRetryBudgetExhausted(record)) {
             const terminalReason = `retry_budget_exhausted:${scheduleReason}`;
@@ -2094,6 +2208,7 @@ export class TaskOrchestrator {
             timedOut: 0,
             transportFailures: 0,
             globalRetryBudgetDrops: 0,
+            retrySafetyDrops: 0,
             blockedRetries: 0,
             blockedByCircuit: 0,
             blockedByBulkhead: 0
@@ -2165,6 +2280,8 @@ export class TaskOrchestrator {
                         summary.scheduledRetries++;
                     } else if (record.status === 'timed_out') {
                         summary.timedOut++;
+                    } else if (record.status === 'failed') {
+                        summary.retrySafetyDrops++;
                     }
                 }
                 continue;
@@ -2211,6 +2328,8 @@ export class TaskOrchestrator {
                     summary.timedOut++;
                 } else if (record.status === 'transport_error') {
                     summary.transportFailures++;
+                } else if (record.status === 'failed') {
+                    summary.retrySafetyDrops++;
                 }
                 continue;
             }

@@ -183,6 +183,84 @@ test('transient rejected receipt schedules retry with eta hint', async () => {
     assert.equal(sent.length, 2);
 });
 
+test('auto retry safety mode blocks retries for explicitly non-idempotent tasks', async () => {
+    const clock = createClock(3_800);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-non-idempotent',
+        task: 'Charge customer card',
+        context: {
+            idempotent: false
+        }
+    });
+
+    clock.set(3_950);
+    const maintenance = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+
+    assert.equal(maintenance.retrySafetyDrops, 1);
+    assert.equal(current.status, 'failed');
+    assert.equal(current.retryLifecycle.state, 'terminalized');
+    assert.equal(current.retryLifecycle.terminalReason, 'failed:retry_unsafe_non_idempotent');
+});
+
+test('strict retry safety mode requires explicit idempotency declaration', async () => {
+    const clock = createClock(4_200);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 20,
+        retryJitterRatio: 0,
+        retrySafetyMode: 'require_explicit_idempotency'
+    });
+
+    const blocked = await orchestrator.dispatchTask({
+        target: 'agent:worker-strict-blocked',
+        task: 'Run payment reconciliation'
+    });
+    const allowed = await orchestrator.dispatchTask({
+        target: 'agent:worker-strict-allowed',
+        task: 'Rebuild search index',
+        context: {
+            idempotent: true
+        }
+    });
+
+    clock.set(4_350);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+
+    const blockedCurrent = orchestrator.getTask(blocked.taskId);
+    const allowedCurrent = orchestrator.getTask(allowed.taskId);
+    assert.equal(pass1.retrySafetyDrops, 1);
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(blockedCurrent.status, 'failed');
+    assert.equal(allowedCurrent.status, 'retry_scheduled');
+
+    clock.set(allowedCurrent.nextRetryAt);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const retriedAllowed = orchestrator.getTask(allowed.taskId);
+    assert.equal(pass2.retried, 1);
+    assert.equal(retriedAllowed.status, 'dispatched');
+    assert.equal(sent.length, 3);
+});
+
 test('maintenance schedules retry, retries, and times out when budget exhausted', async () => {
     const clock = createClock(4_000);
     const sent = [];
