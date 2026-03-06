@@ -4,8 +4,8 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 188
-- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, mission assurance checklist, and this catalog
+- Total warfighter skills in this repo: 204
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
 ## Domain Coverage Matrix
@@ -129,6 +129,25 @@ This catalog maps warfighter skill coverage across major military action domains
 - contested-undersea-communications-resilience-cell
 - defense-innovation-transition-and-experimentation-cell
 - mission-finance-and-disconnected-payments-support-cell
+
+## New Expansion Wave (2026-03-06, Domain Coverage Completion Pass)
+
+- zero-trust-coalition-cross-domain-guard-cell
+- joint-fusion-center-watchfloor-automation-cell
+- contested-theater-opening-and-port-denial-recovery-cell
+- drone-logistics-air-corridor-deconfliction-cell
+- precision-fratricide-prevention-and-blue-force-tracking-cell
+- contested-electronic-signature-intelligence-fusion-cell
+- expeditionary-additive-munitions-quality-assurance-cell
+- satellite-ground-station-cyber-hardening-cell
+- joint-civil-infrastructure-restoration-prioritization-cell
+- tactical-biometric-edge-identity-assurance-cell
+- deepfake-detection-and-operational-media-authentication-cell
+- counter-space-electronic-attack-mitigation-cell
+- joint-weather-denied-sensor-substitution-cell
+- autonomous-undersea-mine-countermeasure-swarm-cell
+- strategic-communications-denial-and-restoration-cell
+- theater-level-ammunition-interoperability-and-reallocation-cell
 
 ## Suggested Cross-Skill Pairings
 

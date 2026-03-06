@@ -8,6 +8,7 @@ Use these concise playbooks to turn tool recommendations into machine-ingestible
 2. Fill the packet fields with mission-specific values and UTC timestamps.
 3. Publish one machine-ingestible message and one commander summary.
 4. Include primary, alternate, and degraded transport selections.
+5. Attach adapter IDs and endpoint classes from `external-tool-endpoints-and-adapters.md`.
 
 ## Playbook: C2 and Battle Rhythm Updates
 

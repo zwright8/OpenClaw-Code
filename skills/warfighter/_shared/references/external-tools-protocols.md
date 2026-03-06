@@ -11,6 +11,7 @@ Use this reference when a warfighter skill needs system integration guidance. Ke
 5. Publish outputs in the requesting format and transport (for example USMTF, CoT, VMF, Link 16 J-series, STIX/TAXII, OGC).
 6. Log provenance: source system, pull time, processing assumptions, and confidence level.
 7. Run the mission assurance checks in `mission-assurance-checklist.md` before release.
+8. Define endpoint adapter contracts for each critical integration using `external-tool-endpoints-and-adapters.md`.
 
 ## Tool Invocation Packet (required in skill outputs)
 
@@ -165,6 +166,7 @@ Include these fields in outputs when tool integration is used:
 - Confidence and known gaps
 - Classification/handling caveat placeholder (unclassified by default unless user specifies)
 - Tool Invocation Packet fields for each critical tool dependency
+- Adapter contract ID and endpoint class for each critical tool dependency
 
 ## Operational Safety and Governance Addendum
 

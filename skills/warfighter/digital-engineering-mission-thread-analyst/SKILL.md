@@ -63,4 +63,5 @@ Primary products for this skill: mission thread analysis, digital dependency map
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
+- Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
 - Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.

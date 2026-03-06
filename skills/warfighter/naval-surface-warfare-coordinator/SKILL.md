@@ -64,3 +64,9 @@ Use these tool categories as the default stack for this skill: maritime C2 syste
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## Tool Protocol Playbooks
+
+- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
+- Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
+- Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
