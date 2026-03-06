@@ -50,3 +50,9 @@ Use this checklist before delivering any mission recommendation.
 - `Known gaps:`
 - `Fallback if tool unavailable:`
 - `Classification/Handling:`
+
+## 7) Machine-Readable Handoff Quality
+
+- Validate the handoff block includes: `mission_id`, `decision_window_utc`, `recommendation_id`, `option_rank`, and `confidence`.
+- Confirm each staff action has `owner`, `action`, and `due_utc` fields populated.
+- Confirm degraded-mode output explicitly states fallback tools, expected delay, and confidence penalty.

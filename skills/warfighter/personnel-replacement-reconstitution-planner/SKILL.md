@@ -35,7 +35,7 @@ Primary products for this skill: reconstitution decision support brief, personne
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and the action templates in `../_shared/references/tool-protocol-playbooks.md`.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
 - State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, or `OGC`).
@@ -52,6 +52,12 @@ Primary products for this skill: reconstitution decision support brief, personne
 - For each external tool recommendation, include: objective, required inputs, query/action template, expected output schema, transport protocol, and fallback path.
 - Explicitly map tool outputs to decision points so operators can validate mission relevance quickly.
 - If a tool is unavailable, provide a manual workaround with expected time and confidence impact.
+
+## Machine-Readable Output Contract
+
+- Provide a compact handoff block with fields: `mission_id`, `decision_window_utc`, `recommendation_id`, `option_rank`, `trigger_conditions`, `required_actions`, `tool_dependencies`, `protocols`, `confidence`, and `known_gaps`.
+- Structure tasking entries as `owner`, `action`, `due_utc`, `status`, and `dependency` to enable direct ingestion by workflow systems.
+- Include an explicit `degraded_mode` object listing fallback tools, expected delay, and confidence penalty when integrations fail.
 
 ## Guardrails
 

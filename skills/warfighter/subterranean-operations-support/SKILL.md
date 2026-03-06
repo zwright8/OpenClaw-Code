@@ -53,6 +53,12 @@ Primary products for this skill: subterranean mission overlay, hazard and ventil
 - Explicitly map tool outputs to decision points so operators can validate mission relevance quickly.
 - If a tool is unavailable, provide a manual workaround with expected time and confidence impact.
 
+## Machine-Readable Output Contract
+
+- Provide a compact handoff block with fields: `mission_id`, `decision_window_utc`, `recommendation_id`, `option_rank`, `trigger_conditions`, `required_actions`, `tool_dependencies`, `protocols`, `confidence`, and `known_gaps`.
+- Structure tasking entries as `owner`, `action`, `due_utc`, `status`, and `dependency` to enable direct ingestion by workflow systems.
+- Include an explicit `degraded_mode` object listing fallback tools, expected delay, and confidence penalty when integrations fail.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.

@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 130
+- Total warfighter skills in this repo: 150
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -87,3 +87,26 @@ Every skill output should include:
 - Sources, tool stack, and protocol details
 - Confidence, gaps, and branch triggers
 - Tool Invocation Packet for critical external dependencies
+
+## New Expansion Wave (2026-03-06, Protocol-Centric Expansion)
+
+- air-defense-early-warning-battle-management
+- orbital-maneuver-and-space-control-cell
+- expeditionary-port-repair-and-salvage-cell
+- strategic-rail-and-inland-logistics-security
+- contested-communications-electromagnetic-hardening
+- coalition-intelligence-release-governance-cell
+- theater-information-environment-assessment-cell
+- autonomous-maritime-surface-swarm-operations
+- cross-domain-fires-clearance-and-fratricide-prevention
+- degraded-navigation-and-alt-pnt-integration
+- joint-cbrn-consequence-management-cell
+- humanitarian-corridor-monitoring-and-deconfliction
+- theater-missile-magazine-depth-optimization
+- battlefield-spectrum-anomaly-triage-cell
+- digital-twin-basing-resilience-planner
+- expeditionary-runway-rapid-repair-orchestrator
+- partner-force-vetting-and-trust-assurance
+- contested-medical-telemetry-and-remote-triage
+- seabed-surveillance-and-maritime-chokepoint-monitor
+- strategic-cyber-effects-deconfliction-cell
