@@ -81,7 +81,13 @@ test('productivity scorecard emits contract-safe generatedAt and deterministic t
     const year = Number(String(first.generatedAt).slice(0, 4));
     assert.ok(Number.isInteger(year));
     assert.ok(year >= 2024 && year <= 2100);
+    assert.equal(first.generatedAt, second.generatedAt);
     assert.ok(first.thresholdChecks);
+    assert.ok(first.freshness);
+    assert.equal(first.generatedAt, first.freshness.freshestTimestamp);
+    assert.match(first.freshness.generatedFrom, /source_timestamp|deterministic_fallback/);
+    assert.ok(Array.isArray(first.freshness.sources));
+    assert.ok(Array.isArray(first.freshness.missingSources));
     assert.deepEqual(first.thresholdChecks, second.thresholdChecks);
     assert.deepEqual(first.regressionGates, second.regressionGates);
 });
@@ -178,18 +184,13 @@ test('scoreboard surfaces deterministic calibration suppression diagnostics', ()
     assert.ok(calibrationRow);
     assert.equal(brierRow.status, 'n/a');
     assert.equal(calibrationRow.status, 'n/a');
-    assert.match(brierRow.detail, /mapped sample 1 is below minimum 3/);
     assert.match(
         brierRow.detail,
-        /calibration_gate: readiness=insufficient_sample_size;mapped_outcomes=1;terminal_outcomes=10;mapping_rate=0\.1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=false;sample_size_shortfall=2;mapping_rate_shortfall=0\.25;reason=Calibration metrics deferred: mapped sample 1 is below minimum 3; sample_size_shortfall=2; mapping_rate=0\.1; minimum_mapping_rate=0\.35; mapping_rate_shortfall=0\.25\./
-    );
-    assert.match(
-        brierRow.detail,
-        /readiness_flags\(sample_size_ready=false,mapping_rate_ready=false,sample_size_shortfall=2,mapping_rate_shortfall=0\.25\)\./
+        /calibration_gate: readiness=insufficient_sample_size;mapped_outcomes=1;terminal_outcomes=10;mapping_rate=1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=true;sample_size_shortfall=2;mapping_rate_shortfall=0;reason=reason_code=insufficient_sample_size;terminal_outcomes=10;mapped_outcomes=1;mapping_rate=1;minimum_sample_size=3;minimum_mapping_rate=0\.35;sample_size_shortfall=2;mapping_rate_shortfall=0;readiness_flags\(sample_size_ready=false,mapping_rate_ready=true,sample_size_shortfall=2,mapping_rate_shortfall=0\)\./
     );
     assert.match(
         calibrationRow.detail,
-        /calibration_gate: readiness=insufficient_sample_size;mapped_outcomes=1;terminal_outcomes=10;mapping_rate=0\.1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=false;sample_size_shortfall=2;mapping_rate_shortfall=0\.25;reason=Calibration metrics deferred: mapped sample 1 is below minimum 3; sample_size_shortfall=2; mapping_rate=0\.1; minimum_mapping_rate=0\.35; mapping_rate_shortfall=0\.25\./
+        /calibration_gate: readiness=insufficient_sample_size;mapped_outcomes=1;terminal_outcomes=10;mapping_rate=1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=true;sample_size_shortfall=2;mapping_rate_shortfall=0;reason=reason_code=insufficient_sample_size;terminal_outcomes=10;mapped_outcomes=1;mapping_rate=1;minimum_sample_size=3;minimum_mapping_rate=0\.35;sample_size_shortfall=2;mapping_rate_shortfall=0;readiness_flags\(sample_size_ready=false,mapping_rate_ready=true,sample_size_shortfall=2,mapping_rate_shortfall=0\)\./
     );
     assert.match(brierRow.detail, /confidence_envelope: confidence_level=0\.95;method=hoeffding;sample_size=1;/);
     assert.match(calibrationRow.detail, /calibration_gap_lower=0;calibration_gap_upper=1\./);
@@ -202,7 +203,7 @@ test('scoreboard surfaces deterministic calibration suppression diagnostics', ()
     });
 
     const markdown = renderDailyMarkdownReport(report);
-    assert.ok(markdown.includes('mapped sample 1 is below minimum 3'));
+    assert.ok(markdown.includes('reason_code=insufficient_sample_size'));
     assert.ok(markdown.includes('calibration_gate: readiness=insufficient_sample_size;mapped_outcomes=1;terminal_outcomes=10;'));
 });
 
@@ -234,7 +235,7 @@ test('scoreboard reports deterministic confidence envelope when calibration is a
     assert.equal(calibrationRow.status, 'pass');
     assert.match(
         brierRow.detail,
-        /calibration_gate: readiness=ready;mapped_outcomes=3;terminal_outcomes=3;mapping_rate=1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=true;mapping_rate_ready=true;sample_size_shortfall=0;mapping_rate_shortfall=0;reason=Calibration metrics active: sample-size and mapping-rate gates satisfied; mapped_outcomes=3; terminal_outcomes=3; mapping_rate=1\./
+        /calibration_gate: readiness=ready;mapped_outcomes=3;terminal_outcomes=3;mapping_rate=1;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=true;mapping_rate_ready=true;sample_size_shortfall=0;mapping_rate_shortfall=0;reason=reason_code=ready;terminal_outcomes=3;mapped_outcomes=3;mapping_rate=1;minimum_sample_size=3;minimum_mapping_rate=0\.35;sample_size_shortfall=0;mapping_rate_shortfall=0;readiness_flags\(sample_size_ready=true,mapping_rate_ready=true,sample_size_shortfall=0,mapping_rate_shortfall=0\)\./
     );
     assert.match(
         brierRow.detail,
@@ -297,7 +298,7 @@ test('scoreboard keeps sample-gated metrics n/a with machine-parsable details wh
     assert.equal(calibrationRow.status, 'n/a');
     assert.match(
         brierRow.detail,
-        /calibration_gate: readiness=no_terminal_outcomes;mapped_outcomes=0;terminal_outcomes=0;mapping_rate=0;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=false;sample_size_shortfall=3;mapping_rate_shortfall=0\.35;reason=Calibration metrics deferred: no terminal outcomes yet; sample_size_shortfall=3; mapping_rate_shortfall=0\.35\./
+        /calibration_gate: readiness=no_terminal_outcomes;mapped_outcomes=0;terminal_outcomes=0;mapping_rate=0;min_sample_size=3;min_mapping_rate=0\.35;sample_size_ready=false;mapping_rate_ready=false;sample_size_shortfall=3;mapping_rate_shortfall=0\.35;reason=reason_code=no_terminal_outcomes;terminal_outcomes=0;mapped_outcomes=0;mapping_rate=0;minimum_sample_size=3;minimum_mapping_rate=0\.35;sample_size_shortfall=3;mapping_rate_shortfall=0\.35;readiness_flags\(sample_size_ready=false,mapping_rate_ready=false,sample_size_shortfall=3,mapping_rate_shortfall=0\.35\)\./
     );
     assert.match(
         brierRow.detail,

@@ -114,6 +114,19 @@ interface RemediationTaskPlanArtifact {
   artifacts: RemediationTaskArtifact[];
 }
 
+interface FreshnessSourceEntry {
+  source: string;
+  timestamp: string | null;
+}
+
+interface FreshnessContract {
+  generatedFrom: 'source_timestamp' | 'deterministic_fallback';
+  freshestSource: string;
+  freshestTimestamp: string;
+  sources: FreshnessSourceEntry[];
+  missingSources: string[];
+}
+
 interface Scorecard {
   generatedAt: string;
   summary: {
@@ -142,6 +155,7 @@ interface Scorecard {
   remediationPlan: RemediationItem[];
   remediationTaskArtifacts: RemediationTaskArtifact[];
   artifactPaths: Record<string, string>;
+  freshness: FreshnessContract;
 }
 
 type JsonObject = Record<string, unknown>;
@@ -253,8 +267,136 @@ function deterministicEpochMsFromSeed(seed: string): number {
   return DETERMINISTIC_TIMESTAMP_WINDOW_START_MS + Number(offset);
 }
 
-function deterministicIsoFromSeed(seed: string): string {
-  return new Date(deterministicEpochMsFromSeed(seed)).toISOString();
+const SCORECARD_GENERATED_AT_MIN_MS = Date.UTC(2024, 0, 1, 0, 0, 0, 0);
+const SCORECARD_GENERATED_AT_MAX_MS = Date.UTC(2101, 0, 1, 0, 0, 0, 0) - 1;
+
+function clampScorecardGeneratedAtMs(value: number): number {
+  return Math.min(SCORECARD_GENERATED_AT_MAX_MS, Math.max(SCORECARD_GENERATED_AT_MIN_MS, value));
+}
+
+function fileMtimeMs(filePath: string): number | null {
+  try {
+    const stats = fs.statSync(filePath);
+    return Number.isFinite(stats.mtimeMs) ? stats.mtimeMs : null;
+  } catch {
+    return null;
+  }
+}
+
+interface TimestampCandidate {
+  source: string;
+  ms: number;
+}
+
+function pushTimestampCandidate(
+  bucket: TimestampCandidate[],
+  source: string,
+  raw: unknown
+): void {
+  const parsed = parseIsoMs(raw);
+  if (parsed === null) return;
+  bucket.push({ source, ms: clampScorecardGeneratedAtMs(parsed) });
+}
+
+function buildScorecardFreshnessContract(params: {
+  runManifest: JsonObject | null;
+  dispatchReport: JsonObject | null;
+  daily: JsonObject | null;
+  swarmBenchmark: JsonObject | null;
+  utility: JsonObject | null;
+  runManifestPath: string;
+  dispatchReportPath: string;
+  cognitionDailyPath: string;
+  swarmBenchmarkPath: string;
+  skillUtilityPath: string;
+  fallbackSeed: string;
+  fallbackFilePath: string;
+}): { generatedAt: string; freshness: FreshnessContract } {
+  const candidates: TimestampCandidate[] = [];
+
+  const sourceEntries: FreshnessSourceEntry[] = [
+    { source: 'runManifest.generatedAt', timestamp: typeof params.runManifest?.generatedAt === 'string' ? params.runManifest.generatedAt : null },
+    { source: 'dispatchReport.generatedAt', timestamp: typeof params.dispatchReport?.generatedAt === 'string' ? params.dispatchReport.generatedAt : null },
+    { source: 'cognitionDaily.generatedAt', timestamp: typeof params.daily?.generatedAt === 'string' ? params.daily.generatedAt : null },
+    { source: 'swarmBenchmark.generatedAt', timestamp: typeof params.swarmBenchmark?.generatedAt === 'string' ? params.swarmBenchmark.generatedAt : null },
+    { source: 'skillUtility.generatedAt', timestamp: typeof params.utility?.generatedAt === 'string' ? params.utility.generatedAt : null }
+  ];
+
+  sourceEntries.forEach((entry) => pushTimestampCandidate(candidates, entry.source, entry.timestamp));
+
+  pushTimestampCandidate(candidates, 'runManifest.timestamp', params.runManifest?.timestamp);
+  pushTimestampCandidate(candidates, 'runManifest.createdAt', params.runManifest?.createdAt);
+  pushTimestampCandidate(candidates, 'runManifest.updatedAt', params.runManifest?.updatedAt);
+
+  const runResults = Array.isArray(params.runManifest?.results) ? (params.runManifest.results as JsonObject[]) : [];
+  runResults.forEach((result, index) => {
+    pushTimestampCandidate(candidates, `runManifest.results[${index}].startedAt`, result.startedAt);
+    pushTimestampCandidate(candidates, `runManifest.results[${index}].finishedAt`, result.finishedAt);
+  });
+
+  pushTimestampCandidate(candidates, 'dispatchReport.timestamp', params.dispatchReport?.timestamp);
+  pushTimestampCandidate(candidates, 'dispatchReport.createdAt', params.dispatchReport?.createdAt);
+  pushTimestampCandidate(candidates, 'dispatchReport.updatedAt', params.dispatchReport?.updatedAt);
+  pushTimestampCandidate(candidates, 'cognitionDaily.timestamp', params.daily?.timestamp);
+  pushTimestampCandidate(candidates, 'swarmBenchmark.timestamp', params.swarmBenchmark?.timestamp);
+  pushTimestampCandidate(candidates, 'skillUtility.timestamp', params.utility?.timestamp);
+
+  const aggregate = params.swarmBenchmark?.aggregate as JsonObject | undefined;
+  pushTimestampCandidate(candidates, 'swarmBenchmark.aggregate.generatedAt', aggregate?.generatedAt);
+
+  const baseline = params.utility?.baseline as JsonObject | undefined;
+  const postEdit = params.utility?.post_edit as JsonObject | undefined;
+  pushTimestampCandidate(candidates, 'skillUtility.baseline.generatedAt', baseline?.generatedAt);
+  pushTimestampCandidate(candidates, 'skillUtility.post_edit.generatedAt', postEdit?.generatedAt);
+
+  const fileCandidates: Array<{ source: string; path: string }> = [
+    { source: 'runManifest.fileMtime', path: params.runManifestPath },
+    { source: 'dispatchReport.fileMtime', path: params.dispatchReportPath },
+    { source: 'cognitionDaily.fileMtime', path: params.cognitionDailyPath },
+    { source: 'swarmBenchmark.fileMtime', path: params.swarmBenchmarkPath },
+    { source: 'skillUtility.fileMtime', path: params.skillUtilityPath }
+  ];
+
+  fileCandidates.forEach(({ source, path: sourcePath }) => {
+    const mtime = fileMtimeMs(sourcePath);
+    if (mtime === null) return;
+    candidates.push({ source, ms: clampScorecardGeneratedAtMs(mtime) });
+  });
+
+  const sortedCandidates = candidates.sort((left, right) => right.ms - left.ms || compareString(left.source, right.source));
+  const freshest = sortedCandidates[0] ?? null;
+  const missingSources = sourceEntries.filter((entry) => entry.timestamp === null).map((entry) => entry.source);
+
+  if (freshest) {
+    const generatedAt = new Date(freshest.ms).toISOString();
+    return {
+      generatedAt,
+      freshness: {
+        generatedFrom: 'source_timestamp',
+        freshestSource: freshest.source,
+        freshestTimestamp: generatedAt,
+        sources: sourceEntries,
+        missingSources
+      }
+    };
+  }
+
+  const fallbackMtime = fileMtimeMs(params.fallbackFilePath);
+  const fallbackMs = fallbackMtime === null
+    ? clampScorecardGeneratedAtMs(deterministicEpochMsFromSeed(params.fallbackSeed))
+    : clampScorecardGeneratedAtMs(fallbackMtime);
+  const generatedAt = new Date(fallbackMs).toISOString();
+
+  return {
+    generatedAt,
+    freshness: {
+      generatedFrom: 'deterministic_fallback',
+      freshestSource: fallbackMtime === null ? 'deterministic_seed' : 'productivityScorecardScript.fileMtime',
+      freshestTimestamp: generatedAt,
+      sources: sourceEntries,
+      missingSources
+    }
+  };
 }
 
 function deterministicUuid(seed: string): string {
@@ -830,17 +972,30 @@ export async function generateProductivityScorecard(): Promise<Scorecard> {
     remediationTaskPlan: outRemediationLatest
   };
 
-  const generatedAt = deterministicIsoFromSeed(JSON.stringify({
-    summary,
-    metrics,
-    deltas,
-    thresholds,
-    thresholdChecks: thresholdCheckSummary,
-    regressionGates,
-    thresholdBreaches,
-    remediationPlan,
-    artifactPaths
-  }));
+  const { generatedAt, freshness } = buildScorecardFreshnessContract({
+    runManifest,
+    dispatchReport,
+    daily,
+    swarmBenchmark,
+    utility,
+    runManifestPath,
+    dispatchReportPath,
+    cognitionDailyPath,
+    swarmBenchmarkPath,
+    skillUtilityPath,
+    fallbackSeed: JSON.stringify({
+      summary,
+      metrics,
+      deltas,
+      thresholds,
+      thresholdChecks: thresholdCheckSummary,
+      regressionGates,
+      thresholdBreaches,
+      remediationPlan,
+      artifactPaths
+    }),
+    fallbackFilePath: path.join(repoRoot, 'cognition-core/scripts/productivity-scorecard.ts')
+  });
 
   const scorecard: Scorecard = {
     generatedAt,
@@ -853,7 +1008,8 @@ export async function generateProductivityScorecard(): Promise<Scorecard> {
     thresholdBreaches,
     remediationPlan,
     remediationTaskArtifacts: [],
-    artifactPaths
+    artifactPaths,
+    freshness
   };
 
   const remediationTaskPlan = buildRemediationTaskPlanArtifact(

@@ -67,6 +67,9 @@ function toNullableFiniteNumber(value: unknown): number | null {
 
 const DEFAULT_CALIBRATION_ENVELOPE_METHOD = 'hoeffding';
 
+type CalibrationDiagnostics = NonNullable<FeedbackLoopResult['evaluation']['metrics']['calibrationDiagnostics']>;
+type CalibrationSampleReadiness = CalibrationDiagnostics['sampleReadiness'];
+
 function normalizeDetailSegment(segment: string): string {
     return segment.trim().replace(/[.\s]+$/g, '');
 }
@@ -111,6 +114,58 @@ function describeConfidenceEnvelope(metrics: FeedbackLoopResult['evaluation']['m
     return `confidence_envelope: confidence_level=${formatNullable(toNullableFiniteNumber(envelopeRecord.confidenceLevel ?? null))};method=${method};sample_size=${toFiniteInteger(envelopeRecord.sampleSize, fallbackSampleSize)};predicted_success_mean=${formatNullable(toNullableFiniteNumber(envelopeRecord.predictedSuccessMean ?? null))};observed_success_mean=${formatNullable(toNullableFiniteNumber(envelopeRecord.observedSuccessMean ?? null))};observed_success_lower=${formatNullable(toNullableFiniteNumber(envelopeRecord.observedSuccessLowerBound ?? null))};observed_success_upper=${formatNullable(toNullableFiniteNumber(envelopeRecord.observedSuccessUpperBound ?? null))};calibration_gap_lower=${formatNullable(toNullableFiniteNumber(envelopeRecord.calibrationGapLowerBound ?? null))};calibration_gap_upper=${formatNullable(toNullableFiniteNumber(envelopeRecord.calibrationGapUpperBound ?? null))}`;
 }
 
+function formatReadinessFlags(sampleReadiness: CalibrationSampleReadiness): string {
+    const isSampleSizeReady = formatBoolean((sampleReadiness as { isSampleSizeReady?: boolean } | undefined)?.isSampleSizeReady);
+    const isMappingRateReady = formatBoolean((sampleReadiness as { isMappingRateReady?: boolean } | undefined)?.isMappingRateReady);
+    const sampleSizeShortfall = sampleReadiness
+        ? toFiniteInteger((sampleReadiness as { sampleSizeShortfall?: unknown }).sampleSizeShortfall, 0)
+        : 'n/a';
+    const mappingRateShortfall = sampleReadiness
+        ? formatNullable(toNullableFiniteNumber((sampleReadiness as { mappingRateShortfall?: unknown }).mappingRateShortfall))
+        : 'n/a';
+
+    return `readiness_flags(sample_size_ready=${isSampleSizeReady},mapping_rate_ready=${isMappingRateReady},sample_size_shortfall=${sampleSizeShortfall},mapping_rate_shortfall=${mappingRateShortfall})`;
+}
+
+function deriveCalibrationReasonCode(readiness: string | undefined): string {
+    if (!readiness) return 'unknown';
+    if (readiness === 'ready') return 'ready';
+    if (readiness === 'no_terminal_outcomes') return 'no_terminal_outcomes';
+    if (readiness === 'insufficient_sample_size') return 'insufficient_sample_size';
+    if (readiness === 'insufficient_mapping_rate') return 'insufficient_mapping_rate';
+    return readiness;
+}
+
+function describeCalibrationReason(
+    readiness: string | undefined,
+    observedMappedOutcomes: number,
+    observedTerminalOutcomes: number,
+    observedMappingRate: number,
+    minimumSampleSize: number,
+    minimumMappingRate: number,
+    sampleReadiness: CalibrationSampleReadiness
+): string {
+    const reasonCode = deriveCalibrationReasonCode(readiness);
+    const sampleSizeShortfall = sampleReadiness
+        ? toFiniteInteger((sampleReadiness as { sampleSizeShortfall?: unknown }).sampleSizeShortfall, 0)
+        : 'n/a';
+    const mappingRateShortfall = sampleReadiness
+        ? formatNullable(toNullableFiniteNumber((sampleReadiness as { mappingRateShortfall?: unknown }).mappingRateShortfall))
+        : 'n/a';
+
+    return [
+        `reason_code=${reasonCode}`,
+        `terminal_outcomes=${observedTerminalOutcomes}`,
+        `mapped_outcomes=${observedMappedOutcomes}`,
+        `mapping_rate=${round(observedMappingRate)}`,
+        `minimum_sample_size=${minimumSampleSize}`,
+        `minimum_mapping_rate=${round(minimumMappingRate)}`,
+        `sample_size_shortfall=${sampleSizeShortfall}`,
+        `mapping_rate_shortfall=${mappingRateShortfall}`,
+        formatReadinessFlags(sampleReadiness)
+    ].join(';');
+}
+
 function describeCalibrationGate(metrics: FeedbackLoopResult['evaluation']['metrics']): string {
     const diagnostics = metrics.calibrationDiagnostics;
     if (!diagnostics) {
@@ -127,7 +182,7 @@ function describeCalibrationGate(metrics: FeedbackLoopResult['evaluation']['metr
 
     const sampleReadiness = diagnostics.sampleReadiness;
 
-    return `calibration_gate: readiness=${diagnostics.readiness};mapped_outcomes=${observedMappedOutcomes};terminal_outcomes=${observedTerminalOutcomes};mapping_rate=${round(diagnostics.observedMappingRate)};min_sample_size=${diagnostics.minimumSampleSize};min_mapping_rate=${round(diagnostics.minimumMappingRate)};sample_size_ready=${formatBoolean(sampleReadiness?.isSampleSizeReady)};mapping_rate_ready=${formatBoolean(sampleReadiness?.isMappingRateReady)};sample_size_shortfall=${sampleReadiness ? sampleReadiness.sampleSizeShortfall : 'n/a'};mapping_rate_shortfall=${sampleReadiness ? formatNullable(sampleReadiness.mappingRateShortfall) : 'n/a'};reason=${diagnostics.reason}`;
+    return `calibration_gate: readiness=${diagnostics.readiness};mapped_outcomes=${observedMappedOutcomes};terminal_outcomes=${observedTerminalOutcomes};mapping_rate=${round(diagnostics.observedMappingRate)};min_sample_size=${diagnostics.minimumSampleSize};min_mapping_rate=${round(diagnostics.minimumMappingRate)};sample_size_ready=${formatBoolean(sampleReadiness?.isSampleSizeReady)};mapping_rate_ready=${formatBoolean(sampleReadiness?.isMappingRateReady)};sample_size_shortfall=${sampleReadiness ? sampleReadiness.sampleSizeShortfall : 'n/a'};mapping_rate_shortfall=${sampleReadiness ? formatNullable(sampleReadiness.mappingRateShortfall) : 'n/a'};reason=${describeCalibrationReason(diagnostics.readiness, observedMappedOutcomes, observedTerminalOutcomes, diagnostics.observedMappingRate, diagnostics.minimumSampleSize, diagnostics.minimumMappingRate, sampleReadiness)}`;
 }
 
 function describeCalibrationSuppression(
