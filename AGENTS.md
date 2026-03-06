@@ -6,13 +6,27 @@
 - `npm run capabilities:blueprint` - regenerate capability blueprint artifacts.
 - `npm run capabilities:audit` - run capability deployability audit.
 - `npm run skills:sync` - execute the full 1000-skill lifecycle pipeline.
+- `npm run skills:build` - generate the baseline 1000-skill artifacts.
 - `npm run skills:validate` - validate generated 1000-skill artifacts.
 - `npm run skills:test` - execute 1000-skill exercise checks.
 - `npm run skills:plan` - generate rollout planning artifacts.
+- `npm run skills:plan:validate` - validate rollout planning artifacts.
 - `npm run skills:orchestrate` - generate rollout orchestration artifacts.
+- `npm run skills:orchestrate:validate` - validate rollout orchestration artifacts.
 - `npm run skills:control` - generate rollout control artifacts.
+- `npm run skills:control:validate` - validate rollout control artifacts.
 - `npm run skills:optimize` - generate rollout optimization artifacts.
+- `npm run skills:optimize:validate` - validate rollout optimization artifacts.
 - `npm run skills:promote` - generate rollout promotion task artifacts.
+- `npm run skills:promote:validate` - validate rollout promotion task artifacts.
+- `npm run skills:promote:control` - generate promotion control artifacts.
+- `npm run skills:promote:control:validate` - validate promotion control artifacts.
+- `npm run skills:promote:history` - generate promotion history artifacts.
+- `npm run skills:promote:history:validate` - validate promotion history artifacts.
+- `npm run skills:promote:policy-lab` - generate policy-lab promotion artifacts.
+- `npm run skills:promote:policy-lab:validate` - validate policy-lab promotion artifacts.
+- `npm run skills:promote:policy-canary` - generate policy-canary promotion artifacts.
+- `npm run skills:promote:policy-canary:validate` - validate policy-canary promotion artifacts.
 - `npm run skills:marketplace:ship` - build/validate/package/validate/demo marketplace outputs.
 - `npm run skills:marketplace:build` - build marketplace skill packages (v1).
 - `npm run skills:marketplace:validate` - validate marketplace skill packages (v1).
