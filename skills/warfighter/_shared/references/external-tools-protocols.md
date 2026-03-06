@@ -23,6 +23,27 @@ For each external tool recommendation, include:
 - Protocol/transport: format and delivery path (for example USMTF over message bus)
 - Fallback: manual workaround and confidence/timeline impact if the tool is unavailable
 
+## Tool Invocation Packet Template
+
+Use this compact packet format when recommending or invoking external tools:
+
+```text
+Tool Invocation Packet
+- Tool/System:
+- Objective:
+- Inputs:
+  - AOI:
+  - Time Window (UTC):
+  - Unit/Echelon:
+  - Data Class/Handling:
+- Query or Action Template:
+- Expected Output Schema:
+- Protocol/Transport:
+- Primary/Alternate/Degraded Profile Mapping:
+- Fallback Procedure:
+- Confidence Impact if Degraded:
+```
+
 ## Tool Families and Typical Use
 
 - C2/COP tools: GCCS-J, CPOF, JADOCS, ATAK/WinTAK, JBC-P
@@ -36,6 +57,13 @@ For each external tool recommendation, include:
 - Medical tools: patient regulation systems, medical logistics inventories, blood program trackers
 - Training/simulation tools: JCATS/JTLS-style simulation, mission rehearsal systems, digital ranges
 - Software factory tools: CI/CD pipelines, SBOM scanners, artifact repositories, security test suites
+- Air and missile defense tools: IBCS, FAAD C2, C2BMC, Aegis C2
+- Personnel recovery tools: PRCC/PRMS workflows, isolated personnel reporting systems
+- Identity and biometrics tools: ABIS-style biometric stores, encounter management systems
+- Civil support and crisis tools: NIMS/ICS workflows, emergency operations dashboards
+- ISR and mission planning middleware: FIXM/AIXM-conformant exchange gateways, tasking brokers, and theater data fabrics
+- Weather and geophysical tools: AFWA/NOAA-style feeds, oceanographic models, and route weather decision support
+- Mission assurance tools: SBOM/vulnerability scanners, software supply chain attestations, and release approval dashboards
 
 ## Domain-to-Tool and Protocol Matrix
 
@@ -47,6 +75,14 @@ For each external tool recommendation, include:
 - Logistics and mobility: GCSS + movement/transport planners + sustainment dashboards; protocols: USMTF, XML/JSON, API
 - Medical and casualty operations: patient regulation + med logistics + evacuation coordination; protocols: USMTF medical reporting, API/JSON, HL7/FHIR where available
 - Coalition/interagency support: coalition COP tools + liaison data fabrics; protocols: NATO APP-11/ADatP-3 aligned formats, OGC, USMTF
+- Air defense battle management: IBCS/FAAD/C2BMC + sensor fusion nodes; protocols: Link 16 J-series, USMTF
+- CSAR and personnel recovery: PRCC systems + ISR cueing + mission planning tools; protocols: USMTF, CoT, VMF
+- Strategic deterrence readiness: strategic C2 readiness systems + force status reporting; protocols: USMTF, secure reporting formats
+- Domestic civil-support response: DSCA mission assignment systems + ICS workflows; protocols: USMTF, API/JSON
+- Harbor clearance and salvage: maritime C2 + hydrographic/salvage planning tools; protocols: AIS/NMEA, OGC, USMTF
+- Information integrity and attribution: media-forensics tools + narrative tracking dashboards + public affairs workflows; protocols: API/JSON, STIX/TAXII, USMTF
+- Personnel recovery integration: PRCC tools + ISR cueing + mission planners; protocols: USMTF, VMF, CoT
+- Energy and infrastructure resilience: operational energy systems + utility telemetry + engineering ops boards; protocols: API/JSON, OGC, USMTF
 
 ## Domain Toolchain Profiles (required selection)
 
@@ -93,6 +129,31 @@ Use profile selections that fit the mission domain:
 - `OGC WMS/WFS/WMTS`: geospatial map and feature service interoperability
 - `NATO APP-11/ADatP-3 aligned formats`: coalition reporting and message interoperability context
 - `AIS/NMEA`: maritime vessel track reporting for port/harbor and maritime domain awareness
+- `NIMS/ICS`: domestic emergency management command structure and coordination framework
+- `HL7/FHIR`: medical interoperability standards used by patient and care data systems
+- `AIXM/FIXM/iwxxm`: aviation information exchange models for airspace/flight/weather interoperability
+- `MISP`: cyber threat sharing format commonly bridged with STIX/TAXII workflows
+- `DDS/MQTT` (authorized enclaves): lightweight pub/sub patterns for edge telemetry dissemination
+
+## Protocol Selection Rules (required)
+
+Apply these rules before finalizing any recommendation:
+
+1. Match protocol to receiving unit system first, then optimize for speed and resilience.
+2. If a tactical link is intermittent, pair it with a robust message fallback (for example Link 16 + USMTF).
+3. For cross-domain products, include one machine-ingestible format and one commander-readable summary.
+4. For coalition delivery, include schema assumptions and any translation loss risk.
+5. For edge/disconnected teams, define synchronization cadence and conflict-resolution priority when links restore.
+6. For mission-critical recommendations, include a machine-readable packet and a human-readable command summary.
+
+## Degraded Operations Playbook
+
+- Loss of primary C2 transport: switch to alternate profile and publish minimum viable decision packet within 15 minutes.
+- Loss of authoritative data feed: downgrade confidence, cross-check with secondary sources, and define revalidation trigger.
+- Loss of geospatial service: continue with last known common operating map and annotate stale layers/time.
+- Loss of automation tooling: execute manual checklist and emit a delayed but auditable recommendation.
+- Loss of coalition data exchange path: switch to releasable subset schema and annotate omitted fields with operational impact.
+- Loss of data-link interoperability: execute gateway bypass/reroute checklist and provide timing/risk effect to commander.
 
 ## Output Requirements for Any Skill Using External Tools
 
@@ -104,3 +165,10 @@ Include these fields in outputs when tool integration is used:
 - Confidence and known gaps
 - Classification/handling caveat placeholder (unclassified by default unless user specifies)
 - Tool Invocation Packet fields for each critical tool dependency
+
+## Operational Safety and Governance Addendum
+
+- Confirm recommendation is advisory support only; execution requires authorized human command decision.
+- Do not provide weapon-employment procedures, target engagement mechanics, or bypasses to safeguards.
+- Require explicit human validation for lethal, strategic, or high-consequence actions.
+- If authority, legality, or data provenance is uncertain, stop and return a no-go recommendation with escalation path.

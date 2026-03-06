@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 130
+- Total warfighter skills in this repo: 172
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -21,6 +21,7 @@ This catalog maps warfighter skill coverage across major military action domains
 - Medical/personnel support: casualty-evac-and-medical-regulation, austere-surgical-support-coordinator, preventive-medicine-and-force-health-protection, medical-logistics-and-blood-supply-coordination, mortuary-affairs-and-personnel-accountability
 - Civil-military/legal/coalition/competition: civil-affairs-stability-ops, legal-roe-compliance-checker, theater-security-cooperation-planner, host-nation-access-basing-overflight-support, strategic-competition-gray-zone-response-cell, arms-control-treaty-compliance-monitor, tactical-psychological-operations-and-miso-cell, security-assistance-and-partner-capability-integration
 - Enterprise adaptation and fielding: digital-engineering-mission-thread-analyst, mission-assured-software-factory-support, rapid-prototyping-and-fielding-accelerator, acquisition-and-contracting-support, supply-chain-risk-and-industrial-base-monitor
+- Cross-domain resilience and governance: theater-mission-network-failover-cell, operational-energy-resilience-and-microgrid-cell, joint-targeting-standards-and-cde-governance-cell, information-integrity-and-attribution-cell, joint-allied-data-link-interoperability-cell, joint-special-access-and-compartmented-integration-cell
 
 ## New Expansion Wave (2026-03-06)
 
@@ -62,6 +63,54 @@ This catalog maps warfighter skill coverage across major military action domains
 - mega-city-operations-sustainment-coordinator
 - arctic-maritime-air-corridor-deconfliction
 
+## New Expansion Wave (2026-03-06, Full-Spectrum Additions)
+
+- air-defense-artillery-fire-control-cell
+- ballistic-missile-defense-battle-management
+- combat-search-and-rescue-coordinator
+- offensive-counter-air-mission-planner
+- suppression-of-enemy-air-defenses-cell
+- dynamic-targeting-and-time-sensitive-strike-cell
+- strategic-bomber-and-global-strike-support
+- expeditionary-runway-repair-and-airfield-recovery
+- anti-ship-missile-defense-coordinator
+- naval-integrated-fire-control-cell
+- submarine-deterrence-patrol-support
+- expeditionary-salvage-and-harbor-clearance
+- littoral-anti-ship-denial-planner
+- military-deception-and-operational-security-planner
+- biometrics-and-watchlist-exploitation-cell
+- border-security-and-counter-transnational-threat-cell
+- strategic-nuclear-triad-readiness-support
+- defense-support-of-civil-authorities-crisis-cell
+- combat-engineering-obstacle-intelligence-cell
+- underwater-uncrewed-systems-mission-control
+- defensive-space-control-counterspace-cell
+- electromagnetic-battle-management-cell
+- expeditionary-fuel-pipeline-and-bulk-water-terminal-support
+- naval-convoy-escort-and-sea-lane-protection
+
+## New Expansion Wave (2026-03-06, All-Domain Coverage Surge)
+
+- joint-targeting-standards-and-cde-governance-cell
+- joint-allied-data-link-interoperability-cell
+- expeditionary-multi-domain-sensing-fusion-cell
+- contested-maritime-logistics-protection-cell
+- airbase-dispersal-and-rapid-reconstitution-cell
+- joint-ems-target-system-harmonization-cell
+- theater-mission-network-failover-cell
+- cyber-physical-infrastructure-defense-cell
+- operational-energy-resilience-and-microgrid-cell
+- joint-personnel-recovery-integration-cell
+- medical-c4i-and-patient-movement-fusion-cell
+- wmd-counterproliferation-operations-cell
+- strategic-industrial-mobilization-readiness-cell
+- joint-deployment-and-distribution-ops-center-optimizer
+- information-integrity-and-attribution-cell
+- human-performance-and-combat-stress-risk-cell
+- space-ground-integration-and-reentry-risk-cell
+- joint-special-access-and-compartmented-integration-cell
+
 ## Suggested Cross-Skill Pairings
 
 - Campaign planning + ISR tasking + targeting + battle damage assessment
@@ -76,6 +125,11 @@ This catalog maps warfighter skill coverage across major military action domains
 - Hunt-forward cyber + CEMA integration + contested ICAM + zero trust hardening
 - UAS traffic management + tactical airspace control + counter-UAS kill chain + CAS digital integration
 - Arctic corridor deconfliction + weather-space-weather effects + maritime operations + SATCOM defense
+- Joint targeting governance + fires synchronization + legal/ROE compliance + battle damage assessment
+- Data-link interoperability + coalition data fabric + spectrum interference resolution + mission-data-link management
+- Network failover + denied comms planning + tactical cloud edge compute + zero-trust hardening
+- Cyber-physical infrastructure defense + base cluster defense + operational energy resilience + contested logistics
+- Medical C4I and patient movement + casualty evacuation + austere surgical support + med logistics
 
 ## Minimum Product Quality Standard
 
