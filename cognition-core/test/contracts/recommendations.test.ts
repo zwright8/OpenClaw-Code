@@ -144,6 +144,55 @@ test('validateCognitionRecommendation fails closed for high-risk recommendation 
 });
 
 
+test('validateCognitionRecommendation fails closed when high-risk recommendation omits rollback metadata despite approvers', () => {
+    const result = validateCognitionRecommendation({
+        recommendationId: 'rec-high-missing-rollback-only',
+        title: 'Patch production gateway with staged approvals',
+        reasoning: 'Critical risk still requires explicit rollback metadata before execution.',
+        evidence: [
+            {
+                evidenceId: 'e-contract-rollback-only',
+                type: 'event',
+                reference: 'evt-contract-rollback-only',
+                confidence: 0.89
+            }
+        ],
+        priority: 'P0',
+        riskTier: 'critical',
+        requiresHumanApproval: true,
+        estimatedImpact: {
+            metric: 'incident_rate',
+            unit: 'count',
+            expectedDelta: -1,
+            confidence: 0.72
+        },
+        verificationPlan: {
+            owner: 'agent:nexus',
+            steps: [
+                {
+                    stepId: 'verify-contract-rollback-only',
+                    description: 'Confirm rollout guardrails and incident budget remain stable.'
+                }
+            ]
+        },
+        metadata: {
+            requiredApprovers: ['security-ops', 'executive-ops']
+        }
+    });
+
+    assert.equal(result.ok, false);
+    if (result.ok) return;
+
+    const rollbackDiagnostic = result.errors.find((issue) => issue.path === 'metadata.rollbackPlan');
+    assert.ok(rollbackDiagnostic, 'expected rollback metadata diagnostic');
+    assertReasonPayload(
+        rollbackDiagnostic.message,
+        'rollback_metadata_missing',
+        'metadata.rollbackPlan'
+    );
+});
+
+
 test('validateCognitionRecommendation fails closed when high-risk recommendation sets requiresHumanApproval=false', () => {
     const result = validateCognitionRecommendation({
         recommendationId: 'rec-high-approval-flag-missing',

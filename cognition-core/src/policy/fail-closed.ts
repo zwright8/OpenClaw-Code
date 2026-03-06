@@ -44,6 +44,8 @@ export interface FailClosedValidation {
     confidence?: number;
 }
 
+const FAIL_CLOSED_REASON_PAYLOAD_MARKER = ' reason_payload=';
+
 type RollbackMetadata = {
     present: boolean;
     trigger: string | null;
@@ -69,18 +71,20 @@ function failClosed(code: FailClosedReasonCode, detail: string, options: FailClo
         ? Array.from(new Set(options.missingFields))
         : undefined;
 
+    const reasonPayload: FailClosedReasonPayload = {
+        code,
+        path: options.path,
+        contract: 'risk_metadata_fail_closed',
+        detail,
+        missingFields: normalizedMissingFields,
+        riskTier: options.riskTier
+    };
+
     return {
         ok: false,
         code,
-        reason: `[${code}] ${detail}`,
-        reasonPayload: {
-            code,
-            path: options.path,
-            contract: 'risk_metadata_fail_closed',
-            detail,
-            missingFields: normalizedMissingFields,
-            riskTier: options.riskTier
-        }
+        reason: `[${code}] ${detail}${FAIL_CLOSED_REASON_PAYLOAD_MARKER}${JSON.stringify(reasonPayload)}`,
+        reasonPayload
     };
 }
 
