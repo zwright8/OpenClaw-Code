@@ -101,12 +101,60 @@ function ensureDir(filePath) {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
+function buildBenchmarkArtifact(result, thresholdsRequested) {
+    const existingThresholdCheck = result && typeof result.thresholdCheck === 'object' && result.thresholdCheck !== null
+        ? result.thresholdCheck
+        : null;
+
+    const requested = typeof existingThresholdCheck?.requested === 'boolean'
+        ? existingThresholdCheck.requested
+        : Boolean(thresholdsRequested);
+
+    const evaluationBreaches = Array.isArray(result?.thresholds?.breaches) ? result.thresholds.breaches : [];
+    const breaches = Array.isArray(existingThresholdCheck?.breaches)
+        ? existingThresholdCheck.breaches
+        : (requested ? evaluationBreaches : []);
+
+    const ok = typeof existingThresholdCheck?.ok === 'boolean'
+        ? existingThresholdCheck.ok
+        : (requested ? Boolean(result?.thresholds?.ok) && breaches.length === 0 : true);
+
+    const breachCount = Number.isInteger(existingThresholdCheck?.breachCount)
+        ? existingThresholdCheck.breachCount
+        : breaches.length;
+
+    return {
+        ...result,
+        generatedAt: typeof result?.generatedAt === 'string' && result.generatedAt
+            ? result.generatedAt
+            : new Date().toISOString(),
+        thresholdCheck: {
+            requested,
+            ok,
+            breachCount,
+            breaches
+        }
+    };
+}
+
+function formatThresholdSummary(thresholdCheck) {
+    if (!thresholdCheck?.requested) {
+        return 'NOT_REQUESTED';
+    }
+    if (thresholdCheck.ok) {
+        return 'PASS';
+    }
+    return `FAIL (${thresholdCheck.breachCount} breach${thresholdCheck.breachCount === 1 ? '' : 'es'})`;
+}
+
 function formatMarkdown(result) {
     const lines = [
         '# Simulation Benchmark',
         '',
         `Scenario: ${result.scenario.name}`,
         `Runs: ${result.runCount}`,
+        `Generated At: ${result.generatedAt}`,
+        `Threshold Check: ${formatThresholdSummary(result.thresholdCheck)}`,
         '',
         '## Aggregate Metrics',
         '',
@@ -132,12 +180,13 @@ function formatMarkdown(result) {
         );
     }
 
-    if (result.thresholds) {
+    if (result.thresholdCheck?.requested) {
         lines.push('', '## Threshold Evaluation', '');
-        lines.push(result.thresholds.ok ? 'Status: PASS' : 'Status: FAIL');
-        if (!result.thresholds.ok) {
+        lines.push(result.thresholdCheck.ok ? 'Status: PASS' : 'Status: FAIL');
+
+        if (!result.thresholdCheck.ok && result.thresholdCheck.breachCount > 0) {
             lines.push('', '| Metric | Expected | Actual |', '| --- | --- | ---: |');
-            for (const breach of result.thresholds.breaches) {
+            for (const breach of result.thresholdCheck.breaches) {
                 lines.push(`| ${breach.metric} | ${breach.expected} | ${breach.actual} |`);
             }
         }
@@ -164,36 +213,40 @@ function formatMarkdown(result) {
             thresholds
         });
 
-        console.log(`Scenario: ${result.scenario.name}`);
-        console.log(`Runs: ${result.runCount}`);
-        console.log('Aggregate:');
-        console.log(`- successRateAvg=${result.aggregate.successRateAvg}`);
-        console.log(`- timeoutRateAvg=${result.aggregate.timeoutRateAvg}`);
-        console.log(`- failureRateAvg=${result.aggregate.failureRateAvg}`);
-        console.log(`- avgLatencyMs=${result.aggregate.avgLatencyMs}`);
-        console.log(`- p95LatencyMs=${result.aggregate.p95LatencyMs}`);
+        const benchmarkArtifact = buildBenchmarkArtifact(result, Boolean(thresholds));
 
-        if (result.thresholds) {
-            if (result.thresholds.ok) {
+        console.log(`Scenario: ${benchmarkArtifact.scenario.name}`);
+        console.log(`Runs: ${benchmarkArtifact.runCount}`);
+        console.log('Aggregate:');
+        console.log(`- successRateAvg=${benchmarkArtifact.aggregate.successRateAvg}`);
+        console.log(`- timeoutRateAvg=${benchmarkArtifact.aggregate.timeoutRateAvg}`);
+        console.log(`- failureRateAvg=${benchmarkArtifact.aggregate.failureRateAvg}`);
+        console.log(`- avgLatencyMs=${benchmarkArtifact.aggregate.avgLatencyMs}`);
+        console.log(`- p95LatencyMs=${benchmarkArtifact.aggregate.p95LatencyMs}`);
+
+        if (benchmarkArtifact.thresholdCheck.requested) {
+            if (benchmarkArtifact.thresholdCheck.ok) {
                 console.log('Thresholds: PASS');
             } else {
                 console.log('Thresholds: FAIL');
-                for (const breach of result.thresholds.breaches) {
+                for (const breach of benchmarkArtifact.thresholdCheck.breaches) {
                     console.log(`- ${breach.metric}: expected ${breach.expected}, actual ${breach.actual}`);
                 }
                 process.exitCode = 2;
             }
+        } else {
+            console.log('Thresholds: NOT_REQUESTED');
         }
 
         if (options.jsonPath) {
             ensureDir(options.jsonPath);
-            fs.writeFileSync(options.jsonPath, `${JSON.stringify(result, null, 2)}\n`);
+            fs.writeFileSync(options.jsonPath, `${JSON.stringify(benchmarkArtifact, null, 2)}\n`);
             console.log(`Benchmark JSON written to ${options.jsonPath}`);
         }
 
         if (options.markdownPath) {
             ensureDir(options.markdownPath);
-            fs.writeFileSync(options.markdownPath, formatMarkdown(result));
+            fs.writeFileSync(options.markdownPath, formatMarkdown(benchmarkArtifact));
             console.log(`Benchmark markdown written to ${options.markdownPath}`);
         }
     } catch (error) {

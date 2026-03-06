@@ -1,5 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import {
     evaluateBenchmarkThresholds,
     runSimulationBenchmark,
@@ -206,6 +210,56 @@ test('runSimulationBenchmark aggregates runs and evaluates thresholds', async ()
 
     assert.equal(strict.ok, false);
     assert.ok(strict.breaches.length > 0);
+});
+
+
+test('benchmark script emits metadata contract fields without threshold input', () => {
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'simulation-benchmark-contract-'));
+    const jsonPath = path.join(tempDir, 'simulation-benchmark.json');
+    const markdownPath = path.join(tempDir, 'simulation-benchmark.md');
+
+    try {
+        const scriptPath = path.resolve(process.cwd(), 'scripts/run-simulation-benchmark.ts');
+        const scenarioPath = path.resolve(process.cwd(), 'scenarios/baseline.json');
+        const tsxPath = path.resolve(process.cwd(), 'node_modules/.bin/tsx');
+
+        const run = spawnSync(
+            tsxPath,
+            [
+                scriptPath,
+                '--scenario',
+                scenarioPath,
+                '--runs',
+                '1',
+                '--json',
+                jsonPath,
+                '--markdown',
+                markdownPath
+            ],
+            {
+                cwd: process.cwd(),
+                encoding: 'utf8'
+            }
+        );
+
+        assert.equal(run.status, 0, `stdout:\n${run.stdout}\nstderr:\n${run.stderr}`);
+
+        const benchmark = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+        assert.equal(typeof benchmark.generatedAt, 'string');
+        assert.ok(benchmark.generatedAt.length > 0);
+
+        assert.equal(typeof benchmark.thresholdCheck, 'object');
+        assert.equal(benchmark.thresholdCheck.requested, false);
+        assert.equal(benchmark.thresholdCheck.ok, true);
+        assert.equal(benchmark.thresholdCheck.breachCount, 0);
+        assert.deepEqual(benchmark.thresholdCheck.breaches, []);
+
+        const markdown = fs.readFileSync(markdownPath, 'utf8');
+        assert.match(markdown, /^Generated At: /m);
+        assert.match(markdown, /^Threshold Check: NOT_REQUESTED$/m);
+    } finally {
+        fs.rmSync(tempDir, { recursive: true, force: true });
+    }
 });
 
 
