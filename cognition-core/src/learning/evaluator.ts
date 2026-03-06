@@ -53,10 +53,12 @@ export interface CalibrationSampleReadiness {
 
 export interface CalibrationDiagnostics {
     readiness: CalibrationReadiness;
+    reasonCode: string;
     reason: string;
     minimumSampleSize: number;
     minimumMappingRate: number;
     observedTerminalOutcomes: number;
+    observedEligibleTerminalOutcomes: number;
     observedMappedOutcomes: number;
     observedSampleSize: number;
     observedMappingRate: number;
@@ -67,6 +69,7 @@ export interface CalibrationDiagnostics {
 export interface EvaluatorMetrics {
     totalOutcomes: number;
     terminalOutcomes: number;
+    eligibleTerminalOutcomes: number;
     nonTerminalOutcomes: number;
     successfulOutcomes: number;
     failedOutcomes: number;
@@ -168,6 +171,32 @@ function formatReadinessFlags(sampleReadiness: CalibrationSampleReadiness): stri
     return `readiness_flags(sample_size_ready=${sampleReadiness.isSampleSizeReady},mapping_rate_ready=${sampleReadiness.isMappingRateReady},sample_size_shortfall=${sampleReadiness.sampleSizeShortfall},mapping_rate_shortfall=${formatDiagnosticsNumber(sampleReadiness.mappingRateShortfall)})`;
 }
 
+function buildReadinessReason(
+    reasonCode: string,
+    readiness: CalibrationReadiness,
+    diagnostics: {
+        observedTerminalOutcomes: number;
+        observedEligibleTerminalOutcomes: number;
+        observedMappedOutcomes: number;
+        observedMappingRateRaw: number;
+        sampleReadiness: CalibrationSampleReadiness;
+    }
+): string {
+    return [
+        `calibration_readiness=${readiness}`,
+        `reason_code=${reasonCode}`,
+        `terminal_outcomes=${diagnostics.observedTerminalOutcomes}`,
+        `eligible_terminal_outcomes=${diagnostics.observedEligibleTerminalOutcomes}`,
+        `mapped_outcomes=${diagnostics.observedMappedOutcomes}`,
+        `minimum_sample_size=${MIN_CALIBRATION_SAMPLE_SIZE}`,
+        `minimum_mapping_rate=${formatDiagnosticsNumber(MIN_CALIBRATION_MAPPING_RATE)}`,
+        `mapping_rate=${formatDiagnosticsNumber(diagnostics.observedMappingRateRaw)}`,
+        `sample_size_shortfall=${diagnostics.sampleReadiness.sampleSizeShortfall}`,
+        `mapping_rate_shortfall=${formatDiagnosticsNumber(diagnostics.sampleReadiness.mappingRateShortfall)}`,
+        formatReadinessFlags(diagnostics.sampleReadiness)
+    ].join('; ');
+}
+
 interface CalibrationPair {
     prediction: number;
     actual: number;
@@ -256,17 +285,19 @@ function buildCalibrationConfidenceEnvelope(mappedLabels: CalibrationPair[]): Ca
 
 function buildCalibrationDiagnostics(
     terminalOutcomeCount: number,
+    eligibleTerminalOutcomeCount: number,
     calibrationSampleSize: number,
     confidenceEnvelope: CalibrationConfidenceEnvelope
 ): CalibrationDiagnostics {
     const observedTerminalOutcomes = Math.max(0, terminalOutcomeCount);
+    const observedEligibleTerminalOutcomes = Math.max(0, eligibleTerminalOutcomeCount);
     const normalizedEnvelopeSampleSize = Math.max(
         0,
         Math.round(asFiniteNumber(confidenceEnvelope.sampleSize, calibrationSampleSize))
     );
     const observedMappedOutcomes = normalizedEnvelopeSampleSize;
-    const observedMappingRateRaw = observedTerminalOutcomes > 0
-        ? observedMappedOutcomes / observedTerminalOutcomes
+    const observedMappingRateRaw = observedEligibleTerminalOutcomes > 0
+        ? observedMappedOutcomes / observedEligibleTerminalOutcomes
         : 0;
     const observedMappingRate = round(observedMappingRateRaw);
 
@@ -275,19 +306,22 @@ function buildCalibrationDiagnostics(
     const isSampleSizeReady = sampleSizeShortfall === 0;
     const isMappingRateReady = mappingRateShortfall === 0;
 
+    const sampleReadiness: CalibrationSampleReadiness = {
+        isSampleSizeReady,
+        isMappingRateReady,
+        sampleSizeShortfall,
+        mappingRateShortfall
+    };
+
     const baseDiagnostics = {
         minimumSampleSize: MIN_CALIBRATION_SAMPLE_SIZE,
         minimumMappingRate: MIN_CALIBRATION_MAPPING_RATE,
         observedTerminalOutcomes,
+        observedEligibleTerminalOutcomes,
         observedMappedOutcomes,
         observedSampleSize: observedMappedOutcomes,
         observedMappingRate,
-        sampleReadiness: {
-            isSampleSizeReady,
-            isMappingRateReady,
-            sampleSizeShortfall,
-            mappingRateShortfall
-        },
+        sampleReadiness,
         confidenceEnvelope: {
             ...confidenceEnvelope,
             sampleSize: observedMappedOutcomes
@@ -295,40 +329,82 @@ function buildCalibrationDiagnostics(
     };
 
     if (observedTerminalOutcomes === 0) {
+        const reasonCode = 'no_terminal_outcomes';
         return {
             readiness: 'no_terminal_outcomes',
-            reason: `Calibration metrics deferred: no terminal outcomes yet; sample_size_shortfall=${sampleSizeShortfall}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
+            reasonCode,
+            reason: buildReadinessReason(reasonCode, 'no_terminal_outcomes', {
+                observedTerminalOutcomes,
+                observedEligibleTerminalOutcomes,
+                observedMappedOutcomes,
+                observedMappingRateRaw,
+                sampleReadiness
+            }),
             ...baseDiagnostics
         };
     }
 
-    if (observedMappedOutcomes === 0) {
+    if (observedEligibleTerminalOutcomes === 0 || observedMappedOutcomes === 0) {
+        const reasonCode = observedEligibleTerminalOutcomes === 0
+            ? 'no_eligible_terminal_outcomes'
+            : 'no_mapped_outcomes';
         return {
             readiness: 'no_mapped_outcomes',
-            reason: `Calibration metrics deferred: no mapped terminal outcomes; sample_size_shortfall=${sampleSizeShortfall}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
+            reasonCode,
+            reason: buildReadinessReason(reasonCode, 'no_mapped_outcomes', {
+                observedTerminalOutcomes,
+                observedEligibleTerminalOutcomes,
+                observedMappedOutcomes,
+                observedMappingRateRaw,
+                sampleReadiness
+            }),
             ...baseDiagnostics
         };
     }
 
     if (!isSampleSizeReady) {
+        const reasonCode = 'insufficient_sample_size';
         return {
             readiness: 'insufficient_sample_size',
-            reason: `Calibration metrics deferred: mapped sample ${observedMappedOutcomes} is below minimum ${MIN_CALIBRATION_SAMPLE_SIZE}; sample_size_shortfall=${sampleSizeShortfall}; mapping_rate=${formatDiagnosticsNumber(observedMappingRateRaw)}; minimum_mapping_rate=${formatDiagnosticsNumber(MIN_CALIBRATION_MAPPING_RATE)}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
+            reasonCode,
+            reason: buildReadinessReason(reasonCode, 'insufficient_sample_size', {
+                observedTerminalOutcomes,
+                observedEligibleTerminalOutcomes,
+                observedMappedOutcomes,
+                observedMappingRateRaw,
+                sampleReadiness
+            }),
             ...baseDiagnostics
         };
     }
 
     if (!isMappingRateReady) {
+        const reasonCode = 'insufficient_mapping_rate';
         return {
             readiness: 'insufficient_mapping_rate',
-            reason: `Calibration metrics deferred: mapping rate ${formatDiagnosticsNumber(observedMappingRateRaw)} is below minimum ${formatDiagnosticsNumber(MIN_CALIBRATION_MAPPING_RATE)}; mapping_rate_shortfall=${formatDiagnosticsNumber(mappingRateShortfall)}; mapped_outcomes=${observedMappedOutcomes}; minimum_sample_size=${MIN_CALIBRATION_SAMPLE_SIZE}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
+            reasonCode,
+            reason: buildReadinessReason(reasonCode, 'insufficient_mapping_rate', {
+                observedTerminalOutcomes,
+                observedEligibleTerminalOutcomes,
+                observedMappedOutcomes,
+                observedMappingRateRaw,
+                sampleReadiness
+            }),
             ...baseDiagnostics
         };
     }
 
+    const reasonCode = 'ready';
     return {
         readiness: 'ready',
-        reason: `Calibration metrics active: sample-size and mapping-rate gates satisfied; mapped_outcomes=${observedMappedOutcomes}; terminal_outcomes=${observedTerminalOutcomes}; mapping_rate=${formatDiagnosticsNumber(observedMappingRateRaw)}. ${formatReadinessFlags(baseDiagnostics.sampleReadiness)}.`,
+        reasonCode,
+        reason: buildReadinessReason(reasonCode, 'ready', {
+            observedTerminalOutcomes,
+            observedEligibleTerminalOutcomes,
+            observedMappedOutcomes,
+            observedMappingRateRaw,
+            sampleReadiness
+        }),
         ...baseDiagnostics
     };
 }
@@ -402,6 +478,35 @@ function mergeMissingFields(primary: ExecutionOutcome, secondary: ExecutionOutco
         createdAt: primary.createdAt ?? secondary.createdAt,
         closedAt: primary.closedAt ?? secondary.closedAt
     };
+}
+
+function ensureRecommendationBucket(
+    byRecommendation: Map<string, RecommendationEvaluation>,
+    recommendationId: string,
+    owner = 'unassigned',
+    riskTier = 'unknown'
+): RecommendationEvaluation {
+    const existing = byRecommendation.get(recommendationId);
+    if (existing) {
+        if (existing.owner === 'unassigned' && owner !== 'unassigned') {
+            existing.owner = owner;
+        }
+        return existing;
+    }
+
+    const created: RecommendationEvaluation = {
+        recommendationId,
+        owner,
+        riskTier,
+        predictedSuccessProbability: 0.5,
+        outcomes: 0,
+        successes: 0,
+        failures: 0,
+        successRate: 0
+    };
+
+    byRecommendation.set(recommendationId, created);
+    return created;
 }
 
 function pickPreferredOutcome(a: ExecutionOutcome, b: ExecutionOutcome): ExecutionOutcome {
@@ -517,6 +622,7 @@ export function evaluateRecommendations(
     const attempts: number[] = [];
     const latencies: number[] = [];
     let terminalOutcomeCount = 0;
+    let eligibleTerminalOutcomeCount = 0;
     let nonTerminalOutcomeCount = 0;
     let successCount = 0;
 
@@ -538,11 +644,18 @@ export function evaluateRecommendations(
             latencies.push(Math.max(0, closedAt - createdAt));
         }
 
-        const recommendationId = outcome.recommendationId ? String(outcome.recommendationId) : null;
+        const recommendationId = outcome.recommendationId
+            ? String(outcome.recommendationId).trim()
+            : '';
         if (!recommendationId) continue;
 
-        const bucket = byRecommendation.get(recommendationId);
-        if (!bucket) continue;
+        eligibleTerminalOutcomeCount += 1;
+
+        const bucket = ensureRecommendationBucket(
+            byRecommendation,
+            recommendationId,
+            outcome.owner ?? 'unassigned'
+        );
 
         bucket.outcomes += 1;
         if (actualLabel > 0) {
@@ -568,12 +681,13 @@ export function evaluateRecommendations(
         });
 
     const calibrationSampleSize = mappedLabels.length;
-    const calibrationMappingRate = terminalOutcomeCount > 0
-        ? calibrationSampleSize / terminalOutcomeCount
+    const calibrationMappingRate = eligibleTerminalOutcomeCount > 0
+        ? calibrationSampleSize / eligibleTerminalOutcomeCount
         : 0;
     const calibrationConfidenceEnvelope = buildCalibrationConfidenceEnvelope(mappedLabels);
     const calibrationDiagnostics = buildCalibrationDiagnostics(
         terminalOutcomeCount,
+        eligibleTerminalOutcomeCount,
         calibrationSampleSize,
         calibrationConfidenceEnvelope
     );
@@ -594,12 +708,13 @@ export function evaluateRecommendations(
     const metrics: EvaluatorMetrics = {
         totalOutcomes: canonicalOutcomes.length,
         terminalOutcomes: terminalOutcomeCount,
+        eligibleTerminalOutcomes: eligibleTerminalOutcomeCount,
         nonTerminalOutcomes: nonTerminalOutcomeCount,
         successfulOutcomes: successCount,
         failedOutcomes: Math.max(0, terminalOutcomeCount - successCount),
         successRate: terminalOutcomeCount > 0 ? round(successCount / terminalOutcomeCount) : 0,
         mappedOutcomes: mappedLabels.length,
-        mappingRate: terminalOutcomeCount > 0 ? round(mappedLabels.length / terminalOutcomeCount) : 0,
+        mappingRate: round(calibrationMappingRate),
         calibrationSampleSize,
         averageAttempts: attempts.length > 0 ? round(mean(attempts), 2) : 0,
         averageLatencyMs: latencies.length > 0 ? round(mean(latencies), 2) : 0,

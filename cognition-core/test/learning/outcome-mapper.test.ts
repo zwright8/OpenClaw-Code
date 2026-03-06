@@ -156,3 +156,43 @@ test('outcomesFromGenericPayload supports nested arrays and recommendation fallb
     assert.equal(second?.createdAt, 20);
     assert.equal(second?.closedAt, 120);
 });
+
+test('outcomesFromTaskPackage resolves blocked recommendation ids via task lookup', () => {
+    const payload = {
+        blocked: [
+            {
+                taskId: 'task-9',
+                reason: 'rejected'
+            }
+        ]
+    };
+
+    const outcomes = outcomesFromTaskPackage(payload, new Map([['task-9', 'rec-9']]));
+
+    assert.equal(outcomes.length, 1);
+    assert.equal(outcomes[0]?.taskId, 'task-9');
+    assert.equal(outcomes[0]?.recommendationId, 'rec-9');
+    assert.equal(outcomes[0]?.status, 'rejected');
+});
+
+test('outcomesFromGenericPayload infers ids from nested request metadata and avoids failing unknown statuses', () => {
+    const payload = {
+        outcomes: [
+            {
+                request: {
+                    id: 'task-nested',
+                    recommendationId: 'rec-nested',
+                    createdAt: 42
+                }
+            }
+        ]
+    };
+
+    const outcomes = outcomesFromGenericPayload(payload);
+
+    assert.equal(outcomes.length, 1);
+    assert.equal(outcomes[0]?.taskId, 'task-nested');
+    assert.equal(outcomes[0]?.recommendationId, 'rec-nested');
+    assert.equal(outcomes[0]?.status, 'dispatched');
+    assert.equal(outcomes[0]?.createdAt, 42);
+});

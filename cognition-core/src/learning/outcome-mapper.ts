@@ -35,7 +35,7 @@ function normalizeStatus(value: unknown, sourceHint: SourceHint): EvaluationStat
     const normalized = String(value ?? '').trim().toLowerCase();
 
     if (!normalized) {
-        return sourceHint === 'package' ? 'dispatched' : 'failed';
+        return 'dispatched';
     }
 
     if (normalized === 'success') return 'completed';
@@ -51,10 +51,22 @@ function normalizeStatus(value: unknown, sourceHint: SourceHint): EvaluationStat
 function recommendationIdFromRow(row: Record<string, unknown>, taskId: string | undefined, recommendationByTaskId: RecommendationLookup): string | undefined {
     const request = asRecord(row.request);
     const requestContext = asRecord(request.context);
+    const result = asRecord(row.result);
+    const resultRequest = asRecord(result.request);
+    const resultRequestContext = asRecord(resultRequest.context);
 
     return asString(row.recommendationId)
+        ?? asString(row.sourceRecommendationId)
+        ?? asString(result.recommendationId)
+        ?? asString(result.sourceRecommendationId)
+        ?? asString(request.recommendationId)
+        ?? asString(request.sourceRecommendationId)
+        ?? asString(resultRequest.recommendationId)
+        ?? asString(resultRequest.sourceRecommendationId)
         ?? asString(requestContext.recommendationId)
         ?? asString(requestContext.sourceRecommendationId)
+        ?? asString(resultRequestContext.recommendationId)
+        ?? asString(resultRequestContext.sourceRecommendationId)
         ?? (taskId ? recommendationByTaskId.get(taskId) : undefined);
 }
 
@@ -74,10 +86,14 @@ function toExecutionOutcome(
     sourceHint: SourceHint = 'generic'
 ): ExecutionOutcome | null {
     const result = asRecord(row.result);
+    const request = asRecord(row.request);
 
     const taskId = asString(row.taskId)
         ?? asString(row.id)
-        ?? asString(result.taskId);
+        ?? asString(row.requestId)
+        ?? asString(result.taskId)
+        ?? asString(request.taskId)
+        ?? asString(request.id);
 
     const recommendationId = recommendationIdFromRow(row, taskId, recommendationByTaskId);
 
@@ -95,7 +111,7 @@ function toExecutionOutcome(
         status,
         owner: ownerFromRow(row),
         attempts: asFiniteNumber(row.attempts),
-        createdAt: asFiniteNumber(row.createdAt) ?? asFiniteNumber(asRecord(row.request).createdAt),
+        createdAt: asFiniteNumber(row.createdAt) ?? asFiniteNumber(request.createdAt),
         closedAt: asFiniteNumber(row.closedAt)
             ?? asFiniteNumber(row.completedAt)
             ?? asFiniteNumber(result.completedAt)
@@ -160,10 +176,13 @@ export function outcomesFromTaskPackage(
             const row = asRecord(item);
             const reason = asString(row.reason);
             const status = normalizeStatus(reason ?? 'rejected', 'package');
+            const taskId = asString(row.taskId) ?? asString(row.id);
 
             return {
-                taskId: asString(row.taskId) ?? asString(row.id),
-                recommendationId: asString(row.recommendationId),
+                taskId,
+                recommendationId: asString(row.recommendationId)
+                    ?? asString(row.sourceRecommendationId)
+                    ?? (taskId ? recommendationByTaskId.get(taskId) : undefined),
                 status,
                 owner: undefined,
                 attempts: 0,
