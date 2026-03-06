@@ -236,6 +236,47 @@ test('retry scheduling uses bounded exponential backoff with jitter', async () =
     assert.ok(delay3 >= 45 && delay3 <= 60);
 });
 
+test('fixed retry strategy keeps scheduling delay stable', async () => {
+    const clock = createClock(71_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 3,
+        retryDelayMs: 20,
+        retryStrategy: 'fixed',
+        retryBackoffMultiplier: 3,
+        maxRetryDelayMs: 200,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-fixed-backoff',
+        task: 'Exercise fixed retry strategy'
+    });
+
+    clock.set(71_100);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    const firstDelay = current.nextRetryAt - clock.now();
+    assert.equal(firstDelay, 20);
+
+    clock.set(current.nextRetryAt);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+
+    clock.set(current.deadlineAt + 1);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    const secondDelay = current.nextRetryAt - clock.now();
+    assert.equal(secondDelay, 20);
+});
+
 test('retry failures terminate and stay terminal without looping', async () => {
     const clock = createClock(80_000);
     let attempts = 0;

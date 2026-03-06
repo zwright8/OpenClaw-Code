@@ -629,6 +629,8 @@ export class TaskOrchestrator {
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
+        retryStrategy = 'exponential',
+        retryBackoffMultiplier = 2,
         maxRetryDelayMs = null,
         retryJitterRatio = DEFAULT_RETRY_JITTER_RATIO,
         circuitBreakerEnabled = true,
@@ -661,6 +663,10 @@ export class TaskOrchestrator {
             : 30_000;
         this.maxRetries = safeNonNegativeInteger(maxRetries, 1);
         this.retryDelayMs = safeNonNegativeNumber(retryDelayMs, 500);
+        this.retryStrategy = retryStrategy === 'fixed' ? 'fixed' : 'exponential';
+        this.retryBackoffMultiplier = Number.isFinite(retryBackoffMultiplier) && retryBackoffMultiplier >= 1
+            ? Number(retryBackoffMultiplier)
+            : 2;
         const defaultMaxRetryDelayMs = this.retryDelayMs * DEFAULT_MAX_RETRY_DELAY_MULTIPLIER;
         this.maxRetryDelayMs = maxRetryDelayMs === null || maxRetryDelayMs === undefined
             ? defaultMaxRetryDelayMs
@@ -1672,7 +1678,9 @@ export class TaskOrchestrator {
 
         const maxDelayMs = safeNonNegativeNumber(this.maxRetryDelayMs, baseDelayMs);
         const exponent = Math.min(safeNonNegativeInteger(lifecycle?.scheduledCount, 0), 30);
-        const exponentialDelayMs = baseDelayMs * (2 ** exponent);
+        const strategyDelayMs = this.retryStrategy === 'fixed'
+            ? baseDelayMs
+            : baseDelayMs * (this.retryBackoffMultiplier ** exponent);
 
         const consecutiveFailures = safeNonNegativeInteger(lifecycle?.consecutiveFailures, 0);
         const failureMultiplier = 1 + Math.min(consecutiveFailures, 4) * 0.15;
@@ -1680,7 +1688,7 @@ export class TaskOrchestrator {
             ? 1.25
             : 1;
 
-        const uncappedDelayMs = exponentialDelayMs * failureMultiplier * reasonMultiplier;
+        const uncappedDelayMs = strategyDelayMs * failureMultiplier * reasonMultiplier;
         const cappedDelayMs = Math.min(maxDelayMs, uncappedDelayMs);
 
         if (cappedDelayMs === 0 || this.retryJitterRatio <= 0) {
