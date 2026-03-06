@@ -20,13 +20,19 @@ Use this checklist before delivering any mission recommendation.
 - Verify schema completeness and mandatory field population.
 - Confirm transport path and fallback path if primary comms are degraded.
 
-## 4) Risk and Branch Planning
+## 4) Tool Invocation Packet Completeness
+
+- For each critical tool dependency, include objective, required inputs, query/action template, and expected output schema.
+- Confirm protocol/transport is explicit for each dependency and maps to the receiving system.
+- Document manual fallback procedures and expected mission impact if integration is unavailable.
+
+## 5) Risk and Branch Planning
 
 - Identify top mission risks, likelihood, impact, and mitigations.
 - Define branch/sequel triggers with objective thresholds.
 - Note assumptions that would invalidate the recommendation.
 
-## 5) Human Review and Handoff
+## 6) Human Review and Handoff
 
 - Provide a concise commander summary and a staff execution task list.
 - Include provenance: source systems, pull time, confidence, and known gaps.
@@ -35,8 +41,10 @@ Use this checklist before delivering any mission recommendation.
 ## Required Output Footer (append to products)
 
 - `Sources:`
+- `Tool stack:`
 - `Protocols/Formats:`
 - `Last refresh (UTC):`
 - `Confidence:`
 - `Known gaps:`
+- `Fallback if tool unavailable:`
 - `Classification/Handling:`
