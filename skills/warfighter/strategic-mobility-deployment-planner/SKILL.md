@@ -40,6 +40,12 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, or `OGC`).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
+## Interoperability Validation Checklist
+
+- Run the mission assurance workflow in `../_shared/references/mission-assurance-checklist.md` before final release.
+- Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
+- If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.
