@@ -182,3 +182,32 @@ Include these fields in outputs when tool integration is used:
 
 - Use `joint-mission-data-contracts.md` to choose a domain profile and validate required fields before releasing any recommendation.
 - Include the selected `contract_id` and gate status (schema/freshness/provenance/consistency/releasability) in outputs that drive operational decisions.
+
+## Domain Toolchain Profiles (2026-03-06 Expansion)
+
+- Electromagnetic protection and waveform agility: EW mission data tools + spectrum analytics + Link 16/USMTF/API
+- Autonomous wingman governance: autonomy control stations + authority policy engines + API/JSON + USMTF
+- GPS-denied precision landing: TRN/pseudolite planners + weather minima tools + USMTF + AIXM/FIXM
+- Humanitarian corridor deconfliction: coalition movement boards + civil access trackers + NATO APP-11 + OGC + USMTF
+- Polar subsea cable sabotage detection: undersea telemetry + maritime anomaly engines + AIS/NMEA + USMTF
+- Biomanufacturing countermeasure surge: MES/QA systems + med logistics C2 + API/JSON + HL7/FHIR + USMTF
+- Data-diode cross-domain sync: CDS guards + transfer orchestrators + schema validators + XML/JSON + USMTF
+- Civil defense mass evacuation: ICS dashboards + transport routing + shelter management + NIMS/ICS + CAP + EDXL-DE
+- Electromagnetic environmental effects hardening: E3 models + platform vulnerability DB + mission assurance dashboards + API/JSON
+- Campaign red-cell wargaming: simulation engines + adversary behavior models + API/JSON + USMTF summaries
+- Maritime autonomous traffic control: uncrewed vessel managers + maritime COP + collision analytics + AIS/NMEA + COLREGS-aligned outputs
+- Allied munitions interoperability: munitions ERP + safety compliance tools + NATO logistics formats + USMTF
+- Tactical quantum sensing fusion: quantum feed brokers + ISR fusion stacks + OGC/API + USMTF
+- Directed-energy thermal and power budgeting: platform power managers + thermal models + API/JSON + USMTF
+- Contested legal attribution: forensic evidence chains + legal decision workflows + STIX/TAXII + API/JSON + USMTF
+- Space-weather PNT/comms degradation: space weather feeds + timing integrity monitors + API/JSON + USMTF + Link 16
+- Counter-swarm logistics protection: C-UAS C2 + convoy route risk engines + Link 16/VMF/CoT
+- Waterway denial and bridge control: riverine C2 + engineer planning + VMF/CoT + USMTF
+- Battlefield digital twin infrastructure: digital twin simulators + telemetry buses + OGC/API + USMTF
+- Tactical climate adaptation: climate hazard models + weather effects decision tools + API/JSON + USMTF
+
+## Additional Interoperability Standards
+
+- `EDXL-DE/CAP`: emergency data exchange and public warning message packaging for civil defense workflows
+- `COLREGS-aligned machine rules`: maritime collision-avoidance interoperability constraints for uncrewed traffic control
+- `AIXM/FIXM procedure subsets`: precision approach/landing data exchange for contested-airfield and degraded nav operations

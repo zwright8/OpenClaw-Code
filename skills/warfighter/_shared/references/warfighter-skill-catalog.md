@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 240
+- Total warfighter skills in this repo: 260
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -221,3 +221,26 @@ Every skill output should include:
 - electromagnetic-signature-lifecycle-management-cell
 - contested-orbit-pnt-augmentation-cell
 - adversary-kill-web-vulnerability-mapping-cell
+
+## New Expansion Wave (2026-03-06, Full-Spectrum Edge Cases and Governance)
+
+- joint-electromagnetic-protection-waveform-agility-cell
+- autonomous-wingman-engagement-governance-cell
+- gps-denied-precision-approach-landing-cell
+- coalition-humanitarian-corridor-deconfliction-cell
+- polar-subsea-cable-sabotage-detection-cell
+- strategic-biomanufacturing-countermeasure-cell
+- expeditionary-data-diode-cross-domain-sync-cell
+- civil-defense-mass-evacuation-shelter-cell
+- electromagnetic-environmental-effects-hardening-cell
+- joint-campaign-red-cell-simulation-wargaming-cell
+- maritime-autonomous-vessel-traffic-control-cell
+- allied-munitions-safety-stock-interoperability-cell
+- tactical-quantum-sensing-anomaly-fusion-cell
+- directed-energy-thermal-power-budget-cell
+- contested-legal-attribution-responsibility-cell
+- space-weather-pnt-comms-degradation-cell
+- counter-swarm-logistics-denial-protection-cell
+- expeditionary-waterway-denial-bridge-control-cell
+- joint-digital-twin-battlefield-infrastructure-cell
+- tactical-climate-hazard-mission-adaptation-cell

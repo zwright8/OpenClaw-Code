@@ -129,3 +129,48 @@ Tool Invocation Packet
 - Fallback Procedure: enforce comms priority matrix and issue timing delta by unit
 - Confidence Impact if Degraded: medium-high
 ```
+
+## Playbook: Autonomous Teaming Governance
+
+```text
+Tool Invocation Packet
+- Tool/System: autonomy mission manager + authority policy engine
+- Objective: enforce human command authority boundaries for autonomous teammates
+- Inputs: mission phase, authority profile, ROE constraints, comms latency
+- Query or Action Template: evaluate requested autonomous actions against authority matrix and veto points
+- Expected Output Schema: action_id, authority_state, required_human_gate, confidence, override_path
+- Protocol/Transport: API/JSON + USMTF command summary
+- Primary/Alternate/Degraded: policy engine / manual authority board / autonomous observe-only mode
+- Fallback Procedure: freeze autonomy to assist-only behaviors and notify command cell
+- Confidence Impact if Degraded: medium-high
+```
+
+## Playbook: Civil Defense Evacuation and Shelter Operations
+
+```text
+Tool Invocation Packet
+- Tool/System: emergency operations dashboard + evacuation routing + shelter manager
+- Objective: move at-risk populations and prevent shelter overload
+- Inputs: hazard map, population sectors, transport assets, shelter occupancy
+- Query or Action Template: generate phased evacuation route and shelter assignment recommendations
+- Expected Output Schema: sector_id, departure_window, route_id, shelter_id, occupancy_projection, risk
+- Protocol/Transport: NIMS/ICS + EDXL-DE + CAP
+- Primary/Alternate/Degraded: integrated dashboard / liaison board / local triage bulletin
+- Fallback Procedure: prioritize life-safety sectors and issue manual zone bulletins every 2 hours
+- Confidence Impact if Degraded: high
+```
+
+## Playbook: Cross-Domain Data Diode Synchronization
+
+```text
+Tool Invocation Packet
+- Tool/System: data-diode controller + cross-domain guard + schema validator
+- Objective: transfer mission-critical data between security domains with releasability controls
+- Inputs: source payload, release tags, destination schema, sync window
+- Query or Action Template: validate release policy, transform schema, publish one-way transfer manifest
+- Expected Output Schema: transfer_id, source_hash, destination_hash, releasability_status, validation_state
+- Protocol/Transport: XML/JSON + USMTF metadata wrapper
+- Primary/Alternate/Degraded: automated diode sync / staged batch transfer / text-only critical summary
+- Fallback Procedure: issue minimal critical report and schedule full sync at next approved window
+- Confidence Impact if Degraded: medium
+```

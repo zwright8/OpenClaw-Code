@@ -76,3 +76,9 @@ Primary products for this skill: edge biometric verification plan, identity conf
 
 - Use mapping guidance in ../_shared/references/joint-mission-data-contracts.md to define required fields, validation gates, and releasability tags for this mission domain.
 - Ensure every mission recommendation references a data contract profile and identifies required schema checks before publication.
+
+## Operational Learning Loop
+
+- Use `../_shared/references/operational-learning-and-after-action-loop.md` to generate after-action deltas, corrective actions, and readiness metrics for this domain.
+- Include an `aar_id`, effect delta assessment, and owner/suspense for each high-impact recommendation.
+- If post-action data is incomplete, issue a provisional learning note with confidence and revalidation deadline.
