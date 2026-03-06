@@ -242,10 +242,19 @@ function toSignedPct(v: number): number {
   return round(v * 100, 2);
 }
 
+const DETERMINISTIC_TIMESTAMP_WINDOW_START_MS = Date.UTC(2024, 0, 1, 0, 0, 0, 0);
+const DETERMINISTIC_TIMESTAMP_WINDOW_END_MS = Date.UTC(2101, 0, 1, 0, 0, 0, 0) - 1;
+const DETERMINISTIC_TIMESTAMP_WINDOW_SPAN_MS =
+  BigInt(DETERMINISTIC_TIMESTAMP_WINDOW_END_MS - DETERMINISTIC_TIMESTAMP_WINDOW_START_MS + 1);
+
+function deterministicEpochMsFromSeed(seed: string): number {
+  const hex = createHash('sha256').update(seed).digest('hex').slice(0, 16);
+  const offset = BigInt(`0x${hex}`) % DETERMINISTIC_TIMESTAMP_WINDOW_SPAN_MS;
+  return DETERMINISTIC_TIMESTAMP_WINDOW_START_MS + Number(offset);
+}
+
 function deterministicIsoFromSeed(seed: string): string {
-  const hex = createHash('sha256').update(seed).digest('hex').slice(0, 12);
-  const seedTime = Number.parseInt(hex, 16);
-  return new Date(seedTime).toISOString();
+  return new Date(deterministicEpochMsFromSeed(seed)).toISOString();
 }
 
 function deterministicUuid(seed: string): string {
@@ -564,7 +573,7 @@ export function buildRemediationTaskPlanArtifact(
   const orderedRemediationPlan = [...remediationPlan].sort(compareRemediationItems);
   const orderedThresholdBreaches = [...thresholdBreaches].sort(compareThresholdBreaches);
   const planSeed = stableRemediationSeed(orderedRemediationPlan, orderedThresholdBreaches);
-  const seedTime = Number.parseInt(planSeed.slice(0, 12), 16);
+  const seedTime = deterministicEpochMsFromSeed(`${sourceReport}|${planSeed}`);
   const sourceSeed = `${sourceReport}|${planSeed}`;
   const generatedAt = new Date(seedTime).toISOString();
 

@@ -4,7 +4,7 @@ import { runFeedbackLoop } from '../../src/learning/feedback-loop.js';
 import { buildScoreboard } from '../../src/report/scoreboard.js';
 import { buildDailyJsonReport } from '../../src/report/json.js';
 import { renderDailyMarkdownReport } from '../../src/report/markdown.js';
-import { buildDeterministicBenchmarkDeltas } from '../../scripts/productivity-scorecard.js';
+import { buildDeterministicBenchmarkDeltas, generateProductivityScorecard } from '../../scripts/productivity-scorecard.js';
 import { buildRemediationTaskArtifacts } from '../../scripts/plan-remediation-tasks.js';
 
 test('daily report builders produce JSON and markdown artifacts', () => {
@@ -72,6 +72,18 @@ test('scorecard benchmark deltas are deterministic and comparator-aware', () => 
         after: 72.5,
         delta: 2.5
     });
+});
+
+test('productivity scorecard emits contract-safe generatedAt and deterministic threshold diagnostics', async () => {
+    const first = await generateProductivityScorecard();
+    const second = await generateProductivityScorecard();
+
+    const year = Number(String(first.generatedAt).slice(0, 4));
+    assert.ok(Number.isInteger(year));
+    assert.ok(year >= 2024 && year <= 2100);
+    assert.ok(first.thresholdChecks);
+    assert.deepEqual(first.thresholdChecks, second.thresholdChecks);
+    assert.deepEqual(first.regressionGates, second.regressionGates);
 });
 
 test('remediation artifact bundle maps breached metrics to explicit tasks', () => {
