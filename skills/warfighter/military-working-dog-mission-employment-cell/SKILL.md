@@ -65,6 +65,12 @@ Primary products for this skill: MWD mission assignment board, handler-team read
 - Include escalation triggers in measurable terms and map each trigger to an owner and required report format.
 - Provide a no-fail communication fallback for each escalation path (alternate network, voice relay, or courier) with expected delay.
 
+## Minimum Data Feed Contract
+
+- Name one authoritative primary feed, one independent cross-check feed, and one degraded/manual feed for this mission.
+- Set freshness thresholds for each feed and define the stale-data action when thresholds are breached.
+- Annotate release caveats and handling constraints before sharing outputs across echelons or coalition boundaries.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.

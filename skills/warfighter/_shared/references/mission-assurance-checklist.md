@@ -63,3 +63,9 @@ Use this checklist before delivering any mission recommendation.
 - Confirm at least two adjacent cells are identified for escalation based on mission risk thresholds.
 - Confirm each escalation trigger is measurable and includes an owner plus required report format.
 - Confirm each escalation path has a no-fail comms fallback and expected delay annotation.
+
+## 9) Minimum Data Feed Assurance
+
+- Confirm each product identifies one primary feed, one independent cross-check feed, and one degraded/manual feed.
+- Confirm freshness thresholds and stale-data actions are explicit for every critical feed.
+- Confirm releasability/handling caveats are attached before any cross-echelon or coalition dissemination.
