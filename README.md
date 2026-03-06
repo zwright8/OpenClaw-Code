@@ -370,6 +370,7 @@ Overload containment notes:
 - `maxInFlightPerTarget` applies a bulkhead cap so one worker cannot be saturated by unlimited concurrent dispatches.
 - `maxInFlightGlobal` caps total in-flight dispatches (`dispatched` + `acknowledged`) across all targets.
 - When a bulkhead or circuit gate blocks dispatch, tasks move to `retry_scheduled` and are retried with the normal backoff strategy.
+- Rejected receipts with transient overload signals (for example `worker_overloaded`, `rate_limit`, or `retry_after` hints) are rescheduled instead of terminally rejected when retry budget remains.
 
 Safety policy integration:
 ```js

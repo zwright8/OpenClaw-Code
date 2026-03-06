@@ -32,6 +32,23 @@ const DEFAULT_GLOBAL_RETRY_BUDGET_RATIO = 0.2;
 const DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS = 60_000;
 const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS = 5;
 const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES = 1;
+const TRANSIENT_REJECTION_REASON_MARKERS = [
+    'overload',
+    'overloaded',
+    'busy',
+    'throttle',
+    'rate_limit',
+    'rate-limit',
+    'retry_after',
+    'retry-after',
+    'temporar',
+    'unavailable',
+    'try_again',
+    'try-again',
+    'queue_full',
+    'queue-full',
+    'capacity'
+];
 
 const RETRY_SCHEDULE_REASON_BY_CODE = new Map([
     ['timeout', 'timeout'],
@@ -46,6 +63,7 @@ const RETRY_SCHEDULE_REASON_BY_CODE = new Map([
     ['approval_release', 'approval_release_failed'],
     ['circuit_open', 'target_circuit_open'],
     ['target_circuit_open', 'target_circuit_open'],
+    ['worker_transient_rejection', 'worker_transient_rejection'],
     ['bulkhead', 'bulkhead_limit'],
     ['bulkhead_limit', 'bulkhead_limit']
 ]);
@@ -61,6 +79,8 @@ const RETRY_DISPATCH_REASON_BY_CODE = new Map([
     ['approval_release', 'approval_release_retry'],
     ['target_circuit_open', 'target_circuit_open_retry'],
     ['target_circuit_open_retry', 'target_circuit_open_retry'],
+    ['worker_transient_rejection', 'worker_transient_rejection_retry'],
+    ['worker_transient_rejection_retry', 'worker_transient_rejection_retry'],
     ['bulkhead_limit', 'bulkhead_limit_retry'],
     ['bulkhead_limit_retry', 'bulkhead_limit_retry']
 ]);
@@ -293,6 +313,33 @@ function canonicalRetryScheduleReason(reason) {
 function canonicalRetryDispatchReason(reason) {
     const parsed = parseReason(reason, 'timeout');
     return RETRY_DISPATCH_REASON_BY_CODE.get(parsed.code) || 'timeout_retry';
+}
+
+function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
+    if (typeof reason !== 'string' || !reason.trim()) return null;
+    const text = reason.trim();
+
+    const msMatch = text.match(/retry[_-]?after(?:[_-]?ms)?\s*[:=]\s*(\d+)\s*ms/i);
+    if (msMatch) return Number(msMatch[1]);
+
+    const secMatch = text.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?/i);
+    if (secMatch) return Number(secMatch[1]) * 1000;
+
+    const dateMatch = text.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},.+)$/i);
+    if (dateMatch) {
+        const dateMs = Date.parse(dateMatch[1].trim());
+        if (Number.isFinite(dateMs)) {
+            return Math.max(0, dateMs - nowMs);
+        }
+    }
+
+    return null;
+}
+
+function isTransientRejectionReason(reason) {
+    const normalized = normalizeReasonToken(reason, null);
+    if (!normalized) return false;
+    return TRANSIENT_REJECTION_REASON_MARKERS.some((marker) => normalized.includes(marker));
 }
 
 function buildTerminalReasonCountKey(reason, reasonCode, reasonContext, fallbackCode = 'unknown') {
@@ -1764,6 +1811,36 @@ export class TaskOrchestrator {
         record.updatedAt = receipt.timestamp;
 
         if (!receipt.accepted) {
+            const etaHintMs = Number.isFinite(receipt.etaMs) ? Number(receipt.etaMs) : null;
+            const reasonHintMs = parseRetryHintMsFromReason(receipt.reason, receipt.timestamp);
+            const retryHintMs = Number.isFinite(etaHintMs)
+                ? etaHintMs
+                : reasonHintMs;
+            const transientRejection = Number.isFinite(retryHintMs)
+                || isTransientRejectionReason(receipt.reason);
+
+            if (transientRejection) {
+                const scheduledAt = this._scheduleRetry(
+                    record,
+                    receipt.timestamp,
+                    'worker_transient_rejection',
+                    {
+                        retryHintMs
+                    }
+                );
+                if (scheduledAt !== null) {
+                    this._emitAudit('task_rejected_retry_scheduled', {
+                        taskId: record.taskId,
+                        from: receipt.from,
+                        reason: receipt.reason || 'worker_transient_rejection',
+                        reasonCode: 'worker_transient_rejection',
+                        reasonContext: normalizeReasonContext(receipt.reason),
+                        nextRetryAt: scheduledAt
+                    }, receipt.timestamp);
+                    return true;
+                }
+            }
+
             record.status = 'rejected';
             record.closedAt = receipt.timestamp;
 
@@ -1913,7 +1990,10 @@ export class TaskOrchestrator {
     _scheduleRetry(record, nowMs, reason = 'timeout', options = {}) {
         const lifecycle = this._normalizeRetryLifecycle(record);
         const scheduleReason = canonicalRetryScheduleReason(reason);
-        const retryHintMs = this._extractRetryHintMs(options?.error);
+        const directRetryHintMs = Number(options?.retryHintMs);
+        const retryHintMs = Number.isFinite(directRetryHintMs) && directRetryHintMs >= 0
+            ? directRetryHintMs
+            : this._extractRetryHintMs(options?.error);
 
         if (this._isRetryBudgetExhausted(record)) {
             const terminalReason = `retry_budget_exhausted:${scheduleReason}`;
