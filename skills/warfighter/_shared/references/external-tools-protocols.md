@@ -36,6 +36,10 @@ For each external tool recommendation, include:
 - Medical tools: patient regulation systems, medical logistics inventories, blood program trackers
 - Training/simulation tools: JCATS/JTLS-style simulation, mission rehearsal systems, digital ranges
 - Software factory tools: CI/CD pipelines, SBOM scanners, artifact repositories, security test suites
+- Data governance tools: schema registries, data contract validators, cross-domain mapping services
+- PNT integrity tools: anti-spoof monitoring, inertial cross-check engines, timing anomaly detectors
+- Directed-energy support tools: power and thermal management telemetry, fire-control integration boards
+- Cislunar SDA tools: deep-space object catalogs, conjunction risk engines, service dependency dashboards
 
 ## Domain-to-Tool and Protocol Matrix
 
@@ -91,6 +95,18 @@ Use profile selections that fit the mission domain:
 - Strategic aeromedical flow: patient movement systems + bed management + airlift scheduling + USMTF/HL7/API
 - Maritime convoy and sea-lane defense: fleet C2 + AIS + ASW feeds + Link 16/AIS/USMTF
 - Counter-space electronic attack response: SATCOM monitoring + EW indicators + network defense tools + API/JSON/USMTF/STIX
+- Quantum-resistant network transition: crypto inventory systems + key management + interoperability validators + API/JSON/USMTF
+- Cislunar space awareness: deep-space catalogs + SATCOM service monitors + mission dependency boards + API/JSON/USMTF
+- Collaborative combat aircraft integration: air C2 + autonomy mission managers + link health monitors + Link 16/VMF/USMTF
+- Directed-energy defense integration: IAMD C2 + power-thermal telemetry + fire-control status + Link 16/USMTF/API
+- Undersea sensor-grid fusion: undersea surveillance feeds + ocean models + maritime COP + AIS/NMEA/USMTF/OGC
+- Expeditionary seabasing and offshore staging: afloat logistics dashboards + maritime C2 + weather-ocean feeds + AIS/USMTF/OGC
+- GPS spoofing and nav integrity: PNT integrity tools + EW detections + inertial cross-checks + USMTF/Link 16/API
+- Tactical data-fabric schema governance: schema registries + cross-domain gateways + validation services + API/OGC/USMTF
+- Autonomous attritable swarm operations: UxS mission control + autonomy telemetry + tactical COP + CoT/VMF/Link 16
+- Strategic food and water resilience: sustainment C2 + purification telemetry + contamination monitoring + USMTF/API/HL7
+- Contested electromagnetic signature management: EW planners + emission-control status + spectrum sensors + USMTF/Link 16/API
+- Joint forcible-entry sea-air landing synchronization: amphibious planners + airlift planners + fires C2 + USMTF/VMF/Link 16
 
 ## Integration Interfaces and Transports
 

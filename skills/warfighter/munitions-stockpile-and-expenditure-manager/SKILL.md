@@ -40,6 +40,7 @@ Use these tool categories as the default stack for this skill: enterprise logist
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in ../_shared/references/external-tools-protocols.md and select specific systems-of-record aligned to this mission.
+- Use the action templates in `../_shared/references/tool-protocol-playbooks.md` to standardize operator-ready tool and escalation packets.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
 - Use at least one primary source and one cross-check source before final recommendations.
 - Prefer these protocol families for this skill: USMTF, XML/JSON schema exchange, API gateways.

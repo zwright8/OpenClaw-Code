@@ -4,9 +4,9 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 175
+- Total warfighter skills in this repo: 187
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
-- Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
+- Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, force generation/reconstitution, and emerging domains (cislunar, quantum-resilient networking, autonomous collaborative aviation).
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
 
 ## Domain Coverage Matrix
@@ -139,3 +139,18 @@ Every skill output should include:
 - high-altitude-platform-isr-integration-cell
 - maritime-convoy-escort-and-sea-lane-defense-cell
 - counter-space-electronic-attack-response-cell
+
+## New Expansion Wave (2026-03-06, Emerging Domain Completeness)
+
+- quantum-resistant-tactical-network-transition-cell
+- cislunar-space-domain-awareness-support
+- collaborative-combat-aircraft-mission-integration
+- directed-energy-defense-integration-cell
+- undersea-sensor-grid-fusion-cell
+- expeditionary-seabasing-and-offshore-staging-coordinator
+- gps-spoofing-detection-and-nav-integrity-cell
+- tactical-data-fabric-schema-governance-cell
+- autonomous-attritable-swarm-operations-cell
+- strategic-food-water-security-resilience-cell
+- contested-electromagnetic-signature-management-cell
+- joint-forcible-entry-sea-air-landing-synchronizer

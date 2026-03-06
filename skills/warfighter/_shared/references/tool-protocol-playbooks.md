@@ -55,6 +55,12 @@ For each cross-domain escalation, provide:
 - Action pattern: detect attack/interference indicators, triage impacted services, issue restoration and protection tasks
 - Protocol baseline: `API/JSON`, `USMTF`, `STIX/TAXII`, `Link 16 J-series` where applicable
 
+### Cislunar and Deep-Space Domain Awareness
+
+- Primary systems: deep-space object catalogs, cislunar conjunction risk engines, mission service dependency maps
+- Action pattern: triage conjunction and interference events, rank service-impact risk, publish restoration and warning packets
+- Protocol baseline: `API/JSON`, `USMTF`, `OGC`, `STIX/TAXII`
+
 ### Personnel Recovery and Aeromedical Flow
 
 - Primary systems: PR coordination tools, patient movement systems, bed and lift planners
@@ -67,11 +73,35 @@ For each cross-domain escalation, provide:
 - Action pattern: posture passive defenses, sequence restoration actions, trigger displacement and sustainment branches
 - Protocol baseline: `USMTF`, `CoT`, `API/JSON`
 
+### Expeditionary Seabasing and Offshore Staging
+
+- Primary systems: maritime C2 suites, afloat logistics boards, weather-ocean forecast feeds
+- Action pattern: evaluate staging posture, rebalance afloat sustainment loads, publish sea-base branch options
+- Protocol baseline: `AIS/NMEA`, `USMTF`, `OGC`, `Link 16 J-series`
+
 ### Cyber, EMSO, and Information Operations
 
 - Primary systems: SIEM/SOAR, endpoint telemetry, EW mission tools, audience assessment dashboards
 - Action pattern: correlate events by mission thread, prioritize mitigations/effects, issue synchronized response tasks
 - Protocol baseline: `STIX/TAXII`, `API/JSON`, `USMTF`
+
+### Electromagnetic Signature and PNT Integrity Management
+
+- Primary systems: spectrum monitoring systems, emission-control status tools, PNT integrity monitors, inertial cross-check services
+- Action pattern: detect spoofing/signature anomalies, trigger emission-control branches, publish navigation fallback tasks
+- Protocol baseline: `USMTF`, `Link 16 J-series`, `API/JSON`, `CoT`
+
+### Data Fabric Schema Governance
+
+- Primary systems: schema registries, data contract validators, cross-domain gateway policy engines
+- Action pattern: detect schema drift, prioritize migration path, publish translation risk and cutover plan
+- Protocol baseline: `API/JSON`, `OGC`, `USMTF`, `NATO APP-11/ADatP-3`
+
+### Collaborative Combat Aircraft and Autonomous Swarm Integration
+
+- Primary systems: air C2 mission managers, autonomy control consoles, data-link health monitors
+- Action pattern: assign crewed-uncrewed tasking, monitor command integrity, trigger fallback control profile
+- Protocol baseline: `Link 16 J-series`, `VMF`, `CoT`, `USMTF`, `API/JSON`
 
 ### Sustainment, Mobility, and Industrial Base
 
