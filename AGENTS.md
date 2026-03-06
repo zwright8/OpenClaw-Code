@@ -1,6 +1,7 @@
 # AGENTS.md
 
 ## Verified Workflows (Repo-Root)
+- `npm run lint` - run root automated refactor/lint pass (`scripts/auto-refactor.ts`).
 - `npm run typecheck` - typecheck root + `cognition-core` + `swarm-protocol`.
 - `npm run build` - runs root lint plus tests in both packages.
 - `npm run capabilities:blueprint` - regenerate capability blueprint artifacts.
@@ -51,6 +52,8 @@
 - `npm run skills:materialize:10000` - materialize generated 10k skill outputs.
 
 ## Verified Package Workflows
+- `npm --prefix cognition-core run test` - run cognition-core test suite.
+- `npm --prefix cognition-core run typecheck` - run cognition-core TypeScript type checks.
 - `npm --prefix cognition-core run analyze` - generate 7-day cognition analysis.
 - `npm --prefix cognition-core run plan:tasks` - emit remediation task requests.
 - `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
@@ -68,6 +71,10 @@
 - `npm --prefix cognition-core run tune:recommendations` - tune recommendation outputs based on recent outcomes.
 - `npm --prefix cognition-core run full:utilization` - run full utilization analysis/report workflow.
 - `npm --prefix cognition-core run stability:whatsapp` - build 24-hour WhatsApp stability reports (JSON + Markdown).
+- `npm --prefix swarm-protocol run test` - run full swarm-protocol test suite (`test:unit` + `test:legacy`).
+- `npm --prefix swarm-protocol run test:unit` - run swarm-protocol unit tests only.
+- `npm --prefix swarm-protocol run test:legacy` - run swarm-protocol legacy test harness.
+- `npm --prefix swarm-protocol run typecheck` - run swarm-protocol TypeScript type checks.
 - `npm --prefix swarm-protocol run demo:orchestrator` - run orchestrator demo flow.
 - `npm --prefix swarm-protocol run approval:queue` - export approval queue reports.
 - `npm --prefix swarm-protocol run benchmark:simulate` - run simulation benchmark scenario.
