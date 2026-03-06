@@ -33,6 +33,13 @@ Deliver results in this order:
 
 Primary products for this skill: mission brief, decision support matrix, branch-and-sequel table.
 
+## External Tools and Protocol Integration
+
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Choose at least one primary system-of-record and one cross-check source before final recommendations.
+- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, or `OGC`).
+- Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.
