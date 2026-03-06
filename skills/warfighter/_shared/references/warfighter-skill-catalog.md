@@ -4,8 +4,8 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 172
-- Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
+- Total warfighter skills in this repo: 188
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
 ## Domain Coverage Matrix
@@ -110,6 +110,25 @@ This catalog maps warfighter skill coverage across major military action domains
 - human-performance-and-combat-stress-risk-cell
 - space-ground-integration-and-reentry-risk-cell
 - joint-special-access-and-compartmented-integration-cell
+
+## New Expansion Wave (2026-03-06, Warfighter Capability Deepening)
+
+- homeland-integrated-airspace-security-cell
+- contested-orbital-servicing-and-debris-mitigation-cell
+- maritime-chokepoint-control-and-blockade-analysis-cell
+- electronic-warfare-mission-data-reprogramming-cell
+- long-range-precision-fires-deep-sensing-integration-cell
+- expeditionary-cold-chain-biomedical-sustainment-cell
+- joint-cyber-electromagnetic-target-development-cell
+- deception-signature-management-and-decoy-employment-cell
+- ai-enabled-language-and-cultural-mediation-cell
+- strategic-critical-materials-security-cell
+- autonomous-maritime-uncrewed-corridor-manager
+- denied-pnt-time-synchronization-cell
+- joint-rear-area-security-and-sabotage-response-cell
+- contested-undersea-communications-resilience-cell
+- defense-innovation-transition-and-experimentation-cell
+- mission-finance-and-disconnected-payments-support-cell
 
 ## Suggested Cross-Skill Pairings
 

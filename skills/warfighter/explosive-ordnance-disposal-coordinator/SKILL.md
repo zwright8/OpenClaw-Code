@@ -59,3 +59,8 @@ Primary products for this skill: EOD support prioritization board, response time
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## Tool Protocol Playbooks
+
+- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
+- Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
