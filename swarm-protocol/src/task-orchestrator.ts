@@ -16,6 +16,10 @@ const OPEN_STATUSES = new Set([
     'acknowledged',
     'retry_scheduled'
 ]);
+const IN_FLIGHT_STATUSES = new Set([
+    'dispatched',
+    'acknowledged'
+]);
 
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
 const CIRCUIT_CLOSED = 'closed';
@@ -39,7 +43,11 @@ const RETRY_SCHEDULE_REASON_BY_CODE = new Map([
     ['transport_failure_retry', 'transport_failure'],
     ['approval_release_failed', 'approval_release_failed'],
     ['approval_release_retry', 'approval_release_failed'],
-    ['approval_release', 'approval_release_failed']
+    ['approval_release', 'approval_release_failed'],
+    ['circuit_open', 'target_circuit_open'],
+    ['target_circuit_open', 'target_circuit_open'],
+    ['bulkhead', 'bulkhead_limit'],
+    ['bulkhead_limit', 'bulkhead_limit']
 ]);
 
 const RETRY_DISPATCH_REASON_BY_CODE = new Map([
@@ -50,7 +58,11 @@ const RETRY_DISPATCH_REASON_BY_CODE = new Map([
     ['transport_error', 'transport_failure_retry'],
     ['approval_release_retry', 'approval_release_retry'],
     ['approval_release_failed', 'approval_release_retry'],
-    ['approval_release', 'approval_release_retry']
+    ['approval_release', 'approval_release_retry'],
+    ['target_circuit_open', 'target_circuit_open_retry'],
+    ['target_circuit_open_retry', 'target_circuit_open_retry'],
+    ['bulkhead_limit', 'bulkhead_limit_retry'],
+    ['bulkhead_limit_retry', 'bulkhead_limit_retry']
 ]);
 
 const TERMINAL_REASON_CANONICAL_CODE_BY_ALIAS = new Map([
@@ -119,6 +131,15 @@ function safeNonNegativeInteger(value, fallback = 0) {
 
 function safeNonNegativeNumber(value, fallback = 0) {
     return Number.isFinite(value) && value >= 0 ? Number(value) : fallback;
+}
+
+function safePositiveIntegerOrInfinity(value, fallback = Infinity) {
+    if (value === null || value === undefined) return fallback;
+    if (value === Infinity) return Infinity;
+    if (Number.isFinite(value) && Number.isInteger(value) && value > 0) {
+        return Number(value);
+    }
+    return fallback;
 }
 
 function normalizeReasonToken(value, fallback = 'unknown') {
@@ -645,6 +666,8 @@ export class TaskOrchestrator {
         circuitFailureThreshold = 3,
         circuitCooldownMs = 30_000,
         circuitHalfOpenMaxAttempts = 1,
+        maxInFlightPerTarget = null,
+        maxInFlightGlobal = null,
         now = Date.now,
         logger = console
     }) {
@@ -707,6 +730,8 @@ export class TaskOrchestrator {
             && circuitHalfOpenMaxAttempts >= 1
             ? Number(circuitHalfOpenMaxAttempts)
             : 1;
+        this.maxInFlightPerTarget = safePositiveIntegerOrInfinity(maxInFlightPerTarget, Infinity);
+        this.maxInFlightGlobal = safePositiveIntegerOrInfinity(maxInFlightGlobal, Infinity);
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
@@ -890,6 +915,61 @@ export class TaskOrchestrator {
         };
         this.circuits.set(target, circuit);
         return circuit;
+    }
+
+    _countInFlightTasks({ target = null, excludeTaskId = null } = {}) {
+        let count = 0;
+        for (const record of this.tasks.values()) {
+            if (!record || typeof record !== 'object') continue;
+            if (excludeTaskId && record.taskId === excludeTaskId) continue;
+            if (target && record.target !== target) continue;
+            if (!IN_FLIGHT_STATUSES.has(record.status)) continue;
+            count += 1;
+        }
+        return count;
+    }
+
+    _assertBulkheadCapacity(record, nowMs) {
+        if (!Number.isFinite(this.maxInFlightGlobal) && !Number.isFinite(this.maxInFlightPerTarget)) {
+            return;
+        }
+
+        const globalInFlight = this._countInFlightTasks({ excludeTaskId: record.taskId });
+        const targetInFlight = this._countInFlightTasks({
+            target: record.target,
+            excludeTaskId: record.taskId
+        });
+        const globalExceeded = Number.isFinite(this.maxInFlightGlobal) && globalInFlight >= this.maxInFlightGlobal;
+        const targetExceeded = Number.isFinite(this.maxInFlightPerTarget) && targetInFlight >= this.maxInFlightPerTarget;
+
+        if (!globalExceeded && !targetExceeded) {
+            return;
+        }
+
+        const scope = globalExceeded ? 'global' : 'target';
+        this._emitAudit('task_bulkhead_blocked', {
+            taskId: record.taskId,
+            target: record.target,
+            scope,
+            globalInFlight,
+            targetInFlight,
+            maxInFlightGlobal: Number.isFinite(this.maxInFlightGlobal) ? this.maxInFlightGlobal : null,
+            maxInFlightPerTarget: Number.isFinite(this.maxInFlightPerTarget) ? this.maxInFlightPerTarget : null
+        }, nowMs);
+
+        throw new TaskOrchestratorError(
+            'BULKHEAD_LIMIT_EXCEEDED',
+            `In-flight limit reached (${scope}) for target ${record.target}`,
+            {
+                scope,
+                target: record.target,
+                globalInFlight,
+                targetInFlight,
+                maxInFlightGlobal: Number.isFinite(this.maxInFlightGlobal) ? this.maxInFlightGlobal : null,
+                maxInFlightPerTarget: Number.isFinite(this.maxInFlightPerTarget) ? this.maxInFlightPerTarget : null,
+                retryAfterMs: this.retryDelayMs
+            }
+        );
     }
 
     _canSendWithCircuit(target, nowMs) {
@@ -1409,6 +1489,16 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'initial_dispatch');
         } catch (error) {
+            if (error instanceof TaskOrchestratorError) {
+                if (error.code === 'CIRCUIT_OPEN' || error.code === 'BULKHEAD_LIMIT_EXCEEDED') {
+                    const nowMs = safeNow(this.now);
+                    const scheduleReason = error.code === 'CIRCUIT_OPEN'
+                        ? 'target_circuit_open'
+                        : 'bulkhead_limit';
+                    this._scheduleRetry(record, nowMs, scheduleReason, { error });
+                    return this.getTask(record.taskId);
+                }
+            }
             this.tasks.delete(record.taskId);
             this._deleteRecord(record.taskId);
             throw error;
@@ -1503,7 +1593,13 @@ export class TaskOrchestrator {
                 error: error.message
             });
 
-            this._scheduleRetry(record, reviewedAt, 'approval_release_failed', {
+            const scheduleReason = error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN'
+                ? 'target_circuit_open'
+                : error instanceof TaskOrchestratorError && error.code === 'BULKHEAD_LIMIT_EXCEEDED'
+                    ? 'bulkhead_limit'
+                    : 'approval_release_failed';
+
+            this._scheduleRetry(record, reviewedAt, scheduleReason, {
                 error
             });
         }
@@ -1574,6 +1670,7 @@ export class TaskOrchestrator {
         }, sendAt);
 
         try {
+            this._assertBulkheadCapacity(record, sendAt);
             this._canSendWithCircuit(record.target, sendAt);
         } catch (error) {
             const message = error?.message || 'Circuit is open';
@@ -1916,13 +2013,82 @@ export class TaskOrchestrator {
             retried: 0,
             timedOut: 0,
             transportFailures: 0,
-            globalRetryBudgetDrops: 0
+            globalRetryBudgetDrops: 0,
+            blockedRetries: 0,
+            blockedByCircuit: 0,
+            blockedByBulkhead: 0
         };
 
         for (const record of this.tasks.values()) {
             if (!OPEN_STATUSES.has(record.status)) continue;
             this._normalizeRetryLifecycle(record);
             summary.checked++;
+
+            if (record.status === 'retry_scheduled' && Number.isFinite(record.nextRetryAt)) {
+                if (nowMs < record.nextRetryAt) continue;
+
+                try {
+                    await this._sendTask(record, 'timeout_retry');
+                    summary.retried++;
+                } catch (error) {
+                    if (error instanceof TaskOrchestratorError && error.code === 'GLOBAL_RETRY_BUDGET_EXHAUSTED') {
+                        this._terminalizeRecordForRetry(record, {
+                            nowMs,
+                            status: 'timed_out',
+                            event: 'timed_out',
+                            reason: 'retry_budget_exhausted:global_window',
+                            auditEvent: 'task_timed_out',
+                            auditPayload: {
+                                retryGuard: 'global_retry_budget',
+                                budget: error.details?.budget || null
+                            }
+                        });
+                        summary.globalRetryBudgetDrops++;
+                        summary.timedOut++;
+                        continue;
+                    }
+
+                    const isCircuitBlocked = error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN';
+                    const isBulkheadBlocked = error instanceof TaskOrchestratorError
+                        && error.code === 'BULKHEAD_LIMIT_EXCEEDED';
+
+                    if (isCircuitBlocked || isBulkheadBlocked) {
+                        summary.blockedRetries++;
+                        if (isCircuitBlocked) summary.blockedByCircuit++;
+                        if (isBulkheadBlocked) summary.blockedByBulkhead++;
+
+                        const scheduledAt = this._scheduleRetry(
+                            record,
+                            nowMs,
+                            isCircuitBlocked ? 'target_circuit_open' : 'bulkhead_limit',
+                            { error }
+                        );
+                        if (scheduledAt !== null) {
+                            summary.scheduledRetries++;
+                        } else if (record.status === 'timed_out') {
+                            summary.timedOut++;
+                        } else if (record.status === 'transport_error') {
+                            summary.transportFailures++;
+                        }
+                        continue;
+                    }
+
+                    summary.transportFailures++;
+                    this.logger.warn?.(
+                        `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
+                    );
+
+                    const scheduledAt = this._scheduleRetry(record, nowMs, 'transport_failure', {
+                        error
+                    });
+                    if (scheduledAt !== null) {
+                        summary.scheduledRetries++;
+                    } else if (record.status === 'timed_out') {
+                        summary.timedOut++;
+                    }
+                }
+                continue;
+            }
 
             const deadlineAt = Number.isFinite(record.deadlineAt) ? Number(record.deadlineAt) : 0;
             if (nowMs <= deadlineAt) continue;
@@ -1970,42 +2136,6 @@ export class TaskOrchestrator {
             }
 
             if (nowMs < record.nextRetryAt) continue;
-
-            try {
-                await this._sendTask(record, 'timeout_retry');
-                summary.retried++;
-            } catch (error) {
-                if (error instanceof TaskOrchestratorError && error.code === 'GLOBAL_RETRY_BUDGET_EXHAUSTED') {
-                    this._terminalizeRecordForRetry(record, {
-                        nowMs,
-                        status: 'timed_out',
-                        event: 'timed_out',
-                        reason: 'retry_budget_exhausted:global_window',
-                        auditEvent: 'task_timed_out',
-                        auditPayload: {
-                            retryGuard: 'global_retry_budget',
-                            budget: error.details?.budget || null
-                        }
-                    });
-                    summary.globalRetryBudgetDrops++;
-                    summary.timedOut++;
-                    continue;
-                }
-
-                summary.transportFailures++;
-                this.logger.warn?.(
-                    `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
-                );
-
-                const scheduledAt = this._scheduleRetry(record, nowMs, 'transport_failure', {
-                    error
-                });
-                if (scheduledAt !== null) {
-                    summary.scheduledRetries++;
-                } else if (record.status === 'timed_out') {
-                    summary.timedOut++;
-                }
-            }
         }
 
         return summary;
@@ -2049,6 +2179,12 @@ export class TaskOrchestrator {
                 closed: 0,
                 open: 0,
                 halfOpen: 0
+            },
+            inFlight: {
+                current: 0,
+                globalLimit: Number.isFinite(this.maxInFlightGlobal) ? this.maxInFlightGlobal : null,
+                perTargetLimit: Number.isFinite(this.maxInFlightPerTarget) ? this.maxInFlightPerTarget : null,
+                saturatedTargets: 0
             }
         };
 
@@ -2057,6 +2193,7 @@ export class TaskOrchestrator {
         const retryScheduleReasonCounts = {};
         const retryDispatchReasonCounts = {};
         const terminalReasonCounts = {};
+        const inFlightByTarget = {};
 
         for (const record of this.tasks.values()) {
             const lifecycle = this._normalizeRetryLifecycle(record);
@@ -2099,6 +2236,10 @@ export class TaskOrchestrator {
                     );
                 }
             }
+
+            if (IN_FLIGHT_STATUSES.has(record.status) && typeof record.target === 'string' && record.target) {
+                inFlightByTarget[record.target] = safeNonNegativeInteger(inFlightByTarget[record.target], 0) + 1;
+            }
         }
 
         metrics.avgAttempts = this.tasks.size > 0
@@ -2114,6 +2255,17 @@ export class TaskOrchestrator {
             canonicalRetryDispatchReason
         );
         metrics.terminalReasonCounts = sortNumericRecord(terminalReasonCounts);
+        metrics.inFlight.current = Object.values(inFlightByTarget).reduce(
+            (sum, value) => sum + safeNonNegativeInteger(value, 0),
+            0
+        );
+        if (Number.isFinite(this.maxInFlightPerTarget)) {
+            for (const count of Object.values(inFlightByTarget)) {
+                if (safeNonNegativeInteger(count, 0) >= this.maxInFlightPerTarget) {
+                    metrics.inFlight.saturatedTargets += 1;
+                }
+            }
+        }
         metrics.circuits.tracked = this.circuits.size;
         for (const circuit of this.circuits.values()) {
             if (circuit.state === CIRCUIT_OPEN) metrics.circuits.open += 1;

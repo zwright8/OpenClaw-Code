@@ -340,6 +340,8 @@ const orchestrator = new TaskOrchestrator({
   globalRetryBudgetMinBaseRequests: 5,
   circuitFailureThreshold: 3,
   circuitCooldownMs: 15_000,
+  maxInFlightPerTarget: 4,
+  maxInFlightGlobal: 32,
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -363,6 +365,11 @@ orchestrator.ingestResult(resultMessage);
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
 ```
+
+Overload containment notes:
+- `maxInFlightPerTarget` applies a bulkhead cap so one worker cannot be saturated by unlimited concurrent dispatches.
+- `maxInFlightGlobal` caps total in-flight dispatches (`dispatched` + `acknowledged`) across all targets.
+- When a bulkhead or circuit gate blocks dispatch, tasks move to `retry_scheduled` and are retried with the normal backoff strategy.
 
 Safety policy integration:
 ```js

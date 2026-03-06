@@ -947,3 +947,88 @@ test('circuit breaker can be disabled to keep classic fixed-delay retries', asyn
     assert.equal(metrics.circuits.tracked, 0);
     assert.equal(metrics.circuits.open, 0);
 });
+
+test('bulkhead limits queue new tasks instead of failing dispatch', async () => {
+    const clock = createClock(100_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 200,
+        retryDelayMs: 10,
+        maxRetryDelayMs: 10,
+        retryJitterRatio: 0,
+        maxInFlightPerTarget: 1
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-bulkhead',
+        task: 'Hold one slot open'
+    });
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-bulkhead',
+        task: 'Queue behind the first slot'
+    });
+
+    assert.equal(sent.length, 1);
+    assert.equal(first.status, 'dispatched');
+    assert.equal(second.status, 'retry_scheduled');
+    assert.equal(second.attempts, 1);
+    assert.equal(second.retryLifecycle.lastReasonCode, 'bulkhead_limit');
+});
+
+test('maintenance retries bulkhead-blocked tasks when in-flight slot frees up', async () => {
+    const clock = createClock(110_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 200,
+        retryDelayMs: 5,
+        maxRetryDelayMs: 5,
+        retryJitterRatio: 0,
+        maxInFlightPerTarget: 1
+    });
+
+    const blocker = await orchestrator.dispatchTask({
+        target: 'agent:worker-bulkhead-maintenance',
+        task: 'Keep target busy'
+    });
+    const queued = await orchestrator.dispatchTask({
+        target: 'agent:worker-bulkhead-maintenance',
+        task: 'Wait for maintenance retry'
+    });
+
+    clock.set(110_005);
+    const blockedPass = await orchestrator.runMaintenance(clock.now());
+    let queuedCurrent = orchestrator.getTask(queued.taskId);
+    assert.equal(blockedPass.blockedByBulkhead, 1);
+    assert.equal(blockedPass.transportFailures, 0);
+    assert.equal(queuedCurrent.status, 'retry_scheduled');
+
+    clock.set(110_006);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: blocker.taskId,
+        from: 'agent:worker-bulkhead-maintenance',
+        status: 'success',
+        output: 'slot released',
+        completedAt: clock.now()
+    }));
+
+    clock.set(110_010);
+    const recoveredPass = await orchestrator.runMaintenance(clock.now());
+    queuedCurrent = orchestrator.getTask(queued.taskId);
+    assert.equal(recoveredPass.retried, 1);
+    assert.equal(queuedCurrent.status, 'dispatched');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.inFlight.current, 1);
+    assert.equal(metrics.inFlight.saturatedTargets, 1);
+});
