@@ -91,6 +91,30 @@ For each cross-domain escalation, provide:
 - Action pattern: produce releasable common picture, mark caveats, synchronize handoff products
 - Protocol baseline: `NATO APP-11/ADatP-3`, `OGC`, `USMTF`
 
+### Public Health, Biosurveillance, and Veterinary Support
+
+- Primary systems: biosurveillance feeds, lab confirmation systems, preventive medicine tools, veterinary health records
+- Action pattern: detect abnormal clusters, validate clinical/lab confidence, issue containment and force health mitigation tasks
+- Protocol baseline: `HL7/FHIR`, `USMTF`, `API/JSON`
+
+### Legal Governance, Detainee Transfer, and Lawfare
+
+- Primary systems: legal workflow systems, evidence repositories, detainee accountability systems
+- Action pattern: verify authority and custody chain, flag legal risk, publish auditable transfer and compliance actions
+- Protocol baseline: `USMTF`, `NATO APP-11/ADatP-3`, `API/JSON`
+
+### Critical Infrastructure and Mega-Port Security
+
+- Primary systems: OT/IT SOC telemetry, physical security C2, logistics throughput dashboards
+- Action pattern: correlate cyber-physical incidents, prioritize critical node defense, publish throughput protection directives
+- Protocol baseline: `STIX/TAXII`, `USMTF`, `API/JSON`, `CoT`
+
+### Industrial Surge and Subsistence Resilience
+
+- Primary systems: depot enterprise tools, ration/cold-chain systems, transport planners, readiness dashboards
+- Action pattern: identify bottlenecks and spoilage risk, reallocate repair/subsistence flow, publish branch plan updates
+- Protocol baseline: `USMTF`, `API/JSON`, `XML/JSON`, `NATO APP-11/ADatP-3`
+
 ## Degraded Operations Patterns
 
 - Comms degradation: switch from streaming feeds to scheduled pull-push bundles with checksum validation

@@ -4,10 +4,10 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 175
+- Total warfighter skills in this repo: 195
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
-- All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
+- All skills include `Cross-Domain Escalation Hooks` and `Contested-Condition Degradation Ladder` sections for threshold-based handoffs and resilience under degraded conditions.
 
 ## Domain Coverage Matrix
 
@@ -139,3 +139,26 @@ Every skill output should include:
 - high-altitude-platform-isr-integration-cell
 - maritime-convoy-escort-and-sea-lane-defense-cell
 - counter-space-electronic-attack-response-cell
+
+## New Expansion Wave (2026-03-06, Joint Mission Resilience Expansion)
+
+- arctic-overland-sustainment-and-survival-cell
+- expeditionary-civil-engineering-prime-power-cell
+- contested-joint-biosurveillance-and-outbreak-response-cell
+- theater-prisoner-of-war-and-detainee-transfer-coordination
+- integrated-harbor-mine-countermeasures-and-clearance-cell
+- littoral-anti-ship-missile-defense-coordination-cell
+- tactical-quantum-safe-communications-transition-cell
+- theater-electronic-warfare-battle-management-cell
+- contested-spectrum-gps-spoofing-attribution-cell
+- joint-civil-authority-cyber-incident-unity-cell
+- austere-veterinary-services-and-zoonotic-risk-cell
+- joint-public-health-biocontainment-mobility-cell
+- operational-lawfare-and-adversary-legal-exposure-cell
+- coalition-sof-maritime-interdiction-coordination-cell
+- expeditionary-camp-sanitation-and-wastewater-risk-cell
+- contested-mega-port-cyber-physical-security-cell
+- joint-space-cyber-ground-station-resilience-cell
+- allied-industrial-surge-and-repair-network-cell
+- theater-food-security-and-subsistence-operations-cell
+- strategic-target-development-and-no-strike-governance-cell

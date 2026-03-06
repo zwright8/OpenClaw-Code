@@ -1,0 +1,79 @@
+---
+name: arctic-overland-sustainment-and-survival-cell
+description: Plan arctic overland sustainment, survival, and force preservation under extreme cold, low-light, and denied infrastructure conditions. Use when sequencing convoy support, shelter/energy plans, and cold-weather casualty mitigation.
+---
+
+# Arctic Overland Sustainment and Survival Cell
+
+## Mission Scope
+
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in its domain.
+- Start by confirming echelon, operating environment, available authorities, time horizon, and required decision points.
+- Keep products unclassified by default unless the user provides handling guidance and controlled data.
+
+## Workflow
+
+1. Frame the mission problem using these core inputs: weather/ice forecasts, route viability, fuel and heating reserves, cold-weather injury indicators.
+2. Identify assumptions, decision thresholds, and what reporting or indicators would invalidate the current plan.
+3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
+4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
+5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
+
+## Required Output Format
+
+Deliver results in this order:
+
+1. Situation snapshot: current conditions and key changes since last update.
+2. Recommended option: one clearly stated recommendation and rationale.
+3. Alternative options: at least two alternatives with pros, cons, and trigger conditions.
+4. Decision points: what must be decided now, later, or pre-delegated.
+5. Staff tasking: who does what by when.
+
+## Domain Products
+
+Primary products for this skill: arctic sustainment branch plan, cold-weather casualty prevention matrix, emergency extraction trigger tree.
+
+## External Tools and Protocol Integration
+
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and the action templates in `../_shared/references/tool-protocol-playbooks.md`.
+- Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
+- Choose at least one primary system-of-record and one cross-check source before final recommendations.
+- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`, or `NATO APP-11/ADatP-3`).
+- Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
+
+## Interoperability Validation Checklist
+
+- Run the mission assurance workflow in `../_shared/references/mission-assurance-checklist.md` before final release.
+- Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
+- If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
+
+## Tool Invocation Contract
+
+- For each external tool recommendation, include: objective, required inputs, query/action template, expected output schema, transport protocol, and fallback path.
+- Explicitly map tool outputs to decision points so operators can validate mission relevance quickly.
+- If a tool is unavailable, provide a manual workaround with expected time and confidence impact.
+
+## Machine-Readable Output Contract
+
+- Provide a compact handoff block with fields: `mission_id`, `decision_window_utc`, `recommendation_id`, `option_rank`, `trigger_conditions`, `required_actions`, `tool_dependencies`, `protocols`, `confidence`, and `known_gaps`.
+- Structure tasking entries as `owner`, `action`, `due_utc`, `status`, and `dependency` to enable direct ingestion by workflow systems.
+- Include an explicit `degraded_mode` object listing fallback tools, expected delay, and confidence penalty when integrations fail.
+
+## Cross-Domain Escalation Hooks
+
+- Identify at least two adjacent cells or staff functions that must be notified when risk crosses thresholds (for example fires, intel, cyber, logistics, legal, coalition liaison).
+- Include escalation triggers in measurable terms and map each trigger to an owner and required report format.
+- Provide a no-fail communication fallback for each escalation path (alternate network, voice relay, or courier) with expected delay.
+
+## Contested-Condition Degradation Ladder
+
+- Define three operating states: `steady-state`, `degraded`, and `denied`, with explicit indicators that force transition between states.
+- For each state, specify mission-essential products that must still be delivered, maximum acceptable delay, and minimum confidence threshold.
+- Include a recovery trigger checklist that states who can authorize return from `denied` to `degraded` and from `degraded` to `steady-state`.
+
+## Guardrails
+
+- Flag gaps where assumptions exceed evidence.
+- Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
+- Separate facts, assessed judgments, and unknowns.
+- Do not fabricate classified sources, authorities, or approvals.

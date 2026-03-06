@@ -63,3 +63,9 @@ Use this checklist before delivering any mission recommendation.
 - Confirm at least two adjacent cells are identified for escalation based on mission risk thresholds.
 - Confirm each escalation trigger is measurable and includes an owner plus required report format.
 - Confirm each escalation path has a no-fail comms fallback and expected delay annotation.
+
+## 9) Contested-Condition Degradation Readiness
+
+- Confirm the product includes `steady-state`, `degraded`, and `denied` operating states with explicit transition indicators.
+- Confirm each state lists mission-essential outputs, maximum acceptable delay, and minimum confidence threshold.
+- Confirm recovery authorities are named for transitions from `denied` to `degraded` and from `degraded` to `steady-state`.

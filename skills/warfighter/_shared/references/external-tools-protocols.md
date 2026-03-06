@@ -91,6 +91,34 @@ Use profile selections that fit the mission domain:
 - Strategic aeromedical flow: patient movement systems + bed management + airlift scheduling + USMTF/HL7/API
 - Maritime convoy and sea-lane defense: fleet C2 + AIS + ASW feeds + Link 16/AIS/USMTF
 - Counter-space electronic attack response: SATCOM monitoring + EW indicators + network defense tools + API/JSON/USMTF/STIX
+- Arctic overland sustainment: weather/ice services + convoy C2 + med alerts + CoT/USMTF/API
+- Expeditionary civil engineering and prime power: engineer work management + power telemetry + sustainment dashboards + API/JSON/USMTF
+- Biosurveillance and outbreak response: syndromic surveillance + lab systems + med regulation + HL7/FHIR/API/USMTF
+- Detainee transfer coordination: detainee accountability systems + transport planners + legal workflow tools + USMTF/API
+- Harbor mine countermeasures and clearance: MCM mission tools + hydrographic survey feeds + port C2 + AIS/NMEA/USMTF
+- Littoral anti-ship missile defense: maritime COP + IAMD C2 + EW/decoy planning + Link 16/USMTF/API
+- Quantum-safe communications transition: key management systems + network orchestration + interoperability test harness + API/JSON/STIX
+- Theater EW battle management: EW mission planners + emitter libraries + spectrum monitors + Link 16/API/USMTF
+- GPS spoofing attribution: PNT anomaly telemetry + RF DF tools + SIGINT fusion + API/JSON/USMTF
+- Civil-authority cyber unity: critical infrastructure SOC data + emergency management boards + mission assurance dashboards + STIX/TAXII/API/USMTF
+- Veterinary and zoonotic risk: veterinary records + preventive medicine surveillance + food safety inspection systems + API/JSON/USMTF
+- Public-health biocontainment mobility: infectious disease surveillance + patient movement systems + facility bed managers + HL7/FHIR/USMTF/API
+- Operational lawfare and legal exposure: legal evidence repositories + adversary violation trackers + release governance tools + USMTF/NATO APP-11/API
+- Coalition SOF maritime interdiction: maritime ISR + partner mission systems + evidence handling tools + Link 16/AIS/NATO APP-11/USMTF
+- Camp sanitation and wastewater risk: environmental health monitoring + camp engineering status + preventive medicine reporting + API/JSON/USMTF
+- Mega-port cyber-physical security: OT security telemetry + physical security C2 + cargo throughput dashboards + STIX/TAXII/API/USMTF
+- Space-cyber ground station resilience: ground-station operations consoles + cyber telemetry + EW warning + API/JSON/STIX/USMTF
+- Allied industrial surge and repair network: depot enterprise systems + transport/load planners + readiness dashboards + API/JSON/NATO APP-11
+- Theater food security and subsistence: ration inventory systems + cold-chain telemetry + transport planners + USMTF/API/JSON
+- Strategic target/no-strike governance: target development tools + no-strike registries + collateral estimation systems + USMTF/VMF/Link 16
+
+## External Tool Protocol Adapter Patterns
+
+- `Tactical link adapter`: map tool outputs to Link 16/VMF payload fields, include unit ID normalization and stale-track guards.
+- `COP event adapter`: convert mission events into CoT with mandatory event type, geo, timestamp, and confidence fields.
+- `Cyber intel adapter`: transform SIEM/SOAR detections into STIX objects and TAXII collection pushes with confidence tags.
+- `Message traffic adapter`: package staff decisions into USMTF templates with required precedence, originator, and addressee metadata.
+- `Geospatial adapter`: publish OGC-compatible feature layers with CRS, symbology key, and data-age watermark.
 
 ## Integration Interfaces and Transports
 

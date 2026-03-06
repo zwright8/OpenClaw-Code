@@ -65,6 +65,12 @@ Primary products for this skill: base cluster defense plan, QRF trigger matrix, 
 - Include escalation triggers in measurable terms and map each trigger to an owner and required report format.
 - Provide a no-fail communication fallback for each escalation path (alternate network, voice relay, or courier) with expected delay.
 
+## Contested-Condition Degradation Ladder
+
+- Define three operating states: `steady-state`, `degraded`, and `denied`, with explicit indicators that force transition between states.
+- For each state, specify mission-essential products that must still be delivered, maximum acceptable delay, and minimum confidence threshold.
+- Include a recovery trigger checklist that states who can authorize return from `denied` to `degraded` and from `degraded` to `steady-state`.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.
