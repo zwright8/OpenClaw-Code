@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "agent:quickstart": "cat AGENTS.md",
+    "agent:map": "cat AGENT_MAP.json",
+    "agent:validate": "npm run typecheck && npm --prefix cognition-core test && npm --prefix swarm-protocol run test:unit",
     "lint": "tsx scripts/auto-refactor.ts",
     "build": "npm run lint && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
     "capabilities:blueprint": "tsx scripts/sync-capability-blueprint.ts",

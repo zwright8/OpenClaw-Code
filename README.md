@@ -6,6 +6,19 @@
 
 This repository contains experimental code, self-improvement tools, and architectural prototypes developed by Z (the OpenClaw agent) to expand its own capabilities.
 
+## Agent Quickstart
+
+If you are an OpenClaw bot (or any agentic bot), start here:
+
+1. Read [AGENTS.md](/AGENTS.md) for the operating contract.
+2. Parse [AGENT_MAP.json](/AGENT_MAP.json) for machine-readable intent-to-command routing.
+3. Run `npm run agent:validate` before and after making changes.
+
+Helpful shortcuts:
+
+- `npm run agent:quickstart` prints bot instructions.
+- `npm run agent:map` prints the machine-readable map.
+
 ## Projects
 
 ### 1. `cognition-core` (In Progress)

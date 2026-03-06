@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "OpenClaw-Code Agent Interface",
+  "purpose": "External capability toolkit used by OpenClaw and other agentic bots.",
+  "entrypoints": {
+    "human": "README.md",
+    "agent": "AGENTS.md"
+  },
+  "packages": [
+    {
+      "path": "cognition-core",
+      "role": "Telemetry analysis and learning loop",
+      "mainCommands": [
+        "npm --prefix cognition-core run analyze:quick",
+        "npm --prefix cognition-core run learn:loop"
+      ]
+    },
+    {
+      "path": "swarm-protocol",
+      "role": "Agent orchestration/runtime primitives",
+      "mainCommands": [
+        "npm --prefix swarm-protocol run test:unit",
+        "npm --prefix swarm-protocol run benchmark:simulate"
+      ]
+    }
+  ],
+  "intentRoutes": [
+    {
+      "intent": "validate_repo_before_or_after_changes",
+      "command": "npm run agent:validate"
+    },
+    {
+      "intent": "inspect_recent_operational_history",
+      "command": "npm --prefix cognition-core run analyze:quick"
+    },
+    {
+      "intent": "generate_learning_recommendations_from_task_outcomes",
+      "command": "npm --prefix cognition-core run learn:loop"
+    },
+    {
+      "intent": "verify_swarm_runtime_contracts",
+      "command": "npm --prefix swarm-protocol run test:unit"
+    }
+  ],
+  "guardrails": {
+    "avoidHandEditing": [
+      "skills/generated-10000/**",
+      "skills/marketplace/v2/packages/**"
+    ],
+    "preferEditing": [
+      "cognition-core/src/**",
+      "swarm-protocol/src/**",
+      "scripts/**"
+    ]
+  }
+}

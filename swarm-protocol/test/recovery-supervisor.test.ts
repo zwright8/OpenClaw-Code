@@ -61,6 +61,7 @@ test('detectIncidents identifies global and per-agent reliability issues', () =>
     });
 
     assert.ok(detected.incidents.length >= 4);
+    assert.ok(detected.incidents.some((item) => item.code === 'error_budget_burn'));
     assert.ok(detected.incidents.some((item) => item.code === 'timeout_spike'));
     assert.ok(detected.incidents.some((item) => item.code === 'retry_budget_exhausted'));
     assert.ok(detected.incidents.some((item) => item.code === 'agent_overloaded'));
