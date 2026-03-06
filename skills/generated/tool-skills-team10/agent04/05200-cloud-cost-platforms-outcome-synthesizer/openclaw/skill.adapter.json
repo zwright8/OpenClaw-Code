@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5200,
+  "name": "cloud-cost-platforms-outcome-synthesizer",
+  "title": "Cloud Cost Platforms Outcome Synthesizer",
+  "description": "Design and run cloud cost platforms workflows with outcome synthesizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4173,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05200-cloud-cost-platforms-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent04/05200-cloud-cost-platforms-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms outcome synthesizer",
+    "cloud cost platforms outcome synthesizer workflow",
+    "cloud cost platforms outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

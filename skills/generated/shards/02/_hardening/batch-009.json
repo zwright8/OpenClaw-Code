@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 9,
+  "range": {
+    "start": "u2400-retry-and-backoff-orchestration-for-knowledge-management-systems",
+    "end": "u2449-failure-root-cause-mining-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2400-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "path": "generated/shards/02/2400-retry-and-backoff-orchestration-for-knowledge-management-systems",
+      "skill_md_sha256": "cc1655bc5de06fb50a55ee0e164872af220a172a0059700626e14bee4163e147",
+      "summary_sha256": "12b08c3afc39cad40fbd0a3b86467086b3d93fd1961328de014b127721787aa9"
+    },
+    {
+      "skill_id": "u2401-failure-root-cause-mining-for-personal-health-routines",
+      "path": "generated/shards/02/2401-failure-root-cause-mining-for-personal-health-routines",
+      "skill_md_sha256": "7eb899360feb26167000d294940aa8fc69b5cfd5749e32f4873bfeb7da0d7783",
+      "summary_sha256": "63473f970b8f1b01a056cfa49862eaeed338aea173a0829e4ebbd7b40a23c815"
+    },
+    {
+      "skill_id": "u2402-failure-root-cause-mining-for-personal-health-routines",
+      "path": "generated/shards/02/2402-failure-root-cause-mining-for-personal-health-routines",
+      "skill_md_sha256": "efd74764ae9df314c6a03af1b817244da810915d0e1460e96279c54c6d8802e5",
+      "summary_sha256": "7f6314b87de61bebc79613d9ba6c1346da78a569b862481ebde7001d7d1a66d6"
+    },
+    {
+      "skill_id": "u2403-failure-root-cause-mining-for-personal-health-routines",
+      "path": "generated/shards/02/2403-failure-root-cause-mining-for-personal-health-routines",
+      "skill_md_sha256": "4bc9b97f1bfea315a0ecb723f53535b1a5262a8493599ea53fe79bb8ed7e29b7",
+      "summary_sha256": "9dde8ecd371595cd73950a9156f64b530bdb2de93a382ff4f1bbb80c72685a72"
+    },
+    {
+      "skill_id": "u2404-failure-root-cause-mining-for-personal-health-routines",
+      "path": "generated/shards/02/2404-failure-root-cause-mining-for-personal-health-routines",
+      "skill_md_sha256": "1e20f5596bb8178c0976a576432deb5a9ed4e68ca09491ca8809c8b5ca4c99eb",
+      "summary_sha256": "b591a14702f5ea04833ba26fc8c2628635bb2b55417344e27ec323587a7d98ab"
+    },
+    {
+      "skill_id": "u2405-failure-root-cause-mining-for-personal-health-routines",
+      "path": "generated/shards/02/2405-failure-root-cause-mining-for-personal-health-routines",
+      "skill_md_sha256": "ae988e915b4c58fea9a9b686e2f63c4a9bd0e294c6ef391d4bfec0592741b8c3",
+      "summary_sha256": "f0d65ce02230f09c055e7326c5e81ea572c8f06cddfb78f14434d0968f26be27"
+    },
+    {
+      "skill_id": "u2406-failure-root-cause-mining-for-family-caregiving-systems",
+      "path": "generated/shards/02/2406-failure-root-cause-mining-for-family-caregiving-systems",
+      "skill_md_sha256": "1a039274d703bddc68a317605f258eb9ce3d4c385eae377437f66ddcbad9c4ed",
+      "summary_sha256": "6f6fd3213f32e6b2850ac415905038ce77474eaffdf9e692b0be395de839c27a"
+    },
+    {
+      "skill_id": "u2407-failure-root-cause-mining-for-family-caregiving-systems",
+      "path": "generated/shards/02/2407-failure-root-cause-mining-for-family-caregiving-systems",
+      "skill_md_sha256": "cf552f5d94661d9d8a5ed7b46f4a8672437106283cf2cc15bf4985f2cf13e5c2",
+      "summary_sha256": "8c2c6e0efb766951ebb5993c6df051839272e449a459f28c9748c45df16e2411"
+    },
+    {
+      "skill_id": "u2408-failure-root-cause-mining-for-family-caregiving-systems",
+      "path": "generated/shards/02/2408-failure-root-cause-mining-for-family-caregiving-systems",
+      "skill_md_sha256": "6ce5c1a00d6fc09da705c4f87dd462d06ab284745c3b9a4619a9bb0f4aa6f238",
+      "summary_sha256": "c9ae5b68cfeb19ecc3023a861de8d0d51640a7e7d40a1cb0f8bce4b2643b04ae"
+    },
+    {
+      "skill_id": "u2409-failure-root-cause-mining-for-family-caregiving-systems",
+      "path": "generated/shards/02/2409-failure-root-cause-mining-for-family-caregiving-systems",
+      "skill_md_sha256": "b5b51fe4ee995060fa6e7c6c7f697d5f93f13d472aba99583e2680a02a7ba455",
+      "summary_sha256": "ad91ca74b976222712c5c65a49226a5e1ef4d8f014656d1936bb7e4a39d91c68"
+    },
+    {
+      "skill_id": "u2410-failure-root-cause-mining-for-family-caregiving-systems",
+      "path": "generated/shards/02/2410-failure-root-cause-mining-for-family-caregiving-systems",
+      "skill_md_sha256": "0e989ac7603e56ad716319c4b801e9d5488bb56258e7d26ee4a8cecb8b3c3fa0",
+      "summary_sha256": "45e6e0cde5f3766fd7e03f8651e448780942c2d7f94ad8006f457a0b02900e97"
+    },
+    {
+      "skill_id": "u2411-failure-root-cause-mining-for-household-logistics",
+      "path": "generated/shards/02/2411-failure-root-cause-mining-for-household-logistics",
+      "skill_md_sha256": "6d10cf4ac16a31bb5009ef699fc1bbb12eebdc9ae83d7497cd20844080736a4a",
+      "summary_sha256": "a3728b18df86cbe60a2ca1dbb07bd54d1392369ce7aa65006e01aeb6ffcbf2bd"
+    },
+    {
+      "skill_id": "u2412-failure-root-cause-mining-for-household-logistics",
+      "path": "generated/shards/02/2412-failure-root-cause-mining-for-household-logistics",
+      "skill_md_sha256": "7e6bacdf9456ae580702d65e6567e5227e9cd55411cd5ad209a48fa79194d5f3",
+      "summary_sha256": "0f83dde80b3dc6dd611f260fe540ca231eabd58d7a9c5bd63f74b0d0a80db35e"
+    },
+    {
+      "skill_id": "u2413-failure-root-cause-mining-for-household-logistics",
+      "path": "generated/shards/02/2413-failure-root-cause-mining-for-household-logistics",
+      "skill_md_sha256": "a6053d8f0b606e08691e2ccfec1cd60174ca92fcc1e61a27f532573c130b9425",
+      "summary_sha256": "11ab4abe47ebaec1907492ac79a578ad4107e0f0704f435fe808a1f98d82ed8e"
+    },
+    {
+      "skill_id": "u2414-failure-root-cause-mining-for-household-logistics",
+      "path": "generated/shards/02/2414-failure-root-cause-mining-for-household-logistics",
+      "skill_md_sha256": "5ce8f389ec383dcd7717273e7c9b1376b5c8bef61c934f9d76dde81be0dbf97f",
+      "summary_sha256": "5f5a520f026a6294549363646f506674299cf2f0df780bf8e2e2fecbea688771"
+    },
+    {
+      "skill_id": "u2415-failure-root-cause-mining-for-household-logistics",
+      "path": "generated/shards/02/2415-failure-root-cause-mining-for-household-logistics",
+      "skill_md_sha256": "8dfe2fd8b32514a428f8428ec508e5e142525606670eef32c1a1e3c41ce43af7",
+      "summary_sha256": "0cbe1ea2b1bc37225c3b440f178eea129f124bd78c0a11d9c1c345e0c66901b2"
+    },
+    {
+      "skill_id": "u2416-failure-root-cause-mining-for-personal-finance-management",
+      "path": "generated/shards/02/2416-failure-root-cause-mining-for-personal-finance-management",
+      "skill_md_sha256": "5bf1f13b2f3c487da4195e854e77999abb7bd56af7f07ef607c2ca65b7c2e52b",
+      "summary_sha256": "9b5284f795514e6d95962fce58f7a0b4815ab03d6654ddb29987c31ec76382de"
+    },
+    {
+      "skill_id": "u2417-failure-root-cause-mining-for-personal-finance-management",
+      "path": "generated/shards/02/2417-failure-root-cause-mining-for-personal-finance-management",
+      "skill_md_sha256": "292bededd9703bea6cc726878545af8f982e3f1575175a663d2eec137c56a1c6",
+      "summary_sha256": "1c6c1dd57b815ed2900710368e610f186da5e3f71d16d66774d96c49cb352b9c"
+    },
+    {
+      "skill_id": "u2418-failure-root-cause-mining-for-personal-finance-management",
+      "path": "generated/shards/02/2418-failure-root-cause-mining-for-personal-finance-management",
+      "skill_md_sha256": "155572fd0c7852d66c61d7c0f2a274bb53da8266caaacf884f6346d30f5251a8",
+      "summary_sha256": "f657d189c4a5a1acc635526f8a390bc73fce85a669875ced0cfae9bdf1692cfb"
+    },
+    {
+      "skill_id": "u2419-failure-root-cause-mining-for-personal-finance-management",
+      "path": "generated/shards/02/2419-failure-root-cause-mining-for-personal-finance-management",
+      "skill_md_sha256": "05828ca2d307105e2b5075b14ddc4c37ec78df8345814e19db5f05afe1884624",
+      "summary_sha256": "faa1e6a093677eb22f0b5ce60e22f3cd718c4c8be45c8f84094f0fe02644bd13"
+    },
+    {
+      "skill_id": "u2420-failure-root-cause-mining-for-personal-finance-management",
+      "path": "generated/shards/02/2420-failure-root-cause-mining-for-personal-finance-management",
+      "skill_md_sha256": "ca5e4926c4879bfb83feb576bd3446f8eb2ff539b20aeed97b0ea700e1c2e7d4",
+      "summary_sha256": "baea46b30d1c32a26721ef83188a58985c02df9fb4714a4efccc280af15a844a"
+    },
+    {
+      "skill_id": "u2421-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2421-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "608a528ed16d822577d305020a9c2e365fae201a163501c2f1fb04c500983ed5",
+      "summary_sha256": "10ae6122766b2e2761d6c99f8155857e4b3b0f8f8bd7480bc3c59831c60b1d59"
+    },
+    {
+      "skill_id": "u2422-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2422-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "0d200679bec04fed9ae931d0a26b24afdf9f4bfed68e3e097837fe3225e0eaf1",
+      "summary_sha256": "87b6b345ccfef99b67c2bccc898e951b2b8b7e503c33316ffea721bb4033ae03"
+    },
+    {
+      "skill_id": "u2423-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2423-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "7cee93a65843c3f35c27ceef8b1c487a02978b94fdda2105606297449ae0b644",
+      "summary_sha256": "2e37faaa9bb31560815ab04d9f4fab9ef97f3d1a1c2272464cb7fd72691b9af4"
+    },
+    {
+      "skill_id": "u2424-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2424-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "a36dc5645848426b735ee3b7dfbcedf2f14997be4b753f253eedd24491876481",
+      "summary_sha256": "4435975972934e94298e5e76ab3ec9d8f19028884630a1bc11baca4c6320ad57"
+    },
+    {
+      "skill_id": "u2425-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "path": "generated/shards/02/2425-failure-root-cause-mining-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "548e5479454869d2cf3f0a2c65205dfe42f64413c5d77098b31236321a4f32f0",
+      "summary_sha256": "f3b7d0eca6d7b6a2b7a57b6c7faab1a3992f5876f7c925ce2de8b1b5af8d881f"
+    },
+    {
+      "skill_id": "u2426-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2426-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "skill_md_sha256": "4096c22a53483b7f48dd485a290c39b54bb5f22b681e8c53fcd0757726ff7fe7",
+      "summary_sha256": "3169715d363ba472dc9ad575e4f8127285f9556202cdcff9527f74a0e38e6bf8"
+    },
+    {
+      "skill_id": "u2427-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2427-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "skill_md_sha256": "c9307d35d23f52b59c03062b5287399a4ba8ac5b04cca36719eaf71019d35646",
+      "summary_sha256": "2cfc9038cb0bcc11fb7f998cd308c6db40fb213ab65ed3d9519879ecf4c89026"
+    },
+    {
+      "skill_id": "u2428-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2428-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "skill_md_sha256": "8243dfb60dc6305945d0e2ae669bf378016b44f7b1bc9add84f2f6cb99228d3d",
+      "summary_sha256": "67583ec38e6b9313327bf578e00f886f0f35505310107b768de926be5fa82ee4"
+    },
+    {
+      "skill_id": "u2429-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2429-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "skill_md_sha256": "7738ca34298e928ec94e60a579dc4dd03d35b9d447347185938987221b93dfcf",
+      "summary_sha256": "b1fe23dca8e4afd702682fa021210405ea8914549185de6aa2700a73c37342ad"
+    },
+    {
+      "skill_id": "u2430-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "path": "generated/shards/02/2430-failure-root-cause-mining-for-fitness-and-recovery-training",
+      "skill_md_sha256": "2772ccc6c87fdcb7468985676b7d88ca86688f134cf49fa04451ba6dea7fe3c4",
+      "summary_sha256": "789982b48b4d4f8bd5458b3d969632681f30b73f38026561e4b10eff83f87f93"
+    },
+    {
+      "skill_id": "u2431-failure-root-cause-mining-for-mental-well-being-practices",
+      "path": "generated/shards/02/2431-failure-root-cause-mining-for-mental-well-being-practices",
+      "skill_md_sha256": "08aaa0ab50c3faf5574ede6e1b7b3a72d2855a7af257943f4ee0577b10e5f661",
+      "summary_sha256": "2d4e9b41088f57e284ba5cb6dc2fb8a6a85bb7e2284d55334d1ca3f0bfe85dd8"
+    },
+    {
+      "skill_id": "u2432-failure-root-cause-mining-for-mental-well-being-practices",
+      "path": "generated/shards/02/2432-failure-root-cause-mining-for-mental-well-being-practices",
+      "skill_md_sha256": "b0f9fdb5c08572f0ae3044ea3b74ccee67ca0d65cd481336285bb9758274c7ae",
+      "summary_sha256": "1e0fc76ca086fbb105518b31fcb3b0abc90154e819aa8384bb53a2829dd7980a"
+    },
+    {
+      "skill_id": "u2433-failure-root-cause-mining-for-mental-well-being-practices",
+      "path": "generated/shards/02/2433-failure-root-cause-mining-for-mental-well-being-practices",
+      "skill_md_sha256": "cb4564e4af8f942ef62f60daeaf81e5010028968200b5d3a275a76e5085b0cd4",
+      "summary_sha256": "f591f2584a707c476f3b45dcd0ac08ab36d5be2d4efc07a6e5eeb3af6bc30787"
+    },
+    {
+      "skill_id": "u2434-failure-root-cause-mining-for-mental-well-being-practices",
+      "path": "generated/shards/02/2434-failure-root-cause-mining-for-mental-well-being-practices",
+      "skill_md_sha256": "85890824ffdb02328ed8cc80dbace8cc94a745946dbb95e91349039f85de866f",
+      "summary_sha256": "d964c91185ba7e37f05f51c04620fb636dae000a96f582b837b99b0c0cfc901d"
+    },
+    {
+      "skill_id": "u2435-failure-root-cause-mining-for-mental-well-being-practices",
+      "path": "generated/shards/02/2435-failure-root-cause-mining-for-mental-well-being-practices",
+      "skill_md_sha256": "20e2a53c6081393f2ea600e6c90d3655efe1e474b3c80515fbf320c91af8a72a",
+      "summary_sha256": "ff1e56383d412c4479bc62d8ffe87978909eabc31c9c38906f9e7930626cec6f"
+    },
+    {
+      "skill_id": "u2436-failure-root-cause-mining-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2436-failure-root-cause-mining-for-lifelong-learning-plans",
+      "skill_md_sha256": "d14a7ecc7c360badbfcd9284e7e4fadccf3607455a8ab53dc49491a0d19d6448",
+      "summary_sha256": "3f1bf80f9a4ba1816562cd605f1d23281eb02d491fb324c9c6e1e2fb249df300"
+    },
+    {
+      "skill_id": "u2437-failure-root-cause-mining-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2437-failure-root-cause-mining-for-lifelong-learning-plans",
+      "skill_md_sha256": "2fc425d3f2251c93ce04d9e8cbd5701ea154326cc4e33a0ceedb421e997dc650",
+      "summary_sha256": "373c4db6b767f955abd85445318a8438f1bb35b2cadd2b098a47ce3da89addb4"
+    },
+    {
+      "skill_id": "u2438-failure-root-cause-mining-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2438-failure-root-cause-mining-for-lifelong-learning-plans",
+      "skill_md_sha256": "c98fc26bf3622e061e0c5c53ac68c33e820cd7e83823a607a7606924d2dcac82",
+      "summary_sha256": "f27f80472ccdab18364bfb6173066def54698683149e63287efef25813497c00"
+    },
+    {
+      "skill_id": "u2439-failure-root-cause-mining-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2439-failure-root-cause-mining-for-lifelong-learning-plans",
+      "skill_md_sha256": "21957083346db350a7fa57e02384b4e3433a3778b561d1a6f48844597bea72a2",
+      "summary_sha256": "60a35a44a09cb93b07a83ed41f5fc5acbef6bfd0543c7abc59300b5bbefdda23"
+    },
+    {
+      "skill_id": "u2440-failure-root-cause-mining-for-lifelong-learning-plans",
+      "path": "generated/shards/02/2440-failure-root-cause-mining-for-lifelong-learning-plans",
+      "skill_md_sha256": "c604a83eebd15f2d56b0877334c156bd0f606eadfb9f481ab4a6a81c0618491b",
+      "summary_sha256": "8662dd9556e5a51a990113303c6c0c3b2becffedb80a8a6bf24ec1b3c0a5fc7d"
+    },
+    {
+      "skill_id": "u2441-failure-root-cause-mining-for-career-development-pathways",
+      "path": "generated/shards/02/2441-failure-root-cause-mining-for-career-development-pathways",
+      "skill_md_sha256": "df521e979c93dd229bc9ce39b4d11fa9baf5dd0bbc5fe2b099fc638e790af92c",
+      "summary_sha256": "0444a5eb33d1fda242e87c617347a4ed4e8e333a85fd328de7a790ac764a65b2"
+    },
+    {
+      "skill_id": "u2442-failure-root-cause-mining-for-career-development-pathways",
+      "path": "generated/shards/02/2442-failure-root-cause-mining-for-career-development-pathways",
+      "skill_md_sha256": "eefd8531bf3b5124adbd58048f0f9b25899410d6d5be53c5692d8c7319634c59",
+      "summary_sha256": "a82d063466adfdb0daf14d31bd9504eb71fe48d505347470b64211d3d126b547"
+    },
+    {
+      "skill_id": "u2443-failure-root-cause-mining-for-career-development-pathways",
+      "path": "generated/shards/02/2443-failure-root-cause-mining-for-career-development-pathways",
+      "skill_md_sha256": "ab297cfe8a49b119d1d9883d066a4b96f8a0641f605d63c42512c539bc5746c2",
+      "summary_sha256": "553968cf5ebb59a19328d30d41cdb0126b195582a77aae63b8d15dd65e66ed7c"
+    },
+    {
+      "skill_id": "u2444-failure-root-cause-mining-for-career-development-pathways",
+      "path": "generated/shards/02/2444-failure-root-cause-mining-for-career-development-pathways",
+      "skill_md_sha256": "9e7ba23e1330a25c65bbd798109f15571a0711e28cf96091df19229cda82755f",
+      "summary_sha256": "cc823418d5fe5a5771daec82644f65c54a43103a25b96835e9ae3995ca7ed52b"
+    },
+    {
+      "skill_id": "u2445-failure-root-cause-mining-for-career-development-pathways",
+      "path": "generated/shards/02/2445-failure-root-cause-mining-for-career-development-pathways",
+      "skill_md_sha256": "4167e743f11ed46fdfe588950a79707f1ca541354a9ad022552f9fcfd4e5d7ed",
+      "summary_sha256": "8b371bc166cb7c897ba30a885c8f127e16be30e8b9302c6f932a80f4f3d39629"
+    },
+    {
+      "skill_id": "u2446-failure-root-cause-mining-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2446-failure-root-cause-mining-for-entrepreneurship-operations",
+      "skill_md_sha256": "fabf763e7f71bfb5e4bc88491a2df890ceee9384969879d9506c434a9450aed6",
+      "summary_sha256": "394567a5caa5e31daf887e2ca683c796731fe8b4276ba98e0f8704e847408898"
+    },
+    {
+      "skill_id": "u2447-failure-root-cause-mining-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2447-failure-root-cause-mining-for-entrepreneurship-operations",
+      "skill_md_sha256": "708dd795c92a844dcdee94a202094c8a336575f4291b2b719f76304930de69ac",
+      "summary_sha256": "1ea6532637f811eff950f4e68bae5a6dde22cd2d8e0fa51e8f949b1cbcbd8a69"
+    },
+    {
+      "skill_id": "u2448-failure-root-cause-mining-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2448-failure-root-cause-mining-for-entrepreneurship-operations",
+      "skill_md_sha256": "88f85cef3d60f7d289aeb56f401e381abc8b2f85eb35031d7785f2e73a79e045",
+      "summary_sha256": "beb635abebd8450a4345f14d78e61f97e6328015649c47d311cd3d95e87f66c8"
+    },
+    {
+      "skill_id": "u2449-failure-root-cause-mining-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2449-failure-root-cause-mining-for-entrepreneurship-operations",
+      "skill_md_sha256": "f07fc464f7ebf49c3930ec47ccb638e3e863cbbcd41f10d30afe257e8d045ed0",
+      "summary_sha256": "698b26695cde2a8192587af040cfdad00a7af60274837674c228a34a3bc6e4a3"
+    }
+  ]
+}

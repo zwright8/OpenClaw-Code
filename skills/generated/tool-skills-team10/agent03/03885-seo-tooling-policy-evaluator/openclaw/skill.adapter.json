@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3885,
+  "name": "seo-tooling-policy-evaluator",
+  "title": "SEO Tooling Policy Evaluator",
+  "description": "Design and run seo tooling workflows with policy evaluator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 3320,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03885-seo-tooling-policy-evaluator/SKILL.md",
+    "entrypoint": "agent03/03885-seo-tooling-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling policy evaluator",
+    "seo tooling policy evaluator workflow",
+    "seo tooling policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

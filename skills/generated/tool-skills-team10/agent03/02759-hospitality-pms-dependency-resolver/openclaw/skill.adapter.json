@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2759,
+  "name": "hospitality-pms-dependency-resolver",
+  "title": "Hospitality PMS Dependency Resolver",
+  "description": "Design and run hospitality pms workflows with dependency resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8958,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02759-hospitality-pms-dependency-resolver/SKILL.md",
+    "entrypoint": "agent03/02759-hospitality-pms-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hospitality pms dependency resolver",
+    "hospitality pms dependency resolver workflow",
+    "hospitality pms dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

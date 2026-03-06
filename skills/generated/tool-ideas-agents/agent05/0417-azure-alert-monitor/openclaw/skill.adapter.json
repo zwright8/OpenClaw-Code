@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 417,
+  "name": "azure-alert-monitor",
+  "title": "Azure Alert Monitor",
+  "description": "Monitors key Azure signals and raises actionable alerts.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0417-azure-alert-monitor/SKILL.md",
+    "entrypoint": "agent05/0417-azure-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure alert monitor",
+    "azure alert monitor workflow",
+    "azure alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0417-azure-alert-monitor"
+  }
+}

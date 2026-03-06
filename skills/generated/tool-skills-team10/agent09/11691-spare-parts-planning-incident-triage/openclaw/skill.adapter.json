@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11691,
+  "name": "spare-parts-planning-incident-triage",
+  "title": "Spare Parts Planning Incident Triage",
+  "description": "Design and run spare parts planning workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2261,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11691-spare-parts-planning-incident-triage/SKILL.md",
+    "entrypoint": "agent09/11691-spare-parts-planning-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "spare parts planning incident triage",
+    "spare parts planning incident triage workflow",
+    "spare parts planning incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

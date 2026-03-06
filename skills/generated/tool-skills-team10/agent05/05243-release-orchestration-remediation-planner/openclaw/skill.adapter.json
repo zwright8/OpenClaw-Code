@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5243,
+  "name": "release-orchestration-remediation-planner",
+  "title": "Release Orchestration Remediation Planner",
+  "description": "Design and run release orchestration workflows with remediation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2798,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05243-release-orchestration-remediation-planner/SKILL.md",
+    "entrypoint": "agent05/05243-release-orchestration-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration remediation planner",
+    "release orchestration remediation planner workflow",
+    "release orchestration remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

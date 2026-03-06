@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3258,
+  "name": "accounting-ledgers-task-decomposer",
+  "title": "Accounting Ledgers Task Decomposer",
+  "description": "Design and run accounting ledgers workflows with task decomposer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9083,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03258-accounting-ledgers-task-decomposer/SKILL.md",
+    "entrypoint": "agent03/03258-accounting-ledgers-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers task decomposer",
+    "accounting ledgers task decomposer workflow",
+    "accounting ledgers task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

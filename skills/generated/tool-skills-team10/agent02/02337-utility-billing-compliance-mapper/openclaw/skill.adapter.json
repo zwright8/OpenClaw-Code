@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2337,
+  "name": "utility-billing-compliance-mapper",
+  "title": "Utility Billing Compliance Mapper",
+  "description": "Design and run utility billing workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 568,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02337-utility-billing-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02337-utility-billing-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing compliance mapper",
+    "utility billing compliance mapper workflow",
+    "utility billing compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

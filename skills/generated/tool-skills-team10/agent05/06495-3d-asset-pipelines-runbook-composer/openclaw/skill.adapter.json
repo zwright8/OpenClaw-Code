@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6495,
+  "name": "3d-asset-pipelines-runbook-composer",
+  "title": "3D Asset Pipelines Runbook Composer",
+  "description": "Design and run 3d asset pipelines workflows with runbook composer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6213,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06495-3d-asset-pipelines-runbook-composer/SKILL.md",
+    "entrypoint": "agent05/06495-3d-asset-pipelines-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines runbook composer",
+    "3d asset pipelines runbook composer workflow",
+    "3d asset pipelines runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

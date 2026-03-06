@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9776,
+  "name": "community-forums-anomaly-detector",
+  "title": "Community Forums Anomaly Detector",
+  "description": "Design and run community forums workflows with anomaly detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5589,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09776-community-forums-anomaly-detector/SKILL.md",
+    "entrypoint": "agent08/09776-community-forums-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums anomaly detector",
+    "community forums anomaly detector workflow",
+    "community forums anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

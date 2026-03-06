@@ -132,19 +132,41 @@ function formatMarkdown(summary) {
     lines.push(`- Tool calls: ${summary.toolCalls}`);
     lines.push(`- Tool results: ${summary.toolResults}`);
     lines.push(`- Errors: ${summary.errors}`);
+    lines.push(`- Unresolved tool calls: ${summary.unresolvedToolCalls || 0}`);
+    lines.push(`- Orphan tool results: ${summary.orphanToolResults || 0}`);
     lines.push(`- Malformed lines: ${summary.malformedLines}`);
+    lines.push(`- Incidents detected: ${summary.incidentCount || 0}`);
     lines.push(`- Reliability score: ${summary.reliabilityScore}/100`);
     lines.push('');
     lines.push('## Top Tools');
     lines.push('');
-    lines.push('| Tool | Calls | Errors | Error Rate | Avg Duration (ms) |');
-    lines.push('| --- | ---: | ---: | ---: | ---: |');
+    lines.push('| Tool | Calls | Errors | Error Rate | Avg Duration (ms) | P95 Duration (ms) |');
+    lines.push('| --- | ---: | ---: | ---: | ---: | ---: |');
     for (const tool of summary.topTools || []) {
         const avgDuration = tool.avgDurationMs === null ? '-' : tool.avgDurationMs;
-        lines.push(`| ${tool.name} | ${tool.calls} | ${tool.errors} | ${formatPercent(tool.errorRate)} | ${avgDuration} |`);
+        const p95Duration = tool.p95DurationMs === null ? '-' : tool.p95DurationMs;
+        lines.push(`| ${tool.name} | ${tool.calls} | ${tool.errors} | ${formatPercent(tool.errorRate)} | ${avgDuration} | ${p95Duration} |`);
     }
     if ((summary.topTools || []).length === 0) {
-        lines.push('| (no tools) | 0 | 0 | 0.00% | - |');
+        lines.push('| (no tools) | 0 | 0 | 0.00% | - | - |');
+    }
+    lines.push('');
+
+    lines.push('## Detected Incidents');
+    lines.push('');
+    lines.push('| Type | Tool | Window Start (UTC) | Observed | Baseline | Severity |');
+    lines.push('| --- | --- | --- | --- | --- | ---: |');
+    for (const incident of summary.incidents || []) {
+        const observed = incident.type === 'error_spike'
+            ? `${incident.observed.errorRate}% (${incident.observed.errors}/${incident.observed.calls})`
+            : `p95 ${incident.observed.p95DurationMs}ms`;
+        const baseline = incident.type === 'error_spike'
+            ? `${incident.baseline.medianErrorRate}%`
+            : `p95 ${incident.baseline.medianP95DurationMs}ms`;
+        lines.push(`| ${incident.type} | ${incident.tool} | ${incident.windowStartIso} | ${observed} | ${baseline} | ${incident.severityScore} |`);
+    }
+    if ((summary.incidents || []).length === 0) {
+        lines.push('| (none) | - | - | - | - | 0 |');
     }
     lines.push('');
 
@@ -166,6 +188,8 @@ function formatMarkdown(summary) {
             toolCalls: 'Tool Calls',
             toolResults: 'Tool Results',
             malformedLines: 'Malformed Lines',
+            unresolvedToolCalls: 'Unresolved Tool Calls',
+            orphanToolResults: 'Orphan Tool Results',
             errorRate: 'Error Rate (%)'
         };
 
@@ -177,14 +201,15 @@ function formatMarkdown(summary) {
 
         lines.push('### Top Regressions');
         lines.push('');
-        lines.push('| Tool | Calls Delta | Error Rate Delta (pp) | Avg Duration Delta (ms) |');
-        lines.push('| --- | ---: | ---: | ---: |');
+        lines.push('| Tool | Calls Delta | Error Rate Delta (pp) | Avg Duration Delta (ms) | P95 Duration Delta (ms) |');
+        lines.push('| --- | ---: | ---: | ---: | ---: |');
         for (const regression of comparison.topRegressions || []) {
             const durationDelta = regression.avgDurationDeltaMs === null ? 'n/a' : regression.avgDurationDeltaMs;
-            lines.push(`| ${regression.tool} | ${formatDelta(regression.callDelta)} | ${formatDelta(regression.errorRateDelta)} | ${formatDelta(durationDelta)} |`);
+            const p95DurationDelta = regression.p95DurationDeltaMs === null ? 'n/a' : regression.p95DurationDeltaMs;
+            lines.push(`| ${regression.tool} | ${formatDelta(regression.callDelta)} | ${formatDelta(regression.errorRateDelta)} | ${formatDelta(durationDelta)} | ${formatDelta(p95DurationDelta)} |`);
         }
         if ((comparison.topRegressions || []).length === 0) {
-            lines.push('| (none) | 0 | 0 | n/a |');
+            lines.push('| (none) | 0 | 0 | n/a | n/a |');
         }
         lines.push('');
     }
@@ -218,6 +243,18 @@ function formatMarkdown(summary) {
     }
     lines.push('');
 
+    lines.push('## Top Active UTC Hours');
+    lines.push('');
+    lines.push('| Hour (UTC) | Messages | Tool Calls | Errors |');
+    lines.push('| --- | ---: | ---: | ---: |');
+    for (const hour of summary.topActiveHours || []) {
+        lines.push(`| ${hour.hourUtc}:00 | ${hour.messages} | ${hour.toolCalls} | ${hour.errors} |`);
+    }
+    if ((summary.topActiveHours || []).length === 0) {
+        lines.push('| (no activity) | 0 | 0 | 0 |');
+    }
+    lines.push('');
+
     lines.push('## Insights');
     lines.push('');
     for (const insight of summary.insights || []) {
@@ -243,7 +280,8 @@ function printComparison(comparison) {
         console.log('\nTop Regressions:');
         for (const regression of comparison.topRegressions) {
             const durationDelta = regression.avgDurationDeltaMs === null ? 'n/a' : `${formatDelta(regression.avgDurationDeltaMs)}ms`;
-            console.log(`  - ${regression.tool}: calls ${formatDelta(regression.callDelta)}, error rate ${formatDelta(regression.errorRateDelta)}pp, avg duration ${durationDelta}`);
+            const p95DurationDelta = regression.p95DurationDeltaMs === null ? 'n/a' : `${formatDelta(regression.p95DurationDeltaMs)}ms`;
+            console.log(`  - ${regression.tool}: calls ${formatDelta(regression.callDelta)}, error rate ${formatDelta(regression.errorRateDelta)}pp, avg duration ${durationDelta}, p95 ${p95DurationDelta}`);
         }
     }
 }

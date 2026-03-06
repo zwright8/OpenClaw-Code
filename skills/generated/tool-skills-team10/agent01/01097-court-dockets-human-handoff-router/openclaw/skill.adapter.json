@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1097,
+  "name": "court-dockets-human-handoff-router",
+  "title": "Court Dockets Human Handoff Router",
+  "description": "Design and run court dockets workflows with human handoff router controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8428,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01097-court-dockets-human-handoff-router/SKILL.md",
+    "entrypoint": "agent01/01097-court-dockets-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets human handoff router",
+    "court dockets human handoff router workflow",
+    "court dockets human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

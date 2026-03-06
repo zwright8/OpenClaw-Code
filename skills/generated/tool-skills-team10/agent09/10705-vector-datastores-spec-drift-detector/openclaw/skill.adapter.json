@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10705,
+  "name": "vector-datastores-spec-drift-detector",
+  "title": "Vector Datastores Spec Drift Detector",
+  "description": "Design and run vector datastores workflows with spec drift detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4385,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10705-vector-datastores-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent09/10705-vector-datastores-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores spec drift detector",
+    "vector datastores spec drift detector workflow",
+    "vector datastores spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

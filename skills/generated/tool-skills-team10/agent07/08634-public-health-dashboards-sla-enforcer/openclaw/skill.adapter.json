@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8634,
+  "name": "public-health-dashboards-sla-enforcer",
+  "title": "Public Health Dashboards SLA Enforcer",
+  "description": "Design and run public health dashboards workflows with sla enforcer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7855,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08634-public-health-dashboards-sla-enforcer/SKILL.md",
+    "entrypoint": "agent07/08634-public-health-dashboards-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards sla enforcer",
+    "public health dashboards sla enforcer workflow",
+    "public health dashboards sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

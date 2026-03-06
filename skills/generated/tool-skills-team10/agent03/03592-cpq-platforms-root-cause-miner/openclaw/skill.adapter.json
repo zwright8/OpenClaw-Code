@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3592,
+  "name": "cpq-platforms-root-cause-miner",
+  "title": "CPQ Platforms Root Cause Miner",
+  "description": "Design and run cpq platforms workflows with root cause miner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4554,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03592-cpq-platforms-root-cause-miner/SKILL.md",
+    "entrypoint": "agent03/03592-cpq-platforms-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cpq platforms root cause miner",
+    "cpq platforms root cause miner workflow",
+    "cpq platforms root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

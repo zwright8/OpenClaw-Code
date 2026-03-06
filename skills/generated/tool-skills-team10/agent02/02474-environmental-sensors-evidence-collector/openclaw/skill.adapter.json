@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2474,
+  "name": "environmental-sensors-evidence-collector",
+  "title": "Environmental Sensors Evidence Collector",
+  "description": "Design and run environmental sensors workflows with evidence collector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5848,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02474-environmental-sensors-evidence-collector/SKILL.md",
+    "entrypoint": "agent02/02474-environmental-sensors-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors evidence collector",
+    "environmental sensors evidence collector workflow",
+    "environmental sensors evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

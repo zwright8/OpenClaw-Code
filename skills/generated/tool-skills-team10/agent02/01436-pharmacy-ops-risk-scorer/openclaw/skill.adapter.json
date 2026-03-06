@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1436,
+  "name": "pharmacy-ops-risk-scorer",
+  "title": "Pharmacy Ops Risk Scorer",
+  "description": "Design and run pharmacy ops workflows with risk scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1496,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01436-pharmacy-ops-risk-scorer/SKILL.md",
+    "entrypoint": "agent02/01436-pharmacy-ops-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops risk scorer",
+    "pharmacy ops risk scorer workflow",
+    "pharmacy ops risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

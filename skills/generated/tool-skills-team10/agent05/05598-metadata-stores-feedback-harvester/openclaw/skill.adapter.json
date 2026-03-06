@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5598,
+  "name": "metadata-stores-feedback-harvester",
+  "title": "Metadata Stores Feedback Harvester",
+  "description": "Design and run metadata stores workflows with feedback harvester controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9878,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05598-metadata-stores-feedback-harvester/SKILL.md",
+    "entrypoint": "agent05/05598-metadata-stores-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores feedback harvester",
+    "metadata stores feedback harvester workflow",
+    "metadata stores feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

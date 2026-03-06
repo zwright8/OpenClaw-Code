@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10741,
+  "name": "vector-datastores-incident-triage",
+  "title": "Vector Datastores Incident Triage",
+  "description": "Design and run vector datastores workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2239,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10741-vector-datastores-incident-triage/SKILL.md",
+    "entrypoint": "agent09/10741-vector-datastores-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores incident triage",
+    "vector datastores incident triage workflow",
+    "vector datastores incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

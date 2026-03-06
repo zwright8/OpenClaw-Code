@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3952,
+  "name": "campaign-automation-auth-broker",
+  "title": "Campaign Automation Auth Broker",
+  "description": "Design and run campaign automation workflows with auth broker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 335,
+    "score": 91,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/03952-campaign-automation-auth-broker/SKILL.md",
+    "entrypoint": "agent04/03952-campaign-automation-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation auth broker",
+    "campaign automation auth broker workflow",
+    "campaign automation auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

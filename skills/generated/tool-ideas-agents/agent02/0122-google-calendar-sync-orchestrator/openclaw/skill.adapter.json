@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 122,
+  "name": "google-calendar-sync-orchestrator",
+  "title": "Google Calendar Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Google Calendar records.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0122-google-calendar-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent02/0122-google-calendar-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google calendar sync orchestrator",
+    "google calendar sync orchestrator workflow",
+    "google calendar sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0122-google-calendar-sync-orchestrator"
+  }
+}

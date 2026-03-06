@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9154,
+  "name": "accessibility-auditing-schema-introspector",
+  "title": "Accessibility Auditing Schema Introspector",
+  "description": "Design and run accessibility auditing workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 697,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09154-accessibility-auditing-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/09154-accessibility-auditing-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing schema introspector",
+    "accessibility auditing schema introspector workflow",
+    "accessibility auditing schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

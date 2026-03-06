@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2096,
+  "name": "scada-monitoring-approval-orchestrator",
+  "title": "SCADA Monitoring Approval Orchestrator",
+  "description": "Design and run scada monitoring workflows with approval orchestrator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5820,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02096-scada-monitoring-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent02/02096-scada-monitoring-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring approval orchestrator",
+    "scada monitoring approval orchestrator workflow",
+    "scada monitoring approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

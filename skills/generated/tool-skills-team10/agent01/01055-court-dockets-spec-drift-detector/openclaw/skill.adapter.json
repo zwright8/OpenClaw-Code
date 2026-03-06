@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1055,
+  "name": "court-dockets-spec-drift-detector",
+  "title": "Court Dockets Spec Drift Detector",
+  "description": "Design and run court dockets workflows with spec drift detector controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 4033,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01055-court-dockets-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent01/01055-court-dockets-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets spec drift detector",
+    "court dockets spec drift detector workflow",
+    "court dockets spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

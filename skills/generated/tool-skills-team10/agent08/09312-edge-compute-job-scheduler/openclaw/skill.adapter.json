@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9312,
+  "name": "edge-compute-job-scheduler",
+  "title": "Edge Compute Job Scheduler",
+  "description": "Design and run edge compute workflows with job scheduler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5153,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09312-edge-compute-job-scheduler/SKILL.md",
+    "entrypoint": "agent08/09312-edge-compute-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute job scheduler",
+    "edge compute job scheduler workflow",
+    "edge compute job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

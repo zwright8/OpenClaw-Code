@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10137,
+  "name": "merchant-risk-compliance-mapper",
+  "title": "Merchant Risk Compliance Mapper",
+  "description": "Design and run merchant risk workflows with compliance mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 527,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10137-merchant-risk-compliance-mapper/SKILL.md",
+    "entrypoint": "agent08/10137-merchant-risk-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk compliance mapper",
+    "merchant risk compliance mapper workflow",
+    "merchant risk compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

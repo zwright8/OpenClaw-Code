@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9223,
+  "name": "content-governance-artifact-publisher",
+  "title": "Content Governance Artifact Publisher",
+  "description": "Design and run content governance workflows with artifact publisher controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11211,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09223-content-governance-artifact-publisher/SKILL.md",
+    "entrypoint": "agent08/09223-content-governance-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "content governance artifact publisher",
+    "content governance artifact publisher workflow",
+    "content governance artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6914,
+  "name": "revenue-recognition-rate-limit-optimizer",
+  "title": "Revenue Recognition Rate Limit Optimizer",
+  "description": "Design and run revenue recognition workflows with rate limit optimizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6247,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06914-revenue-recognition-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent06/06914-revenue-recognition-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revenue recognition rate limit optimizer",
+    "revenue recognition rate limit optimizer workflow",
+    "revenue recognition rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

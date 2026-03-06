@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7684,
+  "name": "push-notification-systems-sla-enforcer",
+  "title": "Push Notification Systems SLA Enforcer",
+  "description": "Design and run push notification systems workflows with sla enforcer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10652,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07684-push-notification-systems-sla-enforcer/SKILL.md",
+    "entrypoint": "agent06/07684-push-notification-systems-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems sla enforcer",
+    "push notification systems sla enforcer workflow",
+    "push notification systems sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

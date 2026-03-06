@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3202,
+  "name": "fraud-operations-auth-broker",
+  "title": "Fraud Operations Auth Broker",
+  "description": "Design and run fraud operations workflows with auth broker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 839,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/03202-fraud-operations-auth-broker/SKILL.md",
+    "entrypoint": "agent03/03202-fraud-operations-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations auth broker",
+    "fraud operations auth broker workflow",
+    "fraud operations auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

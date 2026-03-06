@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5898,
+  "name": "workflow-engines-feedback-harvester",
+  "title": "Workflow Engines Feedback Harvester",
+  "description": "Design and run workflow engines workflows with feedback harvester controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9983,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05898-workflow-engines-feedback-harvester/SKILL.md",
+    "entrypoint": "agent05/05898-workflow-engines-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines feedback harvester",
+    "workflow engines feedback harvester workflow",
+    "workflow engines feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

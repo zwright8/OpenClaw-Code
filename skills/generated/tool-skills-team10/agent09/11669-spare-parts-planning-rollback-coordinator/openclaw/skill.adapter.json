@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11669,
+  "name": "spare-parts-planning-rollback-coordinator",
+  "title": "Spare Parts Planning Rollback Coordinator",
+  "description": "Design and run spare parts planning workflows with rollback coordinator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5236,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11669-spare-parts-planning-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent09/11669-spare-parts-planning-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "spare parts planning rollback coordinator",
+    "spare parts planning rollback coordinator workflow",
+    "spare parts planning rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

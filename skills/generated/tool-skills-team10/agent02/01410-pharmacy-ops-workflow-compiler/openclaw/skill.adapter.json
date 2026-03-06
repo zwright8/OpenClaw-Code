@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1410,
+  "name": "pharmacy-ops-workflow-compiler",
+  "title": "Pharmacy Ops Workflow Compiler",
+  "description": "Design and run pharmacy ops workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1029,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01410-pharmacy-ops-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/01410-pharmacy-ops-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops workflow compiler",
+    "pharmacy ops workflow compiler workflow",
+    "pharmacy ops workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

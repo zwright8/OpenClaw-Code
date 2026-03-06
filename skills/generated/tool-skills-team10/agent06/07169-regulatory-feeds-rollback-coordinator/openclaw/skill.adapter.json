@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7169,
+  "name": "regulatory-feeds-rollback-coordinator",
+  "title": "Regulatory Feeds Rollback Coordinator",
+  "description": "Design and run regulatory feeds workflows with rollback coordinator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5077,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07169-regulatory-feeds-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent06/07169-regulatory-feeds-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds rollback coordinator",
+    "regulatory feeds rollback coordinator workflow",
+    "regulatory feeds rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

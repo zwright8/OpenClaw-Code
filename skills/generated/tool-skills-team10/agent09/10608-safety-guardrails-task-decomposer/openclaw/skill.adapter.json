@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10608,
+  "name": "safety-guardrails-task-decomposer",
+  "title": "Safety Guardrails Task Decomposer",
+  "description": "Design and run safety guardrails workflows with task decomposer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7657,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10608-safety-guardrails-task-decomposer/SKILL.md",
+    "entrypoint": "agent09/10608-safety-guardrails-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails task decomposer",
+    "safety guardrails task decomposer workflow",
+    "safety guardrails task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

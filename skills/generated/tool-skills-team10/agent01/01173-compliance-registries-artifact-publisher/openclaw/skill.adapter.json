@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1173,
+  "name": "compliance-registries-artifact-publisher",
+  "title": "Compliance Registries Artifact Publisher",
+  "description": "Design and run compliance registries workflows with artifact publisher controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 6759,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01173-compliance-registries-artifact-publisher/SKILL.md",
+    "entrypoint": "agent01/01173-compliance-registries-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "compliance registries artifact publisher",
+    "compliance registries artifact publisher workflow",
+    "compliance registries artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

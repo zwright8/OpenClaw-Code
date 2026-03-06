@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2875,
+  "name": "rail-scheduling-provenance-tracker",
+  "title": "Rail Scheduling Provenance Tracker",
+  "description": "Design and run rail scheduling workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7345,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02875-rail-scheduling-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/02875-rail-scheduling-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling provenance tracker",
+    "rail scheduling provenance tracker workflow",
+    "rail scheduling provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

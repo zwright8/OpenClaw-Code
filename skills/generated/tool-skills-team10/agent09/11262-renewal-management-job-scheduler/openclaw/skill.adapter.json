@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11262,
+  "name": "renewal-management-job-scheduler",
+  "title": "Renewal Management Job Scheduler",
+  "description": "Design and run renewal management workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5219,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11262-renewal-management-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/11262-renewal-management-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "renewal management job scheduler",
+    "renewal management job scheduler workflow",
+    "renewal management job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

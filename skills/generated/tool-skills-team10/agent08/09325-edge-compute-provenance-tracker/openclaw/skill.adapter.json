@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9325,
+  "name": "edge-compute-provenance-tracker",
+  "title": "Edge Compute Provenance Tracker",
+  "description": "Design and run edge compute workflows with provenance tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11233,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09325-edge-compute-provenance-tracker/SKILL.md",
+    "entrypoint": "agent08/09325-edge-compute-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute provenance tracker",
+    "edge compute provenance tracker workflow",
+    "edge compute provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

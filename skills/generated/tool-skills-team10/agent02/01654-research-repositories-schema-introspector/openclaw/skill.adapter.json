@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1654,
+  "name": "research-repositories-schema-introspector",
+  "title": "Research Repositories Schema Introspector",
+  "description": "Design and run research repositories workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 556,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01654-research-repositories-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/01654-research-repositories-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories schema introspector",
+    "research repositories schema introspector workflow",
+    "research repositories schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

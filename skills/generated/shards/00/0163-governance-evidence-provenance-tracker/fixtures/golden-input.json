@@ -1,0 +1,18 @@
+{
+  "skill": "u0163-governance-evidence-provenance-tracker",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "evidence_lineage_graphs_report",
+    "evidence_lineage_graphs_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1987,
+  "name": "freight-brokerage-compliance-mapper",
+  "title": "Freight Brokerage Compliance Mapper",
+  "description": "Design and run freight brokerage workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1759,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01987-freight-brokerage-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/01987-freight-brokerage-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage compliance mapper",
+    "freight brokerage compliance mapper workflow",
+    "freight brokerage compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

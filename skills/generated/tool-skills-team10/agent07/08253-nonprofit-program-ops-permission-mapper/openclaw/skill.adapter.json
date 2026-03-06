@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8253,
+  "name": "nonprofit-program-ops-permission-mapper",
+  "title": "Nonprofit Program Ops Permission Mapper",
+  "description": "Design and run nonprofit program ops workflows with permission mapper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2329,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08253-nonprofit-program-ops-permission-mapper/SKILL.md",
+    "entrypoint": "agent07/08253-nonprofit-program-ops-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "nonprofit program ops permission mapper",
+    "nonprofit program ops permission mapper workflow",
+    "nonprofit program ops permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

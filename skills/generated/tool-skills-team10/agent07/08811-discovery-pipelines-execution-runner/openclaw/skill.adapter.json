@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8811,
+  "name": "discovery-pipelines-execution-runner",
+  "title": "Discovery Pipelines Execution Runner",
+  "description": "Design and run discovery pipelines workflows with execution runner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1408,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08811-discovery-pipelines-execution-runner/SKILL.md",
+    "entrypoint": "agent07/08811-discovery-pipelines-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines execution runner",
+    "discovery pipelines execution runner workflow",
+    "discovery pipelines execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

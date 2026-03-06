@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8201,
+  "name": "scientific-publishing-access-auditor",
+  "title": "Scientific Publishing Access Auditor",
+  "description": "Design and run scientific publishing workflows with access auditor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10866,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08201-scientific-publishing-access-auditor/SKILL.md",
+    "entrypoint": "agent07/08201-scientific-publishing-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scientific publishing access auditor",
+    "scientific publishing access auditor workflow",
+    "scientific publishing access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

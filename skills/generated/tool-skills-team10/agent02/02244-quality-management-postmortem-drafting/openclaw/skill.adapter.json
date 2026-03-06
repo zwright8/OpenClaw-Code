@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2244,
+  "name": "quality-management-postmortem-drafting",
+  "title": "Quality Management Postmortem Drafting",
+  "description": "Design and run quality management workflows with postmortem drafting controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8784,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02244-quality-management-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent02/02244-quality-management-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quality management postmortem drafting",
+    "quality management postmortem drafting workflow",
+    "quality management postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

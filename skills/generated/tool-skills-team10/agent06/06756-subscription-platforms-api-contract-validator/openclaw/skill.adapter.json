@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6756,
+  "name": "subscription-platforms-api-contract-validator",
+  "title": "Subscription Platforms API Contract Validator",
+  "description": "Design and run subscription platforms workflows with api contract validator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 165,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent06/06756-subscription-platforms-api-contract-validator/SKILL.md",
+    "entrypoint": "agent06/06756-subscription-platforms-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "subscription platforms api contract validator",
+    "subscription platforms api contract validator workflow",
+    "subscription platforms api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

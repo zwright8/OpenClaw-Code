@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12117,
+  "name": "sensitive-data-governance-delta-calculator",
+  "title": "Sensitive Data Governance Delta Calculator",
+  "description": "Design and run sensitive data governance workflows with delta calculator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12257,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12117-sensitive-data-governance-delta-calculator/SKILL.md",
+    "entrypoint": "agent10/12117-sensitive-data-governance-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance delta calculator",
+    "sensitive data governance delta calculator workflow",
+    "sensitive data governance delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

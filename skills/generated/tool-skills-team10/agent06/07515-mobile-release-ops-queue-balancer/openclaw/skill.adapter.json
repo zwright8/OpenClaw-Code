@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7515,
+  "name": "mobile-release-ops-queue-balancer",
+  "title": "Mobile Release Ops Queue Balancer",
+  "description": "Design and run mobile release ops workflows with queue balancer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10576,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07515-mobile-release-ops-queue-balancer/SKILL.md",
+    "entrypoint": "agent06/07515-mobile-release-ops-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops queue balancer",
+    "mobile release ops queue balancer workflow",
+    "mobile release ops queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3359,
+  "name": "payroll-systems-dependency-resolver",
+  "title": "Payroll Systems Dependency Resolver",
+  "description": "Design and run payroll systems workflows with dependency resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9126,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03359-payroll-systems-dependency-resolver/SKILL.md",
+    "entrypoint": "agent03/03359-payroll-systems-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems dependency resolver",
+    "payroll systems dependency resolver workflow",
+    "payroll systems dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

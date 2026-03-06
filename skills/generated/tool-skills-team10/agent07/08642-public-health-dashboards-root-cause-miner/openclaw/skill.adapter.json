@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8642,
+  "name": "public-health-dashboards-root-cause-miner",
+  "title": "Public Health Dashboards Root Cause Miner",
+  "description": "Design and run public health dashboards workflows with root cause miner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2582,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08642-public-health-dashboards-root-cause-miner/SKILL.md",
+    "entrypoint": "agent07/08642-public-health-dashboards-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards root cause miner",
+    "public health dashboards root cause miner workflow",
+    "public health dashboards root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

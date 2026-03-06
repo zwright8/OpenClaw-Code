@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3691,
+  "name": "partner-portals-incident-triage",
+  "title": "Partner Portals Incident Triage",
+  "description": "Design and run partner portals workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2064,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03691-partner-portals-incident-triage/SKILL.md",
+    "entrypoint": "agent03/03691-partner-portals-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals incident triage",
+    "partner portals incident triage workflow",
+    "partner portals incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

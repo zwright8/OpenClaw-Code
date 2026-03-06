@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11701,
+  "name": "service-quality-access-auditor",
+  "title": "Service Quality Access Auditor",
+  "description": "Design and run service quality workflows with access auditor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12084,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11701-service-quality-access-auditor/SKILL.md",
+    "entrypoint": "agent10/11701-service-quality-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality access auditor",
+    "service quality access auditor workflow",
+    "service quality access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

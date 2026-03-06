@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6530,
+  "name": "ecommerce-catalogs-budget-guardrail",
+  "title": "Ecommerce Catalogs Budget Guardrail",
+  "description": "Design and run ecommerce catalogs workflows with budget guardrail controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6215,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06530-ecommerce-catalogs-budget-guardrail/SKILL.md",
+    "entrypoint": "agent06/06530-ecommerce-catalogs-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs budget guardrail",
+    "ecommerce catalogs budget guardrail workflow",
+    "ecommerce catalogs budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

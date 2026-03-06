@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5686,
+  "name": "feature-stores-risk-scorer",
+  "title": "Feature Stores Risk Scorer",
+  "description": "Design and run feature stores workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1587,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05686-feature-stores-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/05686-feature-stores-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "feature stores risk scorer",
+    "feature stores risk scorer workflow",
+    "feature stores risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

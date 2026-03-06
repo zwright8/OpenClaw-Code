@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9,
+  "name": "github-approval-router",
+  "title": "GitHub Approval Router",
+  "description": "Routes GitHub-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0009-github-approval-router/SKILL.md",
+    "entrypoint": "agent01/0009-github-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "github approval router",
+    "github approval router workflow",
+    "github approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0009-github-approval-router"
+  }
+}

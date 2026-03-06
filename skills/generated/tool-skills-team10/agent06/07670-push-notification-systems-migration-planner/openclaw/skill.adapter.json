@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7670,
+  "name": "push-notification-systems-migration-planner",
+  "title": "Push Notification Systems Migration Planner",
+  "description": "Design and run push notification systems workflows with migration planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4690,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07670-push-notification-systems-migration-planner/SKILL.md",
+    "entrypoint": "agent06/07670-push-notification-systems-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems migration planner",
+    "push notification systems migration planner workflow",
+    "push notification systems migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

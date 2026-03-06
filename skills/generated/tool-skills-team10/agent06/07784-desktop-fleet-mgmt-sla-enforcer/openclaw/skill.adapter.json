@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7784,
+  "name": "desktop-fleet-mgmt-sla-enforcer",
+  "title": "Desktop Fleet Mgmt SLA Enforcer",
+  "description": "Design and run desktop fleet mgmt workflows with sla enforcer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10694,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07784-desktop-fleet-mgmt-sla-enforcer/SKILL.md",
+    "entrypoint": "agent06/07784-desktop-fleet-mgmt-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "desktop fleet mgmt sla enforcer",
+    "desktop fleet mgmt sla enforcer workflow",
+    "desktop fleet mgmt sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

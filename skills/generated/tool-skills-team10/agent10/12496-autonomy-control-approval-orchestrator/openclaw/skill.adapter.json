@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12496,
+  "name": "autonomy-control-approval-orchestrator",
+  "title": "Autonomy Control Approval Orchestrator",
+  "description": "Design and run autonomy control workflows with approval orchestrator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6747,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12496-autonomy-control-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent10/12496-autonomy-control-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control approval orchestrator",
+    "autonomy control approval orchestrator workflow",
+    "autonomy control approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

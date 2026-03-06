@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3671,
+  "name": "partner-portals-snapshot-manager",
+  "title": "Partner Portals Snapshot Manager",
+  "description": "Design and run partner portals workflows with snapshot manager controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9256,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03671-partner-portals-snapshot-manager/SKILL.md",
+    "entrypoint": "agent03/03671-partner-portals-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals snapshot manager",
+    "partner portals snapshot manager workflow",
+    "partner portals snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

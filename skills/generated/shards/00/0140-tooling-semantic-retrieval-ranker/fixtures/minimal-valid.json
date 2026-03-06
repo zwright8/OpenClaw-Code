@@ -1,0 +1,14 @@
+{
+  "skill": "u0140-tooling-semantic-retrieval-ranker",
+  "case": "minimal-valid",
+  "inputs_present": [
+    "tool runs",
+    "error signatures",
+    "retry outcomes",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expected_gate_result": "pass",
+  "risk_classification": "standard"
+}

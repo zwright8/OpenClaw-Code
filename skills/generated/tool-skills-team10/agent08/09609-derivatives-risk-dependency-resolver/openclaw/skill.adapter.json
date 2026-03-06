@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9609,
+  "name": "derivatives-risk-dependency-resolver",
+  "title": "Derivatives Risk Dependency Resolver",
+  "description": "Design and run derivatives risk workflows with dependency resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7070,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09609-derivatives-risk-dependency-resolver/SKILL.md",
+    "entrypoint": "agent08/09609-derivatives-risk-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk dependency resolver",
+    "derivatives risk dependency resolver workflow",
+    "derivatives risk dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

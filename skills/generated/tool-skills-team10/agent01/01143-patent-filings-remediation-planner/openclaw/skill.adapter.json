@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1143,
+  "name": "patent-filings-remediation-planner",
+  "title": "Patent Filings Remediation Planner",
+  "description": "Design and run patent filings workflows with remediation planner controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 2640,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01143-patent-filings-remediation-planner/SKILL.md",
+    "entrypoint": "agent01/01143-patent-filings-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings remediation planner",
+    "patent filings remediation planner workflow",
+    "patent filings remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6362,
+  "name": "audio-pipelines-job-scheduler",
+  "title": "Audio Pipelines Job Scheduler",
+  "description": "Design and run audio pipelines workflows with job scheduler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5047,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06362-audio-pipelines-job-scheduler/SKILL.md",
+    "entrypoint": "agent05/06362-audio-pipelines-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines job scheduler",
+    "audio pipelines job scheduler workflow",
+    "audio pipelines job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

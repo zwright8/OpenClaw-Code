@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12213,
+  "name": "policy-compliance-retry-governor",
+  "title": "Policy Compliance Retry Governor",
+  "description": "Design and run policy compliance workflows with retry governor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2511,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12213-policy-compliance-retry-governor/SKILL.md",
+    "entrypoint": "agent10/12213-policy-compliance-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance retry governor",
+    "policy compliance retry governor workflow",
+    "policy compliance retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4072,
+  "name": "call-center-ops-version-tracker",
+  "title": "Call Center Ops Version Tracker",
+  "description": "Design and run call center ops workflows with version tracker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9383,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04072-call-center-ops-version-tracker/SKILL.md",
+    "entrypoint": "agent04/04072-call-center-ops-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "call center ops version tracker",
+    "call center ops version tracker workflow",
+    "call center ops version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

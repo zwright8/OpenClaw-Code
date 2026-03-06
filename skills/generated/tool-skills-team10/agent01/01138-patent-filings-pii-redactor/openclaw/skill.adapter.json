@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1138,
+  "name": "patent-filings-pii-redactor",
+  "title": "Patent Filings PII Redactor",
+  "description": "Design and run patent filings workflows with pii redactor controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 3126,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01138-patent-filings-pii-redactor/SKILL.md",
+    "entrypoint": "agent01/01138-patent-filings-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings pii redactor",
+    "patent filings pii redactor workflow",
+    "patent filings pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

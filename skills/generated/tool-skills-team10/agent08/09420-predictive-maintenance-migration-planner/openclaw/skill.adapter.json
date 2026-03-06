@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9420,
+  "name": "predictive-maintenance-migration-planner",
+  "title": "Predictive Maintenance Migration Planner",
+  "description": "Design and run predictive maintenance workflows with migration planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2496,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09420-predictive-maintenance-migration-planner/SKILL.md",
+    "entrypoint": "agent08/09420-predictive-maintenance-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance migration planner",
+    "predictive maintenance migration planner workflow",
+    "predictive maintenance migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 300,
+  "name": "xero-migration-assistant",
+  "title": "Xero Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Xero.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0300-xero-migration-assistant/SKILL.md",
+    "entrypoint": "agent03/0300-xero-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "xero migration assistant",
+    "xero migration assistant workflow",
+    "xero migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0300-xero-migration-assistant"
+  }
+}

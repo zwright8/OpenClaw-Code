@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9829,
+  "name": "creator-platforms-capacity-planner",
+  "title": "Creator Platforms Capacity Planner",
+  "description": "Design and run creator platforms workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11404,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09829-creator-platforms-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/09829-creator-platforms-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms capacity planner",
+    "creator platforms capacity planner workflow",
+    "creator platforms capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

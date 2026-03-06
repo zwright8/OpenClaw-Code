@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11591,
+  "name": "scheduling-dispatch-incident-triage",
+  "title": "Scheduling Dispatch Incident Triage",
+  "description": "Design and run scheduling dispatch workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2259,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11591-scheduling-dispatch-incident-triage/SKILL.md",
+    "entrypoint": "agent09/11591-scheduling-dispatch-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch incident triage",
+    "scheduling dispatch incident triage workflow",
+    "scheduling dispatch incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

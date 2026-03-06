@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6014,
+  "name": "document-ocr-rate-limit-optimizer",
+  "title": "Document OCR Rate Limit Optimizer",
+  "description": "Design and run document ocr workflows with rate limit optimizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6170,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06014-document-ocr-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent05/06014-document-ocr-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr rate limit optimizer",
+    "document ocr rate limit optimizer workflow",
+    "document ocr rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

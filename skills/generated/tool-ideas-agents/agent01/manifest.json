@@ -1,0 +1,708 @@
+{
+  "agent": "agent01",
+  "start": 1,
+  "end": 100,
+  "count": 100,
+  "items": [
+    {
+      "id": 1,
+      "tool": "GitHub Connector",
+      "purpose": "Unified read/write connector for GitHub APIs and data.",
+      "folder": "0001-github-connector",
+      "skillPath": "agent01/0001-github-connector/SKILL.md"
+    },
+    {
+      "id": 2,
+      "tool": "GitHub Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for GitHub records.",
+      "folder": "0002-github-sync-orchestrator",
+      "skillPath": "agent01/0002-github-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 3,
+      "tool": "GitHub Data Exporter",
+      "purpose": "Exports GitHub entities into clean, typed datasets.",
+      "folder": "0003-github-data-exporter",
+      "skillPath": "agent01/0003-github-data-exporter/SKILL.md"
+    },
+    {
+      "id": 4,
+      "tool": "GitHub Data Importer",
+      "purpose": "Validates and imports bulk updates into GitHub.",
+      "folder": "0004-github-data-importer",
+      "skillPath": "agent01/0004-github-data-importer/SKILL.md"
+    },
+    {
+      "id": 5,
+      "tool": "GitHub Webhook Listener",
+      "purpose": "Captures, verifies, and routes GitHub webhook events.",
+      "folder": "0005-github-webhook-listener",
+      "skillPath": "agent01/0005-github-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 6,
+      "tool": "GitHub Report Builder",
+      "purpose": "Generates operational and KPI reports from GitHub activity.",
+      "folder": "0006-github-report-builder",
+      "skillPath": "agent01/0006-github-report-builder/SKILL.md"
+    },
+    {
+      "id": 7,
+      "tool": "GitHub Alert Monitor",
+      "purpose": "Monitors key GitHub signals and raises actionable alerts.",
+      "folder": "0007-github-alert-monitor",
+      "skillPath": "agent01/0007-github-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 8,
+      "tool": "GitHub Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using GitHub.",
+      "folder": "0008-github-workflow-automator",
+      "skillPath": "agent01/0008-github-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 9,
+      "tool": "GitHub Approval Router",
+      "purpose": "Routes GitHub-driven decisions to the right approvers.",
+      "folder": "0009-github-approval-router",
+      "skillPath": "agent01/0009-github-approval-router/SKILL.md"
+    },
+    {
+      "id": 10,
+      "tool": "GitHub Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from GitHub.",
+      "folder": "0010-github-migration-assistant",
+      "skillPath": "agent01/0010-github-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 11,
+      "tool": "GitLab Connector",
+      "purpose": "Unified read/write connector for GitLab APIs and data.",
+      "folder": "0011-gitlab-connector",
+      "skillPath": "agent01/0011-gitlab-connector/SKILL.md"
+    },
+    {
+      "id": 12,
+      "tool": "GitLab Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for GitLab records.",
+      "folder": "0012-gitlab-sync-orchestrator",
+      "skillPath": "agent01/0012-gitlab-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 13,
+      "tool": "GitLab Data Exporter",
+      "purpose": "Exports GitLab entities into clean, typed datasets.",
+      "folder": "0013-gitlab-data-exporter",
+      "skillPath": "agent01/0013-gitlab-data-exporter/SKILL.md"
+    },
+    {
+      "id": 14,
+      "tool": "GitLab Data Importer",
+      "purpose": "Validates and imports bulk updates into GitLab.",
+      "folder": "0014-gitlab-data-importer",
+      "skillPath": "agent01/0014-gitlab-data-importer/SKILL.md"
+    },
+    {
+      "id": 15,
+      "tool": "GitLab Webhook Listener",
+      "purpose": "Captures, verifies, and routes GitLab webhook events.",
+      "folder": "0015-gitlab-webhook-listener",
+      "skillPath": "agent01/0015-gitlab-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 16,
+      "tool": "GitLab Report Builder",
+      "purpose": "Generates operational and KPI reports from GitLab activity.",
+      "folder": "0016-gitlab-report-builder",
+      "skillPath": "agent01/0016-gitlab-report-builder/SKILL.md"
+    },
+    {
+      "id": 17,
+      "tool": "GitLab Alert Monitor",
+      "purpose": "Monitors key GitLab signals and raises actionable alerts.",
+      "folder": "0017-gitlab-alert-monitor",
+      "skillPath": "agent01/0017-gitlab-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 18,
+      "tool": "GitLab Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using GitLab.",
+      "folder": "0018-gitlab-workflow-automator",
+      "skillPath": "agent01/0018-gitlab-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 19,
+      "tool": "GitLab Approval Router",
+      "purpose": "Routes GitLab-driven decisions to the right approvers.",
+      "folder": "0019-gitlab-approval-router",
+      "skillPath": "agent01/0019-gitlab-approval-router/SKILL.md"
+    },
+    {
+      "id": 20,
+      "tool": "GitLab Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from GitLab.",
+      "folder": "0020-gitlab-migration-assistant",
+      "skillPath": "agent01/0020-gitlab-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 21,
+      "tool": "Bitbucket Connector",
+      "purpose": "Unified read/write connector for Bitbucket APIs and data.",
+      "folder": "0021-bitbucket-connector",
+      "skillPath": "agent01/0021-bitbucket-connector/SKILL.md"
+    },
+    {
+      "id": 22,
+      "tool": "Bitbucket Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Bitbucket records.",
+      "folder": "0022-bitbucket-sync-orchestrator",
+      "skillPath": "agent01/0022-bitbucket-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 23,
+      "tool": "Bitbucket Data Exporter",
+      "purpose": "Exports Bitbucket entities into clean, typed datasets.",
+      "folder": "0023-bitbucket-data-exporter",
+      "skillPath": "agent01/0023-bitbucket-data-exporter/SKILL.md"
+    },
+    {
+      "id": 24,
+      "tool": "Bitbucket Data Importer",
+      "purpose": "Validates and imports bulk updates into Bitbucket.",
+      "folder": "0024-bitbucket-data-importer",
+      "skillPath": "agent01/0024-bitbucket-data-importer/SKILL.md"
+    },
+    {
+      "id": 25,
+      "tool": "Bitbucket Webhook Listener",
+      "purpose": "Captures, verifies, and routes Bitbucket webhook events.",
+      "folder": "0025-bitbucket-webhook-listener",
+      "skillPath": "agent01/0025-bitbucket-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 26,
+      "tool": "Bitbucket Report Builder",
+      "purpose": "Generates operational and KPI reports from Bitbucket activity.",
+      "folder": "0026-bitbucket-report-builder",
+      "skillPath": "agent01/0026-bitbucket-report-builder/SKILL.md"
+    },
+    {
+      "id": 27,
+      "tool": "Bitbucket Alert Monitor",
+      "purpose": "Monitors key Bitbucket signals and raises actionable alerts.",
+      "folder": "0027-bitbucket-alert-monitor",
+      "skillPath": "agent01/0027-bitbucket-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 28,
+      "tool": "Bitbucket Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Bitbucket.",
+      "folder": "0028-bitbucket-workflow-automator",
+      "skillPath": "agent01/0028-bitbucket-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 29,
+      "tool": "Bitbucket Approval Router",
+      "purpose": "Routes Bitbucket-driven decisions to the right approvers.",
+      "folder": "0029-bitbucket-approval-router",
+      "skillPath": "agent01/0029-bitbucket-approval-router/SKILL.md"
+    },
+    {
+      "id": 30,
+      "tool": "Bitbucket Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Bitbucket.",
+      "folder": "0030-bitbucket-migration-assistant",
+      "skillPath": "agent01/0030-bitbucket-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 31,
+      "tool": "Jira Connector",
+      "purpose": "Unified read/write connector for Jira APIs and data.",
+      "folder": "0031-jira-connector",
+      "skillPath": "agent01/0031-jira-connector/SKILL.md"
+    },
+    {
+      "id": 32,
+      "tool": "Jira Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Jira records.",
+      "folder": "0032-jira-sync-orchestrator",
+      "skillPath": "agent01/0032-jira-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 33,
+      "tool": "Jira Data Exporter",
+      "purpose": "Exports Jira entities into clean, typed datasets.",
+      "folder": "0033-jira-data-exporter",
+      "skillPath": "agent01/0033-jira-data-exporter/SKILL.md"
+    },
+    {
+      "id": 34,
+      "tool": "Jira Data Importer",
+      "purpose": "Validates and imports bulk updates into Jira.",
+      "folder": "0034-jira-data-importer",
+      "skillPath": "agent01/0034-jira-data-importer/SKILL.md"
+    },
+    {
+      "id": 35,
+      "tool": "Jira Webhook Listener",
+      "purpose": "Captures, verifies, and routes Jira webhook events.",
+      "folder": "0035-jira-webhook-listener",
+      "skillPath": "agent01/0035-jira-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 36,
+      "tool": "Jira Report Builder",
+      "purpose": "Generates operational and KPI reports from Jira activity.",
+      "folder": "0036-jira-report-builder",
+      "skillPath": "agent01/0036-jira-report-builder/SKILL.md"
+    },
+    {
+      "id": 37,
+      "tool": "Jira Alert Monitor",
+      "purpose": "Monitors key Jira signals and raises actionable alerts.",
+      "folder": "0037-jira-alert-monitor",
+      "skillPath": "agent01/0037-jira-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 38,
+      "tool": "Jira Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Jira.",
+      "folder": "0038-jira-workflow-automator",
+      "skillPath": "agent01/0038-jira-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 39,
+      "tool": "Jira Approval Router",
+      "purpose": "Routes Jira-driven decisions to the right approvers.",
+      "folder": "0039-jira-approval-router",
+      "skillPath": "agent01/0039-jira-approval-router/SKILL.md"
+    },
+    {
+      "id": 40,
+      "tool": "Jira Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Jira.",
+      "folder": "0040-jira-migration-assistant",
+      "skillPath": "agent01/0040-jira-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 41,
+      "tool": "Linear Connector",
+      "purpose": "Unified read/write connector for Linear APIs and data.",
+      "folder": "0041-linear-connector",
+      "skillPath": "agent01/0041-linear-connector/SKILL.md"
+    },
+    {
+      "id": 42,
+      "tool": "Linear Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Linear records.",
+      "folder": "0042-linear-sync-orchestrator",
+      "skillPath": "agent01/0042-linear-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 43,
+      "tool": "Linear Data Exporter",
+      "purpose": "Exports Linear entities into clean, typed datasets.",
+      "folder": "0043-linear-data-exporter",
+      "skillPath": "agent01/0043-linear-data-exporter/SKILL.md"
+    },
+    {
+      "id": 44,
+      "tool": "Linear Data Importer",
+      "purpose": "Validates and imports bulk updates into Linear.",
+      "folder": "0044-linear-data-importer",
+      "skillPath": "agent01/0044-linear-data-importer/SKILL.md"
+    },
+    {
+      "id": 45,
+      "tool": "Linear Webhook Listener",
+      "purpose": "Captures, verifies, and routes Linear webhook events.",
+      "folder": "0045-linear-webhook-listener",
+      "skillPath": "agent01/0045-linear-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 46,
+      "tool": "Linear Report Builder",
+      "purpose": "Generates operational and KPI reports from Linear activity.",
+      "folder": "0046-linear-report-builder",
+      "skillPath": "agent01/0046-linear-report-builder/SKILL.md"
+    },
+    {
+      "id": 47,
+      "tool": "Linear Alert Monitor",
+      "purpose": "Monitors key Linear signals and raises actionable alerts.",
+      "folder": "0047-linear-alert-monitor",
+      "skillPath": "agent01/0047-linear-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 48,
+      "tool": "Linear Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Linear.",
+      "folder": "0048-linear-workflow-automator",
+      "skillPath": "agent01/0048-linear-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 49,
+      "tool": "Linear Approval Router",
+      "purpose": "Routes Linear-driven decisions to the right approvers.",
+      "folder": "0049-linear-approval-router",
+      "skillPath": "agent01/0049-linear-approval-router/SKILL.md"
+    },
+    {
+      "id": 50,
+      "tool": "Linear Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Linear.",
+      "folder": "0050-linear-migration-assistant",
+      "skillPath": "agent01/0050-linear-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 51,
+      "tool": "Notion Connector",
+      "purpose": "Unified read/write connector for Notion APIs and data.",
+      "folder": "0051-notion-connector",
+      "skillPath": "agent01/0051-notion-connector/SKILL.md"
+    },
+    {
+      "id": 52,
+      "tool": "Notion Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Notion records.",
+      "folder": "0052-notion-sync-orchestrator",
+      "skillPath": "agent01/0052-notion-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 53,
+      "tool": "Notion Data Exporter",
+      "purpose": "Exports Notion entities into clean, typed datasets.",
+      "folder": "0053-notion-data-exporter",
+      "skillPath": "agent01/0053-notion-data-exporter/SKILL.md"
+    },
+    {
+      "id": 54,
+      "tool": "Notion Data Importer",
+      "purpose": "Validates and imports bulk updates into Notion.",
+      "folder": "0054-notion-data-importer",
+      "skillPath": "agent01/0054-notion-data-importer/SKILL.md"
+    },
+    {
+      "id": 55,
+      "tool": "Notion Webhook Listener",
+      "purpose": "Captures, verifies, and routes Notion webhook events.",
+      "folder": "0055-notion-webhook-listener",
+      "skillPath": "agent01/0055-notion-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 56,
+      "tool": "Notion Report Builder",
+      "purpose": "Generates operational and KPI reports from Notion activity.",
+      "folder": "0056-notion-report-builder",
+      "skillPath": "agent01/0056-notion-report-builder/SKILL.md"
+    },
+    {
+      "id": 57,
+      "tool": "Notion Alert Monitor",
+      "purpose": "Monitors key Notion signals and raises actionable alerts.",
+      "folder": "0057-notion-alert-monitor",
+      "skillPath": "agent01/0057-notion-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 58,
+      "tool": "Notion Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Notion.",
+      "folder": "0058-notion-workflow-automator",
+      "skillPath": "agent01/0058-notion-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 59,
+      "tool": "Notion Approval Router",
+      "purpose": "Routes Notion-driven decisions to the right approvers.",
+      "folder": "0059-notion-approval-router",
+      "skillPath": "agent01/0059-notion-approval-router/SKILL.md"
+    },
+    {
+      "id": 60,
+      "tool": "Notion Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Notion.",
+      "folder": "0060-notion-migration-assistant",
+      "skillPath": "agent01/0060-notion-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 61,
+      "tool": "Confluence Connector",
+      "purpose": "Unified read/write connector for Confluence APIs and data.",
+      "folder": "0061-confluence-connector",
+      "skillPath": "agent01/0061-confluence-connector/SKILL.md"
+    },
+    {
+      "id": 62,
+      "tool": "Confluence Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Confluence records.",
+      "folder": "0062-confluence-sync-orchestrator",
+      "skillPath": "agent01/0062-confluence-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 63,
+      "tool": "Confluence Data Exporter",
+      "purpose": "Exports Confluence entities into clean, typed datasets.",
+      "folder": "0063-confluence-data-exporter",
+      "skillPath": "agent01/0063-confluence-data-exporter/SKILL.md"
+    },
+    {
+      "id": 64,
+      "tool": "Confluence Data Importer",
+      "purpose": "Validates and imports bulk updates into Confluence.",
+      "folder": "0064-confluence-data-importer",
+      "skillPath": "agent01/0064-confluence-data-importer/SKILL.md"
+    },
+    {
+      "id": 65,
+      "tool": "Confluence Webhook Listener",
+      "purpose": "Captures, verifies, and routes Confluence webhook events.",
+      "folder": "0065-confluence-webhook-listener",
+      "skillPath": "agent01/0065-confluence-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 66,
+      "tool": "Confluence Report Builder",
+      "purpose": "Generates operational and KPI reports from Confluence activity.",
+      "folder": "0066-confluence-report-builder",
+      "skillPath": "agent01/0066-confluence-report-builder/SKILL.md"
+    },
+    {
+      "id": 67,
+      "tool": "Confluence Alert Monitor",
+      "purpose": "Monitors key Confluence signals and raises actionable alerts.",
+      "folder": "0067-confluence-alert-monitor",
+      "skillPath": "agent01/0067-confluence-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 68,
+      "tool": "Confluence Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Confluence.",
+      "folder": "0068-confluence-workflow-automator",
+      "skillPath": "agent01/0068-confluence-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 69,
+      "tool": "Confluence Approval Router",
+      "purpose": "Routes Confluence-driven decisions to the right approvers.",
+      "folder": "0069-confluence-approval-router",
+      "skillPath": "agent01/0069-confluence-approval-router/SKILL.md"
+    },
+    {
+      "id": 70,
+      "tool": "Confluence Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Confluence.",
+      "folder": "0070-confluence-migration-assistant",
+      "skillPath": "agent01/0070-confluence-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 71,
+      "tool": "Slack Connector",
+      "purpose": "Unified read/write connector for Slack APIs and data.",
+      "folder": "0071-slack-connector",
+      "skillPath": "agent01/0071-slack-connector/SKILL.md"
+    },
+    {
+      "id": 72,
+      "tool": "Slack Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Slack records.",
+      "folder": "0072-slack-sync-orchestrator",
+      "skillPath": "agent01/0072-slack-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 73,
+      "tool": "Slack Data Exporter",
+      "purpose": "Exports Slack entities into clean, typed datasets.",
+      "folder": "0073-slack-data-exporter",
+      "skillPath": "agent01/0073-slack-data-exporter/SKILL.md"
+    },
+    {
+      "id": 74,
+      "tool": "Slack Data Importer",
+      "purpose": "Validates and imports bulk updates into Slack.",
+      "folder": "0074-slack-data-importer",
+      "skillPath": "agent01/0074-slack-data-importer/SKILL.md"
+    },
+    {
+      "id": 75,
+      "tool": "Slack Webhook Listener",
+      "purpose": "Captures, verifies, and routes Slack webhook events.",
+      "folder": "0075-slack-webhook-listener",
+      "skillPath": "agent01/0075-slack-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 76,
+      "tool": "Slack Report Builder",
+      "purpose": "Generates operational and KPI reports from Slack activity.",
+      "folder": "0076-slack-report-builder",
+      "skillPath": "agent01/0076-slack-report-builder/SKILL.md"
+    },
+    {
+      "id": 77,
+      "tool": "Slack Alert Monitor",
+      "purpose": "Monitors key Slack signals and raises actionable alerts.",
+      "folder": "0077-slack-alert-monitor",
+      "skillPath": "agent01/0077-slack-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 78,
+      "tool": "Slack Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Slack.",
+      "folder": "0078-slack-workflow-automator",
+      "skillPath": "agent01/0078-slack-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 79,
+      "tool": "Slack Approval Router",
+      "purpose": "Routes Slack-driven decisions to the right approvers.",
+      "folder": "0079-slack-approval-router",
+      "skillPath": "agent01/0079-slack-approval-router/SKILL.md"
+    },
+    {
+      "id": 80,
+      "tool": "Slack Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Slack.",
+      "folder": "0080-slack-migration-assistant",
+      "skillPath": "agent01/0080-slack-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 81,
+      "tool": "Discord Connector",
+      "purpose": "Unified read/write connector for Discord APIs and data.",
+      "folder": "0081-discord-connector",
+      "skillPath": "agent01/0081-discord-connector/SKILL.md"
+    },
+    {
+      "id": 82,
+      "tool": "Discord Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Discord records.",
+      "folder": "0082-discord-sync-orchestrator",
+      "skillPath": "agent01/0082-discord-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 83,
+      "tool": "Discord Data Exporter",
+      "purpose": "Exports Discord entities into clean, typed datasets.",
+      "folder": "0083-discord-data-exporter",
+      "skillPath": "agent01/0083-discord-data-exporter/SKILL.md"
+    },
+    {
+      "id": 84,
+      "tool": "Discord Data Importer",
+      "purpose": "Validates and imports bulk updates into Discord.",
+      "folder": "0084-discord-data-importer",
+      "skillPath": "agent01/0084-discord-data-importer/SKILL.md"
+    },
+    {
+      "id": 85,
+      "tool": "Discord Webhook Listener",
+      "purpose": "Captures, verifies, and routes Discord webhook events.",
+      "folder": "0085-discord-webhook-listener",
+      "skillPath": "agent01/0085-discord-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 86,
+      "tool": "Discord Report Builder",
+      "purpose": "Generates operational and KPI reports from Discord activity.",
+      "folder": "0086-discord-report-builder",
+      "skillPath": "agent01/0086-discord-report-builder/SKILL.md"
+    },
+    {
+      "id": 87,
+      "tool": "Discord Alert Monitor",
+      "purpose": "Monitors key Discord signals and raises actionable alerts.",
+      "folder": "0087-discord-alert-monitor",
+      "skillPath": "agent01/0087-discord-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 88,
+      "tool": "Discord Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Discord.",
+      "folder": "0088-discord-workflow-automator",
+      "skillPath": "agent01/0088-discord-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 89,
+      "tool": "Discord Approval Router",
+      "purpose": "Routes Discord-driven decisions to the right approvers.",
+      "folder": "0089-discord-approval-router",
+      "skillPath": "agent01/0089-discord-approval-router/SKILL.md"
+    },
+    {
+      "id": 90,
+      "tool": "Discord Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Discord.",
+      "folder": "0090-discord-migration-assistant",
+      "skillPath": "agent01/0090-discord-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 91,
+      "tool": "Microsoft Teams Connector",
+      "purpose": "Unified read/write connector for Microsoft Teams APIs and data.",
+      "folder": "0091-microsoft-teams-connector",
+      "skillPath": "agent01/0091-microsoft-teams-connector/SKILL.md"
+    },
+    {
+      "id": 92,
+      "tool": "Microsoft Teams Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Microsoft Teams records.",
+      "folder": "0092-microsoft-teams-sync-orchestrator",
+      "skillPath": "agent01/0092-microsoft-teams-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 93,
+      "tool": "Microsoft Teams Data Exporter",
+      "purpose": "Exports Microsoft Teams entities into clean, typed datasets.",
+      "folder": "0093-microsoft-teams-data-exporter",
+      "skillPath": "agent01/0093-microsoft-teams-data-exporter/SKILL.md"
+    },
+    {
+      "id": 94,
+      "tool": "Microsoft Teams Data Importer",
+      "purpose": "Validates and imports bulk updates into Microsoft Teams.",
+      "folder": "0094-microsoft-teams-data-importer",
+      "skillPath": "agent01/0094-microsoft-teams-data-importer/SKILL.md"
+    },
+    {
+      "id": 95,
+      "tool": "Microsoft Teams Webhook Listener",
+      "purpose": "Captures, verifies, and routes Microsoft Teams webhook events.",
+      "folder": "0095-microsoft-teams-webhook-listener",
+      "skillPath": "agent01/0095-microsoft-teams-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 96,
+      "tool": "Microsoft Teams Report Builder",
+      "purpose": "Generates operational and KPI reports from Microsoft Teams activity.",
+      "folder": "0096-microsoft-teams-report-builder",
+      "skillPath": "agent01/0096-microsoft-teams-report-builder/SKILL.md"
+    },
+    {
+      "id": 97,
+      "tool": "Microsoft Teams Alert Monitor",
+      "purpose": "Monitors key Microsoft Teams signals and raises actionable alerts.",
+      "folder": "0097-microsoft-teams-alert-monitor",
+      "skillPath": "agent01/0097-microsoft-teams-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 98,
+      "tool": "Microsoft Teams Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Microsoft Teams.",
+      "folder": "0098-microsoft-teams-workflow-automator",
+      "skillPath": "agent01/0098-microsoft-teams-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 99,
+      "tool": "Microsoft Teams Approval Router",
+      "purpose": "Routes Microsoft Teams-driven decisions to the right approvers.",
+      "folder": "0099-microsoft-teams-approval-router",
+      "skillPath": "agent01/0099-microsoft-teams-approval-router/SKILL.md"
+    },
+    {
+      "id": 100,
+      "tool": "Microsoft Teams Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Microsoft Teams.",
+      "folder": "0100-microsoft-teams-migration-assistant",
+      "skillPath": "agent01/0100-microsoft-teams-migration-assistant/SKILL.md"
+    }
+  ]
+}

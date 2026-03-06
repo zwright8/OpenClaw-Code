@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3906,
+  "name": "social-listening-api-contract-validator",
+  "title": "Social Listening API Contract Validator",
+  "description": "Design and run social listening workflows with api contract validator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 113,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/03906-social-listening-api-contract-validator/SKILL.md",
+    "entrypoint": "agent04/03906-social-listening-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening api contract validator",
+    "social listening api contract validator workflow",
+    "social listening api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

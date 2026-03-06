@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4580,
+  "name": "soar-platforms-budget-guardrail",
+  "title": "SOAR Platforms Budget Guardrail",
+  "description": "Design and run soar platforms workflows with budget guardrail controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7405,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04580-soar-platforms-budget-guardrail/SKILL.md",
+    "entrypoint": "agent04/04580-soar-platforms-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "soar platforms budget guardrail",
+    "soar platforms budget guardrail workflow",
+    "soar platforms budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

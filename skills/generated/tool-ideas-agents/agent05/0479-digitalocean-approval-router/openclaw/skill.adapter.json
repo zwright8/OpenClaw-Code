@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 479,
+  "name": "digitalocean-approval-router",
+  "title": "DigitalOcean Approval Router",
+  "description": "Routes DigitalOcean-driven decisions to the right approvers.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0479-digitalocean-approval-router/SKILL.md",
+    "entrypoint": "agent05/0479-digitalocean-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digitalocean approval router",
+    "digitalocean approval router workflow",
+    "digitalocean approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0479-digitalocean-approval-router"
+  }
+}

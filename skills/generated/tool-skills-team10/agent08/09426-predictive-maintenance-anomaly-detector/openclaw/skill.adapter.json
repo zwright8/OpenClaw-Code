@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9426,
+  "name": "predictive-maintenance-anomaly-detector",
+  "title": "Predictive Maintenance Anomaly Detector",
+  "description": "Design and run predictive maintenance workflows with anomaly detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2963,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09426-predictive-maintenance-anomaly-detector/SKILL.md",
+    "entrypoint": "agent08/09426-predictive-maintenance-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance anomaly detector",
+    "predictive maintenance anomaly detector workflow",
+    "predictive maintenance anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

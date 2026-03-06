@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8985,
+  "name": "legislative-tracking-policy-evaluator",
+  "title": "Legislative Tracking Policy Evaluator",
+  "description": "Design and run legislative tracking workflows with policy evaluator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3703,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08985-legislative-tracking-policy-evaluator/SKILL.md",
+    "entrypoint": "agent07/08985-legislative-tracking-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legislative tracking policy evaluator",
+    "legislative tracking policy evaluator workflow",
+    "legislative tracking policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

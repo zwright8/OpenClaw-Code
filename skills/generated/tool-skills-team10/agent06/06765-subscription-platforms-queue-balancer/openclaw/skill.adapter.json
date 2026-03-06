@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6765,
+  "name": "subscription-platforms-queue-balancer",
+  "title": "Subscription Platforms Queue Balancer",
+  "description": "Design and run subscription platforms workflows with queue balancer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10303,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06765-subscription-platforms-queue-balancer/SKILL.md",
+    "entrypoint": "agent06/06765-subscription-platforms-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "subscription platforms queue balancer",
+    "subscription platforms queue balancer workflow",
+    "subscription platforms queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

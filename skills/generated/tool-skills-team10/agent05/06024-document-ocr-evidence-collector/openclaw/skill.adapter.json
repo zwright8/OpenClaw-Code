@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6024,
+  "name": "document-ocr-evidence-collector",
+  "title": "Document OCR Evidence Collector",
+  "description": "Design and run document ocr workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6171,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06024-document-ocr-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/06024-document-ocr-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr evidence collector",
+    "document ocr evidence collector workflow",
+    "document ocr evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

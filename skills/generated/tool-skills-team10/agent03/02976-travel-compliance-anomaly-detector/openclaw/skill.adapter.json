@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2976,
+  "name": "travel-compliance-anomaly-detector",
+  "title": "Travel Compliance Anomaly Detector",
+  "description": "Design and run travel compliance workflows with anomaly detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2363,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02976-travel-compliance-anomaly-detector/SKILL.md",
+    "entrypoint": "agent03/02976-travel-compliance-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance anomaly detector",
+    "travel compliance anomaly detector workflow",
+    "travel compliance anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

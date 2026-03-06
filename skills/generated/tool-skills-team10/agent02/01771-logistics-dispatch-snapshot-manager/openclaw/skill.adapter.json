@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1771,
+  "name": "logistics-dispatch-snapshot-manager",
+  "title": "Logistics Dispatch Snapshot Manager",
+  "description": "Design and run logistics dispatch workflows with snapshot manager controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8605,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01771-logistics-dispatch-snapshot-manager/SKILL.md",
+    "entrypoint": "agent02/01771-logistics-dispatch-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch snapshot manager",
+    "logistics dispatch snapshot manager workflow",
+    "logistics dispatch snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

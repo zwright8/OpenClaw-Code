@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9718,
+  "name": "execution-monitoring-conflict-resolver",
+  "title": "Execution Monitoring Conflict Resolver",
+  "description": "Design and run execution monitoring workflows with conflict resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11355,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09718-execution-monitoring-conflict-resolver/SKILL.md",
+    "entrypoint": "agent08/09718-execution-monitoring-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring conflict resolver",
+    "execution monitoring conflict resolver workflow",
+    "execution monitoring conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7220,
+  "name": "market-data-apis-migration-planner",
+  "title": "Market Data APIs Migration Planner",
+  "description": "Design and run market data apis workflows with migration planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2327,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07220-market-data-apis-migration-planner/SKILL.md",
+    "entrypoint": "agent06/07220-market-data-apis-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis migration planner",
+    "market data apis migration planner workflow",
+    "market data apis migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

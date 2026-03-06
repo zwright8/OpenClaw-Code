@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6669,
+  "name": "returns-processing-rollback-coordinator",
+  "title": "Returns Processing Rollback Coordinator",
+  "description": "Design and run returns processing workflows with rollback coordinator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5059,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06669-returns-processing-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent06/06669-returns-processing-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "returns processing rollback coordinator",
+    "returns processing rollback coordinator workflow",
+    "returns processing rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

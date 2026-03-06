@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 483,
+  "name": "kubernetes-data-exporter",
+  "title": "Kubernetes Data Exporter",
+  "description": "Exports Kubernetes entities into clean, typed datasets.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0483-kubernetes-data-exporter/SKILL.md",
+    "entrypoint": "agent05/0483-kubernetes-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes data exporter",
+    "kubernetes data exporter workflow",
+    "kubernetes data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0483-kubernetes-data-exporter"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9727,
+  "name": "execution-monitoring-threshold-alerting",
+  "title": "Execution Monitoring Threshold Alerting",
+  "description": "Design and run execution monitoring workflows with threshold alerting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11360,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09727-execution-monitoring-threshold-alerting/SKILL.md",
+    "entrypoint": "agent08/09727-execution-monitoring-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring threshold alerting",
+    "execution monitoring threshold alerting workflow",
+    "execution monitoring threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

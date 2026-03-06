@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3027,
+  "name": "bank-core-systems-threshold-alerting",
+  "title": "Bank Core Systems Threshold Alerting",
+  "description": "Design and run bank core systems workflows with threshold alerting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9008,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03027-bank-core-systems-threshold-alerting/SKILL.md",
+    "entrypoint": "agent03/03027-bank-core-systems-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems threshold alerting",
+    "bank core systems threshold alerting workflow",
+    "bank core systems threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

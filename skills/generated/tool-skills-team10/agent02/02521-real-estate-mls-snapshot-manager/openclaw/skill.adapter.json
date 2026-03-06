@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2521,
+  "name": "real-estate-mls-snapshot-manager",
+  "title": "Real Estate MLS Snapshot Manager",
+  "description": "Design and run real estate mls workflows with snapshot manager controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8878,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02521-real-estate-mls-snapshot-manager/SKILL.md",
+    "entrypoint": "agent02/02521-real-estate-mls-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls snapshot manager",
+    "real estate mls snapshot manager workflow",
+    "real estate mls snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

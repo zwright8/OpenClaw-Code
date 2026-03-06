@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3500,
+  "name": "procure-to-pay-outcome-synthesizer",
+  "title": "Procure to Pay Outcome Synthesizer",
+  "description": "Design and run procure to pay workflows with outcome synthesizer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6880,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03500-procure-to-pay-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent03/03500-procure-to-pay-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay outcome synthesizer",
+    "procure to pay outcome synthesizer workflow",
+    "procure to pay outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

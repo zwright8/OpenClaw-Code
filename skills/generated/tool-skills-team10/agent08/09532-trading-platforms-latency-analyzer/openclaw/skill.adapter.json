@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9532,
+  "name": "trading-platforms-latency-analyzer",
+  "title": "Trading Platforms Latency Analyzer",
+  "description": "Design and run trading platforms workflows with latency analyzer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11301,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09532-trading-platforms-latency-analyzer/SKILL.md",
+    "entrypoint": "agent08/09532-trading-platforms-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms latency analyzer",
+    "trading platforms latency analyzer workflow",
+    "trading platforms latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

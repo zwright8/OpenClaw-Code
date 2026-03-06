@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10255,
+  "name": "identity-verification-spec-drift-detector",
+  "title": "Identity Verification Spec Drift Detector",
+  "description": "Design and run identity verification workflows with spec drift detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1683,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10255-identity-verification-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent08/10255-identity-verification-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification spec drift detector",
+    "identity verification spec drift detector workflow",
+    "identity verification spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10598,
+  "name": "evaluation-harnesses-feedback-harvester",
+  "title": "Evaluation Harnesses Feedback Harvester",
+  "description": "Design and run evaluation harnesses workflows with feedback harvester controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11663,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10598-evaluation-harnesses-feedback-harvester/SKILL.md",
+    "entrypoint": "agent09/10598-evaluation-harnesses-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "evaluation harnesses feedback harvester",
+    "evaluation harnesses feedback harvester workflow",
+    "evaluation harnesses feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

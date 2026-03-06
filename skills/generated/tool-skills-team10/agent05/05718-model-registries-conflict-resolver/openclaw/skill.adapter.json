@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5718,
+  "name": "model-registries-conflict-resolver",
+  "title": "Model Registries Conflict Resolver",
+  "description": "Design and run model registries workflows with conflict resolver controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9906,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05718-model-registries-conflict-resolver/SKILL.md",
+    "entrypoint": "agent05/05718-model-registries-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries conflict resolver",
+    "model registries conflict resolver workflow",
+    "model registries conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

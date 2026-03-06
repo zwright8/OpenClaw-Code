@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7091,
+  "name": "news-monitoring-incident-triage",
+  "title": "News Monitoring Incident Triage",
+  "description": "Design and run news monitoring workflows with incident triage controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2146,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07091-news-monitoring-incident-triage/SKILL.md",
+    "entrypoint": "agent06/07091-news-monitoring-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring incident triage",
+    "news monitoring incident triage workflow",
+    "news monitoring incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

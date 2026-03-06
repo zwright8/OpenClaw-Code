@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10449,
+  "name": "document-verification-quality-gatekeeper",
+  "title": "Document Verification Quality Gatekeeper",
+  "description": "Design and run document verification workflows with quality gatekeeper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5612,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10449-document-verification-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent09/10449-document-verification-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification quality gatekeeper",
+    "document verification quality gatekeeper workflow",
+    "document verification quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

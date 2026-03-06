@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2985,
+  "name": "travel-compliance-policy-evaluator",
+  "title": "Travel Compliance Policy Evaluator",
+  "description": "Design and run travel compliance workflows with policy evaluator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1297,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02985-travel-compliance-policy-evaluator/SKILL.md",
+    "entrypoint": "agent03/02985-travel-compliance-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance policy evaluator",
+    "travel compliance policy evaluator workflow",
+    "travel compliance policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

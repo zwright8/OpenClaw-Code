@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 784,
+  "name": "linkedin-data-importer",
+  "title": "LinkedIn Data Importer",
+  "description": "Validates and imports bulk updates into LinkedIn.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12870,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00784-linkedin-data-importer/SKILL.md",
+    "entrypoint": "agent01/00784-linkedin-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "linkedin data importer",
+    "linkedin data importer workflow",
+    "linkedin data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

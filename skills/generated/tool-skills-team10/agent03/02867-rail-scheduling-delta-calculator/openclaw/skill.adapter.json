@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2867,
+  "name": "rail-scheduling-delta-calculator",
+  "title": "Rail Scheduling Delta Calculator",
+  "description": "Design and run rail scheduling workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7340,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02867-rail-scheduling-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/02867-rail-scheduling-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling delta calculator",
+    "rail scheduling delta calculator workflow",
+    "rail scheduling delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

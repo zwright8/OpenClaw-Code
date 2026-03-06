@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9830,
+  "name": "creator-platforms-budget-guardrail",
+  "title": "Creator Platforms Budget Guardrail",
+  "description": "Design and run creator platforms workflows with budget guardrail controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7621,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09830-creator-platforms-budget-guardrail/SKILL.md",
+    "entrypoint": "agent08/09830-creator-platforms-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms budget guardrail",
+    "creator platforms budget guardrail workflow",
+    "creator platforms budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

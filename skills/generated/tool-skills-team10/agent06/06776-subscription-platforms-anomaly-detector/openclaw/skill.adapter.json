@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6776,
+  "name": "subscription-platforms-anomaly-detector",
+  "title": "Subscription Platforms Anomaly Detector",
+  "description": "Design and run subscription platforms workflows with anomaly detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5487,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06776-subscription-platforms-anomaly-detector/SKILL.md",
+    "entrypoint": "agent06/06776-subscription-platforms-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "subscription platforms anomaly detector",
+    "subscription platforms anomaly detector workflow",
+    "subscription platforms anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

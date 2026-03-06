@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12589,
+  "name": "universal-toolchain-02-secret-scanner",
+  "title": "Universal Toolchain 02 Secret Scanner",
+  "description": "Design and run universal toolchain 02 workflows with secret scanner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2614,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12589-universal-toolchain-02-secret-scanner/SKILL.md",
+    "entrypoint": "agent10/12589-universal-toolchain-02-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 02 secret scanner",
+    "universal toolchain 02 secret scanner workflow",
+    "universal toolchain 02 secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

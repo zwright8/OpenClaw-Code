@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5999,
+  "name": "task-queues-quality-gatekeeper",
+  "title": "Task Queues Quality Gatekeeper",
+  "description": "Design and run task queues workflows with quality gatekeeper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5460,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05999-task-queues-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent05/05999-task-queues-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues quality gatekeeper",
+    "task queues quality gatekeeper workflow",
+    "task queues quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

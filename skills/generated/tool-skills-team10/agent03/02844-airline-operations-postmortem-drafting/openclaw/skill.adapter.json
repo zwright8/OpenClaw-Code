@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2844,
+  "name": "airline-operations-postmortem-drafting",
+  "title": "Airline Operations Postmortem Drafting",
+  "description": "Design and run airline operations workflows with postmortem drafting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7332,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02844-airline-operations-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent03/02844-airline-operations-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations postmortem drafting",
+    "airline operations postmortem drafting workflow",
+    "airline operations postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6210,
+  "name": "archive-systems-workflow-compiler",
+  "title": "Archive Systems Workflow Compiler",
+  "description": "Design and run archive systems workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1116,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06210-archive-systems-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/06210-archive-systems-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "archive systems workflow compiler",
+    "archive systems workflow compiler workflow",
+    "archive systems workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

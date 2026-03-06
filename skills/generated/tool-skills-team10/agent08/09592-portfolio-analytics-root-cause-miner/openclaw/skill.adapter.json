@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9592,
+  "name": "portfolio-analytics-root-cause-miner",
+  "title": "Portfolio Analytics Root Cause Miner",
+  "description": "Design and run portfolio analytics workflows with root cause miner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4757,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09592-portfolio-analytics-root-cause-miner/SKILL.md",
+    "entrypoint": "agent08/09592-portfolio-analytics-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics root cause miner",
+    "portfolio analytics root cause miner workflow",
+    "portfolio analytics root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

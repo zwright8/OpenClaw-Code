@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1060,
+  "name": "court-dockets-workflow-compiler",
+  "title": "Court Dockets Workflow Compiler",
+  "description": "Design and run court dockets workflows with workflow compiler controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 1024,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01060-court-dockets-workflow-compiler/SKILL.md",
+    "entrypoint": "agent01/01060-court-dockets-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets workflow compiler",
+    "court dockets workflow compiler workflow",
+    "court dockets workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

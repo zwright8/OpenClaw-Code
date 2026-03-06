@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10,
+  "name": "github-migration-assistant",
+  "title": "GitHub Migration Assistant",
+  "description": "Plans and executes safe migrations to or from GitHub.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0010-github-migration-assistant/SKILL.md",
+    "entrypoint": "agent01/0010-github-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "github migration assistant",
+    "github migration assistant workflow",
+    "github migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0010-github-migration-assistant"
+  }
+}

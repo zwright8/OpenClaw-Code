@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12438,
+  "name": "simulation-environments-pii-redactor",
+  "title": "Simulation Environments PII Redactor",
+  "description": "Design and run simulation environments workflows with pii redactor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3972,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12438-simulation-environments-pii-redactor/SKILL.md",
+    "entrypoint": "agent10/12438-simulation-environments-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments pii redactor",
+    "simulation environments pii redactor workflow",
+    "simulation environments pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

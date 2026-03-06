@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10034,
+  "name": "payment-gateways-sla-enforcer",
+  "title": "Payment Gateways SLA Enforcer",
+  "description": "Design and run payment gateways workflows with sla enforcer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11492,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10034-payment-gateways-sla-enforcer/SKILL.md",
+    "entrypoint": "agent08/10034-payment-gateways-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways sla enforcer",
+    "payment gateways sla enforcer workflow",
+    "payment gateways sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

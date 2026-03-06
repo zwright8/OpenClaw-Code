@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3649,
+  "name": "revops-systems-quality-gatekeeper",
+  "title": "RevOps Systems Quality Gatekeeper",
+  "description": "Design and run revops systems workflows with quality gatekeeper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5386,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03649-revops-systems-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent03/03649-revops-systems-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revops systems quality gatekeeper",
+    "revops systems quality gatekeeper workflow",
+    "revops systems quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

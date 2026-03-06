@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2202,
+  "name": "quality-management-auth-broker",
+  "title": "Quality Management Auth Broker",
+  "description": "Design and run quality management workflows with auth broker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 822,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02202-quality-management-auth-broker/SKILL.md",
+    "entrypoint": "agent02/02202-quality-management-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quality management auth broker",
+    "quality management auth broker workflow",
+    "quality management auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

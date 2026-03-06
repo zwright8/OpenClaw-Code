@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7351,
+  "name": "experiment-platforms-access-auditor",
+  "title": "Experiment Platforms Access Auditor",
+  "description": "Design and run experiment platforms workflows with access auditor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10509,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07351-experiment-platforms-access-auditor/SKILL.md",
+    "entrypoint": "agent06/07351-experiment-platforms-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms access auditor",
+    "experiment platforms access auditor workflow",
+    "experiment platforms access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

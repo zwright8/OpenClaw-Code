@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5425,
+  "name": "message-brokers-provenance-tracker",
+  "title": "Message Brokers Provenance Tracker",
+  "description": "Design and run message brokers workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9805,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05425-message-brokers-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05425-message-brokers-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers provenance tracker",
+    "message brokers provenance tracker workflow",
+    "message brokers provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

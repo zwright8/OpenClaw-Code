@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 145,
+  "name": "google-drive-webhook-listener",
+  "title": "Google Drive Webhook Listener",
+  "description": "Captures, verifies, and routes Google Drive webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12451,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00145-google-drive-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00145-google-drive-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google drive webhook listener",
+    "google drive webhook listener workflow",
+    "google drive webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

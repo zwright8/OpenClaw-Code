@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9436,
+  "name": "predictive-maintenance-risk-scorer",
+  "title": "Predictive Maintenance Risk Scorer",
+  "description": "Design and run predictive maintenance workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 702,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09436-predictive-maintenance-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09436-predictive-maintenance-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance risk scorer",
+    "predictive maintenance risk scorer workflow",
+    "predictive maintenance risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1838,
+  "name": "fleet-telematics-pii-redactor",
+  "title": "Fleet Telematics PII Redactor",
+  "description": "Design and run fleet telematics workflows with pii redactor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3171,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01838-fleet-telematics-pii-redactor/SKILL.md",
+    "entrypoint": "agent02/01838-fleet-telematics-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics pii redactor",
+    "fleet telematics pii redactor workflow",
+    "fleet telematics pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

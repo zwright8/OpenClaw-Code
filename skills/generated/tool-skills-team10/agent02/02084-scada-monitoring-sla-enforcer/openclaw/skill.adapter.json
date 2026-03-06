@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2084,
+  "name": "scada-monitoring-sla-enforcer",
+  "title": "SCADA Monitoring SLA Enforcer",
+  "description": "Design and run scada monitoring workflows with sla enforcer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8741,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02084-scada-monitoring-sla-enforcer/SKILL.md",
+    "entrypoint": "agent02/02084-scada-monitoring-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring sla enforcer",
+    "scada monitoring sla enforcer workflow",
+    "scada monitoring sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

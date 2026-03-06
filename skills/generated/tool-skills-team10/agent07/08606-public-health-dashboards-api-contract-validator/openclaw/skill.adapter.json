@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8606,
+  "name": "public-health-dashboards-api-contract-validator",
+  "title": "Public Health Dashboards API Contract Validator",
+  "description": "Design and run public health dashboards workflows with api contract validator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 36,
+    "score": 100,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent07/08606-public-health-dashboards-api-contract-validator/SKILL.md",
+    "entrypoint": "agent07/08606-public-health-dashboards-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards api contract validator",
+    "public health dashboards api contract validator workflow",
+    "public health dashboards api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

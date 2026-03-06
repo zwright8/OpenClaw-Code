@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2991,
+  "name": "travel-compliance-incident-triage",
+  "title": "Travel Compliance Incident Triage",
+  "description": "Design and run travel compliance workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 508,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/02991-travel-compliance-incident-triage/SKILL.md",
+    "entrypoint": "agent03/02991-travel-compliance-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance incident triage",
+    "travel compliance incident triage workflow",
+    "travel compliance incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7889,
+  "name": "remote-access-secret-scanner",
+  "title": "Remote Access Secret Scanner",
+  "description": "Design and run remote access workflows with secret scanner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2901,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07889-remote-access-secret-scanner/SKILL.md",
+    "entrypoint": "agent07/07889-remote-access-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access secret scanner",
+    "remote access secret scanner workflow",
+    "remote access secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

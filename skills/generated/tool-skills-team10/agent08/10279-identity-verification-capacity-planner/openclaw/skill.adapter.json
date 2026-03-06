@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10279,
+  "name": "identity-verification-capacity-planner",
+  "title": "Identity Verification Capacity Planner",
+  "description": "Design and run identity verification workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6550,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10279-identity-verification-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/10279-identity-verification-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity verification capacity planner",
+    "identity verification capacity planner workflow",
+    "identity verification capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9445,
+  "name": "predictive-maintenance-runbook-composer",
+  "title": "Predictive Maintenance Runbook Composer",
+  "description": "Design and run predictive maintenance workflows with runbook composer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3740,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09445-predictive-maintenance-runbook-composer/SKILL.md",
+    "entrypoint": "agent08/09445-predictive-maintenance-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance runbook composer",
+    "predictive maintenance runbook composer workflow",
+    "predictive maintenance runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

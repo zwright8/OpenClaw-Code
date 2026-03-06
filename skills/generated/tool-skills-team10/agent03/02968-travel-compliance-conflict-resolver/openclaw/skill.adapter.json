@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2968,
+  "name": "travel-compliance-conflict-resolver",
+  "title": "Travel Compliance Conflict Resolver",
+  "description": "Design and run travel compliance workflows with conflict resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6777,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02968-travel-compliance-conflict-resolver/SKILL.md",
+    "entrypoint": "agent03/02968-travel-compliance-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance conflict resolver",
+    "travel compliance conflict resolver workflow",
+    "travel compliance conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

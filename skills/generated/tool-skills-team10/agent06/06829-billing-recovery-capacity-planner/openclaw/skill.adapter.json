@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6829,
+  "name": "billing-recovery-capacity-planner",
+  "title": "Billing Recovery Capacity Planner",
+  "description": "Design and run billing recovery workflows with capacity planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7234,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06829-billing-recovery-capacity-planner/SKILL.md",
+    "entrypoint": "agent06/06829-billing-recovery-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery capacity planner",
+    "billing recovery capacity planner workflow",
+    "billing recovery capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

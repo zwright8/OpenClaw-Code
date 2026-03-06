@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9861,
+  "name": "streaming-operations-execution-runner",
+  "title": "Streaming Operations Execution Runner",
+  "description": "Design and run streaming operations workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1427,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09861-streaming-operations-execution-runner/SKILL.md",
+    "entrypoint": "agent08/09861-streaming-operations-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations execution runner",
+    "streaming operations execution runner workflow",
+    "streaming operations execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

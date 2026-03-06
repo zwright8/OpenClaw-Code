@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9976,
+  "name": "audience-analytics-anomaly-detector",
+  "title": "Audience Analytics Anomaly Detector",
+  "description": "Design and run audience analytics workflows with anomaly detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5597,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09976-audience-analytics-anomaly-detector/SKILL.md",
+    "entrypoint": "agent08/09976-audience-analytics-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics anomaly detector",
+    "audience analytics anomaly detector workflow",
+    "audience analytics anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

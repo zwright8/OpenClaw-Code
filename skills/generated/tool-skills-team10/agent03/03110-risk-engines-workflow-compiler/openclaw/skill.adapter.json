@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3110,
+  "name": "risk-engines-workflow-compiler",
+  "title": "Risk Engines Workflow Compiler",
+  "description": "Design and run risk engines workflows with workflow compiler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 311,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/03110-risk-engines-workflow-compiler/SKILL.md",
+    "entrypoint": "agent03/03110-risk-engines-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines workflow compiler",
+    "risk engines workflow compiler workflow",
+    "risk engines workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

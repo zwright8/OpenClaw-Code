@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9092,
+  "name": "localization-qa-root-cause-miner",
+  "title": "Localization QA Root Cause Miner",
+  "description": "Design and run localization qa workflows with root cause miner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4741,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09092-localization-qa-root-cause-miner/SKILL.md",
+    "entrypoint": "agent07/09092-localization-qa-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa root cause miner",
+    "localization qa root cause miner workflow",
+    "localization qa root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

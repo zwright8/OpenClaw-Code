@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 582,
+  "name": "clickhouse-sync-orchestrator",
+  "title": "ClickHouse Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for ClickHouse records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12728,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00582-clickhouse-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00582-clickhouse-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clickhouse sync orchestrator",
+    "clickhouse sync orchestrator workflow",
+    "clickhouse sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

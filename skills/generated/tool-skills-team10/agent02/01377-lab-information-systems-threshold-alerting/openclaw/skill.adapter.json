@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1377,
+  "name": "lab-information-systems-threshold-alerting",
+  "title": "Lab Information Systems Threshold Alerting",
+  "description": "Design and run lab information systems workflows with threshold alerting controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8483,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01377-lab-information-systems-threshold-alerting/SKILL.md",
+    "entrypoint": "agent02/01377-lab-information-systems-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems threshold alerting",
+    "lab information systems threshold alerting workflow",
+    "lab information systems threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

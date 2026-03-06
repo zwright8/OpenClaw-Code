@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3487,
+  "name": "procure-to-pay-compliance-mapper",
+  "title": "Procure to Pay Compliance Mapper",
+  "description": "Design and run procure to pay workflows with compliance mapper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1797,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03487-procure-to-pay-compliance-mapper/SKILL.md",
+    "entrypoint": "agent03/03487-procure-to-pay-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay compliance mapper",
+    "procure to pay compliance mapper workflow",
+    "procure to pay compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

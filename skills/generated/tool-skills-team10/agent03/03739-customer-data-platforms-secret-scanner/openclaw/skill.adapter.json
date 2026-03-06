@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3739,
+  "name": "customer-data-platforms-secret-scanner",
+  "title": "Customer Data Platforms Secret Scanner",
+  "description": "Design and run customer data platforms workflows with secret scanner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2743,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03739-customer-data-platforms-secret-scanner/SKILL.md",
+    "entrypoint": "agent03/03739-customer-data-platforms-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer data platforms secret scanner",
+    "customer data platforms secret scanner workflow",
+    "customer data platforms secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

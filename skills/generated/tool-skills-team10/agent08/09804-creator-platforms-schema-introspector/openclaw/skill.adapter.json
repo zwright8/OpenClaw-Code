@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9804,
+  "name": "creator-platforms-schema-introspector",
+  "title": "Creator Platforms Schema Introspector",
+  "description": "Design and run creator platforms workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 710,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09804-creator-platforms-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/09804-creator-platforms-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms schema introspector",
+    "creator platforms schema introspector workflow",
+    "creator platforms schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

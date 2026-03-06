@@ -15,15 +15,25 @@
 - `npm run skills:marketplace:v2:build` - build marketplace skill packages v2.
 - `npm run skills:marketplace:v2:validate` - validate marketplace skill packages v2.
 - `npm run skills:marketplace:v2:demo` - run top-package demo for v2 outputs.
+- `npm run skills:registry:build` - build the skill registry manifest.
+- `npm run skills:registry:validate` - validate the generated skill registry.
+- `npm run skills:route` - run skill routing against registry metadata.
+- `npm run skills:run` - execute SkillOS runtime entrypoint.
 
 ## Verified Package Workflows
 - `npm --prefix cognition-core run analyze` - generate 7-day cognition analysis.
+- `npm --prefix cognition-core run analyze:quick` - generate 1-day quick cognition analysis.
 - `npm --prefix cognition-core run plan:tasks` - emit remediation task requests.
 - `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
+- `npm --prefix cognition-core run outcomes:export` - export swarm outcomes for analysis.
+- `npm --prefix cognition-core run stability:whatsapp` - generate WhatsApp stability report.
+- `npm --prefix cognition-core run ingest` - ingest new telemetry/events.
 - `npm --prefix swarm-protocol run demo:orchestrator` - run orchestrator demo flow.
 - `npm --prefix swarm-protocol run approval:queue` - export approval queue reports.
 - `npm --prefix swarm-protocol run benchmark:simulate` - run simulation benchmark scenario.
 - `npm --prefix swarm-protocol run ops -- status` - inspect operator status.
+- `npm --prefix swarm-protocol run ops -- queue --limit 10` - inspect operator queue.
+- `npm --prefix swarm-protocol run ops -- tail --limit 20` - tail recent operator events.
 
 ## TODO
-- README command list appears broader than current `package.json` scripts (for example `worker:loop`, `autonomous:run`, `iterate:plan`); confirm current owners before documenting additional commands here.
+- Confirm command ownership for newly added `cognition-core` automation scripts (`evaluate`, `report`, `run`, `dispatch`, `status`, `scorecard`, `tune:recommendations`, `full:utilization`) before promoting them to default AGENTS workflows.

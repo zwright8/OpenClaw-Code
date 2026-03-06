@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12171,
+  "name": "audit-trails-snapshot-manager",
+  "title": "Audit Trails Snapshot Manager",
+  "description": "Design and run audit trails workflows with snapshot manager controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7734,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12171-audit-trails-snapshot-manager/SKILL.md",
+    "entrypoint": "agent10/12171-audit-trails-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails snapshot manager",
+    "audit trails snapshot manager workflow",
+    "audit trails snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

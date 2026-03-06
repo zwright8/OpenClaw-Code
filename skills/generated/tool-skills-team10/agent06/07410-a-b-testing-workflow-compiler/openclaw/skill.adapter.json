@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7410,
+  "name": "a-b-testing-workflow-compiler",
+  "title": "A/B Testing Workflow Compiler",
+  "description": "Design and run a/b testing workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1138,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07410-a-b-testing-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/07410-a-b-testing-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing workflow compiler",
+    "a/b testing workflow compiler workflow",
+    "a/b testing workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

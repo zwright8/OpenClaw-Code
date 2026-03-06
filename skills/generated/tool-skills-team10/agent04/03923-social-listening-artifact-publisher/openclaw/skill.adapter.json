@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3923,
+  "name": "social-listening-artifact-publisher",
+  "title": "Social Listening Artifact Publisher",
+  "description": "Design and run social listening workflows with artifact publisher controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9342,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03923-social-listening-artifact-publisher/SKILL.md",
+    "entrypoint": "agent04/03923-social-listening-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening artifact publisher",
+    "social listening artifact publisher workflow",
+    "social listening artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

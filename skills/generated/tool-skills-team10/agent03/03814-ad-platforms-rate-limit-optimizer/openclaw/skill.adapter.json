@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3814,
+  "name": "ad-platforms-rate-limit-optimizer",
+  "title": "Ad Platforms Rate Limit Optimizer",
+  "description": "Design and run ad platforms workflows with rate limit optimizer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5953,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03814-ad-platforms-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent03/03814-ad-platforms-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ad platforms rate limit optimizer",
+    "ad platforms rate limit optimizer workflow",
+    "ad platforms rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

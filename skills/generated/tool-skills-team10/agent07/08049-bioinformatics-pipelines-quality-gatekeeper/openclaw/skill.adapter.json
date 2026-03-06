@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8049,
+  "name": "bioinformatics-pipelines-quality-gatekeeper",
+  "title": "Bioinformatics Pipelines Quality Gatekeeper",
+  "description": "Design and run bioinformatics pipelines workflows with quality gatekeeper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5534,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08049-bioinformatics-pipelines-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent07/08049-bioinformatics-pipelines-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines quality gatekeeper",
+    "bioinformatics pipelines quality gatekeeper workflow",
+    "bioinformatics pipelines quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

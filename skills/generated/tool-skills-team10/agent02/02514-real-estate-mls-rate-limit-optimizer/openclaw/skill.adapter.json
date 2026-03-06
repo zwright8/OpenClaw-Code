@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2514,
+  "name": "real-estate-mls-rate-limit-optimizer",
+  "title": "Real Estate MLS Rate Limit Optimizer",
+  "description": "Design and run real estate mls workflows with rate limit optimizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5852,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02514-real-estate-mls-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent02/02514-real-estate-mls-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls rate limit optimizer",
+    "real estate mls rate limit optimizer workflow",
+    "real estate mls rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

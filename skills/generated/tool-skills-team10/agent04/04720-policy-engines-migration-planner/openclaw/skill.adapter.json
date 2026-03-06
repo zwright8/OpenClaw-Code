@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4720,
+  "name": "policy-engines-migration-planner",
+  "title": "Policy Engines Migration Planner",
+  "description": "Design and run policy engines workflows with migration planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4589,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04720-policy-engines-migration-planner/SKILL.md",
+    "entrypoint": "agent04/04720-policy-engines-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines migration planner",
+    "policy engines migration planner workflow",
+    "policy engines migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

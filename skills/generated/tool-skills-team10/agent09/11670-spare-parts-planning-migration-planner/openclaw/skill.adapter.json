@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11670,
+  "name": "spare-parts-planning-migration-planner",
+  "title": "Spare Parts Planning Migration Planner",
+  "description": "Design and run spare parts planning workflows with migration planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4828,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11670-spare-parts-planning-migration-planner/SKILL.md",
+    "entrypoint": "agent09/11670-spare-parts-planning-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "spare parts planning migration planner",
+    "spare parts planning migration planner workflow",
+    "spare parts planning migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7601,
+  "name": "device-labs-access-auditor",
+  "title": "Device Labs Access Auditor",
+  "description": "Design and run device labs workflows with access auditor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10614,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07601-device-labs-access-auditor/SKILL.md",
+    "entrypoint": "agent06/07601-device-labs-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs access auditor",
+    "device labs access auditor workflow",
+    "device labs access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

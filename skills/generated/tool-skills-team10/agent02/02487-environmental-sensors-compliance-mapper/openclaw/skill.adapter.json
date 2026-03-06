@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2487,
+  "name": "environmental-sensors-compliance-mapper",
+  "title": "Environmental Sensors Compliance Mapper",
+  "description": "Design and run environmental sensors workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1773,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02487-environmental-sensors-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02487-environmental-sensors-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors compliance mapper",
+    "environmental sensors compliance mapper workflow",
+    "environmental sensors compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

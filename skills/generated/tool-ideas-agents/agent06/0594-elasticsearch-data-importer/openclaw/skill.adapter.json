@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 594,
+  "name": "elasticsearch-data-importer",
+  "title": "Elasticsearch Data Importer",
+  "description": "Validates and imports bulk updates into Elasticsearch.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0594-elasticsearch-data-importer/SKILL.md",
+    "entrypoint": "agent06/0594-elasticsearch-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "elasticsearch data importer",
+    "elasticsearch data importer workflow",
+    "elasticsearch data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0594-elasticsearch-data-importer"
+  }
+}

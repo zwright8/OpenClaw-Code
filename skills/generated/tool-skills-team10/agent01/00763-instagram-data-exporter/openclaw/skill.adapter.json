@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 763,
+  "name": "instagram-data-exporter",
+  "title": "Instagram Data Exporter",
+  "description": "Exports Instagram entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12855,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00763-instagram-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00763-instagram-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "instagram data exporter",
+    "instagram data exporter workflow",
+    "instagram data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

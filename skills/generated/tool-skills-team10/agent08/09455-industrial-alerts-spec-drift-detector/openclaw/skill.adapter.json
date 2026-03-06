@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9455,
+  "name": "industrial-alerts-spec-drift-detector",
+  "title": "Industrial Alerts Spec Drift Detector",
+  "description": "Design and run industrial alerts workflows with spec drift detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4341,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09455-industrial-alerts-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent08/09455-industrial-alerts-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts spec drift detector",
+    "industrial alerts spec drift detector workflow",
+    "industrial alerts spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

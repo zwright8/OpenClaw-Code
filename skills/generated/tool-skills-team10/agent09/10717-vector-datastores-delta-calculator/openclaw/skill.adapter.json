@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10717,
+  "name": "vector-datastores-delta-calculator",
+  "title": "Vector Datastores Delta Calculator",
+  "description": "Design and run vector datastores workflows with delta calculator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11690,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10717-vector-datastores-delta-calculator/SKILL.md",
+    "entrypoint": "agent09/10717-vector-datastores-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores delta calculator",
+    "vector datastores delta calculator workflow",
+    "vector datastores delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

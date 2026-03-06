@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6126,
+  "name": "esignature-systems-anomaly-detector",
+  "title": "eSignature Systems Anomaly Detector",
+  "description": "Design and run esignature systems workflows with anomaly detector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5465,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06126-esignature-systems-anomaly-detector/SKILL.md",
+    "entrypoint": "agent05/06126-esignature-systems-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems anomaly detector",
+    "esignature systems anomaly detector workflow",
+    "esignature systems anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

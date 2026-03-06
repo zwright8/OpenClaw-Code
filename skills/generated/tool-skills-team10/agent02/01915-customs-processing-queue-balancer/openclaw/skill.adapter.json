@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1915,
+  "name": "customs-processing-queue-balancer",
+  "title": "Customs Processing Queue Balancer",
+  "description": "Design and run customs processing workflows with queue balancer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8665,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01915-customs-processing-queue-balancer/SKILL.md",
+    "entrypoint": "agent02/01915-customs-processing-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing queue balancer",
+    "customs processing queue balancer workflow",
+    "customs processing queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

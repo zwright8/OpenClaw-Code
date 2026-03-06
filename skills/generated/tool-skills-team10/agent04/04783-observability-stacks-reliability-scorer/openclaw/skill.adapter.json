@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4783,
+  "name": "observability-stacks-reliability-scorer",
+  "title": "Observability Stacks Reliability Scorer",
+  "description": "Design and run observability stacks workflows with reliability scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7425,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04783-observability-stacks-reliability-scorer/SKILL.md",
+    "entrypoint": "agent04/04783-observability-stacks-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks reliability scorer",
+    "observability stacks reliability scorer workflow",
+    "observability stacks reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

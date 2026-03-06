@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11724,
+  "name": "service-quality-evidence-collector",
+  "title": "Service Quality Evidence Collector",
+  "description": "Design and run service quality workflows with evidence collector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6685,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11724-service-quality-evidence-collector/SKILL.md",
+    "entrypoint": "agent10/11724-service-quality-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality evidence collector",
+    "service quality evidence collector workflow",
+    "service quality evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

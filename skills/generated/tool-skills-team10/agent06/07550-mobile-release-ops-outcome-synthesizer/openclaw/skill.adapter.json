@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7550,
+  "name": "mobile-release-ops-outcome-synthesizer",
+  "title": "Mobile Release Ops Outcome Synthesizer",
+  "description": "Design and run mobile release ops workflows with outcome synthesizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7031,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07550-mobile-release-ops-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent06/07550-mobile-release-ops-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops outcome synthesizer",
+    "mobile release ops outcome synthesizer workflow",
+    "mobile release ops outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

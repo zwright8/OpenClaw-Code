@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11805,
+  "name": "protocol-management-spec-drift-detector",
+  "title": "Protocol Management Spec Drift Detector",
+  "description": "Design and run protocol management workflows with spec drift detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4428,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11805-protocol-management-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent10/11805-protocol-management-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management spec drift detector",
+    "protocol management spec drift detector workflow",
+    "protocol management spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

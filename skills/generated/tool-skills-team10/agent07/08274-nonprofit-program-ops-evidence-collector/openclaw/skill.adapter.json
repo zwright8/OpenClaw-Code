@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8274,
+  "name": "nonprofit-program-ops-evidence-collector",
+  "title": "Nonprofit Program Ops Evidence Collector",
+  "description": "Design and run nonprofit program ops workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4002,
+    "score": 72,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08274-nonprofit-program-ops-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/08274-nonprofit-program-ops-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "nonprofit program ops evidence collector",
+    "nonprofit program ops evidence collector workflow",
+    "nonprofit program ops evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

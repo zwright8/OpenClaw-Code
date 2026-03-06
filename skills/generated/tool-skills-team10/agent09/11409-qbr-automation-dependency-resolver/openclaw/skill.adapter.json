@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11409,
+  "name": "qbr-automation-dependency-resolver",
+  "title": "QBR Automation Dependency Resolver",
+  "description": "Design and run qbr automation workflows with dependency resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11961,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11409-qbr-automation-dependency-resolver/SKILL.md",
+    "entrypoint": "agent09/11409-qbr-automation-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation dependency resolver",
+    "qbr automation dependency resolver workflow",
+    "qbr automation dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

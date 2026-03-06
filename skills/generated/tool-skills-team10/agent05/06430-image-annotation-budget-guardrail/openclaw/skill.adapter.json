@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6430,
+  "name": "image-annotation-budget-guardrail",
+  "title": "Image Annotation Budget Guardrail",
+  "description": "Design and run image annotation workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7499,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06430-image-annotation-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/06430-image-annotation-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation budget guardrail",
+    "image annotation budget guardrail workflow",
+    "image annotation budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

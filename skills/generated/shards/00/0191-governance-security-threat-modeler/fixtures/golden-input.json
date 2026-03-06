@@ -1,0 +1,18 @@
+{
+  "skill": "u0191-governance-security-threat-modeler",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "threat_models_report",
+    "threat_models_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

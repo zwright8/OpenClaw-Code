@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7378,
+  "name": "experiment-platforms-forecast-engine",
+  "title": "Experiment Platforms Forecast Engine",
+  "description": "Design and run experiment platforms workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10521,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07378-experiment-platforms-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/07378-experiment-platforms-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms forecast engine",
+    "experiment platforms forecast engine workflow",
+    "experiment platforms forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

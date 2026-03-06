@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5522,
+  "name": "data-catalogs-version-tracker",
+  "title": "Data Catalogs Version Tracker",
+  "description": "Design and run data catalogs workflows with version tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9845,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05522-data-catalogs-version-tracker/SKILL.md",
+    "entrypoint": "agent05/05522-data-catalogs-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data catalogs version tracker",
+    "data catalogs version tracker workflow",
+    "data catalogs version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

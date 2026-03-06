@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11563,
+  "name": "scheduling-dispatch-retry-governor",
+  "title": "Scheduling Dispatch Retry Governor",
+  "description": "Design and run scheduling dispatch workflows with retry governor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6668,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11563-scheduling-dispatch-retry-governor/SKILL.md",
+    "entrypoint": "agent09/11563-scheduling-dispatch-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch retry governor",
+    "scheduling dispatch retry governor workflow",
+    "scheduling dispatch retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

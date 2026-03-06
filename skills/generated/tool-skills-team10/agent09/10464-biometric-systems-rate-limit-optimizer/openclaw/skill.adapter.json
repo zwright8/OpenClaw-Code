@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10464,
+  "name": "biometric-systems-rate-limit-optimizer",
+  "title": "Biometric Systems Rate Limit Optimizer",
+  "description": "Design and run biometric systems workflows with rate limit optimizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6574,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10464-biometric-systems-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent09/10464-biometric-systems-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems rate limit optimizer",
+    "biometric systems rate limit optimizer workflow",
+    "biometric systems rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6023,
+  "name": "document-ocr-artifact-publisher",
+  "title": "Document OCR Artifact Publisher",
+  "description": "Design and run document ocr workflows with artifact publisher controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10035,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06023-document-ocr-artifact-publisher/SKILL.md",
+    "entrypoint": "agent05/06023-document-ocr-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr artifact publisher",
+    "document ocr artifact publisher workflow",
+    "document ocr artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

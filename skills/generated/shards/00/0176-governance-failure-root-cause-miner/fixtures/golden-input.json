@@ -1,0 +1,18 @@
+{
+  "skill": "u0176-governance-failure-root-cause-miner",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "root_cause_clusters_report",
+    "root_cause_clusters_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

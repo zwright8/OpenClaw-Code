@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12037,
+  "name": "ethics-review-boards-compliance-mapper",
+  "title": "Ethics Review Boards Compliance Mapper",
+  "description": "Design and run ethics review boards workflows with compliance mapper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1972,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12037-ethics-review-boards-compliance-mapper/SKILL.md",
+    "entrypoint": "agent10/12037-ethics-review-boards-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards compliance mapper",
+    "ethics review boards compliance mapper workflow",
+    "ethics review boards compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

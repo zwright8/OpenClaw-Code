@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 171,
+  "name": "box-connector",
+  "title": "Box Connector",
+  "description": "Unified read/write connector for Box APIs and data.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0171-box-connector/SKILL.md",
+    "entrypoint": "agent02/0171-box-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "box connector",
+    "box connector workflow",
+    "box connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0171-box-connector"
+  }
+}

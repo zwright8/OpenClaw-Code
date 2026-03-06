@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12477,
+  "name": "autonomy-control-threshold-alerting",
+  "title": "Autonomy Control Threshold Alerting",
+  "description": "Design and run autonomy control workflows with threshold alerting controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12347,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12477-autonomy-control-threshold-alerting/SKILL.md",
+    "entrypoint": "agent10/12477-autonomy-control-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control threshold alerting",
+    "autonomy control threshold alerting workflow",
+    "autonomy control threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

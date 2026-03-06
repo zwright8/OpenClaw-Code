@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 442,
+  "name": "vercel-sync-orchestrator",
+  "title": "Vercel Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Vercel records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12637,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00442-vercel-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00442-vercel-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vercel sync orchestrator",
+    "vercel sync orchestrator workflow",
+    "vercel sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

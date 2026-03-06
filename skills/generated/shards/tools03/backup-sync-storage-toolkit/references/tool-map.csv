@@ -1,0 +1,16 @@
+rank,tool,installs_365d,percent_365d,access,description,homepage,license
+1024,mackup,8774,0.01,local-installable,Keep your Mac's application settings in sync,https://github.com/lra/mackup,GPL-3.0-or-later
+1027,unison,8734,0.01,local-installable,File synchronization tool,https://www.cis.upenn.edu/~bcpierce/unison/,GPL-3.0-or-later
+1049,ddrescue,8477,0.01,local-installable,GNU data recovery tool,https://www.gnu.org/software/ddrescue/ddrescue.html,GPL-2.0-or-later
+1063,restic,8251,0.01,local-installable,"Fast, efficient and secure backup program",https://restic.net/,BSD-2-Clause
+1107,croc,7700,0.01,local-installable,Securely send things from one computer to another,https://github.com/schollz/croc,MIT
+1112,cabextract,7681,0.01,local-installable,Extract files from Microsoft cabinet files,https://www.cabextract.org.uk/,GPL-3.0-or-later
+1163,rpm,7053,0.01,local-installable,Standard unix software packaging tool,https://rpm.org/,GPL-2.0-only AND LGPL-2.0-or-later
+1259,innoextract,6166,0.01,local-installable,Tool to unpack installers created by Inno Setup,https://constexpr.org/innoextract/,Zlib
+1323,squashfs,5563,0.01,local-installable,Compressed read-only file system for Linux,https://github.com/plougher/squashfs-tools,GPL-2.0-or-later
+1358,borgbackup,5332,0.01,local-installable,Deduplicating archiver with compression and authenticated encryption,https://www.borgbackup.org/,BSD-3-Clause
+1389,duck,5089,0.01,local-installable,Command-line interface for Cyberduck (a multi-protocol file transfer tool),https://duck.sh/,GPL-3.0-only
+1435,rtorrent,4788,0,local-installable,Ncurses BitTorrent client based on libtorrent-rakshasa,https://github.com/rakshasa/rtorrent,GPL-2.0-or-later
+1457,trash,4694,0,local-installable,CLI tool that moves files or folder to the trash,https://hasseg.org/trash/,MIT
+1464,supervisor,4658,0,local-installable,Process Control System,http://supervisord.org/,BSD-3-Clause-Modification
+1491,lrzsz,4412,0,local-installable,Tools for zmodem/xmodem/ymodem file transfer,https://www.ohse.de/uwe/software/lrzsz.html,GPL-2.0-or-later

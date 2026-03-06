@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2102,
+  "name": "digital-twins-auth-broker",
+  "title": "Digital Twins Auth Broker",
+  "description": "Design and run digital twins workflows with auth broker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 819,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02102-digital-twins-auth-broker/SKILL.md",
+    "entrypoint": "agent02/02102-digital-twins-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins auth broker",
+    "digital twins auth broker workflow",
+    "digital twins auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

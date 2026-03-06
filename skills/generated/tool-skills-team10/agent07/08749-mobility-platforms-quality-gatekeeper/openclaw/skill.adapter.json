@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8749,
+  "name": "mobility-platforms-quality-gatekeeper",
+  "title": "Mobility Platforms Quality Gatekeeper",
+  "description": "Design and run mobility platforms workflows with quality gatekeeper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5559,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08749-mobility-platforms-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent07/08749-mobility-platforms-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobility platforms quality gatekeeper",
+    "mobility platforms quality gatekeeper workflow",
+    "mobility platforms quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

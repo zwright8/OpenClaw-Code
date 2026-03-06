@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11484,
+  "name": "reference-programs-sla-enforcer",
+  "title": "Reference Programs SLA Enforcer",
+  "description": "Design and run reference programs workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11996,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11484-reference-programs-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/11484-reference-programs-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs sla enforcer",
+    "reference programs sla enforcer workflow",
+    "reference programs sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

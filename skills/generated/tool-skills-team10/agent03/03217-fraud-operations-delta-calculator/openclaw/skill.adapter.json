@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3217,
+  "name": "fraud-operations-delta-calculator",
+  "title": "Fraud Operations Delta Calculator",
+  "description": "Design and run fraud operations workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9065,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03217-fraud-operations-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/03217-fraud-operations-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations delta calculator",
+    "fraud operations delta calculator workflow",
+    "fraud operations delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

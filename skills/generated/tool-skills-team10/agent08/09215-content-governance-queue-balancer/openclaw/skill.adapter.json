@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9215,
+  "name": "content-governance-queue-balancer",
+  "title": "Content Governance Queue Balancer",
+  "description": "Design and run content governance workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11206,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09215-content-governance-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/09215-content-governance-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "content governance queue balancer",
+    "content governance queue balancer workflow",
+    "content governance queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

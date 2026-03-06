@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 15,
+  "name": "gitlab-webhook-listener",
+  "title": "GitLab Webhook Listener",
+  "description": "Captures, verifies, and routes GitLab webhook events.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0015-gitlab-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/0015-gitlab-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gitlab webhook listener",
+    "gitlab webhook listener workflow",
+    "gitlab webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0015-gitlab-webhook-listener"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1383,
+  "name": "lab-information-systems-reliability-scorer",
+  "title": "Lab Information Systems Reliability Scorer",
+  "description": "Design and run lab information systems workflows with reliability scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8488,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01383-lab-information-systems-reliability-scorer/SKILL.md",
+    "entrypoint": "agent02/01383-lab-information-systems-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems reliability scorer",
+    "lab information systems reliability scorer workflow",
+    "lab information systems reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

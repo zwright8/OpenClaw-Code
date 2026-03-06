@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6180,
+  "name": "records-retention-budget-guardrail",
+  "title": "Records Retention Budget Guardrail",
+  "description": "Design and run records retention workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7495,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06180-records-retention-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/06180-records-retention-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention budget guardrail",
+    "records retention budget guardrail workflow",
+    "records retention budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

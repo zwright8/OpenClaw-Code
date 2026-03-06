@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 460,
+  "name": "netlify-migration-assistant",
+  "title": "Netlify Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Netlify.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0460-netlify-migration-assistant/SKILL.md",
+    "entrypoint": "agent05/0460-netlify-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "netlify migration assistant",
+    "netlify migration assistant workflow",
+    "netlify migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0460-netlify-migration-assistant"
+  }
+}

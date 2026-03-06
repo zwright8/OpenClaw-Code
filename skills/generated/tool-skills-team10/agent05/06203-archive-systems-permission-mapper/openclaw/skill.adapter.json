@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6203,
+  "name": "archive-systems-permission-mapper",
+  "title": "Archive Systems Permission Mapper",
+  "description": "Design and run archive systems workflows with permission mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3496,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06203-archive-systems-permission-mapper/SKILL.md",
+    "entrypoint": "agent05/06203-archive-systems-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "archive systems permission mapper",
+    "archive systems permission mapper workflow",
+    "archive systems permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

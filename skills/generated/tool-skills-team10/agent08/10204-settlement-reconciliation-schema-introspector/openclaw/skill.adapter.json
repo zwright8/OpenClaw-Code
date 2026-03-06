@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10204,
+  "name": "settlement-reconciliation-schema-introspector",
+  "title": "Settlement Reconciliation Schema Introspector",
+  "description": "Design and run settlement reconciliation workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 718,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10204-settlement-reconciliation-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/10204-settlement-reconciliation-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation schema introspector",
+    "settlement reconciliation schema introspector workflow",
+    "settlement reconciliation schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

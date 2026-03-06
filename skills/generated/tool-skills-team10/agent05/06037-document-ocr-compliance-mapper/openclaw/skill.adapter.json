@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6037,
+  "name": "document-ocr-compliance-mapper",
+  "title": "Document OCR Compliance Mapper",
+  "description": "Design and run document ocr workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1850,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06037-document-ocr-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/06037-document-ocr-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr compliance mapper",
+    "document ocr compliance mapper workflow",
+    "document ocr compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

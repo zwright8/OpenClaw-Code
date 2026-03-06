@@ -1,0 +1,18 @@
+{
+  "skill": "u0194-governance-equity-impact-scorer",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "equity_impact_profiles_report",
+    "equity_impact_profiles_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

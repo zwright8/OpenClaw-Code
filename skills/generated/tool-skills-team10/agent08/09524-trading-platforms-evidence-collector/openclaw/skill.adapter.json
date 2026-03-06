@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9524,
+  "name": "trading-platforms-evidence-collector",
+  "title": "Trading Platforms Evidence Collector",
+  "description": "Design and run trading platforms workflows with evidence collector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6474,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09524-trading-platforms-evidence-collector/SKILL.md",
+    "entrypoint": "agent08/09524-trading-platforms-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms evidence collector",
+    "trading platforms evidence collector workflow",
+    "trading platforms evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

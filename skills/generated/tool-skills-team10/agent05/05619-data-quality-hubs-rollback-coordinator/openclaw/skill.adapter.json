@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5619,
+  "name": "data-quality-hubs-rollback-coordinator",
+  "title": "Data Quality Hubs Rollback Coordinator",
+  "description": "Design and run data quality hubs workflows with rollback coordinator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2394,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05619-data-quality-hubs-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent05/05619-data-quality-hubs-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs rollback coordinator",
+    "data quality hubs rollback coordinator workflow",
+    "data quality hubs rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

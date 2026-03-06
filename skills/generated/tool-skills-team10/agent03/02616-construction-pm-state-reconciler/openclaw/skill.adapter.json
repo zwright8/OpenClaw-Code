@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2616,
+  "name": "construction-pm-state-reconciler",
+  "title": "Construction PM State Reconciler",
+  "description": "Design and run construction pm workflows with state reconciler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4083,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02616-construction-pm-state-reconciler/SKILL.md",
+    "entrypoint": "agent03/02616-construction-pm-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm state reconciler",
+    "construction pm state reconciler workflow",
+    "construction pm state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

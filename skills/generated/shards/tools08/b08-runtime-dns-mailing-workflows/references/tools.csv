@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3676,uvwasi,local-installed,WASI syscall API built atop libuv,https://github.com/nodejs/uvwasi,MIT
+3677,solc-select,local-installable,Manage multiple Solidity compiler versions,https://github.com/crytic/solc-select,AGPL-3.0-only
+3678,shairport-sync,local-installable,AirTunes emulator that adds multi-room capability,https://github.com/mikebrady/shairport-sync,MIT
+3680,keystone,local-installable,Assembler framework: Core + bindings,https://www.keystone-engine.org/,GPL-2.0-only
+3681,wasi-runtimes,local-installable,Compiler-RT and libc++ runtimes for WASI,https://wasi.dev,Apache-2.0 WITH LLVM-exception
+3686,pgbadger,local-installable,Log analyzer for PostgreSQL,https://pgbadger.darold.net/,PostgreSQL
+3688,dmg2img,local-installable,Utilities for converting macOS DMG images,http://vu1tur.eu.org/tools/,GPL-2.0-only
+3689,kiota,local-installable,OpenAPI based HTTP Client code generator,https://aka.ms/kiota/docs,MIT
+3693,libsass,local-installable,C implementation of a Sass compiler,https://github.com/sass/libsass,MIT
+3695,ktop,local-installable,Top-like tool for your Kubernetes clusters,https://github.com/vladimirvivien/ktop,Apache-2.0
+3698,gtkmm,local-installable,C++ interfaces for GTK+ and GNOME,https://www.gtkmm.org/,LGPL-2.1-or-later
+3699,icecast,local-installable,Streaming MP3 audio server,https://icecast.org/,GPL-2.0-only
+3700,xsane,local-installable,Graphical scanning frontend,https://gitlab.com/sane-project/frontend/xsane,GPL-2.0-or-later
+3701,dfc,local-installable,Display graphs and colors of file system space/usage,https://github.com/Rolinh/dfc,BSD-3-Clause
+3702,fetchmail,local-installable,"Client for fetching mail from POP, IMAP, ETRN or ODMR-capable servers",https://www.fetchmail.info/,LGPL-2.1-or-later AND ISC AND BSD-3-Clause AND LicenseRef-Homebrew-public-domain AND (GPL-2.0-or-later WITH openvpn-openssl-exception)
+3703,dnsviz,local-installable,Tools for analyzing and visualizing DNS and DNSSEC behavior,https://github.com/dnsviz/dnsviz/,GPL-2.0-or-later
+3704,evernote2md,local-installable,Convert Evernote .enex file to Markdown,https://github.com/wormi4ok/evernote2md,MIT
+3707,mako,local-installable,Production-grade web bundler based on Rust,https://makojs.dev,MIT
+3708,osm-gps-map,local-installable,GTK+ library to embed OpenStreetMap maps,https://github.com/nzjrs/osm-gps-map,GPL-2.0-or-later
+3709,lzfse,local-installable,Apple LZFSE compression library and command-line tool,https://github.com/lzfse/lzfse,BSD-3-Clause
+3710,cargo-instruments,local-installable,Easily generate Instruments traces for your rust crate,https://github.com/cmyr/cargo-instruments,MIT
+3712,quickjs,local-installable,Small and embeddable JavaScript engine,https://bellard.org/quickjs/,MIT
+3713,llvm@21,local-installable,Next-gen compiler infrastructure,https://llvm.org/,Apache-2.0 WITH LLVM-exception
+3714,libxt,local-installable,X.Org: X Toolkit Intrinsics library,https://www.x.org/,MIT
+3715,sassc,local-installable,Wrapper around libsass that helps to create command-line apps,https://github.com/sass/sassc,MIT
+3716,cadaver,local-installable,Command-line client for DAV,https://notroj.github.io/cadaver/,GPL-2.0-or-later

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3955,
+  "name": "campaign-automation-spec-drift-detector",
+  "title": "Campaign Automation Spec Drift Detector",
+  "description": "Design and run campaign automation workflows with spec drift detector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2371,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/03955-campaign-automation-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent04/03955-campaign-automation-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation spec drift detector",
+    "campaign automation spec drift detector workflow",
+    "campaign automation spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

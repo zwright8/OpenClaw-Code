@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8180,
+  "name": "lab-robotics-budget-guardrail",
+  "title": "Lab Robotics Budget Guardrail",
+  "description": "Design and run lab robotics workflows with budget guardrail controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7531,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08180-lab-robotics-budget-guardrail/SKILL.md",
+    "entrypoint": "agent07/08180-lab-robotics-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics budget guardrail",
+    "lab robotics budget guardrail workflow",
+    "lab robotics budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

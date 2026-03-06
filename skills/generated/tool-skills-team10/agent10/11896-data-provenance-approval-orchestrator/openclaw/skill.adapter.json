@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11896,
+  "name": "data-provenance-approval-orchestrator",
+  "title": "Data Provenance Approval Orchestrator",
+  "description": "Design and run data provenance workflows with approval orchestrator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6702,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11896-data-provenance-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent10/11896-data-provenance-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance approval orchestrator",
+    "data provenance approval orchestrator workflow",
+    "data provenance approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

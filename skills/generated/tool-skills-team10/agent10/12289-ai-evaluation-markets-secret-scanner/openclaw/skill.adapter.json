@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12289,
+  "name": "ai-evaluation-markets-secret-scanner",
+  "title": "AI Evaluation Markets Secret Scanner",
+  "description": "Design and run ai evaluation markets workflows with secret scanner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1980,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12289-ai-evaluation-markets-secret-scanner/SKILL.md",
+    "entrypoint": "agent10/12289-ai-evaluation-markets-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets secret scanner",
+    "ai evaluation markets secret scanner workflow",
+    "ai evaluation markets secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

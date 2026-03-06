@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9971,
+  "name": "audience-analytics-snapshot-manager",
+  "title": "Audience Analytics Snapshot Manager",
+  "description": "Design and run audience analytics workflows with snapshot manager controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11461,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09971-audience-analytics-snapshot-manager/SKILL.md",
+    "entrypoint": "agent08/09971-audience-analytics-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics snapshot manager",
+    "audience analytics snapshot manager workflow",
+    "audience analytics snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3537,
+  "name": "crm-intelligence-compliance-mapper",
+  "title": "CRM Intelligence Compliance Mapper",
+  "description": "Design and run crm intelligence workflows with compliance mapper controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1798,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03537-crm-intelligence-compliance-mapper/SKILL.md",
+    "entrypoint": "agent03/03537-crm-intelligence-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence compliance mapper",
+    "crm intelligence compliance mapper workflow",
+    "crm intelligence compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

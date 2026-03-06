@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9608,
+  "name": "derivatives-risk-task-decomposer",
+  "title": "Derivatives Risk Task Decomposer",
+  "description": "Design and run derivatives risk workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7069,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09608-derivatives-risk-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/09608-derivatives-risk-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk task decomposer",
+    "derivatives risk task decomposer workflow",
+    "derivatives risk task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

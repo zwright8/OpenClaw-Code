@@ -1,0 +1,26 @@
+rank,tool,access,license,homepage,description
+2940,rapidjson,local-installable,MIT,https://rapidjson.org/,JSON parser/generator for C++ with SAX and DOM style APIs
+2941,afl++,local-installable,Apache-2.0,https://aflplus.plus/,American Fuzzy Lop++
+2942,tmuxai,local-installable,Apache-2.0,https://tmuxai.dev/,"AI-powered, non-intrusive terminal assistant"
+2944,vpn-slice,local-installable,GPL-3.0-or-later,https://github.com/dlenski/vpn-slice,Vpnc-script replacement for easy and secure split-tunnel VPN setup
+2945,reuse,local-installable,GPL-3.0-or-later AND CC-BY-SA-4.0 AND CC0-1.0 AND Apache-2.0,https://reuse.software,Tool for copyright and license recommendations
+2947,console_bridge,local-installable,BSD-3-Clause,https://wiki.ros.org/console_bridge/,Robot Operating System-independent package for logging
+2948,navidrome,local-installable,GPL-3.0-only,https://www.navidrome.org,Modern Music Server and Streamer compatible with Subsonic/Airsonic
+2949,singular,local-installable,GPL-2.0-or-later,https://www.singular.uni-kl.de/,Computer algebra system for polynomial computations
+2950,aws-rotate-key,local-installable,MIT,https://github.com/stefansundin/aws-rotate-key,Easily rotate your AWS access key
+2953,lld@20,local-installable,Apache-2.0 WITH LLVM-exception,https://lld.llvm.org/,LLVM Project Linker
+2954,medusa,local-installable,AGPL-3.0-only,https://github.com/crytic/medusa,Solidity smart contract fuzzer powered by go-ethereum
+2956,kdoctools,local-installable,BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.1-or-later AND (LGPL-2.1-only OR LGPL-3.0-only),https://l10n.kde.org/docs/doc-primer/,Create documentation from DocBook
+2957,libpulsar,local-installable,Apache-2.0,https://pulsar.apache.org/,Apache Pulsar C++ library
+2958,asymptote,local-installable,LGPL-3.0-only,https://asymptote.sourceforge.io,Powerful descriptive vector graphics language
+2959,faac,local-installable,LGPL-2.1-or-later,https://sourceforge.net/projects/faac/,ISO AAC audio encoder
+2960,grace,local-installable,GPL-2.0-only,https://plasma-gate.weizmann.ac.il/Grace/,WYSIWYG 2D plotting tool for X11
+2961,net-tools,local-installable,GPL-2.0-or-later,https://sourceforge.net/projects/net-tools/,Linux networking base tools
+2962,janet,local-installable,MIT,https://janet-lang.org,Dynamic language and bytecode vm
+2963,influxdb@1,local-installable,MIT,https://influxdata.com/time-series-platform/influxdb/,"Time series, events, and metrics database"
+2964,vue-language-server,local-installable,MIT,https://github.com/vuejs/language-tools,Vue.js language server
+2967,filebrowser,local-installable,Apache-2.0,https://filebrowser.org/,Web File Browser
+2968,cvs,local-installable,GPL-2.0-or-later AND LGPL-2.0-or-later,https://www.nongnu.org/cvs/,Version control system
+2969,cpp-httplib,local-installable,MIT,https://github.com/yhirose/cpp-httplib,C++ header-only HTTP/HTTPS server and client library
+2970,rocq,local-installable,LGPL-2.1-only,https://rocq-prover.org/,Proof assistant for higher-order logic
+2971,aws-crt-cpp,local-installable,Apache-2.0,https://github.com/awslabs/aws-crt-cpp,C++ wrapper around the aws-c-* libraries

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10830,
+  "name": "semantic-retrieval-budget-guardrail",
+  "title": "Semantic Retrieval Budget Guardrail",
+  "description": "Design and run semantic retrieval workflows with budget guardrail controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7700,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10830-semantic-retrieval-budget-guardrail/SKILL.md",
+    "entrypoint": "agent09/10830-semantic-retrieval-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval budget guardrail",
+    "semantic retrieval budget guardrail workflow",
+    "semantic retrieval budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

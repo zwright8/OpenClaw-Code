@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10638,
+  "name": "safety-guardrails-pii-redactor",
+  "title": "Safety Guardrails PII Redactor",
+  "description": "Design and run safety guardrails workflows with pii redactor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2236,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10638-safety-guardrails-pii-redactor/SKILL.md",
+    "entrypoint": "agent09/10638-safety-guardrails-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails pii redactor",
+    "safety guardrails pii redactor workflow",
+    "safety guardrails pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

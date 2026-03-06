@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6054,
+  "name": "contract-repositories-schema-introspector",
+  "title": "Contract Repositories Schema Introspector",
+  "description": "Design and run contract repositories workflows with schema introspector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 638,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent05/06054-contract-repositories-schema-introspector/SKILL.md",
+    "entrypoint": "agent05/06054-contract-repositories-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "contract repositories schema introspector",
+    "contract repositories schema introspector workflow",
+    "contract repositories schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

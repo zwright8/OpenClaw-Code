@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7433,
+  "name": "a-b-testing-reliability-scorer",
+  "title": "A/B Testing Reliability Scorer",
+  "description": "Design and run a/b testing workflows with reliability scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10546,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07433-a-b-testing-reliability-scorer/SKILL.md",
+    "entrypoint": "agent06/07433-a-b-testing-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing reliability scorer",
+    "a/b testing reliability scorer workflow",
+    "a/b testing reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

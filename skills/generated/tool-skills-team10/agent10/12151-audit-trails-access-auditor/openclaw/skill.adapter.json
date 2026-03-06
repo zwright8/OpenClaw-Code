@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12151,
+  "name": "audit-trails-access-auditor",
+  "title": "Audit Trails Access Auditor",
+  "description": "Design and run audit trails workflows with access auditor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7727,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12151-audit-trails-access-auditor/SKILL.md",
+    "entrypoint": "agent10/12151-audit-trails-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails access auditor",
+    "audit trails access auditor workflow",
+    "audit trails access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

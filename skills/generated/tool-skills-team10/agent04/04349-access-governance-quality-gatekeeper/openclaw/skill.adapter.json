@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4349,
+  "name": "access-governance-quality-gatekeeper",
+  "title": "Access Governance Quality Gatekeeper",
+  "description": "Design and run access governance workflows with quality gatekeeper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5406,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04349-access-governance-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent04/04349-access-governance-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance quality gatekeeper",
+    "access governance quality gatekeeper workflow",
+    "access governance quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

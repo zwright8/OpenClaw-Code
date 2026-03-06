@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9536,
+  "name": "trading-platforms-risk-scorer",
+  "title": "Trading Platforms Risk Scorer",
+  "description": "Design and run trading platforms workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1660,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09536-trading-platforms-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09536-trading-platforms-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms risk scorer",
+    "trading platforms risk scorer workflow",
+    "trading platforms risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

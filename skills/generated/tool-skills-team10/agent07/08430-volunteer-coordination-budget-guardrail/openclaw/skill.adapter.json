@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8430,
+  "name": "volunteer-coordination-budget-guardrail",
+  "title": "Volunteer Coordination Budget Guardrail",
+  "description": "Design and run volunteer coordination workflows with budget guardrail controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7535,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08430-volunteer-coordination-budget-guardrail/SKILL.md",
+    "entrypoint": "agent07/08430-volunteer-coordination-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination budget guardrail",
+    "volunteer coordination budget guardrail workflow",
+    "volunteer coordination budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

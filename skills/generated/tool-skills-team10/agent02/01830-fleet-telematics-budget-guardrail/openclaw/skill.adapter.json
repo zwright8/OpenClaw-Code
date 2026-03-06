@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1830,
+  "name": "fleet-telematics-budget-guardrail",
+  "title": "Fleet Telematics Budget Guardrail",
+  "description": "Design and run fleet telematics workflows with budget guardrail controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7274,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01830-fleet-telematics-budget-guardrail/SKILL.md",
+    "entrypoint": "agent02/01830-fleet-telematics-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics budget guardrail",
+    "fleet telematics budget guardrail workflow",
+    "fleet telematics budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

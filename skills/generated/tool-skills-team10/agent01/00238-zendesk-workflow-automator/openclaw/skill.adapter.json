@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 238,
+  "name": "zendesk-workflow-automator",
+  "title": "Zendesk Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Zendesk.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7880,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00238-zendesk-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00238-zendesk-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "zendesk workflow automator",
+    "zendesk workflow automator workflow",
+    "zendesk workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

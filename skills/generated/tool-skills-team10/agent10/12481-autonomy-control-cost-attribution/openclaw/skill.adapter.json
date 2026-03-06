@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12481,
+  "name": "autonomy-control-cost-attribution",
+  "title": "Autonomy Control Cost Attribution",
+  "description": "Design and run autonomy control workflows with cost attribution controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12350,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12481-autonomy-control-cost-attribution/SKILL.md",
+    "entrypoint": "agent10/12481-autonomy-control-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control cost attribution",
+    "autonomy control cost attribution workflow",
+    "autonomy control cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

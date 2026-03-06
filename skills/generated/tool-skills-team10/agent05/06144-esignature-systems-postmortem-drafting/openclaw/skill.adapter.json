@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6144,
+  "name": "esignature-systems-postmortem-drafting",
+  "title": "eSignature Systems Postmortem Drafting",
+  "description": "Design and run esignature systems workflows with postmortem drafting controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10086,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06144-esignature-systems-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent05/06144-esignature-systems-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems postmortem drafting",
+    "esignature systems postmortem drafting workflow",
+    "esignature systems postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

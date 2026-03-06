@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2152,
+  "name": "supply-chain-control-tower-auth-broker",
+  "title": "Supply Chain Control Tower Auth Broker",
+  "description": "Design and run supply chain control tower workflows with auth broker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 54,
+    "score": 96,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent02/02152-supply-chain-control-tower-auth-broker/SKILL.md",
+    "entrypoint": "agent02/02152-supply-chain-control-tower-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower auth broker",
+    "supply chain control tower auth broker workflow",
+    "supply chain control tower auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9363,
+  "name": "sensor-fusion-retry-governor",
+  "title": "Sensor Fusion Retry Governor",
+  "description": "Design and run sensor fusion workflows with retry governor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6462,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09363-sensor-fusion-retry-governor/SKILL.md",
+    "entrypoint": "agent08/09363-sensor-fusion-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion retry governor",
+    "sensor fusion retry governor workflow",
+    "sensor fusion retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 332,
+  "name": "amazon-seller-sync-orchestrator",
+  "title": "Amazon Seller Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Amazon Seller records.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0332-amazon-seller-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent04/0332-amazon-seller-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "amazon seller sync orchestrator",
+    "amazon seller sync orchestrator workflow",
+    "amazon seller sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0332-amazon-seller-sync-orchestrator"
+  }
+}

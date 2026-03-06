@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3383,
+  "name": "payroll-systems-reliability-scorer",
+  "title": "Payroll Systems Reliability Scorer",
+  "description": "Design and run payroll systems workflows with reliability scorer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9139,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03383-payroll-systems-reliability-scorer/SKILL.md",
+    "entrypoint": "agent03/03383-payroll-systems-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems reliability scorer",
+    "payroll systems reliability scorer workflow",
+    "payroll systems reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

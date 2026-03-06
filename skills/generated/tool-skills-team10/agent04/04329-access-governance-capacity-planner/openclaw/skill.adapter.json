@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4329,
+  "name": "access-governance-capacity-planner",
+  "title": "Access Governance Capacity Planner",
+  "description": "Design and run access governance workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9451,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04329-access-governance-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/04329-access-governance-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance capacity planner",
+    "access governance capacity planner workflow",
+    "access governance capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

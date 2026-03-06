@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5300,
+  "name": "api-gateways-outcome-synthesizer",
+  "title": "API Gateways Outcome Synthesizer",
+  "description": "Design and run api gateways workflows with outcome synthesizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3426,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05300-api-gateways-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent05/05300-api-gateways-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways outcome synthesizer",
+    "api gateways outcome synthesizer workflow",
+    "api gateways outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

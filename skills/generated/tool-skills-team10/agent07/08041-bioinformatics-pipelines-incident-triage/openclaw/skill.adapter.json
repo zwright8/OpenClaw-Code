@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8041,
+  "name": "bioinformatics-pipelines-incident-triage",
+  "title": "Bioinformatics Pipelines Incident Triage",
+  "description": "Design and run bioinformatics pipelines workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2166,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08041-bioinformatics-pipelines-incident-triage/SKILL.md",
+    "entrypoint": "agent07/08041-bioinformatics-pipelines-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines incident triage",
+    "bioinformatics pipelines incident triage workflow",
+    "bioinformatics pipelines incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

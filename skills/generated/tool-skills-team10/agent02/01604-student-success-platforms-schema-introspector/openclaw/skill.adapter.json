@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1604,
+  "name": "student-success-platforms-schema-introspector",
+  "title": "Student Success Platforms Schema Introspector",
+  "description": "Design and run student success platforms workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 555,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01604-student-success-platforms-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/01604-student-success-platforms-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms schema introspector",
+    "student success platforms schema introspector workflow",
+    "student success platforms schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

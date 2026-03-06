@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5592,
+  "name": "metadata-stores-root-cause-miner",
+  "title": "Metadata Stores Root Cause Miner",
+  "description": "Design and run metadata stores workflows with root cause miner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4616,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05592-metadata-stores-root-cause-miner/SKILL.md",
+    "entrypoint": "agent05/05592-metadata-stores-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores root cause miner",
+    "metadata stores root cause miner workflow",
+    "metadata stores root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

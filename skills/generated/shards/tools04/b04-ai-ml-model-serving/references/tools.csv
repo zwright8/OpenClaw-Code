@@ -1,0 +1,15 @@
+rank,tool,command_hint,type,access,description,homepage,license
+1546,stockfish,stockfish,cli,local-installable,Strong open-source chess engine,https://stockfishchess.org/,GPL-3.0-only
+1549,localai,localai,cli,local-installable,OpenAI alternative,https://localai.io,MIT
+1661,llmfit,llmfit,cli,local-installable,Find what models run on your hardware,https://github.com/AlexsJones/llmfit,MIT
+1677,gollama,gollama,cli,local-installable,Go manage your Ollama models,https://smcleod.net,MIT
+1679,echidna,echidna,cli,local-installable,Ethereum smart contract fuzzer,https://github.com/crytic/echidna,AGPL-3.0-only
+1718,mogenerator,mogenerator,cli,local-installable,Generate Objective-C & Swift classes from your Core Data model,https://rentzsch.github.io/mogenerator/,MIT
+1751,sentencepiece,sentencepiece,cli,local-installable,Unsupervised text tokenizer and detokenizer,https://github.com/google/sentencepiece,Apache-2.0
+1752,faiss,faiss,cli,local-installable,Efficient similarity search and clustering of dense vectors,https://github.com/facebookresearch/faiss,MIT
+1786,vespa-cli,vespa-cli,cli,local-installable,Command-line tool for Vespa.ai,https://vespa.ai,Apache-2.0
+1796,bitcoin,bitcoin,cli,local-installable,"Decentralized, peer to peer payment network",https://bitcoincore.org/,MIT AND BSD-3-Clause AND BSL-1.0
+1801,torchvision,torchvision,cli,local-installable,"Datasets, transforms, and models for computer vision",https://pytorch.org/vision/stable/index.html,BSD-3-Clause
+1863,langgraph-cli,langgraph-cli,cli,local-installable,Command-line interface for deploying apps to the LangGraph platform,https://www.github.com/langchain-ai/langgraph,MIT
+1992,aptos,aptos,cli,local-installable,Layer 1 blockchain built to support fair access to decentralized assets for all,https://aptosfoundation.org/,Apache-2.0
+1994,mistral-vibe,mistral-vibe,cli,local-installable,Minimal CLI coding agent,https://github.com/mistralai/mistral-vibe,Apache-2.0

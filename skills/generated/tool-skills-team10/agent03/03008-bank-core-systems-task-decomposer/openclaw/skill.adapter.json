@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3008,
+  "name": "bank-core-systems-task-decomposer",
+  "title": "Bank Core Systems Task Decomposer",
+  "description": "Design and run bank core systems workflows with task decomposer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8999,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03008-bank-core-systems-task-decomposer/SKILL.md",
+    "entrypoint": "agent03/03008-bank-core-systems-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems task decomposer",
+    "bank core systems task decomposer workflow",
+    "bank core systems task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

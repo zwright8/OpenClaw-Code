@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2164,
+  "name": "supply-chain-control-tower-rate-limit-optimizer",
+  "title": "Supply Chain Control Tower Rate Limit Optimizer",
+  "description": "Design and run supply chain control tower workflows with rate limit optimizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2300,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02164-supply-chain-control-tower-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent02/02164-supply-chain-control-tower-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower rate limit optimizer",
+    "supply chain control tower rate limit optimizer workflow",
+    "supply chain control tower rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 489,
+  "name": "kubernetes-approval-router",
+  "title": "Kubernetes Approval Router",
+  "description": "Routes Kubernetes-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8115,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00489-kubernetes-approval-router/SKILL.md",
+    "entrypoint": "agent01/00489-kubernetes-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes approval router",
+    "kubernetes approval router workflow",
+    "kubernetes approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

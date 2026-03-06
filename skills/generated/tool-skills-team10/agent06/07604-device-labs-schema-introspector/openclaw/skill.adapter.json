@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7604,
+  "name": "device-labs-schema-introspector",
+  "title": "Device Labs Schema Introspector",
+  "description": "Design and run device labs workflows with schema introspector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 667,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/07604-device-labs-schema-introspector/SKILL.md",
+    "entrypoint": "agent06/07604-device-labs-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs schema introspector",
+    "device labs schema introspector workflow",
+    "device labs schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2071,
+  "name": "scada-monitoring-snapshot-manager",
+  "title": "SCADA Monitoring Snapshot Manager",
+  "description": "Design and run scada monitoring workflows with snapshot manager controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8731,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02071-scada-monitoring-snapshot-manager/SKILL.md",
+    "entrypoint": "agent02/02071-scada-monitoring-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring snapshot manager",
+    "scada monitoring snapshot manager workflow",
+    "scada monitoring snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

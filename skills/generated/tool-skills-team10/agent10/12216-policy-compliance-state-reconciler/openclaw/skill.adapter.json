@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12216,
+  "name": "policy-compliance-state-reconciler",
+  "title": "Policy Compliance State Reconciler",
+  "description": "Design and run policy compliance workflows with state reconciler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1978,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12216-policy-compliance-state-reconciler/SKILL.md",
+    "entrypoint": "agent10/12216-policy-compliance-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance state reconciler",
+    "policy compliance state reconciler workflow",
+    "policy compliance state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

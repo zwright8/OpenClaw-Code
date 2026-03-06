@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3828,
+  "name": "ad-platforms-forecast-engine",
+  "title": "Ad Platforms Forecast Engine",
+  "description": "Design and run ad platforms workflows with forecast engine controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9303,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03828-ad-platforms-forecast-engine/SKILL.md",
+    "entrypoint": "agent03/03828-ad-platforms-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ad platforms forecast engine",
+    "ad platforms forecast engine workflow",
+    "ad platforms forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

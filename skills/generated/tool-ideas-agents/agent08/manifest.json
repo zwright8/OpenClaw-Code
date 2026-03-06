@@ -1,0 +1,708 @@
+{
+  "agent": "agent08",
+  "start": 701,
+  "end": 800,
+  "count": 100,
+  "items": [
+    {
+      "id": 701,
+      "tool": "Figma Connector",
+      "purpose": "Unified read/write connector for Figma APIs and data.",
+      "folder": "0701-figma-connector",
+      "skillPath": "agent08/0701-figma-connector/SKILL.md"
+    },
+    {
+      "id": 702,
+      "tool": "Figma Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Figma records.",
+      "folder": "0702-figma-sync-orchestrator",
+      "skillPath": "agent08/0702-figma-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 703,
+      "tool": "Figma Data Exporter",
+      "purpose": "Exports Figma entities into clean, typed datasets.",
+      "folder": "0703-figma-data-exporter",
+      "skillPath": "agent08/0703-figma-data-exporter/SKILL.md"
+    },
+    {
+      "id": 704,
+      "tool": "Figma Data Importer",
+      "purpose": "Validates and imports bulk updates into Figma.",
+      "folder": "0704-figma-data-importer",
+      "skillPath": "agent08/0704-figma-data-importer/SKILL.md"
+    },
+    {
+      "id": 705,
+      "tool": "Figma Webhook Listener",
+      "purpose": "Captures, verifies, and routes Figma webhook events.",
+      "folder": "0705-figma-webhook-listener",
+      "skillPath": "agent08/0705-figma-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 706,
+      "tool": "Figma Report Builder",
+      "purpose": "Generates operational and KPI reports from Figma activity.",
+      "folder": "0706-figma-report-builder",
+      "skillPath": "agent08/0706-figma-report-builder/SKILL.md"
+    },
+    {
+      "id": 707,
+      "tool": "Figma Alert Monitor",
+      "purpose": "Monitors key Figma signals and raises actionable alerts.",
+      "folder": "0707-figma-alert-monitor",
+      "skillPath": "agent08/0707-figma-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 708,
+      "tool": "Figma Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Figma.",
+      "folder": "0708-figma-workflow-automator",
+      "skillPath": "agent08/0708-figma-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 709,
+      "tool": "Figma Approval Router",
+      "purpose": "Routes Figma-driven decisions to the right approvers.",
+      "folder": "0709-figma-approval-router",
+      "skillPath": "agent08/0709-figma-approval-router/SKILL.md"
+    },
+    {
+      "id": 710,
+      "tool": "Figma Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Figma.",
+      "folder": "0710-figma-migration-assistant",
+      "skillPath": "agent08/0710-figma-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 711,
+      "tool": "Canva Connector",
+      "purpose": "Unified read/write connector for Canva APIs and data.",
+      "folder": "0711-canva-connector",
+      "skillPath": "agent08/0711-canva-connector/SKILL.md"
+    },
+    {
+      "id": 712,
+      "tool": "Canva Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Canva records.",
+      "folder": "0712-canva-sync-orchestrator",
+      "skillPath": "agent08/0712-canva-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 713,
+      "tool": "Canva Data Exporter",
+      "purpose": "Exports Canva entities into clean, typed datasets.",
+      "folder": "0713-canva-data-exporter",
+      "skillPath": "agent08/0713-canva-data-exporter/SKILL.md"
+    },
+    {
+      "id": 714,
+      "tool": "Canva Data Importer",
+      "purpose": "Validates and imports bulk updates into Canva.",
+      "folder": "0714-canva-data-importer",
+      "skillPath": "agent08/0714-canva-data-importer/SKILL.md"
+    },
+    {
+      "id": 715,
+      "tool": "Canva Webhook Listener",
+      "purpose": "Captures, verifies, and routes Canva webhook events.",
+      "folder": "0715-canva-webhook-listener",
+      "skillPath": "agent08/0715-canva-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 716,
+      "tool": "Canva Report Builder",
+      "purpose": "Generates operational and KPI reports from Canva activity.",
+      "folder": "0716-canva-report-builder",
+      "skillPath": "agent08/0716-canva-report-builder/SKILL.md"
+    },
+    {
+      "id": 717,
+      "tool": "Canva Alert Monitor",
+      "purpose": "Monitors key Canva signals and raises actionable alerts.",
+      "folder": "0717-canva-alert-monitor",
+      "skillPath": "agent08/0717-canva-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 718,
+      "tool": "Canva Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Canva.",
+      "folder": "0718-canva-workflow-automator",
+      "skillPath": "agent08/0718-canva-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 719,
+      "tool": "Canva Approval Router",
+      "purpose": "Routes Canva-driven decisions to the right approvers.",
+      "folder": "0719-canva-approval-router",
+      "skillPath": "agent08/0719-canva-approval-router/SKILL.md"
+    },
+    {
+      "id": 720,
+      "tool": "Canva Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Canva.",
+      "folder": "0720-canva-migration-assistant",
+      "skillPath": "agent08/0720-canva-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 721,
+      "tool": "Miro Connector",
+      "purpose": "Unified read/write connector for Miro APIs and data.",
+      "folder": "0721-miro-connector",
+      "skillPath": "agent08/0721-miro-connector/SKILL.md"
+    },
+    {
+      "id": 722,
+      "tool": "Miro Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Miro records.",
+      "folder": "0722-miro-sync-orchestrator",
+      "skillPath": "agent08/0722-miro-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 723,
+      "tool": "Miro Data Exporter",
+      "purpose": "Exports Miro entities into clean, typed datasets.",
+      "folder": "0723-miro-data-exporter",
+      "skillPath": "agent08/0723-miro-data-exporter/SKILL.md"
+    },
+    {
+      "id": 724,
+      "tool": "Miro Data Importer",
+      "purpose": "Validates and imports bulk updates into Miro.",
+      "folder": "0724-miro-data-importer",
+      "skillPath": "agent08/0724-miro-data-importer/SKILL.md"
+    },
+    {
+      "id": 725,
+      "tool": "Miro Webhook Listener",
+      "purpose": "Captures, verifies, and routes Miro webhook events.",
+      "folder": "0725-miro-webhook-listener",
+      "skillPath": "agent08/0725-miro-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 726,
+      "tool": "Miro Report Builder",
+      "purpose": "Generates operational and KPI reports from Miro activity.",
+      "folder": "0726-miro-report-builder",
+      "skillPath": "agent08/0726-miro-report-builder/SKILL.md"
+    },
+    {
+      "id": 727,
+      "tool": "Miro Alert Monitor",
+      "purpose": "Monitors key Miro signals and raises actionable alerts.",
+      "folder": "0727-miro-alert-monitor",
+      "skillPath": "agent08/0727-miro-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 728,
+      "tool": "Miro Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Miro.",
+      "folder": "0728-miro-workflow-automator",
+      "skillPath": "agent08/0728-miro-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 729,
+      "tool": "Miro Approval Router",
+      "purpose": "Routes Miro-driven decisions to the right approvers.",
+      "folder": "0729-miro-approval-router",
+      "skillPath": "agent08/0729-miro-approval-router/SKILL.md"
+    },
+    {
+      "id": 730,
+      "tool": "Miro Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Miro.",
+      "folder": "0730-miro-migration-assistant",
+      "skillPath": "agent08/0730-miro-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 731,
+      "tool": "Loom Connector",
+      "purpose": "Unified read/write connector for Loom APIs and data.",
+      "folder": "0731-loom-connector",
+      "skillPath": "agent08/0731-loom-connector/SKILL.md"
+    },
+    {
+      "id": 732,
+      "tool": "Loom Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Loom records.",
+      "folder": "0732-loom-sync-orchestrator",
+      "skillPath": "agent08/0732-loom-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 733,
+      "tool": "Loom Data Exporter",
+      "purpose": "Exports Loom entities into clean, typed datasets.",
+      "folder": "0733-loom-data-exporter",
+      "skillPath": "agent08/0733-loom-data-exporter/SKILL.md"
+    },
+    {
+      "id": 734,
+      "tool": "Loom Data Importer",
+      "purpose": "Validates and imports bulk updates into Loom.",
+      "folder": "0734-loom-data-importer",
+      "skillPath": "agent08/0734-loom-data-importer/SKILL.md"
+    },
+    {
+      "id": 735,
+      "tool": "Loom Webhook Listener",
+      "purpose": "Captures, verifies, and routes Loom webhook events.",
+      "folder": "0735-loom-webhook-listener",
+      "skillPath": "agent08/0735-loom-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 736,
+      "tool": "Loom Report Builder",
+      "purpose": "Generates operational and KPI reports from Loom activity.",
+      "folder": "0736-loom-report-builder",
+      "skillPath": "agent08/0736-loom-report-builder/SKILL.md"
+    },
+    {
+      "id": 737,
+      "tool": "Loom Alert Monitor",
+      "purpose": "Monitors key Loom signals and raises actionable alerts.",
+      "folder": "0737-loom-alert-monitor",
+      "skillPath": "agent08/0737-loom-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 738,
+      "tool": "Loom Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Loom.",
+      "folder": "0738-loom-workflow-automator",
+      "skillPath": "agent08/0738-loom-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 739,
+      "tool": "Loom Approval Router",
+      "purpose": "Routes Loom-driven decisions to the right approvers.",
+      "folder": "0739-loom-approval-router",
+      "skillPath": "agent08/0739-loom-approval-router/SKILL.md"
+    },
+    {
+      "id": 740,
+      "tool": "Loom Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Loom.",
+      "folder": "0740-loom-migration-assistant",
+      "skillPath": "agent08/0740-loom-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 741,
+      "tool": "YouTube Connector",
+      "purpose": "Unified read/write connector for YouTube APIs and data.",
+      "folder": "0741-youtube-connector",
+      "skillPath": "agent08/0741-youtube-connector/SKILL.md"
+    },
+    {
+      "id": 742,
+      "tool": "YouTube Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for YouTube records.",
+      "folder": "0742-youtube-sync-orchestrator",
+      "skillPath": "agent08/0742-youtube-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 743,
+      "tool": "YouTube Data Exporter",
+      "purpose": "Exports YouTube entities into clean, typed datasets.",
+      "folder": "0743-youtube-data-exporter",
+      "skillPath": "agent08/0743-youtube-data-exporter/SKILL.md"
+    },
+    {
+      "id": 744,
+      "tool": "YouTube Data Importer",
+      "purpose": "Validates and imports bulk updates into YouTube.",
+      "folder": "0744-youtube-data-importer",
+      "skillPath": "agent08/0744-youtube-data-importer/SKILL.md"
+    },
+    {
+      "id": 745,
+      "tool": "YouTube Webhook Listener",
+      "purpose": "Captures, verifies, and routes YouTube webhook events.",
+      "folder": "0745-youtube-webhook-listener",
+      "skillPath": "agent08/0745-youtube-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 746,
+      "tool": "YouTube Report Builder",
+      "purpose": "Generates operational and KPI reports from YouTube activity.",
+      "folder": "0746-youtube-report-builder",
+      "skillPath": "agent08/0746-youtube-report-builder/SKILL.md"
+    },
+    {
+      "id": 747,
+      "tool": "YouTube Alert Monitor",
+      "purpose": "Monitors key YouTube signals and raises actionable alerts.",
+      "folder": "0747-youtube-alert-monitor",
+      "skillPath": "agent08/0747-youtube-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 748,
+      "tool": "YouTube Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using YouTube.",
+      "folder": "0748-youtube-workflow-automator",
+      "skillPath": "agent08/0748-youtube-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 749,
+      "tool": "YouTube Approval Router",
+      "purpose": "Routes YouTube-driven decisions to the right approvers.",
+      "folder": "0749-youtube-approval-router",
+      "skillPath": "agent08/0749-youtube-approval-router/SKILL.md"
+    },
+    {
+      "id": 750,
+      "tool": "YouTube Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from YouTube.",
+      "folder": "0750-youtube-migration-assistant",
+      "skillPath": "agent08/0750-youtube-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 751,
+      "tool": "TikTok Connector",
+      "purpose": "Unified read/write connector for TikTok APIs and data.",
+      "folder": "0751-tiktok-connector",
+      "skillPath": "agent08/0751-tiktok-connector/SKILL.md"
+    },
+    {
+      "id": 752,
+      "tool": "TikTok Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for TikTok records.",
+      "folder": "0752-tiktok-sync-orchestrator",
+      "skillPath": "agent08/0752-tiktok-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 753,
+      "tool": "TikTok Data Exporter",
+      "purpose": "Exports TikTok entities into clean, typed datasets.",
+      "folder": "0753-tiktok-data-exporter",
+      "skillPath": "agent08/0753-tiktok-data-exporter/SKILL.md"
+    },
+    {
+      "id": 754,
+      "tool": "TikTok Data Importer",
+      "purpose": "Validates and imports bulk updates into TikTok.",
+      "folder": "0754-tiktok-data-importer",
+      "skillPath": "agent08/0754-tiktok-data-importer/SKILL.md"
+    },
+    {
+      "id": 755,
+      "tool": "TikTok Webhook Listener",
+      "purpose": "Captures, verifies, and routes TikTok webhook events.",
+      "folder": "0755-tiktok-webhook-listener",
+      "skillPath": "agent08/0755-tiktok-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 756,
+      "tool": "TikTok Report Builder",
+      "purpose": "Generates operational and KPI reports from TikTok activity.",
+      "folder": "0756-tiktok-report-builder",
+      "skillPath": "agent08/0756-tiktok-report-builder/SKILL.md"
+    },
+    {
+      "id": 757,
+      "tool": "TikTok Alert Monitor",
+      "purpose": "Monitors key TikTok signals and raises actionable alerts.",
+      "folder": "0757-tiktok-alert-monitor",
+      "skillPath": "agent08/0757-tiktok-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 758,
+      "tool": "TikTok Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using TikTok.",
+      "folder": "0758-tiktok-workflow-automator",
+      "skillPath": "agent08/0758-tiktok-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 759,
+      "tool": "TikTok Approval Router",
+      "purpose": "Routes TikTok-driven decisions to the right approvers.",
+      "folder": "0759-tiktok-approval-router",
+      "skillPath": "agent08/0759-tiktok-approval-router/SKILL.md"
+    },
+    {
+      "id": 760,
+      "tool": "TikTok Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from TikTok.",
+      "folder": "0760-tiktok-migration-assistant",
+      "skillPath": "agent08/0760-tiktok-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 761,
+      "tool": "Instagram Connector",
+      "purpose": "Unified read/write connector for Instagram APIs and data.",
+      "folder": "0761-instagram-connector",
+      "skillPath": "agent08/0761-instagram-connector/SKILL.md"
+    },
+    {
+      "id": 762,
+      "tool": "Instagram Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Instagram records.",
+      "folder": "0762-instagram-sync-orchestrator",
+      "skillPath": "agent08/0762-instagram-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 763,
+      "tool": "Instagram Data Exporter",
+      "purpose": "Exports Instagram entities into clean, typed datasets.",
+      "folder": "0763-instagram-data-exporter",
+      "skillPath": "agent08/0763-instagram-data-exporter/SKILL.md"
+    },
+    {
+      "id": 764,
+      "tool": "Instagram Data Importer",
+      "purpose": "Validates and imports bulk updates into Instagram.",
+      "folder": "0764-instagram-data-importer",
+      "skillPath": "agent08/0764-instagram-data-importer/SKILL.md"
+    },
+    {
+      "id": 765,
+      "tool": "Instagram Webhook Listener",
+      "purpose": "Captures, verifies, and routes Instagram webhook events.",
+      "folder": "0765-instagram-webhook-listener",
+      "skillPath": "agent08/0765-instagram-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 766,
+      "tool": "Instagram Report Builder",
+      "purpose": "Generates operational and KPI reports from Instagram activity.",
+      "folder": "0766-instagram-report-builder",
+      "skillPath": "agent08/0766-instagram-report-builder/SKILL.md"
+    },
+    {
+      "id": 767,
+      "tool": "Instagram Alert Monitor",
+      "purpose": "Monitors key Instagram signals and raises actionable alerts.",
+      "folder": "0767-instagram-alert-monitor",
+      "skillPath": "agent08/0767-instagram-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 768,
+      "tool": "Instagram Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Instagram.",
+      "folder": "0768-instagram-workflow-automator",
+      "skillPath": "agent08/0768-instagram-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 769,
+      "tool": "Instagram Approval Router",
+      "purpose": "Routes Instagram-driven decisions to the right approvers.",
+      "folder": "0769-instagram-approval-router",
+      "skillPath": "agent08/0769-instagram-approval-router/SKILL.md"
+    },
+    {
+      "id": 770,
+      "tool": "Instagram Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Instagram.",
+      "folder": "0770-instagram-migration-assistant",
+      "skillPath": "agent08/0770-instagram-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 771,
+      "tool": "X Twitter Connector",
+      "purpose": "Unified read/write connector for X Twitter APIs and data.",
+      "folder": "0771-x-twitter-connector",
+      "skillPath": "agent08/0771-x-twitter-connector/SKILL.md"
+    },
+    {
+      "id": 772,
+      "tool": "X Twitter Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for X Twitter records.",
+      "folder": "0772-x-twitter-sync-orchestrator",
+      "skillPath": "agent08/0772-x-twitter-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 773,
+      "tool": "X Twitter Data Exporter",
+      "purpose": "Exports X Twitter entities into clean, typed datasets.",
+      "folder": "0773-x-twitter-data-exporter",
+      "skillPath": "agent08/0773-x-twitter-data-exporter/SKILL.md"
+    },
+    {
+      "id": 774,
+      "tool": "X Twitter Data Importer",
+      "purpose": "Validates and imports bulk updates into X Twitter.",
+      "folder": "0774-x-twitter-data-importer",
+      "skillPath": "agent08/0774-x-twitter-data-importer/SKILL.md"
+    },
+    {
+      "id": 775,
+      "tool": "X Twitter Webhook Listener",
+      "purpose": "Captures, verifies, and routes X Twitter webhook events.",
+      "folder": "0775-x-twitter-webhook-listener",
+      "skillPath": "agent08/0775-x-twitter-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 776,
+      "tool": "X Twitter Report Builder",
+      "purpose": "Generates operational and KPI reports from X Twitter activity.",
+      "folder": "0776-x-twitter-report-builder",
+      "skillPath": "agent08/0776-x-twitter-report-builder/SKILL.md"
+    },
+    {
+      "id": 777,
+      "tool": "X Twitter Alert Monitor",
+      "purpose": "Monitors key X Twitter signals and raises actionable alerts.",
+      "folder": "0777-x-twitter-alert-monitor",
+      "skillPath": "agent08/0777-x-twitter-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 778,
+      "tool": "X Twitter Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using X Twitter.",
+      "folder": "0778-x-twitter-workflow-automator",
+      "skillPath": "agent08/0778-x-twitter-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 779,
+      "tool": "X Twitter Approval Router",
+      "purpose": "Routes X Twitter-driven decisions to the right approvers.",
+      "folder": "0779-x-twitter-approval-router",
+      "skillPath": "agent08/0779-x-twitter-approval-router/SKILL.md"
+    },
+    {
+      "id": 780,
+      "tool": "X Twitter Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from X Twitter.",
+      "folder": "0780-x-twitter-migration-assistant",
+      "skillPath": "agent08/0780-x-twitter-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 781,
+      "tool": "LinkedIn Connector",
+      "purpose": "Unified read/write connector for LinkedIn APIs and data.",
+      "folder": "0781-linkedin-connector",
+      "skillPath": "agent08/0781-linkedin-connector/SKILL.md"
+    },
+    {
+      "id": 782,
+      "tool": "LinkedIn Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for LinkedIn records.",
+      "folder": "0782-linkedin-sync-orchestrator",
+      "skillPath": "agent08/0782-linkedin-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 783,
+      "tool": "LinkedIn Data Exporter",
+      "purpose": "Exports LinkedIn entities into clean, typed datasets.",
+      "folder": "0783-linkedin-data-exporter",
+      "skillPath": "agent08/0783-linkedin-data-exporter/SKILL.md"
+    },
+    {
+      "id": 784,
+      "tool": "LinkedIn Data Importer",
+      "purpose": "Validates and imports bulk updates into LinkedIn.",
+      "folder": "0784-linkedin-data-importer",
+      "skillPath": "agent08/0784-linkedin-data-importer/SKILL.md"
+    },
+    {
+      "id": 785,
+      "tool": "LinkedIn Webhook Listener",
+      "purpose": "Captures, verifies, and routes LinkedIn webhook events.",
+      "folder": "0785-linkedin-webhook-listener",
+      "skillPath": "agent08/0785-linkedin-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 786,
+      "tool": "LinkedIn Report Builder",
+      "purpose": "Generates operational and KPI reports from LinkedIn activity.",
+      "folder": "0786-linkedin-report-builder",
+      "skillPath": "agent08/0786-linkedin-report-builder/SKILL.md"
+    },
+    {
+      "id": 787,
+      "tool": "LinkedIn Alert Monitor",
+      "purpose": "Monitors key LinkedIn signals and raises actionable alerts.",
+      "folder": "0787-linkedin-alert-monitor",
+      "skillPath": "agent08/0787-linkedin-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 788,
+      "tool": "LinkedIn Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using LinkedIn.",
+      "folder": "0788-linkedin-workflow-automator",
+      "skillPath": "agent08/0788-linkedin-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 789,
+      "tool": "LinkedIn Approval Router",
+      "purpose": "Routes LinkedIn-driven decisions to the right approvers.",
+      "folder": "0789-linkedin-approval-router",
+      "skillPath": "agent08/0789-linkedin-approval-router/SKILL.md"
+    },
+    {
+      "id": 790,
+      "tool": "LinkedIn Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from LinkedIn.",
+      "folder": "0790-linkedin-migration-assistant",
+      "skillPath": "agent08/0790-linkedin-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 791,
+      "tool": "Reddit Connector",
+      "purpose": "Unified read/write connector for Reddit APIs and data.",
+      "folder": "0791-reddit-connector",
+      "skillPath": "agent08/0791-reddit-connector/SKILL.md"
+    },
+    {
+      "id": 792,
+      "tool": "Reddit Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Reddit records.",
+      "folder": "0792-reddit-sync-orchestrator",
+      "skillPath": "agent08/0792-reddit-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 793,
+      "tool": "Reddit Data Exporter",
+      "purpose": "Exports Reddit entities into clean, typed datasets.",
+      "folder": "0793-reddit-data-exporter",
+      "skillPath": "agent08/0793-reddit-data-exporter/SKILL.md"
+    },
+    {
+      "id": 794,
+      "tool": "Reddit Data Importer",
+      "purpose": "Validates and imports bulk updates into Reddit.",
+      "folder": "0794-reddit-data-importer",
+      "skillPath": "agent08/0794-reddit-data-importer/SKILL.md"
+    },
+    {
+      "id": 795,
+      "tool": "Reddit Webhook Listener",
+      "purpose": "Captures, verifies, and routes Reddit webhook events.",
+      "folder": "0795-reddit-webhook-listener",
+      "skillPath": "agent08/0795-reddit-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 796,
+      "tool": "Reddit Report Builder",
+      "purpose": "Generates operational and KPI reports from Reddit activity.",
+      "folder": "0796-reddit-report-builder",
+      "skillPath": "agent08/0796-reddit-report-builder/SKILL.md"
+    },
+    {
+      "id": 797,
+      "tool": "Reddit Alert Monitor",
+      "purpose": "Monitors key Reddit signals and raises actionable alerts.",
+      "folder": "0797-reddit-alert-monitor",
+      "skillPath": "agent08/0797-reddit-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 798,
+      "tool": "Reddit Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Reddit.",
+      "folder": "0798-reddit-workflow-automator",
+      "skillPath": "agent08/0798-reddit-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 799,
+      "tool": "Reddit Approval Router",
+      "purpose": "Routes Reddit-driven decisions to the right approvers.",
+      "folder": "0799-reddit-approval-router",
+      "skillPath": "agent08/0799-reddit-approval-router/SKILL.md"
+    },
+    {
+      "id": 800,
+      "tool": "Reddit Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Reddit.",
+      "folder": "0800-reddit-migration-assistant",
+      "skillPath": "agent08/0800-reddit-migration-assistant/SKILL.md"
+    }
+  ]
+}

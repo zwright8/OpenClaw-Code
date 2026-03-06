@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3969,
+  "name": "campaign-automation-rollback-coordinator",
+  "title": "Campaign Automation Rollback Coordinator",
+  "description": "Design and run campaign automation workflows with rollback coordinator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2544,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/03969-campaign-automation-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent04/03969-campaign-automation-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation rollback coordinator",
+    "campaign automation rollback coordinator workflow",
+    "campaign automation rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

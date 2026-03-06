@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 766,
+  "name": "instagram-report-builder",
+  "title": "Instagram Report Builder",
+  "description": "Generates operational and KPI reports from Instagram activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12858,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00766-instagram-report-builder/SKILL.md",
+    "entrypoint": "agent01/00766-instagram-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "instagram report builder",
+    "instagram report builder workflow",
+    "instagram report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

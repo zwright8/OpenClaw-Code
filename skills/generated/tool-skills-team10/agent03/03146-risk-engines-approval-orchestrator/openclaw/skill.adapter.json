@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3146,
+  "name": "risk-engines-approval-orchestrator",
+  "title": "Risk Engines Approval Orchestrator",
+  "description": "Design and run risk engines workflows with approval orchestrator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2540,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03146-risk-engines-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent03/03146-risk-engines-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines approval orchestrator",
+    "risk engines approval orchestrator workflow",
+    "risk engines approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

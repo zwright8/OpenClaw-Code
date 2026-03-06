@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1432,
+  "name": "pharmacy-ops-latency-analyzer",
+  "title": "Pharmacy Ops Latency Analyzer",
+  "description": "Design and run pharmacy ops workflows with latency analyzer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8508,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01432-pharmacy-ops-latency-analyzer/SKILL.md",
+    "entrypoint": "agent02/01432-pharmacy-ops-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops latency analyzer",
+    "pharmacy ops latency analyzer workflow",
+    "pharmacy ops latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

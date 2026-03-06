@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3473,
+  "name": "procure-to-pay-artifact-publisher",
+  "title": "Procure to Pay Artifact Publisher",
+  "description": "Design and run procure to pay workflows with artifact publisher controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9174,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03473-procure-to-pay-artifact-publisher/SKILL.md",
+    "entrypoint": "agent03/03473-procure-to-pay-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay artifact publisher",
+    "procure to pay artifact publisher workflow",
+    "procure to pay artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

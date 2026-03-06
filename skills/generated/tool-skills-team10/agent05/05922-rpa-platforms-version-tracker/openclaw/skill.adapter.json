@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5922,
+  "name": "rpa-platforms-version-tracker",
+  "title": "RPA Platforms Version Tracker",
+  "description": "Design and run rpa platforms workflows with version tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9992,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05922-rpa-platforms-version-tracker/SKILL.md",
+    "entrypoint": "agent05/05922-rpa-platforms-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rpa platforms version tracker",
+    "rpa platforms version tracker workflow",
+    "rpa platforms version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

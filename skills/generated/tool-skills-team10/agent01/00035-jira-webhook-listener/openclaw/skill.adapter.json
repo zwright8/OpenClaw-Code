@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 35,
+  "name": "jira-webhook-listener",
+  "title": "Jira Webhook Listener",
+  "description": "Captures, verifies, and routes Jira webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12381,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00035-jira-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00035-jira-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "jira webhook listener",
+    "jira webhook listener workflow",
+    "jira webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

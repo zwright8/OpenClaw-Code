@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8738,
+  "name": "mobility-platforms-pii-redactor",
+  "title": "Mobility Platforms PII Redactor",
+  "description": "Design and run mobility platforms workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3683,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08738-mobility-platforms-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/08738-mobility-platforms-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobility platforms pii redactor",
+    "mobility platforms pii redactor workflow",
+    "mobility platforms pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

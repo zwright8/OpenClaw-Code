@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8938,
+  "name": "policy-drafting-pii-redactor",
+  "title": "Policy Drafting PII Redactor",
+  "description": "Design and run policy drafting workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3700,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08938-policy-drafting-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/08938-policy-drafting-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy drafting pii redactor",
+    "policy drafting pii redactor workflow",
+    "policy drafting pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

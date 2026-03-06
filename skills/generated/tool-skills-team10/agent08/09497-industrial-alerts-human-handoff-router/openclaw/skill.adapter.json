@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9497,
+  "name": "industrial-alerts-human-handoff-router",
+  "title": "Industrial Alerts Human Handoff Router",
+  "description": "Design and run industrial alerts workflows with human handoff router controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11284,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09497-industrial-alerts-human-handoff-router/SKILL.md",
+    "entrypoint": "agent08/09497-industrial-alerts-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts human handoff router",
+    "industrial alerts human handoff router workflow",
+    "industrial alerts human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

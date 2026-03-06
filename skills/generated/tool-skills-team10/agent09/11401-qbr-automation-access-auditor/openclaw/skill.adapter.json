@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11401,
+  "name": "qbr-automation-access-auditor",
+  "title": "QBR Automation Access Auditor",
+  "description": "Design and run qbr automation workflows with access auditor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11958,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11401-qbr-automation-access-auditor/SKILL.md",
+    "entrypoint": "agent09/11401-qbr-automation-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation access auditor",
+    "qbr automation access auditor workflow",
+    "qbr automation access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

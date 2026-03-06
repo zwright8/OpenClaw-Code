@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5610,
+  "name": "data-quality-hubs-workflow-compiler",
+  "title": "Data Quality Hubs Workflow Compiler",
+  "description": "Design and run data quality hubs workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 316,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent05/05610-data-quality-hubs-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/05610-data-quality-hubs-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs workflow compiler",
+    "data quality hubs workflow compiler workflow",
+    "data quality hubs workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

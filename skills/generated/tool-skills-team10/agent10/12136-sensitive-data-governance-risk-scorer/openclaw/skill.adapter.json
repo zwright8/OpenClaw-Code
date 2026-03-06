@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12136,
+  "name": "sensitive-data-governance-risk-scorer",
+  "title": "Sensitive Data Governance Risk Scorer",
+  "description": "Design and run sensitive data governance workflows with risk scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1718,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12136-sensitive-data-governance-risk-scorer/SKILL.md",
+    "entrypoint": "agent10/12136-sensitive-data-governance-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance risk scorer",
+    "sensitive data governance risk scorer workflow",
+    "sensitive data governance risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

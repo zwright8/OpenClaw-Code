@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10511,
+  "name": "mlops-pipelines-execution-runner",
+  "title": "MLOps Pipelines Execution Runner",
+  "description": "Design and run mlops pipelines workflows with execution runner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 528,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10511-mlops-pipelines-execution-runner/SKILL.md",
+    "entrypoint": "agent09/10511-mlops-pipelines-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mlops pipelines execution runner",
+    "mlops pipelines execution runner workflow",
+    "mlops pipelines execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

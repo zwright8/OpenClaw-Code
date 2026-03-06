@@ -7,6 +7,43 @@ function mean(values) {
     return values.reduce((acc, value) => acc + value, 0) / values.length;
 }
 
+function quantileSorted(sortedValues, percentile) {
+    if (!Array.isArray(sortedValues) || sortedValues.length === 0) return null;
+    const p = clamp(Number(percentile) || 0, 0, 1);
+    const index = (sortedValues.length - 1) * p;
+    const lowerIndex = Math.floor(index);
+    const upperIndex = Math.ceil(index);
+    const lower = sortedValues[lowerIndex];
+    const upper = sortedValues[upperIndex];
+    if (!Number.isFinite(lower) || !Number.isFinite(upper)) return null;
+    if (lowerIndex === upperIndex) return lower;
+    return lower + (upper - lower) * (index - lowerIndex);
+}
+
+function latencyPercentiles(values) {
+    if (!Array.isArray(values) || values.length === 0) {
+        return { p50: 0, p95: 0, p99: 0 };
+    }
+    const sorted = [...values].sort((a, b) => a - b);
+    return {
+        p50: Number((quantileSorted(sorted, 0.5) || 0).toFixed(2)),
+        p95: Number((quantileSorted(sorted, 0.95) || 0).toFixed(2)),
+        p99: Number((quantileSorted(sorted, 0.99) || 0).toFixed(2))
+    };
+}
+
+function wilsonLowerBound(successes, trials, z = 1.96) {
+    const n = Number(trials) || 0;
+    if (n <= 0) return 0;
+    const s = clamp(Number(successes) || 0, 0, n);
+    const phat = s / n;
+    const z2 = z * z;
+    const denominator = 1 + (z2 / n);
+    const center = phat + (z2 / (2 * n));
+    const margin = z * Math.sqrt((phat * (1 - phat) / n) + (z2 / (4 * n * n)));
+    return clamp((center - margin) / denominator, 0, 1);
+}
+
 function normalizeOutcome(outcome, index) {
     if (!outcome || typeof outcome !== 'object') {
         throw new Error(`Invalid outcome at index ${index}`);
@@ -49,6 +86,7 @@ export function summarizeOutcomes(outcomes) {
         transportError: 0,
         avgAttempts: 0,
         avgLatencyMs: 0,
+        latencyPercentiles: { p50: 0, p95: 0, p99: 0 },
         successRate: 0,
         timeoutRate: 0,
         byStatus: {},
@@ -70,7 +108,12 @@ export function summarizeOutcomes(outcomes) {
                 success: 0,
                 failure: 0,
                 timedOut: 0,
-                avgLatencyMs: 0
+                avgLatencyMs: 0,
+                successRate: 0,
+                successRateLower95: 0,
+                timeoutRate: 0,
+                latencyPercentiles: { p50: 0, p95: 0, p99: 0 },
+                latencySamples: []
             };
         }
         if (!totals.byPriority[outcome.priority]) {
@@ -84,6 +127,10 @@ export function summarizeOutcomes(outcomes) {
 
         totals.byAgent[outcome.target].tasks++;
         totals.byPriority[outcome.priority].tasks++;
+
+        if (Number.isFinite(outcome.latencyMs)) {
+            totals.byAgent[outcome.target].latencySamples.push(outcome.latencyMs);
+        }
 
         if (outcome.status === 'completed') {
             totals.success++;
@@ -116,18 +163,21 @@ export function summarizeOutcomes(outcomes) {
     }
 
     for (const [agentId, agent] of Object.entries(totals.byAgent)) {
-        const agentLatencies = normalized
-            .filter((item) => item.target === agentId && Number.isFinite(item.latencyMs))
-            .map((item) => item.latencyMs);
+        const agentLatencies = agent.latencySamples;
         agent.avgLatencyMs = agentLatencies.length > 0
             ? Number(mean(agentLatencies).toFixed(2))
             : 0;
         agent.successRate = agent.tasks > 0
             ? Number((agent.success / agent.tasks).toFixed(4))
             : 0;
+        agent.successRateLower95 = agent.tasks > 0
+            ? Number(wilsonLowerBound(agent.success, agent.tasks, 1.96).toFixed(4))
+            : 0;
         agent.timeoutRate = agent.tasks > 0
             ? Number((agent.timedOut / agent.tasks).toFixed(4))
             : 0;
+        agent.latencyPercentiles = latencyPercentiles(agentLatencies);
+        delete agent.latencySamples;
     }
 
     totals.avgAttempts = totals.total > 0
@@ -136,6 +186,7 @@ export function summarizeOutcomes(outcomes) {
     totals.avgLatencyMs = latencies.length > 0
         ? Number(mean(latencies).toFixed(2))
         : 0;
+    totals.latencyPercentiles = latencyPercentiles(latencies);
     totals.successRate = totals.total > 0
         ? Number((totals.success / totals.total).toFixed(4))
         : 0;
@@ -247,7 +298,9 @@ export function buildLearningRecommendations(
     {
         minTimeoutRateForAction = 0.1,
         minAgentSuccessRate = 0.7,
-        maxAvgAttempts = 1.4
+        maxAvgAttempts = 1.4,
+        minAgentSamplesForAction = 5,
+        minP95LatencyMsForAction = 1000
     } = {}
 ) {
     const baseline = summary?.summary || summary;
@@ -287,21 +340,54 @@ export function buildLearningRecommendations(
         });
     }
 
+    if ((baseline.latencyPercentiles?.p95 || 0) >= minP95LatencyMsForAction) {
+        recommendations.push({
+            priority: 'P2',
+            category: 'tail_latency',
+            title: 'Reduce p95 orchestration latency',
+            rationale: `p95 latency is ${baseline.latencyPercentiles.p95}ms (p99: ${baseline.latencyPercentiles.p99}ms)`,
+            action: 'Limit queue depth per worker, prioritize short tasks, and move long-tail tasks to isolated pools.',
+            expectedImpact: {
+                metric: 'latencyPercentiles.p95',
+                current: baseline.latencyPercentiles.p95,
+                target: Number(Math.max(0, baseline.latencyPercentiles.p95 * 0.8).toFixed(2))
+            }
+        });
+    }
+
     const lowPerformers = Object.entries(baseline.byAgent || {})
-        .filter(([, stats]) => Number(stats.successRate || 0) < minAgentSuccessRate)
-        .sort((a, b) => (a[1].successRate || 0) - (b[1].successRate || 0));
+        .filter(([, stats]) => {
+            const tasks = Number(stats.tasks) || 0;
+            const lowerBound = Number(stats.successRateLower95);
+            const observed = Number(stats.successRate || 0);
+            const score = Number.isFinite(lowerBound) ? lowerBound : observed;
+            return tasks >= minAgentSamplesForAction && score < minAgentSuccessRate;
+        })
+        .sort((a, b) => {
+            const aScore = Number.isFinite(Number(a[1].successRateLower95))
+                ? Number(a[1].successRateLower95)
+                : Number(a[1].successRate || 0);
+            const bScore = Number.isFinite(Number(b[1].successRateLower95))
+                ? Number(b[1].successRateLower95)
+                : Number(b[1].successRate || 0);
+            if (aScore !== bScore) return aScore - bScore;
+            return (Number(b[1].tasks) || 0) - (Number(a[1].tasks) || 0);
+        });
 
     for (const [agentId, stats] of lowPerformers.slice(0, 2)) {
+        const lower95 = Number.isFinite(Number(stats.successRateLower95))
+            ? Number(stats.successRateLower95)
+            : Number(stats.successRate || 0);
         recommendations.push({
             priority: 'P2',
             category: 'routing_quality',
             title: `Improve routing quality for ${agentId}`,
-            rationale: `Agent success rate is ${(stats.successRate * 100).toFixed(1)}% across ${stats.tasks} tasks`,
+            rationale: `Agent success is ${(stats.successRate * 100).toFixed(1)}% with 95% lower bound ${(lower95 * 100).toFixed(1)}% across ${stats.tasks} tasks`,
             action: 'Apply optimizer penalties for this agent until reliability recovers and add targeted health checks.',
             expectedImpact: {
-                metric: `${agentId}.successRate`,
-                current: stats.successRate,
-                target: Number(Math.min(0.95, stats.successRate + 0.12).toFixed(4))
+                metric: `${agentId}.successRateLower95`,
+                current: lower95,
+                target: Number(Math.min(0.95, lower95 + 0.12).toFixed(4))
             }
         });
     }
@@ -346,5 +432,7 @@ export function evaluateLearningLoop(outcomes, options = {}) {
 
 export const __learningLoopInternals = {
     normalizeOutcome,
-    normalizeVariant
+    normalizeVariant,
+    latencyPercentiles,
+    wilsonLowerBound
 };

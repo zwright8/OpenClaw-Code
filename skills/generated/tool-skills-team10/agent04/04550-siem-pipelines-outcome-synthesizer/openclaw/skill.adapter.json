@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4550,
+  "name": "siem-pipelines-outcome-synthesizer",
+  "title": "SIEM Pipelines Outcome Synthesizer",
+  "description": "Design and run siem pipelines workflows with outcome synthesizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6917,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04550-siem-pipelines-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent04/04550-siem-pipelines-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "siem pipelines outcome synthesizer",
+    "siem pipelines outcome synthesizer workflow",
+    "siem pipelines outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

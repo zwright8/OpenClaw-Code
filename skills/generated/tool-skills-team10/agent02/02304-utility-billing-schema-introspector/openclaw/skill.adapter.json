@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2304,
+  "name": "utility-billing-schema-introspector",
+  "title": "Utility Billing Schema Introspector",
+  "description": "Design and run utility billing workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 271,
+    "score": 94,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02304-utility-billing-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/02304-utility-billing-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing schema introspector",
+    "utility billing schema introspector workflow",
+    "utility billing schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

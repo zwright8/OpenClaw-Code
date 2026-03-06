@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5825,
+  "name": "agent-registries-provenance-tracker",
+  "title": "Agent Registries Provenance Tracker",
+  "description": "Design and run agent registries workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9952,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05825-agent-registries-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05825-agent-registries-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries provenance tracker",
+    "agent registries provenance tracker workflow",
+    "agent registries provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

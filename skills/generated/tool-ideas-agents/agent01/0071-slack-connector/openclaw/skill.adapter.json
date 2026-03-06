@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 71,
+  "name": "slack-connector",
+  "title": "Slack Connector",
+  "description": "Unified read/write connector for Slack APIs and data.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0071-slack-connector/SKILL.md",
+    "entrypoint": "agent01/0071-slack-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "slack connector",
+    "slack connector workflow",
+    "slack connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0071-slack-connector"
+  }
+}

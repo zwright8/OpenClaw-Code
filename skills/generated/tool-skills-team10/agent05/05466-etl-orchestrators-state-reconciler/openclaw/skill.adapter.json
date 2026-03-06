@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5466,
+  "name": "etl-orchestrators-state-reconciler",
+  "title": "ETL Orchestrators State Reconciler",
+  "description": "Design and run etl orchestrators workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4184,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05466-etl-orchestrators-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05466-etl-orchestrators-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators state reconciler",
+    "etl orchestrators state reconciler workflow",
+    "etl orchestrators state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

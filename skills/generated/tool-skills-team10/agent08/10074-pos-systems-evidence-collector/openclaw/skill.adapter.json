@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10074,
+  "name": "pos-systems-evidence-collector",
+  "title": "POS Systems Evidence Collector",
+  "description": "Design and run pos systems workflows with evidence collector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6524,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10074-pos-systems-evidence-collector/SKILL.md",
+    "entrypoint": "agent08/10074-pos-systems-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pos systems evidence collector",
+    "pos systems evidence collector workflow",
+    "pos systems evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

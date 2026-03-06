@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10926,
+  "name": "taxonomy-services-anomaly-detector",
+  "title": "Taxonomy Services Anomaly Detector",
+  "description": "Design and run taxonomy services workflows with anomaly detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5625,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10926-taxonomy-services-anomaly-detector/SKILL.md",
+    "entrypoint": "agent09/10926-taxonomy-services-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services anomaly detector",
+    "taxonomy services anomaly detector workflow",
+    "taxonomy services anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12737,
+  "name": "universal-toolchain-05-compliance-mapper",
+  "title": "Universal Toolchain 05 Compliance Mapper",
+  "description": "Design and run universal toolchain 05 workflows with compliance mapper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1727,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12737-universal-toolchain-05-compliance-mapper/SKILL.md",
+    "entrypoint": "agent10/12737-universal-toolchain-05-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 05 compliance mapper",
+    "universal toolchain 05 compliance mapper workflow",
+    "universal toolchain 05 compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

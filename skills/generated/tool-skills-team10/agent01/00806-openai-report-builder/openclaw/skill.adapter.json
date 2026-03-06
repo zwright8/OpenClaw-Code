@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 806,
+  "name": "openai-report-builder",
+  "title": "OpenAI Report Builder",
+  "description": "Generates operational and KPI reports from OpenAI activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8152,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00806-openai-report-builder/SKILL.md",
+    "entrypoint": "agent01/00806-openai-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "openai report builder",
+    "openai report builder workflow",
+    "openai report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5632,
+  "name": "data-quality-hubs-latency-analyzer",
+  "title": "Data Quality Hubs Latency Analyzer",
+  "description": "Design and run data quality hubs workflows with latency analyzer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6971,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05632-data-quality-hubs-latency-analyzer/SKILL.md",
+    "entrypoint": "agent05/05632-data-quality-hubs-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs latency analyzer",
+    "data quality hubs latency analyzer workflow",
+    "data quality hubs latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

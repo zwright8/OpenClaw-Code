@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2989,
+  "name": "travel-compliance-secret-scanner",
+  "title": "Travel Compliance Secret Scanner",
+  "description": "Design and run travel compliance workflows with secret scanner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1232,
+    "score": 83,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02989-travel-compliance-secret-scanner/SKILL.md",
+    "entrypoint": "agent03/02989-travel-compliance-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance secret scanner",
+    "travel compliance secret scanner workflow",
+    "travel compliance secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

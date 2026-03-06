@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5109,
+  "name": "infrastructure-as-code-dependency-resolver",
+  "title": "Infrastructure as Code Dependency Resolver",
+  "description": "Design and run infrastructure as code workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9714,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05109-infrastructure-as-code-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/05109-infrastructure-as-code-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code dependency resolver",
+    "infrastructure as code dependency resolver workflow",
+    "infrastructure as code dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

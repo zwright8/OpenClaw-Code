@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 986,
+  "name": "csv-report-builder",
+  "title": "CSV Report Builder",
+  "description": "Generates operational and KPI reports from CSV activity.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "agent10/0986-csv-report-builder/SKILL.md",
+    "entrypoint": "agent10/0986-csv-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "csv report builder",
+    "csv report builder workflow",
+    "csv report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent10/0986-csv-report-builder"
+  }
+}

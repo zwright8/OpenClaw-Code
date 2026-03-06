@@ -1,0 +1,18 @@
+{
+  "skill": "u0179-governance-knowledge-graph-linker",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "linked_knowledge_entities_report",
+    "linked_knowledge_entities_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

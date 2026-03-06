@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7170,
+  "name": "regulatory-feeds-migration-planner",
+  "title": "Regulatory Feeds Migration Planner",
+  "description": "Design and run regulatory feeds workflows with migration planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4672,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07170-regulatory-feeds-migration-planner/SKILL.md",
+    "entrypoint": "agent06/07170-regulatory-feeds-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds migration planner",
+    "regulatory feeds migration planner workflow",
+    "regulatory feeds migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

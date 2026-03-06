@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6912,
+  "name": "revenue-recognition-job-scheduler",
+  "title": "Revenue Recognition Job Scheduler",
+  "description": "Design and run revenue recognition workflows with job scheduler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5066,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06912-revenue-recognition-job-scheduler/SKILL.md",
+    "entrypoint": "agent06/06912-revenue-recognition-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revenue recognition job scheduler",
+    "revenue recognition job scheduler workflow",
+    "revenue recognition job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

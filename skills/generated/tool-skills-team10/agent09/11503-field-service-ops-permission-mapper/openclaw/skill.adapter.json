@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11503,
+  "name": "field-service-ops-permission-mapper",
+  "title": "Field Service Ops Permission Mapper",
+  "description": "Design and run field service ops workflows with permission mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3900,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11503-field-service-ops-permission-mapper/SKILL.md",
+    "entrypoint": "agent09/11503-field-service-ops-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops permission mapper",
+    "field service ops permission mapper workflow",
+    "field service ops permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

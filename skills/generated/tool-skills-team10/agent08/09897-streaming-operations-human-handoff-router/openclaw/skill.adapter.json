@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9897,
+  "name": "streaming-operations-human-handoff-router",
+  "title": "Streaming Operations Human Handoff Router",
+  "description": "Design and run streaming operations workflows with human handoff router controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11431,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09897-streaming-operations-human-handoff-router/SKILL.md",
+    "entrypoint": "agent08/09897-streaming-operations-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations human handoff router",
+    "streaming operations human handoff router workflow",
+    "streaming operations human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3514,
+  "name": "crm-intelligence-rate-limit-optimizer",
+  "title": "CRM Intelligence Rate Limit Optimizer",
+  "description": "Design and run crm intelligence workflows with rate limit optimizer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5927,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03514-crm-intelligence-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent03/03514-crm-intelligence-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence rate limit optimizer",
+    "crm intelligence rate limit optimizer workflow",
+    "crm intelligence rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

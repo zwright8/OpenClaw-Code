@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7647,
+  "name": "device-labs-human-handoff-router",
+  "title": "Device Labs Human Handoff Router",
+  "description": "Design and run device labs workflows with human handoff router controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10633,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07647-device-labs-human-handoff-router/SKILL.md",
+    "entrypoint": "agent06/07647-device-labs-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs human handoff router",
+    "device labs human handoff router workflow",
+    "device labs human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

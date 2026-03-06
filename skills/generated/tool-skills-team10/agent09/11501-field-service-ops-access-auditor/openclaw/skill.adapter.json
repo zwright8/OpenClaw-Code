@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11501,
+  "name": "field-service-ops-access-auditor",
+  "title": "Field Service Ops Access Auditor",
+  "description": "Design and run field service ops workflows with access auditor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12000,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11501-field-service-ops-access-auditor/SKILL.md",
+    "entrypoint": "agent09/11501-field-service-ops-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops access auditor",
+    "field service ops access auditor workflow",
+    "field service ops access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

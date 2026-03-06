@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7219,
+  "name": "market-data-apis-rollback-coordinator",
+  "title": "Market Data APIs Rollback Coordinator",
+  "description": "Design and run market data apis workflows with rollback coordinator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2406,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07219-market-data-apis-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent06/07219-market-data-apis-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis rollback coordinator",
+    "market data apis rollback coordinator workflow",
+    "market data apis rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

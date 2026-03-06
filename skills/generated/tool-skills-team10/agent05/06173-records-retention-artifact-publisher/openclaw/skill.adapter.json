@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6173,
+  "name": "records-retention-artifact-publisher",
+  "title": "Records Retention Artifact Publisher",
+  "description": "Design and run records retention workflows with artifact publisher controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10098,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06173-records-retention-artifact-publisher/SKILL.md",
+    "entrypoint": "agent05/06173-records-retention-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention artifact publisher",
+    "records retention artifact publisher workflow",
+    "records retention artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

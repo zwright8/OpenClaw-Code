@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 942,
+  "name": "substack-sync-orchestrator",
+  "title": "Substack Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Substack records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12959,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00942-substack-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00942-substack-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "substack sync orchestrator",
+    "substack sync orchestrator workflow",
+    "substack sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

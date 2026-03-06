@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9499,
+  "name": "industrial-alerts-quality-gatekeeper",
+  "title": "Industrial Alerts Quality Gatekeeper",
+  "description": "Design and run industrial alerts workflows with quality gatekeeper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5581,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09499-industrial-alerts-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent08/09499-industrial-alerts-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts quality gatekeeper",
+    "industrial alerts quality gatekeeper workflow",
+    "industrial alerts quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5380,
+  "name": "event-streams-budget-guardrail",
+  "title": "Event Streams Budget Guardrail",
+  "description": "Design and run event streams workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7480,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05380-event-streams-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/05380-event-streams-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams budget guardrail",
+    "event streams budget guardrail workflow",
+    "event streams budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

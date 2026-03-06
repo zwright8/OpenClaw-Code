@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1298,
+  "name": "healthcare-ehr-feedback-harvester",
+  "title": "Healthcare EHR Feedback Harvester",
+  "description": "Design and run healthcare ehr workflows with feedback harvester controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7199,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01298-healthcare-ehr-feedback-harvester/SKILL.md",
+    "entrypoint": "agent01/01298-healthcare-ehr-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr feedback harvester",
+    "healthcare ehr feedback harvester workflow",
+    "healthcare ehr feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

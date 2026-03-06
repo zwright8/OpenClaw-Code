@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2037,
+  "name": "manufacturing-mes-compliance-mapper",
+  "title": "Manufacturing MES Compliance Mapper",
+  "description": "Design and run manufacturing mes workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1760,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02037-manufacturing-mes-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02037-manufacturing-mes-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "manufacturing mes compliance mapper",
+    "manufacturing mes compliance mapper workflow",
+    "manufacturing mes compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10691,
+  "name": "model-serving-incident-triage",
+  "title": "Model Serving Incident Triage",
+  "description": "Design and run model serving workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2238,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10691-model-serving-incident-triage/SKILL.md",
+    "entrypoint": "agent09/10691-model-serving-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving incident triage",
+    "model serving incident triage workflow",
+    "model serving incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

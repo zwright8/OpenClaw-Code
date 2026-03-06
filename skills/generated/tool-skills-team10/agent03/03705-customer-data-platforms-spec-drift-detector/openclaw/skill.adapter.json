@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3705,
+  "name": "customer-data-platforms-spec-drift-detector",
+  "title": "Customer Data Platforms Spec Drift Detector",
+  "description": "Design and run customer data platforms workflows with spec drift detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4120,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03705-customer-data-platforms-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent03/03705-customer-data-platforms-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer data platforms spec drift detector",
+    "customer data platforms spec drift detector workflow",
+    "customer data platforms spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

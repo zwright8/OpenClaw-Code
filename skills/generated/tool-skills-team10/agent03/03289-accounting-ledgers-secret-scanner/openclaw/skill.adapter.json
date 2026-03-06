@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3289,
+  "name": "accounting-ledgers-secret-scanner",
+  "title": "Accounting Ledgers Secret Scanner",
+  "description": "Design and run accounting ledgers workflows with secret scanner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2725,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03289-accounting-ledgers-secret-scanner/SKILL.md",
+    "entrypoint": "agent03/03289-accounting-ledgers-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers secret scanner",
+    "accounting ledgers secret scanner workflow",
+    "accounting ledgers secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8841,
+  "name": "discovery-pipelines-incident-triage",
+  "title": "Discovery Pipelines Incident Triage",
+  "description": "Design and run discovery pipelines workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2187,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08841-discovery-pipelines-incident-triage/SKILL.md",
+    "entrypoint": "agent07/08841-discovery-pipelines-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines incident triage",
+    "discovery pipelines incident triage workflow",
+    "discovery pipelines incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

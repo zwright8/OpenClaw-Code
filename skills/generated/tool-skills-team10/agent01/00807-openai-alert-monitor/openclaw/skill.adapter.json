@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 807,
+  "name": "openai-alert-monitor",
+  "title": "OpenAI Alert Monitor",
+  "description": "Monitors key OpenAI signals and raises actionable alerts.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8153,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00807-openai-alert-monitor/SKILL.md",
+    "entrypoint": "agent01/00807-openai-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "openai alert monitor",
+    "openai alert monitor workflow",
+    "openai alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 913,
+  "name": "webflow-data-exporter",
+  "title": "Webflow Data Exporter",
+  "description": "Exports Webflow entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12939,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00913-webflow-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00913-webflow-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "webflow data exporter",
+    "webflow data exporter workflow",
+    "webflow data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

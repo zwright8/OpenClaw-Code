@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11504,
+  "name": "field-service-ops-schema-introspector",
+  "title": "Field Service Ops Schema Introspector",
+  "description": "Design and run field service ops workflows with schema introspector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 743,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/11504-field-service-ops-schema-introspector/SKILL.md",
+    "entrypoint": "agent09/11504-field-service-ops-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops schema introspector",
+    "field service ops schema introspector workflow",
+    "field service ops schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 944,
+  "name": "substack-data-importer",
+  "title": "Substack Data Importer",
+  "description": "Validates and imports bulk updates into Substack.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12961,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00944-substack-data-importer/SKILL.md",
+    "entrypoint": "agent01/00944-substack-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "substack data importer",
+    "substack data importer workflow",
+    "substack data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

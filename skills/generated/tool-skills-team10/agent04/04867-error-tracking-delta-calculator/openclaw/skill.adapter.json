@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4867,
+  "name": "error-tracking-delta-calculator",
+  "title": "Error Tracking Delta Calculator",
+  "description": "Design and run error tracking workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9632,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04867-error-tracking-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/04867-error-tracking-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "error tracking delta calculator",
+    "error tracking delta calculator workflow",
+    "error tracking delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

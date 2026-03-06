@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7322,
+  "name": "survey-systems-version-tracker",
+  "title": "Survey Systems Version Tracker",
+  "description": "Design and run survey systems workflows with version tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10496,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07322-survey-systems-version-tracker/SKILL.md",
+    "entrypoint": "agent06/07322-survey-systems-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems version tracker",
+    "survey systems version tracker workflow",
+    "survey systems version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

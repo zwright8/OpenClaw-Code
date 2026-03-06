@@ -1,0 +1,17 @@
+tool	binaries
+awscli	awscli,aws
+azure-cli	azure-cli,az,azure
+cloudflared	cloudflared
+flyctl	flyctl
+aws-sam-cli	aws-sam-cli,aws-sam
+mongodb-atlas-cli	mongodb-atlas-cli,mongodb-atlas
+jfrog-cli	jfrog-cli,jfrog
+openshift-cli	openshift-cli,openshift
+firebase-cli	firebase-cli,firebase
+oci-cli	oci-cli,oci
+doctl	doctl
+eksctl	eksctl
+aws-vault	aws-vault
+aws-cdk	aws-cdk
+azcopy	azcopy
+vercel-cli	vercel-cli,vercel

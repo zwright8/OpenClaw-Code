@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7824,
+  "name": "vdi-platforms-evidence-collector",
+  "title": "VDI Platforms Evidence Collector",
+  "description": "Design and run vdi platforms workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6333,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07824-vdi-platforms-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/07824-vdi-platforms-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms evidence collector",
+    "vdi platforms evidence collector workflow",
+    "vdi platforms evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

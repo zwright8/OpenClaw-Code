@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12484,
+  "name": "autonomy-control-sla-enforcer",
+  "title": "Autonomy Control SLA Enforcer",
+  "description": "Design and run autonomy control workflows with sla enforcer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12353,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12484-autonomy-control-sla-enforcer/SKILL.md",
+    "entrypoint": "agent10/12484-autonomy-control-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control sla enforcer",
+    "autonomy control sla enforcer workflow",
+    "autonomy control sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

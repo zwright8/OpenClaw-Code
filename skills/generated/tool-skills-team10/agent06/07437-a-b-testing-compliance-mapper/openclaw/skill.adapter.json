@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7437,
+  "name": "a-b-testing-compliance-mapper",
+  "title": "A/B Testing Compliance Mapper",
+  "description": "Design and run a/b testing workflows with compliance mapper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1878,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07437-a-b-testing-compliance-mapper/SKILL.md",
+    "entrypoint": "agent06/07437-a-b-testing-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing compliance mapper",
+    "a/b testing compliance mapper workflow",
+    "a/b testing compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12684,
+  "name": "universal-toolchain-04-sla-enforcer",
+  "title": "Universal Toolchain 04 SLA Enforcer",
+  "description": "Design and run universal toolchain 04 workflows with sla enforcer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8273,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12684-universal-toolchain-04-sla-enforcer/SKILL.md",
+    "entrypoint": "agent10/12684-universal-toolchain-04-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 04 sla enforcer",
+    "universal toolchain 04 sla enforcer workflow",
+    "universal toolchain 04 sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
