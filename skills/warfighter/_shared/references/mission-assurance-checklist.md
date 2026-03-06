@@ -19,6 +19,7 @@ Use this checklist before delivering any mission recommendation.
 - Select message format required by the receiving unit (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`).
 - Verify schema completeness and mandatory field population.
 - Confirm transport path and fallback path if primary comms are degraded.
+- Select and document `Primary`, `Alternate`, and `Degraded` domain toolchain profiles with rationale.
 
 ## 4) Tool Invocation Packet Completeness
 
@@ -42,6 +43,7 @@ Use this checklist before delivering any mission recommendation.
 
 - `Sources:`
 - `Tool stack:`
+- `Toolchain profile (Primary/Alternate/Degraded):`
 - `Protocols/Formats:`
 - `Last refresh (UTC):`
 - `Confidence:`
