@@ -121,7 +121,7 @@ test('rejected receipt terminates task', async () => {
         taskId: task.taskId,
         from: 'agent:worker-3',
         accepted: false,
-        reason: 'worker_overloaded',
+        reason: 'invalid_task_contract',
         timestamp: clock.now()
     }));
 
@@ -131,6 +131,96 @@ test('rejected receipt terminates task', async () => {
 
     const maintenance = await orchestrator.runMaintenance(clock.now() + 10_000);
     assert.equal(maintenance.checked, 0);
+});
+
+test('transient rejected receipt schedules retry and honors retry_after hint', async () => {
+    const clock = createClock(3_500);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-transient',
+        task: 'Retry when worker is overloaded'
+    });
+
+    clock.advance(5);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-transient',
+        accepted: false,
+        reason: 'worker_overloaded retry_after=2',
+        timestamp: clock.now()
+    }));
+
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 2_000);
+
+    clock.advance(1_999);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass1.retried, 0);
+    assert.equal(current.status, 'retry_scheduled');
+
+    clock.advance(1);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.retried, 1);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.attempts, 2);
+    assert.equal(sent.length, 2);
+});
+
+test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
+    const clock = createClock(9_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount >= 2) {
+                    throw new Error('retry send failed');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 2,
+        retryDelayMs: 100,
+        retryBackoffStrategy: 'exponential',
+        retryJitter: 'full',
+        random: () => 0.5
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-backoff',
+        task: 'Exercise retry jitter'
+    });
+
+    clock.set(9_051);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(current.nextRetryAt, 9_101);
+
+    clock.set(9_101);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.transportFailures, 1);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 9_201);
 });
 
 test('maintenance schedules retry, retries, and times out when budget exhausted', async () => {
