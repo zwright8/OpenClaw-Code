@@ -326,7 +326,11 @@ const orchestrator = new TaskOrchestrator({
     required: taskRequest.priority === 'critical',
     reason: 'critical_priority',
     reviewerGroup: 'ops-review'
-  })
+  }),
+  retryDelayMs: 250,
+  retryBackoffMultiplier: 2,
+  maxRetryDelayMs: 10_000,
+  retryJitter: 'full' // 'full' | 'none'
 });
 
 const task = await orchestrator.dispatchTask({
@@ -341,6 +345,11 @@ orchestrator.ingestResult(resultMessage);
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
 ```
+
+Retry behavior notes:
+- Retries now use truncated exponential backoff with optional full jitter to reduce synchronized retry spikes.
+- Transient worker rejections (`overloaded`, `rate_limit`, `retry_after`, or `etaMs`) are scheduled for retry instead of being terminally rejected when retry budget remains.
+- If a worker includes `etaMs` on a rejected receipt, the orchestrator honors that as the retry delay hint.
 
 Safety policy integration:
 ```js

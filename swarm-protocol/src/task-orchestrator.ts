@@ -112,7 +112,11 @@ export class TaskOrchestrator {
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
+        retryBackoffMultiplier = 2,
+        maxRetryDelayMs = 30_000,
+        retryJitter = 'full',
         now = Date.now,
+        random = Math.random,
         logger = console
     }) {
         if (!localAgentId || typeof localAgentId !== 'string') {
@@ -142,10 +146,97 @@ export class TaskOrchestrator {
         this.retryDelayMs = Number.isFinite(retryDelayMs) && retryDelayMs >= 0
             ? Number(retryDelayMs)
             : 500;
+        this.retryBackoffMultiplier = Number.isFinite(retryBackoffMultiplier) && retryBackoffMultiplier >= 1
+            ? Number(retryBackoffMultiplier)
+            : 2;
+        this.maxRetryDelayMs = Number.isFinite(maxRetryDelayMs) && maxRetryDelayMs >= this.retryDelayMs
+            ? Number(maxRetryDelayMs)
+            : Math.max(30_000, this.retryDelayMs);
+        this.retryJitter = retryJitter === 'none' || retryJitter === 'full'
+            ? retryJitter
+            : 'full';
         this.now = typeof now === 'function' ? now : Date.now;
+        this.random = typeof random === 'function' ? random : Math.random;
         this.logger = logger;
         this.tasks = new Map();
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _rand01() {
+        const value = Number(this.random());
+        if (!Number.isFinite(value)) return 0.5;
+        if (value < 0) return 0;
+        if (value > 1) return 1;
+        return value;
+    }
+
+    _computeRetryDelay(record, { hintDelayMs = null } = {}) {
+        if (Number.isFinite(hintDelayMs) && hintDelayMs >= 0) {
+            return Number(hintDelayMs);
+        }
+
+        const retryAttempt = Math.max(1, record.attempts);
+        const exponential = this.retryDelayMs * Math.pow(this.retryBackoffMultiplier, retryAttempt - 1);
+        const capped = Math.min(this.maxRetryDelayMs, exponential);
+        const jittered = this.retryJitter === 'none'
+            ? capped
+            : Math.floor(this._rand01() * capped);
+
+        return Math.max(0, Number.isFinite(jittered) ? jittered : this.retryDelayMs);
+    }
+
+    _resolveRetryTime(record, { nowMs = safeNow(this.now), hintDelayMs = null } = {}) {
+        return nowMs + this._computeRetryDelay(record, { hintDelayMs });
+    }
+
+    _parseRetryAfterHint(reason, nowMs = safeNow(this.now)) {
+        if (typeof reason !== 'string' || !reason.trim()) return null;
+        const text = reason.trim();
+
+        const msMatch = text.match(/retry[_-]?after(?:[_-]?ms)?\s*[:=]\s*(\d+)\s*ms/i);
+        if (msMatch) return Number(msMatch[1]);
+
+        const secMatch = text.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?/i);
+        if (secMatch) return Number(secMatch[1]) * 1000;
+
+        const dateMatch = text.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},.+)$/i);
+        if (dateMatch) {
+            const dateMs = Date.parse(dateMatch[1].trim());
+            if (Number.isFinite(dateMs)) {
+                return Math.max(0, dateMs - nowMs);
+            }
+        }
+
+        return null;
+    }
+
+    _isTransientRejection(receipt) {
+        if (Number.isFinite(receipt.etaMs) && Number(receipt.etaMs) >= 0) {
+            return true;
+        }
+
+        const reason = (receipt.reason || '').toLowerCase();
+        if (!reason) return false;
+
+        const transientMarkers = [
+            'overload',
+            'overloaded',
+            'busy',
+            'throttle',
+            'rate_limit',
+            'rate-limit',
+            'retry_after',
+            'retry-after',
+            'temporar',
+            'unavailable',
+            'try_again',
+            'try-again',
+            'queue_full',
+            'queue-full',
+            'capacity'
+        ];
+
+        return transientMarkers.some((marker) => reason.includes(marker));
     }
 
     async hydrate({ replace = true } = {}) {
@@ -482,7 +573,7 @@ export class TaskOrchestrator {
             await this._sendTask(record, 'approval_release');
         } catch (error) {
             record.status = 'retry_scheduled';
-            record.nextRetryAt = reviewedAt + this.retryDelayMs;
+            record.nextRetryAt = this._resolveRetryTime(record, { nowMs: reviewedAt });
             record.updatedAt = reviewedAt;
             record.history.push({
                 at: reviewedAt,
@@ -565,6 +656,33 @@ export class TaskOrchestrator {
         record.updatedAt = receipt.timestamp;
 
         if (!receipt.accepted) {
+            const transient = this._isTransientRejection(receipt);
+            const canRetry = transient && record.attempts <= record.maxRetries;
+            if (canRetry) {
+                const hintDelayMs = Number.isFinite(receipt.etaMs)
+                    ? Number(receipt.etaMs)
+                    : this._parseRetryAfterHint(receipt.reason, receipt.timestamp);
+                record.status = 'retry_scheduled';
+                record.nextRetryAt = this._resolveRetryTime(record, {
+                    nowMs: receipt.timestamp,
+                    hintDelayMs
+                });
+                record.history.push({
+                    at: receipt.timestamp,
+                    event: 'rejected_retry_scheduled',
+                    reason: receipt.reason || 'transient_rejection',
+                    nextRetryAt: record.nextRetryAt
+                });
+                this._persistRecord(record);
+                this._emitAudit('task_rejected_retry_scheduled', {
+                    taskId: record.taskId,
+                    from: receipt.from,
+                    reason: receipt.reason || 'transient_rejection',
+                    nextRetryAt: record.nextRetryAt
+                }, receipt.timestamp);
+                return true;
+            }
+
             record.status = 'rejected';
             record.closedAt = receipt.timestamp;
             record.history.push({
@@ -664,7 +782,7 @@ export class TaskOrchestrator {
 
             if (record.nextRetryAt === null) {
                 record.status = 'retry_scheduled';
-                record.nextRetryAt = nowMs + this.retryDelayMs;
+                record.nextRetryAt = this._resolveRetryTime(record, { nowMs });
                 record.updatedAt = nowMs;
                 record.history.push({
                     at: nowMs,
@@ -709,7 +827,7 @@ export class TaskOrchestrator {
                     }, nowMs);
                 } else {
                     record.status = 'retry_scheduled';
-                    record.nextRetryAt = nowMs + this.retryDelayMs;
+                    record.nextRetryAt = this._resolveRetryTime(record, { nowMs });
                     record.updatedAt = nowMs;
                     this._persistRecord(record);
                     this._emitAudit('task_retry_scheduled', {
