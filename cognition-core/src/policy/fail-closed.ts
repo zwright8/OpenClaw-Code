@@ -26,10 +26,20 @@ export interface RiskMetadataInput {
     metadata?: unknown;
 }
 
+export interface FailClosedReasonPayload {
+    code: FailClosedReasonCode;
+    path: string;
+    contract: 'risk_metadata_fail_closed';
+    detail: string;
+    missingFields?: string[];
+    riskTier?: RiskTier;
+}
+
 export interface FailClosedValidation {
     ok: boolean;
     code?: FailClosedReasonCode;
     reason?: string;
+    reasonPayload?: FailClosedReasonPayload;
     riskTier?: RiskTier;
     confidence?: number;
 }
@@ -48,11 +58,29 @@ function isRecord(value: unknown): value is Record<string, unknown> {
     return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 }
 
-function failClosed(code: FailClosedReasonCode, detail: string): FailClosedValidation {
+type FailClosedOptions = {
+    path: string;
+    riskTier?: RiskTier;
+    missingFields?: string[];
+};
+
+function failClosed(code: FailClosedReasonCode, detail: string, options: FailClosedOptions): FailClosedValidation {
+    const normalizedMissingFields = options.missingFields
+        ? Array.from(new Set(options.missingFields))
+        : undefined;
+
     return {
         ok: false,
         code,
-        reason: `[${code}] ${detail}`
+        reason: `[${code}] ${detail}`,
+        reasonPayload: {
+            code,
+            path: options.path,
+            contract: 'risk_metadata_fail_closed',
+            detail,
+            missingFields: normalizedMissingFields,
+            riskTier: options.riskTier
+        }
     };
 }
 
@@ -184,39 +212,82 @@ function validateHighRiskContracts(input: RiskMetadataInput, riskTier: RiskTier)
         return null;
     }
 
-    if (resolveRequiresHumanApproval(input) !== true) {
-        return failClosed(
-            'high_risk_requires_approval',
-            'High-risk recommendations must set requiresHumanApproval=true (fail-closed).'
-        );
+    const requiredApprovers = extractRequiredApprovers(input);
+    const rollbackMetadata = normalizeRollbackMetadata(input);
+
+    const metadataGaps: string[] = [];
+    if (requiredApprovers.length === 0) {
+        metadataGaps.push('requiredApprovers');
     }
 
-    if (extractRequiredApprovers(input).length === 0) {
+    if (!rollbackMetadata.present) {
+        metadataGaps.push('rollbackPlan');
+    } else {
+        if (!rollbackMetadata.trigger) {
+            metadataGaps.push('rollbackPlan.trigger');
+        }
+
+        if (rollbackMetadata.steps.length === 0) {
+            metadataGaps.push('rollbackPlan.steps');
+        }
+    }
+
+    if (requiredApprovers.length === 0) {
         return failClosed(
             'missing_required_approvers',
-            'High-risk recommendations must include requiredApprovers metadata (fail-closed).'
+            'High-risk recommendations must include requiredApprovers metadata (fail-closed).',
+            {
+                path: 'metadata.requiredApprovers',
+                riskTier,
+                missingFields: metadataGaps
+            }
         );
     }
 
-    const rollbackMetadata = normalizeRollbackMetadata(input);
     if (!rollbackMetadata.present) {
         return failClosed(
             'missing_rollback_metadata',
-            'High-risk recommendations must include rollbackPlan metadata (fail-closed).'
+            'High-risk recommendations must include rollbackPlan metadata (fail-closed).',
+            {
+                path: 'metadata.rollbackPlan',
+                riskTier,
+                missingFields: metadataGaps
+            }
         );
     }
 
     if (!rollbackMetadata.trigger) {
         return failClosed(
             'missing_rollback_trigger',
-            'High-risk recommendations must include rollbackPlan.trigger (fail-closed).'
+            'High-risk recommendations must include rollbackPlan.trigger (fail-closed).',
+            {
+                path: 'metadata.rollbackPlan.trigger',
+                riskTier,
+                missingFields: metadataGaps
+            }
         );
     }
 
     if (rollbackMetadata.steps.length === 0) {
         return failClosed(
             'missing_rollback_steps',
-            'High-risk recommendations must include at least one rollback step (fail-closed).'
+            'High-risk recommendations must include at least one rollback step (fail-closed).',
+            {
+                path: 'metadata.rollbackPlan.steps',
+                riskTier,
+                missingFields: metadataGaps
+            }
+        );
+    }
+
+    if (resolveRequiresHumanApproval(input) !== true) {
+        return failClosed(
+            'high_risk_requires_approval',
+            'High-risk recommendations must set requiresHumanApproval=true (fail-closed).',
+            {
+                path: 'requiresHumanApproval',
+                riskTier
+            }
         );
     }
 
@@ -225,29 +296,44 @@ function validateHighRiskContracts(input: RiskMetadataInput, riskTier: RiskTier)
 
 export function validateRiskMetadata(metadata: RiskMetadataInput): FailClosedValidation {
     if (!metadata || typeof metadata !== 'object') {
-        return failClosed('missing_risk_metadata', 'Missing risk metadata object (fail-closed).');
+        return failClosed('missing_risk_metadata', 'Missing risk metadata object (fail-closed).', {
+            path: '$'
+        });
     }
 
     const tierToken = normalizeRiskTierToken(metadata.riskTier);
     if (!tierToken) {
-        return failClosed('missing_risk_tier', 'Missing risk tier (fail-closed).');
+        return failClosed('missing_risk_tier', 'Missing risk tier (fail-closed).', {
+            path: 'riskTier'
+        });
     }
 
     if (!isKnownRiskTier(tierToken)) {
-        return failClosed('unknown_risk_tier', `Unknown risk tier "${tierToken}" (fail-closed).`);
+        return failClosed('unknown_risk_tier', `Unknown risk tier "${tierToken}" (fail-closed).`, {
+            path: 'riskTier'
+        });
     }
 
     const confidenceResult = parseConfidence(metadata.confidence);
     if (!confidenceResult.ok) {
         if (confidenceResult.code === 'confidence_out_of_range') {
-            return failClosed('confidence_out_of_range', 'Confidence score must be between 0 and 1 (fail-closed).');
+            return failClosed('confidence_out_of_range', 'Confidence score must be between 0 and 1 (fail-closed).', {
+                path: 'confidence',
+                riskTier: tierToken
+            });
         }
 
-        return failClosed('missing_confidence', 'Missing confidence score (fail-closed).');
+        return failClosed('missing_confidence', 'Missing confidence score (fail-closed).', {
+            path: 'confidence',
+            riskTier: tierToken
+        });
     }
 
     if (!Array.isArray(metadata.evidence) || metadata.evidence.length === 0) {
-        return failClosed('missing_evidence', 'Missing evidence payload (fail-closed).');
+        return failClosed('missing_evidence', 'Missing evidence payload (fail-closed).', {
+            path: 'evidence',
+            riskTier: tierToken
+        });
     }
 
     const highRiskContractValidation = validateHighRiskContracts(metadata, tierToken);

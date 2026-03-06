@@ -20,21 +20,43 @@ function makeRecommendation(overrides: Partial<CognitionRecommendation> = {}): C
     };
 }
 
+function assertFailClosedReasonPayload(
+    payload: unknown,
+    expectedCode: string,
+    expectedPath: string
+): void {
+    assert.ok(payload && typeof payload === 'object', 'expected reason payload object');
+
+    const parsed = payload as {
+        code?: string;
+        path?: string;
+        contract?: string;
+        missingFields?: string[];
+    };
+
+    assert.equal(parsed.code, expectedCode);
+    assert.equal(parsed.path, expectedPath);
+    assert.equal(parsed.contract, 'risk_metadata_fail_closed');
+}
+
 test('fail-closed validation emits machine-parseable deterministic diagnostics', () => {
     const missingTier = validateRiskMetadata({ confidence: 0.6, evidence: [{ source: 'x', detail: 'y' }] });
     assert.equal(missingTier.ok, false);
     assert.equal(missingTier.code, 'missing_risk_tier');
     assert.equal(missingTier.reason, '[missing_risk_tier] Missing risk tier (fail-closed).');
+    assertFailClosedReasonPayload(missingTier.reasonPayload, 'missing_risk_tier', 'riskTier');
 
     const unknownTier = validateRiskMetadata({ riskTier: 'severe', confidence: 0.8, evidence: [{ source: 'x', detail: 'y' }] });
     assert.equal(unknownTier.ok, false);
     assert.equal(unknownTier.code, 'unknown_risk_tier');
     assert.equal(unknownTier.reason, '[unknown_risk_tier] Unknown risk tier "severe" (fail-closed).');
+    assertFailClosedReasonPayload(unknownTier.reasonPayload, 'unknown_risk_tier', 'riskTier');
 
     const missingEvidence = validateRiskMetadata({ riskTier: 'low', confidence: 0.8, evidence: [] });
     assert.equal(missingEvidence.ok, false);
     assert.equal(missingEvidence.code, 'missing_evidence');
     assert.equal(missingEvidence.reason, '[missing_evidence] Missing evidence payload (fail-closed).');
+    assertFailClosedReasonPayload(missingEvidence.reasonPayload, 'missing_evidence', 'evidence');
 });
 
 
@@ -46,11 +68,17 @@ test('fail-closed validation blocks high-risk recommendations missing approval/r
     });
 
     assert.equal(missingApprovalContract.ok, false);
-    assert.equal(missingApprovalContract.code, 'high_risk_requires_approval');
+    assert.equal(missingApprovalContract.code, 'missing_required_approvers');
     assert.equal(
         missingApprovalContract.reason,
-        '[high_risk_requires_approval] High-risk recommendations must set requiresHumanApproval=true (fail-closed).'
+        '[missing_required_approvers] High-risk recommendations must include requiredApprovers metadata (fail-closed).'
     );
+    assertFailClosedReasonPayload(
+        missingApprovalContract.reasonPayload,
+        'missing_required_approvers',
+        'metadata.requiredApprovers'
+    );
+    assert.deepEqual(missingApprovalContract.reasonPayload?.missingFields, ['requiredApprovers', 'rollbackPlan']);
 
     const missingRollbackTrigger = validateRiskMetadata({
         riskTier: 'critical',
@@ -72,6 +100,12 @@ test('fail-closed validation blocks high-risk recommendations missing approval/r
         missingRollbackTrigger.reason,
         '[missing_rollback_trigger] High-risk recommendations must include rollbackPlan.trigger (fail-closed).'
     );
+    assertFailClosedReasonPayload(
+        missingRollbackTrigger.reasonPayload,
+        'missing_rollback_trigger',
+        'metadata.rollbackPlan.trigger'
+    );
+    assert.deepEqual(missingRollbackTrigger.reasonPayload?.missingFields, ['rollbackPlan.trigger']);
 });
 
 
@@ -104,6 +138,7 @@ test('fail-closed validation accepts high-risk recommendation with complete appr
     assert.equal(nullConfidence.ok, false);
     assert.equal(nullConfidence.code, 'missing_confidence');
     assert.equal(nullConfidence.reason, '[missing_confidence] Missing confidence score (fail-closed).');
+    assertFailClosedReasonPayload(nullConfidence.reasonPayload, 'missing_confidence', 'confidence');
 });
 
 test('approval gates compute expected requirements', () => {
@@ -139,7 +174,7 @@ test('policy engine blocks high-risk recommendations without contract metadata (
     assert.equal(decision.status, 'blocked');
     assert.equal(
         decision.reason,
-        '[high_risk_requires_approval] High-risk recommendations must set requiresHumanApproval=true (fail-closed).'
+        '[missing_required_approvers] High-risk recommendations must include requiredApprovers metadata (fail-closed).'
     );
 });
 
@@ -179,5 +214,5 @@ test('policy batch routing separates approved and blocked recommendations determ
 
     const highDecision = result.decisions.find((decision) => decision.recommendationId === 'rec-high-2');
     assert.equal(highDecision?.status, 'blocked');
-    assert.equal(highDecision?.reason, '[high_risk_requires_approval] High-risk recommendations must set requiresHumanApproval=true (fail-closed).');
+    assert.equal(highDecision?.reason, '[missing_required_approvers] High-risk recommendations must include requiredApprovers metadata (fail-closed).');
 });

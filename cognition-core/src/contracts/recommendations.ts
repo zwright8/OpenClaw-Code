@@ -165,18 +165,58 @@ function metadataRequiresHumanApproval(metadata: Record<string, unknown>): boole
 
 const HIGH_RISK_RECOMMENDATION_TIERS = new Set<CognitionRiskTier>(['high', 'critical']);
 
-const RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES = {
-    highRiskHumanApprovalRequired:
-        '[high_risk_human_approval_required] requiresHumanApproval must be true for high-risk recommendations (fail-closed approval contract).',
-    requiredApproversMissing:
-        '[required_approvers_missing] requiredApprovers are required for high-risk recommendations (fail-closed approval contract).',
-    rollbackMetadataMissing:
-        '[rollback_metadata_missing] rollbackPlan metadata is required for high-risk recommendations (fail-closed rollback contract).',
-    rollbackTriggerMissing:
-        '[rollback_trigger_missing] rollbackPlan.trigger is required for high-risk recommendations (fail-closed rollback contract).',
-    rollbackStepsMissing:
-        '[rollback_steps_missing] rollbackPlan.steps must include at least one recovery step for high-risk recommendations (fail-closed rollback contract).'
-} as const;
+type RecommendationContractDiagnosticCode =
+    | 'high_risk_human_approval_required'
+    | 'required_approvers_missing'
+    | 'rollback_metadata_missing'
+    | 'rollback_trigger_missing'
+    | 'rollback_steps_missing';
+
+type RecommendationContractDiagnosticDefinition = {
+    code: RecommendationContractDiagnosticCode;
+    path: string;
+    detail: string;
+};
+
+const RECOMMENDATION_REASON_PAYLOAD_MARKER = ' reason_payload=';
+
+function formatRecommendationContractDiagnostic(
+    definition: RecommendationContractDiagnosticDefinition
+): string {
+    return `[${definition.code}] ${definition.detail}${RECOMMENDATION_REASON_PAYLOAD_MARKER}${JSON.stringify({
+        code: definition.code,
+        path: definition.path,
+        contract: 'recommendation_fail_closed'
+    })}`;
+}
+
+const RECOMMENDATION_CONTRACT_DIAGNOSTICS = {
+    highRiskHumanApprovalRequired: {
+        code: 'high_risk_human_approval_required',
+        path: 'requiresHumanApproval',
+        detail: 'requiresHumanApproval must be true for high-risk recommendations (fail-closed approval contract).'
+    },
+    requiredApproversMissing: {
+        code: 'required_approvers_missing',
+        path: 'metadata.requiredApprovers',
+        detail: 'requiredApprovers are required for high-risk recommendations (fail-closed approval contract).'
+    },
+    rollbackMetadataMissing: {
+        code: 'rollback_metadata_missing',
+        path: 'metadata.rollbackPlan',
+        detail: 'rollbackPlan metadata is required for high-risk recommendations (fail-closed rollback contract).'
+    },
+    rollbackTriggerMissing: {
+        code: 'rollback_trigger_missing',
+        path: 'metadata.rollbackPlan.trigger',
+        detail: 'rollbackPlan.trigger is required for high-risk recommendations (fail-closed rollback contract).'
+    },
+    rollbackStepsMissing: {
+        code: 'rollback_steps_missing',
+        path: 'metadata.rollbackPlan.steps',
+        detail: 'rollbackPlan.steps must include at least one recovery step for high-risk recommendations (fail-closed rollback contract).'
+    }
+} as const satisfies Record<string, RecommendationContractDiagnosticDefinition>;
 
 type NormalizedRecommendationRollbackMetadata = {
     present: boolean;
@@ -490,16 +530,20 @@ export function validateCognitionRecommendation(value: unknown): ContractValidat
     if (riskTier && HIGH_RISK_RECOMMENDATION_TIERS.has(riskTier)) {
         if (requiresHumanApproval !== true) {
             errors.push({
-                path: 'requiresHumanApproval',
-                message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.highRiskHumanApprovalRequired
+                path: RECOMMENDATION_CONTRACT_DIAGNOSTICS.highRiskHumanApprovalRequired.path,
+                message: formatRecommendationContractDiagnostic(
+                    RECOMMENDATION_CONTRACT_DIAGNOSTICS.highRiskHumanApprovalRequired
+                )
             });
         }
 
         const requiredApprovers = metadata ? extractRequiredApproversFromTaskMetadata(metadata) : [];
         if (requiredApprovers.length === 0) {
             errors.push({
-                path: 'metadata.requiredApprovers',
-                message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.requiredApproversMissing
+                path: RECOMMENDATION_CONTRACT_DIAGNOSTICS.requiredApproversMissing.path,
+                message: formatRecommendationContractDiagnostic(
+                    RECOMMENDATION_CONTRACT_DIAGNOSTICS.requiredApproversMissing
+                )
             });
         }
 
@@ -509,21 +553,27 @@ export function validateCognitionRecommendation(value: unknown): ContractValidat
 
         if (!rollbackMetadata.present) {
             errors.push({
-                path: 'metadata.rollbackPlan',
-                message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.rollbackMetadataMissing
+                path: RECOMMENDATION_CONTRACT_DIAGNOSTICS.rollbackMetadataMissing.path,
+                message: formatRecommendationContractDiagnostic(
+                    RECOMMENDATION_CONTRACT_DIAGNOSTICS.rollbackMetadataMissing
+                )
             });
         } else {
             if (!rollbackMetadata.trigger) {
                 errors.push({
-                    path: 'metadata.rollbackPlan.trigger',
-                    message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.rollbackTriggerMissing
+                    path: RECOMMENDATION_CONTRACT_DIAGNOSTICS.rollbackTriggerMissing.path,
+                    message: formatRecommendationContractDiagnostic(
+                        RECOMMENDATION_CONTRACT_DIAGNOSTICS.rollbackTriggerMissing
+                    )
                 });
             }
 
             if (rollbackMetadata.steps.length === 0) {
                 errors.push({
-                    path: 'metadata.rollbackPlan.steps',
-                    message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.rollbackStepsMissing
+                    path: RECOMMENDATION_CONTRACT_DIAGNOSTICS.rollbackStepsMissing.path,
+                    message: formatRecommendationContractDiagnostic(
+                        RECOMMENDATION_CONTRACT_DIAGNOSTICS.rollbackStepsMissing
+                    )
                 });
             }
         }

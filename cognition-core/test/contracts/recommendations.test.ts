@@ -8,6 +8,36 @@ import {
     validateCognitionTask
 } from '../../src/contracts/recommendations.js';
 
+const REASON_PAYLOAD_MARKER = ' reason_payload=';
+
+type RecommendationReasonPayload = {
+    code: string;
+    path: string;
+    contract: string;
+};
+
+function parseRecommendationReasonPayload(message: string): RecommendationReasonPayload {
+    const markerIndex = message.indexOf(REASON_PAYLOAD_MARKER);
+    assert.notEqual(markerIndex, -1, `expected machine-readable reason payload marker in: ${message}`);
+
+    return JSON.parse(
+        message.slice(markerIndex + REASON_PAYLOAD_MARKER.length)
+    ) as RecommendationReasonPayload;
+}
+
+function assertReasonPayload(
+    message: string,
+    expectedCode: string,
+    expectedPath: string
+): void {
+    assert.equal(message.startsWith(`[${expectedCode}]`), true);
+
+    const payload = parseRecommendationReasonPayload(message);
+    assert.equal(payload.code, expectedCode);
+    assert.equal(payload.path, expectedPath);
+    assert.equal(payload.contract, 'recommendation_fail_closed');
+}
+
 test('normalizeRecommendationPriority maps legacy labels', () => {
     assert.equal(normalizeRecommendationPriority('high'), 'P0');
     assert.equal(normalizeRecommendationPriority('medium'), 'P2');
@@ -99,13 +129,17 @@ test('validateCognitionRecommendation fails closed for high-risk recommendation 
     if (result.ok) return;
 
     const diagnosticsByPath = Object.fromEntries(result.errors.map((issue) => [issue.path, issue.message]));
-    assert.equal(
+
+    assertReasonPayload(
         diagnosticsByPath['metadata.requiredApprovers'],
-        '[required_approvers_missing] requiredApprovers are required for high-risk recommendations (fail-closed approval contract).'
+        'required_approvers_missing',
+        'metadata.requiredApprovers'
     );
-    assert.equal(
+
+    assertReasonPayload(
         diagnosticsByPath['metadata.rollbackPlan'],
-        '[rollback_metadata_missing] rollbackPlan metadata is required for high-risk recommendations (fail-closed rollback contract).'
+        'rollback_metadata_missing',
+        'metadata.rollbackPlan'
     );
 });
 
@@ -152,9 +186,12 @@ test('validateCognitionRecommendation fails closed when high-risk recommendation
     assert.equal(result.ok, false);
     if (result.ok) return;
 
-    assert.equal(
-        result.errors.find((issue) => issue.path === 'requiresHumanApproval')?.message,
-        '[high_risk_human_approval_required] requiresHumanApproval must be true for high-risk recommendations (fail-closed approval contract).'
+    const requiresApprovalDiagnostic = result.errors.find((issue) => issue.path === 'requiresHumanApproval')?.message;
+    assert.ok(requiresApprovalDiagnostic, 'expected high-risk approval diagnostic');
+    assertReasonPayload(
+        requiresApprovalDiagnostic,
+        'high_risk_human_approval_required',
+        'requiresHumanApproval'
     );
 });
 
@@ -202,13 +239,25 @@ test('validateCognitionRecommendation fails closed for high-risk recommendation 
     if (result.ok) return;
 
     const rollbackDiagnostics = result.errors
-        .filter((issue) => issue.path.startsWith('metadata.rollbackPlan'))
-        .map((issue) => `${issue.path}:${issue.message}`);
+        .filter((issue) => issue.path.startsWith('metadata.rollbackPlan'));
 
-    assert.deepEqual(rollbackDiagnostics, [
-        'metadata.rollbackPlan.trigger:[rollback_trigger_missing] rollbackPlan.trigger is required for high-risk recommendations (fail-closed rollback contract).',
-        'metadata.rollbackPlan.steps:[rollback_steps_missing] rollbackPlan.steps must include at least one recovery step for high-risk recommendations (fail-closed rollback contract).'
-    ]);
+    assert.equal(rollbackDiagnostics.length, 2);
+
+    const rollbackTriggerDiagnostic = rollbackDiagnostics.find((issue) => issue.path === 'metadata.rollbackPlan.trigger');
+    assert.ok(rollbackTriggerDiagnostic, 'expected rollback trigger diagnostic');
+    assertReasonPayload(
+        rollbackTriggerDiagnostic.message,
+        'rollback_trigger_missing',
+        'metadata.rollbackPlan.trigger'
+    );
+
+    const rollbackStepsDiagnostic = rollbackDiagnostics.find((issue) => issue.path === 'metadata.rollbackPlan.steps');
+    assert.ok(rollbackStepsDiagnostic, 'expected rollback steps diagnostic');
+    assertReasonPayload(
+        rollbackStepsDiagnostic.message,
+        'rollback_steps_missing',
+        'metadata.rollbackPlan.steps'
+    );
 });
 
 test('validateCognitionRecommendation preserves non-high-risk compatibility without contract metadata', () => {
