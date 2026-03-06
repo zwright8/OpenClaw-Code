@@ -8,26 +8,49 @@ Use this reference when a warfighter skill needs system integration guidance. Ke
 2. Pull source data from an approved system-of-record or approved relay service; avoid manual copy-paste when an interface exists.
 3. Normalize timestamps (UTC ISO-8601), geospatial reference (WGS84 + MGRS when relevant), and unit identifiers before fusion.
 4. Cross-check high-consequence data against at least two independent sources or one authoritative validated source.
-5. Publish outputs in the requesting format and transport (for example USMTF, CoT, VMF, J-series, STIX/TAXII, OGC).
+5. Publish outputs in the requesting format and transport (for example USMTF, CoT, VMF, Link 16 J-series, STIX/TAXII, OGC).
 6. Log provenance: source system, pull time, processing assumptions, and confidence level.
 7. Run the mission assurance checks in `mission-assurance-checklist.md` before release.
+
+## Tool Invocation Packet (required in skill outputs)
+
+For each external tool recommendation, include:
+
+- Objective: what decision or action the tool output enables
+- Inputs: identifiers, timeframe, AOI, unit/echelon, and query bounds
+- Query/Action template: exact operator action or API payload skeleton
+- Expected schema: critical fields expected from the tool response
+- Protocol/transport: format and delivery path (for example USMTF over message bus)
+- Fallback: manual workaround and confidence/timeline impact if the tool is unavailable
 
 ## Tool Families and Typical Use
 
 - C2/COP tools: GCCS-J, CPOF, JADOCS, ATAK/WinTAK, JBC-P
-- Air operations tools: TBMCS, PRISM, airspace deconfliction and ATO planning systems
+- Air operations tools: TBMCS, PRISM, TAIS, airspace and ATO planning systems
 - Fires/effects tools: AFATDS and joint fires coordination systems
 - Intelligence tools: DCGS variants, GEOINT exploitation tools, ISR collection managers
 - Logistics/readiness tools: GCSS variants, sustainment and maintenance systems
 - Cyber tools: SIEM/SOAR platforms, endpoint telemetry stacks, network defense consoles
 - Space/SATCOM tools: SDA catalogs, SATCOM planning/monitoring dashboards
-- Maritime tools: C2 afloat systems, track management, mine/ASW mission tools
+- Maritime tools: C2 afloat systems, track management, mine/ASW mission tools, AIS feeds
 - Medical tools: patient regulation systems, medical logistics inventories, blood program trackers
 - Training/simulation tools: JCATS/JTLS-style simulation, mission rehearsal systems, digital ranges
+- Software factory tools: CI/CD pipelines, SBOM scanners, artifact repositories, security test suites
+
+## Domain-to-Tool and Protocol Matrix
+
+- Land maneuver/protection: CPOF/JBC-P + route clearance/force protection systems; protocols: VMF, CoT, USMTF
+- Air and fires integration: TBMCS/TAIS/AFATDS/JADOCS; protocols: Link 16 J-series, VMF, USMTF
+- Maritime and littoral: afloat C2 + AIS + mine/ASW mission systems; protocols: Link 16 J-series, AIS/NMEA, USMTF
+- Space and SATCOM: SDA catalogs + SATCOM planners + spectrum tools; protocols: API/JSON, USMTF, Link 16 where applicable
+- Cyber and information: SIEM/SOAR + threat intel exchanges; protocols: STIX/TAXII, API/JSON
+- Logistics and mobility: GCSS + movement/transport planners + sustainment dashboards; protocols: USMTF, XML/JSON, API
+- Medical and casualty operations: patient regulation + med logistics + evacuation coordination; protocols: USMTF medical reporting, API/JSON, HL7/FHIR where available
+- Coalition/interagency support: coalition COP tools + liaison data fabrics; protocols: NATO APP-11/ADatP-3 aligned formats, OGC, USMTF
 
 ## Integration Interfaces and Transports
 
-- APIs: REST/GraphQL/GRPC gateways behind approved service boundaries
+- APIs: REST/GraphQL/gRPC gateways behind approved service boundaries
 - Streaming/data bus: Kafka-compatible, AMQP, or mission data fabrics where authorized
 - Tactical links/waveforms: Link 16, VMF, CoT transports, SATCOM relay paths
 - Geospatial services: OGC WMS/WFS/WMTS, tiled map services, feature services
@@ -42,6 +65,7 @@ Use this reference when a warfighter skill needs system integration guidance. Ke
 - `STIX/TAXII`: machine-readable cyber threat intel sharing and ingestion
 - `OGC WMS/WFS/WMTS`: geospatial map and feature service interoperability
 - `NATO APP-11/ADatP-3 aligned formats`: coalition reporting and message interoperability context
+- `AIS/NMEA`: maritime vessel track reporting for port/harbor and maritime domain awareness
 
 ## Output Requirements for Any Skill Using External Tools
 
@@ -52,3 +76,4 @@ Include these fields in outputs when tool integration is used:
 - Last refresh timestamp (UTC)
 - Confidence and known gaps
 - Classification/handling caveat placeholder (unclassified by default unless user specifies)
+- Tool Invocation Packet fields for each critical tool dependency

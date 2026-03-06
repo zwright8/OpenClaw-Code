@@ -46,6 +46,12 @@ Primary products for this skill: EMS allocation plan, EW support matrix, interfe
 - Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
 - If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
 
+## Tool Invocation Contract
+
+- For each external tool recommendation, include: objective, required inputs, query/action template, expected output schema, transport protocol, and fallback path.
+- Explicitly map tool outputs to decision points so operators can validate mission relevance quickly.
+- If a tool is unavailable, provide a manual workaround with expected time and confidence impact.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.
