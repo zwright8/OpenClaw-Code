@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4651,
+    "name": "openclaw-v2-4651-a-b-rollout-governance",
+    "title": "A/B Rollout Governance for software engineering delivery",
+    "domain": "software engineering delivery",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "a/b rollout governance",
+    "archetype": "governance-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 96,
+    "roiScore": 85.28,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4651-a-b-rollout-governance-for-software-engineering-delivery/SKILL.md"
+  }
+}

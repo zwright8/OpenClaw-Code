@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7646,
+    "name": "openclaw-v2-7646-personal-habit-optimization",
+    "title": "Personal Habit Optimization for entrepreneurship operations",
+    "domain": "entrepreneurship operations",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "personal habit optimization",
+    "archetype": "habit-optimization-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 83,
+    "roiScore": 76.13,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7646-personal-habit-optimization-for-entrepreneurship-operations/SKILL.md"
+  }
+}

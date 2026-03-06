@@ -1,0 +1,24 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1526
+  name: "openclaw-v2-1526-constraint-compilation"
+  title: "Constraint Compilation for cybersecurity operations"
+  domain: "cybersecurity operations"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "constraint compilation"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 87
+  roi_score: 74.7
+  trust_badges:
+    - "Reliability-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1526-constraint-compilation-for-cybersecurity-operations/SKILL.md"

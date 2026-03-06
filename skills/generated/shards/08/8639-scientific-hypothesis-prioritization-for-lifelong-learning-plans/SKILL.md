@@ -1,106 +1,214 @@
 ---
 name: u08639-scientific-hypothesis-prioritization-for-lifelong-learning-plans
-description: Operate the "Scientific Hypothesis Prioritization for lifelong learning plans" capability in production for lifelong learning plans workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
+description: Run the Scientific Hypothesis Prioritization for lifelong learning plans capability for lifelong learning plans with deterministic outputs, policy-gated release, and handoff-ready operational artifacts. Use when mission execution explicitly requires this capability.
 ---
 
 # Scientific Hypothesis Prioritization for lifelong learning plans
 
-## Metadata
-- **Skill ID:** `u08639-scientific-hypothesis-prioritization-for-lifelong-learning-plans`
-- **Capability:** Scientific Hypothesis Prioritization for lifelong learning plans
-- **Domain:** lifelong learning plans
-- **Purpose:** Operate the "Scientific Hypothesis Prioritization for lifelong learning plans" capability in production for lifelong learning plans workflows. Use when mission execution explicitly requires this capability and outcomes must be reproducible, policy-gated, and handoff-ready.
-- **Use When:** The request explicitly needs this capability and requires a concrete, handoff-ready result.
+## Quick Reference
+| Field | Value |
+|---|---|
+| Skill ID | `8639` |
+| Domain | `lifelong learning plans` |
+| Runtime archetype | `hypothesis-engine` |
+| Core method | `scientific hypothesis prioritization` |
+| Primary artifact | `scientific-hypothesis-prioritization-artifact-lifelong-learning-` |
+| Routing tag | `lifelong-learning-plans:hypothesis-engine` |
+| Feature flag | `skill_08639_scientific-hypothesis-prioriti` |
+| Release cycles | `2` |
 
-## Allowed Tools
-- Use only tools allowed by the current runtime policy.
-- Preferred local tools: `read`, `write`, `edit`, `exec`, `process`.
-- Optional research tools (only when evidence is needed): `web_search`, `web_fetch`, `browser`.
-- If no tool is necessary, complete using reasoning plus provided context.
+## Why This Skill Exists
+Use scientific hypothesis prioritization in lifelong learning plans with emphasis on throughput, reliability, leverage, and execution speed.
 
-## Inputs (formatted)
-```yaml
-required:
-  objective: string
-  context: string
-  constraints:
-    - string
-  success_criteria:
-    - string
-optional:
-  prior_artifacts:
-    - path_or_url
-  stakeholders:
-    - string
-  deadline: string
-  risk_level: low|medium|high
-```
+## Trigger Checklist
+- [ ] The task explicitly needs Scientific Hypothesis Prioritization for lifelong learning plans (not generic brainstorming).
+- [ ] Inputs are sufficient and source provenance is available.
+- [ ] Success criteria are measurable and agreed before execution.
+- [ ] A downstream owner/consumer for handoff is identified.
+- [ ] If risk is high, human approval path is available before publish.
 
-## Outputs (formatted)
-```yaml
-primary_output:
-  type: markdown|json|text
-  summary: string
-supporting_output:
-  assumptions:
-    - string
-  decisions:
-    - string
-  next_actions:
-    - string
-status:
-  validation: pass|fail
-  blockers:
-    - string
-```
+## Inputs (contract)
+| Input | Type | Required | Source |
+|---|---|---|---|
+| queue load | signal | yes | upstream/operator |
+| cycle time | signal | yes | upstream/operator |
+| throughput metrics | signal | yes | upstream/operator |
 
-## Guidelines
-1. Clarify goal, audience, and constraints before producing deliverables.
-2. Reuse existing artifacts where possible to avoid duplicated work.
-3. Keep outputs concise, actionable, and aligned to the stated success criteria.
-4. Document assumptions and unresolved questions explicitly.
-5. Prefer reversible, low-risk recommendations when uncertainty is high.
-6. Escalate for human review when policy, legal, safety, or reputation risk is material.
+## Outputs (contract)
+| Output | Type | Guaranteed | Consumer |
+|---|---|---|---|
+| scientific-hypothesis-prioritization-artifact-lifelong-learning- | structured-artifact | yes | downstream orchestrator |
+| scientific-hypothesis-prioritization-artifact-lifelong-learning--scorecard | scorecard | yes | operator / reviewer |
+| scientific-hypothesis-prioritization-artifact-lifelong-learning--handoff | handoff-packet | yes | next owner |
 
-## Musts
-- Must keep all claims tied to provided evidence or clearly labeled assumptions.
-- Must provide at least one concrete next action.
-- Must state blockers if requirements are incomplete.
-- Must fail closed (no publish/send action) when required approvals are missing.
+## Implementation Guide
+1. Define measurable outcomes for Scientific Hypothesis Prioritization for lifelong learning plans, including baseline and target metrics for lifelong learning plans.
+2. Specify structured inputs/outputs for scientific hypothesis prioritization and validate schema contract edge cases.
+3. Implement the core scientific hypothesis prioritization logic with deterministic scoring and reproducible execution traces.
+4. Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
+5. Run unit, integration, simulation, and regression suites for Scientific Hypothesis Prioritization for lifelong learning plans under hyper-productive autonomy conditions.
+6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
-## Targets (day/week/month operating cadence)
-- **Day:** Process active requests, triage priority, and publish a clear status outcome.
-- **Week:** Review repeated blockers, improve templates/checklists, and tune decision quality.
-- **Month:** Audit outcomes, retire low-value steps, and update operating guidance from lessons learned.
+## Operational Runbook
+### Preflight
+- Validate mission scope, contracts, and required inputs.
+- Verify feature flag posture, dependencies, and approval prerequisites.
 
-## Common Actions
-- `triage_request`
-- `collect_required_inputs`
-- `draft_output`
-- `validate_against_success_criteria`
-- `prepare_handoff_bundle`
-- `escalate_or_close`
+### Execution
+- Execute scientific hypothesis prioritization workflow with deterministic scoring and trace capture.
+- Track posture transitions and preserve reproducible evidence artifacts.
 
-## External Tool Calls Needed
-- **Default:** None required.
-- **When needed:**
-  - Use `web_search`/`web_fetch` for external evidence verification.
-  - Use `browser` only for UI-dependent retrieval or validation.
-  - Use execution tools (`exec`/`process`) only for local, auditable transformations.
+### Recovery
+- Apply rollback strategy if posture is critical or guardrails fail.
+- Escalate blocked execution to oversight with incident packet and trace references.
 
-## Validation & Handoff
-```yaml
-validation_checks:
-  - inputs_complete
-  - constraints_applied
-  - output_meets_success_criteria
-  - risks_and_assumptions_documented
-handoff_required:
-  summary: string
-  artifact_paths:
-    - path
-  open_questions:
-    - string
-  recommended_owner: string
-  recommended_next_step: string
-```
+### Handoff
+- Publish outcome report, scorecard, and telemetry links.
+- Queue follow-up tasks for unresolved risks, approvals, or optimization work.
+
+## Operator Use Cases
+- Run Scientific Hypothesis Prioritization for lifelong learning plans as a repeatable production workflow for humans and agents.
+- Use Scientific Hypothesis Prioritization for lifelong learning plans to accelerate decisions while preserving safety, quality, and auditability.
+
+## Guardrail Policy Matrix
+| Guardrail Type | Policy Rule | Automation Hook |
+|---|---|---|
+| quality | Require unit and integration validations before promoting Scientific Hypothesis Prioritization for lifelong learning plans. | run-validation:unit+integration+simulation+regression-baseline |
+| reliability | Trigger rollback on critical posture or repeated failures. | rollback:rollback-to-last-stable-baseline |
+| cost | Respect bounded resource pressure and execution budget during scaling. | budget-guard:resource-pressure-cap |
+
+## Posture Playbook
+- **Ready posture (score >= 74):** release artifacts after validation pass and route to `lifelong-learning-plans:hypothesis-engine`.
+- **Review posture (score >= 54 or risk >= 62):** require human review before publish, with explicit remediation notes.
+- **Critical posture (risk >= 81):** fail closed, execute `rollback-to-last-stable-baseline`, and escalate with incident packet.
+
+## Traceability Map
+- **Scope:** Define measurable outcomes for Scientific Hypothesis Prioritization for lifelong learning plans, including baseline and target metrics for lifelong learning plans.
+- **Contract:** Specify structured inputs/outputs for scientific hypothesis prioritization and validate schema contract edge cases.
+- **Core:** Implement the core scientific hypothesis prioritization logic with deterministic scoring and reproducible execution traces.
+- **Orchestration:** Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.
+- **Validation:** Run unit, integration, simulation, and regression suites for Scientific Hypothesis Prioritization for lifelong learning plans under hyper-productive autonomy conditions.
+- **Rollout:** Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
+
+## Decision & Scoring Policy
+- Scoring weights: `truth=0.20, execution=0.45, safety=0.15, impact=0.20`
+- Posture thresholds:
+  - `ready`: score >= 74
+  - `review`: score >= 54
+  - `review_risk`: risk >= 62
+  - `critical_risk`: risk >= 81
+- Retry policy: max attempts `4`, base delay `750ms`, backoff `exponential`.
+- Approval gates: `policy-constraint-check`, `human-approval-router`.
+
+## Validation Gates & Test Matrix
+| Gate | Purpose | On Fail |
+|---|---|---|
+| schema-contract-check | Ensure required inputs and contract shape are valid. | block release |
+| determinism-check | Replay identical input and compare output hash/score delta. | escalate + quarantine |
+| policy-approval-check | Verify policy constraints and approval tokens. | block publish |
+| reliability-check | Validate retry budget and rollback readiness. | rollback to stable baseline |
+
+- Required validation suites: unit, integration, simulation, regression-baseline
+
+## Failure Modes & Recovery Playbook
+- `E_INPUT_SCHEMA`: required signal missing or malformed -> reject payload and request corrected input.
+- `E_NON_DETERMINISM`: replay mismatch or unstable score delta -> quarantine output and escalate for human review.
+- `E_POLICY_BLOCK`: approval/policy gate unsatisfied -> keep publish blocked until explicit approval is attached.
+- `E_DEPENDENCY_TIMEOUT`: transient timeout -> apply retry budget; if unresolved, execute `rollback-to-last-stable-baseline` and issue incident packet.
+
+## Human Approval & Escalation
+- High-risk or policy-sensitive runs require an explicit approval token before release.
+- Escalate to human reviewer when any gate fails twice or critical risk posture is reached.
+- Escalation packet must include: scope, failed gate, evidence links, retry history, and recommended decision.
+
+## Automation Envelope
+| Setting | Value |
+|---|---|
+| Maturity tier | `foundation` |
+| Autopilot ready | `yes` |
+| Parallelism | `4` |
+| Max cycle minutes | `25` |
+| Required approvals | `policy-constraint-check`, `human-approval-router` |
+
+## Acceptance Checklist
+- [ ] Schema, determinism, policy, and reliability gates all pass.
+- [ ] Output artifact bundle includes scorecard, risks, and next actions.
+- [ ] Handoff owner confirms artifact usability without additional clarification.
+- [ ] Telemetry and trace references are attached for auditability.
+
+## External Tool Stack Recommendation
+| Field | Value |
+|---|---|
+| Recommendation class | `tool-primary` |
+| Migration priority | `P0` |
+| External auth required | `yes` |
+| API key likely required | `no` |
+| Rationale | Deterministic infrastructure and system primitives outperform model-only execution for reliability and auditability. |
+
+| Service | Why in stack | Auth mode | Auth required | API key likely |
+|---|---|---|---|---|
+| LaunchDarkly/Unleash | feature flagging and staged rollout safety | account/session credentials | yes | no |
+| Statsig/Optimizely | experiment assignment and decision stats | account/session credentials | yes | no |
+| SciPy/Statsmodels | significance and confidence interval checks | none/local runtime | no | no |
+
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
+|---|---|---|---|
+| LaunchDarkly/Unleash | feature flagging and staged rollout safety | read+write/orchestrate | yes |
+| Statsig/Optimizely | experiment assignment and decision stats | read+write/orchestrate | yes |
+| SciPy/Statsmodels | significance and confidence interval checks | read/query | no |
+
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| LaunchDarkly/Unleash | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Statsig/Optimizely | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| SciPy/Statsmodels | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
+
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `LaunchDarkly/Unleash` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `scientific-hypothesis-prioritization-artifact-lifelong-learning-`.
+2. `Statsig/Optimizely` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `scientific-hypothesis-prioritization-artifact-lifelong-learning-`.
+3. `SciPy/Statsmodels` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `scientific-hypothesis-prioritization-artifact-lifelong-learning-`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
+
+## External Integration Migration Checklist
+- Provision service credentials and validate non-expired auth before first run.
+- Wire service outputs into validation/handoff artifacts.
+- Enable credential reuse; prompt user only on missing/invalid/expired credentials.
+
+## Credential Reuse Policy
+- Reuse previously provided credentials by default; do not ask for new credentials when a valid credential/session already exists.
+- Before prompting, check environment/session secret stores and run lightweight auth validation.
+- Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
+
+## Practical Usage Examples
+1. Incident recovery in lifelong learning plans: ingest noisy signals, execute scientific hypothesis prioritization, produce an operator-ready scorecard and remediation queue.
+2. Scheduled quality pass: run Scientific Hypothesis Prioritization for lifelong learning plans against baseline data, compare drift, and publish release/no-release recommendation with evidence links.
+3. Pre-deployment gate: validate artifacts for lifelong-learning-plans:hypothesis-engine, enforce approvals, then handoff to downstream orchestrator with next actions.
+
+## Anti-Patterns
+- Do not publish artifacts when any validation gate fails.
+- Do not bypass approval gates for high-risk runs.
+- Do not run with missing provenance, schema, or success criteria.
+- Do not treat partial/non-deterministic outputs as production-ready.
+
+## Handoff Contract
+- **Produces:** `scientific-hypothesis-prioritization-artifact-lifelong-learning-`, scorecard, risk/confidence metadata, remediation backlog.
+- **Consumes:** `queue load`, `cycle time`, `throughput metrics`.
+- **Readiness rule:** release only when schema, determinism, policy, and reliability gates all pass.
+- **Downstream hint:** route only to `lifelong-learning-plans:hypothesis-engine` consumers with approval context attached.
+
+## Observability & Continuous Improvement
+- SLO: >=99.5% successful runs per 7-day window
+- Error budget: <=0.5% critical failures per 7-day window
+- Alert triggers:
+- critical posture exceeds baseline trend
+- validation regression crosses threshold
+- hardening or approval bottlenecks persist
+- KPI focus: `cycle time reduction`, `throughput gain`, `automation leverage in lifelong learning plans`
+- Primary outcome metric: `cycle time reduction`
+- Secondary metrics: `throughput gain`, `automation leverage in lifelong learning plans`
+- Review cadence: `weekly`
+- Weekly review: tune thresholds, retries, and approval friction based on telemetry and incident learnings.

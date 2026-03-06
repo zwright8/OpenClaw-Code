@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5471,
+    "name": "openclaw-v2-5471-security-threat-modeling",
+    "title": "Security Threat Modeling for marketing and storytelling",
+    "domain": "marketing and storytelling",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "security threat modeling",
+    "archetype": "modeling-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 69.38,
+    "trustBadges": [
+      "Reliability-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5471-security-threat-modeling-for-marketing-and-storytelling/SKILL.md"
+  }
+}

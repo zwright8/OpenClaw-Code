@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Regression Sentinel"
+  short_description: "Baseline-delta detection for Memory and Knowledge Operations with guardrails and measurable outcomes."
+  default_prompt: "Use Memory Regression Sentinel to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

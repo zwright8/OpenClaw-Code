@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 310,
+    "name": "openclaw-v2-0310-policy-scoped-data-mediation",
+    "title": "Federation Privacy Preserving Data Broker",
+    "domain": "Federation and Interoperability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "policy-scoped data mediation",
+    "archetype": "collaboration-mediator"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 68.54,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0310-federation-privacy-preserving-data-broker/SKILL.md"
+  }
+}

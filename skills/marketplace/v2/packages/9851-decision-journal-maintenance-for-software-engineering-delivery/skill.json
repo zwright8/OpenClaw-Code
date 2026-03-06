@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 9851,
+    "name": "openclaw-v2-9851-decision-journal-maintenance",
+    "title": "Decision Journal Maintenance for software engineering delivery",
+    "domain": "software engineering delivery",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "decision journal maintenance",
+    "archetype": "journal-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 79,
+    "roiScore": 69.35,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/9851-decision-journal-maintenance-for-software-engineering-delivery/SKILL.md"
+  }
+}

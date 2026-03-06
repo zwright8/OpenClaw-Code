@@ -1,0 +1,13 @@
+{
+  "task": "Execute contracted payload schemas",
+  "objective": "Deliver Epistemic Task Handoff Contractor outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

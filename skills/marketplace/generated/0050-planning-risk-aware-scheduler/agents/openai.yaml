@@ -1,0 +1,4 @@
+interface:
+  display_name: "Planning Risk-Aware Scheduler"
+  short_description: "Risk-weighted sequencing for Strategic Planning and Decomposition with guardrails and measurable outcomes."
+  default_prompt: "Use Planning Risk-Aware Scheduler to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decision Journal Maintenance for agriculture and food sys..."
+  short_description: "Decision journal maintenance for agriculture and food systems with guardrails and measurable outcomes."
+  default_prompt: "Use Decision Journal Maintenance for agriculture and food systems to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

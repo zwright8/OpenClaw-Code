@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 4861
+  name: "openclaw-v2-4861-incident-playbook-synthesis"
+  title: "Incident Playbook Synthesis for design and user research"
+  domain: "design and user research"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "incident playbook synthesis"
+  archetype: "incident-response-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 99
+  roi_score: 84.66
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/4861-incident-playbook-synthesis-for-design-and-user-research/SKILL.md"

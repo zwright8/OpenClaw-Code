@@ -1,0 +1,4 @@
+interface:
+  display_name: "PublicService Regression Sentinel"
+  short_description: "Baseline-delta detection for Healthcare and Public Services with guardrails and measurable outcomes."
+  default_prompt: "Use PublicService Regression Sentinel to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

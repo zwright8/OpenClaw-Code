@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5091,
+    "name": "openclaw-v2-5091-disaster-recovery-orchestration",
+    "title": "Disaster Recovery Orchestration for nonprofit program delivery",
+    "domain": "nonprofit program delivery",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "disaster recovery orchestration",
+    "archetype": "resilience-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 85,
+    "roiScore": 81.59,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5091-disaster-recovery-orchestration-for-nonprofit-program-delivery/SKILL.md"
+  }
+}

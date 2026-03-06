@@ -102,6 +102,13 @@ function normalizeTimestamp(value: unknown): number | null {
     return null;
 }
 
+
+function compareStringsDeterministically(left: string, right: string): number {
+    if (left < right) return -1;
+    if (left > right) return 1;
+    return 0;
+}
+
 function normalizeStringArray(value: unknown, path: string): ContractValidationResult<string[]> {
     if (!Array.isArray(value)) {
         return { ok: false, errors: [{ path, message: 'must be an array of strings.' }] };
@@ -125,6 +132,87 @@ function normalizeStringArray(value: unknown, path: string): ContractValidationR
 
     return { ok: true, value: out };
 }
+
+
+function extractRequiredApproversFromTaskMetadata(metadata: Record<string, unknown>): string[] {
+    const directRequiredApprovers = Array.isArray(metadata.requiredApprovers)
+        ? metadata.requiredApprovers
+        : [];
+
+    const policyGate = isRecord(metadata.policyGate) ? metadata.policyGate : null;
+    const passthrough = policyGate && isRecord(policyGate.passthrough)
+        ? policyGate.passthrough
+        : null;
+    const policyRequiredApprovers = passthrough && Array.isArray(passthrough.requiredApprovers)
+        ? passthrough.requiredApprovers
+        : [];
+
+    return Array.from(new Set(
+        [...directRequiredApprovers, ...policyRequiredApprovers]
+            .map((entry) => normalizeString(entry))
+            .filter((entry): entry is string => Boolean(entry))
+    )).sort(compareStringsDeterministically);
+}
+
+function metadataRequiresHumanApproval(metadata: Record<string, unknown>): boolean {
+    if (typeof metadata.requiresHumanApproval === 'boolean') {
+        return metadata.requiresHumanApproval;
+    }
+
+    const policyGate = isRecord(metadata.policyGate) ? metadata.policyGate : null;
+    return policyGate?.requiresHumanApproval === true;
+}
+
+const HIGH_RISK_RECOMMENDATION_TIERS = new Set<CognitionRiskTier>(['high', 'critical']);
+
+const RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES = {
+    highRiskHumanApprovalRequired:
+        '[high_risk_human_approval_required] requiresHumanApproval must be true for high-risk recommendations (fail-closed approval contract).',
+    requiredApproversMissing:
+        '[required_approvers_missing] requiredApprovers are required for high-risk recommendations (fail-closed approval contract).',
+    rollbackMetadataMissing:
+        '[rollback_metadata_missing] rollbackPlan metadata is required for high-risk recommendations (fail-closed rollback contract).',
+    rollbackTriggerMissing:
+        '[rollback_trigger_missing] rollbackPlan.trigger is required for high-risk recommendations (fail-closed rollback contract).',
+    rollbackStepsMissing:
+        '[rollback_steps_missing] rollbackPlan.steps must include at least one recovery step for high-risk recommendations (fail-closed rollback contract).'
+} as const;
+
+type NormalizedRecommendationRollbackMetadata = {
+    present: boolean;
+    trigger: string | null;
+    steps: string[];
+};
+
+function normalizeRecommendationRollbackMetadata(
+    metadata: Record<string, unknown>
+): NormalizedRecommendationRollbackMetadata {
+    const rollbackCandidate = isRecord(metadata.rollbackPlan)
+        ? metadata.rollbackPlan
+        : (isRecord(metadata.rollback) ? metadata.rollback : null);
+
+    if (!rollbackCandidate) {
+        return {
+            present: false,
+            trigger: null,
+            steps: []
+        };
+    }
+
+    const trigger = normalizeString(rollbackCandidate.trigger);
+    const steps = Array.isArray(rollbackCandidate.steps)
+        ? rollbackCandidate.steps
+            .map((entry) => normalizeString(entry))
+            .filter((entry): entry is string => Boolean(entry))
+        : [];
+
+    return {
+        present: true,
+        trigger,
+        steps: Array.from(new Set(steps)).sort(compareStringsDeterministically)
+    };
+}
+
 
 export function normalizeRecommendationPriority(value: unknown): CognitionRecommendationPriority | null {
     if (typeof value !== 'string') return null;
@@ -394,8 +482,51 @@ export function validateCognitionRecommendation(value: unknown): ContractValidat
     if (!planResult.ok) errors.push(...planResult.errors);
 
     const metadataRaw = value.metadata;
-    if (metadataRaw !== undefined && !isRecord(metadataRaw)) {
+    const metadata = isRecord(metadataRaw) ? metadataRaw : null;
+    if (metadataRaw !== undefined && !metadata) {
         errors.push({ path: 'metadata', message: 'metadata must be an object.' });
+    }
+
+    if (riskTier && HIGH_RISK_RECOMMENDATION_TIERS.has(riskTier)) {
+        if (requiresHumanApproval !== true) {
+            errors.push({
+                path: 'requiresHumanApproval',
+                message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.highRiskHumanApprovalRequired
+            });
+        }
+
+        const requiredApprovers = metadata ? extractRequiredApproversFromTaskMetadata(metadata) : [];
+        if (requiredApprovers.length === 0) {
+            errors.push({
+                path: 'metadata.requiredApprovers',
+                message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.requiredApproversMissing
+            });
+        }
+
+        const rollbackMetadata = metadata
+            ? normalizeRecommendationRollbackMetadata(metadata)
+            : { present: false, trigger: null, steps: [] };
+
+        if (!rollbackMetadata.present) {
+            errors.push({
+                path: 'metadata.rollbackPlan',
+                message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.rollbackMetadataMissing
+            });
+        } else {
+            if (!rollbackMetadata.trigger) {
+                errors.push({
+                    path: 'metadata.rollbackPlan.trigger',
+                    message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.rollbackTriggerMissing
+                });
+            }
+
+            if (rollbackMetadata.steps.length === 0) {
+                errors.push({
+                    path: 'metadata.rollbackPlan.steps',
+                    message: RECOMMENDATION_CONTRACT_DIAGNOSTIC_MESSAGES.rollbackStepsMissing
+                });
+            }
+        }
     }
 
     if (
@@ -468,10 +599,46 @@ export function validateCognitionTask(value: unknown): ContractValidationResult<
         rollbackPlanResult = normalizeStringArray(rollbackRaw ?? [], 'rollbackPlan');
     }
     if (!rollbackPlanResult.ok) errors.push(...rollbackPlanResult.errors);
+    if (rollbackPlanResult.ok && rollbackPlanResult.value.length === 0) {
+        errors.push({
+            path: 'rollbackPlan',
+            message: 'rollbackPlan must include at least one recovery step (fail-closed rollback readiness).'
+        });
+    }
 
     const metadataRaw = value.metadata;
-    if (metadataRaw !== undefined && !isRecord(metadataRaw)) {
+    const metadata = isRecord(metadataRaw) ? metadataRaw : null;
+    if (metadataRaw !== undefined && !metadata) {
         errors.push({ path: 'metadata', message: 'metadata must be an object.' });
+    }
+
+    if (metadata && metadataRequiresHumanApproval(metadata)) {
+        const requiredApprovers = extractRequiredApproversFromTaskMetadata(metadata);
+        if (requiredApprovers.length === 0) {
+            errors.push({
+                path: 'metadata.requiredApprovers',
+                message: 'requiredApprovers are required when human approval is required (fail-closed approval contract).'
+            });
+        }
+    }
+
+    const rollbackReadinessMetadata = metadata && isRecord(metadata.rollbackReadiness)
+        ? metadata.rollbackReadiness
+        : null;
+
+    if (rollbackReadinessMetadata && rollbackReadinessMetadata.ready === false) {
+        const blockers = Array.isArray(rollbackReadinessMetadata.blockers)
+            ? rollbackReadinessMetadata.blockers
+                .map((entry) => normalizeString(entry))
+                .filter((entry): entry is string => Boolean(entry))
+            : [];
+
+        errors.push({
+            path: 'metadata.rollbackReadiness',
+            message: blockers.length > 0
+                ? `rollback readiness contract is not satisfied: ${blockers.join(', ')}.`
+                : 'rollback readiness contract is not satisfied.'
+        });
     }
 
     if (

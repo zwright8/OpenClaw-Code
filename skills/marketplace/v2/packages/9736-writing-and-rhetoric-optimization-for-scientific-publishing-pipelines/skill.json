@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 9736,
+    "name": "openclaw-v2-9736-writing-and-rhetoric-optimization",
+    "title": "Writing And Rhetoric Optimization for scientific publishing pipelines",
+    "domain": "scientific publishing pipelines",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "writing and rhetoric optimization",
+    "archetype": "writing-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 71.91,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/9736-writing-and-rhetoric-optimization-for-scientific-publishing-pipelines/SKILL.md"
+  }
+}

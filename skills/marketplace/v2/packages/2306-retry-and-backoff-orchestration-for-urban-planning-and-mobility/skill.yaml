@@ -1,0 +1,23 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2306
+  name: "openclaw-v2-2306-retry-and-backoff-orchestration"
+  title: "Retry And Backoff Orchestration for urban planning and mobility"
+  domain: "urban planning and mobility"
+  vertical_id: "public-impact"
+  vertical_name: "Public Impact and Resilience"
+  method: "retry and backoff orchestration"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 82
+  roi_score: 73.71
+  trust_badges:
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2306-retry-and-backoff-orchestration-for-urban-planning-and-mobility/SKILL.md"

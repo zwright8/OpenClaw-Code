@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decision Journal Maintenance for education support services"
+  short_description: "Decision journal maintenance for education support services with guardrails and measurable outcomes."
+  default_prompt: "Use Decision Journal Maintenance for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

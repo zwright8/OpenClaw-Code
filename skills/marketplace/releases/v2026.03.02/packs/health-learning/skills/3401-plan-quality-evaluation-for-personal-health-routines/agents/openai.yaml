@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Quality Evaluation for personal health routines"
+  short_description: "Plan quality evaluation for personal health routines with guardrails and measurable outcomes."
+  default_prompt: "Use Plan Quality Evaluation for personal health routines to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

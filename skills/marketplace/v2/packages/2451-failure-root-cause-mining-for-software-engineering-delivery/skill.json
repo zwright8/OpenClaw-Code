@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2451,
+    "name": "openclaw-v2-2451-failure-root-cause-mining",
+    "title": "Failure Root Cause Mining for software engineering delivery",
+    "domain": "software engineering delivery",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "failure root cause mining",
+    "archetype": "diagnostic-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 89,
+    "roiScore": 81.16,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2451-failure-root-cause-mining-for-software-engineering-delivery/SKILL.md"
+  }
+}

@@ -1,0 +1,23 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 6336
+  name: "openclaw-v2-6336-community-feedback-harvesting"
+  title: "Community Feedback Harvesting for scientific publishing pipelines"
+  domain: "scientific publishing pipelines"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "community feedback harvesting"
+  archetype: "feedback-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 73
+  roi_score: 80.05
+  trust_badges:
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/6336-community-feedback-harvesting-for-scientific-publishing-pipelines/SKILL.md"

@@ -32,7 +32,7 @@ Adds a capability marketplace with metadata contracts, live probing, and stale/f
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
-Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
+Adds an autonomous recovery supervisor for incident detection, retry-budget enforcement, and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
@@ -144,6 +144,81 @@ Outputs are generated under `skills/generated/`:
 - `0001-.../SKILL.md` through `1000-.../SKILL.md`
 - `0001-.../implementation.json` through `1000-.../implementation.json`
 
+Professional hardening and bot deployability indexing for all generated skills (1000 + 10000):
+```bash
+npm run skills:improve:10000
+npm run skills:harden:profile
+npm run skills:harden
+```
+This writes:
+- `skills/generated-10000/improvements.catalog.json`
+- `skills/state/skills.hardening.profile.json`
+- `skills/state/skills.hardening.summary.json`
+- `skills/state/skills.hardening.summary.md`
+- `skills/state/skills.deployability.index.json`
+
+The external runtime loader automatically merges `improvements.catalog.json` into each of the 10,000 skill implementations at load time.
+
+### Marketplace Skill Packs
+Build a curated, deduplicated marketplace catalog from the generated skill universe:
+```bash
+npm run skills:marketplace:build
+npm run skills:marketplace:validate
+```
+This generates:
+- `skills/marketplace/skills.catalog.json` (500-skill high-utility catalog with dedupe signatures and vertical metadata)
+- `skills/marketplace/INDEX.md` (human-readable catalog)
+- `skills/marketplace/generated/<skill>/SKILL.md` + `agents/openai.yaml` + `references/implementation.json`
+- `skills/marketplace/bundles/*` (vertical bundle manifests, README docs, and demo prompts)
+
+Generate per-skill quality and ROI scorecards (observed usage log if provided, deterministic projections otherwise):
+```bash
+npm run skills:marketplace:analytics
+```
+This writes:
+- `skills/marketplace/analytics/scorecards.json`
+- `skills/marketplace/analytics/usage.summary.json`
+- `skills/marketplace/analytics/SCORECARDS.md`
+- `skills/marketplace/analytics/usage.events.template.jsonl`
+
+Ship a versioned release bundle with manifests, demos, analytics, and vertical pack artifacts:
+```bash
+npm run skills:marketplace:release
+npm run skills:marketplace:release:validate
+```
+This writes to `skills/marketplace/releases/<version>/`:
+- `release.manifest.json`, `README.md`, `RELEASE_NOTES.md`, `CHANNEL_MAP.md`
+- `manifests/*` (catalog + analytics snapshots)
+- `packs/<vertical>/` (pack manifests + copied skill files)
+- `demos/*` (bundle-specific demo prompts)
+
+Run the full packaging chain:
+```bash
+npm run skills:marketplace:ship
+```
+
+Build executable Skill Package v2 artifacts (contract-first, runner-backed, certifiable):
+```bash
+npm run skills:marketplace:v2:build
+npm run skills:marketplace:v2:validate
+npm run skills:marketplace:v2:demo
+```
+This writes:
+- `skills/marketplace/v2/catalog.json` (500 package registry with trust badges)
+- `skills/marketplace/v2/packages/<skill>/skill.yaml` + `skill.json`
+- `skills/marketplace/v2/packages/<skill>/input.schema.json` + `output.schema.json`
+- `skills/marketplace/v2/packages/<skill>/guardrails.yaml` + `observability.yaml`
+- `skills/marketplace/v2/packages/<skill>/runner.ts` + `tests/fixtures/input.sample.json`
+- `skills/marketplace/v2/validation.report.json` + `skills/marketplace/v2/validation.report.md`
+- `skills/marketplace/v2/demo/demo-output.json` + `skills/marketplace/v2/demo/DEMO.md`
+
+Enforce hardening policy during bot/autonomy execution:
+```bash
+cd cognition-core
+npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
+npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
+```
+
 ## Quick Start
 
 ### Cognition Core
@@ -152,6 +227,8 @@ cd cognition-core
 npm run analyze
 ```
 The analyzer now compares the current window against the immediately previous window and generates a prioritized remediation plan.
+It also analyzes memory markdown files to quantify memory-learning drift (error intensity vs lesson/action coverage).
+Operational blueprint: [cognition-core/COGNITION_CORE_BLUEPRINT.md](/cognition-core/COGNITION_CORE_BLUEPRINT.md)
 
 Optional report outputs:
 ```bash
@@ -159,7 +236,7 @@ tsx scripts/analyze-history.ts --days 7 \
   --json reports/cognition-report.json \
   --markdown reports/cognition-report.md
 ```
-Use `--no-compare` to disable trend comparison, or `--compare-days <n>` to customize baseline size.
+Use `--no-compare` to disable trend comparison, `--compare-days <n>` to customize baseline size, and `--no-memory` to skip memory drift analysis.
 
 Convert remediation plan into executable swarm tasks:
 ```bash
@@ -171,7 +248,37 @@ Run learning-loop replay from task outcomes:
 ```bash
 npm run learn:loop
 ```
-This ingests task outcomes, runs counterfactual variants, and writes actionable recommendations to `reports/learning-loop.json` and `reports/learning-loop.md`.
+This ingests task outcomes, runs counterfactual variants, tracks p50/p95/p99 latency and confidence-bounded agent reliability, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
+
+Convert skill-growth recommendations into executable training/acquisition tasks:
+```bash
+npm run plan:skills
+```
+This emits `reports/skill-growth-tasks.json` with schema-valid `task_request` messages derived from `skillGrowthPlan.focusAreas`.
+
+Run the full end-to-end cognition build (analyze + remediation tasks + learning loop + skill tasks + readiness gates):
+```bash
+npm run build:full
+```
+This emits `reports/readiness.json` and `reports/readiness.md` with pass/warn/fail gate outcomes.
+
+Audit memory entry template compliance:
+```bash
+npm run memory:guardrails
+```
+This emits `reports/memory-guardrails.json` and `reports/memory-guardrails.md` with required-section coverage and non-compliant entries.
+
+Auto-backfill missing guardrail sections in recent memory entries:
+```bash
+npm run memory:backfill
+```
+This emits `reports/memory-guardrails-backfill.json` and `reports/memory-guardrails-backfill.md`.
+
+Generate a curiosity-driven iteration plan and executable experiment tasks:
+```bash
+npm run iterate:plan
+```
+This emits `reports/cognition-iteration-plan.json`, `reports/cognition-iteration-plan.md`, and `reports/cognition-iteration-tasks.json`.
 
 ### Swarm Protocol
 ```bash
@@ -211,6 +318,12 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
+  maxRetries: 2,
+  retryStrategy: 'exponential',
+  retryBackoffMultiplier: 2,
+  retryDelayMs: 250,
+  circuitFailureThreshold: 3,
+  circuitCooldownMs: 15_000,
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;

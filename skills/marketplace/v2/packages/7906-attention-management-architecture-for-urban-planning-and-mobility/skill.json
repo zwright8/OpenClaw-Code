@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7906,
+    "name": "openclaw-v2-7906-attention-management-architecture",
+    "title": "Attention Management Architecture for urban planning and mobility",
+    "domain": "urban planning and mobility",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "attention management architecture",
+    "archetype": "attention-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 88,
+    "roiScore": 69.97,
+    "trustBadges": [
+      "Reliability-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7906-attention-management-architecture-for-urban-planning-and-mobility/SKILL.md"
+  }
+}

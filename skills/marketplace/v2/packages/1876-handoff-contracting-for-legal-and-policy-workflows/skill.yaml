@@ -1,0 +1,27 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1876
+  name: "openclaw-v2-1876-handoff-contracting"
+  title: "Handoff Contracting for legal and policy workflows"
+  domain: "legal and policy workflows"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "handoff contracting"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 99
+  roi_score: 92.3
+  trust_badges:
+    - "Verified-Quality"
+    - "Reliability-Proven"
+    - "ROI-Proven"
+    - "Enterprise-Ready"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1876-handoff-contracting-for-legal-and-policy-workflows/SKILL.md"

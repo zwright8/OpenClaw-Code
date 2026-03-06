@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Quality Evaluation for fitness and recovery training"
+  short_description: "Plan quality evaluation for fitness and recovery training with guardrails and measurable outcomes."
+  default_prompt: "Use Plan Quality Evaluation for fitness and recovery training to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

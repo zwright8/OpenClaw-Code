@@ -1,0 +1,13 @@
+{
+  "task": "Execute decision journal maintenance",
+  "objective": "Deliver Decision Journal Maintenance for disaster response networks outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

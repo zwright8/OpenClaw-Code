@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Design for product management execution"
+  short_description: "Experiment design for product management execution with guardrails and measurable outcomes."
+  default_prompt: "Use Experiment Design for product management execution to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

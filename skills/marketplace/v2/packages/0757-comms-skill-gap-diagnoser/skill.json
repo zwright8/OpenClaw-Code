@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 757,
+    "name": "openclaw-v2-0757-competency-coverage-analysis",
+    "title": "Comms Skill Gap Diagnoser",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "competency coverage analysis",
+    "archetype": "general-capability"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 62,
+    "roiScore": 73.83,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0757-comms-skill-gap-diagnoser/SKILL.md"
+  }
+}

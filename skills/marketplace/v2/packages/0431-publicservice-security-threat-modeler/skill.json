@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 431,
+    "name": "openclaw-v2-0431-attack-surface-modeling",
+    "title": "PublicService Security Threat Modeler",
+    "domain": "Healthcare and Public Services",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "attack-surface modeling",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 66.21,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0431-publicservice-security-threat-modeler/SKILL.md"
+  }
+}

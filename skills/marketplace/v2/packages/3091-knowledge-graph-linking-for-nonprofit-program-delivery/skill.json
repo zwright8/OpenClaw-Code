@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3091,
+    "name": "openclaw-v2-3091-knowledge-graph-linking",
+    "title": "Knowledge Graph Linking for nonprofit program delivery",
+    "domain": "nonprofit program delivery",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "knowledge graph linking",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 85,
+    "roiScore": 71.14,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3091-knowledge-graph-linking-for-nonprofit-program-delivery/SKILL.md"
+  }
+}

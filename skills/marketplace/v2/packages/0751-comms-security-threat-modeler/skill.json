@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 751,
+    "name": "openclaw-v2-0751-attack-surface-modeling",
+    "title": "Comms Security Threat Modeler",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "attack-surface modeling",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 68,
+    "roiScore": 69.9,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0751-comms-security-threat-modeler/SKILL.md"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6326,
+    "name": "openclaw-v2-6326-community-feedback-harvesting",
+    "title": "Community Feedback Harvesting for cybersecurity operations",
+    "domain": "cybersecurity operations",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "community feedback harvesting",
+    "archetype": "feedback-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 85.54,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6326-community-feedback-harvesting-for-cybersecurity-operations/SKILL.md"
+  }
+}

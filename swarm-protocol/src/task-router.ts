@@ -23,6 +23,33 @@ const DEFAULT_STALENESS_PENALTY_WEIGHT = 10;
 const DEFAULT_MISSING_HEARTBEAT_PENALTY = 6;
 const DEFAULT_FAILURE_PENALTY_WEIGHT = 18;
 const DEFAULT_TIMEOUT_PENALTY_WEIGHT = 12;
+const DEFAULT_LOAD_SOFT_CAP = 0.7;
+const DEFAULT_STALENESS_SOFT_RATIO = 0.5;
+const DEFAULT_RELIABILITY_OVERAGE_MULTIPLIER = 2;
+const DEFAULT_LOAD_SURGE_EXPONENT = 2.4;
+const DEFAULT_STALENESS_SURGE_EXPONENT = 2.2;
+const DEFAULT_LOAD_CRITICAL_THRESHOLD = 0.9;
+const DEFAULT_STALENESS_CRITICAL_RATIO = 0.85;
+const DEFAULT_LOAD_CRITICAL_MULTIPLIER = 1.1;
+const DEFAULT_STALENESS_CRITICAL_MULTIPLIER = 0.9;
+const DEFAULT_LOW_SAMPLE_OVERAGE_MULTIPLIER = 0.5;
+const DEFAULT_RELIABILITY_FLOOR_MIN_SAMPLES = 8;
+const DEFAULT_RELIABILITY_FLOOR_SUCCESS_RATIO = 0.92;
+const DEFAULT_RELIABILITY_FLOOR_OVERAGE_RATIO = 1.05;
+const DEFAULT_RELIABILITY_FLOOR_COMBINED_ERROR_MULTIPLIER = 1.15;
+const DEFAULT_TIMEOUT_PRESSURE_WEIGHT = 16;
+const DEFAULT_TIMEOUT_PRESSURE_TRIGGER_RATIO = 0.45;
+const DEFAULT_TIMEOUT_PRESSURE_EXPONENT = 2.1;
+const DEFAULT_TIMEOUT_PRESSURE_FULL_CONFIDENCE_SAMPLES = 20;
+const DEFAULT_P95_TIMEOUT_PRESSURE_WEIGHT = 6;
+const DEFAULT_P95_TIMEOUT_PRESSURE_TRIGGER_RATIO = 0.7;
+const DEFAULT_P95_TIMEOUT_PRESSURE_EXPONENT = 2;
+const DEFAULT_DEGRADED_FALLBACK_REASONS = Object.freeze([
+    'stale_heartbeat',
+    'reliability_floor_breach'
+]);
+const KNOWN_DEGRADED_FALLBACK_REASON_SET = new Set(DEFAULT_DEGRADED_FALLBACK_REASONS);
+const SCORE_EPSILON = 1e-6;
 
 function safeNumber(value, fallback = null) {
     const parsed = Number(value);
@@ -42,9 +69,24 @@ function normalizeCapabilities(value) {
     )];
 }
 
+function normalizePriority(value, fallback = 'normal') {
+    if (typeof value !== 'string') return fallback;
+    const normalized = value.trim().toLowerCase();
+    if (normalized === 'critical' || normalized === 'high' || normalized === 'normal' || normalized === 'low') {
+        return normalized;
+    }
+    return fallback;
+}
+
 function extractRequiredCapabilities(taskRequest) {
     const required = taskRequest?.context?.requiredCapabilities;
     return normalizeCapabilities(required);
+}
+
+function normalizeFallbackReason(value) {
+    if (typeof value !== 'string') return null;
+    const normalized = value.trim().toLowerCase();
+    return normalized || null;
 }
 
 function resolvePositiveOption(value, fallback) {
@@ -59,9 +101,190 @@ function resolveNonNegativeOption(value, fallback) {
     return parsed;
 }
 
+function resolveUnitIntervalOption(value, fallback) {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return fallback;
+    return clamp(parsed, 0, 1);
+}
+
 function compareText(a, b) {
     if (a === b) return 0;
     return a < b ? -1 : 1;
+}
+
+function compareNumberAscending(a, b, epsilon = SCORE_EPSILON) {
+    if (!Number.isFinite(a) && !Number.isFinite(b)) return 0;
+    if (!Number.isFinite(a)) return 1;
+    if (!Number.isFinite(b)) return -1;
+    if (Math.abs(a - b) <= epsilon) return 0;
+    return a < b ? -1 : 1;
+}
+
+function compareNumberDescending(a, b, epsilon = SCORE_EPSILON) {
+    return compareNumberAscending(b, a, epsilon);
+}
+
+function formatFiniteNumber(value, digits = 4) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed.toFixed(digits) : 'na';
+}
+
+function buildTieBreakKey(candidate) {
+    const normalizedCapabilities = normalizeCapabilities(candidate?.capabilities).sort((a, b) => compareText(a, b));
+    const missingCapabilities = normalizeCapabilities(candidate?.missingCapabilities).sort((a, b) => compareText(a, b));
+    const id = typeof candidate?.agentId === 'string' && candidate.agentId.trim()
+        ? candidate.agentId.trim()
+        : 'unknown-agent';
+    const status = typeof candidate?.status === 'string' && candidate.status.trim()
+        ? candidate.status.trim()
+        : 'unknown-status';
+    const reason = typeof candidate?.reason === 'string' && candidate.reason.trim()
+        ? candidate.reason.trim()
+        : 'no-reason';
+    const eligibility = candidate?.eligible ? 'eligible' : 'ineligible';
+
+    return [
+        id,
+        status,
+        eligibility,
+        reason,
+        formatFiniteNumber(candidate?.score),
+        formatFiniteNumber(candidate?.load),
+        formatFiniteNumber(candidate?.benchmarkConfidence),
+        formatFiniteNumber(candidate?.loadPenalty),
+        formatFiniteNumber(candidate?.stalenessPenalty),
+        formatFiniteNumber(candidate?.reliabilityPenalty),
+        formatFiniteNumber(candidate?.timeoutPressurePenalty),
+        formatFiniteNumber(candidate?.heartbeatStalenessMs),
+        normalizedCapabilities.join(','),
+        missingCapabilities.join(',')
+    ].join('|');
+}
+
+function resolveFallbackReasonConfig(options) {
+    const configured = [];
+    for (const reason of normalizeCapabilities(options?.degradedFallbackReasons)) {
+        const normalized = normalizeFallbackReason(reason);
+        if (!normalized) continue;
+        if (!KNOWN_DEGRADED_FALLBACK_REASON_SET.has(normalized)) continue;
+        if (configured.includes(normalized)) continue;
+        configured.push(normalized);
+    }
+
+    const orderedReasons = configured.length > 0
+        ? configured
+        : [...DEFAULT_DEGRADED_FALLBACK_REASONS];
+
+    return {
+        orderedReasons,
+        allowedReasonSet: new Set(orderedReasons),
+        reasonRankByReason: new Map(orderedReasons.map((reason, index) => [reason, index]))
+    };
+}
+
+function compareDegradedFallbackCandidates(a, b, reasonRankByReason) {
+    const reasonRankA = reasonRankByReason.get(a.reason) ?? Number.MAX_SAFE_INTEGER;
+    const reasonRankB = reasonRankByReason.get(b.reason) ?? Number.MAX_SAFE_INTEGER;
+    const reasonRankCompare = compareNumberAscending(reasonRankA, reasonRankB, 0);
+    if (reasonRankCompare !== 0) {
+        return reasonRankCompare;
+    }
+
+    const reliabilitySeverityCompare = compareNumberAscending(
+        a.reliabilityFloorSeverity,
+        b.reliabilityFloorSeverity
+    );
+    if (reliabilitySeverityCompare !== 0) {
+        return reliabilitySeverityCompare;
+    }
+
+    const timeoutPressureCompare = compareNumberAscending(a.timeoutPressurePenalty, b.timeoutPressurePenalty);
+    if (timeoutPressureCompare !== 0) {
+        return timeoutPressureCompare;
+    }
+
+    const reliabilityPenaltyCompare = compareNumberAscending(a.reliabilityPenalty, b.reliabilityPenalty);
+    if (reliabilityPenaltyCompare !== 0) {
+        return reliabilityPenaltyCompare;
+    }
+
+    const confidenceCompare = compareNumberDescending(a.benchmarkConfidence, b.benchmarkConfidence);
+    if (confidenceCompare !== 0) {
+        return confidenceCompare;
+    }
+
+    const statusRankA = a.status === 'idle' ? 2 : a.status === 'busy' ? 1 : 0;
+    const statusRankB = b.status === 'idle' ? 2 : b.status === 'busy' ? 1 : 0;
+    const statusCompare = compareNumberDescending(statusRankA, statusRankB, 0);
+    if (statusCompare !== 0) {
+        return statusCompare;
+    }
+
+    const loadA = Number.isFinite(Number(a.load)) ? Number(a.load) : 1;
+    const loadB = Number.isFinite(Number(b.load)) ? Number(b.load) : 1;
+    const loadCompare = compareNumberAscending(loadA, loadB);
+    if (loadCompare !== 0) {
+        return loadCompare;
+    }
+
+    const stalenessA = Number.isFinite(a.heartbeatStalenessMs)
+        ? Number(a.heartbeatStalenessMs)
+        : Number.POSITIVE_INFINITY;
+    const stalenessB = Number.isFinite(b.heartbeatStalenessMs)
+        ? Number(b.heartbeatStalenessMs)
+        : Number.POSITIVE_INFINITY;
+    const stalenessCompare = compareNumberAscending(stalenessA, stalenessB);
+    if (stalenessCompare !== 0) {
+        return stalenessCompare;
+    }
+
+    const idA = typeof a.agentId === 'string' ? a.agentId : '';
+    const idB = typeof b.agentId === 'string' ? b.agentId : '';
+    const idCompare = compareText(idA, idB);
+    if (idCompare !== 0) {
+        return idCompare;
+    }
+
+    const tieBreakKeyCompare = compareText(a._tieBreakKey || '', b._tieBreakKey || '');
+    if (tieBreakKeyCompare !== 0) {
+        return tieBreakKeyCompare;
+    }
+
+    return 0;
+}
+
+function selectDegradedFallbackCandidate(taskRequest, ranked, options = {}) {
+    const fallbackConfig = resolveFallbackReasonConfig(options);
+    const priority = normalizePriority(taskRequest?.priority);
+
+    const candidates = [];
+
+    for (const candidate of ranked) {
+        if (!candidate || candidate.eligible) continue;
+        if (typeof candidate.agentId !== 'string' || !candidate.agentId.trim()) continue;
+
+        const missingCapabilities = normalizeCapabilities(candidate.missingCapabilities);
+        if (missingCapabilities.length > 0) continue;
+
+        if (!fallbackConfig.allowedReasonSet.has(candidate.reason)) continue;
+
+        if (candidate.reason === 'reliability_floor_breach') {
+            if (priority === 'critical' && options.allowCriticalReliabilityFallback !== true) {
+                continue;
+            }
+
+            if (priority === 'high' && options.allowHighReliabilityFallback !== true) {
+                continue;
+            }
+        }
+
+        candidates.push(candidate);
+    }
+
+    if (candidates.length === 0) return null;
+
+    candidates.sort((a, b) => compareDegradedFallbackCandidates(a, b, fallbackConfig.reasonRankByReason));
+    return candidates[0] || null;
 }
 
 function normalizeBenchmarkThresholds(options) {
@@ -266,10 +489,76 @@ function scoreBenchmark(stats, context) {
 }
 
 
+function scoreLoadPenalty(load, context) {
+    const clampedLoad = clamp(load, 0, 1);
+    const basePenalty = clampedLoad * context.loadPenaltyWeight;
+    const softCap = clamp(context.loadSoftCap, 0, 1);
+
+    if (clampedLoad <= softCap || softCap >= 1) {
+        return Number(basePenalty.toFixed(4));
+    }
+
+    const overageRatio = (clampedLoad - softCap) / Math.max(1 - softCap, SCORE_EPSILON);
+    const surgePenalty = (overageRatio ** context.loadSurgeExponent) * context.loadPenaltyWeight;
+
+    const criticalThreshold = clamp(context.loadCriticalThreshold, 0, 1);
+    const criticalPenalty = clampedLoad > criticalThreshold && criticalThreshold < 1
+        ? (((clampedLoad - criticalThreshold) / Math.max(1 - criticalThreshold, SCORE_EPSILON)) ** 2)
+            * context.loadPenaltyWeight
+            * context.loadCriticalMultiplier
+        : 0;
+
+    return Number((basePenalty + surgePenalty + criticalPenalty).toFixed(4));
+}
+
+function scoreStalenessPenalty(heartbeat, context) {
+    if (heartbeat?.state === 'missing') {
+        return Number(context.missingHeartbeatPenalty.toFixed(4));
+    }
+
+    if (!Number.isFinite(heartbeat?.stalenessMs)) {
+        return 0;
+    }
+
+    const stalenessRatio = clamp(heartbeat.stalenessMs / context.maxStalenessMs, 0, 1);
+    const basePenalty = stalenessRatio * context.stalenessPenaltyWeight;
+    const softRatio = clamp(context.stalenessSoftRatio, 0, 1);
+
+    if (stalenessRatio <= softRatio || softRatio >= 1) {
+        return Number(basePenalty.toFixed(4));
+    }
+
+    const overageRatio = (stalenessRatio - softRatio) / Math.max(1 - softRatio, SCORE_EPSILON);
+    const surgePenalty = (overageRatio ** context.stalenessSurgeExponent) * context.stalenessPenaltyWeight;
+
+    const criticalRatio = clamp(context.stalenessCriticalRatio, 0, 1);
+    const criticalPenalty = stalenessRatio > criticalRatio && criticalRatio < 1
+        ? (((stalenessRatio - criticalRatio) / Math.max(1 - criticalRatio, SCORE_EPSILON)) ** 2)
+            * context.stalenessPenaltyWeight
+            * context.stalenessCriticalMultiplier
+        : 0;
+
+    return Number((basePenalty + surgePenalty + criticalPenalty).toFixed(4));
+}
+
 function scoreReliabilityPenalty(stats, context) {
     if (!stats?.hasAny) {
         return 0;
     }
+
+    const thresholds = context.benchmarkThresholds;
+    const reliabilityFloor = Math.max(thresholds.minSuccessRate, SCORE_EPSILON);
+    const failureFloor = Math.max(thresholds.maxFailureRate, SCORE_EPSILON);
+    const timeoutFloor = Math.max(thresholds.maxTimeoutRate, SCORE_EPSILON);
+    const combinedFloor = Math.max(
+        thresholds.maxFailureRate + thresholds.maxTimeoutRate,
+        SCORE_EPSILON
+    );
+
+    const sampleRatio = stats.samples === null
+        ? 0
+        : clamp(stats.samples / context.minSamplesForFullConfidence, 0, 1);
+    const lowSampleMultiplier = 1 + ((1 - sampleRatio) * context.lowSampleOverageMultiplier);
 
     const failurePenalty = stats.failureRate === null
         ? 0
@@ -278,7 +567,164 @@ function scoreReliabilityPenalty(stats, context) {
         ? 0
         : stats.timeoutRate * context.timeoutPenaltyWeight;
 
-    return Number((failurePenalty + timeoutPenalty).toFixed(4));
+    const failureOveragePenalty = stats.failureRate !== null && stats.failureRate > thresholds.maxFailureRate
+        ? ((stats.failureRate - thresholds.maxFailureRate) / failureFloor)
+            * context.failurePenaltyWeight
+            * context.reliabilityOverageMultiplier
+            * lowSampleMultiplier
+        : 0;
+    const timeoutOveragePenalty = stats.timeoutRate !== null && stats.timeoutRate > thresholds.maxTimeoutRate
+        ? ((stats.timeoutRate - thresholds.maxTimeoutRate) / timeoutFloor)
+            * context.timeoutPenaltyWeight
+            * context.reliabilityOverageMultiplier
+            * lowSampleMultiplier
+        : 0;
+
+    const successDeficitRatio = stats.successRate !== null && stats.successRate < thresholds.minSuccessRate
+        ? (thresholds.minSuccessRate - stats.successRate) / reliabilityFloor
+        : 0;
+    const successDeficitPenalty = successDeficitRatio > 0
+        ? (successDeficitRatio ** 1.35)
+            * (context.failurePenaltyWeight + context.timeoutPenaltyWeight)
+            * 0.5
+            * context.reliabilityOverageMultiplier
+            * lowSampleMultiplier
+        : 0;
+
+    const combinedErrorRate = (stats.failureRate || 0) + (stats.timeoutRate || 0);
+    const combinedErrorPenalty = combinedErrorRate > combinedFloor
+        ? ((combinedErrorRate - combinedFloor) / combinedFloor)
+            * (context.failurePenaltyWeight + context.timeoutPenaltyWeight)
+            * 0.65
+            * context.reliabilityOverageMultiplier
+            * lowSampleMultiplier
+        : 0;
+
+    const interactionPenalty = stats.failureRate !== null && stats.timeoutRate !== null
+        ? (stats.failureRate * stats.timeoutRate)
+            * (context.failurePenaltyWeight + context.timeoutPenaltyWeight)
+            * 0.35
+        : 0;
+
+    return Number((
+        failurePenalty
+        + timeoutPenalty
+        + failureOveragePenalty
+        + timeoutOveragePenalty
+        + successDeficitPenalty
+        + combinedErrorPenalty
+        + interactionPenalty
+    ).toFixed(4));
+}
+
+function scoreTimeoutPressurePenalty(stats, context) {
+    if (!stats?.hasAny) {
+        return 0;
+    }
+
+    let timeoutPenalty = 0;
+
+    if (stats.timeoutRate !== null) {
+        const timeoutFloor = Math.max(context.benchmarkThresholds.maxTimeoutRate, SCORE_EPSILON);
+        const timeoutRatio = clamp(stats.timeoutRate / timeoutFloor, 0, 3);
+        const triggerRatio = clamp(context.timeoutPressureTriggerRatio, 0, 1);
+
+        if (timeoutRatio > triggerRatio) {
+            const overageRatio = (timeoutRatio - triggerRatio) / Math.max(1 - triggerRatio, SCORE_EPSILON);
+            timeoutPenalty += (overageRatio ** context.timeoutPressureExponent) * context.timeoutPressureWeight;
+        } else {
+            timeoutPenalty += (timeoutRatio ** 1.35) * context.timeoutPressureWeight * 0.32;
+        }
+
+        if (timeoutRatio > 1) {
+            const spikeRatio = timeoutRatio - 1;
+            timeoutPenalty += (spikeRatio ** (context.timeoutPressureExponent + 0.25))
+                * context.timeoutPressureWeight
+                * 0.55;
+        }
+    }
+
+    let p95Penalty = 0;
+
+    if (stats.p95LatencyMs !== null) {
+        const p95Floor = Math.max(context.benchmarkThresholds.maxP95LatencyMs, SCORE_EPSILON);
+        const p95Ratio = clamp(stats.p95LatencyMs / p95Floor, 0, 3);
+        const p95TriggerRatio = clamp(context.p95TimeoutPressureTriggerRatio, 0, 1);
+
+        if (p95Ratio > p95TriggerRatio) {
+            const overageRatio = (p95Ratio - p95TriggerRatio) / Math.max(1 - p95TriggerRatio, SCORE_EPSILON);
+            p95Penalty += (overageRatio ** context.p95TimeoutPressureExponent) * context.p95TimeoutPressureWeight;
+        }
+    }
+
+    const sampleConfidence = stats.samples === null
+        ? 0.35
+        : clamp(stats.samples / context.timeoutPressureFullConfidenceSamples, 0, 1);
+    const confidenceMultiplier = 0.85 + ((1 - sampleConfidence) * 0.45);
+
+    return Number(((timeoutPenalty + p95Penalty) * confidenceMultiplier).toFixed(4));
+}
+
+
+function evaluateReliabilityFloor(stats, priority, context) {
+    if (!stats?.hasAny) {
+        return {
+            blocked: false,
+            reason: null,
+            severity: 0
+        };
+    }
+
+    const sampleCount = Number.isFinite(stats.samples) ? Math.max(0, Number(stats.samples)) : 0;
+    if (sampleCount < context.reliabilityFloorMinSamples) {
+        return {
+            blocked: false,
+            reason: null,
+            severity: 0
+        };
+    }
+
+    const thresholds = context.benchmarkThresholds;
+    const overageRatio = Math.max(context.reliabilityFloorOverageRatio, 1);
+    const combinedFloor = Math.max(thresholds.maxFailureRate + thresholds.maxTimeoutRate, SCORE_EPSILON);
+
+    const successBelowFloor = stats.successRate !== null && stats.successRate < thresholds.minSuccessRate;
+    const timeoutAboveFloor = stats.timeoutRate !== null && stats.timeoutRate > thresholds.maxTimeoutRate;
+    const failureAboveFloor = stats.failureRate !== null && stats.failureRate > thresholds.maxFailureRate;
+
+    const severeSuccessDrop = stats.successRate !== null
+        && stats.successRate < (thresholds.minSuccessRate * context.reliabilityFloorSuccessRatio);
+    const severeTimeoutBreach = stats.timeoutRate !== null
+        && stats.timeoutRate > (thresholds.maxTimeoutRate * overageRatio);
+    const severeFailureBreach = stats.failureRate !== null
+        && stats.failureRate > (thresholds.maxFailureRate * overageRatio);
+    const combinedErrorRate = (stats.failureRate || 0) + (stats.timeoutRate || 0);
+    const severeCombinedError = combinedErrorRate
+        > (combinedFloor * context.reliabilityFloorCombinedErrorMultiplier);
+
+    const successSeverity = stats.successRate !== null && stats.successRate < thresholds.minSuccessRate
+        ? (thresholds.minSuccessRate - stats.successRate) / Math.max(thresholds.minSuccessRate, SCORE_EPSILON)
+        : 0;
+    const timeoutSeverity = stats.timeoutRate !== null && stats.timeoutRate > thresholds.maxTimeoutRate
+        ? (stats.timeoutRate - thresholds.maxTimeoutRate) / Math.max(thresholds.maxTimeoutRate, SCORE_EPSILON)
+        : 0;
+    const failureSeverity = stats.failureRate !== null && stats.failureRate > thresholds.maxFailureRate
+        ? (stats.failureRate - thresholds.maxFailureRate) / Math.max(thresholds.maxFailureRate, SCORE_EPSILON)
+        : 0;
+    const combinedSeverity = combinedErrorRate > combinedFloor
+        ? (combinedErrorRate - combinedFloor) / combinedFloor
+        : 0;
+
+    const strictPriority = priority === 'critical' || priority === 'high';
+    const blocked = strictPriority
+        ? (successBelowFloor || timeoutAboveFloor || failureAboveFloor)
+        : (severeSuccessDrop || severeTimeoutBreach || severeFailureBreach || severeCombinedError);
+
+    return {
+        blocked,
+        reason: blocked ? 'reliability_floor_breach' : null,
+        severity: Number(Math.max(successSeverity, timeoutSeverity, failureSeverity, combinedSeverity).toFixed(4))
+    };
 }
 
 function evaluateHeartbeat(agent, context) {
@@ -354,13 +800,30 @@ function evaluateHeartbeat(agent, context) {
     };
 }
 
+function scoreMissingHeartbeatPriorityPenalty(heartbeat, priority, context) {
+    if (heartbeat?.state !== 'missing') {
+        return 0;
+    }
+
+    const multiplier = priority === 'critical'
+        ? 2.5
+        : priority === 'high'
+            ? 1.6
+            : priority === 'low'
+                ? 0.8
+                : 1;
+
+    return Number((context.missingHeartbeatPenalty * Math.max(multiplier - 1, 0)).toFixed(4));
+}
+
 function scoreAgent(taskRequest, agent, context) {
     if (!agent || typeof agent !== 'object') {
         return {
             eligible: false,
             score: -Infinity,
             reason: 'invalid_agent',
-            benchmarkConfidence: 0
+            benchmarkConfidence: 0,
+            timeoutPressurePenalty: 0
         };
     }
 
@@ -370,17 +833,8 @@ function scoreAgent(taskRequest, agent, context) {
             eligible: false,
             score: -Infinity,
             reason: `status_${status}`,
-            benchmarkConfidence: 0
-        };
-    }
-
-    const heartbeat = evaluateHeartbeat(agent, context);
-    if (!heartbeat.eligible) {
-        return {
-            eligible: false,
-            score: -Infinity,
-            reason: heartbeat.reason,
-            benchmarkConfidence: 0
+            benchmarkConfidence: 0,
+            timeoutPressurePenalty: 0
         };
     }
 
@@ -397,14 +851,52 @@ function scoreAgent(taskRequest, agent, context) {
             score: -Infinity,
             reason: 'missing_capabilities',
             missingCapabilities,
-            benchmarkConfidence: 0
+            benchmarkConfidence: 0,
+            timeoutPressurePenalty: 0
         };
     }
 
-    const priority = taskRequest.priority || 'normal';
+    const priority = normalizePriority(taskRequest.priority);
+    const benchmarkStats = resolveBenchmarkStats(agent, context);
+    const benchmark = scoreBenchmark(benchmarkStats, context);
+    const reliabilityPenalty = scoreReliabilityPenalty(benchmarkStats, context);
+    const timeoutPressurePenalty = scoreTimeoutPressurePenalty(benchmarkStats, context);
+    const reliabilityFloor = evaluateReliabilityFloor(benchmarkStats, priority, context);
+
+    const heartbeat = evaluateHeartbeat(agent, context);
+    if (!heartbeat.eligible) {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: heartbeat.reason,
+            missingCapabilities: [],
+            benchmarkConfidence: benchmark.confidence,
+            benchmarkAdjustment: benchmark.adjustment,
+            reliabilityPenalty,
+            timeoutPressurePenalty,
+            reliabilityFloorSeverity: reliabilityFloor.severity,
+            heartbeatStalenessMs: heartbeat.stalenessMs
+        };
+    }
+
+    if (reliabilityFloor.blocked) {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: reliabilityFloor.reason,
+            missingCapabilities: [],
+            benchmarkConfidence: benchmark.confidence,
+            benchmarkAdjustment: benchmark.adjustment,
+            reliabilityPenalty,
+            timeoutPressurePenalty,
+            reliabilityFloorSeverity: reliabilityFloor.severity,
+            heartbeatStalenessMs: heartbeat.stalenessMs
+        };
+    }
+
     let score = 100;
 
-    const loadPenalty = Number((load * context.loadPenaltyWeight).toFixed(4));
+    const loadPenalty = scoreLoadPenalty(load, context);
     score -= loadPenalty;
 
     if (status === 'idle') score += 15;
@@ -422,18 +914,16 @@ function scoreAgent(taskRequest, agent, context) {
         score -= 5;
     }
 
-    const stalenessPenalty = heartbeat.state === 'missing'
-        ? context.missingHeartbeatPenalty
-        : Number.isFinite(heartbeat.stalenessMs)
-            ? Number((clamp(heartbeat.stalenessMs / context.maxStalenessMs, 0, 1) * context.stalenessPenaltyWeight).toFixed(4))
-            : 0;
+    const stalenessPenalty = scoreStalenessPenalty(heartbeat, context);
     score -= stalenessPenalty;
 
-    const benchmarkStats = resolveBenchmarkStats(agent, context);
-    const reliabilityPenalty = scoreReliabilityPenalty(benchmarkStats, context);
+    const missingHeartbeatPriorityPenalty = scoreMissingHeartbeatPriorityPenalty(heartbeat, priority, context);
+    score -= missingHeartbeatPriorityPenalty;
+
     score -= reliabilityPenalty;
 
-    const benchmark = scoreBenchmark(benchmarkStats, context);
+    score -= timeoutPressurePenalty;
+
     score += benchmark.adjustment;
 
     return {
@@ -445,7 +935,9 @@ function scoreAgent(taskRequest, agent, context) {
         benchmarkAdjustment: benchmark.adjustment,
         loadPenalty,
         stalenessPenalty,
+        missingHeartbeatPriorityPenalty,
         reliabilityPenalty,
+        timeoutPressurePenalty,
         heartbeatStalenessMs: heartbeat.stalenessMs
     };
 }
@@ -464,7 +956,70 @@ function buildScoringContext(options = {}) {
         stalenessPenaltyWeight: resolveNonNegativeOption(options.stalenessPenaltyWeight, DEFAULT_STALENESS_PENALTY_WEIGHT),
         missingHeartbeatPenalty: resolveNonNegativeOption(options.missingHeartbeatPenalty, DEFAULT_MISSING_HEARTBEAT_PENALTY),
         failurePenaltyWeight: resolveNonNegativeOption(options.failurePenaltyWeight, DEFAULT_FAILURE_PENALTY_WEIGHT),
-        timeoutPenaltyWeight: resolveNonNegativeOption(options.timeoutPenaltyWeight, DEFAULT_TIMEOUT_PENALTY_WEIGHT)
+        timeoutPenaltyWeight: resolveNonNegativeOption(options.timeoutPenaltyWeight, DEFAULT_TIMEOUT_PENALTY_WEIGHT),
+        loadSoftCap: resolveUnitIntervalOption(options.loadSoftCap, DEFAULT_LOAD_SOFT_CAP),
+        stalenessSoftRatio: resolveUnitIntervalOption(options.stalenessSoftRatio, DEFAULT_STALENESS_SOFT_RATIO),
+        reliabilityOverageMultiplier: resolveNonNegativeOption(
+            options.reliabilityOverageMultiplier,
+            DEFAULT_RELIABILITY_OVERAGE_MULTIPLIER
+        ),
+        loadSurgeExponent: resolvePositiveOption(options.loadSurgeExponent, DEFAULT_LOAD_SURGE_EXPONENT),
+        stalenessSurgeExponent: resolvePositiveOption(options.stalenessSurgeExponent, DEFAULT_STALENESS_SURGE_EXPONENT),
+        loadCriticalThreshold: resolveUnitIntervalOption(options.loadCriticalThreshold, DEFAULT_LOAD_CRITICAL_THRESHOLD),
+        stalenessCriticalRatio: resolveUnitIntervalOption(options.stalenessCriticalRatio, DEFAULT_STALENESS_CRITICAL_RATIO),
+        loadCriticalMultiplier: resolveNonNegativeOption(options.loadCriticalMultiplier, DEFAULT_LOAD_CRITICAL_MULTIPLIER),
+        stalenessCriticalMultiplier: resolveNonNegativeOption(
+            options.stalenessCriticalMultiplier,
+            DEFAULT_STALENESS_CRITICAL_MULTIPLIER
+        ),
+        lowSampleOverageMultiplier: resolveNonNegativeOption(
+            options.lowSampleOverageMultiplier,
+            DEFAULT_LOW_SAMPLE_OVERAGE_MULTIPLIER
+        ),
+        reliabilityFloorMinSamples: resolvePositiveOption(
+            options.reliabilityFloorMinSamples,
+            DEFAULT_RELIABILITY_FLOOR_MIN_SAMPLES
+        ),
+        reliabilityFloorSuccessRatio: resolveUnitIntervalOption(
+            options.reliabilityFloorSuccessRatio,
+            DEFAULT_RELIABILITY_FLOOR_SUCCESS_RATIO
+        ),
+        reliabilityFloorOverageRatio: resolvePositiveOption(
+            options.reliabilityFloorOverageRatio,
+            DEFAULT_RELIABILITY_FLOOR_OVERAGE_RATIO
+        ),
+        reliabilityFloorCombinedErrorMultiplier: resolvePositiveOption(
+            options.reliabilityFloorCombinedErrorMultiplier,
+            DEFAULT_RELIABILITY_FLOOR_COMBINED_ERROR_MULTIPLIER
+        ),
+        timeoutPressureWeight: resolveNonNegativeOption(
+            options.timeoutPressureWeight,
+            DEFAULT_TIMEOUT_PRESSURE_WEIGHT
+        ),
+        timeoutPressureTriggerRatio: resolveUnitIntervalOption(
+            options.timeoutPressureTriggerRatio,
+            DEFAULT_TIMEOUT_PRESSURE_TRIGGER_RATIO
+        ),
+        timeoutPressureExponent: resolvePositiveOption(
+            options.timeoutPressureExponent,
+            DEFAULT_TIMEOUT_PRESSURE_EXPONENT
+        ),
+        timeoutPressureFullConfidenceSamples: resolvePositiveOption(
+            options.timeoutPressureFullConfidenceSamples,
+            DEFAULT_TIMEOUT_PRESSURE_FULL_CONFIDENCE_SAMPLES
+        ),
+        p95TimeoutPressureWeight: resolveNonNegativeOption(
+            options.p95TimeoutPressureWeight,
+            DEFAULT_P95_TIMEOUT_PRESSURE_WEIGHT
+        ),
+        p95TimeoutPressureTriggerRatio: resolveUnitIntervalOption(
+            options.p95TimeoutPressureTriggerRatio,
+            DEFAULT_P95_TIMEOUT_PRESSURE_TRIGGER_RATIO
+        ),
+        p95TimeoutPressureExponent: resolvePositiveOption(
+            options.p95TimeoutPressureExponent,
+            DEFAULT_P95_TIMEOUT_PRESSURE_EXPONENT
+        )
     };
 }
 
@@ -473,24 +1028,70 @@ function compareRankedAgents(a, b) {
         return a.eligible ? -1 : 1;
     }
 
-    if (a.score !== b.score) {
-        return b.score - a.score;
+    const scoreCompare = compareNumberDescending(a.score, b.score);
+    if (scoreCompare !== 0) {
+        return scoreCompare;
     }
 
-    if (a.benchmarkConfidence !== b.benchmarkConfidence) {
-        return b.benchmarkConfidence - a.benchmarkConfidence;
+    const confidenceCompare = compareNumberDescending(a.benchmarkConfidence, b.benchmarkConfidence);
+    if (confidenceCompare !== 0) {
+        return confidenceCompare;
+    }
+
+    if (!a.eligible && !b.eligible) {
+        const reasonCompare = compareText(a.reason || '', b.reason || '');
+        if (reasonCompare !== 0) {
+            return reasonCompare;
+        }
+
+        const missingCapsA = normalizeCapabilities(a.missingCapabilities).sort((x, y) => compareText(x, y)).join(',');
+        const missingCapsB = normalizeCapabilities(b.missingCapabilities).sort((x, y) => compareText(x, y)).join(',');
+        const missingCapsCompare = compareText(missingCapsA, missingCapsB);
+        if (missingCapsCompare !== 0) {
+            return missingCapsCompare;
+        }
     }
 
     const statusRankA = a.status === 'idle' ? 2 : a.status === 'busy' ? 1 : 0;
     const statusRankB = b.status === 'idle' ? 2 : b.status === 'busy' ? 1 : 0;
-    if (statusRankA !== statusRankB) {
-        return statusRankB - statusRankA;
+    const statusCompare = compareNumberDescending(statusRankA, statusRankB, 0);
+    if (statusCompare !== 0) {
+        return statusCompare;
+    }
+
+    const reliabilityPenaltyCompare = compareNumberAscending(a.reliabilityPenalty, b.reliabilityPenalty);
+    if (reliabilityPenaltyCompare !== 0) {
+        return reliabilityPenaltyCompare;
+    }
+
+    const timeoutPressureCompare = compareNumberAscending(a.timeoutPressurePenalty, b.timeoutPressurePenalty);
+    if (timeoutPressureCompare !== 0) {
+        return timeoutPressureCompare;
+    }
+
+    const missingPenaltyCompare = compareNumberAscending(
+        a.missingHeartbeatPriorityPenalty,
+        b.missingHeartbeatPriorityPenalty
+    );
+    if (missingPenaltyCompare !== 0) {
+        return missingPenaltyCompare;
+    }
+
+    const loadPenaltyCompare = compareNumberAscending(a.loadPenalty, b.loadPenalty);
+    if (loadPenaltyCompare !== 0) {
+        return loadPenaltyCompare;
+    }
+
+    const stalenessPenaltyCompare = compareNumberAscending(a.stalenessPenalty, b.stalenessPenalty);
+    if (stalenessPenaltyCompare !== 0) {
+        return stalenessPenaltyCompare;
     }
 
     const loadA = Number.isFinite(Number(a.load)) ? Number(a.load) : 1;
     const loadB = Number.isFinite(Number(b.load)) ? Number(b.load) : 1;
-    if (loadA !== loadB) {
-        return loadA - loadB;
+    const loadCompare = compareNumberAscending(loadA, loadB);
+    if (loadCompare !== 0) {
+        return loadCompare;
     }
 
     const stalenessA = Number.isFinite(a.heartbeatStalenessMs)
@@ -499,20 +1100,29 @@ function compareRankedAgents(a, b) {
     const stalenessB = Number.isFinite(b.heartbeatStalenessMs)
         ? b.heartbeatStalenessMs
         : Number.POSITIVE_INFINITY;
-    if (stalenessA !== stalenessB) {
-        return stalenessA - stalenessB;
+    const stalenessCompare = compareNumberAscending(stalenessA, stalenessB);
+    if (stalenessCompare !== 0) {
+        return stalenessCompare;
     }
 
     const capabilityCountA = Array.isArray(a.capabilities) ? a.capabilities.length : 0;
     const capabilityCountB = Array.isArray(b.capabilities) ? b.capabilities.length : 0;
-    if (capabilityCountA !== capabilityCountB) {
-        return capabilityCountB - capabilityCountA;
+    const capabilityCompare = compareNumberDescending(capabilityCountA, capabilityCountB, 0);
+    if (capabilityCompare !== 0) {
+        return capabilityCompare;
     }
 
     const idA = typeof a.agentId === 'string' ? a.agentId : '';
     const idB = typeof b.agentId === 'string' ? b.agentId : '';
     const idCompare = compareText(idA, idB);
-    if (idCompare !== 0) return idCompare;
+    if (idCompare !== 0) {
+        return idCompare;
+    }
+
+    const tieBreakKeyCompare = compareText(a._tieBreakKey || '', b._tieBreakKey || '');
+    if (tieBreakKeyCompare !== 0) {
+        return tieBreakKeyCompare;
+    }
 
     return (a._sortIndex || 0) - (b._sortIndex || 0);
 }
@@ -528,7 +1138,7 @@ export function rankAgentsForTask(taskRequestPayload, agents, options = {}) {
     return agents
         .map((agent, index) => {
             const evaluation = scoreAgent(taskRequest, agent, scoringContext);
-            return {
+            const candidate = {
                 agentId: getAgentId(agent),
                 status: agent?.status,
                 load: agent?.load,
@@ -536,9 +1146,14 @@ export function rankAgentsForTask(taskRequestPayload, agents, options = {}) {
                 ...evaluation,
                 _sortIndex: index
             };
+
+            return {
+                ...candidate,
+                _tieBreakKey: buildTieBreakKey(candidate)
+            };
         })
         .sort(compareRankedAgents)
-        .map(({ _sortIndex, ...candidate }) => candidate);
+        .map(({ _sortIndex, _tieBreakKey, ...candidate }) => candidate);
 }
 
 export function selectBestAgentForTask(taskRequestPayload, agents, options = {}) {
@@ -555,22 +1170,44 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
     const taskRequest = TaskRequest.parse(taskRequestPayload);
     const selection = selectBestAgentForTask(taskRequest, agents, options);
 
-    if (!selection.selectedAgentId) {
+    if (selection.selectedAgentId) {
         return {
-            routed: false,
-            taskRequest,
-            selectedAgentId: null,
-            ranked: selection.ranked
+            routed: true,
+            selectedAgentId: selection.selectedAgentId,
+            ranked: selection.ranked,
+            fallbackUsed: false,
+            fallbackReason: null,
+            taskRequest: {
+                ...taskRequest,
+                target: selection.selectedAgentId
+            }
+        };
+    }
+
+    const fallbackCandidate = options?.allowDegradedFallback === true
+        ? selectDegradedFallbackCandidate(taskRequest, selection.ranked, options)
+        : null;
+
+    if (fallbackCandidate) {
+        return {
+            routed: true,
+            selectedAgentId: fallbackCandidate.agentId,
+            ranked: selection.ranked,
+            fallbackUsed: true,
+            fallbackReason: fallbackCandidate.reason || 'degraded_fallback',
+            taskRequest: {
+                ...taskRequest,
+                target: fallbackCandidate.agentId
+            }
         };
     }
 
     return {
-        routed: true,
-        selectedAgentId: selection.selectedAgentId,
+        routed: false,
+        taskRequest,
+        selectedAgentId: null,
         ranked: selection.ranked,
-        taskRequest: {
-            ...taskRequest,
-            target: selection.selectedAgentId
-        }
+        fallbackUsed: false,
+        fallbackReason: null
     };
 }

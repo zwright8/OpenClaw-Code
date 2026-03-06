@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 8526,
+    "name": "openclaw-v2-8526-curiosity-agenda-generation",
+    "title": "Curiosity Agenda Generation for cybersecurity operations",
+    "domain": "cybersecurity operations",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "curiosity agenda generation",
+    "archetype": "curiosity-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 78.01,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/8526-curiosity-agenda-generation-for-cybersecurity-operations/SKILL.md"
+  }
+}

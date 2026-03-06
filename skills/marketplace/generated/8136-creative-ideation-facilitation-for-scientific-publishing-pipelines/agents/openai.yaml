@@ -1,0 +1,4 @@
+interface:
+  display_name: "Creative Ideation Facilitation for scientific publishing..."
+  short_description: "Creative ideation facilitation for scientific publishing pipelines with guardrails and measurable outcomes."
+  default_prompt: "Use Creative Ideation Facilitation for scientific publishing pipelines to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

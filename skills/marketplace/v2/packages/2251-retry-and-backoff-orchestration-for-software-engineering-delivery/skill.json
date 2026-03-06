@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2251,
+    "name": "openclaw-v2-2251-retry-and-backoff-orchestration",
+    "title": "Retry And Backoff Orchestration for software engineering delivery",
+    "domain": "software engineering delivery",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "retry and backoff orchestration",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 58.18,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2251-retry-and-backoff-orchestration-for-software-engineering-delivery/SKILL.md"
+  }
+}

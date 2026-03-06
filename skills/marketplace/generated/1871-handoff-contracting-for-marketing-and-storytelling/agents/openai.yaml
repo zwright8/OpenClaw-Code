@@ -1,0 +1,4 @@
+interface:
+  display_name: "Handoff Contracting for marketing and storytelling"
+  short_description: "Handoff contracting for marketing and storytelling with guardrails and measurable outcomes."
+  default_prompt: "Use Handoff Contracting for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

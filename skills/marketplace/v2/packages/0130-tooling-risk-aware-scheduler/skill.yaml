@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 130
+  name: "openclaw-v2-0130-risk-weighted-sequencing"
+  title: "Tooling Risk-Aware Scheduler"
+  domain: "Tool Reliability and Execution Quality"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "risk-weighted sequencing"
+  archetype: "planning-router"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 60
+  roi_score: 62.09
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0130-tooling-risk-aware-scheduler/SKILL.md"

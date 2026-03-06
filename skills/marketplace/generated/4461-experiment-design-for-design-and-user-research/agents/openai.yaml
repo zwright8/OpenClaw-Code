@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Design for design and user research"
+  short_description: "Experiment design for design and user research with guardrails and measurable outcomes."
+  default_prompt: "Use Experiment Design for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,13 @@
+{
+  "task": "Execute uncertainty communication",
+  "objective": "Deliver Uncertainty Communication for healthcare operations outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

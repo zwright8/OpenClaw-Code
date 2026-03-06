@@ -1,0 +1,26 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 5876
+  name: "openclaw-v2-5876-cost-benefit-forecasting"
+  title: "Cost-Benefit Forecasting for legal and policy workflows"
+  domain: "legal and policy workflows"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "cost-benefit forecasting"
+  archetype: "forecasting-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 97
+  roi_score: 86.79
+  trust_badges:
+    - "Verified-Quality"
+    - "ROI-Proven"
+    - "Enterprise-Ready"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/5876-cost-benefit-forecasting-for-legal-and-policy-workflows/SKILL.md"

@@ -1,14 +1,50 @@
 ---
 name: u0164-governance-contradiction-detector
-description: Build and operate the "Governance Contradiction Detector" capability for Safety and Governance. Use only when production execution explicitly requires this exact capability and output contract.
+description: Run the Governance Contradiction Detector capability for Safety and Governance with deterministic outputs, policy-gated release, and handoff-ready operational artifacts. Use when mission execution explicitly requires this capability.
 ---
 
 # Governance Contradiction Detector
 
+## Quick Reference
+| Field | Value |
+|---|---|
+| Skill ID | `164` |
+| Domain | `Safety and Governance` |
+| Runtime archetype | `detection-guard` |
+| Core method | `cross-claim consistency checks` |
+| Primary artifact | `contradiction alerts` |
+| Routing tag | `safety-and-governance:detection-guard` |
+| Feature flag | `skill_0164_governance-contradiction-detecto` |
+| Release cycles | `2` |
+
 ## Why This Skill Exists
 We need this skill because high-speed autonomy needs enforceable guardrails to stay aligned. This specific skill catches internal and external claim conflicts early.
 
-## Step-by-Step Implementation Guide
+## Trigger Checklist
+- [ ] The task explicitly needs Governance Contradiction Detector (not generic brainstorming).
+- [ ] Inputs are sufficient and source provenance is available.
+- [ ] Success criteria are measurable and agreed before execution.
+- [ ] A downstream owner/consumer for handoff is identified.
+- [ ] If risk is high, human approval path is available before publish.
+
+## Inputs (contract)
+| Input | Type | Required | Source |
+|---|---|---|---|
+| policies | signal | yes | upstream/operator |
+| violations | signal | yes | upstream/operator |
+| mitigation actions | signal | yes | upstream/operator |
+| claims | signal | yes | upstream/operator |
+| evidence | signal | yes | upstream/operator |
+| confidence traces | signal | yes | upstream/operator |
+
+## Outputs (contract)
+| Output | Type | Guaranteed | Consumer |
+|---|---|---|---|
+| contradiction alerts | structured-artifact | yes | downstream orchestrator |
+| contradiction alerts-scorecard | scorecard | yes | operator / reviewer |
+| contradiction alerts-handoff | handoff-packet | yes | next owner |
+
+## Implementation Guide
 1. Define the scope and success metrics for `Governance Contradiction Detector`, including at least three measurable KPIs tied to unsafe actions and policy drift.
 2. Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.
 3. Implement the core capability using cross-claim consistency checks, and produce contradiction alerts with deterministic scoring.
@@ -16,88 +52,161 @@ We need this skill because high-speed autonomy needs enforceable guardrails to s
 5. Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## Metadata
-- **Skill ID:** `164`
-- **Skill Name:** `u0164-governance-contradiction-detector`
-- **Domain:** `Safety and Governance`
-- **Domain Slug:** `safety-and-governance`
-- **Archetype:** `detection-guard`
-- **Core Method:** `cross-claim consistency checks`
-- **Primary Artifact:** `contradiction alerts`
-- **Routing Tag:** `safety-and-governance:detection-guard`
-- **Feature Flag:** `skill_0164_governance-contradiction-detecto`
-- **Release Cycles:** `2`
+## Operational Runbook
+### Preflight
+- Confirm scope, owner, and success criteria for Governance Contradiction Detector.
 
-## Allowed Tools
-- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
-- `exec`, `process` for deterministic execution, validation suites, and regression checks.
-- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
-- Use messaging or publishing tools only after policy approval gates are satisfied.
+### Execution
+- Execute cross-claim consistency checks deterministically and capture reproducible traces.
 
-## Inputs (formatted)
-| name | type | required | source |
+### Recovery
+- Apply retry policy then rollback-to-last-stable-baseline when posture remains critical.
+
+### Handoff
+- Publish artifact bundle, scorecard, and next actions with clear ownership.
+
+## Operator Use Cases
+- Operate Governance Contradiction Detector as a reliable, reusable production workflow.
+
+## Guardrail Policy Matrix
+| Guardrail Type | Policy Rule | Automation Hook |
+|---|---|---|
+| general | Enforce deterministic quality and policy constraints. | validation+approval gates |
+
+## Posture Playbook
+- **Ready posture (score >= 77):** release artifacts after validation pass and route to `safety-and-governance:detection-guard`.
+- **Review posture (score >= 46 or risk >= 33):** require human review before publish, with explicit remediation notes.
+- **Critical posture (risk >= 71):** fail closed, execute `rollback-to-last-stable-baseline`, and escalate with incident packet.
+
+## Traceability Map
+- **Scope:** Define the scope and success metrics for `Governance Contradiction Detector`, including at least three measurable KPIs tied to unsafe actions and policy drift.
+- **Contract:** Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.
+- **Core:** Implement the core capability using cross-claim consistency checks, and produce contradiction alerts with deterministic scoring.
+- **Orchestration:** Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
+- **Validation:** Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.
+- **Rollout:** Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
+
+## Decision & Scoring Policy
+- Scoring weights: `truth=0.28, execution=0.32, safety=0.11, impact=0.29`
+- Posture thresholds:
+  - `ready`: score >= 77
+  - `review`: score >= 46
+  - `review_risk`: risk >= 33
+  - `critical_risk`: risk >= 71
+- Retry policy: max attempts `3`, base delay `1200ms`, backoff `exponential`.
+- Approval gates: `policy-constraint-check`, `human-approval-router`, `safety-review`.
+
+## Validation Gates & Test Matrix
+| Gate | Purpose | On Fail |
+|---|---|---|
+| schema-contract-check | Ensure required inputs and contract shape are valid. | block release |
+| determinism-check | Replay identical input and compare output hash/score delta. | escalate + quarantine |
+| policy-approval-check | Verify policy constraints and approval tokens. | block publish |
+| reliability-check | Validate retry budget and rollback readiness. | rollback to stable baseline |
+
+- Required validation suites: unit, integration, simulation, regression-baseline
+
+## Failure Modes & Recovery Playbook
+- `E_INPUT_SCHEMA`: required signal missing or malformed -> reject payload and request corrected input.
+- `E_NON_DETERMINISM`: replay mismatch or unstable score delta -> quarantine output and escalate for human review.
+- `E_POLICY_BLOCK`: approval/policy gate unsatisfied -> keep publish blocked until explicit approval is attached.
+- `E_DEPENDENCY_TIMEOUT`: transient timeout -> apply retry budget; if unresolved, execute `rollback-to-last-stable-baseline` and issue incident packet.
+
+## Human Approval & Escalation
+- High-risk or policy-sensitive runs require an explicit approval token before release.
+- Escalate to human reviewer when any gate fails twice or critical risk posture is reached.
+- Escalation packet must include: scope, failed gate, evidence links, retry history, and recommended decision.
+
+## Automation Envelope
+| Setting | Value |
+|---|---|
+| Maturity tier | `standard` |
+| Autopilot ready | `no` |
+| Parallelism | `1` |
+| Max cycle minutes | `n/a` |
+| Required approvals | `policy-constraint-check`, `human-approval-router`, `safety-review` |
+
+## Acceptance Checklist
+- [ ] Schema, determinism, policy, and reliability gates all pass.
+- [ ] Output artifact bundle includes scorecard, risks, and next actions.
+- [ ] Handoff owner confirms artifact usability without additional clarification.
+- [ ] Telemetry and trace references are attached for auditability.
+
+## External Tool Stack Recommendation
+| Field | Value |
+|---|---|
+| Recommendation class | `hybrid` |
+| Migration priority | `P1` |
+| External auth required | `yes` |
+| API key likely required | `yes` |
+| Rationale | Use external systems for persistence/enforcement/math and frontier models for synthesis and language-heavy reasoning. |
+
+| Service | Why in stack | Auth mode | Auth required | API key likely |
+|---|---|---|---|---|
+| Frontier model runtime | reasoning and synthesis | model provider credentials | yes | yes |
+| Task/workflow orchestrator | durable execution and retries | account/session credentials | yes | no |
+| Telemetry store | evidence and observability | account/session credentials | yes | no |
+| Audit log + immutable storage | compliance-grade evidence retention | account/session credentials | yes | no |
+
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
 |---|---|---|---|
-| policies | signal | true | upstream |
-| violations | signal | true | upstream |
-| mitigation actions | signal | true | upstream |
-| claims | signal | true | upstream |
-| evidence | signal | true | upstream |
-| confidence traces | signal | true | upstream |
+| Frontier model runtime | reasoning and synthesis | model inference | no |
+| Task/workflow orchestrator | durable execution and retries | read+write | yes |
+| Telemetry store | evidence and observability | read+write | yes |
+| Audit log + immutable storage | compliance-grade evidence retention | read/query | no |
 
-## Outputs (formatted)
-| name | type | guaranteed | consumer |
-|---|---|---|---|
-| contradiction_alerts_report | structured-report | true | orchestrator |
-| contradiction_alerts_scorecard | scorecard | true | operator |
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| Frontier model runtime | HTTPS/REST | model provider credentials | yes | yes | Check existing API key first; validate with lightweight auth request; prompt only if missing/invalid/expired. |
+| Task/workflow orchestrator | HTTPS/REST, gRPC | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Telemetry store | HTTPS/REST, OTLP or SQL | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Audit log + immutable storage | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
 
-## Guidelines
-1. Validate required inputs before execution and reject non-conforming payloads early.
-2. Run `cross-claim consistency checks` with deterministic settings and trace capture enabled.
-3. Produce `contradiction alerts` outputs in machine-readable form for orchestrator/operator use.
-4. Keep routing aligned with `safety-and-governance:detection-guard` and include approval context.
-5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `Frontier model runtime` -> auth preflight, execute model inference call(s), normalize output, and attach trace to `contradiction alerts`.
+2. `Task/workflow orchestrator` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `contradiction alerts`.
+3. `Telemetry store` -> auth preflight, execute read+write call(s), normalize output, and attach trace to `contradiction alerts`.
+4. `Audit log + immutable storage` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `contradiction alerts`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
 
-## Musts
-- Enforce approval gates: `policy-constraint-check`, `human-approval-router`, `safety-review`.
-- Apply retry policy: maxAttempts=`3`, baseDelayMs=`1200`, backoff=`exponential`.
-- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
-- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
-- Preserve reproducible evidence artifacts for audits and downstream handoff.
+## External Integration Migration Checklist
+- Provision service credentials and validate non-expired auth before first run.
+- Wire service outputs into validation/handoff artifacts.
+- Enable credential reuse; prompt user only on missing/invalid/expired credentials.
 
-## Targets (day/week/month operating cadence)
-- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
-- **Week:** Review KPI focus (`unsafe actions`, `policy drift`, `decision drift`), failure trends, and approval/retry performance.
-- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
+## Credential Reuse Policy
+- Reuse previously provided credentials by default; do not ask for new credentials when a valid credential/session already exists.
+- Before prompting, check environment/session secret stores and run lightweight auth validation.
+- Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
 
-## Common Actions
-1. **Intake Check:** Confirm all required signals are present and schema-valid.
-2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
-3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
-4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
-5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
+## Practical Usage Examples
+1. Incident recovery in Safety and Governance: ingest noisy signals, execute cross-claim consistency checks, produce an operator-ready scorecard and remediation queue.
+2. Scheduled quality pass: run Governance Contradiction Detector against baseline data, compare drift, and publish release/no-release recommendation with evidence links.
+3. Pre-deployment gate: validate artifacts for safety-and-governance:detection-guard, enforce approvals, then handoff to downstream orchestrator with next actions.
 
-## External Tool Calls Needed
-- None required by default.
-- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
+## Anti-Patterns
+- Do not publish artifacts when any validation gate fails.
+- Do not bypass approval gates for high-risk runs.
+- Do not run with missing provenance, schema, or success criteria.
+- Do not treat partial/non-deterministic outputs as production-ready.
 
-## Validation & Handoff
-### Validation Gates
-- `schema-contract-check`: All required input signals present and schema-valid (on fail: `quarantine`)
-- `determinism-check`: Repeated run on same inputs yields stable scoring and artifacts (on fail: `escalate`)
-- `policy-approval-check`: Approval gates satisfied before publish-level outputs (on fail: `retry`)
+## Handoff Contract
+- **Produces:** `contradiction alerts`, scorecard, risk/confidence metadata, remediation backlog.
+- **Consumes:** `policies`, `violations`, `mitigation actions`, `claims`, `evidence`, `confidence traces`.
+- **Readiness rule:** release only when schema, determinism, policy, and reliability gates all pass.
+- **Downstream hint:** route only to `safety-and-governance:detection-guard` consumers with approval context attached.
 
-### Validation Suites
-- `unit`
-- `integration`
-- `simulation`
-- `regression-baseline`
-
-### Failure Handling
-- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
-- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
-- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
-
-### Handoff Contract
-- **Produces:** `Governance Contradiction Detector normalized artifacts`, `execution scorecard`, `risk posture`
-- **Consumes:** `policies`, `violations`, `mitigation actions`, `claims`, `evidence`, `confidence traces`
-- **Downstream Hint:** Route next to safety-and-governance:detection-guard consumers with approval-gate context
+## Observability & Continuous Improvement
+- SLO: >=99.5% successful runs per 7-day window
+- Error budget: <=0.5% critical failures per 7-day window
+- Alert triggers:
+- Trigger alerts on repeated critical posture or validation regression spikes.
+- KPI focus: `unsafe actions`, `policy drift`, `decision drift`
+- Primary outcome metric: `unsafe actions`
+- Secondary metrics: `policy drift`, `decision drift`
+- Review cadence: `weekly`
+- Weekly review: tune thresholds, retries, and approval friction based on telemetry and incident learnings.

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4491,
+    "name": "openclaw-v2-4491-experiment-design",
+    "title": "Experiment Design for nonprofit program delivery",
+    "domain": "nonprofit program delivery",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "experiment design",
+    "archetype": "experimentation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 83,
+    "roiScore": 70.69,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4491-experiment-design-for-nonprofit-program-delivery/SKILL.md"
+  }
+}

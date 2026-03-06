@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 9896,
+    "name": "openclaw-v2-9896-decision-journal-maintenance",
+    "title": "Decision Journal Maintenance for disaster response networks",
+    "domain": "disaster response networks",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "decision journal maintenance",
+    "archetype": "journal-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 93,
+    "roiScore": 73.86,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/9896-decision-journal-maintenance-for-disaster-response-networks/SKILL.md"
+  }
+}

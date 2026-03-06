@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4466,
+    "name": "openclaw-v2-4466-experiment-design",
+    "title": "Experiment Design for sales and client success",
+    "domain": "sales and client success",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "experiment design",
+    "archetype": "experimentation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 83,
+    "roiScore": 72.43,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4466-experiment-design-for-sales-and-client-success/SKILL.md"
+  }
+}

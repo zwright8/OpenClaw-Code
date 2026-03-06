@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explainability Narrative Design for design and user research"
+  short_description: "Explainability narrative design for design and user research with guardrails and measurable outcomes."
+  default_prompt: "Use Explainability Narrative Design for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

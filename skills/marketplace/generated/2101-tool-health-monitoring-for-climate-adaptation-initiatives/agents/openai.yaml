@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Health Monitoring for climate adaptation initiatives"
+  short_description: "Tool health monitoring for climate adaptation initiatives with guardrails and measurable outcomes."
+  default_prompt: "Use Tool Health Monitoring for climate adaptation initiatives to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

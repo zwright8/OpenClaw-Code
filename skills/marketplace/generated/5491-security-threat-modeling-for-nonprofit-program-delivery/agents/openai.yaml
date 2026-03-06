@@ -1,0 +1,4 @@
+interface:
+  display_name: "Security Threat Modeling for nonprofit program delivery"
+  short_description: "Security threat modeling for nonprofit program delivery with guardrails and measurable outcomes."
+  default_prompt: "Use Security Threat Modeling for nonprofit program delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

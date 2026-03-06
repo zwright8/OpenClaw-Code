@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 168,
+    "name": "openclaw-v2-0168-dependency-graph-compilation",
+    "title": "Governance Dependency DAG Planner",
+    "domain": "Safety and Governance",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "dependency graph compilation",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 65.18,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0168-governance-dependency-dag-planner/SKILL.md"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 290,
+    "name": "openclaw-v2-0290-risk-weighted-sequencing",
+    "title": "Federation Risk-Aware Scheduler",
+    "domain": "Federation and Interoperability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "risk-weighted sequencing",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 74.86,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0290-federation-risk-aware-scheduler/SKILL.md"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7686,
+    "name": "openclaw-v2-7686-personal-habit-optimization",
+    "title": "Personal Habit Optimization for education support services",
+    "domain": "education support services",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "personal habit optimization",
+    "archetype": "habit-optimization-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 92,
+    "roiScore": 80.53,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7686-personal-habit-optimization-for-education-support-services/SKILL.md"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Logistics Privacy Preserving Data Broker"
+  short_description: "Policy-scoped data mediation for Resource Allocation and Logistics with guardrails and measurable outcomes."
+  default_prompt: "Use Logistics Privacy Preserving Data Broker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

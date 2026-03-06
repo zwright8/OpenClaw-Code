@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3756,
+    "name": "openclaw-v2-3756-multi-agent-negotiation",
+    "title": "Multi-Agent Negotiation for eldercare coordination",
+    "domain": "eldercare coordination",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "multi-agent negotiation",
+    "archetype": "negotiation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 63,
+    "roiScore": 66.29,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3756-multi-agent-negotiation-for-eldercare-coordination/SKILL.md"
+  }
+}

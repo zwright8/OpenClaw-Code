@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 5446
+  name: "openclaw-v2-5446-security-threat-modeling"
+  title: "Security Threat Modeling for entrepreneurship operations"
+  domain: "entrepreneurship operations"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "security threat modeling"
+  archetype: "modeling-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 87
+  roi_score: 74.85
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/5446-security-threat-modeling-for-entrepreneurship-operations/SKILL.md"

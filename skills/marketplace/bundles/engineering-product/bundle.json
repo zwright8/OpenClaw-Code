@@ -1,0 +1,910 @@
+{
+  "version": 1,
+  "generatedAt": "2026-03-02T22:49:54.089Z",
+  "verticalId": "engineering-product",
+  "verticalName": "Engineering and Product",
+  "description": "Software delivery, product execution, design systems, and research operations.",
+  "count": 90,
+  "entries": [
+    {
+      "id": 1051,
+      "marketplaceSkillName": "openclaw-1051-resource-budget-allocation",
+      "title": "Resource Budget Allocation for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1051-resource-budget-allocation-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1051-resource-budget-allocation-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1056,
+      "marketplaceSkillName": "openclaw-1056-resource-budget-allocation",
+      "title": "Resource Budget Allocation for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1056-resource-budget-allocation-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1056-resource-budget-allocation-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 1061,
+      "marketplaceSkillName": "openclaw-1061-resource-budget-allocation",
+      "title": "Resource Budget Allocation for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1061-resource-budget-allocation-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1061-resource-budget-allocation-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 1251,
+      "marketplaceSkillName": "openclaw-1251-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/1251-risk-aware-scheduling-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1251-risk-aware-scheduling-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1256,
+      "marketplaceSkillName": "openclaw-1256-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/1256-risk-aware-scheduling-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1256-risk-aware-scheduling-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 1261,
+      "marketplaceSkillName": "openclaw-1261-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/1261-risk-aware-scheduling-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1261-risk-aware-scheduling-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 1451,
+      "marketplaceSkillName": "openclaw-1451-constraint-compilation",
+      "title": "Constraint Compilation for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1451-constraint-compilation-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1451-constraint-compilation-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1456,
+      "marketplaceSkillName": "openclaw-1456-constraint-compilation",
+      "title": "Constraint Compilation for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1456-constraint-compilation-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1456-constraint-compilation-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 1461,
+      "marketplaceSkillName": "openclaw-1461-constraint-compilation",
+      "title": "Constraint Compilation for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/1461-constraint-compilation-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1461-constraint-compilation-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 1651,
+      "marketplaceSkillName": "openclaw-1651-human-approval-routing",
+      "title": "Human Approval Routing for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1651-human-approval-routing-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1651-human-approval-routing-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1656,
+      "marketplaceSkillName": "openclaw-1656-human-approval-routing",
+      "title": "Human Approval Routing for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1656-human-approval-routing-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1656-human-approval-routing-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 1661,
+      "marketplaceSkillName": "openclaw-1661-human-approval-routing",
+      "title": "Human Approval Routing for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1661-human-approval-routing-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1661-human-approval-routing-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 1851,
+      "marketplaceSkillName": "openclaw-1851-handoff-contracting",
+      "title": "Handoff Contracting for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1851-handoff-contracting-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1851-handoff-contracting-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 1856,
+      "marketplaceSkillName": "openclaw-1856-handoff-contracting",
+      "title": "Handoff Contracting for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1856-handoff-contracting-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1856-handoff-contracting-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 1861,
+      "marketplaceSkillName": "openclaw-1861-handoff-contracting",
+      "title": "Handoff Contracting for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/1861-handoff-contracting-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/1861-handoff-contracting-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 2051,
+      "marketplaceSkillName": "openclaw-2051-tool-health-monitoring",
+      "title": "Tool Health Monitoring for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2051-tool-health-monitoring-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2051-tool-health-monitoring-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2056,
+      "marketplaceSkillName": "openclaw-2056-tool-health-monitoring",
+      "title": "Tool Health Monitoring for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2056-tool-health-monitoring-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2056-tool-health-monitoring-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 2061,
+      "marketplaceSkillName": "openclaw-2061-tool-health-monitoring",
+      "title": "Tool Health Monitoring for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2061-tool-health-monitoring-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2061-tool-health-monitoring-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 2251,
+      "marketplaceSkillName": "openclaw-2251-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2251-retry-and-backoff-orchestration-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2251-retry-and-backoff-orchestration-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2256,
+      "marketplaceSkillName": "openclaw-2256-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2256-retry-and-backoff-orchestration-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2256-retry-and-backoff-orchestration-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 2261,
+      "marketplaceSkillName": "openclaw-2261-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2261-retry-and-backoff-orchestration-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2261-retry-and-backoff-orchestration-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 2451,
+      "marketplaceSkillName": "openclaw-2451-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2451-failure-root-cause-mining-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2451-failure-root-cause-mining-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2456,
+      "marketplaceSkillName": "openclaw-2456-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2456-failure-root-cause-mining-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2456-failure-root-cause-mining-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 2461,
+      "marketplaceSkillName": "openclaw-2461-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2461-failure-root-cause-mining-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2461-failure-root-cause-mining-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 2651,
+      "marketplaceSkillName": "openclaw-2651-regression-sentinel-design",
+      "title": "Regression Sentinel Design for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2651-regression-sentinel-design-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2651-regression-sentinel-design-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 2656,
+      "marketplaceSkillName": "openclaw-2656-regression-sentinel-design",
+      "title": "Regression Sentinel Design for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2656-regression-sentinel-design-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2656-regression-sentinel-design-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 2661,
+      "marketplaceSkillName": "openclaw-2661-regression-sentinel-design",
+      "title": "Regression Sentinel Design for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "marketplacePath": "skills/marketplace/generated/2661-regression-sentinel-design-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2661-regression-sentinel-design-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 2931,
+      "marketplaceSkillName": "openclaw-2931-memory-consolidation",
+      "title": "Memory Consolidation for research and development labs",
+      "domain": "research and development labs",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2931-memory-consolidation-for-research-and-development-labs/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2931-memory-consolidation-for-research-and-development-labs/agents/openai.yaml"
+    },
+    {
+      "id": 2986,
+      "marketplaceSkillName": "openclaw-2986-memory-consolidation",
+      "title": "Memory Consolidation for remote team collaboration",
+      "domain": "remote team collaboration",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2986-memory-consolidation-for-remote-team-collaboration/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2986-memory-consolidation-for-remote-team-collaboration/agents/openai.yaml"
+    },
+    {
+      "id": 2996,
+      "marketplaceSkillName": "openclaw-2996-memory-consolidation",
+      "title": "Memory Consolidation for knowledge management systems",
+      "domain": "knowledge management systems",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/2996-memory-consolidation-for-knowledge-management-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/2996-memory-consolidation-for-knowledge-management-systems/agents/openai.yaml"
+    },
+    {
+      "id": 3051,
+      "marketplaceSkillName": "openclaw-3051-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3051-knowledge-graph-linking-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3051-knowledge-graph-linking-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 3056,
+      "marketplaceSkillName": "openclaw-3056-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3056-knowledge-graph-linking-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3056-knowledge-graph-linking-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 3061,
+      "marketplaceSkillName": "openclaw-3061-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3061-knowledge-graph-linking-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3061-knowledge-graph-linking-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 3251,
+      "marketplaceSkillName": "openclaw-3251-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3251-semantic-retrieval-ranking-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3251-semantic-retrieval-ranking-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 3256,
+      "marketplaceSkillName": "openclaw-3256-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3256-semantic-retrieval-ranking-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3256-semantic-retrieval-ranking-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 3261,
+      "marketplaceSkillName": "openclaw-3261-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/3261-semantic-retrieval-ranking-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3261-semantic-retrieval-ranking-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 3531,
+      "marketplaceSkillName": "openclaw-3531-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for research and development labs",
+      "domain": "research and development labs",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3531-plan-quality-evaluation-for-research-and-development-labs/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3531-plan-quality-evaluation-for-research-and-development-labs/agents/openai.yaml"
+    },
+    {
+      "id": 3586,
+      "marketplaceSkillName": "openclaw-3586-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for remote team collaboration",
+      "domain": "remote team collaboration",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3586-plan-quality-evaluation-for-remote-team-collaboration/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3586-plan-quality-evaluation-for-remote-team-collaboration/agents/openai.yaml"
+    },
+    {
+      "id": 3596,
+      "marketplaceSkillName": "openclaw-3596-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for knowledge management systems",
+      "domain": "knowledge management systems",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "marketplacePath": "skills/marketplace/generated/3596-plan-quality-evaluation-for-knowledge-management-systems/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/3596-plan-quality-evaluation-for-knowledge-management-systems/agents/openai.yaml"
+    },
+    {
+      "id": 4051,
+      "marketplaceSkillName": "openclaw-4051-explainability-narrative-design",
+      "title": "Explainability Narrative Design for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4051-explainability-narrative-design-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4051-explainability-narrative-design-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4056,
+      "marketplaceSkillName": "openclaw-4056-explainability-narrative-design",
+      "title": "Explainability Narrative Design for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4056-explainability-narrative-design-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4056-explainability-narrative-design-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 4061,
+      "marketplaceSkillName": "openclaw-4061-explainability-narrative-design",
+      "title": "Explainability Narrative Design for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4061-explainability-narrative-design-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4061-explainability-narrative-design-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 4251,
+      "marketplaceSkillName": "openclaw-4251-uncertainty-communication",
+      "title": "Uncertainty Communication for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4251-uncertainty-communication-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4251-uncertainty-communication-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4256,
+      "marketplaceSkillName": "openclaw-4256-uncertainty-communication",
+      "title": "Uncertainty Communication for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4256-uncertainty-communication-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4256-uncertainty-communication-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 4261,
+      "marketplaceSkillName": "openclaw-4261-uncertainty-communication",
+      "title": "Uncertainty Communication for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/4261-uncertainty-communication-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4261-uncertainty-communication-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 4451,
+      "marketplaceSkillName": "openclaw-4451-experiment-design",
+      "title": "Experiment Design for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/4451-experiment-design-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4451-experiment-design-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4456,
+      "marketplaceSkillName": "openclaw-4456-experiment-design",
+      "title": "Experiment Design for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/4456-experiment-design-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4456-experiment-design-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 4461,
+      "marketplaceSkillName": "openclaw-4461-experiment-design",
+      "title": "Experiment Design for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/4461-experiment-design-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4461-experiment-design-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 4651,
+      "marketplaceSkillName": "openclaw-4651-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/4651-a-b-rollout-governance-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4651-a-b-rollout-governance-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4656,
+      "marketplaceSkillName": "openclaw-4656-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/4656-a-b-rollout-governance-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4656-a-b-rollout-governance-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 4661,
+      "marketplaceSkillName": "openclaw-4661-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/4661-a-b-rollout-governance-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4661-a-b-rollout-governance-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 4851,
+      "marketplaceSkillName": "openclaw-4851-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/4851-incident-playbook-synthesis-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4851-incident-playbook-synthesis-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 4856,
+      "marketplaceSkillName": "openclaw-4856-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/4856-incident-playbook-synthesis-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4856-incident-playbook-synthesis-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 4861,
+      "marketplaceSkillName": "openclaw-4861-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/4861-incident-playbook-synthesis-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/4861-incident-playbook-synthesis-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 5051,
+      "marketplaceSkillName": "openclaw-5051-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5051-disaster-recovery-orchestration-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5051-disaster-recovery-orchestration-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5056,
+      "marketplaceSkillName": "openclaw-5056-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5056-disaster-recovery-orchestration-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5056-disaster-recovery-orchestration-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 5061,
+      "marketplaceSkillName": "openclaw-5061-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5061-disaster-recovery-orchestration-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5061-disaster-recovery-orchestration-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 5251,
+      "marketplaceSkillName": "openclaw-5251-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5251-privacy-preserving-data-brokering-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5251-privacy-preserving-data-brokering-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5256,
+      "marketplaceSkillName": "openclaw-5256-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5256-privacy-preserving-data-brokering-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5256-privacy-preserving-data-brokering-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 5261,
+      "marketplaceSkillName": "openclaw-5261-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5261-privacy-preserving-data-brokering-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5261-privacy-preserving-data-brokering-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 5451,
+      "marketplaceSkillName": "openclaw-5451-security-threat-modeling",
+      "title": "Security Threat Modeling for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5451-security-threat-modeling-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5451-security-threat-modeling-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5456,
+      "marketplaceSkillName": "openclaw-5456-security-threat-modeling",
+      "title": "Security Threat Modeling for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5456-security-threat-modeling-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5456-security-threat-modeling-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 5461,
+      "marketplaceSkillName": "openclaw-5461-security-threat-modeling",
+      "title": "Security Threat Modeling for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "marketplacePath": "skills/marketplace/generated/5461-security-threat-modeling-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5461-security-threat-modeling-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 5651,
+      "marketplaceSkillName": "openclaw-5651-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5651-compliance-evidence-mapping-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5651-compliance-evidence-mapping-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5656,
+      "marketplaceSkillName": "openclaw-5656-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5656-compliance-evidence-mapping-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5656-compliance-evidence-mapping-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 5661,
+      "marketplaceSkillName": "openclaw-5661-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "marketplacePath": "skills/marketplace/generated/5661-compliance-evidence-mapping-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5661-compliance-evidence-mapping-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 5851,
+      "marketplaceSkillName": "openclaw-5851-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/5851-cost-benefit-forecasting-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5851-cost-benefit-forecasting-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 5856,
+      "marketplaceSkillName": "openclaw-5856-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/5856-cost-benefit-forecasting-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5856-cost-benefit-forecasting-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 5861,
+      "marketplaceSkillName": "openclaw-5861-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/5861-cost-benefit-forecasting-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/5861-cost-benefit-forecasting-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 6451,
+      "marketplaceSkillName": "openclaw-6451-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/6451-kpi-dashboard-publishing-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6451-kpi-dashboard-publishing-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 6456,
+      "marketplaceSkillName": "openclaw-6456-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/6456-kpi-dashboard-publishing-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6456-kpi-dashboard-publishing-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 6461,
+      "marketplaceSkillName": "openclaw-6461-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/6461-kpi-dashboard-publishing-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6461-kpi-dashboard-publishing-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 6651,
+      "marketplaceSkillName": "openclaw-6651-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/6651-skill-gap-diagnosis-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6651-skill-gap-diagnosis-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 6656,
+      "marketplaceSkillName": "openclaw-6656-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/6656-skill-gap-diagnosis-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6656-skill-gap-diagnosis-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 6661,
+      "marketplaceSkillName": "openclaw-6661-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/6661-skill-gap-diagnosis-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/6661-skill-gap-diagnosis-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 7251,
+      "marketplaceSkillName": "openclaw-7251-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/7251-continuous-improvement-planning-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7251-continuous-improvement-planning-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7256,
+      "marketplaceSkillName": "openclaw-7256-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/7256-continuous-improvement-planning-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7256-continuous-improvement-planning-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 7261,
+      "marketplaceSkillName": "openclaw-7261-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "marketplacePath": "skills/marketplace/generated/7261-continuous-improvement-planning-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7261-continuous-improvement-planning-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 7451,
+      "marketplaceSkillName": "openclaw-7451-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "marketplacePath": "skills/marketplace/generated/7451-autonomous-workflow-authoring-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7451-autonomous-workflow-authoring-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7456,
+      "marketplaceSkillName": "openclaw-7456-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "marketplacePath": "skills/marketplace/generated/7456-autonomous-workflow-authoring-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7456-autonomous-workflow-authoring-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 7461,
+      "marketplaceSkillName": "openclaw-7461-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "marketplacePath": "skills/marketplace/generated/7461-autonomous-workflow-authoring-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7461-autonomous-workflow-authoring-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 7651,
+      "marketplaceSkillName": "openclaw-7651-personal-habit-optimization",
+      "title": "Personal Habit Optimization for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/7651-personal-habit-optimization-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7651-personal-habit-optimization-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7656,
+      "marketplaceSkillName": "openclaw-7656-personal-habit-optimization",
+      "title": "Personal Habit Optimization for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/7656-personal-habit-optimization-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7656-personal-habit-optimization-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 7661,
+      "marketplaceSkillName": "openclaw-7661-personal-habit-optimization",
+      "title": "Personal Habit Optimization for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "marketplacePath": "skills/marketplace/generated/7661-personal-habit-optimization-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7661-personal-habit-optimization-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 7851,
+      "marketplaceSkillName": "openclaw-7851-attention-management-architecture",
+      "title": "Attention Management Architecture for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/7851-attention-management-architecture-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7851-attention-management-architecture-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 7856,
+      "marketplaceSkillName": "openclaw-7856-attention-management-architecture",
+      "title": "Attention Management Architecture for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/7856-attention-management-architecture-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7856-attention-management-architecture-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 7861,
+      "marketplaceSkillName": "openclaw-7861-attention-management-architecture",
+      "title": "Attention Management Architecture for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/7861-attention-management-architecture-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/7861-attention-management-architecture-for-design-and-user-research/agents/openai.yaml"
+    },
+    {
+      "id": 9851,
+      "marketplaceSkillName": "openclaw-9851-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for software engineering delivery",
+      "domain": "software engineering delivery",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9851-decision-journal-maintenance-for-software-engineering-delivery/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9851-decision-journal-maintenance-for-software-engineering-delivery/agents/openai.yaml"
+    },
+    {
+      "id": 9856,
+      "marketplaceSkillName": "openclaw-9856-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for product management execution",
+      "domain": "product management execution",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9856-decision-journal-maintenance-for-product-management-execution/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9856-decision-journal-maintenance-for-product-management-execution/agents/openai.yaml"
+    },
+    {
+      "id": 9861,
+      "marketplaceSkillName": "openclaw-9861-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for design and user research",
+      "domain": "design and user research",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "marketplacePath": "skills/marketplace/generated/9861-decision-journal-maintenance-for-design-and-user-research/SKILL.md",
+      "openaiYamlPath": "skills/marketplace/generated/9861-decision-journal-maintenance-for-design-and-user-research/agents/openai.yaml"
+    }
+  ]
+}

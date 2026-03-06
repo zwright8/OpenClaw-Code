@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6306,
+    "name": "openclaw-v2-6306-community-feedback-harvesting",
+    "title": "Community Feedback Harvesting for urban planning and mobility",
+    "domain": "urban planning and mobility",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "community feedback harvesting",
+    "archetype": "feedback-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 76.86,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6306-community-feedback-harvesting-for-urban-planning-and-mobility/SKILL.md"
+  }
+}

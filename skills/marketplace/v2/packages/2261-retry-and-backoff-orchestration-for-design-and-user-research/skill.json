@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2261,
+    "name": "openclaw-v2-2261-retry-and-backoff-orchestration",
+    "title": "Retry And Backoff Orchestration for design and user research",
+    "domain": "design and user research",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "retry and backoff orchestration",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 71.13,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2261-retry-and-backoff-orchestration-for-design-and-user-research/SKILL.md"
+  }
+}

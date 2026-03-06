@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Quality Evaluation for nutrition and meal planning"
+  short_description: "Plan quality evaluation for nutrition and meal planning with guardrails and measurable outcomes."
+  default_prompt: "Use Plan Quality Evaluation for nutrition and meal planning to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6111,
+    "name": "openclaw-v2-6111-equity-impact-scoring",
+    "title": "Equity Impact Scoring for agriculture and food systems",
+    "domain": "agriculture and food systems",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "equity impact scoring",
+    "archetype": "scoring-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 71.36,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6111-equity-impact-scoring-for-agriculture-and-food-systems/SKILL.md"
+  }
+}

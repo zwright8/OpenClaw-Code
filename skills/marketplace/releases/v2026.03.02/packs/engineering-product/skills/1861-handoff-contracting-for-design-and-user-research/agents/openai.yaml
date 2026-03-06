@@ -1,0 +1,4 @@
+interface:
+  display_name: "Handoff Contracting for design and user research"
+  short_description: "Handoff contracting for design and user research with guardrails and measurable outcomes."
+  default_prompt: "Use Handoff Contracting for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

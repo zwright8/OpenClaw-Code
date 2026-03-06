@@ -8,6 +8,7 @@
 - [x] **Activity Burst Detection:** Add UTC hourly heatmap + concentration insight to LogAnalyzer v2 and markdown report output. (Completed 2026-02-28)
 - [x] **Tool Call Pairing Integrity:** Detect unresolved tool-call/tool-result gaps (dangling calls + orphan results) and surface remediation priorities. (Completed 2026-03-02)
 - [x] **Tail Latency Percentiles:** Track per-tool p50/p95 duration metrics, expose tail-latency insights, and include remediation hooks in trend analysis/reporting. (Completed 2026-03-03)
+- [x] **Incident Detection:** Automated detection of anomalous error/latency spikes in hourly activity windows. (Completed 2026-03-05)
 
 ## Swarm Protocol
 - [x] **Standard Message Schema:** Define a JSON schema for agent-to-agent task handoff. (Implemented v0.1)

@@ -1,0 +1,3 @@
+{"skillId":7416,"status":"success","durationMs":810000,"valueUsd":240,"channel":"pilot","executedAt":"2026-03-01T14:30:00Z"}
+{"skillId":5451,"status":"partial","durationMs":1200000,"valueUsd":150,"channel":"pilot","executedAt":"2026-03-01T15:05:00Z"}
+{"skillId":2651,"status":"failure","durationMs":480000,"valueUsd":0,"channel":"pilot","executedAt":"2026-03-01T15:40:00Z"}

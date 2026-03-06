@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 3266
+  name: "openclaw-v2-3266-semantic-retrieval-ranking"
+  title: "Semantic Retrieval Ranking for sales and client success"
+  domain: "sales and client success"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "semantic retrieval ranking"
+  archetype: "retrieval-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 85
+  roi_score: 74.84
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/3266-semantic-retrieval-ranking-for-sales-and-client-success/SKILL.md"

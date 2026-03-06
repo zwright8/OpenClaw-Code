@@ -19,10 +19,26 @@ export interface RemediationOption {
     evidence?: EvidenceItem[];
 }
 
+export interface RemediationRecommendationMetadata {
+    requiresHumanApproval: boolean;
+    requiredApprovers: string[];
+    rollbackPlan: {
+        trigger: string;
+        steps: string[];
+    };
+    policyGate: {
+        requiresHumanApproval: boolean;
+        passthrough: {
+            requiredApprovers: string[];
+        };
+    };
+}
+
 export interface RemediationRecommendation extends CognitionRecommendation {
     relatedCauseIds: string[];
     rollbackPlan: string;
     score: number;
+    metadata?: RemediationRecommendationMetadata;
 }
 
 export interface RemediationResult {
@@ -42,6 +58,14 @@ const EFFORT_PENALTY: Record<RemediationOption['implementationEffort'], number> 
     high: 2.2
 };
 
+
+const DEFAULT_HIGH_RISK_APPROVERS: Record<'high' | 'critical', string[]> = {
+    high: ['security-ops'],
+    critical: ['executive-ops', 'security-ops']
+};
+
+const HIGH_RISK_ROLLBACK_TRIGGER = 'Verification failure, policy breach, or elevated incident risk';
+
 function clamp(value: number, min = 0, max = 1) {
     return Math.max(min, Math.min(max, value));
 }
@@ -57,6 +81,70 @@ function deterministicId(prefix: string, seed: string) {
 
 function maxRiskTier(left: RiskTier, right: RiskTier): RiskTier {
     return TIER_SCORE[left] >= TIER_SCORE[right] ? left : right;
+}
+
+
+function compareStringsDeterministically(left: string, right: string): number {
+    if (left < right) return -1;
+    if (left > right) return 1;
+    return 0;
+}
+
+function normalizeStepList(values: string[]): string[] {
+    return Array.from(new Set(
+        values
+            .map((value) => value.trim())
+            .filter((value) => value.length > 0)
+    )).sort(compareStringsDeterministically);
+}
+
+function requiredApproversForRiskTier(riskTier: RiskTier): string[] {
+    if (riskTier === 'critical') {
+        return [...DEFAULT_HIGH_RISK_APPROVERS.critical].sort(compareStringsDeterministically);
+    }
+
+    if (riskTier === 'high') {
+        return [...DEFAULT_HIGH_RISK_APPROVERS.high].sort(compareStringsDeterministically);
+    }
+
+    return [];
+}
+
+function buildRecommendationMetadata(
+    riskTier: RiskTier,
+    rollbackPlan: string,
+    verificationSteps: string[]
+): RemediationRecommendationMetadata | undefined {
+    if (!riskTierRequiresApproval(riskTier)) {
+        return undefined;
+    }
+
+    const requiredApprovers = requiredApproversForRiskTier(riskTier);
+    const normalizedRequiredApprovers = requiredApprovers.length > 0
+        ? requiredApprovers
+        : ['security-ops'];
+
+    const rollbackSteps = normalizeStepList([
+        rollbackPlan,
+        ...verificationSteps.map((step) => `Rollback validation: ${step}`)
+    ]);
+
+    return {
+        requiresHumanApproval: true,
+        requiredApprovers: normalizedRequiredApprovers,
+        rollbackPlan: {
+            trigger: HIGH_RISK_ROLLBACK_TRIGGER,
+            steps: rollbackSteps.length > 0
+                ? rollbackSteps
+                : ['Revert remediation configuration and restore last-known-good state.']
+        },
+        policyGate: {
+            requiresHumanApproval: true,
+            passthrough: {
+                requiredApprovers: normalizedRequiredApprovers
+            }
+        }
+    };
 }
 
 export function planRemediation(
@@ -99,6 +187,12 @@ export function planRemediation(
             ...(option.evidence || [])
         ];
 
+        const metadata = buildRecommendationMetadata(
+            riskTier,
+            option.rollbackPlan,
+            option.verificationSteps
+        );
+
         recommendations.push({
             recommendationId: deterministicId('rec-remed', `${option.optionId}:${relatedFindings.map((f) => f.findingId).join(',')}`),
             title: option.title,
@@ -115,7 +209,8 @@ export function planRemediation(
             priority: Math.round(Math.max(score, 0)),
             relatedCauseIds: relatedFindings.map((finding) => finding.causeId),
             rollbackPlan: option.rollbackPlan,
-            score
+            score,
+            metadata
         });
     }
 

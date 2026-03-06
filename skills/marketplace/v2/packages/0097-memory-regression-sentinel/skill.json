@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 97,
+    "name": "openclaw-v2-0097-baseline-delta-detection",
+    "title": "Memory Regression Sentinel",
+    "domain": "Memory and Knowledge Operations",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "baseline-delta detection",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 62,
+    "roiScore": 72.16,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0097-memory-regression-sentinel/SKILL.md"
+  }
+}

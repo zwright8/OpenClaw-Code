@@ -1,0 +1,24 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2801
+  name: "openclaw-v2-2801-memory-consolidation"
+  title: "Memory Consolidation for personal health routines"
+  domain: "personal health routines"
+  vertical_id: "health-learning"
+  vertical_name: "Health and Learning Systems"
+  method: "memory consolidation"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 77
+  roi_score: 81.15
+  trust_badges:
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2801-memory-consolidation-for-personal-health-routines/SKILL.md"

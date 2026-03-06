@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 748
+  name: "openclaw-v2-0748-pattern-to-playbook-synthesis"
+  title: "Comms Incident Playbook Synthesizer"
+  domain: "Communication and Explainability"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "pattern-to-playbook synthesis"
+  archetype: "communication-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 66
+  roi_score: 63.83
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0748-comms-incident-playbook-synthesizer/SKILL.md"

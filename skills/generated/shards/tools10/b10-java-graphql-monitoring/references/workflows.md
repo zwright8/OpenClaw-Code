@@ -3,7 +3,7 @@
 ## 1) Check installed tools
 
 ```bash
-bash {baseDir}/scripts/check-tools.sh
+bash ./scripts/check-tools.sh
 ```
 
 ## 2) Inspect capabilities safely

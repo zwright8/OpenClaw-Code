@@ -1,14 +1,50 @@
 ---
 name: u0106-memory-experiment-design-generator
-description: Build and operate the "Memory Experiment Design Generator" capability for Memory and Knowledge Operations. Use when outcomes in this capability family are required for production execution.
+description: Run the Memory Experiment Design Generator capability for Memory and Knowledge Operations with deterministic outputs, policy-gated release, and handoff-ready operational artifacts. Use when mission execution explicitly requires this capability.
 ---
 
 # Memory Experiment Design Generator
 
+## Quick Reference
+| Field | Value |
+|---|---|
+| Skill ID | `106` |
+| Domain | `Memory and Knowledge Operations` |
+| Runtime archetype | `general-capability` |
+| Core method | `hypothesis-driven design` |
+| Primary artifact | `experiment plans` |
+| Routing tag | `memory-and-knowledge-operations:general-capability` |
+| Feature flag | `skill_0106_memory-experiment-design-generat` |
+| Release cycles | `2` |
+
 ## Why This Skill Exists
 We need this skill because agents lose performance when lessons are not retained and reused. This specific skill converts unknowns into testable learning loops.
 
-## Step-by-Step Implementation Guide
+## Trigger Checklist
+- [ ] The task explicitly needs Memory Experiment Design Generator (not generic brainstorming).
+- [ ] Inputs are sufficient and source provenance is available.
+- [ ] Success criteria are measurable and agreed before execution.
+- [ ] A downstream owner/consumer for handoff is identified.
+- [ ] If risk is high, human approval path is available before publish.
+
+## Inputs (contract)
+| Input | Type | Required | Source |
+|---|---|---|---|
+| episodic logs | signal | yes | upstream/operator |
+| knowledge nodes | signal | yes | upstream/operator |
+| retrieval metadata | signal | yes | upstream/operator |
+| claims | signal | yes | upstream/operator |
+| evidence | signal | yes | upstream/operator |
+| confidence traces | signal | yes | upstream/operator |
+
+## Outputs (contract)
+| Output | Type | Guaranteed | Consumer |
+|---|---|---|---|
+| experiment plans | structured-artifact | yes | downstream orchestrator |
+| experiment plans-scorecard | scorecard | yes | operator / reviewer |
+| experiment plans-handoff | handoff-packet | yes | next owner |
+
+## Implementation Guide
 1. Define the scope and success metrics for `Memory Experiment Design Generator`, including at least three measurable KPIs tied to repeated mistakes and context loss.
 2. Design and version the input/output contract for episodic logs, knowledge nodes, and retrieval metadata, then add schema validation and failure-mode handling.
 3. Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.
@@ -16,88 +52,157 @@ We need this skill because agents lose performance when lessons are not retained
 5. Add unit, integration, and simulation tests that explicitly cover repeated mistakes and context loss, then run regression baselines.
 6. Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
 
-## Metadata
-- **Skill ID:** `106`
-- **Skill Name:** `u0106-memory-experiment-design-generator`
-- **Domain:** `Memory and Knowledge Operations`
-- **Domain Slug:** `memory-and-knowledge-operations`
-- **Archetype:** `general-capability`
-- **Core Method:** `hypothesis-driven design`
-- **Primary Artifact:** `experiment plans`
-- **Routing Tag:** `memory-and-knowledge-operations:general-capability`
-- **Feature Flag:** `skill_0106_memory-experiment-design-generat`
-- **Release Cycles:** `2`
+## Operational Runbook
+### Preflight
+- Confirm scope, owner, and success criteria for Memory Experiment Design Generator.
 
-## Allowed Tools
-- `read`, `write`, `edit` for contract maintenance, runbook updates, and handoff documentation.
-- `exec`, `process` for deterministic execution, validation suites, and regression checks.
-- `web_search`, `web_fetch` only when fresh external evidence is required for claims/evidence inputs.
-- Use messaging or publishing tools only after policy approval gates are satisfied.
+### Execution
+- Execute hypothesis-driven design deterministically and capture reproducible traces.
 
-## Inputs (formatted)
-| name | type | required | source |
+### Recovery
+- Apply retry policy then rollback-to-last-stable-baseline when posture remains critical.
+
+### Handoff
+- Publish artifact bundle, scorecard, and next actions with clear ownership.
+
+## Operator Use Cases
+- Operate Memory Experiment Design Generator as a reliable, reusable production workflow.
+
+## Guardrail Policy Matrix
+| Guardrail Type | Policy Rule | Automation Hook |
+|---|---|---|
+| general | Enforce deterministic quality and policy constraints. | validation+approval gates |
+
+## Posture Playbook
+- **Ready posture (score >= 76):** release artifacts after validation pass and route to `memory-and-knowledge-operations:general-capability`.
+- **Review posture (score >= 59 or risk >= 52):** require human review before publish, with explicit remediation notes.
+- **Critical posture (risk >= 89):** fail closed, execute `rollback-to-last-stable-baseline`, and escalate with incident packet.
+
+## Traceability Map
+- **Scope:** Define the scope and success metrics for `Memory Experiment Design Generator`, including at least three measurable KPIs tied to repeated mistakes and context loss.
+- **Contract:** Design and version the input/output contract for episodic logs, knowledge nodes, and retrieval metadata, then add schema validation and failure-mode handling.
+- **Core:** Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.
+- **Orchestration:** Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.
+- **Validation:** Add unit, integration, and simulation tests that explicitly cover repeated mistakes and context loss, then run regression baselines.
+- **Rollout:** Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes.
+
+## Decision & Scoring Policy
+- Scoring weights: `truth=0.43, execution=0.21, safety=0.19, impact=0.17`
+- Posture thresholds:
+  - `ready`: score >= 76
+  - `review`: score >= 59
+  - `review_risk`: risk >= 52
+  - `critical_risk`: risk >= 89
+- Retry policy: max attempts `3`, base delay `750ms`, backoff `exponential`.
+- Approval gates: `policy-constraint-check`, `human-approval-router`.
+
+## Validation Gates & Test Matrix
+| Gate | Purpose | On Fail |
+|---|---|---|
+| schema-contract-check | Ensure required inputs and contract shape are valid. | block release |
+| determinism-check | Replay identical input and compare output hash/score delta. | escalate + quarantine |
+| policy-approval-check | Verify policy constraints and approval tokens. | block publish |
+| reliability-check | Validate retry budget and rollback readiness. | rollback to stable baseline |
+
+- Required validation suites: unit, integration, simulation, regression-baseline
+
+## Failure Modes & Recovery Playbook
+- `E_INPUT_SCHEMA`: required signal missing or malformed -> reject payload and request corrected input.
+- `E_NON_DETERMINISM`: replay mismatch or unstable score delta -> quarantine output and escalate for human review.
+- `E_POLICY_BLOCK`: approval/policy gate unsatisfied -> keep publish blocked until explicit approval is attached.
+- `E_DEPENDENCY_TIMEOUT`: transient timeout -> apply retry budget; if unresolved, execute `rollback-to-last-stable-baseline` and issue incident packet.
+
+## Human Approval & Escalation
+- High-risk or policy-sensitive runs require an explicit approval token before release.
+- Escalate to human reviewer when any gate fails twice or critical risk posture is reached.
+- Escalation packet must include: scope, failed gate, evidence links, retry history, and recommended decision.
+
+## Automation Envelope
+| Setting | Value |
+|---|---|
+| Maturity tier | `standard` |
+| Autopilot ready | `no` |
+| Parallelism | `1` |
+| Max cycle minutes | `n/a` |
+| Required approvals | `policy-constraint-check`, `human-approval-router` |
+
+## Acceptance Checklist
+- [ ] Schema, determinism, policy, and reliability gates all pass.
+- [ ] Output artifact bundle includes scorecard, risks, and next actions.
+- [ ] Handoff owner confirms artifact usability without additional clarification.
+- [ ] Telemetry and trace references are attached for auditability.
+
+## External Tool Stack Recommendation
+| Field | Value |
+|---|---|
+| Recommendation class | `tool-primary` |
+| Migration priority | `P0` |
+| External auth required | `yes` |
+| API key likely required | `no` |
+| Rationale | Deterministic infrastructure and system primitives outperform model-only execution for reliability and auditability. |
+
+| Service | Why in stack | Auth mode | Auth required | API key likely |
+|---|---|---|---|---|
+| LaunchDarkly/Unleash | feature flagging and staged rollout safety | account/session credentials | yes | no |
+| Statsig/Optimizely | experiment assignment and decision stats | account/session credentials | yes | no |
+| SciPy/Statsmodels | significance and confidence interval checks | none/local runtime | no | no |
+
+## Tool Inventory Highlights
+| Tool | Role in execution | Call pattern | Mutating |
 |---|---|---|---|
-| episodic logs | signal | true | upstream |
-| knowledge nodes | signal | true | upstream |
-| retrieval metadata | signal | true | upstream |
-| claims | signal | true | upstream |
-| evidence | signal | true | upstream |
-| confidence traces | signal | true | upstream |
+| LaunchDarkly/Unleash | feature flagging and staged rollout safety | read+write/orchestrate | yes |
+| Statsig/Optimizely | experiment assignment and decision stats | read+write/orchestrate | yes |
+| SciPy/Statsmodels | significance and confidence interval checks | read/query | no |
 
-## Outputs (formatted)
-| name | type | guaranteed | consumer |
-|---|---|---|---|
-| experiment_plans_report | structured-report | true | orchestrator |
-| experiment_plans_scorecard | scorecard | true | operator |
+## API Protocols & Credential Requirements
+| Tool | Primary protocol(s) | Auth mode | Auth required | API key needed | Operator action |
+|---|---|---|---|---|---|
+| LaunchDarkly/Unleash | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| Statsig/Optimizely | HTTPS/REST | account/session credentials | yes | no | Reuse current account/session credentials; validate context before execution. |
+| SciPy/Statsmodels | Local runtime/library API | none/local runtime | no | no | No external credential expected; execute with local/runtime context. |
 
-## Guidelines
-1. Validate required inputs before execution and reject non-conforming payloads early.
-2. Run `hypothesis-driven design` with deterministic settings and trace capture enabled.
-3. Produce `experiment plans` outputs in machine-readable form for orchestrator/operator use.
-4. Keep routing aligned with `memory-and-knowledge-operations:general-capability` and include approval context.
-5. Tune thresholds incrementally based on observed KPI drift and incident learnings.
+## Tool Call Implementation
+- Use the following deterministic call sequence for this skill:
+1. `LaunchDarkly/Unleash` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `experiment plans`.
+2. `Statsig/Optimizely` -> auth preflight, execute read+write/orchestrate call(s), normalize output, and attach trace to `experiment plans`.
+3. `SciPy/Statsmodels` -> auth preflight, execute read/query call(s), normalize output, and attach trace to `experiment plans`.
+- After each call, validate schema + policy gates and preserve evidence in the handoff packet.
+- If any required credential check fails, halt execution and request corrected auth context.
 
-## Musts
-- Enforce approval gates: `policy-constraint-check`, `human-approval-router`.
-- Apply retry policy: maxAttempts=`3`, baseDelayMs=`750`, backoff=`exponential`.
-- Run validation suites before release: `unit`, `integration`, `simulation`, `regression-baseline`.
-- Fail closed when validation gates fail and execute rollback strategy `rollback-to-last-stable-baseline`.
-- Preserve reproducible evidence artifacts for audits and downstream handoff.
+## External Integration Migration Checklist
+- Provision service credentials and validate non-expired auth before first run.
+- Wire service outputs into validation/handoff artifacts.
+- Enable credential reuse; prompt user only on missing/invalid/expired credentials.
 
-## Targets (day/week/month operating cadence)
-- **Day:** Validate new upstream signals, execute deterministic run, and hand off outputs for active decisions.
-- **Week:** Review KPI focus (`repeated mistakes`, `context loss`, `decision drift`), failure trends, and approval/retry performance.
-- **Month:** Re-baseline deterministic expectations, confirm policy alignment, and refresh feature-flag/rollout posture.
+## Credential Reuse Policy
+- Reuse previously provided credentials by default; do not ask for new credentials when a valid credential/session already exists.
+- Before prompting, check environment/session secret stores and run lightweight auth validation.
+- Ask the user for credentials only if they are missing, invalid, expired, or explicitly revoked/rotated.
 
-## Common Actions
-1. **Intake Check:** Confirm all required signals are present and schema-valid.
-2. **Core Execution:** Run the capability pipeline and generate report + scorecard artifacts.
-3. **Gate Review:** Evaluate validation and approval gates before publish-level handoff.
-4. **Recovery:** Retry transient failures, then rollback to stable baseline on persistent errors.
-5. **Handoff:** Send artifacts with risk/confidence metadata and downstream routing hints.
+## Practical Usage Examples
+1. Incident recovery in Memory and Knowledge Operations: ingest noisy signals, execute hypothesis-driven design, produce an operator-ready scorecard and remediation queue.
+2. Scheduled quality pass: run Memory Experiment Design Generator against baseline data, compare drift, and publish release/no-release recommendation with evidence links.
+3. Pre-deployment gate: validate artifacts for memory-and-knowledge-operations:general-capability, enforce approvals, then handoff to downstream orchestrator with next actions.
 
-## External Tool Calls Needed
-- None required by default.
-- If external systems are introduced for a run, record the dependency, timeout budget, and retry behavior in execution notes.
+## Anti-Patterns
+- Do not publish artifacts when any validation gate fails.
+- Do not bypass approval gates for high-risk runs.
+- Do not run with missing provenance, schema, or success criteria.
+- Do not treat partial/non-deterministic outputs as production-ready.
 
-## Validation & Handoff
-### Validation Gates
-- `schema-contract-check`: All required input signals present and schema-valid (on fail: `quarantine`)
-- `determinism-check`: Repeated run on same inputs yields stable scoring and artifacts (on fail: `escalate`)
-- `policy-approval-check`: Approval gates satisfied before publish-level outputs (on fail: `retry`)
+## Handoff Contract
+- **Produces:** `experiment plans`, scorecard, risk/confidence metadata, remediation backlog.
+- **Consumes:** `episodic logs`, `knowledge nodes`, `retrieval metadata`, `claims`, `evidence`, `confidence traces`.
+- **Readiness rule:** release only when schema, determinism, policy, and reliability gates all pass.
+- **Downstream hint:** route only to `memory-and-knowledge-operations:general-capability` consumers with approval context attached.
 
-### Validation Suites
-- `unit`
-- `integration`
-- `simulation`
-- `regression-baseline`
-
-### Failure Handling
-- `E_INPUT_SCHEMA`: Missing or malformed required signals → Reject payload, emit validation error, request corrected payload
-- `E_NON_DETERMINISM`: Determinism delta exceeds allowed threshold → Freeze output, escalate to human approval router
-- `E_DEPENDENCY_TIMEOUT`: Downstream or external dependency timeout → Apply retry policy then rollback to last stable baseline
-
-### Handoff Contract
-- **Produces:** `Memory Experiment Design Generator normalized artifacts`, `execution scorecard`, `risk posture`
-- **Consumes:** `episodic logs`, `knowledge nodes`, `retrieval metadata`, `claims`, `evidence`, `confidence traces`
-- **Downstream Hint:** Route next to memory-and-knowledge-operations:general-capability consumers with approval-gate context
+## Observability & Continuous Improvement
+- SLO: >=99.5% successful runs per 7-day window
+- Error budget: <=0.5% critical failures per 7-day window
+- Alert triggers:
+- Trigger alerts on repeated critical posture or validation regression spikes.
+- KPI focus: `repeated mistakes`, `context loss`, `decision drift`
+- Primary outcome metric: `repeated mistakes`
+- Secondary metrics: `context loss`, `decision drift`
+- Review cadence: `weekly`
+- Weekly review: tune thresholds, retries, and approval friction based on telemetry and incident learnings.

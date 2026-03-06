@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 250
+  name: "openclaw-v2-0250-risk-weighted-sequencing"
+  title: "Collab Risk-Aware Scheduler"
+  domain: "Collaboration and Negotiation"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "risk-weighted sequencing"
+  archetype: "planning-router"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 60
+  roi_score: 73.04
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0250-collab-risk-aware-scheduler/SKILL.md"

@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5486,
+    "name": "openclaw-v2-5486-security-threat-modeling",
+    "title": "Security Threat Modeling for education support services",
+    "domain": "education support services",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "security threat modeling",
+    "archetype": "modeling-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 96,
+    "roiScore": 77.56,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5486-security-threat-modeling-for-education-support-services/SKILL.md"
+  }
+}
