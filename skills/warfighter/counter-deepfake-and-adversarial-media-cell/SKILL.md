@@ -36,6 +36,7 @@ Primary products for this skill: media authenticity assessment, response options
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in ../_shared/references/external-tools-protocols.md and name the exact tools selected for this mission set.
+- Use the action templates in `../_shared/references/tool-protocol-playbooks.md` to standardize operator-ready tool and escalation packets.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
 - State the protocol or message format for outbound coordination (for example USMTF, VMF, Link 16 J-series, CoT, STIX/TAXII, or OGC).
