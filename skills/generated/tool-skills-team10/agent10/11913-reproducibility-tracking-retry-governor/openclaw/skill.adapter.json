@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11913,
+  "name": "reproducibility-tracking-retry-governor",
+  "title": "Reproducibility Tracking Retry Governor",
+  "description": "Design and run reproducibility tracking workflows with retry governor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6703,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11913-reproducibility-tracking-retry-governor/SKILL.md",
+    "entrypoint": "agent10/11913-reproducibility-tracking-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reproducibility tracking retry governor",
+    "reproducibility tracking retry governor workflow",
+    "reproducibility tracking retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

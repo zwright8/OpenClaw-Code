@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2957,
+  "name": "travel-compliance-operation-planner",
+  "title": "Travel Compliance Operation Planner",
+  "description": "Design and run travel compliance workflows with operation planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6772,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02957-travel-compliance-operation-planner/SKILL.md",
+    "entrypoint": "agent03/02957-travel-compliance-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance operation planner",
+    "travel compliance operation planner workflow",
+    "travel compliance operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

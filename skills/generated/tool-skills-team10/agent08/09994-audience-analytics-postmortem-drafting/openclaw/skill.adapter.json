@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9994,
+  "name": "audience-analytics-postmortem-drafting",
+  "title": "Audience Analytics Postmortem Drafting",
+  "description": "Design and run audience analytics workflows with postmortem drafting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11472,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09994-audience-analytics-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent08/09994-audience-analytics-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics postmortem drafting",
+    "audience analytics postmortem drafting workflow",
+    "audience analytics postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 591,
+  "name": "elasticsearch-connector",
+  "title": "Elasticsearch Connector",
+  "description": "Unified read/write connector for Elasticsearch APIs and data.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0591-elasticsearch-connector/SKILL.md",
+    "entrypoint": "agent06/0591-elasticsearch-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "elasticsearch connector",
+    "elasticsearch connector workflow",
+    "elasticsearch connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0591-elasticsearch-connector"
+  }
+}

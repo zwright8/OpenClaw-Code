@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1103,
+  "name": "patent-filings-permission-mapper",
+  "title": "Patent Filings Permission Mapper",
+  "description": "Design and run patent filings workflows with permission mapper controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 3124,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01103-patent-filings-permission-mapper/SKILL.md",
+    "entrypoint": "agent01/01103-patent-filings-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings permission mapper",
+    "patent filings permission mapper workflow",
+    "patent filings permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

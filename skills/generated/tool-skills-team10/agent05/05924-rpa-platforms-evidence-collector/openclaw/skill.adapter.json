@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5924,
+  "name": "rpa-platforms-evidence-collector",
+  "title": "RPA Platforms Evidence Collector",
+  "description": "Design and run rpa platforms workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6161,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05924-rpa-platforms-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/05924-rpa-platforms-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rpa platforms evidence collector",
+    "rpa platforms evidence collector workflow",
+    "rpa platforms evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

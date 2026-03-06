@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7760,
+  "name": "desktop-fleet-mgmt-workflow-compiler",
+  "title": "Desktop Fleet Mgmt Workflow Compiler",
+  "description": "Design and run desktop fleet mgmt workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1145,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07760-desktop-fleet-mgmt-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/07760-desktop-fleet-mgmt-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "desktop fleet mgmt workflow compiler",
+    "desktop fleet mgmt workflow compiler workflow",
+    "desktop fleet mgmt workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

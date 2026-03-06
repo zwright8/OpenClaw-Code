@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12964,
+  "name": "universal-toolchain-10-rate-limit-optimizer",
+  "title": "Universal Toolchain 10 Rate Limit Optimizer",
+  "description": "Design and run universal toolchain 10 workflows with rate limit optimizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5729,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12964-universal-toolchain-10-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent10/12964-universal-toolchain-10-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 10 rate limit optimizer",
+    "universal toolchain 10 rate limit optimizer workflow",
+    "universal toolchain 10 rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

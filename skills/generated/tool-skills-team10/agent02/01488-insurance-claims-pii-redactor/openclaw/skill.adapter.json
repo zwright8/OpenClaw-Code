@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1488,
+  "name": "insurance-claims-pii-redactor",
+  "title": "Insurance Claims PII Redactor",
+  "description": "Design and run insurance claims workflows with pii redactor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2007,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01488-insurance-claims-pii-redactor/SKILL.md",
+    "entrypoint": "agent02/01488-insurance-claims-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims pii redactor",
+    "insurance claims pii redactor workflow",
+    "insurance claims pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

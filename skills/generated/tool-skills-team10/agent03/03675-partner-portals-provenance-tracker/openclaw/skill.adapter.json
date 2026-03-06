@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3675,
+  "name": "partner-portals-provenance-tracker",
+  "title": "Partner Portals Provenance Tracker",
+  "description": "Design and run partner portals workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9259,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03675-partner-portals-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/03675-partner-portals-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals provenance tracker",
+    "partner portals provenance tracker workflow",
+    "partner portals provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

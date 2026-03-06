@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8482,
+  "name": "impact-measurement-latency-analyzer",
+  "title": "Impact Measurement Latency Analyzer",
+  "description": "Design and run impact measurement workflows with latency analyzer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10965,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08482-impact-measurement-latency-analyzer/SKILL.md",
+    "entrypoint": "agent07/08482-impact-measurement-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement latency analyzer",
+    "impact measurement latency analyzer workflow",
+    "impact measurement latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

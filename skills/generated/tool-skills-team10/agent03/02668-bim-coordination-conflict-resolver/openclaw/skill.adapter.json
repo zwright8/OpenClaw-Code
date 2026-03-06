@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2668,
+  "name": "bim-coordination-conflict-resolver",
+  "title": "BIM Coordination Conflict Resolver",
+  "description": "Design and run bim coordination workflows with conflict resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8940,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02668-bim-coordination-conflict-resolver/SKILL.md",
+    "entrypoint": "agent03/02668-bim-coordination-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination conflict resolver",
+    "bim coordination conflict resolver workflow",
+    "bim coordination conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9900,
+  "name": "streaming-operations-outcome-synthesizer",
+  "title": "Streaming Operations Outcome Synthesizer",
+  "description": "Design and run streaming operations workflows with outcome synthesizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7092,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09900-streaming-operations-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent08/09900-streaming-operations-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations outcome synthesizer",
+    "streaming operations outcome synthesizer workflow",
+    "streaming operations outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

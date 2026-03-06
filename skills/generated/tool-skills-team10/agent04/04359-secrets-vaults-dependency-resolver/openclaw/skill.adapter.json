@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4359,
+  "name": "secrets-vaults-dependency-resolver",
+  "title": "Secrets Vaults Dependency Resolver",
+  "description": "Design and run secrets vaults workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9462,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04359-secrets-vaults-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/04359-secrets-vaults-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "secrets vaults dependency resolver",
+    "secrets vaults dependency resolver workflow",
+    "secrets vaults dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

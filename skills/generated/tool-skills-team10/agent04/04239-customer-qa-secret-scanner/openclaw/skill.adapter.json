@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4239,
+  "name": "customer-qa-secret-scanner",
+  "title": "Customer QA Secret Scanner",
+  "description": "Design and run customer qa workflows with secret scanner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2761,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04239-customer-qa-secret-scanner/SKILL.md",
+    "entrypoint": "agent04/04239-customer-qa-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa secret scanner",
+    "customer qa secret scanner workflow",
+    "customer qa secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

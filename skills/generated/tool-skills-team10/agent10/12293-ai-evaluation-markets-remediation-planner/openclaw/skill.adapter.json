@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12293,
+  "name": "ai-evaluation-markets-remediation-planner",
+  "title": "AI Evaluation Markets Remediation Planner",
+  "description": "Design and run ai evaluation markets workflows with remediation planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1981,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12293-ai-evaluation-markets-remediation-planner/SKILL.md",
+    "entrypoint": "agent10/12293-ai-evaluation-markets-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets remediation planner",
+    "ai evaluation markets remediation planner workflow",
+    "ai evaluation markets remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

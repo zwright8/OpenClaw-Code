@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 548,
+  "name": "snowflake-workflow-automator",
+  "title": "Snowflake Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Snowflake.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7908,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00548-snowflake-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00548-snowflake-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "snowflake workflow automator",
+    "snowflake workflow automator workflow",
+    "snowflake workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

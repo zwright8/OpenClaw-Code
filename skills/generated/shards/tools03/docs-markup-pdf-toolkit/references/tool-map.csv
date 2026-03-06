@@ -1,0 +1,29 @@
+rank,tool,installs_365d,percent_365d,access,description,homepage,license
+1009,tidy-html5,8920,0.01,local-installable,"Granddaddy of HTML tools, with support for modern standards",https://www.html-tidy.org/,Zlib
+1043,tectonic,8511,0.01,local-installable,"Modernized, complete, self-contained TeX/LaTeX engine",https://tectonic-typesetting.github.io/,MIT
+1071,mupdf-tools,8176,0.01,local-installable,Lightweight PDF and XPS viewer,https://mupdf.com/,AGPL-3.0-or-later
+1074,colordiff,8144,0.01,local-installable,Color-highlighted diff(1) output,https://www.colordiff.org/,GPL-2.0-or-later
+1089,marp-cli,7931,0.01,local-installable,"Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images",https://github.com/marp-team/marp-cli,MIT
+1136,texinfo,7375,0.01,local-installable,Official documentation format of the GNU project,https://www.gnu.org/software/texinfo/,GPL-3.0-or-later
+1166,aspell,7033,0.01,local-installable,Spell checker with better logic than ispell,http://aspell.net/,LGPL-2.1-only
+1179,pdftk-java,6935,0.01,local-installable,Port of pdftk in java,https://gitlab.com/pdftk-java/pdftk,GPL-2.0-or-later
+1182,mscgen,6917,0.01,local-installable,Parses Message Sequence Chart descriptions and produces images,https://www.mcternan.me.uk/mscgen/,GPL-2.0-or-later
+1184,pygments,6903,0.01,local-installable,Generic syntax highlighter,https://pygments.org/,BSD-2-Clause
+1198,gedit,6698,0.01,local-installable,GNOME text editor,https://gedit-technology.github.io/apps/gedit/,GPL-2.0-or-later
+1212,harper,6552,0.01,local-installable,Grammar Checker for Developers,https://github.com/Automattic/harper,Apache-2.0
+1223,html2text,6509,0.01,local-installable,Advanced HTML-to-text converter,https://gitlab.com/grobian/html2text,GPL-2.0-or-later
+1249,highlight,6262,0.01,local-installable,Convert source code to formatted text with syntax highlighting,http://andre-simon.de/doku/highlight/en/highlight.php,GPL-3.0-or-later
+1254,pandoc-crossref,6209,0.01,local-installable,Pandoc filter for numbering and cross-referencing,https://github.com/lierdakil/pandoc-crossref,GPL-2.0-or-later
+1301,markdownlint-cli2,5728,0.01,local-installable,"Fast, flexible, config-based cli for linting Markdown/CommonMark files",https://github.com/DavidAnson/markdownlint-cli2,MIT
+1307,asciidoctor,5714,0.01,local-installable,Text processor and publishing toolchain for AsciiDoc,https://asciidoctor.org/,MIT
+1322,grip,5567,0.01,local-installable,GitHub Markdown previewer,https://github.com/joeyespo/grip,MIT
+1334,diff-pdf,5503,0.01,local-installable,Visually compare two PDF files,https://vslavik.github.io/diff-pdf/,GPL-2.0-only
+1342,pymupdf,5416,0.01,local-installable,Python bindings for the PDF toolkit and renderer MuPDF,https://pymupdf.readthedocs.io/en/latest/,AGPL-3.0-only
+1348,pdfgrep,5368,0.01,local-installable,Search PDFs for strings matching a regular expression,https://pdfgrep.org/,GPL-2.0-only
+1355,mermaid-cli,5352,0.01,local-installable,CLI for Mermaid library,https://github.com/mermaid-js/mermaid-cli,MIT
+1393,diff-so-fancy,5053,0.01,local-installable,Good-lookin' diffs with diff-highlight and more,https://github.com/so-fancy/diff-so-fancy,MIT
+1412,gnumeric,4987,0.01,local-installable,GNOME Spreadsheet Application,https://projects.gnome.org/gnumeric/,GPL-3.0-only OR GPL-2.0-only
+1417,img2pdf,4922,0.01,local-installable,Convert images to PDF via direct JPEG inclusion,https://gitlab.mister-muffin.de/josch/img2pdf,LGPL-3.0-or-later
+1466,groff,4643,0,local-installable,GNU troff text-formatting system,https://www.gnu.org/software/groff/,GPL-3.0-or-later
+1488,cherrytree,4423,0,local-installable,Hierarchical note taking application featuring rich text and syntax highlighting,https://www.giuspen.com/cherrytree/,GPL-3.0-or-later
+1497,zola,4359,0,local-installable,Fast static site generator in a single binary with everything built-in,https://www.getzola.org/,EUPL-1.2

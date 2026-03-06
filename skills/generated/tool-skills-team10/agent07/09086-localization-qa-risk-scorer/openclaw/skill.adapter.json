@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9086,
+  "name": "localization-qa-risk-scorer",
+  "title": "Localization QA Risk Scorer",
+  "description": "Design and run localization qa workflows with risk scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1653,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/09086-localization-qa-risk-scorer/SKILL.md",
+    "entrypoint": "agent07/09086-localization-qa-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa risk scorer",
+    "localization qa risk scorer workflow",
+    "localization qa risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3907,
+  "name": "social-listening-operation-planner",
+  "title": "Social Listening Operation Planner",
+  "description": "Design and run social listening workflows with operation planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9334,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03907-social-listening-operation-planner/SKILL.md",
+    "entrypoint": "agent04/03907-social-listening-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening operation planner",
+    "social listening operation planner workflow",
+    "social listening operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

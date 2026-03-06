@@ -1,0 +1,14 @@
+tool	binaries
+terragrunt	terragrunt
+ansible	ansible
+tfenv	tfenv
+tflint	tflint
+terraform	terraform
+terraform-docs	terraform-docs
+opentofu	opentofu
+ansible-lint	ansible-lint
+gomplate	gomplate
+tfsec	tfsec
+pulumi	pulumi
+cfn-lint	cfn-lint
+checkov	checkov

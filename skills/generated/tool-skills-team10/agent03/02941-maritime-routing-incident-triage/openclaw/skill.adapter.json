@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2941,
+  "name": "maritime-routing-incident-triage",
+  "title": "Maritime Routing Incident Triage",
+  "description": "Design and run maritime routing workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2047,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02941-maritime-routing-incident-triage/SKILL.md",
+    "entrypoint": "agent03/02941-maritime-routing-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing incident triage",
+    "maritime routing incident triage workflow",
+    "maritime routing incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

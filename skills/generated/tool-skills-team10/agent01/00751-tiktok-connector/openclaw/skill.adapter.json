@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 751,
+  "name": "tiktok-connector",
+  "title": "TikTok Connector",
+  "description": "Unified read/write connector for TikTok APIs and data.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 425,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/00751-tiktok-connector/SKILL.md",
+    "entrypoint": "agent01/00751-tiktok-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tiktok connector",
+    "tiktok connector workflow",
+    "tiktok connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

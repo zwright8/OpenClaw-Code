@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7459,
+  "name": "behavior-analytics-dependency-resolver",
+  "title": "Behavior Analytics Dependency Resolver",
+  "description": "Design and run behavior analytics workflows with dependency resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10554,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07459-behavior-analytics-dependency-resolver/SKILL.md",
+    "entrypoint": "agent06/07459-behavior-analytics-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics dependency resolver",
+    "behavior analytics dependency resolver workflow",
+    "behavior analytics dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

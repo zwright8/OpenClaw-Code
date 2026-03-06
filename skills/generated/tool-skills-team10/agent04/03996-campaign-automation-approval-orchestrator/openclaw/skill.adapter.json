@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3996,
+  "name": "campaign-automation-approval-orchestrator",
+  "title": "Campaign Automation Approval Orchestrator",
+  "description": "Design and run campaign automation workflows with approval orchestrator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3331,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03996-campaign-automation-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent04/03996-campaign-automation-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation approval orchestrator",
+    "campaign automation approval orchestrator workflow",
+    "campaign automation approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11472,
+  "name": "reference-programs-version-tracker",
+  "title": "Reference Programs Version Tracker",
+  "description": "Design and run reference programs workflows with version tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11987,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11472-reference-programs-version-tracker/SKILL.md",
+    "entrypoint": "agent09/11472-reference-programs-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs version tracker",
+    "reference programs version tracker workflow",
+    "reference programs version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

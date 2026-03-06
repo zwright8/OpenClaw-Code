@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9173,
+  "name": "accessibility-auditing-artifact-publisher",
+  "title": "Accessibility Auditing Artifact Publisher",
+  "description": "Design and run accessibility auditing workflows with artifact publisher controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11190,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09173-accessibility-auditing-artifact-publisher/SKILL.md",
+    "entrypoint": "agent08/09173-accessibility-auditing-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing artifact publisher",
+    "accessibility auditing artifact publisher workflow",
+    "accessibility auditing artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

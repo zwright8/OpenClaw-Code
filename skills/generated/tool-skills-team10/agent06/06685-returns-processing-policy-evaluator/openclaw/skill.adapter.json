@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6685,
+  "name": "returns-processing-policy-evaluator",
+  "title": "Returns Processing Policy Evaluator",
+  "description": "Design and run returns processing workflows with policy evaluator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3529,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06685-returns-processing-policy-evaluator/SKILL.md",
+    "entrypoint": "agent06/06685-returns-processing-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "returns processing policy evaluator",
+    "returns processing policy evaluator workflow",
+    "returns processing policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

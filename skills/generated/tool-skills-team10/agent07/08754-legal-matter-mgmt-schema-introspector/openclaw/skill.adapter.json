@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8754,
+  "name": "legal-matter-mgmt-schema-introspector",
+  "title": "Legal Matter Mgmt Schema Introspector",
+  "description": "Design and run legal matter mgmt workflows with schema introspector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 294,
+    "score": 93,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/08754-legal-matter-mgmt-schema-introspector/SKILL.md",
+    "entrypoint": "agent07/08754-legal-matter-mgmt-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt schema introspector",
+    "legal matter mgmt schema introspector workflow",
+    "legal matter mgmt schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

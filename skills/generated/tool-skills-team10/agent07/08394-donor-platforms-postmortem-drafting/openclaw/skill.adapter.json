@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8394,
+  "name": "donor-platforms-postmortem-drafting",
+  "title": "Donor Platforms Postmortem Drafting",
+  "description": "Design and run donor platforms workflows with postmortem drafting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10926,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08394-donor-platforms-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent07/08394-donor-platforms-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms postmortem drafting",
+    "donor platforms postmortem drafting workflow",
+    "donor platforms postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

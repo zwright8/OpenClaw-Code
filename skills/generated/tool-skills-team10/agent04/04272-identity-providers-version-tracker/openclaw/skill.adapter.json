@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4272,
+  "name": "identity-providers-version-tracker",
+  "title": "Identity Providers Version Tracker",
+  "description": "Design and run identity providers workflows with version tracker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5995,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04272-identity-providers-version-tracker/SKILL.md",
+    "entrypoint": "agent04/04272-identity-providers-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers version tracker",
+    "identity providers version tracker workflow",
+    "identity providers version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

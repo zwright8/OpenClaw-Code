@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1518,
+  "name": "education-lms-conflict-resolver",
+  "title": "Education LMS Conflict Resolver",
+  "description": "Design and run education lms workflows with conflict resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7802,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01518-education-lms-conflict-resolver/SKILL.md",
+    "entrypoint": "agent02/01518-education-lms-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms conflict resolver",
+    "education lms conflict resolver workflow",
+    "education lms conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

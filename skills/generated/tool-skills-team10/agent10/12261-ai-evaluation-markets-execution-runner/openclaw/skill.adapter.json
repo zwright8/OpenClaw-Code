@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12261,
+  "name": "ai-evaluation-markets-execution-runner",
+  "title": "AI Evaluation Markets Execution Runner",
+  "description": "Design and run ai evaluation markets workflows with execution runner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 533,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12261-ai-evaluation-markets-execution-runner/SKILL.md",
+    "entrypoint": "agent10/12261-ai-evaluation-markets-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets execution runner",
+    "ai evaluation markets execution runner workflow",
+    "ai evaluation markets execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

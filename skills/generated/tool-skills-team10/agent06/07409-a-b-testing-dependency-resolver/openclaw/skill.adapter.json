@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7409,
+  "name": "a-b-testing-dependency-resolver",
+  "title": "A/B Testing Dependency Resolver",
+  "description": "Design and run a/b testing workflows with dependency resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10533,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07409-a-b-testing-dependency-resolver/SKILL.md",
+    "entrypoint": "agent06/07409-a-b-testing-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing dependency resolver",
+    "a/b testing dependency resolver workflow",
+    "a/b testing dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

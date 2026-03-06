@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7268,
+  "name": "crowdsourcing-platforms-conflict-resolver",
+  "title": "Crowdsourcing Platforms Conflict Resolver",
+  "description": "Design and run crowdsourcing platforms workflows with conflict resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10473,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07268-crowdsourcing-platforms-conflict-resolver/SKILL.md",
+    "entrypoint": "agent06/07268-crowdsourcing-platforms-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms conflict resolver",
+    "crowdsourcing platforms conflict resolver workflow",
+    "crowdsourcing platforms conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

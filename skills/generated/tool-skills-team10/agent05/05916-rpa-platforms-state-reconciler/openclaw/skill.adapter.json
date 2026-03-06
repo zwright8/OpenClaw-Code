@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5916,
+  "name": "rpa-platforms-state-reconciler",
+  "title": "RPA Platforms State Reconciler",
+  "description": "Design and run rpa platforms workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4201,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05916-rpa-platforms-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05916-rpa-platforms-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rpa platforms state reconciler",
+    "rpa platforms state reconciler workflow",
+    "rpa platforms state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

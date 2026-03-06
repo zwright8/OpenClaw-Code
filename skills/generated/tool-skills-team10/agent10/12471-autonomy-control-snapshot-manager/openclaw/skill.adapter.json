@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12471,
+  "name": "autonomy-control-snapshot-manager",
+  "title": "Autonomy Control Snapshot Manager",
+  "description": "Design and run autonomy control workflows with snapshot manager controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12343,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12471-autonomy-control-snapshot-manager/SKILL.md",
+    "entrypoint": "agent10/12471-autonomy-control-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control snapshot manager",
+    "autonomy control snapshot manager workflow",
+    "autonomy control snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

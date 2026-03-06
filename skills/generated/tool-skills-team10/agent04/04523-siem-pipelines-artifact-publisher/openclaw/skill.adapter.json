@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4523,
+  "name": "siem-pipelines-artifact-publisher",
+  "title": "SIEM Pipelines Artifact Publisher",
+  "description": "Design and run siem pipelines workflows with artifact publisher controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9510,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04523-siem-pipelines-artifact-publisher/SKILL.md",
+    "entrypoint": "agent04/04523-siem-pipelines-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "siem pipelines artifact publisher",
+    "siem pipelines artifact publisher workflow",
+    "siem pipelines artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

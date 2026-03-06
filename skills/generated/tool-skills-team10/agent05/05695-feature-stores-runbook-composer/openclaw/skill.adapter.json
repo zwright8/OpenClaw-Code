@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5695,
+  "name": "feature-stores-runbook-composer",
+  "title": "Feature Stores Runbook Composer",
+  "description": "Design and run feature stores workflows with runbook composer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6137,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05695-feature-stores-runbook-composer/SKILL.md",
+    "entrypoint": "agent05/05695-feature-stores-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "feature stores runbook composer",
+    "feature stores runbook composer workflow",
+    "feature stores runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11567,
+  "name": "scheduling-dispatch-delta-calculator",
+  "title": "Scheduling Dispatch Delta Calculator",
+  "description": "Design and run scheduling dispatch workflows with delta calculator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12026,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11567-scheduling-dispatch-delta-calculator/SKILL.md",
+    "entrypoint": "agent09/11567-scheduling-dispatch-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch delta calculator",
+    "scheduling dispatch delta calculator workflow",
+    "scheduling dispatch delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

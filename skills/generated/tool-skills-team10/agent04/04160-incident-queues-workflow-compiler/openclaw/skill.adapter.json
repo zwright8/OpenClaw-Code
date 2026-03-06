@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4160,
+  "name": "incident-queues-workflow-compiler",
+  "title": "Incident Queues Workflow Compiler",
+  "description": "Design and run incident queues workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 312,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04160-incident-queues-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04160-incident-queues-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues workflow compiler",
+    "incident queues workflow compiler workflow",
+    "incident queues workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

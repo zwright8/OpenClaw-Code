@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8356,
+  "name": "donor-platforms-api-contract-validator",
+  "title": "Donor Platforms API Contract Validator",
+  "description": "Design and run donor platforms workflows with api contract validator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 196,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent07/08356-donor-platforms-api-contract-validator/SKILL.md",
+    "entrypoint": "agent07/08356-donor-platforms-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms api contract validator",
+    "donor platforms api contract validator workflow",
+    "donor platforms api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

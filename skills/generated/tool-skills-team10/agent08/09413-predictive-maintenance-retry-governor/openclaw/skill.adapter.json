@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9413,
+  "name": "predictive-maintenance-retry-governor",
+  "title": "Predictive Maintenance Retry Governor",
+  "description": "Design and run predictive maintenance workflows with retry governor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3737,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09413-predictive-maintenance-retry-governor/SKILL.md",
+    "entrypoint": "agent08/09413-predictive-maintenance-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance retry governor",
+    "predictive maintenance retry governor workflow",
+    "predictive maintenance retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

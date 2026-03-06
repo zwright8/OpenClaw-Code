@@ -1,0 +1,38 @@
+{
+  "skill": "u06822-learning-curriculum-composition-for-nutrition-and-meal-planning",
+  "capability": "Learning Curriculum Composition for nutrition and meal planning",
+  "domain": "nutrition and meal planning",
+  "run_context": {
+    "run_id": "fixture-6822",
+    "source": "hardening-fixture"
+  },
+  "inputs": {
+    "source_tagged_signals": [
+      {
+        "id": "sig-1",
+        "source": "approved-source",
+        "value": 0.5
+      }
+    ],
+    "claims": [
+      {
+        "id": "claim-1",
+        "text": "baseline claim",
+        "confidence": 0.5
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-1",
+        "type": "document",
+        "uri": "https://example.invalid/evidence"
+      }
+    ],
+    "confidence_traces": [
+      {
+        "id": "trace-1",
+        "score": 0.5
+      }
+    ]
+  }
+}

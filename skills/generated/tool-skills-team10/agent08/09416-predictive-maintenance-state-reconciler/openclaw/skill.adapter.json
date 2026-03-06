@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9416,
+  "name": "predictive-maintenance-state-reconciler",
+  "title": "Predictive Maintenance State Reconciler",
+  "description": "Design and run predictive maintenance workflows with state reconciler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2416,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09416-predictive-maintenance-state-reconciler/SKILL.md",
+    "entrypoint": "agent08/09416-predictive-maintenance-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance state reconciler",
+    "predictive maintenance state reconciler workflow",
+    "predictive maintenance state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

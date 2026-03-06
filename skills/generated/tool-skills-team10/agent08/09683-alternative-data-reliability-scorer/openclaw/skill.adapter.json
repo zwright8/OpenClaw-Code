@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9683,
+  "name": "alternative-data-reliability-scorer",
+  "title": "Alternative Data Reliability Scorer",
+  "description": "Design and run alternative data workflows with reliability scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11344,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09683-alternative-data-reliability-scorer/SKILL.md",
+    "entrypoint": "agent08/09683-alternative-data-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data reliability scorer",
+    "alternative data reliability scorer workflow",
+    "alternative data reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

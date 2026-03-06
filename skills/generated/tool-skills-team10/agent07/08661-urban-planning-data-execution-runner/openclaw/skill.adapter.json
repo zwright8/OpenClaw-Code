@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8661,
+  "name": "urban-planning-data-execution-runner",
+  "title": "Urban Planning Data Execution Runner",
+  "description": "Design and run urban planning data workflows with execution runner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1406,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08661-urban-planning-data-execution-runner/SKILL.md",
+    "entrypoint": "agent07/08661-urban-planning-data-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data execution runner",
+    "urban planning data execution runner workflow",
+    "urban planning data execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

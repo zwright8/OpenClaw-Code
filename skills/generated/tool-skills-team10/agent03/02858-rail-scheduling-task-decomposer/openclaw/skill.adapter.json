@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2858,
+  "name": "rail-scheduling-task-decomposer",
+  "title": "Rail Scheduling Task Decomposer",
+  "description": "Design and run rail scheduling workflows with task decomposer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7337,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02858-rail-scheduling-task-decomposer/SKILL.md",
+    "entrypoint": "agent03/02858-rail-scheduling-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling task decomposer",
+    "rail scheduling task decomposer workflow",
+    "rail scheduling task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

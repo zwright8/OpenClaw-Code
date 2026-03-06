@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1460,
+  "name": "insurance-claims-workflow-compiler",
+  "title": "Insurance Claims Workflow Compiler",
+  "description": "Design and run insurance claims workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 449,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01460-insurance-claims-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/01460-insurance-claims-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims workflow compiler",
+    "insurance claims workflow compiler workflow",
+    "insurance claims workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

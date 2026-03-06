@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7486,
+  "name": "behavior-analytics-risk-scorer",
+  "title": "Behavior Analytics Risk Scorer",
+  "description": "Design and run behavior analytics workflows with risk scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1625,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07486-behavior-analytics-risk-scorer/SKILL.md",
+    "entrypoint": "agent06/07486-behavior-analytics-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics risk scorer",
+    "behavior analytics risk scorer workflow",
+    "behavior analytics risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

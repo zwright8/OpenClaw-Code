@@ -1,0 +1,18 @@
+{
+  "skill": "u0190-governance-privacy-preserving-data-broker",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "privacy_scoped_exchanges_report",
+    "privacy_scoped_exchanges_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

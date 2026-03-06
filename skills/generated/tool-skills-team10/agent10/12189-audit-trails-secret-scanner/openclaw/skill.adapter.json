@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12189,
+  "name": "audit-trails-secret-scanner",
+  "title": "Audit Trails Secret Scanner",
+  "description": "Design and run audit trails workflows with secret scanner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1975,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12189-audit-trails-secret-scanner/SKILL.md",
+    "entrypoint": "agent10/12189-audit-trails-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails secret scanner",
+    "audit trails secret scanner workflow",
+    "audit trails secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

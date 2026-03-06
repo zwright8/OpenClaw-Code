@@ -1,0 +1,18 @@
+{
+  "skill": "u0156-tooling-kpi-dashboard-publisher",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "tool runs",
+    "error signatures",
+    "retry outcomes",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "operator_kpi_dashboards_report",
+    "operator_kpi_dashboards_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

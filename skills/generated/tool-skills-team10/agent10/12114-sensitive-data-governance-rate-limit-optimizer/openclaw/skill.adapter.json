@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12114,
+  "name": "sensitive-data-governance-rate-limit-optimizer",
+  "title": "Sensitive Data Governance Rate Limit Optimizer",
+  "description": "Design and run sensitive data governance workflows with rate limit optimizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6724,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12114-sensitive-data-governance-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent10/12114-sensitive-data-governance-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance rate limit optimizer",
+    "sensitive data governance rate limit optimizer workflow",
+    "sensitive data governance rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

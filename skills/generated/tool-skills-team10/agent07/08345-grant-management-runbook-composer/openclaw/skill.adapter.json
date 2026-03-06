@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8345,
+  "name": "grant-management-runbook-composer",
+  "title": "Grant Management Runbook Composer",
+  "description": "Design and run grant management workflows with runbook composer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6379,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08345-grant-management-runbook-composer/SKILL.md",
+    "entrypoint": "agent07/08345-grant-management-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grant management runbook composer",
+    "grant management runbook composer workflow",
+    "grant management runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

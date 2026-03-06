@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10917,
+  "name": "taxonomy-services-delta-calculator",
+  "title": "Taxonomy Services Delta Calculator",
+  "description": "Design and run taxonomy services workflows with delta calculator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11753,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10917-taxonomy-services-delta-calculator/SKILL.md",
+    "entrypoint": "agent09/10917-taxonomy-services-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services delta calculator",
+    "taxonomy services delta calculator workflow",
+    "taxonomy services delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7064,
+  "name": "news-monitoring-rate-limit-optimizer",
+  "title": "News Monitoring Rate Limit Optimizer",
+  "description": "Design and run news monitoring workflows with rate limit optimizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6262,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07064-news-monitoring-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent06/07064-news-monitoring-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring rate limit optimizer",
+    "news monitoring rate limit optimizer workflow",
+    "news monitoring rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

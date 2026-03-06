@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6036,
+  "name": "document-ocr-risk-scorer",
+  "title": "Document OCR Risk Scorer",
+  "description": "Design and run document ocr workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1594,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06036-document-ocr-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/06036-document-ocr-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr risk scorer",
+    "document ocr risk scorer workflow",
+    "document ocr risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

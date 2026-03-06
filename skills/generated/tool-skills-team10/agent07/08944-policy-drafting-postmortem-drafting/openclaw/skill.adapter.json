@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8944,
+  "name": "policy-drafting-postmortem-drafting",
+  "title": "Policy Drafting Postmortem Drafting",
+  "description": "Design and run policy drafting workflows with postmortem drafting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11115,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08944-policy-drafting-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent07/08944-policy-drafting-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy drafting postmortem drafting",
+    "policy drafting postmortem drafting workflow",
+    "policy drafting postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

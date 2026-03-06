@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10438,
+  "name": "document-verification-pii-redactor",
+  "title": "Document Verification PII Redactor",
+  "description": "Design and run document verification workflows with pii redactor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3811,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10438-document-verification-pii-redactor/SKILL.md",
+    "entrypoint": "agent09/10438-document-verification-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification pii redactor",
+    "document verification pii redactor workflow",
+    "document verification pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3970,
+  "name": "campaign-automation-migration-planner",
+  "title": "Campaign Automation Migration Planner",
+  "description": "Design and run campaign automation workflows with migration planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2469,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/03970-campaign-automation-migration-planner/SKILL.md",
+    "entrypoint": "agent04/03970-campaign-automation-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation migration planner",
+    "campaign automation migration planner workflow",
+    "campaign automation migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

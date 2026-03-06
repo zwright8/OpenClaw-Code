@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3204,
+  "name": "fraud-operations-schema-introspector",
+  "title": "Fraud Operations Schema Introspector",
+  "description": "Design and run fraud operations workflows with schema introspector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 585,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/03204-fraud-operations-schema-introspector/SKILL.md",
+    "entrypoint": "agent03/03204-fraud-operations-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations schema introspector",
+    "fraud operations schema introspector workflow",
+    "fraud operations schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

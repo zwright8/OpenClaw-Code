@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4358,
+  "name": "secrets-vaults-task-decomposer",
+  "title": "Secrets Vaults Task Decomposer",
+  "description": "Design and run secrets vaults workflows with task decomposer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9461,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04358-secrets-vaults-task-decomposer/SKILL.md",
+    "entrypoint": "agent04/04358-secrets-vaults-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "secrets vaults task decomposer",
+    "secrets vaults task decomposer workflow",
+    "secrets vaults task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

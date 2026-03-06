@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4011,
+  "name": "support-ticketing-execution-runner",
+  "title": "Support Ticketing Execution Runner",
+  "description": "Design and run support ticketing workflows with execution runner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1319,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04011-support-ticketing-execution-runner/SKILL.md",
+    "entrypoint": "agent04/04011-support-ticketing-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing execution runner",
+    "support ticketing execution runner workflow",
+    "support ticketing execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

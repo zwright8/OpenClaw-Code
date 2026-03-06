@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2461,
+  "name": "environmental-sensors-execution-runner",
+  "title": "Environmental Sensors Execution Runner",
+  "description": "Design and run environmental sensors workflows with execution runner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1289,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02461-environmental-sensors-execution-runner/SKILL.md",
+    "entrypoint": "agent02/02461-environmental-sensors-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors execution runner",
+    "environmental sensors execution runner workflow",
+    "environmental sensors execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9075,
+  "name": "localization-qa-provenance-tracker",
+  "title": "Localization QA Provenance Tracker",
+  "description": "Design and run localization qa workflows with provenance tracker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11149,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09075-localization-qa-provenance-tracker/SKILL.md",
+    "entrypoint": "agent07/09075-localization-qa-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa provenance tracker",
+    "localization qa provenance tracker workflow",
+    "localization qa provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

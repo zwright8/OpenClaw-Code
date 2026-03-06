@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10867,
+  "name": "ontology-management-delta-calculator",
+  "title": "Ontology Management Delta Calculator",
+  "description": "Design and run ontology management workflows with delta calculator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11732,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10867-ontology-management-delta-calculator/SKILL.md",
+    "entrypoint": "agent09/10867-ontology-management-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management delta calculator",
+    "ontology management delta calculator workflow",
+    "ontology management delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

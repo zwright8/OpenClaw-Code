@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3119,
+  "name": "risk-engines-rollback-coordinator",
+  "title": "Risk Engines Rollback Coordinator",
+  "description": "Design and run risk engines workflows with rollback coordinator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2366,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03119-risk-engines-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent03/03119-risk-engines-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines rollback coordinator",
+    "risk engines rollback coordinator workflow",
+    "risk engines rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

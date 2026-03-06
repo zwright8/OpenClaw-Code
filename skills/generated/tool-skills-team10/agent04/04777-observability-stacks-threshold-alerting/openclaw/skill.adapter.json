@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4777,
+  "name": "observability-stacks-threshold-alerting",
+  "title": "Observability Stacks Threshold Alerting",
+  "description": "Design and run observability stacks workflows with threshold alerting controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7420,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04777-observability-stacks-threshold-alerting/SKILL.md",
+    "entrypoint": "agent04/04777-observability-stacks-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks threshold alerting",
+    "observability stacks threshold alerting workflow",
+    "observability stacks threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

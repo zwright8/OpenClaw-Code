@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9701,
+  "name": "execution-monitoring-access-auditor",
+  "title": "Execution Monitoring Access Auditor",
+  "description": "Design and run execution monitoring workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11349,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09701-execution-monitoring-access-auditor/SKILL.md",
+    "entrypoint": "agent08/09701-execution-monitoring-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring access auditor",
+    "execution monitoring access auditor workflow",
+    "execution monitoring access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

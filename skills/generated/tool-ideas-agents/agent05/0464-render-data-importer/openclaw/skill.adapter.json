@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 464,
+  "name": "render-data-importer",
+  "title": "Render Data Importer",
+  "description": "Validates and imports bulk updates into Render.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0464-render-data-importer/SKILL.md",
+    "entrypoint": "agent05/0464-render-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "render data importer",
+    "render data importer workflow",
+    "render data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0464-render-data-importer"
+  }
+}

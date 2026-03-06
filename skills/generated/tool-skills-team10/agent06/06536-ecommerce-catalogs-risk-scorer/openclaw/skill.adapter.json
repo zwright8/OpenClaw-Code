@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6536,
+  "name": "ecommerce-catalogs-risk-scorer",
+  "title": "Ecommerce Catalogs Risk Scorer",
+  "description": "Design and run ecommerce catalogs workflows with risk scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 900,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/06536-ecommerce-catalogs-risk-scorer/SKILL.md",
+    "entrypoint": "agent06/06536-ecommerce-catalogs-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs risk scorer",
+    "ecommerce catalogs risk scorer workflow",
+    "ecommerce catalogs risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

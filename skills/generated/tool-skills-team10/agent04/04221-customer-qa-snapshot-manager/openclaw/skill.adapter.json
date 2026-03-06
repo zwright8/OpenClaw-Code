@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4221,
+  "name": "customer-qa-snapshot-manager",
+  "title": "Customer QA Snapshot Manager",
+  "description": "Design and run customer qa workflows with snapshot manager controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9424,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04221-customer-qa-snapshot-manager/SKILL.md",
+    "entrypoint": "agent04/04221-customer-qa-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa snapshot manager",
+    "customer qa snapshot manager workflow",
+    "customer qa snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

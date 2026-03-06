@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11566,
+  "name": "scheduling-dispatch-state-reconciler",
+  "title": "Scheduling Dispatch State Reconciler",
+  "description": "Design and run scheduling dispatch workflows with state reconciler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4419,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11566-scheduling-dispatch-state-reconciler/SKILL.md",
+    "entrypoint": "agent09/11566-scheduling-dispatch-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch state reconciler",
+    "scheduling dispatch state reconciler workflow",
+    "scheduling dispatch state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

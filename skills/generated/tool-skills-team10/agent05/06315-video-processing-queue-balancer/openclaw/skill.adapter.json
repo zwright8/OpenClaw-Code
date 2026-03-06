@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6315,
+  "name": "video-processing-queue-balancer",
+  "title": "Video Processing Queue Balancer",
+  "description": "Design and run video processing workflows with queue balancer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10135,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06315-video-processing-queue-balancer/SKILL.md",
+    "entrypoint": "agent05/06315-video-processing-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing queue balancer",
+    "video processing queue balancer workflow",
+    "video processing queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

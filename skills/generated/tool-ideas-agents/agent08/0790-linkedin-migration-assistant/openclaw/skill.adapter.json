@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 790,
+  "name": "linkedin-migration-assistant",
+  "title": "LinkedIn Migration Assistant",
+  "description": "Plans and executes safe migrations to or from LinkedIn.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0790-linkedin-migration-assistant/SKILL.md",
+    "entrypoint": "agent08/0790-linkedin-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "linkedin migration assistant",
+    "linkedin migration assistant workflow",
+    "linkedin migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0790-linkedin-migration-assistant"
+  }
+}

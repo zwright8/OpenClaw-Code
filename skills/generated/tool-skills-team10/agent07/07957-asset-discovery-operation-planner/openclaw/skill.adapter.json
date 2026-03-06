@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7957,
+  "name": "asset-discovery-operation-planner",
+  "title": "Asset Discovery Operation Planner",
+  "description": "Design and run asset discovery workflows with operation planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10762,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07957-asset-discovery-operation-planner/SKILL.md",
+    "entrypoint": "agent07/07957-asset-discovery-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery operation planner",
+    "asset discovery operation planner workflow",
+    "asset discovery operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

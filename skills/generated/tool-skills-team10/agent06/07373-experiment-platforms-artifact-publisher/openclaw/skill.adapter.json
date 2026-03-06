@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7373,
+  "name": "experiment-platforms-artifact-publisher",
+  "title": "Experiment Platforms Artifact Publisher",
+  "description": "Design and run experiment platforms workflows with artifact publisher controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10518,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07373-experiment-platforms-artifact-publisher/SKILL.md",
+    "entrypoint": "agent06/07373-experiment-platforms-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms artifact publisher",
+    "experiment platforms artifact publisher workflow",
+    "experiment platforms artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

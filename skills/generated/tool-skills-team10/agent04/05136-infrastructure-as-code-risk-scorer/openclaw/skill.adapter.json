@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5136,
+  "name": "infrastructure-as-code-risk-scorer",
+  "title": "Infrastructure as Code Risk Scorer",
+  "description": "Design and run infrastructure as code workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1571,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05136-infrastructure-as-code-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/05136-infrastructure-as-code-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code risk scorer",
+    "infrastructure as code risk scorer workflow",
+    "infrastructure as code risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

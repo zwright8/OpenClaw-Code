@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12193,
+  "name": "audit-trails-remediation-planner",
+  "title": "Audit Trails Remediation Planner",
+  "description": "Design and run audit trails workflows with remediation planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1976,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12193-audit-trails-remediation-planner/SKILL.md",
+    "entrypoint": "agent10/12193-audit-trails-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails remediation planner",
+    "audit trails remediation planner workflow",
+    "audit trails remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

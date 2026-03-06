@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5913,
+  "name": "rpa-platforms-retry-governor",
+  "title": "RPA Platforms Retry Governor",
+  "description": "Design and run rpa platforms workflows with retry governor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6159,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05913-rpa-platforms-retry-governor/SKILL.md",
+    "entrypoint": "agent05/05913-rpa-platforms-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rpa platforms retry governor",
+    "rpa platforms retry governor workflow",
+    "rpa platforms retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

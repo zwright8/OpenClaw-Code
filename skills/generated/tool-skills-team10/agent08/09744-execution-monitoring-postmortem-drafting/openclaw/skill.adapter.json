@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9744,
+  "name": "execution-monitoring-postmortem-drafting",
+  "title": "Execution Monitoring Postmortem Drafting",
+  "description": "Design and run execution monitoring workflows with postmortem drafting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11367,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09744-execution-monitoring-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent08/09744-execution-monitoring-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring postmortem drafting",
+    "execution monitoring postmortem drafting workflow",
+    "execution monitoring postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

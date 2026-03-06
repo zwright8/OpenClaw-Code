@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1459,
+  "name": "insurance-claims-dependency-resolver",
+  "title": "Insurance Claims Dependency Resolver",
+  "description": "Design and run insurance claims workflows with dependency resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7250,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01459-insurance-claims-dependency-resolver/SKILL.md",
+    "entrypoint": "agent02/01459-insurance-claims-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims dependency resolver",
+    "insurance claims dependency resolver workflow",
+    "insurance claims dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

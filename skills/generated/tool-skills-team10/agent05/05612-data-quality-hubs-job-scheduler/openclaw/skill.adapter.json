@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5612,
+  "name": "data-quality-hubs-job-scheduler",
+  "title": "Data Quality Hubs Job Scheduler",
+  "description": "Design and run data quality hubs workflows with job scheduler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2393,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05612-data-quality-hubs-job-scheduler/SKILL.md",
+    "entrypoint": "agent05/05612-data-quality-hubs-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs job scheduler",
+    "data quality hubs job scheduler workflow",
+    "data quality hubs job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

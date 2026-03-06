@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10588,
+  "name": "evaluation-harnesses-pii-redactor",
+  "title": "Evaluation Harnesses PII Redactor",
+  "description": "Design and run evaluation harnesses workflows with pii redactor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3824,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10588-evaluation-harnesses-pii-redactor/SKILL.md",
+    "entrypoint": "agent09/10588-evaluation-harnesses-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "evaluation harnesses pii redactor",
+    "evaluation harnesses pii redactor workflow",
+    "evaluation harnesses pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

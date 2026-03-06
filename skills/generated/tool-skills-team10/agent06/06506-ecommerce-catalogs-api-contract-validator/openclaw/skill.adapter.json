@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6506,
+  "name": "ecommerce-catalogs-api-contract-validator",
+  "title": "Ecommerce Catalogs API Contract Validator",
+  "description": "Design and run ecommerce catalogs workflows with api contract validator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 39,
+    "score": 99,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent06/06506-ecommerce-catalogs-api-contract-validator/SKILL.md",
+    "entrypoint": "agent06/06506-ecommerce-catalogs-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs api contract validator",
+    "ecommerce catalogs api contract validator workflow",
+    "ecommerce catalogs api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

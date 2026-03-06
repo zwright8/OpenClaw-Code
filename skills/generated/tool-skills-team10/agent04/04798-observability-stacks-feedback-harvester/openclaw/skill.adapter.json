@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4798,
+  "name": "observability-stacks-feedback-harvester",
+  "title": "Observability Stacks Feedback Harvester",
+  "description": "Design and run observability stacks workflows with feedback harvester controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7429,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04798-observability-stacks-feedback-harvester/SKILL.md",
+    "entrypoint": "agent04/04798-observability-stacks-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks feedback harvester",
+    "observability stacks feedback harvester workflow",
+    "observability stacks feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

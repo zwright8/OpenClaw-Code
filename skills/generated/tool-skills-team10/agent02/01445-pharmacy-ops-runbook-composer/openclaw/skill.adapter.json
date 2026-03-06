@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1445,
+  "name": "pharmacy-ops-runbook-composer",
+  "title": "Pharmacy Ops Runbook Composer",
+  "description": "Design and run pharmacy ops workflows with runbook composer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5764,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01445-pharmacy-ops-runbook-composer/SKILL.md",
+    "entrypoint": "agent02/01445-pharmacy-ops-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops runbook composer",
+    "pharmacy ops runbook composer workflow",
+    "pharmacy ops runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

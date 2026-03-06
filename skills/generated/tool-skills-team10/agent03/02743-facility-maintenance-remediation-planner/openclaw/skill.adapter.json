@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2743,
+  "name": "facility-maintenance-remediation-planner",
+  "title": "Facility Maintenance Remediation Planner",
+  "description": "Design and run facility maintenance workflows with remediation planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1779,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02743-facility-maintenance-remediation-planner/SKILL.md",
+    "entrypoint": "agent03/02743-facility-maintenance-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance remediation planner",
+    "facility maintenance remediation planner workflow",
+    "facility maintenance remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

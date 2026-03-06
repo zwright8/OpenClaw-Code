@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11413,
+  "name": "qbr-automation-retry-governor",
+  "title": "QBR Automation Retry Governor",
+  "description": "Design and run qbr automation workflows with retry governor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6653,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11413-qbr-automation-retry-governor/SKILL.md",
+    "entrypoint": "agent09/11413-qbr-automation-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation retry governor",
+    "qbr automation retry governor workflow",
+    "qbr automation retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

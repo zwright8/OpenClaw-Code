@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5208,
+  "name": "release-orchestration-task-decomposer",
+  "title": "Release Orchestration Task Decomposer",
+  "description": "Design and run release orchestration workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9734,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05208-release-orchestration-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/05208-release-orchestration-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration task decomposer",
+    "release orchestration task decomposer workflow",
+    "release orchestration task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

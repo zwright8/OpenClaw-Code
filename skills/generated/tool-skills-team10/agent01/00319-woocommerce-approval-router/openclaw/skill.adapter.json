@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 319,
+  "name": "woocommerce-approval-router",
+  "title": "WooCommerce Approval Router",
+  "description": "Routes WooCommerce-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12565,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00319-woocommerce-approval-router/SKILL.md",
+    "entrypoint": "agent01/00319-woocommerce-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "woocommerce approval router",
+    "woocommerce approval router workflow",
+    "woocommerce approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

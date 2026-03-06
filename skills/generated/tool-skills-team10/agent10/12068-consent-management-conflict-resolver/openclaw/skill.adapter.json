@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12068,
+  "name": "consent-management-conflict-resolver",
+  "title": "Consent Management Conflict Resolver",
+  "description": "Design and run consent management workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12237,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12068-consent-management-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/12068-consent-management-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "consent management conflict resolver",
+    "consent management conflict resolver workflow",
+    "consent management conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

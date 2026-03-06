@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 982,
+  "name": "csv-sync-orchestrator",
+  "title": "CSV Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for CSV records.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "agent10/0982-csv-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent10/0982-csv-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "csv sync orchestrator",
+    "csv sync orchestrator workflow",
+    "csv sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent10/0982-csv-sync-orchestrator"
+  }
+}

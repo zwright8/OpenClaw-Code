@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1431,
+  "name": "pharmacy-ops-cost-attribution",
+  "title": "Pharmacy Ops Cost Attribution",
+  "description": "Design and run pharmacy ops workflows with cost attribution controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8507,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01431-pharmacy-ops-cost-attribution/SKILL.md",
+    "entrypoint": "agent02/01431-pharmacy-ops-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops cost attribution",
+    "pharmacy ops cost attribution workflow",
+    "pharmacy ops cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

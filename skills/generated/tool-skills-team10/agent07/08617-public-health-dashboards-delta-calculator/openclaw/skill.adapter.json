@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8617,
+  "name": "public-health-dashboards-delta-calculator",
+  "title": "Public Health Dashboards Delta Calculator",
+  "description": "Design and run public health dashboards workflows with delta calculator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7843,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08617-public-health-dashboards-delta-calculator/SKILL.md",
+    "entrypoint": "agent07/08617-public-health-dashboards-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards delta calculator",
+    "public health dashboards delta calculator workflow",
+    "public health dashboards delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

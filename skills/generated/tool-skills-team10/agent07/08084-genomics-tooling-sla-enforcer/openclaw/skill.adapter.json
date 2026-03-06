@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8084,
+  "name": "genomics-tooling-sla-enforcer",
+  "title": "Genomics Tooling SLA Enforcer",
+  "description": "Design and run genomics tooling workflows with sla enforcer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10820,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08084-genomics-tooling-sla-enforcer/SKILL.md",
+    "entrypoint": "agent07/08084-genomics-tooling-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "genomics tooling sla enforcer",
+    "genomics tooling sla enforcer workflow",
+    "genomics tooling sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

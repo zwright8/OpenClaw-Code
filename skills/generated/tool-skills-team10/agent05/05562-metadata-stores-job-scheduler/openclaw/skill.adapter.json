@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5562,
+  "name": "metadata-stores-job-scheduler",
+  "title": "Metadata Stores Job Scheduler",
+  "description": "Design and run metadata stores workflows with job scheduler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5018,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05562-metadata-stores-job-scheduler/SKILL.md",
+    "entrypoint": "agent05/05562-metadata-stores-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores job scheduler",
+    "metadata stores job scheduler workflow",
+    "metadata stores job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

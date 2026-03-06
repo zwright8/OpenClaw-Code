@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11341,
+  "name": "churn-prevention-incident-triage",
+  "title": "Churn Prevention Incident Triage",
+  "description": "Design and run churn prevention workflows with incident triage controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2254,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11341-churn-prevention-incident-triage/SKILL.md",
+    "entrypoint": "agent09/11341-churn-prevention-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "churn prevention incident triage",
+    "churn prevention incident triage workflow",
+    "churn prevention incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

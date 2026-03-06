@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4374,
+  "name": "secrets-vaults-evidence-collector",
+  "title": "Secrets Vaults Evidence Collector",
+  "description": "Design and run secrets vaults workflows with evidence collector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6015,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04374-secrets-vaults-evidence-collector/SKILL.md",
+    "entrypoint": "agent04/04374-secrets-vaults-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "secrets vaults evidence collector",
+    "secrets vaults evidence collector workflow",
+    "secrets vaults evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

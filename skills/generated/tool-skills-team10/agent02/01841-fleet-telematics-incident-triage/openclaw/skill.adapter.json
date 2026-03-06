@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1841,
+  "name": "fleet-telematics-incident-triage",
+  "title": "Fleet Telematics Incident Triage",
+  "description": "Design and run fleet telematics workflows with incident triage controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2016,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01841-fleet-telematics-incident-triage/SKILL.md",
+    "entrypoint": "agent02/01841-fleet-telematics-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics incident triage",
+    "fleet telematics incident triage workflow",
+    "fleet telematics incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

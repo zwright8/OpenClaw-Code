@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12258,
+  "name": "ai-evaluation-markets-task-decomposer",
+  "title": "AI Evaluation Markets Task Decomposer",
+  "description": "Design and run ai evaluation markets workflows with task decomposer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7751,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12258-ai-evaluation-markets-task-decomposer/SKILL.md",
+    "entrypoint": "agent10/12258-ai-evaluation-markets-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets task decomposer",
+    "ai evaluation markets task decomposer workflow",
+    "ai evaluation markets task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

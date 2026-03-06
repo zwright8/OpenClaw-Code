@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5057,
+  "name": "serverless-runtimes-operation-planner",
+  "title": "Serverless Runtimes Operation Planner",
+  "description": "Design and run serverless runtimes workflows with operation planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9691,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05057-serverless-runtimes-operation-planner/SKILL.md",
+    "entrypoint": "agent04/05057-serverless-runtimes-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "serverless runtimes operation planner",
+    "serverless runtimes operation planner workflow",
+    "serverless runtimes operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

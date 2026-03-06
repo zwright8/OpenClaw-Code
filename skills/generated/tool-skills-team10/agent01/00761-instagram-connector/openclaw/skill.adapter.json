@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 761,
+  "name": "instagram-connector",
+  "title": "Instagram Connector",
+  "description": "Unified read/write connector for Instagram APIs and data.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 426,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/00761-instagram-connector/SKILL.md",
+    "entrypoint": "agent01/00761-instagram-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "instagram connector",
+    "instagram connector workflow",
+    "instagram connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

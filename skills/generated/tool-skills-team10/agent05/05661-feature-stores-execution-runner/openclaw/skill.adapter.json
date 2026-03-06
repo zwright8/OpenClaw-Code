@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5661,
+  "name": "feature-stores-execution-runner",
+  "title": "Feature Stores Execution Runner",
+  "description": "Design and run feature stores workflows with execution runner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1350,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05661-feature-stores-execution-runner/SKILL.md",
+    "entrypoint": "agent05/05661-feature-stores-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "feature stores execution runner",
+    "feature stores execution runner workflow",
+    "feature stores execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9761,
+  "name": "community-forums-execution-runner",
+  "title": "Community Forums Execution Runner",
+  "description": "Design and run community forums workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1425,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09761-community-forums-execution-runner/SKILL.md",
+    "entrypoint": "agent08/09761-community-forums-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums execution runner",
+    "community forums execution runner workflow",
+    "community forums execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

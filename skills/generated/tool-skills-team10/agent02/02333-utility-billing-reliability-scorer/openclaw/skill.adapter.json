@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2333,
+  "name": "utility-billing-reliability-scorer",
+  "title": "Utility Billing Reliability Scorer",
+  "description": "Design and run utility billing workflows with reliability scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7216,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02333-utility-billing-reliability-scorer/SKILL.md",
+    "entrypoint": "agent02/02333-utility-billing-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing reliability scorer",
+    "utility billing reliability scorer workflow",
+    "utility billing reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

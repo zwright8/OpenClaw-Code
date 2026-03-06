@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10804,
+  "name": "semantic-retrieval-schema-introspector",
+  "title": "Semantic Retrieval Schema Introspector",
+  "description": "Design and run semantic retrieval workflows with schema introspector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 729,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10804-semantic-retrieval-schema-introspector/SKILL.md",
+    "entrypoint": "agent09/10804-semantic-retrieval-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval schema introspector",
+    "semantic retrieval schema introspector workflow",
+    "semantic retrieval schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

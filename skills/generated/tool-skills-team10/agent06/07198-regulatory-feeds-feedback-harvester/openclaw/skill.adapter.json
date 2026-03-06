@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7198,
+  "name": "regulatory-feeds-feedback-harvester",
+  "title": "Regulatory Feeds Feedback Harvester",
+  "description": "Design and run regulatory feeds workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10466,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07198-regulatory-feeds-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/07198-regulatory-feeds-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds feedback harvester",
+    "regulatory feeds feedback harvester workflow",
+    "regulatory feeds feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

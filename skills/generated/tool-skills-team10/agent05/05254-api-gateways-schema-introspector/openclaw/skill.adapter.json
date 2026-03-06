@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5254,
+  "name": "api-gateways-schema-introspector",
+  "title": "API Gateways Schema Introspector",
+  "description": "Design and run api gateways workflows with schema introspector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 136,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent05/05254-api-gateways-schema-introspector/SKILL.md",
+    "entrypoint": "agent05/05254-api-gateways-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways schema introspector",
+    "api gateways schema introspector workflow",
+    "api gateways schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

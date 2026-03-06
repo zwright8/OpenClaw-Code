@@ -147,7 +147,9 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
         now: clock.now,
         defaultTimeoutMs: 100,
         maxRetries: 1,
-        retryDelayMs: 10
+        retryDelayMs: 10,
+        maxRetryDelayMs: 10,
+        retryJitterRatio: 0
     });
 
     const task = await orchestrator.dispatchTask({
@@ -160,6 +162,8 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     let current = orchestrator.getTask(task.taskId);
     assert.equal(pass1.scheduledRetries, 1);
     assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.retryLifecycle.state, 'scheduled');
+    assert.equal(current.retryLifecycle.scheduledCount, 1);
 
     clock.set(4_170);
     const pass2 = await orchestrator.runMaintenance(clock.now());
@@ -167,13 +171,300 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     assert.equal(pass2.retried, 1);
     assert.equal(current.status, 'dispatched');
     assert.equal(current.attempts, 2);
+    assert.equal(current.retryLifecycle.state, 'idle');
 
     clock.set(4_300);
     const pass3 = await orchestrator.runMaintenance(clock.now());
     current = orchestrator.getTask(task.taskId);
     assert.equal(pass3.timedOut, 1);
     assert.equal(current.status, 'timed_out');
+    assert.equal(current.retryLifecycle.state, 'terminalized');
+    assert.match(current.retryLifecycle.terminalReason, /retry_budget_exhausted/);
     assert.equal(sent.length, 2);
+});
+
+
+test('retry scheduling uses bounded exponential backoff with jitter', async () => {
+    const clock = createClock(70_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 3,
+        retryDelayMs: 20,
+        maxRetryDelayMs: 60,
+        retryJitterRatio: 0.25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-backoff',
+        task: 'Exercise retry timing'
+    });
+
+    clock.set(70_100);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    const delay1 = current.nextRetryAt - clock.now();
+    assert.equal(current.status, 'retry_scheduled');
+    assert.ok(delay1 >= 15 && delay1 <= 25);
+
+    clock.set(current.nextRetryAt);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.attempts, 2);
+
+    clock.set(current.deadlineAt + 1);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    const delay2 = current.nextRetryAt - clock.now();
+    assert.ok(delay2 >= 30 && delay2 <= 50);
+
+    clock.set(current.nextRetryAt);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.attempts, 3);
+
+    clock.set(current.deadlineAt + 1);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    const delay3 = current.nextRetryAt - clock.now();
+    assert.ok(delay3 >= 45 && delay3 <= 60);
+});
+
+test('fixed retry strategy keeps scheduling delay stable', async () => {
+    const clock = createClock(71_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 3,
+        retryDelayMs: 20,
+        retryStrategy: 'fixed',
+        retryBackoffMultiplier: 3,
+        maxRetryDelayMs: 200,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-fixed-backoff',
+        task: 'Exercise fixed retry strategy'
+    });
+
+    clock.set(71_100);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    const firstDelay = current.nextRetryAt - clock.now();
+    assert.equal(firstDelay, 20);
+
+    clock.set(current.nextRetryAt);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+
+    clock.set(current.deadlineAt + 1);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    const secondDelay = current.nextRetryAt - clock.now();
+    assert.equal(secondDelay, 20);
+});
+
+test('retry failures terminate and stay terminal without looping', async () => {
+    const clock = createClock(80_000);
+    let attempts = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                attempts += 1;
+                if (attempts > 1) {
+                    throw new Error('transient outage');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 25,
+        maxRetries: 1,
+        retryDelayMs: 0,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-loop-guard',
+        task: 'Ensure finite retries'
+    });
+
+    clock.set(80_050);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.retryLifecycle.state, 'scheduled');
+
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'transport_error');
+    assert.equal(current.retryLifecycle.state, 'terminalized');
+    assert.match(current.retryLifecycle.terminalReason, /retry_budget_exhausted/);
+
+    const terminalPass = await orchestrator.runMaintenance(clock.now() + 1_000);
+    assert.equal(terminalPass.checked, 0);
+    assert.equal(orchestrator.getTask(task.taskId).status, 'transport_error');
+});
+
+test('retry cycle guard terminalizes malformed retry lifecycle and prevents loops', async () => {
+    const clock = createClock(90_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 5,
+        retryDelayMs: 1,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-cycle-guard',
+        task: 'Guard against malformed retry state'
+    });
+
+    clock.set(90_100);
+    await orchestrator.runMaintenance(clock.now());
+
+    const mutableRecord = orchestrator.tasks.get(task.taskId);
+    mutableRecord.status = 'retry_scheduled';
+    mutableRecord.deadlineAt = clock.now() - 1;
+    mutableRecord.nextRetryAt = null;
+    mutableRecord.retryLifecycle.scheduledCount = mutableRecord.retryLifecycle.maxCycles;
+
+    const cycleGuardPass = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+
+    assert.equal(cycleGuardPass.timedOut, 1);
+    assert.equal(current.status, 'timed_out');
+    assert.equal(current.retryLifecycle.state, 'terminalized');
+    assert.match(current.retryLifecycle.terminalReason, /retry_cycle_guard/);
+
+    const postTerminalPass = await orchestrator.runMaintenance(clock.now() + 1_000);
+    assert.equal(postTerminalPass.checked, 0);
+});
+
+
+test('retry_state emits canonical retry/backoff payloads', async () => {
+    const clock = createClock(12_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 25,
+        maxRetries: 2,
+        retryDelayMs: 5,
+        maxRetryDelayMs: 5,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-transition',
+        task: 'Exercise retry transition payload schema'
+    });
+
+    clock.set(12_050);
+    await orchestrator.runMaintenance(clock.now());
+
+    let current = orchestrator.getTask(task.taskId);
+    let retryStateEvents = current.history.filter((entry) => entry.event === 'retry_state');
+    const scheduledTransition = retryStateEvents[retryStateEvents.length - 1];
+    assert.equal(scheduledTransition.state, 'scheduled');
+    assert.equal(scheduledTransition.reasonCode, 'timeout');
+    assert.equal(scheduledTransition.retryTransition.version, 2);
+    assert.equal(scheduledTransition.retryTransition.reason.code, 'timeout');
+    assert.equal(scheduledTransition.retryTransition.attemptCounters.scheduledRetries, 1);
+    assert.equal(scheduledTransition.terminalClassification, 'non_terminal');
+
+    clock.set(current.nextRetryAt);
+    await orchestrator.runMaintenance(clock.now());
+
+    current = orchestrator.getTask(task.taskId);
+    retryStateEvents = current.history.filter((entry) => entry.event === 'retry_state');
+    const dispatchTransition = retryStateEvents[retryStateEvents.length - 2];
+    assert.equal(dispatchTransition.state, 'dispatching');
+    assert.equal(dispatchTransition.reasonCode, 'timeout_retry');
+    assert.equal(dispatchTransition.retryTransition.reason.code, 'timeout_retry');
+    assert.equal(dispatchTransition.retryTransition.attemptCounters.retryDispatches, 1);
+});
+
+test('hydrate normalizes legacy terminal reason aliases into stable taxonomy', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const store = new FileTaskStore({ filePath: path.join(dir, 'tasks.jsonl') });
+    const clock = createClock(13_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        store,
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 0,
+        retryDelayMs: 0,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-hydrate',
+        task: 'Hydrate retry taxonomy'
+    });
+
+    const mutable = orchestrator.tasks.get(task.taskId);
+    mutable.status = 'transport_error';
+    mutable.updatedAt = clock.now();
+    mutable.closedAt = clock.now();
+    mutable.retryLifecycle.state = 'terminalized';
+    mutable.retryLifecycle.terminalReason = 'retry_exhausted:transport_error';
+    mutable.retryLifecycle.terminalReasonCode = null;
+    mutable.retryLifecycle.terminalReasonContext = null;
+
+    await orchestrator.flush();
+    await store.saveRecord(mutable);
+
+    const restored = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        store,
+        now: clock.now
+    });
+
+    const hydrated = await restored.hydrate();
+    assert.equal(hydrated.loaded, 1);
+
+    const loadedTask = restored.getTask(task.taskId);
+    assert.equal(loadedTask.retryLifecycle.terminalReason, 'retry_budget_exhausted:transport_failure');
+    assert.equal(loadedTask.retryLifecycle.terminalReasonCode, 'retry_budget_exhausted');
+    assert.equal(loadedTask.retryLifecycle.terminalReasonContext, 'transport_failure');
+    assert.equal(loadedTask.retryLifecycle.terminalClassification, 'transport_error');
+
+    const metrics = restored.getMetrics();
+    assert.equal(metrics.terminalReasonCounts['retry_budget_exhausted:transport_failure'], 1);
 });
 
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
@@ -514,4 +805,105 @@ test('audit log records signed lifecycle entries', async () => {
     const entries = auditLog.listEntries();
     assert.ok(entries.length >= 4);
     assert.equal(auditLog.verifyChain(entries).ok, true);
+});
+
+test('circuit breaker opens after repeated transport failures and closes after recovery', async () => {
+    const clock = createClock(80_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount === 2 || sendCount === 3) {
+                    throw new Error('downstream unavailable');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 4,
+        retryDelayMs: 5,
+        maxRetryDelayMs: 5,
+        retryJitterRatio: 0,
+        circuitFailureThreshold: 2,
+        circuitCooldownMs: 100
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-circuit',
+        task: 'Exercise circuit breaker behavior'
+    });
+
+    clock.set(80_060);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 80_065);
+
+    clock.set(80_070);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 80_075);
+
+    clock.set(80_080);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 80_180);
+    assert.equal(orchestrator.getMetrics().circuits.open, 1);
+
+    clock.set(80_185);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.nextRetryAt, null);
+    assert.equal(orchestrator.getMetrics().circuits.open, 0);
+    assert.equal(orchestrator.getMetrics().circuits.closed, 1);
+});
+
+test('circuit breaker can be disabled to keep classic fixed-delay retries', async () => {
+    const clock = createClock(90_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount >= 2) {
+                    throw new Error('always failing');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 3,
+        retryDelayMs: 7,
+        maxRetryDelayMs: 7,
+        retryJitterRatio: 0,
+        circuitBreakerEnabled: false,
+        circuitFailureThreshold: 1,
+        circuitCooldownMs: 120
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-classic-retry',
+        task: 'Disable breaker and use fixed delay retries'
+    });
+
+    clock.set(90_060);
+    await orchestrator.runMaintenance(clock.now());
+
+    clock.set(90_070);
+    await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 90_077);
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.circuits.tracked, 0);
+    assert.equal(metrics.circuits.open, 0);
 });

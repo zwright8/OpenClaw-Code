@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6535,
+  "name": "ecommerce-catalogs-policy-evaluator",
+  "title": "Ecommerce Catalogs Policy Evaluator",
+  "description": "Design and run ecommerce catalogs workflows with policy evaluator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2400,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06535-ecommerce-catalogs-policy-evaluator/SKILL.md",
+    "entrypoint": "agent06/06535-ecommerce-catalogs-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs policy evaluator",
+    "ecommerce catalogs policy evaluator workflow",
+    "ecommerce catalogs policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

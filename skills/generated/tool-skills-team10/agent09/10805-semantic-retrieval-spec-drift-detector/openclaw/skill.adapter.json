@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10805,
+  "name": "semantic-retrieval-spec-drift-detector",
+  "title": "Semantic Retrieval Spec Drift Detector",
+  "description": "Design and run semantic retrieval workflows with spec drift detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4388,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10805-semantic-retrieval-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent09/10805-semantic-retrieval-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval spec drift detector",
+    "semantic retrieval spec drift detector workflow",
+    "semantic retrieval spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2921,
+  "name": "maritime-routing-snapshot-manager",
+  "title": "Maritime Routing Snapshot Manager",
+  "description": "Design and run maritime routing workflows with snapshot manager controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8983,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02921-maritime-routing-snapshot-manager/SKILL.md",
+    "entrypoint": "agent03/02921-maritime-routing-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing snapshot manager",
+    "maritime routing snapshot manager workflow",
+    "maritime routing snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

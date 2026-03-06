@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3575,
+  "name": "cpq-platforms-provenance-tracker",
+  "title": "CPQ Platforms Provenance Tracker",
+  "description": "Design and run cpq platforms workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9217,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03575-cpq-platforms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/03575-cpq-platforms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cpq platforms provenance tracker",
+    "cpq platforms provenance tracker workflow",
+    "cpq platforms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

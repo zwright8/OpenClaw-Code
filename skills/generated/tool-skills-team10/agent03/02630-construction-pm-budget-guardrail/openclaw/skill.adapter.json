@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2630,
+  "name": "construction-pm-budget-guardrail",
+  "title": "Construction PM Budget Guardrail",
+  "description": "Design and run construction pm workflows with budget guardrail controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7288,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02630-construction-pm-budget-guardrail/SKILL.md",
+    "entrypoint": "agent03/02630-construction-pm-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm budget guardrail",
+    "construction pm budget guardrail workflow",
+    "construction pm budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2604,
+  "name": "construction-pm-schema-introspector",
+  "title": "Construction PM Schema Introspector",
+  "description": "Design and run construction pm workflows with schema introspector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 574,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/02604-construction-pm-schema-introspector/SKILL.md",
+    "entrypoint": "agent03/02604-construction-pm-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm schema introspector",
+    "construction pm schema introspector workflow",
+    "construction pm schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

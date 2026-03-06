@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11521,
+  "name": "field-service-ops-snapshot-manager",
+  "title": "Field Service Ops Snapshot Manager",
+  "description": "Design and run field service ops workflows with snapshot manager controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12007,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11521-field-service-ops-snapshot-manager/SKILL.md",
+    "entrypoint": "agent09/11521-field-service-ops-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops snapshot manager",
+    "field service ops snapshot manager workflow",
+    "field service ops snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

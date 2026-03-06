@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1483,
+  "name": "insurance-claims-reliability-scorer",
+  "title": "Insurance Claims Reliability Scorer",
+  "description": "Design and run insurance claims workflows with reliability scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7264,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01483-insurance-claims-reliability-scorer/SKILL.md",
+    "entrypoint": "agent02/01483-insurance-claims-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims reliability scorer",
+    "insurance claims reliability scorer workflow",
+    "insurance claims reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

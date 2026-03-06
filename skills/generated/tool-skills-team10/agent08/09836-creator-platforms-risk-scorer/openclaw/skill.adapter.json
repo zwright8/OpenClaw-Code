@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9836,
+  "name": "creator-platforms-risk-scorer",
+  "title": "Creator Platforms Risk Scorer",
+  "description": "Design and run creator platforms workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1670,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09836-creator-platforms-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09836-creator-platforms-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms risk scorer",
+    "creator platforms risk scorer workflow",
+    "creator platforms risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7482,
+  "name": "behavior-analytics-latency-analyzer",
+  "title": "Behavior Analytics Latency Analyzer",
+  "description": "Design and run behavior analytics workflows with latency analyzer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10566,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07482-behavior-analytics-latency-analyzer/SKILL.md",
+    "entrypoint": "agent06/07482-behavior-analytics-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics latency analyzer",
+    "behavior analytics latency analyzer workflow",
+    "behavior analytics latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

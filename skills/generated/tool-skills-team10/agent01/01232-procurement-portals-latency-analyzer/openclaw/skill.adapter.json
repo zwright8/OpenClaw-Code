@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1232,
+  "name": "procurement-portals-latency-analyzer",
+  "title": "Procurement Portals Latency Analyzer",
+  "description": "Design and run procurement portals workflows with latency analyzer controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7790,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01232-procurement-portals-latency-analyzer/SKILL.md",
+    "entrypoint": "agent01/01232-procurement-portals-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procurement portals latency analyzer",
+    "procurement portals latency analyzer workflow",
+    "procurement portals latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

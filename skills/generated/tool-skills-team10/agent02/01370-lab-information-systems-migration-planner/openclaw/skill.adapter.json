@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1370,
+  "name": "lab-information-systems-migration-planner",
+  "title": "Lab Information Systems Migration Planner",
+  "description": "Design and run lab information systems workflows with migration planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4481,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01370-lab-information-systems-migration-planner/SKILL.md",
+    "entrypoint": "agent02/01370-lab-information-systems-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems migration planner",
+    "lab information systems migration planner workflow",
+    "lab information systems migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

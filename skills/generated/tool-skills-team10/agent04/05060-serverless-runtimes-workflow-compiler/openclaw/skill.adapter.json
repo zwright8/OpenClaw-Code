@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5060,
+  "name": "serverless-runtimes-workflow-compiler",
+  "title": "Serverless Runtimes Workflow Compiler",
+  "description": "Design and run serverless runtimes workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1096,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05060-serverless-runtimes-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/05060-serverless-runtimes-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "serverless runtimes workflow compiler",
+    "serverless runtimes workflow compiler workflow",
+    "serverless runtimes workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

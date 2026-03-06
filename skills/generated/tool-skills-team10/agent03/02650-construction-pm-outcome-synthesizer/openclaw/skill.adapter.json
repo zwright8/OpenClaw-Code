@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2650,
+  "name": "construction-pm-outcome-synthesizer",
+  "title": "Construction PM Outcome Synthesizer",
+  "description": "Design and run construction pm workflows with outcome synthesizer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6847,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02650-construction-pm-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent03/02650-construction-pm-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm outcome synthesizer",
+    "construction pm outcome synthesizer workflow",
+    "construction pm outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

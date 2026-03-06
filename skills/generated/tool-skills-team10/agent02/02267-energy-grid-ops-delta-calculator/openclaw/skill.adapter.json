@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2267,
+  "name": "energy-grid-ops-delta-calculator",
+  "title": "Energy Grid Ops Delta Calculator",
+  "description": "Design and run energy grid ops workflows with delta calculator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8792,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02267-energy-grid-ops-delta-calculator/SKILL.md",
+    "entrypoint": "agent02/02267-energy-grid-ops-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "energy grid ops delta calculator",
+    "energy grid ops delta calculator workflow",
+    "energy grid ops delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

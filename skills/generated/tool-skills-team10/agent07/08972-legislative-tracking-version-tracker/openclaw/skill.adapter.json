@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8972,
+  "name": "legislative-tracking-version-tracker",
+  "title": "Legislative Tracking Version Tracker",
+  "description": "Design and run legislative tracking workflows with version tracker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11126,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08972-legislative-tracking-version-tracker/SKILL.md",
+    "entrypoint": "agent07/08972-legislative-tracking-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legislative tracking version tracker",
+    "legislative tracking version tracker workflow",
+    "legislative tracking version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

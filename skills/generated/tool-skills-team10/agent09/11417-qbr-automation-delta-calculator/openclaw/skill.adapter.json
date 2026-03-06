@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11417,
+  "name": "qbr-automation-delta-calculator",
+  "title": "QBR Automation Delta Calculator",
+  "description": "Design and run qbr automation workflows with delta calculator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11963,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11417-qbr-automation-delta-calculator/SKILL.md",
+    "entrypoint": "agent09/11417-qbr-automation-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation delta calculator",
+    "qbr automation delta calculator workflow",
+    "qbr automation delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

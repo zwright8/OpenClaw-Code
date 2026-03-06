@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7284,
+  "name": "crowdsourcing-platforms-sla-enforcer",
+  "title": "Crowdsourcing Platforms SLA Enforcer",
+  "description": "Design and run crowdsourcing platforms workflows with sla enforcer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10484,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07284-crowdsourcing-platforms-sla-enforcer/SKILL.md",
+    "entrypoint": "agent06/07284-crowdsourcing-platforms-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms sla enforcer",
+    "crowdsourcing platforms sla enforcer workflow",
+    "crowdsourcing platforms sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

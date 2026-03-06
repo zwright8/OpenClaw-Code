@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 12,
+  "range": {
+    "start": "u2550-failure-root-cause-mining-for-civic-participation-platforms",
+    "end": "u2599-failure-root-cause-mining-for-knowledge-management-systems",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2550-failure-root-cause-mining-for-civic-participation-platforms",
+      "path": "generated/shards/02/2550-failure-root-cause-mining-for-civic-participation-platforms",
+      "skill_md_sha256": "8e028c3d8aa7b029aed6798539a67850babec39685a8637b8e43b9ac60789f6e",
+      "summary_sha256": "56f2cc28d6bec9d3a2c43cd47faf3b17d9330c8ce4ca92456d1272d0365acd94"
+    },
+    {
+      "skill_id": "u2551-failure-root-cause-mining-for-accessibility-services",
+      "path": "generated/shards/02/2551-failure-root-cause-mining-for-accessibility-services",
+      "skill_md_sha256": "f4bf54ec1d76bf48287c4160686ae052e45215ad6afd1cef8c6240e1c53017b9",
+      "summary_sha256": "109abb321a986b549b8774a53609fe1c38939a8c50c1d6ecfc9b017150d72d23"
+    },
+    {
+      "skill_id": "u2552-failure-root-cause-mining-for-accessibility-services",
+      "path": "generated/shards/02/2552-failure-root-cause-mining-for-accessibility-services",
+      "skill_md_sha256": "6e71fa48c36219a00b8147a0ba1a63278db9d1aba97e7664df03c362d568997b",
+      "summary_sha256": "b954228f3dbe5c7c0b8ff1c5b377291779bc7ff2f5e937389b02da5dd7ed6512"
+    },
+    {
+      "skill_id": "u2553-failure-root-cause-mining-for-accessibility-services",
+      "path": "generated/shards/02/2553-failure-root-cause-mining-for-accessibility-services",
+      "skill_md_sha256": "eb7733d82d5fb6f3d351b2b83ff228585bbcd8ec5ff7f640dea477b64e786609",
+      "summary_sha256": "d22c8b26b138c54ddfb5b21a3ab16026e97110f421a851ffca616262c51f2cec"
+    },
+    {
+      "skill_id": "u2554-failure-root-cause-mining-for-accessibility-services",
+      "path": "generated/shards/02/2554-failure-root-cause-mining-for-accessibility-services",
+      "skill_md_sha256": "f04d6ed0f5263c0cdb5bdc84f3058812544ce0b422fae9efcd8ad361be593f8e",
+      "summary_sha256": "79fc16d5aec3dffa08cb21bcf35cfebebe18c20f3c39156099d3005a9a3a9f36"
+    },
+    {
+      "skill_id": "u2555-failure-root-cause-mining-for-accessibility-services",
+      "path": "generated/shards/02/2555-failure-root-cause-mining-for-accessibility-services",
+      "skill_md_sha256": "d4f4b6820493cd285f3e4c564d43815a4fc383617aaa379a7b9ebb44ce6fa077",
+      "summary_sha256": "e35ab82a477f8c20a782d2df461a3af84c49965544127305c01a81f09b899556"
+    },
+    {
+      "skill_id": "u2556-failure-root-cause-mining-for-eldercare-coordination",
+      "path": "generated/shards/02/2556-failure-root-cause-mining-for-eldercare-coordination",
+      "skill_md_sha256": "6870bc7c7442f29c0c55fe81fb6e24633ac57f211736e1440c6e55c74e151d27",
+      "summary_sha256": "857d5d0aaef9918935e852fbe50d5e526efabdd33999df24f7f21482653bc8d4"
+    },
+    {
+      "skill_id": "u2557-failure-root-cause-mining-for-eldercare-coordination",
+      "path": "generated/shards/02/2557-failure-root-cause-mining-for-eldercare-coordination",
+      "skill_md_sha256": "8d2485226b75b9fee2d03d25778d150bf6af7b820f84c523c2eacbfea2e108b0",
+      "summary_sha256": "a6d0aa11573bd4f07cc423b930c8fe367e09ef9376c909499d2726efc0b2d98c"
+    },
+    {
+      "skill_id": "u2558-failure-root-cause-mining-for-eldercare-coordination",
+      "path": "generated/shards/02/2558-failure-root-cause-mining-for-eldercare-coordination",
+      "skill_md_sha256": "8d5ac9d877ff016515ce4b954eed7d8a96700d1674c320de91164f46e9493f7d",
+      "summary_sha256": "e5f28cf884f3d0b255447a2d3646d232bf713cb007b55511fa08a031313afca2"
+    },
+    {
+      "skill_id": "u2559-failure-root-cause-mining-for-eldercare-coordination",
+      "path": "generated/shards/02/2559-failure-root-cause-mining-for-eldercare-coordination",
+      "skill_md_sha256": "b74ea23eaf451f3418e70e461094b8a3fc1ad61126059f3c79fa53736f3dc29b",
+      "summary_sha256": "8d77d3e17bf83cfd7f752a46cbeac0d9b25f7f6cfde6a82893d25b12981eb8b2"
+    },
+    {
+      "skill_id": "u2560-failure-root-cause-mining-for-eldercare-coordination",
+      "path": "generated/shards/02/2560-failure-root-cause-mining-for-eldercare-coordination",
+      "skill_md_sha256": "cf4702a1bb3caf693522eb37795b3b32bba7467f53e92111b17a6c2c3bca27a6",
+      "summary_sha256": "27c4bdeec754366ee85d37716d4d6f216e1581ad99cc1c82705d34015c28d62e"
+    },
+    {
+      "skill_id": "u2561-failure-root-cause-mining-for-childcare-support-systems",
+      "path": "generated/shards/02/2561-failure-root-cause-mining-for-childcare-support-systems",
+      "skill_md_sha256": "5c17dec99d65a55dc04abb0a0b6fc6d5bad086a483d529583017769dbf7b91e7",
+      "summary_sha256": "3cca725dd2c225d71090f38cdc448d5410929c9c7cc94f80ec3924635b4cf366"
+    },
+    {
+      "skill_id": "u2562-failure-root-cause-mining-for-childcare-support-systems",
+      "path": "generated/shards/02/2562-failure-root-cause-mining-for-childcare-support-systems",
+      "skill_md_sha256": "bfa0ade4aafea39575f5027a4a791d10e8ecb5df01501fc011198a305c2eb979",
+      "summary_sha256": "7aa4ac748a049750dbace2cfb0eee30d9c195342b4a000ee28a82b2dc5fd96de"
+    },
+    {
+      "skill_id": "u2563-failure-root-cause-mining-for-childcare-support-systems",
+      "path": "generated/shards/02/2563-failure-root-cause-mining-for-childcare-support-systems",
+      "skill_md_sha256": "0c3aaabcb57e73933f40f1961b76859805ed04ac1ae2f46a5674a24f3765cec5",
+      "summary_sha256": "87b98931967447295b7aa5caffb269bda3e5641b1bf614e2162ca9b633139ceb"
+    },
+    {
+      "skill_id": "u2564-failure-root-cause-mining-for-childcare-support-systems",
+      "path": "generated/shards/02/2564-failure-root-cause-mining-for-childcare-support-systems",
+      "skill_md_sha256": "dbe532055d59cdb43fdca14927f574f391206c80c734bec98fc631ec6193ce70",
+      "summary_sha256": "ed8ce400284d620869b7093178a2602e0b4cd712deb1b51d5e0d734958f81d60"
+    },
+    {
+      "skill_id": "u2565-failure-root-cause-mining-for-childcare-support-systems",
+      "path": "generated/shards/02/2565-failure-root-cause-mining-for-childcare-support-systems",
+      "skill_md_sha256": "eb3affbb061429850fd3bc61b78db593b4192da176e20ebeffe93d7e942eafd5",
+      "summary_sha256": "a383c7c3026889a73af513602d0e0cec23f679ac40211bf445b87657a002f6d9"
+    },
+    {
+      "skill_id": "u2566-failure-root-cause-mining-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2566-failure-root-cause-mining-for-arts-and-culture-programming",
+      "skill_md_sha256": "512358ea95cbf615ef85f475811cb1c4a82c62ce5f94fdc57277c0d33c6db1b5",
+      "summary_sha256": "bd4e96b88d3ccf457e809a1a3b49b165ed35ae98970b06f4ad2f9a3d709a95fc"
+    },
+    {
+      "skill_id": "u2567-failure-root-cause-mining-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2567-failure-root-cause-mining-for-arts-and-culture-programming",
+      "skill_md_sha256": "5f9c1cf203534725ec4725ff60bb5567fdd7041ee1318fde4589ec50b9331b0a",
+      "summary_sha256": "e07e59c0208412c90c46a4e2c741645c00d1102fef23b4c4c8074fde8dc55389"
+    },
+    {
+      "skill_id": "u2568-failure-root-cause-mining-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2568-failure-root-cause-mining-for-arts-and-culture-programming",
+      "skill_md_sha256": "3b49855bd9902152f519614cdc388713dfa3152070c9540e2a4738e620802b76",
+      "summary_sha256": "78d27706bb0ca73cc1ee4c18132fa90922657bf2c0c05e3c202dcb99468636fe"
+    },
+    {
+      "skill_id": "u2569-failure-root-cause-mining-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2569-failure-root-cause-mining-for-arts-and-culture-programming",
+      "skill_md_sha256": "82a788b18d560f0fbab9b41404ccb9e1fe69713fca784e82d418ff7d634a1f56",
+      "summary_sha256": "99e291bb97be8c4d34a199356d938af680956fd017b37305bc1f4d0050226d20"
+    },
+    {
+      "skill_id": "u2570-failure-root-cause-mining-for-arts-and-culture-programming",
+      "path": "generated/shards/02/2570-failure-root-cause-mining-for-arts-and-culture-programming",
+      "skill_md_sha256": "3f2bf48a34c2828ea9a4c4950dc434ea040c94116b8c9b8836b1b6e27f17758b",
+      "summary_sha256": "c81251dbe8d594f0c4e5167d89ab409e3c391133be08d66dbb51770d23a26ff4"
+    },
+    {
+      "skill_id": "u2571-failure-root-cause-mining-for-music-and-creative-practice",
+      "path": "generated/shards/02/2571-failure-root-cause-mining-for-music-and-creative-practice",
+      "skill_md_sha256": "399ef3733c4e9ada1ff47664dd6d58a4cada7c74a5d4170754eef9d990db1390",
+      "summary_sha256": "d7e17f0e5abe969b1c341bf41d6d8dcc1b40aed5eb8a83672579166e34f1f180"
+    },
+    {
+      "skill_id": "u2572-failure-root-cause-mining-for-music-and-creative-practice",
+      "path": "generated/shards/02/2572-failure-root-cause-mining-for-music-and-creative-practice",
+      "skill_md_sha256": "cb1a5c7190f5b8854d8256ddcbfa983e4dd1322b5e06c2b96c70e4483a819856",
+      "summary_sha256": "cfa696ca0c5608682751f12e2f91c3d18ed05ad28b857c51002a7012464bd57d"
+    },
+    {
+      "skill_id": "u2573-failure-root-cause-mining-for-music-and-creative-practice",
+      "path": "generated/shards/02/2573-failure-root-cause-mining-for-music-and-creative-practice",
+      "skill_md_sha256": "3ca213e49e8fa5d8e6fe844c0a659e5206b5697d187d39a50f002b814dbb0bb8",
+      "summary_sha256": "27bb3e2b91c26fa9c06cd4bd9228ea73e94f0d40709b6cf6c641fb8b1486eb95"
+    },
+    {
+      "skill_id": "u2574-failure-root-cause-mining-for-music-and-creative-practice",
+      "path": "generated/shards/02/2574-failure-root-cause-mining-for-music-and-creative-practice",
+      "skill_md_sha256": "2884d65e277eb9143c2b0f5148870e286fc7bdc6ea25cbd6f2735eeed6c34354",
+      "summary_sha256": "14537cabb3a6c291b91a4ed1facc6583f1100c661605a48f29ad2c2a9cc188a2"
+    },
+    {
+      "skill_id": "u2575-failure-root-cause-mining-for-music-and-creative-practice",
+      "path": "generated/shards/02/2575-failure-root-cause-mining-for-music-and-creative-practice",
+      "skill_md_sha256": "21ea5f9ea4d7a73a239c635968a42f458a789e32cf1813e78edfa3f3e0b25163",
+      "summary_sha256": "a871a988e16ba6b23754e0295dd1f469fe1437fab8d33fad22a1e5a9f80e33aa"
+    },
+    {
+      "skill_id": "u2576-failure-root-cause-mining-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2576-failure-root-cause-mining-for-journalism-and-public-communication",
+      "skill_md_sha256": "1dc4766c40009893e04bd01493da0bd9022cdeca2759f12dc39c899f88c773e5",
+      "summary_sha256": "d077209b9500695e31678e7fa9970a5b11bb4077a56ff2f600b26b8bdd6aca2c"
+    },
+    {
+      "skill_id": "u2577-failure-root-cause-mining-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2577-failure-root-cause-mining-for-journalism-and-public-communication",
+      "skill_md_sha256": "c6c367ba9d7243cbc036c94b12f56b45eb22fba327b7e1cc5e20a6a45d6c4d13",
+      "summary_sha256": "f984ad3eafd2125d264a5674ee7248fdc1d033e3002d790fc44c11a3db6b7df0"
+    },
+    {
+      "skill_id": "u2578-failure-root-cause-mining-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2578-failure-root-cause-mining-for-journalism-and-public-communication",
+      "skill_md_sha256": "d9a12c039bdca5d03aad9e031f4be8e04f5389fb200f4c75581828e019c65cef",
+      "summary_sha256": "ea4b7516358e978be47ffa610998ba1d9f627c8d984577337de6048ccab3b13a"
+    },
+    {
+      "skill_id": "u2579-failure-root-cause-mining-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2579-failure-root-cause-mining-for-journalism-and-public-communication",
+      "skill_md_sha256": "0e377cb13c345b33a5e7ab2572837b62943636626c1143b99dc5a1ffef1e1b8b",
+      "summary_sha256": "f832bf0494372b477e1c009c14a77546599382363934ab81d055a3b265415421"
+    },
+    {
+      "skill_id": "u2580-failure-root-cause-mining-for-journalism-and-public-communication",
+      "path": "generated/shards/02/2580-failure-root-cause-mining-for-journalism-and-public-communication",
+      "skill_md_sha256": "c31379965583a90cc1af142e6757cabe92752074f3326c7c8264d9df7321513b",
+      "summary_sha256": "acbea16cc510820ffe7337116ba9ace56b91cd39a3d8cebdf5d699502c00b223"
+    },
+    {
+      "skill_id": "u2581-failure-root-cause-mining-for-multilingual-translation-services",
+      "path": "generated/shards/02/2581-failure-root-cause-mining-for-multilingual-translation-services",
+      "skill_md_sha256": "d6c6f40bd3d7bbfa6f5ea5e1c040941a3bc24a6d345af76e45528b137b8107e7",
+      "summary_sha256": "6799d1ecfc62c0a66b438e5c368959a69d676f4f3618911d94b88bef660ccf76"
+    },
+    {
+      "skill_id": "u2582-failure-root-cause-mining-for-multilingual-translation-services",
+      "path": "generated/shards/02/2582-failure-root-cause-mining-for-multilingual-translation-services",
+      "skill_md_sha256": "fe6d0cbf7f3c2a50811bf0f62491975c7512606d25f4b4a7d7738fbfac1bebbf",
+      "summary_sha256": "36e39c0be2cdbde3bf0ef4a16fe61adac24fcb4f4b44dee7b9d5de78e7d0d022"
+    },
+    {
+      "skill_id": "u2583-failure-root-cause-mining-for-multilingual-translation-services",
+      "path": "generated/shards/02/2583-failure-root-cause-mining-for-multilingual-translation-services",
+      "skill_md_sha256": "b5eb9493209a4824853b69e350fa941711c1eff4a89aca4d79bd142b0b202694",
+      "summary_sha256": "65e03473459c71273087a4c475e5368c05012a2b1127f894a629ed032622cfae"
+    },
+    {
+      "skill_id": "u2584-failure-root-cause-mining-for-multilingual-translation-services",
+      "path": "generated/shards/02/2584-failure-root-cause-mining-for-multilingual-translation-services",
+      "skill_md_sha256": "0c9f25939d2d77ef8f201b2bf66630ca96c493fb4a1fef4afe37c9368bf367da",
+      "summary_sha256": "b3fd755ba203c98d5d3267d8bd269b91ff20ba4c86dc6cb0300d7f9f428b0be8"
+    },
+    {
+      "skill_id": "u2585-failure-root-cause-mining-for-multilingual-translation-services",
+      "path": "generated/shards/02/2585-failure-root-cause-mining-for-multilingual-translation-services",
+      "skill_md_sha256": "c4d8a13d5cbc12c5146ab6c4f71e1a0cdf962f9db406377d6466a030b8bc39e8",
+      "summary_sha256": "b183664f33de7df271439fd6e08c83f040eccf3c00879066158bb8cfa3ea0fa4"
+    },
+    {
+      "skill_id": "u2586-failure-root-cause-mining-for-remote-team-collaboration",
+      "path": "generated/shards/02/2586-failure-root-cause-mining-for-remote-team-collaboration",
+      "skill_md_sha256": "94a3dacc449b1ab8132cf5be504cc5a3360fc6707b660730f8069439bd2ecd9e",
+      "summary_sha256": "22333d35556024d9762fbdc875a35f5bcb892da9fa9ffeb8ed34023303bfccdc"
+    },
+    {
+      "skill_id": "u2587-failure-root-cause-mining-for-remote-team-collaboration",
+      "path": "generated/shards/02/2587-failure-root-cause-mining-for-remote-team-collaboration",
+      "skill_md_sha256": "03ac4732b46aeffac6a5f93e482fcb1a4613f3ebd7e14d4a9c15a3e7a6eb322a",
+      "summary_sha256": "d8d28165fd74477b7ccc2d989d0347edf095e73bf8bbb7b80cedb56e9fc162bf"
+    },
+    {
+      "skill_id": "u2588-failure-root-cause-mining-for-remote-team-collaboration",
+      "path": "generated/shards/02/2588-failure-root-cause-mining-for-remote-team-collaboration",
+      "skill_md_sha256": "c8af7c9cf0a84e0d25ee8622b4aa80b86027fafda32dc46b972b3195b79c467a",
+      "summary_sha256": "70059015ac62c5db598028f23e042cf46680d435dc941bf8b608dc25f28d8f04"
+    },
+    {
+      "skill_id": "u2589-failure-root-cause-mining-for-remote-team-collaboration",
+      "path": "generated/shards/02/2589-failure-root-cause-mining-for-remote-team-collaboration",
+      "skill_md_sha256": "1f27d9f2a1ec83fdf31ab5865ca84f27406db4bafe0be08ce8a633527fa15dfb",
+      "summary_sha256": "8aca0a36b4c8050d6bfb0f07092f4dfd2a6fd5b42efd70abd0e59417ce14224b"
+    },
+    {
+      "skill_id": "u2590-failure-root-cause-mining-for-remote-team-collaboration",
+      "path": "generated/shards/02/2590-failure-root-cause-mining-for-remote-team-collaboration",
+      "skill_md_sha256": "e646531cfe77bad0ac1a61012e59d36b05706757ac23a330ea84a811cd827f48",
+      "summary_sha256": "439c8cc88e8125174fd019e9e8228a500d595b2a525e95c1c1673629fa79f26c"
+    },
+    {
+      "skill_id": "u2591-failure-root-cause-mining-for-customer-support-operations",
+      "path": "generated/shards/02/2591-failure-root-cause-mining-for-customer-support-operations",
+      "skill_md_sha256": "38d0c90bcd4a9291a5638c864bfa91e6f5d059e0278cd32c5191b58fd653649a",
+      "summary_sha256": "2f73c6031020a3208181771903d3a09cb216d001814ac3fd45e3dd0c824ac71a"
+    },
+    {
+      "skill_id": "u2592-failure-root-cause-mining-for-customer-support-operations",
+      "path": "generated/shards/02/2592-failure-root-cause-mining-for-customer-support-operations",
+      "skill_md_sha256": "4f8e38b1e2cad8af8b558e8efc9e083df37859bc73e12db9ee09452c3489de95",
+      "summary_sha256": "f417861c89f7f2e63c5b295ad319b9d136d8a680e591905b144088c915b60810"
+    },
+    {
+      "skill_id": "u2593-failure-root-cause-mining-for-customer-support-operations",
+      "path": "generated/shards/02/2593-failure-root-cause-mining-for-customer-support-operations",
+      "skill_md_sha256": "5556f917a464a057c7d9cbff2e94398f7cd7fb0453339dd86847464ddfe8fcd8",
+      "summary_sha256": "ce55b1871a418def80fa42beb986728d11128b23dcb02e1e7a1d1a914906101b"
+    },
+    {
+      "skill_id": "u2594-failure-root-cause-mining-for-customer-support-operations",
+      "path": "generated/shards/02/2594-failure-root-cause-mining-for-customer-support-operations",
+      "skill_md_sha256": "43bf0bbc144af81ef9a5f0b296f492fcf9a17ddde59f8e3da141be2c1d482264",
+      "summary_sha256": "63e735090a932714212f2e989b22ab1b59bb14525ded4fe28242811498b3f9ac"
+    },
+    {
+      "skill_id": "u2595-failure-root-cause-mining-for-customer-support-operations",
+      "path": "generated/shards/02/2595-failure-root-cause-mining-for-customer-support-operations",
+      "skill_md_sha256": "d3093d133e8e5d0b87b484d3c02768891e2af175cfd236638ffb6333fec99221",
+      "summary_sha256": "8aa3c7ca29dedcfbd7d0c155007fda552650bc46294524d107268c22d2057e0d"
+    },
+    {
+      "skill_id": "u2596-failure-root-cause-mining-for-knowledge-management-systems",
+      "path": "generated/shards/02/2596-failure-root-cause-mining-for-knowledge-management-systems",
+      "skill_md_sha256": "5368a0480d81d4b375a7553ee2315d7654df919958a98212203ef786dd9cc93f",
+      "summary_sha256": "9554bab581a0fc591ce252ff014094b23c4146b2b0165da1a91ef818198cb203"
+    },
+    {
+      "skill_id": "u2597-failure-root-cause-mining-for-knowledge-management-systems",
+      "path": "generated/shards/02/2597-failure-root-cause-mining-for-knowledge-management-systems",
+      "skill_md_sha256": "01f176cc03cfa5f98d755eaf183a12bb8084f325ce90cc75133d74e0fb9a1114",
+      "summary_sha256": "732bdd920279caa85aa194fa67fbf28fe9ac2c954b41c35f65e9fe3c89103a60"
+    },
+    {
+      "skill_id": "u2598-failure-root-cause-mining-for-knowledge-management-systems",
+      "path": "generated/shards/02/2598-failure-root-cause-mining-for-knowledge-management-systems",
+      "skill_md_sha256": "b4198f45ed0186f7ec7663fca93aeb653ad903aba22085d5d270af9b231ecc20",
+      "summary_sha256": "9166295c909a29f9cb03a1f134c0201b79e52fd8a2be8425e363d838f01d0240"
+    },
+    {
+      "skill_id": "u2599-failure-root-cause-mining-for-knowledge-management-systems",
+      "path": "generated/shards/02/2599-failure-root-cause-mining-for-knowledge-management-systems",
+      "skill_md_sha256": "2ccaab4ff241ceca2354a1228f1140d96d1f9dcf19d4c88fbea31f812f858d91",
+      "summary_sha256": "7265fe3fab2013f8ebb866b44878d0da236c38997132bd96b5edf242a85bb147"
+    }
+  ]
+}

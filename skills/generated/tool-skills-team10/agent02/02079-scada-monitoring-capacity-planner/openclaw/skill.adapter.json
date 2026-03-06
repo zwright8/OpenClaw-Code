@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2079,
+  "name": "scada-monitoring-capacity-planner",
+  "title": "SCADA Monitoring Capacity Planner",
+  "description": "Design and run scada monitoring workflows with capacity planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8737,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02079-scada-monitoring-capacity-planner/SKILL.md",
+    "entrypoint": "agent02/02079-scada-monitoring-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring capacity planner",
+    "scada monitoring capacity planner workflow",
+    "scada monitoring capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

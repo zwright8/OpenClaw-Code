@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9715,
+  "name": "execution-monitoring-queue-balancer",
+  "title": "Execution Monitoring Queue Balancer",
+  "description": "Design and run execution monitoring workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11353,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09715-execution-monitoring-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/09715-execution-monitoring-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring queue balancer",
+    "execution monitoring queue balancer workflow",
+    "execution monitoring queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

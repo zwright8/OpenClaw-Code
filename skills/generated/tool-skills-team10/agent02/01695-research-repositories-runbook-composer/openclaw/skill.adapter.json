@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1695,
+  "name": "research-repositories-runbook-composer",
+  "title": "Research Repositories Runbook Composer",
+  "description": "Design and run research repositories workflows with runbook composer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5779,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01695-research-repositories-runbook-composer/SKILL.md",
+    "entrypoint": "agent02/01695-research-repositories-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories runbook composer",
+    "research repositories runbook composer workflow",
+    "research repositories runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

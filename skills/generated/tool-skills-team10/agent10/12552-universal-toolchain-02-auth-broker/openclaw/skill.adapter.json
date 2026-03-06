@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12552,
+  "name": "universal-toolchain-02-auth-broker",
+  "title": "Universal Toolchain 02 Auth Broker",
+  "description": "Design and run universal toolchain 02 workflows with auth broker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 791,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12552-universal-toolchain-02-auth-broker/SKILL.md",
+    "entrypoint": "agent10/12552-universal-toolchain-02-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 02 auth broker",
+    "universal toolchain 02 auth broker workflow",
+    "universal toolchain 02 auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

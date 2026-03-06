@@ -1,0 +1,27 @@
+rank,tool,access,license,homepage,description
+2536,icdiff,local-installable,PSF-2.0,https://www.jefftk.com/icdiff,Improved colored diff
+2537,percona-xtrabackup,local-installable,GPL-2.0-only,https://www.percona.com/software/mysql-database/percona-xtrabackup,Open source hot backup tool for InnoDB and XtraDB databases
+2538,shellspec,local-installable,MIT,https://shellspec.info/,"BDD unit testing framework for dash, bash, ksh, zsh and all POSIX shells"
+2540,babel,local-installable,MIT,https://babeljs.io/,Compiler for writing next generation JavaScript
+2541,mapserver,local-installable,MIT,https://mapserver.org/,Publish spatial data and interactive mapping apps to the web
+2542,premake,local-installable,BSD-3-Clause,https://premake.github.io/,"Write once, build anywhere Lua-based build system"
+2543,boost-build,local-installable,BSL-1.0,https://www.boost.org/build/,C++ build system
+2544,vsftpd,local-installable,GPL-2.0-only,https://security.appspot.com/vsftpd.html,Secure FTP server for UNIX
+2545,commitlint,local-installable,MIT,https://commitlint.js.org/#/,Lint commit messages according to a commit convention
+2546,nixpacks,local-installable,MIT,https://nixpacks.com/docs/getting-started,App source + Nix packages + Docker = Image
+2548,monero,local-installable,BSD-3-Clause,https://www.getmonero.org/downloads/#cli,Official Monero wallet and CPU miner
+2549,dockerfile-language-server,local-installable,MIT,https://github.com/rcjsuen/dockerfile-language-server,"Language server for Dockerfiles powered by Node, TypeScript, and VSCode"
+2550,fwupd,local-installable,LGPL-2.1-or-later,https://github.com/fwupd/fwupd,Firmware update daemon
+2551,mist-cli,local-installable,MIT,https://github.com/ninxsoft/mist-cli,Mac command-line tool that automatically downloads macOS Firmwares / Installers
+2552,gonzo,local-installable,MIT,https://gonzo.controltheory.com/,Log analysis TUI
+2553,air,local-installable,MIT,https://github.com/posit-dev/air,Fast and opinionated formatter for R code
+2554,id3v2,local-installable,GPL-2.0-or-later,https://id3v2.sourceforge.net/,Command-line editor
+2555,cpprestsdk,local-installable,MIT,https://github.com/microsoft/cpprestsdk,C++ libraries for cloud-based client-server communication
+2558,xdotool,local-installable,BSD-3-Clause,https://www.semicomplete.com/projects/xdotool/,Fake keyboard/mouse input and window management for X
+2559,tsduck,local-installable,BSD-2-Clause,https://tsduck.io/,MPEG Transport Stream Toolkit
+2560,heimdal,local-installable,BSD-3-Clause AND BSD-2-Clause AND HPND-export2-US AND LicenseRef-Homebrew-public-domain,https://github.com/heimdal/heimdal,Free Kerberos 5 implementation
+2563,fileicon,local-installable,MIT,https://github.com/mklement0/fileicon,macOS CLI for managing custom icons for files and folders
+2564,aubio,local-installable,GPL-3.0-or-later,https://github.com/aubio/aubio,Extract annotations from audio signals
+2565,lazyjournal,local-installable,MIT,https://github.com/Lifailon/lazyjournal,"TUI for logs from journalctl, file system, Docker, Podman and Kubernetes pods"
+2566,u-boot-tools,local-installable,GPL-2.0-only AND GPL-2.0-or-later AND BSD-3-Clause,https://www.denx.de/wiki/U-Boot/,Universal boot loader
+2567,pdfpc,local-installable,GPL-3.0-or-later,https://pdfpc.github.io/,Presenter console with multi-monitor support for PDF files

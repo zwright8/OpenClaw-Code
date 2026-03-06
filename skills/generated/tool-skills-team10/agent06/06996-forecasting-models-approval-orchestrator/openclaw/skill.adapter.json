@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6996,
+  "name": "forecasting-models-approval-orchestrator",
+  "title": "Forecasting Models Approval Orchestrator",
+  "description": "Design and run forecasting models workflows with approval orchestrator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6255,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06996-forecasting-models-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent06/06996-forecasting-models-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "forecasting models approval orchestrator",
+    "forecasting models approval orchestrator workflow",
+    "forecasting models approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

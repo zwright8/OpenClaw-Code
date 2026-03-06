@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 712,
+  "name": "canva-sync-orchestrator",
+  "title": "Canva Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Canva records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12819,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00712-canva-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00712-canva-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "canva sync orchestrator",
+    "canva sync orchestrator workflow",
+    "canva sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

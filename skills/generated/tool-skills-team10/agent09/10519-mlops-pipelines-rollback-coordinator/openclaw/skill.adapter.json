@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10519,
+  "name": "mlops-pipelines-rollback-coordinator",
+  "title": "MLOps Pipelines Rollback Coordinator",
+  "description": "Design and run mlops pipelines workflows with rollback coordinator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2603,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10519-mlops-pipelines-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent09/10519-mlops-pipelines-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mlops pipelines rollback coordinator",
+    "mlops pipelines rollback coordinator workflow",
+    "mlops pipelines rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

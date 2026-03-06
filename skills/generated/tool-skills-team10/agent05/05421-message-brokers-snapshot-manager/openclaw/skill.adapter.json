@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5421,
+  "name": "message-brokers-snapshot-manager",
+  "title": "Message Brokers Snapshot Manager",
+  "description": "Design and run message brokers workflows with snapshot manager controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9802,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05421-message-brokers-snapshot-manager/SKILL.md",
+    "entrypoint": "agent05/05421-message-brokers-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers snapshot manager",
+    "message brokers snapshot manager workflow",
+    "message brokers snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

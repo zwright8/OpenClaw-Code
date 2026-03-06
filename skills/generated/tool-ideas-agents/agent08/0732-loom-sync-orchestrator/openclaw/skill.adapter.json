@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 732,
+  "name": "loom-sync-orchestrator",
+  "title": "Loom Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Loom records.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0732-loom-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent08/0732-loom-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "loom sync orchestrator",
+    "loom sync orchestrator workflow",
+    "loom sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0732-loom-sync-orchestrator"
+  }
+}

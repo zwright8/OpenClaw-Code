@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1361,
+  "name": "lab-information-systems-execution-runner",
+  "title": "Lab Information Systems Execution Runner",
+  "description": "Design and run lab information systems workflows with execution runner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1269,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01361-lab-information-systems-execution-runner/SKILL.md",
+    "entrypoint": "agent02/01361-lab-information-systems-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems execution runner",
+    "lab information systems execution runner workflow",
+    "lab information systems execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 543,
+  "name": "snowflake-data-exporter",
+  "title": "Snowflake Data Exporter",
+  "description": "Exports Snowflake entities into clean, typed datasets.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0543-snowflake-data-exporter/SKILL.md",
+    "entrypoint": "agent06/0543-snowflake-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "snowflake data exporter",
+    "snowflake data exporter workflow",
+    "snowflake data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0543-snowflake-data-exporter"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 910,
+  "name": "wordpress-migration-assistant",
+  "title": "WordPress Migration Assistant",
+  "description": "Plans and executes safe migrations to or from WordPress.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12937,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00910-wordpress-migration-assistant/SKILL.md",
+    "entrypoint": "agent01/00910-wordpress-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "wordpress migration assistant",
+    "wordpress migration assistant workflow",
+    "wordpress migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

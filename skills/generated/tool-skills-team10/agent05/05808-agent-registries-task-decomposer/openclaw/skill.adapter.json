@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5808,
+  "name": "agent-registries-task-decomposer",
+  "title": "Agent Registries Task Decomposer",
+  "description": "Design and run agent registries workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9944,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05808-agent-registries-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/05808-agent-registries-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries task decomposer",
+    "agent registries task decomposer workflow",
+    "agent registries task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 486,
+  "name": "kubernetes-report-builder",
+  "title": "Kubernetes Report Builder",
+  "description": "Generates operational and KPI reports from Kubernetes activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8114,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00486-kubernetes-report-builder/SKILL.md",
+    "entrypoint": "agent01/00486-kubernetes-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes report builder",
+    "kubernetes report builder workflow",
+    "kubernetes report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

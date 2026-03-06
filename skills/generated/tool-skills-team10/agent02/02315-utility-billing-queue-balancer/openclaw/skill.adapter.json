@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2315,
+  "name": "utility-billing-queue-balancer",
+  "title": "Utility Billing Queue Balancer",
+  "description": "Design and run utility billing workflows with queue balancer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7204,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02315-utility-billing-queue-balancer/SKILL.md",
+    "entrypoint": "agent02/02315-utility-billing-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing queue balancer",
+    "utility billing queue balancer workflow",
+    "utility billing queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

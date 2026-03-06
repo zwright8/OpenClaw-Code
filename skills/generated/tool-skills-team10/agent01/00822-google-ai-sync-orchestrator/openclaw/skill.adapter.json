@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 822,
+  "name": "google-ai-sync-orchestrator",
+  "title": "Google AI Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Google AI records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8157,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00822-google-ai-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00822-google-ai-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google ai sync orchestrator",
+    "google ai sync orchestrator workflow",
+    "google ai sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

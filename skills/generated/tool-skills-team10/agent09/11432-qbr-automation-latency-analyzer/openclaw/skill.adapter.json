@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11432,
+  "name": "qbr-automation-latency-analyzer",
+  "title": "QBR Automation Latency Analyzer",
+  "description": "Design and run qbr automation workflows with latency analyzer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11973,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11432-qbr-automation-latency-analyzer/SKILL.md",
+    "entrypoint": "agent09/11432-qbr-automation-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation latency analyzer",
+    "qbr automation latency analyzer workflow",
+    "qbr automation latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

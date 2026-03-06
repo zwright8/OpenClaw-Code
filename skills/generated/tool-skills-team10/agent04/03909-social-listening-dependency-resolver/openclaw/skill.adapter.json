@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3909,
+  "name": "social-listening-dependency-resolver",
+  "title": "Social Listening Dependency Resolver",
+  "description": "Design and run social listening workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9336,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03909-social-listening-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/03909-social-listening-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening dependency resolver",
+    "social listening dependency resolver workflow",
+    "social listening dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

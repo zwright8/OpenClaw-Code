@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11664,
+  "name": "spare-parts-planning-rate-limit-optimizer",
+  "title": "Spare Parts Planning Rate Limit Optimizer",
+  "description": "Design and run spare parts planning workflows with rate limit optimizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6679,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11664-spare-parts-planning-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent09/11664-spare-parts-planning-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "spare parts planning rate limit optimizer",
+    "spare parts planning rate limit optimizer workflow",
+    "spare parts planning rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

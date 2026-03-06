@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7510,
+  "name": "mobile-release-ops-workflow-compiler",
+  "title": "Mobile Release Ops Workflow Compiler",
+  "description": "Design and run mobile release ops workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1140,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07510-mobile-release-ops-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/07510-mobile-release-ops-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops workflow compiler",
+    "mobile release ops workflow compiler workflow",
+    "mobile release ops workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

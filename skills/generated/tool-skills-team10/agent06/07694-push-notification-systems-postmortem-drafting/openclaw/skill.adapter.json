@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7694,
+  "name": "push-notification-systems-postmortem-drafting",
+  "title": "Push Notification Systems Postmortem Drafting",
+  "description": "Design and run push notification systems workflows with postmortem drafting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10653,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07694-push-notification-systems-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent06/07694-push-notification-systems-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems postmortem drafting",
+    "push notification systems postmortem drafting workflow",
+    "push notification systems postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

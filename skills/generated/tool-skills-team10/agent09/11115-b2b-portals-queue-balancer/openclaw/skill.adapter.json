@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11115,
+  "name": "b2b-portals-queue-balancer",
+  "title": "B2B Portals Queue Balancer",
+  "description": "Design and run b2b portals workflows with queue balancer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11836,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11115-b2b-portals-queue-balancer/SKILL.md",
+    "entrypoint": "agent09/11115-b2b-portals-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals queue balancer",
+    "b2b portals queue balancer workflow",
+    "b2b portals queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

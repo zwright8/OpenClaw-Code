@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10879,
+  "name": "ontology-management-capacity-planner",
+  "title": "Ontology Management Capacity Planner",
+  "description": "Design and run ontology management workflows with capacity planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11740,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10879-ontology-management-capacity-planner/SKILL.md",
+    "entrypoint": "agent09/10879-ontology-management-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management capacity planner",
+    "ontology management capacity planner workflow",
+    "ontology management capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

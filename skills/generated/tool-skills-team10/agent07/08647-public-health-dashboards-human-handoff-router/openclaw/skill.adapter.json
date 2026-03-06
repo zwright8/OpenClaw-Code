@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8647,
+  "name": "public-health-dashboards-human-handoff-router",
+  "title": "Public Health Dashboards Human Handoff Router",
+  "description": "Design and run public health dashboards workflows with human handoff router controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7857,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08647-public-health-dashboards-human-handoff-router/SKILL.md",
+    "entrypoint": "agent07/08647-public-health-dashboards-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "public health dashboards human handoff router",
+    "public health dashboards human handoff router workflow",
+    "public health dashboards human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

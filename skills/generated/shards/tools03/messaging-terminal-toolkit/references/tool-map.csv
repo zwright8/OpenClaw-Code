@@ -1,0 +1,17 @@
+rank,tool,installs_365d,percent_365d,access,description,homepage,license
+1039,sl,8584,0.01,local-installable,Prints a steam locomotive if you type sl instead of ls,https://github.com/mtoyoda/sl,MIT
+1101,lolcat,7791,0.01,local-installable,Rainbows and unicorns in your console!,https://github.com/busyloop/lolcat,BSD-3-Clause
+1132,aichat,7384,0.01,local-installable,All-in-one AI-Powered CLI Chat & Copilot,https://github.com/sigoden/aichat,Apache-2.0 OR MIT
+1133,mutt,7384,0.01,local-installable,"Mongrel of mail user agents (part elm, pine, mush, mh, etc.)",http://www.mutt.org/,GPL-2.0-or-later
+1141,weechat,7334,0.01,local-installable,Extensible IRC client,https://weechat.org/,GPL-3.0-or-later
+1176,ramalama,6977,0.01,local-installable,Goal of RamaLama is to make working with AI boring,https://github.com/containers/ramalama,MIT
+1245,fortune,6307,0.01,local-installable,Infamous electronic fortune-cookie generator,https://www.ibiblio.org/pub/linux/games/amusements/fortune/!INDEX.html,BSD-4-Clause-UC
+1252,imessage-exporter,6226,0.01,local-installable,Command-line tool to export and inspect local iMessage database,https://github.com/ReagentX/imessage-exporter,GPL-3.0-only
+1364,neomutt,5284,0.01,local-installable,"E-mail reader with support for Notmuch, NNTP and much more",https://neomutt.org/,GPL-2.0-or-later
+1375,gogcli,5188,0.01,local-installed,Google Suite CLI,https://gogcli.sh,MIT
+1399,claude-squad,5021,0.01,local-installable,"Manage multiple AI agents like Claude Code, Aider and Codex in your terminal",https://smtg-ai.github.io/claude-squad/,AGPL-3.0-only
+1408,msmtp,4993,0.01,local-installable,SMTP client that can be used as an SMTP plugin for Mutt,https://marlam.de/msmtp/,GPL-3.0-or-later
+1439,openclaw-cli,4762,0,local-installable,Your own personal AI assistant,https://openclaw.ai/,MIT
+1440,beads,4756,0,local-installable,Memory upgrade for your coding agent,https://github.com/steveyegge/beads,MIT
+1479,asciiquarium,4492,0,local-installable,Aquarium animation in ASCII art,https://robobunny.com/projects/asciiquarium/html/,GPL-2.0-or-later
+1499,newsboat,4355,0,local-installable,RSS/Atom feed reader for text terminals,https://newsboat.org/,MIT

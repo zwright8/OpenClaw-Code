@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9948,
+  "name": "live-event-ops-feedback-harvester",
+  "title": "Live Event Ops Feedback Harvester",
+  "description": "Design and run live event ops workflows with feedback harvester controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11453,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09948-live-event-ops-feedback-harvester/SKILL.md",
+    "entrypoint": "agent08/09948-live-event-ops-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "live event ops feedback harvester",
+    "live event ops feedback harvester workflow",
+    "live event ops feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

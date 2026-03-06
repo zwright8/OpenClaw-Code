@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3392,
+  "name": "payroll-systems-root-cause-miner",
+  "title": "Payroll Systems Root Cause Miner",
+  "description": "Design and run payroll systems workflows with root cause miner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4546,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03392-payroll-systems-root-cause-miner/SKILL.md",
+    "entrypoint": "agent03/03392-payroll-systems-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems root cause miner",
+    "payroll systems root cause miner workflow",
+    "payroll systems root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12480,
+  "name": "autonomy-control-budget-guardrail",
+  "title": "Autonomy Control Budget Guardrail",
+  "description": "Design and run autonomy control workflows with budget guardrail controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7774,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12480-autonomy-control-budget-guardrail/SKILL.md",
+    "entrypoint": "agent10/12480-autonomy-control-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control budget guardrail",
+    "autonomy control budget guardrail workflow",
+    "autonomy control budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

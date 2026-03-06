@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4417,
+  "name": "certificate-management-delta-calculator",
+  "title": "Certificate Management Delta Calculator",
+  "description": "Design and run certificate management workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9485,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04417-certificate-management-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/04417-certificate-management-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management delta calculator",
+    "certificate management delta calculator workflow",
+    "certificate management delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

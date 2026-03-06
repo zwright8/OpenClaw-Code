@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2298,
+  "name": "energy-grid-ops-feedback-harvester",
+  "title": "Energy Grid Ops Feedback Harvester",
+  "description": "Design and run energy grid ops workflows with feedback harvester controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8807,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02298-energy-grid-ops-feedback-harvester/SKILL.md",
+    "entrypoint": "agent02/02298-energy-grid-ops-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "energy grid ops feedback harvester",
+    "energy grid ops feedback harvester workflow",
+    "energy grid ops feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10351,
+  "name": "onboarding-journeys-access-auditor",
+  "title": "Onboarding Journeys Access Auditor",
+  "description": "Design and run onboarding journeys workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11580,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10351-onboarding-journeys-access-auditor/SKILL.md",
+    "entrypoint": "agent08/10351-onboarding-journeys-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys access auditor",
+    "onboarding journeys access auditor workflow",
+    "onboarding journeys access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

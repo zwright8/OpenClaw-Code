@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2015,
+  "name": "manufacturing-mes-queue-balancer",
+  "title": "Manufacturing MES Queue Balancer",
+  "description": "Design and run manufacturing mes workflows with queue balancer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8707,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02015-manufacturing-mes-queue-balancer/SKILL.md",
+    "entrypoint": "agent02/02015-manufacturing-mes-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "manufacturing mes queue balancer",
+    "manufacturing mes queue balancer workflow",
+    "manufacturing mes queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1133,
+  "name": "patent-filings-reliability-scorer",
+  "title": "Patent Filings Reliability Scorer",
+  "description": "Design and run patent filings workflows with reliability scorer controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8446,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01133-patent-filings-reliability-scorer/SKILL.md",
+    "entrypoint": "agent01/01133-patent-filings-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings reliability scorer",
+    "patent filings reliability scorer workflow",
+    "patent filings reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3232,
+  "name": "fraud-operations-latency-analyzer",
+  "title": "Fraud Operations Latency Analyzer",
+  "description": "Design and run fraud operations workflows with latency analyzer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9075,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03232-fraud-operations-latency-analyzer/SKILL.md",
+    "entrypoint": "agent03/03232-fraud-operations-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations latency analyzer",
+    "fraud operations latency analyzer workflow",
+    "fraud operations latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

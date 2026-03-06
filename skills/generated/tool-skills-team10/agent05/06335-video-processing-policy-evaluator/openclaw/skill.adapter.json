@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6335,
+  "name": "video-processing-policy-evaluator",
+  "title": "Video Processing Policy Evaluator",
+  "description": "Design and run video processing workflows with policy evaluator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3503,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06335-video-processing-policy-evaluator/SKILL.md",
+    "entrypoint": "agent05/06335-video-processing-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing policy evaluator",
+    "video processing policy evaluator workflow",
+    "video processing policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

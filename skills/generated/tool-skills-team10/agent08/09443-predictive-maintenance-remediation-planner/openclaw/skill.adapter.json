@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9443,
+  "name": "predictive-maintenance-remediation-planner",
+  "title": "Predictive Maintenance Remediation Planner",
+  "description": "Design and run predictive maintenance workflows with remediation planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1918,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09443-predictive-maintenance-remediation-planner/SKILL.md",
+    "entrypoint": "agent08/09443-predictive-maintenance-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance remediation planner",
+    "predictive maintenance remediation planner workflow",
+    "predictive maintenance remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

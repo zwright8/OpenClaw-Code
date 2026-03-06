@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1087,
+  "name": "court-dockets-compliance-mapper",
+  "title": "Court Dockets Compliance Mapper",
+  "description": "Design and run court dockets workflows with compliance mapper controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 1737,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01087-court-dockets-compliance-mapper/SKILL.md",
+    "entrypoint": "agent01/01087-court-dockets-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets compliance mapper",
+    "court dockets compliance mapper workflow",
+    "court dockets compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

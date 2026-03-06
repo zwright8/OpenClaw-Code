@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3322,
+  "name": "tax-workflows-version-tracker",
+  "title": "Tax Workflows Version Tracker",
+  "description": "Design and run tax workflows workflows with version tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9110,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03322-tax-workflows-version-tracker/SKILL.md",
+    "entrypoint": "agent03/03322-tax-workflows-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tax workflows version tracker",
+    "tax workflows version tracker workflow",
+    "tax workflows version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

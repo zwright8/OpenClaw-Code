@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11829,
+  "name": "protocol-management-capacity-planner",
+  "title": "Protocol Management Capacity Planner",
+  "description": "Design and run protocol management workflows with capacity planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12139,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11829-protocol-management-capacity-planner/SKILL.md",
+    "entrypoint": "agent10/11829-protocol-management-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management capacity planner",
+    "protocol management capacity planner workflow",
+    "protocol management capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

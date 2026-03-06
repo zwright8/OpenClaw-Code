@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1752,
+  "name": "logistics-dispatch-auth-broker",
+  "title": "Logistics Dispatch Auth Broker",
+  "description": "Design and run logistics dispatch workflows with auth broker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 812,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01752-logistics-dispatch-auth-broker/SKILL.md",
+    "entrypoint": "agent02/01752-logistics-dispatch-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch auth broker",
+    "logistics dispatch auth broker workflow",
+    "logistics dispatch auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

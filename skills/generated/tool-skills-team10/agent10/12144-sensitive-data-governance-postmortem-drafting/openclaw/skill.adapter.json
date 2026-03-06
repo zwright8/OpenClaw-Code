@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12144,
+  "name": "sensitive-data-governance-postmortem-drafting",
+  "title": "Sensitive Data Governance Postmortem Drafting",
+  "description": "Design and run sensitive data governance workflows with postmortem drafting controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12270,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12144-sensitive-data-governance-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent10/12144-sensitive-data-governance-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance postmortem drafting",
+    "sensitive data governance postmortem drafting workflow",
+    "sensitive data governance postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9351,
+  "name": "sensor-fusion-access-auditor",
+  "title": "Sensor Fusion Access Auditor",
+  "description": "Design and run sensor fusion workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11244,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09351-sensor-fusion-access-auditor/SKILL.md",
+    "entrypoint": "agent08/09351-sensor-fusion-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion access auditor",
+    "sensor fusion access auditor workflow",
+    "sensor fusion access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

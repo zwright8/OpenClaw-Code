@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1161,
+  "name": "compliance-registries-execution-runner",
+  "title": "Compliance Registries Execution Runner",
+  "description": "Design and run compliance registries workflows with execution runner controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 325,
+    "score": 91,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/01161-compliance-registries-execution-runner/SKILL.md",
+    "entrypoint": "agent01/01161-compliance-registries-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "compliance registries execution runner",
+    "compliance registries execution runner workflow",
+    "compliance registries execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

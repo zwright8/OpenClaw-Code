@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5198,
+  "name": "cloud-cost-platforms-feedback-harvester",
+  "title": "Cloud Cost Platforms Feedback Harvester",
+  "description": "Design and run cloud cost platforms workflows with feedback harvester controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7477,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05198-cloud-cost-platforms-feedback-harvester/SKILL.md",
+    "entrypoint": "agent04/05198-cloud-cost-platforms-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms feedback harvester",
+    "cloud cost platforms feedback harvester workflow",
+    "cloud cost platforms feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

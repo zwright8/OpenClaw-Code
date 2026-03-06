@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5365,
+  "name": "event-streams-queue-balancer",
+  "title": "Event Streams Queue Balancer",
+  "description": "Design and run event streams workflows with queue balancer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9778,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05365-event-streams-queue-balancer/SKILL.md",
+    "entrypoint": "agent05/05365-event-streams-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams queue balancer",
+    "event streams queue balancer workflow",
+    "event streams queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

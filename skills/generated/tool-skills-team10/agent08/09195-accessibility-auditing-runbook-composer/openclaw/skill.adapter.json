@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9195,
+  "name": "accessibility-auditing-runbook-composer",
+  "title": "Accessibility Auditing Runbook Composer",
+  "description": "Design and run accessibility auditing workflows with runbook composer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6450,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09195-accessibility-auditing-runbook-composer/SKILL.md",
+    "entrypoint": "agent08/09195-accessibility-auditing-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing runbook composer",
+    "accessibility auditing runbook composer workflow",
+    "accessibility auditing runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+---
+name: github-alert-monitor
+description: Use when tasks require github alert monitor capabilities and related automation workflows.
+---
+
+# GitHub Alert Monitor
+
+## Purpose
+Monitors key GitHub signals and raises actionable alerts.
+
+## Priority Context
+- Score: 60
+- Rank: 8035
+- Priority band: P3
+
+## Use This Skill When
+- A task requires github alert monitor operations.
+- You need a repeatable workflow that combines planning, execution, and validation.
+- You want to integrate external tools while keeping OpenClaw core behavior unchanged.
+
+## Workflow
+1. Define objective, scope, and expected outputs.
+2. Perform auth/session checks and confirm required permissions.
+3. Execute smallest valid operation first (read-only where possible).
+4. Expand to write operations with explicit validation and rollback plan.
+5. Capture artifacts, logs, and next actions for handoff.
+
+## Safety Rules
+- Do not duplicate OpenClaw core utilities; use extension-layer wrappers only.
+- Enforce least privilege and redact sensitive values in logs.
+- Validate side effects before marking tasks complete.
+
+## Output Contract
+- summary: concise result and status
+- artifacts: files, links, or IDs generated
+- follow_up: next steps or blockers

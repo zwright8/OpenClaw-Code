@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11453,
+  "name": "reference-programs-permission-mapper",
+  "title": "Reference Programs Permission Mapper",
+  "description": "Design and run reference programs workflows with permission mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3896,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11453-reference-programs-permission-mapper/SKILL.md",
+    "entrypoint": "agent09/11453-reference-programs-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs permission mapper",
+    "reference programs permission mapper workflow",
+    "reference programs permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

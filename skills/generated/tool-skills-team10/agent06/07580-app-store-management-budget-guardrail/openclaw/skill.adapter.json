@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7580,
+  "name": "app-store-management-budget-guardrail",
+  "title": "App Store Management Budget Guardrail",
+  "description": "Design and run app store management workflows with budget guardrail controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7519,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07580-app-store-management-budget-guardrail/SKILL.md",
+    "entrypoint": "agent06/07580-app-store-management-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "app store management budget guardrail",
+    "app store management budget guardrail workflow",
+    "app store management budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

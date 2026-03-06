@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6889,
+  "name": "dunning-workflows-secret-scanner",
+  "title": "Dunning Workflows Secret Scanner",
+  "description": "Design and run dunning workflows workflows with secret scanner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2863,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06889-dunning-workflows-secret-scanner/SKILL.md",
+    "entrypoint": "agent06/06889-dunning-workflows-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dunning workflows secret scanner",
+    "dunning workflows secret scanner workflow",
+    "dunning workflows secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

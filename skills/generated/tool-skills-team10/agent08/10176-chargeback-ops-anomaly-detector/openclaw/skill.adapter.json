@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10176,
+  "name": "chargeback-ops-anomaly-detector",
+  "title": "Chargeback Ops Anomaly Detector",
+  "description": "Design and run chargeback ops workflows with anomaly detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5603,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10176-chargeback-ops-anomaly-detector/SKILL.md",
+    "entrypoint": "agent08/10176-chargeback-ops-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chargeback ops anomaly detector",
+    "chargeback ops anomaly detector workflow",
+    "chargeback ops anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

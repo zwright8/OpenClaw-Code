@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3550,
+  "name": "crm-intelligence-outcome-synthesizer",
+  "title": "CRM Intelligence Outcome Synthesizer",
+  "description": "Design and run crm intelligence workflows with outcome synthesizer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6881,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03550-crm-intelligence-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent03/03550-crm-intelligence-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence outcome synthesizer",
+    "crm intelligence outcome synthesizer workflow",
+    "crm intelligence outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

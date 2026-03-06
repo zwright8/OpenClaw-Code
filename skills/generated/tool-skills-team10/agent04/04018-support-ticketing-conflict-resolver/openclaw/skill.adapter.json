@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4018,
+  "name": "support-ticketing-conflict-resolver",
+  "title": "Support Ticketing Conflict Resolver",
+  "description": "Design and run support ticketing workflows with conflict resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9360,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04018-support-ticketing-conflict-resolver/SKILL.md",
+    "entrypoint": "agent04/04018-support-ticketing-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing conflict resolver",
+    "support ticketing conflict resolver workflow",
+    "support ticketing conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,708 @@
+{
+  "agent": "agent06",
+  "start": 501,
+  "end": 600,
+  "count": 100,
+  "items": [
+    {
+      "id": 501,
+      "tool": "Postgres Connector",
+      "purpose": "Unified read/write connector for Postgres APIs and data.",
+      "folder": "0501-postgres-connector",
+      "skillPath": "agent06/0501-postgres-connector/SKILL.md"
+    },
+    {
+      "id": 502,
+      "tool": "Postgres Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Postgres records.",
+      "folder": "0502-postgres-sync-orchestrator",
+      "skillPath": "agent06/0502-postgres-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 503,
+      "tool": "Postgres Data Exporter",
+      "purpose": "Exports Postgres entities into clean, typed datasets.",
+      "folder": "0503-postgres-data-exporter",
+      "skillPath": "agent06/0503-postgres-data-exporter/SKILL.md"
+    },
+    {
+      "id": 504,
+      "tool": "Postgres Data Importer",
+      "purpose": "Validates and imports bulk updates into Postgres.",
+      "folder": "0504-postgres-data-importer",
+      "skillPath": "agent06/0504-postgres-data-importer/SKILL.md"
+    },
+    {
+      "id": 505,
+      "tool": "Postgres Webhook Listener",
+      "purpose": "Captures, verifies, and routes Postgres webhook events.",
+      "folder": "0505-postgres-webhook-listener",
+      "skillPath": "agent06/0505-postgres-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 506,
+      "tool": "Postgres Report Builder",
+      "purpose": "Generates operational and KPI reports from Postgres activity.",
+      "folder": "0506-postgres-report-builder",
+      "skillPath": "agent06/0506-postgres-report-builder/SKILL.md"
+    },
+    {
+      "id": 507,
+      "tool": "Postgres Alert Monitor",
+      "purpose": "Monitors key Postgres signals and raises actionable alerts.",
+      "folder": "0507-postgres-alert-monitor",
+      "skillPath": "agent06/0507-postgres-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 508,
+      "tool": "Postgres Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Postgres.",
+      "folder": "0508-postgres-workflow-automator",
+      "skillPath": "agent06/0508-postgres-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 509,
+      "tool": "Postgres Approval Router",
+      "purpose": "Routes Postgres-driven decisions to the right approvers.",
+      "folder": "0509-postgres-approval-router",
+      "skillPath": "agent06/0509-postgres-approval-router/SKILL.md"
+    },
+    {
+      "id": 510,
+      "tool": "Postgres Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Postgres.",
+      "folder": "0510-postgres-migration-assistant",
+      "skillPath": "agent06/0510-postgres-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 511,
+      "tool": "MySQL Connector",
+      "purpose": "Unified read/write connector for MySQL APIs and data.",
+      "folder": "0511-mysql-connector",
+      "skillPath": "agent06/0511-mysql-connector/SKILL.md"
+    },
+    {
+      "id": 512,
+      "tool": "MySQL Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for MySQL records.",
+      "folder": "0512-mysql-sync-orchestrator",
+      "skillPath": "agent06/0512-mysql-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 513,
+      "tool": "MySQL Data Exporter",
+      "purpose": "Exports MySQL entities into clean, typed datasets.",
+      "folder": "0513-mysql-data-exporter",
+      "skillPath": "agent06/0513-mysql-data-exporter/SKILL.md"
+    },
+    {
+      "id": 514,
+      "tool": "MySQL Data Importer",
+      "purpose": "Validates and imports bulk updates into MySQL.",
+      "folder": "0514-mysql-data-importer",
+      "skillPath": "agent06/0514-mysql-data-importer/SKILL.md"
+    },
+    {
+      "id": 515,
+      "tool": "MySQL Webhook Listener",
+      "purpose": "Captures, verifies, and routes MySQL webhook events.",
+      "folder": "0515-mysql-webhook-listener",
+      "skillPath": "agent06/0515-mysql-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 516,
+      "tool": "MySQL Report Builder",
+      "purpose": "Generates operational and KPI reports from MySQL activity.",
+      "folder": "0516-mysql-report-builder",
+      "skillPath": "agent06/0516-mysql-report-builder/SKILL.md"
+    },
+    {
+      "id": 517,
+      "tool": "MySQL Alert Monitor",
+      "purpose": "Monitors key MySQL signals and raises actionable alerts.",
+      "folder": "0517-mysql-alert-monitor",
+      "skillPath": "agent06/0517-mysql-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 518,
+      "tool": "MySQL Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using MySQL.",
+      "folder": "0518-mysql-workflow-automator",
+      "skillPath": "agent06/0518-mysql-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 519,
+      "tool": "MySQL Approval Router",
+      "purpose": "Routes MySQL-driven decisions to the right approvers.",
+      "folder": "0519-mysql-approval-router",
+      "skillPath": "agent06/0519-mysql-approval-router/SKILL.md"
+    },
+    {
+      "id": 520,
+      "tool": "MySQL Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from MySQL.",
+      "folder": "0520-mysql-migration-assistant",
+      "skillPath": "agent06/0520-mysql-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 521,
+      "tool": "MongoDB Connector",
+      "purpose": "Unified read/write connector for MongoDB APIs and data.",
+      "folder": "0521-mongodb-connector",
+      "skillPath": "agent06/0521-mongodb-connector/SKILL.md"
+    },
+    {
+      "id": 522,
+      "tool": "MongoDB Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for MongoDB records.",
+      "folder": "0522-mongodb-sync-orchestrator",
+      "skillPath": "agent06/0522-mongodb-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 523,
+      "tool": "MongoDB Data Exporter",
+      "purpose": "Exports MongoDB entities into clean, typed datasets.",
+      "folder": "0523-mongodb-data-exporter",
+      "skillPath": "agent06/0523-mongodb-data-exporter/SKILL.md"
+    },
+    {
+      "id": 524,
+      "tool": "MongoDB Data Importer",
+      "purpose": "Validates and imports bulk updates into MongoDB.",
+      "folder": "0524-mongodb-data-importer",
+      "skillPath": "agent06/0524-mongodb-data-importer/SKILL.md"
+    },
+    {
+      "id": 525,
+      "tool": "MongoDB Webhook Listener",
+      "purpose": "Captures, verifies, and routes MongoDB webhook events.",
+      "folder": "0525-mongodb-webhook-listener",
+      "skillPath": "agent06/0525-mongodb-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 526,
+      "tool": "MongoDB Report Builder",
+      "purpose": "Generates operational and KPI reports from MongoDB activity.",
+      "folder": "0526-mongodb-report-builder",
+      "skillPath": "agent06/0526-mongodb-report-builder/SKILL.md"
+    },
+    {
+      "id": 527,
+      "tool": "MongoDB Alert Monitor",
+      "purpose": "Monitors key MongoDB signals and raises actionable alerts.",
+      "folder": "0527-mongodb-alert-monitor",
+      "skillPath": "agent06/0527-mongodb-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 528,
+      "tool": "MongoDB Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using MongoDB.",
+      "folder": "0528-mongodb-workflow-automator",
+      "skillPath": "agent06/0528-mongodb-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 529,
+      "tool": "MongoDB Approval Router",
+      "purpose": "Routes MongoDB-driven decisions to the right approvers.",
+      "folder": "0529-mongodb-approval-router",
+      "skillPath": "agent06/0529-mongodb-approval-router/SKILL.md"
+    },
+    {
+      "id": 530,
+      "tool": "MongoDB Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from MongoDB.",
+      "folder": "0530-mongodb-migration-assistant",
+      "skillPath": "agent06/0530-mongodb-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 531,
+      "tool": "Redis Connector",
+      "purpose": "Unified read/write connector for Redis APIs and data.",
+      "folder": "0531-redis-connector",
+      "skillPath": "agent06/0531-redis-connector/SKILL.md"
+    },
+    {
+      "id": 532,
+      "tool": "Redis Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Redis records.",
+      "folder": "0532-redis-sync-orchestrator",
+      "skillPath": "agent06/0532-redis-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 533,
+      "tool": "Redis Data Exporter",
+      "purpose": "Exports Redis entities into clean, typed datasets.",
+      "folder": "0533-redis-data-exporter",
+      "skillPath": "agent06/0533-redis-data-exporter/SKILL.md"
+    },
+    {
+      "id": 534,
+      "tool": "Redis Data Importer",
+      "purpose": "Validates and imports bulk updates into Redis.",
+      "folder": "0534-redis-data-importer",
+      "skillPath": "agent06/0534-redis-data-importer/SKILL.md"
+    },
+    {
+      "id": 535,
+      "tool": "Redis Webhook Listener",
+      "purpose": "Captures, verifies, and routes Redis webhook events.",
+      "folder": "0535-redis-webhook-listener",
+      "skillPath": "agent06/0535-redis-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 536,
+      "tool": "Redis Report Builder",
+      "purpose": "Generates operational and KPI reports from Redis activity.",
+      "folder": "0536-redis-report-builder",
+      "skillPath": "agent06/0536-redis-report-builder/SKILL.md"
+    },
+    {
+      "id": 537,
+      "tool": "Redis Alert Monitor",
+      "purpose": "Monitors key Redis signals and raises actionable alerts.",
+      "folder": "0537-redis-alert-monitor",
+      "skillPath": "agent06/0537-redis-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 538,
+      "tool": "Redis Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Redis.",
+      "folder": "0538-redis-workflow-automator",
+      "skillPath": "agent06/0538-redis-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 539,
+      "tool": "Redis Approval Router",
+      "purpose": "Routes Redis-driven decisions to the right approvers.",
+      "folder": "0539-redis-approval-router",
+      "skillPath": "agent06/0539-redis-approval-router/SKILL.md"
+    },
+    {
+      "id": 540,
+      "tool": "Redis Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Redis.",
+      "folder": "0540-redis-migration-assistant",
+      "skillPath": "agent06/0540-redis-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 541,
+      "tool": "Snowflake Connector",
+      "purpose": "Unified read/write connector for Snowflake APIs and data.",
+      "folder": "0541-snowflake-connector",
+      "skillPath": "agent06/0541-snowflake-connector/SKILL.md"
+    },
+    {
+      "id": 542,
+      "tool": "Snowflake Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Snowflake records.",
+      "folder": "0542-snowflake-sync-orchestrator",
+      "skillPath": "agent06/0542-snowflake-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 543,
+      "tool": "Snowflake Data Exporter",
+      "purpose": "Exports Snowflake entities into clean, typed datasets.",
+      "folder": "0543-snowflake-data-exporter",
+      "skillPath": "agent06/0543-snowflake-data-exporter/SKILL.md"
+    },
+    {
+      "id": 544,
+      "tool": "Snowflake Data Importer",
+      "purpose": "Validates and imports bulk updates into Snowflake.",
+      "folder": "0544-snowflake-data-importer",
+      "skillPath": "agent06/0544-snowflake-data-importer/SKILL.md"
+    },
+    {
+      "id": 545,
+      "tool": "Snowflake Webhook Listener",
+      "purpose": "Captures, verifies, and routes Snowflake webhook events.",
+      "folder": "0545-snowflake-webhook-listener",
+      "skillPath": "agent06/0545-snowflake-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 546,
+      "tool": "Snowflake Report Builder",
+      "purpose": "Generates operational and KPI reports from Snowflake activity.",
+      "folder": "0546-snowflake-report-builder",
+      "skillPath": "agent06/0546-snowflake-report-builder/SKILL.md"
+    },
+    {
+      "id": 547,
+      "tool": "Snowflake Alert Monitor",
+      "purpose": "Monitors key Snowflake signals and raises actionable alerts.",
+      "folder": "0547-snowflake-alert-monitor",
+      "skillPath": "agent06/0547-snowflake-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 548,
+      "tool": "Snowflake Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Snowflake.",
+      "folder": "0548-snowflake-workflow-automator",
+      "skillPath": "agent06/0548-snowflake-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 549,
+      "tool": "Snowflake Approval Router",
+      "purpose": "Routes Snowflake-driven decisions to the right approvers.",
+      "folder": "0549-snowflake-approval-router",
+      "skillPath": "agent06/0549-snowflake-approval-router/SKILL.md"
+    },
+    {
+      "id": 550,
+      "tool": "Snowflake Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Snowflake.",
+      "folder": "0550-snowflake-migration-assistant",
+      "skillPath": "agent06/0550-snowflake-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 551,
+      "tool": "BigQuery Connector",
+      "purpose": "Unified read/write connector for BigQuery APIs and data.",
+      "folder": "0551-bigquery-connector",
+      "skillPath": "agent06/0551-bigquery-connector/SKILL.md"
+    },
+    {
+      "id": 552,
+      "tool": "BigQuery Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for BigQuery records.",
+      "folder": "0552-bigquery-sync-orchestrator",
+      "skillPath": "agent06/0552-bigquery-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 553,
+      "tool": "BigQuery Data Exporter",
+      "purpose": "Exports BigQuery entities into clean, typed datasets.",
+      "folder": "0553-bigquery-data-exporter",
+      "skillPath": "agent06/0553-bigquery-data-exporter/SKILL.md"
+    },
+    {
+      "id": 554,
+      "tool": "BigQuery Data Importer",
+      "purpose": "Validates and imports bulk updates into BigQuery.",
+      "folder": "0554-bigquery-data-importer",
+      "skillPath": "agent06/0554-bigquery-data-importer/SKILL.md"
+    },
+    {
+      "id": 555,
+      "tool": "BigQuery Webhook Listener",
+      "purpose": "Captures, verifies, and routes BigQuery webhook events.",
+      "folder": "0555-bigquery-webhook-listener",
+      "skillPath": "agent06/0555-bigquery-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 556,
+      "tool": "BigQuery Report Builder",
+      "purpose": "Generates operational and KPI reports from BigQuery activity.",
+      "folder": "0556-bigquery-report-builder",
+      "skillPath": "agent06/0556-bigquery-report-builder/SKILL.md"
+    },
+    {
+      "id": 557,
+      "tool": "BigQuery Alert Monitor",
+      "purpose": "Monitors key BigQuery signals and raises actionable alerts.",
+      "folder": "0557-bigquery-alert-monitor",
+      "skillPath": "agent06/0557-bigquery-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 558,
+      "tool": "BigQuery Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using BigQuery.",
+      "folder": "0558-bigquery-workflow-automator",
+      "skillPath": "agent06/0558-bigquery-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 559,
+      "tool": "BigQuery Approval Router",
+      "purpose": "Routes BigQuery-driven decisions to the right approvers.",
+      "folder": "0559-bigquery-approval-router",
+      "skillPath": "agent06/0559-bigquery-approval-router/SKILL.md"
+    },
+    {
+      "id": 560,
+      "tool": "BigQuery Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from BigQuery.",
+      "folder": "0560-bigquery-migration-assistant",
+      "skillPath": "agent06/0560-bigquery-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 561,
+      "tool": "Databricks Connector",
+      "purpose": "Unified read/write connector for Databricks APIs and data.",
+      "folder": "0561-databricks-connector",
+      "skillPath": "agent06/0561-databricks-connector/SKILL.md"
+    },
+    {
+      "id": 562,
+      "tool": "Databricks Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Databricks records.",
+      "folder": "0562-databricks-sync-orchestrator",
+      "skillPath": "agent06/0562-databricks-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 563,
+      "tool": "Databricks Data Exporter",
+      "purpose": "Exports Databricks entities into clean, typed datasets.",
+      "folder": "0563-databricks-data-exporter",
+      "skillPath": "agent06/0563-databricks-data-exporter/SKILL.md"
+    },
+    {
+      "id": 564,
+      "tool": "Databricks Data Importer",
+      "purpose": "Validates and imports bulk updates into Databricks.",
+      "folder": "0564-databricks-data-importer",
+      "skillPath": "agent06/0564-databricks-data-importer/SKILL.md"
+    },
+    {
+      "id": 565,
+      "tool": "Databricks Webhook Listener",
+      "purpose": "Captures, verifies, and routes Databricks webhook events.",
+      "folder": "0565-databricks-webhook-listener",
+      "skillPath": "agent06/0565-databricks-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 566,
+      "tool": "Databricks Report Builder",
+      "purpose": "Generates operational and KPI reports from Databricks activity.",
+      "folder": "0566-databricks-report-builder",
+      "skillPath": "agent06/0566-databricks-report-builder/SKILL.md"
+    },
+    {
+      "id": 567,
+      "tool": "Databricks Alert Monitor",
+      "purpose": "Monitors key Databricks signals and raises actionable alerts.",
+      "folder": "0567-databricks-alert-monitor",
+      "skillPath": "agent06/0567-databricks-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 568,
+      "tool": "Databricks Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Databricks.",
+      "folder": "0568-databricks-workflow-automator",
+      "skillPath": "agent06/0568-databricks-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 569,
+      "tool": "Databricks Approval Router",
+      "purpose": "Routes Databricks-driven decisions to the right approvers.",
+      "folder": "0569-databricks-approval-router",
+      "skillPath": "agent06/0569-databricks-approval-router/SKILL.md"
+    },
+    {
+      "id": 570,
+      "tool": "Databricks Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Databricks.",
+      "folder": "0570-databricks-migration-assistant",
+      "skillPath": "agent06/0570-databricks-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 571,
+      "tool": "Redshift Connector",
+      "purpose": "Unified read/write connector for Redshift APIs and data.",
+      "folder": "0571-redshift-connector",
+      "skillPath": "agent06/0571-redshift-connector/SKILL.md"
+    },
+    {
+      "id": 572,
+      "tool": "Redshift Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Redshift records.",
+      "folder": "0572-redshift-sync-orchestrator",
+      "skillPath": "agent06/0572-redshift-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 573,
+      "tool": "Redshift Data Exporter",
+      "purpose": "Exports Redshift entities into clean, typed datasets.",
+      "folder": "0573-redshift-data-exporter",
+      "skillPath": "agent06/0573-redshift-data-exporter/SKILL.md"
+    },
+    {
+      "id": 574,
+      "tool": "Redshift Data Importer",
+      "purpose": "Validates and imports bulk updates into Redshift.",
+      "folder": "0574-redshift-data-importer",
+      "skillPath": "agent06/0574-redshift-data-importer/SKILL.md"
+    },
+    {
+      "id": 575,
+      "tool": "Redshift Webhook Listener",
+      "purpose": "Captures, verifies, and routes Redshift webhook events.",
+      "folder": "0575-redshift-webhook-listener",
+      "skillPath": "agent06/0575-redshift-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 576,
+      "tool": "Redshift Report Builder",
+      "purpose": "Generates operational and KPI reports from Redshift activity.",
+      "folder": "0576-redshift-report-builder",
+      "skillPath": "agent06/0576-redshift-report-builder/SKILL.md"
+    },
+    {
+      "id": 577,
+      "tool": "Redshift Alert Monitor",
+      "purpose": "Monitors key Redshift signals and raises actionable alerts.",
+      "folder": "0577-redshift-alert-monitor",
+      "skillPath": "agent06/0577-redshift-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 578,
+      "tool": "Redshift Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Redshift.",
+      "folder": "0578-redshift-workflow-automator",
+      "skillPath": "agent06/0578-redshift-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 579,
+      "tool": "Redshift Approval Router",
+      "purpose": "Routes Redshift-driven decisions to the right approvers.",
+      "folder": "0579-redshift-approval-router",
+      "skillPath": "agent06/0579-redshift-approval-router/SKILL.md"
+    },
+    {
+      "id": 580,
+      "tool": "Redshift Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Redshift.",
+      "folder": "0580-redshift-migration-assistant",
+      "skillPath": "agent06/0580-redshift-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 581,
+      "tool": "ClickHouse Connector",
+      "purpose": "Unified read/write connector for ClickHouse APIs and data.",
+      "folder": "0581-clickhouse-connector",
+      "skillPath": "agent06/0581-clickhouse-connector/SKILL.md"
+    },
+    {
+      "id": 582,
+      "tool": "ClickHouse Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for ClickHouse records.",
+      "folder": "0582-clickhouse-sync-orchestrator",
+      "skillPath": "agent06/0582-clickhouse-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 583,
+      "tool": "ClickHouse Data Exporter",
+      "purpose": "Exports ClickHouse entities into clean, typed datasets.",
+      "folder": "0583-clickhouse-data-exporter",
+      "skillPath": "agent06/0583-clickhouse-data-exporter/SKILL.md"
+    },
+    {
+      "id": 584,
+      "tool": "ClickHouse Data Importer",
+      "purpose": "Validates and imports bulk updates into ClickHouse.",
+      "folder": "0584-clickhouse-data-importer",
+      "skillPath": "agent06/0584-clickhouse-data-importer/SKILL.md"
+    },
+    {
+      "id": 585,
+      "tool": "ClickHouse Webhook Listener",
+      "purpose": "Captures, verifies, and routes ClickHouse webhook events.",
+      "folder": "0585-clickhouse-webhook-listener",
+      "skillPath": "agent06/0585-clickhouse-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 586,
+      "tool": "ClickHouse Report Builder",
+      "purpose": "Generates operational and KPI reports from ClickHouse activity.",
+      "folder": "0586-clickhouse-report-builder",
+      "skillPath": "agent06/0586-clickhouse-report-builder/SKILL.md"
+    },
+    {
+      "id": 587,
+      "tool": "ClickHouse Alert Monitor",
+      "purpose": "Monitors key ClickHouse signals and raises actionable alerts.",
+      "folder": "0587-clickhouse-alert-monitor",
+      "skillPath": "agent06/0587-clickhouse-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 588,
+      "tool": "ClickHouse Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using ClickHouse.",
+      "folder": "0588-clickhouse-workflow-automator",
+      "skillPath": "agent06/0588-clickhouse-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 589,
+      "tool": "ClickHouse Approval Router",
+      "purpose": "Routes ClickHouse-driven decisions to the right approvers.",
+      "folder": "0589-clickhouse-approval-router",
+      "skillPath": "agent06/0589-clickhouse-approval-router/SKILL.md"
+    },
+    {
+      "id": 590,
+      "tool": "ClickHouse Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from ClickHouse.",
+      "folder": "0590-clickhouse-migration-assistant",
+      "skillPath": "agent06/0590-clickhouse-migration-assistant/SKILL.md"
+    },
+    {
+      "id": 591,
+      "tool": "Elasticsearch Connector",
+      "purpose": "Unified read/write connector for Elasticsearch APIs and data.",
+      "folder": "0591-elasticsearch-connector",
+      "skillPath": "agent06/0591-elasticsearch-connector/SKILL.md"
+    },
+    {
+      "id": 592,
+      "tool": "Elasticsearch Sync Orchestrator",
+      "purpose": "Schedules and reconciles two-way sync for Elasticsearch records.",
+      "folder": "0592-elasticsearch-sync-orchestrator",
+      "skillPath": "agent06/0592-elasticsearch-sync-orchestrator/SKILL.md"
+    },
+    {
+      "id": 593,
+      "tool": "Elasticsearch Data Exporter",
+      "purpose": "Exports Elasticsearch entities into clean, typed datasets.",
+      "folder": "0593-elasticsearch-data-exporter",
+      "skillPath": "agent06/0593-elasticsearch-data-exporter/SKILL.md"
+    },
+    {
+      "id": 594,
+      "tool": "Elasticsearch Data Importer",
+      "purpose": "Validates and imports bulk updates into Elasticsearch.",
+      "folder": "0594-elasticsearch-data-importer",
+      "skillPath": "agent06/0594-elasticsearch-data-importer/SKILL.md"
+    },
+    {
+      "id": 595,
+      "tool": "Elasticsearch Webhook Listener",
+      "purpose": "Captures, verifies, and routes Elasticsearch webhook events.",
+      "folder": "0595-elasticsearch-webhook-listener",
+      "skillPath": "agent06/0595-elasticsearch-webhook-listener/SKILL.md"
+    },
+    {
+      "id": 596,
+      "tool": "Elasticsearch Report Builder",
+      "purpose": "Generates operational and KPI reports from Elasticsearch activity.",
+      "folder": "0596-elasticsearch-report-builder",
+      "skillPath": "agent06/0596-elasticsearch-report-builder/SKILL.md"
+    },
+    {
+      "id": 597,
+      "tool": "Elasticsearch Alert Monitor",
+      "purpose": "Monitors key Elasticsearch signals and raises actionable alerts.",
+      "folder": "0597-elasticsearch-alert-monitor",
+      "skillPath": "agent06/0597-elasticsearch-alert-monitor/SKILL.md"
+    },
+    {
+      "id": 598,
+      "tool": "Elasticsearch Workflow Automator",
+      "purpose": "Executes repeatable multi-step workflows using Elasticsearch.",
+      "folder": "0598-elasticsearch-workflow-automator",
+      "skillPath": "agent06/0598-elasticsearch-workflow-automator/SKILL.md"
+    },
+    {
+      "id": 599,
+      "tool": "Elasticsearch Approval Router",
+      "purpose": "Routes Elasticsearch-driven decisions to the right approvers.",
+      "folder": "0599-elasticsearch-approval-router",
+      "skillPath": "agent06/0599-elasticsearch-approval-router/SKILL.md"
+    },
+    {
+      "id": 600,
+      "tool": "Elasticsearch Migration Assistant",
+      "purpose": "Plans and executes safe migrations to or from Elasticsearch.",
+      "folder": "0600-elasticsearch-migration-assistant",
+      "skillPath": "agent06/0600-elasticsearch-migration-assistant/SKILL.md"
+    }
+  ]
+}

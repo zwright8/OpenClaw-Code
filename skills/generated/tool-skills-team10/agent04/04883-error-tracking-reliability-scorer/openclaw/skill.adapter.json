@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4883,
+  "name": "error-tracking-reliability-scorer",
+  "title": "Error Tracking Reliability Scorer",
+  "description": "Design and run error tracking workflows with reliability scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9643,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04883-error-tracking-reliability-scorer/SKILL.md",
+    "entrypoint": "agent04/04883-error-tracking-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "error tracking reliability scorer",
+    "error tracking reliability scorer workflow",
+    "error tracking reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

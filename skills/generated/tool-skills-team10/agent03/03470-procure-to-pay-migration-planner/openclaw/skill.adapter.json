@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3470,
+  "name": "procure-to-pay-migration-planner",
+  "title": "Procure to Pay Migration Planner",
+  "description": "Design and run procure to pay workflows with migration planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4549,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03470-procure-to-pay-migration-planner/SKILL.md",
+    "entrypoint": "agent03/03470-procure-to-pay-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay migration planner",
+    "procure to pay migration planner workflow",
+    "procure to pay migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

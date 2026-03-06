@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3764,
+  "name": "marketing-attribution-rate-limit-optimizer",
+  "title": "Marketing Attribution Rate Limit Optimizer",
+  "description": "Design and run marketing attribution workflows with rate limit optimizer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4123,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03764-marketing-attribution-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent03/03764-marketing-attribution-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketing attribution rate limit optimizer",
+    "marketing attribution rate limit optimizer workflow",
+    "marketing attribution rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

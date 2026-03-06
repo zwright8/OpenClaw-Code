@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5197,
+  "name": "cloud-cost-platforms-human-handoff-router",
+  "title": "Cloud Cost Platforms Human Handoff Router",
+  "description": "Design and run cloud cost platforms workflows with human handoff router controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7476,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05197-cloud-cost-platforms-human-handoff-router/SKILL.md",
+    "entrypoint": "agent04/05197-cloud-cost-platforms-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloud cost platforms human handoff router",
+    "cloud cost platforms human handoff router workflow",
+    "cloud cost platforms human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

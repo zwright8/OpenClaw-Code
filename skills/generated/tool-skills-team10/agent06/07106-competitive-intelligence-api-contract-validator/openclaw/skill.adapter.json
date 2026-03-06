@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7106,
+  "name": "competitive-intelligence-api-contract-validator",
+  "title": "Competitive Intelligence API Contract Validator",
+  "description": "Design and run competitive intelligence workflows with api contract validator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 171,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent06/07106-competitive-intelligence-api-contract-validator/SKILL.md",
+    "entrypoint": "agent06/07106-competitive-intelligence-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "competitive intelligence api contract validator",
+    "competitive intelligence api contract validator workflow",
+    "competitive intelligence api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

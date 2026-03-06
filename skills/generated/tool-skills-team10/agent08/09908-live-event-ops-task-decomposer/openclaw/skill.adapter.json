@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9908,
+  "name": "live-event-ops-task-decomposer",
+  "title": "Live Event Ops Task Decomposer",
+  "description": "Design and run live event ops workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11435,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09908-live-event-ops-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/09908-live-event-ops-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "live event ops task decomposer",
+    "live event ops task decomposer workflow",
+    "live event ops task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

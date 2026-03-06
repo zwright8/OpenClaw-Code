@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7948,
+  "name": "patch-orchestration-feedback-harvester",
+  "title": "Patch Orchestration Feedback Harvester",
+  "description": "Design and run patch orchestration workflows with feedback harvester controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10760,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07948-patch-orchestration-feedback-harvester/SKILL.md",
+    "entrypoint": "agent07/07948-patch-orchestration-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration feedback harvester",
+    "patch orchestration feedback harvester workflow",
+    "patch orchestration feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

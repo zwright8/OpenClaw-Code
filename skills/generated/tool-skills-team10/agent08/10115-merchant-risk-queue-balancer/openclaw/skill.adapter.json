@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10115,
+  "name": "merchant-risk-queue-balancer",
+  "title": "Merchant Risk Queue Balancer",
+  "description": "Design and run merchant risk workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7101,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10115-merchant-risk-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/10115-merchant-risk-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk queue balancer",
+    "merchant risk queue balancer workflow",
+    "merchant risk queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

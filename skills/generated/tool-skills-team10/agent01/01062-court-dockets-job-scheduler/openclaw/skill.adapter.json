@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1062,
+  "name": "court-dockets-job-scheduler",
+  "title": "Court Dockets Job Scheduler",
+  "description": "Design and run court dockets workflows with job scheduler controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 4876,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01062-court-dockets-job-scheduler/SKILL.md",
+    "entrypoint": "agent01/01062-court-dockets-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets job scheduler",
+    "court dockets job scheduler workflow",
+    "court dockets job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

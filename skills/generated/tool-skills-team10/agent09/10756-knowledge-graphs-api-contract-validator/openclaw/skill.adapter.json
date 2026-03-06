@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10756,
+  "name": "knowledge-graphs-api-contract-validator",
+  "title": "Knowledge Graphs API Contract Validator",
+  "description": "Design and run knowledge graphs workflows with api contract validator controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 30,
+    "score": 101,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent09/10756-knowledge-graphs-api-contract-validator/SKILL.md",
+    "entrypoint": "agent09/10756-knowledge-graphs-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs api contract validator",
+    "knowledge graphs api contract validator workflow",
+    "knowledge graphs api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

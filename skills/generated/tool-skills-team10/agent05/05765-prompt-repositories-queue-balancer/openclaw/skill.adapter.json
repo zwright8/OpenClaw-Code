@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5765,
+  "name": "prompt-repositories-queue-balancer",
+  "title": "Prompt Repositories Queue Balancer",
+  "description": "Design and run prompt repositories workflows with queue balancer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9925,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05765-prompt-repositories-queue-balancer/SKILL.md",
+    "entrypoint": "agent05/05765-prompt-repositories-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prompt repositories queue balancer",
+    "prompt repositories queue balancer workflow",
+    "prompt repositories queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

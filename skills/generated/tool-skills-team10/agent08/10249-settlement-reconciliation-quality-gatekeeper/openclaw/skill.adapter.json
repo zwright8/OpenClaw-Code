@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10249,
+  "name": "settlement-reconciliation-quality-gatekeeper",
+  "title": "Settlement Reconciliation Quality Gatekeeper",
+  "description": "Design and run settlement reconciliation workflows with quality gatekeeper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5606,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10249-settlement-reconciliation-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent08/10249-settlement-reconciliation-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation quality gatekeeper",
+    "settlement reconciliation quality gatekeeper workflow",
+    "settlement reconciliation quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

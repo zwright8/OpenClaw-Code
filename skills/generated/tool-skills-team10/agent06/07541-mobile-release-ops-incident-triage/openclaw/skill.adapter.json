@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7541,
+  "name": "mobile-release-ops-incident-triage",
+  "title": "Mobile Release Ops Incident Triage",
+  "description": "Design and run mobile release ops workflows with incident triage controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2156,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07541-mobile-release-ops-incident-triage/SKILL.md",
+    "entrypoint": "agent06/07541-mobile-release-ops-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops incident triage",
+    "mobile release ops incident triage workflow",
+    "mobile release ops incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

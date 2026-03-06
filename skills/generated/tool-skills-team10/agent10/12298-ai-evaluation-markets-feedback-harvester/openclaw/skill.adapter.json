@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12298,
+  "name": "ai-evaluation-markets-feedback-harvester",
+  "title": "AI Evaluation Markets Feedback Harvester",
+  "description": "Design and run ai evaluation markets workflows with feedback harvester controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7770,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12298-ai-evaluation-markets-feedback-harvester/SKILL.md",
+    "entrypoint": "agent10/12298-ai-evaluation-markets-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets feedback harvester",
+    "ai evaluation markets feedback harvester workflow",
+    "ai evaluation markets feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

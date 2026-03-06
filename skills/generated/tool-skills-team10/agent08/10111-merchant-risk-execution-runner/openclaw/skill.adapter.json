@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10111,
+  "name": "merchant-risk-execution-runner",
+  "title": "Merchant Risk Execution Runner",
+  "description": "Design and run merchant risk workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 473,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10111-merchant-risk-execution-runner/SKILL.md",
+    "entrypoint": "agent08/10111-merchant-risk-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk execution runner",
+    "merchant risk execution runner workflow",
+    "merchant risk execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

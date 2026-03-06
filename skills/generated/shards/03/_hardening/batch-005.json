@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 5,
+  "range": {
+    "start": "u3200-knowledge-graph-linking-for-knowledge-management-systems",
+    "end": "u3249-semantic-retrieval-ranking-for-entrepreneurship-operations",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3200-knowledge-graph-linking-for-knowledge-management-systems",
+      "path": "generated/shards/03/3200-knowledge-graph-linking-for-knowledge-management-systems",
+      "skill_md_sha256": "47e0e6b76720549832909bc591958eab094a19af02a53fa512f9f01ebcf7050a",
+      "summary_sha256": "6a3bcefe4a4e2727135d1dabeb342c5c2831a6bdbd074c7e352128517c99b262"
+    },
+    {
+      "skill_id": "u3201-semantic-retrieval-ranking-for-personal-health-routines",
+      "path": "generated/shards/03/3201-semantic-retrieval-ranking-for-personal-health-routines",
+      "skill_md_sha256": "0f75039faf00a3f81817dc1c1ffb1c4573e5f82b223591138bc876a1eee92216",
+      "summary_sha256": "aca229415ce775c00e68e60801d97fb1e896f058f979870df27b9abbdc0ec8fa"
+    },
+    {
+      "skill_id": "u3202-semantic-retrieval-ranking-for-personal-health-routines",
+      "path": "generated/shards/03/3202-semantic-retrieval-ranking-for-personal-health-routines",
+      "skill_md_sha256": "cfb4e9a078c1f733d994143bc7c426ad76e9bf018e64f1098e646f0325bf7b85",
+      "summary_sha256": "86ae990d58e3aa547ddb94bbffc82bba20f7a7777ab1afdef3abbe5923c87228"
+    },
+    {
+      "skill_id": "u3203-semantic-retrieval-ranking-for-personal-health-routines",
+      "path": "generated/shards/03/3203-semantic-retrieval-ranking-for-personal-health-routines",
+      "skill_md_sha256": "b6dace84ecdd79e316e0836582d35aca3f07a8c43f46c890188d842b368decbb",
+      "summary_sha256": "964fed76722274da88b04c45c8959e284b82ff078b396734eee1c32fa33b352c"
+    },
+    {
+      "skill_id": "u3204-semantic-retrieval-ranking-for-personal-health-routines",
+      "path": "generated/shards/03/3204-semantic-retrieval-ranking-for-personal-health-routines",
+      "skill_md_sha256": "81e89e086df9189920854ff192693bdfa8882f3736ccb196c2157bcf04d98cc4",
+      "summary_sha256": "93b3e9bd8e9086ec1a8646119c8e653652473dcca5bb782b36c5294d97cb7e12"
+    },
+    {
+      "skill_id": "u3205-semantic-retrieval-ranking-for-personal-health-routines",
+      "path": "generated/shards/03/3205-semantic-retrieval-ranking-for-personal-health-routines",
+      "skill_md_sha256": "e67e6b54a3cd20582d4d694f34fbce302184f2fcfef4ecd6fd5b59dfdb68d31a",
+      "summary_sha256": "4f2b3fe9dfafac4255d66ae015ed622076f97c8023a43f29aedf4655acaf9a0d"
+    },
+    {
+      "skill_id": "u3206-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3206-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "skill_md_sha256": "10aef8f848c6440676b6a325ddb79e752cbc897cdcc3df53759a42a81b8897ea",
+      "summary_sha256": "eb1218504c3cf60dd6aa6ce2b76281308a14609724409ca8d006a6b3b2143a9f"
+    },
+    {
+      "skill_id": "u3207-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3207-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "skill_md_sha256": "a99bf4c97609d3e619fb02e36bec11aabd4c85349c365a6a51ba7a036144fce1",
+      "summary_sha256": "f4ceafc5d2d91c23e793e1fa0f7aba57ed4b7c9639e9b08d1a244b9e6037e7fd"
+    },
+    {
+      "skill_id": "u3208-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3208-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "skill_md_sha256": "298f7fc340765aca6fbd2905173933c60d8965a10ba765aa38e26e5e5d9e53c2",
+      "summary_sha256": "8a3e50907629b277b1b58c61f1cee7aef9952641f5a4ba910c8e90cce6755b03"
+    },
+    {
+      "skill_id": "u3209-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3209-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "skill_md_sha256": "c6511bcf2f6f75b480c8e3b39afaa94464e1ab29421c224390f4b4ed56dd20ab",
+      "summary_sha256": "735b62931cfd79680bc235abf48ab301ebe1a886cf246b0ef0fa0bf8588191f6"
+    },
+    {
+      "skill_id": "u3210-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "path": "generated/shards/03/3210-semantic-retrieval-ranking-for-family-caregiving-systems",
+      "skill_md_sha256": "c3d18b2b62cec16ebbd65543bcb547f964dc4a7444ece6b4366d616d73dc2597",
+      "summary_sha256": "6588e71269ff0ef1c61bb43630511f885dd1bd7b15e05166946f09218b2d2b4a"
+    },
+    {
+      "skill_id": "u3211-semantic-retrieval-ranking-for-household-logistics",
+      "path": "generated/shards/03/3211-semantic-retrieval-ranking-for-household-logistics",
+      "skill_md_sha256": "45575a5c3da8afe17d21c986832226dc8db8d7d1785aedf6dd4ff1a79c924a78",
+      "summary_sha256": "0267f8a59b5907d79192ada816b60b0aca57b9e6c2fb8dc50e2d5588dcfb6662"
+    },
+    {
+      "skill_id": "u3212-semantic-retrieval-ranking-for-household-logistics",
+      "path": "generated/shards/03/3212-semantic-retrieval-ranking-for-household-logistics",
+      "skill_md_sha256": "7a32cbf6c3142f0bf39451f7a940b0bd9178f92a0eab7134ae304d4c661070bc",
+      "summary_sha256": "a91133d17be8c94e0b81ed50ed4e5ae81647042f4c1655ff96fc6a96dd487b4b"
+    },
+    {
+      "skill_id": "u3213-semantic-retrieval-ranking-for-household-logistics",
+      "path": "generated/shards/03/3213-semantic-retrieval-ranking-for-household-logistics",
+      "skill_md_sha256": "1e0f26b4a21b49bd133c96cbf6786dd4e5ec0e498d1155eed111a54fdac127e7",
+      "summary_sha256": "f5c3030da2eeaa002a7aee53a1fbef063ff691e9b7ab04886f63cd7a49600343"
+    },
+    {
+      "skill_id": "u3214-semantic-retrieval-ranking-for-household-logistics",
+      "path": "generated/shards/03/3214-semantic-retrieval-ranking-for-household-logistics",
+      "skill_md_sha256": "201c0e2367f212a1fdae2670ff4ac24e125f5f3d7fa15f34925fdfedf0a7e0bd",
+      "summary_sha256": "6b508153cca2efb3e9b92c24adc5b691b9b3e58cb6c65cadc3e6851e04bdae98"
+    },
+    {
+      "skill_id": "u3215-semantic-retrieval-ranking-for-household-logistics",
+      "path": "generated/shards/03/3215-semantic-retrieval-ranking-for-household-logistics",
+      "skill_md_sha256": "117cd9bd9cd9da01062b45a6d91ecd4108e44873153b0d0fe46b06ead1c55e7e",
+      "summary_sha256": "9e6d62b85710fff9128e044ef9df9ca03e26457f401971cfc1857825a16b26eb"
+    },
+    {
+      "skill_id": "u3216-semantic-retrieval-ranking-for-personal-finance-management",
+      "path": "generated/shards/03/3216-semantic-retrieval-ranking-for-personal-finance-management",
+      "skill_md_sha256": "33c79ebc63a79ea42012190bd19ddb55301aa9bb79548b1b65ef1c45a50db9eb",
+      "summary_sha256": "76650c4ed75f818df511405141b04681e80778177fdbef93be83484e25c6805b"
+    },
+    {
+      "skill_id": "u3217-semantic-retrieval-ranking-for-personal-finance-management",
+      "path": "generated/shards/03/3217-semantic-retrieval-ranking-for-personal-finance-management",
+      "skill_md_sha256": "62f30272de1d9e48b3c443d11cf88d738f6e710604a9ab081b1e2b4d39bed55b",
+      "summary_sha256": "d5fc869606037f435d4920c5b0b3b85005e1b45e734415b7de3dda0943aad6d4"
+    },
+    {
+      "skill_id": "u3218-semantic-retrieval-ranking-for-personal-finance-management",
+      "path": "generated/shards/03/3218-semantic-retrieval-ranking-for-personal-finance-management",
+      "skill_md_sha256": "b43339e7bacb01ea5ac301bb7ac42f9ee5f62c1e4bbf5c94e171fb6543411176",
+      "summary_sha256": "cd9735ac9ffaa853440557c0da9f1132dc0b06b4466b76dec584f4abc14a230b"
+    },
+    {
+      "skill_id": "u3219-semantic-retrieval-ranking-for-personal-finance-management",
+      "path": "generated/shards/03/3219-semantic-retrieval-ranking-for-personal-finance-management",
+      "skill_md_sha256": "0c93c7c5f40939e0e2819f869ed57fa54310984631bd5b62e37b7651436f6e19",
+      "summary_sha256": "700549e49a07bed0c2ff34a17df6fe378d4a68997540b25e1566a60d00134da8"
+    },
+    {
+      "skill_id": "u3220-semantic-retrieval-ranking-for-personal-finance-management",
+      "path": "generated/shards/03/3220-semantic-retrieval-ranking-for-personal-finance-management",
+      "skill_md_sha256": "1aa783c3823e77b6199b10fb5df2d8c2c223a873344454c63341b4f731d88177",
+      "summary_sha256": "94d86629581d591d09f8be9c0bad0d364a27a3167f7ca0168b61e43249bf3d5f"
+    },
+    {
+      "skill_id": "u3221-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3221-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "5903d39d48949b01a761e0d83c48953596ac4aaac50307d12b51798081ec2ff3",
+      "summary_sha256": "b07d8733a4cf53db737cc658a2d7972cb75b95be7a2cc96281c91b0c72fab6cf"
+    },
+    {
+      "skill_id": "u3222-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3222-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "a9bf4c161a437ee00fa5ffb33c9a854953ae3f5fe4ff67d08409e928bdb62202",
+      "summary_sha256": "8f61e8d30b7c269a3ee032981121a5172ec9941ea68035e655ba694d5d692bfc"
+    },
+    {
+      "skill_id": "u3223-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3223-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "518a1d3c043c945c993a00ca81f4345ef8c0a4a63f70774760f0e762df60947b",
+      "summary_sha256": "d1a0be6afd5df32455a70c6a8550b416b1cdc67b4bcd750c2444f57208848315"
+    },
+    {
+      "skill_id": "u3224-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3224-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "472f4f1dbd935a3b5536a508b705fd45d5bbb7e7343890c75fe14af5afa79b20",
+      "summary_sha256": "78c403e264c7960def386b1064c1640f037ed441c81cd4d81ba0ba71ee9d4058"
+    },
+    {
+      "skill_id": "u3225-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "path": "generated/shards/03/3225-semantic-retrieval-ranking-for-nutrition-and-meal-planning",
+      "skill_md_sha256": "c308ec5e2816b8aad3132926b4dd1ef7fcf94f5b9cece82a10dffbfd883c7c94",
+      "summary_sha256": "fd568866262366230c2741163b6a534be65d39ac93d8b947c49dd086422b4b19"
+    },
+    {
+      "skill_id": "u3226-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3226-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "d6e1e050e0c8c3e595e68dc1aa250758fd70509ea3a63cb7e2ff0bbd20635e35",
+      "summary_sha256": "b55385e38369d5b3b0d06f8ce83d350dd9faed5b3369958c58ef4b272b7e95d4"
+    },
+    {
+      "skill_id": "u3227-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3227-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "5adced1a4456e76d8947fad504c72f824bac09bfdd815cee84a2e18c6bf62640",
+      "summary_sha256": "2dd5abd736ccda258a18168f88f7ac1670151a5b8bf2aaa61479c6b96b3b8267"
+    },
+    {
+      "skill_id": "u3228-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3228-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "72bbd12eced72b80a0bba8e0cf3671d13a3fe0df9c3cd5085ef38321280c8432",
+      "summary_sha256": "5249a21e4c9ec701d38f6e8cacac704ff2880d5954daad5f7fc24b634656d224"
+    },
+    {
+      "skill_id": "u3229-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3229-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "92a84309ccdba863a2c6de82862afeca7a15cb4886682359ea7a9607ccf74001",
+      "summary_sha256": "bf566a0f9ac9a4fdc3a94d322594aa152f47f0f820059c32af872889c6038581"
+    },
+    {
+      "skill_id": "u3230-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "path": "generated/shards/03/3230-semantic-retrieval-ranking-for-fitness-and-recovery-training",
+      "skill_md_sha256": "7ebcbf59e6524b7df67069381d27dbfc5aff487c9e2ad6f9c90329dddd7840f0",
+      "summary_sha256": "e1cdb8eaa809bc2ce826c6c0c72ce7314efe3136b97e9fd38935a14d756e76f3"
+    },
+    {
+      "skill_id": "u3231-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3231-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "skill_md_sha256": "8bac0f4408a12d2bdfe3166a71d1834ea618979265ad484b1aac6d7332e7f17c",
+      "summary_sha256": "81f0e6f216b3da62e7f334dcaf2c1a2443b7918790507abe95dac2610f565605"
+    },
+    {
+      "skill_id": "u3232-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3232-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "skill_md_sha256": "51270d7ef70bb7c4e1d0e4e6d1595ee915c9ac7e43b5ccbca661c2e22bb2d7b6",
+      "summary_sha256": "50ab3a1ba0c7e5422a2f3655b87163a603017bba8b4a4fd5505d3099920eef41"
+    },
+    {
+      "skill_id": "u3233-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3233-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "skill_md_sha256": "410892e3144c6c08ac74142c67b33e7b2874866c087be6736bded0c021262a94",
+      "summary_sha256": "138c5a6df7b6ad5fcce4be6fb4d6e2659ff2c5ab60dde55da935ca5ea174b708"
+    },
+    {
+      "skill_id": "u3234-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3234-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "skill_md_sha256": "a56bdd3520bdff22fc341c0105697fbe0e3e87f396b46f0c294b99a4f542924e",
+      "summary_sha256": "6e5fac7425f8d5808ce039050fe213dc34a0517970fb1c55bfc0a7fc205e8a6b"
+    },
+    {
+      "skill_id": "u3235-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "path": "generated/shards/03/3235-semantic-retrieval-ranking-for-mental-well-being-practices",
+      "skill_md_sha256": "6217ee281dbb2e316c59959b18c3b39a269d54caa06e8c912e99fee2f8b973a5",
+      "summary_sha256": "70c12a0f84b47f6840caef729ccada7cbe8c2a5c532a5740067e49fe07ed9991"
+    },
+    {
+      "skill_id": "u3236-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3236-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "skill_md_sha256": "a613c6500929606474353951ad1b2ba62202db25b33d14b6e34fda8e5e16cbdf",
+      "summary_sha256": "cba0727488c03a648a7553980d983e2b68aac9ed6afda8aeff966aebba5a3350"
+    },
+    {
+      "skill_id": "u3237-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3237-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "skill_md_sha256": "4078995325bf5d769bb4404b1574873cfa4b992b0e844917df84b9343c0339e9",
+      "summary_sha256": "7f7f984063ef64e51814f0f0d33c5ebcd4710e2ce1106092471d8e3655aea5a8"
+    },
+    {
+      "skill_id": "u3238-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3238-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "skill_md_sha256": "fd3be1b233ee71d591f5b5ffd5dd4c83e6c757584b4253d4944735a1525ee97a",
+      "summary_sha256": "0dc034c35b416065c9ef162a410e401678509ebc43b033d318710da9138be1cd"
+    },
+    {
+      "skill_id": "u3239-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3239-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "skill_md_sha256": "aae0752f8b92d8ef058561b44fa53e08acb8f704e43d6a1b92c05dd204f124eb",
+      "summary_sha256": "7bf581e2411c6aac467e50ea1afb682bb239af6a722c213c7c5fb3d8050cdc10"
+    },
+    {
+      "skill_id": "u3240-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "path": "generated/shards/03/3240-semantic-retrieval-ranking-for-lifelong-learning-plans",
+      "skill_md_sha256": "cece56312777e3ff92c0ac781b03eb76cbcd78e51a23bfd136780beeef461ce1",
+      "summary_sha256": "1e84f3fbfa3792b52e4818e17f07da3df2052643ad50de370c5f395f4c0b8de2"
+    },
+    {
+      "skill_id": "u3241-semantic-retrieval-ranking-for-career-development-pathways",
+      "path": "generated/shards/03/3241-semantic-retrieval-ranking-for-career-development-pathways",
+      "skill_md_sha256": "af21ffef3298a8980d6ce66e286efa5ec4a8b94ec9042f89f75ab19c5057ffcd",
+      "summary_sha256": "0a5199cf22b6bc75067d16849bcbf18a6b9cd68f1615ea95bed196ff01634446"
+    },
+    {
+      "skill_id": "u3242-semantic-retrieval-ranking-for-career-development-pathways",
+      "path": "generated/shards/03/3242-semantic-retrieval-ranking-for-career-development-pathways",
+      "skill_md_sha256": "fbeb3ec87549fe2025e4de405a0689f77424c2f974fc4cf42833ae9c70b78a6e",
+      "summary_sha256": "b842e739b03a468ad938f8d43ae5cf0b2c57587343152892549ac77a59dfedf5"
+    },
+    {
+      "skill_id": "u3243-semantic-retrieval-ranking-for-career-development-pathways",
+      "path": "generated/shards/03/3243-semantic-retrieval-ranking-for-career-development-pathways",
+      "skill_md_sha256": "810f1fe2c9fef18944e53affbc5e1d4e51ad13e627d9b4c3dfd42d103f9de3d2",
+      "summary_sha256": "6d01fe8c824d9ccc5b1d818d59c597415e5e2f4a6c0f46609bc3ac1acf554b67"
+    },
+    {
+      "skill_id": "u3244-semantic-retrieval-ranking-for-career-development-pathways",
+      "path": "generated/shards/03/3244-semantic-retrieval-ranking-for-career-development-pathways",
+      "skill_md_sha256": "671e1798734e03f16881d226a2245743f6f8b085a45a15bc658cb7cd83e3b971",
+      "summary_sha256": "3d2c4aac8787053f396b54dea5868edb78b73ff5a043e3613629b8acdb8320ae"
+    },
+    {
+      "skill_id": "u3245-semantic-retrieval-ranking-for-career-development-pathways",
+      "path": "generated/shards/03/3245-semantic-retrieval-ranking-for-career-development-pathways",
+      "skill_md_sha256": "c0a34607c816c77890a5c026a8219127faec6e95181c05c1e4edbe3d45e276b1",
+      "summary_sha256": "24de76d610e33a028d398bf56a55d5666fdbf144aaea015f9899502e741394e5"
+    },
+    {
+      "skill_id": "u3246-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3246-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "skill_md_sha256": "bbfeb05f9af5f82e01b1a25e3a7c63a6e059c5dbd79710e075a7f4a870924d88",
+      "summary_sha256": "ae1965b1100942b6f07aac904e8d30f9568a147b15430c6284e28fe933716edd"
+    },
+    {
+      "skill_id": "u3247-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3247-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "skill_md_sha256": "1e973a8f82872cd7c4056fcf8c1c678d53b9b73d19bad3a376b4ae0f7e1deb67",
+      "summary_sha256": "2fb188ee95345c32baff8e4759bc4a9c0a7fc6e56b414c8cf3140d76dc6d1cb4"
+    },
+    {
+      "skill_id": "u3248-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3248-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "skill_md_sha256": "534a70a007c724f79d2a5b33d7575ff3e645accaef7256694d97c468c8632ad6",
+      "summary_sha256": "1054d83585e1c6d522bac2b876e84427d3c0a281cbb525c7f0bcf48c9b40d0a1"
+    },
+    {
+      "skill_id": "u3249-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3249-semantic-retrieval-ranking-for-entrepreneurship-operations",
+      "skill_md_sha256": "d8fdc515651d99818685ecfe1db78ebc23a5504e3523243724408f8a8be9d385",
+      "summary_sha256": "3006cf66be5d3377b3fba396b959090540698e4b5729f37523b509fcb98cfd5b"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5328,
+  "name": "service-mesh-forecast-engine",
+  "title": "Service Mesh Forecast Engine",
+  "description": "Design and run service mesh workflows with forecast engine controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9765,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05328-service-mesh-forecast-engine/SKILL.md",
+    "entrypoint": "agent05/05328-service-mesh-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service mesh forecast engine",
+    "service mesh forecast engine workflow",
+    "service mesh forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

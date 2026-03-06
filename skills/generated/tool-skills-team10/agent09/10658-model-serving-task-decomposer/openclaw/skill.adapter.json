@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10658,
+  "name": "model-serving-task-decomposer",
+  "title": "Model Serving Task Decomposer",
+  "description": "Design and run model serving workflows with task decomposer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11666,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10658-model-serving-task-decomposer/SKILL.md",
+    "entrypoint": "agent09/10658-model-serving-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving task decomposer",
+    "model serving task decomposer workflow",
+    "model serving task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

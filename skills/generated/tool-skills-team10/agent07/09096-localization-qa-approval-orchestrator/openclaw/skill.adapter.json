@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9096,
+  "name": "localization-qa-approval-orchestrator",
+  "title": "Localization QA Approval Orchestrator",
+  "description": "Design and run localization qa workflows with approval orchestrator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6441,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09096-localization-qa-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent07/09096-localization-qa-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa approval orchestrator",
+    "localization qa approval orchestrator workflow",
+    "localization qa approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

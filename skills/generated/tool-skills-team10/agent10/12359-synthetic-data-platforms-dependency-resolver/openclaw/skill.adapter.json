@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12359,
+  "name": "synthetic-data-platforms-dependency-resolver",
+  "title": "Synthetic Data Platforms Dependency Resolver",
+  "description": "Design and run synthetic data platforms workflows with dependency resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12297,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12359-synthetic-data-platforms-dependency-resolver/SKILL.md",
+    "entrypoint": "agent10/12359-synthetic-data-platforms-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms dependency resolver",
+    "synthetic data platforms dependency resolver workflow",
+    "synthetic data platforms dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

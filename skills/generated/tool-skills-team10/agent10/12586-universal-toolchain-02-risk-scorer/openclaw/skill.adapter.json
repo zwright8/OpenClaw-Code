@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12586,
+  "name": "universal-toolchain-02-risk-scorer",
+  "title": "Universal Toolchain 02 Risk Scorer",
+  "description": "Design and run universal toolchain 02 workflows with risk scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1479,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12586-universal-toolchain-02-risk-scorer/SKILL.md",
+    "entrypoint": "agent10/12586-universal-toolchain-02-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 02 risk scorer",
+    "universal toolchain 02 risk scorer workflow",
+    "universal toolchain 02 risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

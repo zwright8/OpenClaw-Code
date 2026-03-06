@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12761,
+  "name": "universal-toolchain-06-execution-runner",
+  "title": "Universal Toolchain 06 Execution Runner",
+  "description": "Design and run universal toolchain 06 workflows with execution runner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1257,
+    "score": 83,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12761-universal-toolchain-06-execution-runner/SKILL.md",
+    "entrypoint": "agent10/12761-universal-toolchain-06-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 06 execution runner",
+    "universal toolchain 06 execution runner workflow",
+    "universal toolchain 06 execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

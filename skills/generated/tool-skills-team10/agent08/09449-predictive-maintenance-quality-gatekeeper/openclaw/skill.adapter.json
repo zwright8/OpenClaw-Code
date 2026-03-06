@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9449,
+  "name": "predictive-maintenance-quality-gatekeeper",
+  "title": "Predictive Maintenance Quality Gatekeeper",
+  "description": "Design and run predictive maintenance workflows with quality gatekeeper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2964,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09449-predictive-maintenance-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent08/09449-predictive-maintenance-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance quality gatekeeper",
+    "predictive maintenance quality gatekeeper workflow",
+    "predictive maintenance quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

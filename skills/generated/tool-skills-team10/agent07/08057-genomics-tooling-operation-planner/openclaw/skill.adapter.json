@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8057,
+  "name": "genomics-tooling-operation-planner",
+  "title": "Genomics Tooling Operation Planner",
+  "description": "Design and run genomics tooling workflows with operation planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10804,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08057-genomics-tooling-operation-planner/SKILL.md",
+    "entrypoint": "agent07/08057-genomics-tooling-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "genomics tooling operation planner",
+    "genomics tooling operation planner workflow",
+    "genomics tooling operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

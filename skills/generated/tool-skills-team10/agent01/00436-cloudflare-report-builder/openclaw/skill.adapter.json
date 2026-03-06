@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 436,
+  "name": "cloudflare-report-builder",
+  "title": "Cloudflare Report Builder",
+  "description": "Generates operational and KPI reports from Cloudflare activity.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8103,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00436-cloudflare-report-builder/SKILL.md",
+    "entrypoint": "agent01/00436-cloudflare-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cloudflare report builder",
+    "cloudflare report builder workflow",
+    "cloudflare report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

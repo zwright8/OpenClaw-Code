@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 206,
+  "name": "salesforce-report-builder",
+  "title": "Salesforce Report Builder",
+  "description": "Generates operational and KPI reports from Salesforce activity.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0206-salesforce-report-builder/SKILL.md",
+    "entrypoint": "agent03/0206-salesforce-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "salesforce report builder",
+    "salesforce report builder workflow",
+    "salesforce report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0206-salesforce-report-builder"
+  }
+}

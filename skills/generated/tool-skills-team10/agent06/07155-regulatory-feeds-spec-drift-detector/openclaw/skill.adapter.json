@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7155,
+  "name": "regulatory-feeds-spec-drift-detector",
+  "title": "Regulatory Feeds Spec Drift Detector",
+  "description": "Design and run regulatory feeds workflows with spec drift detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4254,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07155-regulatory-feeds-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent06/07155-regulatory-feeds-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds spec drift detector",
+    "regulatory feeds spec drift detector workflow",
+    "regulatory feeds spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

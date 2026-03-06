@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10136,
+  "name": "merchant-risk-risk-scorer",
+  "title": "Merchant Risk Risk Scorer",
+  "description": "Design and run merchant risk workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1678,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10136-merchant-risk-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/10136-merchant-risk-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk risk scorer",
+    "merchant risk risk scorer workflow",
+    "merchant risk risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

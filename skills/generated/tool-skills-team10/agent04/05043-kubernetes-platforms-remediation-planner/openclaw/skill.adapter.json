@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5043,
+  "name": "kubernetes-platforms-remediation-planner",
+  "title": "Kubernetes Platforms Remediation Planner",
+  "description": "Design and run kubernetes platforms workflows with remediation planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1831,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05043-kubernetes-platforms-remediation-planner/SKILL.md",
+    "entrypoint": "agent04/05043-kubernetes-platforms-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms remediation planner",
+    "kubernetes platforms remediation planner workflow",
+    "kubernetes platforms remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

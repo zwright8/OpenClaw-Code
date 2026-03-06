@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7355,
+  "name": "experiment-platforms-spec-drift-detector",
+  "title": "Experiment Platforms Spec Drift Detector",
+  "description": "Design and run experiment platforms workflows with spec drift detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4261,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07355-experiment-platforms-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent06/07355-experiment-platforms-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms spec drift detector",
+    "experiment platforms spec drift detector workflow",
+    "experiment platforms spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

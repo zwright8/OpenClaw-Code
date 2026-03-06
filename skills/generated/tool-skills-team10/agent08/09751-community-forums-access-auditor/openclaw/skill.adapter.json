@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9751,
+  "name": "community-forums-access-auditor",
+  "title": "Community Forums Access Auditor",
+  "description": "Design and run community forums workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11370,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09751-community-forums-access-auditor/SKILL.md",
+    "entrypoint": "agent08/09751-community-forums-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums access auditor",
+    "community forums access auditor workflow",
+    "community forums access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

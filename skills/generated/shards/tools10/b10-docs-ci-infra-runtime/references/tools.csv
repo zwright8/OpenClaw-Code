@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4797,jsdoc3,local-installable,API documentation generator for JavaScript,https://jsdoc.app/,Apache-2.0
+4798,aws2-wrap,local-installable,Script to export current AWS SSO credentials or run a sub-process with them,https://github.com/linaro-its/aws2-wrap,GPL-3.0-only
+4799,juicefs,local-installable,"Cloud-based, distributed POSIX file system built on top of Redis and S3",https://juicefs.com,Apache-2.0
+4800,act_runner,local-installable,Action runner for Gitea based on Gitea's fork of act,https://docs.gitea.com/usage/actions/act-runner,MIT
+4803,forgejo,local-installable,Self-hosted lightweight software forge,https://forgejo.org/,GPL-3.0-or-later
+4805,tock,local-installable,Powerful time tracking tool for the command-line,https://github.com/kriuchkov/tock,GPL-3.0-or-later
+4806,ompl,local-installable,Open Motion Planning Library consists of many motion planning algorithms,https://ompl.kavrakilab.org/,BSD-3-Clause
+4807,wordnet,local-installable,Lexical database for the English language,https://wordnet.princeton.edu/,LicenseRef-Homebrew-cannot-represent
+4808,cassandra-reaper,local-installable,Management interface for Cassandra,https://cassandra-reaper.io/,Apache-2.0
+4810,kallisto,local-installable,Quantify abundances of transcripts from RNA-Seq data,https://pachterlab.github.io/kallisto/,BSD-2-Clause
+4812,nmail,local-installable,Terminal-based email client for Linux and macOS,https://github.com/d99kris/nmail,MIT
+4813,libgit2-glib,local-installable,Glib wrapper library around libgit2 git access library,https://gitlab.gnome.org/GNOME/libgit2-glib,LGPL-2.1-only
+4814,advancecomp,local-installable,"Recompression utilities for .PNG, .MNG, .ZIP, and .GZ files",https://www.advancemame.it/comp-readme.html,GPL-3.0-only
+4817,sloth-cli,local-installable,Prometheus SLO generator,https://sloth.dev/,Apache-2.0
+4819,memray,local-installable,Memory profiler for Python applications,https://bloomberg.github.io/memray/,Apache-2.0
+4820,diskus,local-installable,"Minimal, fast alternative to 'du -sh'",https://github.com/sharkdp/diskus,Apache-2.0 OR MIT
+4821,pushpin,local-installable,Reverse proxy for realtime web services,https://pushpin.org/,Apache-2.0
+4822,sceptre,local-installable,Build better AWS infrastructure,https://docs.sceptre-project.org/,Apache-2.0
+4823,libpeas@1,local-installable,GObject plugin library,https://wiki.gnome.org/Projects/Libpeas,LGPL-2.1-or-later
+4824,onednn,local-installable,Basic building blocks for deep learning applications,https://www.oneapi.io/open-source/,Apache-2.0
+4825,pangomm@2.46,local-installable,C++ interface to Pango,https://www.gtk.org/docs/architecture/pango,LGPL-2.1-only
+4826,qt-unixodbc,local-installable,Qt SQL Database Driver,https://www.qt.io/,GPL-2.0-only OR GPL-3.0-only OR LGPL-3.0-only
+4827,roadrunner,local-installable,"High-performance PHP application server, load-balancer and process manager",https://docs.roadrunner.dev/docs,MIT
+4828,ryelang,local-installable,Rye is a homoiconic programming language focused on fluid expressions,https://ryelang.org/,BSD-3-Clause
+4829,beanstalkd,local-installable,Generic work queue originally designed to reduce web latency,https://beanstalkd.github.io/,MIT
+4830,nanobot,local-installable,Build MCP Agents,https://www.nanobot.ai/,Apache-2.0

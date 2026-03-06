@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1992,
+  "name": "freight-brokerage-root-cause-miner",
+  "title": "Freight Brokerage Root Cause Miner",
+  "description": "Design and run freight brokerage workflows with root cause miner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4503,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01992-freight-brokerage-root-cause-miner/SKILL.md",
+    "entrypoint": "agent02/01992-freight-brokerage-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage root cause miner",
+    "freight brokerage root cause miner workflow",
+    "freight brokerage root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

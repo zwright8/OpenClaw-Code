@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1142,
+  "name": "patent-filings-root-cause-miner",
+  "title": "Patent Filings Root Cause Miner",
+  "description": "Design and run patent filings workflows with root cause miner controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 4476,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01142-patent-filings-root-cause-miner/SKILL.md",
+    "entrypoint": "agent01/01142-patent-filings-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings root cause miner",
+    "patent filings root cause miner workflow",
+    "patent filings root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

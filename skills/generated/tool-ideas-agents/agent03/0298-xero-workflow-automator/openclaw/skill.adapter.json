@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 298,
+  "name": "xero-workflow-automator",
+  "title": "Xero Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Xero.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0298-xero-workflow-automator/SKILL.md",
+    "entrypoint": "agent03/0298-xero-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "xero workflow automator",
+    "xero workflow automator workflow",
+    "xero workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0298-xero-workflow-automator"
+  }
+}

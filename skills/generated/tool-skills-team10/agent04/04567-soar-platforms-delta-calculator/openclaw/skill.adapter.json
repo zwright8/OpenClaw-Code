@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4567,
+  "name": "soar-platforms-delta-calculator",
+  "title": "SOAR Platforms Delta Calculator",
+  "description": "Design and run soar platforms workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9527,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04567-soar-platforms-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/04567-soar-platforms-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "soar platforms delta calculator",
+    "soar platforms delta calculator workflow",
+    "soar platforms delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

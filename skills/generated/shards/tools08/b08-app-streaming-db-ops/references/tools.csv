@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3614,wails,local-installable,Create beautiful applications using Go,https://wails.io,MIT
+3615,showcert,local-installable,X.509 TLS certificate reader and creator,https://github.com/yaroslaff/showcert,MIT
+3616,pyvim,local-installable,Pure Python Vim clone,https://github.com/prompt-toolkit/pyvim,BSD-3-Clause
+3618,nova-fairwinds,local-installable,Find outdated or deprecated Helm charts running in your cluster,https://github.com/FairwindsOps/nova,Apache-2.0
+3619,dvisvgm,local-installable,Fast DVI to SVG converter,https://dvisvgm.de,GPL-3.0-or-later
+3620,graphviz2drawio,local-installable,Convert graphviz (dot) files into draw.io / lucid (mxGraph) format,https://github.com/hbmartin/graphviz2drawio/,GPL-3.0-or-later
+3621,sbom-tool,local-installable,Scalable and enterprise ready tool to create SBOMs for any variety of artifacts,https://github.com/microsoft/sbom-tool,MIT
+3623,netscanner,local-installable,"Network scanner with features like WiFi scanning, packetdump and more",https://github.com/Chleba/netscanner,MIT
+3624,aicommit2,local-installable,Reactive CLI that generates commit messages for Git and Jujutsu with AI,https://github.com/tak-bro/aicommit2,MIT
+3626,apache-pulsar,local-installable,Cloud-native distributed messaging and streaming platform,https://pulsar.apache.org/,Apache-2.0
+3627,libxc,local-installable,Library of exchange and correlation functionals for codes,https://libxc.gitlab.io/,MPL-2.0
+3628,dspdfviewer,local-installable,Dual-Screen PDF Viewer for latex-beamer,https://dspdfviewer.danny-edel.de/,GPL-2.0-or-later
+3629,amazon-ecs-cli,local-installable,CLI for Amazon ECS to manage clusters and tasks for development,https://aws.amazon.com/ecs/,Apache-2.0
+3630,git-branchless,local-installable,"High-velocity, monorepo-scale workflow for Git",https://github.com/arxanas/git-branchless,Apache-2.0 OR MIT
+3632,nodeenv,local-installable,Node.js virtual environment builder,https://ekalinin.github.io/nodeenv/,BSD-3-Clause
+3633,boost-mpi,local-installable,C++ library for C++/MPI interoperability,https://www.boost.org/,BSL-1.0
+3634,morpheus,local-installable,Modeling environment for multi-cellular systems biology,https://morpheus.gitlab.io/,BSD-3-Clause
+3635,pari,local-installable,Computer algebra system designed for fast computations in number theory,https://pari.math.u-bordeaux.fr/,GPL-2.0-or-later
+3636,gpsbabel,local-installable,"Converts/uploads GPS waypoints, tracks, and routes",https://www.gpsbabel.org/,GPL-2.0-or-later
+3637,mujs,local-installable,Embeddable Javascript interpreter,https://www.mujs.com/,ISC
+3638,go-md2man,local-installable,Converts markdown into roff (man pages),https://github.com/cpuguy83/go-md2man,MIT
+3640,sqlx-cli,local-installable,"Command-line utility for SQLx, the Rust SQL toolkit",https://github.com/launchbadge/sqlx,Apache-2.0 OR MIT
+3641,openrtsp,local-installable,Command-line RTSP client,http://www.live555.com/openRTSP,LGPL-3.0-or-later
+3643,cargo-bundle,local-installable,Wrap rust executables in OS-specific app bundles,https://github.com/burtonageo/cargo-bundle,Apache-2.0 OR MIT
+3644,dissent,local-installable,GTK4 Discord client in Go,https://github.com/diamondburned/dissent,GPL-3.0-or-later
+3645,krep,local-installable,High-Performance String Search Utility,https://github.com/davidesantangelo/krep,BSD-2-Clause

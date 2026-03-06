@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3867,
+  "name": "seo-tooling-delta-calculator",
+  "title": "SEO Tooling Delta Calculator",
+  "description": "Design and run seo tooling workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9317,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03867-seo-tooling-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/03867-seo-tooling-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling delta calculator",
+    "seo tooling delta calculator workflow",
+    "seo tooling delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

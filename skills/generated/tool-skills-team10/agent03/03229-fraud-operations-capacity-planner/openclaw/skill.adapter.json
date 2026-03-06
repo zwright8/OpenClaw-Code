@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3229,
+  "name": "fraud-operations-capacity-planner",
+  "title": "Fraud Operations Capacity Planner",
+  "description": "Design and run fraud operations workflows with capacity planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9073,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03229-fraud-operations-capacity-planner/SKILL.md",
+    "entrypoint": "agent03/03229-fraud-operations-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations capacity planner",
+    "fraud operations capacity planner workflow",
+    "fraud operations capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

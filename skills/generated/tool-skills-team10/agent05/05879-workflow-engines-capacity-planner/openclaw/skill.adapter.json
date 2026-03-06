@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5879,
+  "name": "workflow-engines-capacity-planner",
+  "title": "Workflow Engines Capacity Planner",
+  "description": "Design and run workflow engines workflows with capacity planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9976,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05879-workflow-engines-capacity-planner/SKILL.md",
+    "entrypoint": "agent05/05879-workflow-engines-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines capacity planner",
+    "workflow engines capacity planner workflow",
+    "workflow engines capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

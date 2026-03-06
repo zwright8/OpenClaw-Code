@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2923,
+  "name": "maritime-routing-artifact-publisher",
+  "title": "Maritime Routing Artifact Publisher",
+  "description": "Design and run maritime routing workflows with artifact publisher controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8985,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02923-maritime-routing-artifact-publisher/SKILL.md",
+    "entrypoint": "agent03/02923-maritime-routing-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing artifact publisher",
+    "maritime routing artifact publisher workflow",
+    "maritime routing artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

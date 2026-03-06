@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7920,
+  "name": "patch-orchestration-migration-planner",
+  "title": "Patch Orchestration Migration Planner",
+  "description": "Design and run patch orchestration workflows with migration planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4700,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07920-patch-orchestration-migration-planner/SKILL.md",
+    "entrypoint": "agent07/07920-patch-orchestration-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration migration planner",
+    "patch orchestration migration planner workflow",
+    "patch orchestration migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

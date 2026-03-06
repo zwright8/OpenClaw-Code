@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9558,
+  "name": "portfolio-analytics-task-decomposer",
+  "title": "Portfolio Analytics Task Decomposer",
+  "description": "Design and run portfolio analytics workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11309,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09558-portfolio-analytics-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/09558-portfolio-analytics-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics task decomposer",
+    "portfolio analytics task decomposer workflow",
+    "portfolio analytics task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

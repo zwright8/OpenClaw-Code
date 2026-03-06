@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1136,
+  "name": "patent-filings-risk-scorer",
+  "title": "Patent Filings Risk Scorer",
+  "description": "Design and run patent filings workflows with risk scorer controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 1491,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent01/01136-patent-filings-risk-scorer/SKILL.md",
+    "entrypoint": "agent01/01136-patent-filings-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings risk scorer",
+    "patent filings risk scorer workflow",
+    "patent filings risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

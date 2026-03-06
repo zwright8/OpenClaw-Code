@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9106,
+  "name": "terminology-mgmt-api-contract-validator",
+  "title": "Terminology Mgmt API Contract Validator",
+  "description": "Design and run terminology mgmt workflows with api contract validator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 208,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent08/09106-terminology-mgmt-api-contract-validator/SKILL.md",
+    "entrypoint": "agent08/09106-terminology-mgmt-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "terminology mgmt api contract validator",
+    "terminology mgmt api contract validator workflow",
+    "terminology mgmt api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

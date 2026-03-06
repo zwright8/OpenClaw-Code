@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10772,
+  "name": "knowledge-graphs-version-tracker",
+  "title": "Knowledge Graphs Version Tracker",
+  "description": "Design and run knowledge graphs workflows with version tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7687,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10772-knowledge-graphs-version-tracker/SKILL.md",
+    "entrypoint": "agent09/10772-knowledge-graphs-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs version tracker",
+    "knowledge graphs version tracker workflow",
+    "knowledge graphs version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

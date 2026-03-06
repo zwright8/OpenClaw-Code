@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 244,
+  "name": "intercom-data-importer",
+  "title": "Intercom Data Importer",
+  "description": "Validates and imports bulk updates into Intercom.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12513,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00244-intercom-data-importer/SKILL.md",
+    "entrypoint": "agent01/00244-intercom-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "intercom data importer",
+    "intercom data importer workflow",
+    "intercom data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

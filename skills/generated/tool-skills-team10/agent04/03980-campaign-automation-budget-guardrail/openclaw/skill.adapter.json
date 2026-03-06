@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3980,
+  "name": "campaign-automation-budget-guardrail",
+  "title": "Campaign Automation Budget Guardrail",
+  "description": "Design and run campaign automation workflows with budget guardrail controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7389,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03980-campaign-automation-budget-guardrail/SKILL.md",
+    "entrypoint": "agent04/03980-campaign-automation-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation budget guardrail",
+    "campaign automation budget guardrail workflow",
+    "campaign automation budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

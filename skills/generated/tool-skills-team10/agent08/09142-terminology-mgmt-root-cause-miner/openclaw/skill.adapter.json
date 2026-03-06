@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9142,
+  "name": "terminology-mgmt-root-cause-miner",
+  "title": "Terminology Mgmt Root Cause Miner",
+  "description": "Design and run terminology mgmt workflows with root cause miner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4743,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09142-terminology-mgmt-root-cause-miner/SKILL.md",
+    "entrypoint": "agent08/09142-terminology-mgmt-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "terminology mgmt root cause miner",
+    "terminology mgmt root cause miner workflow",
+    "terminology mgmt root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

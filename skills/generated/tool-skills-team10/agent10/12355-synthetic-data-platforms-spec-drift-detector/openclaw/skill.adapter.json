@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12355,
+  "name": "synthetic-data-platforms-spec-drift-detector",
+  "title": "Synthetic Data Platforms Spec Drift Detector",
+  "description": "Design and run synthetic data platforms workflows with spec drift detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4446,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12355-synthetic-data-platforms-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent10/12355-synthetic-data-platforms-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms spec drift detector",
+    "synthetic data platforms spec drift detector workflow",
+    "synthetic data platforms spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 808,
+  "name": "openai-workflow-automator",
+  "title": "OpenAI Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using OpenAI.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "agent09/0808-openai-workflow-automator/SKILL.md",
+    "entrypoint": "agent09/0808-openai-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "openai workflow automator",
+    "openai workflow automator workflow",
+    "openai workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent09/0808-openai-workflow-automator"
+  }
+}

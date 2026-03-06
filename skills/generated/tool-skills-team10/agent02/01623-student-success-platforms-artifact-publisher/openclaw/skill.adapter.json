@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1623,
+  "name": "student-success-platforms-artifact-publisher",
+  "title": "Student Success Platforms Artifact Publisher",
+  "description": "Design and run student success platforms workflows with artifact publisher controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8544,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01623-student-success-platforms-artifact-publisher/SKILL.md",
+    "entrypoint": "agent02/01623-student-success-platforms-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms artifact publisher",
+    "student success platforms artifact publisher workflow",
+    "student success platforms artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

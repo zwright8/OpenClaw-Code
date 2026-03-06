@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11603,
+  "name": "work-order-systems-permission-mapper",
+  "title": "Work Order Systems Permission Mapper",
+  "description": "Design and run work order systems workflows with permission mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3908,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11603-work-order-systems-permission-mapper/SKILL.md",
+    "entrypoint": "agent09/11603-work-order-systems-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "work order systems permission mapper",
+    "work order systems permission mapper workflow",
+    "work order systems permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1516,
+  "name": "education-lms-state-reconciler",
+  "title": "Education LMS State Reconciler",
+  "description": "Design and run education lms workflows with state reconciler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2452,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01516-education-lms-state-reconciler/SKILL.md",
+    "entrypoint": "agent02/01516-education-lms-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms state reconciler",
+    "education lms state reconciler workflow",
+    "education lms state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

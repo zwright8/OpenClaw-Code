@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8435,
+  "name": "volunteer-coordination-policy-evaluator",
+  "title": "Volunteer Coordination Policy Evaluator",
+  "description": "Design and run volunteer coordination workflows with policy evaluator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3660,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08435-volunteer-coordination-policy-evaluator/SKILL.md",
+    "entrypoint": "agent07/08435-volunteer-coordination-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination policy evaluator",
+    "volunteer coordination policy evaluator workflow",
+    "volunteer coordination policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

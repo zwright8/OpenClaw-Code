@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5616,
+  "name": "data-quality-hubs-state-reconciler",
+  "title": "Data Quality Hubs State Reconciler",
+  "description": "Design and run data quality hubs workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2120,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05616-data-quality-hubs-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05616-data-quality-hubs-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs state reconciler",
+    "data quality hubs state reconciler workflow",
+    "data quality hubs state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

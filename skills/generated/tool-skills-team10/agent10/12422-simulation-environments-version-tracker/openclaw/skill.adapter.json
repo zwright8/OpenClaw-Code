@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12422,
+  "name": "simulation-environments-version-tracker",
+  "title": "Simulation Environments Version Tracker",
+  "description": "Design and run simulation environments workflows with version tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12323,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12422-simulation-environments-version-tracker/SKILL.md",
+    "entrypoint": "agent10/12422-simulation-environments-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments version tracker",
+    "simulation environments version tracker workflow",
+    "simulation environments version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

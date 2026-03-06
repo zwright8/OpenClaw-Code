@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 981,
+  "name": "csv-connector",
+  "title": "CSV Connector",
+  "description": "Unified read/write connector for CSV APIs and data.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 445,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/00981-csv-connector/SKILL.md",
+    "entrypoint": "agent01/00981-csv-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "csv connector",
+    "csv connector workflow",
+    "csv connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

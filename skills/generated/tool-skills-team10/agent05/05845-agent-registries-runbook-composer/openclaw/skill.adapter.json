@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5845,
+  "name": "agent-registries-runbook-composer",
+  "title": "Agent Registries Runbook Composer",
+  "description": "Design and run agent registries workflows with runbook composer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6152,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05845-agent-registries-runbook-composer/SKILL.md",
+    "entrypoint": "agent05/05845-agent-registries-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries runbook composer",
+    "agent registries runbook composer workflow",
+    "agent registries runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

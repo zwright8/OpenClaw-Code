@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 186,
+  "name": "airtable-report-builder",
+  "title": "Airtable Report Builder",
+  "description": "Generates operational and KPI reports from Airtable activity.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0186-airtable-report-builder/SKILL.md",
+    "entrypoint": "agent02/0186-airtable-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airtable report builder",
+    "airtable report builder workflow",
+    "airtable report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0186-airtable-report-builder"
+  }
+}

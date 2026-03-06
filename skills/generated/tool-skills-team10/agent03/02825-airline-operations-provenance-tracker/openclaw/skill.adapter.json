@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2825,
+  "name": "airline-operations-provenance-tracker",
+  "title": "Airline Operations Provenance Tracker",
+  "description": "Design and run airline operations workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7323,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02825-airline-operations-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/02825-airline-operations-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations provenance tracker",
+    "airline operations provenance tracker workflow",
+    "airline operations provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

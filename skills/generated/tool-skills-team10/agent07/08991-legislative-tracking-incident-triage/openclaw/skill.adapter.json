@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8991,
+  "name": "legislative-tracking-incident-triage",
+  "title": "Legislative Tracking Incident Triage",
+  "description": "Design and run legislative tracking workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2190,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08991-legislative-tracking-incident-triage/SKILL.md",
+    "entrypoint": "agent07/08991-legislative-tracking-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legislative tracking incident triage",
+    "legislative tracking incident triage workflow",
+    "legislative tracking incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6005,
+  "name": "document-ocr-spec-drift-detector",
+  "title": "Document OCR Spec Drift Detector",
+  "description": "Design and run document ocr workflows with spec drift detector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4204,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06005-document-ocr-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent05/06005-document-ocr-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr spec drift detector",
+    "document ocr spec drift detector workflow",
+    "document ocr spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

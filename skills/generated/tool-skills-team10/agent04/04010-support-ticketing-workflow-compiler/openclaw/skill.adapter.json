@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4010,
+  "name": "support-ticketing-workflow-compiler",
+  "title": "Support Ticketing Workflow Compiler",
+  "description": "Design and run support ticketing workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1076,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04010-support-ticketing-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04010-support-ticketing-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing workflow compiler",
+    "support ticketing workflow compiler workflow",
+    "support ticketing workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

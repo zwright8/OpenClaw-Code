@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6841,
+  "name": "billing-recovery-incident-triage",
+  "title": "Billing Recovery Incident Triage",
+  "description": "Design and run billing recovery workflows with incident triage controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 778,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/06841-billing-recovery-incident-triage/SKILL.md",
+    "entrypoint": "agent06/06841-billing-recovery-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery incident triage",
+    "billing recovery incident triage workflow",
+    "billing recovery incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

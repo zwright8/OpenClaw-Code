@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12024,
+  "name": "ethics-review-boards-evidence-collector",
+  "title": "Ethics Review Boards Evidence Collector",
+  "description": "Design and run ethics review boards workflows with evidence collector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6715,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12024-ethics-review-boards-evidence-collector/SKILL.md",
+    "entrypoint": "agent10/12024-ethics-review-boards-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards evidence collector",
+    "ethics review boards evidence collector workflow",
+    "ethics review boards evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7707,
+  "name": "in-app-messaging-operation-planner",
+  "title": "In-App Messaging Operation Planner",
+  "description": "Design and run in-app messaging workflows with operation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10657,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07707-in-app-messaging-operation-planner/SKILL.md",
+    "entrypoint": "agent06/07707-in-app-messaging-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging operation planner",
+    "in-app messaging operation planner workflow",
+    "in-app messaging operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

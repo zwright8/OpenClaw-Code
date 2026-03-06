@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7829,
+  "name": "vdi-platforms-capacity-planner",
+  "title": "VDI Platforms Capacity Planner",
+  "description": "Design and run vdi platforms workflows with capacity planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10711,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07829-vdi-platforms-capacity-planner/SKILL.md",
+    "entrypoint": "agent07/07829-vdi-platforms-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms capacity planner",
+    "vdi platforms capacity planner workflow",
+    "vdi platforms capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

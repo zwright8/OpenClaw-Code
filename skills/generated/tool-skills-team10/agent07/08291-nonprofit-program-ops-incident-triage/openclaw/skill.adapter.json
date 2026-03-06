@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8291,
+  "name": "nonprofit-program-ops-incident-triage",
+  "title": "Nonprofit Program Ops Incident Triage",
+  "description": "Design and run nonprofit program ops workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1155,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08291-nonprofit-program-ops-incident-triage/SKILL.md",
+    "entrypoint": "agent07/08291-nonprofit-program-ops-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "nonprofit program ops incident triage",
+    "nonprofit program ops incident triage workflow",
+    "nonprofit program ops incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

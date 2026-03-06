@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1708,
+  "name": "library-networks-task-decomposer",
+  "title": "Library Networks Task Decomposer",
+  "description": "Design and run library networks workflows with task decomposer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8579,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01708-library-networks-task-decomposer/SKILL.md",
+    "entrypoint": "agent02/01708-library-networks-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "library networks task decomposer",
+    "library networks task decomposer workflow",
+    "library networks task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

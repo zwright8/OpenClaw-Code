@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2427,
+  "name": "esg-reporting-threshold-alerting",
+  "title": "ESG Reporting Threshold Alerting",
+  "description": "Design and run esg reporting workflows with threshold alerting controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8840,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02427-esg-reporting-threshold-alerting/SKILL.md",
+    "entrypoint": "agent02/02427-esg-reporting-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting threshold alerting",
+    "esg reporting threshold alerting workflow",
+    "esg reporting threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

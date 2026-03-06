@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2587,
+  "name": "property-management-compliance-mapper",
+  "title": "Property Management Compliance Mapper",
+  "description": "Design and run property management workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1775,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02587-property-management-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02587-property-management-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management compliance mapper",
+    "property management compliance mapper workflow",
+    "property management compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

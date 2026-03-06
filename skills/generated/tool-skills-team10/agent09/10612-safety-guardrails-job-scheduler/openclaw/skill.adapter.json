@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10612,
+  "name": "safety-guardrails-job-scheduler",
+  "title": "Safety Guardrails Job Scheduler",
+  "description": "Design and run safety guardrails workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2604,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10612-safety-guardrails-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/10612-safety-guardrails-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails job scheduler",
+    "safety guardrails job scheduler workflow",
+    "safety guardrails job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

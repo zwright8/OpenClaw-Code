@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9167,
+  "name": "accessibility-auditing-delta-calculator",
+  "title": "Accessibility Auditing Delta Calculator",
+  "description": "Design and run accessibility auditing workflows with delta calculator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11186,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09167-accessibility-auditing-delta-calculator/SKILL.md",
+    "entrypoint": "agent08/09167-accessibility-auditing-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing delta calculator",
+    "accessibility auditing delta calculator workflow",
+    "accessibility auditing delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

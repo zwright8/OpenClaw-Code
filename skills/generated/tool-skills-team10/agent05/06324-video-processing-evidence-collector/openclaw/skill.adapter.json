@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6324,
+  "name": "video-processing-evidence-collector",
+  "title": "Video Processing Evidence Collector",
+  "description": "Design and run video processing workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6197,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06324-video-processing-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/06324-video-processing-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing evidence collector",
+    "video processing evidence collector workflow",
+    "video processing evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

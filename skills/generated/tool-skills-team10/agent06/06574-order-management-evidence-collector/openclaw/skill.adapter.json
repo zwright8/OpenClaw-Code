@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6574,
+  "name": "order-management-evidence-collector",
+  "title": "Order Management Evidence Collector",
+  "description": "Design and run order management workflows with evidence collector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6218,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06574-order-management-evidence-collector/SKILL.md",
+    "entrypoint": "agent06/06574-order-management-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management evidence collector",
+    "order management evidence collector workflow",
+    "order management evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

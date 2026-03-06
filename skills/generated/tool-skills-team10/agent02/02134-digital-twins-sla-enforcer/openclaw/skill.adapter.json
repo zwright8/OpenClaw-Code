@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2134,
+  "name": "digital-twins-sla-enforcer",
+  "title": "Digital Twins SLA Enforcer",
+  "description": "Design and run digital twins workflows with sla enforcer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8762,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02134-digital-twins-sla-enforcer/SKILL.md",
+    "entrypoint": "agent02/02134-digital-twins-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins sla enforcer",
+    "digital twins sla enforcer workflow",
+    "digital twins sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

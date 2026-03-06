@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2572,
+  "name": "property-management-version-tracker",
+  "title": "Property Management Version Tracker",
+  "description": "Design and run property management workflows with version tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8900,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02572-property-management-version-tracker/SKILL.md",
+    "entrypoint": "agent02/02572-property-management-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management version tracker",
+    "property management version tracker workflow",
+    "property management version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

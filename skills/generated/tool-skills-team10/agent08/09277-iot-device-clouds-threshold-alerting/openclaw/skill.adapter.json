@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9277,
+  "name": "iot-device-clouds-threshold-alerting",
+  "title": "IoT Device Clouds Threshold Alerting",
+  "description": "Design and run iot device clouds workflows with threshold alerting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7581,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09277-iot-device-clouds-threshold-alerting/SKILL.md",
+    "entrypoint": "agent08/09277-iot-device-clouds-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds threshold alerting",
+    "iot device clouds threshold alerting workflow",
+    "iot device clouds threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1665,
+  "name": "research-repositories-queue-balancer",
+  "title": "Research Repositories Queue Balancer",
+  "description": "Design and run research repositories workflows with queue balancer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8560,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01665-research-repositories-queue-balancer/SKILL.md",
+    "entrypoint": "agent02/01665-research-repositories-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories queue balancer",
+    "research repositories queue balancer workflow",
+    "research repositories queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

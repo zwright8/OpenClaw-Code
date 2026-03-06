@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 310,
+  "name": "shopify-migration-assistant",
+  "title": "Shopify Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Shopify.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0310-shopify-migration-assistant/SKILL.md",
+    "entrypoint": "agent04/0310-shopify-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "shopify migration assistant",
+    "shopify migration assistant workflow",
+    "shopify migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0310-shopify-migration-assistant"
+  }
+}

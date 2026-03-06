@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12158,
+  "name": "audit-trails-task-decomposer",
+  "title": "Audit Trails Task Decomposer",
+  "description": "Design and run audit trails workflows with task decomposer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7729,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12158-audit-trails-task-decomposer/SKILL.md",
+    "entrypoint": "agent10/12158-audit-trails-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails task decomposer",
+    "audit trails task decomposer workflow",
+    "audit trails task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

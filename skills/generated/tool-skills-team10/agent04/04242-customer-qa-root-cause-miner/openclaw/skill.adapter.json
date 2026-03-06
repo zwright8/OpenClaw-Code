@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4242,
+  "name": "customer-qa-root-cause-miner",
+  "title": "Customer QA Root Cause Miner",
+  "description": "Design and run customer qa workflows with root cause miner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4574,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04242-customer-qa-root-cause-miner/SKILL.md",
+    "entrypoint": "agent04/04242-customer-qa-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa root cause miner",
+    "customer qa root cause miner workflow",
+    "customer qa root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

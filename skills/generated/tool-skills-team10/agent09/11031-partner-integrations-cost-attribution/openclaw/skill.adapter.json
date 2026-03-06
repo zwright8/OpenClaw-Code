@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11031,
+  "name": "partner-integrations-cost-attribution",
+  "title": "Partner Integrations Cost Attribution",
+  "description": "Design and run partner integrations workflows with cost attribution controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11804,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11031-partner-integrations-cost-attribution/SKILL.md",
+    "entrypoint": "agent09/11031-partner-integrations-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner integrations cost attribution",
+    "partner integrations cost attribution workflow",
+    "partner integrations cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

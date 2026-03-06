@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4297,
+  "name": "identity-providers-human-handoff-router",
+  "title": "Identity Providers Human Handoff Router",
+  "description": "Design and run identity providers workflows with human handoff router controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6006,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04297-identity-providers-human-handoff-router/SKILL.md",
+    "entrypoint": "agent04/04297-identity-providers-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers human handoff router",
+    "identity providers human handoff router workflow",
+    "identity providers human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

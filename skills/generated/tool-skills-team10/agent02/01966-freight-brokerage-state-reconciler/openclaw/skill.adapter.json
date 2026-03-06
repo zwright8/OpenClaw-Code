@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1966,
+  "name": "freight-brokerage-state-reconciler",
+  "title": "Freight Brokerage State Reconciler",
+  "description": "Design and run freight brokerage workflows with state reconciler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4061,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01966-freight-brokerage-state-reconciler/SKILL.md",
+    "entrypoint": "agent02/01966-freight-brokerage-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage state reconciler",
+    "freight brokerage state reconciler workflow",
+    "freight brokerage state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

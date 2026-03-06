@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5434,
+  "name": "message-brokers-sla-enforcer",
+  "title": "Message Brokers SLA Enforcer",
+  "description": "Design and run message brokers workflows with sla enforcer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9812,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05434-message-brokers-sla-enforcer/SKILL.md",
+    "entrypoint": "agent05/05434-message-brokers-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers sla enforcer",
+    "message brokers sla enforcer workflow",
+    "message brokers sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

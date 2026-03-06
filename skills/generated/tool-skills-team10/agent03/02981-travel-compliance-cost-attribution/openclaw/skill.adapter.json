@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2981,
+  "name": "travel-compliance-cost-attribution",
+  "title": "Travel Compliance Cost Attribution",
+  "description": "Design and run travel compliance workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6785,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02981-travel-compliance-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/02981-travel-compliance-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance cost attribution",
+    "travel compliance cost attribution workflow",
+    "travel compliance cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

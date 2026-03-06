@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9275,
+  "name": "iot-device-clouds-provenance-tracker",
+  "title": "IoT Device Clouds Provenance Tracker",
+  "description": "Design and run iot device clouds workflows with provenance tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7580,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09275-iot-device-clouds-provenance-tracker/SKILL.md",
+    "entrypoint": "agent08/09275-iot-device-clouds-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds provenance tracker",
+    "iot device clouds provenance tracker workflow",
+    "iot device clouds provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

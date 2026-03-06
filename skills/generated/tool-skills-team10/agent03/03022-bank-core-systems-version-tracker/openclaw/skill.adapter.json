@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3022,
+  "name": "bank-core-systems-version-tracker",
+  "title": "Bank Core Systems Version Tracker",
+  "description": "Design and run bank core systems workflows with version tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9005,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03022-bank-core-systems-version-tracker/SKILL.md",
+    "entrypoint": "agent03/03022-bank-core-systems-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems version tracker",
+    "bank core systems version tracker workflow",
+    "bank core systems version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

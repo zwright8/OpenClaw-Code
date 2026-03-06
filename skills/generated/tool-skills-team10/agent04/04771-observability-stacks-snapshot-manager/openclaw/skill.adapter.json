@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4771,
+  "name": "observability-stacks-snapshot-manager",
+  "title": "Observability Stacks Snapshot Manager",
+  "description": "Design and run observability stacks workflows with snapshot manager controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7416,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04771-observability-stacks-snapshot-manager/SKILL.md",
+    "entrypoint": "agent04/04771-observability-stacks-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks snapshot manager",
+    "observability stacks snapshot manager workflow",
+    "observability stacks snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

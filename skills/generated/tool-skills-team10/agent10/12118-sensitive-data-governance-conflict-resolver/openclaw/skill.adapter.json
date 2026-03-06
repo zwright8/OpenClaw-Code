@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12118,
+  "name": "sensitive-data-governance-conflict-resolver",
+  "title": "Sensitive Data Governance Conflict Resolver",
+  "description": "Design and run sensitive data governance workflows with conflict resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12258,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12118-sensitive-data-governance-conflict-resolver/SKILL.md",
+    "entrypoint": "agent10/12118-sensitive-data-governance-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance conflict resolver",
+    "sensitive data governance conflict resolver workflow",
+    "sensitive data governance conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

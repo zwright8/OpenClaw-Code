@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11684,
+  "name": "spare-parts-planning-sla-enforcer",
+  "title": "Spare Parts Planning SLA Enforcer",
+  "description": "Design and run spare parts planning workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12080,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11684-spare-parts-planning-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/11684-spare-parts-planning-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "spare parts planning sla enforcer",
+    "spare parts planning sla enforcer workflow",
+    "spare parts planning sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5896,
+  "name": "workflow-engines-approval-orchestrator",
+  "title": "Workflow Engines Approval Orchestrator",
+  "description": "Design and run workflow engines workflows with approval orchestrator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6158,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05896-workflow-engines-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent05/05896-workflow-engines-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines approval orchestrator",
+    "workflow engines approval orchestrator workflow",
+    "workflow engines approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

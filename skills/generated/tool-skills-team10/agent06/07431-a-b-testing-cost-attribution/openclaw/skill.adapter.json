@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7431,
+  "name": "a-b-testing-cost-attribution",
+  "title": "A/B Testing Cost Attribution",
+  "description": "Design and run a/b testing workflows with cost attribution controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10544,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07431-a-b-testing-cost-attribution/SKILL.md",
+    "entrypoint": "agent06/07431-a-b-testing-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing cost attribution",
+    "a/b testing cost attribution workflow",
+    "a/b testing cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

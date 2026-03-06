@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2566,
+  "name": "property-management-state-reconciler",
+  "title": "Property Management State Reconciler",
+  "description": "Design and run property management workflows with state reconciler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4081,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02566-property-management-state-reconciler/SKILL.md",
+    "entrypoint": "agent02/02566-property-management-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management state reconciler",
+    "property management state reconciler workflow",
+    "property management state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

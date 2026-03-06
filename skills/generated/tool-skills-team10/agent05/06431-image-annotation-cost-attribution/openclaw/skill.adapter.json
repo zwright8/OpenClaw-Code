@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6431,
+  "name": "image-annotation-cost-attribution",
+  "title": "Image Annotation Cost Attribution",
+  "description": "Design and run image annotation workflows with cost attribution controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10187,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06431-image-annotation-cost-attribution/SKILL.md",
+    "entrypoint": "agent05/06431-image-annotation-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation cost attribution",
+    "image annotation cost attribution workflow",
+    "image annotation cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

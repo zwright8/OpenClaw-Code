@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2360,
+  "name": "carbon-accounting-workflow-compiler",
+  "title": "Carbon Accounting Workflow Compiler",
+  "description": "Design and run carbon accounting workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1049,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02360-carbon-accounting-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/02360-carbon-accounting-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting workflow compiler",
+    "carbon accounting workflow compiler workflow",
+    "carbon accounting workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

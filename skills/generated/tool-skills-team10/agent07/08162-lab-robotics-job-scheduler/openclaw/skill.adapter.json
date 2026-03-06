@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8162,
+  "name": "lab-robotics-job-scheduler",
+  "title": "Lab Robotics Job Scheduler",
+  "description": "Design and run lab robotics workflows with job scheduler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5114,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08162-lab-robotics-job-scheduler/SKILL.md",
+    "entrypoint": "agent07/08162-lab-robotics-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics job scheduler",
+    "lab robotics job scheduler workflow",
+    "lab robotics job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

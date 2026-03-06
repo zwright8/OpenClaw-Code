@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5858,
+  "name": "workflow-engines-task-decomposer",
+  "title": "Workflow Engines Task Decomposer",
+  "description": "Design and run workflow engines workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9965,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05858-workflow-engines-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/05858-workflow-engines-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines task decomposer",
+    "workflow engines task decomposer workflow",
+    "workflow engines task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

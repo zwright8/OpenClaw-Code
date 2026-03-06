@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2424,
+  "name": "esg-reporting-evidence-collector",
+  "title": "ESG Reporting Evidence Collector",
+  "description": "Design and run esg reporting workflows with evidence collector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5843,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02424-esg-reporting-evidence-collector/SKILL.md",
+    "entrypoint": "agent02/02424-esg-reporting-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting evidence collector",
+    "esg reporting evidence collector workflow",
+    "esg reporting evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

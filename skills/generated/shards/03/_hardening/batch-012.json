@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 12,
+  "range": {
+    "start": "u3550-plan-quality-evaluation-for-civic-participation-platforms",
+    "end": "u3599-plan-quality-evaluation-for-knowledge-management-systems",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3550-plan-quality-evaluation-for-civic-participation-platforms",
+      "path": "generated/shards/03/3550-plan-quality-evaluation-for-civic-participation-platforms",
+      "skill_md_sha256": "3120154adabcfaabcbbfc5dbf0498d86c92475c6e950602e1e8de062859912be",
+      "summary_sha256": "cb136e436582363a5b70a4df36157ea987eb8681965f42fcd010b8b5437f75db"
+    },
+    {
+      "skill_id": "u3551-plan-quality-evaluation-for-accessibility-services",
+      "path": "generated/shards/03/3551-plan-quality-evaluation-for-accessibility-services",
+      "skill_md_sha256": "3c3f481227cb24f2ae59a846a31d6a1805c82d960bdbb6f04b07e4ddfee9305d",
+      "summary_sha256": "4cdf662cbf6d850a45dfefe1c65ba57b6e56ee46faf5f99a7ef70cd72aa210c4"
+    },
+    {
+      "skill_id": "u3552-plan-quality-evaluation-for-accessibility-services",
+      "path": "generated/shards/03/3552-plan-quality-evaluation-for-accessibility-services",
+      "skill_md_sha256": "37fa0a838249a33b7a780bbc5e66e3775cc27b6ac04217190af2a143fabb28df",
+      "summary_sha256": "5b5f0b05bc4e17ce2b90b264a4f26dc6a511fd598b12ef781abcbb1e03e28a05"
+    },
+    {
+      "skill_id": "u3553-plan-quality-evaluation-for-accessibility-services",
+      "path": "generated/shards/03/3553-plan-quality-evaluation-for-accessibility-services",
+      "skill_md_sha256": "166ac9207bbd577a15a2aa8c52d4639d2bac2049ccf3de5c6fba1ffb2b6d8d30",
+      "summary_sha256": "e56abee0c4d9786f34b6f6dd02cdf81ee9f2ea32a17a2e3ff528110e0fbd3112"
+    },
+    {
+      "skill_id": "u3554-plan-quality-evaluation-for-accessibility-services",
+      "path": "generated/shards/03/3554-plan-quality-evaluation-for-accessibility-services",
+      "skill_md_sha256": "f40c267ddb2c00de277d71587851fb14a84f9e45a0f43ab048bad9bc5c31b07b",
+      "summary_sha256": "41116848ff646aaeabf5d84f43336a87d5f01447d0a5137e16cda578fcbfeb0b"
+    },
+    {
+      "skill_id": "u3555-plan-quality-evaluation-for-accessibility-services",
+      "path": "generated/shards/03/3555-plan-quality-evaluation-for-accessibility-services",
+      "skill_md_sha256": "10f7e24405246dd3f8bb6fae0f6132e11cefcbf68bcbd646e39c462f792059b9",
+      "summary_sha256": "ab3ee00cbf641d093db1bb7cc7c075dd8ced35b14c15731ea35b71b774b69663"
+    },
+    {
+      "skill_id": "u3556-plan-quality-evaluation-for-eldercare-coordination",
+      "path": "generated/shards/03/3556-plan-quality-evaluation-for-eldercare-coordination",
+      "skill_md_sha256": "35bba544fcc5ada5a911828a9415d60281c6738331cb05cf92296b1cb8008c0d",
+      "summary_sha256": "f81f483459bcc1345d701f3eadec4468f0ddcac219b3f75ce8ad2e65ede84189"
+    },
+    {
+      "skill_id": "u3557-plan-quality-evaluation-for-eldercare-coordination",
+      "path": "generated/shards/03/3557-plan-quality-evaluation-for-eldercare-coordination",
+      "skill_md_sha256": "e5cf45476ef914080a7da0f6ea48dc2e821ec9986af36f6a7d6c3ab8d14e6346",
+      "summary_sha256": "0f64c41c7b302e318ed23dee4a65b72de6519e8e30a88d80cce0039cd4d1d9b0"
+    },
+    {
+      "skill_id": "u3558-plan-quality-evaluation-for-eldercare-coordination",
+      "path": "generated/shards/03/3558-plan-quality-evaluation-for-eldercare-coordination",
+      "skill_md_sha256": "f3c622eec0d1a1b9eefa42690349e5436ba1daf8ba4237a6a59fd870118b61fe",
+      "summary_sha256": "18da3839e0b38d4b455344281f29bfa1206ffb02e34f14ee33ed4c048cc967d0"
+    },
+    {
+      "skill_id": "u3559-plan-quality-evaluation-for-eldercare-coordination",
+      "path": "generated/shards/03/3559-plan-quality-evaluation-for-eldercare-coordination",
+      "skill_md_sha256": "6be64b6bdc1f55e5c24afb0dcdf9adde1799275eb61f9607dc43137915193b16",
+      "summary_sha256": "6d7443b26499e3560c340b238f0eec33b44bf9c8f4b99c79f8a0f7912d0a6960"
+    },
+    {
+      "skill_id": "u3560-plan-quality-evaluation-for-eldercare-coordination",
+      "path": "generated/shards/03/3560-plan-quality-evaluation-for-eldercare-coordination",
+      "skill_md_sha256": "1203ae62b4e4c87c672530095b2f0cb0ac6ed9a9e1202f9bbc290e4320b270c1",
+      "summary_sha256": "38b7810b75f457d4933176c10979ff65bdd9438f4cfbe4a93d81cf8349c0b90a"
+    },
+    {
+      "skill_id": "u3561-plan-quality-evaluation-for-childcare-support-systems",
+      "path": "generated/shards/03/3561-plan-quality-evaluation-for-childcare-support-systems",
+      "skill_md_sha256": "a0129f7220b1a172ef02f96ea123bfdafee3753efce66394d1e77f2c619aa1e9",
+      "summary_sha256": "f5fbe206cc58ad7ca5c196a96d99591fb42ec9158d1e5c1406899d3a37059b7c"
+    },
+    {
+      "skill_id": "u3562-plan-quality-evaluation-for-childcare-support-systems",
+      "path": "generated/shards/03/3562-plan-quality-evaluation-for-childcare-support-systems",
+      "skill_md_sha256": "ab6fc287bc04ba27fa1dcb70c6d3468d82679e2903ff6377c24b95daeb9c4091",
+      "summary_sha256": "4248e7ac5d771e94229513112686d51f1789c49a25d487cfa6747a25d51f5d10"
+    },
+    {
+      "skill_id": "u3563-plan-quality-evaluation-for-childcare-support-systems",
+      "path": "generated/shards/03/3563-plan-quality-evaluation-for-childcare-support-systems",
+      "skill_md_sha256": "de2bbbf3970587f5f019aaf97106d51fa49227bc4f47b80f718b393dac377f91",
+      "summary_sha256": "1225423ce62f62bf58d2a7b9e129814e5f5726a0ca8f1d131ec6b499fb532545"
+    },
+    {
+      "skill_id": "u3564-plan-quality-evaluation-for-childcare-support-systems",
+      "path": "generated/shards/03/3564-plan-quality-evaluation-for-childcare-support-systems",
+      "skill_md_sha256": "431080bb6ebe5b25d9e7d5cbd08b2d3627ad9f4e66f373c55fb8cf39f921b03b",
+      "summary_sha256": "6789eebee4b04dd1d6e40b7b5dce1a41cf7940ff44b78910a30327f37998b378"
+    },
+    {
+      "skill_id": "u3565-plan-quality-evaluation-for-childcare-support-systems",
+      "path": "generated/shards/03/3565-plan-quality-evaluation-for-childcare-support-systems",
+      "skill_md_sha256": "ba0ded9ec01a83d58c5e3941de74ae72d3d24fdeda2fa3d425a1e4228615b91e",
+      "summary_sha256": "49b60e18cd1e102d753dc8c42a18b940ccfaf7c326068cb1d695bed05d07bda2"
+    },
+    {
+      "skill_id": "u3566-plan-quality-evaluation-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3566-plan-quality-evaluation-for-arts-and-culture-programming",
+      "skill_md_sha256": "f280e938a392d1a09e3b83bddb54a0d369a8af18120444b7a820b49b5e6542ee",
+      "summary_sha256": "c158f4a37d165677134bb001b4a91d1e058cb8b9d1cd8299d7e251f7ac0fe0ff"
+    },
+    {
+      "skill_id": "u3567-plan-quality-evaluation-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3567-plan-quality-evaluation-for-arts-and-culture-programming",
+      "skill_md_sha256": "1116cc7dbe304a282a8eabed3bed6489ae153c5a18bbe4200c83c2f712a1f4c7",
+      "summary_sha256": "672c44b6ec9183b1762fb4d638b5a1d8244cf7fb47cef1dcddf57bf63eb38f96"
+    },
+    {
+      "skill_id": "u3568-plan-quality-evaluation-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3568-plan-quality-evaluation-for-arts-and-culture-programming",
+      "skill_md_sha256": "fa5f201c8779036b4c5284086b5fb6b0ae89c4c7412a7ad3744049332a04186d",
+      "summary_sha256": "04f3ddbd61b9c9dcc3df385c561cafedba3c544600d22172c424bbaaf0755bbc"
+    },
+    {
+      "skill_id": "u3569-plan-quality-evaluation-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3569-plan-quality-evaluation-for-arts-and-culture-programming",
+      "skill_md_sha256": "7b43e79111c18280f072020497c68db27da191dd895c2c977af0c1ebfd037d01",
+      "summary_sha256": "f4116a1d8aca5973fddaa330881df7bde9d7fcb7aa4956593c16799f41dca86a"
+    },
+    {
+      "skill_id": "u3570-plan-quality-evaluation-for-arts-and-culture-programming",
+      "path": "generated/shards/03/3570-plan-quality-evaluation-for-arts-and-culture-programming",
+      "skill_md_sha256": "1db20578f3a3ae724f2998cd1517a2a94ed2b2d18ee894e43a390320e93c0d90",
+      "summary_sha256": "4f6172ecd521d344e7b3ceaa0b2e6b8343bbe365d6c981594ecdf35cc5d9aa07"
+    },
+    {
+      "skill_id": "u3571-plan-quality-evaluation-for-music-and-creative-practice",
+      "path": "generated/shards/03/3571-plan-quality-evaluation-for-music-and-creative-practice",
+      "skill_md_sha256": "c5e540f1d73f24f8f9e4ae2b3c723e623d169579870eeb5161097c056d47ba6a",
+      "summary_sha256": "44ceffa7180787bc9eeff8f1ac45ec61cf6c83b0b7eb08d342b4ac27fbf142da"
+    },
+    {
+      "skill_id": "u3572-plan-quality-evaluation-for-music-and-creative-practice",
+      "path": "generated/shards/03/3572-plan-quality-evaluation-for-music-and-creative-practice",
+      "skill_md_sha256": "cd9a5b550fc0d8b6d40c2c916543126fc13298e5b7d05f112972e05baf2bd3d5",
+      "summary_sha256": "8507c80581cf71d62070e377e6343ed227092c263217db20692311620a72be37"
+    },
+    {
+      "skill_id": "u3573-plan-quality-evaluation-for-music-and-creative-practice",
+      "path": "generated/shards/03/3573-plan-quality-evaluation-for-music-and-creative-practice",
+      "skill_md_sha256": "cafce4517635e7a86805941969c07fc0577fc8a4da7649b4f47cc276dee71019",
+      "summary_sha256": "8a30cecf645dc2d3675fd309517163446b2e9f756092245ad829b02836d424f2"
+    },
+    {
+      "skill_id": "u3574-plan-quality-evaluation-for-music-and-creative-practice",
+      "path": "generated/shards/03/3574-plan-quality-evaluation-for-music-and-creative-practice",
+      "skill_md_sha256": "bdc9868c6823fe59f2d92b6be9074531bdec05a8682ceb2a1819fb2ca4d71f7c",
+      "summary_sha256": "23e9f9b498ad2b083c7df9af5b25c0a92eb135eab23341d29fbc5b0fa854025f"
+    },
+    {
+      "skill_id": "u3575-plan-quality-evaluation-for-music-and-creative-practice",
+      "path": "generated/shards/03/3575-plan-quality-evaluation-for-music-and-creative-practice",
+      "skill_md_sha256": "c8ad0585fac0646b1fd5a15aec95abbcd38ab507dabddb8c35644fdcc75449f5",
+      "summary_sha256": "ed30df7328fc1c59465f73807b9b17ae71cf996bbf34ccc16c9ee1305e11c34b"
+    },
+    {
+      "skill_id": "u3576-plan-quality-evaluation-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3576-plan-quality-evaluation-for-journalism-and-public-communication",
+      "skill_md_sha256": "49c41e1c14c638a39254f0e18437d3ced6bdba4ebc9ac2d1f7978162f5cc1b5a",
+      "summary_sha256": "6755a61a11348309b10f6cd5ca3603bcef6c8d491ff2f106cb062e40dc7e9e48"
+    },
+    {
+      "skill_id": "u3577-plan-quality-evaluation-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3577-plan-quality-evaluation-for-journalism-and-public-communication",
+      "skill_md_sha256": "6a31c44b459f398aebc4ca879f265dc549df7963750c19a85603727d3be5dadc",
+      "summary_sha256": "3b8b9e30f3116e13d35d1bc15ce9b61218308acbe8c4c466f089e98816834bc1"
+    },
+    {
+      "skill_id": "u3578-plan-quality-evaluation-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3578-plan-quality-evaluation-for-journalism-and-public-communication",
+      "skill_md_sha256": "8a35f191d3145721e6266ba232a328c107a177a55c09818c067e137f7c9ad6b0",
+      "summary_sha256": "8e77ad13bb25618578cc9e0df817aafd0f341b40a3248f32f276b6bab1b52822"
+    },
+    {
+      "skill_id": "u3579-plan-quality-evaluation-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3579-plan-quality-evaluation-for-journalism-and-public-communication",
+      "skill_md_sha256": "946eac143bfccf2cfb27d61fb9609f16c4f354d3fe56aa3f8164086d32acb9bc",
+      "summary_sha256": "e771e101a55f67fe21f26bb0ad8d1567a8a147777f65acd2699c25f2fa38e22c"
+    },
+    {
+      "skill_id": "u3580-plan-quality-evaluation-for-journalism-and-public-communication",
+      "path": "generated/shards/03/3580-plan-quality-evaluation-for-journalism-and-public-communication",
+      "skill_md_sha256": "a81dfbfbcb816be659a6a5d6ada4e1b5c6a44dcab2ed6192e113a1242428c00e",
+      "summary_sha256": "bb9334d713e4c592cffb25d426cea80fbd97f7c2b3aca38ace2c1bc1c8c0afad"
+    },
+    {
+      "skill_id": "u3581-plan-quality-evaluation-for-multilingual-translation-services",
+      "path": "generated/shards/03/3581-plan-quality-evaluation-for-multilingual-translation-services",
+      "skill_md_sha256": "8a4a0b8159aecd1857c87b1dfc4d8368ee679d03056413b2f9f9f9a9c5048703",
+      "summary_sha256": "39408203cf9615938b8b2c0ec05537b053224c14cec3cf23c3a98063d9d6d135"
+    },
+    {
+      "skill_id": "u3582-plan-quality-evaluation-for-multilingual-translation-services",
+      "path": "generated/shards/03/3582-plan-quality-evaluation-for-multilingual-translation-services",
+      "skill_md_sha256": "8f53d5e71d882e1e5cb93063127da7f31d30d915593f3d1c7f23dc334ea0e530",
+      "summary_sha256": "a55728ed7a6d35056e015509eec3260c8ebf636550248c903f2c80795298b19e"
+    },
+    {
+      "skill_id": "u3583-plan-quality-evaluation-for-multilingual-translation-services",
+      "path": "generated/shards/03/3583-plan-quality-evaluation-for-multilingual-translation-services",
+      "skill_md_sha256": "8c8490958595ec547448509b87920c2ec2399973c48aad0f1eebcc5afe666e96",
+      "summary_sha256": "11f500c70e12b2214e0a01554a66eb437f235e834e745738b3ea29bc661ee2ed"
+    },
+    {
+      "skill_id": "u3584-plan-quality-evaluation-for-multilingual-translation-services",
+      "path": "generated/shards/03/3584-plan-quality-evaluation-for-multilingual-translation-services",
+      "skill_md_sha256": "a3a27833e81c3cc05463177da739fee9593a944f14fa8e67fcd6a315ad4519a1",
+      "summary_sha256": "6bfaea3dc2af302406361c06a21acf73c379653de2cf750bc91a8eb59421884c"
+    },
+    {
+      "skill_id": "u3585-plan-quality-evaluation-for-multilingual-translation-services",
+      "path": "generated/shards/03/3585-plan-quality-evaluation-for-multilingual-translation-services",
+      "skill_md_sha256": "ca64b88e5c33ebc751647f63c3d1b048abd6af288ce001c026c85cd3af05f96f",
+      "summary_sha256": "19265d7aef818520e963e747264894fc4c32021677ef55d2883e727af9bb3873"
+    },
+    {
+      "skill_id": "u3586-plan-quality-evaluation-for-remote-team-collaboration",
+      "path": "generated/shards/03/3586-plan-quality-evaluation-for-remote-team-collaboration",
+      "skill_md_sha256": "fa92442a6f582ca2de8809672d2b66830854818465f78face9e1effa355860df",
+      "summary_sha256": "7f59fbbc088911e4e45b779473989ae362040db014288905f26170af252a15e6"
+    },
+    {
+      "skill_id": "u3587-plan-quality-evaluation-for-remote-team-collaboration",
+      "path": "generated/shards/03/3587-plan-quality-evaluation-for-remote-team-collaboration",
+      "skill_md_sha256": "97f58717b10c355f8c3bf230215883513792292c4933bf008264488062261488",
+      "summary_sha256": "3d3c7d945791d3d64b41d11de7c488ea7337e1dc047f844bf04fce50370d1d4a"
+    },
+    {
+      "skill_id": "u3588-plan-quality-evaluation-for-remote-team-collaboration",
+      "path": "generated/shards/03/3588-plan-quality-evaluation-for-remote-team-collaboration",
+      "skill_md_sha256": "45514b402e3a5f10516936c1aa30066509936a3546d2736415db6a58dca7a062",
+      "summary_sha256": "90495f758f68d92767879c2c9592f2a28f561f9001b2eb5e8fa9801a58a535b9"
+    },
+    {
+      "skill_id": "u3589-plan-quality-evaluation-for-remote-team-collaboration",
+      "path": "generated/shards/03/3589-plan-quality-evaluation-for-remote-team-collaboration",
+      "skill_md_sha256": "d1f3a56f1508a375d34565fee16ca4561bda1ae6f774ba7e7d4510eceb98ed57",
+      "summary_sha256": "689a9ae8055cc9119a47e164bdd2ffa2190be7436433c2e178d5ed3c838d0a0c"
+    },
+    {
+      "skill_id": "u3590-plan-quality-evaluation-for-remote-team-collaboration",
+      "path": "generated/shards/03/3590-plan-quality-evaluation-for-remote-team-collaboration",
+      "skill_md_sha256": "680a429028fe4893d77ee0a331395c081e16d1e4784ad4e84c6959962c76f46b",
+      "summary_sha256": "6169d1dbb3a532915cf79218510b9abdc5929903e28bad08284923571cbcf2c8"
+    },
+    {
+      "skill_id": "u3591-plan-quality-evaluation-for-customer-support-operations",
+      "path": "generated/shards/03/3591-plan-quality-evaluation-for-customer-support-operations",
+      "skill_md_sha256": "c05bd3f95b603a6416334da2eafcdfa34d157b4cd653caa1b0f02bcd29b492f5",
+      "summary_sha256": "c375bb4fc0699311118604d65464043825e11aa4607327d0d31fbeddd9486f49"
+    },
+    {
+      "skill_id": "u3592-plan-quality-evaluation-for-customer-support-operations",
+      "path": "generated/shards/03/3592-plan-quality-evaluation-for-customer-support-operations",
+      "skill_md_sha256": "d1b29f7faf085ec08652726df0e89c5636448196529b6104d5abc4b5c514613b",
+      "summary_sha256": "c1b92f5c0721cbcb457d16e31b95288732ce63a97e0c194100f1e84e1dd3a3a7"
+    },
+    {
+      "skill_id": "u3593-plan-quality-evaluation-for-customer-support-operations",
+      "path": "generated/shards/03/3593-plan-quality-evaluation-for-customer-support-operations",
+      "skill_md_sha256": "153789c258e40846f8e5d3e8996863806717c8318b0a374412a25f38c8fd0833",
+      "summary_sha256": "3c94a00e114bed97d9ea9abfb31a8d71dc61f108bcaf03174f47e560c745fa35"
+    },
+    {
+      "skill_id": "u3594-plan-quality-evaluation-for-customer-support-operations",
+      "path": "generated/shards/03/3594-plan-quality-evaluation-for-customer-support-operations",
+      "skill_md_sha256": "f2857d146f9e2c16584840a0e64f44a84f903fae70e31032bde0896d50925f0c",
+      "summary_sha256": "1bf3e0a58919a39f6fd61d0e5aa23cd8f6888bb918445d4198c2611d8e3bb640"
+    },
+    {
+      "skill_id": "u3595-plan-quality-evaluation-for-customer-support-operations",
+      "path": "generated/shards/03/3595-plan-quality-evaluation-for-customer-support-operations",
+      "skill_md_sha256": "51058f42a3191b68303dd485eeae55ccb984d2a4832637ad4bfe12c4702a38b5",
+      "summary_sha256": "e781fb6e02116fd46f220bd9260c938ec21699b6237010d84e10e6d906f7745e"
+    },
+    {
+      "skill_id": "u3596-plan-quality-evaluation-for-knowledge-management-systems",
+      "path": "generated/shards/03/3596-plan-quality-evaluation-for-knowledge-management-systems",
+      "skill_md_sha256": "70624f5c14cbfc7e1af1ab00f99e7210941a287c0bfd1d8537946e994c59907f",
+      "summary_sha256": "bd2cac99ceca835016393706c28f3d54117eef1d19bf5afd31d52b5773f09e40"
+    },
+    {
+      "skill_id": "u3597-plan-quality-evaluation-for-knowledge-management-systems",
+      "path": "generated/shards/03/3597-plan-quality-evaluation-for-knowledge-management-systems",
+      "skill_md_sha256": "94774cd17f9609fbc19274395a12b5a2bf15ac728e8573e20a363456cab276d3",
+      "summary_sha256": "86f9db819c4d97c5a607a847458a49a69fb6ccc632dda84e9821eab6d05396ba"
+    },
+    {
+      "skill_id": "u3598-plan-quality-evaluation-for-knowledge-management-systems",
+      "path": "generated/shards/03/3598-plan-quality-evaluation-for-knowledge-management-systems",
+      "skill_md_sha256": "96ccc165430c22f4d750afe2394b07f8698eec113a57a5a4aa750b4e8d85d891",
+      "summary_sha256": "a5f60247528f50c221b539aa75d7989b57e1f791497a6ee534c87b486f6d7898"
+    },
+    {
+      "skill_id": "u3599-plan-quality-evaluation-for-knowledge-management-systems",
+      "path": "generated/shards/03/3599-plan-quality-evaluation-for-knowledge-management-systems",
+      "skill_md_sha256": "18464cd0abd386c618c9180bd7a01c8b61f224b9b8acd61022608678c6abe092",
+      "summary_sha256": "2e5bc3d08dc931ca17ddfa8b1c8649f93a061287f8e05766939156fd90b378c2"
+    }
+  ]
+}

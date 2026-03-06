@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2394,
+  "name": "carbon-accounting-postmortem-drafting",
+  "title": "Carbon Accounting Postmortem Drafting",
+  "description": "Design and run carbon accounting workflows with postmortem drafting controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8826,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02394-carbon-accounting-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent02/02394-carbon-accounting-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting postmortem drafting",
+    "carbon accounting postmortem drafting workflow",
+    "carbon accounting postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

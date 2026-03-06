@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5961,
+  "name": "task-queues-execution-runner",
+  "title": "Task Queues Execution Runner",
+  "description": "Design and run task queues workflows with execution runner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1356,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05961-task-queues-execution-runner/SKILL.md",
+    "entrypoint": "agent05/05961-task-queues-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues execution runner",
+    "task queues execution runner workflow",
+    "task queues execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

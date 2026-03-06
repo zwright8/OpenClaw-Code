@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10786,
+  "name": "knowledge-graphs-risk-scorer",
+  "title": "Knowledge Graphs Risk Scorer",
+  "description": "Design and run knowledge graphs workflows with risk scorer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 728,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10786-knowledge-graphs-risk-scorer/SKILL.md",
+    "entrypoint": "agent09/10786-knowledge-graphs-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs risk scorer",
+    "knowledge graphs risk scorer workflow",
+    "knowledge graphs risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

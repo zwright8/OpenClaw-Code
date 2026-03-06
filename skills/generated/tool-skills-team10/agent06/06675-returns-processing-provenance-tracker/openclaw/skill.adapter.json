@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6675,
+  "name": "returns-processing-provenance-tracker",
+  "title": "Returns Processing Provenance Tracker",
+  "description": "Design and run returns processing workflows with provenance tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10267,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06675-returns-processing-provenance-tracker/SKILL.md",
+    "entrypoint": "agent06/06675-returns-processing-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "returns processing provenance tracker",
+    "returns processing provenance tracker workflow",
+    "returns processing provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
