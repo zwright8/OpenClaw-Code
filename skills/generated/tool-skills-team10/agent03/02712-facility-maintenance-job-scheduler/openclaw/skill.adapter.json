@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2712,
+  "name": "facility-maintenance-job-scheduler",
+  "title": "Facility Maintenance Job Scheduler",
+  "description": "Design and run facility maintenance workflows with job scheduler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2530,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02712-facility-maintenance-job-scheduler/SKILL.md",
+    "entrypoint": "agent03/02712-facility-maintenance-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance job scheduler",
+    "facility maintenance job scheduler workflow",
+    "facility maintenance job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

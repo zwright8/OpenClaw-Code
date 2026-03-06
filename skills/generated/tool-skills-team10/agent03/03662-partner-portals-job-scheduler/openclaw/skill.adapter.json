@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3662,
+  "name": "partner-portals-job-scheduler",
+  "title": "Partner Portals Job Scheduler",
+  "description": "Design and run partner portals workflows with job scheduler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4956,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03662-partner-portals-job-scheduler/SKILL.md",
+    "entrypoint": "agent03/03662-partner-portals-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals job scheduler",
+    "partner portals job scheduler workflow",
+    "partner portals job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

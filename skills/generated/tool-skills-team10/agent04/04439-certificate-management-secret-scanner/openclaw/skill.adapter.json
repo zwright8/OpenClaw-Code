@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4439,
+  "name": "certificate-management-secret-scanner",
+  "title": "Certificate Management Secret Scanner",
+  "description": "Design and run certificate management workflows with secret scanner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2767,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04439-certificate-management-secret-scanner/SKILL.md",
+    "entrypoint": "agent04/04439-certificate-management-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management secret scanner",
+    "certificate management secret scanner workflow",
+    "certificate management secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

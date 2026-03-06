@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2461,
+    "name": "openclaw-v2-2461-failure-root-cause-mining",
+    "title": "Failure Root Cause Mining for design and user research",
+    "domain": "design and user research",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "failure root cause mining",
+    "archetype": "diagnostic-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 98,
+    "roiScore": 83.09,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2461-failure-root-cause-mining-for-design-and-user-research/SKILL.md"
+  }
+}

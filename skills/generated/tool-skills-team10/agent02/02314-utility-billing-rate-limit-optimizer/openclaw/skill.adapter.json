@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2314,
+  "name": "utility-billing-rate-limit-optimizer",
+  "title": "Utility Billing Rate Limit Optimizer",
+  "description": "Design and run utility billing workflows with rate limit optimizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2688,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02314-utility-billing-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent02/02314-utility-billing-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing rate limit optimizer",
+    "utility billing rate limit optimizer workflow",
+    "utility billing rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

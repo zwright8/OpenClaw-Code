@@ -1,0 +1,623 @@
+{
+  "version": 1,
+  "releaseVersion": "v2026.03.02",
+  "verticalId": "policy-risk",
+  "verticalName": "Policy, Risk, and Security",
+  "description": "Legal compliance, cybersecurity, governance, and trust controls.",
+  "count": 68,
+  "generatedAt": "2026-03-02T22:49:55.708Z",
+  "skills": [
+    {
+      "id": 1076,
+      "marketplaceSkillName": "openclaw-1076-resource-budget-allocation",
+      "title": "Resource Budget Allocation for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/1076-resource-budget-allocation-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 1126,
+      "marketplaceSkillName": "openclaw-1126-resource-budget-allocation",
+      "title": "Resource Budget Allocation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/1126-resource-budget-allocation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 1276,
+      "marketplaceSkillName": "openclaw-1276-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "path": "packs/policy-risk/skills/1276-risk-aware-scheduling-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 1476,
+      "marketplaceSkillName": "openclaw-1476-constraint-compilation",
+      "title": "Constraint Compilation for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/1476-constraint-compilation-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 1526,
+      "marketplaceSkillName": "openclaw-1526-constraint-compilation",
+      "title": "Constraint Compilation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/1526-constraint-compilation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 1676,
+      "marketplaceSkillName": "openclaw-1676-human-approval-routing",
+      "title": "Human Approval Routing for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "path": "packs/policy-risk/skills/1676-human-approval-routing-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 1876,
+      "marketplaceSkillName": "openclaw-1876-handoff-contracting",
+      "title": "Handoff Contracting for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "path": "packs/policy-risk/skills/1876-handoff-contracting-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 2076,
+      "marketplaceSkillName": "openclaw-2076-tool-health-monitoring",
+      "title": "Tool Health Monitoring for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "path": "packs/policy-risk/skills/2076-tool-health-monitoring-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 2126,
+      "marketplaceSkillName": "openclaw-2126-tool-health-monitoring",
+      "title": "Tool Health Monitoring for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "path": "packs/policy-risk/skills/2126-tool-health-monitoring-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 2276,
+      "marketplaceSkillName": "openclaw-2276-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "path": "packs/policy-risk/skills/2276-retry-and-backoff-orchestration-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 2326,
+      "marketplaceSkillName": "openclaw-2326-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "path": "packs/policy-risk/skills/2326-retry-and-backoff-orchestration-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 2476,
+      "marketplaceSkillName": "openclaw-2476-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "path": "packs/policy-risk/skills/2476-failure-root-cause-mining-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 2676,
+      "marketplaceSkillName": "openclaw-2676-regression-sentinel-design",
+      "title": "Regression Sentinel Design for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "path": "packs/policy-risk/skills/2676-regression-sentinel-design-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 2926,
+      "marketplaceSkillName": "openclaw-2926-memory-consolidation",
+      "title": "Memory Consolidation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/2926-memory-consolidation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 2936,
+      "marketplaceSkillName": "openclaw-2936-memory-consolidation",
+      "title": "Memory Consolidation for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "memory consolidation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/2936-memory-consolidation-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 3076,
+      "marketplaceSkillName": "openclaw-3076-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "path": "packs/policy-risk/skills/3076-knowledge-graph-linking-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 3276,
+      "marketplaceSkillName": "openclaw-3276-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "path": "packs/policy-risk/skills/3276-semantic-retrieval-ranking-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 3526,
+      "marketplaceSkillName": "openclaw-3526-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/3526-plan-quality-evaluation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 3536,
+      "marketplaceSkillName": "openclaw-3536-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "plan quality evaluation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/3536-plan-quality-evaluation-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 3726,
+      "marketplaceSkillName": "openclaw-3726-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "multi-agent negotiation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/3726-multi-agent-negotiation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 3736,
+      "marketplaceSkillName": "openclaw-3736-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "multi-agent negotiation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/3736-multi-agent-negotiation-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 3751,
+      "marketplaceSkillName": "openclaw-3751-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for accessibility services",
+      "domain": "accessibility services",
+      "coreMethod": "multi-agent negotiation",
+      "score": 2,
+      "path": "packs/policy-risk/skills/3751-multi-agent-negotiation-for-accessibility-services/SKILL.md"
+    },
+    {
+      "id": 3926,
+      "marketplaceSkillName": "openclaw-3926-conflict-resolution-coaching",
+      "title": "Conflict Resolution Coaching for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "conflict resolution coaching",
+      "score": 7,
+      "path": "packs/policy-risk/skills/3926-conflict-resolution-coaching-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 3936,
+      "marketplaceSkillName": "openclaw-3936-conflict-resolution-coaching",
+      "title": "Conflict Resolution Coaching for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "conflict resolution coaching",
+      "score": 7,
+      "path": "packs/policy-risk/skills/3936-conflict-resolution-coaching-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 4076,
+      "marketplaceSkillName": "openclaw-4076-explainability-narrative-design",
+      "title": "Explainability Narrative Design for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "path": "packs/policy-risk/skills/4076-explainability-narrative-design-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 4276,
+      "marketplaceSkillName": "openclaw-4276-uncertainty-communication",
+      "title": "Uncertainty Communication for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "path": "packs/policy-risk/skills/4276-uncertainty-communication-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 4476,
+      "marketplaceSkillName": "openclaw-4476-experiment-design",
+      "title": "Experiment Design for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "path": "packs/policy-risk/skills/4476-experiment-design-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 4676,
+      "marketplaceSkillName": "openclaw-4676-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "path": "packs/policy-risk/skills/4676-a-b-rollout-governance-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 4876,
+      "marketplaceSkillName": "openclaw-4876-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "path": "packs/policy-risk/skills/4876-incident-playbook-synthesis-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 5076,
+      "marketplaceSkillName": "openclaw-5076-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "path": "packs/policy-risk/skills/5076-disaster-recovery-orchestration-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 5276,
+      "marketplaceSkillName": "openclaw-5276-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "path": "packs/policy-risk/skills/5276-privacy-preserving-data-brokering-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 5476,
+      "marketplaceSkillName": "openclaw-5476-security-threat-modeling",
+      "title": "Security Threat Modeling for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "path": "packs/policy-risk/skills/5476-security-threat-modeling-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 5676,
+      "marketplaceSkillName": "openclaw-5676-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "path": "packs/policy-risk/skills/5676-compliance-evidence-mapping-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 5876,
+      "marketplaceSkillName": "openclaw-5876-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "path": "packs/policy-risk/skills/5876-cost-benefit-forecasting-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 6126,
+      "marketplaceSkillName": "openclaw-6126-equity-impact-scoring",
+      "title": "Equity Impact Scoring for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "equity impact scoring",
+      "score": 7,
+      "path": "packs/policy-risk/skills/6126-equity-impact-scoring-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 6136,
+      "marketplaceSkillName": "openclaw-6136-equity-impact-scoring",
+      "title": "Equity Impact Scoring for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "equity impact scoring",
+      "score": 7,
+      "path": "packs/policy-risk/skills/6136-equity-impact-scoring-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 6326,
+      "marketplaceSkillName": "openclaw-6326-community-feedback-harvesting",
+      "title": "Community Feedback Harvesting for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "community feedback harvesting",
+      "score": 7,
+      "path": "packs/policy-risk/skills/6326-community-feedback-harvesting-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 6336,
+      "marketplaceSkillName": "openclaw-6336-community-feedback-harvesting",
+      "title": "Community Feedback Harvesting for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "community feedback harvesting",
+      "score": 7,
+      "path": "packs/policy-risk/skills/6336-community-feedback-harvesting-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 6476,
+      "marketplaceSkillName": "openclaw-6476-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "path": "packs/policy-risk/skills/6476-kpi-dashboard-publishing-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 6676,
+      "marketplaceSkillName": "openclaw-6676-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "path": "packs/policy-risk/skills/6676-skill-gap-diagnosis-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 6926,
+      "marketplaceSkillName": "openclaw-6926-learning-curriculum-composition",
+      "title": "Learning Curriculum Composition for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "learning curriculum composition",
+      "score": 7,
+      "path": "packs/policy-risk/skills/6926-learning-curriculum-composition-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 6936,
+      "marketplaceSkillName": "openclaw-6936-learning-curriculum-composition",
+      "title": "Learning Curriculum Composition for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "learning curriculum composition",
+      "score": 7,
+      "path": "packs/policy-risk/skills/6936-learning-curriculum-composition-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 7126,
+      "marketplaceSkillName": "openclaw-7126-self-reflection-taxonomy",
+      "title": "Self-Reflection Taxonomy for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "self-reflection taxonomy",
+      "score": 7,
+      "path": "packs/policy-risk/skills/7126-self-reflection-taxonomy-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 7136,
+      "marketplaceSkillName": "openclaw-7136-self-reflection-taxonomy",
+      "title": "Self-Reflection Taxonomy for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "self-reflection taxonomy",
+      "score": 7,
+      "path": "packs/policy-risk/skills/7136-self-reflection-taxonomy-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 7276,
+      "marketplaceSkillName": "openclaw-7276-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "path": "packs/policy-risk/skills/7276-continuous-improvement-planning-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 7476,
+      "marketplaceSkillName": "openclaw-7476-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "path": "packs/policy-risk/skills/7476-autonomous-workflow-authoring-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 7676,
+      "marketplaceSkillName": "openclaw-7676-personal-habit-optimization",
+      "title": "Personal Habit Optimization for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "path": "packs/policy-risk/skills/7676-personal-habit-optimization-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 7876,
+      "marketplaceSkillName": "openclaw-7876-attention-management-architecture",
+      "title": "Attention Management Architecture for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "path": "packs/policy-risk/skills/7876-attention-management-architecture-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 8126,
+      "marketplaceSkillName": "openclaw-8126-creative-ideation-facilitation",
+      "title": "Creative Ideation Facilitation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "creative ideation facilitation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8126-creative-ideation-facilitation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 8136,
+      "marketplaceSkillName": "openclaw-8136-creative-ideation-facilitation",
+      "title": "Creative Ideation Facilitation for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "creative ideation facilitation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8136-creative-ideation-facilitation-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 8326,
+      "marketplaceSkillName": "openclaw-8326-beauty-pattern-detection",
+      "title": "Beauty Pattern Detection for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "beauty pattern detection",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8326-beauty-pattern-detection-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 8336,
+      "marketplaceSkillName": "openclaw-8336-beauty-pattern-detection",
+      "title": "Beauty Pattern Detection for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "beauty pattern detection",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8336-beauty-pattern-detection-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 8526,
+      "marketplaceSkillName": "openclaw-8526-curiosity-agenda-generation",
+      "title": "Curiosity Agenda Generation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "curiosity agenda generation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8526-curiosity-agenda-generation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 8536,
+      "marketplaceSkillName": "openclaw-8536-curiosity-agenda-generation",
+      "title": "Curiosity Agenda Generation for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "curiosity agenda generation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8536-curiosity-agenda-generation-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 8726,
+      "marketplaceSkillName": "openclaw-8726-scientific-hypothesis-prioritization",
+      "title": "Scientific Hypothesis Prioritization for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "scientific hypothesis prioritization",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8726-scientific-hypothesis-prioritization-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 8736,
+      "marketplaceSkillName": "openclaw-8736-scientific-hypothesis-prioritization",
+      "title": "Scientific Hypothesis Prioritization for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "scientific hypothesis prioritization",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8736-scientific-hypothesis-prioritization-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 8926,
+      "marketplaceSkillName": "openclaw-8926-ethical-dilemma-navigation",
+      "title": "Ethical Dilemma Navigation for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "ethical dilemma navigation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8926-ethical-dilemma-navigation-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 8936,
+      "marketplaceSkillName": "openclaw-8936-ethical-dilemma-navigation",
+      "title": "Ethical Dilemma Navigation for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "ethical dilemma navigation",
+      "score": 7,
+      "path": "packs/policy-risk/skills/8936-ethical-dilemma-navigation-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 9126,
+      "marketplaceSkillName": "openclaw-9126-public-service-coordination",
+      "title": "Public Service Coordination for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "public service coordination",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9126-public-service-coordination-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 9136,
+      "marketplaceSkillName": "openclaw-9136-public-service-coordination",
+      "title": "Public Service Coordination for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "public service coordination",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9136-public-service-coordination-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 9326,
+      "marketplaceSkillName": "openclaw-9326-mentoring-and-coaching-design",
+      "title": "Mentoring And Coaching Design for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "mentoring and coaching design",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9326-mentoring-and-coaching-design-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 9336,
+      "marketplaceSkillName": "openclaw-9336-mentoring-and-coaching-design",
+      "title": "Mentoring And Coaching Design for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "mentoring and coaching design",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9336-mentoring-and-coaching-design-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 9526,
+      "marketplaceSkillName": "openclaw-9526-negotiation-strategy-crafting",
+      "title": "Negotiation Strategy Crafting for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "negotiation strategy crafting",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9526-negotiation-strategy-crafting-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 9536,
+      "marketplaceSkillName": "openclaw-9536-negotiation-strategy-crafting",
+      "title": "Negotiation Strategy Crafting for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "negotiation strategy crafting",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9536-negotiation-strategy-crafting-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 9726,
+      "marketplaceSkillName": "openclaw-9726-writing-and-rhetoric-optimization",
+      "title": "Writing And Rhetoric Optimization for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "writing and rhetoric optimization",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9726-writing-and-rhetoric-optimization-for-cybersecurity-operations/SKILL.md"
+    },
+    {
+      "id": 9736,
+      "marketplaceSkillName": "openclaw-9736-writing-and-rhetoric-optimization",
+      "title": "Writing And Rhetoric Optimization for scientific publishing pipelines",
+      "domain": "scientific publishing pipelines",
+      "coreMethod": "writing and rhetoric optimization",
+      "score": 7,
+      "path": "packs/policy-risk/skills/9736-writing-and-rhetoric-optimization-for-scientific-publishing-pipelines/SKILL.md"
+    },
+    {
+      "id": 9876,
+      "marketplaceSkillName": "openclaw-9876-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for legal and policy workflows",
+      "domain": "legal and policy workflows",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "path": "packs/policy-risk/skills/9876-decision-journal-maintenance-for-legal-and-policy-workflows/SKILL.md"
+    },
+    {
+      "id": 9926,
+      "marketplaceSkillName": "openclaw-9926-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for cybersecurity operations",
+      "domain": "cybersecurity operations",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "path": "packs/policy-risk/skills/9926-decision-journal-maintenance-for-cybersecurity-operations/SKILL.md"
+    }
+  ]
+}

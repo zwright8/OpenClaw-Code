@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5525,
+  "name": "data-catalogs-provenance-tracker",
+  "title": "Data Catalogs Provenance Tracker",
+  "description": "Design and run data catalogs workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9847,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05525-data-catalogs-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05525-data-catalogs-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data catalogs provenance tracker",
+    "data catalogs provenance tracker workflow",
+    "data catalogs provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

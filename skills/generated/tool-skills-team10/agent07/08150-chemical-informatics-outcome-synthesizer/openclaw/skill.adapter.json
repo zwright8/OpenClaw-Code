@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8150,
+  "name": "chemical-informatics-outcome-synthesizer",
+  "title": "Chemical Informatics Outcome Synthesizer",
+  "description": "Design and run chemical informatics workflows with outcome synthesizer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7043,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08150-chemical-informatics-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent07/08150-chemical-informatics-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chemical informatics outcome synthesizer",
+    "chemical informatics outcome synthesizer workflow",
+    "chemical informatics outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

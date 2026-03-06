@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8056,
+  "name": "genomics-tooling-api-contract-validator",
+  "title": "Genomics Tooling API Contract Validator",
+  "description": "Design and run genomics tooling workflows with api contract validator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 191,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent07/08056-genomics-tooling-api-contract-validator/SKILL.md",
+    "entrypoint": "agent07/08056-genomics-tooling-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "genomics tooling api contract validator",
+    "genomics tooling api contract validator workflow",
+    "genomics tooling api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5456,
+    "name": "openclaw-v2-5456-security-threat-modeling",
+    "title": "Security Threat Modeling for product management execution",
+    "domain": "product management execution",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "security threat modeling",
+    "archetype": "modeling-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 82.13,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5456-security-threat-modeling-for-product-management-execution/SKILL.md"
+  }
+}

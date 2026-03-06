@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9979,
+  "name": "audience-analytics-capacity-planner",
+  "title": "Audience Analytics Capacity Planner",
+  "description": "Design and run audience analytics workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11467,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09979-audience-analytics-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/09979-audience-analytics-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics capacity planner",
+    "audience analytics capacity planner workflow",
+    "audience analytics capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

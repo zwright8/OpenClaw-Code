@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5441,
+  "name": "message-brokers-incident-triage",
+  "title": "Message Brokers Incident Triage",
+  "description": "Design and run message brokers workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2115,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05441-message-brokers-incident-triage/SKILL.md",
+    "entrypoint": "agent05/05441-message-brokers-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers incident triage",
+    "message brokers incident triage workflow",
+    "message brokers incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

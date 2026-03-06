@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5588,
+  "name": "metadata-stores-pii-redactor",
+  "title": "Metadata Stores PII Redactor",
+  "description": "Design and run metadata stores workflows with pii redactor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3449,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05588-metadata-stores-pii-redactor/SKILL.md",
+    "entrypoint": "agent05/05588-metadata-stores-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores pii redactor",
+    "metadata stores pii redactor workflow",
+    "metadata stores pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

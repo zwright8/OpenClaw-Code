@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10816,
+  "name": "semantic-retrieval-state-reconciler",
+  "title": "Semantic Retrieval State Reconciler",
+  "description": "Design and run semantic retrieval workflows with state reconciler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4389,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10816-semantic-retrieval-state-reconciler/SKILL.md",
+    "entrypoint": "agent09/10816-semantic-retrieval-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval state reconciler",
+    "semantic retrieval state reconciler workflow",
+    "semantic retrieval state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

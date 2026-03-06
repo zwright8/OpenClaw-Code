@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8046,
+  "name": "bioinformatics-pipelines-approval-orchestrator",
+  "title": "Bioinformatics Pipelines Approval Orchestrator",
+  "description": "Design and run bioinformatics pipelines workflows with approval orchestrator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6355,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08046-bioinformatics-pipelines-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent07/08046-bioinformatics-pipelines-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines approval orchestrator",
+    "bioinformatics pipelines approval orchestrator workflow",
+    "bioinformatics pipelines approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

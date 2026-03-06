@@ -1,0 +1,4 @@
+interface:
+  display_name: "Equity Impact Scoring for agriculture and food systems"
+  short_description: "Equity impact scoring for agriculture and food systems with guardrails and measurable outcomes."
+  default_prompt: "Use Equity Impact Scoring for agriculture and food systems to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5907,
+  "name": "rpa-platforms-operation-planner",
+  "title": "RPA Platforms Operation Planner",
+  "description": "Design and run rpa platforms workflows with operation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9985,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05907-rpa-platforms-operation-planner/SKILL.md",
+    "entrypoint": "agent05/05907-rpa-platforms-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rpa platforms operation planner",
+    "rpa platforms operation planner workflow",
+    "rpa platforms operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

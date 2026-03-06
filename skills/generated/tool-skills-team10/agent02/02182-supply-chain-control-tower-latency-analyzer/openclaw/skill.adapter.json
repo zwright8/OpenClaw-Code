@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2182,
+  "name": "supply-chain-control-tower-latency-analyzer",
+  "title": "Supply Chain Control Tower Latency Analyzer",
+  "description": "Design and run supply chain control tower workflows with latency analyzer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5335,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02182-supply-chain-control-tower-latency-analyzer/SKILL.md",
+    "entrypoint": "agent02/02182-supply-chain-control-tower-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower latency analyzer",
+    "supply chain control tower latency analyzer workflow",
+    "supply chain control tower latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

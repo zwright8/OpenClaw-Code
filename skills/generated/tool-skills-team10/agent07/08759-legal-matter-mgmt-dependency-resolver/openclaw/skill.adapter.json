@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8759,
+  "name": "legal-matter-mgmt-dependency-resolver",
+  "title": "Legal Matter Mgmt Dependency Resolver",
+  "description": "Design and run legal matter mgmt workflows with dependency resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7544,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08759-legal-matter-mgmt-dependency-resolver/SKILL.md",
+    "entrypoint": "agent07/08759-legal-matter-mgmt-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt dependency resolver",
+    "legal matter mgmt dependency resolver workflow",
+    "legal matter mgmt dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

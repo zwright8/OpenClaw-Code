@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11872,
+  "name": "data-provenance-version-tracker",
+  "title": "Data Provenance Version Tracker",
+  "description": "Design and run data provenance workflows with version tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12155,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11872-data-provenance-version-tracker/SKILL.md",
+    "entrypoint": "agent10/11872-data-provenance-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance version tracker",
+    "data provenance version tracker workflow",
+    "data provenance version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

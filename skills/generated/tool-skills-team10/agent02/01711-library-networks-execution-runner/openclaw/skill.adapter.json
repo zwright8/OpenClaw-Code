@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1711,
+  "name": "library-networks-execution-runner",
+  "title": "Library Networks Execution Runner",
+  "description": "Design and run library networks workflows with execution runner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1274,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01711-library-networks-execution-runner/SKILL.md",
+    "entrypoint": "agent02/01711-library-networks-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "library networks execution runner",
+    "library networks execution runner workflow",
+    "library networks execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

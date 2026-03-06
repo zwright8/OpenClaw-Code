@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7366,
+  "name": "experiment-platforms-state-reconciler",
+  "title": "Experiment Platforms State Reconciler",
+  "description": "Design and run experiment platforms workflows with state reconciler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4262,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07366-experiment-platforms-state-reconciler/SKILL.md",
+    "entrypoint": "agent06/07366-experiment-platforms-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms state reconciler",
+    "experiment platforms state reconciler workflow",
+    "experiment platforms state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

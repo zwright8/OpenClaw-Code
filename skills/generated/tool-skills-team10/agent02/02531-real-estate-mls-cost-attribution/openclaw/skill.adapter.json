@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2531,
+  "name": "real-estate-mls-cost-attribution",
+  "title": "Real Estate MLS Cost Attribution",
+  "description": "Design and run real estate mls workflows with cost attribution controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8885,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02531-real-estate-mls-cost-attribution/SKILL.md",
+    "entrypoint": "agent02/02531-real-estate-mls-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls cost attribution",
+    "real estate mls cost attribution workflow",
+    "real estate mls cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

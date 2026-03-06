@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4563,
+  "name": "soar-platforms-retry-governor",
+  "title": "SOAR Platforms Retry Governor",
+  "description": "Design and run soar platforms workflows with retry governor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6049,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04563-soar-platforms-retry-governor/SKILL.md",
+    "entrypoint": "agent04/04563-soar-platforms-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "soar platforms retry governor",
+    "soar platforms retry governor workflow",
+    "soar platforms retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

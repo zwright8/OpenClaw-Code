@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4661,
+    "name": "openclaw-v2-4661-a-b-rollout-governance",
+    "title": "A/B Rollout Governance for design and user research",
+    "domain": "design and user research",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "a/b rollout governance",
+    "archetype": "governance-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 96,
+    "roiScore": 87.44,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4661-a-b-rollout-governance-for-design-and-user-research/SKILL.md"
+  }
+}

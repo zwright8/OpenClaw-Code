@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1852,
+  "name": "warehouse-robotics-auth-broker",
+  "title": "Warehouse Robotics Auth Broker",
+  "description": "Design and run warehouse robotics workflows with auth broker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 814,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01852-warehouse-robotics-auth-broker/SKILL.md",
+    "entrypoint": "agent02/01852-warehouse-robotics-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics auth broker",
+    "warehouse robotics auth broker workflow",
+    "warehouse robotics auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

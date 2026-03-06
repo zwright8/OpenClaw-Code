@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7620,
+  "name": "device-labs-migration-planner",
+  "title": "Device Labs Migration Planner",
+  "description": "Design and run device labs workflows with migration planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4688,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07620-device-labs-migration-planner/SKILL.md",
+    "entrypoint": "agent06/07620-device-labs-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs migration planner",
+    "device labs migration planner workflow",
+    "device labs migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

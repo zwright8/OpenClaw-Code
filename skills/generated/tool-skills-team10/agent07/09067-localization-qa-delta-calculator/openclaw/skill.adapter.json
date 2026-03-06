@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9067,
+  "name": "localization-qa-delta-calculator",
+  "title": "Localization QA Delta Calculator",
+  "description": "Design and run localization qa workflows with delta calculator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11144,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09067-localization-qa-delta-calculator/SKILL.md",
+    "entrypoint": "agent07/09067-localization-qa-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa delta calculator",
+    "localization qa delta calculator workflow",
+    "localization qa delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

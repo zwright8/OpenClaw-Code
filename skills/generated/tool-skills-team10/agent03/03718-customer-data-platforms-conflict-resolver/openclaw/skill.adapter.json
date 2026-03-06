@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3718,
+  "name": "customer-data-platforms-conflict-resolver",
+  "title": "Customer Data Platforms Conflict Resolver",
+  "description": "Design and run customer data platforms workflows with conflict resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9276,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03718-customer-data-platforms-conflict-resolver/SKILL.md",
+    "entrypoint": "agent03/03718-customer-data-platforms-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer data platforms conflict resolver",
+    "customer data platforms conflict resolver workflow",
+    "customer data platforms conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

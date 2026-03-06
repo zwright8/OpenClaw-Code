@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6106,
+    "name": "openclaw-v2-6106-equity-impact-scoring",
+    "title": "Equity Impact Scoring for urban planning and mobility",
+    "domain": "urban planning and mobility",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "equity impact scoring",
+    "archetype": "scoring-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 78.26,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6106-equity-impact-scoring-for-urban-planning-and-mobility/SKILL.md"
+  }
+}

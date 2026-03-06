@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3966,
+  "name": "campaign-automation-state-reconciler",
+  "title": "Campaign Automation State Reconciler",
+  "description": "Design and run campaign automation workflows with state reconciler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2372,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/03966-campaign-automation-state-reconciler/SKILL.md",
+    "entrypoint": "agent04/03966-campaign-automation-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation state reconciler",
+    "campaign automation state reconciler workflow",
+    "campaign automation state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

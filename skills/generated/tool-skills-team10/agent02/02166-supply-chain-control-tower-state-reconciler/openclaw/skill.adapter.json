@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2166,
+  "name": "supply-chain-control-tower-state-reconciler",
+  "title": "Supply Chain Control Tower State Reconciler",
+  "description": "Design and run supply chain control tower workflows with state reconciler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1284,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02166-supply-chain-control-tower-state-reconciler/SKILL.md",
+    "entrypoint": "agent02/02166-supply-chain-control-tower-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower state reconciler",
+    "supply chain control tower state reconciler workflow",
+    "supply chain control tower state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

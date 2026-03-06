@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1581,
+  "name": "admissions-systems-cost-attribution",
+  "title": "Admissions Systems Cost Attribution",
+  "description": "Design and run admissions systems workflows with cost attribution controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8528,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01581-admissions-systems-cost-attribution/SKILL.md",
+    "entrypoint": "agent02/01581-admissions-systems-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "admissions systems cost attribution",
+    "admissions systems cost attribution workflow",
+    "admissions systems cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6314,
+  "name": "video-processing-rate-limit-optimizer",
+  "title": "Video Processing Rate Limit Optimizer",
+  "description": "Design and run video processing workflows with rate limit optimizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6196,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06314-video-processing-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent05/06314-video-processing-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing rate limit optimizer",
+    "video processing rate limit optimizer workflow",
+    "video processing rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

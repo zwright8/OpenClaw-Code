@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 135,
+  "name": "microsoft-calendar-webhook-listener",
+  "title": "Microsoft Calendar Webhook Listener",
+  "description": "Captures, verifies, and routes Microsoft Calendar webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12444,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00135-microsoft-calendar-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00135-microsoft-calendar-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft calendar webhook listener",
+    "microsoft calendar webhook listener workflow",
+    "microsoft calendar webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

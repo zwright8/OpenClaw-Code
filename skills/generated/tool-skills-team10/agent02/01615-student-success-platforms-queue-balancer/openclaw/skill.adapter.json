@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1615,
+  "name": "student-success-platforms-queue-balancer",
+  "title": "Student Success Platforms Queue Balancer",
+  "description": "Design and run student success platforms workflows with queue balancer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8539,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01615-student-success-platforms-queue-balancer/SKILL.md",
+    "entrypoint": "agent02/01615-student-success-platforms-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms queue balancer",
+    "student success platforms queue balancer workflow",
+    "student success platforms queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

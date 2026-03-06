@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6021,
+  "name": "document-ocr-snapshot-manager",
+  "title": "Document OCR Snapshot Manager",
+  "description": "Design and run document ocr workflows with snapshot manager controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10033,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06021-document-ocr-snapshot-manager/SKILL.md",
+    "entrypoint": "agent05/06021-document-ocr-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr snapshot manager",
+    "document ocr snapshot manager workflow",
+    "document ocr snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

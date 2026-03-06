@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5530,
+  "name": "data-catalogs-budget-guardrail",
+  "title": "Data Catalogs Budget Guardrail",
+  "description": "Design and run data catalogs workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7483,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05530-data-catalogs-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/05530-data-catalogs-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data catalogs budget guardrail",
+    "data catalogs budget guardrail workflow",
+    "data catalogs budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4496,
+  "name": "endpoint-security-approval-orchestrator",
+  "title": "Endpoint Security Approval Orchestrator",
+  "description": "Design and run endpoint security workflows with approval orchestrator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2384,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04496-endpoint-security-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent04/04496-endpoint-security-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security approval orchestrator",
+    "endpoint security approval orchestrator workflow",
+    "endpoint security approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

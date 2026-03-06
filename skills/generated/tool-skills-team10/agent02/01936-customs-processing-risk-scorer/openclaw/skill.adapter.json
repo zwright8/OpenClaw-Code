@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1936,
+  "name": "customs-processing-risk-scorer",
+  "title": "Customs Processing Risk Scorer",
+  "description": "Design and run customs processing workflows with risk scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1504,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01936-customs-processing-risk-scorer/SKILL.md",
+    "entrypoint": "agent02/01936-customs-processing-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing risk scorer",
+    "customs processing risk scorer workflow",
+    "customs processing risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

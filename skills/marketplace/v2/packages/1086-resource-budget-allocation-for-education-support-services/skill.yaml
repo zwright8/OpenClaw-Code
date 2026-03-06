@@ -1,0 +1,23 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 1086
+  name: "openclaw-v2-1086-resource-budget-allocation"
+  title: "Resource Budget Allocation for education support services"
+  domain: "education support services"
+  vertical_id: "health-learning"
+  vertical_name: "Health and Learning Systems"
+  method: "resource budget allocation"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 82
+  roi_score: 75.13
+  trust_badges:
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/1086-resource-budget-allocation-for-education-support-services/SKILL.md"

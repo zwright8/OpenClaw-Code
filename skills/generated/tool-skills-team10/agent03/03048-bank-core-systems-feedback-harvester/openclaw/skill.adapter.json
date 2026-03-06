@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3048,
+  "name": "bank-core-systems-feedback-harvester",
+  "title": "Bank Core Systems Feedback Harvester",
+  "description": "Design and run bank core systems workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9017,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03048-bank-core-systems-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/03048-bank-core-systems-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems feedback harvester",
+    "bank core systems feedback harvester workflow",
+    "bank core systems feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

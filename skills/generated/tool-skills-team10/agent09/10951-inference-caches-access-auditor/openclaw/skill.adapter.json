@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10951,
+  "name": "inference-caches-access-auditor",
+  "title": "Inference Caches Access Auditor",
+  "description": "Design and run inference caches workflows with access auditor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11769,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10951-inference-caches-access-auditor/SKILL.md",
+    "entrypoint": "agent09/10951-inference-caches-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches access auditor",
+    "inference caches access auditor workflow",
+    "inference caches access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

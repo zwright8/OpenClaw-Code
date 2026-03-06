@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7696,
+    "name": "openclaw-v2-7696-personal-habit-optimization",
+    "title": "Personal Habit Optimization for disaster response networks",
+    "domain": "disaster response networks",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "personal habit optimization",
+    "archetype": "habit-optimization-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 97,
+    "roiScore": 78.39,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7696-personal-habit-optimization-for-disaster-response-networks/SKILL.md"
+  }
+}

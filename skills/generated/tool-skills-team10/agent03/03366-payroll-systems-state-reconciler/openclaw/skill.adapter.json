@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3366,
+  "name": "payroll-systems-state-reconciler",
+  "title": "Payroll Systems State Reconciler",
+  "description": "Design and run payroll systems workflows with state reconciler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4107,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03366-payroll-systems-state-reconciler/SKILL.md",
+    "entrypoint": "agent03/03366-payroll-systems-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems state reconciler",
+    "payroll systems state reconciler workflow",
+    "payroll systems state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

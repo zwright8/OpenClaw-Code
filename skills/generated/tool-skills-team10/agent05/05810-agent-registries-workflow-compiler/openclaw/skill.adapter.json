@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5810,
+  "name": "agent-registries-workflow-compiler",
+  "title": "Agent Registries Workflow Compiler",
+  "description": "Design and run agent registries workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1108,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05810-agent-registries-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/05810-agent-registries-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries workflow compiler",
+    "agent registries workflow compiler workflow",
+    "agent registries workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

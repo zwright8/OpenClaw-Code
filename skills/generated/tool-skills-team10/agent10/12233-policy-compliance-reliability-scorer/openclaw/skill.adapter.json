@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12233,
+  "name": "policy-compliance-reliability-scorer",
+  "title": "Policy Compliance Reliability Scorer",
+  "description": "Design and run policy compliance workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6808,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12233-policy-compliance-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12233-policy-compliance-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance reliability scorer",
+    "policy compliance reliability scorer workflow",
+    "policy compliance reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

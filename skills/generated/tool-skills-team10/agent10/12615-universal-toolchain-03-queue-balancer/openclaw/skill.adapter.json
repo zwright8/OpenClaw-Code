@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12615,
+  "name": "universal-toolchain-03-queue-balancer",
+  "title": "Universal Toolchain 03 Queue Balancer",
+  "description": "Design and run universal toolchain 03 workflows with queue balancer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8237,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12615-universal-toolchain-03-queue-balancer/SKILL.md",
+    "entrypoint": "agent10/12615-universal-toolchain-03-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 03 queue balancer",
+    "universal toolchain 03 queue balancer workflow",
+    "universal toolchain 03 queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

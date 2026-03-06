@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10692,
+  "name": "model-serving-root-cause-miner",
+  "title": "Model Serving Root Cause Miner",
+  "description": "Design and run model serving workflows with root cause miner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4791,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10692-model-serving-root-cause-miner/SKILL.md",
+    "entrypoint": "agent09/10692-model-serving-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving root cause miner",
+    "model serving root cause miner workflow",
+    "model serving root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

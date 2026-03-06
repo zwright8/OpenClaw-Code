@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11880,
+  "name": "data-provenance-budget-guardrail",
+  "title": "Data Provenance Budget Guardrail",
+  "description": "Design and run data provenance workflows with budget guardrail controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7721,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11880-data-provenance-budget-guardrail/SKILL.md",
+    "entrypoint": "agent10/11880-data-provenance-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance budget guardrail",
+    "data provenance budget guardrail workflow",
+    "data provenance budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

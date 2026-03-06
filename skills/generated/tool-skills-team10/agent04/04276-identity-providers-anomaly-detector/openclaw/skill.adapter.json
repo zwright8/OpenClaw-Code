@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4276,
+  "name": "identity-providers-anomaly-detector",
+  "title": "Identity Providers Anomaly Detector",
+  "description": "Design and run identity providers workflows with anomaly detector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2314,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04276-identity-providers-anomaly-detector/SKILL.md",
+    "entrypoint": "agent04/04276-identity-providers-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers anomaly detector",
+    "identity providers anomaly detector workflow",
+    "identity providers anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

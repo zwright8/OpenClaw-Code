@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 83,
+  "name": "discord-data-exporter",
+  "title": "Discord Data Exporter",
+  "description": "Exports Discord entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12414,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00083-discord-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00083-discord-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discord data exporter",
+    "discord data exporter workflow",
+    "discord data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7422,
+  "name": "a-b-testing-version-tracker",
+  "title": "A/B Testing Version Tracker",
+  "description": "Design and run a/b testing workflows with version tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10538,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07422-a-b-testing-version-tracker/SKILL.md",
+    "entrypoint": "agent06/07422-a-b-testing-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing version tracker",
+    "a/b testing version tracker workflow",
+    "a/b testing version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

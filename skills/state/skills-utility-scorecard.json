@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-02-28T04:49:36.916160+00:00",
+  "scope": {
+    "root": "/Users/zacharywright/.openclaw/workspace/OpenClaw-Code",
+    "scan_path": "skills/generated/shards",
+    "files": 10000
+  },
+  "rubric": {
+    "clarity": "Has clear purpose context (`Why This Skill Exists`) and a concrete use scope (`When To Use`).",
+    "trigger_precision": "Has practical, operator-friendly trigger checklist to decide invocation quickly.",
+    "operational_cadence": "Includes day/week/month operating cadence guidance.",
+    "practical_examples": "Includes concrete examples with input, expected output, and handoff intent.",
+    "anti_patterns": "Includes explicit anti-patterns / non-goals to prevent misuse.",
+    "deterministic_outputs": "Defines output contract and deterministic constraints.",
+    "validation_and_handoff": "Defines validation gates and handoff contract for downstream routing."
+  },
+  "baseline": {
+    "count": 10000,
+    "passed": {
+      "clarity": 8851,
+      "trigger_precision": 8401,
+      "operational_cadence": 0,
+      "practical_examples": 0,
+      "anti_patterns": 0,
+      "deterministic_outputs": 850,
+      "validation_and_handoff": 8901
+    },
+    "coverage": {
+      "clarity": 0.8851,
+      "trigger_precision": 0.8401,
+      "operational_cadence": 0.0,
+      "practical_examples": 0.0,
+      "anti_patterns": 0.0,
+      "deterministic_outputs": 0.085,
+      "validation_and_handoff": 0.8901
+    },
+    "composite": 0.38575714285714285
+  },
+  "post_edit": {
+    "count": 10000,
+    "passed": {
+      "clarity": 10000,
+      "trigger_precision": 10000,
+      "operational_cadence": 10000,
+      "practical_examples": 10000,
+      "anti_patterns": 10000,
+      "deterministic_outputs": 10000,
+      "validation_and_handoff": 10000
+    },
+    "coverage": {
+      "clarity": 1.0,
+      "trigger_precision": 1.0,
+      "operational_cadence": 1.0,
+      "practical_examples": 1.0,
+      "anti_patterns": 1.0,
+      "deterministic_outputs": 1.0,
+      "validation_and_handoff": 1.0
+    },
+    "composite": 1.0
+  },
+  "intermediate_passes": {
+    "pass_1_after_bulk_utility_sections": {
+      "coverage": {
+        "clarity": 0.8851,
+        "trigger_precision": 0.8851,
+        "operational_cadence": 1.0,
+        "practical_examples": 1.0,
+        "anti_patterns": 1.0,
+        "deterministic_outputs": 1.0,
+        "validation_and_handoff": 1.0
+      },
+      "composite": 0.9671714285714286
+    },
+    "pass_2_after_missing_clarity_sections": {
+      "coverage": {
+        "clarity": 1.0,
+        "trigger_precision": 1.0,
+        "operational_cadence": 1.0,
+        "practical_examples": 1.0,
+        "anti_patterns": 1.0,
+        "deterministic_outputs": 1.0,
+        "validation_and_handoff": 1.0
+      },
+      "composite": 1.0
+    }
+  },
+  "delta": {
+    "composite": 0.6142428571428571,
+    "coverage": {
+      "clarity": 0.1149,
+      "trigger_precision": 0.15990000000000004,
+      "operational_cadence": 1.0,
+      "practical_examples": 1.0,
+      "anti_patterns": 1.0,
+      "deterministic_outputs": 0.915,
+      "validation_and_handoff": 0.1099
+    }
+  },
+  "edits": {
+    "files_modified_total": 11149,
+    "files_modified_unique_estimate": 10000,
+    "sections_added_total": {
+      "trigger_checklist_added": 10000,
+      "cadence_added": 10000,
+      "examples_added": 10000,
+      "anti_patterns_added": 10000,
+      "output_contract_added": 9150,
+      "validation_gates_added": 1099,
+      "handoff_contract_added": 1099,
+      "when_section_added": 1149
+    },
+    "pass_1": {
+      "files_modified": 10000,
+      "sections_added": {
+        "trigger_checklist_added": 10000,
+        "cadence_added": 10000,
+        "examples_added": 10000,
+        "anti_patterns_added": 10000,
+        "output_contract_added": 9150,
+        "validation_gates_added": 1099,
+        "handoff_contract_added": 1099
+      }
+    },
+    "pass_2": {
+      "files_modified": 1149,
+      "sections_added": {
+        "when_section_added": 1149
+      }
+    }
+  }
+}

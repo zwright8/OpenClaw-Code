@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3761,
+  "name": "marketing-attribution-execution-runner",
+  "title": "Marketing Attribution Execution Runner",
+  "description": "Design and run marketing attribution workflows with execution runner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 771,
+    "score": 86,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/03761-marketing-attribution-execution-runner/SKILL.md",
+    "entrypoint": "agent03/03761-marketing-attribution-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketing attribution execution runner",
+    "marketing attribution execution runner workflow",
+    "marketing attribution execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

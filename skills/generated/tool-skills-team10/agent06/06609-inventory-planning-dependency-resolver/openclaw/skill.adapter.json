@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6609,
+  "name": "inventory-planning-dependency-resolver",
+  "title": "Inventory Planning Dependency Resolver",
+  "description": "Design and run inventory planning workflows with dependency resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10239,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06609-inventory-planning-dependency-resolver/SKILL.md",
+    "entrypoint": "agent06/06609-inventory-planning-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inventory planning dependency resolver",
+    "inventory planning dependency resolver workflow",
+    "inventory planning dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

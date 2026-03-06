@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5743,
+  "name": "model-registries-remediation-planner",
+  "title": "Model Registries Remediation Planner",
+  "description": "Design and run model registries workflows with remediation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2814,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05743-model-registries-remediation-planner/SKILL.md",
+    "entrypoint": "agent05/05743-model-registries-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries remediation planner",
+    "model registries remediation planner workflow",
+    "model registries remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

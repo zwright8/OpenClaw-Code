@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12294,
+  "name": "ai-evaluation-markets-postmortem-drafting",
+  "title": "AI Evaluation Markets Postmortem Drafting",
+  "description": "Design and run ai evaluation markets workflows with postmortem drafting controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7768,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12294-ai-evaluation-markets-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent10/12294-ai-evaluation-markets-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets postmortem drafting",
+    "ai evaluation markets postmortem drafting workflow",
+    "ai evaluation markets postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

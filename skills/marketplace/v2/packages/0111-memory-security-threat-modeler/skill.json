@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 111,
+    "name": "openclaw-v2-0111-attack-surface-modeling",
+    "title": "Memory Security Threat Modeler",
+    "domain": "Memory and Knowledge Operations",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "attack-surface modeling",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 68.24,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0111-memory-security-threat-modeler/SKILL.md"
+  }
+}

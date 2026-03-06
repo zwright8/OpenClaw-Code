@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10211,
+  "name": "settlement-reconciliation-execution-runner",
+  "title": "Settlement Reconciliation Execution Runner",
+  "description": "Design and run settlement reconciliation workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1435,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10211-settlement-reconciliation-execution-runner/SKILL.md",
+    "entrypoint": "agent08/10211-settlement-reconciliation-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation execution runner",
+    "settlement reconciliation execution runner workflow",
+    "settlement reconciliation execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

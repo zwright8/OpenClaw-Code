@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7307,
+  "name": "survey-systems-operation-planner",
+  "title": "Survey Systems Operation Planner",
+  "description": "Design and run survey systems workflows with operation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10489,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07307-survey-systems-operation-planner/SKILL.md",
+    "entrypoint": "agent06/07307-survey-systems-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems operation planner",
+    "survey systems operation planner workflow",
+    "survey systems operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

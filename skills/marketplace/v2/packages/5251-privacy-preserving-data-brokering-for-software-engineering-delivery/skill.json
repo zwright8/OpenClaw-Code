@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5251,
+    "name": "openclaw-v2-5251-privacy-preserving-data-brokering",
+    "title": "Privacy-Preserving Data Brokering for software engineering delivery",
+    "domain": "software engineering delivery",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "privacy-preserving data brokering",
+    "archetype": "privacy-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 68.44,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5251-privacy-preserving-data-brokering-for-software-engineering-delivery/SKILL.md"
+  }
+}

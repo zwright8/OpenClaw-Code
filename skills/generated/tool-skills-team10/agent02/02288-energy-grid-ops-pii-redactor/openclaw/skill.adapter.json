@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2288,
+  "name": "energy-grid-ops-pii-redactor",
+  "title": "Energy Grid Ops PII Redactor",
+  "description": "Design and run energy grid ops workflows with pii redactor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3203,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02288-energy-grid-ops-pii-redactor/SKILL.md",
+    "entrypoint": "agent02/02288-energy-grid-ops-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "energy grid ops pii redactor",
+    "energy grid ops pii redactor workflow",
+    "energy grid ops pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

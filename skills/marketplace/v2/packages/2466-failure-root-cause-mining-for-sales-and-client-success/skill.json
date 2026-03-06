@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2466,
+    "name": "openclaw-v2-2466-failure-root-cause-mining",
+    "title": "Failure Root Cause Mining for sales and client success",
+    "domain": "sales and client success",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "failure root cause mining",
+    "archetype": "diagnostic-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 89,
+    "roiScore": 83.55,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2466-failure-root-cause-mining-for-sales-and-client-success/SKILL.md"
+  }
+}

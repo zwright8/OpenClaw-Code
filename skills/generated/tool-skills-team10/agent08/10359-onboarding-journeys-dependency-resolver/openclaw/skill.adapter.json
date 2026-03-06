@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10359,
+  "name": "onboarding-journeys-dependency-resolver",
+  "title": "Onboarding Journeys Dependency Resolver",
+  "description": "Design and run onboarding journeys workflows with dependency resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11583,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10359-onboarding-journeys-dependency-resolver/SKILL.md",
+    "entrypoint": "agent08/10359-onboarding-journeys-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys dependency resolver",
+    "onboarding journeys dependency resolver workflow",
+    "onboarding journeys dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 688,
+  "name": "sumo-logic-workflow-automator",
+  "title": "Sumo Logic Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Sumo Logic.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0688-sumo-logic-workflow-automator/SKILL.md",
+    "entrypoint": "agent07/0688-sumo-logic-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sumo logic workflow automator",
+    "sumo logic workflow automator workflow",
+    "sumo logic workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0688-sumo-logic-workflow-automator"
+  }
+}

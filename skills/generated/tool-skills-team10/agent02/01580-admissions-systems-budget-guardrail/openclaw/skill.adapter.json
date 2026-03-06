@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1580,
+  "name": "admissions-systems-budget-guardrail",
+  "title": "Admissions Systems Budget Guardrail",
+  "description": "Design and run admissions systems workflows with budget guardrail controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7269,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01580-admissions-systems-budget-guardrail/SKILL.md",
+    "entrypoint": "agent02/01580-admissions-systems-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "admissions systems budget guardrail",
+    "admissions systems budget guardrail workflow",
+    "admissions systems budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6433,
+  "name": "image-annotation-reliability-scorer",
+  "title": "Image Annotation Reliability Scorer",
+  "description": "Design and run image annotation workflows with reliability scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10189,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06433-image-annotation-reliability-scorer/SKILL.md",
+    "entrypoint": "agent05/06433-image-annotation-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation reliability scorer",
+    "image annotation reliability scorer workflow",
+    "image annotation reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

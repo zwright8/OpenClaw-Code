@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4292,
+  "name": "identity-providers-root-cause-miner",
+  "title": "Identity Providers Root Cause Miner",
+  "description": "Design and run identity providers workflows with root cause miner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1813,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04292-identity-providers-root-cause-miner/SKILL.md",
+    "entrypoint": "agent04/04292-identity-providers-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers root cause miner",
+    "identity providers root cause miner workflow",
+    "identity providers root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

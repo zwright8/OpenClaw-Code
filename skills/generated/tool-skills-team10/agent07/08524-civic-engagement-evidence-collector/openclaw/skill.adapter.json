@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8524,
+  "name": "civic-engagement-evidence-collector",
+  "title": "Civic Engagement Evidence Collector",
+  "description": "Design and run civic engagement workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6398,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08524-civic-engagement-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/08524-civic-engagement-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement evidence collector",
+    "civic engagement evidence collector workflow",
+    "civic engagement evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

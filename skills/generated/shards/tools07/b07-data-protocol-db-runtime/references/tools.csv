@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3064,proxygen,local-installable,Collection of C++ HTTP libraries,https://github.com/facebook/proxygen,BSD-3-Clause
+3065,ada-url,local-installable,WHATWG-compliant and fast URL parser written in modern C++,https://github.com/ada-url/ada,Apache-2.0 OR MIT
+3067,hdf5-mpi,local-installable,File format designed to store large amounts of data,https://www.hdfgroup.org/solutions/hdf5/,BSD-3-Clause
+3068,mariadb@10.5,local-installable,Drop-in replacement for MySQL,https://mariadb.org/,GPL-2.0-only
+3069,mariadb@11.4,local-installable,Drop-in replacement for MySQL,https://mariadb.org/,GPL-2.0-only
+3070,libelf,local-installable,ELF object file access library,https://fossies.org/linux/misc/old/libelf-0.8.13.tar.gz/,LGPL-2.0-or-later
+3071,xlsxio,local-installable,C library for reading values from and writing values to .xlsx files,https://github.com/brechtsanders/xlsxio,MIT
+3072,baresip,local-installable,Modular SIP useragent,https://github.com/baresip/baresip,BSD-3-Clause
+3073,ghz,local-installable,Simple gRPC benchmarking and load testing tool,https://ghz.sh,Apache-2.0
+3075,meta-package-manager,local-installable,Wrapper around all package managers with a unifying CLI,https://kdeldycke.github.io/meta-package-manager/,GPL-2.0-or-later
+3076,xapian,local-installable,C++ search engine library,https://xapian.org/,GPL-2.0-or-later
+3077,hstr,local-installable,Bash and zsh history suggest box,https://github.com/dvorka/hstr,Apache-2.0
+3078,pg_cron,local-installable,Run periodic jobs in PostgreSQL,https://github.com/citusdata/pg_cron,PostgreSQL
+3080,swift-outdated,local-installable,Check for outdated Swift package manager dependencies,https://github.com/kiliankoe/swift-outdated,MIT
+3081,autocorrect,local-installable,"Linter and formatter to improve copywriting, correct spaces, words between CJK",https://huacnlee.github.io/autocorrect/,MIT
+3082,pycodestyle,local-installable,Simple Python style checker in one Python file,https://pycodestyle.pycqa.org/,MIT
+3083,rbw,local-installable,Unofficial Bitwarden CLI client,https://github.com/doy/rbw,MIT
+3084,liblo,local-installable,Lightweight Open Sound Control implementation,https://liblo.sourceforge.net/,LGPL-2.1-or-later
+3085,gnirehtet,local-installable,Reverse tethering tool for Android,https://github.com/Genymobile/gnirehtet,Apache-2.0
+3086,chrony,local-installable,Versatile implementation of the Network Time Protocol (NTP),https://chrony-project.org,GPL-2.0-only
+3087,ncview,local-installable,Visual browser for netCDF format files,https://cirrus.ucsd.edu/ncview/,GPL-3.0-only
+3089,dcm2niix,local-installable,DICOM to NIfTI converter,https://www.nitrc.org/plugins/mwiki/index.php/dcm2nii:MainPage,BSD-3-Clause
+3090,wxwidgets@3.2,local-installable,Cross-platform C++ GUI toolkit,https://www.wxwidgets.org,LGPL-2.0-or-later WITH WxWindows-exception-3.1
+3091,defaultbrowser,local-installable,Command-line tool for getting & setting the default browser,https://github.com/kerma/defaultbrowser,MIT
+3092,avro-c,local-installable,Data serialization system,https://avro.apache.org/,Apache-2.0
+3093,diesel,local-installable,Command-line tool for Rust ORM Diesel,https://diesel.rs,Apache-2.0 OR MIT

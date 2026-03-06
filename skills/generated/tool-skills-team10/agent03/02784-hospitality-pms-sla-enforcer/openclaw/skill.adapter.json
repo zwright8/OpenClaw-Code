@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2784,
+  "name": "hospitality-pms-sla-enforcer",
+  "title": "Hospitality PMS SLA Enforcer",
+  "description": "Design and run hospitality pms workflows with sla enforcer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8972,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02784-hospitality-pms-sla-enforcer/SKILL.md",
+    "entrypoint": "agent03/02784-hospitality-pms-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hospitality pms sla enforcer",
+    "hospitality pms sla enforcer workflow",
+    "hospitality pms sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

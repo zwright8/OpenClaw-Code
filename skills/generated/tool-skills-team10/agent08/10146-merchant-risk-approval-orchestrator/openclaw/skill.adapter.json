@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10146,
+  "name": "merchant-risk-approval-orchestrator",
+  "title": "Merchant Risk Approval Orchestrator",
+  "description": "Design and run merchant risk workflows with approval orchestrator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2600,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10146-merchant-risk-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent08/10146-merchant-risk-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk approval orchestrator",
+    "merchant risk approval orchestrator workflow",
+    "merchant risk approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

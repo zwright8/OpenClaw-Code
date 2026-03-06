@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8785,
+  "name": "legal-matter-mgmt-policy-evaluator",
+  "title": "Legal Matter Mgmt Policy Evaluator",
+  "description": "Design and run legal matter mgmt workflows with policy evaluator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2184,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08785-legal-matter-mgmt-policy-evaluator/SKILL.md",
+    "entrypoint": "agent07/08785-legal-matter-mgmt-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt policy evaluator",
+    "legal matter mgmt policy evaluator workflow",
+    "legal matter mgmt policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

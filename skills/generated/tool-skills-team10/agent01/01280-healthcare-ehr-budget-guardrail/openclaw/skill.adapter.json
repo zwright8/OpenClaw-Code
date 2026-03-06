@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1280,
+  "name": "healthcare-ehr-budget-guardrail",
+  "title": "Healthcare EHR Budget Guardrail",
+  "description": "Design and run healthcare ehr workflows with budget guardrail controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 4478,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01280-healthcare-ehr-budget-guardrail/SKILL.md",
+    "entrypoint": "agent01/01280-healthcare-ehr-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr budget guardrail",
+    "healthcare ehr budget guardrail workflow",
+    "healthcare ehr budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

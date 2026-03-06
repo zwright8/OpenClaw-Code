@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5580,
+  "name": "metadata-stores-budget-guardrail",
+  "title": "Metadata Stores Budget Guardrail",
+  "description": "Design and run metadata stores workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7484,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05580-metadata-stores-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/05580-metadata-stores-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores budget guardrail",
+    "metadata stores budget guardrail workflow",
+    "metadata stores budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

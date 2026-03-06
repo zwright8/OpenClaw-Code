@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5987,
+  "name": "task-queues-compliance-mapper",
+  "title": "Task Queues Compliance Mapper",
+  "description": "Design and run task queues workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1849,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05987-task-queues-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/05987-task-queues-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues compliance mapper",
+    "task queues compliance mapper workflow",
+    "task queues compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

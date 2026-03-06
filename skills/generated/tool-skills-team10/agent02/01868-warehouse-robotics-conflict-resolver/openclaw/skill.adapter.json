@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1868,
+  "name": "warehouse-robotics-conflict-resolver",
+  "title": "Warehouse Robotics Conflict Resolver",
+  "description": "Design and run warehouse robotics workflows with conflict resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8646,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01868-warehouse-robotics-conflict-resolver/SKILL.md",
+    "entrypoint": "agent02/01868-warehouse-robotics-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics conflict resolver",
+    "warehouse robotics conflict resolver workflow",
+    "warehouse robotics conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

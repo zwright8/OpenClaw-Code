@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8834,
+  "name": "discovery-pipelines-sla-enforcer",
+  "title": "Discovery Pipelines SLA Enforcer",
+  "description": "Design and run discovery pipelines workflows with sla enforcer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11072,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08834-discovery-pipelines-sla-enforcer/SKILL.md",
+    "entrypoint": "agent07/08834-discovery-pipelines-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines sla enforcer",
+    "discovery pipelines sla enforcer workflow",
+    "discovery pipelines sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

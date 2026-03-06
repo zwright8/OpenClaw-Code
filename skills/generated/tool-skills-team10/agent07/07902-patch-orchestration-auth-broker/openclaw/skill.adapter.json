@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7902,
+  "name": "patch-orchestration-auth-broker",
+  "title": "Patch Orchestration Auth Broker",
+  "description": "Design and run patch orchestration workflows with auth broker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 926,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/07902-patch-orchestration-auth-broker/SKILL.md",
+    "entrypoint": "agent07/07902-patch-orchestration-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration auth broker",
+    "patch orchestration auth broker workflow",
+    "patch orchestration auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

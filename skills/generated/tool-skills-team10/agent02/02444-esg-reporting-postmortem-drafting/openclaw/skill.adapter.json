@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2444,
+  "name": "esg-reporting-postmortem-drafting",
+  "title": "ESG Reporting Postmortem Drafting",
+  "description": "Design and run esg reporting workflows with postmortem drafting controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8847,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02444-esg-reporting-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent02/02444-esg-reporting-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting postmortem drafting",
+    "esg reporting postmortem drafting workflow",
+    "esg reporting postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

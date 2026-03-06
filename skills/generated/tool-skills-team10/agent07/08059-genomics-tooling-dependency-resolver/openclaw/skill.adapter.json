@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8059,
+  "name": "genomics-tooling-dependency-resolver",
+  "title": "Genomics Tooling Dependency Resolver",
+  "description": "Design and run genomics tooling workflows with dependency resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10806,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08059-genomics-tooling-dependency-resolver/SKILL.md",
+    "entrypoint": "agent07/08059-genomics-tooling-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "genomics tooling dependency resolver",
+    "genomics tooling dependency resolver workflow",
+    "genomics tooling dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

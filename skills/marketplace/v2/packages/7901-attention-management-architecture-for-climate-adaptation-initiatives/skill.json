@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7901,
+    "name": "openclaw-v2-7901-attention-management-architecture",
+    "title": "Attention Management Architecture for climate adaptation initiatives",
+    "domain": "climate adaptation initiatives",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "attention management architecture",
+    "archetype": "attention-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 79,
+    "roiScore": 79.33,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7901-attention-management-architecture-for-climate-adaptation-initiatives/SKILL.md"
+  }
+}

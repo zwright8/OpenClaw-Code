@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 197,
+    "name": "openclaw-v2-0197-competency-coverage-analysis",
+    "title": "Governance Skill Gap Diagnoser",
+    "domain": "Safety and Governance",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "competency coverage analysis",
+    "archetype": "general-capability"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 68,
+    "roiScore": 69.5,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0197-governance-skill-gap-diagnoser/SKILL.md"
+  }
+}

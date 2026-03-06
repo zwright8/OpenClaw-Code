@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5296,
+  "name": "api-gateways-approval-orchestrator",
+  "title": "API Gateways Approval Orchestrator",
+  "description": "Design and run api gateways workflows with approval orchestrator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2562,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05296-api-gateways-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent05/05296-api-gateways-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways approval orchestrator",
+    "api gateways approval orchestrator workflow",
+    "api gateways approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

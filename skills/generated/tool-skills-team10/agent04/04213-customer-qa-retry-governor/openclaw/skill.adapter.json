@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4213,
+  "name": "customer-qa-retry-governor",
+  "title": "Customer QA Retry Governor",
+  "description": "Design and run customer qa workflows with retry governor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5982,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04213-customer-qa-retry-governor/SKILL.md",
+    "entrypoint": "agent04/04213-customer-qa-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa retry governor",
+    "customer qa retry governor workflow",
+    "customer qa retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

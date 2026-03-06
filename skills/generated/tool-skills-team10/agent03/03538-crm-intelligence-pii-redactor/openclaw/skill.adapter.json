@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3538,
+  "name": "crm-intelligence-pii-redactor",
+  "title": "CRM Intelligence PII Redactor",
+  "description": "Design and run crm intelligence workflows with pii redactor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 3295,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03538-crm-intelligence-pii-redactor/SKILL.md",
+    "entrypoint": "agent03/03538-crm-intelligence-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence pii redactor",
+    "crm intelligence pii redactor workflow",
+    "crm intelligence pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

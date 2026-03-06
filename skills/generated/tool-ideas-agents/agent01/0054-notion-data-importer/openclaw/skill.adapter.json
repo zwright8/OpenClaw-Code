@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 54,
+  "name": "notion-data-importer",
+  "title": "Notion Data Importer",
+  "description": "Validates and imports bulk updates into Notion.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0054-notion-data-importer/SKILL.md",
+    "entrypoint": "agent01/0054-notion-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "notion data importer",
+    "notion data importer workflow",
+    "notion data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0054-notion-data-importer"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "skill_id": "u09624-writing-and-rhetoric-optimization-for-nutrition-and-meal-planning",
+  "capability": "Writing And Rhetoric Optimization for nutrition and meal planning",
+  "domain": "nutrition and meal planning",
+  "inputs": {
+    "source_tagged_signals": [
+      {
+        "id": "sig-001",
+        "source": "trusted",
+        "content": "sample"
+      }
+    ],
+    "claims": [
+      {
+        "id": "clm-001",
+        "text": "sample claim",
+        "confidence": 0.8
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-001",
+        "type": "document",
+        "uri": "local://evidence/1"
+      }
+    ],
+    "run_context": {
+      "risk_tier": "low",
+      "request_id": "req-001"
+    }
+  },
+  "expected": {
+    "schema_valid": true
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 7846,
+    "name": "openclaw-v2-7846-attention-management-architecture",
+    "title": "Attention Management Architecture for entrepreneurship operations",
+    "domain": "entrepreneurship operations",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "attention management architecture",
+    "archetype": "attention-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 79,
+    "roiScore": 74.7,
+    "trustBadges": [
+      "Reliability-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/7846-attention-management-architecture-for-entrepreneurship-operations/SKILL.md"
+  }
+}

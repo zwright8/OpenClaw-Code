@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Design for legal and policy workflows"
+  short_description: "Experiment design for legal and policy workflows with guardrails and measurable outcomes."
+  default_prompt: "Use Experiment Design for legal and policy workflows to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

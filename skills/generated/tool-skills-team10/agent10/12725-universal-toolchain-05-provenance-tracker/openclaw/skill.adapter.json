@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12725,
+  "name": "universal-toolchain-05-provenance-tracker",
+  "title": "Universal Toolchain 05 Provenance Tracker",
+  "description": "Design and run universal toolchain 05 workflows with provenance tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8287,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12725-universal-toolchain-05-provenance-tracker/SKILL.md",
+    "entrypoint": "agent10/12725-universal-toolchain-05-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 05 provenance tracker",
+    "universal toolchain 05 provenance tracker workflow",
+    "universal toolchain 05 provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

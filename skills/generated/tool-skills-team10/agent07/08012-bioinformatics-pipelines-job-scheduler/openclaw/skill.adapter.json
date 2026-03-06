@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8012,
+  "name": "bioinformatics-pipelines-job-scheduler",
+  "title": "Bioinformatics Pipelines Job Scheduler",
+  "description": "Design and run bioinformatics pipelines workflows with job scheduler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5108,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08012-bioinformatics-pipelines-job-scheduler/SKILL.md",
+    "entrypoint": "agent07/08012-bioinformatics-pipelines-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines job scheduler",
+    "bioinformatics pipelines job scheduler workflow",
+    "bioinformatics pipelines job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

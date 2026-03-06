@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11483,
+  "name": "reference-programs-reliability-scorer",
+  "title": "Reference Programs Reliability Scorer",
+  "description": "Design and run reference programs workflows with reliability scorer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11995,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11483-reference-programs-reliability-scorer/SKILL.md",
+    "entrypoint": "agent09/11483-reference-programs-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs reliability scorer",
+    "reference programs reliability scorer workflow",
+    "reference programs reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

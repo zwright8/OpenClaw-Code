@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6366,
+  "name": "audio-pipelines-state-reconciler",
+  "title": "Audio Pipelines State Reconciler",
+  "description": "Design and run audio pipelines workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4222,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06366-audio-pipelines-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/06366-audio-pipelines-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines state reconciler",
+    "audio pipelines state reconciler workflow",
+    "audio pipelines state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

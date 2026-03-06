@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12295,
+  "name": "ai-evaluation-markets-runbook-composer",
+  "title": "AI Evaluation Markets Runbook Composer",
+  "description": "Design and run ai evaluation markets workflows with runbook composer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3960,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12295-ai-evaluation-markets-runbook-composer/SKILL.md",
+    "entrypoint": "agent10/12295-ai-evaluation-markets-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets runbook composer",
+    "ai evaluation markets runbook composer workflow",
+    "ai evaluation markets runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

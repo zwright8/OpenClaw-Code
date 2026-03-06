@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9354,
+  "name": "sensor-fusion-schema-introspector",
+  "title": "Sensor Fusion Schema Introspector",
+  "description": "Design and run sensor fusion workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 701,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09354-sensor-fusion-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/09354-sensor-fusion-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion schema introspector",
+    "sensor fusion schema introspector workflow",
+    "sensor fusion schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

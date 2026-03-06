@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5449,
+  "name": "message-brokers-quality-gatekeeper",
+  "title": "Message Brokers Quality Gatekeeper",
+  "description": "Design and run message brokers workflows with quality gatekeeper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5440,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05449-message-brokers-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent05/05449-message-brokers-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers quality gatekeeper",
+    "message brokers quality gatekeeper workflow",
+    "message brokers quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

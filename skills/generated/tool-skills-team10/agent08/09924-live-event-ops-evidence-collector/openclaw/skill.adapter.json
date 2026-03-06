@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9924,
+  "name": "live-event-ops-evidence-collector",
+  "title": "Live Event Ops Evidence Collector",
+  "description": "Design and run live event ops workflows with evidence collector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6509,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09924-live-event-ops-evidence-collector/SKILL.md",
+    "entrypoint": "agent08/09924-live-event-ops-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "live event ops evidence collector",
+    "live event ops evidence collector workflow",
+    "live event ops evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

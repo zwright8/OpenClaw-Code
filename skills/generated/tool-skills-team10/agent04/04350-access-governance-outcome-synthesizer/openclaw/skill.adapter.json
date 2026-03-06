@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4350,
+  "name": "access-governance-outcome-synthesizer",
+  "title": "Access Governance Outcome Synthesizer",
+  "description": "Design and run access governance workflows with outcome synthesizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6914,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04350-access-governance-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent04/04350-access-governance-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance outcome synthesizer",
+    "access governance outcome synthesizer workflow",
+    "access governance outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

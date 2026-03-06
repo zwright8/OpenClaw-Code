@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1260,
+  "name": "healthcare-ehr-workflow-compiler",
+  "title": "Healthcare EHR Workflow Compiler",
+  "description": "Design and run healthcare ehr workflows with workflow compiler controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 326,
+    "score": 91,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/01260-healthcare-ehr-workflow-compiler/SKILL.md",
+    "entrypoint": "agent01/01260-healthcare-ehr-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr workflow compiler",
+    "healthcare ehr workflow compiler workflow",
+    "healthcare ehr workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

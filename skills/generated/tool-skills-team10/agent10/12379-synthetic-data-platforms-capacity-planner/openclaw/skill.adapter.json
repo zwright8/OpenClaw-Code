@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12379,
+  "name": "synthetic-data-platforms-capacity-planner",
+  "title": "Synthetic Data Platforms Capacity Planner",
+  "description": "Design and run synthetic data platforms workflows with capacity planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12307,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12379-synthetic-data-platforms-capacity-planner/SKILL.md",
+    "entrypoint": "agent10/12379-synthetic-data-platforms-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms capacity planner",
+    "synthetic data platforms capacity planner workflow",
+    "synthetic data platforms capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

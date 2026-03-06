@@ -1,0 +1,13 @@
+{
+  "task": "Execute memory consolidation",
+  "objective": "Deliver Memory Consolidation for nutrition and meal planning outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

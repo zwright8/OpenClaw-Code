@@ -1,0 +1,13 @@
+{
+  "task": "Execute metric synthesis and publication",
+  "objective": "Deliver Comms KPI Dashboard Publisher outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multi-Agent Negotiation for scientific publishing pipelines"
+  short_description: "Multi-agent negotiation for scientific publishing pipelines with guardrails and measurable outcomes."
+  default_prompt: "Use Multi-Agent Negotiation for scientific publishing pipelines to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

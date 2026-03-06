@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4024,
+  "name": "support-ticketing-evidence-collector",
+  "title": "Support Ticketing Evidence Collector",
+  "description": "Design and run support ticketing workflows with evidence collector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5969,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04024-support-ticketing-evidence-collector/SKILL.md",
+    "entrypoint": "agent04/04024-support-ticketing-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing evidence collector",
+    "support ticketing evidence collector workflow",
+    "support ticketing evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

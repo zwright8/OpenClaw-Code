@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7672,
+  "name": "push-notification-systems-version-tracker",
+  "title": "Push Notification Systems Version Tracker",
+  "description": "Design and run push notification systems workflows with version tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10643,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07672-push-notification-systems-version-tracker/SKILL.md",
+    "entrypoint": "agent06/07672-push-notification-systems-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems version tracker",
+    "push notification systems version tracker workflow",
+    "push notification systems version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

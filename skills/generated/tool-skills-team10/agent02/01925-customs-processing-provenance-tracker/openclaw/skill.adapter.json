@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1925,
+  "name": "customs-processing-provenance-tracker",
+  "title": "Customs Processing Provenance Tracker",
+  "description": "Design and run customs processing workflows with provenance tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8671,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01925-customs-processing-provenance-tracker/SKILL.md",
+    "entrypoint": "agent02/01925-customs-processing-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing provenance tracker",
+    "customs processing provenance tracker workflow",
+    "customs processing provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5621,
+  "name": "data-quality-hubs-snapshot-manager",
+  "title": "Data Quality Hubs Snapshot Manager",
+  "description": "Design and run data quality hubs workflows with snapshot manager controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6963,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05621-data-quality-hubs-snapshot-manager/SKILL.md",
+    "entrypoint": "agent05/05621-data-quality-hubs-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs snapshot manager",
+    "data quality hubs snapshot manager workflow",
+    "data quality hubs snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1803,
+  "name": "fleet-telematics-permission-mapper",
+  "title": "Fleet Telematics Permission Mapper",
+  "description": "Design and run fleet telematics workflows with permission mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3169,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01803-fleet-telematics-permission-mapper/SKILL.md",
+    "entrypoint": "agent02/01803-fleet-telematics-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics permission mapper",
+    "fleet telematics permission mapper workflow",
+    "fleet telematics permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

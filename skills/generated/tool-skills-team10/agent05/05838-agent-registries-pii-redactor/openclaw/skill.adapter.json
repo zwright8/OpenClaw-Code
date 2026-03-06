@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5838,
+  "name": "agent-registries-pii-redactor",
+  "title": "Agent Registries PII Redactor",
+  "description": "Design and run agent registries workflows with pii redactor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3466,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05838-agent-registries-pii-redactor/SKILL.md",
+    "entrypoint": "agent05/05838-agent-registries-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries pii redactor",
+    "agent registries pii redactor workflow",
+    "agent registries pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

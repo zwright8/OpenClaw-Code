@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 10,
+    "name": "openclaw-v2-0010-risk-weighted-sequencing",
+    "title": "Epistemic Risk-Aware Scheduler",
+    "domain": "Truth-Seeking and Epistemics",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "risk-weighted sequencing",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 75.44,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0010-epistemic-risk-aware-scheduler/SKILL.md"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Governance Confidence Calibration Engine"
+  short_description: "Calibration curves and error bins for Safety and Governance with guardrails and measurable outcomes."
+  default_prompt: "Use Governance Confidence Calibration Engine to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

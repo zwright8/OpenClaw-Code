@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 337,
+    "name": "openclaw-v2-0337-baseline-delta-detection",
+    "title": "Economic Regression Sentinel",
+    "domain": "Economic Optimization",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "baseline-delta detection",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 62,
+    "roiScore": 56.64,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0337-economic-regression-sentinel/SKILL.md"
+  }
+}

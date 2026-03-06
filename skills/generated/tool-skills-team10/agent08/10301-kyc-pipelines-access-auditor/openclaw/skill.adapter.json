@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10301,
+  "name": "kyc-pipelines-access-auditor",
+  "title": "KYC Pipelines Access Auditor",
+  "description": "Design and run kyc pipelines workflows with access auditor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11559,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10301-kyc-pipelines-access-auditor/SKILL.md",
+    "entrypoint": "agent08/10301-kyc-pipelines-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines access auditor",
+    "kyc pipelines access auditor workflow",
+    "kyc pipelines access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

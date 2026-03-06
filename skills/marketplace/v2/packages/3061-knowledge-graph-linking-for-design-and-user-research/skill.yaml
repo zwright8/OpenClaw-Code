@@ -1,0 +1,24 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 3061
+  name: "openclaw-v2-3061-knowledge-graph-linking"
+  title: "Knowledge Graph Linking for design and user research"
+  domain: "design and user research"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "knowledge graph linking"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 94
+  roi_score: 78.76
+  trust_badges:
+    - "Verified-Quality"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/3061-knowledge-graph-linking-for-design-and-user-research/SKILL.md"

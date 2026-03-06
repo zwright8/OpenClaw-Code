@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 222,
+  "name": "pipedrive-sync-orchestrator",
+  "title": "Pipedrive Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Pipedrive records.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0222-pipedrive-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent03/0222-pipedrive-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pipedrive sync orchestrator",
+    "pipedrive sync orchestrator workflow",
+    "pipedrive sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0222-pipedrive-sync-orchestrator"
+  }
+}

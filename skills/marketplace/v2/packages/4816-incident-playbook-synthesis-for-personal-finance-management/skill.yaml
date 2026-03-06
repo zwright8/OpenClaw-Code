@@ -1,0 +1,27 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 4816
+  name: "openclaw-v2-4816-incident-playbook-synthesis"
+  title: "Incident Playbook Synthesis for personal finance management"
+  domain: "personal finance management"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "incident playbook synthesis"
+  archetype: "incident-response-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 99
+  roi_score: 87.36
+  trust_badges:
+    - "Verified-Quality"
+    - "Reliability-Proven"
+    - "ROI-Proven"
+    - "Enterprise-Ready"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/4816-incident-playbook-synthesis-for-personal-finance-management/SKILL.md"

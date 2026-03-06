@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 618,
+  "name": "datadog-workflow-automator",
+  "title": "Datadog Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Datadog.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0618-datadog-workflow-automator/SKILL.md",
+    "entrypoint": "agent07/0618-datadog-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "datadog workflow automator",
+    "datadog workflow automator workflow",
+    "datadog workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0618-datadog-workflow-automator"
+  }
+}

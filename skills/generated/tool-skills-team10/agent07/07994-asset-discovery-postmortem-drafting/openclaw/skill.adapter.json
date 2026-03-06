@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7994,
+  "name": "asset-discovery-postmortem-drafting",
+  "title": "Asset Discovery Postmortem Drafting",
+  "description": "Design and run asset discovery workflows with postmortem drafting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10779,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07994-asset-discovery-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent07/07994-asset-discovery-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery postmortem drafting",
+    "asset discovery postmortem drafting workflow",
+    "asset discovery postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

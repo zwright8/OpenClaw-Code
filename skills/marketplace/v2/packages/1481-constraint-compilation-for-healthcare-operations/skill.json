@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 1481,
+    "name": "openclaw-v2-1481-constraint-compilation",
+    "title": "Constraint Compilation for healthcare operations",
+    "domain": "healthcare operations",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "constraint compilation",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 77.9,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/1481-constraint-compilation-for-healthcare-operations/SKILL.md"
+  }
+}

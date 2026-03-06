@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1670,
+  "name": "research-repositories-migration-planner",
+  "title": "Research Repositories Migration Planner",
+  "description": "Design and run research repositories workflows with migration planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4490,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01670-research-repositories-migration-planner/SKILL.md",
+    "entrypoint": "agent02/01670-research-repositories-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories migration planner",
+    "research repositories migration planner workflow",
+    "research repositories migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

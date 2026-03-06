@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2694,
+  "name": "bim-coordination-postmortem-drafting",
+  "title": "BIM Coordination Postmortem Drafting",
+  "description": "Design and run bim coordination workflows with postmortem drafting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8952,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02694-bim-coordination-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent03/02694-bim-coordination-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination postmortem drafting",
+    "bim coordination postmortem drafting workflow",
+    "bim coordination postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

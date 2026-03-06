@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9333,
+  "name": "edge-compute-reliability-scorer",
+  "title": "Edge Compute Reliability Scorer",
+  "description": "Design and run edge compute workflows with reliability scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11239,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09333-edge-compute-reliability-scorer/SKILL.md",
+    "entrypoint": "agent08/09333-edge-compute-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute reliability scorer",
+    "edge compute reliability scorer workflow",
+    "edge compute reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

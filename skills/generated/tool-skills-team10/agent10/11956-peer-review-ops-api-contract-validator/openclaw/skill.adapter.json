@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11956,
+  "name": "peer-review-ops-api-contract-validator",
+  "title": "Peer Review Ops API Contract Validator",
+  "description": "Design and run peer review ops workflows with api contract validator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 260,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent10/11956-peer-review-ops-api-contract-validator/SKILL.md",
+    "entrypoint": "agent10/11956-peer-review-ops-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops api contract validator",
+    "peer review ops api contract validator workflow",
+    "peer review ops api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

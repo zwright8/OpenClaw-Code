@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5731,
+  "name": "model-registries-cost-attribution",
+  "title": "Model Registries Cost Attribution",
+  "description": "Design and run model registries workflows with cost attribution controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9914,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05731-model-registries-cost-attribution/SKILL.md",
+    "entrypoint": "agent05/05731-model-registries-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries cost attribution",
+    "model registries cost attribution workflow",
+    "model registries cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

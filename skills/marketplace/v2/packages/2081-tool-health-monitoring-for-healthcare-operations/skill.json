@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2081,
+    "name": "openclaw-v2-2081-tool-health-monitoring",
+    "title": "Tool Health Monitoring for healthcare operations",
+    "domain": "healthcare operations",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "tool health monitoring",
+    "archetype": "monitoring-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 82.63,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2081-tool-health-monitoring-for-healthcare-operations/SKILL.md"
+  }
+}

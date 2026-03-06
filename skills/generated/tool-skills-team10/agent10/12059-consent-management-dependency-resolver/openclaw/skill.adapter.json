@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12059,
+  "name": "consent-management-dependency-resolver",
+  "title": "Consent Management Dependency Resolver",
+  "description": "Design and run consent management workflows with dependency resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12234,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12059-consent-management-dependency-resolver/SKILL.md",
+    "entrypoint": "agent10/12059-consent-management-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "consent management dependency resolver",
+    "consent management dependency resolver workflow",
+    "consent management dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

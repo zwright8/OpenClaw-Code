@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7395,
+  "name": "experiment-platforms-runbook-composer",
+  "title": "Experiment Platforms Runbook Composer",
+  "description": "Design and run experiment platforms workflows with runbook composer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6289,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07395-experiment-platforms-runbook-composer/SKILL.md",
+    "entrypoint": "agent06/07395-experiment-platforms-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms runbook composer",
+    "experiment platforms runbook composer workflow",
+    "experiment platforms runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

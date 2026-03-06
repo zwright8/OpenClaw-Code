@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 231
+  name: "openclaw-v2-0231-attack-surface-modeling"
+  title: "Oversight Security Threat Modeler"
+  domain: "Human Oversight and Operator UX"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "attack-surface modeling"
+  archetype: "detection-guard"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 60
+  roi_score: 77.15
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0231-oversight-security-threat-modeler/SKILL.md"

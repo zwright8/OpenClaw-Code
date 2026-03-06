@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5399,
+  "name": "event-streams-quality-gatekeeper",
+  "title": "Event Streams Quality Gatekeeper",
+  "description": "Design and run event streams workflows with quality gatekeeper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5438,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05399-event-streams-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent05/05399-event-streams-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams quality gatekeeper",
+    "event streams quality gatekeeper workflow",
+    "event streams quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

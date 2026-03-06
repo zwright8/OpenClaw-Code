@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5477,
+  "name": "etl-orchestrators-threshold-alerting",
+  "title": "ETL Orchestrators Threshold Alerting",
+  "description": "Design and run etl orchestrators workflows with threshold alerting controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9827,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05477-etl-orchestrators-threshold-alerting/SKILL.md",
+    "entrypoint": "agent05/05477-etl-orchestrators-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators threshold alerting",
+    "etl orchestrators threshold alerting workflow",
+    "etl orchestrators threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

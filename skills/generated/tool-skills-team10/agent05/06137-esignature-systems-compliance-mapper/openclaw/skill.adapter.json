@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6137,
+  "name": "esignature-systems-compliance-mapper",
+  "title": "eSignature Systems Compliance Mapper",
+  "description": "Design and run esignature systems workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1852,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06137-esignature-systems-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/06137-esignature-systems-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems compliance mapper",
+    "esignature systems compliance mapper workflow",
+    "esignature systems compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

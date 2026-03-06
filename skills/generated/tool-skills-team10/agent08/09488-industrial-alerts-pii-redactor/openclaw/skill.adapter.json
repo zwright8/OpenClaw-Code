@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9488,
+  "name": "industrial-alerts-pii-redactor",
+  "title": "Industrial Alerts PII Redactor",
+  "description": "Design and run industrial alerts workflows with pii redactor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3744,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09488-industrial-alerts-pii-redactor/SKILL.md",
+    "entrypoint": "agent08/09488-industrial-alerts-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts pii redactor",
+    "industrial alerts pii redactor workflow",
+    "industrial alerts pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

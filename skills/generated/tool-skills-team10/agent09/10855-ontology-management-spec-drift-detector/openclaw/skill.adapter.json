@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10855,
+  "name": "ontology-management-spec-drift-detector",
+  "title": "Ontology Management Spec Drift Detector",
+  "description": "Design and run ontology management workflows with spec drift detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4390,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10855-ontology-management-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent09/10855-ontology-management-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management spec drift detector",
+    "ontology management spec drift detector workflow",
+    "ontology management spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

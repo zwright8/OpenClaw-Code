@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3888,
+  "name": "seo-tooling-pii-redactor",
+  "title": "SEO Tooling PII Redactor",
+  "description": "Design and run seo tooling workflows with pii redactor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 3321,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03888-seo-tooling-pii-redactor/SKILL.md",
+    "entrypoint": "agent03/03888-seo-tooling-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling pii redactor",
+    "seo tooling pii redactor workflow",
+    "seo tooling pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

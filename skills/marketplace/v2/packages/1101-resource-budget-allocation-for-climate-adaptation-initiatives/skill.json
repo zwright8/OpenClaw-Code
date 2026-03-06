@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 1101,
+    "name": "openclaw-v2-1101-resource-budget-allocation",
+    "title": "Resource Budget Allocation for climate adaptation initiatives",
+    "domain": "climate adaptation initiatives",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "resource budget allocation",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 71.65,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/1101-resource-budget-allocation-for-climate-adaptation-initiatives/SKILL.md"
+  }
+}

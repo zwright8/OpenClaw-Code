@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11903,
+  "name": "reproducibility-tracking-permission-mapper",
+  "title": "Reproducibility Tracking Permission Mapper",
+  "description": "Design and run reproducibility tracking workflows with permission mapper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3932,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11903-reproducibility-tracking-permission-mapper/SKILL.md",
+    "entrypoint": "agent10/11903-reproducibility-tracking-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reproducibility tracking permission mapper",
+    "reproducibility tracking permission mapper workflow",
+    "reproducibility tracking permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4041,
+  "name": "support-ticketing-incident-triage",
+  "title": "Support Ticketing Incident Triage",
+  "description": "Design and run support ticketing workflows with incident triage controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2073,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04041-support-ticketing-incident-triage/SKILL.md",
+    "entrypoint": "agent04/04041-support-ticketing-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing incident triage",
+    "support ticketing incident triage workflow",
+    "support ticketing incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

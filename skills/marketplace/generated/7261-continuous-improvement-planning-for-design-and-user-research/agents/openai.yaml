@@ -1,0 +1,4 @@
+interface:
+  display_name: "Continuous Improvement Planning for design and user research"
+  short_description: "Continuous improvement planning for design and user research with guardrails and measurable outcomes."
+  default_prompt: "Use Continuous Improvement Planning for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 924,
+  "name": "ghost-data-importer",
+  "title": "Ghost Data Importer",
+  "description": "Validates and imports bulk updates into Ghost.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12947,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00924-ghost-data-importer/SKILL.md",
+    "entrypoint": "agent01/00924-ghost-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ghost data importer",
+    "ghost data importer workflow",
+    "ghost data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

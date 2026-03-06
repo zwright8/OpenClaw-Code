@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10160,
+  "name": "chargeback-ops-workflow-compiler",
+  "title": "Chargeback Ops Workflow Compiler",
+  "description": "Design and run chargeback ops workflows with workflow compiler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1188,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10160-chargeback-ops-workflow-compiler/SKILL.md",
+    "entrypoint": "agent08/10160-chargeback-ops-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chargeback ops workflow compiler",
+    "chargeback ops workflow compiler workflow",
+    "chargeback ops workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2187,
+  "name": "supply-chain-control-tower-compliance-mapper",
+  "title": "Supply Chain Control Tower Compliance Mapper",
+  "description": "Design and run supply chain control tower workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 328,
+    "score": 91,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02187-supply-chain-control-tower-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02187-supply-chain-control-tower-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower compliance mapper",
+    "supply chain control tower compliance mapper workflow",
+    "supply chain control tower compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

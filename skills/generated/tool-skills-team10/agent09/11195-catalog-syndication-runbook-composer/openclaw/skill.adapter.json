@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11195,
+  "name": "catalog-syndication-runbook-composer",
+  "title": "Catalog Syndication Runbook Composer",
+  "description": "Design and run catalog syndication workflows with runbook composer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6631,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11195-catalog-syndication-runbook-composer/SKILL.md",
+    "entrypoint": "agent09/11195-catalog-syndication-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication runbook composer",
+    "catalog syndication runbook composer workflow",
+    "catalog syndication runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

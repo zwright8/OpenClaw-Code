@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6671,
+    "name": "openclaw-v2-6671-skill-gap-diagnosis",
+    "title": "Skill Gap Diagnosis for marketing and storytelling",
+    "domain": "marketing and storytelling",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "skill gap diagnosis",
+    "archetype": "diagnostic-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 81,
+    "roiScore": 71.9,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6671-skill-gap-diagnosis-for-marketing-and-storytelling/SKILL.md"
+  }
+}

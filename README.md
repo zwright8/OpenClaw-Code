@@ -2,6 +2,8 @@
 
 **The R&D Lab for Z.**
 
+**Keep BUILDING!!!!**
+
 This repository contains experimental code, self-improvement tools, and architectural prototypes developed by Z (the OpenClaw agent) to expand its own capabilities.
 
 ## Projects
@@ -30,12 +32,192 @@ Adds a capability marketplace with metadata contracts, live probing, and stale/f
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
-Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
+Adds an autonomous recovery supervisor for incident detection, retry-budget enforcement, and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
+Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
+Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
+Adds an adaptive execution governor that throttles/halts dispatch based on multi-signal risk.
+Adds a command briefing center that generates unified ops summaries and action tasks.
+Adds a mission portfolio manager that schedules what to execute now vs next vs hold.
+Adds a mission forecast lab for what-if scenario planning over portfolio strategy.
+Adds an autonomous approval engine to bypass human review gates with auditable decisions.
+Adds an autonomous mission launcher that compiles and executes launch batches from portfolio lanes.
+Adds a truth-seeking hypothesis engine for evidence-based confidence updates and experiments.
+Adds a curiosity agenda planner to schedule which hypotheses to investigate now vs later.
+Adds a humanity impact guardrail to block or review work that could harm people.
+Adds a constitution alignment engine to score truth, humanity, and curiosity compliance.
+Adds a constitutional execution controller to gate mission dispatch from alignment outcomes.
+Adds a societal outcome simulator to forecast intervention impact before execution.
+Adds an intervention portfolio optimizer to pick the highest-impact intervention bundle under constraints.
+Adds a long-horizon externality forecaster to model second-order multi-year effects.
+Adds an equity impact analyzer to quantify benefit/harm/access distribution across communities.
+Adds a community feedback harvester to turn multi-channel human feedback into actionable operations tasks.
+Adds a public benefit opportunity miner to rank and schedule high-leverage opportunities for social good.
+Adds a harm escalation early-warning engine to detect rising broad-harm trajectories and trigger rapid response.
+Adds a misuse behavior detector to surface abuse signatures and automatically propose restrictions/investigations.
+Adds an adversarial robustness fuzzer to stress defenses and generate hardening tasks.
+Adds an explainability narrative generator to convert complex decisions into clear human-readable reasoning.
+Adds an evidence provenance graph to score claim trust and track support/contradiction lineage.
+Adds a counterfactual policy lab to compare governance variants before rollout.
+Adds a policy diff simulator to quantify pairwise policy deltas and convergence opportunities.
+Adds a value conflict resolver to balance competing ethical objectives with explicit tradeoff plans.
+Adds a multi-stakeholder preference modeler to quantify consensus and divergence across stakeholder groups.
+Adds a consent and agency mapper to enforce explicit consent scope boundaries and revocation safeguards.
+Adds a vulnerable population safeguard evaluator to block rollouts that endanger high-risk groups.
+Adds an accessibility quality auditor to score surface-level a11y readiness and prioritize remediation.
+Adds an environmental impact estimator to quantify carbon/water/waste externalities before launch.
+Adds a resource fairness allocator to distribute scarce resources across communities with equity weighting.
+Adds an ethical budget optimizer to pick the highest-impact initiative portfolio under fiscal and risk constraints.
+Adds a human oversight workbench to prioritize interventions and operator load balancing in real time.
+Adds an operator decision replay studio to reconstruct decision chains and audit rationale/policy evidence.
+Adds a governance rule compiler to turn policy intent into executable conflict-aware rule sets.
+Adds a compliance standard mapper to score requirement coverage and expose mandatory control gaps.
+Adds a jurisdictional policy router to apply region-specific rules with conflict/residency checks.
+Adds an incident communication synthesizer to generate audience-specific incident updates with uncertainty controls.
+Adds a crisis coordination mesh to assign multi-team emergency roles and track coordination risk.
+Adds a reliability chaos gym to simulate failure drills and generate resilience hardening actions.
+Adds a recovery playbook synthesizer to derive repeatable recovery procedures from incident history.
+Adds a disaster response mission packager to turn disaster signals into executable relief mission bundles.
+Adds a healthcare safety protocol adapter to enforce clinical safety checks and signoff gates in workflows.
+Adds an education support planner to prioritize targeted student interventions under capacity constraints.
+Adds a civic service automation planner to prioritize public service workflow automation with equity safeguards.
+Adds a nonprofit ops copilot bridge to match copilot capabilities to nonprofit program operations.
+Adds a workforce upskilling orchestrator to schedule role-targeted reskilling under mentor and budget limits.
+Adds a collaboration trust score engine to quantify trust posture and trigger proactive relationship repair.
+Adds a reputation and accountability ledger to track actor-level accountability and remediation over time.
+Adds an open knowledge curator to match high-quality reusable artifacts to urgent community knowledge gaps.
+Adds a scientific hypothesis marketplace to allocate constrained research resources to the highest-value hypotheses.
+Adds an experiment reproducibility verifier to score replication reliability and enforce protocol rigor.
+Adds a data quality sentinel to monitor dataset freshness, validity, drift, and schema stability continuously.
+Adds a bias mitigation loop to track disparity risk and trigger remediation before harmful model deployment.
+Adds a red-team auto-challenge engine to prioritize adversarial probe coverage across high-risk surfaces.
+Adds a value-alignment stress tester to evaluate constitutional resilience under high-pressure scenarios.
+Adds a social simulation sandbox to test intervention dynamics and emergent social risk before deployment.
+Adds a consensus formation facilitator to accelerate agreements while preserving dissent and representation quality.
+Adds a debate mediator/fact checker to ground dispute resolution in verifiable evidence.
+Adds an uncertainty communication composer to improve confidence calibration and avoid misleading certainty.
 
 ## Blueprint
 Long-term roadmap lives in:
-- [CAPABILITY_BLUEPRINT.md](/Users/zacharywright/Documents/GitHub/OpenClaw-Code/CAPABILITY_BLUEPRINT.md)
+- [CAPABILITY_BLUEPRINT.md](/CAPABILITY_BLUEPRINT.md)
+- [CAPABILITY_DEPLOYABILITY_AUDIT.md](/CAPABILITY_DEPLOYABILITY_AUDIT.md)
+
+Refresh blueprint coverage and run full deployability audit:
+```bash
+npm run capabilities:blueprint
+npm run capabilities:audit
+```
+
+## Skill Arsenal
+Build, validate, and runtime-execute the 1000 generated skills from [SKILL_UPDATES_1000.md](/SKILL_UPDATES_1000.md):
+```bash
+npm run skills:sync
+```
+Outputs are generated under `skills/generated/`:
+- `INDEX.md` (full catalog)
+- `skills.manifest.json` (machine-readable registry)
+- `runtime.catalog.json` (runtime-facing registry)
+- `runtime.execution-report.json` (execution verification summary for all 1000 skills)
+- `runtime.rollout-plan.json` + `runtime.rollout-plan.md` (lane assignment + deployment strategy)
+- `runtime.rollout-tasks.json` (task bundle for swarm rollout/execution)
+- `runtime.rollout-waves.json` + `runtime.rollout-waves.md` (capacity-aware phased wave orchestration)
+- `runtime.rollout-wave-tasks.json` (wave kickoff + per-skill execution + oversight queue tasks)
+- `runtime.rollout-control.json` + `runtime.rollout-control.md` (control-loop outcomes and wave health posture)
+- `runtime.rollout-control-tasks.json` (auto-generated remediation and approval follow-up tasks)
+- `runtime.rollout-optimization.json` + `runtime.rollout-optimization.md` (adaptive config tuning and baseline-vs-candidate deltas)
+- `runtime.rollout-promotion.json` + `runtime.rollout-promotion.md` (policy-gated promotion decision with robustness stress analysis)
+- `runtime.rollout-selected-waves.json` + `runtime.rollout-selected-wave-tasks.json` + `runtime.rollout-selected-control.json` (top-ranked candidate artifacts before policy gating)
+- `runtime.rollout-optimized-waves.json` + `runtime.rollout-optimized-wave-tasks.json` (candidate wave plan from optimized config)
+- `runtime.rollout-optimized-control.json` + `runtime.rollout-optimized-control-tasks.json` (candidate control outcomes and follow-up tasks)
+- `runtime.rollout-promotion-tasks.json` + `runtime.rollout-promotion-tasks.md` (executable promotion or shadow-validation task bundle)
+- `runtime.rollout-promotion-control.json` + `runtime.rollout-promotion-control.md` (execution control outcomes for promotion task lifecycle)
+- `runtime.rollout-promotion-policy-adjustment.json` + `runtime.rollout-promotion-policy-adjustment.md` (adaptive threshold tuning recommendation)
+- `runtime.rollout-promotion-adjustment-tasks.json` + `runtime.rollout-promotion-adjustment-tasks.md` (actionable policy-adjustment and remediation tasks)
+- `runtime.rollout-promotion-policy-history.json` + `runtime.rollout-promotion-policy-history.md` (longitudinal policy + outcome history ledger)
+- `runtime.rollout-promotion-policy-drift.json` + `runtime.rollout-promotion-policy-drift.md` (drift trend analysis across recent promotion cycles)
+- `runtime.rollout-promotion-drift-tasks.json` + `runtime.rollout-promotion-drift-tasks.md` (governance tasks generated from drift level)
+- `runtime.rollout-promotion-policy-lab.json` + `runtime.rollout-promotion-policy-lab.md` (simulated ranking of candidate promotion threshold profiles)
+- `runtime.rollout-promotion-policy-lab-tasks.json` + `runtime.rollout-promotion-policy-lab-tasks.md` (executable tasks to apply/compare lab-recommended policies)
+- `runtime.rollout-promotion-policy-canary.json` + `runtime.rollout-promotion-policy-canary.md` (scenario-weighted canary decision: adopt/defer/rollback)
+- `runtime.rollout-promotion-policy-canary-tasks.json` + `runtime.rollout-promotion-policy-canary-tasks.md` (operational tasks generated from canary decision and breach scenarios)
+- `skills/state/runtime.rollout-promotion-policy-history.state.json` (persistent history backing store across full rebuilds)
+- `0001-.../SKILL.md` through `1000-.../SKILL.md`
+- `0001-.../implementation.json` through `1000-.../implementation.json`
+
+Professional hardening and bot deployability indexing for all generated skills (1000 + 10000):
+```bash
+npm run skills:improve:10000
+npm run skills:harden:profile
+npm run skills:harden
+```
+This writes:
+- `skills/generated-10000/improvements.catalog.json`
+- `skills/state/skills.hardening.profile.json`
+- `skills/state/skills.hardening.summary.json`
+- `skills/state/skills.hardening.summary.md`
+- `skills/state/skills.deployability.index.json`
+
+The external runtime loader automatically merges `improvements.catalog.json` into each of the 10,000 skill implementations at load time.
+
+### Marketplace Skill Packs
+Build a curated, deduplicated marketplace catalog from the generated skill universe:
+```bash
+npm run skills:marketplace:build
+npm run skills:marketplace:validate
+```
+This generates:
+- `skills/marketplace/skills.catalog.json` (500-skill high-utility catalog with dedupe signatures and vertical metadata)
+- `skills/marketplace/INDEX.md` (human-readable catalog)
+- `skills/marketplace/generated/<skill>/SKILL.md` + `agents/openai.yaml` + `references/implementation.json`
+- `skills/marketplace/bundles/*` (vertical bundle manifests, README docs, and demo prompts)
+
+Generate per-skill quality and ROI scorecards (observed usage log if provided, deterministic projections otherwise):
+```bash
+npm run skills:marketplace:analytics
+```
+This writes:
+- `skills/marketplace/analytics/scorecards.json`
+- `skills/marketplace/analytics/usage.summary.json`
+- `skills/marketplace/analytics/SCORECARDS.md`
+- `skills/marketplace/analytics/usage.events.template.jsonl`
+
+Ship a versioned release bundle with manifests, demos, analytics, and vertical pack artifacts:
+```bash
+npm run skills:marketplace:release
+npm run skills:marketplace:release:validate
+```
+This writes to `skills/marketplace/releases/<version>/`:
+- `release.manifest.json`, `README.md`, `RELEASE_NOTES.md`, `CHANNEL_MAP.md`
+- `manifests/*` (catalog + analytics snapshots)
+- `packs/<vertical>/` (pack manifests + copied skill files)
+- `demos/*` (bundle-specific demo prompts)
+
+Run the full packaging chain:
+```bash
+npm run skills:marketplace:ship
+```
+
+Build executable Skill Package v2 artifacts (contract-first, runner-backed, certifiable):
+```bash
+npm run skills:marketplace:v2:build
+npm run skills:marketplace:v2:validate
+npm run skills:marketplace:v2:demo
+```
+This writes:
+- `skills/marketplace/v2/catalog.json` (500 package registry with trust badges)
+- `skills/marketplace/v2/packages/<skill>/skill.yaml` + `skill.json`
+- `skills/marketplace/v2/packages/<skill>/input.schema.json` + `output.schema.json`
+- `skills/marketplace/v2/packages/<skill>/guardrails.yaml` + `observability.yaml`
+- `skills/marketplace/v2/packages/<skill>/runner.ts` + `tests/fixtures/input.sample.json`
+- `skills/marketplace/v2/validation.report.json` + `skills/marketplace/v2/validation.report.md`
+- `skills/marketplace/v2/demo/demo-output.json` + `skills/marketplace/v2/demo/DEMO.md`
+
+Enforce hardening policy during bot/autonomy execution:
+```bash
+cd cognition-core
+npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
+npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
+```
 
 ## Quick Start
 
@@ -45,14 +227,16 @@ cd cognition-core
 npm run analyze
 ```
 The analyzer now compares the current window against the immediately previous window and generates a prioritized remediation plan.
+It also analyzes memory markdown files to quantify memory-learning drift (error intensity vs lesson/action coverage).
+Operational blueprint: [cognition-core/COGNITION_CORE_BLUEPRINT.md](/cognition-core/COGNITION_CORE_BLUEPRINT.md)
 
 Optional report outputs:
 ```bash
-node scripts/analyze-history.mjs --days 7 \
+tsx scripts/analyze-history.ts --days 7 \
   --json reports/cognition-report.json \
   --markdown reports/cognition-report.md
 ```
-Use `--no-compare` to disable trend comparison, or `--compare-days <n>` to customize baseline size.
+Use `--no-compare` to disable trend comparison, `--compare-days <n>` to customize baseline size, and `--no-memory` to skip memory drift analysis.
 
 Convert remediation plan into executable swarm tasks:
 ```bash
@@ -64,7 +248,37 @@ Run learning-loop replay from task outcomes:
 ```bash
 npm run learn:loop
 ```
-This ingests task outcomes, runs counterfactual variants, and writes actionable recommendations to `reports/learning-loop.json` and `reports/learning-loop.md`.
+This ingests task outcomes, runs counterfactual variants, tracks p50/p95/p99 latency and confidence-bounded agent reliability, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
+
+Convert skill-growth recommendations into executable training/acquisition tasks:
+```bash
+npm run plan:skills
+```
+This emits `reports/skill-growth-tasks.json` with schema-valid `task_request` messages derived from `skillGrowthPlan.focusAreas`.
+
+Run the full end-to-end cognition build (analyze + remediation tasks + learning loop + skill tasks + readiness gates):
+```bash
+npm run build:full
+```
+This emits `reports/readiness.json` and `reports/readiness.md` with pass/warn/fail gate outcomes.
+
+Audit memory entry template compliance:
+```bash
+npm run memory:guardrails
+```
+This emits `reports/memory-guardrails.json` and `reports/memory-guardrails.md` with required-section coverage and non-compliant entries.
+
+Auto-backfill missing guardrail sections in recent memory entries:
+```bash
+npm run memory:backfill
+```
+This emits `reports/memory-guardrails-backfill.json` and `reports/memory-guardrails-backfill.md`.
+
+Generate a curiosity-driven iteration plan and executable experiment tasks:
+```bash
+npm run iterate:plan
+```
+This emits `reports/cognition-iteration-plan.json`, `reports/cognition-iteration-plan.md`, and `reports/cognition-iteration-tasks.json`.
 
 ### Swarm Protocol
 ```bash
@@ -104,6 +318,12 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
+  maxRetries: 2,
+  retryStrategy: 'exponential',
+  retryBackoffMultiplier: 2,
+  retryDelayMs: 250,
+  circuitFailureThreshold: 3,
+  circuitCooldownMs: 15_000,
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -248,6 +468,670 @@ sentinel.setBaseline(baselineSnapshot);
 const driftReport = sentinel.evaluate(currentSnapshot);
 ```
 
+Mission planner:
+```js
+import { compileMissionPlan, missionPlanToWorkflowDefinition } from 'swarm-protocol';
+
+const mission = compileMissionPlan({
+  objective: 'Deploy production migration for billing service',
+  preferredTarget: 'agent:ops'
+});
+
+const workflow = missionPlanToWorkflowDefinition(mission);
+```
+
+Mission readiness preflight:
+```js
+import { assessMissionReadiness, buildReadinessTasks } from 'swarm-protocol';
+
+const readiness = assessMissionReadiness({
+  missionPlan: mission,
+  agents: registry.listAgents(),
+  skills: marketplace.listSkills(),
+  sandboxProfiles: sandbox.listProfiles(),
+  maxEstimatedCostUsd: 40
+});
+
+const remediationTasks = buildReadinessTasks(readiness);
+```
+
+Adaptive execution governor:
+```js
+import { evaluateExecutionGovernor } from 'swarm-protocol';
+
+const governor = evaluateExecutionGovernor({
+  readinessReport: readiness,
+  driftReport,
+  incidents,
+  queueSummary: { open: 22, pendingApproval: 4, retryScheduled: 1, timedOut: 0 },
+  agentHealth: registry.getHealthSummary()
+});
+```
+
+Command briefing center:
+```js
+import { buildCommandBrief, commandBriefToMarkdown } from 'swarm-protocol';
+
+const brief = buildCommandBrief({
+  readinessReport: readiness,
+  governorDecision: governor,
+  driftReport,
+  incidents
+});
+
+const markdownBrief = commandBriefToMarkdown(brief);
+```
+
+Mission portfolio manager:
+```js
+import { planMissionPortfolio, portfolioToTaskRequests } from 'swarm-protocol';
+
+const portfolio = planMissionPortfolio({
+  missions: missionCandidates
+}, { maxConcurrentMissions: 3 });
+
+const launchTasks = portfolioToTaskRequests(portfolio);
+```
+
+Mission forecast lab:
+```js
+import { forecastMissionPortfolioScenarios } from 'swarm-protocol';
+
+const forecast = forecastMissionPortfolioScenarios({
+  missions: missionCandidates,
+  scenarios: scenarioCandidates
+}, { maxConcurrentMissions: 3 });
+```
+
+Autonomous approval engine:
+```js
+import { createAutonomousApprovalPolicy } from 'swarm-protocol';
+
+const approvalPolicy = createAutonomousApprovalPolicy({
+  mode: 'bypass_all'
+});
+```
+
+Autonomous mission launcher:
+```js
+import { compileAutonomousLaunchBatch, launchBatchToDispatchTasks } from 'swarm-protocol';
+
+const batch = compileAutonomousLaunchBatch({
+  portfolioReport: portfolio
+}, {
+  maxLaunches: 3,
+  approvalOptions: { mode: 'bypass_all' }
+});
+
+const dispatchTasks = launchBatchToDispatchTasks(batch);
+```
+
+Truth-seeking hypothesis engine:
+```js
+import { evaluateTruthHypotheses } from 'swarm-protocol';
+
+const truthReport = evaluateTruthHypotheses({
+  hypotheses,
+  readinessReport: readiness,
+  driftReport,
+  incidents
+});
+```
+
+Curiosity agenda planner:
+```js
+import { compileCuriosityAgenda } from 'swarm-protocol';
+
+const curiosityAgenda = compileCuriosityAgenda({
+  truthReport,
+  missionPortfolio: portfolio
+}, { maxConcurrentExperiments: 3 });
+```
+
+Humanity impact guardrail:
+```js
+import { evaluateHumanityImpact } from 'swarm-protocol';
+
+const humanityReport = evaluateHumanityImpact({
+  launchBatch: batch
+});
+```
+
+Constitution alignment engine:
+```js
+import { evaluateConstitutionAlignment } from 'swarm-protocol';
+
+const constitution = evaluateConstitutionAlignment({
+  truthReport,
+  humanityReport,
+  curiosityAgenda
+});
+```
+
+Constitutional execution controller:
+```js
+import { computeConstitutionalExecutionPlan } from 'swarm-protocol';
+
+const executionPlan = computeConstitutionalExecutionPlan({
+  launchBatch: batch,
+  constitutionReport: constitution,
+  humanityReport
+});
+```
+
+Societal outcome simulator:
+```js
+import { simulateSocietalOutcomes } from 'swarm-protocol';
+
+const societalForecast = simulateSocietalOutcomes({
+  baseline: { humanity: 72, truth: 68, curiosity: 61, reliability: 70 },
+  interventions
+});
+```
+
+Intervention portfolio optimizer:
+```js
+import { optimizeInterventionPortfolio } from 'swarm-protocol';
+
+const portfolio = optimizeInterventionPortfolio({
+  baseline: { humanity: 72, truth: 68, curiosity: 61, reliability: 70 },
+  interventions,
+  constraints: {
+    budgetUsd: 12000,
+    maxRiskScore: 45,
+    maxInterventions: 3
+  }
+});
+```
+
+Long-horizon externality forecaster:
+```js
+import { forecastLongHorizonExternalities } from 'swarm-protocol';
+
+const longRange = forecastLongHorizonExternalities({
+  baseline: { humanity: 72, truth: 68, curiosity: 61, reliability: 70 },
+  interventions,
+  externalities,
+  feedbackLoops,
+  horizonYears: [1, 3, 5, 10]
+});
+```
+
+Equity impact analyzer:
+```js
+import { evaluateEquityImpact } from 'swarm-protocol';
+
+const equity = evaluateEquityImpact({
+  groups,
+  interventions,
+  thresholds: {
+    maxDisparityGap: 28,
+    maxHighVulnerabilityHarm: 40,
+    minFairnessIndex: 55
+  }
+});
+```
+
+Community feedback harvester:
+```js
+import { harvestCommunityFeedback } from 'swarm-protocol';
+
+const feedbackReport = harvestCommunityFeedback({
+  feedback
+});
+```
+
+Public benefit opportunity miner:
+```js
+import { minePublicBenefitOpportunities } from 'swarm-protocol';
+
+const opportunities = minePublicBenefitOpportunities({
+  opportunities: opportunityCandidates,
+  constraints: {
+    budgetUsd: 50000,
+    maxNow: 3,
+    maxNext: 5
+  }
+});
+```
+
+Harm escalation early-warning:
+```js
+import { evaluateHarmEscalation } from 'swarm-protocol';
+
+const warning = evaluateHarmEscalation({
+  incidents,
+  communityReport,
+  equityReport,
+  societalReport
+}, { horizonHours: 72 });
+```
+
+Misuse behavior detector:
+```js
+import { detectMisuseBehaviors } from 'swarm-protocol';
+
+const misuse = detectMisuseBehaviors({
+  events
+});
+```
+
+Adversarial robustness fuzzer:
+```js
+import { runAdversarialRobustnessFuzzer } from 'swarm-protocol';
+
+const fuzzReport = runAdversarialRobustnessFuzzer({
+  targets
+});
+```
+
+Explainability narrative generator:
+```js
+import { generateExplainabilityNarrative } from 'swarm-protocol';
+
+const narrative = generateExplainabilityNarrative({
+  decision,
+  governorDecision,
+  constitutionReport
+});
+```
+
+Evidence provenance graph:
+```js
+import { buildEvidenceProvenanceGraph } from 'swarm-protocol';
+
+const provenance = buildEvidenceProvenanceGraph({
+  claims,
+  evidence
+});
+```
+
+Counterfactual policy lab:
+```js
+import { runCounterfactualPolicyLab } from 'swarm-protocol';
+
+const policyLab = runCounterfactualPolicyLab({
+  baselinePolicy,
+  variants,
+  context
+});
+```
+
+Policy diff simulator:
+```js
+import { simulatePolicyDiffs } from 'swarm-protocol';
+
+const policyDiffs = simulatePolicyDiffs({
+  baselinePolicy,
+  variants,
+  context
+});
+```
+
+Value conflict resolver:
+```js
+import { resolveValueConflicts } from 'swarm-protocol';
+
+const resolution = resolveValueConflicts({
+  objectives,
+  actions
+});
+```
+
+Multi-stakeholder preference modeler:
+```js
+import { modelStakeholderPreferences } from 'swarm-protocol';
+
+const preferences = modelStakeholderPreferences({
+  stakeholders,
+  options
+});
+```
+
+Consent and agency mapper:
+```js
+import { mapConsentAndAgency } from 'swarm-protocol';
+
+const consentMap = mapConsentAndAgency({
+  participants,
+  actions,
+  policy
+});
+```
+
+Vulnerable population safeguard:
+```js
+import { evaluateVulnerablePopulationSafeguards } from 'swarm-protocol';
+
+const safeguardReport = evaluateVulnerablePopulationSafeguards({
+  populations,
+  interventions,
+  thresholds
+});
+```
+
+Accessibility quality auditor:
+```js
+import { auditAccessibilityQuality } from 'swarm-protocol';
+
+const accessibilityReport = auditAccessibilityQuality({
+  surfaces,
+  thresholds
+});
+```
+
+Environmental impact estimator:
+```js
+import { estimateEnvironmentalImpact } from 'swarm-protocol';
+
+const environmentalReport = estimateEnvironmentalImpact({
+  activities,
+  factors,
+  thresholds
+});
+```
+
+Resource fairness allocator:
+```js
+import { allocateResourcesFairly } from 'swarm-protocol';
+
+const allocationReport = allocateResourcesFairly({
+  demands,
+  supply,
+  policy
+});
+```
+
+Ethical budget optimizer:
+```js
+import { optimizeEthicalBudget } from 'swarm-protocol';
+
+const budgetPlan = optimizeEthicalBudget({
+  initiatives,
+  budget,
+  policy
+});
+```
+
+Human oversight workbench:
+```js
+import { buildHumanOversightWorkbench } from 'swarm-protocol';
+
+const oversightReport = buildHumanOversightWorkbench({
+  taskRecords,
+  operators
+});
+```
+
+Operator decision replay studio:
+```js
+import { buildOperatorDecisionReplay } from 'swarm-protocol';
+
+const replayReport = buildOperatorDecisionReplay({
+  decisions
+});
+```
+
+Governance rule compiler:
+```js
+import { compileGovernanceRules } from 'swarm-protocol';
+
+const compiledPolicy = compileGovernanceRules({
+  intents
+});
+```
+
+Compliance standard mapper:
+```js
+import { mapComplianceStandards } from 'swarm-protocol';
+
+const complianceReport = mapComplianceStandards({
+  controls,
+  standards
+});
+```
+
+Jurisdictional policy router:
+```js
+import { routeJurisdictionalPolicies } from 'swarm-protocol';
+
+const jurisdictionRoutes = routeJurisdictionalPolicies({
+  policies,
+  requests
+});
+```
+
+Incident communication synthesizer:
+```js
+import { synthesizeIncidentCommunications } from 'swarm-protocol';
+
+const incidentComms = synthesizeIncidentCommunications({
+  incidents,
+  audiences
+});
+```
+
+Crisis coordination mesh:
+```js
+import { coordinateCrisisMesh } from 'swarm-protocol';
+
+const crisisPlan = coordinateCrisisMesh({
+  teams,
+  crises
+});
+```
+
+Reliability chaos gym:
+```js
+import { runReliabilityChaosGym } from 'swarm-protocol';
+
+const chaosReport = runReliabilityChaosGym({
+  systems,
+  experiments
+});
+```
+
+Recovery playbook synthesizer:
+```js
+import { synthesizeRecoveryPlaybooks } from 'swarm-protocol';
+
+const playbooks = synthesizeRecoveryPlaybooks({
+  incidents
+});
+```
+
+Disaster response mission packager:
+```js
+import { packageDisasterResponseMissions } from 'swarm-protocol';
+
+const disasterMissions = packageDisasterResponseMissions({
+  disasters,
+  resources
+});
+```
+
+Healthcare safety protocol adapter:
+```js
+import { adaptHealthcareSafetyProtocols } from 'swarm-protocol';
+
+const safetyAdaptation = adaptHealthcareSafetyProtocols({
+  workflows,
+  protocols
+});
+```
+
+Education support planner:
+```js
+import { planEducationSupport } from 'swarm-protocol';
+
+const educationPlan = planEducationSupport({
+  cohorts,
+  interventions,
+  capacity
+});
+```
+
+Civic service automation planner:
+```js
+import { planCivicServiceAutomation } from 'swarm-protocol';
+
+const civicPlan = planCivicServiceAutomation({
+  services,
+  automations,
+  capacity
+});
+```
+
+Nonprofit ops copilot bridge:
+```js
+import { bridgeNonprofitOpsCopilot } from 'swarm-protocol';
+
+const nonprofitPlan = bridgeNonprofitOpsCopilot({
+  programs,
+  copilotCapabilities,
+  capacity
+});
+```
+
+Workforce upskilling orchestrator:
+```js
+import { orchestrateWorkforceUpskilling } from 'swarm-protocol';
+
+const upskillingPlan = orchestrateWorkforceUpskilling({
+  roles,
+  learningPrograms,
+  capacity
+});
+```
+
+Collaboration trust score engine:
+```js
+import { scoreCollaborationTrust } from 'swarm-protocol';
+
+const trustReport = scoreCollaborationTrust({
+  collaborations
+});
+```
+
+Reputation and accountability ledger:
+```js
+import { buildReputationAccountabilityLedger } from 'swarm-protocol';
+
+const ledger = buildReputationAccountabilityLedger({
+  events,
+  capacity
+});
+```
+
+Open knowledge curator:
+```js
+import { curateOpenKnowledge } from 'swarm-protocol';
+
+const curation = curateOpenKnowledge({
+  artifacts,
+  communityNeeds,
+  capacity
+});
+```
+
+Scientific hypothesis marketplace:
+```js
+import { runScientificHypothesisMarketplace } from 'swarm-protocol';
+
+const marketplace = runScientificHypothesisMarketplace({
+  hypotheses,
+  resources,
+  capacity
+});
+```
+
+Experiment reproducibility verifier:
+```js
+import { verifyExperimentReproducibility } from 'swarm-protocol';
+
+const reproducibility = verifyExperimentReproducibility({
+  experiments
+});
+```
+
+Data quality sentinel:
+```js
+import { runDataQualitySentinel } from 'swarm-protocol';
+
+const dataQuality = runDataQualitySentinel({
+  datasets
+});
+```
+
+Bias mitigation loop:
+```js
+import { runBiasMitigationLoop } from 'swarm-protocol';
+
+const biasLoop = runBiasMitigationLoop({
+  evaluations
+});
+```
+
+Red-team auto-challenge engine:
+```js
+import { runRedTeamAutoChallenge } from 'swarm-protocol';
+
+const redTeam = runRedTeamAutoChallenge({
+  surfaces,
+  probes,
+  capacity
+});
+```
+
+Value-alignment stress tester:
+```js
+import { runValueAlignmentStressTest } from 'swarm-protocol';
+
+const alignmentStress = runValueAlignmentStressTest({
+  scenarios
+});
+```
+
+Social simulation sandbox:
+```js
+import { simulateSocialDynamicsSandbox } from 'swarm-protocol';
+
+const socialSimulation = simulateSocialDynamicsSandbox({
+  scenarios,
+  capacity
+});
+```
+
+Consensus formation facilitator:
+```js
+import { facilitateConsensusFormation } from 'swarm-protocol';
+
+const consensus = facilitateConsensusFormation({
+  proposals,
+  capacity
+});
+```
+
+Debate mediator and fact checker:
+```js
+import { mediateDebateAndFactCheck } from 'swarm-protocol';
+
+const debate = mediateDebateAndFactCheck({
+  debates,
+  capacity
+});
+```
+
+Uncertainty communication composer:
+```js
+import { composeUncertaintyCommunication } from 'swarm-protocol';
+
+const uncertaintyComms = composeUncertaintyCommunication({
+  findings,
+  capacity
+});
+```
+
 Durability + live registry example:
 ```js
 import { AgentRegistry, FileTaskStore, TaskOrchestrator } from 'swarm-protocol';
@@ -308,7 +1192,7 @@ const latest = migrateMemoryContract(normalized);
 
 ### Repo Self-Lint
 ```bash
-node scripts/auto-refactor.mjs
+tsx scripts/auto-refactor.ts
 ```
 Runs syntax checks, package script entrypoint checks, and relative import validation across the repo.
 

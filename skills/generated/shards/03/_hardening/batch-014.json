@@ -1,0 +1,325 @@
+{
+  "shard": "03",
+  "batch_index": 14,
+  "range": {
+    "start": "u3650-multi-agent-negotiation-for-entrepreneurship-operations",
+    "end": "u3699-multi-agent-negotiation-for-disaster-response-networks",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u3650-multi-agent-negotiation-for-entrepreneurship-operations",
+      "path": "generated/shards/03/3650-multi-agent-negotiation-for-entrepreneurship-operations",
+      "skill_md_sha256": "fd19f19eb8e50ff1680dc8a09f689ad99f4b46edb6adba7fa158c880833507f4",
+      "summary_sha256": "719acca7e1c16b117fd742e1d2293343eb1b5b0c6770083c1d07e5abf5ffc6e3"
+    },
+    {
+      "skill_id": "u3651-multi-agent-negotiation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3651-multi-agent-negotiation-for-software-engineering-delivery",
+      "skill_md_sha256": "9ae10009982d4b50258cae1cd34d153266f5962647a92b5e8f7f689df273a2b7",
+      "summary_sha256": "dfb2b0e5cbce22be2d9aef0bb466aa5012fd700df9337587b8377ac48ba06741"
+    },
+    {
+      "skill_id": "u3652-multi-agent-negotiation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3652-multi-agent-negotiation-for-software-engineering-delivery",
+      "skill_md_sha256": "b56bae2abeb8c1d831a3b57ec56b559e8cd1dc8c713ba17b94f7a471afecd5e8",
+      "summary_sha256": "2174d120c6b6cf97d869c5c6d041402b4a03ba4b1d02cc1a9733ca2907c643e9"
+    },
+    {
+      "skill_id": "u3653-multi-agent-negotiation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3653-multi-agent-negotiation-for-software-engineering-delivery",
+      "skill_md_sha256": "bd59e19d055585ccf9b971e7d680d9e9500f369fe2c4c0455444638d51c0779c",
+      "summary_sha256": "c5cd26745ab6c92d2c2499663b11dedce46b6822bb0af6a52777fc7ec41c929c"
+    },
+    {
+      "skill_id": "u3654-multi-agent-negotiation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3654-multi-agent-negotiation-for-software-engineering-delivery",
+      "skill_md_sha256": "ce009ae511a86856ddd2309d92fa62b829118088e77d229ba49e1e48c5d3d700",
+      "summary_sha256": "9806c3e605a250f01457882f8ea352a314a661e3d96871f380d0b60423ae159e"
+    },
+    {
+      "skill_id": "u3655-multi-agent-negotiation-for-software-engineering-delivery",
+      "path": "generated/shards/03/3655-multi-agent-negotiation-for-software-engineering-delivery",
+      "skill_md_sha256": "82a23207610a40f5d7c94d9e4b6cbeb00d2780125d335cebd486ff8a5b394fb8",
+      "summary_sha256": "578b5a644889daa3afab47e204659679a9244a2eb10fc3e8dff87696de0fa04a"
+    },
+    {
+      "skill_id": "u3656-multi-agent-negotiation-for-product-management-execution",
+      "path": "generated/shards/03/3656-multi-agent-negotiation-for-product-management-execution",
+      "skill_md_sha256": "25122fda156081ed714e2d52331e5ce8505173e7ba9ec522c1bc3cba54e3b059",
+      "summary_sha256": "7b75688feaf093c47f88e3bbff3f47e997eac3a5c6a4896eb08a50cadbcac798"
+    },
+    {
+      "skill_id": "u3657-multi-agent-negotiation-for-product-management-execution",
+      "path": "generated/shards/03/3657-multi-agent-negotiation-for-product-management-execution",
+      "skill_md_sha256": "cd2c43fcab11d05b368822c14e9db67effcf0c91a3ef087eba31edaa4b691dfc",
+      "summary_sha256": "423f0c20a1200feadd18467b7c846a53a042f304f61f5a4374e3b8dc87c65569"
+    },
+    {
+      "skill_id": "u3658-multi-agent-negotiation-for-product-management-execution",
+      "path": "generated/shards/03/3658-multi-agent-negotiation-for-product-management-execution",
+      "skill_md_sha256": "213c4af035894576d7a91642f83d6c6425c72c96f6a7b54cf2153790407ed631",
+      "summary_sha256": "45fda4b2c03754104b3f15a1b86c9b890408b90089e4fe030ffdbb4e5b05e3c4"
+    },
+    {
+      "skill_id": "u3659-multi-agent-negotiation-for-product-management-execution",
+      "path": "generated/shards/03/3659-multi-agent-negotiation-for-product-management-execution",
+      "skill_md_sha256": "56e25b58ab12e09b17b8c53967d80e327187e5e8f0f190d686b52aba268a1334",
+      "summary_sha256": "56ff44033d3b26f6c97c66d3eff405a940cd67a516625f9293148ca75569cad2"
+    },
+    {
+      "skill_id": "u3660-multi-agent-negotiation-for-product-management-execution",
+      "path": "generated/shards/03/3660-multi-agent-negotiation-for-product-management-execution",
+      "skill_md_sha256": "a5dcc64e8fdedb84ef0a1cb3bb87e01ef9142d4d2426287180d003ae78d10e22",
+      "summary_sha256": "f2f72064f6ff90383d5af4a0f8c8f6dc391c6e0ea99a9c13437ee9c93dc8df72"
+    },
+    {
+      "skill_id": "u3661-multi-agent-negotiation-for-design-and-user-research",
+      "path": "generated/shards/03/3661-multi-agent-negotiation-for-design-and-user-research",
+      "skill_md_sha256": "669a8addafaf25fb988fdea2b7649c464bc11f39163a247bde8e8df7346b1dca",
+      "summary_sha256": "18b9edcf01c613a47dcc9a85990a99c29cd7d36c331baf72dc3324f1304cfce7"
+    },
+    {
+      "skill_id": "u3662-multi-agent-negotiation-for-design-and-user-research",
+      "path": "generated/shards/03/3662-multi-agent-negotiation-for-design-and-user-research",
+      "skill_md_sha256": "2f702b3798c9f2ab90a144835d241d14eda1eaa498cbfa3eb21f3e9a6f61f7ee",
+      "summary_sha256": "6f2d8c58a61acc68c3886cc4dbd74ce86d26bc71eca802b09a0a8854a1e5a0f9"
+    },
+    {
+      "skill_id": "u3663-multi-agent-negotiation-for-design-and-user-research",
+      "path": "generated/shards/03/3663-multi-agent-negotiation-for-design-and-user-research",
+      "skill_md_sha256": "84db5d4f936877cd6e268fe252f3e01eeefd1ac539dc058d8d1bad7c19fe009e",
+      "summary_sha256": "6669d79181e024cb604ade6e9f2b50270032186be01cfb604e72d83fd3375fb7"
+    },
+    {
+      "skill_id": "u3664-multi-agent-negotiation-for-design-and-user-research",
+      "path": "generated/shards/03/3664-multi-agent-negotiation-for-design-and-user-research",
+      "skill_md_sha256": "8484b71ae79ffac7bb70e85a1d164c4038ed52cda7acbce42c2d5735ae50593d",
+      "summary_sha256": "25f6e3c587366873d75418f2a15320b1f15df9a6dafc2cf5c40c96443c44dd3c"
+    },
+    {
+      "skill_id": "u3665-multi-agent-negotiation-for-design-and-user-research",
+      "path": "generated/shards/03/3665-multi-agent-negotiation-for-design-and-user-research",
+      "skill_md_sha256": "ce29e3f52dd96be7314e98f02127ec088b00b1179d808c17c8db3a50522a1389",
+      "summary_sha256": "83de3bed441db9a42387298878d77d50df3d6b34211856363c40493f0f7de0ac"
+    },
+    {
+      "skill_id": "u3666-multi-agent-negotiation-for-sales-and-client-success",
+      "path": "generated/shards/03/3666-multi-agent-negotiation-for-sales-and-client-success",
+      "skill_md_sha256": "610966b27bea5b7e035dac529c4fa28927d5d90cbef0fe57d9747648bc622240",
+      "summary_sha256": "337049e54dcedd4ce50b3af9c0a2dde2909f43465dace97465a332a85a98fbd2"
+    },
+    {
+      "skill_id": "u3667-multi-agent-negotiation-for-sales-and-client-success",
+      "path": "generated/shards/03/3667-multi-agent-negotiation-for-sales-and-client-success",
+      "skill_md_sha256": "3ace164bcbaf409c8e30055d4d085674c91b747ac6d3ba41df0dd955bd7f9371",
+      "summary_sha256": "d696f3ddb3e934692858ac93eb0a8bc59c6273f8f69ede111088d17ff60c760a"
+    },
+    {
+      "skill_id": "u3668-multi-agent-negotiation-for-sales-and-client-success",
+      "path": "generated/shards/03/3668-multi-agent-negotiation-for-sales-and-client-success",
+      "skill_md_sha256": "cb4dc72961efd55406e0f02cfa6407736191a2837edd0806ea8699cde64fd5c9",
+      "summary_sha256": "006204507aa2fdac2e1fadd2f8c98b34b8dfb5f1825498c90897420b1afe3235"
+    },
+    {
+      "skill_id": "u3669-multi-agent-negotiation-for-sales-and-client-success",
+      "path": "generated/shards/03/3669-multi-agent-negotiation-for-sales-and-client-success",
+      "skill_md_sha256": "7f24bc151df7c13244b63fd2b0cf7bf7d781436b512f690159c6b57a4c7fb0c7",
+      "summary_sha256": "f19529a936c5a6314324d1f3151429b52b14c736b1593912861a5ae85f88013b"
+    },
+    {
+      "skill_id": "u3670-multi-agent-negotiation-for-sales-and-client-success",
+      "path": "generated/shards/03/3670-multi-agent-negotiation-for-sales-and-client-success",
+      "skill_md_sha256": "23fc305eee4a2220059caa3a90d195adf28024376d6b4eeaae9031b11c678418",
+      "summary_sha256": "114fcfdd7a560a0ece50315b1a1c9e8777a6a8ac2a4b797c929454b208a6d7ae"
+    },
+    {
+      "skill_id": "u3671-multi-agent-negotiation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3671-multi-agent-negotiation-for-marketing-and-storytelling",
+      "skill_md_sha256": "ea74de684604a32af93e16c6fae0ea870970caa2ee21694879cf04601e1ff78e",
+      "summary_sha256": "386cdcf523baeb7de768c267da0cdaa3dd1f745817d5d62a8b27bf083ab7b1ce"
+    },
+    {
+      "skill_id": "u3672-multi-agent-negotiation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3672-multi-agent-negotiation-for-marketing-and-storytelling",
+      "skill_md_sha256": "e8a2ae92cb169a6937a36c060841729e71ac0a54b3118414e84901537c382287",
+      "summary_sha256": "1b043963a91ce434fe609dffde2deaebdab5d031388d0541bfe0d7ee493458b3"
+    },
+    {
+      "skill_id": "u3673-multi-agent-negotiation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3673-multi-agent-negotiation-for-marketing-and-storytelling",
+      "skill_md_sha256": "766235fe9caa80a1e0c734e9bc7b1499e33251cebc2ddbbc7ed2045f5cd5c1eb",
+      "summary_sha256": "e7e7810b71fcfba6530ec9b204b59f0b12d9cbcbdf6a5de3eaacf7f89a639efc"
+    },
+    {
+      "skill_id": "u3674-multi-agent-negotiation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3674-multi-agent-negotiation-for-marketing-and-storytelling",
+      "skill_md_sha256": "c6a6f7cbb283d1c424d4f92ca965489900bb7169d7118354b9826aacaca901ee",
+      "summary_sha256": "fa952226af805c87ca7ff70683bd48d0b6c31f21a553da52b064cbff531979d4"
+    },
+    {
+      "skill_id": "u3675-multi-agent-negotiation-for-marketing-and-storytelling",
+      "path": "generated/shards/03/3675-multi-agent-negotiation-for-marketing-and-storytelling",
+      "skill_md_sha256": "f4298769f29a45a9b656f6d9000f7fcc89804fd2a22eef79ca7bb605e9e1e9fa",
+      "summary_sha256": "ff8110aeef9a998e239a47ae71f4b7f68baee96a0c7d1c2ed64410ea9644ce40"
+    },
+    {
+      "skill_id": "u3676-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3676-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "4fecbc8254c7e503a59cb0ee20180c9bd7b5eeb9570fffa0e93128d5f88d1372",
+      "summary_sha256": "32ce62ffffebf08e8228132fb31eca7e3e36786a9c2fb7ee2a4b621ba1950b44"
+    },
+    {
+      "skill_id": "u3677-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3677-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "2fec0e9231c27d5027b3292351a5b68ad9649e599f617948b4f53acaa923f9a5",
+      "summary_sha256": "d83909f8cb7145f672e2153e8fc0275a1e0d09cab53b2f8e602844ed389359e2"
+    },
+    {
+      "skill_id": "u3678-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3678-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "455f27d0e2454418a84de8ef6d426d81d326a45e1b49504622ce595deed147c5",
+      "summary_sha256": "bf4377538e44d2bfb079e9b5aeecc09c27691cc1ac339036bc18db6fa01aa2ab"
+    },
+    {
+      "skill_id": "u3679-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3679-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "0ffe81aa29523e92df8bae899277c84791de34891de1e1622e1cd276d80baf41",
+      "summary_sha256": "3ef6940e73b2feaa88aade18b66715040735f0bab6205a43b16461cb8e6ea081"
+    },
+    {
+      "skill_id": "u3680-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "path": "generated/shards/03/3680-multi-agent-negotiation-for-legal-and-policy-workflows",
+      "skill_md_sha256": "c381b681fdff23e4bc8e34214dcaed40069b39be08aa7560da7623ae992b74ef",
+      "summary_sha256": "3860aab559bbf2eae192c85456dab3693018946ca5b7b327828ee1621c62f3d4"
+    },
+    {
+      "skill_id": "u3681-multi-agent-negotiation-for-healthcare-operations",
+      "path": "generated/shards/03/3681-multi-agent-negotiation-for-healthcare-operations",
+      "skill_md_sha256": "4fdb3dadba21a1f714a696993afc2e83936e346db702d5645cb2568799ee7efa",
+      "summary_sha256": "72be6c9277a3e7da93ad784902bea7ff896b93b4670f29dd2794f06119b63a0f"
+    },
+    {
+      "skill_id": "u3682-multi-agent-negotiation-for-healthcare-operations",
+      "path": "generated/shards/03/3682-multi-agent-negotiation-for-healthcare-operations",
+      "skill_md_sha256": "5e5dfb4a9c2d49aebf5682f6bfb0ffc2a0b5118a2403f9b5f6e63e29f4dcc6cb",
+      "summary_sha256": "5027e828310080415460b8a6b370884a617e08e255845d1dc1c4c55dc66dfa13"
+    },
+    {
+      "skill_id": "u3683-multi-agent-negotiation-for-healthcare-operations",
+      "path": "generated/shards/03/3683-multi-agent-negotiation-for-healthcare-operations",
+      "skill_md_sha256": "5a830185093ef09d644222528fc3b07315fd5c532f2f23f5fbbb76f032ffc5d4",
+      "summary_sha256": "a2854d9813441da2373edcc82af994ad12e7c28bfda7c39c7939c9a954c76861"
+    },
+    {
+      "skill_id": "u3684-multi-agent-negotiation-for-healthcare-operations",
+      "path": "generated/shards/03/3684-multi-agent-negotiation-for-healthcare-operations",
+      "skill_md_sha256": "4c99ca8e4ba38ba00f1a7222534e731bca4e190b5884b163976b1aeadc6a3578",
+      "summary_sha256": "3cc0dd8737292202d54bd87c0f7c0a4a7d6db8bc10b5de0e5c2d66ecbb14ebe6"
+    },
+    {
+      "skill_id": "u3685-multi-agent-negotiation-for-healthcare-operations",
+      "path": "generated/shards/03/3685-multi-agent-negotiation-for-healthcare-operations",
+      "skill_md_sha256": "37839acf8ad20a401aff6de79b233259fb2ca68c95110b579e1bd1bb0d4dbf52",
+      "summary_sha256": "a3701eefe59397f7184241ec048e70d4f4e3b89da97bc2b44d66d3fabdac76c6"
+    },
+    {
+      "skill_id": "u3686-multi-agent-negotiation-for-education-support-services",
+      "path": "generated/shards/03/3686-multi-agent-negotiation-for-education-support-services",
+      "skill_md_sha256": "aad6f43c2c62c541d0d33830658ede09ffa6944d27ba15394fd1bbe94221f652",
+      "summary_sha256": "0ee20bf28314fa2455105af66e55e79b81e1ff70ee5c2237eaeac239541ad1e7"
+    },
+    {
+      "skill_id": "u3687-multi-agent-negotiation-for-education-support-services",
+      "path": "generated/shards/03/3687-multi-agent-negotiation-for-education-support-services",
+      "skill_md_sha256": "4b356e3b0e0ef7659711c33271e26e67ceff371b4f05550bd6281e8556215faf",
+      "summary_sha256": "0b25d6f1ebdf612dbacddb20a9bc404a497740eb458dd91518d0cddd3809845c"
+    },
+    {
+      "skill_id": "u3688-multi-agent-negotiation-for-education-support-services",
+      "path": "generated/shards/03/3688-multi-agent-negotiation-for-education-support-services",
+      "skill_md_sha256": "93858eb538706c19957d04308eca31fe0ebce77db2850b417006b9689c88b240",
+      "summary_sha256": "526d1ed86144f1a44d44d62244313c53599db6a95164202f0bbce550df0a2dd9"
+    },
+    {
+      "skill_id": "u3689-multi-agent-negotiation-for-education-support-services",
+      "path": "generated/shards/03/3689-multi-agent-negotiation-for-education-support-services",
+      "skill_md_sha256": "abfb248f13b591917a1b4dc91b1880703d223462c5720b81c7986df6100ff1f7",
+      "summary_sha256": "97036e821f9d4c360a673529238cc998b067374a9aec5f6803197afee71d8709"
+    },
+    {
+      "skill_id": "u3690-multi-agent-negotiation-for-education-support-services",
+      "path": "generated/shards/03/3690-multi-agent-negotiation-for-education-support-services",
+      "skill_md_sha256": "974aa74e43d201f97315c2ec3c47b6207be9ed9cacb7d860e46c238552027369",
+      "summary_sha256": "1d2d3700defae3189bbc521a3d6b0a02cd9fd98d0404b928fbd8c50f022aec8e"
+    },
+    {
+      "skill_id": "u3691-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3691-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "caf5113def3863888986b24745d1004baf37710f5efce8c0aba0c288a6bfa0e0",
+      "summary_sha256": "e8009bf27cc93e930b61ec7be4107a8dff7de15dec1e836b12c5fece41d19d7f"
+    },
+    {
+      "skill_id": "u3692-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3692-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "8942cf952da91ad37de16e2195f648ec91ee903e2953c62c6cd9146720342d44",
+      "summary_sha256": "467dd42a5b8b92664371002a9fb8bb7b646cb11501eca21dec49f6ad08c766fa"
+    },
+    {
+      "skill_id": "u3693-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3693-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "a4943c7b70e9cb6027a6501a8708216946afe2c8eaf4841679460caeb9c338f0",
+      "summary_sha256": "345b4a62c7aa6ecd10c9c0c90ff74132bb16004dd7df21fe3556383282b55f74"
+    },
+    {
+      "skill_id": "u3694-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3694-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "a06a91db0c49ef5c6e8f2d94aee3e6be7fb0c03bcf210a65caceef56d421cc2e",
+      "summary_sha256": "3758cd9c10ce08cf0c11372077926635864ea4253109448a58e1630642410a5c"
+    },
+    {
+      "skill_id": "u3695-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "path": "generated/shards/03/3695-multi-agent-negotiation-for-nonprofit-program-delivery",
+      "skill_md_sha256": "48c9568c9bec4f957f6ef093af693bcfc4784c173a8333537420271204d83f1f",
+      "summary_sha256": "0729984b1f63546fceb442d4ff1f71dfd9c54c1146394ec6a3d78c1d8728ef12"
+    },
+    {
+      "skill_id": "u3696-multi-agent-negotiation-for-disaster-response-networks",
+      "path": "generated/shards/03/3696-multi-agent-negotiation-for-disaster-response-networks",
+      "skill_md_sha256": "691456982bf15efe1050cf3d0171eff66a745a22dd5c5356edd8da7f5119ca96",
+      "summary_sha256": "2c7805b522dd16ed09f4cbb60daa59356264933be1f2502a36983ee685d4e50c"
+    },
+    {
+      "skill_id": "u3697-multi-agent-negotiation-for-disaster-response-networks",
+      "path": "generated/shards/03/3697-multi-agent-negotiation-for-disaster-response-networks",
+      "skill_md_sha256": "15ccb135f3e5a05a52c31c2e9d503b8fea4c6ccabeb34c4e5d70f722196e4730",
+      "summary_sha256": "178eaa59e880116b933fdfe61cda9de944b4cc020aaed80c17921894d1e22f31"
+    },
+    {
+      "skill_id": "u3698-multi-agent-negotiation-for-disaster-response-networks",
+      "path": "generated/shards/03/3698-multi-agent-negotiation-for-disaster-response-networks",
+      "skill_md_sha256": "7041e52431e986059fbd106ec7f8b403e0791886caefe7d28b302b20b07620eb",
+      "summary_sha256": "2f2246a9c11231cd2f8510ac5d275ea932a9bc09959b273a35233650675973fd"
+    },
+    {
+      "skill_id": "u3699-multi-agent-negotiation-for-disaster-response-networks",
+      "path": "generated/shards/03/3699-multi-agent-negotiation-for-disaster-response-networks",
+      "skill_md_sha256": "2d39f6b0eec9a4f3fc39df32652e6bb02f9acd59b70a9b44dd595c3e435d080e",
+      "summary_sha256": "dd4b27bc84275195085a06658ac61a1edeb7c1cb3ada783257707e5140778335"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9710,
+  "name": "execution-monitoring-workflow-compiler",
+  "title": "Execution Monitoring Workflow Compiler",
+  "description": "Design and run execution monitoring workflows with workflow compiler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1180,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09710-execution-monitoring-workflow-compiler/SKILL.md",
+    "entrypoint": "agent08/09710-execution-monitoring-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring workflow compiler",
+    "execution monitoring workflow compiler workflow",
+    "execution monitoring workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

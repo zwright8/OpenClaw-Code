@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3004,
+  "name": "bank-core-systems-schema-introspector",
+  "title": "Bank Core Systems Schema Introspector",
+  "description": "Design and run bank core systems workflows with schema introspector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 581,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/03004-bank-core-systems-schema-introspector/SKILL.md",
+    "entrypoint": "agent03/03004-bank-core-systems-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems schema introspector",
+    "bank core systems schema introspector workflow",
+    "bank core systems schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

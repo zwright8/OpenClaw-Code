@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1624,
+  "name": "student-success-platforms-evidence-collector",
+  "title": "Student Success Platforms Evidence Collector",
+  "description": "Design and run student success platforms workflows with evidence collector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5773,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01624-student-success-platforms-evidence-collector/SKILL.md",
+    "entrypoint": "agent02/01624-student-success-platforms-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms evidence collector",
+    "student success platforms evidence collector workflow",
+    "student success platforms evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

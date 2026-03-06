@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9517,
+  "name": "trading-platforms-delta-calculator",
+  "title": "Trading Platforms Delta Calculator",
+  "description": "Design and run trading platforms workflows with delta calculator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11291,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09517-trading-platforms-delta-calculator/SKILL.md",
+    "entrypoint": "agent08/09517-trading-platforms-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms delta calculator",
+    "trading platforms delta calculator workflow",
+    "trading platforms delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

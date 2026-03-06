@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5634,
+  "name": "data-quality-hubs-sla-enforcer",
+  "title": "Data Quality Hubs SLA Enforcer",
+  "description": "Design and run data quality hubs workflows with sla enforcer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6973,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05634-data-quality-hubs-sla-enforcer/SKILL.md",
+    "entrypoint": "agent05/05634-data-quality-hubs-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs sla enforcer",
+    "data quality hubs sla enforcer workflow",
+    "data quality hubs sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

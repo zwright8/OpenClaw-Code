@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 23,
+  "name": "bitbucket-data-exporter",
+  "title": "Bitbucket Data Exporter",
+  "description": "Exports Bitbucket entities into clean, typed datasets.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0023-bitbucket-data-exporter/SKILL.md",
+    "entrypoint": "agent01/0023-bitbucket-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bitbucket data exporter",
+    "bitbucket data exporter workflow",
+    "bitbucket data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0023-bitbucket-data-exporter"
+  }
+}

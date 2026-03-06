@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11645,
+  "name": "work-order-systems-runbook-composer",
+  "title": "Work Order Systems Runbook Composer",
+  "description": "Design and run work order systems workflows with runbook composer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6676,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11645-work-order-systems-runbook-composer/SKILL.md",
+    "entrypoint": "agent09/11645-work-order-systems-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "work order systems runbook composer",
+    "work order systems runbook composer workflow",
+    "work order systems runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

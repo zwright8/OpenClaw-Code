@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9470,
+  "name": "industrial-alerts-migration-planner",
+  "title": "Industrial Alerts Migration Planner",
+  "description": "Design and run industrial alerts workflows with migration planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4752,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09470-industrial-alerts-migration-planner/SKILL.md",
+    "entrypoint": "agent08/09470-industrial-alerts-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts migration planner",
+    "industrial alerts migration planner workflow",
+    "industrial alerts migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

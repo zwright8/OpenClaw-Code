@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5701,
+  "name": "model-registries-access-auditor",
+  "title": "Model Registries Access Auditor",
+  "description": "Design and run model registries workflows with access auditor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9900,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05701-model-registries-access-auditor/SKILL.md",
+    "entrypoint": "agent05/05701-model-registries-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries access auditor",
+    "model registries access auditor workflow",
+    "model registries access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

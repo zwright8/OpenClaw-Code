@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 796,
+  "name": "reddit-report-builder",
+  "title": "Reddit Report Builder",
+  "description": "Generates operational and KPI reports from Reddit activity.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0796-reddit-report-builder/SKILL.md",
+    "entrypoint": "agent08/0796-reddit-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reddit report builder",
+    "reddit report builder workflow",
+    "reddit report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0796-reddit-report-builder"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11462,
+  "name": "reference-programs-job-scheduler",
+  "title": "Reference Programs Job Scheduler",
+  "description": "Design and run reference programs workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5227,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11462-reference-programs-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/11462-reference-programs-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs job scheduler",
+    "reference programs job scheduler workflow",
+    "reference programs job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Governance Context Window Prioritizer"
+  short_description: "Importance scoring for Safety and Governance with guardrails and measurable outcomes."
+  default_prompt: "Use Governance Context Window Prioritizer to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

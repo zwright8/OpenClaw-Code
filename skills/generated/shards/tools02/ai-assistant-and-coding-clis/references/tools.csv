@@ -1,0 +1,9 @@
+rank,tool,description,access,license,homepage
+502,qwen-code,AI-powered command-line workflow tool for developers,local-installable,Apache-2.0,https://github.com/QwenLM/qwen-code
+645,block-goose-cli,"Open source, extensible AI agent that goes beyond code suggestions",local-installable,Apache-2.0,https://block.github.io/goose/
+659,aider,AI pair programming in your terminal,local-installable,Apache-2.0,https://aider.chat/
+696,fabric-ai,Open-source framework for augmenting humans using AI,local-installable,MIT,https://github.com/danielmiessler/fabric
+712,repomix,Pack repository contents into a single AI-friendly file,local-installable,MIT,https://github.com/yamadashy/repomix
+757,llm,Access large language models from the command-line,local-installable,Apache-2.0,https://llm.datasette.io/
+976,code-server,Access VS Code through the browser,local-installable,MIT,https://github.com/coder/code-server
+995,cliproxyapi,"Wrap Gemini CLI, Codex, Claude Code, Qwen Code as an API service",local-installable,MIT,https://github.com/router-for-me/CLIProxyAPI

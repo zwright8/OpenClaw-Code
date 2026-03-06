@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4486,
+    "name": "openclaw-v2-4486-experiment-design",
+    "title": "Experiment Design for education support services",
+    "domain": "education support services",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "experiment design",
+    "archetype": "experimentation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 92,
+    "roiScore": 66.79,
+    "trustBadges": [
+      "Verified-Quality",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4486-experiment-design-for-education-support-services/SKILL.md"
+  }
+}

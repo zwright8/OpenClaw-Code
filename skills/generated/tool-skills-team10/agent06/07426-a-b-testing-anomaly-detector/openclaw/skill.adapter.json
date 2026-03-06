@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7426,
+  "name": "a-b-testing-anomaly-detector",
+  "title": "A/B Testing Anomaly Detector",
+  "description": "Design and run a/b testing workflows with anomaly detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5509,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07426-a-b-testing-anomaly-detector/SKILL.md",
+    "entrypoint": "agent06/07426-a-b-testing-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing anomaly detector",
+    "a/b testing anomaly detector workflow",
+    "a/b testing anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

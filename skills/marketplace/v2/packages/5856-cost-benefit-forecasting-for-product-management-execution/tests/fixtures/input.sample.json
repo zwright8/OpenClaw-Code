@@ -1,0 +1,13 @@
+{
+  "task": "Execute cost-benefit forecasting",
+  "objective": "Deliver Cost-Benefit Forecasting for product management execution outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

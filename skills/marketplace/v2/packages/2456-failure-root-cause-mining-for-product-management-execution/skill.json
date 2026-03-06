@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2456,
+    "name": "openclaw-v2-2456-failure-root-cause-mining",
+    "title": "Failure Root Cause Mining for product management execution",
+    "domain": "product management execution",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "failure root cause mining",
+    "archetype": "diagnostic-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 89,
+    "roiScore": 78.94,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2456-failure-root-cause-mining-for-product-management-execution/SKILL.md"
+  }
+}

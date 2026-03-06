@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3859,
+  "name": "seo-tooling-dependency-resolver",
+  "title": "SEO Tooling Dependency Resolver",
+  "description": "Design and run seo tooling workflows with dependency resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9315,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03859-seo-tooling-dependency-resolver/SKILL.md",
+    "entrypoint": "agent03/03859-seo-tooling-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling dependency resolver",
+    "seo tooling dependency resolver workflow",
+    "seo tooling dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

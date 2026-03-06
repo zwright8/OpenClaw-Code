@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1891,
+  "name": "warehouse-robotics-incident-triage",
+  "title": "Warehouse Robotics Incident Triage",
+  "description": "Design and run warehouse robotics workflows with incident triage controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2017,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01891-warehouse-robotics-incident-triage/SKILL.md",
+    "entrypoint": "agent02/01891-warehouse-robotics-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics incident triage",
+    "warehouse robotics incident triage workflow",
+    "warehouse robotics incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

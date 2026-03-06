@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2404,
+  "name": "esg-reporting-schema-introspector",
+  "title": "ESG Reporting Schema Introspector",
+  "description": "Design and run esg reporting workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 570,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02404-esg-reporting-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/02404-esg-reporting-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting schema introspector",
+    "esg reporting schema introspector workflow",
+    "esg reporting schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

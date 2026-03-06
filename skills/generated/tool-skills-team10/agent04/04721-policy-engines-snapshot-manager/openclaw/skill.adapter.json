@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4721,
+  "name": "policy-engines-snapshot-manager",
+  "title": "Policy Engines Snapshot Manager",
+  "description": "Design and run policy engines workflows with snapshot manager controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9592,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04721-policy-engines-snapshot-manager/SKILL.md",
+    "entrypoint": "agent04/04721-policy-engines-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines snapshot manager",
+    "policy engines snapshot manager workflow",
+    "policy engines snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3679,
+  "name": "partner-portals-capacity-planner",
+  "title": "Partner Portals Capacity Planner",
+  "description": "Design and run partner portals workflows with capacity planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9262,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03679-partner-portals-capacity-planner/SKILL.md",
+    "entrypoint": "agent03/03679-partner-portals-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner portals capacity planner",
+    "partner portals capacity planner workflow",
+    "partner portals capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

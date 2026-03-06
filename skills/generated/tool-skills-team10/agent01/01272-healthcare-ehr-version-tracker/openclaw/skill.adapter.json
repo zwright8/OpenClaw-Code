@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1272,
+  "name": "healthcare-ehr-version-tracker",
+  "title": "Healthcare EHR Version Tracker",
+  "description": "Design and run healthcare ehr workflows with version tracker controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7187,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01272-healthcare-ehr-version-tracker/SKILL.md",
+    "entrypoint": "agent01/01272-healthcare-ehr-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr version tracker",
+    "healthcare ehr version tracker workflow",
+    "healthcare ehr version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

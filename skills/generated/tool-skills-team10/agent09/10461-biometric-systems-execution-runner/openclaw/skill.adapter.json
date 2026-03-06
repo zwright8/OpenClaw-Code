@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10461,
+  "name": "biometric-systems-execution-runner",
+  "title": "Biometric Systems Execution Runner",
+  "description": "Design and run biometric systems workflows with execution runner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1439,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10461-biometric-systems-execution-runner/SKILL.md",
+    "entrypoint": "agent09/10461-biometric-systems-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems execution runner",
+    "biometric systems execution runner workflow",
+    "biometric systems execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

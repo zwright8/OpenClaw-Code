@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10336,
+  "name": "kyc-pipelines-risk-scorer",
+  "title": "KYC Pipelines Risk Scorer",
+  "description": "Design and run kyc pipelines workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1685,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10336-kyc-pipelines-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/10336-kyc-pipelines-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines risk scorer",
+    "kyc pipelines risk scorer workflow",
+    "kyc pipelines risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 254,
+  "name": "freshdesk-data-importer",
+  "title": "Freshdesk Data Importer",
+  "description": "Validates and imports bulk updates into Freshdesk.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0254-freshdesk-data-importer/SKILL.md",
+    "entrypoint": "agent03/0254-freshdesk-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freshdesk data importer",
+    "freshdesk data importer workflow",
+    "freshdesk data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0254-freshdesk-data-importer"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10387,
+  "name": "onboarding-journeys-compliance-mapper",
+  "title": "Onboarding Journeys Compliance Mapper",
+  "description": "Design and run onboarding journeys workflows with compliance mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1936,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/10387-onboarding-journeys-compliance-mapper/SKILL.md",
+    "entrypoint": "agent08/10387-onboarding-journeys-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys compliance mapper",
+    "onboarding journeys compliance mapper workflow",
+    "onboarding journeys compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

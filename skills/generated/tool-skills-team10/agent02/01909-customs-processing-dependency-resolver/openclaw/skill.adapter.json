@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1909,
+  "name": "customs-processing-dependency-resolver",
+  "title": "Customs Processing Dependency Resolver",
+  "description": "Design and run customs processing workflows with dependency resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8664,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01909-customs-processing-dependency-resolver/SKILL.md",
+    "entrypoint": "agent02/01909-customs-processing-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing dependency resolver",
+    "customs processing dependency resolver workflow",
+    "customs processing dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11394,
+  "name": "customer-success-plans-postmortem-drafting",
+  "title": "Customer Success Plans Postmortem Drafting",
+  "description": "Design and run customer success plans workflows with postmortem drafting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11955,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11394-customer-success-plans-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent09/11394-customer-success-plans-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans postmortem drafting",
+    "customer success plans postmortem drafting workflow",
+    "customer success plans postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

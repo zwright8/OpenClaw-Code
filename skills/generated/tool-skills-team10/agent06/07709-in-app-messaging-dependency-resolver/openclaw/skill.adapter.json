@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7709,
+  "name": "in-app-messaging-dependency-resolver",
+  "title": "In-App Messaging Dependency Resolver",
+  "description": "Design and run in-app messaging workflows with dependency resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10659,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07709-in-app-messaging-dependency-resolver/SKILL.md",
+    "entrypoint": "agent06/07709-in-app-messaging-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging dependency resolver",
+    "in-app messaging dependency resolver workflow",
+    "in-app messaging dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

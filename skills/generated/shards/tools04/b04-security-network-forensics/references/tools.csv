@@ -1,0 +1,42 @@
+rank,tool,command_hint,type,access,description,homepage,license
+1501,wireguard-go,wireguard-go,cli,local-installable,Userspace Go implementation of WireGuard,https://www.wireguard.com/,MIT
+1502,signal-cli,signal-cli,service/daemon,local-installable,CLI and dbus interface for WhisperSystems/libsignal-service-java,https://github.com/AsamK/signal-cli,GPL-3.0-or-later
+1507,git-secrets,git-secrets,cli,local-installable,Prevents you from committing sensitive information to a git repo,https://github.com/awslabs/git-secrets,Apache-2.0
+1511,tcptraceroute,tcptraceroute,cli,local-installable,Traceroute implementation using TCP packets,https://github.com/mct/tcptraceroute,GPL-2.0-only
+1516,lastpass-cli,lastpass-cli,cli,local-installable,LastPass command-line interface tool,https://github.com/lastpass/lastpass-cli,GPL-2.0-or-later WITH openvpn-openssl-exception
+1542,zrok,zrok,cli,local-installed,"Geo-scale, next-generation sharing platform built on top of OpenZiti",https://zrok.io,Apache-2.0 AND BSD-3-Clause AND MIT
+1555,gopass,gopass,cli,local-installable,Slightly more awesome Standard Unix Password Manager for Teams,https://www.gopass.pw/,MIT
+1560,libosip,libosip,cli,local-installable,Implementation of the eXosip2 stack,https://www.gnu.org/software/osip/,LGPL-2.1-or-later
+1583,sleuthkit,sleuthkit,cli,local-installable,Forensic toolkit,https://www.sleuthkit.org/,IPL-1.0 AND CPL-1.0 AND GPL-2.0-or-later
+1605,hcxtools,hcxtools,cli,local-installable,Utils for conversion of cap/pcap/pcapng WiFi dump files,https://github.com/ZerBea/hcxtools,MIT
+1607,stunnel,stunnel,cli,local-installable,SSL tunneling program,https://www.stunnel.org/,GPL-2.0-or-later
+1628,ldid,ldid,cli,local-installable,Lets you manipulate the signature block in a Mach-O binary,https://cydia.saurik.com/info/ldid/,AGPL-3.0-or-later
+1654,tldx,tldx,cli,local-installable,Domain Availability Research Tool,https://brandonyoung.dev/blog/introducing-tldx/,Apache-2.0
+1668,rustscan,rustscan,cli,local-installable,Modern Day Portscanner,https://github.com/bee-san/RustScan,GPL-3.0-or-later
+1669,swtpm,swtpm,cli,local-installable,Software TPM Emulator based on libtpms,https://github.com/stefanberger/swtpm,BSD-3-Clause
+1708,snort,snort,cli,local-installable,Flexible Network Intrusion Detection System,https://www.snort.org,GPL-2.0-only
+1709,easy-rsa,easy-rsa,cli,local-installable,CLI utility to build and manage a PKI CA,https://github.com/OpenVPN/easy-rsa,GPL-2.0-only
+1720,masscan,masscan,cli,local-installable,"TCP port scanner, scans entire Internet in under 5 minutes",https://github.com/robertdavidgraham/masscan/,AGPL-3.0-only
+1721,ipmitool,ipmitool,cli,local-installable,Utility for IPMI control with kernel driver or LAN interface,https://codeberg.org/IPMITool/ipmitool,BSD-3-Clause
+1730,hackrf,hackrf,cli,local-installable,Low cost software radio platform,https://github.com/greatscottgadgets/hackrf,GPL-2.0-or-later
+1742,kics,kics,cli,local-installable,"Detect vulnerabilities, compliance issues, and misconfigurations",https://kics.io/,Apache-2.0
+1747,dnscrypt-proxy,dnscrypt-proxy,service/daemon,local-installable,Secure communications between a client and a DNS resolver,https://dnscrypt.info,ISC
+1756,strongswan,strongswan,cli,local-installable,VPN based on IPsec,https://www.strongswan.org,GPL-2.0-or-later
+1765,infisical,infisical,cli,local-installable,CLI for Infisical,https://infisical.com/docs/cli/overview,MIT
+1783,chamber,chamber,cli,local-installable,CLI for managing secrets through AWS SSM Parameter Store,https://github.com/segmentio/chamber,MIT
+1828,tcping,tcping,cli,local-installable,TCP connect to the given IP/port combo,https://github.com/mkirchner/tcping,MIT
+1834,gosec,gosec,cli,local-installable,Golang security checker,https://securego.io/,Apache-2.0
+1866,privoxy,privoxy,service/daemon,local-installable,Advanced filtering web proxy,https://www.privoxy.org/,GPL-2.0-or-later
+1869,zeek,zeek,cli,local-installable,Network security monitor,https://zeek.org/,BSD-3-Clause
+1885,librtlsdr,librtlsdr,cli,local-installable,Use Realtek DVB-T dongles as a cheap SDR,https://osmocom.org/projects/rtl-sdr/wiki,GPL-2.0-or-later
+1899,ngrep,ngrep,cli,local-installable,Network grep,https://github.com/jpr5/ngrep,ngrep
+1914,spoofdpi,spoofdpi,cli,local-installable,Simple and fast anti-censorship tool written in Go,https://spoofdpi.xvzc.dev,Apache-2.0
+1920,openbao,openbao,cli,local-installable,"Provides a software solution to manage, store, and distribute sensitive data",https://openbao.org/,MPL-2.0
+1946,pwntools,pwntools,cli,local-installable,CTF framework used by Gallopsled in every CTF,https://github.com/Gallopsled/pwntools,MIT
+1947,lynis,lynis,cli,local-installable,Security and system auditing tool to harden systems,https://cisofy.com/lynis/,GPL-3.0-only
+1950,spoof-mac,spoof-mac,cli,local-installable,Spoof your MAC address in macOS,https://github.com/feross/SpoofMAC,MIT
+1951,torsocks,torsocks,cli,local-installable,Use SOCKS-friendly applications with Tor,https://gitlab.torproject.org/tpo/core/torsocks,GPL-2.0-only
+1968,trippy,trippy,cli,local-installable,"Network diagnostic tool, inspired by mtr",https://trippy.rs/,Apache-2.0
+1978,feroxbuster,feroxbuster,cli,local-installable,"Fast, simple, recursive content discovery tool written in Rust",https://epi052.github.io/feroxbuster,MIT
+1989,fcrackzip,fcrackzip,cli,local-installable,Zip password cracker,https://oldhome.schmorp.de/marc/fcrackzip.html,GPL-2.0-or-later
+1995,knot,knot,service/daemon,local-installable,High-performance authoritative-only DNS server,https://www.knot-dns.cz/,GPL-3.0-or-later AND 0BSD AND BSD-3-Clause AND LGPL-2.0-or-later AND MIT

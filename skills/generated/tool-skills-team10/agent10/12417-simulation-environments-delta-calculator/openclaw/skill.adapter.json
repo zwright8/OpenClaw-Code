@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12417,
+  "name": "simulation-environments-delta-calculator",
+  "title": "Simulation Environments Delta Calculator",
+  "description": "Design and run simulation environments workflows with delta calculator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12320,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12417-simulation-environments-delta-calculator/SKILL.md",
+    "entrypoint": "agent10/12417-simulation-environments-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments delta calculator",
+    "simulation environments delta calculator workflow",
+    "simulation environments delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

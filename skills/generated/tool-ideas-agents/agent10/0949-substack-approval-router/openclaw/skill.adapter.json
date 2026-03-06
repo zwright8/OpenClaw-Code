@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 949,
+  "name": "substack-approval-router",
+  "title": "Substack Approval Router",
+  "description": "Routes Substack-driven decisions to the right approvers.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "agent10/0949-substack-approval-router/SKILL.md",
+    "entrypoint": "agent10/0949-substack-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "substack approval router",
+    "substack approval router workflow",
+    "substack approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent10/0949-substack-approval-router"
+  }
+}

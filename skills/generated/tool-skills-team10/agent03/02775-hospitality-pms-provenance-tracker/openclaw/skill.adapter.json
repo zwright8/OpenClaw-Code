@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2775,
+  "name": "hospitality-pms-provenance-tracker",
+  "title": "Hospitality PMS Provenance Tracker",
+  "description": "Design and run hospitality pms workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8965,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02775-hospitality-pms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/02775-hospitality-pms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hospitality pms provenance tracker",
+    "hospitality pms provenance tracker workflow",
+    "hospitality pms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

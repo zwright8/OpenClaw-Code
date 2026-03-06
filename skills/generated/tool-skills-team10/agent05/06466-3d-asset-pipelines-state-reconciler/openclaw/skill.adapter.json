@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6466,
+  "name": "3d-asset-pipelines-state-reconciler",
+  "title": "3D Asset Pipelines State Reconciler",
+  "description": "Design and run 3d asset pipelines workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4226,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06466-3d-asset-pipelines-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/06466-3d-asset-pipelines-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines state reconciler",
+    "3d asset pipelines state reconciler workflow",
+    "3d asset pipelines state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

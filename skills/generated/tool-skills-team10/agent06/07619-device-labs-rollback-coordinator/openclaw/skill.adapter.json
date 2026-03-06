@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7619,
+  "name": "device-labs-rollback-coordinator",
+  "title": "Device Labs Rollback Coordinator",
+  "description": "Design and run device labs workflows with rollback coordinator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5093,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07619-device-labs-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent06/07619-device-labs-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs rollback coordinator",
+    "device labs rollback coordinator workflow",
+    "device labs rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

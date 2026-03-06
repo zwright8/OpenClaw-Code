@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7311,
+  "name": "survey-systems-execution-runner",
+  "title": "Survey Systems Execution Runner",
+  "description": "Design and run survey systems workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1381,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07311-survey-systems-execution-runner/SKILL.md",
+    "entrypoint": "agent06/07311-survey-systems-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems execution runner",
+    "survey systems execution runner workflow",
+    "survey systems execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9298,
+  "name": "iot-device-clouds-feedback-harvester",
+  "title": "IoT Device Clouds Feedback Harvester",
+  "description": "Design and run iot device clouds workflows with feedback harvester controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7590,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09298-iot-device-clouds-feedback-harvester/SKILL.md",
+    "entrypoint": "agent08/09298-iot-device-clouds-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds feedback harvester",
+    "iot device clouds feedback harvester workflow",
+    "iot device clouds feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

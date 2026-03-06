@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11199,
+  "name": "catalog-syndication-quality-gatekeeper",
+  "title": "Catalog Syndication Quality Gatekeeper",
+  "description": "Design and run catalog syndication workflows with quality gatekeeper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5636,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11199-catalog-syndication-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent09/11199-catalog-syndication-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication quality gatekeeper",
+    "catalog syndication quality gatekeeper workflow",
+    "catalog syndication quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

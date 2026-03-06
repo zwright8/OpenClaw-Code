@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5210,
+  "name": "release-orchestration-workflow-compiler",
+  "title": "Release Orchestration Workflow Compiler",
+  "description": "Design and run release orchestration workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1098,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05210-release-orchestration-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/05210-release-orchestration-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration workflow compiler",
+    "release orchestration workflow compiler workflow",
+    "release orchestration workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

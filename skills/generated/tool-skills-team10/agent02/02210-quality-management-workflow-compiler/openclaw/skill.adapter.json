@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2210,
+  "name": "quality-management-workflow-compiler",
+  "title": "Quality Management Workflow Compiler",
+  "description": "Design and run quality management workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1047,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02210-quality-management-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/02210-quality-management-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quality management workflow compiler",
+    "quality management workflow compiler workflow",
+    "quality management workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

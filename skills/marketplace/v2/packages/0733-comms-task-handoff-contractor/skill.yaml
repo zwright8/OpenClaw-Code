@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 733
+  name: "openclaw-v2-0733-contracted-payload-schemas"
+  title: "Comms Task Handoff Contractor"
+  domain: "Communication and Explainability"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "contracted payload schemas"
+  archetype: "contract-compiler"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 66
+  roi_score: 59.66
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0733-comms-task-handoff-contractor/SKILL.md"

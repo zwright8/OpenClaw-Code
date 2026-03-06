@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2046,
+  "name": "manufacturing-mes-approval-orchestrator",
+  "title": "Manufacturing MES Approval Orchestrator",
+  "description": "Design and run manufacturing mes workflows with approval orchestrator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5815,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02046-manufacturing-mes-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent02/02046-manufacturing-mes-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "manufacturing mes approval orchestrator",
+    "manufacturing mes approval orchestrator workflow",
+    "manufacturing mes approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8779,
+  "name": "legal-matter-mgmt-capacity-planner",
+  "title": "Legal Matter Mgmt Capacity Planner",
+  "description": "Design and run legal matter mgmt workflows with capacity planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7554,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08779-legal-matter-mgmt-capacity-planner/SKILL.md",
+    "entrypoint": "agent07/08779-legal-matter-mgmt-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt capacity planner",
+    "legal matter mgmt capacity planner workflow",
+    "legal matter mgmt capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

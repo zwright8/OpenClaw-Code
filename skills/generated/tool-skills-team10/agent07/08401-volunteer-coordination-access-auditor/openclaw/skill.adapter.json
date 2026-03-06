@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8401,
+  "name": "volunteer-coordination-access-auditor",
+  "title": "Volunteer Coordination Access Auditor",
+  "description": "Design and run volunteer coordination workflows with access auditor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10929,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08401-volunteer-coordination-access-auditor/SKILL.md",
+    "entrypoint": "agent07/08401-volunteer-coordination-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination access auditor",
+    "volunteer coordination access auditor workflow",
+    "volunteer coordination access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2686,
+    "name": "openclaw-v2-2686-regression-sentinel-design",
+    "title": "Regression Sentinel Design for education support services",
+    "domain": "education support services",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "regression sentinel design",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 98,
+    "roiScore": 87.06,
+    "trustBadges": [
+      "Verified-Quality",
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2686-regression-sentinel-design-for-education-support-services/SKILL.md"
+  }
+}

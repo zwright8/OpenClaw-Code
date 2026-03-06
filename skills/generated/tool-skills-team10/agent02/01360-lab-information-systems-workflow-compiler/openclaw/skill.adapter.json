@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1360,
+  "name": "lab-information-systems-workflow-compiler",
+  "title": "Lab Information Systems Workflow Compiler",
+  "description": "Design and run lab information systems workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1028,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01360-lab-information-systems-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/01360-lab-information-systems-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems workflow compiler",
+    "lab information systems workflow compiler workflow",
+    "lab information systems workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

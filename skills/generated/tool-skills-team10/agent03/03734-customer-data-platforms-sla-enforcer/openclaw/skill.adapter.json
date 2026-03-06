@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3734,
+  "name": "customer-data-platforms-sla-enforcer",
+  "title": "Customer Data Platforms SLA Enforcer",
+  "description": "Design and run customer data platforms workflows with sla enforcer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9287,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03734-customer-data-platforms-sla-enforcer/SKILL.md",
+    "entrypoint": "agent03/03734-customer-data-platforms-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer data platforms sla enforcer",
+    "customer data platforms sla enforcer workflow",
+    "customer data platforms sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

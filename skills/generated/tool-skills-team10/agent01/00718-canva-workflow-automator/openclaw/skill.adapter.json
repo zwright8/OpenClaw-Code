@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 718,
+  "name": "canva-workflow-automator",
+  "title": "Canva Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Canva.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7925,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00718-canva-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00718-canva-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "canva workflow automator",
+    "canva workflow automator workflow",
+    "canva workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

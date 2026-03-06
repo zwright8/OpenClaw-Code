@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6358,
+  "name": "audio-pipelines-task-decomposer",
+  "title": "Audio Pipelines Task Decomposer",
+  "description": "Design and run audio pipelines workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10154,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06358-audio-pipelines-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/06358-audio-pipelines-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines task decomposer",
+    "audio pipelines task decomposer workflow",
+    "audio pipelines task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

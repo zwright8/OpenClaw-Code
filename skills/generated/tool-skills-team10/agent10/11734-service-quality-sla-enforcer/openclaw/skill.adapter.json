@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11734,
+  "name": "service-quality-sla-enforcer",
+  "title": "Service Quality SLA Enforcer",
+  "description": "Design and run service quality workflows with sla enforcer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12101,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11734-service-quality-sla-enforcer/SKILL.md",
+    "entrypoint": "agent10/11734-service-quality-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality sla enforcer",
+    "service quality sla enforcer workflow",
+    "service quality sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

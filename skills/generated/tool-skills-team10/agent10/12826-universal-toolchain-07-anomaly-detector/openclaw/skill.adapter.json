@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12826,
+  "name": "universal-toolchain-07-anomaly-detector",
+  "title": "Universal Toolchain 07 Anomaly Detector",
+  "description": "Design and run universal toolchain 07 workflows with anomaly detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5275,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12826-universal-toolchain-07-anomaly-detector/SKILL.md",
+    "entrypoint": "agent10/12826-universal-toolchain-07-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 07 anomaly detector",
+    "universal toolchain 07 anomaly detector workflow",
+    "universal toolchain 07 anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

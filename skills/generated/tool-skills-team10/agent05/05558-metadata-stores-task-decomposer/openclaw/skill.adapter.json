@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5558,
+  "name": "metadata-stores-task-decomposer",
+  "title": "Metadata Stores Task Decomposer",
+  "description": "Design and run metadata stores workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9860,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05558-metadata-stores-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/05558-metadata-stores-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores task decomposer",
+    "metadata stores task decomposer workflow",
+    "metadata stores task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

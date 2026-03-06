@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9479,
+  "name": "industrial-alerts-capacity-planner",
+  "title": "Industrial Alerts Capacity Planner",
+  "description": "Design and run industrial alerts workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11278,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09479-industrial-alerts-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/09479-industrial-alerts-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts capacity planner",
+    "industrial alerts capacity planner workflow",
+    "industrial alerts capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 8536,
+    "name": "openclaw-v2-8536-curiosity-agenda-generation",
+    "title": "Curiosity Agenda Generation for scientific publishing pipelines",
+    "domain": "scientific publishing pipelines",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "curiosity agenda generation",
+    "archetype": "curiosity-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 66.06,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/8536-curiosity-agenda-generation-for-scientific-publishing-pipelines/SKILL.md"
+  }
+}

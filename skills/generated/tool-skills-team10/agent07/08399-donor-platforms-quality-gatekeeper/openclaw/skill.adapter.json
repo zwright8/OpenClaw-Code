@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8399,
+  "name": "donor-platforms-quality-gatekeeper",
+  "title": "Donor Platforms Quality Gatekeeper",
+  "description": "Design and run donor platforms workflows with quality gatekeeper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5547,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08399-donor-platforms-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent07/08399-donor-platforms-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms quality gatekeeper",
+    "donor platforms quality gatekeeper workflow",
+    "donor platforms quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2275,
+  "name": "energy-grid-ops-provenance-tracker",
+  "title": "Energy Grid Ops Provenance Tracker",
+  "description": "Design and run energy grid ops workflows with provenance tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8797,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02275-energy-grid-ops-provenance-tracker/SKILL.md",
+    "entrypoint": "agent02/02275-energy-grid-ops-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "energy grid ops provenance tracker",
+    "energy grid ops provenance tracker workflow",
+    "energy grid ops provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

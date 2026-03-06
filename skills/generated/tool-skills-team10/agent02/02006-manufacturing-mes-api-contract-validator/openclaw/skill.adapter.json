@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2006,
+  "name": "manufacturing-mes-api-contract-validator",
+  "title": "Manufacturing MES API Contract Validator",
+  "description": "Design and run manufacturing mes workflows with api contract validator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 81,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent02/02006-manufacturing-mes-api-contract-validator/SKILL.md",
+    "entrypoint": "agent02/02006-manufacturing-mes-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "manufacturing mes api contract validator",
+    "manufacturing mes api contract validator workflow",
+    "manufacturing mes api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

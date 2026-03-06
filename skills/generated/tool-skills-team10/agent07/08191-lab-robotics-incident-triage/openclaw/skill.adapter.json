@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8191,
+  "name": "lab-robotics-incident-triage",
+  "title": "Lab Robotics Incident Triage",
+  "description": "Design and run lab robotics workflows with incident triage controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2169,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08191-lab-robotics-incident-triage/SKILL.md",
+    "entrypoint": "agent07/08191-lab-robotics-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics incident triage",
+    "lab robotics incident triage workflow",
+    "lab robotics incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

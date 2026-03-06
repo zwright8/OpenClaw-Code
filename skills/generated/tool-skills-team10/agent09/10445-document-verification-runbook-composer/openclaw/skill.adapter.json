@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10445,
+  "name": "document-verification-runbook-composer",
+  "title": "Document Verification Runbook Composer",
+  "description": "Design and run document verification workflows with runbook composer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6571,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10445-document-verification-runbook-composer/SKILL.md",
+    "entrypoint": "agent09/10445-document-verification-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification runbook composer",
+    "document verification runbook composer workflow",
+    "document verification runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

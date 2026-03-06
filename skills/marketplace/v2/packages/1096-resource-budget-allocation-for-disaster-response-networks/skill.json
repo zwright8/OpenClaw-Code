@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 1096,
+    "name": "openclaw-v2-1096-resource-budget-allocation",
+    "title": "Resource Budget Allocation for disaster response networks",
+    "domain": "disaster response networks",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "resource budget allocation",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 72.64,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/1096-resource-budget-allocation-for-disaster-response-networks/SKILL.md"
+  }
+}

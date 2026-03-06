@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 772,
+  "name": "x-twitter-sync-orchestrator",
+  "title": "X Twitter Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for X Twitter records.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12861,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00772-x-twitter-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent01/00772-x-twitter-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "x twitter sync orchestrator",
+    "x twitter sync orchestrator workflow",
+    "x twitter sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

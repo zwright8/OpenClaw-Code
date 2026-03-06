@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6199,
+  "name": "records-retention-quality-gatekeeper",
+  "title": "Records Retention Quality Gatekeeper",
+  "description": "Design and run records retention workflows with quality gatekeeper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5468,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06199-records-retention-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent05/06199-records-retention-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention quality gatekeeper",
+    "records retention quality gatekeeper workflow",
+    "records retention quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

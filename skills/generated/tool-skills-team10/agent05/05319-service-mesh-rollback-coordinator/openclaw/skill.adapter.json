@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5319,
+  "name": "service-mesh-rollback-coordinator",
+  "title": "Service Mesh Rollback Coordinator",
+  "description": "Design and run service mesh workflows with rollback coordinator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5009,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05319-service-mesh-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent05/05319-service-mesh-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service mesh rollback coordinator",
+    "service mesh rollback coordinator workflow",
+    "service mesh rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

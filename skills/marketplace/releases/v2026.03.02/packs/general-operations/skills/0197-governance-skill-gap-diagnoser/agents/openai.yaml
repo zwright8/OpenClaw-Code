@@ -1,0 +1,4 @@
+interface:
+  display_name: "Governance Skill Gap Diagnoser"
+  short_description: "Competency coverage analysis for Safety and Governance with guardrails and measurable outcomes."
+  default_prompt: "Use Governance Skill Gap Diagnoser to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2560,
+  "name": "property-management-workflow-compiler",
+  "title": "Property Management Workflow Compiler",
+  "description": "Design and run property management workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1053,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02560-property-management-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/02560-property-management-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management workflow compiler",
+    "property management workflow compiler workflow",
+    "property management workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

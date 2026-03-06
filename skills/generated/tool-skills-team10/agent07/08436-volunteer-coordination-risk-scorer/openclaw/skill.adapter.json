@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8436,
+  "name": "volunteer-coordination-risk-scorer",
+  "title": "Volunteer Coordination Risk Scorer",
+  "description": "Design and run volunteer coordination workflows with risk scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1643,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08436-volunteer-coordination-risk-scorer/SKILL.md",
+    "entrypoint": "agent07/08436-volunteer-coordination-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination risk scorer",
+    "volunteer coordination risk scorer workflow",
+    "volunteer coordination risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

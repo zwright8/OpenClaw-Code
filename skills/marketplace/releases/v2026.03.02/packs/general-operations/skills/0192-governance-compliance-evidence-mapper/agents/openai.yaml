@@ -1,0 +1,4 @@
+interface:
+  display_name: "Governance Compliance Evidence Mapper"
+  short_description: "Requirement-to-evidence mapping for Safety and Governance with guardrails and measurable outcomes."
+  default_prompt: "Use Governance Compliance Evidence Mapper to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

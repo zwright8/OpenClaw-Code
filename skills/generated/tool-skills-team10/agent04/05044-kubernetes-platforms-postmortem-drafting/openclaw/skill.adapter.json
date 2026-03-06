@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5044,
+  "name": "kubernetes-platforms-postmortem-drafting",
+  "title": "Kubernetes Platforms Postmortem Drafting",
+  "description": "Design and run kubernetes platforms workflows with postmortem drafting controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7452,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05044-kubernetes-platforms-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent04/05044-kubernetes-platforms-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms postmortem drafting",
+    "kubernetes platforms postmortem drafting workflow",
+    "kubernetes platforms postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

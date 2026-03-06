@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 758,
+    "name": "openclaw-v2-0758-sequenced-learning-path-design",
+    "title": "Comms Training Curriculum Composer",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "sequenced learning path design",
+    "archetype": "general-capability"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 62,
+    "roiScore": 62.4,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0758-comms-training-curriculum-composer/SKILL.md"
+  }
+}

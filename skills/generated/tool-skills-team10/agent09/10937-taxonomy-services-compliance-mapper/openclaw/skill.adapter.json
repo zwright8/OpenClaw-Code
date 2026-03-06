@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10937,
+  "name": "taxonomy-services-compliance-mapper",
+  "title": "Taxonomy Services Compliance Mapper",
+  "description": "Design and run taxonomy services workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1950,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10937-taxonomy-services-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/10937-taxonomy-services-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services compliance mapper",
+    "taxonomy services compliance mapper workflow",
+    "taxonomy services compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

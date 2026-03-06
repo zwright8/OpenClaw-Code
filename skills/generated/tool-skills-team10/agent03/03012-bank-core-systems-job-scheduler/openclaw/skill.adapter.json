@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3012,
+  "name": "bank-core-systems-job-scheduler",
+  "title": "Bank Core Systems Job Scheduler",
+  "description": "Design and run bank core systems workflows with job scheduler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4932,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03012-bank-core-systems-job-scheduler/SKILL.md",
+    "entrypoint": "agent03/03012-bank-core-systems-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems job scheduler",
+    "bank core systems job scheduler workflow",
+    "bank core systems job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

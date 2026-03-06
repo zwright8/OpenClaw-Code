@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6463,
+  "name": "3d-asset-pipelines-retry-governor",
+  "title": "3D Asset Pipelines Retry Governor",
+  "description": "Design and run 3d asset pipelines workflows with retry governor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6210,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06463-3d-asset-pipelines-retry-governor/SKILL.md",
+    "entrypoint": "agent05/06463-3d-asset-pipelines-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines retry governor",
+    "3d asset pipelines retry governor workflow",
+    "3d asset pipelines retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

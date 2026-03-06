@@ -1,0 +1,4 @@
+interface:
+  display_name: "Oversight Privacy Preserving Data Broker"
+  short_description: "Policy-scoped data mediation for Human Oversight and Operator UX with guardrails and measurable outcomes."
+  default_prompt: "Use Oversight Privacy Preserving Data Broker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

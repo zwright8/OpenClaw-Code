@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9159,
+  "name": "accessibility-auditing-dependency-resolver",
+  "title": "Accessibility Auditing Dependency Resolver",
+  "description": "Design and run accessibility auditing workflows with dependency resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11184,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09159-accessibility-auditing-dependency-resolver/SKILL.md",
+    "entrypoint": "agent08/09159-accessibility-auditing-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing dependency resolver",
+    "accessibility auditing dependency resolver workflow",
+    "accessibility auditing dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

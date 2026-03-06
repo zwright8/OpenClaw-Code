@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9415,
+  "name": "predictive-maintenance-queue-balancer",
+  "title": "Predictive Maintenance Queue Balancer",
+  "description": "Design and run predictive maintenance workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7597,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09415-predictive-maintenance-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/09415-predictive-maintenance-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance queue balancer",
+    "predictive maintenance queue balancer workflow",
+    "predictive maintenance queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

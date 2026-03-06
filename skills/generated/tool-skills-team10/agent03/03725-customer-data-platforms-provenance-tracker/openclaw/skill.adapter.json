@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3725,
+  "name": "customer-data-platforms-provenance-tracker",
+  "title": "Customer Data Platforms Provenance Tracker",
+  "description": "Design and run customer data platforms workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9280,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03725-customer-data-platforms-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/03725-customer-data-platforms-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer data platforms provenance tracker",
+    "customer data platforms provenance tracker workflow",
+    "customer data platforms provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

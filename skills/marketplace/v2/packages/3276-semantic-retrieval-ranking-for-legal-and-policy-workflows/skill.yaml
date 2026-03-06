@@ -1,0 +1,26 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 3276
+  name: "openclaw-v2-3276-semantic-retrieval-ranking"
+  title: "Semantic Retrieval Ranking for legal and policy workflows"
+  domain: "legal and policy workflows"
+  vertical_id: "policy-risk"
+  vertical_name: "Policy, Risk, and Security"
+  method: "semantic retrieval ranking"
+  archetype: "retrieval-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 99
+  roi_score: 84.43
+  trust_badges:
+    - "Verified-Quality"
+    - "Reliability-Proven"
+    - "ROI-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/3276-semantic-retrieval-ranking-for-legal-and-policy-workflows/SKILL.md"

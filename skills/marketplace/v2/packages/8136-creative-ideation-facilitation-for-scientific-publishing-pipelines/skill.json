@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 8136,
+    "name": "openclaw-v2-8136-creative-ideation-facilitation",
+    "title": "Creative Ideation Facilitation for scientific publishing pipelines",
+    "domain": "scientific publishing pipelines",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "creative ideation facilitation",
+    "archetype": "ideation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 76.76,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/8136-creative-ideation-facilitation-for-scientific-publishing-pipelines/SKILL.md"
+  }
+}

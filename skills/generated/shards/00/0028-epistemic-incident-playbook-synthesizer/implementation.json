@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 28,
+  "skillName": "u0028-epistemic-incident-playbook-synthesizer",
+  "title": "Epistemic Incident Playbook Synthesizer",
+  "domain": "Truth-Seeking and Epistemics",
+  "domainSlug": "truth-seeking-and-epistemics",
+  "reason": "We need this skill because decisions drift when claims are accepted without verification. This specific skill creates repeatable response procedures from incident history.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Epistemic Incident Playbook Synthesizer`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "Implement the core capability using pattern-to-playbook synthesis, and produce incident playbooks with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "pattern-to-playbook synthesis",
+    "primaryArtifact": "incident playbooks",
+    "requiredSignals": [
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "false certainty",
+      "unverified assumptions",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2778,
+      "execution": 0.2865,
+      "safety": 0.2697,
+      "impact": 0.166
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 47,
+      "reviewRisk": 42,
+      "criticalRisk": 60
+    },
+    "orchestration": {
+      "routingTag": "truth-seeking-and-epistemics:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0028_epistemic-incident-playbook-synt",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0028-epistemic-incident-playbook-synthesizer:28:communication-engine",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "incident_playbooks_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "incident_playbooks_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Epistemic Incident Playbook Synthesizer normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to truth-seeking-and-epistemics:communication-engine consumers with approval-gate context"
+    }
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Epistemic Incident Playbook Synthesizer`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "contractStep": "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using pattern-to-playbook synthesis, and produce incident playbooks with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

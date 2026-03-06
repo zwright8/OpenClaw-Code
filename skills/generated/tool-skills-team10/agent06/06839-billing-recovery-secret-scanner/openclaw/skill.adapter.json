@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6839,
+  "name": "billing-recovery-secret-scanner",
+  "title": "Billing Recovery Secret Scanner",
+  "description": "Design and run billing recovery workflows with secret scanner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1608,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06839-billing-recovery-secret-scanner/SKILL.md",
+    "entrypoint": "agent06/06839-billing-recovery-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery secret scanner",
+    "billing recovery secret scanner workflow",
+    "billing recovery secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

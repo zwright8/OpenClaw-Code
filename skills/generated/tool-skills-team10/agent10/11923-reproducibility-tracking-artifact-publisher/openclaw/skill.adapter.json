@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11923,
+  "name": "reproducibility-tracking-artifact-publisher",
+  "title": "Reproducibility Tracking Artifact Publisher",
+  "description": "Design and run reproducibility tracking workflows with artifact publisher controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12177,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11923-reproducibility-tracking-artifact-publisher/SKILL.md",
+    "entrypoint": "agent10/11923-reproducibility-tracking-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reproducibility tracking artifact publisher",
+    "reproducibility tracking artifact publisher workflow",
+    "reproducibility tracking artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

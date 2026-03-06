@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2442,
+  "name": "esg-reporting-root-cause-miner",
+  "title": "ESG Reporting Root Cause Miner",
+  "description": "Design and run esg reporting workflows with root cause miner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4518,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02442-esg-reporting-root-cause-miner/SKILL.md",
+    "entrypoint": "agent02/02442-esg-reporting-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting root cause miner",
+    "esg reporting root cause miner workflow",
+    "esg reporting root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4048,
+  "name": "support-ticketing-feedback-harvester",
+  "title": "Support Ticketing Feedback Harvester",
+  "description": "Design and run support ticketing workflows with feedback harvester controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9374,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04048-support-ticketing-feedback-harvester/SKILL.md",
+    "entrypoint": "agent04/04048-support-ticketing-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing feedback harvester",
+    "support ticketing feedback harvester workflow",
+    "support ticketing feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

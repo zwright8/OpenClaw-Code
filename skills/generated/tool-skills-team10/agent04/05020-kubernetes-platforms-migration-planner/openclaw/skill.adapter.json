@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5020,
+  "name": "kubernetes-platforms-migration-planner",
+  "title": "Kubernetes Platforms Migration Planner",
+  "description": "Design and run kubernetes platforms workflows with migration planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2475,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05020-kubernetes-platforms-migration-planner/SKILL.md",
+    "entrypoint": "agent04/05020-kubernetes-platforms-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms migration planner",
+    "kubernetes platforms migration planner workflow",
+    "kubernetes platforms migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 1816,
+    "name": "openclaw-v2-1816-handoff-contracting",
+    "title": "Handoff Contracting for personal finance management",
+    "domain": "personal finance management",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "handoff contracting",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 99,
+    "roiScore": 87.63,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "ROI-Proven",
+      "Enterprise-Ready",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/1816-handoff-contracting-for-personal-finance-management/SKILL.md"
+  }
+}

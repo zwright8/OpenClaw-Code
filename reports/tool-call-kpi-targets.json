@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-03-05T07:20:46.995178+00:00",
+  "scope": {
+    "scanRoot": "skills/generated/shards",
+    "skillCount": 10553,
+    "numericSkillCount": 10000,
+    "nexusSkillCount": 553
+  },
+  "baseline": {
+    "toolAndApiSections": 553,
+    "toolAndApiPct": 5.24,
+    "toolCallImplementationSections": 0,
+    "toolCallImplementationPct": 0.0,
+    "skillsMissingToolCalls": 10000
+  },
+  "kpis": [
+    {
+      "name": "tool_api_coverage_pct",
+      "description": "Skills with both tool inventory and API protocol/auth sections",
+      "before": 5.24,
+      "after": 100.0,
+      "target": 100.0,
+      "direction": "higher_is_better",
+      "unit": "percent"
+    },
+    {
+      "name": "tool_call_implementation_pct",
+      "description": "Skills with explicit Tool Call Implementation section",
+      "before": 0.0,
+      "after": 100.0,
+      "target": 100.0,
+      "direction": "higher_is_better",
+      "unit": "percent"
+    },
+    {
+      "name": "credential_reuse_policy_pct",
+      "description": "Skills with explicit credential reuse-first policy",
+      "before": 100.0,
+      "after": 100.0,
+      "target": 100.0,
+      "direction": "higher_is_better",
+      "unit": "percent"
+    },
+    {
+      "name": "skills_missing_tool_calls_count",
+      "description": "Skills lacking detailed tool/API call sections",
+      "before": 10000,
+      "after": 0,
+      "target": 0,
+      "direction": "lower_is_better",
+      "unit": "count"
+    },
+    {
+      "name": "p0_gap_without_tool_calls_count",
+      "description": "Tool-primary (P0) numeric skills that lacked detailed tool-call docs at baseline",
+      "before": 2900,
+      "after": 0,
+      "target": 0,
+      "direction": "lower_is_better",
+      "unit": "count"
+    },
+    {
+      "name": "p1_gap_without_tool_calls_count",
+      "description": "Hybrid (P1) numeric skills that lacked detailed tool-call docs at baseline",
+      "before": 5275,
+      "after": 0,
+      "target": 0,
+      "direction": "lower_is_better",
+      "unit": "count"
+    },
+    {
+      "name": "p2_gap_without_tool_calls_count",
+      "description": "Model-primary (P2) numeric skills that lacked detailed tool-call docs at baseline",
+      "before": 1825,
+      "after": 0,
+      "target": 0,
+      "direction": "lower_is_better",
+      "unit": "count"
+    }
+  ]
+}

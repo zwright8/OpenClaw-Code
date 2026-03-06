@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11158,
+  "name": "catalog-syndication-task-decomposer",
+  "title": "Catalog Syndication Task Decomposer",
+  "description": "Design and run catalog syndication workflows with task decomposer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11855,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11158-catalog-syndication-task-decomposer/SKILL.md",
+    "entrypoint": "agent09/11158-catalog-syndication-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "catalog syndication task decomposer",
+    "catalog syndication task decomposer workflow",
+    "catalog syndication task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

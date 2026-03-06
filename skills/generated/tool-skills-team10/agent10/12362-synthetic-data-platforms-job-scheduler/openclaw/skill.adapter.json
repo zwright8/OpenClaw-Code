@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12362,
+  "name": "synthetic-data-platforms-job-scheduler",
+  "title": "Synthetic Data Platforms Job Scheduler",
+  "description": "Design and run synthetic data platforms workflows with job scheduler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5257,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12362-synthetic-data-platforms-job-scheduler/SKILL.md",
+    "entrypoint": "agent10/12362-synthetic-data-platforms-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms job scheduler",
+    "synthetic data platforms job scheduler workflow",
+    "synthetic data platforms job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

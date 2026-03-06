@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4096,pc6001vx,local-installable,PC-6001 emulator,https://github.com/eighttails/PC6001VX,LGPL-2.1-or-later
+4097,lgogdownloader,local-installable,Unofficial downloader for GOG.com games,https://sites.google.com/site/gogdownloader/,WTFPL
+4099,symengine,local-installable,Fast symbolic manipulation library written in C++,https://www.sympy.org/en/index.html,MIT
+4101,blueprint-compiler,local-installable,Markup language and compiler for GTK 4 user interfaces,https://gnome.pages.gitlab.gnome.org/blueprint-compiler/,LGPL-3.0-or-later
+4103,yaz,local-installable,Toolkit for Z39.50/SRW/SRU clients/servers,https://www.indexdata.com/resources/software/yaz/,BSD-3-Clause
+4105,mrbayes,local-installable,Bayesian inference of phylogenies and evolutionary models,https://nbisweden.github.io/MrBayes/,GPL-3.0-or-later
+4106,vipsdisp,local-installable,Viewer for large images,https://github.com/jcupitt/vipsdisp,MIT
+4107,juju,local-installable,DevOps management tool,https://juju.is/,AGPL-3.0-only
+4109,spades,local-installable,De novo genome sequence assembly,https://ablab.github.io/spades/,GPL-2.0-only
+4110,pass-otp,local-installable,Pass extension for managing one-time-password tokens,https://github.com/tadfisher/pass-otp,GPL-3.0-or-later
+4111,npth,local-installable,New GNU portable threads library,https://gnupg.org/,LGPL-2.1-or-later
+4113,imap-uw,local-installable,University of Washington IMAP toolkit,https://salsa.debian.org/holmgren/uw-imap,Apache-2.0
+4115,doge,local-installable,Command-line DNS client,https://dog.ramfield.net/,EUPL-1.2
+4116,libtorrent-rakshasa,local-installable,BitTorrent library with a focus on high performance,https://github.com/rakshasa/libtorrent,GPL-2.0-or-later
+4117,falcosecurity-libs,local-installable,Core libraries for Falco and Sysdig,https://falcosecurity.github.io/libs/,Apache-2.0 AND (GPL-2.0-only OR MIT) AND (GPL-2.0-only WITH Linux-syscall-note)
+4119,flash,local-installable,Command-line script to flash SD card images of any kind,https://github.com/hypriot/flash,MIT
+4120,readsb,local-installable,ADS-B decoder swiss knife,https://github.com/wiedehopf/readsb,GPL-3.0-or-later
+4122,diffnav,local-installable,Git diff pager based on delta but with a file tree,https://github.com/dlvhdr/diffnav,MIT
+4123,docker-ls,local-installable,Tools for browsing and manipulating docker registries,https://github.com/mayflower/docker-ls,MIT
+4124,enter-tex,local-installable,TeX/LaTeX text editor,https://gitlab.gnome.org/swilmet/enter-tex,GPL-3.0-or-later
+4125,qt-postgresql,local-installable,Qt SQL Database Driver,https://www.qt.io/,GPL-2.0-only OR GPL-3.0-only OR LGPL-3.0-only
+4126,zuban,local-installable,"Python language server and type checker, written in Rust",https://zubanls.com/,AGPL-3.0-only
+4128,makepkg,local-installable,Compile and build packages suitable for installation with pacman,https://wiki.archlinux.org/index.php/makepkg,GPL-2.0-or-later
+4129,abcmidi,local-installable,Converts abc music notation files to MIDI files,https://ifdo.ca/~seymour/runabc/top.html,GPL-2.0-or-later
+4131,xinit,local-installable,Start the X Window System server,https://gitlab.freedesktop.org/xorg/app/xinit,MIT AND APSL-2.0
+4133,psql2csv,local-installable,Run a query in psql and output the result as CSV,https://github.com/fphilipe/psql2csv,MIT

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9316,
+  "name": "edge-compute-state-reconciler",
+  "title": "Edge Compute State Reconciler",
+  "description": "Design and run edge compute workflows with state reconciler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4337,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09316-edge-compute-state-reconciler/SKILL.md",
+    "entrypoint": "agent08/09316-edge-compute-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute state reconciler",
+    "edge compute state reconciler workflow",
+    "edge compute state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

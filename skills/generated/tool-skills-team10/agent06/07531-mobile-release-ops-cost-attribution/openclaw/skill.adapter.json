@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7531,
+  "name": "mobile-release-ops-cost-attribution",
+  "title": "Mobile Release Ops Cost Attribution",
+  "description": "Design and run mobile release ops workflows with cost attribution controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10586,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07531-mobile-release-ops-cost-attribution/SKILL.md",
+    "entrypoint": "agent06/07531-mobile-release-ops-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops cost attribution",
+    "mobile release ops cost attribution workflow",
+    "mobile release ops cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

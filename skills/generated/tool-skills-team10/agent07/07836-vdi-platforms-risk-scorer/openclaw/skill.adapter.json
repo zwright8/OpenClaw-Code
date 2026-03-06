@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7836,
+  "name": "vdi-platforms-risk-scorer",
+  "title": "VDI Platforms Risk Scorer",
+  "description": "Design and run vdi platforms workflows with risk scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1632,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/07836-vdi-platforms-risk-scorer/SKILL.md",
+    "entrypoint": "agent07/07836-vdi-platforms-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms risk scorer",
+    "vdi platforms risk scorer workflow",
+    "vdi platforms risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

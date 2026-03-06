@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7967,
+  "name": "asset-discovery-delta-calculator",
+  "title": "Asset Discovery Delta Calculator",
+  "description": "Design and run asset discovery workflows with delta calculator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10766,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07967-asset-discovery-delta-calculator/SKILL.md",
+    "entrypoint": "agent07/07967-asset-discovery-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery delta calculator",
+    "asset discovery delta calculator workflow",
+    "asset discovery delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

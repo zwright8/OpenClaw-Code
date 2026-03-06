@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6544,
+  "name": "ecommerce-catalogs-postmortem-drafting",
+  "title": "Ecommerce Catalogs Postmortem Drafting",
+  "description": "Design and run ecommerce catalogs workflows with postmortem drafting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 8011,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06544-ecommerce-catalogs-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent06/06544-ecommerce-catalogs-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs postmortem drafting",
+    "ecommerce catalogs postmortem drafting workflow",
+    "ecommerce catalogs postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

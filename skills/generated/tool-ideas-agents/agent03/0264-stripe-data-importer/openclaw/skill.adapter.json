@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 264,
+  "name": "stripe-data-importer",
+  "title": "Stripe Data Importer",
+  "description": "Validates and imports bulk updates into Stripe.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0264-stripe-data-importer/SKILL.md",
+    "entrypoint": "agent03/0264-stripe-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "stripe data importer",
+    "stripe data importer workflow",
+    "stripe data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0264-stripe-data-importer"
+  }
+}

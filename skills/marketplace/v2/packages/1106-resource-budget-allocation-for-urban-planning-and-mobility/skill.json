@@ -1,0 +1,31 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 1106,
+    "name": "openclaw-v2-1106-resource-budget-allocation",
+    "title": "Resource Budget Allocation for urban planning and mobility",
+    "domain": "urban planning and mobility",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "resource budget allocation",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 81.64,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/1106-resource-budget-allocation-for-urban-planning-and-mobility/SKILL.md"
+  }
+}

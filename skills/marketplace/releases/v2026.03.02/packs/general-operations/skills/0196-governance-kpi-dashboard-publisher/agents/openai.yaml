@@ -1,0 +1,4 @@
+interface:
+  display_name: "Governance KPI Dashboard Publisher"
+  short_description: "Metric synthesis and publication for Safety and Governance with guardrails and measurable outcomes."
+  default_prompt: "Use Governance KPI Dashboard Publisher to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2625,
+  "name": "construction-pm-provenance-tracker",
+  "title": "Construction PM Provenance Tracker",
+  "description": "Design and run construction pm workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8923,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02625-construction-pm-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/02625-construction-pm-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm provenance tracker",
+    "construction pm provenance tracker workflow",
+    "construction pm provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

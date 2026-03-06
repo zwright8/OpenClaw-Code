@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9652,
+  "name": "alternative-data-auth-broker",
+  "title": "Alternative Data Auth Broker",
+  "description": "Design and run alternative data workflows with auth broker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 960,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09652-alternative-data-auth-broker/SKILL.md",
+    "entrypoint": "agent08/09652-alternative-data-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data auth broker",
+    "alternative data auth broker workflow",
+    "alternative data auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8427,
+  "name": "volunteer-coordination-threshold-alerting",
+  "title": "Volunteer Coordination Threshold Alerting",
+  "description": "Design and run volunteer coordination workflows with threshold alerting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10940,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08427-volunteer-coordination-threshold-alerting/SKILL.md",
+    "entrypoint": "agent07/08427-volunteer-coordination-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination threshold alerting",
+    "volunteer coordination threshold alerting workflow",
+    "volunteer coordination threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

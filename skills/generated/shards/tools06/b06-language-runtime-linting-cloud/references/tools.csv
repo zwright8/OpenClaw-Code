@@ -1,0 +1,27 @@
+rank,tool,access,license,homepage,description
+2600,perltidy,local-installable,GPL-2.0-or-later,https://perltidy.sourceforge.net/,Indents and reformats Perl scripts to make them easier to read
+2601,snakefmt,local-installable,MIT,https://github.com/snakemake/snakefmt/,Snakemake code formatter
+2602,ruby@3.0,local-installable,Ruby,https://www.ruby-lang.org/,"Powerful, clean, object-oriented scripting language"
+2603,uwsgi,local-installable,GPL-2.0-or-later,https://uwsgi-docs.readthedocs.io/en/latest/,Full stack for building hosting services
+2604,hexedit,local-installable,GPL-2.0-or-later,https://rigaux.org/hexedit.html,View and edit files in hexadecimal or ASCII
+2605,nethack,local-installable,NGPL,https://www.nethack.org/,Single-player roguelike video game
+2606,conda-lock,local-installable,MIT,https://github.com/conda/conda-lock,Lightweight lockfile for conda environments
+2607,pint,local-installable,Apache-2.0,https://cloudflare.github.io/pint/,Prometheus rule linter/validator
+2609,guetzli,local-installable,Apache-2.0,https://github.com/google/guetzli,Perceptual JPEG encoder
+2610,fancy-cat,local-installable,AGPL-3.0-or-later,https://github.com/freref/fancy-cat,PDF reader for terminal emulators using the Kitty image protocol
+2612,unxip,local-installable,LGPL-3.0-only,https://github.com/saagarjha/unxip,Fast Xcode unarchiver
+2613,goffice,local-installable,GPL-3.0-only OR GPL-2.0-only,https://gitlab.gnome.org/GNOME/goffice,Gnumeric spreadsheet program
+2614,bbot,local-installable,AGPL-3.0-only,https://github.com/blacklanternsecurity/bbot,OSINT automation tool
+2615,libxau,local-installable,MIT,https://www.x.org/,X.Org: A Sample Authorization Protocol for X
+2616,scooter,local-installable,MIT,https://github.com/thomasschafer/scooter,Interactive find and replace in the terminal
+2618,xsel,local-installable,MIT,https://www.vergenet.net/~conrad/software/xsel/,Command-line program for getting and setting the contents of the X selection
+2619,whosthere,local-installable,Apache-2.0,https://github.com/ramonvermeulen/whosthere,LAN discovery tool with a modern TUI written in Go
+2620,mask,local-installable,MIT,https://github.com/jacobdeichert/mask/,CLI task runner defined by a simple markdown file
+2621,sdl3_ttf,local-installable,Zlib,https://github.com/libsdl-org/SDL_ttf,Library for using TrueType fonts in SDL applications
+2622,miniserve,local-installable,MIT,https://github.com/svenstaro/miniserve,High performance static file server
+2623,luacheck,local-installable,MIT,https://luacheck.readthedocs.io/,Tool for linting and static analysis of Lua code
+2624,dalfox,local-installable,MIT,https://dalfox.hahwul.com,XSS scanner and utility focused on automation
+2625,iredis,local-installable,BSD-3-Clause,https://iredis.xbin.io/,Terminal Client for Redis with AutoCompletion and Syntax Highlighting
+2626,sqlite-utils,local-installable,Apache-2.0,https://sqlite-utils.datasette.io/,CLI utility for manipulating SQLite databases
+2627,strace,local-installable,LGPL-2.1-or-later,https://strace.io/,"Diagnostic, instructional, and debugging tool for the Linux kernel"
+2628,cloudformation-cli,local-installable,Apache-2.0,https://github.com/aws-cloudformation/cloudformation-cli/,CloudFormation Provider Development Toolkit

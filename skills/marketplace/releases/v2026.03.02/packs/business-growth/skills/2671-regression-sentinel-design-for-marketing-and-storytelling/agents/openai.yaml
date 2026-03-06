@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regression Sentinel Design for marketing and storytelling"
+  short_description: "Regression sentinel design for marketing and storytelling with guardrails and measurable outcomes."
+  default_prompt: "Use Regression Sentinel Design for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

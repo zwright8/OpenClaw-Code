@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2537,
+  "name": "real-estate-mls-compliance-mapper",
+  "title": "Real Estate MLS Compliance Mapper",
+  "description": "Design and run real estate mls workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1774,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02537-real-estate-mls-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02537-real-estate-mls-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls compliance mapper",
+    "real estate mls compliance mapper workflow",
+    "real estate mls compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

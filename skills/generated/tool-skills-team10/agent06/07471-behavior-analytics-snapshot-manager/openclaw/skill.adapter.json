@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7471,
+  "name": "behavior-analytics-snapshot-manager",
+  "title": "Behavior Analytics Snapshot Manager",
+  "description": "Design and run behavior analytics workflows with snapshot manager controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10558,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07471-behavior-analytics-snapshot-manager/SKILL.md",
+    "entrypoint": "agent06/07471-behavior-analytics-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics snapshot manager",
+    "behavior analytics snapshot manager workflow",
+    "behavior analytics snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

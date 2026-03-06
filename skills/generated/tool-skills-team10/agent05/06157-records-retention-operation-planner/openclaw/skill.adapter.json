@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6157,
+  "name": "records-retention-operation-planner",
+  "title": "Records Retention Operation Planner",
+  "description": "Design and run records retention workflows with operation planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10090,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06157-records-retention-operation-planner/SKILL.md",
+    "entrypoint": "agent05/06157-records-retention-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention operation planner",
+    "records retention operation planner workflow",
+    "records retention operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

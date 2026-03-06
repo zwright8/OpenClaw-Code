@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3373,
+  "name": "payroll-systems-artifact-publisher",
+  "title": "Payroll Systems Artifact Publisher",
+  "description": "Design and run payroll systems workflows with artifact publisher controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9132,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03373-payroll-systems-artifact-publisher/SKILL.md",
+    "entrypoint": "agent03/03373-payroll-systems-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems artifact publisher",
+    "payroll systems artifact publisher workflow",
+    "payroll systems artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10486,
+  "name": "biometric-systems-risk-scorer",
+  "title": "Biometric Systems Risk Scorer",
+  "description": "Design and run biometric systems workflows with risk scorer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1688,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10486-biometric-systems-risk-scorer/SKILL.md",
+    "entrypoint": "agent09/10486-biometric-systems-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems risk scorer",
+    "biometric systems risk scorer workflow",
+    "biometric systems risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

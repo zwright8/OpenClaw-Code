@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3238,
+  "name": "fraud-operations-pii-redactor",
+  "title": "Fraud Operations PII Redactor",
+  "description": "Design and run fraud operations workflows with pii redactor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 3271,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03238-fraud-operations-pii-redactor/SKILL.md",
+    "entrypoint": "agent03/03238-fraud-operations-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations pii redactor",
+    "fraud operations pii redactor workflow",
+    "fraud operations pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2772,
+  "name": "hospitality-pms-version-tracker",
+  "title": "Hospitality PMS Version Tracker",
+  "description": "Design and run hospitality pms workflows with version tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8963,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02772-hospitality-pms-version-tracker/SKILL.md",
+    "entrypoint": "agent03/02772-hospitality-pms-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hospitality pms version tracker",
+    "hospitality pms version tracker workflow",
+    "hospitality pms version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

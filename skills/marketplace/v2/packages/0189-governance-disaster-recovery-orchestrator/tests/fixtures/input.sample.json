@@ -1,0 +1,13 @@
+{
+  "task": "Execute failover and restoration sequencing",
+  "objective": "Deliver Governance Disaster Recovery Orchestrator outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

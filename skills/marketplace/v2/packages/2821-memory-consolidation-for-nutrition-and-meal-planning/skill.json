@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2821,
+    "name": "openclaw-v2-2821-memory-consolidation",
+    "title": "Memory Consolidation for nutrition and meal planning",
+    "domain": "nutrition and meal planning",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "memory consolidation",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 72,
+    "roiScore": 64.64,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2821-memory-consolidation-for-nutrition-and-meal-planning/SKILL.md"
+  }
+}

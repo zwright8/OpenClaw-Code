@@ -1,0 +1,25 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 5816
+  name: "openclaw-v2-5816-cost-benefit-forecasting"
+  title: "Cost-Benefit Forecasting for personal finance management"
+  domain: "personal finance management"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "cost-benefit forecasting"
+  archetype: "forecasting-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 97
+  roi_score: 77.3
+  trust_badges:
+    - "Verified-Quality"
+    - "Reliability-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/5816-cost-benefit-forecasting-for-personal-finance-management/SKILL.md"

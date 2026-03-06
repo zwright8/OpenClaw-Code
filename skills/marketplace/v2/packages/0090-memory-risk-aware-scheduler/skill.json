@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 90,
+    "name": "openclaw-v2-0090-risk-weighted-sequencing",
+    "title": "Memory Risk-Aware Scheduler",
+    "domain": "Memory and Knowledge Operations",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "risk-weighted sequencing",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 56.29,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0090-memory-risk-aware-scheduler/SKILL.md"
+  }
+}

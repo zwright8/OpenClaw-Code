@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7479,
+  "name": "behavior-analytics-capacity-planner",
+  "title": "Behavior Analytics Capacity Planner",
+  "description": "Design and run behavior analytics workflows with capacity planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10564,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07479-behavior-analytics-capacity-planner/SKILL.md",
+    "entrypoint": "agent06/07479-behavior-analytics-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics capacity planner",
+    "behavior analytics capacity planner workflow",
+    "behavior analytics capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

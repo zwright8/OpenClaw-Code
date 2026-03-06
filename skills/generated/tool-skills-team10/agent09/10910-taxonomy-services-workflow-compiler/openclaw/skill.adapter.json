@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10910,
+  "name": "taxonomy-services-workflow-compiler",
+  "title": "Taxonomy Services Workflow Compiler",
+  "description": "Design and run taxonomy services workflows with workflow compiler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1201,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10910-taxonomy-services-workflow-compiler/SKILL.md",
+    "entrypoint": "agent09/10910-taxonomy-services-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services workflow compiler",
+    "taxonomy services workflow compiler workflow",
+    "taxonomy services workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

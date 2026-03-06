@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2929,
+  "name": "maritime-routing-capacity-planner",
+  "title": "Maritime Routing Capacity Planner",
+  "description": "Design and run maritime routing workflows with capacity planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8989,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02929-maritime-routing-capacity-planner/SKILL.md",
+    "entrypoint": "agent03/02929-maritime-routing-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing capacity planner",
+    "maritime routing capacity planner workflow",
+    "maritime routing capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

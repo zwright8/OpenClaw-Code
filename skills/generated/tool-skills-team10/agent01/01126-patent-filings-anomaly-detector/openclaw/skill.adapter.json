@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1126,
+  "name": "patent-filings-anomaly-detector",
+  "title": "Patent Filings Anomaly Detector",
+  "description": "Design and run patent filings workflows with anomaly detector controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 5285,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01126-patent-filings-anomaly-detector/SKILL.md",
+    "entrypoint": "agent01/01126-patent-filings-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings anomaly detector",
+    "patent filings anomaly detector workflow",
+    "patent filings anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

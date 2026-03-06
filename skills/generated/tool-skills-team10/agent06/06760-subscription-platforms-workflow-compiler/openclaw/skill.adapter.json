@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6760,
+  "name": "subscription-platforms-workflow-compiler",
+  "title": "Subscription Platforms Workflow Compiler",
+  "description": "Design and run subscription platforms workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1127,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06760-subscription-platforms-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/06760-subscription-platforms-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "subscription platforms workflow compiler",
+    "subscription platforms workflow compiler workflow",
+    "subscription platforms workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

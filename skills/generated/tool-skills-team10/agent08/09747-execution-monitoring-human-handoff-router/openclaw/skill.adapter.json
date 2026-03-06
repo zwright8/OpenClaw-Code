@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9747,
+  "name": "execution-monitoring-human-handoff-router",
+  "title": "Execution Monitoring Human Handoff Router",
+  "description": "Design and run execution monitoring workflows with human handoff router controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11368,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09747-execution-monitoring-human-handoff-router/SKILL.md",
+    "entrypoint": "agent08/09747-execution-monitoring-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring human handoff router",
+    "execution monitoring human handoff router workflow",
+    "execution monitoring human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

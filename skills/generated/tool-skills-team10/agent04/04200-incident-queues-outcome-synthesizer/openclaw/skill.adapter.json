@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4200,
+  "name": "incident-queues-outcome-synthesizer",
+  "title": "Incident Queues Outcome Synthesizer",
+  "description": "Design and run incident queues workflows with outcome synthesizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3344,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04200-incident-queues-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent04/04200-incident-queues-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues outcome synthesizer",
+    "incident queues outcome synthesizer workflow",
+    "incident queues outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

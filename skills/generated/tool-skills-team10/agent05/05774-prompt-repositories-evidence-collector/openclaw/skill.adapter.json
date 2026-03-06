@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5774,
+  "name": "prompt-repositories-evidence-collector",
+  "title": "Prompt Repositories Evidence Collector",
+  "description": "Design and run prompt repositories workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6146,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05774-prompt-repositories-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/05774-prompt-repositories-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prompt repositories evidence collector",
+    "prompt repositories evidence collector workflow",
+    "prompt repositories evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

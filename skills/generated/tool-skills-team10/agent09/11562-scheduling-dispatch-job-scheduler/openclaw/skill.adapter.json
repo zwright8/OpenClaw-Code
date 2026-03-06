@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11562,
+  "name": "scheduling-dispatch-job-scheduler",
+  "title": "Scheduling Dispatch Job Scheduler",
+  "description": "Design and run scheduling dispatch workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5231,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11562-scheduling-dispatch-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/11562-scheduling-dispatch-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch job scheduler",
+    "scheduling dispatch job scheduler workflow",
+    "scheduling dispatch job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

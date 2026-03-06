@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12199,
+  "name": "audit-trails-quality-gatekeeper",
+  "title": "Audit Trails Quality Gatekeeper",
+  "description": "Design and run audit trails workflows with quality gatekeeper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3068,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12199-audit-trails-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent10/12199-audit-trails-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails quality gatekeeper",
+    "audit trails quality gatekeeper workflow",
+    "audit trails quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "skill": "u0118-memory-training-curriculum-composer",
+  "case": "minimal-valid",
+  "inputs_present": [
+    "episodic logs",
+    "knowledge nodes",
+    "retrieval metadata",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expected_gate_result": "pass",
+  "risk_classification": "standard"
+}

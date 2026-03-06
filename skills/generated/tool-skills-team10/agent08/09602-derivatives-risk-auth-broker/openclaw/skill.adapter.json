@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9602,
+  "name": "derivatives-risk-auth-broker",
+  "title": "Derivatives Risk Auth Broker",
+  "description": "Design and run derivatives risk workflows with auth broker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 297,
+    "score": 93,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09602-derivatives-risk-auth-broker/SKILL.md",
+    "entrypoint": "agent08/09602-derivatives-risk-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk auth broker",
+    "derivatives risk auth broker workflow",
+    "derivatives risk auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

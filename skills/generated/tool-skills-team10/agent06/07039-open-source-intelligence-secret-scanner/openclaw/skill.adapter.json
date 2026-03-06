@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7039,
+  "name": "open-source-intelligence-secret-scanner",
+  "title": "Open Source Intelligence Secret Scanner",
+  "description": "Design and run open source intelligence workflows with secret scanner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2869,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07039-open-source-intelligence-secret-scanner/SKILL.md",
+    "entrypoint": "agent06/07039-open-source-intelligence-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence secret scanner",
+    "open source intelligence secret scanner workflow",
+    "open source intelligence secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

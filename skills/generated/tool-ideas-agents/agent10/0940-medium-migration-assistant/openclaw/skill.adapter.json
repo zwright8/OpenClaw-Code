@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 940,
+  "name": "medium-migration-assistant",
+  "title": "Medium Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Medium.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "agent10/0940-medium-migration-assistant/SKILL.md",
+    "entrypoint": "agent10/0940-medium-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "medium migration assistant",
+    "medium migration assistant workflow",
+    "medium migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent10/0940-medium-migration-assistant"
+  }
+}

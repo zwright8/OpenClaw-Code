@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7827,
+  "name": "vdi-platforms-threshold-alerting",
+  "title": "VDI Platforms Threshold Alerting",
+  "description": "Design and run vdi platforms workflows with threshold alerting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10709,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07827-vdi-platforms-threshold-alerting/SKILL.md",
+    "entrypoint": "agent07/07827-vdi-platforms-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms threshold alerting",
+    "vdi platforms threshold alerting workflow",
+    "vdi platforms threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

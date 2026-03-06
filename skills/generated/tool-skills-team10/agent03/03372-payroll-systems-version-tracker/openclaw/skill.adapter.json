@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3372,
+  "name": "payroll-systems-version-tracker",
+  "title": "Payroll Systems Version Tracker",
+  "description": "Design and run payroll systems workflows with version tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9131,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03372-payroll-systems-version-tracker/SKILL.md",
+    "entrypoint": "agent03/03372-payroll-systems-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems version tracker",
+    "payroll systems version tracker workflow",
+    "payroll systems version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

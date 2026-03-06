@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6987,
+  "name": "forecasting-models-compliance-mapper",
+  "title": "Forecasting Models Compliance Mapper",
+  "description": "Design and run forecasting models workflows with compliance mapper controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1870,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06987-forecasting-models-compliance-mapper/SKILL.md",
+    "entrypoint": "agent06/06987-forecasting-models-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "forecasting models compliance mapper",
+    "forecasting models compliance mapper workflow",
+    "forecasting models compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

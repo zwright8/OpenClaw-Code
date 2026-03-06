@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8520,
+  "name": "civic-engagement-migration-planner",
+  "title": "Civic Engagement Migration Planner",
+  "description": "Design and run civic engagement workflows with migration planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4723,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08520-civic-engagement-migration-planner/SKILL.md",
+    "entrypoint": "agent07/08520-civic-engagement-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "civic engagement migration planner",
+    "civic engagement migration planner workflow",
+    "civic engagement migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

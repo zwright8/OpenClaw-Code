@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3981,
+  "name": "campaign-automation-cost-attribution",
+  "title": "Campaign Automation Cost Attribution",
+  "description": "Design and run campaign automation workflows with cost attribution controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7390,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03981-campaign-automation-cost-attribution/SKILL.md",
+    "entrypoint": "agent04/03981-campaign-automation-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation cost attribution",
+    "campaign automation cost attribution workflow",
+    "campaign automation cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4304,
+  "name": "access-governance-schema-introspector",
+  "title": "Access Governance Schema Introspector",
+  "description": "Design and run access governance workflows with schema introspector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 604,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04304-access-governance-schema-introspector/SKILL.md",
+    "entrypoint": "agent04/04304-access-governance-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance schema introspector",
+    "access governance schema introspector workflow",
+    "access governance schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

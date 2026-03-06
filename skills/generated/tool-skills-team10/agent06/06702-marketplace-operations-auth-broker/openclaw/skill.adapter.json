@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6702,
+  "name": "marketplace-operations-auth-broker",
+  "title": "Marketplace Operations Auth Broker",
+  "description": "Design and run marketplace operations workflows with auth broker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 904,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/06702-marketplace-operations-auth-broker/SKILL.md",
+    "entrypoint": "agent06/06702-marketplace-operations-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketplace operations auth broker",
+    "marketplace operations auth broker workflow",
+    "marketplace operations auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

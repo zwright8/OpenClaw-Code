@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9721,
+  "name": "execution-monitoring-snapshot-manager",
+  "title": "Execution Monitoring Snapshot Manager",
+  "description": "Design and run execution monitoring workflows with snapshot manager controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11356,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09721-execution-monitoring-snapshot-manager/SKILL.md",
+    "entrypoint": "agent08/09721-execution-monitoring-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring snapshot manager",
+    "execution monitoring snapshot manager workflow",
+    "execution monitoring snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

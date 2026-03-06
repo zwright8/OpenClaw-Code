@@ -1,0 +1,51 @@
+rank,tool,description,access,license,homepage
+522,expect,Program that can automate interactive applications,local-installable,LicenseRef-Homebrew-public-domain,https://core.tcl-lang.org/expect/index
+536,ugrep,"Ultra fast grep with query UI, fuzzy search, archive search, and more",local-installable,BSD-3-Clause,https://ugrep.com/
+551,broot,New way to see and navigate directory trees,local-installable,MIT,https://dystroy.org/broot/
+557,zsh-completions,Additional completion definitions for zsh,local-installable,MIT-Modern-Variant AND BSD-3-Clause AND MIT AND Apache-2.0 AND ISC AND NCSA,https://github.com/zsh-users/zsh-completions
+571,gum,Tool for glamorous shell scripts,local-installable,MIT,https://github.com/charmbracelet/gum
+572,cowsay,Apjanke's fork of the classic cowsay project,local-installable,GPL-3.0-only,https://cowsay.diamonds
+599,topgrade,Upgrade all the things,local-installable,GPL-3.0-or-later,https://github.com/topgrade-rs/topgrade
+604,gnu-getopt,Command-line option parsing utility,local-installable,GPL-2.0-or-later,https://github.com/util-linux/util-linux
+610,lsd,"Clone of ls with colorful output, file type icons, and more",local-installable,Apache-2.0,https://github.com/lsd-rs/lsd
+615,stow,Organize software neatly under a single directory tree (e.g. /usr/local),local-installable,GPL-3.0-or-later,https://www.gnu.org/software/stow/
+625,tldr,Simplified and community-driven man pages,local-installable,MIT,https://tldr.sh/
+626,carapace,Multi-shell multi-command argument completer,local-installable,MIT,https://carapace.sh
+668,bc,Arbitrary precision numeric processing language,local-installable,GPL-3.0-or-later,https://www.gnu.org/software/bc/
+681,blueutil,Get/set bluetooth power and discoverable state,local-installable,MIT,https://github.com/toy/blueutil
+701,fswatch,Monitor a directory for changes and run a shell command,local-installable,GPL-3.0-or-later AND Apache-2.0,https://github.com/emcrisostomo/fswatch
+705,ncurses,Text-based UI library,local-installable,X11-distribute-modifications-variant,https://invisible-island.net/ncurses/announce.html
+706,findutils,"Collection of GNU find, xargs, and locate",local-installable,GPL-3.0-or-later,https://www.gnu.org/software/findutils/
+708,trash-cli,Command-line interface to the freedesktop.org trashcan,local-installable,GPL-2.0-or-later,https://github.com/andreafrancia/trash-cli
+709,cmatrix,Console Matrix,local-installable,GPL-3.0-or-later,https://github.com/abishekvashok/cmatrix/
+714,tree-sitter-cli,Parser generator tool,local-installable,MIT,https://tree-sitter.github.io
+733,thefuck,Programmatically correct mistyped console commands,local-installable,MIT,https://github.com/nvbn/thefuck
+744,asciinema,Record and share terminal sessions,local-installable,GPL-3.0-only,https://asciinema.org
+750,ack,"Search tool like grep, but optimized for programmers",local-installable,Artistic-2.0,https://beyondgrep.com/
+753,tlrc,Official tldr client written in Rust,local-installable,MIT,https://tldr.sh/tlrc/
+759,macvim,"GUI for vim, made for macOS",local-installable,Vim,https://github.com/macvim-dev/macvim
+762,bash-completion,Programmable completion for Bash 3.2,local-installable,GPL-2.0-or-later,https://salsa.debian.org/debian/bash-completion
+775,conftest,Test your configuration files using Open Policy Agent,local-installable,Apache-2.0,https://www.conftest.dev/
+779,bash-preexec,Preexec and precmd functions for Bash (like Zsh),local-installable,MIT,https://github.com/rcaloras/bash-preexec
+783,spicetify-cli,Command-line tool to customize Spotify client,local-installable,LGPL-2.1-only,https://spicetify.app/
+784,autojump,Shell extension to jump to frequently used directories,local-installable,GPL-3.0-or-later,https://github.com/wting/autojump
+785,bash-completion@2,Programmable completion for Bash 4.2+,local-installable,GPL-2.0-or-later,https://github.com/scop/bash-completion
+787,terminal-notifier,Send macOS User Notifications from the command-line,local-installable,MIT,https://github.com/julienXX/terminal-notifier
+799,displayplacer,Utility to configure multi-display resolutions and arrangements,local-installable,MIT,https://github.com/jakehilborn/displayplacer
+807,duf,Disk Usage/Free Utility - a better 'df' alternative,local-installable,MIT,https://github.com/muesli/duf
+827,micro,Modern and intuitive terminal-based text editor,local-installable,MIT,https://github.com/zyedidia/micro
+831,opa,"Open source, general-purpose policy engine",local-installable,Apache-2.0,https://www.openpolicyagent.org
+832,less,Pager program similar to more,local-installable,GPL-3.0-or-later,https://www.greenwoodsoftware.com/less/index.html
+833,php-cs-fixer,Tool to automatically fix PHP coding standards issues,local-installable,MIT,https://cs.symfony.com/
+842,screen,Terminal multiplexer with VT100/ANSI terminal emulation,local-installable,GPL-3.0-or-later,https://www.gnu.org/software/screen/
+853,figlet,Banner-like program prints strings as ASCII art,local-installable,BSD-3-Clause,http://www.figlet.org/
+863,zsh-autocomplete,Real-time type-ahead completion for Zsh,local-installable,MIT,https://github.com/marlonrichert/zsh-autocomplete
+872,rlwrap,Readline wrapper: adds readline support to tools that lack it,local-installable,GPL-2.0-or-later,https://github.com/hanslub42/rlwrap
+905,dialog,Display user-friendly message boxes from shell scripts,local-installable,LGPL-2.1-or-later,https://invisible-island.net/dialog/
+922,fresh-editor,"Text editor for your terminal: easy, powerful and fast",local-installable,GPL-2.0-or-later,https://sinelaw.github.io/fresh/
+953,dua-cli,"View disk space usage and delete unwanted data, fast",local-installable,MIT,https://lib.rs/crates/dua-cli
+960,procs,Modern replacement for ps written in Rust,local-installable,MIT,https://github.com/dalance/procs
+965,rename,Perl-powered file rename script with many helpful built-ins,local-installable,Artistic-1.0-Perl OR GPL-1.0-or-later,http://plasmasturm.org/code/rename
+977,superfile,Modern and pretty fancy file manager for the terminal,local-installable,MIT,https://superfile.netlify.app/
+986,sk,Fuzzy Finder in rust!,local-installable,MIT,https://github.com/skim-rs/skim
+988,duti,Select default apps for documents and URL schemes on macOS,local-installable,LicenseRef-Homebrew-public-domain,https://github.com/moretension/duti/

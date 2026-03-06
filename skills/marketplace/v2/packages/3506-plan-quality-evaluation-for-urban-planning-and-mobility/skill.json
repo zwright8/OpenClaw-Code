@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3506,
+    "name": "openclaw-v2-3506-plan-quality-evaluation",
+    "title": "Plan Quality Evaluation for urban planning and mobility",
+    "domain": "urban planning and mobility",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "plan quality evaluation",
+    "archetype": "evaluation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 80.21,
+    "trustBadges": [
+      "Reliability-Proven",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3506-plan-quality-evaluation-for-urban-planning-and-mobility/SKILL.md"
+  }
+}

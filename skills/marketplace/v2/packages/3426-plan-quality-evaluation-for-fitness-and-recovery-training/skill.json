@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3426,
+    "name": "openclaw-v2-3426-plan-quality-evaluation",
+    "title": "Plan Quality Evaluation for fitness and recovery training",
+    "domain": "fitness and recovery training",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "plan quality evaluation",
+    "archetype": "evaluation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 63,
+    "roiScore": 65.38,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3426-plan-quality-evaluation-for-fitness-and-recovery-training/SKILL.md"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Health Monitoring for healthcare operations"
+  short_description: "Tool health monitoring for healthcare operations with guardrails and measurable outcomes."
+  default_prompt: "Use Tool Health Monitoring for healthcare operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

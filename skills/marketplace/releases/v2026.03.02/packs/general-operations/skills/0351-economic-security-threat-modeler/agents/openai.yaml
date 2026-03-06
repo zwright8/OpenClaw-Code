@@ -1,0 +1,4 @@
+interface:
+  display_name: "Economic Security Threat Modeler"
+  short_description: "Attack-surface modeling for Economic Optimization with guardrails and measurable outcomes."
+  default_prompt: "Use Economic Security Threat Modeler to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

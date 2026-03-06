@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 5851,
+    "name": "openclaw-v2-5851-cost-benefit-forecasting",
+    "title": "Cost-Benefit Forecasting for software engineering delivery",
+    "domain": "software engineering delivery",
+    "verticalId": "engineering-product",
+    "verticalName": "Engineering and Product",
+    "method": "cost-benefit forecasting",
+    "archetype": "forecasting-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 83,
+    "roiScore": 75.06,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/5851-cost-benefit-forecasting-for-software-engineering-delivery/SKILL.md"
+  }
+}

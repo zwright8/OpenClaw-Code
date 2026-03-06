@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 161,
+  "name": "dropbox-connector",
+  "title": "Dropbox Connector",
+  "description": "Unified read/write connector for Dropbox APIs and data.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 370,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/00161-dropbox-connector/SKILL.md",
+    "entrypoint": "agent01/00161-dropbox-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dropbox connector",
+    "dropbox connector workflow",
+    "dropbox connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

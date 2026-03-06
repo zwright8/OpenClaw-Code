@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3219,
+  "name": "fraud-operations-rollback-coordinator",
+  "title": "Fraud Operations Rollback Coordinator",
+  "description": "Design and run fraud operations workflows with rollback coordinator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4939,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03219-fraud-operations-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent03/03219-fraud-operations-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations rollback coordinator",
+    "fraud operations rollback coordinator workflow",
+    "fraud operations rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

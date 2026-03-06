@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12028,
+  "name": "ethics-review-boards-forecast-engine",
+  "title": "Ethics Review Boards Forecast Engine",
+  "description": "Design and run ethics review boards workflows with forecast engine controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12222,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12028-ethics-review-boards-forecast-engine/SKILL.md",
+    "entrypoint": "agent10/12028-ethics-review-boards-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards forecast engine",
+    "ethics review boards forecast engine workflow",
+    "ethics review boards forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

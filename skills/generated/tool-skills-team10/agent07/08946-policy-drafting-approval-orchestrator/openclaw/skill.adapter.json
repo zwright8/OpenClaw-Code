@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8946,
+  "name": "policy-drafting-approval-orchestrator",
+  "title": "Policy Drafting Approval Orchestrator",
+  "description": "Design and run policy drafting workflows with approval orchestrator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6430,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08946-policy-drafting-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent07/08946-policy-drafting-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy drafting approval orchestrator",
+    "policy drafting approval orchestrator workflow",
+    "policy drafting approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

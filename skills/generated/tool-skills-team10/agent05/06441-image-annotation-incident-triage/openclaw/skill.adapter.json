@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6441,
+  "name": "image-annotation-incident-triage",
+  "title": "Image Annotation Incident Triage",
+  "description": "Design and run image annotation workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2135,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06441-image-annotation-incident-triage/SKILL.md",
+    "entrypoint": "agent05/06441-image-annotation-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation incident triage",
+    "image annotation incident triage workflow",
+    "image annotation incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

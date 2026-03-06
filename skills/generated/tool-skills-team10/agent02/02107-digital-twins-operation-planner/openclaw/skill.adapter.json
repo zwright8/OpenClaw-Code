@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2107,
+  "name": "digital-twins-operation-planner",
+  "title": "Digital Twins Operation Planner",
+  "description": "Design and run digital twins workflows with operation planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8746,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02107-digital-twins-operation-planner/SKILL.md",
+    "entrypoint": "agent02/02107-digital-twins-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digital twins operation planner",
+    "digital twins operation planner workflow",
+    "digital twins operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

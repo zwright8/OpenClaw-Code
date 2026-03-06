@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 750,
+    "name": "openclaw-v2-0750-policy-scoped-data-mediation",
+    "title": "Comms Privacy Preserving Data Broker",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "policy-scoped data mediation",
+    "archetype": "collaboration-mediator"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 68,
+    "roiScore": 60.4,
+    "trustBadges": [
+      "Reliability-Proven"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0750-comms-privacy-preserving-data-broker/SKILL.md"
+  }
+}

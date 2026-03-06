@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3967,
+  "name": "campaign-automation-delta-calculator",
+  "title": "Campaign Automation Delta Calculator",
+  "description": "Design and run campaign automation workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 7380,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03967-campaign-automation-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/03967-campaign-automation-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation delta calculator",
+    "campaign automation delta calculator workflow",
+    "campaign automation delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

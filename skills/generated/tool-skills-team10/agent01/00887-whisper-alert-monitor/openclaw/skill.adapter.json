@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 887,
+  "name": "whisper-alert-monitor",
+  "title": "Whisper Alert Monitor",
+  "description": "Monitors key Whisper signals and raises actionable alerts.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8177,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00887-whisper-alert-monitor/SKILL.md",
+    "entrypoint": "agent01/00887-whisper-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "whisper alert monitor",
+    "whisper alert monitor workflow",
+    "whisper alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

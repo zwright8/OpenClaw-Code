@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6510,
+  "name": "ecommerce-catalogs-workflow-compiler",
+  "title": "Ecommerce Catalogs Workflow Compiler",
+  "description": "Design and run ecommerce catalogs workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 519,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/06510-ecommerce-catalogs-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/06510-ecommerce-catalogs-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs workflow compiler",
+    "ecommerce catalogs workflow compiler workflow",
+    "ecommerce catalogs workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

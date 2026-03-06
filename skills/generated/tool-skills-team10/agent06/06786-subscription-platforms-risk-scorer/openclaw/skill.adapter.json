@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6786,
+  "name": "subscription-platforms-risk-scorer",
+  "title": "Subscription Platforms Risk Scorer",
+  "description": "Design and run subscription platforms workflows with risk scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1607,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06786-subscription-platforms-risk-scorer/SKILL.md",
+    "entrypoint": "agent06/06786-subscription-platforms-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "subscription platforms risk scorer",
+    "subscription platforms risk scorer workflow",
+    "subscription platforms risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

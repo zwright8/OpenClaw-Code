@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5289,
+  "name": "api-gateways-secret-scanner",
+  "title": "API Gateways Secret Scanner",
+  "description": "Design and run api gateways workflows with secret scanner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1340,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05289-api-gateways-secret-scanner/SKILL.md",
+    "entrypoint": "agent05/05289-api-gateways-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways secret scanner",
+    "api gateways secret scanner workflow",
+    "api gateways secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

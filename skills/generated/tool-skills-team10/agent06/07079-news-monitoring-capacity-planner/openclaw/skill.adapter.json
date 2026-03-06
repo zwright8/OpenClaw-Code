@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7079,
+  "name": "news-monitoring-capacity-planner",
+  "title": "News Monitoring Capacity Planner",
+  "description": "Design and run news monitoring workflows with capacity planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10417,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07079-news-monitoring-capacity-planner/SKILL.md",
+    "entrypoint": "agent06/07079-news-monitoring-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring capacity planner",
+    "news monitoring capacity planner workflow",
+    "news monitoring capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

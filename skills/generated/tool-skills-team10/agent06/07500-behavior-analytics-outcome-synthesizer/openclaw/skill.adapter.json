@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7500,
+  "name": "behavior-analytics-outcome-synthesizer",
+  "title": "Behavior Analytics Outcome Synthesizer",
+  "description": "Design and run behavior analytics workflows with outcome synthesizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7030,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07500-behavior-analytics-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent06/07500-behavior-analytics-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics outcome synthesizer",
+    "behavior analytics outcome synthesizer workflow",
+    "behavior analytics outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3568,
+  "name": "cpq-platforms-conflict-resolver",
+  "title": "CPQ Platforms Conflict Resolver",
+  "description": "Design and run cpq platforms workflows with conflict resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9213,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03568-cpq-platforms-conflict-resolver/SKILL.md",
+    "entrypoint": "agent03/03568-cpq-platforms-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cpq platforms conflict resolver",
+    "cpq platforms conflict resolver workflow",
+    "cpq platforms conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

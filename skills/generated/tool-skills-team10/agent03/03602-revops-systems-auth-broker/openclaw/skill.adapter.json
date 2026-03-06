@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3602,
+  "name": "revops-systems-auth-broker",
+  "title": "RevOps Systems Auth Broker",
+  "description": "Design and run revops systems workflows with auth broker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 847,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/03602-revops-systems-auth-broker/SKILL.md",
+    "entrypoint": "agent03/03602-revops-systems-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revops systems auth broker",
+    "revops systems auth broker workflow",
+    "revops systems auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

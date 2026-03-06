@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5261,
+  "name": "api-gateways-execution-runner",
+  "title": "API Gateways Execution Runner",
+  "description": "Design and run api gateways workflows with execution runner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 464,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent05/05261-api-gateways-execution-runner/SKILL.md",
+    "entrypoint": "agent05/05261-api-gateways-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways execution runner",
+    "api gateways execution runner workflow",
+    "api gateways execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

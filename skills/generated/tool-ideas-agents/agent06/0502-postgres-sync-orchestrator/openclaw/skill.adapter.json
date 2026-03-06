@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 502,
+  "name": "postgres-sync-orchestrator",
+  "title": "Postgres Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Postgres records.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0502-postgres-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent06/0502-postgres-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "postgres sync orchestrator",
+    "postgres sync orchestrator workflow",
+    "postgres sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0502-postgres-sync-orchestrator"
+  }
+}

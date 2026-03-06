@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7807,
+  "name": "vdi-platforms-operation-planner",
+  "title": "VDI Platforms Operation Planner",
+  "description": "Design and run vdi platforms workflows with operation planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10699,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07807-vdi-platforms-operation-planner/SKILL.md",
+    "entrypoint": "agent07/07807-vdi-platforms-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms operation planner",
+    "vdi platforms operation planner workflow",
+    "vdi platforms operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

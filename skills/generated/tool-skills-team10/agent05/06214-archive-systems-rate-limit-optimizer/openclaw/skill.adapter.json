@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6214,
+  "name": "archive-systems-rate-limit-optimizer",
+  "title": "Archive Systems Rate Limit Optimizer",
+  "description": "Design and run archive systems workflows with rate limit optimizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6190,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06214-archive-systems-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent05/06214-archive-systems-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "archive systems rate limit optimizer",
+    "archive systems rate limit optimizer workflow",
+    "archive systems rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

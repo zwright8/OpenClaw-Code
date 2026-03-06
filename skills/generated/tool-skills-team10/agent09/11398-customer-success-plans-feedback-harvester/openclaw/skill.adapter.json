@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11398,
+  "name": "customer-success-plans-feedback-harvester",
+  "title": "Customer Success Plans Feedback Harvester",
+  "description": "Design and run customer success plans workflows with feedback harvester controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11957,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11398-customer-success-plans-feedback-harvester/SKILL.md",
+    "entrypoint": "agent09/11398-customer-success-plans-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans feedback harvester",
+    "customer success plans feedback harvester workflow",
+    "customer success plans feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

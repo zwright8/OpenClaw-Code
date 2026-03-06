@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5479,
+  "name": "etl-orchestrators-capacity-planner",
+  "title": "ETL Orchestrators Capacity Planner",
+  "description": "Design and run etl orchestrators workflows with capacity planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9829,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05479-etl-orchestrators-capacity-planner/SKILL.md",
+    "entrypoint": "agent05/05479-etl-orchestrators-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators capacity planner",
+    "etl orchestrators capacity planner workflow",
+    "etl orchestrators capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

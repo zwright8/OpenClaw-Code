@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4780,
+  "name": "observability-stacks-budget-guardrail",
+  "title": "Observability Stacks Budget Guardrail",
+  "description": "Design and run observability stacks workflows with budget guardrail controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4991,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04780-observability-stacks-budget-guardrail/SKILL.md",
+    "entrypoint": "agent04/04780-observability-stacks-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "observability stacks budget guardrail",
+    "observability stacks budget guardrail workflow",
+    "observability stacks budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

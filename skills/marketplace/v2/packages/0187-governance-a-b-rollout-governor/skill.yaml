@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 187
+  name: "openclaw-v2-0187-staged-rollout-policies"
+  title: "Governance A/B Rollout Governor"
+  domain: "Safety and Governance"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "staged rollout policies"
+  archetype: "general-capability"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 70
+  roi_score: 67.26
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0187-governance-a-b-rollout-governor/SKILL.md"

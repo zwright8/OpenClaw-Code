@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5980,
+  "name": "task-queues-budget-guardrail",
+  "title": "Task Queues Budget Guardrail",
+  "description": "Design and run task queues workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7491,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05980-task-queues-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/05980-task-queues-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues budget guardrail",
+    "task queues budget guardrail workflow",
+    "task queues budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

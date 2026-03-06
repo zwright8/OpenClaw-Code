@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12374,
+  "name": "synthetic-data-platforms-evidence-collector",
+  "title": "Synthetic Data Platforms Evidence Collector",
+  "description": "Design and run synthetic data platforms workflows with evidence collector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6735,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12374-synthetic-data-platforms-evidence-collector/SKILL.md",
+    "entrypoint": "agent10/12374-synthetic-data-platforms-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms evidence collector",
+    "synthetic data platforms evidence collector workflow",
+    "synthetic data platforms evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

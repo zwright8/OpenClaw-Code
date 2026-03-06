@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6888,
+  "name": "dunning-workflows-pii-redactor",
+  "title": "Dunning Workflows PII Redactor",
+  "description": "Design and run dunning workflows workflows with pii redactor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3542,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06888-dunning-workflows-pii-redactor/SKILL.md",
+    "entrypoint": "agent06/06888-dunning-workflows-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dunning workflows pii redactor",
+    "dunning workflows pii redactor workflow",
+    "dunning workflows pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

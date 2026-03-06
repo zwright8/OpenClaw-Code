@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9788,
+  "name": "community-forums-pii-redactor",
+  "title": "Community Forums PII Redactor",
+  "description": "Design and run community forums workflows with pii redactor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3765,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09788-community-forums-pii-redactor/SKILL.md",
+    "entrypoint": "agent08/09788-community-forums-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums pii redactor",
+    "community forums pii redactor workflow",
+    "community forums pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

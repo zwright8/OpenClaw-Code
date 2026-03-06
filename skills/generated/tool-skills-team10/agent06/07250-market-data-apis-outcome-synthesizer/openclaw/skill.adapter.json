@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7250,
+  "name": "market-data-apis-outcome-synthesizer",
+  "title": "Market Data APIs Outcome Synthesizer",
+  "description": "Design and run market data apis workflows with outcome synthesizer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3568,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07250-market-data-apis-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent06/07250-market-data-apis-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis outcome synthesizer",
+    "market data apis outcome synthesizer workflow",
+    "market data apis outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

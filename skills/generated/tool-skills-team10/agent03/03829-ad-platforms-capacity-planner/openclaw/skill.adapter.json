@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3829,
+  "name": "ad-platforms-capacity-planner",
+  "title": "Ad Platforms Capacity Planner",
+  "description": "Design and run ad platforms workflows with capacity planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9304,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03829-ad-platforms-capacity-planner/SKILL.md",
+    "entrypoint": "agent03/03829-ad-platforms-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ad platforms capacity planner",
+    "ad platforms capacity planner workflow",
+    "ad platforms capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

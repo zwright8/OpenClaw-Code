@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10399,
+  "name": "onboarding-journeys-quality-gatekeeper",
+  "title": "Onboarding Journeys Quality Gatekeeper",
+  "description": "Design and run onboarding journeys workflows with quality gatekeeper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5610,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10399-onboarding-journeys-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent08/10399-onboarding-journeys-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys quality gatekeeper",
+    "onboarding journeys quality gatekeeper workflow",
+    "onboarding journeys quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4185,
+  "name": "incident-queues-policy-evaluator",
+  "title": "Incident Queues Policy Evaluator",
+  "description": "Design and run incident queues workflows with policy evaluator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1550,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04185-incident-queues-policy-evaluator/SKILL.md",
+    "entrypoint": "agent04/04185-incident-queues-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues policy evaluator",
+    "incident queues policy evaluator workflow",
+    "incident queues policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

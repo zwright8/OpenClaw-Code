@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1892,
+  "name": "warehouse-robotics-root-cause-miner",
+  "title": "Warehouse Robotics Root Cause Miner",
+  "description": "Design and run warehouse robotics workflows with root cause miner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4499,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01892-warehouse-robotics-root-cause-miner/SKILL.md",
+    "entrypoint": "agent02/01892-warehouse-robotics-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics root cause miner",
+    "warehouse robotics root cause miner workflow",
+    "warehouse robotics root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

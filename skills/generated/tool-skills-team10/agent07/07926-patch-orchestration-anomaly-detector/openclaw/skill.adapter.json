@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7926,
+  "name": "patch-orchestration-anomaly-detector",
+  "title": "Patch Orchestration Anomaly Detector",
+  "description": "Design and run patch orchestration workflows with anomaly detector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5529,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07926-patch-orchestration-anomaly-detector/SKILL.md",
+    "entrypoint": "agent07/07926-patch-orchestration-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration anomaly detector",
+    "patch orchestration anomaly detector workflow",
+    "patch orchestration anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

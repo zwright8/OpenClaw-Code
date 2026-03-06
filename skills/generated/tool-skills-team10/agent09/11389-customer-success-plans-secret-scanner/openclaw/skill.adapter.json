@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11389,
+  "name": "customer-success-plans-secret-scanner",
+  "title": "Customer Success Plans Secret Scanner",
+  "description": "Design and run customer success plans workflows with secret scanner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3035,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11389-customer-success-plans-secret-scanner/SKILL.md",
+    "entrypoint": "agent09/11389-customer-success-plans-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans secret scanner",
+    "customer success plans secret scanner workflow",
+    "customer success plans secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

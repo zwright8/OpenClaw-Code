@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7032,
+  "name": "open-source-intelligence-latency-analyzer",
+  "title": "Open Source Intelligence Latency Analyzer",
+  "description": "Design and run open source intelligence workflows with latency analyzer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10398,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07032-open-source-intelligence-latency-analyzer/SKILL.md",
+    "entrypoint": "agent06/07032-open-source-intelligence-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence latency analyzer",
+    "open source intelligence latency analyzer workflow",
+    "open source intelligence latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4477,
+  "name": "endpoint-security-threshold-alerting",
+  "title": "Endpoint Security Threshold Alerting",
+  "description": "Design and run endpoint security workflows with threshold alerting controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6034,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04477-endpoint-security-threshold-alerting/SKILL.md",
+    "entrypoint": "agent04/04477-endpoint-security-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security threshold alerting",
+    "endpoint security threshold alerting workflow",
+    "endpoint security threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

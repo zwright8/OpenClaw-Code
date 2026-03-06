@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11711,
+  "name": "service-quality-execution-runner",
+  "title": "Service Quality Execution Runner",
+  "description": "Design and run service quality workflows with execution runner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1461,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/11711-service-quality-execution-runner/SKILL.md",
+    "entrypoint": "agent10/11711-service-quality-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality execution runner",
+    "service quality execution runner workflow",
+    "service quality execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

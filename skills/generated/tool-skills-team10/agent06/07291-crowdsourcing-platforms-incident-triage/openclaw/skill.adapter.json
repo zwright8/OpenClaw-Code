@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7291,
+  "name": "crowdsourcing-platforms-incident-triage",
+  "title": "Crowdsourcing Platforms Incident Triage",
+  "description": "Design and run crowdsourcing platforms workflows with incident triage controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2151,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07291-crowdsourcing-platforms-incident-triage/SKILL.md",
+    "entrypoint": "agent06/07291-crowdsourcing-platforms-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms incident triage",
+    "crowdsourcing platforms incident triage workflow",
+    "crowdsourcing platforms incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

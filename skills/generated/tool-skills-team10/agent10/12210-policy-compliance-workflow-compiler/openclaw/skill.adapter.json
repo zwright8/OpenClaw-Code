@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12210,
+  "name": "policy-compliance-workflow-compiler",
+  "title": "Policy Compliance Workflow Compiler",
+  "description": "Design and run policy compliance workflows with workflow compiler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 303,
+    "score": 93,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12210-policy-compliance-workflow-compiler/SKILL.md",
+    "entrypoint": "agent10/12210-policy-compliance-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy compliance workflow compiler",
+    "policy compliance workflow compiler workflow",
+    "policy compliance workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

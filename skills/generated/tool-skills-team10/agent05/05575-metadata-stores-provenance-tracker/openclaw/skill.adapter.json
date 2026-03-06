@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5575,
+  "name": "metadata-stores-provenance-tracker",
+  "title": "Metadata Stores Provenance Tracker",
+  "description": "Design and run metadata stores workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9868,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05575-metadata-stores-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05575-metadata-stores-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores provenance tracker",
+    "metadata stores provenance tracker workflow",
+    "metadata stores provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

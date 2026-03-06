@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10220,
+  "name": "settlement-reconciliation-migration-planner",
+  "title": "Settlement Reconciliation Migration Planner",
+  "description": "Design and run settlement reconciliation workflows with migration planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4778,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10220-settlement-reconciliation-migration-planner/SKILL.md",
+    "entrypoint": "agent08/10220-settlement-reconciliation-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation migration planner",
+    "settlement reconciliation migration planner workflow",
+    "settlement reconciliation migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

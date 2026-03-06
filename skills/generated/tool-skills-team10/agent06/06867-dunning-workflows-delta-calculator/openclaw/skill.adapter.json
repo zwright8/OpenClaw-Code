@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6867,
+  "name": "dunning-workflows-delta-calculator",
+  "title": "Dunning Workflows Delta Calculator",
+  "description": "Design and run dunning workflows workflows with delta calculator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10325,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06867-dunning-workflows-delta-calculator/SKILL.md",
+    "entrypoint": "agent06/06867-dunning-workflows-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dunning workflows delta calculator",
+    "dunning workflows delta calculator workflow",
+    "dunning workflows delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

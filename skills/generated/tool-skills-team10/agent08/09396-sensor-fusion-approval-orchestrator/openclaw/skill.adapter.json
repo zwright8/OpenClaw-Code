@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9396,
+  "name": "sensor-fusion-approval-orchestrator",
+  "title": "Sensor Fusion Approval Orchestrator",
+  "description": "Design and run sensor fusion workflows with approval orchestrator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6466,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09396-sensor-fusion-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent08/09396-sensor-fusion-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion approval orchestrator",
+    "sensor fusion approval orchestrator workflow",
+    "sensor fusion approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

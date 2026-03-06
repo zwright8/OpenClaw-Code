@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7608,
+  "name": "device-labs-task-decomposer",
+  "title": "Device Labs Task Decomposer",
+  "description": "Design and run device labs workflows with task decomposer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10616,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07608-device-labs-task-decomposer/SKILL.md",
+    "entrypoint": "agent06/07608-device-labs-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs task decomposer",
+    "device labs task decomposer workflow",
+    "device labs task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

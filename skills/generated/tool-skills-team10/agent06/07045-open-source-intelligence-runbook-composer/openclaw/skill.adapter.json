@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7045,
+  "name": "open-source-intelligence-runbook-composer",
+  "title": "Open Source Intelligence Runbook Composer",
+  "description": "Design and run open source intelligence workflows with runbook composer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6259,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07045-open-source-intelligence-runbook-composer/SKILL.md",
+    "entrypoint": "agent06/07045-open-source-intelligence-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence runbook composer",
+    "open source intelligence runbook composer workflow",
+    "open source intelligence runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3601,
+    "name": "openclaw-v2-3601-multi-agent-negotiation",
+    "title": "Multi-Agent Negotiation for personal health routines",
+    "domain": "personal health routines",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "multi-agent negotiation",
+    "archetype": "negotiation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 77,
+    "roiScore": 68.56,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3601-multi-agent-negotiation-for-personal-health-routines/SKILL.md"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5506,
+  "name": "data-catalogs-api-contract-validator",
+  "title": "Data Catalogs API Contract Validator",
+  "description": "Design and run data catalogs workflows with api contract validator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 142,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent05/05506-data-catalogs-api-contract-validator/SKILL.md",
+    "entrypoint": "agent05/05506-data-catalogs-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data catalogs api contract validator",
+    "data catalogs api contract validator workflow",
+    "data catalogs api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

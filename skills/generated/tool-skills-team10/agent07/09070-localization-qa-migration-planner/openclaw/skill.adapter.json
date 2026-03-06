@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9070,
+  "name": "localization-qa-migration-planner",
+  "title": "Localization QA Migration Planner",
+  "description": "Design and run localization qa workflows with migration planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4740,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09070-localization-qa-migration-planner/SKILL.md",
+    "entrypoint": "agent07/09070-localization-qa-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa migration planner",
+    "localization qa migration planner workflow",
+    "localization qa migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

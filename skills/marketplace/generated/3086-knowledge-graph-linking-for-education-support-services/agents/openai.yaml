@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Graph Linking for education support services"
+  short_description: "Knowledge graph linking for education support services with guardrails and measurable outcomes."
+  default_prompt: "Use Knowledge Graph Linking for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,13 @@
+{
+  "task": "Execute explainability narrative design",
+  "objective": "Deliver Explainability Narrative Design for software engineering delivery outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

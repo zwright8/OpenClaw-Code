@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2157,
+  "name": "supply-chain-control-tower-operation-planner",
+  "title": "Supply Chain Control Tower Operation Planner",
+  "description": "Design and run supply chain control tower workflows with operation planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5320,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02157-supply-chain-control-tower-operation-planner/SKILL.md",
+    "entrypoint": "agent02/02157-supply-chain-control-tower-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower operation planner",
+    "supply chain control tower operation planner workflow",
+    "supply chain control tower operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

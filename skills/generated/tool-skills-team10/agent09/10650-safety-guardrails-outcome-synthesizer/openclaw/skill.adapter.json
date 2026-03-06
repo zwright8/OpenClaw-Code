@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10650,
+  "name": "safety-guardrails-outcome-synthesizer",
+  "title": "Safety Guardrails Outcome Synthesizer",
+  "description": "Design and run safety guardrails workflows with outcome synthesizer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4382,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10650-safety-guardrails-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent09/10650-safety-guardrails-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails outcome synthesizer",
+    "safety guardrails outcome synthesizer workflow",
+    "safety guardrails outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

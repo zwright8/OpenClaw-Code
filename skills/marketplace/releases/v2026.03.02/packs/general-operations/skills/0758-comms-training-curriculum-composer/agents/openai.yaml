@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comms Training Curriculum Composer"
+  short_description: "Sequenced learning path design for Communication and Explainability with guardrails and measurable outcomes."
+  default_prompt: "Use Comms Training Curriculum Composer to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 749,
+  "name": "youtube-approval-router",
+  "title": "YouTube Approval Router",
+  "description": "Routes YouTube-driven decisions to the right approvers.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0749-youtube-approval-router/SKILL.md",
+    "entrypoint": "agent08/0749-youtube-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "youtube approval router",
+    "youtube approval router workflow",
+    "youtube approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0749-youtube-approval-router"
+  }
+}

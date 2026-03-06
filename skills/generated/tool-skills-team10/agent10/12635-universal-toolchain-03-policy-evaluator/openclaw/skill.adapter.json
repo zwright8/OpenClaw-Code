@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12635,
+  "name": "universal-toolchain-03-policy-evaluator",
+  "title": "Universal Toolchain 03 Policy Evaluator",
+  "description": "Design and run universal toolchain 03 workflows with policy evaluator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3089,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12635-universal-toolchain-03-policy-evaluator/SKILL.md",
+    "entrypoint": "agent10/12635-universal-toolchain-03-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 03 policy evaluator",
+    "universal toolchain 03 policy evaluator workflow",
+    "universal toolchain 03 policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

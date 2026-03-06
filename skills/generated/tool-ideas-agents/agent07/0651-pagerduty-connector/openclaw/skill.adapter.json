@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 651,
+  "name": "pagerduty-connector",
+  "title": "PagerDuty Connector",
+  "description": "Unified read/write connector for PagerDuty APIs and data.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0651-pagerduty-connector/SKILL.md",
+    "entrypoint": "agent07/0651-pagerduty-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pagerduty connector",
+    "pagerduty connector workflow",
+    "pagerduty connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0651-pagerduty-connector"
+  }
+}

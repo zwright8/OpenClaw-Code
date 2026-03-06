@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6327,
+  "name": "video-processing-threshold-alerting",
+  "title": "Video Processing Threshold Alerting",
+  "description": "Design and run video processing workflows with threshold alerting controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10142,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06327-video-processing-threshold-alerting/SKILL.md",
+    "entrypoint": "agent05/06327-video-processing-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing threshold alerting",
+    "video processing threshold alerting workflow",
+    "video processing threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
