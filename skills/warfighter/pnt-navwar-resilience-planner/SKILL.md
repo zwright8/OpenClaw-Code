@@ -36,6 +36,7 @@ Primary products for this skill: PNT resilience concept, NAVWAR mitigation matri
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
 - State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, or `OGC`).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.

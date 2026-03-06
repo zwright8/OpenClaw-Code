@@ -36,6 +36,7 @@ Primary products for this skill: BDA confidence matrix, reattack recommendation,
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in ../_shared/references/external-tools-protocols.md.
+- Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
 - Prioritize these tools or tool families for this domain: ISR exploitation tools, DCGS, mission debrief repositories.
 - Specify outbound exchange format for recommendations and tasking (for example USMTF, VMF, Link 16 J-series, CoT, STIX/TAXII, OGC WMS/WFS/WMTS).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.

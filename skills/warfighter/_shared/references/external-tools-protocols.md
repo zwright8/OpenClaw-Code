@@ -48,6 +48,33 @@ For each external tool recommendation, include:
 - Medical and casualty operations: patient regulation + med logistics + evacuation coordination; protocols: USMTF medical reporting, API/JSON, HL7/FHIR where available
 - Coalition/interagency support: coalition COP tools + liaison data fabrics; protocols: NATO APP-11/ADatP-3 aligned formats, OGC, USMTF
 
+## Domain Toolchain Profiles (required selection)
+
+Every recommendation must pick and justify one profile:
+
+- Primary profile: preferred systems and transport path under normal mission conditions
+- Alternate profile: survivable backup when primary data sources or links degrade
+- Degraded profile: minimum viable manual/semi-manual workflow with expected delay and confidence loss
+
+Use profile selections that fit the mission domain:
+
+- JOC and battle rhythm: GCCS-J/COP + secure chat/workflow boards + USMTF/CoT update paths
+- Collection management and ISR retasking: ISR managers + DCGS variants + VMF/USMTF collection requests
+- Tactical UAS traffic management: TAIS/airspace planners + UAS C2 + Link 16/VMF/USMTF
+- Autonomous convoy and sustainment routing: logistics C2 + route risk tools + CoT/USMTF/API
+- Space reconstitution and SATCOM restoration: SDA catalogs + SATCOM planners + API/JSON + USMTF
+- Hypersonic defense integration: missile warning feeds + IAMD C2 + Link 16 J-series + USMTF
+- Expeditionary fabrication and battle damage repair: maintenance systems + additive manufacturing queues + API/JSON
+- Gap crossing and engineer mobility: engineer planning tools + maneuver COP + VMF/USMTF/CoT
+- Undersea cable protection/restoration: maritime COP + infrastructure telemetry + AIS/NMEA + USMTF
+- Tactical MISO and influence effects: audience analysis tools + assessment dashboards + API/JSON + USMTF
+- Special reconnaissance and sensitive site mapping: GEOINT stacks + site exploitation trackers + OGC/CoT/USMTF
+- Hunt-forward cyber defense: SIEM/SOAR + endpoint/network telemetry + STIX/TAXII + API/JSON
+- Electronic order of battle management: EW mission tools + emitter libraries + Link 16/USMTF/API
+- Security assistance integration: partner readiness systems + logistics trackers + NATO APP-11/ADatP-3 + USMTF
+- Mega-city sustainment: urban logistics overlays + civil infrastructure feeds + OGC/CoT/API
+- Arctic corridor deconfliction: weather/ice data + maritime/air COP + AIS/NMEA + Link 16 + USMTF
+
 ## Integration Interfaces and Transports
 
 - APIs: REST/GraphQL/gRPC gateways behind approved service boundaries
