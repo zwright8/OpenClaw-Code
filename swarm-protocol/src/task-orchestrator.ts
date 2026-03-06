@@ -35,6 +35,8 @@ const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES = 1;
 const DEFAULT_RETRY_THROTTLE_MAX_TOKENS = 10;
 const DEFAULT_RETRY_THROTTLE_TOKEN_RATIO = 0.1;
 const DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO = 0.5;
+const DEFAULT_MIN_TASK_TIMEOUT_MS = 100;
+const DEFAULT_TASK_TIMEOUT_MAX_MULTIPLIER = 8;
 const TRANSIENT_REJECTION_REASON_MARKERS = [
     '429',
     '503',
@@ -436,6 +438,47 @@ function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
     return null;
 }
 
+function parseTaskTimeoutHintMs(taskRequest) {
+    if (!taskRequest || typeof taskRequest !== 'object') return null;
+
+    const context = taskRequest.context && typeof taskRequest.context === 'object'
+        ? taskRequest.context
+        : null;
+
+    const timeoutCandidates = [
+        context?.timeoutMs,
+        context?.timeout_ms,
+        Number.isFinite(context?.timeoutSeconds) ? Number(context.timeoutSeconds) * 1000 : null,
+        Number.isFinite(context?.timeout_s) ? Number(context.timeout_s) * 1000 : null
+    ];
+
+    for (const value of timeoutCandidates) {
+        if (Number.isFinite(value) && value > 0) {
+            return Number(value);
+        }
+    }
+
+    if (!Array.isArray(taskRequest.constraints)) return null;
+    for (const raw of taskRequest.constraints) {
+        if (typeof raw !== 'string' || !raw.trim()) continue;
+
+        const token = raw.trim();
+        const msMatch = token.match(/^timeout[_-]?ms\s*[:=]\s*(\d+(?:\.\d+)?)$/i);
+        if (msMatch) {
+            return Number(msMatch[1]);
+        }
+
+        const genericMatch = token.match(/^timeout\s*[:=]\s*(\d+(?:\.\d+)?)\s*(ms|s|sec|secs|seconds?)?$/i);
+        if (genericMatch) {
+            const amount = Number(genericMatch[1]);
+            const unit = (genericMatch[2] || 'ms').toLowerCase();
+            return unit.startsWith('s') ? amount * 1000 : amount;
+        }
+    }
+
+    return null;
+}
+
 function isTransientRejectionReason(reason) {
     const normalized = normalizeReasonToken(reason, null);
     if (!normalized) return false;
@@ -818,6 +861,8 @@ export class TaskOrchestrator {
         circuitFailureThreshold = 3,
         circuitCooldownMs = 30_000,
         circuitHalfOpenMaxAttempts = 1,
+        minTaskTimeoutMs = DEFAULT_MIN_TASK_TIMEOUT_MS,
+        maxTaskTimeoutMs = null,
         maxInFlightPerTarget = null,
         maxInFlightGlobal = null,
         retrySafetyMode = 'auto',
@@ -896,6 +941,19 @@ export class TaskOrchestrator {
             && circuitHalfOpenMaxAttempts >= 1
             ? Number(circuitHalfOpenMaxAttempts)
             : 1;
+        this.minTaskTimeoutMs = Number.isFinite(minTaskTimeoutMs) && minTaskTimeoutMs > 0
+            ? Number(minTaskTimeoutMs)
+            : DEFAULT_MIN_TASK_TIMEOUT_MS;
+        const defaultMaxTaskTimeoutMs = Math.max(
+            this.defaultTimeoutMs,
+            this.defaultTimeoutMs * DEFAULT_TASK_TIMEOUT_MAX_MULTIPLIER
+        );
+        this.maxTaskTimeoutMs = maxTaskTimeoutMs === null || maxTaskTimeoutMs === undefined
+            ? defaultMaxTaskTimeoutMs
+            : safeNonNegativeNumber(maxTaskTimeoutMs, defaultMaxTaskTimeoutMs);
+        if (this.maxTaskTimeoutMs < this.minTaskTimeoutMs) {
+            this.maxTaskTimeoutMs = this.minTaskTimeoutMs;
+        }
         this.maxInFlightPerTarget = safePositiveIntegerOrInfinity(maxInFlightPerTarget, Infinity);
         this.maxInFlightGlobal = safePositiveIntegerOrInfinity(maxInFlightGlobal, Infinity);
         this.retrySafetyMode = normalizeRetrySafetyMode(retrySafetyMode);
@@ -907,6 +965,18 @@ export class TaskOrchestrator {
         this.globalRetryBudgetEvents = [];
         this.retryHintClampCount = 0;
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _resolveTaskTimeoutMs(taskRequest) {
+        const hintMs = parseTaskTimeoutHintMs(taskRequest);
+        if (!Number.isFinite(hintMs) || hintMs <= 0) {
+            return this.defaultTimeoutMs;
+        }
+
+        return Math.max(
+            this.minTaskTimeoutMs,
+            Math.min(this.maxTaskTimeoutMs, Number(hintMs))
+        );
     }
 
     _pruneGlobalRetryBudgetEvents(nowMs) {
@@ -1641,10 +1711,12 @@ export class TaskOrchestrator {
             }
         }
 
+        const taskTimeoutMs = this._resolveTaskTimeoutMs(request);
         const record = {
             taskId: request.id,
             target: request.target,
             request,
+            taskTimeoutMs,
             status: 'created',
             approval: null,
             policy: policyDecision,
@@ -1670,7 +1742,7 @@ export class TaskOrchestrator {
             },
             createdAt: request.createdAt,
             updatedAt: request.createdAt,
-            deadlineAt: request.createdAt + this.defaultTimeoutMs,
+            deadlineAt: request.createdAt + taskTimeoutMs,
             nextRetryAt: null,
             closedAt: null,
             lastError: null,
@@ -1719,7 +1791,8 @@ export class TaskOrchestrator {
             target: record.target,
             status: record.status,
             priority: record.request.priority,
-            policyRedactions: record.policy?.redactions?.length || 0
+            policyRedactions: record.policy?.redactions?.length || 0,
+            taskTimeoutMs: record.taskTimeoutMs
         }, record.createdAt);
 
         if (record.status === APPROVAL_PENDING_STATUS) {
@@ -1961,7 +2034,10 @@ export class TaskOrchestrator {
         try {
             await this.transport.send(record.target, record.request);
             record.status = 'dispatched';
-            record.deadlineAt = sendAt + this.defaultTimeoutMs;
+            const timeoutBudgetMs = Number.isFinite(record.taskTimeoutMs) && record.taskTimeoutMs > 0
+                ? Number(record.taskTimeoutMs)
+                : this.defaultTimeoutMs;
+            record.deadlineAt = sendAt + timeoutBudgetMs;
             record.nextRetryAt = null;
             record.lastError = null;
             lifecycle.consecutiveFailures = 0;
@@ -2107,7 +2183,12 @@ export class TaskOrchestrator {
 
         record.status = 'acknowledged';
         if (Number.isFinite(receipt.etaMs)) {
-            record.deadlineAt = receipt.timestamp + Number(receipt.etaMs);
+            const timeoutBudgetMs = Number.isFinite(record.taskTimeoutMs) && record.taskTimeoutMs > 0
+                ? Number(record.taskTimeoutMs)
+                : this.defaultTimeoutMs;
+            const etaDeadlineAt = receipt.timestamp + Number(receipt.etaMs);
+            const budgetDeadlineAt = receipt.timestamp + timeoutBudgetMs;
+            record.deadlineAt = Math.min(etaDeadlineAt, budgetDeadlineAt);
         }
         record.history.push({
             at: receipt.timestamp,
@@ -2586,6 +2667,11 @@ export class TaskOrchestrator {
             retryHint: {
                 maxHintMs: this.maxRetryHintMs,
                 clampCount: this.retryHintClampCount
+            },
+            taskTimeout: {
+                defaultMs: this.defaultTimeoutMs,
+                minMs: this.minTaskTimeoutMs,
+                maxMs: this.maxTaskTimeoutMs
             }
         };
 

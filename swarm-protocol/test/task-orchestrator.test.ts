@@ -59,6 +59,61 @@ test('dispatchTask sends validated request and tracks state', async () => {
     assert.equal(task.deadlineAt, 10_500);
 });
 
+test('dispatchTask applies per-task timeout override from context within bounds', async () => {
+    const clock = createClock(12_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 500,
+        minTaskTimeoutMs: 100,
+        maxTaskTimeoutMs: 2_000
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-timeout',
+        task: 'Use explicit timeout budget',
+        context: { timeoutMs: 1_500 }
+    });
+
+    assert.equal(task.taskTimeoutMs, 1_500);
+    assert.equal(task.deadlineAt, 13_500);
+});
+
+test('task timeout constraints are clamped and cap acknowledgement eta deadlines', async () => {
+    const clock = createClock(13_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 2_000,
+        minTaskTimeoutMs: 100,
+        maxTaskTimeoutMs: 1_000
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-timeout-constraint',
+        task: 'Clamp timeout and eta',
+        constraints: ['timeout=5s']
+    });
+
+    assert.equal(task.taskTimeoutMs, 1_000);
+    assert.equal(task.deadlineAt, 14_000);
+
+    clock.advance(25);
+    const ingested = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-timeout-constraint',
+        accepted: true,
+        etaMs: 5_000,
+        timestamp: clock.now()
+    }));
+
+    assert.equal(ingested, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.deadlineAt, 14_025);
+});
+
 test('receipt + result complete a task lifecycle', async () => {
     const clock = createClock(2_000);
     const orchestrator = new TaskOrchestrator({

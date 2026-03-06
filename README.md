@@ -37,6 +37,7 @@ Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with mi
 Adds a deterministic simulation benchmark harness for orchestration stress tests and CI regression gating.
 Adds pre-dispatch safety policies with explicit deny decisions and sensitive payload redaction.
 Adds hash-chained signed audit logging utilities for post-incident verification.
+Adds per-task timeout budgets (context/constraint-driven) with bounded deadline enforcement across dispatch and acknowledgements.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds per-target retry throttling (token-bucket) to suppress retry storms on unhealthy workers.
