@@ -33,6 +33,7 @@ Adds a sandbox orchestrator for profile-based execution isolation with replay to
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
 Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
+Recovery supervision now supports multi-window SLO error-budget burn-rate detection with low-traffic suppression and prescriptive circuit-breaker/jitter-backoff actions.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.

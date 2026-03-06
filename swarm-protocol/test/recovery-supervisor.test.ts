@@ -61,6 +61,7 @@ test('detectIncidents identifies global and per-agent reliability issues', () =>
     });
 
     assert.ok(detected.incidents.length >= 4);
+    assert.ok(detected.incidents.some((item) => item.code === 'error_budget_burn'));
     assert.ok(detected.incidents.some((item) => item.code === 'timeout_spike'));
     assert.ok(detected.incidents.some((item) => item.code === 'agent_overloaded'));
     assert.ok(detected.incidents.some((item) => item.code === 'agent_low_success'));
@@ -74,6 +75,39 @@ test('proposeActions converts incidents into remediation actions', () => {
     assert.ok(actions.length > 0);
     assert.ok(actions.some((item) => item.actionType === 'drain_agent'));
     assert.ok(actions.some((item) => item.actionType === 'route_to_stable_pool'));
+    assert.ok(actions.some((item) => item.actionType === 'enable_circuit_breaker'));
+    assert.ok(actions.some((item) => item.actionType === 'enforce_full_jitter_backoff'));
+});
+
+test('detectIncidents suppresses burn-rate alerts for low traffic windows', () => {
+    const supervisor = new RecoverySupervisor();
+    for (let i = 0; i < 4; i++) {
+        supervisor.ingestSnapshot({
+            at: 500_000 + i,
+            orchestrator: {
+                total: 10,
+                open: 2,
+                terminal: 3,
+                avgAttempts: 1.1,
+                byStatus: {}
+            },
+            simulation: {
+                successRate: 0.5,
+                timeoutRate: 0.3,
+                failureRate: 0.4,
+                avgLatencyMs: 320,
+                dispatchErrorCount: 0
+            },
+            agents: []
+        });
+    }
+
+    const detected = supervisor.detectIncidents({
+        lookback: 4,
+        minRequestsForBurnRate: 30
+    });
+
+    assert.ok(!detected.incidents.some((item) => item.code === 'error_budget_burn'));
 });
 
 test('buildRecoveryTasks emits schema-valid task requests', () => {
