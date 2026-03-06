@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 204
+- Total warfighter skills in this repo: 224
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -179,3 +179,26 @@ Every skill output should include:
 - Sources, tool stack, and protocol details
 - Confidence, gaps, and branch triggers
 - Tool Invocation Packet for critical external dependencies
+
+## New Expansion Wave (2026-03-06, Emerging Technology and Irregular Competition Additions)
+
+- ai-native-mission-command-assistant-cell
+- contested-undersea-infrastructure-restoration-cell
+- tactical-5g-and-private-wireless-expeditionary-cell
+- electromagnetic-pulse-recovery-and-grid-restoration-cell
+- joint-biosurveillance-and-outbreak-containment-cell
+- tactical-edge-ai-model-assurance-cell
+- human-machine-teaming-authority-governance-cell
+- hyperspectral-and-multi-int-fusion-exploitation-cell
+- high-altitude-platform-pseudolite-integration-cell
+- expeditionary-microelectronics-reconstitution-cell
+- joint-illicit-finance-and-sanctions-disruption-cell
+- rapid-theater-uas-manufacturing-and-certification-cell
+- coalition-identity-federation-and-access-bridging-cell
+- unmanned-surface-vessel-littoral-screening-cell
+- deep-underground-facility-characterization-cell
+- joint-cognitive-electronic-protection-cell
+- strategic-rare-earth-recovery-and-recycling-cell
+- resilient-mesh-network-self-healing-cell
+- joint-disaster-logistics-and-humanitarian-airbridge-cell
+- counter-autonomy-red-force-assessment-cell

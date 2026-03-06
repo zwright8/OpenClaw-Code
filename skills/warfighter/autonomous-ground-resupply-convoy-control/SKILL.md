@@ -65,3 +65,8 @@ Primary products for this skill: autonomous convoy execution matrix, route risk 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
 - Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
 - Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
+
+## Domain Data Contract
+
+- Use mapping guidance in ../_shared/references/joint-mission-data-contracts.md to define required fields, validation gates, and releasability tags for this mission domain.
+- Ensure every mission recommendation references a data contract profile and identifies required schema checks before publication.

@@ -174,3 +174,8 @@ Include these fields in outputs when tool integration is used:
 - Do not provide weapon-employment procedures, target engagement mechanics, or bypasses to safeguards.
 - Require explicit human validation for lethal, strategic, or high-consequence actions.
 - If authority, legality, or data provenance is uncertain, stop and return a no-go recommendation with escalation path.
+
+## Data Contract Requirement
+
+- Use `joint-mission-data-contracts.md` to choose a domain profile and validate required fields before releasing any recommendation.
+- Include the selected `contract_id` and gate status (schema/freshness/provenance/consistency/releasability) in outputs that drive operational decisions.
