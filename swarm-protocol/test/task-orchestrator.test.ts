@@ -183,6 +183,50 @@ test('transient rejected receipt schedules retry with eta hint', async () => {
     assert.equal(sent.length, 2);
 });
 
+test('retry hint is clamped to maxRetryHintMs to avoid unbounded delay', async () => {
+    const clock = createClock(3_550);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        maxRetryDelayMs: 5_000,
+        maxRetryHintMs: 250,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-hint-clamp',
+        task: 'Protect queue from oversized retry hints'
+    });
+
+    clock.advance(10);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-hint-clamp',
+        accepted: false,
+        reason: 'retry_after_ms:5000',
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 3_810);
+
+    const retryEvents = current.history.filter((entry) => entry.event === 'retry_scheduled');
+    const lastRetryEvent = retryEvents[retryEvents.length - 1];
+    assert.equal(lastRetryEvent.retryHintOriginalMs, 5_000);
+    assert.equal(lastRetryEvent.retryHintMs, 250);
+    assert.equal(lastRetryEvent.retryHintClamped, true);
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retryHint.maxHintMs, 250);
+    assert.equal(metrics.retryHint.clampCount, 1);
+});
+
 test('HTTP 429 rejected receipt is treated as transient and schedules retry', async () => {
     const clock = createClock(3_720);
     const orchestrator = new TaskOrchestrator({

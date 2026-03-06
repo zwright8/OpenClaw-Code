@@ -780,6 +780,7 @@ export class TaskOrchestrator {
         retryStrategy = 'exponential',
         retryBackoffMultiplier = 2,
         maxRetryDelayMs = null,
+        maxRetryHintMs = null,
         retryJitterRatio = DEFAULT_RETRY_JITTER_RATIO,
         globalRetryBudgetRatio = DEFAULT_GLOBAL_RETRY_BUDGET_RATIO,
         globalRetryBudgetWindowMs = DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS,
@@ -830,6 +831,9 @@ export class TaskOrchestrator {
         this.maxRetryDelayMs = maxRetryDelayMs === null || maxRetryDelayMs === undefined
             ? defaultMaxRetryDelayMs
             : safeNonNegativeNumber(maxRetryDelayMs, defaultMaxRetryDelayMs);
+        this.maxRetryHintMs = maxRetryHintMs === null || maxRetryHintMs === undefined
+            ? this.maxRetryDelayMs
+            : safeNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs);
         this.retryJitterRatio = Number.isFinite(retryJitterRatio) && retryJitterRatio >= 0
             ? Math.min(Number(retryJitterRatio), 1)
             : DEFAULT_RETRY_JITTER_RATIO;
@@ -877,6 +881,7 @@ export class TaskOrchestrator {
         this.circuits = new Map();
         this.retryThrottleBuckets = new Map();
         this.globalRetryBudgetEvents = [];
+        this.retryHintClampCount = 0;
         this._persistenceQueue = Promise.resolve();
     }
 
@@ -2219,9 +2224,15 @@ export class TaskOrchestrator {
         const lifecycle = this._normalizeRetryLifecycle(record);
         const scheduleReason = canonicalRetryScheduleReason(reason);
         const directRetryHintMs = Number(options?.retryHintMs);
-        const retryHintMs = Number.isFinite(directRetryHintMs) && directRetryHintMs >= 0
+        const rawRetryHintMs = Number.isFinite(directRetryHintMs) && directRetryHintMs >= 0
             ? directRetryHintMs
             : this._extractRetryHintMs(options?.error);
+        const retryHintMs = Number.isFinite(rawRetryHintMs)
+            ? Math.min(rawRetryHintMs, this.maxRetryHintMs)
+            : null;
+        const retryHintClamped = Number.isFinite(rawRetryHintMs)
+            && Number.isFinite(retryHintMs)
+            && retryHintMs < rawRetryHintMs;
         const retrySafety = this._isRetryAllowedBySafety(record);
 
         if (!retrySafety.allowed) {
@@ -2286,6 +2297,17 @@ export class TaskOrchestrator {
             ? Math.max(computedDelayMs, retryHintMs)
             : computedDelayMs;
         const nextRetryAt = nowMs + delayMs;
+        if (retryHintClamped) {
+            this.retryHintClampCount += 1;
+            this._emitAudit('task_retry_hint_clamped', {
+                taskId: record.taskId,
+                target: record.target,
+                reason: scheduleReason,
+                rawRetryHintMs,
+                maxRetryHintMs: this.maxRetryHintMs,
+                appliedRetryHintMs: retryHintMs
+            }, nowMs);
+        }
 
         lifecycle.scheduledCount += 1;
         lifecycle.lastReason = scheduleReason;
@@ -2312,6 +2334,8 @@ export class TaskOrchestrator {
             reasonContext: null,
             delayMs,
             retryHintMs: Number.isFinite(retryHintMs) ? retryHintMs : null,
+            retryHintOriginalMs: Number.isFinite(rawRetryHintMs) ? rawRetryHintMs : null,
+            retryHintClamped,
             nextRetryAt,
             retryCount: lifecycle.scheduledCount
         });
@@ -2324,6 +2348,8 @@ export class TaskOrchestrator {
             reasonContext: null,
             delayMs,
             retryHintMs: Number.isFinite(retryHintMs) ? retryHintMs : null,
+            retryHintOriginalMs: Number.isFinite(rawRetryHintMs) ? rawRetryHintMs : null,
+            retryHintClamped,
             nextRetryAt,
             retryCount: lifecycle.scheduledCount,
             retryTransition: lifecycle.lastTransition ? clone(lifecycle.lastTransition) : null
@@ -2532,6 +2558,10 @@ export class TaskOrchestrator {
                 thresholdRatio: this.retryThrottleThresholdRatio,
                 trackedTargets: 0,
                 throttledTargets: 0
+            },
+            retryHint: {
+                maxHintMs: this.maxRetryHintMs,
+                clampCount: this.retryHintClampCount
             }
         };
 
