@@ -40,6 +40,12 @@ Primary products for this skill: access dependency map, basing option comparison
 - Specify outbound exchange format for recommendations and tasking (for example USMTF, VMF, Link 16 J-series, CoT, STIX/TAXII, OGC WMS/WFS/WMTS).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
+## Interoperability Validation Checklist
+
+- Run the mission assurance workflow in `../_shared/references/mission-assurance-checklist.md` before final release.
+- Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
+- If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
+
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.

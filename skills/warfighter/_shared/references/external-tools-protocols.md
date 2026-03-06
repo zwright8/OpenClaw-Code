@@ -10,6 +10,7 @@ Use this reference when a warfighter skill needs system integration guidance. Ke
 4. Cross-check high-consequence data against at least two independent sources or one authoritative validated source.
 5. Publish outputs in the requesting format and transport (for example USMTF, CoT, VMF, J-series, STIX/TAXII, OGC).
 6. Log provenance: source system, pull time, processing assumptions, and confidence level.
+7. Run the mission assurance checks in `mission-assurance-checklist.md` before release.
 
 ## Tool Families and Typical Use
 
@@ -22,6 +23,15 @@ Use this reference when a warfighter skill needs system integration guidance. Ke
 - Space/SATCOM tools: SDA catalogs, SATCOM planning/monitoring dashboards
 - Maritime tools: C2 afloat systems, track management, mine/ASW mission tools
 - Medical tools: patient regulation systems, medical logistics inventories, blood program trackers
+- Training/simulation tools: JCATS/JTLS-style simulation, mission rehearsal systems, digital ranges
+
+## Integration Interfaces and Transports
+
+- APIs: REST/GraphQL/GRPC gateways behind approved service boundaries
+- Streaming/data bus: Kafka-compatible, AMQP, or mission data fabrics where authorized
+- Tactical links/waveforms: Link 16, VMF, CoT transports, SATCOM relay paths
+- Geospatial services: OGC WMS/WFS/WMTS, tiled map services, feature services
+- File/data exchange: XML/JSON/CSV with schema validation and checksum verification
 
 ## Common Data and Message Protocols
 
