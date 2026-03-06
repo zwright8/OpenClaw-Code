@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5984,
+  "name": "task-queues-sla-enforcer",
+  "title": "Task Queues SLA Enforcer",
+  "description": "Design and run task queues workflows with sla enforcer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10022,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05984-task-queues-sla-enforcer/SKILL.md",
+    "entrypoint": "agent05/05984-task-queues-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues sla enforcer",
+    "task queues sla enforcer workflow",
+    "task queues sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

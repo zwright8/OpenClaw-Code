@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1551,
+  "name": "admissions-systems-access-auditor",
+  "title": "Admissions Systems Access Auditor",
+  "description": "Design and run admissions systems workflows with access auditor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8514,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01551-admissions-systems-access-auditor/SKILL.md",
+    "entrypoint": "agent02/01551-admissions-systems-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "admissions systems access auditor",
+    "admissions systems access auditor workflow",
+    "admissions systems access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 463,
+  "name": "render-data-exporter",
+  "title": "Render Data Exporter",
+  "description": "Exports Render entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12652,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00463-render-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00463-render-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "render data exporter",
+    "render data exporter workflow",
+    "render data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

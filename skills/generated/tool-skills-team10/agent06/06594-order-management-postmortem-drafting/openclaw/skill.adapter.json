@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6594,
+  "name": "order-management-postmortem-drafting",
+  "title": "Order Management Postmortem Drafting",
+  "description": "Design and run order management workflows with postmortem drafting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10233,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06594-order-management-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent06/06594-order-management-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "order management postmortem drafting",
+    "order management postmortem drafting workflow",
+    "order management postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6267,
+  "name": "media-asset-management-delta-calculator",
+  "title": "Media Asset Management Delta Calculator",
+  "description": "Design and run media asset management workflows with delta calculator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7977,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06267-media-asset-management-delta-calculator/SKILL.md",
+    "entrypoint": "agent05/06267-media-asset-management-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "media asset management delta calculator",
+    "media asset management delta calculator workflow",
+    "media asset management delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1859,
+  "name": "warehouse-robotics-dependency-resolver",
+  "title": "Warehouse Robotics Dependency Resolver",
+  "description": "Design and run warehouse robotics workflows with dependency resolver controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8643,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01859-warehouse-robotics-dependency-resolver/SKILL.md",
+    "entrypoint": "agent02/01859-warehouse-robotics-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics dependency resolver",
+    "warehouse robotics dependency resolver workflow",
+    "warehouse robotics dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11747,
+  "name": "service-quality-human-handoff-router",
+  "title": "Service Quality Human Handoff Router",
+  "description": "Design and run service quality workflows with human handoff router controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12103,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11747-service-quality-human-handoff-router/SKILL.md",
+    "entrypoint": "agent10/11747-service-quality-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality human handoff router",
+    "service quality human handoff router workflow",
+    "service quality human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

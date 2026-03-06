@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4280,
+  "name": "identity-providers-budget-guardrail",
+  "title": "Identity Providers Budget Guardrail",
+  "description": "Design and run identity providers workflows with budget guardrail controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 3349,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04280-identity-providers-budget-guardrail/SKILL.md",
+    "entrypoint": "agent04/04280-identity-providers-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers budget guardrail",
+    "identity providers budget guardrail workflow",
+    "identity providers budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

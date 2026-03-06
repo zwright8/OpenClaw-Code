@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 611,
+  "name": "datadog-connector",
+  "title": "Datadog Connector",
+  "description": "Unified read/write connector for Datadog APIs and data.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 411,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent01/00611-datadog-connector/SKILL.md",
+    "entrypoint": "agent01/00611-datadog-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "datadog connector",
+    "datadog connector workflow",
+    "datadog connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10527,
+  "name": "mlops-pipelines-threshold-alerting",
+  "title": "MLOps Pipelines Threshold Alerting",
+  "description": "Design and run mlops pipelines workflows with threshold alerting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7644,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10527-mlops-pipelines-threshold-alerting/SKILL.md",
+    "entrypoint": "agent09/10527-mlops-pipelines-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mlops pipelines threshold alerting",
+    "mlops pipelines threshold alerting workflow",
+    "mlops pipelines threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11767,
+  "name": "lab-notebook-systems-delta-calculator",
+  "title": "Lab Notebook Systems Delta Calculator",
+  "description": "Design and run lab notebook systems workflows with delta calculator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12110,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11767-lab-notebook-systems-delta-calculator/SKILL.md",
+    "entrypoint": "agent10/11767-lab-notebook-systems-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab notebook systems delta calculator",
+    "lab notebook systems delta calculator workflow",
+    "lab notebook systems delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4098,
+  "name": "call-center-ops-feedback-harvester",
+  "title": "Call Center Ops Feedback Harvester",
+  "description": "Design and run call center ops workflows with feedback harvester controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9395,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04098-call-center-ops-feedback-harvester/SKILL.md",
+    "entrypoint": "agent04/04098-call-center-ops-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "call center ops feedback harvester",
+    "call center ops feedback harvester workflow",
+    "call center ops feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

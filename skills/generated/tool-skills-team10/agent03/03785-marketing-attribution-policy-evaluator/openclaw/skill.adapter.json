@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3785,
+  "name": "marketing-attribution-policy-evaluator",
+  "title": "Marketing Attribution Policy Evaluator",
+  "description": "Design and run marketing attribution workflows with policy evaluator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2368,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03785-marketing-attribution-policy-evaluator/SKILL.md",
+    "entrypoint": "agent03/03785-marketing-attribution-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketing attribution policy evaluator",
+    "marketing attribution policy evaluator workflow",
+    "marketing attribution policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

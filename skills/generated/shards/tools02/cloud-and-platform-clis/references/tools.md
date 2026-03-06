@@ -1,0 +1,23 @@
+# Tool catalog: cloud-and-platform-clis
+
+Total tools: 17
+
+| Rank | Tool | Description | Access | License | Homepage |
+|---:|---|---|---|---|---|
+| 558 | `okta-aws-cli` | Okta federated identity for AWS CLI | local-installable | Apache-2.0 | https://github.com/okta/okta-aws-cli |
+| 614 | `railway` | Develop and deploy code with zero configuration | local-installable | MIT | https://railway.com/ |
+| 721 | `cloudflare-wrangler` | CLI tool for Cloudflare Workers | local-installable | Apache-2.0 OR MIT | https://github.com/cloudflare/workers-sdk |
+| 729 | `heroku` | CLI for Heroku | local-installable | ISC | https://www.npmjs.com/package/heroku/ |
+| 798 | `localstack` | Fully functional local AWS cloud stack | local-installable | Apache-2.0 | https://localstack.cloud/ |
+| 800 | `supabase` | Open source Firebase alternative | local-installable | MIT | https://supabase.com/docs/reference/cli/about |
+| 801 | `tenv` | OpenTofu / Terraform / Terragrunt / Terramate / Atmos version manager | local-installable | Apache-2.0 | https://tofuutils.github.io/tenv/ |
+| 839 | `saml2aws` | Login and retrieve AWS temporary credentials using a SAML IDP | local-installable | MIT | https://github.com/Versent/saml2aws |
+| 844 | `hasura-cli` | Command-Line Interface for Hasura GraphQL Engine | local-installable | Apache-2.0 | https://hasura.io |
+| 846 | `aws-elasticbeanstalk` | Client for Amazon Elastic Beanstalk web service | local-installable | Apache-2.0 | https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html |
+| 860 | `akamai` | CLI toolkit for working with Akamai's APIs | local-installable | Apache-2.0 | https://github.com/akamai/cli |
+| 914 | `cloud-sql-proxy` | Utility for connecting securely to your Cloud SQL instances | local-installable | Apache-2.0 | https://github.com/GoogleCloudPlatform/cloud-sql-proxy |
+| 934 | `minio-mc` | Replacement for ls, cp and other commands for object storage | local-installable | AGPL-3.0-or-later | https://github.com/minio/mc |
+| 940 | `phrase-cli` | Tool to interact with the Phrase API | local-installable | MIT | https://phrase.com/ |
+| 950 | `hcloud` | Command-line interface for Hetzner Cloud | local-installable | MIT | https://github.com/hetznercloud/cli |
+| 998 | `rain` | Command-line tool for working with AWS CloudFormation | local-installable | Apache-2.0 | https://github.com/aws-cloudformation/rain |
+| 1000 | `aliyun-cli` | Universal Command-Line Interface for Alibaba Cloud | local-installable | Apache-2.0 | https://github.com/aliyun/aliyun-cli |

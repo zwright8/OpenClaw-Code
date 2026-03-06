@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5851,
+  "name": "workflow-engines-access-auditor",
+  "title": "Workflow Engines Access Auditor",
+  "description": "Design and run workflow engines workflows with access auditor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9963,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05851-workflow-engines-access-auditor/SKILL.md",
+    "entrypoint": "agent05/05851-workflow-engines-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines access auditor",
+    "workflow engines access auditor workflow",
+    "workflow engines access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7305,
+  "name": "survey-systems-spec-drift-detector",
+  "title": "Survey Systems Spec Drift Detector",
+  "description": "Design and run survey systems workflows with spec drift detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4259,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07305-survey-systems-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent06/07305-survey-systems-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems spec drift detector",
+    "survey systems spec drift detector workflow",
+    "survey systems spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

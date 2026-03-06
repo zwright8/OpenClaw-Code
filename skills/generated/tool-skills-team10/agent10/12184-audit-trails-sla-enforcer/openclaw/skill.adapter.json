@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12184,
+  "name": "audit-trails-sla-enforcer",
+  "title": "Audit Trails SLA Enforcer",
+  "description": "Design and run audit trails workflows with sla enforcer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7745,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12184-audit-trails-sla-enforcer/SKILL.md",
+    "entrypoint": "agent10/12184-audit-trails-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails sla enforcer",
+    "audit trails sla enforcer workflow",
+    "audit trails sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

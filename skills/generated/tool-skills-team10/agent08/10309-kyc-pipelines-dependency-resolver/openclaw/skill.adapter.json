@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10309,
+  "name": "kyc-pipelines-dependency-resolver",
+  "title": "KYC Pipelines Dependency Resolver",
+  "description": "Design and run kyc pipelines workflows with dependency resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11562,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10309-kyc-pipelines-dependency-resolver/SKILL.md",
+    "entrypoint": "agent08/10309-kyc-pipelines-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines dependency resolver",
+    "kyc pipelines dependency resolver workflow",
+    "kyc pipelines dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

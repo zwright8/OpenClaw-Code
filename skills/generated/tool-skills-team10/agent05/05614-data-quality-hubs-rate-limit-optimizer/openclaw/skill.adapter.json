@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5614,
+  "name": "data-quality-hubs-rate-limit-optimizer",
+  "title": "Data Quality Hubs Rate Limit Optimizer",
+  "description": "Design and run data quality hubs workflows with rate limit optimizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2564,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05614-data-quality-hubs-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent05/05614-data-quality-hubs-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs rate limit optimizer",
+    "data quality hubs rate limit optimizer workflow",
+    "data quality hubs rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

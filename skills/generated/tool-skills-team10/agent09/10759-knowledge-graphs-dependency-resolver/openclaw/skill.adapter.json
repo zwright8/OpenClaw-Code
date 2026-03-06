@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10759,
+  "name": "knowledge-graphs-dependency-resolver",
+  "title": "Knowledge Graphs Dependency Resolver",
+  "description": "Design and run knowledge graphs workflows with dependency resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7682,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10759-knowledge-graphs-dependency-resolver/SKILL.md",
+    "entrypoint": "agent09/10759-knowledge-graphs-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs dependency resolver",
+    "knowledge graphs dependency resolver workflow",
+    "knowledge graphs dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

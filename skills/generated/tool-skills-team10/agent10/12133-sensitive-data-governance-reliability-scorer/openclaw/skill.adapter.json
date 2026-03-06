@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12133,
+  "name": "sensitive-data-governance-reliability-scorer",
+  "title": "Sensitive Data Governance Reliability Scorer",
+  "description": "Design and run sensitive data governance workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12268,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12133-sensitive-data-governance-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12133-sensitive-data-governance-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance reliability scorer",
+    "sensitive data governance reliability scorer workflow",
+    "sensitive data governance reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

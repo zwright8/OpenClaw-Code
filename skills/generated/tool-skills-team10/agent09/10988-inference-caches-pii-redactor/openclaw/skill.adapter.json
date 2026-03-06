@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10988,
+  "name": "inference-caches-pii-redactor",
+  "title": "Inference Caches PII Redactor",
+  "description": "Design and run inference caches workflows with pii redactor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3858,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10988-inference-caches-pii-redactor/SKILL.md",
+    "entrypoint": "agent09/10988-inference-caches-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches pii redactor",
+    "inference caches pii redactor workflow",
+    "inference caches pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

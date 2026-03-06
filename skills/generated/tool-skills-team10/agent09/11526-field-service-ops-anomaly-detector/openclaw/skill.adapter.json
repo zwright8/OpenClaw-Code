@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11526,
+  "name": "field-service-ops-anomaly-detector",
+  "title": "Field Service Ops Anomaly Detector",
+  "description": "Design and run field service ops workflows with anomaly detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5649,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11526-field-service-ops-anomaly-detector/SKILL.md",
+    "entrypoint": "agent09/11526-field-service-ops-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops anomaly detector",
+    "field service ops anomaly detector workflow",
+    "field service ops anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

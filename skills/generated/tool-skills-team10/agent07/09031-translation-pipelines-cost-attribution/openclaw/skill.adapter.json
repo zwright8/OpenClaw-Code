@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9031,
+  "name": "translation-pipelines-cost-attribution",
+  "title": "Translation Pipelines Cost Attribution",
+  "description": "Design and run translation pipelines workflows with cost attribution controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 8028,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09031-translation-pipelines-cost-attribution/SKILL.md",
+    "entrypoint": "agent07/09031-translation-pipelines-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "translation pipelines cost attribution",
+    "translation pipelines cost attribution workflow",
+    "translation pipelines cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 41,
+  "name": "linear-connector",
+  "title": "Linear Connector",
+  "description": "Unified read/write connector for Linear APIs and data.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0041-linear-connector/SKILL.md",
+    "entrypoint": "agent01/0041-linear-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "linear connector",
+    "linear connector workflow",
+    "linear connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0041-linear-connector"
+  }
+}

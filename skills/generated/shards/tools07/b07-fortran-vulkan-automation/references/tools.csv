@@ -1,0 +1,25 @@
+rank,tool,access,description,homepage,license
+3470,libtirpc,local-installable,Port of Sun's Transport-Independent RPC library to Linux,https://sourceforge.net/projects/libtirpc/,BSD-3-Clause
+3471,fpm,local-installable,Package manager and build system for Fortran,https://fpm.fortran-lang.org,MIT
+3472,spotbugs,local-installable,Tool for Java static analysis (FindBugs's successor),https://spotbugs.github.io/,LGPL-2.1-or-later
+3473,vulkan-volk,local-installable,Meta loader for Vulkan API,https://github.com/zeux/volk,MIT
+3474,unrtf,local-installable,RTF to other formats converter,https://www.gnu.org/software/unrtf/,GPL-3.0-or-later
+3475,enca,local-installable,Charset analyzer and converter,https://cihar.com/software/enca/,GPL-2.0-only
+3477,anycable-go,local-installable,WebSocket server with action cable protocol,https://github.com/anycable/anycable,MIT
+3478,comby,local-installable,Tool for changing code across many languages,https://comby.dev,Apache-2.0
+3479,osc,local-installable,Command-line interface to work with an Open Build Service,https://openbuildservice.org,GPL-2.0-or-later
+3480,ralph-orchestrator,local-installable,Multi-agent orchestration framework for autonomous AI task completion,https://github.com/mikeyobrien/ralph-orchestrator,MIT
+3481,ispc,local-installable,Compiler for SIMD programming on the CPU,https://ispc.github.io,BSD-3-Clause
+3484,vulkan-utility-libraries,local-installable,Utility Libraries for Vulkan,https://github.com/KhronosGroup/Vulkan-Utility-Libraries,Apache-2.0
+3485,openfpgaloader,local-installable,Universal utility for programming FPGA,https://github.com/trabucayre/openFPGALoader,Apache-2.0
+3487,xauth,local-installable,X.Org Applications: xauth,https://www.x.org/,MIT-open-group
+3488,erdtree,local-installable,Multi-threaded file-tree visualizer and disk usage analyzer,https://github.com/solidiquis/erdtree,MIT
+3489,jbig2enc,local-installable,JBIG2 encoder (for monochrome documents),https://github.com/agl/jbig2enc,Apache-2.0
+3490,gnu-typist,local-installable,GNU typing tutor,https://www.gnu.org/software/gtypist/,GPL-3.0-or-later
+3492,xvid,local-installable,"High-performance, high-quality MPEG-4 video library",https://labs.xvid.com/,GPL-2.0-or-later
+3494,slides,local-installable,Terminal based presentation tool,https://maaslalani.com/slides/,MIT
+3495,licensefinder,local-installable,Find licenses for your project's dependencies,https://github.com/pivotal/LicenseFinder,MIT
+3496,turso,local-installable,Interactive SQL shell for Turso,https://github.com/tursodatabase/turso,MIT
+3498,inotify-tools,local-installable,C library and command-line programs providing a simple interface to inotify,https://github.com/inotify-tools/inotify-tools,GPL-2.0-or-later
+3499,frps,local-installable,Server app of fast reverse proxy to expose a local server to the internet,https://github.com/fatedier/frp,Apache-2.0
+3500,tkdiff,local-installable,Graphical side by side diff utility,https://tkdiff.sourceforge.io/,GPL-2.0-only

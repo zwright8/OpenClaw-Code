@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2888,
+  "name": "rail-scheduling-pii-redactor",
+  "title": "Rail Scheduling PII Redactor",
+  "description": "Design and run rail scheduling workflows with pii redactor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2045,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02888-rail-scheduling-pii-redactor/SKILL.md",
+    "entrypoint": "agent03/02888-rail-scheduling-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling pii redactor",
+    "rail scheduling pii redactor workflow",
+    "rail scheduling pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

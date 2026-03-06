@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5581,
+  "name": "metadata-stores-cost-attribution",
+  "title": "Metadata Stores Cost Attribution",
+  "description": "Design and run metadata stores workflows with cost attribution controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9872,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05581-metadata-stores-cost-attribution/SKILL.md",
+    "entrypoint": "agent05/05581-metadata-stores-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores cost attribution",
+    "metadata stores cost attribution workflow",
+    "metadata stores cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

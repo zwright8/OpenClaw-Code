@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9370,
+  "name": "sensor-fusion-migration-planner",
+  "title": "Sensor Fusion Migration Planner",
+  "description": "Design and run sensor fusion workflows with migration planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4750,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09370-sensor-fusion-migration-planner/SKILL.md",
+    "entrypoint": "agent08/09370-sensor-fusion-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion migration planner",
+    "sensor fusion migration planner workflow",
+    "sensor fusion migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

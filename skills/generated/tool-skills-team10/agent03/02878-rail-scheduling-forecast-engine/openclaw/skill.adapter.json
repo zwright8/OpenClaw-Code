@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2878,
+  "name": "rail-scheduling-forecast-engine",
+  "title": "Rail Scheduling Forecast Engine",
+  "description": "Design and run rail scheduling workflows with forecast engine controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7347,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02878-rail-scheduling-forecast-engine/SKILL.md",
+    "entrypoint": "agent03/02878-rail-scheduling-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "rail scheduling forecast engine",
+    "rail scheduling forecast engine workflow",
+    "rail scheduling forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

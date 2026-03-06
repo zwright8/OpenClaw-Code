@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2526,
+  "name": "real-estate-mls-anomaly-detector",
+  "title": "Real Estate MLS Anomaly Detector",
+  "description": "Design and run real estate mls workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5351,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02526-real-estate-mls-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/02526-real-estate-mls-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls anomaly detector",
+    "real estate mls anomaly detector workflow",
+    "real estate mls anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2554,
+  "name": "property-management-schema-introspector",
+  "title": "Property Management Schema Introspector",
+  "description": "Design and run property management workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 573,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02554-property-management-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/02554-property-management-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management schema introspector",
+    "property management schema introspector workflow",
+    "property management schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

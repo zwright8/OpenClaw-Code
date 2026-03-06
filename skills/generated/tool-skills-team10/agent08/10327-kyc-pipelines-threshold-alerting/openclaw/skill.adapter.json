@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10327,
+  "name": "kyc-pipelines-threshold-alerting",
+  "title": "KYC Pipelines Threshold Alerting",
+  "description": "Design and run kyc pipelines workflows with threshold alerting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11570,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10327-kyc-pipelines-threshold-alerting/SKILL.md",
+    "entrypoint": "agent08/10327-kyc-pipelines-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines threshold alerting",
+    "kyc pipelines threshold alerting workflow",
+    "kyc pipelines threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

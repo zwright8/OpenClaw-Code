@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8833,
+  "name": "discovery-pipelines-reliability-scorer",
+  "title": "Discovery Pipelines Reliability Scorer",
+  "description": "Design and run discovery pipelines workflows with reliability scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11071,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08833-discovery-pipelines-reliability-scorer/SKILL.md",
+    "entrypoint": "agent07/08833-discovery-pipelines-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines reliability scorer",
+    "discovery pipelines reliability scorer workflow",
+    "discovery pipelines reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

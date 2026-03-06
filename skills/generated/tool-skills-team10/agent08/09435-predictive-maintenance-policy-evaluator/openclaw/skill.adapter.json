@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9435,
+  "name": "predictive-maintenance-policy-evaluator",
+  "title": "Predictive Maintenance Policy Evaluator",
+  "description": "Design and run predictive maintenance workflows with policy evaluator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2202,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09435-predictive-maintenance-policy-evaluator/SKILL.md",
+    "entrypoint": "agent08/09435-predictive-maintenance-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance policy evaluator",
+    "predictive maintenance policy evaluator workflow",
+    "predictive maintenance policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

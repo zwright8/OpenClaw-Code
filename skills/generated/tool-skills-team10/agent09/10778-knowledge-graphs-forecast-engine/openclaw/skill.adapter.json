@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10778,
+  "name": "knowledge-graphs-forecast-engine",
+  "title": "Knowledge Graphs Forecast Engine",
+  "description": "Design and run knowledge graphs workflows with forecast engine controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7691,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10778-knowledge-graphs-forecast-engine/SKILL.md",
+    "entrypoint": "agent09/10778-knowledge-graphs-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs forecast engine",
+    "knowledge graphs forecast engine workflow",
+    "knowledge graphs forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

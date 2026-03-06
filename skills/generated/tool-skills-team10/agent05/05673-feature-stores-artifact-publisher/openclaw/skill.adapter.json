@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5673,
+  "name": "feature-stores-artifact-publisher",
+  "title": "Feature Stores Artifact Publisher",
+  "description": "Design and run feature stores workflows with artifact publisher controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9888,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05673-feature-stores-artifact-publisher/SKILL.md",
+    "entrypoint": "agent05/05673-feature-stores-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "feature stores artifact publisher",
+    "feature stores artifact publisher workflow",
+    "feature stores artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

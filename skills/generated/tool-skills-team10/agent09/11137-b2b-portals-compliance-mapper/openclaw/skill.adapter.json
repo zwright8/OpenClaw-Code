@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11137,
+  "name": "b2b-portals-compliance-mapper",
+  "title": "B2B Portals Compliance Mapper",
+  "description": "Design and run b2b portals workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1954,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11137-b2b-portals-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/11137-b2b-portals-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals compliance mapper",
+    "b2b portals compliance mapper workflow",
+    "b2b portals compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

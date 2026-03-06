@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8312,
+  "name": "grant-management-job-scheduler",
+  "title": "Grant Management Job Scheduler",
+  "description": "Design and run grant management workflows with job scheduler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5118,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08312-grant-management-job-scheduler/SKILL.md",
+    "entrypoint": "agent07/08312-grant-management-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grant management job scheduler",
+    "grant management job scheduler workflow",
+    "grant management job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

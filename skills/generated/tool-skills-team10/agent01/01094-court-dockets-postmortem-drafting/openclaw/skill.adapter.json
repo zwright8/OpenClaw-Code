@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1094,
+  "name": "court-dockets-postmortem-drafting",
+  "title": "Court Dockets Postmortem Drafting",
+  "description": "Design and run court dockets workflows with postmortem drafting controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8427,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01094-court-dockets-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent01/01094-court-dockets-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets postmortem drafting",
+    "court dockets postmortem drafting workflow",
+    "court dockets postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

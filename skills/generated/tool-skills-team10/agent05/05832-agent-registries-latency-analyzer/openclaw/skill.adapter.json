@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5832,
+  "name": "agent-registries-latency-analyzer",
+  "title": "Agent Registries Latency Analyzer",
+  "description": "Design and run agent registries workflows with latency analyzer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9957,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05832-agent-registries-latency-analyzer/SKILL.md",
+    "entrypoint": "agent05/05832-agent-registries-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries latency analyzer",
+    "agent registries latency analyzer workflow",
+    "agent registries latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

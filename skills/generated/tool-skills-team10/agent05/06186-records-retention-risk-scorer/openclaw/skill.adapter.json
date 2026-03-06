@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6186,
+  "name": "records-retention-risk-scorer",
+  "title": "Records Retention Risk Scorer",
+  "description": "Design and run records retention workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1597,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06186-records-retention-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/06186-records-retention-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention risk scorer",
+    "records retention risk scorer workflow",
+    "records retention risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

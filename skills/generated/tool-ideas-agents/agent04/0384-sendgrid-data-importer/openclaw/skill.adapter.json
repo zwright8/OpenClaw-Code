@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 384,
+  "name": "sendgrid-data-importer",
+  "title": "SendGrid Data Importer",
+  "description": "Validates and imports bulk updates into SendGrid.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0384-sendgrid-data-importer/SKILL.md",
+    "entrypoint": "agent04/0384-sendgrid-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sendgrid data importer",
+    "sendgrid data importer workflow",
+    "sendgrid data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0384-sendgrid-data-importer"
+  }
+}

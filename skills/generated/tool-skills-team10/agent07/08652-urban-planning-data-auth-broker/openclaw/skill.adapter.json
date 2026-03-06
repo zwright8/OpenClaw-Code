@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8652,
+  "name": "urban-planning-data-auth-broker",
+  "title": "Urban Planning Data Auth Broker",
+  "description": "Design and run urban planning data workflows with auth broker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 941,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/08652-urban-planning-data-auth-broker/SKILL.md",
+    "entrypoint": "agent07/08652-urban-planning-data-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data auth broker",
+    "urban planning data auth broker workflow",
+    "urban planning data auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3260,
+  "name": "accounting-ledgers-workflow-compiler",
+  "title": "Accounting Ledgers Workflow Compiler",
+  "description": "Design and run accounting ledgers workflows with workflow compiler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1062,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03260-accounting-ledgers-workflow-compiler/SKILL.md",
+    "entrypoint": "agent03/03260-accounting-ledgers-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers workflow compiler",
+    "accounting ledgers workflow compiler workflow",
+    "accounting ledgers workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

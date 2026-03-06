@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12383,
+  "name": "synthetic-data-platforms-reliability-scorer",
+  "title": "Synthetic Data Platforms Reliability Scorer",
+  "description": "Design and run synthetic data platforms workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12310,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12383-synthetic-data-platforms-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12383-synthetic-data-platforms-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms reliability scorer",
+    "synthetic data platforms reliability scorer workflow",
+    "synthetic data platforms reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1000,
+  "name": "json-migration-assistant",
+  "title": "JSON Migration Assistant",
+  "description": "Plans and executes safe migrations to or from JSON.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "agent10/1000-json-migration-assistant/SKILL.md",
+    "entrypoint": "agent10/1000-json-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "json migration assistant",
+    "json migration assistant workflow",
+    "json migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent10/1000-json-migration-assistant"
+  }
+}

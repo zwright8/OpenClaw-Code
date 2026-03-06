@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11672,
+  "name": "spare-parts-planning-version-tracker",
+  "title": "Spare Parts Planning Version Tracker",
+  "description": "Design and run spare parts planning workflows with version tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12071,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11672-spare-parts-planning-version-tracker/SKILL.md",
+    "entrypoint": "agent09/11672-spare-parts-planning-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "spare parts planning version tracker",
+    "spare parts planning version tracker workflow",
+    "spare parts planning version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

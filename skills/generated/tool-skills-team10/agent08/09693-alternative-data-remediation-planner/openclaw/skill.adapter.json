@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9693,
+  "name": "alternative-data-remediation-planner",
+  "title": "Alternative Data Remediation Planner",
+  "description": "Design and run alternative data workflows with remediation planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2972,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09693-alternative-data-remediation-planner/SKILL.md",
+    "entrypoint": "agent08/09693-alternative-data-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data remediation planner",
+    "alternative data remediation planner workflow",
+    "alternative data remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

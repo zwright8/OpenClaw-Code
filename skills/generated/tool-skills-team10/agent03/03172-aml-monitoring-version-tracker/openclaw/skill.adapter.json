@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3172,
+  "name": "aml-monitoring-version-tracker",
+  "title": "AML Monitoring Version Tracker",
+  "description": "Design and run aml monitoring workflows with version tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9047,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03172-aml-monitoring-version-tracker/SKILL.md",
+    "entrypoint": "agent03/03172-aml-monitoring-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "aml monitoring version tracker",
+    "aml monitoring version tracker workflow",
+    "aml monitoring version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

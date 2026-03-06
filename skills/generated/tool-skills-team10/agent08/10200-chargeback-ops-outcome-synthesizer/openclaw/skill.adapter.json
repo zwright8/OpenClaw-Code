@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10200,
+  "name": "chargeback-ops-outcome-synthesizer",
+  "title": "Chargeback Ops Outcome Synthesizer",
+  "description": "Design and run chargeback ops workflows with outcome synthesizer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7118,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10200-chargeback-ops-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent08/10200-chargeback-ops-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chargeback ops outcome synthesizer",
+    "chargeback ops outcome synthesizer workflow",
+    "chargeback ops outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

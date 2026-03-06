@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12033,
+  "name": "ethics-review-boards-reliability-scorer",
+  "title": "Ethics Review Boards Reliability Scorer",
+  "description": "Design and run ethics review boards workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12226,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12033-ethics-review-boards-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12033-ethics-review-boards-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards reliability scorer",
+    "ethics review boards reliability scorer workflow",
+    "ethics review boards reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

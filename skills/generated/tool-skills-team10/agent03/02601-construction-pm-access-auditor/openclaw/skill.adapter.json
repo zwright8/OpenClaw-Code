@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2601,
+  "name": "construction-pm-access-auditor",
+  "title": "Construction PM Access Auditor",
+  "description": "Design and run construction pm workflows with access auditor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8913,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02601-construction-pm-access-auditor/SKILL.md",
+    "entrypoint": "agent03/02601-construction-pm-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm access auditor",
+    "construction pm access auditor workflow",
+    "construction pm access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

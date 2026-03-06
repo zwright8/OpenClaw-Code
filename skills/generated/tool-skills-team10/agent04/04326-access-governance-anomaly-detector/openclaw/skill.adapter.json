@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4326,
+  "name": "access-governance-anomaly-detector",
+  "title": "Access Governance Anomaly Detector",
+  "description": "Design and run access governance workflows with anomaly detector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5405,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04326-access-governance-anomaly-detector/SKILL.md",
+    "entrypoint": "agent04/04326-access-governance-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance anomaly detector",
+    "access governance anomaly detector workflow",
+    "access governance anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6208,
+  "name": "archive-systems-task-decomposer",
+  "title": "Archive Systems Task Decomposer",
+  "description": "Design and run archive systems workflows with task decomposer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10112,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06208-archive-systems-task-decomposer/SKILL.md",
+    "entrypoint": "agent05/06208-archive-systems-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "archive systems task decomposer",
+    "archive systems task decomposer workflow",
+    "archive systems task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

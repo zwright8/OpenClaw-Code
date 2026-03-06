@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8683,
+  "name": "urban-planning-data-reliability-scorer",
+  "title": "Urban Planning Data Reliability Scorer",
+  "description": "Design and run urban planning data workflows with reliability scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11029,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08683-urban-planning-data-reliability-scorer/SKILL.md",
+    "entrypoint": "agent07/08683-urban-planning-data-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data reliability scorer",
+    "urban planning data reliability scorer workflow",
+    "urban planning data reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 177,
+  "name": "box-alert-monitor",
+  "title": "Box Alert Monitor",
+  "description": "Monitors key Box signals and raises actionable alerts.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0177-box-alert-monitor/SKILL.md",
+    "entrypoint": "agent02/0177-box-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "box alert monitor",
+    "box alert monitor workflow",
+    "box alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0177-box-alert-monitor"
+  }
+}

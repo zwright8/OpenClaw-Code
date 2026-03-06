@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3914,
+  "name": "social-listening-rate-limit-optimizer",
+  "title": "Social Listening Rate Limit Optimizer",
+  "description": "Design and run social listening workflows with rate limit optimizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5963,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03914-social-listening-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent04/03914-social-listening-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening rate limit optimizer",
+    "social listening rate limit optimizer workflow",
+    "social listening rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

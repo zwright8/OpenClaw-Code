@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9269,
+  "name": "iot-device-clouds-rollback-coordinator",
+  "title": "IoT Device Clouds Rollback Coordinator",
+  "description": "Design and run iot device clouds workflows with rollback coordinator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2588,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09269-iot-device-clouds-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent08/09269-iot-device-clouds-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds rollback coordinator",
+    "iot device clouds rollback coordinator workflow",
+    "iot device clouds rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

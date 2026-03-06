@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2311,
+  "name": "utility-billing-execution-runner",
+  "title": "Utility Billing Execution Runner",
+  "description": "Design and run utility billing workflows with execution runner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 485,
+    "score": 89,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02311-utility-billing-execution-runner/SKILL.md",
+    "entrypoint": "agent02/02311-utility-billing-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing execution runner",
+    "utility billing execution runner workflow",
+    "utility billing execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

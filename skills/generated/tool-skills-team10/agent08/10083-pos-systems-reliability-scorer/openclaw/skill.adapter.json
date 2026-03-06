@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10083,
+  "name": "pos-systems-reliability-scorer",
+  "title": "POS Systems Reliability Scorer",
+  "description": "Design and run pos systems workflows with reliability scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11512,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10083-pos-systems-reliability-scorer/SKILL.md",
+    "entrypoint": "agent08/10083-pos-systems-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pos systems reliability scorer",
+    "pos systems reliability scorer workflow",
+    "pos systems reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

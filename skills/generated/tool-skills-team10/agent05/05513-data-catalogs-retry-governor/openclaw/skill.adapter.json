@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5513,
+  "name": "data-catalogs-retry-governor",
+  "title": "Data Catalogs Retry Governor",
+  "description": "Design and run data catalogs workflows with retry governor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6124,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05513-data-catalogs-retry-governor/SKILL.md",
+    "entrypoint": "agent05/05513-data-catalogs-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data catalogs retry governor",
+    "data catalogs retry governor workflow",
+    "data catalogs retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

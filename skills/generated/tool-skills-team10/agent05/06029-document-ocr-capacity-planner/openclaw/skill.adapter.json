@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6029,
+  "name": "document-ocr-capacity-planner",
+  "title": "Document OCR Capacity Planner",
+  "description": "Design and run document ocr workflows with capacity planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10039,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06029-document-ocr-capacity-planner/SKILL.md",
+    "entrypoint": "agent05/06029-document-ocr-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr capacity planner",
+    "document ocr capacity planner workflow",
+    "document ocr capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

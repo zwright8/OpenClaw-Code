@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8937,
+  "name": "policy-drafting-compliance-mapper",
+  "title": "Policy Drafting Compliance Mapper",
+  "description": "Design and run policy drafting workflows with compliance mapper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1907,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08937-policy-drafting-compliance-mapper/SKILL.md",
+    "entrypoint": "agent07/08937-policy-drafting-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy drafting compliance mapper",
+    "policy drafting compliance mapper workflow",
+    "policy drafting compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

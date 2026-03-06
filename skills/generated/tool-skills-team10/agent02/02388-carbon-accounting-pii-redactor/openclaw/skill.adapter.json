@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2388,
+  "name": "carbon-accounting-pii-redactor",
+  "title": "Carbon Accounting PII Redactor",
+  "description": "Design and run carbon accounting workflows with pii redactor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3207,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02388-carbon-accounting-pii-redactor/SKILL.md",
+    "entrypoint": "agent02/02388-carbon-accounting-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting pii redactor",
+    "carbon accounting pii redactor workflow",
+    "carbon accounting pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

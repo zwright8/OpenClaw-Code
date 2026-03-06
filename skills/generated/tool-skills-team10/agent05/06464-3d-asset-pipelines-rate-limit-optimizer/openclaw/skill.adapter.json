@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6464,
+  "name": "3d-asset-pipelines-rate-limit-optimizer",
+  "title": "3D Asset Pipelines Rate Limit Optimizer",
+  "description": "Design and run 3d asset pipelines workflows with rate limit optimizer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6211,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06464-3d-asset-pipelines-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent05/06464-3d-asset-pipelines-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines rate limit optimizer",
+    "3d asset pipelines rate limit optimizer workflow",
+    "3d asset pipelines rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

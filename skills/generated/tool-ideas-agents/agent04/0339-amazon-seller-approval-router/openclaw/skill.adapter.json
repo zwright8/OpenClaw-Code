@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 339,
+  "name": "amazon-seller-approval-router",
+  "title": "Amazon Seller Approval Router",
+  "description": "Routes Amazon Seller-driven decisions to the right approvers.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0339-amazon-seller-approval-router/SKILL.md",
+    "entrypoint": "agent04/0339-amazon-seller-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "amazon seller approval router",
+    "amazon seller approval router workflow",
+    "amazon seller approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0339-amazon-seller-approval-router"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9604,
+  "name": "derivatives-risk-schema-introspector",
+  "title": "Derivatives Risk Schema Introspector",
+  "description": "Design and run derivatives risk workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 216,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent08/09604-derivatives-risk-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/09604-derivatives-risk-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk schema introspector",
+    "derivatives risk schema introspector workflow",
+    "derivatives risk schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

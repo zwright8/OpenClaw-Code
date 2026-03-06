@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3567,
+  "name": "cpq-platforms-delta-calculator",
+  "title": "CPQ Platforms Delta Calculator",
+  "description": "Design and run cpq platforms workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9212,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03567-cpq-platforms-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/03567-cpq-platforms-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cpq platforms delta calculator",
+    "cpq platforms delta calculator workflow",
+    "cpq platforms delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

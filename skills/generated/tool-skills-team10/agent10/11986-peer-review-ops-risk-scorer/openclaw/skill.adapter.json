@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11986,
+  "name": "peer-review-ops-risk-scorer",
+  "title": "Peer Review Ops Risk Scorer",
+  "description": "Design and run peer review ops workflows with risk scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1715,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/11986-peer-review-ops-risk-scorer/SKILL.md",
+    "entrypoint": "agent10/11986-peer-review-ops-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops risk scorer",
+    "peer review ops risk scorer workflow",
+    "peer review ops risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

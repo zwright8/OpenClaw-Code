@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2748,
+  "name": "facility-maintenance-feedback-harvester",
+  "title": "Facility Maintenance Feedback Harvester",
+  "description": "Design and run facility maintenance workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7311,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02748-facility-maintenance-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/02748-facility-maintenance-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance feedback harvester",
+    "facility maintenance feedback harvester workflow",
+    "facility maintenance feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

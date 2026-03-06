@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10374,
+  "name": "onboarding-journeys-evidence-collector",
+  "title": "Onboarding Journeys Evidence Collector",
+  "description": "Design and run onboarding journeys workflows with evidence collector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6565,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10374-onboarding-journeys-evidence-collector/SKILL.md",
+    "entrypoint": "agent08/10374-onboarding-journeys-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys evidence collector",
+    "onboarding journeys evidence collector workflow",
+    "onboarding journeys evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

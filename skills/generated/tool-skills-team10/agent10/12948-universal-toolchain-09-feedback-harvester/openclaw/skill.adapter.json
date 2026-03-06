@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12948,
+  "name": "universal-toolchain-09-feedback-harvester",
+  "title": "Universal Toolchain 09 Feedback Harvester",
+  "description": "Design and run universal toolchain 09 workflows with feedback harvester controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8386,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12948-universal-toolchain-09-feedback-harvester/SKILL.md",
+    "entrypoint": "agent10/12948-universal-toolchain-09-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 09 feedback harvester",
+    "universal toolchain 09 feedback harvester workflow",
+    "universal toolchain 09 feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

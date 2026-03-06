@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12036,
+  "name": "ethics-review-boards-risk-scorer",
+  "title": "Ethics Review Boards Risk Scorer",
+  "description": "Design and run ethics review boards workflows with risk scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1716,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12036-ethics-review-boards-risk-scorer/SKILL.md",
+    "entrypoint": "agent10/12036-ethics-review-boards-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards risk scorer",
+    "ethics review boards risk scorer workflow",
+    "ethics review boards risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

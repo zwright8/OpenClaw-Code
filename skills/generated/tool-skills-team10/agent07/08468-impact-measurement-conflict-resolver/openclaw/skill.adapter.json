@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8468,
+  "name": "impact-measurement-conflict-resolver",
+  "title": "Impact Measurement Conflict Resolver",
+  "description": "Design and run impact measurement workflows with conflict resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10956,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08468-impact-measurement-conflict-resolver/SKILL.md",
+    "entrypoint": "agent07/08468-impact-measurement-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement conflict resolver",
+    "impact measurement conflict resolver workflow",
+    "impact measurement conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

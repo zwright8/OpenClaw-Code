@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3924,
+  "name": "social-listening-evidence-collector",
+  "title": "Social Listening Evidence Collector",
+  "description": "Design and run social listening workflows with evidence collector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5964,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03924-social-listening-evidence-collector/SKILL.md",
+    "entrypoint": "agent04/03924-social-listening-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening evidence collector",
+    "social listening evidence collector workflow",
+    "social listening evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9972,
+  "name": "audience-analytics-version-tracker",
+  "title": "Audience Analytics Version Tracker",
+  "description": "Design and run audience analytics workflows with version tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11462,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09972-audience-analytics-version-tracker/SKILL.md",
+    "entrypoint": "agent08/09972-audience-analytics-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics version tracker",
+    "audience analytics version tracker workflow",
+    "audience analytics version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

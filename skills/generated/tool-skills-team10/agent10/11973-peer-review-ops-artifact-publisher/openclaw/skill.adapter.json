@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11973,
+  "name": "peer-review-ops-artifact-publisher",
+  "title": "Peer Review Ops Artifact Publisher",
+  "description": "Design and run peer review ops workflows with artifact publisher controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12198,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11973-peer-review-ops-artifact-publisher/SKILL.md",
+    "entrypoint": "agent10/11973-peer-review-ops-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops artifact publisher",
+    "peer review ops artifact publisher workflow",
+    "peer review ops artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

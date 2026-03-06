@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12004,
+  "name": "ethics-review-boards-schema-introspector",
+  "title": "Ethics Review Boards Schema Introspector",
+  "description": "Design and run ethics review boards workflows with schema introspector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 753,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12004-ethics-review-boards-schema-introspector/SKILL.md",
+    "entrypoint": "agent10/12004-ethics-review-boards-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards schema introspector",
+    "ethics review boards schema introspector workflow",
+    "ethics review boards schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

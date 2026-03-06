@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6425,
+  "name": "image-annotation-provenance-tracker",
+  "title": "Image Annotation Provenance Tracker",
+  "description": "Design and run image annotation workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10183,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06425-image-annotation-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/06425-image-annotation-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "image annotation provenance tracker",
+    "image annotation provenance tracker workflow",
+    "image annotation provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

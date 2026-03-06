@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3541,
+  "name": "crm-intelligence-incident-triage",
+  "title": "CRM Intelligence Incident Triage",
+  "description": "Design and run crm intelligence workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2061,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03541-crm-intelligence-incident-triage/SKILL.md",
+    "entrypoint": "agent03/03541-crm-intelligence-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crm intelligence incident triage",
+    "crm intelligence incident triage workflow",
+    "crm intelligence incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

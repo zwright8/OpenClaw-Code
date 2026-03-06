@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1876,
+  "name": "warehouse-robotics-anomaly-detector",
+  "title": "Warehouse Robotics Anomaly Detector",
+  "description": "Design and run warehouse robotics workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5307,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01876-warehouse-robotics-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/01876-warehouse-robotics-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics anomaly detector",
+    "warehouse robotics anomaly detector workflow",
+    "warehouse robotics anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

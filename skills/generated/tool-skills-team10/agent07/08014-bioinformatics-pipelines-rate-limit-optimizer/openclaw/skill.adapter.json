@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8014,
+  "name": "bioinformatics-pipelines-rate-limit-optimizer",
+  "title": "Bioinformatics Pipelines Rate Limit Optimizer",
+  "description": "Design and run bioinformatics pipelines workflows with rate limit optimizer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6352,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08014-bioinformatics-pipelines-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent07/08014-bioinformatics-pipelines-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines rate limit optimizer",
+    "bioinformatics pipelines rate limit optimizer workflow",
+    "bioinformatics pipelines rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

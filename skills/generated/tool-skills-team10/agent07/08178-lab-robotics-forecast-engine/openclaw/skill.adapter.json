@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8178,
+  "name": "lab-robotics-forecast-engine",
+  "title": "Lab Robotics Forecast Engine",
+  "description": "Design and run lab robotics workflows with forecast engine controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10857,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08178-lab-robotics-forecast-engine/SKILL.md",
+    "entrypoint": "agent07/08178-lab-robotics-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics forecast engine",
+    "lab robotics forecast engine workflow",
+    "lab robotics forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

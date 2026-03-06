@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11515,
+  "name": "field-service-ops-queue-balancer",
+  "title": "Field Service Ops Queue Balancer",
+  "description": "Design and run field service ops workflows with queue balancer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12004,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11515-field-service-ops-queue-balancer/SKILL.md",
+    "entrypoint": "agent09/11515-field-service-ops-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops queue balancer",
+    "field service ops queue balancer workflow",
+    "field service ops queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

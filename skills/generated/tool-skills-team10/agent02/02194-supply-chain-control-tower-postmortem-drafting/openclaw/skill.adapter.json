@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2194,
+  "name": "supply-chain-control-tower-postmortem-drafting",
+  "title": "Supply Chain Control Tower Postmortem Drafting",
+  "description": "Design and run supply chain control tower workflows with postmortem drafting controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5338,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02194-supply-chain-control-tower-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent02/02194-supply-chain-control-tower-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "supply chain control tower postmortem drafting",
+    "supply chain control tower postmortem drafting workflow",
+    "supply chain control tower postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5824,
+  "name": "agent-registries-evidence-collector",
+  "title": "Agent Registries Evidence Collector",
+  "description": "Design and run agent registries workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6151,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05824-agent-registries-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/05824-agent-registries-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries evidence collector",
+    "agent registries evidence collector workflow",
+    "agent registries evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

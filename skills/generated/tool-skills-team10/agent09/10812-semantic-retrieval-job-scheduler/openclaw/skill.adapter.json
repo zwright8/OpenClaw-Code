@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10812,
+  "name": "semantic-retrieval-job-scheduler",
+  "title": "Semantic Retrieval Job Scheduler",
+  "description": "Design and run semantic retrieval workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5201,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10812-semantic-retrieval-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/10812-semantic-retrieval-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval job scheduler",
+    "semantic retrieval job scheduler workflow",
+    "semantic retrieval job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

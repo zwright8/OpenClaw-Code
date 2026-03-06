@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 289,
+  "name": "quickbooks-approval-router",
+  "title": "QuickBooks Approval Router",
+  "description": "Routes QuickBooks-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12544,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00289-quickbooks-approval-router/SKILL.md",
+    "entrypoint": "agent01/00289-quickbooks-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quickbooks approval router",
+    "quickbooks approval router workflow",
+    "quickbooks approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

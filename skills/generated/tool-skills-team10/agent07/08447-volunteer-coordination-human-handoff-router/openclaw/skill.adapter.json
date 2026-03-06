@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8447,
+  "name": "volunteer-coordination-human-handoff-router",
+  "title": "Volunteer Coordination Human Handoff Router",
+  "description": "Design and run volunteer coordination workflows with human handoff router controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10948,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08447-volunteer-coordination-human-handoff-router/SKILL.md",
+    "entrypoint": "agent07/08447-volunteer-coordination-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination human handoff router",
+    "volunteer coordination human handoff router workflow",
+    "volunteer coordination human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

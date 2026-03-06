@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8880,
+  "name": "case-collaboration-budget-guardrail",
+  "title": "Case Collaboration Budget Guardrail",
+  "description": "Design and run case collaboration workflows with budget guardrail controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7563,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08880-case-collaboration-budget-guardrail/SKILL.md",
+    "entrypoint": "agent07/08880-case-collaboration-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "case collaboration budget guardrail",
+    "case collaboration budget guardrail workflow",
+    "case collaboration budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

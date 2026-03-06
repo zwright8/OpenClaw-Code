@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8826,
+  "name": "discovery-pipelines-anomaly-detector",
+  "title": "Discovery Pipelines Anomaly Detector",
+  "description": "Design and run discovery pipelines workflows with anomaly detector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5560,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08826-discovery-pipelines-anomaly-detector/SKILL.md",
+    "entrypoint": "agent07/08826-discovery-pipelines-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines anomaly detector",
+    "discovery pipelines anomaly detector workflow",
+    "discovery pipelines anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

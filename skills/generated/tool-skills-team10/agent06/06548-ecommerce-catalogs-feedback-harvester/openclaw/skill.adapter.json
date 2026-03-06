@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6548,
+  "name": "ecommerce-catalogs-feedback-harvester",
+  "title": "Ecommerce Catalogs Feedback Harvester",
+  "description": "Design and run ecommerce catalogs workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 8013,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06548-ecommerce-catalogs-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/06548-ecommerce-catalogs-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs feedback harvester",
+    "ecommerce catalogs feedback harvester workflow",
+    "ecommerce catalogs feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

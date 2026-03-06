@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6467,
+  "name": "3d-asset-pipelines-delta-calculator",
+  "title": "3D Asset Pipelines Delta Calculator",
+  "description": "Design and run 3d asset pipelines workflows with delta calculator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10199,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06467-3d-asset-pipelines-delta-calculator/SKILL.md",
+    "entrypoint": "agent05/06467-3d-asset-pipelines-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "3d asset pipelines delta calculator",
+    "3d asset pipelines delta calculator workflow",
+    "3d asset pipelines delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

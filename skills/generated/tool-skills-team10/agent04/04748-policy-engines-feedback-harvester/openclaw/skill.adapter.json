@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4748,
+  "name": "policy-engines-feedback-harvester",
+  "title": "Policy Engines Feedback Harvester",
+  "description": "Design and run policy engines workflows with feedback harvester controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9605,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04748-policy-engines-feedback-harvester/SKILL.md",
+    "entrypoint": "agent04/04748-policy-engines-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines feedback harvester",
+    "policy engines feedback harvester workflow",
+    "policy engines feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

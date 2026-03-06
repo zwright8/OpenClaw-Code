@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11719,
+  "name": "service-quality-rollback-coordinator",
+  "title": "Service Quality Rollback Coordinator",
+  "description": "Design and run service quality workflows with rollback coordinator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5238,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11719-service-quality-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent10/11719-service-quality-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality rollback coordinator",
+    "service quality rollback coordinator workflow",
+    "service quality rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

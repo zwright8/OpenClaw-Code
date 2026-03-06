@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10110,
+  "name": "merchant-risk-workflow-compiler",
+  "title": "Merchant Risk Workflow Compiler",
+  "description": "Design and run merchant risk workflows with workflow compiler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 322,
+    "score": 92,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10110-merchant-risk-workflow-compiler/SKILL.md",
+    "entrypoint": "agent08/10110-merchant-risk-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk workflow compiler",
+    "merchant risk workflow compiler workflow",
+    "merchant risk workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

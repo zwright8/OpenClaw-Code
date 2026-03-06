@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11147,
+  "name": "b2b-portals-human-handoff-router",
+  "title": "B2B Portals Human Handoff Router",
+  "description": "Design and run b2b portals workflows with human handoff router controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11851,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11147-b2b-portals-human-handoff-router/SKILL.md",
+    "entrypoint": "agent09/11147-b2b-portals-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals human handoff router",
+    "b2b portals human handoff router workflow",
+    "b2b portals human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

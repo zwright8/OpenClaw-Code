@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 3,
+  "range": {
+    "start": "u2100-tool-health-monitoring-for-disaster-response-networks",
+    "end": "u2149-tool-health-monitoring-for-civic-participation-platforms",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2100-tool-health-monitoring-for-disaster-response-networks",
+      "path": "generated/shards/02/2100-tool-health-monitoring-for-disaster-response-networks",
+      "skill_md_sha256": "002c75dc36f968276dc43ba671f27456875b8ea169f9f16aebef76644f83a480",
+      "summary_sha256": "5ff3b3576ba0fae888a7e4d9913cd221abf821a1ffb3722a37b69d70d35f7f00"
+    },
+    {
+      "skill_id": "u2101-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2101-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "104f31393c92e6545531352c8fcb3bbabae44537acbd0e22b9046e6269c69167",
+      "summary_sha256": "8c59cf5a76f67b2d32fcc7258dd34c7720688971cbb577aabcb083ed0e232db9"
+    },
+    {
+      "skill_id": "u2102-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2102-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "dad0875b142736def8a7c7e5a567ed512c138063b0ca218c1f8d58c63354ffb4",
+      "summary_sha256": "c0381f225f645d905c01aacd44bdc09fe666fd168a347c5f82916bbf0d477f34"
+    },
+    {
+      "skill_id": "u2103-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2103-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "5a3d2126b7859b39e5ca6d5d77b42eaa49928ee02674829493d7a6b9d4f34052",
+      "summary_sha256": "55c6cfb01d5a9dcee9885a36cbd1bc981d61800d209af1fe15e22ac85cb73f79"
+    },
+    {
+      "skill_id": "u2104-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2104-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "e54a471dc15a56b0ad12eeb030dd29dd817a4eca5418dd9498c97363ecfafe86",
+      "summary_sha256": "4b3301dc6673d6de57c7fbc1779c164fccea86f3572ee46f3878d1687c1dbf18"
+    },
+    {
+      "skill_id": "u2105-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "path": "generated/shards/02/2105-tool-health-monitoring-for-climate-adaptation-initiatives",
+      "skill_md_sha256": "9a66be6fc99f8649fd64c1e6f6f83b6ca0b9d4f33d6ddf0c5b00e72333cd2e7c",
+      "summary_sha256": "dd87807bab25fbc0040262c8c4a553b712ad6ec551d9e874c21f946a2a9ddcf4"
+    },
+    {
+      "skill_id": "u2106-tool-health-monitoring-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2106-tool-health-monitoring-for-urban-planning-and-mobility",
+      "skill_md_sha256": "a9097289501a62bfb7c29377e0d8c57a8ab83a71a95e3c0cee07fa7b0b4b37c9",
+      "summary_sha256": "0e889b41b845548dd16bf3e4c39c580f3320dfe03b192d292e91cf3cf723bbe6"
+    },
+    {
+      "skill_id": "u2107-tool-health-monitoring-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2107-tool-health-monitoring-for-urban-planning-and-mobility",
+      "skill_md_sha256": "94b99d7c3177049fc7538bd6f3388f1d5c61c318187d43cb80dda740abe03028",
+      "summary_sha256": "96517af95270ec57b1d93b7d60da9275d1b714ad12bd83e5c352eb2f6b8cb687"
+    },
+    {
+      "skill_id": "u2108-tool-health-monitoring-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2108-tool-health-monitoring-for-urban-planning-and-mobility",
+      "skill_md_sha256": "6fe1b0317d91a173efb5a79c3d9395116ffe630e2240936498edcf7920f79cd8",
+      "summary_sha256": "549f9ce0a2369780b13754f62d38da70e78563c21179a75dff624a9ec8c9bedf"
+    },
+    {
+      "skill_id": "u2109-tool-health-monitoring-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2109-tool-health-monitoring-for-urban-planning-and-mobility",
+      "skill_md_sha256": "172155c4bc0823a0c9d5731ef72da23cd6a9fc13e88a7d47874542a393ae324f",
+      "summary_sha256": "ea0df7d92bee992455d030f9d657a41af71f386de77b23cb54ceb8dc76becbf3"
+    },
+    {
+      "skill_id": "u2110-tool-health-monitoring-for-urban-planning-and-mobility",
+      "path": "generated/shards/02/2110-tool-health-monitoring-for-urban-planning-and-mobility",
+      "skill_md_sha256": "147db2c9f49d2410fdc7d78f14412e0ce760d58fd40494a41cb5ddc4cf51b3bc",
+      "summary_sha256": "626e9edcee17652dce634448ea529041ccfdec5881a0bb3fe5972f542ba708ac"
+    },
+    {
+      "skill_id": "u2111-tool-health-monitoring-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2111-tool-health-monitoring-for-agriculture-and-food-systems",
+      "skill_md_sha256": "d409e2585d01f1b255c7b1f26f1258bdeb0314e392f91515a292adcb3be9fc7d",
+      "summary_sha256": "b7bc61f3f20cd9f48df308279bfc1b61bfbe7c3244d5c13854301cf793711891"
+    },
+    {
+      "skill_id": "u2112-tool-health-monitoring-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2112-tool-health-monitoring-for-agriculture-and-food-systems",
+      "skill_md_sha256": "03c091d42c4cd76c101f1fb04bce7ada53472bdfbe11852b4711d8ebd22b4614",
+      "summary_sha256": "2c9da5b11346c156d5d446322872543dbe04dc7d732d96311cd77e4628318d42"
+    },
+    {
+      "skill_id": "u2113-tool-health-monitoring-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2113-tool-health-monitoring-for-agriculture-and-food-systems",
+      "skill_md_sha256": "d3ac8b8463b7dd14a1ddb0c2f8e8584e30a7c70f4bb8077dd392eec1ad0e3656",
+      "summary_sha256": "83a1f2bd405ee7316682e474d96de5ae03815fbbe4047c3f1e9b1883cbad238c"
+    },
+    {
+      "skill_id": "u2114-tool-health-monitoring-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2114-tool-health-monitoring-for-agriculture-and-food-systems",
+      "skill_md_sha256": "da3154a294e2004f810133ffcb4f41061e6c97bb0829912df286e2cefdec53d1",
+      "summary_sha256": "4c6ff87c4f56f6fb979a98a7005f68716151b619ae2f46fae988fb56fd53770a"
+    },
+    {
+      "skill_id": "u2115-tool-health-monitoring-for-agriculture-and-food-systems",
+      "path": "generated/shards/02/2115-tool-health-monitoring-for-agriculture-and-food-systems",
+      "skill_md_sha256": "7bb9c6c73235b936d46fe6561428d325e0daf632de26982b5c74bbc904adb3ce",
+      "summary_sha256": "3fc322315ba5f264626d9b7b773d7423a188f9854191771ba935e0b23507311e"
+    },
+    {
+      "skill_id": "u2116-tool-health-monitoring-for-supply-chain-resilience",
+      "path": "generated/shards/02/2116-tool-health-monitoring-for-supply-chain-resilience",
+      "skill_md_sha256": "4690ceb061c878635ef9cd3857a8bed2374f1b2e98f169619ea0762324247dda",
+      "summary_sha256": "a8ebafaac6cada4f9de827276e1ef3e54793d653a9d4847f790b725ce6c474e3"
+    },
+    {
+      "skill_id": "u2117-tool-health-monitoring-for-supply-chain-resilience",
+      "path": "generated/shards/02/2117-tool-health-monitoring-for-supply-chain-resilience",
+      "skill_md_sha256": "e7c64908fecfa26f8024ac736ffba9c391fa6c03bb08d94169031e617d62ff6d",
+      "summary_sha256": "1a320ef0c2d4ec2229519bccbb310dd62875e1f656e58f52d4ad34c0d8003451"
+    },
+    {
+      "skill_id": "u2118-tool-health-monitoring-for-supply-chain-resilience",
+      "path": "generated/shards/02/2118-tool-health-monitoring-for-supply-chain-resilience",
+      "skill_md_sha256": "f4a67addea9d9197d842874e1dae80a5f506e600f85193bbb8746e42bb4eb05b",
+      "summary_sha256": "8fe9c03b257f0e9f9a9a617760b9afa107c46586c99dc8c954c530d85ce4ee70"
+    },
+    {
+      "skill_id": "u2119-tool-health-monitoring-for-supply-chain-resilience",
+      "path": "generated/shards/02/2119-tool-health-monitoring-for-supply-chain-resilience",
+      "skill_md_sha256": "272393d5de1ed6cc0c43a492432efd7598bcd65b37d6327e8e6b9027ab5209bc",
+      "summary_sha256": "066870154e2a3d754075e6e51cd4e3f1a57d7222919cab2a0e693d652137d5c0"
+    },
+    {
+      "skill_id": "u2120-tool-health-monitoring-for-supply-chain-resilience",
+      "path": "generated/shards/02/2120-tool-health-monitoring-for-supply-chain-resilience",
+      "skill_md_sha256": "912b1cf302d1c2bb3ffe0c8b04a4bc6aa3e4fcea335fb6cb578ae314df2f2b85",
+      "summary_sha256": "f0124a08105ba0ede52a7621f4c0552b1b4da66695f569209d24211c359572de"
+    },
+    {
+      "skill_id": "u2121-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2121-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "a22cfa28c3174f9665cebbc4ba71b781d534231645dfced3f1dcf6696fd192df",
+      "summary_sha256": "fae6136fe1feff13a5d6873ae441a0e5e2cbfa4cdd1c3aa83b3eea756461da89"
+    },
+    {
+      "skill_id": "u2122-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2122-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "c2fb8b897d637a303030c1195d1cc5b42d9e52d48cb0ed10ca5b2207470faf38",
+      "summary_sha256": "e0292f0ad7cdbd385dd31de045b13ae3fdc6ba3b723fabc0a5e08a665fa3b8ce"
+    },
+    {
+      "skill_id": "u2123-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2123-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "63dd92bfb6503746195ae53d83476379d270c11dd14eef64e32d812cbbebc563",
+      "summary_sha256": "1fa6d74b599c4bb65c09e2027e32f29d46442444a6f1394300475e96fc76d894"
+    },
+    {
+      "skill_id": "u2124-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2124-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "5864317fc38f44c7756d5819e0b949969695dbcacc8534668040ed796016eb9a",
+      "summary_sha256": "94436e57433921ad9ae153bcd059b7d8ab6993ddeaab3948597c1927cfddbfdb"
+    },
+    {
+      "skill_id": "u2125-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "path": "generated/shards/02/2125-tool-health-monitoring-for-manufacturing-quality-assurance",
+      "skill_md_sha256": "0eeea1f71208323b5ad6a3f9bc1f27fcbbacd361b021e303451a8a98d3b46bdb",
+      "summary_sha256": "609410455be53f08bce52ed13d6cf9a86455f28aa348a7fcb87a4e8bf0a2b74a"
+    },
+    {
+      "skill_id": "u2126-tool-health-monitoring-for-cybersecurity-operations",
+      "path": "generated/shards/02/2126-tool-health-monitoring-for-cybersecurity-operations",
+      "skill_md_sha256": "b709bc851f46d95ba4368fd313675c8578b5f2f2a97a3f97236aaf3f25dce19e",
+      "summary_sha256": "4d0683c2806b4136a2757fdf6aff05df2717f419dd509ed61f4803efc1e2cf89"
+    },
+    {
+      "skill_id": "u2127-tool-health-monitoring-for-cybersecurity-operations",
+      "path": "generated/shards/02/2127-tool-health-monitoring-for-cybersecurity-operations",
+      "skill_md_sha256": "4877b4778483ab0eb5f2ed5086dea609aa566e43e748127ce679608f99e6234e",
+      "summary_sha256": "65aa84c221b45969bbf250748e247c7169c25dc274d040ff4b5a014645131dc0"
+    },
+    {
+      "skill_id": "u2128-tool-health-monitoring-for-cybersecurity-operations",
+      "path": "generated/shards/02/2128-tool-health-monitoring-for-cybersecurity-operations",
+      "skill_md_sha256": "6be7c9a01d4ad392f4b42500d8bd432eb51f350edf64abfdbd0c45918de1faaf",
+      "summary_sha256": "b6d900372d49f8d2ae68429ec1b4106b0b6a606cd38f18c625d9d1b33653453a"
+    },
+    {
+      "skill_id": "u2129-tool-health-monitoring-for-cybersecurity-operations",
+      "path": "generated/shards/02/2129-tool-health-monitoring-for-cybersecurity-operations",
+      "skill_md_sha256": "a6e0d07f7f1e5ecbaa71c3e1c8bfedf8d544b2b9dcb8db7225d7035a25b71353",
+      "summary_sha256": "2c72a2297a4c0a254dfeab262af2b306e66bb58e58a48b1475ea4bb99c51de26"
+    },
+    {
+      "skill_id": "u2130-tool-health-monitoring-for-cybersecurity-operations",
+      "path": "generated/shards/02/2130-tool-health-monitoring-for-cybersecurity-operations",
+      "skill_md_sha256": "4d42c7a27650158aeb538dd88d471794c385adba4c43af5dd64e3390f2de8e5d",
+      "summary_sha256": "eff73e1cdc1ba690306955fa6f147582cd231f78092baff5df8648f2c324a96d"
+    },
+    {
+      "skill_id": "u2131-tool-health-monitoring-for-research-and-development-labs",
+      "path": "generated/shards/02/2131-tool-health-monitoring-for-research-and-development-labs",
+      "skill_md_sha256": "29e897d0beaf77e319cc919de14d09145860178efd7a1adac86e3c32922e9c13",
+      "summary_sha256": "bfd390f1d866530db85108ffe9cbe533689797758bb703f048bfd8917a6de9cf"
+    },
+    {
+      "skill_id": "u2132-tool-health-monitoring-for-research-and-development-labs",
+      "path": "generated/shards/02/2132-tool-health-monitoring-for-research-and-development-labs",
+      "skill_md_sha256": "81b7468012d37c5193fc9475edf2c7c66459e3be85f2c38db6e1e18c21bad7fa",
+      "summary_sha256": "4866e4bfe2b335770736366b73fab9cc1a3275a3347dacdffe3f61f99ef48b56"
+    },
+    {
+      "skill_id": "u2133-tool-health-monitoring-for-research-and-development-labs",
+      "path": "generated/shards/02/2133-tool-health-monitoring-for-research-and-development-labs",
+      "skill_md_sha256": "4e062126e8121a8ac70f338e92f2f317167583e6a5d155e154c0c155c35468c0",
+      "summary_sha256": "f780ab134e97ec9fbe29a51ef7d3ae9e1737cd0786fe368c0e35735d0ded65e1"
+    },
+    {
+      "skill_id": "u2134-tool-health-monitoring-for-research-and-development-labs",
+      "path": "generated/shards/02/2134-tool-health-monitoring-for-research-and-development-labs",
+      "skill_md_sha256": "dffa1fc2093c28543ca937f3fdd43f47646b9d1fdaebc5b4cfb66fdf8f5336d2",
+      "summary_sha256": "87a5067d2b0e6b06ac673e4e37f10e5a139b5eea32778edd6bd52e016584f536"
+    },
+    {
+      "skill_id": "u2135-tool-health-monitoring-for-research-and-development-labs",
+      "path": "generated/shards/02/2135-tool-health-monitoring-for-research-and-development-labs",
+      "skill_md_sha256": "2de1fbc985c7be8e3576a70bc332cf5db5787afbbae6b5994d95c51d52138819",
+      "summary_sha256": "f849b05f0268630e99241d34a5af237416f925f9a7530bac45b3a73514bce3e1"
+    },
+    {
+      "skill_id": "u2136-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2136-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "4ce80055e3fa25149b518aba8ed2b65a7314e9d87af65071d924790ca0ac8b94",
+      "summary_sha256": "fb89da248a743476b4f88034e1057154f14134d1cf2a79b22e754ab333b46c10"
+    },
+    {
+      "skill_id": "u2137-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2137-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "081dac0d7ffb420c56f2e5578ca951996a3d59a0c198bf5a01690235d7868550",
+      "summary_sha256": "2ef500769307e4a61d0f19639b45586ec90a3ec576cc24a4dd9d04eeb9f43f19"
+    },
+    {
+      "skill_id": "u2138-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2138-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "106a8bdea21afaddc28a562f66e86d9fccd5724b60e1f8d52a3ca451abc84135",
+      "summary_sha256": "45fcb02a56c5585c171662c11b5cdaaf8616464debcfa338948c42ded6c4a6ad"
+    },
+    {
+      "skill_id": "u2139-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2139-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "b3acf5afa8107e62f37a6df56ffde8194e0ba501a9e51e670422b8a0a0e2e9fe",
+      "summary_sha256": "9ec4ef4b16a857dc1534168e443522aee6a846dae1800bb17fe3ead6916495ea"
+    },
+    {
+      "skill_id": "u2140-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "path": "generated/shards/02/2140-tool-health-monitoring-for-scientific-publishing-pipelines",
+      "skill_md_sha256": "fdaf66af72db71232499b5da41a03f6a74376c0a5e3da4e5d3fc8af41d7c8383",
+      "summary_sha256": "ca98d00082fd40d4d20166cb221f49a4ecc69a614af19995315d31839d99691c"
+    },
+    {
+      "skill_id": "u2141-tool-health-monitoring-for-community-mediation-programs",
+      "path": "generated/shards/02/2141-tool-health-monitoring-for-community-mediation-programs",
+      "skill_md_sha256": "adec477133e809cc9f8130a08ab9d80c5a7df97f359612abc4d9c83e863e8494",
+      "summary_sha256": "43beb4e14fb4147804005e25c4bdab5a6b1aa55b35dcba4c73816b654c40ccc7"
+    },
+    {
+      "skill_id": "u2142-tool-health-monitoring-for-community-mediation-programs",
+      "path": "generated/shards/02/2142-tool-health-monitoring-for-community-mediation-programs",
+      "skill_md_sha256": "7d51044640d8f0efec12cfbc8ac0dd6deb54086cf36c35d663ed24d95673ea0a",
+      "summary_sha256": "31918950947fe2171ae8e749e41cf8f67396696d8e1744674a31c577a76bf5af"
+    },
+    {
+      "skill_id": "u2143-tool-health-monitoring-for-community-mediation-programs",
+      "path": "generated/shards/02/2143-tool-health-monitoring-for-community-mediation-programs",
+      "skill_md_sha256": "4d3cffea9a65e8a4a552d6b17f3f524b063539d6d4f61fdb2cbce2ff62952432",
+      "summary_sha256": "4d933861e4bd15f0fce88bec067e6cdeee53a7f77cfcae7c08918e2b8ca28d0f"
+    },
+    {
+      "skill_id": "u2144-tool-health-monitoring-for-community-mediation-programs",
+      "path": "generated/shards/02/2144-tool-health-monitoring-for-community-mediation-programs",
+      "skill_md_sha256": "b89f1612e21c8f3d1196222459ba900cf6ec776aa0dc17477837c4a21fa65472",
+      "summary_sha256": "97d54a0a802ded2a8af5217df72d78306639789b0c1531291e6969c9ed3b0808"
+    },
+    {
+      "skill_id": "u2145-tool-health-monitoring-for-community-mediation-programs",
+      "path": "generated/shards/02/2145-tool-health-monitoring-for-community-mediation-programs",
+      "skill_md_sha256": "825dfe927bfe783482f47752cb5b8a47a23a235b4013c43fbcf93d2b35bfc294",
+      "summary_sha256": "f42eb3f13a715f32cd17dee9e5f4e22f12c8f47b56a05d371285264080f4e8e2"
+    },
+    {
+      "skill_id": "u2146-tool-health-monitoring-for-civic-participation-platforms",
+      "path": "generated/shards/02/2146-tool-health-monitoring-for-civic-participation-platforms",
+      "skill_md_sha256": "f6f3fa1d9de0ff0ba1706b4ecf760479fdd46a2c3310998c78b617e647623cc6",
+      "summary_sha256": "94ffe9e9c67fbd40c9964b08f67bc77a0108f42f3407b0803350be88098fef12"
+    },
+    {
+      "skill_id": "u2147-tool-health-monitoring-for-civic-participation-platforms",
+      "path": "generated/shards/02/2147-tool-health-monitoring-for-civic-participation-platforms",
+      "skill_md_sha256": "bab288e3114e14a4a3b9e95bcaef80f853f66c0fe56d9d69abc2500c1592a1e3",
+      "summary_sha256": "7f60a3d85e7883e4d86c5281295b74def1fae903cf8ce7be110983be0257731b"
+    },
+    {
+      "skill_id": "u2148-tool-health-monitoring-for-civic-participation-platforms",
+      "path": "generated/shards/02/2148-tool-health-monitoring-for-civic-participation-platforms",
+      "skill_md_sha256": "37c3329e7daa32f50c655c68abb1e2c56b002fd6cddc036b37d5348c40b30c50",
+      "summary_sha256": "3de244a1c3460538850d456fe80c2cced75653d38dfab7656337f7da908720f8"
+    },
+    {
+      "skill_id": "u2149-tool-health-monitoring-for-civic-participation-platforms",
+      "path": "generated/shards/02/2149-tool-health-monitoring-for-civic-participation-platforms",
+      "skill_md_sha256": "ca19348dccb453ea7fba357f430ac41dd0f04d42d578bf33b9a96f2c26727d8f",
+      "summary_sha256": "11e2202afea1f3c5e54347fbc4ae62ded4e34c5ca341442fab8eb4decbeaff8a"
+    }
+  ]
+}

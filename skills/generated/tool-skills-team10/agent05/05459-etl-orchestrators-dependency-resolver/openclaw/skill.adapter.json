@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5459,
+  "name": "etl-orchestrators-dependency-resolver",
+  "title": "ETL Orchestrators Dependency Resolver",
+  "description": "Design and run etl orchestrators workflows with dependency resolver controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9819,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05459-etl-orchestrators-dependency-resolver/SKILL.md",
+    "entrypoint": "agent05/05459-etl-orchestrators-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators dependency resolver",
+    "etl orchestrators dependency resolver workflow",
+    "etl orchestrators dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

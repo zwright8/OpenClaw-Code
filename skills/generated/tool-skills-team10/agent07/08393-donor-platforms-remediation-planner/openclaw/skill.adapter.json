@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8393,
+  "name": "donor-platforms-remediation-planner",
+  "title": "Donor Platforms Remediation Planner",
+  "description": "Design and run donor platforms workflows with remediation planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2922,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08393-donor-platforms-remediation-planner/SKILL.md",
+    "entrypoint": "agent07/08393-donor-platforms-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms remediation planner",
+    "donor platforms remediation planner workflow",
+    "donor platforms remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

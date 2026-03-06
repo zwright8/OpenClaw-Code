@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5591,
+  "name": "metadata-stores-incident-triage",
+  "title": "Metadata Stores Incident Triage",
+  "description": "Design and run metadata stores workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2118,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05591-metadata-stores-incident-triage/SKILL.md",
+    "entrypoint": "agent05/05591-metadata-stores-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "metadata stores incident triage",
+    "metadata stores incident triage workflow",
+    "metadata stores incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

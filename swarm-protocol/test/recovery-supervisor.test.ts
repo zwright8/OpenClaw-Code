@@ -61,7 +61,9 @@ test('detectIncidents identifies global and per-agent reliability issues', () =>
     });
 
     assert.ok(detected.incidents.length >= 4);
+    assert.ok(detected.incidents.some((item) => item.code === 'error_budget_burn'));
     assert.ok(detected.incidents.some((item) => item.code === 'timeout_spike'));
+    assert.ok(detected.incidents.some((item) => item.code === 'retry_budget_exhausted'));
     assert.ok(detected.incidents.some((item) => item.code === 'agent_overloaded'));
     assert.ok(detected.incidents.some((item) => item.code === 'agent_low_success'));
 });
@@ -74,6 +76,7 @@ test('proposeActions converts incidents into remediation actions', () => {
     assert.ok(actions.length > 0);
     assert.ok(actions.some((item) => item.actionType === 'drain_agent'));
     assert.ok(actions.some((item) => item.actionType === 'route_to_stable_pool'));
+    assert.ok(actions.some((item) => item.actionType === 'enforce_retry_budget'));
 });
 
 test('buildRecoveryTasks emits schema-valid task requests', () => {
@@ -109,4 +112,41 @@ test('evaluateAndPlan records incident history', () => {
     const history = supervisor.listIncidentHistory();
     assert.equal(history.length, 1);
     assert.equal(history[0].taskCount, plan.tasks.length);
+});
+
+test('detectIncidents suppresses retry budget incident for low request volume', () => {
+    let now = 200_000;
+    const supervisor = new RecoverySupervisor({
+        localAgentId: 'agent:supervisor',
+        now: () => now
+    });
+
+    for (let i = 0; i < 5; i++) {
+        supervisor.ingestSnapshot({
+            at: now + i,
+            orchestrator: {
+                total: 12,
+                open: 3,
+                terminal: 9,
+                avgAttempts: 2.3,
+                byStatus: { dispatched: 4, retry_scheduled: 3, timed_out: 1 }
+            },
+            simulation: {
+                successRate: 0.8,
+                timeoutRate: 0.05,
+                failureRate: 0.09,
+                avgLatencyMs: 220,
+                dispatchErrorCount: 0
+            },
+            agents: []
+        });
+    }
+
+    const detected = supervisor.detectIncidents({
+        lookback: 5,
+        retryBudgetRateThreshold: 0.15,
+        minRequestsForRetryBudget: 50
+    });
+
+    assert.ok(!detected.incidents.some((item) => item.code === 'retry_budget_exhausted'));
 });

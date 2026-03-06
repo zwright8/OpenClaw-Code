@@ -1,0 +1,35 @@
+{
+  "skill_id": "u09279-mentoring-and-coaching-design-for-legal-and-policy-workflows",
+  "capability": "Mentoring And Coaching Design for legal and policy workflows",
+  "domain": "legal and policy workflows",
+  "inputs": {
+    "source_tagged_signals": [
+      {
+        "id": "sig-001",
+        "source": "trusted",
+        "content": "sample"
+      }
+    ],
+    "claims": [
+      {
+        "id": "clm-001",
+        "text": "sample claim",
+        "confidence": 0.8
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-001",
+        "type": "document",
+        "uri": "local://evidence/1"
+      }
+    ],
+    "run_context": {
+      "risk_tier": "low",
+      "request_id": "req-001"
+    }
+  },
+  "expected": {
+    "schema_valid": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4153,
+  "name": "incident-queues-permission-mapper",
+  "title": "Incident Queues Permission Mapper",
+  "description": "Design and run incident queues workflows with permission mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1549,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04153-incident-queues-permission-mapper/SKILL.md",
+    "entrypoint": "agent04/04153-incident-queues-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues permission mapper",
+    "incident queues permission mapper workflow",
+    "incident queues permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

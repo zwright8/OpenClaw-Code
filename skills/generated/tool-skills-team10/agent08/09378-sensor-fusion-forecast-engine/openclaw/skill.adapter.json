@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9378,
+  "name": "sensor-fusion-forecast-engine",
+  "title": "Sensor Fusion Forecast Engine",
+  "description": "Design and run sensor fusion workflows with forecast engine controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11256,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09378-sensor-fusion-forecast-engine/SKILL.md",
+    "entrypoint": "agent08/09378-sensor-fusion-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion forecast engine",
+    "sensor fusion forecast engine workflow",
+    "sensor fusion forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

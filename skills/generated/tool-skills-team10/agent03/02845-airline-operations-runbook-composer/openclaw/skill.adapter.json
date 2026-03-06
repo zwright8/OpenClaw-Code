@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2845,
+  "name": "airline-operations-runbook-composer",
+  "title": "Airline Operations Runbook Composer",
+  "description": "Design and run airline operations workflows with runbook composer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 3245,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02845-airline-operations-runbook-composer/SKILL.md",
+    "entrypoint": "agent03/02845-airline-operations-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations runbook composer",
+    "airline operations runbook composer workflow",
+    "airline operations runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

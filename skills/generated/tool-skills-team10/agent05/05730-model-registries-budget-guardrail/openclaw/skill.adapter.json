@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5730,
+  "name": "model-registries-budget-guardrail",
+  "title": "Model Registries Budget Guardrail",
+  "description": "Design and run model registries workflows with budget guardrail controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 7486,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05730-model-registries-budget-guardrail/SKILL.md",
+    "entrypoint": "agent05/05730-model-registries-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries budget guardrail",
+    "model registries budget guardrail workflow",
+    "model registries budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

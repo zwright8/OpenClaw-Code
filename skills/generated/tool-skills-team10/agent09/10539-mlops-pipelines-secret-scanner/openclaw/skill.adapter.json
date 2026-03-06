@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10539,
+  "name": "mlops-pipelines-secret-scanner",
+  "title": "MLOps Pipelines Secret Scanner",
+  "description": "Design and run mlops pipelines workflows with secret scanner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1939,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10539-mlops-pipelines-secret-scanner/SKILL.md",
+    "entrypoint": "agent09/10539-mlops-pipelines-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mlops pipelines secret scanner",
+    "mlops pipelines secret scanner workflow",
+    "mlops pipelines secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

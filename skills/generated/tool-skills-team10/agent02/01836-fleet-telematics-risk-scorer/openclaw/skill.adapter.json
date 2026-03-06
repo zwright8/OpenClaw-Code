@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1836,
+  "name": "fleet-telematics-risk-scorer",
+  "title": "Fleet Telematics Risk Scorer",
+  "description": "Design and run fleet telematics workflows with risk scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1502,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01836-fleet-telematics-risk-scorer/SKILL.md",
+    "entrypoint": "agent02/01836-fleet-telematics-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics risk scorer",
+    "fleet telematics risk scorer workflow",
+    "fleet telematics risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

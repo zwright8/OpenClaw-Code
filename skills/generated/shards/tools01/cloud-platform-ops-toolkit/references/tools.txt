@@ -1,0 +1,16 @@
+awscli
+azure-cli
+cloudflared
+flyctl
+aws-sam-cli
+mongodb-atlas-cli
+jfrog-cli
+openshift-cli
+firebase-cli
+oci-cli
+doctl
+eksctl
+aws-vault
+aws-cdk
+azcopy
+vercel-cli

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11837,
+  "name": "protocol-management-compliance-mapper",
+  "title": "Protocol Management Compliance Mapper",
+  "description": "Design and run protocol management workflows with compliance mapper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1968,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/11837-protocol-management-compliance-mapper/SKILL.md",
+    "entrypoint": "agent10/11837-protocol-management-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management compliance mapper",
+    "protocol management compliance mapper workflow",
+    "protocol management compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

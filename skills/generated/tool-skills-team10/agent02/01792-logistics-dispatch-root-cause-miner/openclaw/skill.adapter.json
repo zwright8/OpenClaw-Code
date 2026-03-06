@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1792,
+  "name": "logistics-dispatch-root-cause-miner",
+  "title": "Logistics Dispatch Root Cause Miner",
+  "description": "Design and run logistics dispatch workflows with root cause miner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4495,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01792-logistics-dispatch-root-cause-miner/SKILL.md",
+    "entrypoint": "agent02/01792-logistics-dispatch-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch root cause miner",
+    "logistics dispatch root cause miner workflow",
+    "logistics dispatch root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

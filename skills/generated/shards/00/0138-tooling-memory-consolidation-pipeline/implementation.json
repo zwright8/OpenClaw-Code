@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 138,
+  "skillName": "u0138-tooling-memory-consolidation-pipeline",
+  "title": "Tooling Memory Consolidation Pipeline",
+  "domain": "Tool Reliability and Execution Quality",
+  "domainSlug": "tool-reliability-and-execution-quality",
+  "reason": "We need this skill because automation collapses when tools are flaky and failure modes are opaque. This specific skill turns raw logs into durable reusable memory.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Tooling Memory Consolidation Pipeline`, including at least three measurable KPIs tied to silent failures and cascading retries.",
+    "Design and version the input/output contract for tool runs, error signatures, and retry outcomes, then add schema validation and failure-mode handling.",
+    "Implement the core capability using episodic-to-semantic consolidation, and produce consolidated memory snapshots with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover silent failures and cascading retries, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "episodic-to-semantic consolidation",
+    "primaryArtifact": "consolidated memory snapshots",
+    "requiredSignals": [
+      "tool runs",
+      "error signatures",
+      "retry outcomes",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "silent failures",
+      "cascading retries",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.4105,
+      "execution": 0.1525,
+      "safety": 0.2149,
+      "impact": 0.2221
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 52,
+      "reviewRisk": 59,
+      "criticalRisk": 78
+    },
+    "orchestration": {
+      "routingTag": "tool-reliability-and-execution-quality:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0138_tooling-memory-consolidation-pip",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0138-tooling-memory-consolidation-pipeline:138:general-capability",
+    "ioContract": {
+      "inputs": [
+        {
+          "name": "tool runs",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "error signatures",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "retry outcomes",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "claims",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "evidence",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        },
+        {
+          "name": "confidence traces",
+          "type": "signal",
+          "required": true,
+          "source": "upstream"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "consolidated_memory_snapshots_report",
+          "type": "structured-report",
+          "guaranteed": true,
+          "consumer": "orchestrator"
+        },
+        {
+          "name": "consolidated_memory_snapshots_scorecard",
+          "type": "scorecard",
+          "guaranteed": true,
+          "consumer": "operator"
+        }
+      ]
+    },
+    "validationGates": [
+      {
+        "gate": "schema-contract-check",
+        "check": "All required input signals present and schema-valid",
+        "onFail": "quarantine"
+      },
+      {
+        "gate": "determinism-check",
+        "check": "Repeated run on same inputs yields stable scoring and artifacts",
+        "onFail": "escalate"
+      },
+      {
+        "gate": "policy-approval-check",
+        "check": "Approval gates satisfied before publish-level outputs",
+        "onFail": "retry"
+      }
+    ],
+    "failureHandling": {
+      "knownFailures": [
+        {
+          "code": "E_INPUT_SCHEMA",
+          "trigger": "Missing or malformed required signals",
+          "action": "Reject payload, emit validation error, request corrected payload"
+        },
+        {
+          "code": "E_NON_DETERMINISM",
+          "trigger": "Determinism delta exceeds allowed threshold",
+          "action": "Freeze output, escalate to human approval router"
+        },
+        {
+          "code": "E_DEPENDENCY_TIMEOUT",
+          "trigger": "Downstream or external dependency timeout",
+          "action": "Apply retry policy then rollback to last stable baseline"
+        }
+      ],
+      "rollbackStrategy": "rollback-to-last-stable-baseline"
+    },
+    "handoffContract": {
+      "produces": [
+        "Tooling Memory Consolidation Pipeline normalized artifacts",
+        "execution scorecard",
+        "risk posture"
+      ],
+      "consumes": [
+        "tool runs",
+        "error signatures",
+        "retry outcomes",
+        "claims",
+        "evidence",
+        "confidence traces"
+      ],
+      "downstreamHint": "Route next to tool-reliability-and-execution-quality:general-capability consumers with approval-gate context"
+    }
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Tooling Memory Consolidation Pipeline`, including at least three measurable KPIs tied to silent failures and cascading retries.",
+    "contractStep": "Design and version the input/output contract for tool runs, error signatures, and retry outcomes, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using episodic-to-semantic consolidation, and produce consolidated memory snapshots with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover silent failures and cascading retries, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

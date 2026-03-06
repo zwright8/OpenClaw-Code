@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1978,
+  "name": "freight-brokerage-forecast-engine",
+  "title": "Freight Brokerage Forecast Engine",
+  "description": "Design and run freight brokerage workflows with forecast engine controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8694,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01978-freight-brokerage-forecast-engine/SKILL.md",
+    "entrypoint": "agent02/01978-freight-brokerage-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage forecast engine",
+    "freight brokerage forecast engine workflow",
+    "freight brokerage forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

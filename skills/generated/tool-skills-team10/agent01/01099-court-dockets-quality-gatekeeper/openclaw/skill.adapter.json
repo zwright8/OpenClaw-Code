@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1099,
+  "name": "court-dockets-quality-gatekeeper",
+  "title": "Court Dockets Quality Gatekeeper",
+  "description": "Design and run court dockets workflows with quality gatekeeper controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 5284,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01099-court-dockets-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent01/01099-court-dockets-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets quality gatekeeper",
+    "court dockets quality gatekeeper workflow",
+    "court dockets quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8755,
+  "name": "legal-matter-mgmt-spec-drift-detector",
+  "title": "Legal Matter Mgmt Spec Drift Detector",
+  "description": "Design and run legal matter mgmt workflows with spec drift detector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2407,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08755-legal-matter-mgmt-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent07/08755-legal-matter-mgmt-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt spec drift detector",
+    "legal matter mgmt spec drift detector workflow",
+    "legal matter mgmt spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

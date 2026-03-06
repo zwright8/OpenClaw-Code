@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6098,
+  "name": "contract-repositories-feedback-harvester",
+  "title": "Contract Repositories Feedback Harvester",
+  "description": "Design and run contract repositories workflows with feedback harvester controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10067,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06098-contract-repositories-feedback-harvester/SKILL.md",
+    "entrypoint": "agent05/06098-contract-repositories-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "contract repositories feedback harvester",
+    "contract repositories feedback harvester workflow",
+    "contract repositories feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

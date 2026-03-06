@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11386,
+  "name": "customer-success-plans-risk-scorer",
+  "title": "Customer Success Plans Risk Scorer",
+  "description": "Design and run customer success plans workflows with risk scorer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1703,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11386-customer-success-plans-risk-scorer/SKILL.md",
+    "entrypoint": "agent09/11386-customer-success-plans-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans risk scorer",
+    "customer success plans risk scorer workflow",
+    "customer success plans risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

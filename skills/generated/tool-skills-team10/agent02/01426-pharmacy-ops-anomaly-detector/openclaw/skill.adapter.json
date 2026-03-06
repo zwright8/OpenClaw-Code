@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1426,
+  "name": "pharmacy-ops-anomaly-detector",
+  "title": "Pharmacy Ops Anomaly Detector",
+  "description": "Design and run pharmacy ops workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5292,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01426-pharmacy-ops-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/01426-pharmacy-ops-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pharmacy ops anomaly detector",
+    "pharmacy ops anomaly detector workflow",
+    "pharmacy ops anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

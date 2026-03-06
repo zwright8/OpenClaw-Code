@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9083,
+  "name": "localization-qa-reliability-scorer",
+  "title": "Localization QA Reliability Scorer",
+  "description": "Design and run localization qa workflows with reliability scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11155,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09083-localization-qa-reliability-scorer/SKILL.md",
+    "entrypoint": "agent07/09083-localization-qa-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa reliability scorer",
+    "localization qa reliability scorer workflow",
+    "localization qa reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6372,
+  "name": "audio-pipelines-version-tracker",
+  "title": "Audio Pipelines Version Tracker",
+  "description": "Design and run audio pipelines workflows with version tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10160,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06372-audio-pipelines-version-tracker/SKILL.md",
+    "entrypoint": "agent05/06372-audio-pipelines-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines version tracker",
+    "audio pipelines version tracker workflow",
+    "audio pipelines version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

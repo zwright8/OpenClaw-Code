@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5071,
+  "name": "serverless-runtimes-snapshot-manager",
+  "title": "Serverless Runtimes Snapshot Manager",
+  "description": "Design and run serverless runtimes workflows with snapshot manager controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9697,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05071-serverless-runtimes-snapshot-manager/SKILL.md",
+    "entrypoint": "agent04/05071-serverless-runtimes-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "serverless runtimes snapshot manager",
+    "serverless runtimes snapshot manager workflow",
+    "serverless runtimes snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3244,
+  "name": "fraud-operations-postmortem-drafting",
+  "title": "Fraud Operations Postmortem Drafting",
+  "description": "Design and run fraud operations workflows with postmortem drafting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9078,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03244-fraud-operations-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent03/03244-fraud-operations-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations postmortem drafting",
+    "fraud operations postmortem drafting workflow",
+    "fraud operations postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4579,
+  "name": "soar-platforms-capacity-planner",
+  "title": "SOAR Platforms Capacity Planner",
+  "description": "Design and run soar platforms workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9535,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04579-soar-platforms-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/04579-soar-platforms-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "soar platforms capacity planner",
+    "soar platforms capacity planner workflow",
+    "soar platforms capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

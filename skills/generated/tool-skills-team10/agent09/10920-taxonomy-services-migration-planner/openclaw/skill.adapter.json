@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10920,
+  "name": "taxonomy-services-migration-planner",
+  "title": "Taxonomy Services Migration Planner",
+  "description": "Design and run taxonomy services workflows with migration planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 4798,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10920-taxonomy-services-migration-planner/SKILL.md",
+    "entrypoint": "agent09/10920-taxonomy-services-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services migration planner",
+    "taxonomy services migration planner workflow",
+    "taxonomy services migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

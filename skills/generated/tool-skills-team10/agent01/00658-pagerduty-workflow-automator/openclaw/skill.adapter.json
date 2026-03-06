@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 658,
+  "name": "pagerduty-workflow-automator",
+  "title": "PagerDuty Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using PagerDuty.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7919,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00658-pagerduty-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00658-pagerduty-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pagerduty workflow automator",
+    "pagerduty workflow automator workflow",
+    "pagerduty workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

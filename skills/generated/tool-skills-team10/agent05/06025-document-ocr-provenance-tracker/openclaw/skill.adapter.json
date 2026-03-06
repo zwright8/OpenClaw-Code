@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6025,
+  "name": "document-ocr-provenance-tracker",
+  "title": "Document OCR Provenance Tracker",
+  "description": "Design and run document ocr workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10036,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06025-document-ocr-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/06025-document-ocr-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document ocr provenance tracker",
+    "document ocr provenance tracker workflow",
+    "document ocr provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

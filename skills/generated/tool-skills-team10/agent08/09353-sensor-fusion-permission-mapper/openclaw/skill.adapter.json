@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9353,
+  "name": "sensor-fusion-permission-mapper",
+  "title": "Sensor Fusion Permission Mapper",
+  "description": "Design and run sensor fusion workflows with permission mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 3733,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09353-sensor-fusion-permission-mapper/SKILL.md",
+    "entrypoint": "agent08/09353-sensor-fusion-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion permission mapper",
+    "sensor fusion permission mapper workflow",
+    "sensor fusion permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

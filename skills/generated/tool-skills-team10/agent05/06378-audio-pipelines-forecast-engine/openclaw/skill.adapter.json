@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6378,
+  "name": "audio-pipelines-forecast-engine",
+  "title": "Audio Pipelines Forecast Engine",
+  "description": "Design and run audio pipelines workflows with forecast engine controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10164,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06378-audio-pipelines-forecast-engine/SKILL.md",
+    "entrypoint": "agent05/06378-audio-pipelines-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines forecast engine",
+    "audio pipelines forecast engine workflow",
+    "audio pipelines forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

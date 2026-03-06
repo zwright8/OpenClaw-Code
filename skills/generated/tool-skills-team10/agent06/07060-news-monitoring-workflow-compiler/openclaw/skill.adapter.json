@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7060,
+  "name": "news-monitoring-workflow-compiler",
+  "title": "News Monitoring Workflow Compiler",
+  "description": "Design and run news monitoring workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1132,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07060-news-monitoring-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/07060-news-monitoring-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring workflow compiler",
+    "news monitoring workflow compiler workflow",
+    "news monitoring workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

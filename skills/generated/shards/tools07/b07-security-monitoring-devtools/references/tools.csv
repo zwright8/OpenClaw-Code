@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3191,grails,local-installable,Web application framework for the Groovy language,https://grails.apache.org/,Apache-2.0
+3192,sql-formatter,local-installable,Whitespace formatter for different query languages,https://sql-formatter-org.github.io/sql-formatter/,MIT
+3193,python-gdbm@3.13,local-installable,Python interface to gdbm,https://www.python.org/,Python-2.0
+3195,pip-audit,local-installable,Audits Python environments and dependency trees for known vulnerabilities,https://pypi.org/project/pip-audit/,Apache-2.0
+3197,breezy,local-installable,Version control system implemented in Python with multi-format support,https://github.com/breezy-team/breezy,GPL-2.0-or-later
+3201,zenith,local-installable,In terminal graphical metrics for your *nix system,https://github.com/bvaisvil/zenith/,MIT
+3202,hamlib,local-installable,Ham radio control libraries,http://www.hamlib.org/,LGPL-2.1-or-later
+3203,dcraw,local-installable,Digital camera RAW photo decoding software,https://dechifro.org/dcraw/,GPL-2.0-or-later
+3204,util-macros,local-installable,X.Org: Set of autoconf macros used to build other xorg packages,https://www.x.org/,MIT
+3205,kumactl,local-installable,Kuma control plane command-line utility,https://kuma.io/,Apache-2.0
+3206,shc,local-installable,Shell Script Compiler,https://neurobin.github.io/shc,GPL-3.0-or-later
+3207,psysh,local-installable,"Runtime developer console, interactive debugger and REPL for PHP",https://psysh.org/,MIT
+3208,ducker,local-installable,Slightly quackers Docker TUI based on k9s,https://github.com/robertpsoane/ducker,MIT
+3209,ghex,local-installable,GNOME hex editor,https://wiki.gnome.org/Apps/Ghex,GPL-2.0-or-later
+3210,fastp,local-installable,Ultra-fast all-in-one FASTQ preprocessor,https://github.com/OpenGene/fastp,MIT
+3211,gpredict,local-installable,Real-time satellite tracking/prediction application,https://oz9aec.dk/gpredict/,GPL-2.0-or-later
+3212,gptme,local-installable,AI assistant in your terminal,https://gptme.org/docs/,MIT
+3213,nip4,local-installable,Image processing spreadsheet,https://github.com/jcupitt/nip4,GPL-2.0-or-later
+3214,riff,local-installable,Diff filter highlighting which line parts have changed,https://github.com/walles/riff,MIT
+3215,libdmtx,local-installable,Data Matrix library,https://libdmtx.sourceforge.net/,BSD-2-Clause
+3217,virustotal-cli,local-installable,Command-line interface for VirusTotal,https://github.com/VirusTotal/vt-cli,Apache-2.0
+3218,mbpoll,local-installable,Command-line utility to communicate with ModBus slave (RTU or TCP),https://epsilonrt.fr,GPL-3.0-only
+3220,swc,local-installable,Super-fast Rust-based JavaScript/TypeScript compiler,https://swc.rs,Apache-2.0
+3221,ni,local-installable,Selects the right Node package manager based on lockfiles,https://github.com/antfu-collective/ni,MIT
+3223,csvtk,local-installable,"Cross-platform, efficient and practical CSV/TSV toolkit in Golang",https://bioinf.shenwei.me/csvtk,MIT
+3224,xmlto,local-installable,Convert XML to another format (based on XSL or other tools),https://pagure.io/xmlto/,GPL-2.0-or-later

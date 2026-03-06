@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9841,
+  "name": "creator-platforms-incident-triage",
+  "title": "Creator Platforms Incident Triage",
+  "description": "Design and run creator platforms workflows with incident triage controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2213,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09841-creator-platforms-incident-triage/SKILL.md",
+    "entrypoint": "agent08/09841-creator-platforms-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms incident triage",
+    "creator platforms incident triage workflow",
+    "creator platforms incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

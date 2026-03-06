@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10712,
+  "name": "vector-datastores-job-scheduler",
+  "title": "Vector Datastores Job Scheduler",
+  "description": "Design and run vector datastores workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5198,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10712-vector-datastores-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/10712-vector-datastores-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores job scheduler",
+    "vector datastores job scheduler workflow",
+    "vector datastores job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

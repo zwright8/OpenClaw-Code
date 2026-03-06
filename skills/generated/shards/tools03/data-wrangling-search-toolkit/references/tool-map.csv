@@ -1,0 +1,27 @@
+rank,tool,installs_365d,percent_365d,access,description,homepage,license
+1007,xxhash,8985,0.01,local-installable,Extremely fast non-cryptographic hash algorithm,https://xxhash.com,BSD-2-Clause AND GPL-2.0-or-later
+1083,fdupes,7982,0.01,local-installable,Identify or delete duplicate files,https://github.com/adrianlopezroche/fdupes,MIT
+1102,parquet-cli,7775,0.01,local-installable,Apache Parquet command-line tools and utilities,https://parquet.apache.org/,Apache-2.0
+1111,dvc,7685,0.01,local-installable,Git for data science projects,https://dvc.org,Apache-2.0
+1114,md5deep,7643,0.01,local-installable,Recursively compute digests on files/directories,https://github.com/jessek/hashdeep,GPL-2.0-or-later
+1120,mecab,7543,0.01,local-installable,Yet another part-of-speech and morphological analyzer,https://taku910.github.io/mecab/,GPL-2.0-only OR LGPL-2.1-only OR BSD-3-Clause
+1158,pdal,7129,0.01,local-installable,Point data abstraction library,https://pdal.org/,BSD-3-Clause
+1162,go-parquet-tools,7058,0.01,local-installable,Utility to deal with Parquet data,https://github.com/hangxie/parquet-tools,BSD-3-Clause
+1201,msgpack-cxx,6685,0.01,local-installable,MessagePack implementation for C++ / msgpack.org[C++],https://msgpack.org/,BSL-1.0
+1228,qsv,6463,0.01,local-installable,Ultra-fast CSV data-wrangling toolkit,https://qsv.dathere.com/,MIT OR Unlicense
+1238,dasel,6365,0.01,local-installable,"JSON, YAML, TOML, XML, and CSV query and modification tool",https://github.com/TomWright/dasel,MIT
+1240,czkawka,6360,0.01,local-installable,Duplicate file utility,https://github.com/qarmin/czkawka,MIT AND CC-BY-4.0
+1251,samtools,6228,0.01,local-installable,Tools for manipulating next-generation sequencing data,https://www.htslib.org/,MIT
+1257,six,6174,0.01,local-installable,Python 2 and 3 compatibility utilities,https://github.com/benjaminp/six,MIT
+1282,miller,5942,0.01,local-installable,"Like sed, awk, cut, join & sort for name-indexed data such as CSV",https://github.com/johnkerl/miller,BSD-2-Clause
+1312,jansson,5680,0.01,local-installable,"C library for encoding, decoding, and manipulating JSON",https://digip.org/jansson/,MIT
+1330,hadoop,5518,0.01,local-installable,Framework for distributed processing of large data sets,https://hadoop.apache.org/,Apache-2.0
+1361,nkf,5323,0.01,local-installable,Network Kanji code conversion Filter (NKF),https://github.com/nurse/nkf,Zlib
+1370,yaml-cpp,5205,0.01,local-installable,C++ YAML parser and emitter for YAML 1.2 spec,https://github.com/jbeder/yaml-cpp,MIT
+1414,ripgrep-all,4960,0.01,local-installable,Wrapper around ripgrep that adds multiple rich file types,https://github.com/phiresky/ripgrep-all,AGPL-3.0-or-later
+1423,hledger,4883,0.01,local-installable,"Easy plain text accounting with command-line, terminal and web UIs",https://hledger.org/,GPL-3.0-or-later
+1434,scc,4806,0,local-installable,Fast and accurate code counter with complexity and COCOMO estimates,https://github.com/boyter/scc/,MIT OR Unlicense
+1458,jless,4680,0,local-installable,Command-line pager for JSON data,https://jless.io/,MIT
+1477,cue,4507,0,local-installable,Validate and define text-based and dynamic configuration,https://cuelang.org/,Apache-2.0
+1481,hcl2json,4475,0,local-installable,Convert HCL2 to JSON,https://github.com/tmccombs/hcl2json,Apache-2.0
+1495,spatialindex,4367,0,local-installable,General framework for developing spatial indices,https://libspatialindex.org/en/latest/,MIT

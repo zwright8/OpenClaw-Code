@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8120,
+  "name": "chemical-informatics-migration-planner",
+  "title": "Chemical Informatics Migration Planner",
+  "description": "Design and run chemical informatics workflows with migration planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4708,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08120-chemical-informatics-migration-planner/SKILL.md",
+    "entrypoint": "agent07/08120-chemical-informatics-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chemical informatics migration planner",
+    "chemical informatics migration planner workflow",
+    "chemical informatics migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

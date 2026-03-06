@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5763,
+  "name": "prompt-repositories-retry-governor",
+  "title": "Prompt Repositories Retry Governor",
+  "description": "Design and run prompt repositories workflows with retry governor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6144,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05763-prompt-repositories-retry-governor/SKILL.md",
+    "entrypoint": "agent05/05763-prompt-repositories-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prompt repositories retry governor",
+    "prompt repositories retry governor workflow",
+    "prompt repositories retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

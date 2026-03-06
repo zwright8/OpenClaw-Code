@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1962,
+  "name": "freight-brokerage-job-scheduler",
+  "title": "Freight Brokerage Job Scheduler",
+  "description": "Design and run freight brokerage workflows with job scheduler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4902,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01962-freight-brokerage-job-scheduler/SKILL.md",
+    "entrypoint": "agent02/01962-freight-brokerage-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage job scheduler",
+    "freight brokerage job scheduler workflow",
+    "freight brokerage job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

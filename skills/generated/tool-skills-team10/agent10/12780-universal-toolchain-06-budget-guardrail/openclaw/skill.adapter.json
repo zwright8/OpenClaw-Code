@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12780,
+  "name": "universal-toolchain-06-budget-guardrail",
+  "title": "Universal Toolchain 06 Budget Guardrail",
+  "description": "Design and run universal toolchain 06 workflows with budget guardrail controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8313,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12780-universal-toolchain-06-budget-guardrail/SKILL.md",
+    "entrypoint": "agent10/12780-universal-toolchain-06-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 06 budget guardrail",
+    "universal toolchain 06 budget guardrail workflow",
+    "universal toolchain 06 budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

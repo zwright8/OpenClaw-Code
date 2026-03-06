@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2631,
+  "name": "construction-pm-cost-attribution",
+  "title": "Construction PM Cost Attribution",
+  "description": "Design and run construction pm workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8927,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02631-construction-pm-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/02631-construction-pm-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm cost attribution",
+    "construction pm cost attribution workflow",
+    "construction pm cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

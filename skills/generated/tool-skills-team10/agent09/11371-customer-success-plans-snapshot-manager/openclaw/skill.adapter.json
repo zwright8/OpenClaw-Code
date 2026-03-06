@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11371,
+  "name": "customer-success-plans-snapshot-manager",
+  "title": "Customer Success Plans Snapshot Manager",
+  "description": "Design and run customer success plans workflows with snapshot manager controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11944,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11371-customer-success-plans-snapshot-manager/SKILL.md",
+    "entrypoint": "agent09/11371-customer-success-plans-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans snapshot manager",
+    "customer success plans snapshot manager workflow",
+    "customer success plans snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

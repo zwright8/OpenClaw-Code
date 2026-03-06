@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12433,
+  "name": "simulation-environments-reliability-scorer",
+  "title": "Simulation Environments Reliability Scorer",
+  "description": "Design and run simulation environments workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12331,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12433-simulation-environments-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12433-simulation-environments-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "simulation environments reliability scorer",
+    "simulation environments reliability scorer workflow",
+    "simulation environments reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

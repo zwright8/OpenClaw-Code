@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2479,
+  "name": "environmental-sensors-capacity-planner",
+  "title": "Environmental Sensors Capacity Planner",
+  "description": "Design and run environmental sensors workflows with capacity planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8863,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02479-environmental-sensors-capacity-planner/SKILL.md",
+    "entrypoint": "agent02/02479-environmental-sensors-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors capacity planner",
+    "environmental sensors capacity planner workflow",
+    "environmental sensors capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

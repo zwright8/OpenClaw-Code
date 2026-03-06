@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11848,
+  "name": "protocol-management-feedback-harvester",
+  "title": "Protocol Management Feedback Harvester",
+  "description": "Design and run protocol management workflows with feedback harvester controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12146,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11848-protocol-management-feedback-harvester/SKILL.md",
+    "entrypoint": "agent10/11848-protocol-management-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management feedback harvester",
+    "protocol management feedback harvester workflow",
+    "protocol management feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "skill": "u04433-experiment-design-for-mental-well-being-practices",
+  "capability": "Experiment design for mental well being practices",
+  "domain": "mental well being practices",
+  "inputs": {
+    "request_id": "04433-minimal",
+    "source_tags": [
+      "approved:test"
+    ],
+    "signals": [
+      {
+        "id": "sig-1",
+        "value": 0.5,
+        "confidence": 0.9
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-1",
+        "type": "doc",
+        "uri": "memory://evidence/ev-1"
+      }
+    ],
+    "risk_tier": "low"
+  },
+  "expected": {
+    "determinism_tolerance_abs": 0.005,
+    "hash_drift_allowed": 0,
+    "requires_human_signoff_if_high_risk": true,
+    "fail_closed": true
+  }
+}

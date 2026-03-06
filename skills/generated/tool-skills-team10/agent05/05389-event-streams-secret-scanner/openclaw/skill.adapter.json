@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5389,
+  "name": "event-streams-secret-scanner",
+  "title": "Event Streams Secret Scanner",
+  "description": "Design and run event streams workflows with secret scanner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2801,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05389-event-streams-secret-scanner/SKILL.md",
+    "entrypoint": "agent05/05389-event-streams-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams secret scanner",
+    "event streams secret scanner workflow",
+    "event streams secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

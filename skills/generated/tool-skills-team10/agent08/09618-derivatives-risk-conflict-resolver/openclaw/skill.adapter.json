@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9618,
+  "name": "derivatives-risk-conflict-resolver",
+  "title": "Derivatives Risk Conflict Resolver",
+  "description": "Design and run derivatives risk workflows with conflict resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7073,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09618-derivatives-risk-conflict-resolver/SKILL.md",
+    "entrypoint": "agent08/09618-derivatives-risk-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "derivatives risk conflict resolver",
+    "derivatives risk conflict resolver workflow",
+    "derivatives risk conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

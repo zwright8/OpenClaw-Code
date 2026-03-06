@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3419,
+  "name": "expense-management-rollback-coordinator",
+  "title": "Expense Management Rollback Coordinator",
+  "description": "Design and run expense management workflows with rollback coordinator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4947,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03419-expense-management-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent03/03419-expense-management-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "expense management rollback coordinator",
+    "expense management rollback coordinator workflow",
+    "expense management rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

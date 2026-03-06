@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3248,
+  "name": "fraud-operations-feedback-harvester",
+  "title": "Fraud Operations Feedback Harvester",
+  "description": "Design and run fraud operations workflows with feedback harvester controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9080,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03248-fraud-operations-feedback-harvester/SKILL.md",
+    "entrypoint": "agent03/03248-fraud-operations-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fraud operations feedback harvester",
+    "fraud operations feedback harvester workflow",
+    "fraud operations feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

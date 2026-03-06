@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3145,
+  "name": "risk-engines-runbook-composer",
+  "title": "Risk Engines Runbook Composer",
+  "description": "Design and run risk engines workflows with runbook composer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2539,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03145-risk-engines-runbook-composer/SKILL.md",
+    "entrypoint": "agent03/03145-risk-engines-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines runbook composer",
+    "risk engines runbook composer workflow",
+    "risk engines runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

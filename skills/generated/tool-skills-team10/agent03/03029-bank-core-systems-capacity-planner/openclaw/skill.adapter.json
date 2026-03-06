@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3029,
+  "name": "bank-core-systems-capacity-planner",
+  "title": "Bank Core Systems Capacity Planner",
+  "description": "Design and run bank core systems workflows with capacity planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9010,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03029-bank-core-systems-capacity-planner/SKILL.md",
+    "entrypoint": "agent03/03029-bank-core-systems-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems capacity planner",
+    "bank core systems capacity planner workflow",
+    "bank core systems capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

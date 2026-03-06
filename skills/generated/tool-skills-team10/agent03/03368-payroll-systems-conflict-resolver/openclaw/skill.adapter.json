@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3368,
+  "name": "payroll-systems-conflict-resolver",
+  "title": "Payroll Systems Conflict Resolver",
+  "description": "Design and run payroll systems workflows with conflict resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9129,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03368-payroll-systems-conflict-resolver/SKILL.md",
+    "entrypoint": "agent03/03368-payroll-systems-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems conflict resolver",
+    "payroll systems conflict resolver workflow",
+    "payroll systems conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

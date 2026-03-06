@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9429,
+  "name": "predictive-maintenance-capacity-planner",
+  "title": "Predictive Maintenance Capacity Planner",
+  "description": "Design and run predictive maintenance workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7606,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09429-predictive-maintenance-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/09429-predictive-maintenance-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance capacity planner",
+    "predictive maintenance capacity planner workflow",
+    "predictive maintenance capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

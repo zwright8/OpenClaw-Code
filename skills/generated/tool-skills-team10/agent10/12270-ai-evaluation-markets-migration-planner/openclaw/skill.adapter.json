@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12270,
+  "name": "ai-evaluation-markets-migration-planner",
+  "title": "AI Evaluation Markets Migration Planner",
+  "description": "Design and run ai evaluation markets workflows with migration planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 2516,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent10/12270-ai-evaluation-markets-migration-planner/SKILL.md",
+    "entrypoint": "agent10/12270-ai-evaluation-markets-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets migration planner",
+    "ai evaluation markets migration planner workflow",
+    "ai evaluation markets migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

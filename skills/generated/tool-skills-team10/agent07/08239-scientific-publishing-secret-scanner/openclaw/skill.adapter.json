@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8239,
+  "name": "scientific-publishing-secret-scanner",
+  "title": "Scientific Publishing Secret Scanner",
+  "description": "Design and run scientific publishing workflows with secret scanner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2915,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08239-scientific-publishing-secret-scanner/SKILL.md",
+    "entrypoint": "agent07/08239-scientific-publishing-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scientific publishing secret scanner",
+    "scientific publishing secret scanner workflow",
+    "scientific publishing secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

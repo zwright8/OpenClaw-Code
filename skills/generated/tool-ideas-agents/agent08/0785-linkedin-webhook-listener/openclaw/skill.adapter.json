@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 785,
+  "name": "linkedin-webhook-listener",
+  "title": "LinkedIn Webhook Listener",
+  "description": "Captures, verifies, and routes LinkedIn webhook events.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0785-linkedin-webhook-listener/SKILL.md",
+    "entrypoint": "agent08/0785-linkedin-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "linkedin webhook listener",
+    "linkedin webhook listener workflow",
+    "linkedin webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0785-linkedin-webhook-listener"
+  }
+}

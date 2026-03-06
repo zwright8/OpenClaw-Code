@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4646,
+  "name": "threat-intel-feeds-approval-orchestrator",
+  "title": "Threat Intel Feeds Approval Orchestrator",
+  "description": "Design and run threat intel feeds workflows with approval orchestrator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6058,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04646-threat-intel-feeds-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent04/04646-threat-intel-feeds-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds approval orchestrator",
+    "threat intel feeds approval orchestrator workflow",
+    "threat intel feeds approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7036,
+  "name": "open-source-intelligence-risk-scorer",
+  "title": "Open Source Intelligence Risk Scorer",
+  "description": "Design and run open source intelligence workflows with risk scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1613,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07036-open-source-intelligence-risk-scorer/SKILL.md",
+    "entrypoint": "agent06/07036-open-source-intelligence-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "open source intelligence risk scorer",
+    "open source intelligence risk scorer workflow",
+    "open source intelligence risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

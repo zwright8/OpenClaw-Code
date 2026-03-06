@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9815,
+  "name": "creator-platforms-queue-balancer",
+  "title": "Creator Platforms Queue Balancer",
+  "description": "Design and run creator platforms workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11395,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09815-creator-platforms-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/09815-creator-platforms-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "creator platforms queue balancer",
+    "creator platforms queue balancer workflow",
+    "creator platforms queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

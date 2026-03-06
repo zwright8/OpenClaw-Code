@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10962,
+  "name": "inference-caches-job-scheduler",
+  "title": "Inference Caches Job Scheduler",
+  "description": "Design and run inference caches workflows with job scheduler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 5207,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10962-inference-caches-job-scheduler/SKILL.md",
+    "entrypoint": "agent09/10962-inference-caches-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches job scheduler",
+    "inference caches job scheduler workflow",
+    "inference caches job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

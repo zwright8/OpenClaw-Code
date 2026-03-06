@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12381,
+  "name": "synthetic-data-platforms-cost-attribution",
+  "title": "Synthetic Data Platforms Cost Attribution",
+  "description": "Design and run synthetic data platforms workflows with cost attribution controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12308,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12381-synthetic-data-platforms-cost-attribution/SKILL.md",
+    "entrypoint": "agent10/12381-synthetic-data-platforms-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms cost attribution",
+    "synthetic data platforms cost attribution workflow",
+    "synthetic data platforms cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

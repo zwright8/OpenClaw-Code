@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1108,
+  "name": "patent-filings-task-decomposer",
+  "title": "Patent Filings Task Decomposer",
+  "description": "Design and run patent filings workflows with task decomposer controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8432,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01108-patent-filings-task-decomposer/SKILL.md",
+    "entrypoint": "agent01/01108-patent-filings-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patent filings task decomposer",
+    "patent filings task decomposer workflow",
+    "patent filings task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

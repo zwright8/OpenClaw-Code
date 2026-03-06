@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10316,
+  "name": "kyc-pipelines-state-reconciler",
+  "title": "KYC Pipelines State Reconciler",
+  "description": "Design and run kyc pipelines workflows with state reconciler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4372,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10316-kyc-pipelines-state-reconciler/SKILL.md",
+    "entrypoint": "agent08/10316-kyc-pipelines-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kyc pipelines state reconciler",
+    "kyc pipelines state reconciler workflow",
+    "kyc pipelines state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

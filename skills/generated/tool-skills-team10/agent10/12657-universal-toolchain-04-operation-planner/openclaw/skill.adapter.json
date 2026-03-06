@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12657,
+  "name": "universal-toolchain-04-operation-planner",
+  "title": "Universal Toolchain 04 Operation Planner",
+  "description": "Design and run universal toolchain 04 workflows with operation planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8256,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12657-universal-toolchain-04-operation-planner/SKILL.md",
+    "entrypoint": "agent10/12657-universal-toolchain-04-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 04 operation planner",
+    "universal toolchain 04 operation planner workflow",
+    "universal toolchain 04 operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

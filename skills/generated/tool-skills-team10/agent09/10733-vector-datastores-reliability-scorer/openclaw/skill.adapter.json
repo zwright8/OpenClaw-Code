@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10733,
+  "name": "vector-datastores-reliability-scorer",
+  "title": "Vector Datastores Reliability Scorer",
+  "description": "Design and run vector datastores workflows with reliability scorer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11701,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10733-vector-datastores-reliability-scorer/SKILL.md",
+    "entrypoint": "agent09/10733-vector-datastores-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vector datastores reliability scorer",
+    "vector datastores reliability scorer workflow",
+    "vector datastores reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

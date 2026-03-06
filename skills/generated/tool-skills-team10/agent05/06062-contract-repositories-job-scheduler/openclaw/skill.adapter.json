@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6062,
+  "name": "contract-repositories-job-scheduler",
+  "title": "Contract Repositories Job Scheduler",
+  "description": "Design and run contract repositories workflows with job scheduler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5036,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06062-contract-repositories-job-scheduler/SKILL.md",
+    "entrypoint": "agent05/06062-contract-repositories-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "contract repositories job scheduler",
+    "contract repositories job scheduler workflow",
+    "contract repositories job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

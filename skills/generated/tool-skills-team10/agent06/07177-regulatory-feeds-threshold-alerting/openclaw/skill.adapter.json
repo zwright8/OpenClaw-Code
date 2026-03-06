@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7177,
+  "name": "regulatory-feeds-threshold-alerting",
+  "title": "Regulatory Feeds Threshold Alerting",
+  "description": "Design and run regulatory feeds workflows with threshold alerting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10457,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07177-regulatory-feeds-threshold-alerting/SKILL.md",
+    "entrypoint": "agent06/07177-regulatory-feeds-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "regulatory feeds threshold alerting",
+    "regulatory feeds threshold alerting workflow",
+    "regulatory feeds threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 943,
+  "name": "substack-data-exporter",
+  "title": "Substack Data Exporter",
+  "description": "Exports Substack entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12960,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00943-substack-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00943-substack-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "substack data exporter",
+    "substack data exporter workflow",
+    "substack data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

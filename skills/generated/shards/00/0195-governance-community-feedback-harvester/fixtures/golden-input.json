@@ -1,0 +1,18 @@
+{
+  "skill": "u0195-governance-community-feedback-harvester",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "policies",
+    "violations",
+    "mitigation actions",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "theme_prioritized_feedback_digests_report",
+    "theme_prioritized_feedback_digests_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12608,
+  "name": "universal-toolchain-03-task-decomposer",
+  "title": "Universal Toolchain 03 Task Decomposer",
+  "description": "Design and run universal toolchain 03 workflows with task decomposer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8235,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12608-universal-toolchain-03-task-decomposer/SKILL.md",
+    "entrypoint": "agent10/12608-universal-toolchain-03-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 03 task decomposer",
+    "universal toolchain 03 task decomposer workflow",
+    "universal toolchain 03 task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

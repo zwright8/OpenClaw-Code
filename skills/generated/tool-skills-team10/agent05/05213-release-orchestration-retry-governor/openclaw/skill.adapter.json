@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5213,
+  "name": "release-orchestration-retry-governor",
+  "title": "Release Orchestration Retry Governor",
+  "description": "Design and run release orchestration workflows with retry governor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6099,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05213-release-orchestration-retry-governor/SKILL.md",
+    "entrypoint": "agent05/05213-release-orchestration-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration retry governor",
+    "release orchestration retry governor workflow",
+    "release orchestration retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

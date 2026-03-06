@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3731,
+  "name": "customer-data-platforms-cost-attribution",
+  "title": "Customer Data Platforms Cost Attribution",
+  "description": "Design and run customer data platforms workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9284,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03731-customer-data-platforms-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/03731-customer-data-platforms-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer data platforms cost attribution",
+    "customer data platforms cost attribution workflow",
+    "customer data platforms cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

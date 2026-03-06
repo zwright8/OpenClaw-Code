@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7631,
+  "name": "device-labs-cost-attribution",
+  "title": "Device Labs Cost Attribution",
+  "description": "Design and run device labs workflows with cost attribution controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10628,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07631-device-labs-cost-attribution/SKILL.md",
+    "entrypoint": "agent06/07631-device-labs-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs cost attribution",
+    "device labs cost attribution workflow",
+    "device labs cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

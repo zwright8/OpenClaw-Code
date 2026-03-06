@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7542,
+  "name": "mobile-release-ops-root-cause-miner",
+  "title": "Mobile Release Ops Root Cause Miner",
+  "description": "Design and run mobile release ops workflows with root cause miner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4685,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07542-mobile-release-ops-root-cause-miner/SKILL.md",
+    "entrypoint": "agent06/07542-mobile-release-ops-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops root cause miner",
+    "mobile release ops root cause miner workflow",
+    "mobile release ops root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

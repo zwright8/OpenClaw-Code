@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5779,
+  "name": "prompt-repositories-capacity-planner",
+  "title": "Prompt Repositories Capacity Planner",
+  "description": "Design and run prompt repositories workflows with capacity planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9934,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05779-prompt-repositories-capacity-planner/SKILL.md",
+    "entrypoint": "agent05/05779-prompt-repositories-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prompt repositories capacity planner",
+    "prompt repositories capacity planner workflow",
+    "prompt repositories capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

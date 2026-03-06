@@ -9,9 +9,21 @@
     "analyze:quick": "tsx scripts/analyze-history.ts --days 1",
     "plan:tasks": "tsx scripts/plan-remediation-tasks.ts --report reports/cognition-report.json --out reports/remediation-tasks.json",
     "learn:loop": "tsx scripts/learn-from-outcomes.ts --store ../swarm-protocol/state/tasks.journal.jsonl --json reports/learning-loop.json --markdown reports/learning-loop.md",
+    "outcomes:export": "tsx scripts/export-swarm-outcomes.ts",
     "graph": "tsx scripts/graph.ts",
+    "stability:whatsapp": "tsx scripts/whatsapp-stability.ts --hours 24 --json reports/whatsapp-stability.json --markdown reports/whatsapp-stability.md",
+    "ingest": "tsx scripts/ingest.ts --since-hours 24",
     "test": "tsx --test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "evaluate": "tsx scripts/evaluate.ts",
+    "report": "tsx scripts/report.ts",
+    "run": "tsx scripts/run.ts",
+    "dispatch": "tsx scripts/dispatch.ts",
+    "status": "tsx scripts/status.ts",
+    "run:dispatch": "tsx scripts/run.ts --dispatch true",
+    "scorecard": "tsx scripts/productivity-scorecard.ts",
+    "tune:recommendations": "tsx scripts/tune-recommendations.ts",
+    "full:utilization": "tsx scripts/full-utilization.ts"
   },
   "keywords": [
     "agent",

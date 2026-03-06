@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11473,
+  "name": "reference-programs-artifact-publisher",
+  "title": "Reference Programs Artifact Publisher",
+  "description": "Design and run reference programs workflows with artifact publisher controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11988,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11473-reference-programs-artifact-publisher/SKILL.md",
+    "entrypoint": "agent09/11473-reference-programs-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs artifact publisher",
+    "reference programs artifact publisher workflow",
+    "reference programs artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

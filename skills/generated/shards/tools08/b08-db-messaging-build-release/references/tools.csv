@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3780,glaze,local-installable,"Extremely fast, in-memory JSON and interface library for modern C++",https://github.com/stephenberry/glaze,MIT
+3781,libxdmcp,local-installable,X.Org: X Display Manager Control Protocol library,https://www.x.org/,MIT
+3782,mongoose,local-installable,Web server build on top of Libmongoose embedded library,https://mongoose.ws/,GPL-2.0-only
+3783,clip,local-installable,Create high-quality charts from the command-line,https://github.com/asmuth/clip,Apache-2.0
+3784,frotz,local-installable,Infocom-style interactive fiction player,https://661.org/proj/if/frotz/,GPL-2.0-or-later
+3787,pg_partman,local-installable,Partition management extension for PostgreSQL,https://github.com/pgpartman/pg_partman,PostgreSQL
+3789,azure-dev,local-installable,Developer CLI that provides commands for working with Azure resources,https://aka.ms/azd,MIT
+3790,spirv-cross,local-installable,Performing reflection and disassembling SPIR-V,https://github.com/KhronosGroup/SPIRV-Cross,Apache-2.0 AND MIT AND CC-BY-4.0 AND MIT-Khronos-old
+3791,cataclysm,local-installable,Fork/variant of Cataclysm Roguelike,https://github.com/CleverRaven/Cataclysm-DDA,CC-BY-SA-3.0
+3792,s-search,local-installable,Web search from the terminal,https://github.com/zquestz/s,MIT
+3793,stormy,local-installable,"Minimal, customizable and neofetch-like weather CLI based on rainy",https://github.com/ashish0kumar/stormy,MIT
+3794,lld@19,local-installable,LLVM Project Linker,https://lld.llvm.org/,Apache-2.0 WITH LLVM-exception
+3795,pulsarctl,local-installable,CLI for Apache Pulsar written in Go,https://streamnative.io/,Apache-2.0
+3796,pgweb,local-installable,Web-based PostgreSQL database browser,https://sosedoff.github.io/pgweb/,MIT
+3798,toxiproxy,local-installable,TCP proxy to simulate network & system conditions for chaos & resiliency testing,https://github.com/shopify/toxiproxy,MIT
+3799,netatalk,local-installable,"File server for Macs, compliant with Apple Filing Protocol (AFP)",https://netatalk.io,GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause AND MIT
+3802,archey4,local-installable,Simple system information tool written in Python,https://github.com/HorlogeSkynet/archey4,GPL-3.0-or-later
+3803,apt-dater,local-installable,Manage package updates on remote hosts using SSH,https://github.com/DE-IBH/apt-dater,GPL-2.0-or-later
+3804,ansible-builder,local-installable,CLI tool for building Ansible Execution Environments (Containers),https://ansible-builder.readthedocs.io/,Apache-2.0
+3806,aws-c-io,local-installable,Event driven framework for implementing application protocols,https://github.com/awslabs/aws-c-io,Apache-2.0
+3808,bazel-diff,local-installable,Performs Bazel Target Diffing between two revisions in Git,https://github.com/Tinder/bazel-diff/,BSD-3-Clause
+3809,sqlparse,local-installable,Non-validating SQL parser,https://github.com/andialbrecht/sqlparse,BSD-3-Clause
+3810,ejabberd,local-installable,XMPP application server,https://www.ejabberd.im,GPL-2.0-only
+3811,docker-squash,local-installable,Docker image squashing tool,https://github.com/goldmann/docker-squash,MIT
+3812,fnox,local-installable,Fort Knox for your secrets - flexible secret management tool,https://fnox.jdx.dev/,MIT
+3813,bump-my-version,local-installable,Version bump your Python project,https://callowayproject.github.io/bump-my-version/,MIT

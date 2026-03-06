@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4465,
+  "name": "endpoint-security-queue-balancer",
+  "title": "Endpoint Security Queue Balancer",
+  "description": "Design and run endpoint security workflows with queue balancer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6027,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04465-endpoint-security-queue-balancer/SKILL.md",
+    "entrypoint": "agent04/04465-endpoint-security-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security queue balancer",
+    "endpoint security queue balancer workflow",
+    "endpoint security queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

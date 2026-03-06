@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12627,
+  "name": "universal-toolchain-03-threshold-alerting",
+  "title": "Universal Toolchain 03 Threshold Alerting",
+  "description": "Design and run universal toolchain 03 workflows with threshold alerting controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8244,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12627-universal-toolchain-03-threshold-alerting/SKILL.md",
+    "entrypoint": "agent10/12627-universal-toolchain-03-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 03 threshold alerting",
+    "universal toolchain 03 threshold alerting workflow",
+    "universal toolchain 03 threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6607,
+  "name": "inventory-planning-operation-planner",
+  "title": "Inventory Planning Operation Planner",
+  "description": "Design and run inventory planning workflows with operation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10237,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06607-inventory-planning-operation-planner/SKILL.md",
+    "entrypoint": "agent06/06607-inventory-planning-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inventory planning operation planner",
+    "inventory planning operation planner workflow",
+    "inventory planning operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

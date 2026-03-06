@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10058,
+  "name": "pos-systems-task-decomposer",
+  "title": "POS Systems Task Decomposer",
+  "description": "Design and run pos systems workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11498,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10058-pos-systems-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/10058-pos-systems-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pos systems task decomposer",
+    "pos systems task decomposer workflow",
+    "pos systems task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

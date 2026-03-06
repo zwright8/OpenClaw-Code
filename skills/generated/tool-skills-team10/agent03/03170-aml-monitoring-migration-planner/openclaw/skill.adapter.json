@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3170,
+  "name": "aml-monitoring-migration-planner",
+  "title": "AML Monitoring Migration Planner",
+  "description": "Design and run aml monitoring workflows with migration planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4537,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03170-aml-monitoring-migration-planner/SKILL.md",
+    "entrypoint": "agent03/03170-aml-monitoring-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "aml monitoring migration planner",
+    "aml monitoring migration planner workflow",
+    "aml monitoring migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

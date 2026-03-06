@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11318,
+  "name": "churn-prevention-conflict-resolver",
+  "title": "Churn Prevention Conflict Resolver",
+  "description": "Design and run churn prevention workflows with conflict resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11922,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11318-churn-prevention-conflict-resolver/SKILL.md",
+    "entrypoint": "agent09/11318-churn-prevention-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "churn prevention conflict resolver",
+    "churn prevention conflict resolver workflow",
+    "churn prevention conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

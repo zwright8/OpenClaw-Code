@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5475,
+  "name": "etl-orchestrators-provenance-tracker",
+  "title": "ETL Orchestrators Provenance Tracker",
+  "description": "Design and run etl orchestrators workflows with provenance tracker controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9826,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05475-etl-orchestrators-provenance-tracker/SKILL.md",
+    "entrypoint": "agent05/05475-etl-orchestrators-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators provenance tracker",
+    "etl orchestrators provenance tracker workflow",
+    "etl orchestrators provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

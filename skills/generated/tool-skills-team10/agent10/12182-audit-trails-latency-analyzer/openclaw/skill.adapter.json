@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12182,
+  "name": "audit-trails-latency-analyzer",
+  "title": "Audit Trails Latency Analyzer",
+  "description": "Design and run audit trails workflows with latency analyzer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7743,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12182-audit-trails-latency-analyzer/SKILL.md",
+    "entrypoint": "agent10/12182-audit-trails-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails latency analyzer",
+    "audit trails latency analyzer workflow",
+    "audit trails latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

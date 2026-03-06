@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3255,
+  "name": "accounting-ledgers-spec-drift-detector",
+  "title": "Accounting Ledgers Spec Drift Detector",
+  "description": "Design and run accounting ledgers workflows with spec drift detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4102,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03255-accounting-ledgers-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent03/03255-accounting-ledgers-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers spec drift detector",
+    "accounting ledgers spec drift detector workflow",
+    "accounting ledgers spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

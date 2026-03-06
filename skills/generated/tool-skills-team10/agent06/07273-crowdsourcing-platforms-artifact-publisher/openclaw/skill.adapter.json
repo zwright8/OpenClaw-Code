@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7273,
+  "name": "crowdsourcing-platforms-artifact-publisher",
+  "title": "Crowdsourcing Platforms Artifact Publisher",
+  "description": "Design and run crowdsourcing platforms workflows with artifact publisher controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10476,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07273-crowdsourcing-platforms-artifact-publisher/SKILL.md",
+    "entrypoint": "agent06/07273-crowdsourcing-platforms-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms artifact publisher",
+    "crowdsourcing platforms artifact publisher workflow",
+    "crowdsourcing platforms artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6117,
+  "name": "esignature-systems-delta-calculator",
+  "title": "eSignature Systems Delta Calculator",
+  "description": "Design and run esignature systems workflows with delta calculator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10073,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06117-esignature-systems-delta-calculator/SKILL.md",
+    "entrypoint": "agent05/06117-esignature-systems-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems delta calculator",
+    "esignature systems delta calculator workflow",
+    "esignature systems delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

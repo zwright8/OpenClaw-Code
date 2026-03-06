@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3177,
+  "name": "aml-monitoring-threshold-alerting",
+  "title": "AML Monitoring Threshold Alerting",
+  "description": "Design and run aml monitoring workflows with threshold alerting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9050,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03177-aml-monitoring-threshold-alerting/SKILL.md",
+    "entrypoint": "agent03/03177-aml-monitoring-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "aml monitoring threshold alerting",
+    "aml monitoring threshold alerting workflow",
+    "aml monitoring threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

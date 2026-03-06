@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9373,
+  "name": "sensor-fusion-artifact-publisher",
+  "title": "Sensor Fusion Artifact Publisher",
+  "description": "Design and run sensor fusion workflows with artifact publisher controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11253,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09373-sensor-fusion-artifact-publisher/SKILL.md",
+    "entrypoint": "agent08/09373-sensor-fusion-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion artifact publisher",
+    "sensor fusion artifact publisher workflow",
+    "sensor fusion artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

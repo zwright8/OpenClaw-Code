@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10425,
+  "name": "document-verification-provenance-tracker",
+  "title": "Document Verification Provenance Tracker",
+  "description": "Design and run document verification workflows with provenance tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11611,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10425-document-verification-provenance-tracker/SKILL.md",
+    "entrypoint": "agent09/10425-document-verification-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification provenance tracker",
+    "document verification provenance tracker workflow",
+    "document verification provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

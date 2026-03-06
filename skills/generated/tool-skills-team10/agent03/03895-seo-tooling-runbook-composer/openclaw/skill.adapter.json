@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3895,
+  "name": "seo-tooling-runbook-composer",
+  "title": "SEO Tooling Runbook Composer",
+  "description": "Design and run seo tooling workflows with runbook composer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5960,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03895-seo-tooling-runbook-composer/SKILL.md",
+    "entrypoint": "agent03/03895-seo-tooling-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "seo tooling runbook composer",
+    "seo tooling runbook composer workflow",
+    "seo tooling runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

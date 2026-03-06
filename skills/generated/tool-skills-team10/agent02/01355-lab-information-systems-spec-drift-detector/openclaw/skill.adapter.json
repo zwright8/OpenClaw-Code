@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1355,
+  "name": "lab-information-systems-spec-drift-detector",
+  "title": "Lab Information Systems Spec Drift Detector",
+  "description": "Design and run lab information systems workflows with spec drift detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4039,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01355-lab-information-systems-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent02/01355-lab-information-systems-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems spec drift detector",
+    "lab information systems spec drift detector workflow",
+    "lab information systems spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

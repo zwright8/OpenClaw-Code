@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12009,
+  "name": "ethics-review-boards-dependency-resolver",
+  "title": "Ethics Review Boards Dependency Resolver",
+  "description": "Design and run ethics review boards workflows with dependency resolver controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12213,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12009-ethics-review-boards-dependency-resolver/SKILL.md",
+    "entrypoint": "agent10/12009-ethics-review-boards-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards dependency resolver",
+    "ethics review boards dependency resolver workflow",
+    "ethics review boards dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

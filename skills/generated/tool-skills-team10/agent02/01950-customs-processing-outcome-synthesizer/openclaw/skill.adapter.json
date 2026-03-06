@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1950,
+  "name": "customs-processing-outcome-synthesizer",
+  "title": "Customs Processing Outcome Synthesizer",
+  "description": "Design and run customs processing workflows with outcome synthesizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 6835,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01950-customs-processing-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent02/01950-customs-processing-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customs processing outcome synthesizer",
+    "customs processing outcome synthesizer workflow",
+    "customs processing outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

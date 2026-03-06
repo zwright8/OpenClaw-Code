@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 675,
+  "name": "splunk-webhook-listener",
+  "title": "Splunk Webhook Listener",
+  "description": "Captures, verifies, and routes Splunk webhook events.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0675-splunk-webhook-listener/SKILL.md",
+    "entrypoint": "agent07/0675-splunk-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "splunk webhook listener",
+    "splunk webhook listener workflow",
+    "splunk webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0675-splunk-webhook-listener"
+  }
+}

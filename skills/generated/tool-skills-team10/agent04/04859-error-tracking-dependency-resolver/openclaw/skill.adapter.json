@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4859,
+  "name": "error-tracking-dependency-resolver",
+  "title": "Error Tracking Dependency Resolver",
+  "description": "Design and run error tracking workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9630,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04859-error-tracking-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/04859-error-tracking-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "error tracking dependency resolver",
+    "error tracking dependency resolver workflow",
+    "error tracking dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

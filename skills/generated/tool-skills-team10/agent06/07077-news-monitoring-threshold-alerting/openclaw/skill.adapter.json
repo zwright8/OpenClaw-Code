@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7077,
+  "name": "news-monitoring-threshold-alerting",
+  "title": "News Monitoring Threshold Alerting",
+  "description": "Design and run news monitoring workflows with threshold alerting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10415,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07077-news-monitoring-threshold-alerting/SKILL.md",
+    "entrypoint": "agent06/07077-news-monitoring-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring threshold alerting",
+    "news monitoring threshold alerting workflow",
+    "news monitoring threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

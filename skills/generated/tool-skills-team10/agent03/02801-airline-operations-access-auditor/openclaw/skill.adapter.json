@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2801,
+  "name": "airline-operations-access-auditor",
+  "title": "Airline Operations Access Auditor",
+  "description": "Design and run airline operations workflows with access auditor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7313,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02801-airline-operations-access-auditor/SKILL.md",
+    "entrypoint": "agent03/02801-airline-operations-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations access auditor",
+    "airline operations access auditor workflow",
+    "airline operations access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

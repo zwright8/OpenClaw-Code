@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3376,
+  "name": "payroll-systems-anomaly-detector",
+  "title": "Payroll Systems Anomaly Detector",
+  "description": "Design and run payroll systems workflows with anomaly detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5375,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03376-payroll-systems-anomaly-detector/SKILL.md",
+    "entrypoint": "agent03/03376-payroll-systems-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payroll systems anomaly detector",
+    "payroll systems anomaly detector workflow",
+    "payroll systems anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

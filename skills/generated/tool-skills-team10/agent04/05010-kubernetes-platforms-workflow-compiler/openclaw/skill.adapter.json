@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5010,
+  "name": "kubernetes-platforms-workflow-compiler",
+  "title": "Kubernetes Platforms Workflow Compiler",
+  "description": "Design and run kubernetes platforms workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 462,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/05010-kubernetes-platforms-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/05010-kubernetes-platforms-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms workflow compiler",
+    "kubernetes platforms workflow compiler workflow",
+    "kubernetes platforms workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

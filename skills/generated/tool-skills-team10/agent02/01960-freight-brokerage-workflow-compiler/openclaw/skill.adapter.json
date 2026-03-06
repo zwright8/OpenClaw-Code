@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1960,
+  "name": "freight-brokerage-workflow-compiler",
+  "title": "Freight Brokerage Workflow Compiler",
+  "description": "Design and run freight brokerage workflows with workflow compiler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1039,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01960-freight-brokerage-workflow-compiler/SKILL.md",
+    "entrypoint": "agent02/01960-freight-brokerage-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage workflow compiler",
+    "freight brokerage workflow compiler workflow",
+    "freight brokerage workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

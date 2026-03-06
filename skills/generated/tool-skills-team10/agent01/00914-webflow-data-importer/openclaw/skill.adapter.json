@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 914,
+  "name": "webflow-data-importer",
+  "title": "Webflow Data Importer",
+  "description": "Validates and imports bulk updates into Webflow.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12940,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00914-webflow-data-importer/SKILL.md",
+    "entrypoint": "agent01/00914-webflow-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "webflow data importer",
+    "webflow data importer workflow",
+    "webflow data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

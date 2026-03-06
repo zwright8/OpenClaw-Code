@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6377,
+  "name": "audio-pipelines-threshold-alerting",
+  "title": "Audio Pipelines Threshold Alerting",
+  "description": "Design and run audio pipelines workflows with threshold alerting controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10163,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06377-audio-pipelines-threshold-alerting/SKILL.md",
+    "entrypoint": "agent05/06377-audio-pipelines-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines threshold alerting",
+    "audio pipelines threshold alerting workflow",
+    "audio pipelines threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

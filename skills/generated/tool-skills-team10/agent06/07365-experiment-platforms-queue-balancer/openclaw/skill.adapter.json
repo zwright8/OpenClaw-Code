@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7365,
+  "name": "experiment-platforms-queue-balancer",
+  "title": "Experiment Platforms Queue Balancer",
+  "description": "Design and run experiment platforms workflows with queue balancer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10513,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07365-experiment-platforms-queue-balancer/SKILL.md",
+    "entrypoint": "agent06/07365-experiment-platforms-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "experiment platforms queue balancer",
+    "experiment platforms queue balancer workflow",
+    "experiment platforms queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

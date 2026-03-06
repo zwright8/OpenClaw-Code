@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6198,
+  "name": "records-retention-feedback-harvester",
+  "title": "Records Retention Feedback Harvester",
+  "description": "Design and run records retention workflows with feedback harvester controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10109,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06198-records-retention-feedback-harvester/SKILL.md",
+    "entrypoint": "agent05/06198-records-retention-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention feedback harvester",
+    "records retention feedback harvester workflow",
+    "records retention feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

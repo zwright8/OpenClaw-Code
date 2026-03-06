@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 390,
+  "name": "sendgrid-migration-assistant",
+  "title": "SendGrid Migration Assistant",
+  "description": "Plans and executes safe migrations to or from SendGrid.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "agent04/0390-sendgrid-migration-assistant/SKILL.md",
+    "entrypoint": "agent04/0390-sendgrid-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sendgrid migration assistant",
+    "sendgrid migration assistant workflow",
+    "sendgrid migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent04/0390-sendgrid-migration-assistant"
+  }
+}

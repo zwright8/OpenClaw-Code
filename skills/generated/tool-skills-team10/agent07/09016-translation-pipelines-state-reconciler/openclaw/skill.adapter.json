@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9016,
+  "name": "translation-pipelines-state-reconciler",
+  "title": "Translation Pipelines State Reconciler",
+  "description": "Design and run translation pipelines workflows with state reconciler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2586,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/09016-translation-pipelines-state-reconciler/SKILL.md",
+    "entrypoint": "agent07/09016-translation-pipelines-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "translation pipelines state reconciler",
+    "translation pipelines state reconciler workflow",
+    "translation pipelines state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

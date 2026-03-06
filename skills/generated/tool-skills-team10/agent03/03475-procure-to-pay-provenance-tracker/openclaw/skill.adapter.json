@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3475,
+  "name": "procure-to-pay-provenance-tracker",
+  "title": "Procure to Pay Provenance Tracker",
+  "description": "Design and run procure to pay workflows with provenance tracker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9175,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03475-procure-to-pay-provenance-tracker/SKILL.md",
+    "entrypoint": "agent03/03475-procure-to-pay-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay provenance tracker",
+    "procure to pay provenance tracker workflow",
+    "procure to pay provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

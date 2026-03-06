@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12499,
+  "name": "autonomy-control-quality-gatekeeper",
+  "title": "Autonomy Control Quality Gatekeeper",
+  "description": "Design and run autonomy control workflows with quality gatekeeper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5682,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12499-autonomy-control-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent10/12499-autonomy-control-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control quality gatekeeper",
+    "autonomy control quality gatekeeper workflow",
+    "autonomy control quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

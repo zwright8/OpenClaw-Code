@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1826,
+  "name": "fleet-telematics-anomaly-detector",
+  "title": "Fleet Telematics Anomaly Detector",
+  "description": "Design and run fleet telematics workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5305,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01826-fleet-telematics-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/01826-fleet-telematics-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics anomaly detector",
+    "fleet telematics anomaly detector workflow",
+    "fleet telematics anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

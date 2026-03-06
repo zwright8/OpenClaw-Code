@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11716,
+  "name": "service-quality-state-reconciler",
+  "title": "Service Quality State Reconciler",
+  "description": "Design and run service quality workflows with state reconciler controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4425,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11716-service-quality-state-reconciler/SKILL.md",
+    "entrypoint": "agent10/11716-service-quality-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality state reconciler",
+    "service quality state reconciler workflow",
+    "service quality state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4209,
+  "name": "customer-qa-dependency-resolver",
+  "title": "Customer QA Dependency Resolver",
+  "description": "Design and run customer qa workflows with dependency resolver controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9420,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04209-customer-qa-dependency-resolver/SKILL.md",
+    "entrypoint": "agent04/04209-customer-qa-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa dependency resolver",
+    "customer qa dependency resolver workflow",
+    "customer qa dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8676,
+  "name": "urban-planning-data-anomaly-detector",
+  "title": "Urban Planning Data Anomaly Detector",
+  "description": "Design and run urban planning data workflows with anomaly detector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 5557,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08676-urban-planning-data-anomaly-detector/SKILL.md",
+    "entrypoint": "agent07/08676-urban-planning-data-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data anomaly detector",
+    "urban planning data anomaly detector workflow",
+    "urban planning data anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

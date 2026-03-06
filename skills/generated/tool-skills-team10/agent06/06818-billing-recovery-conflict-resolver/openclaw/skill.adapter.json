@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6818,
+  "name": "billing-recovery-conflict-resolver",
+  "title": "Billing Recovery Conflict Resolver",
+  "description": "Design and run billing recovery workflows with conflict resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7227,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06818-billing-recovery-conflict-resolver/SKILL.md",
+    "entrypoint": "agent06/06818-billing-recovery-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery conflict resolver",
+    "billing recovery conflict resolver workflow",
+    "billing recovery conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2475,
+  "name": "environmental-sensors-provenance-tracker",
+  "title": "Environmental Sensors Provenance Tracker",
+  "description": "Design and run environmental sensors workflows with provenance tracker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8860,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02475-environmental-sensors-provenance-tracker/SKILL.md",
+    "entrypoint": "agent02/02475-environmental-sensors-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors provenance tracker",
+    "environmental sensors provenance tracker workflow",
+    "environmental sensors provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

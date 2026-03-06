@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 47,
+  "name": "linear-alert-monitor",
+  "title": "Linear Alert Monitor",
+  "description": "Monitors key Linear signals and raises actionable alerts.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0047-linear-alert-monitor/SKILL.md",
+    "entrypoint": "agent01/0047-linear-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "linear alert monitor",
+    "linear alert monitor workflow",
+    "linear alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0047-linear-alert-monitor"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12969,
+  "name": "universal-toolchain-10-rollback-coordinator",
+  "title": "Universal Toolchain 10 Rollback Coordinator",
+  "description": "Design and run universal toolchain 10 workflows with rollback coordinator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4875,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12969-universal-toolchain-10-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent10/12969-universal-toolchain-10-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 10 rollback coordinator",
+    "universal toolchain 10 rollback coordinator workflow",
+    "universal toolchain 10 rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

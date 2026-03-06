@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2816,
+  "name": "airline-operations-state-reconciler",
+  "title": "Airline Operations State Reconciler",
+  "description": "Design and run airline operations workflows with state reconciler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2360,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02816-airline-operations-state-reconciler/SKILL.md",
+    "entrypoint": "agent03/02816-airline-operations-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations state reconciler",
+    "airline operations state reconciler workflow",
+    "airline operations state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

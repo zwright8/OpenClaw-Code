@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4375,
+  "name": "secrets-vaults-provenance-tracker",
+  "title": "Secrets Vaults Provenance Tracker",
+  "description": "Design and run secrets vaults workflows with provenance tracker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9469,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04375-secrets-vaults-provenance-tracker/SKILL.md",
+    "entrypoint": "agent04/04375-secrets-vaults-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "secrets vaults provenance tracker",
+    "secrets vaults provenance tracker workflow",
+    "secrets vaults provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2716,
+  "name": "facility-maintenance-state-reconciler",
+  "title": "Facility Maintenance State Reconciler",
+  "description": "Design and run facility maintenance workflows with state reconciler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2358,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02716-facility-maintenance-state-reconciler/SKILL.md",
+    "entrypoint": "agent03/02716-facility-maintenance-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance state reconciler",
+    "facility maintenance state reconciler workflow",
+    "facility maintenance state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

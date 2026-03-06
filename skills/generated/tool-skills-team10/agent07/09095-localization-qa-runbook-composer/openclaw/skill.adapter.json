@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9095,
+  "name": "localization-qa-runbook-composer",
+  "title": "Localization QA Runbook Composer",
+  "description": "Design and run localization qa workflows with runbook composer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6440,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/09095-localization-qa-runbook-composer/SKILL.md",
+    "entrypoint": "agent07/09095-localization-qa-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "localization qa runbook composer",
+    "localization qa runbook composer workflow",
+    "localization qa runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

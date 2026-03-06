@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3407,
+  "name": "expense-management-operation-planner",
+  "title": "Expense Management Operation Planner",
+  "description": "Design and run expense management workflows with operation planner controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9145,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03407-expense-management-operation-planner/SKILL.md",
+    "entrypoint": "agent03/03407-expense-management-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "expense management operation planner",
+    "expense management operation planner workflow",
+    "expense management operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

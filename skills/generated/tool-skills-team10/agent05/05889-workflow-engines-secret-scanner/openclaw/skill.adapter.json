@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5889,
+  "name": "workflow-engines-secret-scanner",
+  "title": "Workflow Engines Secret Scanner",
+  "description": "Design and run workflow engines workflows with secret scanner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2819,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05889-workflow-engines-secret-scanner/SKILL.md",
+    "entrypoint": "agent05/05889-workflow-engines-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "workflow engines secret scanner",
+    "workflow engines secret scanner workflow",
+    "workflow engines secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

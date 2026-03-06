@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3036,
+  "name": "bank-core-systems-risk-scorer",
+  "title": "Bank Core Systems Risk Scorer",
+  "description": "Design and run bank core systems workflows with risk scorer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1524,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03036-bank-core-systems-risk-scorer/SKILL.md",
+    "entrypoint": "agent03/03036-bank-core-systems-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems risk scorer",
+    "bank core systems risk scorer workflow",
+    "bank core systems risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

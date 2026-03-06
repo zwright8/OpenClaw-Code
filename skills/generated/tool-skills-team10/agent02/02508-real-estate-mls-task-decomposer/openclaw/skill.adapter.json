@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2508,
+  "name": "real-estate-mls-task-decomposer",
+  "title": "Real Estate MLS Task Decomposer",
+  "description": "Design and run real estate mls workflows with task decomposer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8873,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02508-real-estate-mls-task-decomposer/SKILL.md",
+    "entrypoint": "agent02/02508-real-estate-mls-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls task decomposer",
+    "real estate mls task decomposer workflow",
+    "real estate mls task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

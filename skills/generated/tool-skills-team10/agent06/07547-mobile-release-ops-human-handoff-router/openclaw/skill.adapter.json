@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7547,
+  "name": "mobile-release-ops-human-handoff-router",
+  "title": "Mobile Release Ops Human Handoff Router",
+  "description": "Design and run mobile release ops workflows with human handoff router controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10591,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07547-mobile-release-ops-human-handoff-router/SKILL.md",
+    "entrypoint": "agent06/07547-mobile-release-ops-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops human handoff router",
+    "mobile release ops human handoff router workflow",
+    "mobile release ops human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

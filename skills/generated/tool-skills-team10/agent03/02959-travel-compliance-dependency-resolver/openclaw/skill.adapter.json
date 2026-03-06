@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2959,
+  "name": "travel-compliance-dependency-resolver",
+  "title": "Travel Compliance Dependency Resolver",
+  "description": "Design and run travel compliance workflows with dependency resolver controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6774,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02959-travel-compliance-dependency-resolver/SKILL.md",
+    "entrypoint": "agent03/02959-travel-compliance-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "travel compliance dependency resolver",
+    "travel compliance dependency resolver workflow",
+    "travel compliance dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

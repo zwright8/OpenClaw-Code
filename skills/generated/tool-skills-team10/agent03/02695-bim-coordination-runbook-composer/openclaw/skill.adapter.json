@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2695,
+  "name": "bim-coordination-runbook-composer",
+  "title": "BIM Coordination Runbook Composer",
+  "description": "Design and run bim coordination workflows with runbook composer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5869,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02695-bim-coordination-runbook-composer/SKILL.md",
+    "entrypoint": "agent03/02695-bim-coordination-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination runbook composer",
+    "bim coordination runbook composer workflow",
+    "bim coordination runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

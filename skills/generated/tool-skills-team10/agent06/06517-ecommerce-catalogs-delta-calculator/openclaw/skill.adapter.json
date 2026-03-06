@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6517,
+  "name": "ecommerce-catalogs-delta-calculator",
+  "title": "Ecommerce Catalogs Delta Calculator",
+  "description": "Design and run ecommerce catalogs workflows with delta calculator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7998,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06517-ecommerce-catalogs-delta-calculator/SKILL.md",
+    "entrypoint": "agent06/06517-ecommerce-catalogs-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs delta calculator",
+    "ecommerce catalogs delta calculator workflow",
+    "ecommerce catalogs delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

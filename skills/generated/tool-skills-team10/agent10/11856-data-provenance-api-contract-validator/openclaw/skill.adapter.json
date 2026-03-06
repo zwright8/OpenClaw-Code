@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11856,
+  "name": "data-provenance-api-contract-validator",
+  "title": "Data Provenance API Contract Validator",
+  "description": "Design and run data provenance workflows with api contract validator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 258,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent10/11856-data-provenance-api-contract-validator/SKILL.md",
+    "entrypoint": "agent10/11856-data-provenance-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data provenance api contract validator",
+    "data provenance api contract validator workflow",
+    "data provenance api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

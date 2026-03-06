@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6132,
+  "name": "esignature-systems-latency-analyzer",
+  "title": "eSignature Systems Latency Analyzer",
+  "description": "Design and run esignature systems workflows with latency analyzer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10083,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06132-esignature-systems-latency-analyzer/SKILL.md",
+    "entrypoint": "agent05/06132-esignature-systems-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems latency analyzer",
+    "esignature systems latency analyzer workflow",
+    "esignature systems latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

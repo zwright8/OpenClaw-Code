@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4984,
+  "name": "synthetic-testing-sla-enforcer",
+  "title": "Synthetic Testing SLA Enforcer",
+  "description": "Design and run synthetic testing workflows with sla enforcer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9686,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04984-synthetic-testing-sla-enforcer/SKILL.md",
+    "entrypoint": "agent04/04984-synthetic-testing-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic testing sla enforcer",
+    "synthetic testing sla enforcer workflow",
+    "synthetic testing sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

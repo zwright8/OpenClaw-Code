@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 520,
+  "name": "mysql-migration-assistant",
+  "title": "MySQL Migration Assistant",
+  "description": "Plans and executes safe migrations to or from MySQL.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0520-mysql-migration-assistant/SKILL.md",
+    "entrypoint": "agent06/0520-mysql-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mysql migration assistant",
+    "mysql migration assistant workflow",
+    "mysql migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0520-mysql-migration-assistant"
+  }
+}

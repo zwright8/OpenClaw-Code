@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 137,
+  "name": "microsoft-calendar-alert-monitor",
+  "title": "Microsoft Calendar Alert Monitor",
+  "description": "Monitors key Microsoft Calendar signals and raises actionable alerts.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8055,
+    "score": 60,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00137-microsoft-calendar-alert-monitor/SKILL.md",
+    "entrypoint": "agent01/00137-microsoft-calendar-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft calendar alert monitor",
+    "microsoft calendar alert monitor workflow",
+    "microsoft calendar alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7993,
+  "name": "asset-discovery-remediation-planner",
+  "title": "Asset Discovery Remediation Planner",
+  "description": "Design and run asset discovery workflows with remediation planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2906,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07993-asset-discovery-remediation-planner/SKILL.md",
+    "entrypoint": "agent07/07993-asset-discovery-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery remediation planner",
+    "asset discovery remediation planner workflow",
+    "asset discovery remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

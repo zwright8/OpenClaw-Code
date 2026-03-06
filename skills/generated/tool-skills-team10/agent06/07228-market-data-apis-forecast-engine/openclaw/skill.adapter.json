@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7228,
+  "name": "market-data-apis-forecast-engine",
+  "title": "Market Data APIs Forecast Engine",
+  "description": "Design and run market data apis workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7017,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07228-market-data-apis-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/07228-market-data-apis-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis forecast engine",
+    "market data apis forecast engine workflow",
+    "market data apis forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

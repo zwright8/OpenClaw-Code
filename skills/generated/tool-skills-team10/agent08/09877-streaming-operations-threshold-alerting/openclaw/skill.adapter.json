@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9877,
+  "name": "streaming-operations-threshold-alerting",
+  "title": "Streaming Operations Threshold Alerting",
+  "description": "Design and run streaming operations workflows with threshold alerting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11423,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09877-streaming-operations-threshold-alerting/SKILL.md",
+    "entrypoint": "agent08/09877-streaming-operations-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations threshold alerting",
+    "streaming operations threshold alerting workflow",
+    "streaming operations threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

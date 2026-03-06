@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2628,
+  "name": "construction-pm-forecast-engine",
+  "title": "Construction PM Forecast Engine",
+  "description": "Design and run construction pm workflows with forecast engine controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8925,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02628-construction-pm-forecast-engine/SKILL.md",
+    "entrypoint": "agent03/02628-construction-pm-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "construction pm forecast engine",
+    "construction pm forecast engine workflow",
+    "construction pm forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

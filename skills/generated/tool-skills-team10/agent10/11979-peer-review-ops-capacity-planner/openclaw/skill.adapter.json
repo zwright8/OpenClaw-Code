@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11979,
+  "name": "peer-review-ops-capacity-planner",
+  "title": "Peer Review Ops Capacity Planner",
+  "description": "Design and run peer review ops workflows with capacity planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12202,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11979-peer-review-ops-capacity-planner/SKILL.md",
+    "entrypoint": "agent10/11979-peer-review-ops-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "peer review ops capacity planner",
+    "peer review ops capacity planner workflow",
+    "peer review ops capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

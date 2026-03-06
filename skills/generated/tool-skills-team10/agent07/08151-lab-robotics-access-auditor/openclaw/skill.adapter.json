@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8151,
+  "name": "lab-robotics-access-auditor",
+  "title": "Lab Robotics Access Auditor",
+  "description": "Design and run lab robotics workflows with access auditor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10845,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08151-lab-robotics-access-auditor/SKILL.md",
+    "entrypoint": "agent07/08151-lab-robotics-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics access auditor",
+    "lab robotics access auditor workflow",
+    "lab robotics access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2732,
+  "name": "facility-maintenance-latency-analyzer",
+  "title": "Facility Maintenance Latency Analyzer",
+  "description": "Design and run facility maintenance workflows with latency analyzer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7306,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02732-facility-maintenance-latency-analyzer/SKILL.md",
+    "entrypoint": "agent03/02732-facility-maintenance-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "facility maintenance latency analyzer",
+    "facility maintenance latency analyzer workflow",
+    "facility maintenance latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

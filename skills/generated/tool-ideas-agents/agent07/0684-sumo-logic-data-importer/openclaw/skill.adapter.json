@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 684,
+  "name": "sumo-logic-data-importer",
+  "title": "Sumo Logic Data Importer",
+  "description": "Validates and imports bulk updates into Sumo Logic.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0684-sumo-logic-data-importer/SKILL.md",
+    "entrypoint": "agent07/0684-sumo-logic-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sumo logic data importer",
+    "sumo logic data importer workflow",
+    "sumo logic data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0684-sumo-logic-data-importer"
+  }
+}

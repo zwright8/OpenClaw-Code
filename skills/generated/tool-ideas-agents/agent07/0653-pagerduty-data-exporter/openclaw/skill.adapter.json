@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 653,
+  "name": "pagerduty-data-exporter",
+  "title": "PagerDuty Data Exporter",
+  "description": "Exports PagerDuty entities into clean, typed datasets.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0653-pagerduty-data-exporter/SKILL.md",
+    "entrypoint": "agent07/0653-pagerduty-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pagerduty data exporter",
+    "pagerduty data exporter workflow",
+    "pagerduty data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0653-pagerduty-data-exporter"
+  }
+}

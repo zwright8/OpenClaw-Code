@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SkillOS Execution Policy",
+  "description": "Policy tiers for workflow execution approval gating.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "defaultFailClosed",
+    "riskMetadata",
+    "tiers"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "defaultFailClosed": {
+      "type": "boolean"
+    },
+    "riskMetadata": {
+      "type": "object",
+      "required": [
+        "requiredFields"
+      ],
+      "properties": {
+        "requiredFields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "level",
+              "score",
+              "rationale"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "tiers": {
+      "type": "object",
+      "required": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "properties": {
+        "low": {
+          "$ref": "#/$defs/tier"
+        },
+        "medium": {
+          "$ref": "#/$defs/tier"
+        },
+        "high": {
+          "$ref": "#/$defs/tier"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "tier": {
+      "type": "object",
+      "required": [
+        "minScore",
+        "maxScore",
+        "requireHumanApproval",
+        "requiredApprovers",
+        "allowedAutoActions"
+      ],
+      "properties": {
+        "minScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "maxScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "requireHumanApproval": {
+          "type": "boolean"
+        },
+        "requiredApprovers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "allowedAutoActions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "policy": {
+    "schemaVersion": 1,
+    "defaultFailClosed": true,
+    "riskMetadata": {
+      "requiredFields": [
+        "level",
+        "score"
+      ]
+    },
+    "tiers": {
+      "low": {
+        "minScore": 0,
+        "maxScore": 39,
+        "requireHumanApproval": false,
+        "requiredApprovers": [
+          "none"
+        ],
+        "allowedAutoActions": [
+          "execute",
+          "retry",
+          "rollback"
+        ]
+      },
+      "medium": {
+        "minScore": 40,
+        "maxScore": 69,
+        "requireHumanApproval": true,
+        "requiredApprovers": [
+          "workflow-operator"
+        ],
+        "allowedAutoActions": [
+          "dry-run",
+          "prepare-artifacts"
+        ]
+      },
+      "high": {
+        "minScore": 70,
+        "maxScore": 100,
+        "requireHumanApproval": true,
+        "requiredApprovers": [
+          "workflow-operator",
+          "security-reviewer"
+        ],
+        "allowedAutoActions": [
+          "dry-run"
+        ]
+      }
+    }
+  }
+}

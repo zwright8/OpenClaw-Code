@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7498,
+  "name": "behavior-analytics-feedback-harvester",
+  "title": "Behavior Analytics Feedback Harvester",
+  "description": "Design and run behavior analytics workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10571,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07498-behavior-analytics-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/07498-behavior-analytics-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "behavior analytics feedback harvester",
+    "behavior analytics feedback harvester workflow",
+    "behavior analytics feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

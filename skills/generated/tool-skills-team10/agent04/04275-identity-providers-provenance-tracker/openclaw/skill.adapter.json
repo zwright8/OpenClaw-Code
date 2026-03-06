@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4275,
+  "name": "identity-providers-provenance-tracker",
+  "title": "Identity Providers Provenance Tracker",
+  "description": "Design and run identity providers workflows with provenance tracker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5997,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04275-identity-providers-provenance-tracker/SKILL.md",
+    "entrypoint": "agent04/04275-identity-providers-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers provenance tracker",
+    "identity providers provenance tracker workflow",
+    "identity providers provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

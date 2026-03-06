@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4404,
+  "name": "certificate-management-schema-introspector",
+  "title": "Certificate Management Schema Introspector",
+  "description": "Design and run certificate management workflows with schema introspector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 606,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04404-certificate-management-schema-introspector/SKILL.md",
+    "entrypoint": "agent04/04404-certificate-management-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management schema introspector",
+    "certificate management schema introspector workflow",
+    "certificate management schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

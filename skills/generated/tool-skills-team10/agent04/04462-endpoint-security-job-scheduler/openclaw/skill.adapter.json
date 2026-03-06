@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4462,
+  "name": "endpoint-security-job-scheduler",
+  "title": "Endpoint Security Job Scheduler",
+  "description": "Design and run endpoint security workflows with job scheduler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2085,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04462-endpoint-security-job-scheduler/SKILL.md",
+    "entrypoint": "agent04/04462-endpoint-security-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security job scheduler",
+    "endpoint security job scheduler workflow",
+    "endpoint security job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

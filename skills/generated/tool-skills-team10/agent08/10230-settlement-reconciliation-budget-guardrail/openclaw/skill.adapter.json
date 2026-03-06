@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10230,
+  "name": "settlement-reconciliation-budget-guardrail",
+  "title": "Settlement Reconciliation Budget Guardrail",
+  "description": "Design and run settlement reconciliation workflows with budget guardrail controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7628,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10230-settlement-reconciliation-budget-guardrail/SKILL.md",
+    "entrypoint": "agent08/10230-settlement-reconciliation-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation budget guardrail",
+    "settlement reconciliation budget guardrail workflow",
+    "settlement reconciliation budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

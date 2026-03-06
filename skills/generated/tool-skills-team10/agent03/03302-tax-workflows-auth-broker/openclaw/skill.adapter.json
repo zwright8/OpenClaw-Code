@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3302,
+  "name": "tax-workflows-auth-broker",
+  "title": "Tax Workflows Auth Broker",
+  "description": "Design and run tax workflows workflows with auth broker controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 841,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent03/03302-tax-workflows-auth-broker/SKILL.md",
+    "entrypoint": "agent03/03302-tax-workflows-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tax workflows auth broker",
+    "tax workflows auth broker workflow",
+    "tax workflows auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

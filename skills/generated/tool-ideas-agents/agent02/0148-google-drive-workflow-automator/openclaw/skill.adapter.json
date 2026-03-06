@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 148,
+  "name": "google-drive-workflow-automator",
+  "title": "Google Drive Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Google Drive.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "agent02/0148-google-drive-workflow-automator/SKILL.md",
+    "entrypoint": "agent02/0148-google-drive-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google drive workflow automator",
+    "google drive workflow automator workflow",
+    "google drive workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent02/0148-google-drive-workflow-automator"
+  }
+}

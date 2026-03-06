@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 491,
+  "name": "docker-connector",
+  "title": "Docker Connector",
+  "description": "Unified read/write connector for Docker APIs and data.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "agent05/0491-docker-connector/SKILL.md",
+    "entrypoint": "agent05/0491-docker-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "docker connector",
+    "docker connector workflow",
+    "docker connector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent05/0491-docker-connector"
+  }
+}

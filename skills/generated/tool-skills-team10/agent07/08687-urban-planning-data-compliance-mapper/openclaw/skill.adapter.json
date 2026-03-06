@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8687,
+  "name": "urban-planning-data-compliance-mapper",
+  "title": "Urban Planning Data Compliance Mapper",
+  "description": "Design and run urban planning data workflows with compliance mapper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1901,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08687-urban-planning-data-compliance-mapper/SKILL.md",
+    "entrypoint": "agent07/08687-urban-planning-data-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data compliance mapper",
+    "urban planning data compliance mapper workflow",
+    "urban planning data compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2356,
+  "name": "carbon-accounting-api-contract-validator",
+  "title": "Carbon Accounting API Contract Validator",
+  "description": "Design and run carbon accounting workflows with api contract validator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 87,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent02/02356-carbon-accounting-api-contract-validator/SKILL.md",
+    "entrypoint": "agent02/02356-carbon-accounting-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting api contract validator",
+    "carbon accounting api contract validator workflow",
+    "carbon accounting api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

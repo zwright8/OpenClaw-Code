@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7953,
+  "name": "asset-discovery-permission-mapper",
+  "title": "Asset Discovery Permission Mapper",
+  "description": "Design and run asset discovery workflows with permission mapper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3625,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07953-asset-discovery-permission-mapper/SKILL.md",
+    "entrypoint": "agent07/07953-asset-discovery-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery permission mapper",
+    "asset discovery permission mapper workflow",
+    "asset discovery permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

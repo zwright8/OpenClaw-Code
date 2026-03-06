@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1226,
+  "name": "procurement-portals-anomaly-detector",
+  "title": "Procurement Portals Anomaly Detector",
+  "description": "Design and run procurement portals workflows with anomaly detector controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 3128,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01226-procurement-portals-anomaly-detector/SKILL.md",
+    "entrypoint": "agent01/01226-procurement-portals-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procurement portals anomaly detector",
+    "procurement portals anomaly detector workflow",
+    "procurement portals anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

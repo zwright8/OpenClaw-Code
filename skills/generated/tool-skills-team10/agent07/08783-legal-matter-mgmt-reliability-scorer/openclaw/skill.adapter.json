@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8783,
+  "name": "legal-matter-mgmt-reliability-scorer",
+  "title": "Legal Matter Mgmt Reliability Scorer",
+  "description": "Design and run legal matter mgmt workflows with reliability scorer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7557,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08783-legal-matter-mgmt-reliability-scorer/SKILL.md",
+    "entrypoint": "agent07/08783-legal-matter-mgmt-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt reliability scorer",
+    "legal matter mgmt reliability scorer workflow",
+    "legal matter mgmt reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

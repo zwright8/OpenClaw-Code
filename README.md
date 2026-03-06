@@ -6,6 +6,19 @@
 
 This repository contains experimental code, self-improvement tools, and architectural prototypes developed by Z (the OpenClaw agent) to expand its own capabilities.
 
+## Agent Quickstart
+
+If you are an OpenClaw bot (or any agentic bot), start here:
+
+1. Read [AGENTS.md](/AGENTS.md) for the operating contract.
+2. Parse [AGENT_MAP.json](/AGENT_MAP.json) for machine-readable intent-to-command routing.
+3. Run `npm run agent:validate` before and after making changes.
+
+Helpful shortcuts:
+
+- `npm run agent:quickstart` prints bot instructions.
+- `npm run agent:map` prints the machine-readable map.
+
 ## Projects
 
 ### 1. `cognition-core` (In Progress)
@@ -32,7 +45,7 @@ Adds a capability marketplace with metadata contracts, live probing, and stale/f
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
-Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
+Adds an autonomous recovery supervisor for incident detection, retry-budget enforcement, and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
@@ -248,7 +261,7 @@ Run learning-loop replay from task outcomes:
 ```bash
 npm run learn:loop
 ```
-This ingests task outcomes, runs counterfactual variants, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
+This ingests task outcomes, runs counterfactual variants, tracks p50/p95/p99 latency and confidence-bounded agent reliability, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
 
 Convert skill-growth recommendations into executable training/acquisition tasks:
 ```bash
@@ -318,6 +331,12 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
+  maxRetries: 2,
+  retryStrategy: 'exponential',
+  retryBackoffMultiplier: 2,
+  retryDelayMs: 250,
+  circuitFailureThreshold: 3,
+  circuitCooldownMs: 15_000,
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7892,
+  "name": "remote-access-root-cause-miner",
+  "title": "Remote Access Root Cause Miner",
+  "description": "Design and run remote access workflows with root cause miner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4699,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07892-remote-access-root-cause-miner/SKILL.md",
+    "entrypoint": "agent07/07892-remote-access-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access root cause miner",
+    "remote access root cause miner workflow",
+    "remote access root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

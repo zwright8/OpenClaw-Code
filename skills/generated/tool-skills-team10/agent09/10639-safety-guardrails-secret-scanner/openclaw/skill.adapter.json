@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10639,
+  "name": "safety-guardrails-secret-scanner",
+  "title": "Safety Guardrails Secret Scanner",
+  "description": "Design and run safety guardrails workflows with secret scanner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1942,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10639-safety-guardrails-secret-scanner/SKILL.md",
+    "entrypoint": "agent09/10639-safety-guardrails-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "safety guardrails secret scanner",
+    "safety guardrails secret scanner workflow",
+    "safety guardrails secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
