@@ -248,7 +248,7 @@ Run learning-loop replay from task outcomes:
 ```bash
 npm run learn:loop
 ```
-This ingests task outcomes, runs counterfactual variants, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
+This ingests task outcomes, runs counterfactual variants, tracks p50/p95/p99 latency and confidence-bounded agent reliability, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
 
 Convert skill-growth recommendations into executable training/acquisition tasks:
 ```bash
