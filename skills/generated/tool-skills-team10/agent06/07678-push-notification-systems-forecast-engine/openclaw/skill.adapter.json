@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7678,
+  "name": "push-notification-systems-forecast-engine",
+  "title": "Push Notification Systems Forecast Engine",
+  "description": "Design and run push notification systems workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10647,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07678-push-notification-systems-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/07678-push-notification-systems-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems forecast engine",
+    "push notification systems forecast engine workflow",
+    "push notification systems forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

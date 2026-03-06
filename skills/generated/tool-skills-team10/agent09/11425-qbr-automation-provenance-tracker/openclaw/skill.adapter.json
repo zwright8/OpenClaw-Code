@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11425,
+  "name": "qbr-automation-provenance-tracker",
+  "title": "QBR Automation Provenance Tracker",
+  "description": "Design and run qbr automation workflows with provenance tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11968,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11425-qbr-automation-provenance-tracker/SKILL.md",
+    "entrypoint": "agent09/11425-qbr-automation-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "qbr automation provenance tracker",
+    "qbr automation provenance tracker workflow",
+    "qbr automation provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

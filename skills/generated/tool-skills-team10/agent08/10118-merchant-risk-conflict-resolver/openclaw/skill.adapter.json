@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10118,
+  "name": "merchant-risk-conflict-resolver",
+  "title": "Merchant Risk Conflict Resolver",
+  "description": "Design and run merchant risk workflows with conflict resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7103,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10118-merchant-risk-conflict-resolver/SKILL.md",
+    "entrypoint": "agent08/10118-merchant-risk-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "merchant risk conflict resolver",
+    "merchant risk conflict resolver workflow",
+    "merchant risk conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

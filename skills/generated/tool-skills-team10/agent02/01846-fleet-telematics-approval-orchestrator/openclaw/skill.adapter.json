@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1846,
+  "name": "fleet-telematics-approval-orchestrator",
+  "title": "Fleet Telematics Approval Orchestrator",
+  "description": "Design and run fleet telematics workflows with approval orchestrator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5795,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01846-fleet-telematics-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent02/01846-fleet-telematics-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "fleet telematics approval orchestrator",
+    "fleet telematics approval orchestrator workflow",
+    "fleet telematics approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

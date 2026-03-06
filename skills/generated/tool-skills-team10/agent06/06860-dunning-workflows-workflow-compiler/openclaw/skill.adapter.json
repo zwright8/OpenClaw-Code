@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6860,
+  "name": "dunning-workflows-workflow-compiler",
+  "title": "Dunning Workflows Workflow Compiler",
+  "description": "Design and run dunning workflows workflows with workflow compiler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1128,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06860-dunning-workflows-workflow-compiler/SKILL.md",
+    "entrypoint": "agent06/06860-dunning-workflows-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dunning workflows workflow compiler",
+    "dunning workflows workflow compiler workflow",
+    "dunning workflows workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

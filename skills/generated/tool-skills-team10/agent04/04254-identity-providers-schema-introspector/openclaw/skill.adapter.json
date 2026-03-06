@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4254,
+  "name": "identity-providers-schema-introspector",
+  "title": "Identity Providers Schema Introspector",
+  "description": "Design and run identity providers workflows with schema introspector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 42,
+    "score": 97,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/04254-identity-providers-schema-introspector/SKILL.md",
+    "entrypoint": "agent04/04254-identity-providers-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers schema introspector",
+    "identity providers schema introspector workflow",
+    "identity providers schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

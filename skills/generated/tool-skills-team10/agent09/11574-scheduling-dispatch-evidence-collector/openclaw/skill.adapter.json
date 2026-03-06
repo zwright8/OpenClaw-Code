@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11574,
+  "name": "scheduling-dispatch-evidence-collector",
+  "title": "Scheduling Dispatch Evidence Collector",
+  "description": "Design and run scheduling dispatch workflows with evidence collector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6670,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11574-scheduling-dispatch-evidence-collector/SKILL.md",
+    "entrypoint": "agent09/11574-scheduling-dispatch-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch evidence collector",
+    "scheduling dispatch evidence collector workflow",
+    "scheduling dispatch evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

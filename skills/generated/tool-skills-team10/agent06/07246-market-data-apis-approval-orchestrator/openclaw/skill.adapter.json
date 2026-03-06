@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7246,
+  "name": "market-data-apis-approval-orchestrator",
+  "title": "Market Data APIs Approval Orchestrator",
+  "description": "Design and run market data apis workflows with approval orchestrator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2578,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07246-market-data-apis-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent06/07246-market-data-apis-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis approval orchestrator",
+    "market data apis approval orchestrator workflow",
+    "market data apis approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

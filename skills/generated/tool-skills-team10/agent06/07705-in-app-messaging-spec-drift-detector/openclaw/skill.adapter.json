@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7705,
+  "name": "in-app-messaging-spec-drift-detector",
+  "title": "In-App Messaging Spec Drift Detector",
+  "description": "Design and run in-app messaging workflows with spec drift detector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 4275,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07705-in-app-messaging-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent06/07705-in-app-messaging-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging spec drift detector",
+    "in-app messaging spec drift detector workflow",
+    "in-app messaging spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

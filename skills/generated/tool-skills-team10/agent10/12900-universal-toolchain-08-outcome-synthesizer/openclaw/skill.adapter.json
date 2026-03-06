@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12900,
+  "name": "universal-toolchain-08-outcome-synthesizer",
+  "title": "Universal Toolchain 08 Outcome Synthesizer",
+  "description": "Design and run universal toolchain 08 workflows with outcome synthesizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6820,
+    "score": 66,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12900-universal-toolchain-08-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent10/12900-universal-toolchain-08-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 outcome synthesizer",
+    "universal toolchain 08 outcome synthesizer workflow",
+    "universal toolchain 08 outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

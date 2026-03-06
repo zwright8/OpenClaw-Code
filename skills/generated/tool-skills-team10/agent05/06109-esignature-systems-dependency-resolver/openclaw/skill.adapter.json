@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6109,
+  "name": "esignature-systems-dependency-resolver",
+  "title": "eSignature Systems Dependency Resolver",
+  "description": "Design and run esignature systems workflows with dependency resolver controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10071,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06109-esignature-systems-dependency-resolver/SKILL.md",
+    "entrypoint": "agent05/06109-esignature-systems-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems dependency resolver",
+    "esignature systems dependency resolver workflow",
+    "esignature systems dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9527,
+  "name": "trading-platforms-threshold-alerting",
+  "title": "Trading Platforms Threshold Alerting",
+  "description": "Design and run trading platforms workflows with threshold alerting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11297,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09527-trading-platforms-threshold-alerting/SKILL.md",
+    "entrypoint": "agent08/09527-trading-platforms-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms threshold alerting",
+    "trading platforms threshold alerting workflow",
+    "trading platforms threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

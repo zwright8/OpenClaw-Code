@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6624,
+  "name": "inventory-planning-evidence-collector",
+  "title": "Inventory Planning Evidence Collector",
+  "description": "Design and run inventory planning workflows with evidence collector controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6223,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06624-inventory-planning-evidence-collector/SKILL.md",
+    "entrypoint": "agent06/06624-inventory-planning-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inventory planning evidence collector",
+    "inventory planning evidence collector workflow",
+    "inventory planning evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8778,
+  "name": "legal-matter-mgmt-forecast-engine",
+  "title": "Legal Matter Mgmt Forecast Engine",
+  "description": "Design and run legal matter mgmt workflows with forecast engine controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7553,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08778-legal-matter-mgmt-forecast-engine/SKILL.md",
+    "entrypoint": "agent07/08778-legal-matter-mgmt-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt forecast engine",
+    "legal matter mgmt forecast engine workflow",
+    "legal matter mgmt forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

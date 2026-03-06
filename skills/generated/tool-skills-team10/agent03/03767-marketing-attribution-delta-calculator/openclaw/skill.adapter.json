@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3767,
+  "name": "marketing-attribution-delta-calculator",
+  "title": "Marketing Attribution Delta Calculator",
+  "description": "Design and run marketing attribution workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7956,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03767-marketing-attribution-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/03767-marketing-attribution-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "marketing attribution delta calculator",
+    "marketing attribution delta calculator workflow",
+    "marketing attribution delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

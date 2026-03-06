@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9670,
+  "name": "alternative-data-migration-planner",
+  "title": "Alternative Data Migration Planner",
+  "description": "Design and run alternative data workflows with migration planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 4758,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09670-alternative-data-migration-planner/SKILL.md",
+    "entrypoint": "agent08/09670-alternative-data-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "alternative data migration planner",
+    "alternative data migration planner workflow",
+    "alternative data migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

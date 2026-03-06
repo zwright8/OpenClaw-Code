@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4312,
+  "name": "access-governance-job-scheduler",
+  "title": "Access Governance Job Scheduler",
+  "description": "Design and run access governance workflows with job scheduler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 4975,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04312-access-governance-job-scheduler/SKILL.md",
+    "entrypoint": "agent04/04312-access-governance-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance job scheduler",
+    "access governance job scheduler workflow",
+    "access governance job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

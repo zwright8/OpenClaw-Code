@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6823,
+  "name": "billing-recovery-artifact-publisher",
+  "title": "Billing Recovery Artifact Publisher",
+  "description": "Design and run billing recovery workflows with artifact publisher controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7230,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06823-billing-recovery-artifact-publisher/SKILL.md",
+    "entrypoint": "agent06/06823-billing-recovery-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery artifact publisher",
+    "billing recovery artifact publisher workflow",
+    "billing recovery artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

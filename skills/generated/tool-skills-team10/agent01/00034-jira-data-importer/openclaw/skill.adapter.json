@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 34,
+  "name": "jira-data-importer",
+  "title": "Jira Data Importer",
+  "description": "Validates and imports bulk updates into Jira.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12380,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00034-jira-data-importer/SKILL.md",
+    "entrypoint": "agent01/00034-jira-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "jira data importer",
+    "jira data importer workflow",
+    "jira data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

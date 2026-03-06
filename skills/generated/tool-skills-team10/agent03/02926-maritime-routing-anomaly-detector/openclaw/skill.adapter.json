@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2926,
+  "name": "maritime-routing-anomaly-detector",
+  "title": "Maritime Routing Anomaly Detector",
+  "description": "Design and run maritime routing workflows with anomaly detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5361,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02926-maritime-routing-anomaly-detector/SKILL.md",
+    "entrypoint": "agent03/02926-maritime-routing-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "maritime routing anomaly detector",
+    "maritime routing anomaly detector workflow",
+    "maritime routing anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

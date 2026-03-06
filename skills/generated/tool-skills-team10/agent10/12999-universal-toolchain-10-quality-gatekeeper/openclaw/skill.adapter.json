@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12999,
+  "name": "universal-toolchain-10-quality-gatekeeper",
+  "title": "Universal Toolchain 10 Quality Gatekeeper",
+  "description": "Design and run universal toolchain 10 workflows with quality gatekeeper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5282,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12999-universal-toolchain-10-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent10/12999-universal-toolchain-10-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 10 quality gatekeeper",
+    "universal toolchain 10 quality gatekeeper workflow",
+    "universal toolchain 10 quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10538,
+  "name": "mlops-pipelines-pii-redactor",
+  "title": "MLOps Pipelines PII Redactor",
+  "description": "Design and run mlops pipelines workflows with pii redactor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2231,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10538-mlops-pipelines-pii-redactor/SKILL.md",
+    "entrypoint": "agent09/10538-mlops-pipelines-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mlops pipelines pii redactor",
+    "mlops pipelines pii redactor workflow",
+    "mlops pipelines pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

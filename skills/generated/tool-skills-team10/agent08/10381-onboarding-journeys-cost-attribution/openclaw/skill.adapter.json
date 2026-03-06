@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10381,
+  "name": "onboarding-journeys-cost-attribution",
+  "title": "Onboarding Journeys Cost Attribution",
+  "description": "Design and run onboarding journeys workflows with cost attribution controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11594,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10381-onboarding-journeys-cost-attribution/SKILL.md",
+    "entrypoint": "agent08/10381-onboarding-journeys-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys cost attribution",
+    "onboarding journeys cost attribution workflow",
+    "onboarding journeys cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

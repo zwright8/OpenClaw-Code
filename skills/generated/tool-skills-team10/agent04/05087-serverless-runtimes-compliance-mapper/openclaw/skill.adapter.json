@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5087,
+  "name": "serverless-runtimes-compliance-mapper",
+  "title": "Serverless Runtimes Compliance Mapper",
+  "description": "Design and run serverless runtimes workflows with compliance mapper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1832,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05087-serverless-runtimes-compliance-mapper/SKILL.md",
+    "entrypoint": "agent04/05087-serverless-runtimes-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "serverless runtimes compliance mapper",
+    "serverless runtimes compliance mapper workflow",
+    "serverless runtimes compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

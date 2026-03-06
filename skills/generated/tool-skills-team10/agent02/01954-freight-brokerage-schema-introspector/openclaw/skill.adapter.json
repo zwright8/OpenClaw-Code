@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1954,
+  "name": "freight-brokerage-schema-introspector",
+  "title": "Freight Brokerage Schema Introspector",
+  "description": "Design and run freight brokerage workflows with schema introspector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 562,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/01954-freight-brokerage-schema-introspector/SKILL.md",
+    "entrypoint": "agent02/01954-freight-brokerage-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage schema introspector",
+    "freight brokerage schema introspector workflow",
+    "freight brokerage schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

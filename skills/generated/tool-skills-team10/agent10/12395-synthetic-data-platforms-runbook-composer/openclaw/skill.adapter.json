@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12395,
+  "name": "synthetic-data-platforms-runbook-composer",
+  "title": "Synthetic Data Platforms Runbook Composer",
+  "description": "Design and run synthetic data platforms workflows with runbook composer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6736,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12395-synthetic-data-platforms-runbook-composer/SKILL.md",
+    "entrypoint": "agent10/12395-synthetic-data-platforms-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms runbook composer",
+    "synthetic data platforms runbook composer workflow",
+    "synthetic data platforms runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

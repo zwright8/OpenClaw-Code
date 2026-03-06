@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7865,
+  "name": "remote-access-queue-balancer",
+  "title": "Remote Access Queue Balancer",
+  "description": "Design and run remote access workflows with queue balancer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10723,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07865-remote-access-queue-balancer/SKILL.md",
+    "entrypoint": "agent07/07865-remote-access-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access queue balancer",
+    "remote access queue balancer workflow",
+    "remote access queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

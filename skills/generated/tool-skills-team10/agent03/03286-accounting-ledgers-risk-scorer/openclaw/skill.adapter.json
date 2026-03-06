@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3286,
+  "name": "accounting-ledgers-risk-scorer",
+  "title": "Accounting Ledgers Risk Scorer",
+  "description": "Design and run accounting ledgers workflows with risk scorer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1533,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03286-accounting-ledgers-risk-scorer/SKILL.md",
+    "entrypoint": "agent03/03286-accounting-ledgers-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accounting ledgers risk scorer",
+    "accounting ledgers risk scorer workflow",
+    "accounting ledgers risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

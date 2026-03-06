@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 715,
+  "name": "canva-webhook-listener",
+  "title": "Canva Webhook Listener",
+  "description": "Captures, verifies, and routes Canva webhook events.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12822,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00715-canva-webhook-listener/SKILL.md",
+    "entrypoint": "agent01/00715-canva-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "canva webhook listener",
+    "canva webhook listener workflow",
+    "canva webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10695,
+  "name": "model-serving-runbook-composer",
+  "title": "Model Serving Runbook Composer",
+  "description": "Design and run model serving workflows with runbook composer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6586,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10695-model-serving-runbook-composer/SKILL.md",
+    "entrypoint": "agent09/10695-model-serving-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model serving runbook composer",
+    "model serving runbook composer workflow",
+    "model serving runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

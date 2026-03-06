@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 687,
+  "name": "sumo-logic-alert-monitor",
+  "title": "Sumo Logic Alert Monitor",
+  "description": "Monitors key Sumo Logic signals and raises actionable alerts.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0687-sumo-logic-alert-monitor/SKILL.md",
+    "entrypoint": "agent07/0687-sumo-logic-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sumo logic alert monitor",
+    "sumo logic alert monitor workflow",
+    "sumo logic alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0687-sumo-logic-alert-monitor"
+  }
+}

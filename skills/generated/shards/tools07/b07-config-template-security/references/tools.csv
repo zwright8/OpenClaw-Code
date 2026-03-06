@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+3400,vals,local-installable,Helm-like configuration values loader with support for various sources,https://github.com/helmfile/vals,Apache-2.0
+3401,nsnake,local-installable,Classic snake game with textual interface,https://github.com/alexdantas/nSnake,GPL-3.0-or-later
+3402,gexiv2,local-installable,GObject wrapper around the Exiv2 photo metadata library,https://wiki.gnome.org/Projects/gexiv2,GPL-2.0-or-later
+3403,minijinja-cli,local-installable,Render Jinja2 templates directly from the command-line to stdout,https://docs.rs/minijinja/latest/minijinja/,Apache-2.0
+3405,nanorc,local-installable,Improved Nano Syntax Highlighting Files,https://github.com/scopatz/nanorc,GPL-3.0-or-later
+3406,nest,local-installable,Neural Simulation Tool (NEST) with Python3 bindings (PyNEST),https://www.nest-simulator.org/,GPL-2.0-or-later
+3407,cdrdao,local-installable,Record CDs in Disk-At-Once mode,https://cdrdao.sourceforge.net/,GPL-2.0-or-later
+3408,cloudflare-cli4,local-installable,CLI for Cloudflare API v4,https://github.com/cloudflare/python-cloudflare-cli4,MIT
+3412,jsrepo,local-installable,Build and distribute your code,https://jsrepo.dev/,MIT
+3413,yara-x,local-installable,Tool to do pattern matching for malware research,https://virustotal.github.io/yara-x/,BSD-3-Clause
+3414,crunch,local-installable,Wordlist generator,https://sourceforge.net/projects/crunch-wordlist/,GPL-2.0-only
+3415,translate-toolkit,local-installable,Toolkit for localization engineers,https://toolkit.translatehouse.org/,GPL-2.0-or-later
+3416,timidity,local-installable,Software synthesizer,https://timidity.sourceforge.net/,GPL-2.0-or-later
+3417,dnsperf,local-installable,Measure DNS performance by simulating network conditions,https://www.dns-oarc.net/tools/dnsperf,Apache-2.0
+3419,moc,local-installable,Terminal-based music player,https://moc.daper.net/,GPL-2.0-or-later
+3420,evtx,local-installable,Windows XML Event Log parser,https://github.com/omerbenamram/evtx,Apache-2.0 OR MIT
+3422,lazyssh,local-installable,Terminal-based SSH manager,https://github.com/Adembc/lazyssh,Apache-2.0
+3423,fclones,local-installable,Efficient Duplicate File Finder,https://github.com/pkolaczk/fclones,MIT
+3424,container-compose,local-installable,Manage Apple Container with Docker Compose files,https://github.com/mcrich23/container-compose,MIT
+3425,awsdac,local-installable,CLI tool for drawing AWS architecture,https://github.com/awslabs/diagram-as-code,Apache-2.0
+3427,omnara,local-installable,Talk to Your AI Agents from Anywhere,https://omnara.com/,Apache-2.0
+3428,helmify,local-installable,Create Helm chart from Kubernetes yaml,https://github.com/arttor/helmify,MIT
+3429,ascii,local-installable,List ASCII idiomatic names and octal/decimal code-point forms,http://www.catb.org/~esr/ascii/,BSD-2-Clause
+3432,hivemind,local-installable,Process manager for Procfile-based applications,https://github.com/DarthSim/hivemind,MIT
+3433,igv,local-installable,Interactive Genomics Viewer,https://igv.org/doc/desktop/,MIT
+3434,wasmedge,local-installable,"Lightweight, high-performance, and extensible WebAssembly runtime",https://WasmEdge.org/,Apache-2.0

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5497,
+  "name": "etl-orchestrators-human-handoff-router",
+  "title": "ETL Orchestrators Human Handoff Router",
+  "description": "Design and run etl orchestrators workflows with human handoff router controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9835,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05497-etl-orchestrators-human-handoff-router/SKILL.md",
+    "entrypoint": "agent05/05497-etl-orchestrators-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators human handoff router",
+    "etl orchestrators human handoff router workflow",
+    "etl orchestrators human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

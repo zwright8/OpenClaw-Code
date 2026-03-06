@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7225,
+  "name": "market-data-apis-provenance-tracker",
+  "title": "Market Data APIs Provenance Tracker",
+  "description": "Design and run market data apis workflows with provenance tracker controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7015,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07225-market-data-apis-provenance-tracker/SKILL.md",
+    "entrypoint": "agent06/07225-market-data-apis-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis provenance tracker",
+    "market data apis provenance tracker workflow",
+    "market data apis provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

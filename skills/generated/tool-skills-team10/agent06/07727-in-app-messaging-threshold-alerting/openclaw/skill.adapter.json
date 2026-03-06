@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7727,
+  "name": "in-app-messaging-threshold-alerting",
+  "title": "In-App Messaging Threshold Alerting",
+  "description": "Design and run in-app messaging workflows with threshold alerting controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10667,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07727-in-app-messaging-threshold-alerting/SKILL.md",
+    "entrypoint": "agent06/07727-in-app-messaging-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging threshold alerting",
+    "in-app messaging threshold alerting workflow",
+    "in-app messaging threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

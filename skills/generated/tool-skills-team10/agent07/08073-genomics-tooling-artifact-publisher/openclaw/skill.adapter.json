@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8073,
+  "name": "genomics-tooling-artifact-publisher",
+  "title": "Genomics Tooling Artifact Publisher",
+  "description": "Design and run genomics tooling workflows with artifact publisher controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10812,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08073-genomics-tooling-artifact-publisher/SKILL.md",
+    "entrypoint": "agent07/08073-genomics-tooling-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "genomics tooling artifact publisher",
+    "genomics tooling artifact publisher workflow",
+    "genomics tooling artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

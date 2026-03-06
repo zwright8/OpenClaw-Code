@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8110,
+  "name": "chemical-informatics-workflow-compiler",
+  "title": "Chemical Informatics Workflow Compiler",
+  "description": "Design and run chemical informatics workflows with workflow compiler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1152,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08110-chemical-informatics-workflow-compiler/SKILL.md",
+    "entrypoint": "agent07/08110-chemical-informatics-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chemical informatics workflow compiler",
+    "chemical informatics workflow compiler workflow",
+    "chemical informatics workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

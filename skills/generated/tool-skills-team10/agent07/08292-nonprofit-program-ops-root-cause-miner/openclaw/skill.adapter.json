@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8292,
+  "name": "nonprofit-program-ops-root-cause-miner",
+  "title": "Nonprofit Program Ops Root Cause Miner",
+  "description": "Design and run nonprofit program ops workflows with root cause miner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2580,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08292-nonprofit-program-ops-root-cause-miner/SKILL.md",
+    "entrypoint": "agent07/08292-nonprofit-program-ops-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "nonprofit program ops root cause miner",
+    "nonprofit program ops root cause miner workflow",
+    "nonprofit program ops root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

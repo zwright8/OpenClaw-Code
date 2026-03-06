@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 853,
+  "name": "replicate-data-exporter",
+  "title": "Replicate Data Exporter",
+  "description": "Exports Replicate entities into clean, typed datasets.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12897,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00853-replicate-data-exporter/SKILL.md",
+    "entrypoint": "agent01/00853-replicate-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "replicate data exporter",
+    "replicate data exporter workflow",
+    "replicate data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

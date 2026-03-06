@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4264,
+  "name": "identity-providers-rate-limit-optimizer",
+  "title": "Identity Providers Rate Limit Optimizer",
+  "description": "Design and run identity providers workflows with rate limit optimizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2376,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04264-identity-providers-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent04/04264-identity-providers-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers rate limit optimizer",
+    "identity providers rate limit optimizer workflow",
+    "identity providers rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

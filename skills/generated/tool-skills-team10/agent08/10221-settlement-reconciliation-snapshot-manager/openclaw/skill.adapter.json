@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10221,
+  "name": "settlement-reconciliation-snapshot-manager",
+  "title": "Settlement Reconciliation Snapshot Manager",
+  "description": "Design and run settlement reconciliation workflows with snapshot manager controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11545,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10221-settlement-reconciliation-snapshot-manager/SKILL.md",
+    "entrypoint": "agent08/10221-settlement-reconciliation-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation snapshot manager",
+    "settlement reconciliation snapshot manager workflow",
+    "settlement reconciliation snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

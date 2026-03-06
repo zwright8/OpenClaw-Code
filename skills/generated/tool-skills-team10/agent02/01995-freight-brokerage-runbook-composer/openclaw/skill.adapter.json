@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1995,
+  "name": "freight-brokerage-runbook-composer",
+  "title": "Freight Brokerage Runbook Composer",
+  "description": "Design and run freight brokerage workflows with runbook composer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5809,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01995-freight-brokerage-runbook-composer/SKILL.md",
+    "entrypoint": "agent02/01995-freight-brokerage-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freight brokerage runbook composer",
+    "freight brokerage runbook composer workflow",
+    "freight brokerage runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

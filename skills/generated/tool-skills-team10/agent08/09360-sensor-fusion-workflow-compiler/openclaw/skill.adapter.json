@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9360,
+  "name": "sensor-fusion-workflow-compiler",
+  "title": "Sensor Fusion Workflow Compiler",
+  "description": "Design and run sensor fusion workflows with workflow compiler controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1175,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09360-sensor-fusion-workflow-compiler/SKILL.md",
+    "entrypoint": "agent08/09360-sensor-fusion-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensor fusion workflow compiler",
+    "sensor fusion workflow compiler workflow",
+    "sensor fusion workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10172,
+  "name": "chargeback-ops-version-tracker",
+  "title": "Chargeback Ops Version Tracker",
+  "description": "Design and run chargeback ops workflows with version tracker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11525,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10172-chargeback-ops-version-tracker/SKILL.md",
+    "entrypoint": "agent08/10172-chargeback-ops-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chargeback ops version tracker",
+    "chargeback ops version tracker workflow",
+    "chargeback ops version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

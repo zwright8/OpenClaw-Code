@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12378,
+  "name": "synthetic-data-platforms-forecast-engine",
+  "title": "Synthetic Data Platforms Forecast Engine",
+  "description": "Design and run synthetic data platforms workflows with forecast engine controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12306,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12378-synthetic-data-platforms-forecast-engine/SKILL.md",
+    "entrypoint": "agent10/12378-synthetic-data-platforms-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "synthetic data platforms forecast engine",
+    "synthetic data platforms forecast engine workflow",
+    "synthetic data platforms forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

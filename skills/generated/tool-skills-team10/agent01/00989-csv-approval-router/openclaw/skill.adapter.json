@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 989,
+  "name": "csv-approval-router",
+  "title": "CSV Approval Router",
+  "description": "Routes CSV-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 12992,
+    "score": 54,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00989-csv-approval-router/SKILL.md",
+    "entrypoint": "agent01/00989-csv-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "csv approval router",
+    "csv approval router workflow",
+    "csv approval router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

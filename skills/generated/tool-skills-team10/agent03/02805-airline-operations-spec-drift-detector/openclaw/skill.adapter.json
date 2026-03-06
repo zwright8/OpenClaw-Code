@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2805,
+  "name": "airline-operations-spec-drift-detector",
+  "title": "Airline Operations Spec Drift Detector",
+  "description": "Design and run airline operations workflows with spec drift detector controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2359,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/02805-airline-operations-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent03/02805-airline-operations-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations spec drift detector",
+    "airline operations spec drift detector workflow",
+    "airline operations spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

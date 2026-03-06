@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5637,
+  "name": "data-quality-hubs-compliance-mapper",
+  "title": "Data Quality Hubs Compliance Mapper",
+  "description": "Design and run data quality hubs workflows with compliance mapper controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 517,
+    "score": 88,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent05/05637-data-quality-hubs-compliance-mapper/SKILL.md",
+    "entrypoint": "agent05/05637-data-quality-hubs-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "data quality hubs compliance mapper",
+    "data quality hubs compliance mapper workflow",
+    "data quality hubs compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

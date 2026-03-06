@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5111,
+  "name": "infrastructure-as-code-execution-runner",
+  "title": "Infrastructure as Code Execution Runner",
+  "description": "Design and run infrastructure as code workflows with execution runner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1338,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05111-infrastructure-as-code-execution-runner/SKILL.md",
+    "entrypoint": "agent04/05111-infrastructure-as-code-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code execution runner",
+    "infrastructure as code execution runner workflow",
+    "infrastructure as code execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

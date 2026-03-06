@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4054,
+  "name": "call-center-ops-schema-introspector",
+  "title": "Call Center Ops Schema Introspector",
+  "description": "Design and run call center ops workflows with schema introspector controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 601,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04054-call-center-ops-schema-introspector/SKILL.md",
+    "entrypoint": "agent04/04054-call-center-ops-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "call center ops schema introspector",
+    "call center ops schema introspector workflow",
+    "call center ops schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

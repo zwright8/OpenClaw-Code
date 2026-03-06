@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4478,
+  "name": "endpoint-security-forecast-engine",
+  "title": "Endpoint Security Forecast Engine",
+  "description": "Design and run endpoint security workflows with forecast engine controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6035,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04478-endpoint-security-forecast-engine/SKILL.md",
+    "entrypoint": "agent04/04478-endpoint-security-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security forecast engine",
+    "endpoint security forecast engine workflow",
+    "endpoint security forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

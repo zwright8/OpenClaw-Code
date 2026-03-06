@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3331,
+  "name": "tax-workflows-cost-attribution",
+  "title": "Tax Workflows Cost Attribution",
+  "description": "Design and run tax workflows workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9116,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03331-tax-workflows-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/03331-tax-workflows-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "tax workflows cost attribution",
+    "tax workflows cost attribution workflow",
+    "tax workflows cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3560,
+  "name": "cpq-platforms-workflow-compiler",
+  "title": "CPQ Platforms Workflow Compiler",
+  "description": "Design and run cpq platforms workflows with workflow compiler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 1068,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03560-cpq-platforms-workflow-compiler/SKILL.md",
+    "entrypoint": "agent03/03560-cpq-platforms-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "cpq platforms workflow compiler",
+    "cpq platforms workflow compiler workflow",
+    "cpq platforms workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

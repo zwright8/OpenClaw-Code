@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3127,
+  "name": "risk-engines-threshold-alerting",
+  "title": "Risk Engines Threshold Alerting",
+  "description": "Design and run risk engines workflows with threshold alerting controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 6864,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03127-risk-engines-threshold-alerting/SKILL.md",
+    "entrypoint": "agent03/03127-risk-engines-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "risk engines threshold alerting",
+    "risk engines threshold alerting workflow",
+    "risk engines threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

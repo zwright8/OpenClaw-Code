@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5485,
+  "name": "etl-orchestrators-policy-evaluator",
+  "title": "ETL Orchestrators Policy Evaluator",
+  "description": "Design and run etl orchestrators workflows with policy evaluator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3440,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05485-etl-orchestrators-policy-evaluator/SKILL.md",
+    "entrypoint": "agent05/05485-etl-orchestrators-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators policy evaluator",
+    "etl orchestrators policy evaluator workflow",
+    "etl orchestrators policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

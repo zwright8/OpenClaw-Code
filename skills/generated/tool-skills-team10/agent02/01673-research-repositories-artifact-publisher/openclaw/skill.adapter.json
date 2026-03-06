@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1673,
+  "name": "research-repositories-artifact-publisher",
+  "title": "Research Repositories Artifact Publisher",
+  "description": "Design and run research repositories workflows with artifact publisher controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8565,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01673-research-repositories-artifact-publisher/SKILL.md",
+    "entrypoint": "agent02/01673-research-repositories-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "research repositories artifact publisher",
+    "research repositories artifact publisher workflow",
+    "research repositories artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

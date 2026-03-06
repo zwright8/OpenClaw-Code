@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12856,
+  "name": "universal-toolchain-08-api-contract-validator",
+  "title": "Universal Toolchain 08 API Contract Validator",
+  "description": "Design and run universal toolchain 08 workflows with api contract validator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 64,
+    "score": 96,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent10/12856-universal-toolchain-08-api-contract-validator/SKILL.md",
+    "entrypoint": "agent10/12856-universal-toolchain-08-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 api contract validator",
+    "universal toolchain 08 api contract validator workflow",
+    "universal toolchain 08 api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4941,
+  "name": "uptime-monitors-incident-triage",
+  "title": "Uptime Monitors Incident Triage",
+  "description": "Design and run uptime monitors workflows with incident triage controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2098,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04941-uptime-monitors-incident-triage/SKILL.md",
+    "entrypoint": "agent04/04941-uptime-monitors-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "uptime monitors incident triage",
+    "uptime monitors incident triage workflow",
+    "uptime monitors incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

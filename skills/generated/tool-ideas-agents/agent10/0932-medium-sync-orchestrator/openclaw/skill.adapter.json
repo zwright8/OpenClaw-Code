@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 932,
+  "name": "medium-sync-orchestrator",
+  "title": "Medium Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Medium records.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "agent10/0932-medium-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent10/0932-medium-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "medium sync orchestrator",
+    "medium sync orchestrator workflow",
+    "medium sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent10/0932-medium-sync-orchestrator"
+  }
+}

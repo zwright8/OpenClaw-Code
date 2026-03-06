@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3962,
+  "name": "campaign-automation-job-scheduler",
+  "title": "Campaign Automation Job Scheduler",
+  "description": "Design and run campaign automation workflows with job scheduler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2543,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/03962-campaign-automation-job-scheduler/SKILL.md",
+    "entrypoint": "agent04/03962-campaign-automation-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "campaign automation job scheduler",
+    "campaign automation job scheduler workflow",
+    "campaign automation job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2087,
+  "name": "scada-monitoring-compliance-mapper",
+  "title": "SCADA Monitoring Compliance Mapper",
+  "description": "Design and run scada monitoring workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1761,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02087-scada-monitoring-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/02087-scada-monitoring-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring compliance mapper",
+    "scada monitoring compliance mapper workflow",
+    "scada monitoring compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

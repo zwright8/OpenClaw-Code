@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4736,
+  "name": "policy-engines-risk-scorer",
+  "title": "Policy Engines Risk Scorer",
+  "description": "Design and run policy engines workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1565,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04736-policy-engines-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/04736-policy-engines-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines risk scorer",
+    "policy engines risk scorer workflow",
+    "policy engines risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12883,
+  "name": "universal-toolchain-08-reliability-scorer",
+  "title": "Universal Toolchain 08 Reliability Scorer",
+  "description": "Design and run universal toolchain 08 workflows with reliability scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8360,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12883-universal-toolchain-08-reliability-scorer/SKILL.md",
+    "entrypoint": "agent10/12883-universal-toolchain-08-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 08 reliability scorer",
+    "universal toolchain 08 reliability scorer workflow",
+    "universal toolchain 08 reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

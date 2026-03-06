@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7062,
+  "name": "news-monitoring-job-scheduler",
+  "title": "News Monitoring Job Scheduler",
+  "description": "Design and run news monitoring workflows with job scheduler controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5072,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07062-news-monitoring-job-scheduler/SKILL.md",
+    "entrypoint": "agent06/07062-news-monitoring-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring job scheduler",
+    "news monitoring job scheduler workflow",
+    "news monitoring job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

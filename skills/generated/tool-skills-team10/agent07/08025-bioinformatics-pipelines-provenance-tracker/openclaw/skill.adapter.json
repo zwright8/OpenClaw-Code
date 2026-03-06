@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8025,
+  "name": "bioinformatics-pipelines-provenance-tracker",
+  "title": "Bioinformatics Pipelines Provenance Tracker",
+  "description": "Design and run bioinformatics pipelines workflows with provenance tracker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10792,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08025-bioinformatics-pipelines-provenance-tracker/SKILL.md",
+    "entrypoint": "agent07/08025-bioinformatics-pipelines-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bioinformatics pipelines provenance tracker",
+    "bioinformatics pipelines provenance tracker workflow",
+    "bioinformatics pipelines provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

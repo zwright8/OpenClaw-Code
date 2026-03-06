@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10215,
+  "name": "settlement-reconciliation-queue-balancer",
+  "title": "Settlement Reconciliation Queue Balancer",
+  "description": "Design and run settlement reconciliation workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11542,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10215-settlement-reconciliation-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/10215-settlement-reconciliation-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation queue balancer",
+    "settlement reconciliation queue balancer workflow",
+    "settlement reconciliation queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

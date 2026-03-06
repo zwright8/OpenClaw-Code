@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6807,
+  "name": "billing-recovery-operation-planner",
+  "title": "Billing Recovery Operation Planner",
+  "description": "Design and run billing recovery workflows with operation planner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7222,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06807-billing-recovery-operation-planner/SKILL.md",
+    "entrypoint": "agent06/06807-billing-recovery-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "billing recovery operation planner",
+    "billing recovery operation planner workflow",
+    "billing recovery operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

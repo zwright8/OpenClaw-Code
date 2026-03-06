@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5374,
+  "name": "event-streams-evidence-collector",
+  "title": "Event Streams Evidence Collector",
+  "description": "Design and run event streams workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6111,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05374-event-streams-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/05374-event-streams-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams evidence collector",
+    "event streams evidence collector workflow",
+    "event streams evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

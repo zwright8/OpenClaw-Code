@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4639,
+  "name": "threat-intel-feeds-secret-scanner",
+  "title": "Threat Intel Feeds Secret Scanner",
+  "description": "Design and run threat intel feeds workflows with secret scanner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2773,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04639-threat-intel-feeds-secret-scanner/SKILL.md",
+    "entrypoint": "agent04/04639-threat-intel-feeds-secret-scanner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds secret scanner",
+    "threat intel feeds secret scanner workflow",
+    "threat intel feeds secret scanner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

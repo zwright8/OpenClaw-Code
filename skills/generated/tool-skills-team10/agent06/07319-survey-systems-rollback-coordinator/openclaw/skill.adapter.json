@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7319,
+  "name": "survey-systems-rollback-coordinator",
+  "title": "Survey Systems Rollback Coordinator",
+  "description": "Design and run survey systems workflows with rollback coordinator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 5081,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07319-survey-systems-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent06/07319-survey-systems-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "survey systems rollback coordinator",
+    "survey systems rollback coordinator workflow",
+    "survey systems rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10765,
+  "name": "knowledge-graphs-queue-balancer",
+  "title": "Knowledge Graphs Queue Balancer",
+  "description": "Design and run knowledge graphs workflows with queue balancer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7683,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10765-knowledge-graphs-queue-balancer/SKILL.md",
+    "entrypoint": "agent09/10765-knowledge-graphs-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs queue balancer",
+    "knowledge graphs queue balancer workflow",
+    "knowledge graphs queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

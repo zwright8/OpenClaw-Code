@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5268,
+  "name": "api-gateways-conflict-resolver",
+  "title": "API Gateways Conflict Resolver",
+  "description": "Design and run api gateways workflows with conflict resolver controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6935,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05268-api-gateways-conflict-resolver/SKILL.md",
+    "entrypoint": "agent05/05268-api-gateways-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "api gateways conflict resolver",
+    "api gateways conflict resolver workflow",
+    "api gateways conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

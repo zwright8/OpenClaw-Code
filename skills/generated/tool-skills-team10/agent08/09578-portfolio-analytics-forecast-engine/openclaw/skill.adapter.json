@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9578,
+  "name": "portfolio-analytics-forecast-engine",
+  "title": "Portfolio Analytics Forecast Engine",
+  "description": "Design and run portfolio analytics workflows with forecast engine controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11319,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09578-portfolio-analytics-forecast-engine/SKILL.md",
+    "entrypoint": "agent08/09578-portfolio-analytics-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics forecast engine",
+    "portfolio analytics forecast engine workflow",
+    "portfolio analytics forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

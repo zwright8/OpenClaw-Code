@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11360,
+  "name": "customer-success-plans-workflow-compiler",
+  "title": "Customer Success Plans Workflow Compiler",
+  "description": "Design and run customer success plans workflows with workflow compiler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1210,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11360-customer-success-plans-workflow-compiler/SKILL.md",
+    "entrypoint": "agent09/11360-customer-success-plans-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans workflow compiler",
+    "customer success plans workflow compiler workflow",
+    "customer success plans workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

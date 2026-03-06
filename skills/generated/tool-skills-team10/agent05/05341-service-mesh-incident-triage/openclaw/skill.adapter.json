@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5341,
+  "name": "service-mesh-incident-triage",
+  "title": "Service Mesh Incident Triage",
+  "description": "Design and run service mesh workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2113,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05341-service-mesh-incident-triage/SKILL.md",
+    "entrypoint": "agent05/05341-service-mesh-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service mesh incident triage",
+    "service mesh incident triage workflow",
+    "service mesh incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11843,
+  "name": "protocol-management-remediation-planner",
+  "title": "Protocol Management Remediation Planner",
+  "description": "Design and run protocol management workflows with remediation planner controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3054,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11843-protocol-management-remediation-planner/SKILL.md",
+    "entrypoint": "agent10/11843-protocol-management-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management remediation planner",
+    "protocol management remediation planner workflow",
+    "protocol management remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

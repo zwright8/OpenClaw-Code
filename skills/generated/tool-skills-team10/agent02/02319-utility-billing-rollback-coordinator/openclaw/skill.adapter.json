@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2319,
+  "name": "utility-billing-rollback-coordinator",
+  "title": "Utility Billing Rollback Coordinator",
+  "description": "Design and run utility billing workflows with rollback coordinator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2455,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02319-utility-billing-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent02/02319-utility-billing-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "utility billing rollback coordinator",
+    "utility billing rollback coordinator workflow",
+    "utility billing rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

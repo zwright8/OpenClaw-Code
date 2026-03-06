@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7218,
+  "name": "market-data-apis-conflict-resolver",
+  "title": "Market Data APIs Conflict Resolver",
+  "description": "Design and run market data apis workflows with conflict resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7011,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07218-market-data-apis-conflict-resolver/SKILL.md",
+    "entrypoint": "agent06/07218-market-data-apis-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis conflict resolver",
+    "market data apis conflict resolver workflow",
+    "market data apis conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

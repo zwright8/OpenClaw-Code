@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9444,
+  "name": "predictive-maintenance-postmortem-drafting",
+  "title": "Predictive Maintenance Postmortem Drafting",
+  "description": "Design and run predictive maintenance workflows with postmortem drafting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7612,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09444-predictive-maintenance-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent08/09444-predictive-maintenance-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance postmortem drafting",
+    "predictive maintenance postmortem drafting workflow",
+    "predictive maintenance postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

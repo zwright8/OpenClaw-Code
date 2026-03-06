@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6973,
+  "name": "forecasting-models-artifact-publisher",
+  "title": "Forecasting Models Artifact Publisher",
+  "description": "Design and run forecasting models workflows with artifact publisher controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10371,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06973-forecasting-models-artifact-publisher/SKILL.md",
+    "entrypoint": "agent06/06973-forecasting-models-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "forecasting models artifact publisher",
+    "forecasting models artifact publisher workflow",
+    "forecasting models artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

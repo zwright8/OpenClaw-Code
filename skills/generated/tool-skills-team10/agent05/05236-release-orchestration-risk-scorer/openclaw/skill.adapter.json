@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5236,
+  "name": "release-orchestration-risk-scorer",
+  "title": "Release Orchestration Risk Scorer",
+  "description": "Design and run release orchestration workflows with risk scorer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1572,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/05236-release-orchestration-risk-scorer/SKILL.md",
+    "entrypoint": "agent05/05236-release-orchestration-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "release orchestration risk scorer",
+    "release orchestration risk scorer workflow",
+    "release orchestration risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1156,
+  "name": "compliance-registries-api-contract-validator",
+  "title": "Compliance Registries API Contract Validator",
+  "description": "Design and run compliance registries workflows with api contract validator controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 5,
+    "score": 104,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent01/01156-compliance-registries-api-contract-validator/SKILL.md",
+    "entrypoint": "agent01/01156-compliance-registries-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "compliance registries api contract validator",
+    "compliance registries api contract validator workflow",
+    "compliance registries api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

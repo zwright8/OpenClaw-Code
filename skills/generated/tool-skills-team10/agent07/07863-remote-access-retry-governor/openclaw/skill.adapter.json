@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7863,
+  "name": "remote-access-retry-governor",
+  "title": "Remote Access Retry Governor",
+  "description": "Design and run remote access workflows with retry governor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6336,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07863-remote-access-retry-governor/SKILL.md",
+    "entrypoint": "agent07/07863-remote-access-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "remote access retry governor",
+    "remote access retry governor workflow",
+    "remote access retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

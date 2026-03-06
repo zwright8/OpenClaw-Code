@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9911,
+  "name": "live-event-ops-execution-runner",
+  "title": "Live Event Ops Execution Runner",
+  "description": "Design and run live event ops workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1428,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09911-live-event-ops-execution-runner/SKILL.md",
+    "entrypoint": "agent08/09911-live-event-ops-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "live event ops execution runner",
+    "live event ops execution runner workflow",
+    "live event ops execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

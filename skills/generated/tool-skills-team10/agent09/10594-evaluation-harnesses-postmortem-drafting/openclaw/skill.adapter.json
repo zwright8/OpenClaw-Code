@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10594,
+  "name": "evaluation-harnesses-postmortem-drafting",
+  "title": "Evaluation Harnesses Postmortem Drafting",
+  "description": "Design and run evaluation harnesses workflows with postmortem drafting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11661,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10594-evaluation-harnesses-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent09/10594-evaluation-harnesses-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "evaluation harnesses postmortem drafting",
+    "evaluation harnesses postmortem drafting workflow",
+    "evaluation harnesses postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

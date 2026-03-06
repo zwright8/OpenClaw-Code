@@ -1,0 +1,325 @@
+{
+  "shard": "02",
+  "batch_index": 10,
+  "range": {
+    "start": "u2450-failure-root-cause-mining-for-entrepreneurship-operations",
+    "end": "u2499-failure-root-cause-mining-for-disaster-response-networks",
+    "count": 50
+  },
+  "requirements": {
+    "deterministic_tolerance": {
+      "score_delta_abs_max": 0.005,
+      "artifact_hash_drift_allowed": 0
+    },
+    "fail_closed": [
+      "schema-gate",
+      "determinism-gate",
+      "policy-risk-gate",
+      "approval-gate-high-risk"
+    ],
+    "high_risk_human_signoff": true,
+    "handoff_contract": true
+  },
+  "records": [
+    {
+      "skill_id": "u2450-failure-root-cause-mining-for-entrepreneurship-operations",
+      "path": "generated/shards/02/2450-failure-root-cause-mining-for-entrepreneurship-operations",
+      "skill_md_sha256": "56db42ac7db1b58d9514f74a79882b62c8776411dc34e2b942fd8ff584dc2f6d",
+      "summary_sha256": "d7329ab17748d0eb0dbaf1db18d36b1e165d30f756bc350b4fb8cc1000896ca9"
+    },
+    {
+      "skill_id": "u2451-failure-root-cause-mining-for-software-engineering-delivery",
+      "path": "generated/shards/02/2451-failure-root-cause-mining-for-software-engineering-delivery",
+      "skill_md_sha256": "c1f5f0e9b158f091a3f93b9b1a83d6e2bce97b0d856a7116b2d13e93f1bc8a2a",
+      "summary_sha256": "8f1b5b2087d8729248163f2148ed71195a40e369d02489f68a8791fe535e5476"
+    },
+    {
+      "skill_id": "u2452-failure-root-cause-mining-for-software-engineering-delivery",
+      "path": "generated/shards/02/2452-failure-root-cause-mining-for-software-engineering-delivery",
+      "skill_md_sha256": "a41adab8de0f122253d00fe287f64ff019d3c67ad1663c4df01ec2369942a996",
+      "summary_sha256": "069312e0849e571aa023a7b78bef85f8cd33b0f300c75011ca53da4e1572922a"
+    },
+    {
+      "skill_id": "u2453-failure-root-cause-mining-for-software-engineering-delivery",
+      "path": "generated/shards/02/2453-failure-root-cause-mining-for-software-engineering-delivery",
+      "skill_md_sha256": "92515ffec2fdb7b02f01a0d91d0bc163c46f295e841e3701f9aaba31f32c7b8a",
+      "summary_sha256": "c7194916e5b0954cdd99d9a6f1ce7319737351b1e371849824cefe718e3e1ef1"
+    },
+    {
+      "skill_id": "u2454-failure-root-cause-mining-for-software-engineering-delivery",
+      "path": "generated/shards/02/2454-failure-root-cause-mining-for-software-engineering-delivery",
+      "skill_md_sha256": "ff45c423715d5a054d2b4a40ffc78dad2f36ab4ba03c8eb5efcc8ac45236b893",
+      "summary_sha256": "76a475b9105d17201ccd53ae0215d29867a8da146ccd18de0d89ec00fd0db6ab"
+    },
+    {
+      "skill_id": "u2455-failure-root-cause-mining-for-software-engineering-delivery",
+      "path": "generated/shards/02/2455-failure-root-cause-mining-for-software-engineering-delivery",
+      "skill_md_sha256": "032118060d901d72d12818081470582890ed12e0e3526ae729df09a898410428",
+      "summary_sha256": "c016ea452753296312df05cd750068edc8c7d191925ebb6ff56b191887b33e39"
+    },
+    {
+      "skill_id": "u2456-failure-root-cause-mining-for-product-management-execution",
+      "path": "generated/shards/02/2456-failure-root-cause-mining-for-product-management-execution",
+      "skill_md_sha256": "a8481055175eb6e2d52fb1715446a06d8be21353ea2984aa2ecbeec29db6ad27",
+      "summary_sha256": "52f8ac8b644414a027fd85da9d7d98c023e6b5984745969eb7174c249c36bd34"
+    },
+    {
+      "skill_id": "u2457-failure-root-cause-mining-for-product-management-execution",
+      "path": "generated/shards/02/2457-failure-root-cause-mining-for-product-management-execution",
+      "skill_md_sha256": "8acf43b98d38fdbce609d6bc5503e725327ca0646ffb3784ee425e370e5744a2",
+      "summary_sha256": "1e17738bfe615bd62e0692c15f5abcfeb7c372b4086f12b99bc957a629e7fc3a"
+    },
+    {
+      "skill_id": "u2458-failure-root-cause-mining-for-product-management-execution",
+      "path": "generated/shards/02/2458-failure-root-cause-mining-for-product-management-execution",
+      "skill_md_sha256": "b7cecb465d3ae3015b31c6b6fd0868b55960cd7a4de3477a8c92a1c39ebe6bcb",
+      "summary_sha256": "098b9cb716006b5b70c3e58819cc211789ea64550f4158cf36015cda5cbda3b4"
+    },
+    {
+      "skill_id": "u2459-failure-root-cause-mining-for-product-management-execution",
+      "path": "generated/shards/02/2459-failure-root-cause-mining-for-product-management-execution",
+      "skill_md_sha256": "d77f72c85bcbefb1ae8a4d41494de0b0b906673cb31a80b4d19e3862cab4e6bc",
+      "summary_sha256": "af55d6dedac1f6e60f5e407b11d45bb048b53a5b8d6dc426be54ddef67f0ea49"
+    },
+    {
+      "skill_id": "u2460-failure-root-cause-mining-for-product-management-execution",
+      "path": "generated/shards/02/2460-failure-root-cause-mining-for-product-management-execution",
+      "skill_md_sha256": "3970f19d0e09a18573428d943066f755fb73b4995db7dc5a652eebea17709da7",
+      "summary_sha256": "8ac099a851223848b60cd35977543b3e82ff7bdc581f254f3c32b790a1f926c7"
+    },
+    {
+      "skill_id": "u2461-failure-root-cause-mining-for-design-and-user-research",
+      "path": "generated/shards/02/2461-failure-root-cause-mining-for-design-and-user-research",
+      "skill_md_sha256": "25a78daac789d1d54f3c8f77f71bb464bdcbac040ade342e03188f1522040f2e",
+      "summary_sha256": "e72d2622594fa32845b0be3f970b766ea39400f547eafe05fb14def9ab458dd2"
+    },
+    {
+      "skill_id": "u2462-failure-root-cause-mining-for-design-and-user-research",
+      "path": "generated/shards/02/2462-failure-root-cause-mining-for-design-and-user-research",
+      "skill_md_sha256": "a50e5ecbd2b2c304a332fffab7cf2d27e3f5f4f3026d2179fff5c14bac4e1eec",
+      "summary_sha256": "2af250c532dc6fc7659becdba2515422e1cd9508c98a316d86455e9c91ce7e0f"
+    },
+    {
+      "skill_id": "u2463-failure-root-cause-mining-for-design-and-user-research",
+      "path": "generated/shards/02/2463-failure-root-cause-mining-for-design-and-user-research",
+      "skill_md_sha256": "5cc97c003ea0f74f7d617987d7e549af0e0ba1d00a14aa17bb76679a8e6d925e",
+      "summary_sha256": "751850edb5f224871616df483f3ecc436acb74a055ac3dd0739c4324573a0841"
+    },
+    {
+      "skill_id": "u2464-failure-root-cause-mining-for-design-and-user-research",
+      "path": "generated/shards/02/2464-failure-root-cause-mining-for-design-and-user-research",
+      "skill_md_sha256": "f37b488db0ebbbeac83501c9c7042afa159bf7e201adcea33fe9d9a15924b872",
+      "summary_sha256": "f61f5da7c77ec9ff6dfa5146f5f566072d23cbf2a67e99376d682541df2ab5a4"
+    },
+    {
+      "skill_id": "u2465-failure-root-cause-mining-for-design-and-user-research",
+      "path": "generated/shards/02/2465-failure-root-cause-mining-for-design-and-user-research",
+      "skill_md_sha256": "a65bb7db0d6cc2bf000ca0dd79c2fc1587f9aa40e8bcd8285f4f3fe898f349d2",
+      "summary_sha256": "1392a29d2115b28f6d55c90d39379735b5fd91df919ddcc57bbe30dc2e4cafa6"
+    },
+    {
+      "skill_id": "u2466-failure-root-cause-mining-for-sales-and-client-success",
+      "path": "generated/shards/02/2466-failure-root-cause-mining-for-sales-and-client-success",
+      "skill_md_sha256": "0accc0035ea9d96c22bb78ff2c7e4dbfdffc6499b230cced88a486896f3cd14f",
+      "summary_sha256": "d78e4e98c104a462051bf7c726106250a97718d5f813912f0e4431c7f36c0cf5"
+    },
+    {
+      "skill_id": "u2467-failure-root-cause-mining-for-sales-and-client-success",
+      "path": "generated/shards/02/2467-failure-root-cause-mining-for-sales-and-client-success",
+      "skill_md_sha256": "3f333da4f71d756e0ac1d3bd4970799e348cb6606a422da1ed0c16604adc2681",
+      "summary_sha256": "642f26a7aa5e39659509105d54b2f298c7f5be8a1864e1aa7e58401fe8268070"
+    },
+    {
+      "skill_id": "u2468-failure-root-cause-mining-for-sales-and-client-success",
+      "path": "generated/shards/02/2468-failure-root-cause-mining-for-sales-and-client-success",
+      "skill_md_sha256": "3b55d0658c67354364600d32b5241d7aa86e5a764b1a527eb5adc7059b76766e",
+      "summary_sha256": "ba7b1c927bc4d26f9d358f4edb538be7906b98dc4778ade3c2df19560d307bf9"
+    },
+    {
+      "skill_id": "u2469-failure-root-cause-mining-for-sales-and-client-success",
+      "path": "generated/shards/02/2469-failure-root-cause-mining-for-sales-and-client-success",
+      "skill_md_sha256": "2869f982adb7ff3c7ea594e87eeee57e1b6422639d712b38c0260e51331058ad",
+      "summary_sha256": "447813233c322d6d35b19791e18c6b666abf1a1982efe15d2f016a163fb18d07"
+    },
+    {
+      "skill_id": "u2470-failure-root-cause-mining-for-sales-and-client-success",
+      "path": "generated/shards/02/2470-failure-root-cause-mining-for-sales-and-client-success",
+      "skill_md_sha256": "44a9a7c8f1975b4c81b96facb08b0df00fa09fb9dc695d38a2420ba6d0ccfb5b",
+      "summary_sha256": "beadf009807a7c8269a2e7c1d95f5471ac36d5532656e9c6312acd631ec953d3"
+    },
+    {
+      "skill_id": "u2471-failure-root-cause-mining-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2471-failure-root-cause-mining-for-marketing-and-storytelling",
+      "skill_md_sha256": "0348c427f9dee8521429805a61766b533e3832975f0f831ac4919fc4d8eee176",
+      "summary_sha256": "4b37f7943a93aecdbb5ea4c583a3ed418fcf8b42b088ed05bb8876ecc29cd61b"
+    },
+    {
+      "skill_id": "u2472-failure-root-cause-mining-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2472-failure-root-cause-mining-for-marketing-and-storytelling",
+      "skill_md_sha256": "040ef74dd89cac4b8ca2ed9f1675e381df0a55f00b3b4a3aef1802079e0f4cff",
+      "summary_sha256": "64e1fd948813969acc8fd6c52d85e0ddfe47fe4827061748cb48986cc5122fe1"
+    },
+    {
+      "skill_id": "u2473-failure-root-cause-mining-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2473-failure-root-cause-mining-for-marketing-and-storytelling",
+      "skill_md_sha256": "e8bdaa0142cdce1b7b87dce33d041e780aa34253bb89c242c1176ae3fe7f9414",
+      "summary_sha256": "11ee5ea88c786daf6fd34ed7733fbe9a2451a44eabc79120bccd18801346911d"
+    },
+    {
+      "skill_id": "u2474-failure-root-cause-mining-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2474-failure-root-cause-mining-for-marketing-and-storytelling",
+      "skill_md_sha256": "73d0c650e1059944fb9742da6267ba1b8380dba8d0c408b03df366c0e65c1ffc",
+      "summary_sha256": "87683889328932d86bfcb32e9f7670165ad061097e0d36014b833d633ccd554b"
+    },
+    {
+      "skill_id": "u2475-failure-root-cause-mining-for-marketing-and-storytelling",
+      "path": "generated/shards/02/2475-failure-root-cause-mining-for-marketing-and-storytelling",
+      "skill_md_sha256": "6c376af96336c4b454a70c00584eaed7d0bf8b52e2863f7233144a350df8f8bc",
+      "summary_sha256": "a828671e6cc101b93ab94303520fd4c80d6d6c14213c4df169eb48a33ffa39f6"
+    },
+    {
+      "skill_id": "u2476-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2476-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "skill_md_sha256": "9386e8c971e6f7ec2c85d2b676908da8614f001aaf446dac02a8d9930d80d862",
+      "summary_sha256": "becccc752de15e69110f7b124ea137d46f31341464c3d0269049cb3b6be0cad0"
+    },
+    {
+      "skill_id": "u2477-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2477-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "skill_md_sha256": "5a7cd6c78d34b603e20cbef537c917af7b7a6f1ef6ba49c52c53bfe4a9552b13",
+      "summary_sha256": "32deac2d884241eddcf040f8a222edb2c152112abfb44508908faf8a5dd87f3c"
+    },
+    {
+      "skill_id": "u2478-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2478-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "skill_md_sha256": "6fcedba81df881eaaf97e7411622b66ddeb8a895332e160db9eb09039ad65f56",
+      "summary_sha256": "5500fa9918acc6c70abbf964b84ef899e15fbbba1cc9b4814b0899f4c3abe635"
+    },
+    {
+      "skill_id": "u2479-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2479-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "skill_md_sha256": "e920669e04dcc6363b701f9e22021e0eebea4cd898d9c73514d59b29c534c0bb",
+      "summary_sha256": "e75bbaa91f70588195c5fb941f55976a4ca232ec7164e08658630e2c8125a4e5"
+    },
+    {
+      "skill_id": "u2480-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "path": "generated/shards/02/2480-failure-root-cause-mining-for-legal-and-policy-workflows",
+      "skill_md_sha256": "a860fb63cb5be359bc5f71f0d6abd6c5c5961365881ab6f5d01638ef4b727531",
+      "summary_sha256": "6b719e5e95f75b732e00d18c850290f3e2848f6d6104b4fa62657b2c41ebf449"
+    },
+    {
+      "skill_id": "u2481-failure-root-cause-mining-for-healthcare-operations",
+      "path": "generated/shards/02/2481-failure-root-cause-mining-for-healthcare-operations",
+      "skill_md_sha256": "36a702238156aa59b088d326e209d12c0b00938af822b87bf508e18449652376",
+      "summary_sha256": "8cbe0598c7410c2b8a7cb326fc8ad641f97c6379b0319df786c3f69277098c34"
+    },
+    {
+      "skill_id": "u2482-failure-root-cause-mining-for-healthcare-operations",
+      "path": "generated/shards/02/2482-failure-root-cause-mining-for-healthcare-operations",
+      "skill_md_sha256": "779830ebba84389608081561a99d9d84306e0f1e72be35d725251800129faa9d",
+      "summary_sha256": "47fa4ed44b50053673c780c12010e57ee487b00680d5e7bf083553c0b6ed84f1"
+    },
+    {
+      "skill_id": "u2483-failure-root-cause-mining-for-healthcare-operations",
+      "path": "generated/shards/02/2483-failure-root-cause-mining-for-healthcare-operations",
+      "skill_md_sha256": "083e1da7a17736850b3912283f877b04340d3242641bb1d3cc1b44cb1aa6068d",
+      "summary_sha256": "c5a97d95e2dda23634a279f52b31bb95bf85f862fee83fe6ad2332ca9eb1aa54"
+    },
+    {
+      "skill_id": "u2484-failure-root-cause-mining-for-healthcare-operations",
+      "path": "generated/shards/02/2484-failure-root-cause-mining-for-healthcare-operations",
+      "skill_md_sha256": "6fc9b6fb0bb43fad3c24bcd8b7140315d56e99d3ebcd5a6dc7cba547531d3121",
+      "summary_sha256": "fea8ecf1aca0c8d4c8e5913716d113dd64b3e4d41dc49a83efc4286658bb5dd8"
+    },
+    {
+      "skill_id": "u2485-failure-root-cause-mining-for-healthcare-operations",
+      "path": "generated/shards/02/2485-failure-root-cause-mining-for-healthcare-operations",
+      "skill_md_sha256": "7f49e0268288028692e1cfc11a9da2ccd9cff5029c837d3424b0aa2027560a57",
+      "summary_sha256": "37813ab71796b8b954c14c155a1b702eef806fd4ff0fe9efc58dfefc1f2da055"
+    },
+    {
+      "skill_id": "u2486-failure-root-cause-mining-for-education-support-services",
+      "path": "generated/shards/02/2486-failure-root-cause-mining-for-education-support-services",
+      "skill_md_sha256": "6bfb3ac5043703027f81c12295b7f6de23a1793db6a2f32e3da665d43b18a4fb",
+      "summary_sha256": "31e50729a2a40c34a149cc8f5f82713ea71e3256c4f8bf99ed019ad0ab665f86"
+    },
+    {
+      "skill_id": "u2487-failure-root-cause-mining-for-education-support-services",
+      "path": "generated/shards/02/2487-failure-root-cause-mining-for-education-support-services",
+      "skill_md_sha256": "528e0eea72b61abcb0c3e2321b7c773683a58af292e1c943ffd0a5e2a44009b4",
+      "summary_sha256": "1a6272896b926b6ad46529e95b09ebeac0e0830d8f82e4ac229c59a69203f350"
+    },
+    {
+      "skill_id": "u2488-failure-root-cause-mining-for-education-support-services",
+      "path": "generated/shards/02/2488-failure-root-cause-mining-for-education-support-services",
+      "skill_md_sha256": "5b5072cb9241d7157ce09bb5486e19b2f799ea35d297278794919d804e2c712c",
+      "summary_sha256": "ad44ad58df799bb348d079a91c788008005a181ff76ac1da2e73e55e90c13401"
+    },
+    {
+      "skill_id": "u2489-failure-root-cause-mining-for-education-support-services",
+      "path": "generated/shards/02/2489-failure-root-cause-mining-for-education-support-services",
+      "skill_md_sha256": "db5e4c0d60fffd97b6450d59d8825042bf55e9a503e8b09aa149865ae7d909e2",
+      "summary_sha256": "6cd580cd0fa76715ddda44601e0ede5b638415b590de6a59c3703eeea8d436fc"
+    },
+    {
+      "skill_id": "u2490-failure-root-cause-mining-for-education-support-services",
+      "path": "generated/shards/02/2490-failure-root-cause-mining-for-education-support-services",
+      "skill_md_sha256": "e593dcba46a58daddd3ad7a99d34db1cefda8f4b22a95de5d360b50ff6d327bb",
+      "summary_sha256": "9b3c6fb24309d8ef4ef6cf1b85bd28217c3bbd62c130c94c3178a8cbec5fd67e"
+    },
+    {
+      "skill_id": "u2491-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2491-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "skill_md_sha256": "fab030c7df38eed388f9eb664649a67786646897409a8d17f6141c03a189ffc0",
+      "summary_sha256": "b9aafdc7b0c6b417e12a54e9124714e2c7321b3db8bea622d692e9ffb8214d18"
+    },
+    {
+      "skill_id": "u2492-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2492-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "skill_md_sha256": "db1da1291c4ba938738d0b863a90ee5b9a043ff3dfbcdc32146bd31fbe6e9418",
+      "summary_sha256": "f8fe2436c243eaf627467f791be9a7d5a5d871f07655bbb6279185941ad22162"
+    },
+    {
+      "skill_id": "u2493-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2493-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "skill_md_sha256": "d9b3291ce033036efc25f136ab37be291730744cda8c90b97f25665483edffdb",
+      "summary_sha256": "a497b2e5dcf26e1a5f188307409f10d16b577409eae15e46e815fd74abf238b7"
+    },
+    {
+      "skill_id": "u2494-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2494-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "skill_md_sha256": "4db6730aa835c942ac857c85785d24660b5e308230b366b18b57bf49875d3747",
+      "summary_sha256": "930f98d04f33f7e59bbc019997b588e8fe85ab8f54ad52c0c9d2b3fdba1b56eb"
+    },
+    {
+      "skill_id": "u2495-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "path": "generated/shards/02/2495-failure-root-cause-mining-for-nonprofit-program-delivery",
+      "skill_md_sha256": "1d52ae1ac617547c217b9df3e31c147df4c6d2ace8d31c8572344a1638e92076",
+      "summary_sha256": "ddb9a0dabb11891ded11f53cbeb6b612f41df9dd7eb519ff8be416b16d245d1d"
+    },
+    {
+      "skill_id": "u2496-failure-root-cause-mining-for-disaster-response-networks",
+      "path": "generated/shards/02/2496-failure-root-cause-mining-for-disaster-response-networks",
+      "skill_md_sha256": "cea862fb30b97af99d8dfae264bcba2a2fa9511be1c8935b800e619eb41d1859",
+      "summary_sha256": "4ffc9423d605df38ac3d55f541a632b03587d16634f120c93a987636dc3e5df8"
+    },
+    {
+      "skill_id": "u2497-failure-root-cause-mining-for-disaster-response-networks",
+      "path": "generated/shards/02/2497-failure-root-cause-mining-for-disaster-response-networks",
+      "skill_md_sha256": "c76ef60741ef7ae524f78deaf2566c22d9a4d299aa378358f691e1c50c5ded6d",
+      "summary_sha256": "7116417fdd1f3fab035e37d835d18f5c4c4ab7a4c1ceef1693135688e2a64c72"
+    },
+    {
+      "skill_id": "u2498-failure-root-cause-mining-for-disaster-response-networks",
+      "path": "generated/shards/02/2498-failure-root-cause-mining-for-disaster-response-networks",
+      "skill_md_sha256": "36b606037955f3d4df5642be82646eb6c96b729c957855219661f10e129f68e6",
+      "summary_sha256": "c5e88ca5c784aebfa17fe06fd1eb74763606dc06da4b3baa7d0ac86f99d057d3"
+    },
+    {
+      "skill_id": "u2499-failure-root-cause-mining-for-disaster-response-networks",
+      "path": "generated/shards/02/2499-failure-root-cause-mining-for-disaster-response-networks",
+      "skill_md_sha256": "137bfc76edd9123a29fce27eeb57cd4dbff356722528b80251d445d695d43ff5",
+      "summary_sha256": "4040545028091aace3817702737410c7d9e0bb87092bd5555dd9a09264d90ee6"
+    }
+  ]
+}

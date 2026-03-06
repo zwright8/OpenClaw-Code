@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5979,
+  "name": "task-queues-capacity-planner",
+  "title": "Task Queues Capacity Planner",
+  "description": "Design and run task queues workflows with capacity planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10018,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05979-task-queues-capacity-planner/SKILL.md",
+    "entrypoint": "agent05/05979-task-queues-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues capacity planner",
+    "task queues capacity planner workflow",
+    "task queues capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

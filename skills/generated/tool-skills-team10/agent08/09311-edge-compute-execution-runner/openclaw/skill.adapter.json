@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9311,
+  "name": "edge-compute-execution-runner",
+  "title": "Edge Compute Execution Runner",
+  "description": "Design and run edge compute workflows with execution runner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1416,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09311-edge-compute-execution-runner/SKILL.md",
+    "entrypoint": "agent08/09311-edge-compute-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "edge compute execution runner",
+    "edge compute execution runner workflow",
+    "edge compute execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

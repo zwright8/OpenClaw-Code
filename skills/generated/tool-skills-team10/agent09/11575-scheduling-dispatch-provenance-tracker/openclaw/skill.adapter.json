@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11575,
+  "name": "scheduling-dispatch-provenance-tracker",
+  "title": "Scheduling Dispatch Provenance Tracker",
+  "description": "Design and run scheduling dispatch workflows with provenance tracker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12031,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11575-scheduling-dispatch-provenance-tracker/SKILL.md",
+    "entrypoint": "agent09/11575-scheduling-dispatch-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch provenance tracker",
+    "scheduling dispatch provenance tracker workflow",
+    "scheduling dispatch provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

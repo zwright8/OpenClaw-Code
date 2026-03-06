@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10451,
+  "name": "biometric-systems-access-auditor",
+  "title": "Biometric Systems Access Auditor",
+  "description": "Design and run biometric systems workflows with access auditor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11622,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10451-biometric-systems-access-auditor/SKILL.md",
+    "entrypoint": "agent09/10451-biometric-systems-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems access auditor",
+    "biometric systems access auditor workflow",
+    "biometric systems access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

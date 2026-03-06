@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1884,
+  "name": "warehouse-robotics-sla-enforcer",
+  "title": "Warehouse Robotics SLA Enforcer",
+  "description": "Design and run warehouse robotics workflows with sla enforcer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8657,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01884-warehouse-robotics-sla-enforcer/SKILL.md",
+    "entrypoint": "agent02/01884-warehouse-robotics-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics sla enforcer",
+    "warehouse robotics sla enforcer workflow",
+    "warehouse robotics sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

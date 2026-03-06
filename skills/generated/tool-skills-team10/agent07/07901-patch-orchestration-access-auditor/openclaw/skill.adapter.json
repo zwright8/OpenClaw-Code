@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7901,
+  "name": "patch-orchestration-access-auditor",
+  "title": "Patch Orchestration Access Auditor",
+  "description": "Design and run patch orchestration workflows with access auditor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10740,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07901-patch-orchestration-access-auditor/SKILL.md",
+    "entrypoint": "agent07/07901-patch-orchestration-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration access auditor",
+    "patch orchestration access auditor workflow",
+    "patch orchestration access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

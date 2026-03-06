@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7735,
+  "name": "in-app-messaging-policy-evaluator",
+  "title": "In-App Messaging Policy Evaluator",
+  "description": "Design and run in-app messaging workflows with policy evaluator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3606,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07735-in-app-messaging-policy-evaluator/SKILL.md",
+    "entrypoint": "agent06/07735-in-app-messaging-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging policy evaluator",
+    "in-app messaging policy evaluator workflow",
+    "in-app messaging policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12300,
+  "name": "ai-evaluation-markets-outcome-synthesizer",
+  "title": "AI Evaluation Markets Outcome Synthesizer",
+  "description": "Design and run ai evaluation markets workflows with outcome synthesizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4443,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12300-ai-evaluation-markets-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent10/12300-ai-evaluation-markets-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets outcome synthesizer",
+    "ai evaluation markets outcome synthesizer workflow",
+    "ai evaluation markets outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

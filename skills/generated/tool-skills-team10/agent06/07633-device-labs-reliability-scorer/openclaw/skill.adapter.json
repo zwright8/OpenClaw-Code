@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7633,
+  "name": "device-labs-reliability-scorer",
+  "title": "Device Labs Reliability Scorer",
+  "description": "Design and run device labs workflows with reliability scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10630,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07633-device-labs-reliability-scorer/SKILL.md",
+    "entrypoint": "agent06/07633-device-labs-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "device labs reliability scorer",
+    "device labs reliability scorer workflow",
+    "device labs reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

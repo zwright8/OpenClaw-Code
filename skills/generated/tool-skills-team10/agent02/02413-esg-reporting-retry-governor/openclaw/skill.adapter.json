@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2413,
+  "name": "esg-reporting-retry-governor",
+  "title": "ESG Reporting Retry Governor",
+  "description": "Design and run esg reporting workflows with retry governor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5841,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02413-esg-reporting-retry-governor/SKILL.md",
+    "entrypoint": "agent02/02413-esg-reporting-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esg reporting retry governor",
+    "esg reporting retry governor workflow",
+    "esg reporting retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4223,
+  "name": "customer-qa-artifact-publisher",
+  "title": "Customer QA Artifact Publisher",
+  "description": "Design and run customer qa workflows with artifact publisher controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9426,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04223-customer-qa-artifact-publisher/SKILL.md",
+    "entrypoint": "agent04/04223-customer-qa-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa artifact publisher",
+    "customer qa artifact publisher workflow",
+    "customer qa artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

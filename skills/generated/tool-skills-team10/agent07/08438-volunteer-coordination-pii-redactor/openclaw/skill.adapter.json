@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8438,
+  "name": "volunteer-coordination-pii-redactor",
+  "title": "Volunteer Coordination PII Redactor",
+  "description": "Design and run volunteer coordination workflows with pii redactor controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3661,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08438-volunteer-coordination-pii-redactor/SKILL.md",
+    "entrypoint": "agent07/08438-volunteer-coordination-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "volunteer coordination pii redactor",
+    "volunteer coordination pii redactor workflow",
+    "volunteer coordination pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

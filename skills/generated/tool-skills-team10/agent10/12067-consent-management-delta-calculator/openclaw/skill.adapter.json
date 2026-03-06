@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12067,
+  "name": "consent-management-delta-calculator",
+  "title": "Consent Management Delta Calculator",
+  "description": "Design and run consent management workflows with delta calculator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12236,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12067-consent-management-delta-calculator/SKILL.md",
+    "entrypoint": "agent10/12067-consent-management-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "consent management delta calculator",
+    "consent management delta calculator workflow",
+    "consent management delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

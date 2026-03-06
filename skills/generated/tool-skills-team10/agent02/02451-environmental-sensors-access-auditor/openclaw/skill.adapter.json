@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2451,
+  "name": "environmental-sensors-access-auditor",
+  "title": "Environmental Sensors Access Auditor",
+  "description": "Design and run environmental sensors workflows with access auditor controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8850,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02451-environmental-sensors-access-auditor/SKILL.md",
+    "entrypoint": "agent02/02451-environmental-sensors-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "environmental sensors access auditor",
+    "environmental sensors access auditor workflow",
+    "environmental sensors access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

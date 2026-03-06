@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 283,
+  "name": "quickbooks-data-exporter",
+  "title": "QuickBooks Data Exporter",
+  "description": "Exports QuickBooks entities into clean, typed datasets.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0283-quickbooks-data-exporter/SKILL.md",
+    "entrypoint": "agent03/0283-quickbooks-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quickbooks data exporter",
+    "quickbooks data exporter workflow",
+    "quickbooks data exporter automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0283-quickbooks-data-exporter"
+  }
+}

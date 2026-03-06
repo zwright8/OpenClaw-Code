@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8559,
+  "name": "emergency-response-dependency-resolver",
+  "title": "Emergency Response Dependency Resolver",
+  "description": "Design and run emergency response workflows with dependency resolver controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10995,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08559-emergency-response-dependency-resolver/SKILL.md",
+    "entrypoint": "agent07/08559-emergency-response-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "emergency response dependency resolver",
+    "emergency response dependency resolver workflow",
+    "emergency response dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6323,
+  "name": "video-processing-artifact-publisher",
+  "title": "Video Processing Artifact Publisher",
+  "description": "Design and run video processing workflows with artifact publisher controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10140,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06323-video-processing-artifact-publisher/SKILL.md",
+    "entrypoint": "agent05/06323-video-processing-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "video processing artifact publisher",
+    "video processing artifact publisher workflow",
+    "video processing artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

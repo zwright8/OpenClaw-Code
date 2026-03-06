@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8348,
+  "name": "grant-management-feedback-harvester",
+  "title": "Grant Management Feedback Harvester",
+  "description": "Design and run grant management workflows with feedback harvester controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10907,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08348-grant-management-feedback-harvester/SKILL.md",
+    "entrypoint": "agent07/08348-grant-management-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grant management feedback harvester",
+    "grant management feedback harvester workflow",
+    "grant management feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

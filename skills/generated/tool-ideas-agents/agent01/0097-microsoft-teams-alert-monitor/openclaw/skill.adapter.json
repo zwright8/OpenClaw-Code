@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 97,
+  "name": "microsoft-teams-alert-monitor",
+  "title": "Microsoft Teams Alert Monitor",
+  "description": "Monitors key Microsoft Teams signals and raises actionable alerts.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "agent01/0097-microsoft-teams-alert-monitor/SKILL.md",
+    "entrypoint": "agent01/0097-microsoft-teams-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft teams alert monitor",
+    "microsoft teams alert monitor workflow",
+    "microsoft teams alert monitor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent01/0097-microsoft-teams-alert-monitor"
+  }
+}

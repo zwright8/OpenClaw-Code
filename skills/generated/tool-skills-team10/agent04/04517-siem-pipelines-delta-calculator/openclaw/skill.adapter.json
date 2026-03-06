@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4517,
+  "name": "siem-pipelines-delta-calculator",
+  "title": "SIEM Pipelines Delta Calculator",
+  "description": "Design and run siem pipelines workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9506,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04517-siem-pipelines-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/04517-siem-pipelines-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "siem pipelines delta calculator",
+    "siem pipelines delta calculator workflow",
+    "siem pipelines delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

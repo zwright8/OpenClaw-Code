@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5367,
+  "name": "event-streams-delta-calculator",
+  "title": "Event Streams Delta Calculator",
+  "description": "Design and run event streams workflows with delta calculator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9779,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05367-event-streams-delta-calculator/SKILL.md",
+    "entrypoint": "agent05/05367-event-streams-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "event streams delta calculator",
+    "event streams delta calculator workflow",
+    "event streams delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

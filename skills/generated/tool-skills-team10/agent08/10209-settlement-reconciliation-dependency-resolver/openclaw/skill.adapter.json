@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10209,
+  "name": "settlement-reconciliation-dependency-resolver",
+  "title": "Settlement Reconciliation Dependency Resolver",
+  "description": "Design and run settlement reconciliation workflows with dependency resolver controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11541,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10209-settlement-reconciliation-dependency-resolver/SKILL.md",
+    "entrypoint": "agent08/10209-settlement-reconciliation-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation dependency resolver",
+    "settlement reconciliation dependency resolver workflow",
+    "settlement reconciliation dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

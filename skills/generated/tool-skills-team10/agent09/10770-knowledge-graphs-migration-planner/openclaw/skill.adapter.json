@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10770,
+  "name": "knowledge-graphs-migration-planner",
+  "title": "Knowledge Graphs Migration Planner",
+  "description": "Design and run knowledge graphs workflows with migration planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2507,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10770-knowledge-graphs-migration-planner/SKILL.md",
+    "entrypoint": "agent09/10770-knowledge-graphs-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs migration planner",
+    "knowledge graphs migration planner workflow",
+    "knowledge graphs migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

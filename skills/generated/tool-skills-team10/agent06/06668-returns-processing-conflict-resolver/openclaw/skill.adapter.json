@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6668,
+  "name": "returns-processing-conflict-resolver",
+  "title": "Returns Processing Conflict Resolver",
+  "description": "Design and run returns processing workflows with conflict resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10263,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06668-returns-processing-conflict-resolver/SKILL.md",
+    "entrypoint": "agent06/06668-returns-processing-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "returns processing conflict resolver",
+    "returns processing conflict resolver workflow",
+    "returns processing conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

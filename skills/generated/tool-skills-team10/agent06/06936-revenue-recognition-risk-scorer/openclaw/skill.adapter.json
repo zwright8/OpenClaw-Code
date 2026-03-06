@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6936,
+  "name": "revenue-recognition-risk-scorer",
+  "title": "Revenue Recognition Risk Scorer",
+  "description": "Design and run revenue recognition workflows with risk scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1611,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/06936-revenue-recognition-risk-scorer/SKILL.md",
+    "entrypoint": "agent06/06936-revenue-recognition-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revenue recognition risk scorer",
+    "revenue recognition risk scorer workflow",
+    "revenue recognition risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7546,
+  "name": "mobile-release-ops-approval-orchestrator",
+  "title": "Mobile Release Ops Approval Orchestrator",
+  "description": "Design and run mobile release ops workflows with approval orchestrator controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 6305,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07546-mobile-release-ops-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent06/07546-mobile-release-ops-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops approval orchestrator",
+    "mobile release ops approval orchestrator workflow",
+    "mobile release ops approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

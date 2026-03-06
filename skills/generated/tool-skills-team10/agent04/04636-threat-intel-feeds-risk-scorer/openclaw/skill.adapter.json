@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4636,
+  "name": "threat-intel-feeds-risk-scorer",
+  "title": "Threat Intel Feeds Risk Scorer",
+  "description": "Design and run threat intel feeds workflows with risk scorer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1563,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04636-threat-intel-feeds-risk-scorer/SKILL.md",
+    "entrypoint": "agent04/04636-threat-intel-feeds-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds risk scorer",
+    "threat intel feeds risk scorer workflow",
+    "threat intel feeds risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

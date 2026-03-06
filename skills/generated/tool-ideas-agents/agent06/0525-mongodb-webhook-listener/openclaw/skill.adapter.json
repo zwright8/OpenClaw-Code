@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 525,
+  "name": "mongodb-webhook-listener",
+  "title": "MongoDB Webhook Listener",
+  "description": "Captures, verifies, and routes MongoDB webhook events.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0525-mongodb-webhook-listener/SKILL.md",
+    "entrypoint": "agent06/0525-mongodb-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mongodb webhook listener",
+    "mongodb webhook listener workflow",
+    "mongodb webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0525-mongodb-webhook-listener"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1386,
+  "name": "lab-information-systems-risk-scorer",
+  "title": "Lab Information Systems Risk Scorer",
+  "description": "Design and run lab information systems workflows with risk scorer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1495,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01386-lab-information-systems-risk-scorer/SKILL.md",
+    "entrypoint": "agent02/01386-lab-information-systems-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab information systems risk scorer",
+    "lab information systems risk scorer workflow",
+    "lab information systems risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

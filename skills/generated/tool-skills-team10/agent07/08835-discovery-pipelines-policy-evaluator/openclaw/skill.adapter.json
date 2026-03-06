@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8835,
+  "name": "discovery-pipelines-policy-evaluator",
+  "title": "Discovery Pipelines Policy Evaluator",
+  "description": "Design and run discovery pipelines workflows with policy evaluator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3691,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08835-discovery-pipelines-policy-evaluator/SKILL.md",
+    "entrypoint": "agent07/08835-discovery-pipelines-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines policy evaluator",
+    "discovery pipelines policy evaluator workflow",
+    "discovery pipelines policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

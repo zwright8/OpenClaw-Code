@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9127,
+  "name": "terminology-mgmt-threshold-alerting",
+  "title": "Terminology Mgmt Threshold Alerting",
+  "description": "Design and run terminology mgmt workflows with threshold alerting controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11171,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09127-terminology-mgmt-threshold-alerting/SKILL.md",
+    "entrypoint": "agent08/09127-terminology-mgmt-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "terminology mgmt threshold alerting",
+    "terminology mgmt threshold alerting workflow",
+    "terminology mgmt threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

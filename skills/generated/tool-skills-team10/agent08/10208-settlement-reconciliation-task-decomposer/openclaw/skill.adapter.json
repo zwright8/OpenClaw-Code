@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10208,
+  "name": "settlement-reconciliation-task-decomposer",
+  "title": "Settlement Reconciliation Task Decomposer",
+  "description": "Design and run settlement reconciliation workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11540,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10208-settlement-reconciliation-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/10208-settlement-reconciliation-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation task decomposer",
+    "settlement reconciliation task decomposer workflow",
+    "settlement reconciliation task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

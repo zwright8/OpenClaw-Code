@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7523,
+  "name": "mobile-release-ops-artifact-publisher",
+  "title": "Mobile Release Ops Artifact Publisher",
+  "description": "Design and run mobile release ops workflows with artifact publisher controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10581,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07523-mobile-release-ops-artifact-publisher/SKILL.md",
+    "entrypoint": "agent06/07523-mobile-release-ops-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobile release ops artifact publisher",
+    "mobile release ops artifact publisher workflow",
+    "mobile release ops artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

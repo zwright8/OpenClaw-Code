@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9541,
+  "name": "trading-platforms-incident-triage",
+  "title": "Trading Platforms Incident Triage",
+  "description": "Design and run trading platforms workflows with incident triage controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2206,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09541-trading-platforms-incident-triage/SKILL.md",
+    "entrypoint": "agent08/09541-trading-platforms-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "trading platforms incident triage",
+    "trading platforms incident triage workflow",
+    "trading platforms incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

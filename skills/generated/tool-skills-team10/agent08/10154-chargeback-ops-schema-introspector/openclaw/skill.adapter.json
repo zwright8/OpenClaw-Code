@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10154,
+  "name": "chargeback-ops-schema-introspector",
+  "title": "Chargeback Ops Schema Introspector",
+  "description": "Design and run chargeback ops workflows with schema introspector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 717,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/10154-chargeback-ops-schema-introspector/SKILL.md",
+    "entrypoint": "agent08/10154-chargeback-ops-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chargeback ops schema introspector",
+    "chargeback ops schema introspector workflow",
+    "chargeback ops schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

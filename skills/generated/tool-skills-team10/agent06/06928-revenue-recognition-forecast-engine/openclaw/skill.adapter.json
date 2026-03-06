@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6928,
+  "name": "revenue-recognition-forecast-engine",
+  "title": "Revenue Recognition Forecast Engine",
+  "description": "Design and run revenue recognition workflows with forecast engine controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10353,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06928-revenue-recognition-forecast-engine/SKILL.md",
+    "entrypoint": "agent06/06928-revenue-recognition-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revenue recognition forecast engine",
+    "revenue recognition forecast engine workflow",
+    "revenue recognition forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

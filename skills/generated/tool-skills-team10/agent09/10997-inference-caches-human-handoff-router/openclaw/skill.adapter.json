@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10997,
+  "name": "inference-caches-human-handoff-router",
+  "title": "Inference Caches Human Handoff Router",
+  "description": "Design and run inference caches workflows with human handoff router controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11788,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10997-inference-caches-human-handoff-router/SKILL.md",
+    "entrypoint": "agent09/10997-inference-caches-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches human handoff router",
+    "inference caches human handoff router workflow",
+    "inference caches human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

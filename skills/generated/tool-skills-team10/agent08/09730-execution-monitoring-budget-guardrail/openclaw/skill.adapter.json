@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9730,
+  "name": "execution-monitoring-budget-guardrail",
+  "title": "Execution Monitoring Budget Guardrail",
+  "description": "Design and run execution monitoring workflows with budget guardrail controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7619,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09730-execution-monitoring-budget-guardrail/SKILL.md",
+    "entrypoint": "agent08/09730-execution-monitoring-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring budget guardrail",
+    "execution monitoring budget guardrail workflow",
+    "execution monitoring budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

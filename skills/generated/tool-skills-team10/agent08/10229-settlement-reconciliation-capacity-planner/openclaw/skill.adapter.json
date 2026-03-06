@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10229,
+  "name": "settlement-reconciliation-capacity-planner",
+  "title": "Settlement Reconciliation Capacity Planner",
+  "description": "Design and run settlement reconciliation workflows with capacity planner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11551,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10229-settlement-reconciliation-capacity-planner/SKILL.md",
+    "entrypoint": "agent08/10229-settlement-reconciliation-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "settlement reconciliation capacity planner",
+    "settlement reconciliation capacity planner workflow",
+    "settlement reconciliation capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

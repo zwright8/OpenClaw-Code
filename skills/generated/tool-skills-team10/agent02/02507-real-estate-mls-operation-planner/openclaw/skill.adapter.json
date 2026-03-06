@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2507,
+  "name": "real-estate-mls-operation-planner",
+  "title": "Real Estate MLS Operation Planner",
+  "description": "Design and run real estate mls workflows with operation planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8872,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02507-real-estate-mls-operation-planner/SKILL.md",
+    "entrypoint": "agent02/02507-real-estate-mls-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls operation planner",
+    "real estate mls operation planner workflow",
+    "real estate mls operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

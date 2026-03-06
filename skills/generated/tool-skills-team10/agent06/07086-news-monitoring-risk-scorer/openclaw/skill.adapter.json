@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7086,
+  "name": "news-monitoring-risk-scorer",
+  "title": "News Monitoring Risk Scorer",
+  "description": "Design and run news monitoring workflows with risk scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 1614,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07086-news-monitoring-risk-scorer/SKILL.md",
+    "entrypoint": "agent06/07086-news-monitoring-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring risk scorer",
+    "news monitoring risk scorer workflow",
+    "news monitoring risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

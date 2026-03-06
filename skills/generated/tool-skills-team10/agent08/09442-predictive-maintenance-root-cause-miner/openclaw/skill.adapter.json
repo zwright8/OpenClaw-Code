@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9442,
+  "name": "predictive-maintenance-root-cause-miner",
+  "title": "Predictive Maintenance Root Cause Miner",
+  "description": "Design and run predictive maintenance workflows with root cause miner controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2497,
+    "score": 76,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09442-predictive-maintenance-root-cause-miner/SKILL.md",
+    "entrypoint": "agent08/09442-predictive-maintenance-root-cause-miner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "predictive maintenance root cause miner",
+    "predictive maintenance root cause miner workflow",
+    "predictive maintenance root cause miner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

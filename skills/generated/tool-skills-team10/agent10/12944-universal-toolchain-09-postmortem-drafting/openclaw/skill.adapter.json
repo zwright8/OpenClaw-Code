@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12944,
+  "name": "universal-toolchain-09-postmortem-drafting",
+  "title": "Universal Toolchain 09 Postmortem Drafting",
+  "description": "Design and run universal toolchain 09 workflows with postmortem drafting controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8384,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12944-universal-toolchain-09-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent10/12944-universal-toolchain-09-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 09 postmortem drafting",
+    "universal toolchain 09 postmortem drafting workflow",
+    "universal toolchain 09 postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

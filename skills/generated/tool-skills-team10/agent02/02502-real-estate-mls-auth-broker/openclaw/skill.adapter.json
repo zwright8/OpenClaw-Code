@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2502,
+  "name": "real-estate-mls-auth-broker",
+  "title": "Real Estate MLS Auth Broker",
+  "description": "Design and run real estate mls workflows with auth broker controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 827,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent02/02502-real-estate-mls-auth-broker/SKILL.md",
+    "entrypoint": "agent02/02502-real-estate-mls-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls auth broker",
+    "real estate mls auth broker workflow",
+    "real estate mls auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

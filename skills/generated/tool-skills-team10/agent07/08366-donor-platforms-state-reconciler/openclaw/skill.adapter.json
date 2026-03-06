@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8366,
+  "name": "donor-platforms-state-reconciler",
+  "title": "Donor Platforms State Reconciler",
+  "description": "Design and run donor platforms workflows with state reconciler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 4300,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08366-donor-platforms-state-reconciler/SKILL.md",
+    "entrypoint": "agent07/08366-donor-platforms-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms state reconciler",
+    "donor platforms state reconciler workflow",
+    "donor platforms state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

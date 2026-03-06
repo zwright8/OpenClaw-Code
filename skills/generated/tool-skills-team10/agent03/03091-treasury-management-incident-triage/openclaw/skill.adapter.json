@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3091,
+  "name": "treasury-management-incident-triage",
+  "title": "Treasury Management Incident Triage",
+  "description": "Design and run treasury management workflows with incident triage controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 2051,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent03/03091-treasury-management-incident-triage/SKILL.md",
+    "entrypoint": "agent03/03091-treasury-management-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "treasury management incident triage",
+    "treasury management incident triage workflow",
+    "treasury management incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11110,
+  "name": "b2b-portals-workflow-compiler",
+  "title": "B2B Portals Workflow Compiler",
+  "description": "Design and run b2b portals workflows with workflow compiler controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1205,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/11110-b2b-portals-workflow-compiler/SKILL.md",
+    "entrypoint": "agent09/11110-b2b-portals-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "b2b portals workflow compiler",
+    "b2b portals workflow compiler workflow",
+    "b2b portals workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12331,
+  "name": "benchmark-repositories-cost-attribution",
+  "title": "Benchmark Repositories Cost Attribution",
+  "description": "Design and run benchmark repositories workflows with cost attribution controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12287,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12331-benchmark-repositories-cost-attribution/SKILL.md",
+    "entrypoint": "agent10/12331-benchmark-repositories-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "benchmark repositories cost attribution",
+    "benchmark repositories cost attribution workflow",
+    "benchmark repositories cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

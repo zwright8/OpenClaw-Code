@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11468,
+  "name": "reference-programs-conflict-resolver",
+  "title": "Reference Programs Conflict Resolver",
+  "description": "Design and run reference programs workflows with conflict resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11985,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11468-reference-programs-conflict-resolver/SKILL.md",
+    "entrypoint": "agent09/11468-reference-programs-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reference programs conflict resolver",
+    "reference programs conflict resolver workflow",
+    "reference programs conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

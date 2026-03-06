@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2678,
+  "name": "bim-coordination-forecast-engine",
+  "title": "BIM Coordination Forecast Engine",
+  "description": "Design and run bim coordination workflows with forecast engine controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 8946,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02678-bim-coordination-forecast-engine/SKILL.md",
+    "entrypoint": "agent03/02678-bim-coordination-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bim coordination forecast engine",
+    "bim coordination forecast engine workflow",
+    "bim coordination forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

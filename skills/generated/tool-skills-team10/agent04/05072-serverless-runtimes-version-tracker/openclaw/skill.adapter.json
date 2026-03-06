@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5072,
+  "name": "serverless-runtimes-version-tracker",
+  "title": "Serverless Runtimes Version Tracker",
+  "description": "Design and run serverless runtimes workflows with version tracker controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9698,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05072-serverless-runtimes-version-tracker/SKILL.md",
+    "entrypoint": "agent04/05072-serverless-runtimes-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "serverless runtimes version tracker",
+    "serverless runtimes version tracker workflow",
+    "serverless runtimes version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

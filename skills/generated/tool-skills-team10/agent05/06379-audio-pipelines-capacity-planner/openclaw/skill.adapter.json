@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6379,
+  "name": "audio-pipelines-capacity-planner",
+  "title": "Audio Pipelines Capacity Planner",
+  "description": "Design and run audio pipelines workflows with capacity planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10165,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06379-audio-pipelines-capacity-planner/SKILL.md",
+    "entrypoint": "agent05/06379-audio-pipelines-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audio pipelines capacity planner",
+    "audio pipelines capacity planner workflow",
+    "audio pipelines capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

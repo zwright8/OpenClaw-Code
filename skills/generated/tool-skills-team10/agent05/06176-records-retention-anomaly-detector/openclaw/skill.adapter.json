@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6176,
+  "name": "records-retention-anomaly-detector",
+  "title": "Records Retention Anomaly Detector",
+  "description": "Design and run records retention workflows with anomaly detector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 5467,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06176-records-retention-anomaly-detector/SKILL.md",
+    "entrypoint": "agent05/06176-records-retention-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention anomaly detector",
+    "records retention anomaly detector workflow",
+    "records retention anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

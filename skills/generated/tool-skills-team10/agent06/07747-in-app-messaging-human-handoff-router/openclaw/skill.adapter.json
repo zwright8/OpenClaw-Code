@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7747,
+  "name": "in-app-messaging-human-handoff-router",
+  "title": "In-App Messaging Human Handoff Router",
+  "description": "Design and run in-app messaging workflows with human handoff router controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10675,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07747-in-app-messaging-human-handoff-router/SKILL.md",
+    "entrypoint": "agent06/07747-in-app-messaging-human-handoff-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "in-app messaging human handoff router",
+    "in-app messaging human handoff router workflow",
+    "in-app messaging human handoff router automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

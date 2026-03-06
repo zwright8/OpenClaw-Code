@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5016,
+  "name": "kubernetes-platforms-state-reconciler",
+  "title": "Kubernetes Platforms State Reconciler",
+  "description": "Design and run kubernetes platforms workflows with state reconciler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2388,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/05016-kubernetes-platforms-state-reconciler/SKILL.md",
+    "entrypoint": "agent04/05016-kubernetes-platforms-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "kubernetes platforms state reconciler",
+    "kubernetes platforms state reconciler workflow",
+    "kubernetes platforms state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

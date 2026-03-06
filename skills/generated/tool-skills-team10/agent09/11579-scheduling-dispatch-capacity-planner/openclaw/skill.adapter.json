@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11579,
+  "name": "scheduling-dispatch-capacity-planner",
+  "title": "Scheduling Dispatch Capacity Planner",
+  "description": "Design and run scheduling dispatch workflows with capacity planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12034,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11579-scheduling-dispatch-capacity-planner/SKILL.md",
+    "entrypoint": "agent09/11579-scheduling-dispatch-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scheduling dispatch capacity planner",
+    "scheduling dispatch capacity planner workflow",
+    "scheduling dispatch capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

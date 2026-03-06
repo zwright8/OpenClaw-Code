@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 574,
+  "name": "redshift-data-importer",
+  "title": "Redshift Data Importer",
+  "description": "Validates and imports bulk updates into Redshift.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0574-redshift-data-importer/SKILL.md",
+    "entrypoint": "agent06/0574-redshift-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "redshift data importer",
+    "redshift data importer workflow",
+    "redshift data importer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0574-redshift-data-importer"
+  }
+}

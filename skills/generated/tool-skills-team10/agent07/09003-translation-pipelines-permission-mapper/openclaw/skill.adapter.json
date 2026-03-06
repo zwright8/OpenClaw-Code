@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9003,
+  "name": "translation-pipelines-permission-mapper",
+  "title": "Translation Pipelines Permission Mapper",
+  "description": "Design and run translation pipelines workflows with permission mapper controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 2409,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/09003-translation-pipelines-permission-mapper/SKILL.md",
+    "entrypoint": "agent07/09003-translation-pipelines-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "translation pipelines permission mapper",
+    "translation pipelines permission mapper workflow",
+    "translation pipelines permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

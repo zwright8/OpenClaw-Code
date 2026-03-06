@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1529,
+  "name": "education-lms-capacity-planner",
+  "title": "Education LMS Capacity Planner",
+  "description": "Design and run education lms workflows with capacity planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7809,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01529-education-lms-capacity-planner/SKILL.md",
+    "entrypoint": "agent02/01529-education-lms-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms capacity planner",
+    "education lms capacity planner workflow",
+    "education lms capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1612,
+  "name": "student-success-platforms-job-scheduler",
+  "title": "Student Success Platforms Job Scheduler",
+  "description": "Design and run student success platforms workflows with job scheduler controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4888,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01612-student-success-platforms-job-scheduler/SKILL.md",
+    "entrypoint": "agent02/01612-student-success-platforms-job-scheduler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms job scheduler",
+    "student success platforms job scheduler workflow",
+    "student success platforms job scheduler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

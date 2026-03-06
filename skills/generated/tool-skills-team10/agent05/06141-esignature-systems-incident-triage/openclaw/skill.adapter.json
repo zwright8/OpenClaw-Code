@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6141,
+  "name": "esignature-systems-incident-triage",
+  "title": "eSignature Systems Incident Triage",
+  "description": "Design and run esignature systems workflows with incident triage controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 2130,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06141-esignature-systems-incident-triage/SKILL.md",
+    "entrypoint": "agent05/06141-esignature-systems-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "esignature systems incident triage",
+    "esignature systems incident triage workflow",
+    "esignature systems incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

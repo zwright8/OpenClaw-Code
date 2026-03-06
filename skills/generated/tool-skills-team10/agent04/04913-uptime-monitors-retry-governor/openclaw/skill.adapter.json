@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4913,
+  "name": "uptime-monitors-retry-governor",
+  "title": "Uptime Monitors Retry Governor",
+  "description": "Design and run uptime monitors workflows with retry governor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6079,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04913-uptime-monitors-retry-governor/SKILL.md",
+    "entrypoint": "agent04/04913-uptime-monitors-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "uptime monitors retry governor",
+    "uptime monitors retry governor workflow",
+    "uptime monitors retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

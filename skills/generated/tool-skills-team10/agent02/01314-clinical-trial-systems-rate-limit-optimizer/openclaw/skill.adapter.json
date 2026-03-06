@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1314,
+  "name": "clinical-trial-systems-rate-limit-optimizer",
+  "title": "Clinical Trial Systems Rate Limit Optimizer",
+  "description": "Design and run clinical trial systems workflows with rate limit optimizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5752,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01314-clinical-trial-systems-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent02/01314-clinical-trial-systems-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clinical trial systems rate limit optimizer",
+    "clinical trial systems rate limit optimizer workflow",
+    "clinical trial systems rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

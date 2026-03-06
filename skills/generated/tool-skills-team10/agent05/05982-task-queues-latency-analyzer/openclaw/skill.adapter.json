@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5982,
+  "name": "task-queues-latency-analyzer",
+  "title": "Task Queues Latency Analyzer",
+  "description": "Design and run task queues workflows with latency analyzer controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10020,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05982-task-queues-latency-analyzer/SKILL.md",
+    "entrypoint": "agent05/05982-task-queues-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues latency analyzer",
+    "task queues latency analyzer workflow",
+    "task queues latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

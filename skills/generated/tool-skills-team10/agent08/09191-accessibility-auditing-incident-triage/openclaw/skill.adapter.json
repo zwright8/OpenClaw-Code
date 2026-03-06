@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9191,
+  "name": "accessibility-auditing-incident-triage",
+  "title": "Accessibility Auditing Incident Triage",
+  "description": "Design and run accessibility auditing workflows with incident triage controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2193,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09191-accessibility-auditing-incident-triage/SKILL.md",
+    "entrypoint": "agent08/09191-accessibility-auditing-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "accessibility auditing incident triage",
+    "accessibility auditing incident triage workflow",
+    "accessibility auditing incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

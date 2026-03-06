@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4167,
+  "name": "incident-queues-delta-calculator",
+  "title": "Incident Queues Delta Calculator",
+  "description": "Design and run incident queues workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6897,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04167-incident-queues-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/04167-incident-queues-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues delta calculator",
+    "incident queues delta calculator workflow",
+    "incident queues delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9469,
+  "name": "industrial-alerts-rollback-coordinator",
+  "title": "Industrial Alerts Rollback Coordinator",
+  "description": "Design and run industrial alerts workflows with rollback coordinator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 5158,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09469-industrial-alerts-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent08/09469-industrial-alerts-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts rollback coordinator",
+    "industrial alerts rollback coordinator workflow",
+    "industrial alerts rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

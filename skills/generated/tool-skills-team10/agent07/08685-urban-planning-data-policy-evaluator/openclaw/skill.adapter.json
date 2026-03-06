@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8685,
+  "name": "urban-planning-data-policy-evaluator",
+  "title": "Urban Planning Data Policy Evaluator",
+  "description": "Design and run urban planning data workflows with policy evaluator controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 3678,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08685-urban-planning-data-policy-evaluator/SKILL.md",
+    "entrypoint": "agent07/08685-urban-planning-data-policy-evaluator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data policy evaluator",
+    "urban planning data policy evaluator workflow",
+    "urban planning data policy evaluator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7924,
+  "name": "patch-orchestration-evidence-collector",
+  "title": "Patch Orchestration Evidence Collector",
+  "description": "Design and run patch orchestration workflows with evidence collector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6343,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07924-patch-orchestration-evidence-collector/SKILL.md",
+    "entrypoint": "agent07/07924-patch-orchestration-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "patch orchestration evidence collector",
+    "patch orchestration evidence collector workflow",
+    "patch orchestration evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

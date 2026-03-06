@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10755,
+  "name": "knowledge-graphs-spec-drift-detector",
+  "title": "Knowledge Graphs Spec Drift Detector",
+  "description": "Design and run knowledge graphs workflows with spec drift detector controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 2430,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10755-knowledge-graphs-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent09/10755-knowledge-graphs-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs spec drift detector",
+    "knowledge graphs spec drift detector workflow",
+    "knowledge graphs spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

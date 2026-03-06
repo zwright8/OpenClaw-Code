@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12005,
+  "name": "ethics-review-boards-spec-drift-detector",
+  "title": "Ethics Review Boards Spec Drift Detector",
+  "description": "Design and run ethics review boards workflows with spec drift detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4436,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12005-ethics-review-boards-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent10/12005-ethics-review-boards-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards spec drift detector",
+    "ethics review boards spec drift detector workflow",
+    "ethics review boards spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

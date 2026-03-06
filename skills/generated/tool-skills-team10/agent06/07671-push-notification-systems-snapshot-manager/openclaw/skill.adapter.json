@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7671,
+  "name": "push-notification-systems-snapshot-manager",
+  "title": "Push Notification Systems Snapshot Manager",
+  "description": "Design and run push notification systems workflows with snapshot manager controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10642,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07671-push-notification-systems-snapshot-manager/SKILL.md",
+    "entrypoint": "agent06/07671-push-notification-systems-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "push notification systems snapshot manager",
+    "push notification systems snapshot manager workflow",
+    "push notification systems snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

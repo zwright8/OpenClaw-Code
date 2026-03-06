@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9737,
+  "name": "execution-monitoring-compliance-mapper",
+  "title": "Execution Monitoring Compliance Mapper",
+  "description": "Design and run execution monitoring workflows with compliance mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1923,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09737-execution-monitoring-compliance-mapper/SKILL.md",
+    "entrypoint": "agent08/09737-execution-monitoring-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring compliance mapper",
+    "execution monitoring compliance mapper workflow",
+    "execution monitoring compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

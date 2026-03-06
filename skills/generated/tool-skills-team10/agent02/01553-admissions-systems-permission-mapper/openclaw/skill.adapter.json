@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1553,
+  "name": "admissions-systems-permission-mapper",
+  "title": "Admissions Systems Permission Mapper",
+  "description": "Design and run admissions systems workflows with permission mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3149,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01553-admissions-systems-permission-mapper/SKILL.md",
+    "entrypoint": "agent02/01553-admissions-systems-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "admissions systems permission mapper",
+    "admissions systems permission mapper workflow",
+    "admissions systems permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

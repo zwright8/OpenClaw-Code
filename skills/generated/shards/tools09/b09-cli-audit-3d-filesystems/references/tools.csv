@@ -1,0 +1,27 @@
+rank,tool,access,description,homepage,license
+4033,mcphost,local-installable,CLI host for LLMs to interact with tools via MCP,https://github.com/mark3labs/mcphost,MIT
+4034,instalooter,local-installable,Download any picture or video associated from an Instagram profile,https://github.com/althonos/instalooter,GPL-3.0-or-later
+4035,clifm,local-installable,Command-line Interface File Manager,https://github.com/leo-arch/clifm,GPL-2.0-or-later
+4036,ssh-audit,local-installable,SSH server & client auditing,https://github.com/jtesta/ssh-audit,MIT
+4038,coin3d,local-installable,Open Inventor 2.1 API implementation (Coin),https://coin3d.github.io/,BSD-3-Clause
+4039,restish,local-installable,CLI tool for interacting with REST-ish HTTP APIs,https://rest.sh/,MIT
+4040,tweakcc,local-installable,"Customize your Claude Code themes, thinking verbs, and more",https://github.com/Piebald-AI/tweakcc,MIT
+4041,slumber,local-installable,Terminal-based HTTP/REST client,https://slumber.lucaspickering.me/,MIT
+4042,unshield,local-installable,Extract files from InstallShield cabinet files,https://github.com/twogood/unshield,MIT
+4043,kubo,local-installable,Peer-to-peer hypermedia protocol,https://docs.ipfs.tech/how-to/command-line-quick-start/,MIT AND (MIT OR Apache-2.0)
+4044,cp2k,local-installable,Quantum chemistry and solid state physics software package,https://www.cp2k.org/,GPL-2.0-or-later
+4045,qtimageformats,local-installable,"Plugins for additional image formats: TIFF, MNG, TGA, WBMP",https://www.qt.io/,(LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only) AND BSD-3-Clause
+4046,lolcrab,local-installable,"Make your console colorful, with OpenSimplex noise",https://github.com/mazznoer/lolcrab,MIT
+4047,softhsm,local-installable,Cryptographic store accessible through a PKCS#11 interface,https://www.softhsm.org/,BSD-2-Clause
+4048,pipgrip,local-installable,Lightweight pip dependency resolver,https://github.com/ddelange/pipgrip,BSD-3-Clause
+4049,python-launcher,local-installable,Launch your Python interpreter the lazy/smart way,https://github.com/brettcannon/python-launcher,MIT
+4050,castxml,local-installable,C-family Abstract Syntax Tree XML Output,https://github.com/CastXML/CastXML,Apache-2.0
+4051,hermit,local-installable,"Manages isolated, self-bootstrapping sets of tools in software projects",https://cashapp.github.io/hermit,Apache-2.0
+4052,msedit,local-installable,Simple text editor with clickable interface,https://github.com/microsoft/edit,MIT
+4053,fastly,local-installable,"Build, deploy and configure Fastly services",https://www.fastly.com/documentation/reference/cli/,Apache-2.0
+4057,libnfc,local-installable,Low level NFC SDK and Programmers API,https://github.com/nfc-tools/libnfc,LGPL-3.0-or-later
+4058,cryptopp,local-installable,Free C++ class library of cryptographic schemes,https://cryptopp.com/,LicenseRef-Homebrew-public-domain AND BSL-1.0
+4059,nrm,local-installable,"NPM registry manager, fast switch between different registries",https://github.com/Pana/nrm,MIT
+4061,pythran,local-installable,Ahead of Time compiler for numeric kernels,https://pythran.readthedocs.io/,BSD-3-Clause
+4062,nelm,local-installable,Kubernetes deployment tool that manages and deploys Helm Charts,https://github.com/werf/nelm,Apache-2.0
+4063,diskonaut,local-installable,Terminal visual disk space navigator,https://github.com/imsnif/diskonaut,MIT

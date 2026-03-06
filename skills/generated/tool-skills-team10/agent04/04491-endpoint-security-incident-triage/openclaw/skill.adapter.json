@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4491,
+  "name": "endpoint-security-incident-triage",
+  "title": "Endpoint Security Incident Triage",
+  "description": "Design and run endpoint security workflows with incident triage controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 489,
+    "score": 89,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent04/04491-endpoint-security-incident-triage/SKILL.md",
+    "entrypoint": "agent04/04491-endpoint-security-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "endpoint security incident triage",
+    "endpoint security incident triage workflow",
+    "endpoint security incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

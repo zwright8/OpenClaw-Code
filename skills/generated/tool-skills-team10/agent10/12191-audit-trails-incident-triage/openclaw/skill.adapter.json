@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12191,
+  "name": "audit-trails-incident-triage",
+  "title": "Audit Trails Incident Triage",
+  "description": "Design and run audit trails workflows with incident triage controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 1008,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12191-audit-trails-incident-triage/SKILL.md",
+    "entrypoint": "agent10/12191-audit-trails-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails incident triage",
+    "audit trails incident triage workflow",
+    "audit trails incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7211,
+  "name": "market-data-apis-execution-runner",
+  "title": "Market Data APIs Execution Runner",
+  "description": "Design and run market data apis workflows with execution runner controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 466,
+    "score": 90,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent06/07211-market-data-apis-execution-runner/SKILL.md",
+    "entrypoint": "agent06/07211-market-data-apis-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis execution runner",
+    "market data apis execution runner workflow",
+    "market data apis execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

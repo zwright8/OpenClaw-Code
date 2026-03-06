@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1761,
+  "name": "logistics-dispatch-execution-runner",
+  "title": "Logistics Dispatch Execution Runner",
+  "description": "Design and run logistics dispatch workflows with execution runner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1275,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01761-logistics-dispatch-execution-runner/SKILL.md",
+    "entrypoint": "agent02/01761-logistics-dispatch-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "logistics dispatch execution runner",
+    "logistics dispatch execution runner workflow",
+    "logistics dispatch execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

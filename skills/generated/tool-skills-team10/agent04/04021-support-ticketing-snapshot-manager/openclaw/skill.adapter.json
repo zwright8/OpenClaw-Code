@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4021,
+  "name": "support-ticketing-snapshot-manager",
+  "title": "Support Ticketing Snapshot Manager",
+  "description": "Design and run support ticketing workflows with snapshot manager controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9361,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04021-support-ticketing-snapshot-manager/SKILL.md",
+    "entrypoint": "agent04/04021-support-ticketing-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "support ticketing snapshot manager",
+    "support ticketing snapshot manager workflow",
+    "support ticketing snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 282,
+  "name": "quickbooks-sync-orchestrator",
+  "title": "QuickBooks Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for QuickBooks records.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "agent03/0282-quickbooks-sync-orchestrator/SKILL.md",
+    "entrypoint": "agent03/0282-quickbooks-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "quickbooks sync orchestrator",
+    "quickbooks sync orchestrator workflow",
+    "quickbooks sync orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent03/0282-quickbooks-sync-orchestrator"
+  }
+}

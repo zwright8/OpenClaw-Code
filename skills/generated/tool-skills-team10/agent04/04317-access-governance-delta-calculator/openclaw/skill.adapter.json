@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4317,
+  "name": "access-governance-delta-calculator",
+  "title": "Access Governance Delta Calculator",
+  "description": "Design and run access governance workflows with delta calculator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9443,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04317-access-governance-delta-calculator/SKILL.md",
+    "entrypoint": "agent04/04317-access-governance-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "access governance delta calculator",
+    "access governance delta calculator workflow",
+    "access governance delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

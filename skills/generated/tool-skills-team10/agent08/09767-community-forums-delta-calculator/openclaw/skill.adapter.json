@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9767,
+  "name": "community-forums-delta-calculator",
+  "title": "Community Forums Delta Calculator",
+  "description": "Design and run community forums workflows with delta calculator controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11375,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09767-community-forums-delta-calculator/SKILL.md",
+    "entrypoint": "agent08/09767-community-forums-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums delta calculator",
+    "community forums delta calculator workflow",
+    "community forums delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

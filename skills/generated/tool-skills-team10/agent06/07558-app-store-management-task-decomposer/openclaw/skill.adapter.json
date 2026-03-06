@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7558,
+  "name": "app-store-management-task-decomposer",
+  "title": "App Store Management Task Decomposer",
+  "description": "Design and run app store management workflows with task decomposer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10595,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07558-app-store-management-task-decomposer/SKILL.md",
+    "entrypoint": "agent06/07558-app-store-management-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "app store management task decomposer",
+    "app store management task decomposer workflow",
+    "app store management task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

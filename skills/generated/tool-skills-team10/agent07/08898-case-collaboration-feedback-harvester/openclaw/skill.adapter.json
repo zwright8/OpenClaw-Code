@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8898,
+  "name": "case-collaboration-feedback-harvester",
+  "title": "Case Collaboration Feedback Harvester",
+  "description": "Design and run case collaboration workflows with feedback harvester controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11096,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08898-case-collaboration-feedback-harvester/SKILL.md",
+    "entrypoint": "agent07/08898-case-collaboration-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "case collaboration feedback harvester",
+    "case collaboration feedback harvester workflow",
+    "case collaboration feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6218,
+  "name": "archive-systems-conflict-resolver",
+  "title": "Archive Systems Conflict Resolver",
+  "description": "Design and run archive systems workflows with conflict resolver controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 10116,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/06218-archive-systems-conflict-resolver/SKILL.md",
+    "entrypoint": "agent05/06218-archive-systems-conflict-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "archive systems conflict resolver",
+    "archive systems conflict resolver workflow",
+    "archive systems conflict resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

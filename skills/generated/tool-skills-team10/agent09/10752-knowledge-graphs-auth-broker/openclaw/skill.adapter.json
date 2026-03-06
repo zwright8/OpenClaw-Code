@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10752,
+  "name": "knowledge-graphs-auth-broker",
+  "title": "Knowledge Graphs Auth Broker",
+  "description": "Design and run knowledge graphs workflows with auth broker controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 351,
+    "score": 91,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent09/10752-knowledge-graphs-auth-broker/SKILL.md",
+    "entrypoint": "agent09/10752-knowledge-graphs-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs auth broker",
+    "knowledge graphs auth broker workflow",
+    "knowledge graphs auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

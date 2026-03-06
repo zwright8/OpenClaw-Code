@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4234,
+  "name": "customer-qa-sla-enforcer",
+  "title": "Customer QA SLA Enforcer",
+  "description": "Design and run customer qa workflows with sla enforcer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9434,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04234-customer-qa-sla-enforcer/SKILL.md",
+    "entrypoint": "agent04/04234-customer-qa-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa sla enforcer",
+    "customer qa sla enforcer workflow",
+    "customer qa sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

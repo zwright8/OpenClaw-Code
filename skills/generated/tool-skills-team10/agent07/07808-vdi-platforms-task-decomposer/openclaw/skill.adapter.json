@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7808,
+  "name": "vdi-platforms-task-decomposer",
+  "title": "VDI Platforms Task Decomposer",
+  "description": "Design and run vdi platforms workflows with task decomposer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10700,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07808-vdi-platforms-task-decomposer/SKILL.md",
+    "entrypoint": "agent07/07808-vdi-platforms-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "vdi platforms task decomposer",
+    "vdi platforms task decomposer workflow",
+    "vdi platforms task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

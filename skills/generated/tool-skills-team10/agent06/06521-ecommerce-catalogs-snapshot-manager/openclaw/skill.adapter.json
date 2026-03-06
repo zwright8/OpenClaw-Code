@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6521,
+  "name": "ecommerce-catalogs-snapshot-manager",
+  "title": "Ecommerce Catalogs Snapshot Manager",
+  "description": "Design and run ecommerce catalogs workflows with snapshot manager controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 8000,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06521-ecommerce-catalogs-snapshot-manager/SKILL.md",
+    "entrypoint": "agent06/06521-ecommerce-catalogs-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ecommerce catalogs snapshot manager",
+    "ecommerce catalogs snapshot manager workflow",
+    "ecommerce catalogs snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

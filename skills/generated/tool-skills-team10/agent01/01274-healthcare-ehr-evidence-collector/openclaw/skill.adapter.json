@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1274,
+  "name": "healthcare-ehr-evidence-collector",
+  "title": "Healthcare EHR Evidence Collector",
+  "description": "Design and run healthcare ehr workflows with evidence collector controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 2646,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01274-healthcare-ehr-evidence-collector/SKILL.md",
+    "entrypoint": "agent01/01274-healthcare-ehr-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr evidence collector",
+    "healthcare ehr evidence collector workflow",
+    "healthcare ehr evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4606,
+  "name": "threat-intel-feeds-api-contract-validator",
+  "title": "Threat Intel Feeds API Contract Validator",
+  "description": "Design and run threat intel feeds workflows with api contract validator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 126,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/04606-threat-intel-feeds-api-contract-validator/SKILL.md",
+    "entrypoint": "agent04/04606-threat-intel-feeds-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "threat intel feeds api contract validator",
+    "threat intel feeds api contract validator workflow",
+    "threat intel feeds api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

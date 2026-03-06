@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 765,
+  "name": "instagram-webhook-listener",
+  "title": "Instagram Webhook Listener",
+  "description": "Captures, verifies, and routes Instagram webhook events.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "agent08/0765-instagram-webhook-listener/SKILL.md",
+    "entrypoint": "agent08/0765-instagram-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "instagram webhook listener",
+    "instagram webhook listener workflow",
+    "instagram webhook listener automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent08/0765-instagram-webhook-listener"
+  }
+}

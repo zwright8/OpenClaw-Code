@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12019,
+  "name": "ethics-review-boards-rollback-coordinator",
+  "title": "Ethics Review Boards Rollback Coordinator",
+  "description": "Design and run ethics review boards workflows with rollback coordinator controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5250,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12019-ethics-review-boards-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent10/12019-ethics-review-boards-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ethics review boards rollback coordinator",
+    "ethics review boards rollback coordinator workflow",
+    "ethics review boards rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

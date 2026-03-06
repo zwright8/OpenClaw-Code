@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7430,
+  "name": "a-b-testing-budget-guardrail",
+  "title": "A/B Testing Budget Guardrail",
+  "description": "Design and run a/b testing workflows with budget guardrail controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7516,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07430-a-b-testing-budget-guardrail/SKILL.md",
+    "entrypoint": "agent06/07430-a-b-testing-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing budget guardrail",
+    "a/b testing budget guardrail workflow",
+    "a/b testing budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

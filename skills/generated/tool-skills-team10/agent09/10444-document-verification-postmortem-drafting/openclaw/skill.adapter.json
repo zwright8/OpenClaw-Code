@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10444,
+  "name": "document-verification-postmortem-drafting",
+  "title": "Document Verification Postmortem Drafting",
+  "description": "Design and run document verification workflows with postmortem drafting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11619,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10444-document-verification-postmortem-drafting/SKILL.md",
+    "entrypoint": "agent09/10444-document-verification-postmortem-drafting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "document verification postmortem drafting",
+    "document verification postmortem drafting workflow",
+    "document verification postmortem drafting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

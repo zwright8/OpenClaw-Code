@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12186,
+  "name": "audit-trails-risk-scorer",
+  "title": "Audit Trails Risk Scorer",
+  "description": "Design and run audit trails workflows with risk scorer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 756,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent10/12186-audit-trails-risk-scorer/SKILL.md",
+    "entrypoint": "agent10/12186-audit-trails-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audit trails risk scorer",
+    "audit trails risk scorer workflow",
+    "audit trails risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

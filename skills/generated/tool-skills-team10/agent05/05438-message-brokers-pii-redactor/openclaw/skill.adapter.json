@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5438,
+  "name": "message-brokers-pii-redactor",
+  "title": "Message Brokers PII Redactor",
+  "description": "Design and run message brokers workflows with pii redactor controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 3437,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05438-message-brokers-pii-redactor/SKILL.md",
+    "entrypoint": "agent05/05438-message-brokers-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers pii redactor",
+    "message brokers pii redactor workflow",
+    "message brokers pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

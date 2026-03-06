@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12145,
+  "name": "sensitive-data-governance-runbook-composer",
+  "title": "Sensitive Data Governance Runbook Composer",
+  "description": "Design and run sensitive data governance workflows with runbook composer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6726,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12145-sensitive-data-governance-runbook-composer/SKILL.md",
+    "entrypoint": "agent10/12145-sensitive-data-governance-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sensitive data governance runbook composer",
+    "sensitive data governance runbook composer workflow",
+    "sensitive data governance runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

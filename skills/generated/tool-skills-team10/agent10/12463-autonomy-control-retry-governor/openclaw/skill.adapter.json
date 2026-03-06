@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12463,
+  "name": "autonomy-control-retry-governor",
+  "title": "Autonomy Control Retry Governor",
+  "description": "Design and run autonomy control workflows with retry governor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 6743,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12463-autonomy-control-retry-governor/SKILL.md",
+    "entrypoint": "agent10/12463-autonomy-control-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "autonomy control retry governor",
+    "autonomy control retry governor workflow",
+    "autonomy control retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

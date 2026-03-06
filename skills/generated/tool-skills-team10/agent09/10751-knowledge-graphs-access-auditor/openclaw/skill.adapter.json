@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10751,
+  "name": "knowledge-graphs-access-auditor",
+  "title": "Knowledge Graphs Access Auditor",
+  "description": "Design and run knowledge graphs workflows with access auditor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 7679,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10751-knowledge-graphs-access-auditor/SKILL.md",
+    "entrypoint": "agent09/10751-knowledge-graphs-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs access auditor",
+    "knowledge graphs access auditor workflow",
+    "knowledge graphs access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

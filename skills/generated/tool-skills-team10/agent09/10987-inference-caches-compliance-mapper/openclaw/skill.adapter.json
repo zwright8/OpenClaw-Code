@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10987,
+  "name": "inference-caches-compliance-mapper",
+  "title": "Inference Caches Compliance Mapper",
+  "description": "Design and run inference caches workflows with compliance mapper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 1951,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent09/10987-inference-caches-compliance-mapper/SKILL.md",
+    "entrypoint": "agent09/10987-inference-caches-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "inference caches compliance mapper",
+    "inference caches compliance mapper workflow",
+    "inference caches compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

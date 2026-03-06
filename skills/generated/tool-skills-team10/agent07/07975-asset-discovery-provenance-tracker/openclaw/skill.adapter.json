@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7975,
+  "name": "asset-discovery-provenance-tracker",
+  "title": "Asset Discovery Provenance Tracker",
+  "description": "Design and run asset discovery workflows with provenance tracker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10771,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/07975-asset-discovery-provenance-tracker/SKILL.md",
+    "entrypoint": "agent07/07975-asset-discovery-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "asset discovery provenance tracker",
+    "asset discovery provenance tracker workflow",
+    "asset discovery provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

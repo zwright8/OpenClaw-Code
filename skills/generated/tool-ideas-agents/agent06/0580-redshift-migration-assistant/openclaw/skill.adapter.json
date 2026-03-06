@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 580,
+  "name": "redshift-migration-assistant",
+  "title": "Redshift Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Redshift.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "agent06/0580-redshift-migration-assistant/SKILL.md",
+    "entrypoint": "agent06/0580-redshift-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "redshift migration assistant",
+    "redshift migration assistant workflow",
+    "redshift migration assistant automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent06/0580-redshift-migration-assistant"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3929,
+  "name": "social-listening-capacity-planner",
+  "title": "Social Listening Capacity Planner",
+  "description": "Design and run social listening workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9346,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03929-social-listening-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/03929-social-listening-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening capacity planner",
+    "social listening capacity planner workflow",
+    "social listening capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

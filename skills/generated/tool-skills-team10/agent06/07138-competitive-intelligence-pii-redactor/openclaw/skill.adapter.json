@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7138,
+  "name": "competitive-intelligence-pii-redactor",
+  "title": "Competitive Intelligence PII Redactor",
+  "description": "Design and run competitive intelligence workflows with pii redactor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 3562,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07138-competitive-intelligence-pii-redactor/SKILL.md",
+    "entrypoint": "agent06/07138-competitive-intelligence-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "competitive intelligence pii redactor",
+    "competitive intelligence pii redactor workflow",
+    "competitive intelligence pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

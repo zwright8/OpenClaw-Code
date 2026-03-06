@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9598,
+  "name": "portfolio-analytics-feedback-harvester",
+  "title": "Portfolio Analytics Feedback Harvester",
+  "description": "Design and run portfolio analytics workflows with feedback harvester controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11327,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09598-portfolio-analytics-feedback-harvester/SKILL.md",
+    "entrypoint": "agent08/09598-portfolio-analytics-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics feedback harvester",
+    "portfolio analytics feedback harvester workflow",
+    "portfolio analytics feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

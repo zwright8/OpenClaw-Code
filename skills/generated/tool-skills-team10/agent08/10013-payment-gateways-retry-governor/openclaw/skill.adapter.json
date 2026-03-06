@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10013,
+  "name": "payment-gateways-retry-governor",
+  "title": "Payment Gateways Retry Governor",
+  "description": "Design and run payment gateways workflows with retry governor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6517,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10013-payment-gateways-retry-governor/SKILL.md",
+    "entrypoint": "agent08/10013-payment-gateways-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways retry governor",
+    "payment gateways retry governor workflow",
+    "payment gateways retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

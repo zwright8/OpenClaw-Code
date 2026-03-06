@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6160,
+  "name": "records-retention-workflow-compiler",
+  "title": "Records Retention Workflow Compiler",
+  "description": "Design and run records retention workflows with workflow compiler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 1115,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent05/06160-records-retention-workflow-compiler/SKILL.md",
+    "entrypoint": "agent05/06160-records-retention-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "records retention workflow compiler",
+    "records retention workflow compiler workflow",
+    "records retention workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

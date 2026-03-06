@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9486,
+  "name": "industrial-alerts-risk-scorer",
+  "title": "Industrial Alerts Risk Scorer",
+  "description": "Design and run industrial alerts workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1659,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09486-industrial-alerts-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09486-industrial-alerts-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "industrial alerts risk scorer",
+    "industrial alerts risk scorer workflow",
+    "industrial alerts risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

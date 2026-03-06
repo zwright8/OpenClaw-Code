@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 398,
+  "name": "postmark-workflow-automator",
+  "title": "Postmark Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Postmark.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7895,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00398-postmark-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00398-postmark-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "postmark workflow automator",
+    "postmark workflow automator workflow",
+    "postmark workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

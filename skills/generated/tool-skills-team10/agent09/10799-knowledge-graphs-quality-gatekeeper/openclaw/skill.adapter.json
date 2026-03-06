@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10799,
+  "name": "knowledge-graphs-quality-gatekeeper",
+  "title": "Knowledge Graphs Quality Gatekeeper",
+  "description": "Design and run knowledge graphs workflows with quality gatekeeper controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3012,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10799-knowledge-graphs-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent09/10799-knowledge-graphs-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge graphs quality gatekeeper",
+    "knowledge graphs quality gatekeeper workflow",
+    "knowledge graphs quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7441,
+  "name": "a-b-testing-incident-triage",
+  "title": "A/B Testing Incident Triage",
+  "description": "Design and run a/b testing workflows with incident triage controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2154,
+    "score": 79,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07441-a-b-testing-incident-triage/SKILL.md",
+    "entrypoint": "agent06/07441-a-b-testing-incident-triage/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "a/b testing incident triage",
+    "a/b testing incident triage workflow",
+    "a/b testing incident triage automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

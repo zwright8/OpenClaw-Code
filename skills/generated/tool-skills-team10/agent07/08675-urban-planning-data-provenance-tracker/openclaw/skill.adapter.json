@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8675,
+  "name": "urban-planning-data-provenance-tracker",
+  "title": "Urban Planning Data Provenance Tracker",
+  "description": "Design and run urban planning data workflows with provenance tracker controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11023,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08675-urban-planning-data-provenance-tracker/SKILL.md",
+    "entrypoint": "agent07/08675-urban-planning-data-provenance-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "urban planning data provenance tracker",
+    "urban planning data provenance tracker workflow",
+    "urban planning data provenance tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

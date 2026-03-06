@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10934,
+  "name": "taxonomy-services-sla-enforcer",
+  "title": "Taxonomy Services SLA Enforcer",
+  "description": "Design and run taxonomy services workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11765,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10934-taxonomy-services-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/10934-taxonomy-services-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "taxonomy services sla enforcer",
+    "taxonomy services sla enforcer workflow",
+    "taxonomy services sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

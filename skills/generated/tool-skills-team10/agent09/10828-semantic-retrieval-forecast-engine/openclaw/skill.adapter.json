@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10828,
+  "name": "semantic-retrieval-forecast-engine",
+  "title": "Semantic Retrieval Forecast Engine",
+  "description": "Design and run semantic retrieval workflows with forecast engine controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11718,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10828-semantic-retrieval-forecast-engine/SKILL.md",
+    "entrypoint": "agent09/10828-semantic-retrieval-forecast-engine/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "semantic retrieval forecast engine",
+    "semantic retrieval forecast engine workflow",
+    "semantic retrieval forecast engine automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

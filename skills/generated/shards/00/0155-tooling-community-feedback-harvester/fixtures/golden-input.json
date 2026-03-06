@@ -1,0 +1,18 @@
+{
+  "skill": "u0155-tooling-community-feedback-harvester",
+  "fixture": "golden-input",
+  "determinismTolerance": "0.5%",
+  "requiredSignals": [
+    "tool runs",
+    "error signatures",
+    "retry outcomes",
+    "claims",
+    "evidence",
+    "confidence traces"
+  ],
+  "expectedOutputs": [
+    "theme_prioritized_feedback_digests_report",
+    "theme_prioritized_feedback_digests_scorecard"
+  ],
+  "notes": "Representative deterministic payload placeholder for hardening regression runs."
+}

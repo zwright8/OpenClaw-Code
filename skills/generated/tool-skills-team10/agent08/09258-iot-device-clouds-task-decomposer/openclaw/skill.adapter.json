@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9258,
+  "name": "iot-device-clouds-task-decomposer",
+  "title": "IoT Device Clouds Task Decomposer",
+  "description": "Design and run iot device clouds workflows with task decomposer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 7572,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09258-iot-device-clouds-task-decomposer/SKILL.md",
+    "entrypoint": "agent08/09258-iot-device-clouds-task-decomposer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds task decomposer",
+    "iot device clouds task decomposer workflow",
+    "iot device clouds task decomposer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

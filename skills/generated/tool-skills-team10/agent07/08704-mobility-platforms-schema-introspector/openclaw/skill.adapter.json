@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8704,
+  "name": "mobility-platforms-schema-introspector",
+  "title": "Mobility Platforms Schema Introspector",
+  "description": "Design and run mobility platforms workflows with schema introspector controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 689,
+    "score": 87,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent07/08704-mobility-platforms-schema-introspector/SKILL.md",
+    "entrypoint": "agent07/08704-mobility-platforms-schema-introspector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mobility platforms schema introspector",
+    "mobility platforms schema introspector workflow",
+    "mobility platforms schema introspector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

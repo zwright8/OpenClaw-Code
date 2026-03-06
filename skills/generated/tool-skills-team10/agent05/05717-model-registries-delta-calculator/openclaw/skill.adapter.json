@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5717,
+  "name": "model-registries-delta-calculator",
+  "title": "Model Registries Delta Calculator",
+  "description": "Design and run model registries workflows with delta calculator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 9905,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05717-model-registries-delta-calculator/SKILL.md",
+    "entrypoint": "agent05/05717-model-registries-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "model registries delta calculator",
+    "model registries delta calculator workflow",
+    "model registries delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

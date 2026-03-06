@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2376,
+  "name": "carbon-accounting-anomaly-detector",
+  "title": "Carbon Accounting Anomaly Detector",
+  "description": "Design and run carbon accounting workflows with anomaly detector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 5345,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02376-carbon-accounting-anomaly-detector/SKILL.md",
+    "entrypoint": "agent02/02376-carbon-accounting-anomaly-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "carbon accounting anomaly detector",
+    "carbon accounting anomaly detector workflow",
+    "carbon accounting anomaly detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

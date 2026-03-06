@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4110,
+  "name": "knowledge-bases-workflow-compiler",
+  "title": "Knowledge Bases Workflow Compiler",
+  "description": "Design and run knowledge bases workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1078,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04110-knowledge-bases-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04110-knowledge-bases-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "knowledge bases workflow compiler",
+    "knowledge bases workflow compiler workflow",
+    "knowledge bases workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10459,
+  "name": "biometric-systems-dependency-resolver",
+  "title": "Biometric Systems Dependency Resolver",
+  "description": "Design and run biometric systems workflows with dependency resolver controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11625,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10459-biometric-systems-dependency-resolver/SKILL.md",
+    "entrypoint": "agent09/10459-biometric-systems-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "biometric systems dependency resolver",
+    "biometric systems dependency resolver workflow",
+    "biometric systems dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

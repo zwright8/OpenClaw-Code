@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12272,
+  "name": "ai-evaluation-markets-version-tracker",
+  "title": "AI Evaluation Markets Version Tracker",
+  "description": "Design and run ai evaluation markets workflows with version tracker controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 7757,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12272-ai-evaluation-markets-version-tracker/SKILL.md",
+    "entrypoint": "agent10/12272-ai-evaluation-markets-version-tracker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets version tracker",
+    "ai evaluation markets version tracker workflow",
+    "ai evaluation markets version tracker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

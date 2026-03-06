@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8357,
+  "name": "donor-platforms-operation-planner",
+  "title": "Donor Platforms Operation Planner",
+  "description": "Design and run donor platforms workflows with operation planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 10909,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08357-donor-platforms-operation-planner/SKILL.md",
+    "entrypoint": "agent07/08357-donor-platforms-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "donor platforms operation planner",
+    "donor platforms operation planner workflow",
+    "donor platforms operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

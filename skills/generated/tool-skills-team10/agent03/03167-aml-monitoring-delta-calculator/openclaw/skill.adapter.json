@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3167,
+  "name": "aml-monitoring-delta-calculator",
+  "title": "AML Monitoring Delta Calculator",
+  "description": "Design and run aml monitoring workflows with delta calculator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9044,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03167-aml-monitoring-delta-calculator/SKILL.md",
+    "entrypoint": "agent03/03167-aml-monitoring-delta-calculator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "aml monitoring delta calculator",
+    "aml monitoring delta calculator workflow",
+    "aml monitoring delta calculator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

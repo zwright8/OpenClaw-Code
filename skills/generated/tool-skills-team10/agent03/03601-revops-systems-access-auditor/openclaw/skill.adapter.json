@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3601,
+  "name": "revops-systems-access-auditor",
+  "title": "RevOps Systems Access Auditor",
+  "description": "Design and run revops systems workflows with access auditor controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 9228,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03601-revops-systems-access-auditor/SKILL.md",
+    "entrypoint": "agent03/03601-revops-systems-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revops systems access auditor",
+    "revops systems access auditor workflow",
+    "revops systems access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

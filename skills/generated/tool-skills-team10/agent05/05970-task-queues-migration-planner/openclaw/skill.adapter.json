@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5970,
+  "name": "task-queues-migration-planner",
+  "title": "Task Queues Migration Planner",
+  "description": "Design and run task queues workflows with migration planner controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4629,
+    "score": 70,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05970-task-queues-migration-planner/SKILL.md",
+    "entrypoint": "agent05/05970-task-queues-migration-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "task queues migration planner",
+    "task queues migration planner workflow",
+    "task queues migration planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

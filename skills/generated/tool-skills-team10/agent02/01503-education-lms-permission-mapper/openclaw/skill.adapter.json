@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1503,
+  "name": "education-lms-permission-mapper",
+  "title": "Education LMS Permission Mapper",
+  "description": "Design and run education lms workflows with permission mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 2295,
+    "score": 78,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01503-education-lms-permission-mapper/SKILL.md",
+    "entrypoint": "agent02/01503-education-lms-permission-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "education lms permission mapper",
+    "education lms permission mapper workflow",
+    "education lms permission mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

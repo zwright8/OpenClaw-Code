@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1257,
+  "name": "healthcare-ehr-operation-planner",
+  "title": "Healthcare EHR Operation Planner",
+  "description": "Design and run healthcare ehr workflows with operation planner controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7180,
+    "score": 64,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01257-healthcare-ehr-operation-planner/SKILL.md",
+    "entrypoint": "agent01/01257-healthcare-ehr-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "healthcare ehr operation planner",
+    "healthcare ehr operation planner workflow",
+    "healthcare ehr operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

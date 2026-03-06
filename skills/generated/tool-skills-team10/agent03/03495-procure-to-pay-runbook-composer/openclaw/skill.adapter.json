@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3495,
+  "name": "procure-to-pay-runbook-composer",
+  "title": "Procure to Pay Runbook Composer",
+  "description": "Design and run procure to pay workflows with runbook composer controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 5924,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03495-procure-to-pay-runbook-composer/SKILL.md",
+    "entrypoint": "agent03/03495-procure-to-pay-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "procure to pay runbook composer",
+    "procure to pay runbook composer workflow",
+    "procure to pay runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

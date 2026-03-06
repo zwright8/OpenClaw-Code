@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5816,
+  "name": "agent-registries-state-reconciler",
+  "title": "Agent Registries State Reconciler",
+  "description": "Design and run agent registries workflows with state reconciler controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 4197,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05816-agent-registries-state-reconciler/SKILL.md",
+    "entrypoint": "agent05/05816-agent-registries-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "agent registries state reconciler",
+    "agent registries state reconciler workflow",
+    "agent registries state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

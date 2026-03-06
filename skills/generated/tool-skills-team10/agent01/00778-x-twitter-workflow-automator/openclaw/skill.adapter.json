@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 778,
+  "name": "x-twitter-workflow-automator",
+  "title": "X Twitter Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using X Twitter.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 7931,
+    "score": 61,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/00778-x-twitter-workflow-automator/SKILL.md",
+    "entrypoint": "agent01/00778-x-twitter-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "x twitter workflow automator",
+    "x twitter workflow automator workflow",
+    "x twitter workflow automator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

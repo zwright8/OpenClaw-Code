@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4279,
+  "name": "identity-providers-capacity-planner",
+  "title": "Identity Providers Capacity Planner",
+  "description": "Design and run identity providers workflows with capacity planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 6000,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04279-identity-providers-capacity-planner/SKILL.md",
+    "entrypoint": "agent04/04279-identity-providers-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "identity providers capacity planner",
+    "identity providers capacity planner workflow",
+    "identity providers capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,21 @@
+rank,tool,installs_365d,percent_365d,access,description,homepage,license
+1014,phpmyadmin,8845,0.01,local-installable,Web interface for MySQL and MariaDB,https://www.phpmyadmin.net,GPL-2.0-only AND GPL-2.0-or-later AND BSD-2-Clause AND BSD-3-Clause AND CC-BY-3.0 AND ISC AND LGPL-3.0-only AND MIT AND MPL-2.0 AND LicenseRef-Homebrew-public-domain
+1030,sqlc,8706,0.01,local-installable,Generate type safe Go from SQL,https://sqlc.dev/,MIT
+1069,liquibase,8178,0.01,local-installable,Library for database change tracking,https://www.liquibase.org/,Apache-2.0
+1144,valkey,7296,0.01,local-installable,High-performance data structure server that primarily serves key/value workloads,https://valkey.io,BSD-3-Clause AND BSD-2-Clause AND BSL-1.0 AND MIT AND (CC0-1.0 OR BSD-2-Clause)
+1157,atlas,7163,0.01,local-installable,Database toolkit,https://atlasgo.io/,Apache-2.0
+1164,mariadb-connector-c,7051,0.01,local-installable,MariaDB database connector for C applications,https://mariadb.org/download/?tab=connector&prod=connector-c,LGPL-2.1-or-later
+1167,dolt,7028,0.01,local-installable,Git for Data,https://github.com/dolthub/dolt,Apache-2.0
+1170,sqlfluff,7009,0.01,local-installable,SQL linter and auto-formatter for Humans,https://docs.sqlfluff.com/,MIT
+1186,goose,6837,0.01,local-installable,Go Language's command-line interface for database migrations,https://pressly.github.io/goose/,MIT
+1216,postgresql@12,6542,0.01,local-installable,Object-relational database system,https://www.postgresql.org/,PostgreSQL
+1258,cassandra,6171,0.01,local-installable,"Eventually consistent, distributed key-value store",https://cassandra.apache.org,Apache-2.0
+1260,opensearch,6152,0.01,local-installable,Open source distributed and RESTful search engine,https://github.com/opensearch-project/OpenSearch,Apache-2.0
+1267,snowflake-cli,6122,0.01,local-installable,CLI for snowflake,https://docs.snowflake.com/developer-guide/snowflake-cli/index,Apache-2.0
+1284,meilisearch,5912,0.01,local-installable,"Ultra relevant, instant and typo-tolerant full-text search API",https://docs.meilisearch.com/,MIT
+1351,rocksdb,5360,0.01,local-installable,"Embeddable, persistent key-value store for fast storage",https://rocksdb.org/,GPL-2.0-only OR Apache-2.0
+1359,lazysql,5331,0.01,local-installable,Cross-platform TUI database management tool,https://github.com/jorgerojas26/lazysql,MIT
+1367,mariadb@10.6,5252,0.01,local-installable,Drop-in replacement for MySQL,https://mariadb.org/,GPL-2.0-only
+1392,influxdb,5072,0.01,local-installable,"Time series, events, and metrics database",https://influxdata.com/time-series-platform/influxdb/,Apache-2.0 OR MIT
+1418,sqlcipher,4917,0.01,local-installable,SQLite extension providing 256-bit AES encryption,https://www.zetetic.net/sqlcipher/,BSD-3-Clause AND blessing
+1472,pgloader,4574,0,local-installable,Data loading tool for PostgreSQL,https://github.com/dimitri/pgloader,PostgreSQL

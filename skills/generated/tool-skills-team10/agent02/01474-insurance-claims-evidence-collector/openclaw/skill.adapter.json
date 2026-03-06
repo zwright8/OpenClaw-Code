@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1474,
+  "name": "insurance-claims-evidence-collector",
+  "title": "Insurance Claims Evidence Collector",
+  "description": "Design and run insurance claims workflows with evidence collector controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 3144,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01474-insurance-claims-evidence-collector/SKILL.md",
+    "entrypoint": "agent02/01474-insurance-claims-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims evidence collector",
+    "insurance claims evidence collector workflow",
+    "insurance claims evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

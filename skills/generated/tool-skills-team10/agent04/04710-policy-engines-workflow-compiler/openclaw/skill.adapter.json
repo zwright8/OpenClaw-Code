@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4710,
+  "name": "policy-engines-workflow-compiler",
+  "title": "Policy Engines Workflow Compiler",
+  "description": "Design and run policy engines workflows with workflow compiler controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 1091,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04710-policy-engines-workflow-compiler/SKILL.md",
+    "entrypoint": "agent04/04710-policy-engines-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "policy engines workflow compiler",
+    "policy engines workflow compiler workflow",
+    "policy engines workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

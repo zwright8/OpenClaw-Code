@@ -1,0 +1,27 @@
+rank,tool,access,license,homepage,description
+2762,byacc,local-installable,LicenseRef-Homebrew-public-domain,https://invisible-island.net/byacc/,(Arguably) the best yacc variant
+2763,gptfdisk,local-installable,GPL-2.0-or-later,https://www.rodsbooks.com/gdisk/,Text-mode partitioning tools
+2764,urh,local-installable,GPL-3.0-only,https://github.com/jopohl/urh,Universal Radio Hacker
+2765,gauge,local-installable,Apache-2.0,https://gauge.org,Test automation tool that supports executable documentation
+2766,spark,local-installable,MIT,https://zachholman.com/spark/,Sparklines for the shell
+2767,libatomic_ops,local-installable,GPL-2.0-or-later AND MIT,https://github.com/bdwgc/libatomic_ops/,Implementations for atomic memory update operations
+2768,speexdsp,local-installable,BSD-3-Clause,https://speex.org/,Speex audio processing library
+2769,mockserver,local-installable,Apache-2.0,https://www.mock-server.com/,Mock HTTP server and proxy
+2771,neovim-remote,local-installable,MIT,https://github.com/mhinz/neovim-remote,Control nvim processes using `nvr` command-line tool
+2772,glibmm@2.66,local-installable,LGPL-2.1-or-later,https://gtkmm.gnome.org/,C++ interface to glib
+2773,deck,local-installable,MIT,https://github.com/k1LoW/deck,Creates slide deck using Markdown and Google Slides
+2774,enzyme,local-installable,Apache-2.0 WITH LLVM-exception,https://enzyme.mit.edu,High-performance automatic differentiation of LLVM
+2776,choose-rust,local-installable,GPL-3.0-or-later,https://github.com/theryangeary/choose,Human-friendly and fast alternative to cut and (sometimes) awk
+2777,pyupgrade,local-installable,MIT,https://github.com/asottile/pyupgrade,Upgrade syntax for newer versions of Python
+2778,recon-ng,local-installable,GPL-3.0-only,https://github.com/lanmaster53/recon-ng,Web Reconnaissance Framework
+2779,xsv,local-installable,MIT OR Unlicense,https://github.com/BurntSushi/xsv,Fast CSV toolkit written in Rust
+2780,xplr,local-installable,MIT,https://github.com/sayanarijit/xplr,"Hackable, minimal, fast TUI file explorer"
+2781,basex,local-installable,BSD-3-Clause,https://basex.org,Light-weight XML database and XPath/XQuery processor
+2782,fakeroot,local-installable,GPL-3.0-or-later,https://tracker.debian.org/pkg/fakeroot,Provide a fake root environment
+2783,xcode-kotlin,local-installable,Apache-2.0,https://github.com/touchlab/xcode-kotlin,Kotlin Native Xcode Plugin
+2784,aws-google-auth,local-installable,MIT,https://github.com/cevoaustralia/aws-google-auth,Acquire AWS credentials using Google Apps
+2785,shadowsocks-libev,local-installable,GPL-3.0-or-later,https://github.com/shadowsocks/shadowsocks-libev,Libev port of shadowsocks
+2786,dfmt,local-installable,BSL-1.0,https://github.com/dlang-community/dfmt,Formatter for D source code
+2787,couchdb,local-installable,Apache-2.0,https://couchdb.apache.org/,Apache CouchDB database server
+2788,faircamp,local-installable,AGPL-3.0-or-later,https://codeberg.org/simonrepp/faircamp,Static site generator for audio producers
+2789,ov,local-installable,MIT,https://noborus.github.io/ov/,Feature-rich terminal-based text viewer

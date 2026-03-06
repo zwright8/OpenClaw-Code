@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10031,
+  "name": "payment-gateways-cost-attribution",
+  "title": "Payment Gateways Cost Attribution",
+  "description": "Design and run payment gateways workflows with cost attribution controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11489,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10031-payment-gateways-cost-attribution/SKILL.md",
+    "entrypoint": "agent08/10031-payment-gateways-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "payment gateways cost attribution",
+    "payment gateways cost attribution workflow",
+    "payment gateways cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4164,
+  "name": "incident-queues-rate-limit-optimizer",
+  "title": "Incident Queues Rate Limit Optimizer",
+  "description": "Design and run incident queues workflows with rate limit optimizer controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2546,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent04/04164-incident-queues-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent04/04164-incident-queues-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "incident queues rate limit optimizer",
+    "incident queues rate limit optimizer workflow",
+    "incident queues rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

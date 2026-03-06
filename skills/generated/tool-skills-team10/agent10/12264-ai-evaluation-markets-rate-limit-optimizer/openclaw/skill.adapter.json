@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12264,
+  "name": "ai-evaluation-markets-rate-limit-optimizer",
+  "title": "AI Evaluation Markets Rate Limit Optimizer",
+  "description": "Design and run ai evaluation markets workflows with rate limit optimizer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 3958,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12264-ai-evaluation-markets-rate-limit-optimizer/SKILL.md",
+    "entrypoint": "agent10/12264-ai-evaluation-markets-rate-limit-optimizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ai evaluation markets rate limit optimizer",
+    "ai evaluation markets rate limit optimizer workflow",
+    "ai evaluation markets rate limit optimizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

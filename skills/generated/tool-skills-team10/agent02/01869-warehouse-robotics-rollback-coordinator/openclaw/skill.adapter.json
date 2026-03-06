@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1869,
+  "name": "warehouse-robotics-rollback-coordinator",
+  "title": "Warehouse Robotics Rollback Coordinator",
+  "description": "Design and run warehouse robotics workflows with rollback coordinator controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 4899,
+    "score": 69,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01869-warehouse-robotics-rollback-coordinator/SKILL.md",
+    "entrypoint": "agent02/01869-warehouse-robotics-rollback-coordinator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "warehouse robotics rollback coordinator",
+    "warehouse robotics rollback coordinator workflow",
+    "warehouse robotics rollback coordinator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

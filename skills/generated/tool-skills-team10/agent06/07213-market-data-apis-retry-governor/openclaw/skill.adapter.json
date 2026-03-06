@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7213,
+  "name": "market-data-apis-retry-governor",
+  "title": "Market Data APIs Retry Governor",
+  "description": "Design and run market data apis workflows with retry governor controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 2574,
+    "score": 75,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent06/07213-market-data-apis-retry-governor/SKILL.md",
+    "entrypoint": "agent06/07213-market-data-apis-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "market data apis retry governor",
+    "market data apis retry governor workflow",
+    "market data apis retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

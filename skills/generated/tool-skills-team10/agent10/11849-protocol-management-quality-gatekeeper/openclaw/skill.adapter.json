@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11849,
+  "name": "protocol-management-quality-gatekeeper",
+  "title": "Protocol Management Quality Gatekeeper",
+  "description": "Design and run protocol management workflows with quality gatekeeper controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 5662,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11849-protocol-management-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent10/11849-protocol-management-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management quality gatekeeper",
+    "protocol management quality gatekeeper workflow",
+    "protocol management quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

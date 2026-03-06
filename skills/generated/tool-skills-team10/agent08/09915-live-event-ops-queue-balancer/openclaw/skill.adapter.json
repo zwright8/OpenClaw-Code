@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9915,
+  "name": "live-event-ops-queue-balancer",
+  "title": "Live Event Ops Queue Balancer",
+  "description": "Design and run live event ops workflows with queue balancer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11437,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09915-live-event-ops-queue-balancer/SKILL.md",
+    "entrypoint": "agent08/09915-live-event-ops-queue-balancer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "live event ops queue balancer",
+    "live event ops queue balancer workflow",
+    "live event ops queue balancer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

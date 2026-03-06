@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4556,
+  "name": "soar-platforms-api-contract-validator",
+  "title": "SOAR Platforms API Contract Validator",
+  "description": "Design and run soar platforms workflows with api contract validator controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 125,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent04/04556-soar-platforms-api-contract-validator/SKILL.md",
+    "entrypoint": "agent04/04556-soar-platforms-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "soar platforms api contract validator",
+    "soar platforms api contract validator workflow",
+    "soar platforms api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

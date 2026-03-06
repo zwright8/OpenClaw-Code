@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9255,
+  "name": "iot-device-clouds-spec-drift-detector",
+  "title": "IoT Device Clouds Spec Drift Detector",
+  "description": "Design and run iot device clouds workflows with spec drift detector controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 2413,
+    "score": 77,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09255-iot-device-clouds-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent08/09255-iot-device-clouds-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "iot device clouds spec drift detector",
+    "iot device clouds spec drift detector workflow",
+    "iot device clouds spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

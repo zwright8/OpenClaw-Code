@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8979,
+  "name": "legislative-tracking-capacity-planner",
+  "title": "Legislative Tracking Capacity Planner",
+  "description": "Design and run legislative tracking workflows with capacity planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11131,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08979-legislative-tracking-capacity-planner/SKILL.md",
+    "entrypoint": "agent07/08979-legislative-tracking-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legislative tracking capacity planner",
+    "legislative tracking capacity planner workflow",
+    "legislative tracking capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

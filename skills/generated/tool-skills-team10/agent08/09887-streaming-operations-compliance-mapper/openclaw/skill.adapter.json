@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9887,
+  "name": "streaming-operations-compliance-mapper",
+  "title": "Streaming Operations Compliance Mapper",
+  "description": "Design and run streaming operations workflows with compliance mapper controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1926,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09887-streaming-operations-compliance-mapper/SKILL.md",
+    "entrypoint": "agent08/09887-streaming-operations-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "streaming operations compliance mapper",
+    "streaming operations compliance mapper workflow",
+    "streaming operations compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7298,
+  "name": "crowdsourcing-platforms-feedback-harvester",
+  "title": "Crowdsourcing Platforms Feedback Harvester",
+  "description": "Design and run crowdsourcing platforms workflows with feedback harvester controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10487,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07298-crowdsourcing-platforms-feedback-harvester/SKILL.md",
+    "entrypoint": "agent06/07298-crowdsourcing-platforms-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "crowdsourcing platforms feedback harvester",
+    "crowdsourcing platforms feedback harvester workflow",
+    "crowdsourcing platforms feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

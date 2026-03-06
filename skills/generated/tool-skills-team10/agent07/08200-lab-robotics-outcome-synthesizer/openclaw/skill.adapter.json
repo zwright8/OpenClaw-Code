@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8200,
+  "name": "lab-robotics-outcome-synthesizer",
+  "title": "Lab Robotics Outcome Synthesizer",
+  "description": "Design and run lab robotics workflows with outcome synthesizer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7044,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08200-lab-robotics-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent07/08200-lab-robotics-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "lab robotics outcome synthesizer",
+    "lab robotics outcome synthesizer workflow",
+    "lab robotics outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

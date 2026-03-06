@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1557,
+  "name": "admissions-systems-operation-planner",
+  "title": "Admissions Systems Operation Planner",
+  "description": "Design and run admissions systems workflows with operation planner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8515,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01557-admissions-systems-operation-planner/SKILL.md",
+    "entrypoint": "agent02/01557-admissions-systems-operation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "admissions systems operation planner",
+    "admissions systems operation planner workflow",
+    "admissions systems operation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

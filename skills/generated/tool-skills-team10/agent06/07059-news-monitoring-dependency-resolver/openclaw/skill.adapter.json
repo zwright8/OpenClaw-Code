@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7059,
+  "name": "news-monitoring-dependency-resolver",
+  "title": "News Monitoring Dependency Resolver",
+  "description": "Design and run news monitoring workflows with dependency resolver controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10407,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07059-news-monitoring-dependency-resolver/SKILL.md",
+    "entrypoint": "agent06/07059-news-monitoring-dependency-resolver/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "news monitoring dependency resolver",
+    "news monitoring dependency resolver workflow",
+    "news monitoring dependency resolver automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

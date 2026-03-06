@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3943,
+  "name": "social-listening-remediation-planner",
+  "title": "Social Listening Remediation Planner",
+  "description": "Design and run social listening workflows with remediation planner controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 2752,
+    "score": 74,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/03943-social-listening-remediation-planner/SKILL.md",
+    "entrypoint": "agent04/03943-social-listening-remediation-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "social listening remediation planner",
+    "social listening remediation planner workflow",
+    "social listening remediation planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

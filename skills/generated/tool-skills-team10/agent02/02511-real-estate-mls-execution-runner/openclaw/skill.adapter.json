@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2511,
+  "name": "real-estate-mls-execution-runner",
+  "title": "Real Estate MLS Execution Runner",
+  "description": "Design and run real estate mls workflows with execution runner controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1290,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/02511-real-estate-mls-execution-runner/SKILL.md",
+    "entrypoint": "agent02/02511-real-estate-mls-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "real estate mls execution runner",
+    "real estate mls execution runner workflow",
+    "real estate mls execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

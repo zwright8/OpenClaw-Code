@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3030,
+  "name": "bank-core-systems-budget-guardrail",
+  "title": "Bank Core Systems Budget Guardrail",
+  "description": "Design and run bank core systems workflows with budget guardrail controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7358,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03030-bank-core-systems-budget-guardrail/SKILL.md",
+    "entrypoint": "agent03/03030-bank-core-systems-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bank core systems budget guardrail",
+    "bank core systems budget guardrail workflow",
+    "bank core systems budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

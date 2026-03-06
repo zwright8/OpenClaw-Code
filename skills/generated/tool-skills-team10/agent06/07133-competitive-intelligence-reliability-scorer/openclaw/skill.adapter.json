@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 7133,
+  "name": "competitive-intelligence-reliability-scorer",
+  "title": "Competitive Intelligence Reliability Scorer",
+  "description": "Design and run competitive intelligence workflows with reliability scorer controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 10441,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/07133-competitive-intelligence-reliability-scorer/SKILL.md",
+    "entrypoint": "agent06/07133-competitive-intelligence-reliability-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "competitive intelligence reliability scorer",
+    "competitive intelligence reliability scorer workflow",
+    "competitive intelligence reliability scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

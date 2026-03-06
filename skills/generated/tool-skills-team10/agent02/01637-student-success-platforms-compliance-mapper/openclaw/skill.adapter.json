@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1637,
+  "name": "student-success-platforms-compliance-mapper",
+  "title": "Student Success Platforms Compliance Mapper",
+  "description": "Design and run student success platforms workflows with compliance mapper controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 1752,
+    "score": 80,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent02/01637-student-success-platforms-compliance-mapper/SKILL.md",
+    "entrypoint": "agent02/01637-student-success-platforms-compliance-mapper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "student success platforms compliance mapper",
+    "student success platforms compliance mapper workflow",
+    "student success platforms compliance mapper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

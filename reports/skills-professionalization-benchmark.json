@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-03-05T01:54:26.964805+00:00",
+  "skills": 10553,
+  "requiredSectionCoveragePct": 100.0,
+  "wordStats": {
+    "min": 1039,
+    "p10": 1128.0,
+    "median": 1193,
+    "mean": 1189.7,
+    "p90": 1240.0,
+    "max": 1270
+  },
+  "headingStats": {
+    "min": 21,
+    "median": 21,
+    "mean": 21.1,
+    "max": 22
+  },
+  "benchmark": {
+    "skill": "self-improving-agent",
+    "words": 2479,
+    "h2Headings": 24
+  }
+}

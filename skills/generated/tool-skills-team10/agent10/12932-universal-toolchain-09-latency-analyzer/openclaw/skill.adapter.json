@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 12932,
+  "name": "universal-toolchain-09-latency-analyzer",
+  "title": "Universal Toolchain 09 Latency Analyzer",
+  "description": "Design and run universal toolchain 09 workflows with latency analyzer controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 8381,
+    "score": 58,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/12932-universal-toolchain-09-latency-analyzer/SKILL.md",
+    "entrypoint": "agent10/12932-universal-toolchain-09-latency-analyzer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "universal toolchain 09 latency analyzer",
+    "universal toolchain 09 latency analyzer workflow",
+    "universal toolchain 09 latency analyzer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

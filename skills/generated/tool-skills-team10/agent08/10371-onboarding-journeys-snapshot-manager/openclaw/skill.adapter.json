@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10371,
+  "name": "onboarding-journeys-snapshot-manager",
+  "title": "Onboarding Journeys Snapshot Manager",
+  "description": "Design and run onboarding journeys workflows with snapshot manager controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11587,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/10371-onboarding-journeys-snapshot-manager/SKILL.md",
+    "entrypoint": "agent08/10371-onboarding-journeys-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "onboarding journeys snapshot manager",
+    "onboarding journeys snapshot manager workflow",
+    "onboarding journeys snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

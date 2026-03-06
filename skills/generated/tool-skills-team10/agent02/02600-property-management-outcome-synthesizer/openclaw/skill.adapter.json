@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2600,
+  "name": "property-management-outcome-synthesizer",
+  "title": "Property Management Outcome Synthesizer",
+  "description": "Design and run property management workflows with outcome synthesizer controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 6846,
+    "score": 65,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02600-property-management-outcome-synthesizer/SKILL.md",
+    "entrypoint": "agent02/02600-property-management-outcome-synthesizer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "property management outcome synthesizer",
+    "property management outcome synthesizer workflow",
+    "property management outcome synthesizer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

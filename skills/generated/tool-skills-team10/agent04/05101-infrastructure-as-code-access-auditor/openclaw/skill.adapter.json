@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5101,
+  "name": "infrastructure-as-code-access-auditor",
+  "title": "Infrastructure as Code Access Auditor",
+  "description": "Design and run infrastructure as code workflows with access auditor controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9711,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/05101-infrastructure-as-code-access-auditor/SKILL.md",
+    "entrypoint": "agent04/05101-infrastructure-as-code-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "infrastructure as code access auditor",
+    "infrastructure as code access auditor workflow",
+    "infrastructure as code access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

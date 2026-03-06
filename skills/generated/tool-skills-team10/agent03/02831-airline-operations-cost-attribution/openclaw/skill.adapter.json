@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2831,
+  "name": "airline-operations-cost-attribution",
+  "title": "Airline Operations Cost Attribution",
+  "description": "Design and run airline operations workflows with cost attribution controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 7328,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/02831-airline-operations-cost-attribution/SKILL.md",
+    "entrypoint": "agent03/02831-airline-operations-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airline operations cost attribution",
+    "airline operations cost attribution workflow",
+    "airline operations cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3616,
+  "name": "revops-systems-state-reconciler",
+  "title": "RevOps Systems State Reconciler",
+  "description": "Design and run revops systems workflows with state reconciler controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 4117,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent03/03616-revops-systems-state-reconciler/SKILL.md",
+    "entrypoint": "agent03/03616-revops-systems-state-reconciler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "revops systems state reconciler",
+    "revops systems state reconciler workflow",
+    "revops systems state reconciler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

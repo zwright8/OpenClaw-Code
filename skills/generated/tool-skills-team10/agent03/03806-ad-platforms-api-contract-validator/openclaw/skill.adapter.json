@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 3806,
+  "name": "ad-platforms-api-contract-validator",
+  "title": "Ad Platforms API Contract Validator",
+  "description": "Design and run ad platforms workflows with api contract validator controls.",
+  "agent": "agent03",
+  "scoring": {
+    "rank": 111,
+    "score": 95,
+    "priorityBand": "P0"
+  },
+  "codex": {
+    "skillPath": "agent03/03806-ad-platforms-api-contract-validator/SKILL.md",
+    "entrypoint": "agent03/03806-ad-platforms-api-contract-validator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ad platforms api contract validator",
+    "ad platforms api contract validator workflow",
+    "ad platforms api contract validator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

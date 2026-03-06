@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8771,
+  "name": "legal-matter-mgmt-snapshot-manager",
+  "title": "Legal Matter Mgmt Snapshot Manager",
+  "description": "Design and run legal matter mgmt workflows with snapshot manager controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7548,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08771-legal-matter-mgmt-snapshot-manager/SKILL.md",
+    "entrypoint": "agent07/08771-legal-matter-mgmt-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "legal matter mgmt snapshot manager",
+    "legal matter mgmt snapshot manager workflow",
+    "legal matter mgmt snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

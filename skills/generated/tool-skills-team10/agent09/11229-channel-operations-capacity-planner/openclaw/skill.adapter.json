@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11229,
+  "name": "channel-operations-capacity-planner",
+  "title": "Channel Operations Capacity Planner",
+  "description": "Design and run channel operations workflows with capacity planner controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11887,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11229-channel-operations-capacity-planner/SKILL.md",
+    "entrypoint": "agent09/11229-channel-operations-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "channel operations capacity planner",
+    "channel operations capacity planner workflow",
+    "channel operations capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

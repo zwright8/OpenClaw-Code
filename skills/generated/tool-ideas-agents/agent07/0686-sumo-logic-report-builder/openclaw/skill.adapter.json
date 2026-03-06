@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 686,
+  "name": "sumo-logic-report-builder",
+  "title": "Sumo Logic Report Builder",
+  "description": "Generates operational and KPI reports from Sumo Logic activity.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "agent07/0686-sumo-logic-report-builder/SKILL.md",
+    "entrypoint": "agent07/0686-sumo-logic-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sumo logic report builder",
+    "sumo logic report builder workflow",
+    "sumo logic report builder automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ],
+  "paths": {
+    "skillDir": "agent07/0686-sumo-logic-report-builder"
+  }
+}

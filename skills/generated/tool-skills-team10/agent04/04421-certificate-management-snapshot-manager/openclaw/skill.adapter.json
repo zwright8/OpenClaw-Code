@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4421,
+  "name": "certificate-management-snapshot-manager",
+  "title": "Certificate Management Snapshot Manager",
+  "description": "Design and run certificate management workflows with snapshot manager controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 9487,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04421-certificate-management-snapshot-manager/SKILL.md",
+    "entrypoint": "agent04/04421-certificate-management-snapshot-manager/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "certificate management snapshot manager",
+    "certificate management snapshot manager workflow",
+    "certificate management snapshot manager automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9963,
+  "name": "audience-analytics-retry-governor",
+  "title": "Audience Analytics Retry Governor",
+  "description": "Design and run audience analytics workflows with retry governor controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 6512,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09963-audience-analytics-retry-governor/SKILL.md",
+    "entrypoint": "agent08/09963-audience-analytics-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "audience analytics retry governor",
+    "audience analytics retry governor workflow",
+    "audience analytics retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11801,
+  "name": "protocol-management-access-auditor",
+  "title": "Protocol Management Access Auditor",
+  "description": "Design and run protocol management workflows with access auditor controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 12126,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11801-protocol-management-access-auditor/SKILL.md",
+    "entrypoint": "agent10/11801-protocol-management-access-auditor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "protocol management access auditor",
+    "protocol management access auditor workflow",
+    "protocol management access auditor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

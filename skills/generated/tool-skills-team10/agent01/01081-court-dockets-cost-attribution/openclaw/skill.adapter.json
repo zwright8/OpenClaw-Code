@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1081,
+  "name": "court-dockets-cost-attribution",
+  "title": "Court Dockets Cost Attribution",
+  "description": "Design and run court dockets workflows with cost attribution controls.",
+  "agent": "agent01",
+  "scoring": {
+    "rank": 8423,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent01/01081-court-dockets-cost-attribution/SKILL.md",
+    "entrypoint": "agent01/01081-court-dockets-cost-attribution/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "court dockets cost attribution",
+    "court dockets cost attribution workflow",
+    "court dockets cost attribution automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

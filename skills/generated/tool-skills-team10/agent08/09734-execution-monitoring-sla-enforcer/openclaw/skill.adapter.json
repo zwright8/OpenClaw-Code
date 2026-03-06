@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9734,
+  "name": "execution-monitoring-sla-enforcer",
+  "title": "Execution Monitoring SLA Enforcer",
+  "description": "Design and run execution monitoring workflows with sla enforcer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 11366,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent08/09734-execution-monitoring-sla-enforcer/SKILL.md",
+    "entrypoint": "agent08/09734-execution-monitoring-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "execution monitoring sla enforcer",
+    "execution monitoring sla enforcer workflow",
+    "execution monitoring sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

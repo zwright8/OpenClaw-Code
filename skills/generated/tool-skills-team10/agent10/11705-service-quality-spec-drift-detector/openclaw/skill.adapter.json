@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11705,
+  "name": "service-quality-spec-drift-detector",
+  "title": "Service Quality Spec Drift Detector",
+  "description": "Design and run service quality workflows with spec drift detector controls.",
+  "agent": "agent10",
+  "scoring": {
+    "rank": 4424,
+    "score": 71,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent10/11705-service-quality-spec-drift-detector/SKILL.md",
+    "entrypoint": "agent10/11705-service-quality-spec-drift-detector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "service quality spec drift detector",
+    "service quality spec drift detector workflow",
+    "service quality spec drift detector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

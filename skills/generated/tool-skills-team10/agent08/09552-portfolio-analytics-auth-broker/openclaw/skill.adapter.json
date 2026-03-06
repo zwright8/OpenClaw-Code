@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9552,
+  "name": "portfolio-analytics-auth-broker",
+  "title": "Portfolio Analytics Auth Broker",
+  "description": "Design and run portfolio analytics workflows with auth broker controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 959,
+    "score": 85,
+    "priorityBand": "P1"
+  },
+  "codex": {
+    "skillPath": "agent08/09552-portfolio-analytics-auth-broker/SKILL.md",
+    "entrypoint": "agent08/09552-portfolio-analytics-auth-broker/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "portfolio analytics auth broker",
+    "portfolio analytics auth broker workflow",
+    "portfolio analytics auth broker automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

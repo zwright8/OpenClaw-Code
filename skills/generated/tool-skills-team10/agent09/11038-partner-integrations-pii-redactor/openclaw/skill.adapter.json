@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11038,
+  "name": "partner-integrations-pii-redactor",
+  "title": "Partner Integrations PII Redactor",
+  "description": "Design and run partner integrations workflows with pii redactor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 3862,
+    "score": 73,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11038-partner-integrations-pii-redactor/SKILL.md",
+    "entrypoint": "agent09/11038-partner-integrations-pii-redactor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "partner integrations pii redactor",
+    "partner integrations pii redactor workflow",
+    "partner integrations pii redactor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

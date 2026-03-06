@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 10863,
+  "name": "ontology-management-retry-governor",
+  "title": "Ontology Management Retry Governor",
+  "description": "Design and run ontology management workflows with retry governor controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 6598,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/10863-ontology-management-retry-governor/SKILL.md",
+    "entrypoint": "agent09/10863-ontology-management-retry-governor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ontology management retry governor",
+    "ontology management retry governor workflow",
+    "ontology management retry governor automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8210,
+  "name": "scientific-publishing-workflow-compiler",
+  "title": "Scientific Publishing Workflow Compiler",
+  "description": "Design and run scientific publishing workflows with workflow compiler controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1154,
+    "score": 84,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08210-scientific-publishing-workflow-compiler/SKILL.md",
+    "entrypoint": "agent07/08210-scientific-publishing-workflow-compiler/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scientific publishing workflow compiler",
+    "scientific publishing workflow compiler workflow",
+    "scientific publishing workflow compiler automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

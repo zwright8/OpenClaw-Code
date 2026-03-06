@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 2073,
+  "name": "scada-monitoring-artifact-publisher",
+  "title": "SCADA Monitoring Artifact Publisher",
+  "description": "Design and run scada monitoring workflows with artifact publisher controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 8733,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/02073-scada-monitoring-artifact-publisher/SKILL.md",
+    "entrypoint": "agent02/02073-scada-monitoring-artifact-publisher/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "scada monitoring artifact publisher",
+    "scada monitoring artifact publisher workflow",
+    "scada monitoring artifact publisher automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 9786,
+  "name": "community-forums-risk-scorer",
+  "title": "Community Forums Risk Scorer",
+  "description": "Design and run community forums workflows with risk scorer controls.",
+  "agent": "agent08",
+  "scoring": {
+    "rank": 1669,
+    "score": 81,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent08/09786-community-forums-risk-scorer/SKILL.md",
+    "entrypoint": "agent08/09786-community-forums-risk-scorer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "community forums risk scorer",
+    "community forums risk scorer workflow",
+    "community forums risk scorer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

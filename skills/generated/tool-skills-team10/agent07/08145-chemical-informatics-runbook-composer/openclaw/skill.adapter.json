@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8145,
+  "name": "chemical-informatics-runbook-composer",
+  "title": "Chemical Informatics Runbook Composer",
+  "description": "Design and run chemical informatics workflows with runbook composer controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 6364,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08145-chemical-informatics-runbook-composer/SKILL.md",
+    "entrypoint": "agent07/08145-chemical-informatics-runbook-composer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "chemical informatics runbook composer",
+    "chemical informatics runbook composer workflow",
+    "chemical informatics runbook composer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 4249,
+  "name": "customer-qa-quality-gatekeeper",
+  "title": "Customer QA Quality Gatekeeper",
+  "description": "Design and run customer qa workflows with quality gatekeeper controls.",
+  "agent": "agent04",
+  "scoring": {
+    "rank": 5404,
+    "score": 68,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent04/04249-customer-qa-quality-gatekeeper/SKILL.md",
+    "entrypoint": "agent04/04249-customer-qa-quality-gatekeeper/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer qa quality gatekeeper",
+    "customer qa quality gatekeeper workflow",
+    "customer qa quality gatekeeper automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

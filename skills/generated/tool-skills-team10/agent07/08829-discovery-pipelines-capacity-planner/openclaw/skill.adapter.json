@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8829,
+  "name": "discovery-pipelines-capacity-planner",
+  "title": "Discovery Pipelines Capacity Planner",
+  "description": "Design and run discovery pipelines workflows with capacity planner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 11068,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08829-discovery-pipelines-capacity-planner/SKILL.md",
+    "entrypoint": "agent07/08829-discovery-pipelines-capacity-planner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "discovery pipelines capacity planner",
+    "discovery pipelines capacity planner workflow",
+    "discovery pipelines capacity planner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

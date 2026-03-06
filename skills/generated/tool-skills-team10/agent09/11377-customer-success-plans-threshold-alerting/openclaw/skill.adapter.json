@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11377,
+  "name": "customer-success-plans-threshold-alerting",
+  "title": "Customer Success Plans Threshold Alerting",
+  "description": "Design and run customer success plans workflows with threshold alerting controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 11948,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11377-customer-success-plans-threshold-alerting/SKILL.md",
+    "entrypoint": "agent09/11377-customer-success-plans-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "customer success plans threshold alerting",
+    "customer success plans threshold alerting workflow",
+    "customer success plans threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

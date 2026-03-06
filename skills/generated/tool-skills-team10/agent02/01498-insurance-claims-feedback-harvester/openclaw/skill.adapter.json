@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 1498,
+  "name": "insurance-claims-feedback-harvester",
+  "title": "Insurance Claims Feedback Harvester",
+  "description": "Design and run insurance claims workflows with feedback harvester controls.",
+  "agent": "agent02",
+  "scoring": {
+    "rank": 7268,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent02/01498-insurance-claims-feedback-harvester/SKILL.md",
+    "entrypoint": "agent02/01498-insurance-claims-feedback-harvester/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "insurance claims feedback harvester",
+    "insurance claims feedback harvester workflow",
+    "insurance claims feedback harvester automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5424,
+  "name": "message-brokers-evidence-collector",
+  "title": "Message Brokers Evidence Collector",
+  "description": "Design and run message brokers workflows with evidence collector controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6116,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05424-message-brokers-evidence-collector/SKILL.md",
+    "entrypoint": "agent05/05424-message-brokers-evidence-collector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "message brokers evidence collector",
+    "message brokers evidence collector workflow",
+    "message brokers evidence collector automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8277,
+  "name": "nonprofit-program-ops-threshold-alerting",
+  "title": "Nonprofit Program Ops Threshold Alerting",
+  "description": "Design and run nonprofit program ops workflows with threshold alerting controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 7828,
+    "score": 62,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent07/08277-nonprofit-program-ops-threshold-alerting/SKILL.md",
+    "entrypoint": "agent07/08277-nonprofit-program-ops-threshold-alerting/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "nonprofit program ops threshold alerting",
+    "nonprofit program ops threshold alerting workflow",
+    "nonprofit program ops threshold alerting automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

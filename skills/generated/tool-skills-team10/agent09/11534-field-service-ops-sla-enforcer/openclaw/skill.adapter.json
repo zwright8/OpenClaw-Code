@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 11534,
+  "name": "field-service-ops-sla-enforcer",
+  "title": "Field Service Ops SLA Enforcer",
+  "description": "Design and run field service ops workflows with sla enforcer controls.",
+  "agent": "agent09",
+  "scoring": {
+    "rank": 12017,
+    "score": 57,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent09/11534-field-service-ops-sla-enforcer/SKILL.md",
+    "entrypoint": "agent09/11534-field-service-ops-sla-enforcer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "field service ops sla enforcer",
+    "field service ops sla enforcer workflow",
+    "field service ops sla enforcer automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

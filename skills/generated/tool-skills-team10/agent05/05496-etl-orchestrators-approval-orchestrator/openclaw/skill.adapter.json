@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 5496,
+  "name": "etl-orchestrators-approval-orchestrator",
+  "title": "ETL Orchestrators Approval Orchestrator",
+  "description": "Design and run etl orchestrators workflows with approval orchestrator controls.",
+  "agent": "agent05",
+  "scoring": {
+    "rank": 6123,
+    "score": 67,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent05/05496-etl-orchestrators-approval-orchestrator/SKILL.md",
+    "entrypoint": "agent05/05496-etl-orchestrators-approval-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "etl orchestrators approval orchestrator",
+    "etl orchestrators approval orchestrator workflow",
+    "etl orchestrators approval orchestrator automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

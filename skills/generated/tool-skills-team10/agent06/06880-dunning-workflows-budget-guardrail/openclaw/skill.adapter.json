@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 6880,
+  "name": "dunning-workflows-budget-guardrail",
+  "title": "Dunning Workflows Budget Guardrail",
+  "description": "Design and run dunning workflows workflows with budget guardrail controls.",
+  "agent": "agent06",
+  "scoring": {
+    "rank": 7506,
+    "score": 63,
+    "priorityBand": "P3"
+  },
+  "codex": {
+    "skillPath": "agent06/06880-dunning-workflows-budget-guardrail/SKILL.md",
+    "entrypoint": "agent06/06880-dunning-workflows-budget-guardrail/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dunning workflows budget guardrail",
+    "dunning workflows budget guardrail workflow",
+    "dunning workflows budget guardrail automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}

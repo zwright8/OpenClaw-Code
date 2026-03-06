@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 8461,
+  "name": "impact-measurement-execution-runner",
+  "title": "Impact Measurement Execution Runner",
+  "description": "Design and run impact measurement workflows with execution runner controls.",
+  "agent": "agent07",
+  "scoring": {
+    "rank": 1403,
+    "score": 82,
+    "priorityBand": "P2"
+  },
+  "codex": {
+    "skillPath": "agent07/08461-impact-measurement-execution-runner/SKILL.md",
+    "entrypoint": "agent07/08461-impact-measurement-execution-runner/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "impact measurement execution runner",
+    "impact measurement execution runner workflow",
+    "impact measurement execution runner automation"
+  ],
+  "constraints": [
+    "Do not duplicate openclaw/openclaw core utilities.",
+    "Use least privilege and redact sensitive values in logs.",
+    "Validate side effects before completion."
+  ]
+}
