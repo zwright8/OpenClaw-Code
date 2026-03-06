@@ -20,6 +20,14 @@ function mean(values) {
     return values.reduce((acc, value) => acc + safeNumber(value), 0) / values.length;
 }
 
+function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+}
+
+function average(values) {
+    return mean(values);
+}
+
 function normalizePriority(priority) {
     const map = {
         P0: 'critical',
@@ -107,6 +115,11 @@ export class RecoverySupervisor {
         retryBudgetRateThreshold = 0.2,
         minRequestsForRetryBudget = 100,
         dispatchErrorThreshold = 3,
+        openQueueRatioThreshold = 0.35,
+        latencyInflationThreshold = 1.5,
+        avgLatencyThresholdForSaturation = 350,
+        minRequestsForConcurrencySaturation = 40,
+        minBaselineLatencyMs = 20,
         agentSuccessRateThreshold = 0.6,
         agentTimeoutRateThreshold = 0.25,
         agentOverloadThreshold = 0.9,
@@ -173,6 +186,29 @@ export class RecoverySupervisor {
                 windowEndAt: endAt
             });
         }
+        const avgRequestVolume = average(window.map((row) => Math.max(0, row.orchestrator.total)));
+        const avgOpenQueueRatio = average(window.map((row) => {
+            const total = Math.max(0, row.orchestrator.total);
+            if (total <= 0) return 0;
+            return clamp(row.orchestrator.open / total, 0, 1);
+        }));
+
+        const latencyWindow = Math.max(2, Math.ceil(window.length * 0.35));
+        const baselineRows = window.slice(0, Math.max(1, window.length - latencyWindow));
+        const recentRows = window.slice(-latencyWindow);
+        const baselineLatency = average(
+            baselineRows
+                .map((row) => row.simulation.avgLatencyMs)
+                .filter((value) => Number.isFinite(value) && value > 0)
+        );
+        const recentLatency = average(
+            recentRows
+                .map((row) => row.simulation.avgLatencyMs)
+                .filter((value) => Number.isFinite(value) && value > 0)
+        );
+        const latencyInflation = baselineLatency > 0
+            ? recentLatency / baselineLatency
+            : 1;
 
         if (avgTimeoutRate >= timeoutRateThreshold) {
             incidents.push({
@@ -257,6 +293,34 @@ export class RecoverySupervisor {
             });
         }
 
+        const hasConcurrencyTraffic = avgRequestVolume >= minRequestsForConcurrencySaturation;
+        const hasQueueSaturation = avgOpenQueueRatio >= openQueueRatioThreshold;
+        const hasLatencySaturation = (
+            baselineLatency >= minBaselineLatencyMs &&
+            latencyInflation >= latencyInflationThreshold
+        ) || recentLatency >= avgLatencyThresholdForSaturation;
+
+        if (hasConcurrencyTraffic && hasQueueSaturation && hasLatencySaturation) {
+            incidents.push({
+                code: 'concurrency_saturation',
+                priority: 'P0',
+                severity: 'critical',
+                target: 'global',
+                summary: `Open queue ratio ${avgOpenQueueRatio.toFixed(4)} with latency inflation ${latencyInflation.toFixed(2)} indicates saturation`,
+                metrics: {
+                    avgRequestVolume,
+                    avgOpenQueueRatio,
+                    openQueueRatioThreshold,
+                    baselineLatency,
+                    recentLatency,
+                    latencyInflation,
+                    latencyInflationThreshold
+                },
+                windowStartAt: startAt,
+                windowEndAt: endAt
+            });
+        }
+
         const latest = window[window.length - 1];
         for (const agent of latest.agents) {
             if (agent.successRate > 0 && agent.successRate < agentSuccessRateThreshold) {
@@ -333,6 +397,33 @@ export class RecoverySupervisor {
         const actions = [];
 
         for (const incident of source) {
+            if (incident.code === 'concurrency_saturation') {
+                actions.push({
+                    incidentCode: incident.code,
+                    priority: 'P0',
+                    actionType: 'enforce_adaptive_concurrency_limit',
+                    target: 'global',
+                    title: 'Apply adaptive concurrency limits (AIMD)',
+                    description: incident.summary
+                });
+                actions.push({
+                    incidentCode: incident.code,
+                    priority: 'P0',
+                    actionType: 'enable_load_shedding',
+                    target: 'global',
+                    title: 'Enable load shedding for non-critical traffic',
+                    description: incident.summary
+                });
+                actions.push({
+                    incidentCode: incident.code,
+                    priority: 'P1',
+                    actionType: 'isolate_dependency_bulkhead',
+                    target: 'global',
+                    title: 'Isolate slow dependencies via bulkhead routing',
+                    description: incident.summary
+                });
+            }
+
             if (incident.code === 'timeout_spike') {
                 actions.push({
                     incidentCode: incident.code,
@@ -449,6 +540,9 @@ export class RecoverySupervisor {
     buildRecoveryTasks(actions, {
         defaultTarget = 'agent:ops',
         targetMap = {
+            enforce_adaptive_concurrency_limit: 'agent:routing',
+            enable_load_shedding: 'agent:ops',
+            isolate_dependency_bulkhead: 'agent:ops',
             drain_agent: 'agent:ops',
             deprioritize_agent: 'agent:routing',
             route_to_stable_pool: 'agent:routing',

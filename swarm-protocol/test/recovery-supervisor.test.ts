@@ -50,6 +50,50 @@ function seedSupervisor() {
     return supervisor;
 }
 
+function seedSaturationSupervisor({ lowTraffic = false } = {}) {
+    let now = 200_000;
+    const supervisor = new RecoverySupervisor({
+        localAgentId: 'agent:supervisor',
+        now: () => now
+    });
+
+    const totals = lowTraffic ? [12, 14, 10, 9, 11, 13] : [220, 230, 210, 225, 235, 240];
+    const open = lowTraffic ? [6, 7, 5, 5, 6, 7] : [90, 96, 92, 130, 142, 150];
+    const latencies = [120, 130, 140, 330, 360, 390];
+
+    for (let i = 0; i < totals.length; i++) {
+        supervisor.ingestSnapshot({
+            at: now + i,
+            orchestrator: {
+                total: totals[i],
+                open: open[i],
+                terminal: Math.max(0, totals[i] - open[i]),
+                avgAttempts: 1.4,
+                byStatus: { dispatched: 20, retry_scheduled: 6, timed_out: 4 }
+            },
+            simulation: {
+                successRate: 0.78,
+                timeoutRate: 0.11,
+                failureRate: 0.12,
+                avgLatencyMs: latencies[i],
+                dispatchErrorCount: 1
+            },
+            agents: [
+                {
+                    agentId: 'agent:alpha',
+                    status: 'busy',
+                    load: 0.72,
+                    tasks: 85,
+                    successRate: 0.8,
+                    timeoutRate: 0.12
+                }
+            ]
+        });
+    }
+
+    return supervisor;
+}
+
 test('detectIncidents identifies global and per-agent reliability issues', () => {
     const supervisor = seedSupervisor();
     const detected = supervisor.detectIncidents({
@@ -68,6 +112,30 @@ test('detectIncidents identifies global and per-agent reliability issues', () =>
     assert.ok(detected.incidents.some((item) => item.code === 'agent_low_success'));
 });
 
+test('detectIncidents flags concurrency saturation during queue and tail-latency pressure', () => {
+    const supervisor = seedSaturationSupervisor();
+    const detected = supervisor.detectIncidents({
+        lookback: 6,
+        openQueueRatioThreshold: 0.4,
+        latencyInflationThreshold: 1.8,
+        minRequestsForConcurrencySaturation: 100
+    });
+
+    assert.ok(detected.incidents.some((item) => item.code === 'concurrency_saturation'));
+});
+
+test('detectIncidents suppresses concurrency saturation under low traffic', () => {
+    const supervisor = seedSaturationSupervisor({ lowTraffic: true });
+    const detected = supervisor.detectIncidents({
+        lookback: 6,
+        openQueueRatioThreshold: 0.4,
+        latencyInflationThreshold: 1.8,
+        minRequestsForConcurrencySaturation: 100
+    });
+
+    assert.ok(!detected.incidents.some((item) => item.code === 'concurrency_saturation'));
+});
+
 test('proposeActions converts incidents into remediation actions', () => {
     const supervisor = seedSupervisor();
     const detected = supervisor.detectIncidents({ lookback: 6 });
@@ -77,6 +145,23 @@ test('proposeActions converts incidents into remediation actions', () => {
     assert.ok(actions.some((item) => item.actionType === 'drain_agent'));
     assert.ok(actions.some((item) => item.actionType === 'route_to_stable_pool'));
     assert.ok(actions.some((item) => item.actionType === 'enforce_retry_budget'));
+});
+
+test('proposeActions emits adaptive-concurrency actions for saturation incidents', () => {
+    const supervisor = seedSupervisor();
+    const actions = supervisor.proposeActions([
+        {
+            code: 'concurrency_saturation',
+            priority: 'P0',
+            severity: 'critical',
+            target: 'global',
+            summary: 'saturation detected'
+        }
+    ]);
+
+    assert.ok(actions.some((item) => item.actionType === 'enforce_adaptive_concurrency_limit'));
+    assert.ok(actions.some((item) => item.actionType === 'enable_load_shedding'));
+    assert.ok(actions.some((item) => item.actionType === 'isolate_dependency_bulkhead'));
 });
 
 test('buildRecoveryTasks emits schema-valid task requests', () => {
