@@ -227,6 +227,70 @@ test('retry hint is clamped to maxRetryHintMs to avoid unbounded delay', async (
     assert.equal(metrics.retryHint.clampCount, 1);
 });
 
+test('RateLimit-Reset delta seconds is parsed as retry hint', async () => {
+    const clock = createClock(3_620);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-ratelimit-reset-delta',
+        task: 'Respect RateLimit-Reset hints'
+    });
+
+    clock.advance(10);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-ratelimit-reset-delta',
+        accepted: false,
+        reason: 'HTTP 429; RateLimit-Reset: 30',
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 33_630);
+});
+
+test('X-RateLimit-Reset epoch seconds is parsed as retry hint', async () => {
+    const clock = createClock(2_000_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-ratelimit-reset-epoch',
+        task: 'Respect X-RateLimit-Reset epoch'
+    });
+
+    clock.advance(10);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-ratelimit-reset-epoch',
+        accepted: false,
+        reason: 'HTTP 429 Too Many Requests; X-RateLimit-Reset=2005',
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 2_005_000);
+});
+
 test('HTTP 429 rejected receipt is treated as transient and schedules retry', async () => {
     const clock = createClock(3_720);
     const orchestrator = new TaskOrchestrator({

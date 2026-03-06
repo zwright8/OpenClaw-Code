@@ -409,6 +409,30 @@ function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
         }
     }
 
+    const rateLimitResetMatch = text.match(/(?:^|[\s,;])rate[_-]?limit[_-]?reset\s*[:=]\s*(\d{1,13})(?!\d)/i);
+    if (rateLimitResetMatch) {
+        const rawValue = Number(rateLimitResetMatch[1]);
+        if (Number.isFinite(rawValue) && rawValue >= 0) {
+            if (rawValue >= 10_000_000_000) {
+                return Math.max(0, rawValue - nowMs);
+            }
+
+            if (rawValue >= 1_000_000_000) {
+                return Math.max(0, (rawValue * 1000) - nowMs);
+            }
+
+            return rawValue * 1000;
+        }
+    }
+
+    const xRateLimitResetMatch = text.match(/(?:^|[\s,;])x[_-]?rate[_-]?limit[_-]?reset\s*[:=]\s*(\d{1,13})(?!\d)/i);
+    if (xRateLimitResetMatch) {
+        const epochSeconds = Number(xRateLimitResetMatch[1]);
+        if (Number.isFinite(epochSeconds) && epochSeconds >= 0) {
+            return Math.max(0, (epochSeconds * 1000) - nowMs);
+        }
+    }
+
     return null;
 }
 
