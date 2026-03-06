@@ -136,6 +136,7 @@ function formatMarkdown(summary) {
     lines.push(`- Orphan tool results: ${summary.orphanToolResults || 0}`);
     lines.push(`- Malformed lines: ${summary.malformedLines}`);
     lines.push(`- Incidents detected: ${summary.incidentCount || 0}`);
+    lines.push(`- Recurring incident patterns: ${summary.recurringIncidentCount || 0}`);
     lines.push(`- Reliability score: ${summary.reliabilityScore}/100`);
     lines.push('');
     lines.push('## Top Tools');
@@ -167,6 +168,18 @@ function formatMarkdown(summary) {
     }
     if ((summary.incidents || []).length === 0) {
         lines.push('| (none) | - | - | - | - | 0 |');
+    }
+    lines.push('');
+
+    lines.push('## Recurring Incident Patterns');
+    lines.push('');
+    lines.push('| Type | Tool | Count | Max Consecutive Windows | Max Severity | First Seen (UTC) | Last Seen (UTC) |');
+    lines.push('| --- | --- | ---: | ---: | ---: | --- | --- |');
+    for (const pattern of summary.incidentPatterns || []) {
+        lines.push(`| ${pattern.type} | ${pattern.tool} | ${pattern.count} | ${pattern.maxConsecutiveWindows} | ${pattern.maxSeverityScore} | ${pattern.firstWindowStartIso || '-'} | ${pattern.lastWindowStartIso || '-'} |`);
+    }
+    if ((summary.incidentPatterns || []).length === 0) {
+        lines.push('| (none) | - | 0 | 0 | 0 | - | - |');
     }
     lines.push('');
 

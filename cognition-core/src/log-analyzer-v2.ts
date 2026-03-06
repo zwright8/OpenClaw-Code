@@ -268,6 +268,101 @@ function detectHourlyIncidents(hourlyWindows, options = {}) {
         .slice(0, 25);
 }
 
+function summarizeRecurringIncidents(incidents, options = {}) {
+    if (!Array.isArray(incidents) || incidents.length === 0) return [];
+
+    const minOccurrences = Number.isFinite(Number(options.minOccurrences))
+        ? Number(options.minOccurrences)
+        : 2;
+    const maxGapMs = Number.isFinite(Number(options.maxGapMs))
+        ? Number(options.maxGapMs)
+        : 75 * 60 * 1000;
+
+    const grouped = new Map();
+    for (const incident of incidents) {
+        if (!incident || typeof incident !== 'object') continue;
+        if (typeof incident.tool !== 'string' || typeof incident.type !== 'string') continue;
+        if (typeof incident.windowStartIso !== 'string') continue;
+
+        const key = `${incident.type}:${incident.tool}`;
+        if (!grouped.has(key)) {
+            grouped.set(key, {
+                type: incident.type,
+                tool: incident.tool,
+                occurrences: []
+            });
+        }
+
+        grouped.get(key).occurrences.push(incident);
+    }
+
+    const patterns = [];
+    for (const { type, tool, occurrences } of grouped.values()) {
+        if (!Array.isArray(occurrences) || occurrences.length < minOccurrences) continue;
+
+        const normalized = occurrences
+            .map((incident) => {
+                const ts = Date.parse(incident.windowStartIso);
+                return {
+                    incident,
+                    timestampMs: Number.isFinite(ts) ? ts : null,
+                    severityScore: Number(incident.severityScore) || 0
+                };
+            })
+            .sort((a, b) => {
+                if (a.timestampMs !== null && b.timestampMs !== null) {
+                    return a.timestampMs - b.timestampMs;
+                }
+                return String(a.incident.windowStartIso).localeCompare(String(b.incident.windowStartIso));
+            });
+
+        let maxConsecutiveWindows = 1;
+        let currentConsecutive = 1;
+        for (let i = 1; i < normalized.length; i++) {
+            const prev = normalized[i - 1];
+            const current = normalized[i];
+            const hasTimestamps = prev.timestampMs !== null && current.timestampMs !== null;
+            const gapMs = hasTimestamps ? current.timestampMs - prev.timestampMs : Number.POSITIVE_INFINITY;
+            if (hasTimestamps && gapMs > 0 && gapMs <= maxGapMs) {
+                currentConsecutive += 1;
+                maxConsecutiveWindows = Math.max(maxConsecutiveWindows, currentConsecutive);
+            } else {
+                currentConsecutive = 1;
+            }
+        }
+
+        const severityValues = normalized.map((entry) => entry.severityScore);
+        const maxSeverityScore = roundNumber(Math.max(...severityValues), 2);
+        const avgSeverityScore = roundNumber(
+            severityValues.reduce((sum, value) => sum + value, 0) / Math.max(severityValues.length, 1),
+            2
+        );
+
+        const first = normalized[0]?.incident;
+        const last = normalized[normalized.length - 1]?.incident;
+        patterns.push({
+            type,
+            tool,
+            count: normalized.length,
+            maxConsecutiveWindows,
+            maxSeverityScore,
+            avgSeverityScore,
+            firstWindowStartIso: first?.windowStartIso || null,
+            lastWindowStartIso: last?.windowStartIso || null
+        });
+    }
+
+    return patterns
+        .sort((a, b) => {
+            if (b.count !== a.count) return b.count - a.count;
+            if (b.maxConsecutiveWindows !== a.maxConsecutiveWindows) {
+                return b.maxConsecutiveWindows - a.maxConsecutiveWindows;
+            }
+            return b.maxSeverityScore - a.maxSeverityScore;
+        })
+        .slice(0, 10);
+}
+
 function ensureToolSummary(raw) {
     if (!raw || typeof raw !== 'object') {
         return {
@@ -535,6 +630,33 @@ export function buildRemediationPlan(currentSummary, comparison = null) {
         }
     }
 
+    const recurringIncidentPatterns = Array.isArray(currentSummary.incidentPatterns)
+        ? currentSummary.incidentPatterns
+        : summarizeRecurringIncidents(incidents);
+    for (const pattern of recurringIncidentPatterns.slice(0, 3)) {
+        const patternImpact = (Number(pattern.maxSeverityScore) || 0) + ((Number(pattern.count) || 0) * 4);
+
+        if (pattern.type === 'error_spike') {
+            const priority = pattern.count >= 3 ? 'P1' : 'P2';
+            add(
+                priority,
+                `Stabilize recurring ${pattern.tool} error spikes`,
+                `${pattern.tool} triggered ${pattern.count} error-spike incident(s) (max consecutive windows: ${pattern.maxConsecutiveWindows}).`,
+                `Introduce temporary error-budget paging for ${pattern.tool}, diff config/code changes between ${pattern.firstWindowStartIso} and ${pattern.lastWindowStartIso}, and ship a permanent guardrail test for the failure mode.`,
+                patternImpact
+            );
+        } else if (pattern.type === 'latency_spike') {
+            const priority = pattern.count >= 3 ? 'P1' : 'P2';
+            add(
+                priority,
+                `Stabilize recurring ${pattern.tool} latency spikes`,
+                `${pattern.tool} triggered ${pattern.count} latency-spike incident(s) (max consecutive windows: ${pattern.maxConsecutiveWindows}).`,
+                `Create a focused latency war-room for ${pattern.tool}, compare slow traces between ${pattern.firstWindowStartIso} and ${pattern.lastWindowStartIso}, and enforce SLO-aware fallbacks for outlier paths.`,
+                patternImpact
+            );
+        }
+    }
+
     if ((currentSummary.sessionsMissingFile || 0) > 0) {
         add(
             'P2',
@@ -720,7 +842,9 @@ export class LogAnalyzerV2 {
             byDay: {},
             hourlyActivity: {},
             incidents: [],
+            incidentPatterns: [],
             incidentCount: 0,
+            recurringIncidentCount: 0,
             cutoffIso: null,
             startIso: null,
             endIso: null,
@@ -781,7 +905,9 @@ export class LogAnalyzerV2 {
 
         this.stats.generatedAt = new Date(rangeEndMs).toISOString();
         this.stats.incidents = detectHourlyIncidents(this.hourlyWindows);
+        this.stats.incidentPatterns = summarizeRecurringIncidents(this.stats.incidents);
         this.stats.incidentCount = this.stats.incidents.length;
+        this.stats.recurringIncidentCount = this.stats.incidentPatterns.length;
         return this.toJSON();
     }
 
@@ -1228,6 +1354,17 @@ export class LogAnalyzerV2 {
         }
 
         const incidents = Array.isArray(this.stats.incidents) ? this.stats.incidents : [];
+        const recurringPatterns = Array.isArray(this.stats.incidentPatterns)
+            ? this.stats.incidentPatterns
+            : [];
+
+        for (const pattern of recurringPatterns.slice(0, 2)) {
+            const incidentLabel = pattern.type === 'error_spike' ? 'error spike' : 'latency spike';
+            insights.push(
+                `Recurring incident pattern: ${pattern.tool} ${incidentLabel} occurred ${pattern.count} times (max consecutive windows: ${pattern.maxConsecutiveWindows}).`
+            );
+        }
+
         for (const incident of incidents.slice(0, 3)) {
             if (incident.type === 'error_spike') {
                 insights.push(`Incident detected: ${incident.tool} error spike at ${incident.windowStartIso} (${incident.observed.errorRate}% vs baseline ${incident.baseline.medianErrorRate}%).`);
@@ -1280,6 +1417,7 @@ export class LogAnalyzerV2 {
         console.log(`Unresolved Calls: ${summary.unresolvedToolCalls}`);
         console.log(`Orphan Results:   ${summary.orphanToolResults}`);
         console.log(`Incidents:        ${summary.incidentCount || 0}`);
+        console.log(`Recurring Patterns: ${summary.recurringIncidentCount || 0}`);
         console.log(`Reliability:      ${summary.reliabilityScore}/100`);
         console.log('\nTool Performance:');
 
@@ -1312,6 +1450,16 @@ export class LogAnalyzerV2 {
             console.log('\nDetected Incidents:');
             for (const incident of incidents.slice(0, 5)) {
                 console.log(`  - [${incident.type}] ${incident.summary}`);
+            }
+        }
+
+        const recurringPatterns = Array.isArray(summary.incidentPatterns) ? summary.incidentPatterns : [];
+        if (recurringPatterns.length > 0) {
+            console.log('\nRecurring Incident Patterns:');
+            for (const pattern of recurringPatterns.slice(0, 5)) {
+                console.log(
+                    `  - [${pattern.type}] ${pattern.tool}: ${pattern.count} occurrences, max consecutive windows ${pattern.maxConsecutiveWindows}`
+                );
             }
         }
 

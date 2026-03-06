@@ -433,6 +433,100 @@ test('detects incident spikes for hourly error and latency windows', async (t) =
     assert.ok(remediation.some((item) => item.title.includes('Contain exec latency spike')));
 });
 
+test('summarizes recurring incident patterns and upgrades remediation priority', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const baseTs = Date.UTC(2026, 1, 28, 0, 0, 0);
+    const sessionId = '56565656-5656-4565-8565-565656565656';
+    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
+    const sessionsFile = path.join(dir, 'sessions.json');
+
+    const lines = [];
+    let callCounter = 0;
+
+    for (let hourIndex = 0; hourIndex < 6; hourIndex++) {
+        const hourStart = baseTs + (hourIndex * 60 * 60 * 1000);
+        for (let i = 0; i < 6; i++) {
+            const ts = hourStart + (i * 20_000);
+            const callId = `baseline-${callCounter++}`;
+            lines.push(JSON.stringify({
+                type: 'message',
+                message: {
+                    role: 'assistant',
+                    content: [{ type: 'toolCall', id: callId, name: 'exec' }],
+                    timestamp: ts
+                }
+            }));
+            lines.push(JSON.stringify({
+                type: 'message',
+                message: {
+                    role: 'toolResult',
+                    toolName: 'exec',
+                    callId,
+                    isError: false,
+                    details: { durationMs: 120 },
+                    timestamp: ts + 1
+                }
+            }));
+        }
+    }
+
+    for (let spikeHour = 6; spikeHour < 8; spikeHour++) {
+        const hourStart = baseTs + (spikeHour * 60 * 60 * 1000);
+        for (let i = 0; i < 6; i++) {
+            const ts = hourStart + (i * 20_000);
+            const callId = `spike-${spikeHour}-${i}`;
+            lines.push(JSON.stringify({
+                type: 'message',
+                message: {
+                    role: 'assistant',
+                    content: [{ type: 'toolCall', id: callId, name: 'exec' }],
+                    timestamp: ts
+                }
+            }));
+            lines.push(JSON.stringify({
+                type: 'message',
+                message: {
+                    role: 'toolResult',
+                    toolName: 'exec',
+                    callId,
+                    isError: i < 4,
+                    details: { durationMs: 150 },
+                    timestamp: ts + 1
+                }
+            }));
+        }
+    }
+
+    writeJsonl(sessionFile, lines);
+    writeJson(sessionsFile, {
+        recurringIncidentCase: { sessionId, updatedAt: baseTs + (8 * 60 * 60 * 1000) }
+    });
+
+    const analyzer = new LogAnalyzerV2(sessionsFile);
+    await analyzer.analyze(7, {
+        rangeStartMs: baseTs - (60 * 60 * 1000),
+        rangeEndMs: baseTs + (9 * 60 * 60 * 1000)
+    });
+
+    const summary = analyzer.toJSON();
+    assert.ok(summary.incidentCount >= 2);
+    assert.ok(summary.recurringIncidentCount >= 1);
+
+    const recurringPattern = summary.incidentPatterns.find((pattern) => (
+        pattern.type === 'error_spike' && pattern.tool === 'exec'
+    ));
+    assert.ok(recurringPattern);
+    assert.equal(recurringPattern.count, 2);
+    assert.equal(recurringPattern.maxConsecutiveWindows, 2);
+
+    assert.ok(summary.insights.some((line) => line.includes('Recurring incident pattern: exec error spike occurred 2 times')));
+
+    const remediation = buildRemediationPlan(summary);
+    assert.ok(remediation.some((item) => item.title === 'Stabilize recurring exec error spikes'));
+});
+
 test('tracks unresolved tool calls and orphan tool results per session', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
