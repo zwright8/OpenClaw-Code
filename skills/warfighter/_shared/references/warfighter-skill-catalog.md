@@ -504,3 +504,20 @@ Every skill output should include:
 - Added shared reference this run: cross-domain-integration-playbook.md
 - Updated all warfighter skill playbooks with cross-domain integration binding: 482/482
 - Total warfighter skills after this run: 482
+
+## New Expansion Wave (2026-03-07, Strategic Continuity and Homeland Resilience Additions)
+
+- homeland-critical-infrastructure-defense-coordination-cell
+- tactical-battery-repair-and-recertification-cell
+- expeditionary-veterinary-and-zoonotic-risk-cell
+- joint-priority-intelligence-requirements-governance-cell
+- coalition-sanctions-evasion-network-disruption-cell
+- joint-mass-evacuation-flow-control-cell
+- strategic-rare-gas-and-cryogenic-supply-resilience-cell
+- joint-electromagnetic-battle-damage-recovery-cell
+- contested-orbital-ground-station-defense-cell
+- expeditionary-bulk-fuel-contamination-response-cell
+- joint-prisoner-transfer-and-status-accountability-cell
+- nc3-emergency-action-message-integrity-assurance-cell
+- strategic-deterrence-signaling-options-cell
+- coalition-sof-information-bridge-cell
