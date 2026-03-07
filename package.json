@@ -5,7 +5,7 @@
   "scripts": {
     "agent:quickstart": "cat AGENTS.md",
     "agent:map": "cat AGENT_MAP.json",
-    "agent:validate": "npm run typecheck && npm --prefix cognition-core test && npm --prefix swarm-protocol run test:unit",
+    "agent:validate": "npm run typecheck && npm run artifacts:validate && npm --prefix cognition-core test && npm --prefix swarm-protocol run test:unit",
     "artifacts:validate": "node scripts/validate-artifact-contracts.mjs",
     "lint": "tsx scripts/auto-refactor.ts",
     "build": "npm run lint && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
