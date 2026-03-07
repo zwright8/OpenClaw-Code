@@ -83,3 +83,9 @@ Primary products for this skill: patient movement prioritization board, medevac 
 - Use `../_shared/references/operational-learning-and-after-action-loop.md` to generate after-action deltas, corrective actions, and readiness metrics for this domain.
 - Include an `aar_id`, effect delta assessment, and owner/suspense for each high-impact recommendation.
 - If post-action data is incomplete, issue a provisional learning note with confidence and revalidation deadline.
+
+## Readiness Certification Evidence Pack
+
+- Use `../_shared/references/readiness-certification-evidence-pack.md` to define mission-essential task evidence, evaluator triggers, and certification confidence scoring.
+- Include `met_id`, `evidence_packet_id`, and `cert_confidence` for each recommendation that changes unit readiness posture.
+- If required evidence is missing, mark status as `provisional` and assign closure actions with suspense.

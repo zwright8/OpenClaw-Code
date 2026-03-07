@@ -4,8 +4,8 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 260
-- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, and this catalog
+- Total warfighter skills in this repo: 280
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
 ## Domain Coverage Matrix
@@ -244,3 +244,26 @@ Every skill output should include:
 - expeditionary-waterway-denial-bridge-control-cell
 - joint-digital-twin-battlefield-infrastructure-cell
 - tactical-climate-hazard-mission-adaptation-cell
+
+## New Expansion Wave (2026-03-07, Readiness Certification and Irregular Domain Expansion)
+
+- joint-cbrn-urban-decontamination-corridor-cell
+- theater-deepfake-voice-spoofing-command-authentication-cell
+- autonomous-combat-engineer-route-breach-cell
+- joint-rapid-airbase-camouflage-and-decoy-cell
+- coalition-legal-interoperability-and-status-of-forces-cell
+- distributed-maritime-sensor-buoy-orchestration-cell
+- theater-civil-telecom-restoration-and-priority-routing-cell
+- tactical-solar-radiation-hardening-and-space-event-response-cell
+- contested-stratospheric-balloon-surveillance-countermeasure-cell
+- strategic-fuel-refinery-disruption-impact-cell
+- tactical-amphibious-littoral-gap-crossing-cell
+- joint-psyops-counter-disinformation-measurement-cell
+- expeditionary-drinking-water-contamination-response-cell
+- multi-domain-reserve-mobilization-readiness-cell
+- contested-quantum-key-distribution-satcom-cell
+- battlefield-electromagnetic-fratricide-prevention-cell
+- allied-maintenance-data-rights-and-tech-transfer-cell
+- joint-battlefield-forensics-and-evidence-fusion-cell
+- expeditionary-aquaculture-and-field-nutrition-resilience-cell
+- space-launch-window-threat-and-weather-cell

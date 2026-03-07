@@ -211,3 +211,26 @@ Include these fields in outputs when tool integration is used:
 - `EDXL-DE/CAP`: emergency data exchange and public warning message packaging for civil defense workflows
 - `COLREGS-aligned machine rules`: maritime collision-avoidance interoperability constraints for uncrewed traffic control
 - `AIXM/FIXM procedure subsets`: precision approach/landing data exchange for contested-airfield and degraded nav operations
+
+## Domain Toolchain Profiles (2026-03-07 Expansion)
+
+- Urban CBRN decontamination corridors: CBRN sensing grids + civil health systems + NIMS/ICS + USMTF
+- Command voice anti-spoofing: secure voice gateways + media forensics + identity telemetry + STIX/TAXII + API/JSON
+- Autonomous combat engineer breach: engineer robotics control + mobility C2 + VMF/CoT + USMTF
+- Airbase camouflage and decoy: signature simulation tools + GEOINT change detection + Link 16/USMTF
+- Coalition SOFA/legal interoperability: coalition legal repositories + caveat trackers + NATO APP-11/ADatP-3 + USMTF
+- Distributed maritime buoy orchestration: undersea sensor managers + maritime COP + AIS/NMEA + Link 16
+- Civil telecom restoration: telecom OSS/BSS + infrastructure telemetry + NIMS/ICS + EDXL-DE/CAP
+- Solar radiation hardening response: space-weather feeds + SATCOM health monitors + API/JSON + USMTF
+- Stratospheric balloon countermeasure: air domain sensors + ISR fusion + Link 16 J-series + VMF
+- Fuel refinery disruption impact: energy telemetry + logistics C2 + API/JSON + USMTF
+- Amphibious littoral crossing: hydrographic planning + maneuver COP + VMF + CoT + USMTF
+- Counter-disinformation measurement: MISO analytics + narrative telemetry + STIX/TAXII + API/JSON
+- Drinking water contamination response: water quality telemetry + med surveillance + HL7/FHIR + USMTF
+- Reserve mobilization readiness: personnel readiness systems + training registries + USMTF readiness reporting
+- Contested QKD SATCOM: key management platforms + SATCOM controllers + API/JSON + secure message buses
+- Electromagnetic fratricide prevention: spectrum deconfliction systems + EW planners + Link 16 + VMF
+- Allied maintenance data rights/tech transfer: maintenance ERPs + export-control tooling + coalition data exchanges
+- Battlefield forensics fusion: forensic evidence systems + chain-of-custody registries + STIX/TAXII + USMTF
+- Expeditionary aquaculture and nutrition resilience: sustainment dashboards + environmental sensors + logistics APIs
+- Launch window threat/weather: launch range C2 + weather/space-weather intelligence + AIXM/FIXM + USMTF
