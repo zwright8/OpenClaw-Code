@@ -91,7 +91,7 @@ function normalizeRoutingPolicy(options = {}) {
         minSamplesForReliability: resolvePositiveOption(policy.minSamplesForReliability, 3),
         latencyPenaltyStartMs: resolvePositiveOption(policy.latencyPenaltyStartMs, 1_500),
         latencyPenaltyCapMs: resolvePositiveOption(policy.latencyPenaltyCapMs, 15_000),
-        overloadThreshold: resolveUnitIntervalOption(policy.overloadThreshold, 0.92)
+        overloadThreshold: resolveUnitIntervalOption(policy.overloadThreshold, 0.98)
     };
 }
 

@@ -26,6 +26,7 @@ const CIRCUIT_CLOSED = 'closed';
 const CIRCUIT_OPEN = 'open';
 const CIRCUIT_HALF_OPEN = 'half_open';
 const DEFAULT_MAX_RETRY_DELAY_MULTIPLIER = 32;
+const DEFAULT_MAX_RETRY_HINT_MS = 60_000;
 const DEFAULT_RETRY_JITTER_RATIO = 0.2;
 const RETRY_CYCLE_GUARD_MULTIPLIER = 4;
 const DEFAULT_GLOBAL_RETRY_BUDGET_RATIO = 0.2;
@@ -414,10 +415,13 @@ function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
     if (typeof reason !== 'string' || !reason.trim()) return null;
     const text = reason.trim();
 
-    const msMatch = text.match(/retry[_-]?after(?:[_-]?ms)?\s*[:=]\s*(\d+)\s*ms/i);
-    if (msMatch) return Number(msMatch[1]);
+    const explicitMsKeyMatch = text.match(/retry[_-]?after[_-]?ms\s*[:=]\s*(\d+)(?!\d)/i);
+    if (explicitMsKeyMatch) return Number(explicitMsKeyMatch[1]);
 
-    const secMatch = text.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?/i);
+    const explicitMsUnitMatch = text.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:ms|msec|millisecond|milliseconds)(?![A-Za-z])/i);
+    if (explicitMsUnitMatch) return Number(explicitMsUnitMatch[1]);
+
+    const secMatch = text.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?(?![A-Za-z])/i);
     if (secMatch) return Number(secMatch[1]) * 1000;
 
     const dateMatch = text.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},\s*\d{1,2}\s+[A-Za-z]{3}\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+GMT)/i);
@@ -1019,9 +1023,10 @@ export class TaskOrchestrator {
         this.maxRetryDelayMs = maxRetryDelayMs === null || maxRetryDelayMs === undefined
             ? defaultMaxRetryDelayMs
             : safeNonNegativeNumber(maxRetryDelayMs, defaultMaxRetryDelayMs);
+        const defaultMaxRetryHintMs = Math.max(this.maxRetryDelayMs, DEFAULT_MAX_RETRY_HINT_MS);
         this.maxRetryHintMs = maxRetryHintMs === null || maxRetryHintMs === undefined
-            ? this.maxRetryDelayMs
-            : safeNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs);
+            ? defaultMaxRetryHintMs
+            : safeNonNegativeNumber(maxRetryHintMs, defaultMaxRetryHintMs);
         this.retryJitterRatio = Number.isFinite(retryJitterRatio) && retryJitterRatio >= 0
             ? Math.min(Number(retryJitterRatio), 1)
             : DEFAULT_RETRY_JITTER_RATIO;
@@ -2410,7 +2415,10 @@ export class TaskOrchestrator {
             record.lastError = null;
             lifecycle.consecutiveFailures = 0;
             this._recordRetryThrottleSuccess(record.target, sendAt);
-            this._recordCircuitSuccess(record.target, sendAt);
+            const circuit = this._getCircuit(record.target);
+            if (circuit && (circuit.state === CIRCUIT_HALF_OPEN || !isRetryDispatch)) {
+                this._recordCircuitSuccess(record.target, sendAt);
+            }
             this._setRetryLifecycleState(record, 'idle', sendAt, {
                 reason: isRetryDispatch ? dispatchReason : normalizedReason,
                 reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code,
@@ -2731,7 +2739,11 @@ export class TaskOrchestrator {
             return null;
         }
 
-        if (this._isRetryBudgetExhausted(record)) {
+        const bypassRetryBudget = scheduleReason === 'target_circuit_open'
+            || scheduleReason === 'bulkhead_limit'
+            || scheduleReason === 'target_retry_throttled';
+
+        if (!bypassRetryBudget && this._isRetryBudgetExhausted(record)) {
             const terminalReason = `retry_budget_exhausted:${scheduleReason}`;
             const status = scheduleReason === 'transport_failure' || scheduleReason === 'approval_release_failed'
                 ? 'transport_error'
