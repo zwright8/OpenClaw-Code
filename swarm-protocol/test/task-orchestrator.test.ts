@@ -549,6 +549,118 @@ test('strict retry safety mode requires explicit idempotency declaration', async
     assert.equal(sent.length, 3);
 });
 
+test('dedupe coalesces duplicate dispatches for the same idempotency key', async () => {
+    const clock = createClock(4_400);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        dedupeEnabled: true,
+        dedupeMode: 'coalesce',
+        dedupeWindowMs: 10_000
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe',
+        task: 'Summarize release telemetry',
+        context: {
+            idempotencyKey: 'release-telemetry-summary-2026-03-06'
+        }
+    });
+
+    clock.advance(25);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe',
+        task: 'Summarize release telemetry',
+        context: {
+            idempotencyKey: 'release-telemetry-summary-2026-03-06'
+        }
+    });
+
+    assert.equal(first.taskId, second.taskId);
+    assert.equal(sent.length, 1);
+    assert.equal(orchestrator.getMetrics().dedupe.suppressions, 1);
+});
+
+test('dedupe reject mode throws duplicate task error', async () => {
+    const clock = createClock(4_600);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        dedupeEnabled: true,
+        dedupeMode: 'reject',
+        dedupeWindowMs: 10_000
+    });
+
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-reject',
+        task: 'Generate incident summary',
+        context: {
+            idempotency_key: 'incident-summary-42'
+        }
+    });
+
+    clock.advance(50);
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-dedupe-reject',
+            task: 'Generate incident summary',
+            context: {
+                idempotency_key: 'incident-summary-42'
+            }
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'DUPLICATE_TASK');
+            return true;
+        }
+    );
+});
+
+test('dedupe window expiry allows re-dispatch for same idempotency key', async () => {
+    const clock = createClock(4_800);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        dedupeEnabled: true,
+        dedupeWindowMs: 100
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-window',
+        task: 'Refresh capability cache',
+        context: {
+            idempotencyKey: 'cache-refresh-abc'
+        }
+    });
+
+    clock.advance(150);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-window',
+        task: 'Refresh capability cache',
+        context: {
+            idempotencyKey: 'cache-refresh-abc'
+        }
+    });
+
+    assert.notEqual(first.taskId, second.taskId);
+    assert.equal(sent.length, 2);
+});
+
 test('maintenance schedules retry, retries, and times out when budget exhausted', async () => {
     const clock = createClock(4_000);
     const sent = [];

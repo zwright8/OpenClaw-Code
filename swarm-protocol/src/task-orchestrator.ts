@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { TaskReceipt, TaskRequest, TaskResult } from './schemas.js';
 
 const TERMINAL_STATUSES = new Set([
@@ -151,6 +151,21 @@ const TERMINAL_REASON_ALLOWED_CODES_BY_STATUS = new Map([
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
+}
+
+function stableSerialize(value) {
+    if (Array.isArray(value)) {
+        return `[${value.map((item) => stableSerialize(item)).join(',')}]`;
+    }
+
+    if (value && typeof value === 'object') {
+        const entries = Object.entries(value)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([key, entryValue]) => `"${key}":${stableSerialize(entryValue)}`);
+        return `{${entries.join(',')}}`;
+    }
+
+    return JSON.stringify(value);
 }
 
 function safeNow(nowFn) {
@@ -866,6 +881,11 @@ export class TaskOrchestrator {
         maxInFlightPerTarget = null,
         maxInFlightGlobal = null,
         retrySafetyMode = 'auto',
+        dedupeEnabled = false,
+        dedupeMode = 'coalesce',
+        dedupeWindowMs = 300_000,
+        dedupeUseContentHash = true,
+        resolveIdempotencyKey = null,
         now = Date.now,
         logger = console
     }) {
@@ -957,14 +977,142 @@ export class TaskOrchestrator {
         this.maxInFlightPerTarget = safePositiveIntegerOrInfinity(maxInFlightPerTarget, Infinity);
         this.maxInFlightGlobal = safePositiveIntegerOrInfinity(maxInFlightGlobal, Infinity);
         this.retrySafetyMode = normalizeRetrySafetyMode(retrySafetyMode);
+        this.dedupeEnabled = dedupeEnabled === true;
+        this.dedupeMode = dedupeMode === 'reject' ? 'reject' : 'coalesce';
+        this.dedupeWindowMs = Number.isFinite(dedupeWindowMs) && dedupeWindowMs > 0
+            ? Number(dedupeWindowMs)
+            : 300_000;
+        this.dedupeUseContentHash = dedupeUseContentHash !== false;
+        this.resolveIdempotencyKey = typeof resolveIdempotencyKey === 'function'
+            ? resolveIdempotencyKey
+            : null;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
         this.circuits = new Map();
         this.retryThrottleBuckets = new Map();
+        this.dedupeIndex = new Map();
+        this.dedupeSuppressions = 0;
         this.globalRetryBudgetEvents = [];
         this.retryHintClampCount = 0;
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _pruneDedupeIndex(nowMs = safeNow(this.now)) {
+        if (!this.dedupeEnabled || this.dedupeIndex.size === 0) return;
+
+        for (const [key, entry] of this.dedupeIndex.entries()) {
+            if (!entry || nowMs > entry.expiresAt) {
+                this.dedupeIndex.delete(key);
+                continue;
+            }
+
+            const record = this.tasks.get(entry.taskId);
+            if (!record) {
+                this.dedupeIndex.delete(key);
+            }
+        }
+    }
+
+    _extractIdempotencyKey(taskRequest) {
+        const context = taskRequest?.context && typeof taskRequest.context === 'object'
+            ? taskRequest.context
+            : {};
+
+        const contextCandidates = [
+            context.idempotencyKey,
+            context.idempotency_key,
+            context.dedupeKey,
+            context.deduplicationKey,
+            context.requestKey
+        ];
+
+        for (const candidate of contextCandidates) {
+            if (typeof candidate === 'string' && candidate.trim()) {
+                return candidate.trim();
+            }
+        }
+
+        if (Array.isArray(taskRequest?.constraints)) {
+            for (const constraint of taskRequest.constraints) {
+                if (typeof constraint !== 'string' || !constraint.trim()) continue;
+                const match = constraint.match(
+                    /\b(?:idempotency|idempotency_key|dedupe|dedupe_key|deduplication_key)\s*[:=]\s*([a-zA-Z0-9._:-]{4,})\b/i
+                );
+                if (match?.[1]) {
+                    return match[1];
+                }
+            }
+        }
+
+        return null;
+    }
+
+    _resolveDedupeKey(taskRequest) {
+        if (!this.dedupeEnabled || !taskRequest || typeof taskRequest !== 'object') {
+            return null;
+        }
+
+        const customKey = this.resolveIdempotencyKey?.(taskRequest);
+        if (typeof customKey === 'string' && customKey.trim()) {
+            return `idempotency:${customKey.trim()}`;
+        }
+
+        const extracted = this._extractIdempotencyKey(taskRequest);
+        if (typeof extracted === 'string' && extracted.trim()) {
+            return `idempotency:${extracted.trim()}`;
+        }
+
+        if (!this.dedupeUseContentHash) {
+            return null;
+        }
+
+        const digest = createHash('sha256')
+            .update(
+                stableSerialize({
+                    target: taskRequest.target,
+                    task: taskRequest.task,
+                    priority: taskRequest.priority,
+                    context: taskRequest.context || null,
+                    constraints: taskRequest.constraints || null
+                })
+            )
+            .digest('hex');
+        return `content:${digest}`;
+    }
+
+    _registerDedupeForRecord(record, nowMs = safeNow(this.now)) {
+        if (!this.dedupeEnabled || !record || typeof record !== 'object') return;
+
+        if (typeof record.dedupeKey !== 'string' || !record.dedupeKey.trim()) {
+            record.dedupeKey = this._resolveDedupeKey(record.request);
+        }
+        if (typeof record.dedupeKey !== 'string' || !record.dedupeKey) return;
+
+        this.dedupeIndex.set(record.dedupeKey, {
+            taskId: record.taskId,
+            createdAt: nowMs,
+            expiresAt: nowMs + this.dedupeWindowMs
+        });
+    }
+
+    _findDedupedRecord(dedupeKey, nowMs = safeNow(this.now)) {
+        if (!this.dedupeEnabled || typeof dedupeKey !== 'string' || !dedupeKey) {
+            return null;
+        }
+
+        this._pruneDedupeIndex(nowMs);
+
+        const entry = this.dedupeIndex.get(dedupeKey);
+        if (!entry) return null;
+
+        const record = this.tasks.get(entry.taskId);
+        if (!record) {
+            this.dedupeIndex.delete(dedupeKey);
+            return null;
+        }
+
+        return record;
     }
 
     _resolveTaskTimeoutMs(taskRequest) {
@@ -1139,6 +1287,7 @@ export class TaskOrchestrator {
 
         if (replace) {
             this.tasks.clear();
+            this.dedupeIndex.clear();
         }
 
         let applied = 0;
@@ -1151,6 +1300,7 @@ export class TaskOrchestrator {
             hydrated.attempts = safeNonNegativeInteger(hydrated.attempts, 0);
             hydrated.maxRetries = safeNonNegativeInteger(hydrated.maxRetries, this.maxRetries);
             ensureRetryLifecycle(hydrated, this.maxRetries);
+            this._registerDedupeForRecord(hydrated, safeNonNegativeNumber(hydrated.createdAt, safeNow(this.now)));
 
             this.tasks.set(hydrated.taskId, hydrated);
             applied++;
@@ -1711,11 +1861,41 @@ export class TaskOrchestrator {
             }
         }
 
+        const dedupeKey = this._resolveDedupeKey(request);
+        if (dedupeKey) {
+            const duplicateRecord = this._findDedupedRecord(dedupeKey, request.createdAt);
+            if (duplicateRecord) {
+                this.dedupeSuppressions += 1;
+                this._emitAudit('task_deduplicated', {
+                    taskId: request.id,
+                    duplicateOf: duplicateRecord.taskId,
+                    target: request.target,
+                    mode: this.dedupeMode,
+                    dedupeKey
+                }, request.createdAt);
+
+                if (this.dedupeMode === 'reject') {
+                    throw new TaskOrchestratorError(
+                        'DUPLICATE_TASK',
+                        `Task ${request.id} deduplicated against existing task ${duplicateRecord.taskId}`,
+                        {
+                            taskId: request.id,
+                            duplicateOf: duplicateRecord.taskId,
+                            dedupeKey
+                        }
+                    );
+                }
+
+                return this.getTask(duplicateRecord.taskId);
+            }
+        }
+
         const taskTimeoutMs = this._resolveTaskTimeoutMs(request);
         const record = {
             taskId: request.id,
             target: request.target,
             request,
+            dedupeKey,
             taskTimeoutMs,
             status: 'created',
             approval: null,
@@ -1785,6 +1965,7 @@ export class TaskOrchestrator {
         }
 
         this.tasks.set(record.taskId, record);
+        this._registerDedupeForRecord(record, request.createdAt);
         this._persistRecord(record);
         this._emitAudit('task_created', {
             taskId: record.taskId,
@@ -2635,6 +2816,7 @@ export class TaskOrchestrator {
     }
 
     getMetrics() {
+        this._pruneDedupeIndex();
         const metrics = {
             total: this.tasks.size,
             open: 0,
@@ -2674,6 +2856,13 @@ export class TaskOrchestrator {
                 defaultMs: this.defaultTimeoutMs,
                 minMs: this.minTaskTimeoutMs,
                 maxMs: this.maxTaskTimeoutMs
+            },
+            dedupe: {
+                enabled: this.dedupeEnabled,
+                mode: this.dedupeMode,
+                windowMs: this.dedupeWindowMs,
+                trackedKeys: this.dedupeIndex.size,
+                suppressions: this.dedupeSuppressions
             }
         };
 
