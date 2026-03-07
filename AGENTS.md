@@ -1,6 +1,10 @@
 # AGENTS.md
 
 ## Verified Workflows (Repo Root)
+- `npm run agent:quickstart` - print current repository agent quickstart guidance (`AGENTS.md`).
+- `npm run agent:map` - print machine-readable agent capability map (`AGENT_MAP.json`).
+- `npm run agent:validate` - run typecheck + artifact contract checks + core package tests.
+- `npm run artifacts:validate` - validate artifact contracts used by CI gates.
 - `npm run lint` - run root automated refactor/lint pass (`scripts/auto-refactor.ts`).
 - `npm run typecheck` - typecheck root + `cognition-core` + `swarm-protocol`.
 - `npm run build` - runs root lint plus tests in both packages.
@@ -70,3 +74,4 @@
 ## TODO
 - README still references commands not present in current `package.json` scripts (`worker:loop`, `autonomous:run`, `iterate:plan`, `plan:skills`, `build:full`, `memory:*`); confirm owners before adding wrappers here.
 - Between `53ab31c7ff` and `2a9dfdfff3`, script entrypoints were removed from root/`cognition-core` `package.json` files; this inventory now reflects only currently runnable commands.
+- Verified `9a9257f6e4..b70fe70468` and found no additional root/`cognition-core`/`swarm-protocol` `package.json` script-entrypoint changes requiring AGENTS command updates.
