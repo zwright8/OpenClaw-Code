@@ -69,4 +69,4 @@
 
 ## TODO
 - README still references commands not present in current `package.json` scripts (`worker:loop`, `autonomous:run`, `iterate:plan`, `plan:skills`, `build:full`, `memory:*`); confirm owners before adding wrappers here.
-- Since `e9269d9fa0` (last AGENTS automation commit) through `2a9dfdfff3` (`main` at this run), multiple script-entrypoint removals landed; this file now reflects current scripts only.
+- Since `e0b751c6ff` (last AGENTS automation commit) through `a312bb23b5` (`origin/main` at this run), no root/`cognition-core`/`swarm-protocol` `package.json` script-entrypoint changes were found; command inventory remains current.
