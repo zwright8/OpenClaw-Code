@@ -858,3 +858,113 @@ validation_gates:
 - output_schema: access risk board, vetting disposition queue, mitigation actions
 - protocol_profile: STIX/TAXII + API/JSON + USMTF
 - validation_gates: vetting completeness, legal/privacy compliance, commander acceptance
+
+### packet_id: DPL-DETER-ESC-001
+- domain: strategic deterrence escalation management
+- objective: map escalation thresholds and synchronize signaling options with commander intent
+- primary_tools: strategic warning dashboard, secure strategic messaging planner, policy-legal review workspace
+- alternate_tools: manual escalation matrix and decision timeline board
+- degraded_mode: bounded signaling options with elevated human review cadence
+- input_requirements: escalation indicators, adversary posture, policy constraints, commander intent
+- output_schema: escalation ladder map, signaling option matrix, branch trigger ledger
+- protocol_profile: USMTF + API/JSON + secure strategic reporting formats
+- validation_gates: policy-legal concurrence, authority confirmation, acknowledgment integrity
+
+### packet_id: DPL-NC3-CONT-001
+- domain: nuclear command and control continuity
+- objective: sustain NC3 decision support through communications and system degradation
+- primary_tools: NC3 status monitors, path integrity validators, continuity message orchestrator
+- alternate_tools: continuity watchbill and manual acknowledgment board
+- degraded_mode: minimum-essential continuity message set only
+- input_requirements: node status, comm path health, message priority, continuity thresholds
+- output_schema: continuity branch plan, ACK integrity log, degraded-mode decision matrix
+- protocol_profile: USMTF + authenticated message buses + signed acknowledgment chains
+- validation_gates: message authentication pass, command authority gate, continuity readiness threshold
+
+### packet_id: DPL-DETAINEE-LOW-001
+- domain: joint detainee operations and law-of-war compliance
+- objective: coordinate compliant detainee handling and transfers with auditable legal controls
+- primary_tools: detainee tracking system, legal workflow engine, transfer coordination board
+- alternate_tools: manual transfer ledger and legal hold tracker
+- degraded_mode: transfer freeze except life-safety and command-approved exceptions
+- input_requirements: detainee status, legal basis, transfer route, custody stakeholders
+- output_schema: compliance checklist, transfer decision board, legal evidence packet
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: legal review pass, chain-of-custody completeness, commander approval record
+
+### packet_id: DPL-MORT-ID-001
+- domain: expeditionary mortuary affairs and DNA identification
+- objective: maintain accountable remains recovery and identity assurance under contested conditions
+- primary_tools: mortuary operations tracker, forensic chain-of-custody system, DNA lab workflow manager
+- alternate_tools: manual remains ledger and delayed lab reconciliation process
+- degraded_mode: accountability-first recovery with confidence-banded identification
+- input_requirements: incident registry, recovery locations, chain-of-custody events, forensic sample status
+- output_schema: mortuary timeline, custody register, identification confidence report
+- protocol_profile: USMTF + API/JSON + forensic chain-of-custody standards
+- validation_gates: custody integrity, forensic quality gate, family-notification governance checks
+
+### packet_id: DPL-FIN-DISC-001
+- domain: tactical disconnected payments integrity
+- objective: preserve pay continuity and reduce fraud while disconnected from central systems
+- primary_tools: disconnected ledger engine, anti-fraud analytics, disbursement orchestration service
+- alternate_tools: manual payment register and periodic dual-control reconciliation
+- degraded_mode: mission-essential disbursements only
+- input_requirements: pay roster, entitlement rules, transaction window, connectivity profile
+- output_schema: continuity disbursement plan, anomaly watchlist, reconciliation schedule
+- protocol_profile: API/JSON + signed ledger export + USMTF finance summary
+- validation_gates: dual-control verification, fraud threshold checks, audit-trail completeness
+
+### packet_id: DPL-PQC-MIG-001
+- domain: quantum-resistant mission crypto migration
+- objective: sequence cryptographic migration while maintaining mission interoperability
+- primary_tools: cryptographic inventory manager, PKI lifecycle platform, interoperability test rig
+- alternate_tools: manual migration tracker with staged cutover review board
+- degraded_mode: hybrid-crypto coexistence with strict exception controls
+- input_requirements: crypto inventory, system criticality, dependency map, cutover windows
+- output_schema: migration wave plan, interoperability risk ledger, cutover go/no-go packet
+- protocol_profile: API/JSON + PKI workflows + USMTF governance summaries
+- validation_gates: conformance test pass, fallback validation, authority and risk-acceptance sign-off
+
+### packet_id: DPL-PUBHEALTH-CONTEST-001
+- domain: contested public-health surveillance and force protection
+- objective: detect outbreaks early and protect force readiness under disrupted infrastructure
+- primary_tools: surveillance network, force-health readiness analytics, outbreak response dashboard
+- alternate_tools: sentinel-site reports and manual readiness impact board
+- degraded_mode: high-risk cluster monitoring with conservative intervention triggers
+- input_requirements: syndromic indicators, unit disposition, environmental factors, care capacity
+- output_schema: outbreak heatmap, readiness delta estimate, mitigation action tracker
+- protocol_profile: HL7/FHIR + USMTF + NIMS/ICS
+- validation_gates: epidemiology review pass, clinical authority concurrence, releasability tagging
+
+### packet_id: DPL-BIOPRINT-MED-001
+- domain: denied-environment additive bioprinting medical support
+- objective: prioritize safe austere medical fabrication while controlling quality and biosecurity risk
+- primary_tools: additive manufacturing controller, quality management system, med logistics C2
+- alternate_tools: approved-catalog fabrication worksheet and manual release board
+- degraded_mode: emergency-use-only production with elevated quality checkpoints
+- input_requirements: clinical demand list, material status, process qualification, field constraints
+- output_schema: fabrication priority queue, quality gate matrix, risk and release ledger
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: process qualification pass, biosecurity control checks, clinical release authority
+
+### packet_id: DPL-SUBCABLE-ATTRIB-001
+- domain: submarine cable legal attribution and response
+- objective: produce actionable technical-legal attribution with coalition-coordinated response options
+- primary_tools: subsea telemetry analytics, maritime anomaly detector, legal evidence chain system
+- alternate_tools: manual incident board and phased attribution review process
+- degraded_mode: provisional attribution posture with constrained response options
+- input_requirements: cable telemetry, vessel tracks, incident timeline, legal authority map
+- output_schema: attribution confidence ladder, legal authority decision tree, response packet
+- protocol_profile: AIS/NMEA + STIX/TAXII + USMTF + OGC
+- validation_gates: evidence integrity check, legal sufficiency review, coalition acknowledgment log
+
+### packet_id: DPL-ORBIT-SPECTRUM-001
+- domain: orbital spectrum conflict resolution and traffic priority
+- objective: resolve interference and allocate SATCOM resources by mission priority
+- primary_tools: SATCOM resource allocator, interference monitor, mission traffic priority engine
+- alternate_tools: manual bandwidth arbitration board and preplanned priority windows
+- degraded_mode: critical-traffic-only schedule with fixed contention rules
+- input_requirements: demand queues, interference reports, priority policy, link availability
+- output_schema: spectrum conflict board, traffic routing matrix, mitigation branch plan
+- protocol_profile: API/JSON + USMTF + Link 16 J-series (interoperable paths)
+- validation_gates: mission priority concurrence, interference mitigation validation, commander release decision

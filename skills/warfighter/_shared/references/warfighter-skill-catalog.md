@@ -434,3 +434,22 @@ Every skill output should include:
 - ai-red-team-operational-model-threat-cell
 - rapid-civil-infrastructure-damage-estimation-cell
 - reserve-component-family-readiness-surge-cell
+
+## New Expansion Wave (2026-03-07, Strategic Governance and Continuity Expansion)
+
+- strategic-deterrence-escalation-management-cell
+- nuclear-command-control-continuity-cell
+- joint-detainee-operations-and-law-of-war-compliance-cell
+- expeditionary-mortuary-affairs-and-dna-identification-cell
+- tactical-financial-rails-and-disconnected-payments-integrity-cell
+- quantum-resistant-mission-crypto-migration-cell
+- contested-public-health-surveillance-and-force-protection-cell
+- denied-environment-additive-bioprinting-medical-support-cell
+- submarine-cable-legal-attribution-and-response-cell
+- orbital-spectrum-conflict-resolution-and-traffic-priority-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Strategic Governance Expansion)
+
+- Added skills this run: 10
+- Added shared toolchain profiles: 10
+- Added shared domain tool packets: 10

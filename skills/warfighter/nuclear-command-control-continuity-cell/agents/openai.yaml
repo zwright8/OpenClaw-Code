@@ -1,0 +1,3 @@
+interface:
+  display_name: "Nuclear Command Control Continuity Cell"
+  short_description: "Support resilient NC3 continuity planning"

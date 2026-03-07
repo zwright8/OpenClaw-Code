@@ -331,3 +331,25 @@ Include these fields in outputs when tool integration is used:
 - Apply `warfighter-tool-authority-gates.md` for every recommendation that can materially affect mission posture, escalation risk, or force protection.
 - Include `authority_tier`, `decision_impact_level`, `requires_human_approval`, `approval_role`, and `audit_record_id` in final products.
 - If authority or legal basis is uncertain, issue an advisory-only recommendation and escalate for human command decision.
+
+## Domain Toolchain Profiles (2026-03-07 Strategic Governance Expansion)
+
+- Strategic deterrence escalation management: strategic warning boards + secure strategic messaging + policy/legal review + USMTF/API
+- NC3 continuity resilience: NC3 status monitors + ACK integrity validators + authenticated message buses + USMTF
+- Detainee operations law-of-war compliance: detainee tracking + legal workflow engines + transfer coordination + USMTF/NATO APP-11
+- Expeditionary mortuary affairs and DNA identification: mortuary tracking + forensic lab workflow + chain-of-custody systems + USMTF/API
+- Tactical disconnected financial rails integrity: disconnected ledgers + anti-fraud analytics + reconciliation engines + API/USMTF
+- Quantum-resistant mission crypto migration: crypto inventory/PKI managers + interoperability test rigs + governance dashboards + API/USMTF
+- Contested public-health force protection: surveillance networks + force-health analytics + clinical reporting + HL7/FHIR/USMTF/NIMS
+- Denied-environment additive bioprinting support: fabrication control + quality management + med-log orchestration + HL7/FHIR/API
+- Submarine cable legal attribution/response: subsea telemetry + maritime anomaly analytics + evidence chain tooling + AIS/STIX/USMTF/OGC
+- Orbital spectrum conflict and traffic priority: SATCOM allocators + interference monitors + mission priority engines + API/USMTF/Link 16
+
+## Additional Protocol Mapping Guidance (2026-03-07)
+
+- Strategic signaling and continuity messaging: pair authenticated message channels with `USMTF` command narrative and ACK integrity fields.
+- Detainee, custody, and remains workflows: require auditable chain-of-custody fields, legal review identifiers, and transfer/notification checkpoints.
+- Disconnected finance continuity: use signed ledger exports plus delayed reconciliation protocols, with manual dual-control fallback.
+- PQC migration governance: include transitional crypto mode tags, interoperability gate status, and rollback plan references.
+- Public-health and medical fabrication operations: include clinical authority tags, quality release gates, and force-readiness impact deltas.
+- Subsea/orbital incident response: include legal-attribution confidence ladders, coalition acknowledgment status, and degraded options when evidence is incomplete.
