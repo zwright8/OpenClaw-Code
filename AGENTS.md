@@ -19,7 +19,6 @@
 - `npm run skills:optimize` - generate rollout optimization artifacts.
 - `npm run skills:optimize:validate` - validate rollout optimization artifacts.
 - `npm run skills:promote` - generate rollout promotion task artifacts.
-<<<<<<< HEAD
 - `npm run skills:promote:validate` - validate rollout promotion artifacts.
 - `npm run skills:promote:control` - generate promotion control artifacts.
 - `npm run skills:promote:control:validate` - validate promotion control artifacts.
