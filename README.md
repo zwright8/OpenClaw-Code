@@ -1188,7 +1188,10 @@ const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport,
   store,
-  routeTask: registry.createRouteTaskFn()
+  routeTask: registry.createRouteTaskFn(),
+  maxRetries: 2,
+  retryDelayMs: 500,
+  transportSendTimeoutMs: 10000
 });
 
 await orchestrator.hydrate(); // restore previous tasks on boot

@@ -54,6 +54,7 @@ const DEFAULT_CIRCUIT_FAILURE_RATE_WINDOW_MS = 60_000;
 const DEFAULT_CIRCUIT_FAILURE_RATE_MIN_SAMPLES = 10;
 const DEFAULT_MIN_TASK_TIMEOUT_MS = 100;
 const DEFAULT_TASK_TIMEOUT_MAX_MULTIPLIER = 8;
+const DEFAULT_TRANSPORT_SEND_TIMEOUT_MS = 10_000;
 const RETRYABLE_TRANSPORT_STATUS_CODES = new Set([408, 409, 425, 429]);
 const RETRYABLE_TRANSPORT_ERROR_CODES = new Set([
     'ECONNRESET',
@@ -1151,6 +1152,7 @@ export class TaskOrchestrator {
         circuitHalfOpenMaxAttempts = 1,
         minTaskTimeoutMs = DEFAULT_MIN_TASK_TIMEOUT_MS,
         maxTaskTimeoutMs = null,
+        transportSendTimeoutMs = null,
         maxInFlightPerTarget = null,
         maxInFlightGlobal = null,
         retrySafetyMode = 'auto',
@@ -1278,6 +1280,13 @@ export class TaskOrchestrator {
         if (this.maxTaskTimeoutMs < this.minTaskTimeoutMs) {
             this.maxTaskTimeoutMs = this.minTaskTimeoutMs;
         }
+        const defaultTransportSendTimeoutMs = Math.min(
+            this.defaultTimeoutMs,
+            DEFAULT_TRANSPORT_SEND_TIMEOUT_MS
+        );
+        this.transportSendTimeoutMs = transportSendTimeoutMs === null || transportSendTimeoutMs === undefined
+            ? defaultTransportSendTimeoutMs
+            : safeNonNegativeNumber(transportSendTimeoutMs, defaultTransportSendTimeoutMs);
         this.maxInFlightPerTarget = safePositiveIntegerOrInfinity(maxInFlightPerTarget, Infinity);
         this.maxInFlightGlobal = safePositiveIntegerOrInfinity(maxInFlightGlobal, Infinity);
         this.retrySafetyMode = normalizeRetrySafetyMode(retrySafetyMode);
@@ -2761,7 +2770,11 @@ export class TaskOrchestrator {
         }
 
         try {
-            await this.transport.send(record.target, record.request);
+            await this._sendTransportWithTimeout(record.target, record.request, {
+                sendAt,
+                reason: isRetryDispatch ? dispatchReason : normalizedReason,
+                reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code
+            });
             record.status = 'dispatched';
             const timeoutBudgetMs = Number.isFinite(record.taskTimeoutMs) && record.taskTimeoutMs > 0
                 ? Number(record.taskTimeoutMs)
@@ -2821,6 +2834,38 @@ export class TaskOrchestrator {
                 retryAfterMs: circuit?.retryAfterMs ?? null,
                 retryThrottle
             });
+        }
+    }
+
+    async _sendTransportWithTimeout(target, request, { sendAt, reason = null, reasonCode = null } = {}) {
+        if (!Number.isFinite(this.transportSendTimeoutMs) || this.transportSendTimeoutMs <= 0) {
+            return this.transport.send(target, request);
+        }
+
+        const timeoutMs = Number(this.transportSendTimeoutMs);
+        let timer = null;
+        try {
+            return await Promise.race([
+                this.transport.send(target, request),
+                new Promise((_, reject) => {
+                    timer = setTimeout(() => {
+                        reject(new TaskOrchestratorError(
+                            'SEND_TIMEOUT',
+                            `Transport send timed out after ${timeoutMs}ms`,
+                            {
+                                target,
+                                timeoutMs,
+                                sentAt: sendAt,
+                                reason,
+                                reasonCode,
+                                retryable: true
+                            }
+                        ));
+                    }, timeoutMs);
+                })
+            ]);
+        } finally {
+            if (timer) clearTimeout(timer);
         }
     }
 
@@ -3456,6 +3501,9 @@ export class TaskOrchestrator {
                 defaultMs: this.defaultTimeoutMs,
                 minMs: this.minTaskTimeoutMs,
                 maxMs: this.maxTaskTimeoutMs
+            },
+            transportSend: {
+                timeoutMs: this.transportSendTimeoutMs
             },
             dedupe: {
                 enabled: this.dedupeEnabled,

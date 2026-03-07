@@ -2336,3 +2336,52 @@ test('maintenance retries bulkhead-blocked tasks when in-flight slot frees up', 
     assert.equal(metrics.inFlight.current, 1);
     assert.equal(metrics.inFlight.saturatedTargets, 1);
 });
+
+test('dispatchTask fails with SEND_TIMEOUT cause when transport send hangs', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                return new Promise(() => {});
+            }
+        },
+        transportSendTimeoutMs: 5
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-timeout-send',
+            task: 'Hung send should time out'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'SEND_FAILED');
+            assert.equal(error.details?.cause?.code, 'SEND_TIMEOUT');
+            assert.equal(error.details?.cause?.details?.timeoutMs, 5);
+            return true;
+        }
+    );
+});
+
+test('transport send timeout can be disabled', async () => {
+    const timeoutFloorMs = 30;
+    const startedAt = Date.now();
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                await new Promise((resolve) => setTimeout(resolve, timeoutFloorMs));
+            }
+        },
+        transportSendTimeoutMs: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-timeout-disabled',
+        task: 'No send timeout should be applied'
+    });
+
+    const elapsedMs = Date.now() - startedAt;
+    assert.equal(task.status, 'dispatched');
+    assert.ok(elapsedMs >= timeoutFloorMs);
+});
