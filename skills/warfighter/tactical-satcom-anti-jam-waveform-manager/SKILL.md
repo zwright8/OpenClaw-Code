@@ -83,3 +83,9 @@ Primary products for this skill: mission estimate, synchronization matrix, risk 
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## Multi-Source Validation Thresholds
+
+- Use `../_shared/references/multi-source-validation-thresholds.md` to select validation tier, source-independence checks, contradiction handling, and release gates.
+- Include `validation_tier`, `primary_source`, `cross_check_source`, `source_independence_rationale`, and `contradiction_status` for each critical recommendation.
+- If validation tier requirements are not met inside decision time, downgrade to advisory-only and request human command approval.

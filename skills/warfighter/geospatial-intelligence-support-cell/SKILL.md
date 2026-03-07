@@ -83,3 +83,9 @@ Primary products for this skill: GEOINT packet, mobility and observation overlay
 - Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
 - Include adapter health status and last-success UTC for each mission-critical integration.
 - Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.
+
+## Multi-Source Validation Thresholds
+
+- Use `../_shared/references/multi-source-validation-thresholds.md` to select validation tier, source-independence checks, contradiction handling, and release gates.
+- Include `validation_tier`, `primary_source`, `cross_check_source`, `source_independence_rationale`, and `contradiction_status` for each critical recommendation.
+- If validation tier requirements are not met inside decision time, downgrade to advisory-only and request human command approval.

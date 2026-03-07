@@ -4,12 +4,13 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 223
+- Total warfighter skills in this repo: 243
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
 - All skills now include a `U.S. Warfighter Tool Auth and Access Drill` section for credential and transport readiness checks.
 - All skills now include a `U.S. Joint Tool Adapter Contract Drill` section for dependency-level protocol/auth/fallback mapping.
+- All skills now include a `Multi-Source Validation Thresholds` section for tiered source-independence and contradiction gates.
 
 ## Domain Coverage Matrix
 
@@ -195,3 +196,26 @@ Every skill output should include:
 - civilian-harm-incident-response-and-remediation-cell
 - joint-orbital-reconstitution-launch-manifest-cell
 - contested-medevac-denied-airspace-synchronizer-cell
+
+## New Expansion Wave (2026-03-07, Cross-Domain Validation and Resilience Expansion)
+
+- joint-arctic-satellite-ground-gateway-hardening-cell
+- contested-battlefield-cloudlet-federation-cell
+- theater-ballistic-missile-launch-signature-fusion-cell
+- coalition-denied-terrain-bridge-airdrop-synchronization-cell
+- expeditionary-ai-enabled-runway-sweeping-and-fod-cell
+- strategic-polar-sea-lane-interdiction-risk-cell
+- joint-battlefield-quantum-sensor-validation-cell
+- tactical-cyber-electromagnetic-safe-corridor-cell
+- maritime-offshore-energy-platform-defense-cell
+- expeditionary-contested-pharmaceutical-resupply-cell
+- joint-dynamic-no-strike-list-assurance-cell
+- theater-underground-facility-life-support-disruption-cell
+- coalition-disconnected-identity-proofing-cell
+- tactical-urban-utility-isolation-and-restoration-cell
+- strategic-ai-enabled-force-flow-deception-detection-cell
+- joint-autonomous-convoy-electronic-counter-ambush-cell
+- theater-rapid-port-clearance-and-hazard-mapping-cell
+- contested-joint-personnel-data-integrity-cell
+- space-enabled-maritime-target-correlation-cell
+- joint-climate-security-instability-operations-cell

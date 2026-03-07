@@ -150,3 +150,26 @@ Include these fields in outputs when tool integration is used:
 - Tool Invocation Packet fields for each critical tool dependency
 - Adapter contract status (`adapter_id`, protocol, auth mode, last-success UTC) for each critical dependency
 - Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback
+
+## New Toolchain Profile Extensions (2026-03-07)
+
+- Arctic satellite gateway hardening: SATCOM planners + gateway telemetry + cyber hardening tools + USMTF/API/STIX.
+- Contested cloudlet federation: edge orchestrators + identity federation + service mesh telemetry + API/STIX.
+- Ballistic launch signature fusion: missile warning feeds + IAMD C2 + Link 16/USMTF.
+- Bridge-airdrop denied terrain synchronization: mobility engineering + airlift planners + VMF/USMTF/OGC.
+- Runway FOD autonomy: airfield ops + CV analytics + CoT/API/USMTF.
+- Polar sea lane interdiction risk: maritime COP + AIS analytics + Link 16/USMTF.
+- Quantum sensor validation: sensor assurance + EW analytics + API/STIX/USMTF.
+- Cyber-electromagnetic safe corridor: EW planners + cyber defense + VMF/STIX/USMTF.
+- Offshore energy platform defense: maritime security + infrastructure telemetry + AIS/API/USMTF.
+- Contested pharmaceutical resupply: med logistics + cold-chain telemetry + USMTF/FHIR/API.
+- Dynamic no-strike assurance: targeting/legal/geospatial validation + USMTF/VMF/OGC.
+- Underground life-support disruption analysis: dependency analytics + legal effects workflows + USMTF/API.
+- Disconnected coalition identity proofing: PKI + offline credentials + NATO APP-11/API.
+- Urban utility isolation/restoration: utility telemetry + engineering dashboards + OGC/API/USMTF.
+- Force-flow deception detection: transport analytics + anomaly detection + STIX/API/USMTF.
+- Autonomous convoy counter-ambush: convoy C2 + EW countermeasures + CoT/VMF/USMTF.
+- Rapid port clearance and hazard mapping: hydrographic survey + hazard mapping + AIS/OGC/USMTF.
+- Joint personnel data integrity: personnel records + IAM logs + audit analytics + API/STIX/USMTF.
+- Space-enabled maritime target correlation: SDA + maritime COP fusion + Link 16/AIS/USMTF.
+- Climate-security instability operations: climate hazard analytics + campaign planning + OGC/API/USMTF.
