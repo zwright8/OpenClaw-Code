@@ -47,6 +47,91 @@ function formatBoolean(value: boolean | undefined): string {
     return value === undefined ? 'n/a' : String(value);
 }
 
+function formatReadinessFlags(sampleReadiness: CalibrationSampleReadinessSnapshot): string {
+    return `readiness_flags(sample_size_ready=${sampleReadiness.isSampleSizeReady},mapping_rate_ready=${sampleReadiness.isMappingRateReady},sample_size_shortfall=${sampleReadiness.sampleSizeShortfall},mapping_rate_shortfall=${formatNullable(sampleReadiness.mappingRateShortfall)})`;
+}
+
+function inferReadiness(
+    terminalOutcomes: number,
+    mappedOutcomes: number,
+    sampleReadiness: CalibrationSampleReadinessSnapshot
+): CalibrationReadiness {
+    if (terminalOutcomes === 0) return 'no_terminal_outcomes';
+    if (mappedOutcomes === 0) return 'no_mapped_outcomes';
+    if (!sampleReadiness.isSampleSizeReady) return 'insufficient_sample_size';
+    if (!sampleReadiness.isMappingRateReady) return 'insufficient_mapping_rate';
+    return 'ready';
+}
+
+function buildCalibrationReason(snapshot: Omit<CalibrationGateSnapshot, 'reason'>): string {
+    const mappingRateText = formatNullable(snapshot.mappingRate);
+    const minimumMappingRateText = formatNullable(snapshot.minimumMappingRate);
+    const mappingRateShortfallText = formatNullable(snapshot.sampleReadiness.mappingRateShortfall);
+
+    switch (snapshot.readiness) {
+        case 'ready':
+            return `Calibration metrics active: sample-size and mapping-rate gates satisfied; mapped_outcomes=${snapshot.mappedOutcomes}; terminal_outcomes=${snapshot.terminalOutcomes}; mapping_rate=${mappingRateText}`;
+        case 'no_terminal_outcomes':
+            return `Calibration metrics deferred: no terminal outcomes yet; sample_size_shortfall=${snapshot.sampleReadiness.sampleSizeShortfall}; mapping_rate_shortfall=${mappingRateShortfallText}`;
+        case 'no_mapped_outcomes':
+            return `Calibration metrics deferred: no mapped outcomes yet; mapped_outcomes=${snapshot.mappedOutcomes}; terminal_outcomes=${snapshot.terminalOutcomes}; mapping_rate=${mappingRateText}; sample_size_shortfall=${snapshot.sampleReadiness.sampleSizeShortfall}; mapping_rate_shortfall=${mappingRateShortfallText}`;
+        case 'insufficient_mapping_rate':
+            return `Calibration metrics deferred: mapping rate ${mappingRateText} is below minimum ${minimumMappingRateText}; sample_size_shortfall=${snapshot.sampleReadiness.sampleSizeShortfall}; mapping_rate_shortfall=${mappingRateShortfallText}`;
+        case 'insufficient_sample_size':
+            return `Calibration metrics deferred: mapped sample ${snapshot.mappedOutcomes} is below minimum ${snapshot.minimumSampleSize}; sample_size_shortfall=${snapshot.sampleReadiness.sampleSizeShortfall}; mapping_rate=${mappingRateText}; minimum_mapping_rate=${minimumMappingRateText}; mapping_rate_shortfall=${mappingRateShortfallText}`;
+        default:
+            return `Calibration readiness unresolved; mapped_outcomes=${snapshot.mappedOutcomes}; terminal_outcomes=${snapshot.terminalOutcomes}; mapping_rate=${mappingRateText}; sample_size_shortfall=${snapshot.sampleReadiness.sampleSizeShortfall}; mapping_rate_shortfall=${mappingRateShortfallText}`;
+    }
+}
+
+function resolveCalibrationGateSnapshot(metrics: FeedbackLoopResult['evaluation']['metrics']): CalibrationGateSnapshot {
+    const diagnostics = metrics.calibrationDiagnostics as Record<string, unknown> | undefined;
+    const terminalOutcomes = resolveTerminalOutcomes(metrics);
+    const mappedOutcomes = diagnostics
+        ? toFiniteInteger(diagnostics.observedMappedOutcomes ?? diagnostics.observedSampleSize, 0)
+        : 0;
+    const minimumSampleSize = diagnostics
+        ? toFiniteInteger(diagnostics.minimumSampleSize, DEFAULT_CALIBRATION_MIN_SAMPLE_SIZE)
+        : DEFAULT_CALIBRATION_MIN_SAMPLE_SIZE;
+    const minimumMappingRate = diagnostics
+        ? toNullableFiniteNumber(diagnostics.minimumMappingRate) ?? DEFAULT_CALIBRATION_MIN_MAPPING_RATE
+        : DEFAULT_CALIBRATION_MIN_MAPPING_RATE;
+
+    const mappingRateRaw = terminalOutcomes > 0
+        ? mappedOutcomes / terminalOutcomes
+        : 0;
+    const mappingRate = round(mappingRateRaw);
+
+    const sampleSizeShortfall = Math.max(0, minimumSampleSize - mappedOutcomes);
+    const mappingRateShortfall = round(Math.max(0, minimumMappingRate - mappingRateRaw));
+    const sampleReadiness: CalibrationSampleReadinessSnapshot = {
+        isSampleSizeReady: sampleSizeShortfall === 0,
+        isMappingRateReady: mappingRateShortfall === 0,
+        sampleSizeShortfall,
+        mappingRateShortfall
+    };
+
+    const readinessCandidate = diagnostics?.readiness;
+    const readiness = typeof readinessCandidate === 'string' && readinessCandidate.length > 0
+        ? (readinessCandidate as CalibrationReadiness)
+        : inferReadiness(terminalOutcomes, mappedOutcomes, sampleReadiness);
+
+    const snapshotBase: Omit<CalibrationGateSnapshot, 'reason'> = {
+        readiness,
+        mappedOutcomes,
+        terminalOutcomes,
+        mappingRate,
+        minimumSampleSize,
+        minimumMappingRate,
+        sampleReadiness
+    };
+
+    return {
+        ...snapshotBase,
+        reason: buildCalibrationReason(snapshotBase)
+    };
+}
+
 function toFiniteInteger(value: unknown, fallback = 0): number {
     const parsed = Number(value);
     if (!Number.isFinite(parsed)) {
@@ -66,6 +151,34 @@ function toNullableFiniteNumber(value: unknown): number | null {
 }
 
 const DEFAULT_CALIBRATION_ENVELOPE_METHOD = 'hoeffding';
+const DEFAULT_CALIBRATION_MIN_SAMPLE_SIZE = 3;
+const DEFAULT_CALIBRATION_MIN_MAPPING_RATE = 0.35;
+
+type CalibrationReadiness =
+    | 'ready'
+    | 'insufficient_sample_size'
+    | 'insufficient_mapping_rate'
+    | 'no_terminal_outcomes'
+    | 'no_mapped_outcomes'
+    | 'unknown';
+
+interface CalibrationSampleReadinessSnapshot {
+    isSampleSizeReady: boolean;
+    isMappingRateReady: boolean;
+    sampleSizeShortfall: number;
+    mappingRateShortfall: number;
+}
+
+interface CalibrationGateSnapshot {
+    readiness: CalibrationReadiness;
+    mappedOutcomes: number;
+    terminalOutcomes: number;
+    mappingRate: number;
+    minimumSampleSize: number;
+    minimumMappingRate: number;
+    sampleReadiness: CalibrationSampleReadinessSnapshot;
+    reason: string;
+}
 
 function normalizeDetailSegment(segment: string): string {
     return segment.trim().replace(/[.\s]+$/g, '');
@@ -117,17 +230,9 @@ function describeCalibrationGate(metrics: FeedbackLoopResult['evaluation']['metr
         return 'calibration_gate: readiness=unknown;mapped_outcomes=n/a;terminal_outcomes=n/a;mapping_rate=n/a;min_sample_size=n/a;min_mapping_rate=n/a;sample_size_ready=n/a;mapping_rate_ready=n/a;sample_size_shortfall=n/a;mapping_rate_shortfall=n/a';
     }
 
-    const observedMappedOutcomes = Number.isFinite((diagnostics as { observedMappedOutcomes?: number }).observedMappedOutcomes)
-        ? Math.max(0, Math.round((diagnostics as { observedMappedOutcomes?: number }).observedMappedOutcomes ?? 0))
-        : Math.max(0, Math.round(diagnostics.observedSampleSize));
+    const snapshot = resolveCalibrationGateSnapshot(metrics);
 
-    const observedTerminalOutcomes = Number.isFinite((diagnostics as { observedTerminalOutcomes?: number }).observedTerminalOutcomes)
-        ? Math.max(0, Math.round((diagnostics as { observedTerminalOutcomes?: number }).observedTerminalOutcomes ?? 0))
-        : resolveTerminalOutcomes(metrics);
-
-    const sampleReadiness = diagnostics.sampleReadiness;
-
-    return `calibration_gate: readiness=${diagnostics.readiness};mapped_outcomes=${observedMappedOutcomes};terminal_outcomes=${observedTerminalOutcomes};mapping_rate=${round(diagnostics.observedMappingRate)};min_sample_size=${diagnostics.minimumSampleSize};min_mapping_rate=${round(diagnostics.minimumMappingRate)};sample_size_ready=${formatBoolean(sampleReadiness?.isSampleSizeReady)};mapping_rate_ready=${formatBoolean(sampleReadiness?.isMappingRateReady)};sample_size_shortfall=${sampleReadiness ? sampleReadiness.sampleSizeShortfall : 'n/a'};mapping_rate_shortfall=${sampleReadiness ? formatNullable(sampleReadiness.mappingRateShortfall) : 'n/a'};reason=${diagnostics.reason}`;
+    return `calibration_gate: readiness=${snapshot.readiness};mapped_outcomes=${snapshot.mappedOutcomes};terminal_outcomes=${snapshot.terminalOutcomes};mapping_rate=${formatNullable(snapshot.mappingRate)};min_sample_size=${snapshot.minimumSampleSize};min_mapping_rate=${formatNullable(snapshot.minimumMappingRate)};sample_size_ready=${formatBoolean(snapshot.sampleReadiness.isSampleSizeReady)};mapping_rate_ready=${formatBoolean(snapshot.sampleReadiness.isMappingRateReady)};sample_size_shortfall=${snapshot.sampleReadiness.sampleSizeShortfall};mapping_rate_shortfall=${formatNullable(snapshot.sampleReadiness.mappingRateShortfall)};reason=${snapshot.reason}.;${formatReadinessFlags(snapshot.sampleReadiness)}`;
 }
 
 function describeCalibrationSuppression(
@@ -135,7 +240,12 @@ function describeCalibrationSuppression(
     fallback: string
 ): string {
     const diagnostics = metrics.calibrationDiagnostics;
-    if (!diagnostics || diagnostics.readiness === 'ready') {
+    if (!diagnostics) {
+        return composeDetail(fallback);
+    }
+
+    const snapshot = resolveCalibrationGateSnapshot(metrics);
+    if (snapshot.readiness === 'ready') {
         return composeDetail(fallback);
     }
 
@@ -152,7 +262,9 @@ function classifyCalibrationMetric(
     pass: (v: number) => boolean,
     warn: (v: number) => boolean
 ): ScoreStatus {
-    const readiness = metrics.calibrationDiagnostics?.readiness;
+    const readiness = metrics.calibrationDiagnostics
+        ? resolveCalibrationGateSnapshot(metrics).readiness
+        : undefined;
     if (readiness && readiness !== 'ready') {
         return 'n/a';
     }

@@ -78,9 +78,10 @@ test('productivity scorecard emits contract-safe generatedAt and deterministic t
     const first = await generateProductivityScorecard();
     const second = await generateProductivityScorecard();
 
-    const year = Number(String(first.generatedAt).slice(0, 4));
-    assert.ok(Number.isInteger(year));
-    assert.ok(year >= 2024 && year <= 2100);
+    const generatedAtMs = Date.parse(first.generatedAt);
+    assert.ok(Number.isFinite(generatedAtMs));
+    assert.ok(generatedAtMs <= Date.now());
+    assert.ok(Date.now() - generatedAtMs <= 20 * 60 * 1000);
     assert.ok(first.thresholdChecks);
     assert.deepEqual(first.thresholdChecks, second.thresholdChecks);
     assert.deepEqual(first.regressionGates, second.regressionGates);

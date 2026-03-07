@@ -242,15 +242,21 @@ function toSignedPct(v: number): number {
   return round(v * 100, 2);
 }
 
-const DETERMINISTIC_TIMESTAMP_WINDOW_START_MS = Date.UTC(2024, 0, 1, 0, 0, 0, 0);
-const DETERMINISTIC_TIMESTAMP_WINDOW_END_MS = Date.UTC(2101, 0, 1, 0, 0, 0, 0) - 1;
-const DETERMINISTIC_TIMESTAMP_WINDOW_SPAN_MS =
-  BigInt(DETERMINISTIC_TIMESTAMP_WINDOW_END_MS - DETERMINISTIC_TIMESTAMP_WINDOW_START_MS + 1);
+const DETERMINISTIC_TIMESTAMP_FRESHNESS_WINDOW_MS = 15 * 60 * 1000;
+const DETERMINISTIC_TIMESTAMP_CEILING_GRANULARITY_MS = 60 * 1000;
+const DETERMINISTIC_TIMESTAMP_CEILING_MS = (() => {
+  const now = Date.now();
+  return now - (now % DETERMINISTIC_TIMESTAMP_CEILING_GRANULARITY_MS);
+})();
 
-function deterministicEpochMsFromSeed(seed: string): number {
+function deterministicEpochMsFromSeed(seed: string, ceilingMs: number = DETERMINISTIC_TIMESTAMP_CEILING_MS): number {
+  const boundedCeiling = Math.max(0, Math.min(ceilingMs, DETERMINISTIC_TIMESTAMP_CEILING_MS));
+  const windowStart = Math.max(0, boundedCeiling - DETERMINISTIC_TIMESTAMP_FRESHNESS_WINDOW_MS);
+  const spanMs = BigInt(Math.max(1, boundedCeiling - windowStart + 1));
+
   const hex = createHash('sha256').update(seed).digest('hex').slice(0, 16);
-  const offset = BigInt(`0x${hex}`) % DETERMINISTIC_TIMESTAMP_WINDOW_SPAN_MS;
-  return DETERMINISTIC_TIMESTAMP_WINDOW_START_MS + Number(offset);
+  const offset = BigInt(`0x${hex}`) % spanMs;
+  return windowStart + Number(offset);
 }
 
 function deterministicIsoFromSeed(seed: string): string {
