@@ -1659,6 +1659,62 @@ test('circuit breaker opens after repeated transport failures and closes after r
     assert.equal(orchestrator.getMetrics().circuits.closed, 1);
 });
 
+test('circuit breaker can trip on high rolling failure rate even without consecutive failures', async () => {
+    const clock = createClock(85_000);
+    const outcomes = [false, true, false, true, false];
+    let attempt = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                const ok = outcomes[attempt] ?? true;
+                attempt += 1;
+                if (!ok) {
+                    throw new Error('intermittent downstream failure');
+                }
+            }
+        },
+        now: clock.now,
+        circuitFailureThreshold: 99,
+        circuitFailureRateThreshold: 0.6,
+        circuitFailureRateMinSamples: 5,
+        circuitFailureRateWindowMs: 5_000,
+        circuitCooldownMs: 120
+    });
+
+    for (let i = 0; i < outcomes.length; i += 1) {
+        const shouldFail = outcomes[i] === false;
+        if (shouldFail) {
+            await assert.rejects(
+                () => orchestrator.dispatchTask({
+                    target: 'agent:worker-rate-circuit',
+                    task: `Rate-window sample ${i}`
+                }),
+                (error) => error instanceof TaskOrchestratorError && error.code === 'SEND_FAILED'
+            );
+        } else {
+            await orchestrator.dispatchTask({
+                target: 'agent:worker-rate-circuit',
+                task: `Rate-window sample ${i}`
+            });
+        }
+        clock.advance(50);
+    }
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.circuits.open, 1);
+    assert.equal(metrics.circuits.rateHotTargets, 1);
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-rate-circuit',
+            task: 'Should be blocked while circuit open'
+        }),
+        (error) => error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN'
+    );
+});
+
 test('circuit breaker can be disabled to keep classic fixed-delay retries', async () => {
     const clock = createClock(90_000);
     let sendCount = 0;

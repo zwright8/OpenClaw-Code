@@ -44,6 +44,7 @@ Adds adaptive cost/latency optimization with explainable agent selection decisio
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds per-target retry throttling (token-bucket) to suppress retry storms on unhealthy workers.
 Adds backpressure-aware transient rejection handling so repeated worker overload signals feed circuit protection and retry health.
+Adds optional sliding-window failure-rate circuit trips to catch intermittent-but-persistent target instability before retry storms amplify.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
 Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.

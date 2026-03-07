@@ -35,6 +35,8 @@ const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES = 1;
 const DEFAULT_RETRY_THROTTLE_MAX_TOKENS = 10;
 const DEFAULT_RETRY_THROTTLE_TOKEN_RATIO = 0.1;
 const DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO = 0.5;
+const DEFAULT_CIRCUIT_FAILURE_RATE_WINDOW_MS = 60_000;
+const DEFAULT_CIRCUIT_FAILURE_RATE_MIN_SAMPLES = 10;
 const DEFAULT_MIN_TASK_TIMEOUT_MS = 100;
 const DEFAULT_TASK_TIMEOUT_MAX_MULTIPLIER = 8;
 const TRANSIENT_REJECTION_REASON_MARKERS = [
@@ -963,6 +965,9 @@ export class TaskOrchestrator {
         retryThrottleThresholdRatio = DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO,
         circuitBreakerEnabled = true,
         circuitFailureThreshold = 3,
+        circuitFailureRateThreshold = null,
+        circuitFailureRateWindowMs = DEFAULT_CIRCUIT_FAILURE_RATE_WINDOW_MS,
+        circuitFailureRateMinSamples = DEFAULT_CIRCUIT_FAILURE_RATE_MIN_SAMPLES,
         circuitCooldownMs = 30_000,
         circuitHalfOpenMaxAttempts = 1,
         minTaskTimeoutMs = DEFAULT_MIN_TASK_TIMEOUT_MS,
@@ -1048,6 +1053,19 @@ export class TaskOrchestrator {
         this.circuitFailureThreshold = Number.isInteger(circuitFailureThreshold) && circuitFailureThreshold >= 1
             ? Number(circuitFailureThreshold)
             : 3;
+        this.circuitFailureRateThreshold = Number.isFinite(circuitFailureRateThreshold)
+            && circuitFailureRateThreshold > 0
+            && circuitFailureRateThreshold <= 1
+            ? Number(circuitFailureRateThreshold)
+            : null;
+        this.circuitFailureRateWindowMs = Number.isFinite(circuitFailureRateWindowMs)
+            && circuitFailureRateWindowMs > 0
+            ? Number(circuitFailureRateWindowMs)
+            : DEFAULT_CIRCUIT_FAILURE_RATE_WINDOW_MS;
+        this.circuitFailureRateMinSamples = Number.isInteger(circuitFailureRateMinSamples)
+            && circuitFailureRateMinSamples > 0
+            ? Number(circuitFailureRateMinSamples)
+            : DEFAULT_CIRCUIT_FAILURE_RATE_MIN_SAMPLES;
         this.circuitCooldownMs = Number.isFinite(circuitCooldownMs) && circuitCooldownMs >= 0
             ? Number(circuitCooldownMs)
             : 30_000;
@@ -1470,7 +1488,8 @@ export class TaskOrchestrator {
             state: CIRCUIT_CLOSED,
             consecutiveFailures: 0,
             openedAt: null,
-            halfOpenAttempts: 0
+            halfOpenAttempts: 0,
+            outcomes: []
         };
         this.circuits.set(target, circuit);
         return circuit;
@@ -1566,18 +1585,79 @@ export class TaskOrchestrator {
         }
     }
 
+    _pruneCircuitOutcomes(circuit, nowMs) {
+        if (!circuit || !Array.isArray(circuit.outcomes)) return;
+        if (this.circuitFailureRateThreshold === null) {
+            circuit.outcomes = [];
+            return;
+        }
+
+        const cutoff = nowMs - this.circuitFailureRateWindowMs;
+        while (circuit.outcomes.length > 0 && circuit.outcomes[0].at < cutoff) {
+            circuit.outcomes.shift();
+        }
+    }
+
+    _recordCircuitOutcome(circuit, nowMs, success) {
+        if (!circuit || !Array.isArray(circuit.outcomes)) return;
+        if (this.circuitFailureRateThreshold === null) return;
+
+        circuit.outcomes.push({
+            at: nowMs,
+            success: success === true
+        });
+        this._pruneCircuitOutcomes(circuit, nowMs);
+    }
+
+    _getCircuitFailureRate(circuit, nowMs = safeNow(this.now)) {
+        if (!circuit || !Array.isArray(circuit.outcomes)) {
+            return {
+                sampleCount: 0,
+                failureCount: 0,
+                failureRate: null
+            };
+        }
+
+        this._pruneCircuitOutcomes(circuit, nowMs);
+        const sampleCount = circuit.outcomes.length;
+        if (sampleCount === 0) {
+            return {
+                sampleCount: 0,
+                failureCount: 0,
+                failureRate: null
+            };
+        }
+
+        const failureCount = circuit.outcomes.reduce(
+            (sum, entry) => sum + (entry.success ? 0 : 1),
+            0
+        );
+        return {
+            sampleCount,
+            failureCount,
+            failureRate: failureCount / sampleCount
+        };
+    }
+
     _recordCircuitFailure(target, nowMs, reason) {
         const circuit = this._getCircuit(target);
         if (!circuit) return null;
 
+        this._recordCircuitOutcome(circuit, nowMs, false);
         circuit.consecutiveFailures += 1;
+        const failureRateWindow = this._getCircuitFailureRate(circuit, nowMs);
+        const thresholdByRate = this.circuitFailureRateThreshold !== null
+            && failureRateWindow.sampleCount >= this.circuitFailureRateMinSamples
+            && failureRateWindow.failureRate >= this.circuitFailureRateThreshold;
         const shouldOpen = circuit.state === CIRCUIT_HALF_OPEN
-            || circuit.consecutiveFailures >= this.circuitFailureThreshold;
+            || circuit.consecutiveFailures >= this.circuitFailureThreshold
+            || thresholdByRate;
         if (!shouldOpen) {
             return {
                 state: circuit.state,
                 consecutiveFailures: circuit.consecutiveFailures,
-                retryAfterMs: null
+                retryAfterMs: null,
+                failureRateWindow
             };
         }
 
@@ -1591,14 +1671,17 @@ export class TaskOrchestrator {
                 target,
                 reason: reason || 'send_failed',
                 consecutiveFailures: circuit.consecutiveFailures,
-                cooldownMs: this.circuitCooldownMs
+                cooldownMs: this.circuitCooldownMs,
+                trigger: thresholdByRate ? 'failure_rate' : 'consecutive_failures',
+                failureRateWindow
             }, nowMs);
         }
 
         return {
             state: circuit.state,
             consecutiveFailures: circuit.consecutiveFailures,
-            retryAfterMs: this.circuitCooldownMs
+            retryAfterMs: this.circuitCooldownMs,
+            failureRateWindow
         };
     }
 
@@ -1606,12 +1689,16 @@ export class TaskOrchestrator {
         const circuit = this._getCircuit(target);
         if (!circuit) return;
 
+        this._recordCircuitOutcome(circuit, nowMs, true);
         const previousState = circuit.state;
         const previousFailures = circuit.consecutiveFailures;
         circuit.state = CIRCUIT_CLOSED;
         circuit.consecutiveFailures = 0;
         circuit.openedAt = null;
         circuit.halfOpenAttempts = 0;
+        if (previousState !== CIRCUIT_CLOSED) {
+            circuit.outcomes = [];
+        }
 
         if (previousState !== CIRCUIT_CLOSED || previousFailures > 0) {
             this._emitAudit('circuit_closed', {
@@ -2933,10 +3020,16 @@ export class TaskOrchestrator {
             terminalReasonCounts: {},
             globalRetryBudget: this._globalRetryBudgetSnapshot(safeNow(this.now)),
             circuits: {
+                enabled: this.circuitBreakerEnabled,
                 tracked: 0,
                 closed: 0,
                 open: 0,
-                halfOpen: 0
+                halfOpen: 0,
+                failureThreshold: this.circuitFailureThreshold,
+                failureRateThreshold: this.circuitFailureRateThreshold,
+                failureRateWindowMs: this.circuitFailureRateWindowMs,
+                failureRateMinSamples: this.circuitFailureRateMinSamples,
+                rateHotTargets: 0
             },
             inFlight: {
                 current: 0,
@@ -3053,6 +3146,17 @@ export class TaskOrchestrator {
             if (circuit.state === CIRCUIT_OPEN) metrics.circuits.open += 1;
             else if (circuit.state === CIRCUIT_HALF_OPEN) metrics.circuits.halfOpen += 1;
             else metrics.circuits.closed += 1;
+
+            if (this.circuitFailureRateThreshold !== null) {
+                const window = this._getCircuitFailureRate(circuit);
+                if (
+                    window.sampleCount >= this.circuitFailureRateMinSamples
+                    && window.failureRate !== null
+                    && window.failureRate >= this.circuitFailureRateThreshold
+                ) {
+                    metrics.circuits.rateHotTargets += 1;
+                }
+            }
         }
         metrics.retryThrottle.trackedTargets = this.retryThrottleBuckets.size;
         if (this.retryThrottleEnabled) {
