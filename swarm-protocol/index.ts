@@ -88,6 +88,7 @@ export * from './src/execution-autonomy-dial.js';
 export * from './src/self-reflection-error-taxonomy.js';
 export * from './src/cognitive-drift-corrector.js';
 export * from './src/long-term-memory-consolidator.js';
+export * from './src/openclaw-memory-v2.js';
 export * from './src/skill-discovery-auto-installer.js';
 export * from './src/tool-reliability-autopatcher.js';
 export * from './src/api-compatibility-adapter.js';
