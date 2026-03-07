@@ -1372,18 +1372,21 @@ export class TaskOrchestrator {
             return null;
         }
 
-        const digest = createHash('sha256')
+        return `content:${this._buildDedupePayloadHash(taskRequest)}`;
+    }
+
+    _buildDedupePayloadHash(taskRequest) {
+        return createHash('sha256')
             .update(
                 stableSerialize({
-                    target: taskRequest.target,
-                    task: taskRequest.task,
-                    priority: taskRequest.priority,
-                    context: taskRequest.context || null,
-                    constraints: taskRequest.constraints || null
+                    target: taskRequest?.target ?? null,
+                    task: taskRequest?.task ?? null,
+                    priority: taskRequest?.priority ?? null,
+                    context: taskRequest?.context || null,
+                    constraints: taskRequest?.constraints || null
                 })
             )
             .digest('hex');
-        return `content:${digest}`;
     }
 
     _registerDedupeForRecord(record, nowMs = safeNow(this.now)) {
@@ -1393,9 +1396,13 @@ export class TaskOrchestrator {
             record.dedupeKey = this._resolveDedupeKey(record.request);
         }
         if (typeof record.dedupeKey !== 'string' || !record.dedupeKey) return;
+        if (typeof record.dedupePayloadHash !== 'string' || !record.dedupePayloadHash) {
+            record.dedupePayloadHash = this._buildDedupePayloadHash(record.request);
+        }
 
         this.dedupeIndex.set(record.dedupeKey, {
             taskId: record.taskId,
+            payloadHash: record.dedupePayloadHash,
             createdAt: nowMs,
             expiresAt: nowMs + this.dedupeWindowMs
         });
@@ -1415,6 +1422,13 @@ export class TaskOrchestrator {
         if (!record) {
             this.dedupeIndex.delete(dedupeKey);
             return null;
+        }
+
+        if (!entry.payloadHash) {
+            entry.payloadHash = typeof record.dedupePayloadHash === 'string' && record.dedupePayloadHash
+                ? record.dedupePayloadHash
+                : this._buildDedupePayloadHash(record.request);
+            this.dedupeIndex.set(dedupeKey, entry);
         }
 
         return record;
@@ -2277,6 +2291,31 @@ export class TaskOrchestrator {
         if (dedupeKey) {
             const duplicateRecord = this._findDedupedRecord(dedupeKey, request.createdAt);
             if (duplicateRecord) {
+                if (dedupeKey.startsWith('idempotency:')) {
+                    const incomingPayloadHash = this._buildDedupePayloadHash(request);
+                    const duplicatePayloadHash = typeof duplicateRecord.dedupePayloadHash === 'string'
+                        && duplicateRecord.dedupePayloadHash
+                        ? duplicateRecord.dedupePayloadHash
+                        : this._buildDedupePayloadHash(duplicateRecord.request);
+
+                    if (incomingPayloadHash !== duplicatePayloadHash) {
+                        this._emitAudit('task_idempotency_conflict', {
+                            taskId: request.id,
+                            duplicateOf: duplicateRecord.taskId,
+                            dedupeKey
+                        }, request.createdAt);
+                        throw new TaskOrchestratorError(
+                            'IDEMPOTENCY_CONFLICT',
+                            `Task ${request.id} reuses idempotency key with a different payload`,
+                            {
+                                taskId: request.id,
+                                duplicateOf: duplicateRecord.taskId,
+                                dedupeKey
+                            }
+                        );
+                    }
+                }
+
                 this.dedupeSuppressions += 1;
                 this._emitAudit('task_deduplicated', {
                     taskId: request.id,
@@ -2308,6 +2347,7 @@ export class TaskOrchestrator {
             target: request.target,
             request,
             dedupeKey,
+            dedupePayloadHash: dedupeKey ? this._buildDedupePayloadHash(request) : null,
             taskTimeoutMs,
             status: 'created',
             approval: null,

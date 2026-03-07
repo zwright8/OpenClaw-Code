@@ -814,6 +814,44 @@ test('dedupe coalesces duplicate dispatches for the same idempotency key', async
     assert.equal(orchestrator.getMetrics().dedupe.suppressions, 1);
 });
 
+test('dedupe raises conflict when idempotency key is reused with different payload', async () => {
+    const clock = createClock(4_500);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        dedupeEnabled: true,
+        dedupeMode: 'coalesce',
+        dedupeWindowMs: 10_000
+    });
+
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-conflict',
+        task: 'Summarize release telemetry',
+        context: {
+            idempotencyKey: 'release-telemetry-summary-2026-03-06'
+        }
+    });
+
+    clock.advance(10);
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-dedupe-conflict',
+            task: 'Summarize release telemetry with root-cause appendix',
+            context: {
+                idempotencyKey: 'release-telemetry-summary-2026-03-06'
+            }
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'IDEMPOTENCY_CONFLICT');
+            return true;
+        }
+    );
+});
+
 test('dedupe reject mode throws duplicate task error', async () => {
     const clock = createClock(4_600);
     const orchestrator = new TaskOrchestrator({
