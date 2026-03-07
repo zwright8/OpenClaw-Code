@@ -1427,619 +1427,99 @@ test('dispatchTask fails fast and does not keep orphaned record when send fails'
     assert.equal(metrics.total, 0);
 });
 
-test('dispatchTask suppresses duplicate open requests within dedupe window', async () => {
-    const clock = createClock(130_000);
-    const sent = [];
-
+test('dispatchTask rejects duplicate task ids', async () => {
+    const clock = createClock(6_000);
     const orchestrator = new TaskOrchestrator({
         localAgentId: 'agent:main',
         transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
+            async send() {}
         },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 10_000
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe',
-        task: 'Build sprint summary',
-        context: { sprint: '2026-W10' }
-    });
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe',
-        task: 'Build sprint summary',
-        context: { sprint: '2026-W10' }
-    });
-
-    assert.equal(first.taskId, second.taskId);
-    assert.equal(sent.length, 1);
-    assert.equal(second.history.at(-1)?.event, 'duplicate_dispatch_suppressed');
-});
-
-test('dispatchTask allows duplicate requests after dedupe window expires', async () => {
-    const clock = createClock(140_000);
-    const sent = [];
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 100
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-expired',
-        task: 'Generate changelog'
-    });
-
-    clock.advance(150);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-expired',
-        task: 'Generate changelog'
-    });
-
-    assert.notEqual(first.taskId, second.taskId);
-    assert.equal(sent.length, 2);
-});
-
-test('dispatchTask can coalesce in-flight duplicates beyond base dedupe window', async () => {
-    const clock = createClock(142_000);
-    const sent = [];
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 100,
-            inFlightWindowMs: 5_000
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-inflight',
-        task: 'Generate release candidate checklist'
-    });
-
-    clock.advance(500);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-inflight',
-        task: 'Generate release candidate checklist'
-    });
-
-    assert.equal(first.taskId, second.taskId);
-    assert.equal(sent.length, 1);
-});
-
-test('dispatchTask re-dispatches open duplicates after in-flight dedupe window expires', async () => {
-    const clock = createClock(143_000);
-    const sent = [];
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 100,
-            inFlightWindowMs: 300
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-inflight-expired',
-        task: 'Assemble launch risk summary'
-    });
-
-    clock.advance(450);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-inflight-expired',
-        task: 'Assemble launch risk summary'
-    });
-
-    assert.notEqual(first.taskId, second.taskId);
-    assert.equal(sent.length, 2);
-});
-
-test('dispatchTask can singleflight open duplicates until terminal when configured', async () => {
-    const clock = createClock(144_000);
-    const sent = [];
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 100,
-            coalesceOpenUntilTerminal: true
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-singleflight',
-        task: 'Generate annual operating plan'
-    });
-
-    clock.advance(15_000);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-singleflight',
-        task: 'Generate annual operating plan'
-    });
-
-    assert.equal(first.taskId, second.taskId);
-    assert.equal(sent.length, 1);
-});
-
-test('dispatchTask can release singleflight lock after inFlightWindowMs lock age', async () => {
-    const clock = createClock(144_500);
-    const sent = [];
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 100,
-            inFlightWindowMs: 500,
-            coalesceOpenUntilTerminal: true
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-singleflight-lock-age',
-        task: 'Compile weekly compliance digest'
-    });
-
-    clock.advance(800);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-singleflight-lock-age',
-        task: 'Compile weekly compliance digest'
-    });
-
-    assert.notEqual(first.taskId, second.taskId);
-    assert.equal(sent.length, 2);
-});
-
-test('dispatchTask suppresses duplicate completed requests inside terminal dedupe window', async () => {
-    const clock = createClock(145_000);
-    const sent = [];
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 50,
-            terminalWindowMs: 10_000
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-terminal',
-        task: 'Refresh customer health scorecard',
-        constraints: { idempotencyKey: 'health-scorecard-2026W10' }
-    });
-
-    clock.advance(5);
-    orchestrator.ingestResult(buildTaskResult({
-        taskId: first.taskId,
-        from: 'agent:worker-dedupe-terminal',
-        status: 'completed',
-        output: 'scorecard-ready',
-        completedAt: clock.now()
-    }));
-
-    clock.advance(200);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-terminal',
-        task: 'Refresh customer health scorecard',
-        constraints: { idempotencyKey: 'health-scorecard-2026W10' }
-    });
-
-    assert.equal(first.taskId, second.taskId);
-    assert.equal(second.status, 'completed');
-    assert.equal(sent.length, 1);
-});
-
-test('dispatchTask re-dispatches duplicate completed requests after terminal dedupe window expires', async () => {
-    const clock = createClock(160_000);
-    const sent = [];
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 50,
-            terminalWindowMs: 500
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-terminal-expire',
-        task: 'Build monthly close packet',
-        constraints: { idempotencyKey: 'close-packet-2026-02' }
-    });
-
-    clock.advance(10);
-    orchestrator.ingestResult(buildTaskResult({
-        taskId: first.taskId,
-        from: 'agent:worker-dedupe-terminal-expire',
-        status: 'completed',
-        output: 'packet-ready',
-        completedAt: clock.now()
-    }));
-
-    clock.advance(600);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-dedupe-terminal-expire',
-        task: 'Build monthly close packet',
-        constraints: { idempotencyKey: 'close-packet-2026-02' }
-    });
-
-    assert.notEqual(first.taskId, second.taskId);
-    assert.equal(second.status, 'dispatched');
-    assert.equal(sent.length, 2);
-});
-
-test('dispatchTask rejects new tasks when global queue capacity is exceeded', async () => {
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: { async send() {} },
-        queueCapacity: {
-            maxOpenTasks: 1
-        }
+        now: clock.now
     });
 
     await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-global',
-        task: 'Build daily ops digest'
+        id: 'task:dup-1',
+        target: 'agent:worker-dup',
+        task: 'First dispatch'
     });
 
     await assert.rejects(
         () => orchestrator.dispatchTask({
-            target: 'agent:worker-capacity-global-2',
-            task: 'Build second digest'
+            id: 'task:dup-1',
+            target: 'agent:worker-dup',
+            task: 'Second dispatch'
         }),
         (error) => {
             assert.equal(error instanceof TaskOrchestratorError, true);
-            assert.equal(error.code, 'CAPACITY_EXCEEDED');
-            assert.equal(error.details.scope, 'global');
+            assert.equal(error.code, 'DUPLICATE_TASK_ID');
             return true;
         }
     );
 });
 
-test('dispatchTask enforces per-target queue capacity while allowing other targets', async () => {
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: { async send() {} },
-        queueCapacity: {
-            maxOpenTasksPerTarget: 1
-        }
-    });
+test('circuit breaker opens after repeated send failures and recovers after cooldown', async () => {
+    const clock = createClock(7_000);
+    let shouldFail = true;
 
-    await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-target-a',
-        task: 'Target A task 1'
-    });
-
-    await assert.rejects(
-        () => orchestrator.dispatchTask({
-            target: 'agent:worker-capacity-target-a',
-            task: 'Target A task 2'
-        }),
-        (error) => {
-            assert.equal(error instanceof TaskOrchestratorError, true);
-            assert.equal(error.code, 'CAPACITY_EXCEEDED');
-            assert.equal(error.details.scope, 'target');
-            return true;
-        }
-    );
-
-    const otherTarget = await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-target-b',
-        task: 'Target B task 1'
-    });
-
-    assert.equal(otherTarget.status, 'dispatched');
-});
-
-test('dispatchTask still coalesces duplicates when queue capacity is full', async () => {
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: { async send() {} },
-        dispatchDeduplication: {
-            windowMs: 60_000,
-            coalesceOpenUntilTerminal: true
-        },
-        queueCapacity: {
-            maxOpenTasks: 1
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-dedupe',
-        task: 'Generate board update',
-        context: { week: '2026-W11' }
-    });
-
-    const duplicate = await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-dedupe',
-        task: 'Generate board update',
-        context: { week: '2026-W11' }
-    });
-
-    assert.equal(duplicate.taskId, first.taskId);
-    assert.equal(orchestrator.getMetrics().open, 1);
-});
-
-test('dispatchTask reserves global queue slots for higher-priority tasks', async () => {
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: { async send() {} },
-        queueCapacity: {
-            maxOpenTasks: 3,
-            reservedOpenSlotsByPriority: {
-                critical: 1
-            }
-        }
-    });
-
-    await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-priority-a',
-        task: 'Normal workload A',
-        priority: 'normal'
-    });
-    await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-priority-b',
-        task: 'Normal workload B',
-        priority: 'normal'
-    });
-
-    await assert.rejects(
-        () => orchestrator.dispatchTask({
-            target: 'agent:worker-capacity-priority-c',
-            task: 'Normal workload C',
-            priority: 'normal'
-        }),
-        (error) => {
-            assert.equal(error instanceof TaskOrchestratorError, true);
-            assert.equal(error.code, 'CAPACITY_EXCEEDED');
-            assert.equal(error.details.scope, 'global_priority_reservation');
-            assert.equal(error.details.priority, 'normal');
-            assert.equal(error.details.reservedForHigherPriority, 1);
-            return true;
-        }
-    );
-
-    const critical = await orchestrator.dispatchTask({
-        target: 'agent:worker-capacity-priority-critical',
-        task: 'Critical workload',
-        priority: 'critical'
-    });
-    assert.equal(critical.status, 'dispatched');
-
-    const metrics = orchestrator.getMetrics();
-    assert.equal(metrics.queueCapacity.reservedOpenSlotsByPriority.critical, 1);
-    assert.equal(metrics.queueCapacity.openByPriority.normal, 2);
-    assert.equal(metrics.queueCapacity.openByPriority.critical, 1);
-});
-
-test('runMaintenance expires stale approval-gated tasks to timed_out when staleTaskPolicy is enabled', async () => {
-    const clock = createClock(166_000);
-    const sent = [];
     const orchestrator = new TaskOrchestrator({
         localAgentId: 'agent:main',
         transport: {
-            async send(target, message) {
-                sent.push({ target, message });
+            async send() {
+                if (shouldFail) {
+                    throw new Error('transport down');
+                }
             }
         },
         now: clock.now,
-        approvalPolicy: () => ({
-            required: true,
-            reason: 'manual_review'
-        }),
-        staleTaskPolicy: {
-            maxAgeMs: 100
+        maxRetries: 1,
+        retryDelayMs: 10,
+        defaultTimeoutMs: 50,
+        circuitBreaker: {
+            failureThreshold: 2,
+            cooldownMs: 100
         }
     });
 
     const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-stale-approval',
-        task: 'Wait for human approval'
+        target: 'agent:worker-cb',
+        task: 'Trigger breaker'
     });
-    assert.equal(task.status, 'awaiting_approval');
 
-    clock.advance(150);
-    const summary = await orchestrator.runMaintenance(clock.now());
-    const expired = orchestrator.getTask(task.taskId);
-    assert.equal(summary.staleExpired, 1);
-    assert.equal(summary.timedOut, 1);
-    assert.equal(expired.status, 'timed_out');
-    assert.equal(sent.length, 0);
-});
+    clock.set(7_100);
+    await orchestrator.runMaintenance(clock.now());
+    clock.set(7_120);
+    await orchestrator.runMaintenance(clock.now());
 
-test('runMaintenance expires stale dispatched tasks to cancelled and propagates cancel signal', async () => {
-    const clock = createClock(167_000);
-    const sent = [];
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        staleTaskPolicy: {
-            maxAgeMs: 50,
-            terminalStatus: 'cancelled',
-            propagateCancel: true
+    const healthOpen = orchestrator.getCircuitHealth();
+    const workerCircuit = healthOpen.circuits.find((entry) => entry.target === 'agent:worker-cb');
+    assert.ok(workerCircuit);
+    assert.equal(workerCircuit.state, 'open');
+    assert.equal(orchestrator.getTask(task.taskId)?.status, 'retry_scheduled');
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-cb',
+            task: 'Blocked by open circuit'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'CIRCUIT_OPEN');
+            return true;
         }
-    });
+    );
 
-    const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-stale-cancel',
-        task: 'Long running stale work'
-    });
-    assert.equal(task.status, 'dispatched');
-    assert.equal(sent.length, 1);
+    shouldFail = false;
+    clock.set(7_240);
+    await orchestrator.runMaintenance(clock.now());
 
-    clock.advance(60);
-    const summary = await orchestrator.runMaintenance(clock.now());
-    const expired = orchestrator.getTask(task.taskId);
-    assert.equal(summary.staleExpired, 1);
-    assert.equal(summary.timedOut, 0);
-    assert.equal(expired.status, 'cancelled');
-    assert.equal(expired.history.some((entry) => entry.event === 'cancel_signal_sent'), true);
-    assert.equal(sent.length, 2);
-    assert.equal(sent[1].message.kind, 'task_cancel');
+    const afterRecover = orchestrator.getTask(task.taskId);
+    assert.ok(afterRecover);
+    assert.equal(afterRecover.status, 'dispatched');
 
-    const metrics = orchestrator.getMetrics();
-    assert.equal(metrics.staleTaskPolicy.enabled, true);
-    assert.equal(metrics.staleTaskPolicy.maxAgeMs, 50);
-    assert.equal(metrics.staleTaskPolicy.terminalStatus, 'cancelled');
-});
-
-test('runMaintenance prunes old terminal tasks when terminalTaskRetention.maxAgeMs is configured', async () => {
-    const clock = createClock(170_000);
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: { async send() {} },
-        now: clock.now,
-        terminalTaskRetention: {
-            maxAgeMs: 100,
-            maxTasks: null,
-            sweepLimit: 50
-        }
-    });
-
-    const stale = await orchestrator.dispatchTask({
-        target: 'agent:worker-retention-age',
-        task: 'old terminal task'
-    });
-    clock.advance(1);
-    orchestrator.ingestResult(buildTaskResult({
-        taskId: stale.taskId,
-        from: 'agent:worker-retention-age',
-        status: 'success',
-        output: 'done',
-        completedAt: clock.now()
-    }));
-
-    clock.advance(50);
-    const fresh = await orchestrator.dispatchTask({
-        target: 'agent:worker-retention-age',
-        task: 'fresh terminal task'
-    });
-    clock.advance(1);
-    orchestrator.ingestResult(buildTaskResult({
-        taskId: fresh.taskId,
-        from: 'agent:worker-retention-age',
-        status: 'success',
-        output: 'done',
-        completedAt: clock.now()
-    }));
-
-    clock.advance(90);
-    const summary = await orchestrator.runMaintenance(clock.now());
-    assert.equal(summary.prunedTerminalTasks, 1);
-    assert.equal(orchestrator.getTask(stale.taskId), null);
-    assert.ok(orchestrator.getTask(fresh.taskId));
-    assert.equal(orchestrator.getMetrics().terminalTaskRetention.prunedTotal, 1);
-});
-
-test('runMaintenance prunes oldest terminal tasks when terminalTaskRetention.maxTasks is exceeded', async () => {
-    const clock = createClock(180_000);
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: { async send() {} },
-        now: clock.now,
-        terminalTaskRetention: {
-            maxAgeMs: null,
-            maxTasks: 2,
-            sweepLimit: 10
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-retention-count',
-        task: 'first'
-    });
-    clock.advance(1);
-    orchestrator.ingestResult(buildTaskResult({
-        taskId: first.taskId,
-        from: 'agent:worker-retention-count',
-        status: 'success',
-        output: 'done',
-        completedAt: clock.now()
-    }));
-
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-retention-count',
-        task: 'second'
-    });
-    clock.advance(1);
-    orchestrator.ingestResult(buildTaskResult({
-        taskId: second.taskId,
-        from: 'agent:worker-retention-count',
-        status: 'success',
-        output: 'done',
-        completedAt: clock.now()
-    }));
-
-    const third = await orchestrator.dispatchTask({
-        target: 'agent:worker-retention-count',
-        task: 'third'
-    });
-    clock.advance(1);
-    orchestrator.ingestResult(buildTaskResult({
-        taskId: third.taskId,
-        from: 'agent:worker-retention-count',
-        status: 'success',
-        output: 'done',
-        completedAt: clock.now()
-    }));
-
-    const summary = await orchestrator.runMaintenance(clock.now());
-    assert.equal(summary.prunedTerminalTasks, 1);
-    assert.equal(orchestrator.getTask(first.taskId), null);
-    assert.ok(orchestrator.getTask(second.taskId));
-    assert.ok(orchestrator.getTask(third.taskId));
+    const healthClosed = orchestrator.getCircuitHealth();
+    const closedCircuit = healthClosed.circuits.find((entry) => entry.target === 'agent:worker-cb');
+    assert.ok(closedCircuit);
+    assert.equal(closedCircuit.state, 'closed');
 });
 
 test('helper builders emit schema-valid messages', () => {

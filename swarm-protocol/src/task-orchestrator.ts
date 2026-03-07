@@ -27,99 +27,9 @@ const TERMINAL_REPLAY_STATUSES = new Set([
 ]);
 
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
-const RETRY_BACKOFF_STRATEGIES = new Set(['fixed', 'exponential']);
-const RETRY_JITTER_STRATEGIES = new Set(['none', 'full', 'decorrelated']);
-const DEFAULT_RETRY_THROTTLE = Object.freeze({
-    maxTokens: 10,
-    tokenRatio: 0.1,
-    retryCost: 1,
-    timeoutRetryCost: 1,
-    throttlingRetryCost: 1,
-    transportRetryCost: 1,
-    threshold: 5,
-    scope: 'global'
-});
-const DEFAULT_RETRY_BUDGET = Object.freeze({
-    ratio: 0.2,
-    minRetries: 1,
-    maxRetries: null,
-    scope: 'target'
-});
-const DEFAULT_CIRCUIT_BREAKER = Object.freeze({
-    failureThreshold: 3,
-    cooldownMs: 30_000,
-    halfOpenMaxAttempts: 1,
-    successThreshold: 1,
-    cooldownBackoffMultiplier: 1,
-    maxCooldownMs: 300_000
-});
-const DEFAULT_ADAPTIVE_CONCURRENCY = Object.freeze({
-    initialLimit: 4,
-    minLimit: 1,
-    maxLimit: 32,
-    increaseStep: 1,
-    decreaseMultiplier: 0.7,
-    latencyHighWatermarkMs: null
-});
-const DEFAULT_DISPATCH_DEDUPLICATION = Object.freeze({
-    windowMs: 5_000,
-    openOnly: true,
-    terminalWindowMs: 0,
-    inFlightWindowMs: null,
-    coalesceOpenUntilTerminal: false
-});
-const DEFAULT_TERMINAL_TASK_RETENTION = Object.freeze({
-    maxAgeMs: 900_000,
-    maxTasks: 2_000,
-    sweepLimit: 200
-});
-const DEFAULT_QUEUE_CAPACITY = Object.freeze({
-    maxOpenTasks: 2_000,
-    maxOpenTasksPerTarget: 500,
-    reservedOpenSlotsByPriority: Object.freeze({
-        critical: 0,
-        high: 0
-    })
-});
-const DEFAULT_STALE_TASK_POLICY = Object.freeze({
-    maxAgeMs: 300_000,
-    terminalStatus: 'timed_out',
-    propagateCancel: true
-});
-const TRANSIENT_REJECTION_MARKERS = [
-    'overload',
-    'overloaded',
-    'busy',
-    'rate_limit',
-    'rate-limit',
-    'too_many_requests',
-    'service_unavailable',
-    'temporarily_unavailable',
-    'throttle',
-    'backpressure',
-    'try_again',
-    'retry_later',
-    'capacity'
-];
-const RETRYABLE_HTTP_STATUS_CODES = new Set([408, 425, 429, 500, 502, 503, 504]);
-const RETRYABLE_GRPC_STATUS_CODES = new Set([4, 8, 14]);
-const RETRYABLE_GRPC_STATUS_NAMES = new Set([
-    'deadline_exceeded',
-    'resource_exhausted',
-    'unavailable'
-]);
-const RATE_LIMIT_RESET_KEY_PATTERN = String.raw`(?:x[-_\s]?ratelimit[-_\s]?reset(?:[-_\s]?(?:requests|tokens))?|ratelimit[-_\s]?reset(?:[-_\s]?(?:requests|tokens))?)`;
-const RATE_LIMIT_RESET_KEY_VALUE_REGEX = new RegExp(
-    `\\b${RATE_LIMIT_RESET_KEY_PATTERN}\\b\\s*[:=]?\\s*([^\\s;,]+)`,
-    'gi'
-);
-const PRIORITY_LEVELS = Object.freeze(['low', 'normal', 'high', 'critical']);
-const PRIORITY_RANK = Object.freeze(
-    PRIORITY_LEVELS.reduce((acc, priority, index) => {
-        acc[priority] = index;
-        return acc;
-    }, {})
-);
+const CIRCUIT_CLOSED = 'closed';
+const CIRCUIT_OPEN = 'open';
+const CIRCUIT_HALF_OPEN = 'half_open';
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -690,21 +600,7 @@ export class TaskOrchestrator {
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
-        retryBackoffStrategy = 'fixed',
-        retryJitter = 'none',
-        maxRetryDelayMs = 30_000,
-        maxRetryHintMs = null,
-        overallTimeoutMs = null,
-        retryThrottling = null,
-        retryBudget = null,
         circuitBreaker = null,
-        adaptiveConcurrency = null,
-        dispatchDeduplication = null,
-        terminalTaskRetention = null,
-        queueCapacity = null,
-        staleTaskPolicy = null,
-        transportSendTimeoutMs = 10_000,
-        random = Math.random,
         now = Date.now,
         logger = console
     }) {
@@ -732,393 +628,166 @@ export class TaskOrchestrator {
         this.maxRetries = Number.isInteger(maxRetries) && maxRetries >= 0
             ? maxRetries
             : 1;
-        this.retryDelayMs = clampNonNegativeNumber(retryDelayMs, 500);
-        this.retryBackoffStrategy = RETRY_BACKOFF_STRATEGIES.has(retryBackoffStrategy)
-            ? retryBackoffStrategy
-            : 'fixed';
-        this.retryJitter = RETRY_JITTER_STRATEGIES.has(retryJitter)
-            ? retryJitter
-            : 'none';
-        this.maxRetryDelayMs = Math.max(
-            this.retryDelayMs,
-            clampNonNegativeNumber(maxRetryDelayMs, 30_000)
-        );
-        this.maxRetryHintMs = resolveMaxRetryHintMs(maxRetryHintMs, this.maxRetryDelayMs);
-        this.overallTimeoutMs = Number.isFinite(overallTimeoutMs) && Number(overallTimeoutMs) > 0
-            ? Number(overallTimeoutMs)
-            : null;
-        this.retryThrottling = resolveRetryThrottling(retryThrottling);
-        this.retryBudget = resolveRetryBudget(retryBudget);
-        this.retryThrottleTokens = this.retryThrottling.enabled && this.retryThrottling.scope === 'global'
-            ? this.retryThrottling.maxTokens
-            : null;
-        this.retryThrottleTokensByTarget = this.retryThrottling.enabled && this.retryThrottling.scope === 'target'
-            ? new Map()
-            : null;
-        this.circuitBreaker = resolveCircuitBreaker(circuitBreaker);
-        this.circuitBreakerStateByTarget = this.circuitBreaker.enabled
-            ? new Map()
-            : null;
-        this.adaptiveConcurrency = resolveAdaptiveConcurrency(adaptiveConcurrency);
-        this.adaptiveConcurrencyByTarget = this.adaptiveConcurrency.enabled
-            ? new Map()
-            : null;
-        this.dispatchDeduplication = resolveDispatchDeduplication(dispatchDeduplication);
-        this.terminalTaskRetention = resolveTerminalTaskRetention(terminalTaskRetention);
-        this.queueCapacity = resolveQueueCapacity(queueCapacity);
-        this.staleTaskPolicy = resolveStaleTaskPolicy(staleTaskPolicy);
-        this.terminalTasksPruned = 0;
-        this.transportSendTimeoutMs = Number.isFinite(transportSendTimeoutMs) && Number(transportSendTimeoutMs) > 0
-            ? Number(transportSendTimeoutMs)
-            : null;
-        this.random = typeof random === 'function' ? random : Math.random;
+        this.retryDelayMs = Number.isFinite(retryDelayMs) && retryDelayMs >= 0
+            ? Number(retryDelayMs)
+            : 500;
+        this.circuitBreaker = this._buildCircuitBreaker(circuitBreaker);
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
+        this.targetCircuits = new Map();
         this._persistenceQueue = Promise.resolve();
     }
 
-    _resolveOverallDeadlineAt(createdAt) {
-        if (!Number.isFinite(this.overallTimeoutMs) || this.overallTimeoutMs === null) {
-            return null;
-        }
-        return createdAt + this.overallTimeoutMs;
-    }
-
-    _applyOverallDeadline(record, deadlineAt) {
-        if (!Number.isFinite(record?.overallDeadlineAt)) {
-            return deadlineAt;
-        }
-        return Math.min(deadlineAt, Number(record.overallDeadlineAt));
-    }
-
-    _remainingOverallDeadlineMs(record, nowMs) {
-        if (!Number.isFinite(record?.overallDeadlineAt)) {
-            return null;
-        }
-        return Number(record.overallDeadlineAt) - nowMs;
-    }
-
-    _isOverallDeadlineExceeded(record, nowMs) {
-        const remainingMs = this._remainingOverallDeadlineMs(record, nowMs);
-        return Number.isFinite(remainingMs) && remainingMs < 0;
-    }
-
-    _markTimedOut(record, nowMs, {
-        event = 'timed_out',
-        reason = null
-    } = {}) {
-        this._releaseAdaptiveConcurrencySlot(record, nowMs, 'overload');
-        record.status = 'timed_out';
-        record.updatedAt = nowMs;
-        record.closedAt = nowMs;
-        record.history.push({
-            at: nowMs,
-            event,
-            reason
-        });
-        this._persistRecord(record);
-        this._emitAudit('task_timed_out', {
-            taskId: record.taskId,
-            target: record.target,
-            attempts: record.attempts,
-            reason
-        }, nowMs);
-    }
-
-    _resolveCircuitTarget(target) {
-        if (typeof target !== 'string' || !target.trim()) {
-            return '__unknown_target__';
-        }
-        return target.trim();
-    }
-
-    _getCircuitState(target, { create = true } = {}) {
-        if (!this.circuitBreaker.enabled || !this.circuitBreakerStateByTarget) {
-            return null;
-        }
-
-        const key = this._resolveCircuitTarget(target);
-        if (this.circuitBreakerStateByTarget.has(key)) {
-            return this.circuitBreakerStateByTarget.get(key);
-        }
-
-        if (!create) {
-            return null;
-        }
-
-        const state = {
-            target: key,
-            status: 'closed',
-            consecutiveFailures: 0,
-            consecutiveSuccesses: 0,
-            openedAt: null,
-            openUntil: null,
-            halfOpenAttempts: 0,
-            currentCooldownMs: this.circuitBreaker.cooldownMs
-        };
-        this.circuitBreakerStateByTarget.set(key, state);
-        return state;
-    }
-
-    _openCircuit(target, nowMs, reason, { increaseCooldown = false } = {}) {
-        const state = this._getCircuitState(target);
-        if (!state) return;
-
-        const baselineCooldownMs = this.circuitBreaker.cooldownMs;
-        let cooldownMs = clampPositiveNumber(state.currentCooldownMs, baselineCooldownMs);
-        if (increaseCooldown && this.circuitBreaker.cooldownBackoffMultiplier > 1) {
-            cooldownMs = Math.min(
-                this.circuitBreaker.maxCooldownMs,
-                Math.max(
-                    baselineCooldownMs,
-                    Math.floor(cooldownMs * this.circuitBreaker.cooldownBackoffMultiplier)
-                )
-            );
-        }
-
-        state.status = 'open';
-        state.currentCooldownMs = cooldownMs;
-        state.openedAt = nowMs;
-        state.openUntil = nowMs + cooldownMs;
-        state.consecutiveSuccesses = 0;
-        state.halfOpenAttempts = 0;
-        this._emitAudit('target_circuit_opened', {
-            target: state.target,
-            reason,
-            openUntil: state.openUntil,
-            failureThreshold: this.circuitBreaker.failureThreshold,
-            cooldownMs
-        }, nowMs);
-    }
-
-    _closeCircuit(target, nowMs, reason) {
-        const state = this._getCircuitState(target);
-        if (!state) return;
-
-        const previousStatus = state.status;
-        state.status = 'closed';
-        state.consecutiveFailures = 0;
-        state.consecutiveSuccesses = 0;
-        state.openedAt = null;
-        state.openUntil = null;
-        state.halfOpenAttempts = 0;
-        state.currentCooldownMs = this.circuitBreaker.cooldownMs;
-
-        if (previousStatus !== 'closed') {
-            this._emitAudit('target_circuit_closed', {
-                target: state.target,
-                reason
-            }, nowMs);
-        }
-    }
-
-    _onCircuitSendFailure(target, nowMs, reason) {
-        const state = this._getCircuitState(target);
-        if (!state) return;
-
-        if (state.status === 'half_open') {
-            state.consecutiveFailures += 1;
-            this._openCircuit(target, nowMs, `half_open_failure:${reason}`, {
-                increaseCooldown: true
-            });
-            return;
-        }
-
-        state.consecutiveFailures += 1;
-        state.consecutiveSuccesses = 0;
-        if (state.consecutiveFailures >= this.circuitBreaker.failureThreshold) {
-            this._openCircuit(target, nowMs, reason);
-        }
-    }
-
-    _onCircuitSendSuccess(target, nowMs, reason) {
-        const state = this._getCircuitState(target);
-        if (!state) return;
-
-        if (state.status === 'half_open') {
-            state.consecutiveSuccesses += 1;
-            if (state.consecutiveSuccesses >= this.circuitBreaker.successThreshold) {
-                this._closeCircuit(target, nowMs, reason);
-            }
-            return;
-        }
-
-        if (state.status === 'closed') {
-            state.consecutiveFailures = 0;
-        }
-    }
-
-    _ensureCircuitCanSend(target, nowMs) {
-        if (!this.circuitBreaker.enabled) {
-            return { allowed: true, retryAfterMs: null };
-        }
-
-        const state = this._getCircuitState(target);
-        if (!state || state.status === 'closed') {
-            return { allowed: true, retryAfterMs: null };
-        }
-
-        if (state.status === 'open') {
-            const openUntil = Number(state.openUntil);
-            if (Number.isFinite(openUntil) && nowMs < openUntil) {
-                return {
-                    allowed: false,
-                    retryAfterMs: Math.max(0, openUntil - nowMs)
-                };
-            }
-
-            state.status = 'half_open';
-            state.consecutiveSuccesses = 0;
-            state.halfOpenAttempts = 0;
-            this._emitAudit('target_circuit_half_open', {
-                target: state.target,
-                cooldownMs: this.circuitBreaker.cooldownMs
-            }, nowMs);
-        }
-
-        if (state.status === 'half_open') {
-            if (state.halfOpenAttempts >= this.circuitBreaker.halfOpenMaxAttempts) {
-                this._openCircuit(target, nowMs, 'half_open_probe_budget_exhausted', {
-                    increaseCooldown: true
-                });
-                return {
-                    allowed: false,
-                    retryAfterMs: Math.max(
-                        1,
-                        Math.floor(clampPositiveNumber(state.currentCooldownMs, this.retryDelayMs))
-                    )
-                };
-            }
-            state.halfOpenAttempts += 1;
-        }
-
-        return { allowed: true, retryAfterMs: null };
-    }
-
-    _getAdaptiveConcurrencyState(target, { create = true } = {}) {
-        if (!this.adaptiveConcurrency.enabled || !this.adaptiveConcurrencyByTarget) {
-            return null;
-        }
-
-        const key = this._resolveCircuitTarget(target);
-        if (this.adaptiveConcurrencyByTarget.has(key)) {
-            return this.adaptiveConcurrencyByTarget.get(key);
-        }
-
-        if (!create) {
-            return null;
-        }
-
-        const state = {
-            target: key,
-            inFlight: 0,
-            limit: this.adaptiveConcurrency.initialLimit,
-            blockedCount: 0,
-            limitIncreaseCount: 0,
-            limitDecreaseCount: 0
-        };
-        this.adaptiveConcurrencyByTarget.set(key, state);
-        return state;
-    }
-
-    _recordAdaptiveLimitChange(state, nowMs, reason, previousLimit) {
-        if (!state || previousLimit === state.limit) return;
-        this._emitAudit('adaptive_concurrency_limit_updated', {
-            target: state.target,
-            reason,
-            previousLimit,
-            nextLimit: state.limit,
-            inFlight: state.inFlight
-        }, nowMs);
-    }
-
-    _acquireAdaptiveConcurrencySlot(record, nowMs) {
-        if (!this.adaptiveConcurrency.enabled) {
-            return { allowed: true, retryAfterMs: null };
-        }
-
-        if (record.adaptiveConcurrency?.acquired === true) {
-            return { allowed: true, retryAfterMs: null };
-        }
-
-        const state = this._getAdaptiveConcurrencyState(record.target);
-        if (!state) {
-            return { allowed: true, retryAfterMs: null };
-        }
-
-        if (state.inFlight >= state.limit) {
-            state.blockedCount += 1;
-            this._emitAudit('task_send_deferred_adaptive_concurrency', {
-                taskId: record.taskId,
-                target: state.target,
-                inFlight: state.inFlight,
-                limit: state.limit
-            }, nowMs);
+    _buildCircuitBreaker(config) {
+        if (config === false) {
             return {
-                allowed: false,
-                retryAfterMs: this.retryDelayMs
+                enabled: false
             };
         }
 
-        state.inFlight += 1;
-        record.adaptiveConcurrency = {
-            acquired: true,
-            target: state.target,
-            acquiredAt: nowMs
+        const raw = config && typeof config === 'object' ? config : {};
+        return {
+            enabled: raw.enabled !== false,
+            failureThreshold: Number.isInteger(raw.failureThreshold) && raw.failureThreshold > 0
+                ? raw.failureThreshold
+                : 3,
+            cooldownMs: Number.isFinite(raw.cooldownMs) && raw.cooldownMs > 0
+                ? Number(raw.cooldownMs)
+                : 10_000,
+            halfOpenMaxInFlight: Number.isInteger(raw.halfOpenMaxInFlight) && raw.halfOpenMaxInFlight > 0
+                ? raw.halfOpenMaxInFlight
+                : 1,
+            halfOpenSuccessesToClose: Number.isInteger(raw.halfOpenSuccessesToClose) && raw.halfOpenSuccessesToClose > 0
+                ? raw.halfOpenSuccessesToClose
+                : 1
         };
-        return { allowed: true, retryAfterMs: null };
     }
 
-    _releaseAdaptiveConcurrencySlot(record, nowMs, outcome = 'neutral') {
-        if (!this.adaptiveConcurrency.enabled || !record?.adaptiveConcurrency?.acquired) {
+    _getTargetCircuit(target) {
+        let circuit = this.targetCircuits.get(target);
+        if (!circuit) {
+            circuit = {
+                state: CIRCUIT_CLOSED,
+                consecutiveFailures: 0,
+                consecutiveSuccesses: 0,
+                openedAt: null,
+                nextAttemptAt: null,
+                halfOpenInFlight: 0,
+                lastStateChangeAt: safeNow(this.now)
+            };
+            this.targetCircuits.set(target, circuit);
+        }
+        return circuit;
+    }
+
+    _setCircuitState(target, circuit, nextState, at) {
+        if (circuit.state === nextState) return;
+        const prev = circuit.state;
+        circuit.state = nextState;
+        circuit.lastStateChangeAt = at;
+
+        if (nextState === CIRCUIT_OPEN) {
+            circuit.openedAt = at;
+            circuit.nextAttemptAt = at + this.circuitBreaker.cooldownMs;
+            circuit.halfOpenInFlight = 0;
+            circuit.consecutiveSuccesses = 0;
+            this._emitAudit('target_circuit_opened', {
+                target,
+                previousState: prev,
+                failureThreshold: this.circuitBreaker.failureThreshold,
+                nextAttemptAt: circuit.nextAttemptAt
+            }, at);
             return;
         }
 
-        const target = record.adaptiveConcurrency.target || record.target;
-        const state = this._getAdaptiveConcurrencyState(target, { create: false });
-        if (!state) {
-            record.adaptiveConcurrency = null;
+        if (nextState === CIRCUIT_HALF_OPEN) {
+            circuit.consecutiveSuccesses = 0;
+            circuit.halfOpenInFlight = 0;
+            this._emitAudit('target_circuit_half_open', {
+                target,
+                previousState: prev,
+                halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight
+            }, at);
             return;
         }
 
-        state.inFlight = Math.max(0, state.inFlight - 1);
-        const acquiredAt = Number(record.adaptiveConcurrency.acquiredAt);
-        const latencyMs = Number.isFinite(acquiredAt)
-            ? Math.max(0, nowMs - acquiredAt)
-            : null;
-        const latencyThreshold = this.adaptiveConcurrency.latencyHighWatermarkMs;
-        const isSlow = Number.isFinite(latencyThreshold)
-            && Number.isFinite(latencyMs)
-            && latencyMs > latencyThreshold;
+        circuit.openedAt = null;
+        circuit.nextAttemptAt = null;
+        circuit.halfOpenInFlight = 0;
+        circuit.consecutiveFailures = 0;
+        circuit.consecutiveSuccesses = 0;
+        this._emitAudit('target_circuit_closed', {
+            target,
+            previousState: prev
+        }, at);
+    }
 
-        const previousLimit = state.limit;
-        if (outcome === 'healthy' && !isSlow) {
-            state.limit = Math.min(
-                this.adaptiveConcurrency.maxLimit,
-                state.limit + this.adaptiveConcurrency.increaseStep
-            );
-            if (state.limit > previousLimit) {
-                state.limitIncreaseCount += 1;
-                this._recordAdaptiveLimitChange(state, nowMs, 'healthy_completion', previousLimit);
-            }
-        } else if (outcome === 'overload' || isSlow) {
-            state.limit = Math.max(
-                this.adaptiveConcurrency.minLimit,
-                Math.floor(state.limit * this.adaptiveConcurrency.decreaseMultiplier)
-            );
-            if (state.limit < previousLimit) {
-                state.limitDecreaseCount += 1;
-                this._recordAdaptiveLimitChange(
-                    state,
-                    nowMs,
-                    isSlow ? 'high_latency' : 'overload_signal',
-                    previousLimit
+    _beginSendAttemptForTarget(target, at) {
+        if (!this.circuitBreaker.enabled) return null;
+        const circuit = this._getTargetCircuit(target);
+
+        if (circuit.state === CIRCUIT_OPEN) {
+            if (circuit.nextAttemptAt !== null && at >= circuit.nextAttemptAt) {
+                this._setCircuitState(target, circuit, CIRCUIT_HALF_OPEN, at);
+            } else {
+                throw new TaskOrchestratorError(
+                    'CIRCUIT_OPEN',
+                    `Target ${target} circuit is open`,
+                    {
+                        target,
+                        nextAttemptAt: circuit.nextAttemptAt
+                    }
                 );
             }
         }
 
-        record.adaptiveConcurrency = null;
+        if (circuit.state === CIRCUIT_HALF_OPEN) {
+            if (circuit.halfOpenInFlight >= this.circuitBreaker.halfOpenMaxInFlight) {
+                throw new TaskOrchestratorError(
+                    'CIRCUIT_HALF_OPEN_LIMIT',
+                    `Target ${target} circuit probe capacity reached`,
+                    {
+                        target,
+                        halfOpenInFlight: circuit.halfOpenInFlight,
+                        halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight
+                    }
+                );
+            }
+            circuit.halfOpenInFlight += 1;
+        }
+
+        return circuit;
+    }
+
+    _recordSendSuccess(target, at, circuit = this._getTargetCircuit(target)) {
+        if (!this.circuitBreaker.enabled || !circuit) return;
+
+        if (circuit.state === CIRCUIT_HALF_OPEN) {
+            circuit.halfOpenInFlight = Math.max(0, circuit.halfOpenInFlight - 1);
+            circuit.consecutiveSuccesses += 1;
+            if (circuit.consecutiveSuccesses >= this.circuitBreaker.halfOpenSuccessesToClose) {
+                this._setCircuitState(target, circuit, CIRCUIT_CLOSED, at);
+            }
+            return;
+        }
+
+        circuit.consecutiveFailures = 0;
+    }
+
+    _recordSendFailure(target, at, circuit = this._getTargetCircuit(target)) {
+        if (!this.circuitBreaker.enabled || !circuit) return;
+
+        if (circuit.state === CIRCUIT_HALF_OPEN) {
+            circuit.halfOpenInFlight = Math.max(0, circuit.halfOpenInFlight - 1);
+            this._setCircuitState(target, circuit, CIRCUIT_OPEN, at);
+            return;
+        }
+
+        circuit.consecutiveFailures += 1;
+        if (circuit.consecutiveFailures >= this.circuitBreaker.failureThreshold) {
+            this._setCircuitState(target, circuit, CIRCUIT_OPEN, at);
+        }
     }
 
     async hydrate({ replace = true } = {}) {
@@ -1983,27 +1652,14 @@ export class TaskOrchestrator {
             }
         }
 
-        const duplicateRecord = this._findDuplicateRecord(request, createdAt);
-        if (duplicateRecord) {
-            duplicateRecord.updatedAt = createdAt;
-            duplicateRecord.history.push({
-                at: createdAt,
-                event: 'duplicate_dispatch_suppressed',
-                duplicateTaskId: request.id
-            });
-            this._persistRecord(duplicateRecord);
-            this._emitAudit('task_duplicate_dispatch_suppressed', {
-                taskId: duplicateRecord.taskId,
-                duplicateTaskId: request.id,
-                target: duplicateRecord.target,
-                status: duplicateRecord.status
-            }, createdAt);
-            return this.getTask(duplicateRecord.taskId);
+        if (this.tasks.has(id)) {
+            throw new TaskOrchestratorError(
+                'DUPLICATE_TASK_ID',
+                `Task id ${id} already exists`,
+                { taskId: id }
+            );
         }
 
-        this._assertQueueCapacity(request.target, createdAt, request.priority);
-
-        const overallDeadlineAt = this._resolveOverallDeadlineAt(request.createdAt);
         const record = {
             taskId: request.id,
             target: request.target,
@@ -2364,27 +2020,18 @@ export class TaskOrchestrator {
 
     async _sendTask(record, reason) {
         const sendAt = safeNow(this.now);
-        const circuit = this._ensureCircuitCanSend(record.target, sendAt);
-        if (!circuit.allowed) {
-            const retryAfterMs = Number.isFinite(circuit.retryAfterMs)
-                ? Number(circuit.retryAfterMs)
-                : this.retryDelayMs;
-            throw new TaskOrchestratorError('CIRCUIT_OPEN', 'Target circuit is open', {
+        let circuit = null;
+        try {
+            circuit = this._beginSendAttemptForTarget(record.target, sendAt);
+        } catch (error) {
+            this._emitAudit('task_send_blocked', {
                 taskId: record.taskId,
                 target: record.target,
-                retryAfterMs
-            });
-        }
-        const adaptiveConcurrency = this._acquireAdaptiveConcurrencySlot(record, sendAt);
-        if (!adaptiveConcurrency.allowed) {
-            const retryAfterMs = Number.isFinite(adaptiveConcurrency.retryAfterMs)
-                ? Number(adaptiveConcurrency.retryAfterMs)
-                : this.retryDelayMs;
-            throw new TaskOrchestratorError('ADAPTIVE_CONCURRENCY_LIMIT', 'Adaptive concurrency limit reached', {
-                taskId: record.taskId,
-                target: record.target,
-                retryAfterMs
-            });
+                reason,
+                code: error.code || 'SEND_BLOCKED',
+                nextAttemptAt: error.details?.nextAttemptAt ?? null
+            }, sendAt);
+            throw error;
         }
 
         record.attempts += 1;
@@ -2403,34 +2050,8 @@ export class TaskOrchestrator {
         }, sendAt);
 
         try {
-            if (Number.isFinite(this.transportSendTimeoutMs) && this.transportSendTimeoutMs > 0) {
-                let timeoutHandle = null;
-                try {
-                    await Promise.race([
-                        Promise.resolve(this.transport.send(record.target, record.request)),
-                        new Promise((_, reject) => {
-                            timeoutHandle = setTimeout(() => {
-                                reject(new TaskOrchestratorError(
-                                    'SEND_TIMEOUT',
-                                    `Transport send timed out after ${this.transportSendTimeoutMs}ms`,
-                                    {
-                                        taskId: record.taskId,
-                                        target: record.target,
-                                        attempt: record.attempts,
-                                        timeoutMs: this.transportSendTimeoutMs
-                                    }
-                                ));
-                            }, this.transportSendTimeoutMs);
-                        })
-                    ]);
-                } finally {
-                    if (timeoutHandle !== null) {
-                        clearTimeout(timeoutHandle);
-                    }
-                }
-            } else {
-                await this.transport.send(record.target, record.request);
-            }
+            await this.transport.send(record.target, record.request);
+            this._recordSendSuccess(record.target, safeNow(this.now), circuit);
             record.status = 'dispatched';
             record.deadlineAt = this._applyOverallDeadline(record, sendAt + this.defaultTimeoutMs);
             record.nextRetryAt = null;
@@ -2449,8 +2070,7 @@ export class TaskOrchestrator {
             this._onCircuitSendSuccess(record.target, record.updatedAt, 'send_success');
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
-            const isSendTimeout = error instanceof TaskOrchestratorError
-                && error.code === 'SEND_TIMEOUT';
+            this._recordSendFailure(record.target, safeNow(this.now), circuit);
             record.lastError = message;
             record.updatedAt = safeNow(this.now);
             record.history.push({
@@ -2859,11 +2479,79 @@ export class TaskOrchestrator {
                 }
                 continue;
             }
+
+            if (nowMs < record.nextRetryAt) continue;
+
+            try {
+                await this._sendTask(record, 'timeout_retry');
+                summary.retried++;
+            } catch (error) {
+                summary.transportFailures++;
+                this.logger.warn?.(
+                    `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
+                );
+
+                if (record.attempts > record.maxRetries) {
+                    record.status = 'transport_error';
+                    record.updatedAt = nowMs;
+                    record.closedAt = nowMs;
+                    record.history.push({
+                        at: nowMs,
+                        event: 'transport_error',
+                        error: record.lastError
+                    });
+                    this._persistRecord(record);
+                    this._emitAudit('task_transport_error', {
+                        taskId: record.taskId,
+                        target: record.target,
+                        error: record.lastError
+                    }, nowMs);
+                } else {
+                    record.status = 'retry_scheduled';
+                    const blockerNextAttemptAt = error?.details?.nextAttemptAt;
+                    const nextRetryAt = nowMs + this.retryDelayMs;
+                    record.nextRetryAt = Number.isFinite(blockerNextAttemptAt)
+                        ? Math.max(nextRetryAt, Number(blockerNextAttemptAt))
+                        : nextRetryAt;
+                    record.updatedAt = nowMs;
+                    this._persistRecord(record);
+                    this._emitAudit('task_retry_scheduled', {
+                        taskId: record.taskId,
+                        target: record.target,
+                        nextRetryAt: record.nextRetryAt
+                    }, nowMs);
+                }
+            }
         }
 
         summary.prunedTerminalTasks = this._pruneTerminalTasks(nowMs, 'maintenance');
 
         return summary;
+    }
+
+    getCircuitHealth() {
+        const circuits = [];
+        for (const [target, circuit] of this.targetCircuits.entries()) {
+            circuits.push({
+                target,
+                state: circuit.state,
+                consecutiveFailures: circuit.consecutiveFailures,
+                consecutiveSuccesses: circuit.consecutiveSuccesses,
+                openedAt: circuit.openedAt,
+                nextAttemptAt: circuit.nextAttemptAt,
+                halfOpenInFlight: circuit.halfOpenInFlight,
+                lastStateChangeAt: circuit.lastStateChangeAt
+            });
+        }
+
+        return {
+            enabled: this.circuitBreaker.enabled,
+            failureThreshold: this.circuitBreaker.failureThreshold,
+            cooldownMs: this.circuitBreaker.cooldownMs,
+            halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight,
+            halfOpenSuccessesToClose: this.circuitBreaker.halfOpenSuccessesToClose,
+            circuits
+        };
     }
 
     getTask(taskId) {
