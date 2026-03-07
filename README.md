@@ -337,7 +337,7 @@ const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
   maxRetries: 2,
-  retryStrategy: 'exponential',
+  retryStrategy: 'full_jitter', // or 'exponential' / 'fixed'
   retryBackoffMultiplier: 2,
   retryDelayMs: 250,
   globalRetryBudgetRatio: 0.2,

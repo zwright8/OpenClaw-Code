@@ -1001,7 +1001,12 @@ export class TaskOrchestrator {
             : 30_000;
         this.maxRetries = safeNonNegativeInteger(maxRetries, 1);
         this.retryDelayMs = safeNonNegativeNumber(retryDelayMs, 500);
-        this.retryStrategy = retryStrategy === 'fixed' ? 'fixed' : 'exponential';
+        const normalizedRetryStrategy = normalizeReasonToken(retryStrategy, 'exponential');
+        this.retryStrategy = normalizedRetryStrategy === 'fixed'
+            ? 'fixed'
+            : normalizedRetryStrategy === 'full_jitter'
+                ? 'full_jitter'
+                : 'exponential';
         this.retryBackoffMultiplier = Number.isFinite(retryBackoffMultiplier) && retryBackoffMultiplier >= 1
             ? Number(retryBackoffMultiplier)
             : 2;
@@ -2588,15 +2593,19 @@ export class TaskOrchestrator {
         const uncappedDelayMs = strategyDelayMs * failureMultiplier * reasonMultiplier;
         const cappedDelayMs = Math.min(maxDelayMs, uncappedDelayMs);
 
+        const jitterSeed = `${record?.taskId}:${reason}:${lifecycle?.scheduledCount}:${consecutiveFailures}:${record?.attempts}:${record?.updatedAt ?? 0}`;
+        if (this.retryStrategy === 'full_jitter') {
+            const unit = stableUnitInterval(jitterSeed);
+            return Math.min(maxDelayMs, Math.max(0, Math.round(cappedDelayMs * unit)));
+        }
+
         if (cappedDelayMs === 0 || this.retryJitterRatio <= 0) {
             return Math.round(cappedDelayMs);
         }
 
         const minFactor = Math.max(0, 1 - this.retryJitterRatio);
         const maxFactor = 1 + this.retryJitterRatio;
-        const unit = stableUnitInterval(
-            `${record?.taskId}:${reason}:${lifecycle?.scheduledCount}:${consecutiveFailures}:${record?.attempts}:${record?.updatedAt ?? 0}`
-        );
+        const unit = stableUnitInterval(jitterSeed);
         const jitterFactor = minFactor + (maxFactor - minFactor) * unit;
         const jitteredDelayMs = cappedDelayMs * jitterFactor;
 

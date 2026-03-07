@@ -1018,6 +1018,60 @@ test('fixed retry strategy keeps scheduling delay stable', async () => {
     assert.equal(secondDelay, 20);
 });
 
+test('full_jitter retry strategy ignores jitter ratio and stays within cap window', async () => {
+    const clockA = createClock(71_500);
+    const clockB = createClock(71_500);
+
+    const sharedOptions = {
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        defaultTimeoutMs: 50,
+        maxRetries: 2,
+        retryDelayMs: 20,
+        retryStrategy: 'full_jitter',
+        retryBackoffMultiplier: 2,
+        maxRetryDelayMs: 60
+    };
+
+    const orchestratorA = new TaskOrchestrator({
+        ...sharedOptions,
+        now: clockA.now,
+        retryJitterRatio: 0
+    });
+
+    const orchestratorB = new TaskOrchestrator({
+        ...sharedOptions,
+        now: clockB.now,
+        retryJitterRatio: 1
+    });
+
+    const dispatchInput = {
+        id: 'task-full-jitter',
+        target: 'agent:worker-full-jitter',
+        task: 'Exercise full jitter scheduling'
+    };
+
+    const taskA = await orchestratorA.dispatchTask(dispatchInput);
+    const taskB = await orchestratorB.dispatchTask(dispatchInput);
+
+    clockA.set(71_600);
+    clockB.set(71_600);
+    await orchestratorA.runMaintenance(clockA.now());
+    await orchestratorB.runMaintenance(clockB.now());
+
+    const currentA = orchestratorA.getTask(taskA.taskId);
+    const currentB = orchestratorB.getTask(taskB.taskId);
+    const delayA = currentA.nextRetryAt - clockA.now();
+    const delayB = currentB.nextRetryAt - clockB.now();
+
+    assert.equal(currentA.status, 'retry_scheduled');
+    assert.equal(currentB.status, 'retry_scheduled');
+    assert.equal(delayA, delayB);
+    assert.ok(delayA >= 0 && delayA <= 20);
+});
+
 test('retry failures terminate and stay terminal without looping', async () => {
     const clock = createClock(80_000);
     let attempts = 0;
