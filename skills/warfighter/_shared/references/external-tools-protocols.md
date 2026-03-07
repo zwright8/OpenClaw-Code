@@ -5,12 +5,14 @@ Use this reference when a warfighter skill needs system integration guidance. Ke
 ## Core Integration Protocol (apply every time)
 
 1. Verify authority, mission scope, and data classification before querying or publishing data.
-2. Pull source data from an approved system-of-record or approved relay service; avoid manual copy-paste when an interface exists.
-3. Normalize timestamps (UTC ISO-8601), geospatial reference (WGS84 + MGRS when relevant), and unit identifiers before fusion.
-4. Cross-check high-consequence data against at least two independent sources or one authoritative validated source.
-5. Publish outputs in the requesting format and transport (for example USMTF, CoT, VMF, Link 16 J-series, STIX/TAXII, OGC).
-6. Log provenance: source system, pull time, processing assumptions, and confidence level.
-7. Run the mission assurance checks in `mission-assurance-checklist.md` before release.
+2. Run account and transport readiness checks in `us-warfighter-tool-auth-and-access-drill.md` for critical dependencies.
+3. Pull source data from an approved system-of-record or approved relay service; avoid manual copy-paste when an interface exists.
+4. Normalize timestamps (UTC ISO-8601), geospatial reference (WGS84 + MGRS when relevant), and unit identifiers before fusion.
+5. Cross-check high-consequence data against at least two independent sources or one authoritative validated source.
+6. Publish outputs in the requesting format and transport (for example USMTF, CoT, VMF, Link 16 J-series, STIX/TAXII, OGC).
+7. Log provenance: source system, pull time, processing assumptions, and confidence level.
+8. Select and justify primary/alternate/degraded toolchain profiles from `domain-toolchain-profiles.md`.
+9. Run the mission assurance checks in `mission-assurance-checklist.md` before release.
 
 ## Tool Invocation Packet (required in skill outputs)
 

@@ -71,3 +71,9 @@ Primary products for this skill: mission brief, decision support matrix, branch-
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## U.S. Warfighter Tool Auth and Access Drill
+
+- Use `../_shared/references/us-warfighter-tool-auth-and-access-drill.md` to verify account state, role binding, and transport availability before critical actions.
+- If any critical integration lacks valid credentials, publish a degraded-mode branch and request revalidation suspense.
+- Record auth/access status in the output handoff so downstream cells can execute without re-triage.

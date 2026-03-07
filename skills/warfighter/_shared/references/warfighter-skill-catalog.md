@@ -4,10 +4,11 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 175
+- Total warfighter skills in this repo: 199
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
+- All skills now include a `U.S. Warfighter Tool Auth and Access Drill` section for credential and transport readiness checks.
 
 ## Domain Coverage Matrix
 
@@ -139,3 +140,30 @@ Every skill output should include:
 - high-altitude-platform-isr-integration-cell
 - maritime-convoy-escort-and-sea-lane-defense-cell
 - counter-space-electronic-attack-response-cell
+
+## New Expansion Wave (2026-03-07, Integrated Warfighter Support Expansion)
+
+- homeland-critical-infrastructure-defense-support-cell
+- contested-strategic-communications-jamming-resilience-cell
+- joint-civilian-mariner-sealift-activation-cell
+- autonomous-combat-engineering-route-expansion-cell
+- multi-domain-deception-and-denial-planning-cell
+- theater-quantum-sensing-countermeasure-cell
+- hypersonic-basing-dispersal-and-recovery-cell
+- coalition-integrated-missile-defense-data-fusion-cell
+- denied-environment-3d-print-spare-parts-certification-cell
+- tactical-icebreaker-and-arctic-port-access-cell
+- joint-biosecurity-outbreak-response-cell
+- contested-space-gps-alternative-pnt-network-cell
+- expeditionary-fuel-pipeline-rapid-restoration-cell
+- forward-observer-ai-fire-support-validation-cell
+- strategic-ai-enabled-wargaming-redcell-support
+- cyber-electromagnetic-order-of-battle-prediction-cell
+- littoral-autonomous-landing-zone-clearance-cell
+- special-operations-multi-node-exfiltration-cell
+- theater-water-desalination-and-distribution-cell
+- joint-drone-traffic-border-security-cell
+- coalition-humanitarian-airbridge-deconfliction-cell
+- strategic-reserve-munitions-surge-manufacturing-cell
+- contested-railhead-protection-and-repair-cell
+- tactical-cloudoutage-mission-continuity-cell
