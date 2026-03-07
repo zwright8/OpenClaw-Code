@@ -866,6 +866,76 @@ test('global retry budget terminalizes retries when window budget is exhausted',
     assert.equal(sent.length, 1);
 });
 
+test('priority reserve protects critical retries when global retry budget is tight', async () => {
+    const clock = createClock(6_300);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 0,
+        maxRetryDelayMs: 0,
+        retryJitterRatio: 0,
+        globalRetryBudgetRatio: 0,
+        globalRetryBudgetMinBaseRequests: 0,
+        globalRetryBudgetMinRetries: 4,
+        globalRetryBudgetPriorityReserve: {
+            critical: 0.5
+        }
+    });
+
+    const lowA = await orchestrator.dispatchTask({
+        target: 'agent:worker-low-a',
+        task: 'Low A',
+        priority: 'low'
+    });
+    const lowB = await orchestrator.dispatchTask({
+        target: 'agent:worker-low-b',
+        task: 'Low B',
+        priority: 'low'
+    });
+    const lowC = await orchestrator.dispatchTask({
+        target: 'agent:worker-low-c',
+        task: 'Low C',
+        priority: 'low'
+    });
+    const critical = await orchestrator.dispatchTask({
+        target: 'agent:worker-critical',
+        task: 'Critical recovery action',
+        priority: 'critical'
+    });
+
+    clock.set(6_450);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 4);
+
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const lowAState = orchestrator.getTask(lowA.taskId);
+    const lowBState = orchestrator.getTask(lowB.taskId);
+    const lowCState = orchestrator.getTask(lowC.taskId);
+    const criticalState = orchestrator.getTask(critical.taskId);
+
+    assert.equal(pass2.retried, 3);
+    assert.equal(pass2.globalRetryBudgetDrops, 1);
+    assert.equal(lowAState.status, 'dispatched');
+    assert.equal(lowBState.status, 'dispatched');
+    assert.equal(lowCState.status, 'timed_out');
+    assert.match(lowCState.retryLifecycle.terminalReason, /retry_budget_exhausted:global_window/);
+    assert.equal(criticalState.status, 'dispatched');
+
+    const budgetSnapshot = orchestrator.getMetrics().globalRetryBudget;
+    assert.equal(budgetSnapshot.retryDispatchesByPriority.low, 2);
+    assert.equal(budgetSnapshot.retryDispatchesByPriority.critical, 1);
+    assert.equal(budgetSnapshot.priorityReserve.critical, 0.5);
+});
+
 test('per-target retry throttle delays retries after repeated send failures', async () => {
     const clock = createClock(6_500);
     const sent = [];

@@ -33,6 +33,7 @@ Includes capability-aware routing helpers to auto-select the best agent by statu
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
 Adds bounded exponential retry backoff with optional jitter and `retry_after` hint awareness for transient worker overload responses.
+Adds priority-reserved global retry budget controls so critical retries keep capacity during congestion.
 Includes a workflow DAG engine for dependency-based multi-step execution.
 Workflow telemetry includes per-node durations and critical path analysis.
 Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with migration helpers and read/write validation hooks.
@@ -344,6 +345,7 @@ const orchestrator = new TaskOrchestrator({
   globalRetryBudgetRatio: 0.2,
   globalRetryBudgetWindowMs: 60_000,
   globalRetryBudgetMinBaseRequests: 5,
+  globalRetryBudgetPriorityReserve: { critical: 0.5, high: 0.2 },
   circuitFailureThreshold: 3,
   circuitCooldownMs: 15_000,
   maxInFlightPerTarget: 4,
@@ -377,6 +379,7 @@ Overload containment notes:
 - `maxInFlightGlobal` caps total in-flight dispatches (`dispatched` + `acknowledged`) across all targets.
 - When a bulkhead or circuit gate blocks dispatch, tasks move to `retry_scheduled` and are retried with the normal backoff strategy.
 - Rejected receipts with transient overload signals (for example `worker_overloaded`, `rate_limit`, or `retry_after` hints) are rescheduled instead of terminally rejected when retry budget remains.
+- `globalRetryBudgetPriorityReserve` preserves a configured share of retry slots for higher-priority work.
 
 Safety policy integration:
 ```js

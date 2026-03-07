@@ -33,6 +33,18 @@ const DEFAULT_GLOBAL_RETRY_BUDGET_RATIO = 0.2;
 const DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS = 60_000;
 const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS = 5;
 const DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES = 1;
+const DEFAULT_GLOBAL_RETRY_BUDGET_PRIORITY_RESERVE = Object.freeze({
+    low: 0,
+    normal: 0,
+    high: 0,
+    critical: 0
+});
+const TASK_PRIORITY_ORDER = Object.freeze({
+    low: 0,
+    normal: 1,
+    high: 2,
+    critical: 3
+});
 const DEFAULT_RETRY_THROTTLE_MAX_TOKENS = 10;
 const DEFAULT_RETRY_THROTTLE_TOKEN_RATIO = 0.1;
 const DEFAULT_RETRY_THROTTLE_THRESHOLD_RATIO = 0.5;
@@ -182,6 +194,55 @@ function safeNonNegativeInteger(value, fallback = 0) {
 
 function safeNonNegativeNumber(value, fallback = 0) {
     return Number.isFinite(value) && value >= 0 ? Number(value) : fallback;
+}
+
+function normalizeTaskPriority(value) {
+    const normalized = normalizeReasonToken(value, 'normal');
+    return Object.prototype.hasOwnProperty.call(TASK_PRIORITY_ORDER, normalized)
+        ? normalized
+        : 'normal';
+}
+
+function normalizePriorityReserveConfig(priorityReserve) {
+    const normalized = {
+        ...DEFAULT_GLOBAL_RETRY_BUDGET_PRIORITY_RESERVE
+    };
+
+    if (!priorityReserve || typeof priorityReserve !== 'object') {
+        return normalized;
+    }
+
+    let total = 0;
+    for (const priority of Object.keys(TASK_PRIORITY_ORDER)) {
+        const value = Number(priorityReserve[priority]);
+        const clamped = Number.isFinite(value) && value > 0
+            ? Math.min(value, 1)
+            : 0;
+        normalized[priority] = clamped;
+        total += clamped;
+    }
+
+    if (total > 1) {
+        const scale = 1 / total;
+        for (const priority of Object.keys(TASK_PRIORITY_ORDER)) {
+            normalized[priority] = Number((normalized[priority] * scale).toFixed(4));
+        }
+    }
+
+    return normalized;
+}
+
+function higherPriorityReserveFraction(priorityReserve, priority) {
+    const normalizedPriority = normalizeTaskPriority(priority);
+    const currentOrder = TASK_PRIORITY_ORDER[normalizedPriority];
+    let fraction = 0;
+
+    for (const [label, order] of Object.entries(TASK_PRIORITY_ORDER)) {
+        if (order <= currentOrder) continue;
+        fraction += Number(priorityReserve?.[label] || 0);
+    }
+
+    return Math.min(1, Math.max(0, fraction));
 }
 
 function safePositiveIntegerOrInfinity(value, fallback = Infinity) {
@@ -963,6 +1024,7 @@ export class TaskOrchestrator {
         globalRetryBudgetWindowMs = DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS,
         globalRetryBudgetMinBaseRequests = DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS,
         globalRetryBudgetMinRetries = DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES,
+        globalRetryBudgetPriorityReserve = DEFAULT_GLOBAL_RETRY_BUDGET_PRIORITY_RESERVE,
         retryThrottleEnabled = false,
         retryThrottleMaxTokens = DEFAULT_RETRY_THROTTLE_MAX_TOKENS,
         retryThrottleTokenRatio = DEFAULT_RETRY_THROTTLE_TOKEN_RATIO,
@@ -1043,6 +1105,9 @@ export class TaskOrchestrator {
         this.globalRetryBudgetMinRetries = safeNonNegativeInteger(
             globalRetryBudgetMinRetries,
             DEFAULT_GLOBAL_RETRY_BUDGET_MIN_RETRIES
+        );
+        this.globalRetryBudgetPriorityReserve = normalizePriorityReserveConfig(
+            globalRetryBudgetPriorityReserve
         );
         this.retryThrottleEnabled = retryThrottleEnabled === true;
         this.retryThrottleMaxTokens = Number.isFinite(retryThrottleMaxTokens) && retryThrottleMaxTokens > 0
@@ -1251,8 +1316,12 @@ export class TaskOrchestrator {
         );
     }
 
-    _recordGlobalRetryBudgetEvent(kind, at) {
-        this.globalRetryBudgetEvents.push({ kind, at });
+    _recordGlobalRetryBudgetEvent(kind, at, priority = 'normal') {
+        this.globalRetryBudgetEvents.push({
+            kind,
+            at,
+            priority: normalizeTaskPriority(priority)
+        });
         this._pruneGlobalRetryBudgetEvents(at);
     }
 
@@ -1261,11 +1330,19 @@ export class TaskOrchestrator {
 
         let baseDispatches = 0;
         let retryDispatches = 0;
+        const retryDispatchesByPriority = {
+            low: 0,
+            normal: 0,
+            high: 0,
+            critical: 0
+        };
         for (const event of this.globalRetryBudgetEvents) {
             if (event.kind === 'base_dispatch') {
                 baseDispatches += 1;
             } else if (event.kind === 'retry_dispatch') {
                 retryDispatches += 1;
+                const priority = normalizeTaskPriority(event.priority);
+                retryDispatchesByPriority[priority] += 1;
             }
         }
 
@@ -1289,8 +1366,10 @@ export class TaskOrchestrator {
             ratio: this.globalRetryBudgetRatio,
             minBaseRequests: this.globalRetryBudgetMinBaseRequests,
             minRetries: this.globalRetryBudgetMinRetries,
+            priorityReserve: clone(this.globalRetryBudgetPriorityReserve),
             baseDispatches,
             retryDispatches,
+            retryDispatchesByPriority,
             allowedRetryDispatches,
             remainingRetryDispatches,
             exhausted,
@@ -1298,16 +1377,41 @@ export class TaskOrchestrator {
         };
     }
 
-    _canConsumeGlobalRetryBudget(nowMs) {
+    _canConsumeGlobalRetryBudget(nowMs, priority = 'normal') {
         const snapshot = this._globalRetryBudgetSnapshot(nowMs);
         if (snapshot.exhausted) {
             return {
                 allowed: false,
-                snapshot
+                snapshot,
+                reason: 'window_exhausted'
             };
         }
 
-        this._recordGlobalRetryBudgetEvent('retry_dispatch', nowMs);
+        const normalizedPriority = normalizeTaskPriority(priority);
+        if (Number.isFinite(snapshot.allowedRetryDispatches)) {
+            const reservedFraction = higherPriorityReserveFraction(
+                this.globalRetryBudgetPriorityReserve,
+                normalizedPriority
+            );
+            const reservedSlots = Math.ceil(snapshot.allowedRetryDispatches * reservedFraction);
+            const maxDispatchesForPriority = Math.max(0, snapshot.allowedRetryDispatches - reservedSlots);
+
+            if (snapshot.retryDispatches >= maxDispatchesForPriority) {
+                return {
+                    allowed: false,
+                    snapshot: {
+                        ...snapshot,
+                        priorityRequest: normalizedPriority,
+                        priorityReserveFraction: reservedFraction,
+                        reservedSlots,
+                        maxDispatchesForPriority
+                    },
+                    reason: 'priority_reserve'
+                };
+            }
+        }
+
+        this._recordGlobalRetryBudgetEvent('retry_dispatch', nowMs, normalizedPriority);
         return {
             allowed: true,
             snapshot: this._globalRetryBudgetSnapshot(nowMs)
@@ -2310,6 +2414,7 @@ export class TaskOrchestrator {
             dispatchReasonContext,
             dispatchReasonCode
         );
+        const requestPriority = normalizeTaskPriority(record?.request?.priority);
         const isRetryDispatch = (
             reason === 'timeout_retry'
             || reason === 'transport_failure_retry'
@@ -2331,18 +2436,19 @@ export class TaskOrchestrator {
         }
 
         if (isRetryDispatch) {
-            const budgetDecision = this._canConsumeGlobalRetryBudget(sendAt);
+            const budgetDecision = this._canConsumeGlobalRetryBudget(sendAt, requestPriority);
             if (!budgetDecision.allowed) {
                 throw new TaskOrchestratorError(
                     'GLOBAL_RETRY_BUDGET_EXHAUSTED',
                     'Global retry budget exhausted',
                     {
+                        reason: budgetDecision.reason || 'window_exhausted',
                         budget: budgetDecision.snapshot
                     }
                 );
             }
         } else {
-            this._recordGlobalRetryBudgetEvent('base_dispatch', sendAt);
+            this._recordGlobalRetryBudgetEvent('base_dispatch', sendAt, requestPriority);
         }
 
         if (isRetryDispatch) {
