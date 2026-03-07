@@ -96,3 +96,9 @@ Primary products for this skill: digital twin readiness brief, infrastructure fa
 - For each critical dependency, include `invoke_order`, `adapter_contract_id`, `packet_id`, `protocol_profile`, and timeout/retry settings.
 - Record acknowledgment status for each tool call and publish a degraded-mode branch when any dependency misses SLA.
 - Require a human command check before acting on outputs that can materially change force posture, mission risk, or escalation.
+
+## Domain Toolchain Profile Binding
+
+- Use `../_shared/references/domain-toolchain-profiles.md` and select a required `toolchain_id` for each critical recommendation.
+- Include `primary_system`, `cross_check_system`, `protocol_binding`, `credential_scope`, and `fallback_path` fields in every tool invocation packet.
+- Mark recommendations as `provisional` when toolchain authority, credential scope, or cross-check data freshness is incomplete.

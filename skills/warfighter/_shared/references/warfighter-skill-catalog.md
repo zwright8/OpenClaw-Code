@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 300
+- Total warfighter skills in this repo: 324
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -290,3 +290,30 @@ Every skill output should include:
 - undersea-critical-node-repair-window-optimizer-cell
 - joint-precision-navigation-signal-of-opportunity-fusion-cell
 - operational-contract-security-and-vetting-cell
+
+## New Expansion Wave (2026-03-07, Strategic Deterrence and Toolchain Registry Expansion)
+
+- joint-sead-and-dead-kill-web-optimizer
+- cyber-deception-and-honeynet-operations-cell
+- nuclear-command-control-communications-resilience-cell
+- strategic-deterrence-messaging-and-escalation-control-cell
+- contested-medevac-airbridge-prioritization-cell
+- denied-space-pnt-alternative-navigation-cell
+- homeland-critical-infrastructure-black-sky-recovery-cell
+- joint-theater-ballistic-missile-salvo-allocation-cell
+- autonomous-maritime-minefield-reseeding-and-clearance-cell
+- expeditionary-fiber-and-satcom-hybrid-backhaul-cell
+- coalition-electronic-order-of-battle-sharing-cell
+- gray-zone-maritime-militia-attribution-cell
+- joint-cyber-fires-deconfliction-cell
+- tactical-loitering-munition-swarm-defense-cell
+- strategic-seaport-throughput-and-contested-unload-cell
+- hypersonic-glide-vehicle-track-fusion-cell
+- arctic-subsea-infrastructure-under-ice-repair-cell
+- human-machine-target-validation-cell
+- joint-theater-cloud-denied-ai-inference-cell
+- expeditionary-air-defense-counter-rocket-mortar-cell
+- coalition-jadc2-data-priority-routing-cell
+- underwater-uncrewed-asset-trust-and-control-cell
+- theater-electronic-signature-deception-campaign-cell
+- joint-precision-deep-strike-battle-damage-reattack-cell

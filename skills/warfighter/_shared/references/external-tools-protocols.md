@@ -265,3 +265,10 @@ Include these fields in outputs when tool integration is used:
 - Set explicit timeout and retry policy for every invocation and log the result status.
 - If any critical invocation fails, publish degraded-mode branch actions within the same output.
 - Require human command validation before any recommendation that alters force posture or escalation risk.
+
+## Canonical Toolchain Profile Registry (2026-03-07)
+
+- Use `domain-toolchain-profiles.md` as the canonical registry for `toolchain_id` assignment.
+- Require each skill recommendation to include explicit `primary_system`, `cross_check_system`, `protocol_binding`, `credential_scope`, and `fallback_path` fields.
+- Treat recommendations as `provisional` when credential scope or authority basis is incomplete.
+- Require cross-check freshness and authority validation before publishing commander-facing recommendations.
