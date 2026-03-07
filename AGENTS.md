@@ -90,3 +90,4 @@
 ## TODO
 - README still references commands not present in current `package.json` scripts (`worker:loop`, `autonomous:run`, `iterate:plan`, `plan:skills`, `build:full`, `memory:*`); confirm owners before adding wrappers here.
 - Verified `9d022080de..bac40da690`: added root (`agent:*`, `artifacts:validate`, `skills:registry:*`, `skills:route`, `skills:run`) and `cognition-core` script entrypoints are now reflected above.
+- Verified `bac40da690..c52ffb61e3`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
