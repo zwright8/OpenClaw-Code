@@ -19,6 +19,7 @@
 - `npm run skills:optimize` - generate rollout optimization artifacts.
 - `npm run skills:optimize:validate` - validate rollout optimization artifacts.
 - `npm run skills:promote` - generate rollout promotion task artifacts.
+<<<<<<< HEAD
 - `npm run skills:promote:validate` - validate rollout promotion artifacts.
 - `npm run skills:promote:control` - generate promotion control artifacts.
 - `npm run skills:promote:control:validate` - validate promotion control artifacts.
@@ -69,4 +70,4 @@
 
 ## TODO
 - README still references commands not present in current `package.json` scripts (`worker:loop`, `autonomous:run`, `iterate:plan`, `plan:skills`, `build:full`, `memory:*`); confirm owners before adding wrappers here.
-- Since `6c94ed2680` through `53ab31c7ff` (`origin/main` at this run), no root/`cognition-core`/`swarm-protocol` `package.json` script-entrypoint changes were found; command inventory remains current.
+- Between `53ab31c7ff` and `2a9dfdfff3`, script entrypoints were removed from root/`cognition-core` `package.json` files; this inventory now reflects only currently runnable commands.
