@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 324
+- Total warfighter skills in this repo: 348
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -317,3 +317,30 @@ Every skill output should include:
 - underwater-uncrewed-asset-trust-and-control-cell
 - theater-electronic-signature-deception-campaign-cell
 - joint-precision-deep-strike-battle-damage-reattack-cell
+
+## New Expansion Wave (2026-03-07, Tool Trust and Infrastructure Resilience Expansion)
+
+- joint-denied-terrain-signal-relay-balloon-network-cell
+- expeditionary-runway-uxo-clearance-and-reopen-cell
+- theater-maritime-fuel-blending-and-quality-assurance-cell
+- allied-space-object-collision-avoidance-coordination-cell
+- tactical-underground-water-mapping-and-well-restoration-cell
+- joint-ai-red-teaming-and-model-poisoning-defense-cell
+- strategic-electrical-transformer-supply-and-grid-restoration-cell
+- contested-port-crane-reconstitution-and-throughput-cell
+- autonomous-littoral-reconnaissance-buoy-network-cell
+- cyber-contested-spectrum-gps-holdover-oscillator-cell
+- joint-mountain-aviation-high-altitude-rescue-cell
+- coalition-digital-camouflage-and-multi-spectral-signature-cell
+- expeditionary-battery-recycling-and-energy-salvage-cell
+- theater-prisoner-operations-and-detainee-transfer-cell
+- strategic-telemetry-denial-and-range-reconstitution-cell
+- tactical-biomonitoring-and-heat-injury-prevention-cell
+- joint-disconnected-manufacturing-bom-substitution-cell
+- contested-pipeline-leak-detection-and-rapid-isolation-cell
+- allied-satcom-leasing-and-bandwidth-arbitration-cell
+- joint-aerial-refueling-track-threat-adaptation-cell
+- electromagnetic-decoy-network-coordination-cell
+- expeditionary-cold-weather-vehicle-start-and-maintenance-cell
+- cyber-supply-chain-firmware-trust-revalidation-cell
+- theater-coastal-inundation-and-storm-surge-mission-cell

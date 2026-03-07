@@ -272,3 +272,11 @@ Include these fields in outputs when tool integration is used:
 - Require each skill recommendation to include explicit `primary_system`, `cross_check_system`, `protocol_binding`, `credential_scope`, and `fallback_path` fields.
 - Treat recommendations as `provisional` when credential scope or authority basis is incomplete.
 - Require cross-check freshness and authority validation before publishing commander-facing recommendations.
+
+## Tool Health and Trust Monitoring (2026-03-07)
+
+- Apply `tool-health-and-trust-monitoring.md` for pre-mission probes, trust scoring, and failover evidence before release.
+- Require each critical dependency to include `tool_health_id`, `trust_score`, `last_probe_utc`, `degradation_mode`, and `failover_executed`.
+- If trust score is below mission threshold, downgrade output to `provisional` or `no-go` and provide explicit commander decision prompts.
+- Record `switch_time_ms`, `data_loss_window`, and `commander_impact` when failover is triggered.
+- Do not publish high-consequence recommendations unless at least one independent cross-check source is healthy and fresh.

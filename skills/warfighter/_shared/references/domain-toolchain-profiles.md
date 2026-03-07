@@ -106,3 +106,9 @@ For every critical recommendation, include:
 
 - Do not publish recommendations until `toolchain_id`, `protocol_binding`, and `fallback_path` are present.
 - Mark recommendation `provisional` if cross-check source is stale beyond mission SLA.
+
+## Tool Health Binding Requirement
+
+- Pair each selected `toolchain_id` with a tool health check sequence from `tool-health-and-trust-monitoring.md`.
+- Include `tool_health_id`, `trust_score`, and `last_probe_utc` in the same packet that declares toolchain fields.
+- If `trust_score < 0.70`, mark outputs `provisional`; if `trust_score < 0.50`, require degraded/no-go recommendation.

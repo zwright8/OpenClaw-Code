@@ -101,3 +101,9 @@ Primary products for this skill: maritime scheme of maneuver, patrol/escort sche
 - Use `../_shared/references/domain-toolchain-profiles.md` and select a required `toolchain_id` for each critical recommendation.
 - Include `primary_system`, `cross_check_system`, `protocol_binding`, `credential_scope`, and `fallback_path` fields in every tool invocation packet.
 - Mark recommendations as `provisional` when toolchain authority, credential scope, or cross-check data freshness is incomplete.
+
+## Tool Health and Trust Monitoring
+
+- Use `../_shared/references/tool-health-and-trust-monitoring.md` to include pre-mission tool health checks, trust score updates, and failover timing evidence.
+- Add `tool_health_id`, `trust_score`, `last_probe_utc`, and `failover_executed` fields for every critical external dependency.
+- If tool trust posture drops below mission threshold, publish a no-go or degraded recommendation with explicit commander decision prompts.
