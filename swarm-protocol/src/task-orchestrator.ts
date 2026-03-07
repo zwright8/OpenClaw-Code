@@ -26,6 +26,7 @@ const CIRCUIT_CLOSED = 'closed';
 const CIRCUIT_OPEN = 'open';
 const CIRCUIT_HALF_OPEN = 'half_open';
 const DEFAULT_MAX_RETRY_DELAY_MULTIPLIER = 32;
+const DEFAULT_MIN_RETRY_DELAY_MS = 0;
 const DEFAULT_MAX_RETRY_HINT_MS = 60_000;
 const DEFAULT_RETRY_JITTER_RATIO = 0.2;
 const DEFAULT_RETRY_HINT_JITTER_RATIO = 0;
@@ -1046,6 +1047,7 @@ export class TaskOrchestrator {
         retryDelayMs = 500,
         retryStrategy = 'exponential',
         retryBackoffMultiplier = 2,
+        minRetryDelayMs = DEFAULT_MIN_RETRY_DELAY_MS,
         maxRetryDelayMs = null,
         maxRetryHintMs = null,
         retryJitterRatio = DEFAULT_RETRY_JITTER_RATIO,
@@ -1115,6 +1117,10 @@ export class TaskOrchestrator {
         this.maxRetryDelayMs = maxRetryDelayMs === null || maxRetryDelayMs === undefined
             ? defaultMaxRetryDelayMs
             : safeNonNegativeNumber(maxRetryDelayMs, defaultMaxRetryDelayMs);
+        this.minRetryDelayMs = safeNonNegativeNumber(minRetryDelayMs, DEFAULT_MIN_RETRY_DELAY_MS);
+        if (this.minRetryDelayMs > this.maxRetryDelayMs) {
+            this.minRetryDelayMs = this.maxRetryDelayMs;
+        }
         const defaultMaxRetryHintMs = Math.max(this.maxRetryDelayMs, DEFAULT_MAX_RETRY_HINT_MS);
         this.maxRetryHintMs = maxRetryHintMs === null || maxRetryHintMs === undefined
             ? defaultMaxRetryHintMs
@@ -2939,7 +2945,7 @@ export class TaskOrchestrator {
                 )
             )
             : 0;
-        const delayMs = baseDelayMs + hintJitterMs;
+        const delayMs = Math.max(this.minRetryDelayMs, baseDelayMs + hintJitterMs);
         const nextRetryAt = nowMs + delayMs;
         if (retryHintClamped) {
             this.retryHintClampCount += 1;
@@ -3215,7 +3221,8 @@ export class TaskOrchestrator {
             retryHint: {
                 maxHintMs: this.maxRetryHintMs,
                 clampCount: this.retryHintClampCount,
-                jitterRatio: this.retryHintJitterRatio
+                jitterRatio: this.retryHintJitterRatio,
+                minDelayMs: this.minRetryDelayMs
             },
             taskTimeout: {
                 defaultMs: this.defaultTimeoutMs,

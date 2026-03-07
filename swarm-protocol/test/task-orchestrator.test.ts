@@ -1221,6 +1221,40 @@ test('retry hint jitter spreads equal retry_after hints while honoring minimum d
     assert.equal(metrics.retryHint.jitterRatio, 0.5);
 });
 
+test('retry scheduling enforces configured minimum delay floor', async () => {
+    const clock = createClock(90_500);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 1,
+        retryDelayMs: 0,
+        minRetryDelayMs: 150,
+        retryStrategy: 'fixed',
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-min-delay',
+        task: 'Ensure retry floor'
+    });
+
+    clock.advance(5);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-min-delay',
+        accepted: false,
+        retryable: true,
+        retryAfterMs: 1,
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt - clock.now(), 150);
+});
+
 test('fixed retry strategy keeps scheduling delay stable', async () => {
     const clock = createClock(71_000);
 

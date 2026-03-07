@@ -342,6 +342,7 @@ const orchestrator = new TaskOrchestrator({
   retryStrategy: 'full_jitter', // or 'exponential' / 'fixed'
   retryBackoffMultiplier: 2,
   retryDelayMs: 250,
+  minRetryDelayMs: 100, // optional floor to prevent immediate retry loops
   retryHintJitterRatio: 0.2, // optional extra spread applied after server retry hints
   globalRetryBudgetRatio: 0.2,
   globalRetryBudgetWindowMs: 60_000,
@@ -385,6 +386,7 @@ Overload containment notes:
 - Rejected receipts with transient overload signals (for example `worker_overloaded`, `rate_limit`, or `retry_after` hints) are rescheduled instead of terminally rejected when retry budget remains.
 - Structured `RateLimit` and `RateLimit-Reset` retry hints are parsed so OpenClaw workers can push back with standard HTTP-style metadata.
 - `retryHintJitterRatio` adds post-hint jitter while still respecting the minimum retry hint, reducing synchronized retry spikes after shared overload events.
+- `minRetryDelayMs` enforces a floor on every retry schedule (including hinted retries) to avoid zero-delay retry storms.
 - `globalRetryBudgetPriorityReserve` preserves a configured share of retry slots for higher-priority work.
 
 Safety policy integration:
