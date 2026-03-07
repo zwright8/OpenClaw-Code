@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 440
+- Total warfighter skills in this repo: 462
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -408,7 +408,7 @@ Every skill output should include:
 
 ## Catalog Maintenance Update (2026-03-07 Run)
 
-- Total warfighter skills: 440
+- Total warfighter skills: 462
 - Added references: `human-agent-command-escalation-matrix.md`, `warfighter-tool-authority-gates.md`
 - Added expansion skills this run: 20
 
@@ -453,3 +453,24 @@ Every skill output should include:
 - Added skills this run: 10
 - Added shared toolchain profiles: 10
 - Added shared domain tool packets: 10
+
+## New Expansion Wave (2026-03-07, All-Domain Mission Assurance and Infrastructure Continuity)
+
+- joint-homeland-critical-infrastructure-priority-defense-cell
+- tactical-additive-battery-cell-repair-and-recertification-cell
+- expeditionary-veterinary-and-zoonotic-risk-cell
+- joint-priority-intelligence-requirements-governance-cell
+- theater-maritime-quarantine-and-biosecurity-control-cell
+- coalition-contested-financial-sanctions-evasion-tracking-cell
+- joint-evacuation-control-center-throughput-cell
+- strategic-rare-gas-and-cryogenic-supply-assurance-cell
+- denied-environment-map-production-and-geodesy-cell
+- autonomous-cbrn-sensor-cueing-and-isolation-cell
+- joint-force-posture-political-risk-forecast-cell
+- contested-orbital-ground-station-physical-security-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Mission Assurance and Continuity Expansion)
+
+- Added skills this run: 12
+- Updated shared references this run: external-tools-protocols.md and mission-assurance-checklist.md
+- Total warfighter skills after this run: 462

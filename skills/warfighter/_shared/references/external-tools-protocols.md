@@ -220,6 +220,28 @@ Include these fields in outputs when tool integration is used:
 
 ## Domain Toolchain Profiles (2026-03-07 Expansion)
 
+- Homeland critical infrastructure defense: ICS/EOC coordination systems + utility telemetry + transportation status boards + NIMS/ICS + OGC + USMTF
+- Tactical battery repair and recertification: BMS telemetry tools + maintenance quality systems + safety incident reporting + API/JSON + USMTF
+- Expeditionary veterinary and zoonotic risk: veterinary case management + force health surveillance + food-chain inspection logs + HL7/FHIR + USMTF
+- Joint PIR governance: ISR requirement trackers + collection management boards + commander decision logs + USMTF + VMF + API/JSON
+- Maritime quarantine and biosecurity control: vessel movement boards + port health dashboards + contamination screening workflows + AIS/NMEA + HL7/FHIR + USMTF
+- Coalition sanctions evasion tracking: financial anomaly tooling + sanctions-list fusion + logistics procurement traces + STIX/TAXII + API/JSON + coalition formats
+- Joint evacuation throughput control: movement control systems + patient regulation + NEO coordination boards + USMTF + VMF + CoT
+- Rare-gas and cryogenic assurance: industrial production trackers + strategic inventory systems + transport integrity telemetry + API/JSON + USMTF
+- Denied geodesy and map production: offline geospatial toolkits + terrain update brokers + PNT confidence monitors + OGC + CoT + USMTF
+- Autonomous CBRN cueing and isolation: hazard sensor networks + contamination model services + protective posture tracking + USMTF CBRN + API/JSON + CoT
+- Joint force posture political risk forecasting: alliance sentiment models + strategic messaging boards + policy risk telemetry + USMTF + API/JSON
+- Contested orbital ground station security: perimeter monitoring + facility access telemetry + orbital service continuity boards + API/JSON + OGC + USMTF
+
+## Additional Interoperability Standards (2026-03-07 Expansion)
+
+- `NIST CSF 2.0 profile mappings`: infrastructure and cyber readiness language for cross-agency mission assurance
+- `ISO 22320 / emergency management process frames`: command-and-control process alignment for civil support coordination
+- `ISO 31000 risk vocabulary`: common risk terminology for coalition and interagency decision products
+- `GeoPackage (OGC)`: disconnected geospatial package format for denied-environment map sharing
+
+## Domain Toolchain Profiles (2026-03-07 Expansion)
+
 - Urban CBRN decontamination corridors: CBRN sensing grids + civil health systems + NIMS/ICS + USMTF
 - Command voice anti-spoofing: secure voice gateways + media forensics + identity telemetry + STIX/TAXII + API/JSON
 - Autonomous combat engineer breach: engineer robotics control + mobility C2 + VMF/CoT + USMTF

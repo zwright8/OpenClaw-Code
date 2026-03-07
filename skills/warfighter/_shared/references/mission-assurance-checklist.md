@@ -39,6 +39,8 @@ Use this checklist before delivering any mission recommendation.
 - Identify top mission risks, likelihood, impact, and mitigations.
 - Define branch/sequel triggers with objective thresholds.
 - Note assumptions that would invalidate the recommendation.
+- For cross-domain options, document second-order effects (civil, alliance, logistics, legal, and information environment) and who owns each mitigation.
+- Include one explicit "stop-condition" trigger that forces immediate human revalidation if conditions shift.
 
 ## 6) Human Review and Handoff
 
@@ -60,3 +62,5 @@ Use this checklist before delivering any mission recommendation.
 - `Fallback if tool unavailable:`
 - `Classification/Handling:`
 - `No-go criteria hit (Y/N):`
+- `Second-order effects tracked (Y/N):`
+- `Stop-condition trigger defined (Y/N):`
