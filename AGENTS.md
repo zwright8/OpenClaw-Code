@@ -1,16 +1,13 @@
 # AGENTS.md
 
-## Verified Workflows (Repo-Root)
+## Verified Workflows (Repo Root)
 - `npm run lint` - run root automated refactor/lint pass (`scripts/auto-refactor.ts`).
 - `npm run typecheck` - typecheck root + `cognition-core` + `swarm-protocol`.
 - `npm run build` - runs root lint plus tests in both packages.
 - `npm run capabilities:blueprint` - regenerate capability blueprint artifacts.
 - `npm run capabilities:audit` - run capability deployability audit.
-- `npm run agent:quickstart` - print the local `AGENTS.md` quickstart guide.
-- `npm run agent:map` - print the local `AGENT_MAP.json` command map.
-- `npm run agent:validate` - run cross-package validation (`typecheck`, `cognition-core` tests, `swarm-protocol` unit tests).
-- `npm run skills:sync` - execute the full 1000-skill lifecycle pipeline.
-- `npm run skills:build` - generate the baseline 1000-skill artifacts.
+- `npm run skills:sync` - execute the 1000-skill lifecycle pipeline.
+- `npm run skills:build` - generate baseline 1000-skill artifacts.
 - `npm run skills:validate` - validate generated 1000-skill artifacts.
 - `npm run skills:test` - execute 1000-skill exercise checks.
 - `npm run skills:plan` - generate rollout planning artifacts.
@@ -22,7 +19,7 @@
 - `npm run skills:optimize` - generate rollout optimization artifacts.
 - `npm run skills:optimize:validate` - validate rollout optimization artifacts.
 - `npm run skills:promote` - generate rollout promotion task artifacts.
-- `npm run skills:promote:validate` - validate rollout promotion task artifacts.
+- `npm run skills:promote:validate` - validate rollout promotion artifacts.
 - `npm run skills:promote:control` - generate promotion control artifacts.
 - `npm run skills:promote:control:validate` - validate promotion control artifacts.
 - `npm run skills:promote:history` - generate promotion history artifacts.
@@ -31,7 +28,6 @@
 - `npm run skills:promote:policy-lab:validate` - validate policy-lab promotion artifacts.
 - `npm run skills:promote:policy-canary` - generate policy-canary promotion artifacts.
 - `npm run skills:promote:policy-canary:validate` - validate policy-canary promotion artifacts.
-- `npm run skills:marketplace:ship` - build/validate/package/validate/demo marketplace outputs.
 - `npm run skills:marketplace:build` - build marketplace skill packages (v1).
 - `npm run skills:marketplace:validate` - validate marketplace skill packages (v1).
 - `npm run skills:marketplace:analytics` - generate marketplace analytics artifacts.
@@ -40,13 +36,10 @@
 - `npm run skills:marketplace:v2:build` - build marketplace skill packages v2.
 - `npm run skills:marketplace:v2:validate` - validate marketplace skill packages v2.
 - `npm run skills:marketplace:v2:demo` - run top-package demo for v2 outputs.
-- `npm run skills:registry:build` - generate the skill registry artifacts.
-- `npm run skills:registry:validate` - validate generated skill registry artifacts.
-- `npm run skills:route` - execute skill routing over the current registry/catalog inputs.
-- `npm run skills:run` - execute the skill run harness via `scripts/skillos-run.ts`.
+- `npm run skills:marketplace:ship` - build/validate/package/validate/demo marketplace outputs.
 - `npm run skills:improve:10000` - generate improvement catalog for the 10k skill corpus.
-- `npm run skills:improve:10000:validate` - validate generated 10k skill improvement artifacts.
-- `npm run skills:harden:profile` - build the hardening/deployability profile.
+- `npm run skills:improve:10000:validate` - validate generated 10k-skill improvement artifacts.
+- `npm run skills:harden:profile` - build hardening/deployability profile.
 - `npm run skills:harden` - apply hardening and emit deployability summaries.
 - `npm run skills:build:10000` - generate the 10k skill corpus.
 - `npm run skills:materialize:10000` - materialize generated 10k skill outputs.
@@ -56,22 +49,10 @@
 - `npm --prefix cognition-core run typecheck` - run cognition-core TypeScript type checks.
 - `npm --prefix cognition-core run build` - run cognition-core package build (`npm test`).
 - `npm --prefix cognition-core run analyze` - generate 7-day cognition analysis.
+- `npm --prefix cognition-core run analyze:quick` - generate 1-day cognition analysis.
 - `npm --prefix cognition-core run plan:tasks` - emit remediation task requests.
 - `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
-- `npm --prefix cognition-core run analyze:quick` - generate 1-day fast cognition analysis.
 - `npm --prefix cognition-core run graph` - rebuild cognition graph artifacts.
-- `npm --prefix cognition-core run ingest` - ingest recent events (default `--since-hours 24`) into cognition inputs.
-- `npm --prefix cognition-core run status` - print cognition pipeline/state status.
-- `npm --prefix cognition-core run dispatch` - dispatch queued cognition tasks.
-- `npm --prefix cognition-core run run` - run the cognition pipeline orchestrator flow.
-- `npm --prefix cognition-core run run:dispatch` - run the cognition flow with dispatch enabled.
-- `npm --prefix cognition-core run evaluate` - evaluate cognition outcomes and quality signals.
-- `npm --prefix cognition-core run report` - generate cognition reports from current data.
-- `npm --prefix cognition-core run outcomes:export` - export swarm outcomes for cognition analysis.
-- `npm --prefix cognition-core run scorecard` - generate cognition productivity scorecard outputs.
-- `npm --prefix cognition-core run tune:recommendations` - tune recommendation outputs based on recent outcomes.
-- `npm --prefix cognition-core run full:utilization` - run full utilization analysis/report workflow.
-- `npm --prefix cognition-core run stability:whatsapp` - build 24-hour WhatsApp stability reports (JSON + Markdown).
 - `npm --prefix swarm-protocol run test` - run full swarm-protocol test suite (`test:unit` + `test:legacy`).
 - `npm --prefix swarm-protocol run test:unit` - run swarm-protocol unit tests only.
 - `npm --prefix swarm-protocol run test:legacy` - run swarm-protocol legacy test harness.
@@ -87,12 +68,5 @@
 - `npm --prefix swarm-protocol run ops -- audit-verify` - verify signed operator audit chain integrity.
 
 ## TODO
-- README command list appears broader than current `package.json` scripts (for example `worker:loop`, `autonomous:run`, `iterate:plan`); confirm current owners before documenting additional commands here.
-- Since `a0a7afe947` (last AGENTS sync) through `ce96518424` (`origin/main` at this run), no `package.json` script-entrypoint changes were detected.
-- Since `8f1f3b4d7e` (last run commit) through `acee597756` (`origin/main` for this run), no `package.json` script-entrypoint changes were detected.
-- Since `af0207c6a5` (last run commit from automation memory) through `8e4999c14f` (`origin/main` for this run), no `package.json` script-entrypoint changes were detected.
-- Since `87112a7478` (last run commit from automation memory) through `31d075d901` (`origin/main` for this run), no `package.json` script-entrypoint changes were detected.
-- Since `b985b56348` (last run commit from automation memory) through `b985b56348` (`origin/main` for this run), no `package.json` script-entrypoint changes were detected.
-- Since `d16d7f3899` (last run commit from automation memory) through `712c2d396b` (`origin/main` for this run), no `package.json` script-entrypoint changes were detected.
-- Since `4bef6b51c9` (last run commit from automation memory) through `d0d9985bef` (`origin/main` for this run), no `package.json` script-entrypoint changes were detected.
-- Since `3604a3ee72` (last run commit from automation memory) through `abe425a3ed` (`origin/main` for this run), no `package.json` script-entrypoint changes were detected.
+- README still references commands not present in current `package.json` scripts (`worker:loop`, `autonomous:run`, `iterate:plan`, `plan:skills`, `build:full`, `memory:*`); confirm owners before adding wrappers here.
+- Since `e9269d9fa0` (last AGENTS automation commit) through `2a9dfdfff3` (`main` at this run), multiple script-entrypoint removals landed; this file now reflects current scripts only.
