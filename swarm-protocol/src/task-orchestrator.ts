@@ -959,6 +959,8 @@ export function buildTaskReceipt({
     from,
     accepted,
     reason,
+    retryable,
+    retryAfterMs,
     etaMs,
     timestamp = Date.now()
 }) {
@@ -968,6 +970,8 @@ export function buildTaskReceipt({
         from,
         accepted,
         reason,
+        retryable,
+        retryAfterMs,
         etaMs,
         timestamp
     });
@@ -2586,12 +2590,14 @@ export class TaskOrchestrator {
         if (!receipt.accepted) {
             const etaHintMs = Number.isFinite(receipt.etaMs) ? Number(receipt.etaMs) : null;
             const reasonHintMs = parseRetryHintMsFromReason(receipt.reason, receipt.timestamp);
-            const retryHintMs = Number.isFinite(etaHintMs) && Number.isFinite(reasonHintMs)
-                ? Math.max(etaHintMs, reasonHintMs)
-                : Number.isFinite(etaHintMs)
-                    ? etaHintMs
-                    : reasonHintMs;
+            const structuredHintMs = Number.isFinite(receipt.retryAfterMs) ? Number(receipt.retryAfterMs) : null;
+            const retryHints = [etaHintMs, reasonHintMs, structuredHintMs]
+                .filter((value) => Number.isFinite(value));
+            const retryHintMs = retryHints.length > 0
+                ? Math.max(...retryHints)
+                : null;
             const transientRejection = Number.isFinite(retryHintMs)
+                || receipt.retryable === true
                 || isTransientRejectionReason(receipt.reason);
 
             if (transientRejection) {

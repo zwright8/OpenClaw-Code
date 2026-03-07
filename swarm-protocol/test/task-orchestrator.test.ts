@@ -238,6 +238,86 @@ test('transient rejected receipt schedules retry with eta hint', async () => {
     assert.equal(sent.length, 2);
 });
 
+test('structured retryAfterMs hint schedules retry without reason parsing', async () => {
+    const clock = createClock(3_800);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryStrategy: 'fixed',
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-3c',
+        task: 'Honor structured retry hints'
+    });
+
+    clock.advance(15);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-3c',
+        accepted: false,
+        reason: 'queue_busy',
+        retryAfterMs: 275,
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 4_090);
+
+    clock.set(current.nextRetryAt);
+    const maintenance = await orchestrator.runMaintenance(clock.now());
+    assert.equal(maintenance.retried, 1);
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+});
+
+test('retryable rejected receipt is treated as transient without hint fields', async () => {
+    const clock = createClock(4_200);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 40,
+        retryStrategy: 'fixed',
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-3d',
+        task: 'Respect explicit transient rejection'
+    });
+
+    clock.advance(5);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-3d',
+        accepted: false,
+        reason: 'queue_busy',
+        retryable: true,
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.retryLifecycle.lastReasonCode, 'worker_transient_rejection');
+    assert.equal(current.nextRetryAt, 4_245);
+});
+
 test('retry hint is clamped to maxRetryHintMs to avoid unbounded delay', async () => {
     const clock = createClock(3_550);
     const orchestrator = new TaskOrchestrator({
