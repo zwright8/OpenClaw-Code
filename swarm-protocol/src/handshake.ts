@@ -8,6 +8,7 @@ const DEFAULT_RETRIES = 0;
 const DEFAULT_RETRY_DELAY_MS = 250;
 const DEFAULT_RETRY_STRATEGY = 'linear';
 const DEFAULT_RETRY_JITTER = 'none';
+const DEFAULT_MAX_RETRY_HINT_MS = 60_000;
 
 export class HandshakeError extends Error {
     constructor(code, message, details = {}) {
@@ -88,6 +89,110 @@ function wait(ms) {
 
 function clampNumber(value, min, max) {
     return Math.min(Math.max(value, min), max);
+}
+
+function readHeaderValue(headers, key) {
+    if (!headers) return null;
+    const target = String(key).toLowerCase();
+
+    if (typeof headers.get === 'function') {
+        return headers.get(key) ?? headers.get(target) ?? null;
+    }
+
+    if (headers instanceof Map) {
+        for (const [entryKey, entryValue] of headers.entries()) {
+            if (String(entryKey).toLowerCase() === target) {
+                return entryValue;
+            }
+        }
+        return null;
+    }
+
+    if (typeof headers === 'object') {
+        for (const [entryKey, entryValue] of Object.entries(headers)) {
+            if (entryKey.toLowerCase() === target) {
+                return entryValue;
+            }
+        }
+    }
+
+    return null;
+}
+
+function parseRetryAfterHeaderMs(value, nowMs = Date.now()) {
+    if (value === null || value === undefined) return null;
+    const text = String(value).trim();
+    if (!text) return null;
+
+    const seconds = Number(text);
+    if (Number.isFinite(seconds) && seconds >= 0) {
+        return seconds * 1000;
+    }
+
+    const dateMs = Date.parse(text);
+    if (Number.isFinite(dateMs)) {
+        return Math.max(0, dateMs - nowMs);
+    }
+
+    return null;
+}
+
+function parseRetryHintMsFromMessage(message, nowMs = Date.now()) {
+    if (typeof message !== 'string' || !message.trim()) return null;
+
+    const explicitMsMatch = message.match(/retry[_-]?after[_-]?ms\s*[:=]\s*(\d+)(?!\d)/i);
+    if (explicitMsMatch) {
+        return Number(explicitMsMatch[1]);
+    }
+
+    const explicitSecondsMatch = message.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?(?![A-Za-z])/i);
+    if (explicitSecondsMatch) {
+        return Number(explicitSecondsMatch[1]) * 1000;
+    }
+
+    const explicitDateMatch = message.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},\s*\d{1,2}\s+[A-Za-z]{3}\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+GMT)/i);
+    if (explicitDateMatch) {
+        const dateMs = Date.parse(explicitDateMatch[1].trim());
+        if (Number.isFinite(dateMs)) {
+            return Math.max(0, dateMs - nowMs);
+        }
+    }
+
+    return null;
+}
+
+function extractRetryHintMs(error, nowMs = Date.now()) {
+    if (!error || typeof error !== 'object') return null;
+
+    const directMs = Number(error.retryAfterMs ?? error.details?.retryAfterMs);
+    if (Number.isFinite(directMs) && directMs >= 0) {
+        return directMs;
+    }
+
+    const directSeconds = Number(error.retryAfterSeconds ?? error.details?.retryAfterSeconds);
+    if (Number.isFinite(directSeconds) && directSeconds >= 0) {
+        return directSeconds * 1000;
+    }
+
+    const retryAfterHeader = readHeaderValue(
+        error.headers
+        ?? error.response?.headers
+        ?? error.details?.headers
+        ?? null,
+        'retry-after'
+    );
+    const retryAfterHeaderMs = parseRetryAfterHeaderMs(retryAfterHeader, nowMs);
+    if (Number.isFinite(retryAfterHeaderMs)) {
+        return retryAfterHeaderMs;
+    }
+
+    const retryAfterValue = error.retryAfter ?? error.details?.retryAfter;
+    const retryAfterValueMs = parseRetryAfterHeaderMs(retryAfterValue, nowMs);
+    if (Number.isFinite(retryAfterValueMs)) {
+        return retryAfterValueMs;
+    }
+
+    return parseRetryHintMsFromMessage(error.message, nowMs);
 }
 
 function resolveRetryDelayMs({
@@ -190,6 +295,9 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
     const retryBudgetMs = Number.isFinite(options.retryBudgetMs) && options.retryBudgetMs > 0
         ? Number(options.retryBudgetMs)
         : null;
+    const maxRetryHintMs = Number.isFinite(options.maxRetryHintMs) && options.maxRetryHintMs > 0
+        ? Number(options.maxRetryHintMs)
+        : DEFAULT_MAX_RETRY_HINT_MS;
     const now = typeof options.now === 'function' ? options.now : Date.now;
     const sleep = typeof options.sleep === 'function' ? options.sleep : wait;
     const random = typeof options.random === 'function' ? options.random : Math.random;
@@ -316,6 +424,13 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
                 });
 
                 let boundedDelayMs = retryDelay;
+                const retryHintMs = extractRetryHintMs(wrappedError, now());
+                if (Number.isFinite(retryHintMs) && retryHintMs > 0) {
+                    boundedDelayMs = Math.max(
+                        boundedDelayMs,
+                        Math.min(retryHintMs, maxRetryHintMs)
+                    );
+                }
                 if (retryBudgetMs !== null) {
                     const elapsedMs = Math.max(0, now() - startedAtMs);
                     const budgetRemainingMs = Math.max(0, retryBudgetMs - elapsedMs);

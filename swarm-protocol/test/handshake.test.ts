@@ -257,3 +257,84 @@ test('throws RETRY_BUDGET_EXHAUSTED when retry budget is consumed', async () => 
     assert.equal(calls, 2);
     assert.deepEqual(delays, [200, 50]);
 });
+
+test('honors structured retryAfterMs on transport error before retrying handshake', async () => {
+    let calls = 0;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) {
+                const error: any = new Error('HTTP 503');
+                error.retryAfterMs = 350;
+                throw error;
+            }
+
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 1,
+        retryDelayMs: 25,
+        sleep: async (ms) => {
+            delays.push(ms);
+        },
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 2);
+    assert.deepEqual(delays, [350]);
+});
+
+test('honors Retry-After header and clamps large hints with maxRetryHintMs', async () => {
+    let calls = 0;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) {
+                const error: any = new Error('HTTP 429 Too Many Requests');
+                error.response = {
+                    headers: {
+                        'retry-after': '120'
+                    }
+                };
+                throw error;
+            }
+
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 1,
+        retryDelayMs: 10,
+        maxRetryHintMs: 1_250,
+        sleep: async (ms) => {
+            delays.push(ms);
+        },
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 2);
+    assert.deepEqual(delays, [1_250]);
+});
