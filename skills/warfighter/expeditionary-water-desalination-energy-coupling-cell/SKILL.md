@@ -62,3 +62,9 @@ For each external tool recommendation, include objective, required inputs, query
 - Separate facts, assessed judgments, and unknowns.
 - Identify legal, policy, ROE, safety, and coalition constraints early.
 - Do not provide weapon-employment procedures or bypasses to safeguards.
+
+## Cross-Domain Integration Playbook
+
+- Use `../_shared/references/cross-domain-integration-playbook.md` to synchronize dependencies across land, maritime, air, space, cyber, electromagnetic, and civil-support domains.
+- Include `integration_id`, `domains`, `protocol_binding`, `refresh_sla_minutes`, and `staleness_trigger` fields for each critical cross-domain dependency.
+- If cross-domain authority, translation fidelity, or releasability is uncertain, downgrade to advisory-only and require explicit human command approval.

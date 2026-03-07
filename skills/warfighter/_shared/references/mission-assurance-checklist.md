@@ -25,6 +25,7 @@ Use this checklist before delivering any mission recommendation.
 - Confirm transport path and fallback path if primary comms are degraded.
 - Select and document `Primary`, `Alternate`, and `Degraded` domain toolchain profiles with rationale.
 - Confirm coalition packets include translation assumptions and known field-loss risks.
+- For multi-domain recommendations, bind and validate an `integration_id` using `cross-domain-integration-playbook.md`.
 
 ## 4) Tool Invocation Packet Completeness
 

@@ -189,6 +189,12 @@ Include these fields in outputs when tool integration is used:
 - Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` alongside protocol/output fields.
 - If authority scope, acknowledgment integrity, or legal basis is uncertain, downgrade to advisory-only and publish explicit commander decision prompts.
 
+## Cross-Domain Integration Binding (2026-03-07)
+
+- Use `cross-domain-integration-playbook.md` whenever recommendations span two or more mission domains.
+- Include `integration_id`, `domains`, `protocol_binding`, `refresh_sla_minutes`, and `staleness_trigger` in each critical tool packet.
+- If cross-domain translation or releasability introduces ambiguity, publish a constrained recommendation and escalate for human command approval.
+
 ## Domain Toolchain Profiles (2026-03-06 Expansion)
 
 - Electromagnetic protection and waveform agility: EW mission data tools + spectrum analytics + Link 16/USMTF/API

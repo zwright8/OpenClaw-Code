@@ -4,8 +4,8 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 462
-- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, and this catalog
+- Total warfighter skills in this repo: 482
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, cross-domain integration playbook, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
 ## Domain Coverage Matrix
@@ -474,3 +474,33 @@ Every skill output should include:
 - Added skills this run: 12
 - Updated shared references this run: external-tools-protocols.md and mission-assurance-checklist.md
 - Total warfighter skills after this run: 462
+
+## New Expansion Wave (2026-03-07, Comprehensive Cross-Domain Continuity and Governance Expansion)
+
+- joint-theater-electromagnetic-deception-governance-cell
+- expeditionary-data-center-thermal-and-power-survivability-cell
+- strategic-hyperscale-cloud-outage-mission-continuity-cell
+- joint-civil-maritime-critical-infrastructure-prioritization-cell
+- autonomous-sensor-custody-and-chain-of-evidence-cell
+- tactical-hf-beyond-line-of-sight-fallback-network-cell
+- joint-space-launch-window-conflict-deconfliction-cell
+- theater-cognitive-security-and-misinformation-counter-cell
+- expeditionary-runway-lighting-and-nav-aid-restoration-cell
+- joint-fuel-convoy-signature-suppression-cell
+- maritime-uncrewed-underwater-glider-persistent-isr-cell
+- theater-electronic-warfare-spectrum-priority-board
+- joint-precision-navigation-integrity-monitoring-cell
+- strategic-harbor-mining-risk-and-commercial-diversion-cell
+- coalition-cyber-range-and-readiness-exchange-cell
+- tactical-digital-twin-training-scenario-synthesis-cell
+- forward-operating-base-waste-water-and-sanitation-resilience-cell
+- joint-space-based-sar-persistent-cueing-cell
+- mission-data-labeling-and-governance-cell
+- joint-austere-portable-air-traffic-surveillance-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Comprehensive Cross-Domain Expansion)
+
+- Added skills this run: 20
+- Added shared reference this run: cross-domain-integration-playbook.md
+- Updated all warfighter skill playbooks with cross-domain integration binding: 482/482
+- Total warfighter skills after this run: 482
