@@ -576,6 +576,13 @@ function parseRetryAfterHeaderMs(value, nowMs = Date.now()) {
     return null;
 }
 
+function parseRetryAfterMillisecondsHeaderMs(value) {
+    if (value === null || value === undefined) return null;
+    const numeric = Number(String(value).trim());
+    if (!Number.isFinite(numeric) || numeric < 0) return null;
+    return numeric;
+}
+
 function parseRateLimitResetHeaderMs(value, nowMs = Date.now(), { treatSmallAsEpoch = false } = {}) {
     if (value === null || value === undefined) return null;
 
@@ -624,6 +631,23 @@ function readHeaderValue(headers, key) {
 
 function parseRetryHintMsFromHeaders(headers, nowMs = Date.now()) {
     if (!headers) return null;
+
+    const retryAfterMillisecondsHeaders = [
+        'retry-after-ms',
+        'x-ms-retry-after-ms',
+        'x-retry-after-ms'
+    ];
+    for (const headerName of retryAfterMillisecondsHeaders) {
+        const raw = readHeaderValue(headers, headerName);
+        const value = Array.isArray(raw) ? raw[0] : raw;
+        const parsed = parseRetryAfterMillisecondsHeaderMs(value);
+        if (Number.isFinite(parsed)) return parsed;
+    }
+
+    const xMsRetryAfterRaw = readHeaderValue(headers, 'x-ms-retry-after');
+    const xMsRetryAfterValue = Array.isArray(xMsRetryAfterRaw) ? xMsRetryAfterRaw[0] : xMsRetryAfterRaw;
+    const xMsRetryAfterMs = parseRetryAfterHeaderMs(xMsRetryAfterValue, nowMs);
+    if (Number.isFinite(xMsRetryAfterMs)) return xMsRetryAfterMs;
 
     const retryAfterRaw = readHeaderValue(headers, 'retry-after');
     const retryAfterValue = Array.isArray(retryAfterRaw) ? retryAfterRaw[0] : retryAfterRaw;

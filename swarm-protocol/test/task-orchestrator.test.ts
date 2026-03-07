@@ -663,6 +663,88 @@ test('transport failure honors RateLimit-Reset response header when scheduling r
     assert.equal(current.nextRetryAt, 53_210);
 });
 
+test('transport failure honors x-ms-retry-after-ms response header when scheduling retry', async () => {
+    const clock = createClock(12_000);
+    let sendAttempts = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendAttempts += 1;
+                if (sendAttempts >= 2) {
+                    const error = new Error('HTTP 429');
+                    (error as any).response = {
+                        headers: {
+                            'x-ms-retry-after-ms': '1500'
+                        }
+                    };
+                    throw error;
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-header-ms-retry-after',
+        task: 'Honor x-ms-retry-after-ms on transport error'
+    });
+
+    clock.set(12_150);
+    await orchestrator.runMaintenance(clock.now());
+    clock.set(12_200);
+    await orchestrator.runMaintenance(clock.now());
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 13_700);
+});
+
+test('transport failure honors retry-after-ms response header when scheduling retry', async () => {
+    const clock = createClock(15_000);
+    let sendAttempts = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendAttempts += 1;
+                if (sendAttempts >= 2) {
+                    const error = new Error('HTTP 503');
+                    (error as any).response = {
+                        headers: {
+                            'retry-after-ms': '2750'
+                        }
+                    };
+                    throw error;
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-header-retry-after-ms',
+        task: 'Honor retry-after-ms on transport error'
+    });
+
+    clock.set(15_150);
+    await orchestrator.runMaintenance(clock.now());
+    clock.set(15_200);
+    await orchestrator.runMaintenance(clock.now());
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 17_950);
+});
+
 test('non-retryable transport failures terminalize without scheduling another retry', async () => {
     const clock = createClock(9_000);
     let sendAttempts = 0;
