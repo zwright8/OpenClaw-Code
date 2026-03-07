@@ -807,6 +807,20 @@ export function evaluateBenchmarkThresholds(aggregateMetrics, thresholdsPayload 
     };
 }
 
+function buildBenchmarkThresholdCheck(thresholdEvaluation, thresholdsRequested) {
+    const requested = Boolean(thresholdsRequested);
+    const breaches = requested && Array.isArray(thresholdEvaluation?.breaches)
+        ? thresholdEvaluation.breaches
+        : [];
+
+    return {
+        requested,
+        ok: requested ? Boolean(thresholdEvaluation?.ok) && breaches.length === 0 : true,
+        breachCount: breaches.length,
+        breaches
+    };
+}
+
 export async function runSimulationBenchmark({
     scenario,
     runs = 10,
@@ -853,9 +867,11 @@ export async function runSimulationBenchmark({
     }
 
     const aggregate = aggregateBenchmarkRuns(runResults);
-    const thresholdEvaluation = thresholds
+    const thresholdsRequested = Boolean(thresholds);
+    const thresholdEvaluation = thresholdsRequested
         ? evaluateBenchmarkThresholds(aggregate, thresholds)
         : null;
+    const thresholdCheck = buildBenchmarkThresholdCheck(thresholdEvaluation, thresholdsRequested);
 
     return {
         scenario: {
@@ -866,6 +882,9 @@ export async function runSimulationBenchmark({
         runCount,
         runs: runResults,
         aggregate,
+        generatedAt: new Date().toISOString(),
+        thresholdCheck,
+        // Backward-compatible alias for older callers. Prefer thresholdCheck for contract-safe metadata.
         thresholds: thresholdEvaluation
     };
 }

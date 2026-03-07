@@ -182,7 +182,7 @@ test('simulation exposes retry lifecycle states for timeout retries', async () =
 });
 
 
-test('runSimulationBenchmark aggregates runs and evaluates thresholds', async () => {
+test('runSimulationBenchmark aggregates runs and emits contract-safe threshold metadata', async () => {
     const scenario = makeBaseScenario();
 
     const benchmark = await runSimulationBenchmark({
@@ -201,7 +201,17 @@ test('runSimulationBenchmark aggregates runs and evaluates thresholds', async ()
     assert.equal(benchmark.runCount, 4);
     assert.equal(benchmark.runs.length, 4);
     assert.equal(typeof benchmark.aggregate.successRateAvg, 'number');
-    assert.equal(benchmark.thresholds.ok, true);
+    assert.equal(typeof benchmark.generatedAt, 'string');
+    assert.ok(benchmark.generatedAt.length > 0);
+
+    assert.equal(benchmark.thresholdCheck.requested, true);
+    assert.equal(benchmark.thresholdCheck.ok, true);
+    assert.equal(benchmark.thresholdCheck.breachCount, 0);
+    assert.deepEqual(benchmark.thresholdCheck.breaches, []);
+
+    // Backward-compatible alias still mirrors threshold evaluation data.
+    assert.equal(benchmark.thresholds.ok, benchmark.thresholdCheck.ok);
+    assert.deepEqual(benchmark.thresholds.breaches, benchmark.thresholdCheck.breaches);
 
     const strict = evaluateBenchmarkThresholds(benchmark.aggregate, {
         minSuccessRate: 0.99,
@@ -245,6 +255,14 @@ test('benchmark script emits metadata contract fields without threshold input', 
         assert.equal(run.status, 0, `stdout:\n${run.stdout}\nstderr:\n${run.stderr}`);
 
         const benchmark = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+        assert.deepEqual(Object.keys(benchmark), [
+            'scenario',
+            'runCount',
+            'runs',
+            'aggregate',
+            'generatedAt',
+            'thresholdCheck'
+        ]);
         assert.equal(typeof benchmark.generatedAt, 'string');
         assert.ok(benchmark.generatedAt.length > 0);
 

@@ -101,7 +101,20 @@ function ensureDir(filePath) {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
-function buildBenchmarkArtifact(result, thresholdsRequested) {
+function normalizeGeneratedAt(generatedAt) {
+    if (typeof generatedAt !== 'string' || generatedAt.trim().length === 0) {
+        return new Date().toISOString();
+    }
+
+    const parsedMs = Date.parse(generatedAt);
+    if (!Number.isFinite(parsedMs)) {
+        return new Date().toISOString();
+    }
+
+    return new Date(parsedMs).toISOString();
+}
+
+function normalizeThresholdCheck(result, thresholdsRequested) {
     const existingThresholdCheck = result && typeof result.thresholdCheck === 'object' && result.thresholdCheck !== null
         ? result.thresholdCheck
         : null;
@@ -124,16 +137,23 @@ function buildBenchmarkArtifact(result, thresholdsRequested) {
         : breaches.length;
 
     return {
-        ...result,
-        generatedAt: typeof result?.generatedAt === 'string' && result.generatedAt
-            ? result.generatedAt
-            : new Date().toISOString(),
-        thresholdCheck: {
-            requested,
-            ok,
-            breachCount,
-            breaches
-        }
+        requested,
+        ok,
+        breachCount,
+        breaches
+    };
+}
+
+function buildBenchmarkArtifact(result, thresholdsRequested) {
+    const thresholdCheck = normalizeThresholdCheck(result, thresholdsRequested);
+
+    return {
+        scenario: result.scenario,
+        runCount: result.runCount,
+        runs: Array.isArray(result.runs) ? result.runs : [],
+        aggregate: result.aggregate,
+        generatedAt: normalizeGeneratedAt(result?.generatedAt),
+        thresholdCheck
     };
 }
 
