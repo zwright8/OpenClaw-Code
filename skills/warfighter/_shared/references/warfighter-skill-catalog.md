@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 482
+- Total warfighter skills in this repo: 530
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, cross-domain integration playbook, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -546,3 +546,32 @@ Every skill output should include:
 - joint-water-production-and-distribution-security-cell
 - joint-pow-mia-and-missing-persons-fusion-cell
 - joint-electronic-attack-deconfliction-effects-cell
+
+## New Expansion Wave (2026-03-07, Cross-Domain Irregular, Infrastructure, and Information Operations Expansion)
+
+- joint-integrated-prisoner-exchange-and-truce-monitoring-cell
+- theater-open-source-intelligence-disinformation-counter-cell
+- joint-radiological-dirty-bomb-urban-response-cell
+- expeditionary-atmospheric-effects-monitor-cell
+- joint-expeditionary-mortuary-affairs-surge-cell
+- coalition-undersea-cable-repair-diplomacy-and-clearance-cell
+- strategic-food-water-insecurity-instability-forecast-cell
+- joint-critical-mineral-theater-supply-security-cell
+- maritime-chokepoint-inspection-and-quarantine-control-cell
+- contested-theater-additive-biomedical-device-fabrication-cell
+- joint-high-altitude-electromagnetic-pulse-consequence-cell
+- coalition-host-nation-civil-order-restoration-cell
+- joint-information-campaign-attribution-cell
+- expeditionary-tactical-rail-bridge-repair-cell
+- integrated-icebreaker-task-force-routing-cell
+- joint-post-strike-critical-infrastructure-triage-cell
+- theater-digital-twin-climate-risk-adaptation-cell
+- joint-force-veterinary-and-working-dog-support-cell
+- autonomous-multi-domain-decoy-synchronization-cell
+- joint-counter-wmd-site-neutralization-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Cross-Domain Irregular and Infrastructure Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Total warfighter skills after this run: 530

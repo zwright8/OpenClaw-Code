@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Integrated Prisoner Exchange and Truce Monitoring Cell"
+  short_description: "Help with Joint Integrated Prisoner Exchange and Truce Monitoring Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Integrated Prisoner Exchange and Truce Monitoring Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Maritime Chokepoint Inspection and Quarantine Control Cell"
+  short_description: "Help with Maritime Chokepoint Inspection and Quarantine Control Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Maritime Chokepoint Inspection and Quarantine Control Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

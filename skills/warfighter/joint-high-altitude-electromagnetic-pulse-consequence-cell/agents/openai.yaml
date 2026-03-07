@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint High Altitude Electromagnetic Pulse Consequence Cell"
+  short_description: "Help with Joint High Altitude Electromagnetic Pulse Consequence Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint High Altitude Electromagnetic Pulse Consequence Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

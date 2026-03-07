@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Counter WMD Site Neutralization Cell"
+  short_description: "Help with Joint Counter WMD Site Neutralization Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Counter WMD Site Neutralization Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

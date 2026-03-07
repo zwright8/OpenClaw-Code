@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Coalition Undersea Cable Repair Diplomacy and Clearance Cell"
+  short_description: "Help with Coalition Undersea Cable Repair Diplomacy and Clearance Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Coalition Undersea Cable Repair Diplomacy and Clearance Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---
