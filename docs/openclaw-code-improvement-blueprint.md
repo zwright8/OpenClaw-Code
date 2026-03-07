@@ -1,359 +1,244 @@
 # OpenClaw-Code Improvement Blueprint (Canonical)
 
-Last updated: 2026-03-06 21:46 America/New_York (lane update: occ-20260306-2136-lane-05-contract-gates)
+Last updated: 2026-03-06 22:28 America/New_York
+Cycle: occ-20260306-2136
 Owner: main orchestrator
-Scope: `cognition-core`, `swarm-protocol`, skills/runtime reliability, evaluation loops
 
 ---
 
-## 1) Research Inputs (This Cycle)
+## 1) Research Inputs (this cycle)
 
-### 1.1 Required `web_search` execution
-Executed required `web_search` queries for:
-- cognition-core architecture + deterministic orchestration patterns
-- swarm protocol reliability / multi-agent coordination patterns
-- skills/runtime reliability and observability patterns
-- evaluation loop and benchmark methodology patterns
+### 1.1 Required research execution
+Executed `web_search` on:
+- cognition-core architecture patterns
+- swarm/multi-agent reliability patterns
+- skills/runtime reliability patterns
+- evaluation loop/benchmark patterns
 
-Observed result: **all queries failed** with `429 exceeded_current_quota_error` (Kimi account suspended due to insufficient balance).
+Result: web_search calls failed this cycle due provider quota/suspension errors, so fallback sources were used.
 
-### 1.2 Fallback practical OSS research used (`web_fetch`)
-To keep the cycle actionable, this run used direct fetches from authoritative docs and OSS references:
-- LangGraph durable execution and determinism/idempotency requirements
-- Temporal retry policy semantics and declarative retry behavior
-- OpenTelemetry traces/span hierarchy for correlated telemetry
-- AutoGen group-chat manager turn-selection pattern + role specialization
-- LangSmith offline + online evaluation workflow split
-- Ragas multi-metric evaluation catalog for agent/tool-use quality
-- Anthropic “building effective agents” guidance (prefer simplest composable architecture)
-- SWE-bench benchmark ecosystem signal for coding-agent evaluation discipline
+### 1.2 Fallback practical OSS sources used
+- LangGraph (durable agent graphs + checkpointing)
+- Temporal retry policy docs (bounded retry/backoff/jitter/non-retryable classes)
+- AutoGen (role-specialized multi-agent coordination)
+- OpenAI Evals + Promptfoo (evaluation-as-gate in CI)
+- SWE-bench ecosystem docs (external coding-agent benchmark discipline)
 
-### 1.3 Insights applied to OpenClaw-Code
-1. **Durability without deterministic replay is a trap**: side effects must be idempotent and replay-safe.
-2. **Retry policy should be declarative + reason-coded**: avoid ad-hoc local retry logic drift.
-3. **Observability should be remediation-ready**: trace + reason payloads must map directly to fix planners.
-4. **Evaluation must run in two loops**: offline regression gating + online quality monitoring.
-5. **Use multi-metric quality, not one KPI**: productivity, reliability, calibration, latency, and tool-call quality all matter.
-6. **Prefer simple composable workflows before complex autonomy**: complexity only where measurable gains exist.
+### 1.3 Applied insights
+1. Deterministic, replay-safe artifacts > ad-hoc generation.
+2. Retry behavior must be explicit and bounded; avoid hidden retry drift.
+3. Reliability work should map directly to remediation and tests.
+4. Offline regression gates + online scorecards are both required.
+5. Multi-metric quality (success, timeout, calibration, latency, contract validity) beats single KPI optimization.
 
 ---
 
-## 2) Current Baseline Metrics (Fresh Snapshot)
+## 2) Baseline Metrics (captured at cycle start)
 
-Artifact anchors:
-- `cognition-core/reports/productivity-scorecard.latest.json` (`generatedAt`: `2771-09-17T21:33:36.931Z`) ⚠ invalid future timestamp
-- `cognition-core/reports/cognition-daily.json` (`generatedAt`: `2026-03-06T13:38:21.653Z`)
-- `cognition-core/reports/failed-outcome-audit.latest.json` (`generatedAt`: `2026-03-06T13:38:19.009Z`)
-- `swarm-protocol/state/simulation-benchmark.json` (`generatedAt`: missing, `thresholdCheck`: missing)
+Sources:
+- `cognition-core/reports/productivity-scorecard.latest.json`
+- `cognition-core/reports/cognition-daily.json`
+- `cognition-core/reports/failed-outcome-audit.latest.json`
+- `swarm-protocol/state/simulation-benchmark.json`
 
-### 2.1 Productivity baseline
-- Overall: **strong**
-- Productivity index: **97.83 / 100**
-- Cycle time: **2.341s**
-- Automation coverage: **100%**
-- Dispatch count: **4**
-- Blocked approvals: **0**
-- Cognition success rate: **100%**
-- Swarm simulation success rate: **90.63%**
-- Skill utility composite: **100%**
-- Step reduction estimate: **66.7%**
+### 2.1 Cycle-start baseline
+- Productivity index: **95.32**
+- Cycle time: **2.41s**
+- Swarm simulation success rate: **78.13%**
+- Swarm benchmark: `successRateAvg=0.7813`, `successRateMin=0.5000`, `timeoutRateAvg=0.1250`, `p95LatencyMs=225`
+- Scorecard timestamp anomaly: future `generatedAt` (invalid freshness)
+- Global audit gaps: `no-terminal-outcomes`, `required-approvers-missing`, `rollback-plan-missing`
 
-### 2.2 Cognition quality baseline
-- Overall: **pass**
-- Total outcomes: **4**
-- Terminal outcomes: **1**
-- Non-terminal outcomes: **3**
-- Mapping rate: **1.0**
-- Brier score: **N/A** (insufficient sample)
-- Calibration gap: **N/A** (insufficient sample)
-- Calibration readiness: **insufficient_sample_size** (`minimumSampleSize=3`, `mappedOutcomes=1`)
-- Confidence envelope upper bound: **0.764**
-
-### 2.3 Quality gaps (failed outcome audit)
-Global gaps:
-- `no-terminal-outcomes`
-- `required-approvers-missing`
-- `rollback-plan-missing`
-
-Blocked approval queue:
-- **0 items**
-
-### 2.4 Swarm benchmark baseline
-- Scenario: **baseline-routing-reliability**
-- Runs: **8**
-- Avg success rate: **0.9063**
-- Min success rate: **0.75**
-- Avg timeout rate: **0.0**
-- Max timeout rate: **0.0**
-- Avg latency: **112.03ms**
-- P95 latency: **330ms**
-- Metadata quality: **missing `generatedAt` + `thresholdCheck` fields**
-
-### 2.5 Delta vs prior 6h baseline (03:30 cycle)
-- Productivity index: `96.76 -> 97.83` (**+1.07**)
-- Cycle time: `10.965s -> 2.341s` (**-8.624s**, improved)
-- Swarm avg success: `90.63% -> 90.63%` (**flat**)
-- Swarm min success: `0.75 -> 0.75` (**flat**)
-- Swarm p95 latency: `330ms -> 330ms` (**flat**)
-- Calibration readiness: unchanged (`insufficient_sample_size`)
-- Scorecard timestamp anomaly: `2935 -> 2771` (**less extreme, still invalid**)
+### 2.2 Cycle-start repo validation snapshot
+- `npm run typecheck` ✅
+- `npm --prefix cognition-core test` ❌ (3 failures)
+- `npm --prefix swarm-protocol test` ❌ (9 failures)
+- `node scripts/validate-artifact-contracts.mjs` ❌ (freshness/timestamp drift)
 
 ---
 
 ## 3) Prioritized Bottlenecks
 
 ### P0
-1. **Scorecard artifact timestamp contract remains broken** (`generatedAt` year 2771).
-2. **Swarm benchmark contract incomplete** (missing `generatedAt` and `thresholdCheck`).
-3. **Calibration remains non-actionable** due low terminal outcome sample.
+1. Artifact freshness/time integrity drift (invalid scorecard timestamps)
+2. Swarm reliability floor regression (`successRateMin=0.50`, timeout pressure)
 
 ### P1
-4. **Swarm reliability floor remains brittle** (`successRateMin=0.75`, target >=0.80).
-5. **High-risk recommendation metadata still incomplete** (`required-approvers-missing`, `rollback-plan-missing`).
-6. **Retry/backoff reason taxonomy can drift across routing/orchestration/remediation outputs.**
+3. Retry/circuit/router behavior drift vs test expectations
+4. High-risk policy metadata completeness (approver/rollback evidence)
 
 ### P2
-7. Throughput is healthy; next gains must come from reliability evidence quality and lower variance, not raw volume.
+5. Eval-loop contract rigor and clearer gate feedback
 
 ---
 
 ## 4) Target Architecture Changes
 
-### 4.1 Cognition-core
-- Enforce write-time and test-time timestamp sanity bounds.
-- Keep threshold checks + diagnostics schema-stable and machine-readable.
-- Improve terminal outcome progression and calibration readiness observability.
-- Fail-closed on missing metadata for high-risk recommendations.
+### 4.1 cognition-core
+- Enforce sane timestamp generation and freshness checks in scorecard path.
+- Stabilize report/diagnostic contract fields for deterministic evaluation output.
+- Fail-closed policy metadata checks for high-risk recommendations.
 
-### 4.2 Swarm-protocol
-- Emit contract-complete benchmark artifacts every run.
-- Raise degraded routing reliability floor while preserving deterministic replay behavior.
-- Canonicalize retry/backoff reason payloads end-to-end.
+### 4.2 swarm-protocol
+- Harden retry hint parsing and bounded retry behavior.
+- Improve circuit/maintenance retry flow and reliability-aware routing floor.
 
-### 4.3 Skills/runtime reliability
-- Ensure side-effect boundaries are idempotent and replay-safe.
-- Bind trace IDs/reason payloads to remediation tasks for direct root-cause routing.
-
-### 4.4 Evaluation loop
-- Keep offline regression suite deterministic and reproducible.
-- Keep online scorecards benchmark-linked and threshold-check explicit.
+### 4.3 evaluation loop / runtime reliability
+- Keep artifact contract validation as a strict gate.
+- Preserve deterministic benchmark artifacts with explicit threshold checks.
 
 ---
 
 ## 5) Implementation Phases
 
-### Phase 0 — Lane hygiene + safety
-1. Rebase every lane branch from latest `main` before coding and before handoff.
-2. Enforce lane-pure file ownership (no scope creep commits).
-3. Require handoff bundle: changed files, validation output, commit SHA, known risks.
+### Phase 0 — Baseline lock
+Capture metrics, failing tests, and artifact states.
 
-### Phase 1 — Contract integrity
-1. Fix scorecard timestamp/year contract and deterministic threshold diagnostics.
-2. Fix swarm benchmark metadata contract (`generatedAt`, `thresholdCheck`).
+### Phase 1 — Scorecard + policy hardening
+Fix freshness/timestamp integrity and policy metadata fail-closed contracts.
 
-### Phase 2 — Reliability + taxonomy hardening
-1. Improve degraded route floor behavior.
-2. Canonicalize retry/backoff reason taxonomy across router + orchestrator + artifacts.
+### Phase 2 — Swarm reliability floor
+Patch retry/circuit/router logic to reduce fail-open behavior and routing instability.
 
-### Phase 3 — Calibration/evidence progression
-1. Improve terminal outcome closure instrumentation and mapped outcome accounting.
-2. Make calibration readiness progression explicit and testable.
-
-### Phase 4 — Policy closure + evaluation stabilization
-1. Enforce fail-closed metadata checks for high-risk recommendations.
-2. Ensure evaluation artifacts remain machine-actionable under failures.
+### Phase 3 — Gate verification
+Re-run repo validations, benchmark, scorecard, and compare deltas.
 
 ---
 
-## 6) Explicit Acceptance Tests
+## 6) Work-Lane Plan (5 independent lanes)
 
-### Repo-level gates
-```bash
-npm run typecheck
-npm run build
-```
+### Lane 01 — `occ-20260306-2136-lane-01-time-integrity`
+Scope:
+- `cognition-core/scripts/productivity-scorecard.ts`
+- `cognition-core/src/report/scoreboard.ts`
+- `cognition-core/test/report/report-generation.test.ts`
 
-### Cognition-core gates
-```bash
-npm --prefix cognition-core test
-npm --prefix cognition-core run evaluate
-npm --prefix cognition-core run dispatch
-npm --prefix cognition-core run scorecard
-```
+Validation:
+- `npm --prefix cognition-core test -- cognition-core/test/report/report-generation.test.ts`
+- `npm --prefix cognition-core run scorecard`
+- `node scripts/validate-artifact-contracts.mjs`
 
-### Swarm-protocol gates
-```bash
-npm --prefix swarm-protocol test
-npm --prefix swarm-protocol run benchmark:simulate
-```
+### Lane 02 — `occ-20260306-2136-lane-02-cognition-calibration`
+Scope:
+- `cognition-core/src/learning/evaluator.ts`
+- `cognition-core/src/learning/outcome-mapper.ts`
+- `cognition-core/test/learning/evaluator.test.ts`
 
-### Artifact integrity gates
-```bash
-npm run artifacts:validate
-```
+Validation:
+- `npm --prefix cognition-core test -- cognition-core/test/learning/evaluator.test.ts`
+- `npm --prefix cognition-core run evaluate`
 
-`artifacts:validate` checks are deterministic and machine-actionable:
-- canonical `generatedAt` timestamps across scorecard + benchmark + cognition daily + failed outcome audit
-- scorecard timestamp sanity bounds (`2024..2100`)
-- cross-artifact timestamp skew (`scorecard.generatedAt` vs `benchmark.generatedAt`, max 6h)
-- required scorecard/benchmark contract objects (`thresholdChecks`, `thresholdCheck`)
-- benchmark/scorecard swarm success drift (`scorecard.metrics.swarmSimSuccessRate` vs `benchmark.aggregate.successRateAvg`, max 0.5pp)
+### Lane 03 — `occ-20260306-2136-lane-03-policy-metadata`
+Scope:
+- `cognition-core/src/contracts/recommendations.ts`
+- `cognition-core/src/policy/fail-closed.ts`
+- `cognition-core/test/contracts/recommendations.test.ts`
 
+Validation:
+- `npm --prefix cognition-core test -- cognition-core/test/contracts/recommendations.test.ts`
+- `npm --prefix cognition-core test -- cognition-core/test/policy-engine.test.ts`
 
-Pass criteria:
-- All gates pass.
-- Scorecard `generatedAt` is in `2024..2100`.
-- Scorecard/benchmark timestamp skew is `<= 6h`.
-- Swarm benchmark includes required metadata fields.
-- Scorecard/benchmark swarm success drift is `<= 0.5pp`.
-- Swarm reliability floor does not regress (`>=0.75`) and trends toward `>=0.80`.
+### Lane 04 — `occ-20260306-2136-lane-04-swarm-reliability-floor`
+Scope:
+- `swarm-protocol/src/task-orchestrator.ts`
+- `swarm-protocol/src/task-router.ts`
+- `swarm-protocol/test/task-orchestrator.test.ts`
+- `swarm-protocol/test/task-router.test.ts`
+- `swarm-protocol/test/simulation-harness.test.ts`
 
----
+Validation:
+- `npm --prefix swarm-protocol test -- swarm-protocol/test/task-orchestrator.test.ts`
+- `npm --prefix swarm-protocol test -- swarm-protocol/test/task-router.test.ts`
+- `npm --prefix swarm-protocol test -- swarm-protocol/test/simulation-harness.test.ts`
+- `npm --prefix swarm-protocol run benchmark:simulate`
 
-## 7) Rollback Strategy
+### Lane 05 — `occ-20260306-2136-lane-05-contract-gates`
+Scope:
+- `scripts/validate-artifact-contracts.mjs`
+- `package.json`
+- `docs/openclaw-code-improvement-blueprint.md`
 
-1. **Single-lane rollback**: `git revert <lane_commit_sha>`
-2. **Batch rollback**: revert merged lane commit range in reverse order.
-3. **Schema rollback**: restore prior artifact schema if downstream parsers break.
-4. **Safety halt**: freeze merges when contract tests or regression gates fail.
-
----
-
-## 8) Expected Productivity Impact (Next 1–2 cycles)
-
-Primary targets:
-- Productivity index: **97.83 -> >= 98.20**
-- Cycle time: **2.341s -> <= 2.20s** (maintain low-latency gains)
-- Calibration readiness: `mappedOutcomes 1 -> >= 2` and clearer readiness diagnostics
-- Swarm min success floor: **0.75 -> >= 0.80**
-- Swarm p95 latency: **330ms -> <= 300ms**
-- Artifact integrity: scorecard + benchmark metadata fully contract-complete
-
-Secondary targets:
-- Reduce global quality gaps (`required-approvers-missing`, `rollback-plan-missing`)
-- Preserve step reduction at **>=66.7%** while increasing reliability evidence quality
+Validation:
+- `node scripts/validate-artifact-contracts.mjs`
+- `npm run typecheck`
 
 ---
 
-## 9) Five Independent Work Lanes (Authoritative Split)
+## 7) Acceptance Tests (explicit promotion gate)
 
-Global lane rules:
-- Rebase from `main` before coding and before handoff.
+Run in order:
+1. `npm run typecheck`
+2. `npm --prefix cognition-core test`
+3. `npm --prefix swarm-protocol test`
+4. `node scripts/validate-artifact-contracts.mjs`
+5. `npm --prefix swarm-protocol run benchmark:simulate`
+6. `npm --prefix cognition-core run scorecard`
+
+Promotion rule: all pass, or document exact failing residue + owning lane.
+
+---
+
+## 8) Rollback Strategy
+
+- Roll back by lane commit (lane-pure rollback only).
+- Re-run acceptance gate immediately after rollback.
+- Prioritize rollback order if safety is impacted:
+  1) swarm runtime lane,
+  2) artifact gate/time integrity lane,
+  3) remaining lanes.
+
+---
+
+## 9) Expected Productivity Impact
+
+Near-term target from this cycle:
+- freshness contract failures: **1 → 0**
+- cognition-core failing tests: **3 → 0**
+- swarm-protocol failing tests: **9 → <=2**
+- maintain or improve productivity index from **95.32**
+- recover swarm reliability floor over next cycles (`successRateMin >= 0.70` target)
+
+---
+
+## 10) Supervision Rules (mandatory)
+
+- Rebase before merge.
 - Lane-pure commits only.
-- No cross-lane file overlap.
-- Handoff must include changed files, validation output, commit SHA, risks.
-
-### Lane 1 — Scorecard contract/timestamp hardening
-- Label: `occ-20260306-0936-lane-01-scorecard-contract`
-- Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane01`
-- Scope files:
-  - `cognition-core/scripts/productivity-scorecard.ts`
-  - `cognition-core/src/report/scoreboard.ts`
-  - `cognition-core/test/report/report-generation.test.ts`
-- Required validation:
-  - `npm --prefix cognition-core test -- test/report/report-generation.test.ts`
-  - `npm --prefix cognition-core run scorecard`
-  - scorecard contract node check from Section 6
-- Commit criteria:
-  - scorecard `generatedAt` in valid range
-  - deterministic threshold diagnostics remain schema-stable
-
-### Lane 2 — Swarm benchmark metadata contract hardening
-- Label: `occ-20260306-0936-lane-02-benchmark-contract`
-- Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane02`
-- Scope files:
-  - `swarm-protocol/scripts/run-simulation-benchmark.ts`
-  - `swarm-protocol/state/simulation-benchmark.md` (format sync)
-  - `swarm-protocol/test/simulation-harness.test.ts`
-- Required validation:
-  - `npm --prefix swarm-protocol test -- test/simulation-harness.test.ts`
-  - `npm --prefix swarm-protocol run benchmark:simulate`
-  - benchmark contract node check from Section 6
-- Commit criteria:
-  - benchmark JSON always includes `generatedAt` + `thresholdCheck`
-  - markdown output remains consistent with JSON summary
-
-### Lane 3 — Calibration readiness + terminal evidence progression
-- Label: `occ-20260306-0936-lane-03-calibration-readiness`
-- Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane03`
-- Scope files:
-  - `cognition-core/src/learning/evaluator.ts`
-  - `cognition-core/src/learning/outcome-mapper.ts`
-  - `cognition-core/test/learning/evaluator.test.ts`
-  - `cognition-core/test/learning/outcome-mapper.test.ts`
-- Required validation:
-  - `npm --prefix cognition-core test -- test/learning/evaluator.test.ts`
-  - `npm --prefix cognition-core test -- test/learning/outcome-mapper.test.ts`
-  - `npm --prefix cognition-core run evaluate`
-- Commit criteria:
-  - readiness diagnostics deterministic and clearer
-  - mapped/terminal accounting less brittle and evidence-forward
-
-### Lane 4 — Fail-closed high-risk metadata enforcement
-- Label: `occ-20260306-0936-lane-04-fail-closed-metadata`
-- Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane04`
-- Scope files:
-  - `cognition-core/src/contracts/recommendations.ts`
-  - `cognition-core/src/policy/fail-closed.ts`
-  - `cognition-core/test/contracts/recommendations.test.ts`
-  - `cognition-core/test/policy-engine.test.ts`
-- Required validation:
-  - `npm --prefix cognition-core test -- test/contracts/recommendations.test.ts`
-  - `npm --prefix cognition-core test -- test/policy-engine.test.ts`
-  - `npm --prefix cognition-core run dispatch`
-- Commit criteria:
-  - missing approvers/rollback plan on high-risk recommendations are rejected
-  - rejection reasons are explicit and machine-readable
-
-### Lane 5 — Artifact contract gates + operator command surfaces
-- Label: `occ-20260306-2136-lane-05-contract-gates`
-- Workspace: `/Users/zacharywright/.openclaw/workspace/OpenClaw-Code-lane05`
-- Scope files:
-  - `scripts/validate-artifact-contracts.mjs`
-  - `package.json`
-  - `docs/openclaw-code-improvement-blueprint.md`
-- Required validation:
-  - `node scripts/validate-artifact-contracts.mjs`
-  - `npm run typecheck`
-- Commit criteria:
-  - validator emits clear actionable failures for timestamp skew and benchmark/scorecard drift
-  - root command surfaces include `npm run artifacts:validate` for CI/operator use
-
----
-
-## 10) Merge Protocol (Mandatory)
-
-1. Rebase lane branch on latest `main` before merge.
-2. Confirm lane-pure diff matches Section 9 scope.
-3. Attach validation output, changed files, commit SHA, known risks.
-4. Merge lanes sequentially (one at a time) to control blast radius.
-5. After each merge run smoke checks:
-   - `npm run typecheck`
-   - `npm run artifacts:validate`
-   - `npm --prefix cognition-core test -- test/learning/evaluator.test.ts`
-   - `npm --prefix swarm-protocol test -- test/task-router.test.ts`
-6. After all merges run:
-   - `npm --prefix cognition-core run scorecard`
-   - `npm --prefix swarm-protocol run benchmark:simulate`
-   - `npm run artifacts:validate`
-7. Compare deltas against Section 2 baseline and publish outcome summary.
+- No overlap edits across lanes.
+- If overlapping scope is discovered, pause and rescope instead of force-merging conflicts.
 
 ---
 
 ## 11) Step-by-Step Operator Manual
 
-1. Validate Section 2 artifact files parse and record baseline metrics.
-2. Launch/continue all five lanes from Section 9 (no overlap).
-3. Enforce rebase-first and lane-pure commit policy.
-4. Collect lane handoffs: changed files, tests, commit SHA, risks.
-5. Merge sequentially using Section 10 protocol.
-6. Regenerate scorecard + benchmark artifacts, then run `npm run artifacts:validate`.
-7. Recompute productivity + reliability deltas vs Section 2 baseline.
-8. Publish concise operator report with:
-   - research inputs used
-   - blueprint diff summary
-   - spawned lane labels / statuses
-   - commits merged
-   - validation status
-   - productivity score delta
-   - next 6h priorities
+1. Capture baseline artifacts and failing tests.
+2. Spawn one agent per lane with hard file scope + explicit validations.
+3. Require lane rebase + lane-pure commit.
+4. Merge passing lane commits incrementally.
+5. Run acceptance tests after each merge wave.
+6. Record metric deltas (scorecard + benchmark).
+7. Carry unresolved residue into next cycle as top priority.
+
+---
+
+## 12) This-Cycle Outcome Snapshot
+
+Merged lane commits:
+- `8b447a23dc` feat(cognition-core): harden scorecard time integrity and report diagnostics contract
+- `8dc56f38d3` feat(cognition-core): harden high-risk metadata fail-closed policy checks
+- `f4c2b90e30` feat(ci): harden artifact contract gates and operator validation entrypoints
+- `09ab58ad45` feat(swarm): restore deterministic retry/circuit behavior and routing reliability floor
+
+Lane held back:
+- lane 02 commit not merged due integration/rebase conflict against newer main-line learning changes.
+
+Post-merge validation snapshot:
+- `npm run typecheck` ✅
+- `npm --prefix cognition-core test` ✅
+- `npm --prefix swarm-protocol test` ❌ (**1** failing test remains)
+- `node scripts/validate-artifact-contracts.mjs` ✅
+- `benchmark:simulate` ✅ (threshold check remains pass)
+- `scorecard` ✅ (`generatedAt` now sane and freshness-safe)
+
+Residual failing test:
+- `swarm-protocol/test/simulation-harness.test.ts` — `benchmark script emits metadata contract fields without threshold input`
