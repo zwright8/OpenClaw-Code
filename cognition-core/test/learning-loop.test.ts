@@ -56,7 +56,8 @@ test('runCounterfactualReplay ranks variants by projected gain', () => {
 
     assert.equal(replay.runs.length, 2);
     assert.equal(replay.runs[0].id, 'large');
-    assert.ok(replay.runs[0].deltaSuccessRate >= replay.runs[1].deltaSuccessRate);
+    assert.ok(replay.runs[0].improvementConfidence >= replay.runs[1].improvementConfidence);
+    assert.ok(replay.runs[0].projectedSuccessRateP90 >= replay.runs[0].projectedSuccessRateP10);
 });
 
 test('buildLearningRecommendations emits prioritized actions', () => {
@@ -81,8 +82,27 @@ test('buildLearningRecommendations emits prioritized actions', () => {
 
     assert.ok(recommendations.length > 0);
     assert.ok(recommendations.some((item) => item.category === 'timeout_resilience'));
-    assert.ok(recommendations.some((item) => item.category === 'counterfactual_winner'));
+    assert.ok(recommendations.some((item) => (
+        item.category === 'counterfactual_winner' || item.category === 'counterfactual_validation'
+    )));
     assert.ok(recommendationsWithAdaptive.some((item) => item.category === 'adaptive_policy_selection'));
+});
+
+test('buildLearningRecommendations requests validation when replay confidence is low', () => {
+    const summary = summarizeOutcomes(sampleOutcomes());
+    const replay = {
+        baselineSuccessRate: 0.4,
+        best: {
+            name: 'Risky variant',
+            deltaSuccessRate: 0.12,
+            projectedSuccessRate: 0.52,
+            projectedSuccessRateP10: 0.36,
+            projectedSuccessRateP90: 0.58,
+            improvementConfidence: 0.55
+        }
+    };
+    const recommendations = buildLearningRecommendations(summary, replay);
+    assert.ok(recommendations.some((item) => item.category === 'counterfactual_validation'));
 });
 
 test('simulateAdaptivePolicySelection converges toward stronger policy', () => {

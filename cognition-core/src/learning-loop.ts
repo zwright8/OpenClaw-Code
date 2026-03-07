@@ -304,9 +304,12 @@ export function runCounterfactualReplay(summary, variants = []) {
 
     const outcomesTotal = Number(baseline.total) || 0;
     const baselineSuccess = Number(baseline.success) || 0;
+    const baselineSuccessRate = Number(baseline.successRate) || 0;
     const timedOut = Number(baseline.timedOut) || 0;
     const failed = Number(baseline.failure) || 0;
     const rejected = Number(baseline.rejected) || 0;
+    const replayRuns = Math.max(24, Math.floor(Math.min(2000, Math.max(24, outcomesTotal * 18))));
+    const random = createSeededRandom(outcomesTotal + baselineSuccess + timedOut + failed + rejected + 1337);
 
     const runs = variantList.map((variant) => {
         const recoveredTimeout = timedOut * variant.timeoutRecoveryRate;
@@ -321,6 +324,30 @@ export function runCounterfactualReplay(summary, variants = []) {
         const projectedSuccessRate = outcomesTotal > 0
             ? projectedSuccess / outcomesTotal
             : 0;
+        const simulatedRates = [];
+        let betterThanBaselineCount = 0;
+
+        // Self-consistency style replay: sample many plausible outcome paths and score agreement.
+        for (let i = 0; i < replayRuns; i++) {
+            const simulatedRecoveredTimeout = runBernoulliTrials(variant.timeoutRecoveryRate, timedOut, random);
+            const simulatedRecoveredFailure = runBernoulliTrials(variant.retryRecoveryRate, Math.max(0, failed - timedOut), random);
+            const simulatedRecoveredRejected = runBernoulliTrials(variant.routingRecoveryRate, rejected, random);
+            const simulatedSuccess = clamp(
+                baselineSuccess + simulatedRecoveredTimeout + simulatedRecoveredFailure + simulatedRecoveredRejected,
+                0,
+                outcomesTotal
+            );
+            const simulatedRate = outcomesTotal > 0 ? simulatedSuccess / outcomesTotal : 0;
+            simulatedRates.push(simulatedRate);
+            if (simulatedRate > baselineSuccessRate) betterThanBaselineCount++;
+        }
+        simulatedRates.sort((a, b) => a - b);
+        const projectedSuccessRateP10 = Number((quantileSorted(simulatedRates, 0.1) || 0).toFixed(4));
+        const projectedSuccessRateP50 = Number((quantileSorted(simulatedRates, 0.5) || 0).toFixed(4));
+        const projectedSuccessRateP90 = Number((quantileSorted(simulatedRates, 0.9) || 0).toFixed(4));
+        const improvementConfidence = replayRuns > 0
+            ? Number((betterThanBaselineCount / replayRuns).toFixed(4))
+            : 0;
 
         return {
             ...variant,
@@ -331,12 +358,21 @@ export function runCounterfactualReplay(summary, variants = []) {
             },
             projectedSuccess: Number(projectedSuccess.toFixed(2)),
             projectedSuccessRate: Number(projectedSuccessRate.toFixed(4)),
-            deltaSuccessRate: Number((projectedSuccessRate - (baseline.successRate || 0)).toFixed(4))
+            deltaSuccessRate: Number((projectedSuccessRate - baselineSuccessRate).toFixed(4)),
+            projectedSuccessRateP10,
+            projectedSuccessRateP50,
+            projectedSuccessRateP90,
+            improvementConfidence
         };
-    }).sort((a, b) => b.deltaSuccessRate - a.deltaSuccessRate);
+    }).sort((a, b) => (
+        (b.improvementConfidence - a.improvementConfidence)
+        || (b.projectedSuccessRateP50 - a.projectedSuccessRateP50)
+        || (b.deltaSuccessRate - a.deltaSuccessRate)
+    ));
 
     return {
-        baselineSuccessRate: Number(baseline.successRate || 0),
+        baselineSuccessRate,
+        replayRuns,
         runs,
         best: runs[0] || null
     };
@@ -571,6 +607,20 @@ export function buildLearningRecommendations(
     }
 
     const recommendations = [];
+    if ((baseline.total || 0) < 25) {
+        recommendations.push({
+            priority: 'P2',
+            category: 'evidence_density',
+            title: 'Increase outcome sample size before major policy shifts',
+            rationale: `Only ${baseline.total} outcomes are available; policy estimates can be noisy`,
+            action: 'Run shadow traffic and collect at least 25 labeled outcomes before irreversible rollout changes.',
+            expectedImpact: {
+                metric: 'outcomeSampleSize',
+                current: baseline.total || 0,
+                target: 25
+            }
+        });
+    }
 
     if ((baseline.timeoutRate || 0) >= minTimeoutRateForAction) {
         recommendations.push({
@@ -655,18 +705,35 @@ export function buildLearningRecommendations(
     }
 
     if (replay?.best) {
-        recommendations.push({
-            priority: 'P1',
-            category: 'counterfactual_winner',
-            title: `Adopt replay winner: ${replay.best.name}`,
-            rationale: `Counterfactual replay projects +${(replay.best.deltaSuccessRate * 100).toFixed(1)}pp success rate`,
-            action: 'Roll out this policy variant behind a feature flag and compare against control over next 7 days.',
-            expectedImpact: {
-                metric: 'successRate',
-                current: replay.baselineSuccessRate,
-                target: replay.best.projectedSuccessRate
-            }
-        });
+        const highConfidence = (replay.best.improvementConfidence || 0) >= 0.7
+            && (replay.best.projectedSuccessRateP10 || 0) > (replay.baselineSuccessRate || 0);
+        if (highConfidence) {
+            recommendations.push({
+                priority: 'P1',
+                category: 'counterfactual_winner',
+                title: `Adopt replay winner: ${replay.best.name}`,
+                rationale: `Projected gain is +${(replay.best.deltaSuccessRate * 100).toFixed(1)}pp with ${(replay.best.improvementConfidence * 100).toFixed(1)}% confidence`,
+                action: 'Roll out this policy variant behind a feature flag and compare against control over next 7 days.',
+                expectedImpact: {
+                    metric: 'successRate',
+                    current: replay.baselineSuccessRate,
+                    target: replay.best.projectedSuccessRate
+                }
+            });
+        } else {
+            recommendations.push({
+                priority: 'P2',
+                category: 'counterfactual_validation',
+                title: `Validate replay leader before full rollout: ${replay.best.name}`,
+                rationale: `Projected gain is uncertain (confidence ${(replay.best.improvementConfidence * 100).toFixed(1)}%, p10 ${(replay.best.projectedSuccessRateP10 * 100).toFixed(1)}%)`,
+                action: 'Run A/B shadow validation for this variant and require confidence >= 70% before promotion.',
+                expectedImpact: {
+                    metric: 'successRate.confidence',
+                    current: replay.best.improvementConfidence,
+                    target: 0.7
+                }
+            });
+        }
     }
 
     if (operationalInsights?.drift?.sufficientData && operationalInsights.drift.alert) {

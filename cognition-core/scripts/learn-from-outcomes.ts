@@ -81,12 +81,12 @@ function formatMarkdown(result) {
         '',
         '## Counterfactual Replay',
         '',
-        '| Variant | Delta Success Rate | Projected Success Rate |',
-        '| --- | ---: | ---: |'
+        '| Variant | Delta Success Rate | Projected Success Rate | Confidence | P10-P90 |',
+        '| --- | ---: | ---: | ---: | ---: |'
     ];
 
     for (const run of result.replay.runs) {
-        lines.push(`| ${run.name} | ${(run.deltaSuccessRate * 100).toFixed(2)}pp | ${(run.projectedSuccessRate * 100).toFixed(2)}% |`);
+        lines.push(`| ${run.name} | ${(run.deltaSuccessRate * 100).toFixed(2)}pp | ${(run.projectedSuccessRate * 100).toFixed(2)}% | ${(run.improvementConfidence * 100).toFixed(1)}% | ${(run.projectedSuccessRateP10 * 100).toFixed(1)}%-${(run.projectedSuccessRateP90 * 100).toFixed(1)}% |`);
     }
 
     if (result.adaptiveRollout?.recommendedArm) {
