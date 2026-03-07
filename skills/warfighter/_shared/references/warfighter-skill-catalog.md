@@ -521,3 +521,28 @@ Every skill output should include:
 - nc3-emergency-action-message-integrity-assurance-cell
 - strategic-deterrence-signaling-options-cell
 - coalition-sof-information-bridge-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Joint Support and Continuity Expansion)
+
+- Added skills this run: 16
+- Updated shared reference this run: warfighter-external-tool-and-protocol-catalog.md
+- Total warfighter skills after this run: 511
+
+## New Expansion Wave (2026-03-07, Joint Support, Governance, and Recovery Additions)
+
+- joint-cyber-defense-hunt-and-incident-containment-cell
+- joint-cbrn-consequence-management-and-restoration-cell
+- joint-combat-identification-and-fratricide-prevention-cell
+- theater-airfield-damage-assessment-and-rapid-repair-cell
+- joint-maritime-boarding-and-vessel-search-coordination-cell
+- joint-hostage-recovery-mission-integration-cell
+- joint-military-police-and-detainee-evidence-chain-cell
+- joint-finance-and-pay-continuity-in-contested-theaters-cell
+- joint-religious-affairs-and-moral-injury-support-cell
+- joint-railhead-and-intermodal-military-throughput-cell
+- air-missile-defense-early-warning-network-resilience-cell
+- joint-spectrum-governance-and-emissions-control-cell
+- joint-port-opening-and-jlots-synchronization-cell
+- joint-water-production-and-distribution-security-cell
+- joint-pow-mia-and-missing-persons-fusion-cell
+- joint-electronic-attack-deconfliction-effects-cell

@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Port Opening And Jlots Synchronization Cell"
+  short_description: "Help with Joint Port Opening And Jlots Synchronization Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Port Opening And Jlots Synchronization Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

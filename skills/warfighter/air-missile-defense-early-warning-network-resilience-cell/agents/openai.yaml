@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Air Missile Defense Early Warning Network Resilience Cell"
+  short_description: "Help with Air Missile Defense Early Warning Network Resilience Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Air Missile Defense Early Warning Network Resilience Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

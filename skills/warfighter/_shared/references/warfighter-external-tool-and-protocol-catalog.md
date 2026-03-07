@@ -84,6 +84,48 @@ Include these fields whenever a recommendation depends on external systems:
 - Cross-check tools: acknowledgment-chain ledger and independent path monitor.
 - Typical products: continuity posture snapshots, route failover actions, integrity exceptions.
 
+### `ts-airfield-recovery-v1`
+- Use for: airfield damage assessment, runway repair sequencing, sortie regeneration planning.
+- Primary tools: runway status dashboards, engineering task schedulers, airfield imagery exploitation tools.
+- Cross-check tools: independent pavement status survey and alternate repair timeline board.
+- Typical products: runway recovery plan, sortie regeneration timeline, repair resource matrix.
+
+### `ts-cbrn-consequence-v1`
+- Use for: CBRN hazard tracking, consequence management, decontamination and restoration prioritization.
+- Primary tools: CBRN sensor fusion services, plume/hazard modeling tools, restoration coordination boards.
+- Cross-check tools: independent hazard sampling and civil support status mirrors.
+- Typical products: hazard control overlays, restoration decision matrix, contamination risk updates.
+
+### `ts-maritime-interdiction-v1`
+- Use for: maritime boarding operations, vessel search coordination, interdiction evidence tracking.
+- Primary tools: maritime COP, vessel behavior analytics, boarding mission planning tools.
+- Cross-check tools: independent vessel identity validation and evidence custody verification service.
+- Typical products: boarding sequence plan, vessel disposition board, evidence chain log.
+
+### `ts-detainee-accountability-v1`
+- Use for: detainee tracking, custody transfer assurance, evidence provenance for military police operations.
+- Primary tools: detainee management platforms, biometric verification systems, case/evidence management tools.
+- Cross-check tools: facility roster reconciliation and independent custody audit board.
+- Typical products: custody transfer ledger, evidence packet index, accountability exception report.
+
+### `ts-finance-pay-continuity-v1`
+- Use for: deployed pay continuity, disconnected disbursement workflows, anti-fraud reconciliation in contested theaters.
+- Primary tools: pay and entitlements systems, disbursement reconciliation services, fraud analytics boards.
+- Cross-check tools: treasury disbursement mirror and disconnected transaction integrity tracker.
+- Typical products: pay continuity branches, reconciliation task board, disbursement risk map.
+
+### `ts-spectrum-governance-v1`
+- Use for: spectrum allocation governance, emissions control, and interference adjudication across joint force elements.
+- Primary tools: spectrum assignment and EMS COP tools, emitter management services, conflict adjudication boards.
+- Cross-check tools: independent RF monitoring mesh and alternate spectrum conflict log.
+- Typical products: emissions control matrix, spectrum governance order, interference resolution timeline.
+
+### `ts-pow-mia-fusion-v1`
+- Use for: POW/MIA and missing-person recovery fusion, case confidence management, and interagency coordination.
+- Primary tools: personnel accountability systems, recovery case management tools, geospatial clue fusion services.
+- Cross-check tools: independent case ledger and forensic confidence review board.
+- Typical products: missing-person fusion brief, recovery prioritization board, case confidence ledger.
+
 ## Protocol Stack Catalog
 
 ### `ps-joint-tactical-link-stack-v1`
@@ -117,6 +159,18 @@ Include these fields whenever a recommendation depends on external systems:
 ### `ps-nato-coalition-stack-v1`
 - Protocols: `NATO APP-11/ADatP-3 aligned`, `USMTF`, `OGC`.
 - Use for: coalition mission coordination and releasable message exchange.
+
+### `ps-cbrn-emergency-stack-v1`
+- Protocols: `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Use for: CBRN consequence management and military-civil emergency restoration coordination.
+
+### `ps-detainee-accountability-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: detainee status transfer, custody accountability, and coalition legal traceability.
+
+### `ps-finance-disconnected-pay-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `STIX/TAXII`.
+- Use for: contested-theater pay continuity, fraud monitoring, and reconciliation handoffs.
 
 ## Endpoint Security Profiles
 
