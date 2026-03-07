@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 530
+- Total warfighter skills in this repo: 550
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, cross-domain integration playbook, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -575,3 +575,32 @@ Every skill output should include:
 - Added skills this run: 20
 - Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
 - Total warfighter skills after this run: 530
+
+## New Expansion Wave (2026-03-07, Deep Maritime, Infrastructure Integrity, and Civil Synchronization Expansion)
+
+- joint-submarine-rescue-and-deep-submergence-coordination-cell
+- joint-munitions-port-safety-and-explosive-arc-zoning-cell
+- contested-theater-courier-network-and-physical-message-assurance-cell
+- joint-aviation-fuel-quality-and-contamination-forensics-cell
+- expeditionary-ammunition-demilitarization-and-safe-disposal-cell
+- joint-coastal-tsunami-early-warning-and-force-protection-cell
+- theater-telemetry-denied-missile-launch-characterization-cell
+- joint-undersea-volcanic-seismic-impact-operations-cell
+- coalition-contested-customs-border-clearance-cell
+- expeditionary-field-laundry-and-textile-decontamination-cell
+- joint-ocean-forecast-anti-submarine-acoustic-advantage-cell
+- coalition-humanitarian-airdrop-corridor-governance-cell
+- expeditionary-bridge-inspection-digital-nondestructive-evaluation-cell
+- joint-energy-infrastructure-physical-cyber-convergence-cell
+- theater-satellite-navwar-civil-timing-protection-cell
+- joint-psychological-health-suicide-postvention-command-support-cell
+- joint-space-launch-debris-reentry-civil-warning-cell
+- joint-siege-urban-utility-restoration-sequencing-cell
+- expeditionary-additive-spare-part-intellectual-property-compliance-cell
+- joint-maritime-salvage-diver-life-support-and-decompression-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Deep Maritime and Infrastructure Integrity Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Total warfighter skills after this run: 550
