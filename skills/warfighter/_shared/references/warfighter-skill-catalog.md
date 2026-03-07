@@ -4,11 +4,12 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 199
-- Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
+- Total warfighter skills in this repo: 223
+- Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, joint toolchain execution matrix, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
 - All skills now include a `U.S. Warfighter Tool Auth and Access Drill` section for credential and transport readiness checks.
+- All skills now include a `U.S. Joint Toolchain Execution Matrix` section for protocol-bound tool invocation, acknowledgment tracking, and command gating.
 
 ## Domain Coverage Matrix
 
@@ -167,3 +168,30 @@ Every skill output should include:
 - strategic-reserve-munitions-surge-manufacturing-cell
 - contested-railhead-protection-and-repair-cell
 - tactical-cloudoutage-mission-continuity-cell
+
+## New Expansion Wave (2026-03-07, Joint Toolchain Execution Expansion)
+
+- homeland-maritime-port-cyber-physical-defense-cell
+- joint-ai-enabled-collection-gaps-optimizer-cell
+- contested-orbital-rendezvous-threat-assessment-cell
+- tactical-under-ice-logistics-and-resupply-cell
+- multi-domain-camouflage-concealment-deception-analytics-cell
+- coalition-spectrum-governance-and-dynamic-reallocation-cell
+- expeditionary-hydrogen-power-and-fuel-cell-support-cell
+- forward-arming-farp-threat-adaptation-cell
+- joint-radiological-dispersal-device-urban-response-cell
+- adversary-drone-manufacturing-network-disruption-cell
+- theater-fiber-sabotage-detection-and-reroute-cell
+- strategic-commercial-satcom-leo-prioritization-cell
+- austere-waterway-bridge-repair-autonomy-cell
+- mission-data-fabric-releasability-automation-cell
+- integrated-reserve-component-callup-optimizer-cell
+- contested-environment-signal-intelligence-asset-cueing-cell
+- theater-digital-engineering-mission-thread-assurance-cell
+- expeditionary-weather-sensor-mesh-reconstitution-cell
+- joint-icebreaker-escort-and-arctic-sealift-cell
+- tactical-uncrewed-ground-sensor-emplacement-cell
+- coalition-counter-proxy-force-pattern-analysis-cell
+- strategic-airbase-energy-denial-mitigation-cell
+- cyber-deployed-medical-device-defense-cell
+- civil-infrastructure-cyber-restoration-fusion-cell

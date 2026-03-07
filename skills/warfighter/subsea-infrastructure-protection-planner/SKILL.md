@@ -77,3 +77,9 @@ Primary products for this skill: critical infrastructure risk map, monitoring po
 - Use `../_shared/references/us-warfighter-tool-auth-and-access-drill.md` to verify account state, role binding, and transport availability before critical actions.
 - If any critical integration lacks valid credentials, publish a degraded-mode branch and request revalidation suspense.
 - Record auth/access status in the output handoff so downstream cells can execute without re-triage.
+
+## U.S. Joint Toolchain Execution Matrix
+
+- Use `../_shared/references/us-joint-toolchain-execution-matrix.md` to bind each recommendation to an explicit tool family, protocol binding, and command gate.
+- Include `toolchain_execution_id`, `primary_system`, `cross_check_system`, `protocol_binding`, and `ack_status` for every critical external dependency.
+- If schema validation, acknowledgment, or cross-check freshness fails, publish degraded-mode branch guidance and a commander decision prompt.

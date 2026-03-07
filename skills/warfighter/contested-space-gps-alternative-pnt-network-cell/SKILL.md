@@ -76,3 +76,9 @@ Primary products for this skill: mission estimate, synchronization matrix, risk 
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## U.S. Joint Toolchain Execution Matrix
+
+- Use `../_shared/references/us-joint-toolchain-execution-matrix.md` to bind each recommendation to an explicit tool family, protocol binding, and command gate.
+- Include `toolchain_execution_id`, `primary_system`, `cross_check_system`, `protocol_binding`, and `ack_status` for every critical external dependency.
+- If schema validation, acknowledgment, or cross-check freshness fails, publish degraded-mode branch guidance and a commander decision prompt.
