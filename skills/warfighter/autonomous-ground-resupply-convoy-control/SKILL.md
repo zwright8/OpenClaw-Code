@@ -83,3 +83,9 @@ Primary products for this skill: autonomous convoy execution matrix, route risk 
 - Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
 - Include adapter health status and last-success UTC for each mission-critical integration.
 - Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.
+
+## Cross-Domain Effects Ledger
+
+- Build and maintain a second-order effects ledger using `../_shared/references/cross-domain-effects-ledger.md`.
+- For each recommended COA, map likely downstream effects across at least two additional domains and assign an owning staff cell.
+- Include effect triggers, report format, fallback communications path, and mitigation actions in the staff tasking output.

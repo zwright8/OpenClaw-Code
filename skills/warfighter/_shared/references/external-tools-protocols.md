@@ -150,3 +150,26 @@ Include these fields in outputs when tool integration is used:
 - Tool Invocation Packet fields for each critical tool dependency
 - Adapter contract status (`adapter_id`, protocol, auth mode, last-success UTC) for each critical dependency
 - Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback
+
+## New Toolchain Profiles (2026-03-07, Full-Domain Warfighter Expansion)
+
+- `joint-maritime-prepositioning-and-sealift-survivability-v1`: prepositioning inventory systems + sealift route risk analytics + maritime COP; protocols `USMTF`, `AIS/NMEA`, `Link 16`.
+- `theater-hypersonic-attack-warning-response-v1`: missile warning feeds + IAMD C2 + base protection COP; protocols `Link 16 J-series`, `USMTF`.
+- `contested-spectrum-ntn-satcom-failover-v1`: SATCOM planners + spectrum monitors + network telemetry; protocols `API/JSON`, `USMTF`, `STIX/TAXII`.
+- `expeditionary-airfield-crater-repair-v1`: runway damage assessment tools + engineer repair planners + sortie schedulers; protocols `CoT`, `OGC`, `USMTF`.
+- `joint-civil-evacuation-corridor-assurance-v1`: NEO/evac planners + civil transport feeds + force protection COP; protocols `USMTF`, `OGC`, `API/JSON`.
+- `autonomous-border-sensor-fusion-cueing-v1`: border surveillance sensors + UxS control stations + common operating picture; protocols `CoT`, `VMF`, `API/JSON`.
+- `coalition-energy-grid-cyber-physical-defense-v1`: utility telemetry + SIEM/SOAR + infrastructure risk tools; protocols `STIX/TAXII`, `OGC`, `USMTF`.
+- `strategic-deception-campaign-effects-assessment-v1`: IO planning tools + open-source telemetry + campaign effect dashboards; protocols `API/JSON`, `USMTF`.
+- `tactical-undersea-cable-landing-site-protection-v1`: subsea telemetry + coastal sensors + maritime COP; protocols `AIS/NMEA`, `OGC`, `USMTF`.
+- `joint-space-launch-range-denial-mitigation-v1`: SDA warning catalogs + launch range security systems + cyber defense telemetry; protocols `API/JSON`, `USMTF`, `Link 16`.
+- `theater-bulk-waterway-logistics-recovery-v1`: inland waterway logistics systems + engineering status boards + movement planners; protocols `USMTF`, `API/JSON`.
+- `contested-medical-countermeasure-distribution-v1`: medical logistics inventories + patient movement systems + transport C2; protocols `USMTF`, `HL7/FHIR`, `API/JSON`.
+- `joint-allied-fuel-specification-interoperability-v1`: fuel quality databases + sustainment systems + maintenance advisories; protocols `USMTF`, `API/JSON`, `CSV`.
+- `expeditionary-weather-radar-gap-filling-v1`: weather radar feeds + remote sensing fusion + flight operations planning; protocols `OGC`, `API/JSON`, `USMTF`.
+- `homeland-port-entry-defense-screening-v1`: port security C2 + customs screening feeds + counterintelligence watchlists; protocols `USMTF`, `API/JSON`.
+- `joint-ai-enabled-target-fabric-integrity-v1`: targeting repositories + data lineage validators + legal/authority workflow tools; protocols `USMTF`, `API/JSON`, `VMF`.
+- `tactical-forward-arms-room-accountability-v1`: munitions accountability systems + access controls + surveillance logs; protocols `USMTF`, `API/JSON`.
+- `coalition-public-affairs-information-friction-v1`: media monitoring + influence analysis + coordinated release workflows; protocols `API/JSON`, `NATO APP-11 aligned`.
+- `strategic-critical-software-supply-chain-assurance-v1`: SBOM scanners + artifact provenance stores + vulnerability intelligence; protocols `API/JSON`, `STIX/TAXII`.
+- `contested-theater-prisoner-tracking-compliance-v1`: detainee tracking systems + legal compliance workflows + transfer coordination tools; protocols `USMTF`, `API/JSON`.

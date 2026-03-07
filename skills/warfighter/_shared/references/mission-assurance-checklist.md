@@ -63,3 +63,9 @@ Use this checklist before delivering any mission recommendation.
 - Confirm at least two adjacent cells are identified for escalation based on mission risk thresholds.
 - Confirm each escalation trigger is measurable and includes an owner plus required report format.
 - Confirm each escalation path has a no-fail comms fallback and expected delay annotation.
+
+## Cross-Domain Effects Control Addendum (2026-03-07)
+
+- Verify each recommended COA includes a populated cross-domain effects ledger entry.
+- Validate every high-severity downstream effect has an owner, mitigation action, and fallback comms path.
+- Reject final release if effect triggers are undefined for high-consequence recommendations.

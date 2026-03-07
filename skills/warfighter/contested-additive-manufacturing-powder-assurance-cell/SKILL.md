@@ -83,3 +83,9 @@ Primary products for this skill: mission estimate, synchronization matrix, risk 
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## Cross-Domain Effects Ledger
+
+- Build and maintain a second-order effects ledger using `../_shared/references/cross-domain-effects-ledger.md`.
+- For each recommended COA, map likely downstream effects across at least two additional domains and assign an owning staff cell.
+- Include effect triggers, report format, fallback communications path, and mitigation actions in the staff tasking output.
