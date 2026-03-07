@@ -81,6 +81,7 @@
 - `npm --prefix swarm-protocol run demo:orchestrator` - run orchestrator demo flow.
 - `npm --prefix swarm-protocol run approval:queue` - export approval queue reports.
 - `npm --prefix swarm-protocol run benchmark:simulate` - run simulation benchmark scenario.
+- `npm --prefix swarm-protocol run ops` - run swarm operator tooling entrypoint.
 - `npm --prefix swarm-protocol run ops -- status` - inspect operator status.
 - `npm --prefix swarm-protocol run ops -- queue --limit 10` - inspect queued tasks with a bounded view.
 - `npm --prefix swarm-protocol run ops -- queue --approvals` - inspect approval-pending tasks only.
@@ -92,3 +93,4 @@
 - Verified `9d022080de..bac40da690`: added root (`agent:*`, `artifacts:validate`, `skills:registry:*`, `skills:route`, `skills:run`) and `cognition-core` script entrypoints are now reflected above.
 - Verified `bac40da690..c52ffb61e3`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
 - Verified `345fccb4e9..1666d82e34`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `1666d82e34..3c6b201991`: no new root/`cognition-core`/`swarm-protocol` npm script deltas; added missing documented `swarm-protocol` `ops` entrypoint.
