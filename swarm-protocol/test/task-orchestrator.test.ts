@@ -353,6 +353,39 @@ test('RateLimit-Reset delta seconds is parsed as retry hint', async () => {
     assert.equal(current.nextRetryAt, 33_630);
 });
 
+test('Retry-After HTTP-date is parsed even with trailing metadata', async () => {
+    const clock = createClock(10_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        maxRetryDelayMs: 5_000,
+        maxRetryHintMs: 60_000,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-after-date',
+        task: 'Honor Retry-After HTTP-date hint'
+    });
+
+    const retryAtHttpDate = new Date(clock.now() + 30_000).toUTCString();
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-retry-after-date',
+        accepted: false,
+        reason: `HTTP 503; Retry-After: ${retryAtHttpDate}; trace=abc123`,
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 40_000);
+});
+
 test('X-RateLimit-Reset epoch seconds is parsed as retry hint', async () => {
     const clock = createClock(2_000_000);
     const orchestrator = new TaskOrchestrator({

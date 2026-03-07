@@ -418,7 +418,7 @@ function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
     const secMatch = text.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?/i);
     if (secMatch) return Number(secMatch[1]) * 1000;
 
-    const dateMatch = text.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},.+)$/i);
+    const dateMatch = text.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},\s*\d{1,2}\s+[A-Za-z]{3}\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+GMT)/i);
     if (dateMatch) {
         const dateMs = Date.parse(dateMatch[1].trim());
         if (Number.isFinite(dateMs)) {

@@ -27,7 +27,7 @@ A library for agent introspection. It parses execution logs, session history, an
 ### 2. `swarm-protocol`
 Typed schemas and handshake primitives for agent-to-agent coordination.
 Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
-Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, result correlation, and bounded retry-hint handling (`Retry-After`, `RateLimit-Reset`) to prevent extreme backoff delays from stalling queues.
+Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, result correlation, and bounded retry-hint handling (`Retry-After`, `RateLimit-Reset`, including HTTP-date format) to prevent extreme backoff delays from stalling queues.
 Adds optional idempotency-aware deduplication (coalesce/reject modes with bounded window) to suppress duplicate dispatch bursts.
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
