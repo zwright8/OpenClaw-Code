@@ -18,6 +18,9 @@ const OPEN_STATUSES = new Set([
 ]);
 
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
+const CIRCUIT_CLOSED = 'closed';
+const CIRCUIT_OPEN = 'open';
+const CIRCUIT_HALF_OPEN = 'half_open';
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -112,6 +115,7 @@ export class TaskOrchestrator {
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
+        circuitBreaker = null,
         now = Date.now,
         logger = console
     }) {
@@ -142,10 +146,163 @@ export class TaskOrchestrator {
         this.retryDelayMs = Number.isFinite(retryDelayMs) && retryDelayMs >= 0
             ? Number(retryDelayMs)
             : 500;
+        this.circuitBreaker = this._buildCircuitBreaker(circuitBreaker);
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
+        this.targetCircuits = new Map();
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _buildCircuitBreaker(config) {
+        if (config === false) {
+            return {
+                enabled: false
+            };
+        }
+
+        const raw = config && typeof config === 'object' ? config : {};
+        return {
+            enabled: raw.enabled !== false,
+            failureThreshold: Number.isInteger(raw.failureThreshold) && raw.failureThreshold > 0
+                ? raw.failureThreshold
+                : 3,
+            cooldownMs: Number.isFinite(raw.cooldownMs) && raw.cooldownMs > 0
+                ? Number(raw.cooldownMs)
+                : 10_000,
+            halfOpenMaxInFlight: Number.isInteger(raw.halfOpenMaxInFlight) && raw.halfOpenMaxInFlight > 0
+                ? raw.halfOpenMaxInFlight
+                : 1,
+            halfOpenSuccessesToClose: Number.isInteger(raw.halfOpenSuccessesToClose) && raw.halfOpenSuccessesToClose > 0
+                ? raw.halfOpenSuccessesToClose
+                : 1
+        };
+    }
+
+    _getTargetCircuit(target) {
+        let circuit = this.targetCircuits.get(target);
+        if (!circuit) {
+            circuit = {
+                state: CIRCUIT_CLOSED,
+                consecutiveFailures: 0,
+                consecutiveSuccesses: 0,
+                openedAt: null,
+                nextAttemptAt: null,
+                halfOpenInFlight: 0,
+                lastStateChangeAt: safeNow(this.now)
+            };
+            this.targetCircuits.set(target, circuit);
+        }
+        return circuit;
+    }
+
+    _setCircuitState(target, circuit, nextState, at) {
+        if (circuit.state === nextState) return;
+        const prev = circuit.state;
+        circuit.state = nextState;
+        circuit.lastStateChangeAt = at;
+
+        if (nextState === CIRCUIT_OPEN) {
+            circuit.openedAt = at;
+            circuit.nextAttemptAt = at + this.circuitBreaker.cooldownMs;
+            circuit.halfOpenInFlight = 0;
+            circuit.consecutiveSuccesses = 0;
+            this._emitAudit('target_circuit_opened', {
+                target,
+                previousState: prev,
+                failureThreshold: this.circuitBreaker.failureThreshold,
+                nextAttemptAt: circuit.nextAttemptAt
+            }, at);
+            return;
+        }
+
+        if (nextState === CIRCUIT_HALF_OPEN) {
+            circuit.consecutiveSuccesses = 0;
+            circuit.halfOpenInFlight = 0;
+            this._emitAudit('target_circuit_half_open', {
+                target,
+                previousState: prev,
+                halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight
+            }, at);
+            return;
+        }
+
+        circuit.openedAt = null;
+        circuit.nextAttemptAt = null;
+        circuit.halfOpenInFlight = 0;
+        circuit.consecutiveFailures = 0;
+        circuit.consecutiveSuccesses = 0;
+        this._emitAudit('target_circuit_closed', {
+            target,
+            previousState: prev
+        }, at);
+    }
+
+    _beginSendAttemptForTarget(target, at) {
+        if (!this.circuitBreaker.enabled) return null;
+        const circuit = this._getTargetCircuit(target);
+
+        if (circuit.state === CIRCUIT_OPEN) {
+            if (circuit.nextAttemptAt !== null && at >= circuit.nextAttemptAt) {
+                this._setCircuitState(target, circuit, CIRCUIT_HALF_OPEN, at);
+            } else {
+                throw new TaskOrchestratorError(
+                    'CIRCUIT_OPEN',
+                    `Target ${target} circuit is open`,
+                    {
+                        target,
+                        nextAttemptAt: circuit.nextAttemptAt
+                    }
+                );
+            }
+        }
+
+        if (circuit.state === CIRCUIT_HALF_OPEN) {
+            if (circuit.halfOpenInFlight >= this.circuitBreaker.halfOpenMaxInFlight) {
+                throw new TaskOrchestratorError(
+                    'CIRCUIT_HALF_OPEN_LIMIT',
+                    `Target ${target} circuit probe capacity reached`,
+                    {
+                        target,
+                        halfOpenInFlight: circuit.halfOpenInFlight,
+                        halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight
+                    }
+                );
+            }
+            circuit.halfOpenInFlight += 1;
+        }
+
+        return circuit;
+    }
+
+    _recordSendSuccess(target, at, circuit = this._getTargetCircuit(target)) {
+        if (!this.circuitBreaker.enabled || !circuit) return;
+
+        if (circuit.state === CIRCUIT_HALF_OPEN) {
+            circuit.halfOpenInFlight = Math.max(0, circuit.halfOpenInFlight - 1);
+            circuit.consecutiveSuccesses += 1;
+            if (circuit.consecutiveSuccesses >= this.circuitBreaker.halfOpenSuccessesToClose) {
+                this._setCircuitState(target, circuit, CIRCUIT_CLOSED, at);
+            }
+            return;
+        }
+
+        circuit.consecutiveFailures = 0;
+    }
+
+    _recordSendFailure(target, at, circuit = this._getTargetCircuit(target)) {
+        if (!this.circuitBreaker.enabled || !circuit) return;
+
+        if (circuit.state === CIRCUIT_HALF_OPEN) {
+            circuit.halfOpenInFlight = Math.max(0, circuit.halfOpenInFlight - 1);
+            this._setCircuitState(target, circuit, CIRCUIT_OPEN, at);
+            return;
+        }
+
+        circuit.consecutiveFailures += 1;
+        if (circuit.consecutiveFailures >= this.circuitBreaker.failureThreshold) {
+            this._setCircuitState(target, circuit, CIRCUIT_OPEN, at);
+        }
     }
 
     async hydrate({ replace = true } = {}) {
@@ -343,6 +500,14 @@ export class TaskOrchestrator {
             }
         }
 
+        if (this.tasks.has(id)) {
+            throw new TaskOrchestratorError(
+                'DUPLICATE_TASK_ID',
+                `Task id ${id} already exists`,
+                { taskId: id }
+            );
+        }
+
         const record = {
             taskId: request.id,
             target: request.target,
@@ -497,6 +662,20 @@ export class TaskOrchestrator {
 
     async _sendTask(record, reason) {
         const sendAt = safeNow(this.now);
+        let circuit = null;
+        try {
+            circuit = this._beginSendAttemptForTarget(record.target, sendAt);
+        } catch (error) {
+            this._emitAudit('task_send_blocked', {
+                taskId: record.taskId,
+                target: record.target,
+                reason,
+                code: error.code || 'SEND_BLOCKED',
+                nextAttemptAt: error.details?.nextAttemptAt ?? null
+            }, sendAt);
+            throw error;
+        }
+
         record.attempts += 1;
         record.updatedAt = sendAt;
         record.history.push({
@@ -514,6 +693,7 @@ export class TaskOrchestrator {
 
         try {
             await this.transport.send(record.target, record.request);
+            this._recordSendSuccess(record.target, safeNow(this.now), circuit);
             record.status = 'dispatched';
             record.deadlineAt = sendAt + this.defaultTimeoutMs;
             record.nextRetryAt = null;
@@ -531,6 +711,7 @@ export class TaskOrchestrator {
             }, record.updatedAt);
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
+            this._recordSendFailure(record.target, safeNow(this.now), circuit);
             record.lastError = message;
             record.updatedAt = safeNow(this.now);
             record.history.push({
@@ -709,7 +890,11 @@ export class TaskOrchestrator {
                     }, nowMs);
                 } else {
                     record.status = 'retry_scheduled';
-                    record.nextRetryAt = nowMs + this.retryDelayMs;
+                    const blockerNextAttemptAt = error?.details?.nextAttemptAt;
+                    const nextRetryAt = nowMs + this.retryDelayMs;
+                    record.nextRetryAt = Number.isFinite(blockerNextAttemptAt)
+                        ? Math.max(nextRetryAt, Number(blockerNextAttemptAt))
+                        : nextRetryAt;
                     record.updatedAt = nowMs;
                     this._persistRecord(record);
                     this._emitAudit('task_retry_scheduled', {
@@ -722,6 +907,31 @@ export class TaskOrchestrator {
         }
 
         return summary;
+    }
+
+    getCircuitHealth() {
+        const circuits = [];
+        for (const [target, circuit] of this.targetCircuits.entries()) {
+            circuits.push({
+                target,
+                state: circuit.state,
+                consecutiveFailures: circuit.consecutiveFailures,
+                consecutiveSuccesses: circuit.consecutiveSuccesses,
+                openedAt: circuit.openedAt,
+                nextAttemptAt: circuit.nextAttemptAt,
+                halfOpenInFlight: circuit.halfOpenInFlight,
+                lastStateChangeAt: circuit.lastStateChangeAt
+            });
+        }
+
+        return {
+            enabled: this.circuitBreaker.enabled,
+            failureThreshold: this.circuitBreaker.failureThreshold,
+            cooldownMs: this.circuitBreaker.cooldownMs,
+            halfOpenMaxInFlight: this.circuitBreaker.halfOpenMaxInFlight,
+            halfOpenSuccessesToClose: this.circuitBreaker.halfOpenSuccessesToClose,
+            circuits
+        };
     }
 
     getTask(taskId) {

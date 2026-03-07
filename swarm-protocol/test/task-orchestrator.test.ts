@@ -204,6 +204,101 @@ test('dispatchTask fails fast and does not keep orphaned record when send fails'
     assert.equal(metrics.total, 0);
 });
 
+test('dispatchTask rejects duplicate task ids', async () => {
+    const clock = createClock(6_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now
+    });
+
+    await orchestrator.dispatchTask({
+        id: 'task:dup-1',
+        target: 'agent:worker-dup',
+        task: 'First dispatch'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            id: 'task:dup-1',
+            target: 'agent:worker-dup',
+            task: 'Second dispatch'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'DUPLICATE_TASK_ID');
+            return true;
+        }
+    );
+});
+
+test('circuit breaker opens after repeated send failures and recovers after cooldown', async () => {
+    const clock = createClock(7_000);
+    let shouldFail = true;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                if (shouldFail) {
+                    throw new Error('transport down');
+                }
+            }
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10,
+        defaultTimeoutMs: 50,
+        circuitBreaker: {
+            failureThreshold: 2,
+            cooldownMs: 100
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-cb',
+        task: 'Trigger breaker'
+    });
+
+    clock.set(7_100);
+    await orchestrator.runMaintenance(clock.now());
+    clock.set(7_120);
+    await orchestrator.runMaintenance(clock.now());
+
+    const healthOpen = orchestrator.getCircuitHealth();
+    const workerCircuit = healthOpen.circuits.find((entry) => entry.target === 'agent:worker-cb');
+    assert.ok(workerCircuit);
+    assert.equal(workerCircuit.state, 'open');
+    assert.equal(orchestrator.getTask(task.taskId)?.status, 'retry_scheduled');
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-cb',
+            task: 'Blocked by open circuit'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'CIRCUIT_OPEN');
+            return true;
+        }
+    );
+
+    shouldFail = false;
+    clock.set(7_240);
+    await orchestrator.runMaintenance(clock.now());
+
+    const afterRecover = orchestrator.getTask(task.taskId);
+    assert.ok(afterRecover);
+    assert.equal(afterRecover.status, 'dispatched');
+
+    const healthClosed = orchestrator.getCircuitHealth();
+    const closedCircuit = healthClosed.circuits.find((entry) => entry.target === 'agent:worker-cb');
+    assert.ok(closedCircuit);
+    assert.equal(closedCircuit.state, 'closed');
+});
+
 test('helper builders emit schema-valid messages', () => {
     const request = buildTaskRequest({
         from: 'agent:main',

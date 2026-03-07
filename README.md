@@ -15,6 +15,7 @@ A library for agent introspection. It parses execution logs, session history, an
 Typed schemas and handshake primitives for agent-to-agent coordination.
 Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
 Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, and result correlation.
+Task orchestration now includes per-target circuit breaking with cooldown probes plus duplicate task-id rejection for idempotent dispatch safety.
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
