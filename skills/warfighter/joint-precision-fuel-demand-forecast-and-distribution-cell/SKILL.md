@@ -83,3 +83,9 @@ Primary products for this skill: mission estimate, synchronization matrix, risk 
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+## Tool Output Retention and Replay Integrity
+
+- Use `../_shared/references/tool-output-retention-and-replay-policy.md` to define retention, replay, and drift controls for critical external tool outputs.
+- Include `retention_packet_id`, `packet_hash`, `replay_status`, `drift_assessment`, and `replay_owner` for each critical dependency.
+- If replay evidence is missing or conflicting, mark recommendations as advisory-only and require explicit human command approval.
+

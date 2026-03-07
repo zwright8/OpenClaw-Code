@@ -83,3 +83,9 @@ Primary products for this skill: EOD support prioritization board, response time
 - Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
 - Include adapter health status and last-success UTC for each mission-critical integration.
 - Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.
+## Tool Output Retention and Replay Integrity
+
+- Use `../_shared/references/tool-output-retention-and-replay-policy.md` to define retention, replay, and drift controls for critical external tool outputs.
+- Include `retention_packet_id`, `packet_hash`, `replay_status`, `drift_assessment`, and `replay_owner` for each critical dependency.
+- If replay evidence is missing or conflicting, mark recommendations as advisory-only and require explicit human command approval.
+

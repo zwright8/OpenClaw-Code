@@ -150,3 +150,9 @@ Include these fields in outputs when tool integration is used:
 - Tool Invocation Packet fields for each critical tool dependency
 - Adapter contract status (`adapter_id`, protocol, auth mode, last-success UTC) for each critical dependency
 - Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback
+
+## Tool Output Retention and Replay
+
+- Bind every critical dependency to a retained packet (`retention_packet_id`, `packet_hash`, `retrieval_utc`) that can be replayed for validation.
+- Trigger replay before release when data freshness exceeds SLA, confidence drops, or commanders request revalidation.
+- If replay drift is material, downgrade to provisional/advisory-only and escalate for human command review.
