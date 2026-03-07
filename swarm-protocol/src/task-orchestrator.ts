@@ -1038,6 +1038,7 @@ export class TaskOrchestrator {
         localAgentId,
         transport,
         routeTask = null,
+        rerouteOnRetry = false,
         dispatchPolicy = null,
         approvalPolicy = null,
         auditLog = null,
@@ -1095,6 +1096,7 @@ export class TaskOrchestrator {
         this.localAgentId = localAgentId;
         this.transport = transport;
         this.routeTask = typeof routeTask === 'function' ? routeTask : null;
+        this.rerouteOnRetry = rerouteOnRetry === true;
         this.dispatchPolicy = typeof dispatchPolicy === 'function' ? dispatchPolicy : null;
         this.approvalPolicy = typeof approvalPolicy === 'function' ? approvalPolicy : null;
         this.auditLog = auditLog && typeof auditLog.append === 'function' ? auditLog : null;
@@ -1214,9 +1216,91 @@ export class TaskOrchestrator {
         this.retryThrottleBuckets = new Map();
         this.dedupeIndex = new Map();
         this.dedupeSuppressions = 0;
+        this.retryReroutes = 0;
         this.globalRetryBudgetEvents = [];
         this.retryHintClampCount = 0;
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _extractRouteTarget(routeDecision) {
+        if (typeof routeDecision === 'string' && routeDecision.trim()) {
+            return routeDecision.trim();
+        }
+        if (!routeDecision || typeof routeDecision !== 'object') {
+            return null;
+        }
+        if (typeof routeDecision.target === 'string' && routeDecision.target.trim()) {
+            return routeDecision.target.trim();
+        }
+        if (typeof routeDecision.selectedAgentId === 'string' && routeDecision.selectedAgentId.trim()) {
+            return routeDecision.selectedAgentId.trim();
+        }
+        if (typeof routeDecision.taskRequest?.target === 'string' && routeDecision.taskRequest.target.trim()) {
+            return routeDecision.taskRequest.target.trim();
+        }
+        return null;
+    }
+
+    async _resolveRouteTarget(taskRequest, fallbackTarget = null, routeContext = null) {
+        const normalizedFallback = typeof fallbackTarget === 'string' && fallbackTarget.trim()
+            ? fallbackTarget.trim()
+            : null;
+        if (!this.routeTask) return normalizedFallback;
+        try {
+            const routeDecision = await this.routeTask(taskRequest, routeContext);
+            return this._extractRouteTarget(routeDecision) || normalizedFallback;
+        } catch (error) {
+            this.logger.warn?.(
+                `[Swarm] routeTask resolution failed for task ${taskRequest?.id || 'unknown'}: ${error.message}`
+            );
+            return normalizedFallback;
+        }
+    }
+
+    async _maybeRerouteRetry(record, sendAt, dispatchReason, dispatchReasonCode) {
+        if (!this.rerouteOnRetry || !this.routeTask) return null;
+        const priorTarget = typeof record.target === 'string' ? record.target : null;
+        if (!priorTarget) return null;
+
+        const routeContext = {
+            phase: 'retry_dispatch',
+            at: sendAt,
+            dispatchReason,
+            dispatchReasonCode,
+            attempt: safeNonNegativeInteger(record.attempts, 0) + 1,
+            taskId: record.taskId,
+            previousTarget: priorTarget
+        };
+        const routedTarget = await this._resolveRouteTarget(record.request, priorTarget, routeContext);
+        if (!routedTarget || routedTarget === priorTarget) return null;
+
+        record.target = routedTarget;
+        record.request = buildTaskRequest({
+            ...record.request,
+            target: routedTarget,
+            id: record.request.id,
+            from: record.request.from,
+            createdAt: record.request.createdAt
+        });
+        record.updatedAt = sendAt;
+        record.history.push({
+            at: sendAt,
+            event: 'retry_rerouted',
+            from: priorTarget,
+            to: routedTarget,
+            reason: dispatchReason,
+            reasonCode: dispatchReasonCode
+        });
+        this.retryReroutes += 1;
+        this._emitAudit('task_retry_rerouted', {
+            taskId: record.taskId,
+            from: priorTarget,
+            to: routedTarget,
+            reason: dispatchReason,
+            reasonCode: dispatchReasonCode,
+            attempt: safeNonNegativeInteger(record.attempts, 0) + 1
+        }, sendAt);
+        return routedTarget;
     }
 
     _pruneDedupeIndex(nowMs = safeNow(this.now)) {
@@ -2104,19 +2188,12 @@ export class TaskOrchestrator {
         });
 
         let resolvedTarget = target;
-        if (!resolvedTarget && this.routeTask) {
-            const routed = await this.routeTask(routingDraft);
-            if (typeof routed === 'string' && routed.trim()) {
-                resolvedTarget = routed;
-            } else if (routed && typeof routed === 'object') {
-                if (typeof routed.target === 'string' && routed.target.trim()) {
-                    resolvedTarget = routed.target;
-                } else if (typeof routed.selectedAgentId === 'string' && routed.selectedAgentId.trim()) {
-                    resolvedTarget = routed.selectedAgentId;
-                } else if (typeof routed.taskRequest?.target === 'string' && routed.taskRequest.target.trim()) {
-                    resolvedTarget = routed.taskRequest.target;
-                }
-            }
+        if (!resolvedTarget) {
+            resolvedTarget = await this._resolveRouteTarget(routingDraft, null, {
+                phase: 'initial_dispatch',
+                at: createdAt,
+                taskId: routingDraft.id
+            });
         }
 
         if (!resolvedTarget || typeof resolvedTarget !== 'string') {
@@ -2461,6 +2538,7 @@ export class TaskOrchestrator {
             || reason === 'approval_release_retry'
         );
         if (isRetryDispatch) {
+            await this._maybeRerouteRetry(record, sendAt, dispatchReason, dispatchReasonCode);
             const throttleDecision = this._canRetryDispatchForTarget(record.target, sendAt);
             if (!throttleDecision.allowed) {
                 throw new TaskOrchestratorError(
@@ -3235,6 +3313,10 @@ export class TaskOrchestrator {
                 windowMs: this.dedupeWindowMs,
                 trackedKeys: this.dedupeIndex.size,
                 suppressions: this.dedupeSuppressions
+            },
+            routing: {
+                retryReroutes: this.retryReroutes,
+                rerouteOnRetry: this.rerouteOnRetry
             }
         };
 

@@ -1614,6 +1614,101 @@ test('dispatchTask can resolve target through routeTask callback', async () => {
     assert.equal(sent[0].target, 'agent:routed');
 });
 
+test('retry dispatch can reroute to a different target when enabled', async () => {
+    const clock = createClock(70_000);
+    const sent = [];
+    const routeCalls = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 1,
+        retryDelayMs: 0,
+        maxRetryDelayMs: 0,
+        retryJitterRatio: 0,
+        rerouteOnRetry: true,
+        routeTask: async (_request, context) => {
+            routeCalls.push(context?.phase || 'unknown');
+            if (context?.phase === 'retry_dispatch') {
+                return { selectedAgentId: 'agent:worker-b' };
+            }
+            return null;
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-a',
+        task: 'Retry reroute validation'
+    });
+
+    clock.set(70_200);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 1);
+
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass2.retried, 1);
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(sent.length, 2);
+    assert.equal(sent[0].target, 'agent:worker-a');
+    assert.equal(sent[1].target, 'agent:worker-b');
+    assert.equal(current.target, 'agent:worker-b');
+    assert.equal(current.request.target, 'agent:worker-b');
+    assert.equal(routeCalls.includes('retry_dispatch'), true);
+    assert.equal(current.history.some((entry) => entry.event === 'retry_rerouted'), true);
+    assert.equal(orchestrator.getMetrics().routing.retryReroutes, 1);
+});
+
+test('retry dispatch keeps original target when reroute callback fails', async () => {
+    const clock = createClock(72_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 1,
+        retryDelayMs: 0,
+        maxRetryDelayMs: 0,
+        retryJitterRatio: 0,
+        rerouteOnRetry: true,
+        routeTask: async (_request, context) => {
+            if (context?.phase === 'retry_dispatch') {
+                throw new Error('routing backend unavailable');
+            }
+            return null;
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-stable',
+        task: 'Retry route fallback'
+    });
+
+    clock.set(72_200);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 1);
+
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass2.retried, 1);
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.target, 'agent:worker-stable');
+    assert.equal(sent.length, 2);
+    assert.equal(sent[0].target, 'agent:worker-stable');
+    assert.equal(sent[1].target, 'agent:worker-stable');
+    assert.equal(orchestrator.getMetrics().routing.retryReroutes, 0);
+});
+
 test('dispatchTask throws when target missing and no routeTask provided', async () => {
     const orchestrator = new TaskOrchestrator({
         localAgentId: 'agent:main',

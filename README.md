@@ -46,6 +46,7 @@ Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflo
 Adds per-target retry throttling (token-bucket) to suppress retry storms on unhealthy workers.
 Adds backpressure-aware transient rejection handling so repeated worker overload signals feed circuit protection and retry health.
 Adds optional sliding-window failure-rate circuit trips to catch intermittent-but-persistent target instability before retry storms amplify.
+Adds opt-in retry re-routing so retries can shift from degraded workers to healthier candidates.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
 Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.
@@ -352,6 +353,7 @@ const orchestrator = new TaskOrchestrator({
   circuitCooldownMs: 15_000,
   maxInFlightPerTarget: 4,
   maxInFlightGlobal: 32,
+  rerouteOnRetry: true, // optionally re-run routeTask for retry dispatches
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -388,6 +390,7 @@ Overload containment notes:
 - `retryHintJitterRatio` adds post-hint jitter while still respecting the minimum retry hint, reducing synchronized retry spikes after shared overload events.
 - `minRetryDelayMs` enforces a floor on every retry schedule (including hinted retries) to avoid zero-delay retry storms.
 - `globalRetryBudgetPriorityReserve` preserves a configured share of retry slots for higher-priority work.
+- `rerouteOnRetry` re-runs `routeTask` before retry dispatch so timeout/rejection retries can move to a different worker when available.
 
 Safety policy integration:
 ```js
