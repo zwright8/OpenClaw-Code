@@ -71,3 +71,9 @@ Primary products for this skill: Frequency deconfliction board, EW protection ta
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## U.S. Warfighter Integration Baseline
+
+- Apply baseline guidance in `../_shared/references/us-warfighter-integration-baseline.md` for mission context, authority chain, and data path constraints.
+- Include a `uibl_profile` field in machine-readable outputs with selected network path, protocol binding, and fallback PACE plan.
+- Confirm every recommendation includes U.S. standards alignment (`USMTF` or justified alternate), decision authority, and degraded-mode branch triggers.

@@ -2,6 +2,8 @@
 
 Use this reference when a warfighter skill needs system integration guidance. Keep all integrations within authorized networks, accreditation boundaries, and handling caveats.
 
+Also apply U.S.-specific network, authority-chain, and PACE fallback constraints from `us-warfighter-integration-baseline.md` for every mission recommendation.
+
 ## Core Integration Protocol (apply every time)
 
 1. Verify authority, mission scope, and data classification before querying or publishing data.

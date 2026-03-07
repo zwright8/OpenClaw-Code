@@ -4,8 +4,8 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 175
-- Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
+- Total warfighter skills in this repo: 195
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, U.S. warfighter integration baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
 
@@ -139,3 +139,26 @@ Every skill output should include:
 - high-altitude-platform-isr-integration-cell
 - maritime-convoy-escort-and-sea-lane-defense-cell
 - counter-space-electronic-attack-response-cell
+
+## New Expansion Wave (2026-03-06, U.S. Warfighter Full-Domain Expansion)
+
+- strategic-deterrence-and-nuclear-command-support-cell
+- joint-sead-dead-campaign-synchronization-cell
+- contested-polar-satcom-routing-cell
+- expeditionary-watercraft-and-beach-logistics-cell
+- cyber-deception-and-honeynet-operations-cell
+- military-police-detainee-operations-compliance-cell
+- special-operations-mission-enablement-cell
+- joint-initial-entry-airfield-seizure-cell
+- theater-blood-and-pharmaceutical-distribution-cell
+- joint-space-order-of-battle-change-detection-cell
+- combat-weather-and-ocean-effects-integration-cell
+- counter-wmd-interdiction-and-elimination-cell
+- cyber-mission-force-defensive-retasking-cell
+- electromagnetic-spectrum-denial-battle-drill-cell
+- autonomous-precision-resupply-airdrop-cell
+- coalition-maritime-interdiction-operations-cell
+- joint-force-entry-scheme-of-maneuver-cell
+- advanced-base-air-defense-and-counter-raid-cell
+- maritime-prepositioning-and-sealift-survivability-cell
+- special-mission-aviation-infiltration-exfiltration-cell
