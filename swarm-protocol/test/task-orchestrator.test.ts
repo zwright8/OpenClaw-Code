@@ -433,6 +433,38 @@ test('RateLimit-Reset delta seconds is parsed as retry hint', async () => {
     assert.equal(current.nextRetryAt, 33_630);
 });
 
+test('RateLimit combined header format reset value is parsed as retry hint', async () => {
+    const clock = createClock(3_700);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-ratelimit-header',
+        task: 'Respect combined RateLimit reset hint'
+    });
+
+    clock.advance(10);
+    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-ratelimit-header',
+        accepted: false,
+        reason: 'HTTP 429; RateLimit: limit=100, remaining=0, reset=12',
+        timestamp: clock.now()
+    }));
+
+    assert.equal(accepted, true);
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 15_710);
+});
+
 test('Retry-After HTTP-date is parsed even with trailing metadata', async () => {
     const clock = createClock(10_000);
     const orchestrator = new TaskOrchestrator({
@@ -1125,6 +1157,68 @@ test('retry scheduling uses bounded exponential backoff with jitter', async () =
     current = orchestrator.getTask(task.taskId);
     const delay3 = current.nextRetryAt - clock.now();
     assert.ok(delay3 >= 45 && delay3 <= 60);
+});
+
+test('retry hint jitter spreads equal retry_after hints while honoring minimum delay', async () => {
+    const clock = createClock(90_000);
+    const options = {
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryStrategy: 'fixed',
+        retryJitterRatio: 0,
+        retryHintJitterRatio: 0.5
+    };
+
+    const orchestratorA = new TaskOrchestrator({
+        ...options,
+        now: clock.now
+    });
+    const orchestratorB = new TaskOrchestrator({
+        ...options,
+        now: clock.now
+    });
+
+    const taskA = await orchestratorA.dispatchTask({
+        target: 'agent:worker-jitter',
+        id: 'task-hint-jitter-a',
+        task: 'retry hint jitter sample A'
+    });
+    const taskB = await orchestratorB.dispatchTask({
+        target: 'agent:worker-jitter',
+        id: 'task-hint-jitter-b',
+        task: 'retry hint jitter sample B'
+    });
+
+    clock.advance(10);
+    orchestratorA.ingestReceipt(buildTaskReceipt({
+        taskId: taskA.taskId,
+        from: 'agent:worker-jitter',
+        accepted: false,
+        reason: 'retry_after_ms:2000',
+        timestamp: clock.now()
+    }));
+    orchestratorB.ingestReceipt(buildTaskReceipt({
+        taskId: taskB.taskId,
+        from: 'agent:worker-jitter',
+        accepted: false,
+        reason: 'retry_after_ms:2000',
+        timestamp: clock.now()
+    }));
+
+    const currentA = orchestratorA.getTask(taskA.taskId);
+    const currentB = orchestratorB.getTask(taskB.taskId);
+    const delayA = currentA.nextRetryAt - clock.now();
+    const delayB = currentB.nextRetryAt - clock.now();
+
+    assert.ok(delayA >= 2_000 && delayA <= 3_000);
+    assert.ok(delayB >= 2_000 && delayB <= 3_000);
+    assert.notEqual(delayA, delayB);
+
+    const metrics = orchestratorA.getMetrics();
+    assert.equal(metrics.retryHint.jitterRatio, 0.5);
 });
 
 test('fixed retry strategy keeps scheduling delay stable', async () => {

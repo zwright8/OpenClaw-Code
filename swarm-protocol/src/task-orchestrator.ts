@@ -28,6 +28,7 @@ const CIRCUIT_HALF_OPEN = 'half_open';
 const DEFAULT_MAX_RETRY_DELAY_MULTIPLIER = 32;
 const DEFAULT_MAX_RETRY_HINT_MS = 60_000;
 const DEFAULT_RETRY_JITTER_RATIO = 0.2;
+const DEFAULT_RETRY_HINT_JITTER_RATIO = 0;
 const RETRY_CYCLE_GUARD_MULTIPLIER = 4;
 const DEFAULT_GLOBAL_RETRY_BUDGET_RATIO = 0.2;
 const DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS = 60_000;
@@ -517,6 +518,20 @@ function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
         }
     }
 
+    const rateLimitCombinedMatch = text.match(/(?:^|[\s,;])ratelimit\s*[:=]\s*[^;\n]*?\breset\s*=\s*(\d{1,13})(?!\d)/i);
+    if (rateLimitCombinedMatch) {
+        const rawValue = Number(rateLimitCombinedMatch[1]);
+        if (Number.isFinite(rawValue) && rawValue >= 0) {
+            if (rawValue >= 10_000_000_000) {
+                return Math.max(0, rawValue - nowMs);
+            }
+            if (rawValue >= 1_000_000_000) {
+                return Math.max(0, (rawValue * 1000) - nowMs);
+            }
+            return rawValue * 1000;
+        }
+    }
+
     return null;
 }
 
@@ -605,6 +620,16 @@ function parseRetryHintMsFromHeaders(headers, nowMs = Date.now()) {
         treatSmallAsEpoch: true
     });
     if (Number.isFinite(xRateLimitResetMs)) return xRateLimitResetMs;
+
+    const rateLimitRaw = readHeaderValue(headers, 'ratelimit');
+    const rateLimitValue = Array.isArray(rateLimitRaw) ? rateLimitRaw[0] : rateLimitRaw;
+    if (rateLimitValue !== null && rateLimitValue !== undefined) {
+        const parsedRateLimitMs = parseRetryHintMsFromReason(
+            `RateLimit: ${String(rateLimitValue)}`,
+            nowMs
+        );
+        if (Number.isFinite(parsedRateLimitMs)) return parsedRateLimitMs;
+    }
 
     return null;
 }
@@ -1024,6 +1049,7 @@ export class TaskOrchestrator {
         maxRetryDelayMs = null,
         maxRetryHintMs = null,
         retryJitterRatio = DEFAULT_RETRY_JITTER_RATIO,
+        retryHintJitterRatio = DEFAULT_RETRY_HINT_JITTER_RATIO,
         globalRetryBudgetRatio = DEFAULT_GLOBAL_RETRY_BUDGET_RATIO,
         globalRetryBudgetWindowMs = DEFAULT_GLOBAL_RETRY_BUDGET_WINDOW_MS,
         globalRetryBudgetMinBaseRequests = DEFAULT_GLOBAL_RETRY_BUDGET_MIN_BASE_REQUESTS,
@@ -1096,6 +1122,9 @@ export class TaskOrchestrator {
         this.retryJitterRatio = Number.isFinite(retryJitterRatio) && retryJitterRatio >= 0
             ? Math.min(Number(retryJitterRatio), 1)
             : DEFAULT_RETRY_JITTER_RATIO;
+        this.retryHintJitterRatio = Number.isFinite(retryHintJitterRatio) && retryHintJitterRatio >= 0
+            ? Math.min(Number(retryHintJitterRatio), 1)
+            : DEFAULT_RETRY_HINT_JITTER_RATIO;
         this.globalRetryBudgetRatio = Number.isFinite(globalRetryBudgetRatio) && globalRetryBudgetRatio >= 0
             ? Math.min(Number(globalRetryBudgetRatio), 1)
             : DEFAULT_GLOBAL_RETRY_BUDGET_RATIO;
@@ -2896,9 +2925,21 @@ export class TaskOrchestrator {
         }
 
         const computedDelayMs = this._computeRetryDelayMs(record, scheduleReason);
-        const delayMs = Number.isFinite(retryHintMs)
+        const baseDelayMs = Number.isFinite(retryHintMs)
             ? Math.max(computedDelayMs, retryHintMs)
             : computedDelayMs;
+        const hintJitterWindowMs = Number.isFinite(retryHintMs) && this.retryHintJitterRatio > 0
+            ? Math.max(0, Math.round(Number(retryHintMs) * this.retryHintJitterRatio))
+            : 0;
+        const hintJitterMs = hintJitterWindowMs > 0
+            ? Math.round(
+                hintJitterWindowMs
+                * stableUnitInterval(
+                    `${record?.taskId}:${scheduleReason}:${safeNonNegativeInteger(lifecycle?.scheduledCount, 0)}:${record?.attempts}:${nowMs}:hint-jitter`
+                )
+            )
+            : 0;
+        const delayMs = baseDelayMs + hintJitterMs;
         const nextRetryAt = nowMs + delayMs;
         if (retryHintClamped) {
             this.retryHintClampCount += 1;
@@ -2936,6 +2977,7 @@ export class TaskOrchestrator {
             reasonCode: scheduleReason,
             reasonContext: null,
             delayMs,
+            hintJitterMs,
             retryHintMs: Number.isFinite(retryHintMs) ? retryHintMs : null,
             retryHintOriginalMs: Number.isFinite(rawRetryHintMs) ? rawRetryHintMs : null,
             retryHintClamped,
@@ -2950,6 +2992,7 @@ export class TaskOrchestrator {
             reasonCode: scheduleReason,
             reasonContext: null,
             delayMs,
+            hintJitterMs,
             retryHintMs: Number.isFinite(retryHintMs) ? retryHintMs : null,
             retryHintOriginalMs: Number.isFinite(rawRetryHintMs) ? rawRetryHintMs : null,
             retryHintClamped,
@@ -3171,7 +3214,8 @@ export class TaskOrchestrator {
             },
             retryHint: {
                 maxHintMs: this.maxRetryHintMs,
-                clampCount: this.retryHintClampCount
+                clampCount: this.retryHintClampCount,
+                jitterRatio: this.retryHintJitterRatio
             },
             taskTimeout: {
                 defaultMs: this.defaultTimeoutMs,
