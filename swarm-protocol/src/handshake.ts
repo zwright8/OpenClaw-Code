@@ -6,6 +6,8 @@ const DEFAULT_CAPABILITIES = ['log-analysis', 'task-execution'];
 const DEFAULT_TIMEOUT_MS = 5000;
 const DEFAULT_RETRIES = 0;
 const DEFAULT_RETRY_DELAY_MS = 250;
+const DEFAULT_RETRY_STRATEGY = 'linear';
+const DEFAULT_RETRY_JITTER = 'none';
 
 export class HandshakeError extends Error {
     constructor(code, message, details = {}) {
@@ -84,6 +86,38 @@ function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function clampNumber(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+}
+
+function resolveRetryDelayMs({
+    attempt,
+    retryDelayMs,
+    retryStrategy,
+    maxRetryDelayMs,
+    retryJitter,
+    random
+}) {
+    const multiplier = retryStrategy === 'exponential'
+        ? (2 ** Math.max(0, attempt - 1))
+        : Math.max(1, attempt);
+
+    let delayMs = retryDelayMs * multiplier;
+    if (Number.isFinite(maxRetryDelayMs) && maxRetryDelayMs >= 0) {
+        delayMs = Math.min(delayMs, maxRetryDelayMs);
+    }
+
+    if (retryJitter === 'full' && delayMs > 0) {
+        const sample = Number(random?.());
+        const ratio = Number.isFinite(sample)
+            ? clampNumber(sample, 0, 1)
+            : 0.5;
+        delayMs *= ratio;
+    }
+
+    return Math.max(0, Math.round(delayMs));
+}
+
 async function withTimeout(promiseFactory, timeoutMs) {
     if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
         return promiseFactory();
@@ -144,7 +178,23 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
     const retryDelayMs = Number.isFinite(options.retryDelayMs) && options.retryDelayMs >= 0
         ? Number(options.retryDelayMs)
         : DEFAULT_RETRY_DELAY_MS;
+    const retryStrategy = options.retryStrategy === 'exponential'
+        ? 'exponential'
+        : DEFAULT_RETRY_STRATEGY;
+    const retryJitter = options.retryJitter === 'full'
+        ? 'full'
+        : DEFAULT_RETRY_JITTER;
+    const maxRetryDelayMs = Number.isFinite(options.maxRetryDelayMs) && options.maxRetryDelayMs >= 0
+        ? Number(options.maxRetryDelayMs)
+        : Number.POSITIVE_INFINITY;
+    const retryBudgetMs = Number.isFinite(options.retryBudgetMs) && options.retryBudgetMs > 0
+        ? Number(options.retryBudgetMs)
+        : null;
+    const now = typeof options.now === 'function' ? options.now : Date.now;
+    const sleep = typeof options.sleep === 'function' ? options.sleep : wait;
+    const random = typeof options.random === 'function' ? options.random : Math.random;
     const logger = options.logger ?? console;
+    const startedAtMs = now();
 
     const handshakeId = uuidv4();
     const request = {
@@ -153,14 +203,29 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
         from: fromAgentId,
         supportedProtocols,
         capabilities,
-        timestamp: Date.now()
+        timestamp: now()
     };
 
     HandshakeRequest.parse(request);
 
     const maxAttempts = retries + 1;
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-        const attemptStartMs = Date.now();
+        if (retryBudgetMs !== null) {
+            const elapsedMs = Math.max(0, now() - startedAtMs);
+            if (elapsedMs >= retryBudgetMs) {
+                throw new HandshakeError(
+                    'RETRY_BUDGET_EXHAUSTED',
+                    `Handshake retry budget exhausted after ${elapsedMs}ms`,
+                    {
+                        retryBudgetMs,
+                        elapsedMs,
+                        attempts: attempt - 1
+                    }
+                );
+            }
+        }
+
+        const attemptStartMs = now();
 
         try {
             logger.info?.(
@@ -173,7 +238,7 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
             );
 
             const response = HandshakeResponse.parse(rawResponse);
-            const latencyMs = Date.now() - attemptStartMs;
+            const latencyMs = now() - attemptStartMs;
 
             if (response.requestId !== handshakeId) {
                 throw new HandshakeError(
@@ -241,8 +306,35 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
 
             if (attempt < maxAttempts && isRetryableError(wrappedError)) {
                 logger.warn?.(`[Swarm] Handshake attempt ${attempt} failed (${wrappedError.code}), retrying...`);
-                if (retryDelayMs > 0) {
-                    await wait(retryDelayMs * attempt);
+                const retryDelay = resolveRetryDelayMs({
+                    attempt,
+                    retryDelayMs,
+                    retryStrategy,
+                    maxRetryDelayMs,
+                    retryJitter,
+                    random
+                });
+
+                let boundedDelayMs = retryDelay;
+                if (retryBudgetMs !== null) {
+                    const elapsedMs = Math.max(0, now() - startedAtMs);
+                    const budgetRemainingMs = Math.max(0, retryBudgetMs - elapsedMs);
+                    if (budgetRemainingMs <= 0) {
+                        throw new HandshakeError(
+                            'RETRY_BUDGET_EXHAUSTED',
+                            `Handshake retry budget exhausted after ${elapsedMs}ms`,
+                            {
+                                retryBudgetMs,
+                                elapsedMs,
+                                attempts: attempt
+                            }
+                        );
+                    }
+                    boundedDelayMs = Math.min(boundedDelayMs, budgetRemainingMs);
+                }
+
+                if (boundedDelayMs > 0) {
+                    await sleep(boundedDelayMs);
                 }
                 continue;
             }

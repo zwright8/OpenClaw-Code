@@ -179,3 +179,81 @@ test('throws HandshakeError on request/response id mismatch', async () => {
         }
     );
 });
+
+test('uses capped exponential backoff with full jitter between retries', async () => {
+    let calls = 0;
+    let nowMs = 10_000;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls < 3) {
+                throw new Error('temporary transport failure');
+            }
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: nowMs
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 2,
+        retryDelayMs: 100,
+        retryStrategy: 'exponential',
+        maxRetryDelayMs: 150,
+        retryJitter: 'full',
+        random: () => 0.5,
+        now: () => nowMs,
+        sleep: async (ms) => {
+            delays.push(ms);
+            nowMs += ms;
+        },
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 3);
+    assert.deepEqual(delays, [50, 75]);
+});
+
+test('throws RETRY_BUDGET_EXHAUSTED when retry budget is consumed', async () => {
+    let calls = 0;
+    let nowMs = 20_000;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait() {
+            calls++;
+            throw new Error('temporary transport failure');
+        }
+    };
+
+    await assert.rejects(
+        () => performHandshake('agent:alpha', 'agent:beta', transport, {
+            retries: 3,
+            retryDelayMs: 200,
+            retryStrategy: 'exponential',
+            retryBudgetMs: 250,
+            now: () => nowMs,
+            sleep: async (ms) => {
+                delays.push(ms);
+                nowMs += ms;
+            },
+            logger: createSilentLogger()
+        }),
+        (error) => {
+            assert.equal(error instanceof HandshakeError, true);
+            assert.equal(error.code, 'RETRY_BUDGET_EXHAUSTED');
+            return true;
+        }
+    );
+
+    assert.equal(calls, 2);
+    assert.deepEqual(delays, [200, 50]);
+});
