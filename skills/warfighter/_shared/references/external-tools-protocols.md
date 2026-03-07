@@ -325,3 +325,9 @@ Include these fields in outputs when tool integration is used:
 - Dam and hydroelectric stabilization: hydro telemetry + engineer mission planning + civil emergency dashboards + NIMS/ICS + USMTF
 - Rail sabotage detection and reroute: rail telemetry and schedule systems + movement-control C2 + API/JSON + USMTF
 - Undersea cable landing defense: subsea sensing networks + maritime domain awareness tools + AIS/NMEA + Link 16 + USMTF
+
+## Warfighter Tool Authority Gates (2026-03-07 Expansion)
+
+- Apply `warfighter-tool-authority-gates.md` for every recommendation that can materially affect mission posture, escalation risk, or force protection.
+- Include `authority_tier`, `decision_impact_level`, `requires_human_approval`, `approval_role`, and `audit_record_id` in final products.
+- If authority or legal basis is uncertain, issue an advisory-only recommendation and escalate for human command decision.

@@ -4,8 +4,8 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 420
-- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, and this catalog
+- Total warfighter skills in this repo: 440
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
 ## Domain Coverage Matrix
@@ -408,6 +408,29 @@ Every skill output should include:
 
 ## Catalog Maintenance Update (2026-03-07 Run)
 
-- Total warfighter skills: 420
-- Added reference: `human-agent-command-escalation-matrix.md`
+- Total warfighter skills: 440
+- Added references: `human-agent-command-escalation-matrix.md`, `warfighter-tool-authority-gates.md`
 - Added expansion skills this run: 20
+
+## New Expansion Wave (2026-03-07, Authority-Gated Full-Domain Support)
+
+- ai-enabled-contested-spectrum-mission-replanning-cell
+- joint-uncrewed-medevac-swarm-deconfliction-cell
+- expeditionary-water-desalination-energy-coupling-cell
+- homeland-grid-blackstart-military-support-cell
+- coalition-satellite-imagery-release-governance-cell
+- denied-environment-financial-disbursement-assurance-cell
+- joint-prisoner-exchange-and-ceasefire-monitoring-cell
+- strategic-arms-depot-dispersal-risk-cell
+- tactical-counter-tunnel-detection-fusion-cell
+- maritime-insurance-and-commercial-shipping-risk-cell
+- joint-fog-of-war-communications-prioritization-cell
+- autonomous-runway-incursion-prevention-cell
+- electronic-signature-camouflage-deception-auditor
+- theater-food-security-and-civil-stability-cell
+- joint-orbital-reconstitution-launch-window-cell
+- contested-bridgehead-fuel-water-node-cell
+- coalition-cyber-incident-legal-attribution-cell
+- ai-red-team-operational-model-threat-cell
+- rapid-civil-infrastructure-damage-estimation-cell
+- reserve-component-family-readiness-surge-cell
