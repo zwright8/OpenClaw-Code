@@ -83,3 +83,9 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
 - Include adapter health status and last-success UTC for each mission-critical integration.
 - Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.
+
+## Joint Protocol Translation and Fallback Matrix
+
+- Use `../_shared/references/joint-protocol-translation-and-fallback-matrix.md` when relaying outputs between mixed protocol ecosystems.
+- For each translated output, include source protocol, target protocol, adapter ID, validation status, fallback mode, and confidence delta.
+- If translation cannot be validated, route to human review and publish a bounded degraded path.

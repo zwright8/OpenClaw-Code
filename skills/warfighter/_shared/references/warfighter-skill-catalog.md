@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 223
+- Total warfighter skills in this repo: 243
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
@@ -195,3 +195,26 @@ Every skill output should include:
 - civilian-harm-incident-response-and-remediation-cell
 - joint-orbital-reconstitution-launch-manifest-cell
 - contested-medevac-denied-airspace-synchronizer-cell
+
+## New Expansion Wave (2026-03-07, Joint Protocol Translation Expansion)
+
+- joint-multi-orbit-comms-degradation-response-cell
+- contested-ai-model-lineage-and-integrity-cell
+- theater-wide-power-projection-rail-sea-air-synchronizer
+- expeditionary-biomass-fuel-conversion-support-cell
+- joint-dynamic-spectrum-lease-deconfliction-cell
+- autonomous-depot-reconstitution-and-spares-triage-cell
+- coalition-port-cyber-physical-threat-fusion-cell
+- denied-pnt-swarm-rendezvous-and-recovery-cell
+- strategic-subsea-chokepoint-interdiction-risk-cell
+- tactical-bridge-sensorized-load-management-cell
+- joint-rapid-airstrip-seizure-support-cell
+- theater-disconnected-payroll-and-entitlement-continuity-cell
+- coalition-civil-defense-warning-and-shelter-cell
+- hypersonic-strike-battle-damage-correlation-cell
+- expeditionary-medical-ai-triage-governance-cell
+- strategic-rare-fuel-allocation-and-protection-cell
+- joint-autonomous-perimeter-intrusion-response-cell
+- contested-waterway-obstacle-intelligence-cell
+- theater-aviation-fuel-quality-contamination-response-cell
+- multi-domain-fog-forecast-and-sensor-confidence-cell

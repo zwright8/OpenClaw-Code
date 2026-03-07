@@ -150,3 +150,28 @@ Include these fields in outputs when tool integration is used:
 - Tool Invocation Packet fields for each critical tool dependency
 - Adapter contract status (`adapter_id`, protocol, auth mode, last-success UTC) for each critical dependency
 - Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback
+
+## 2026-03-07 Expansion Toolchain Profiles
+
+Add these mission profiles for this run's new skill wave:
+
+- Multi-orbit comms degradation response: SATCOM network managers + SDA catalogs + transport health telemetry + API/USMTF/Link 16.
+- AI model lineage and integrity: model registry + artifact signing/SBOM systems + cyber SIEM + API/STIX.
+- Rail-sea-air power projection synchronizer: movement-control systems + port/airfield throughput dashboards + USMTF/VMF/CoT.
+- Biomass fuel conversion support: expeditionary energy tools + logistics inventory + quality-lab telemetry + API/CSV/USMTF.
+- Dynamic spectrum lease deconfliction: spectrum planners + EW consoles + civil regulator interfaces + Link 16/API/USMTF.
+- Depot reconstitution and spares triage: maintenance systems + supply pipelines + additive manufacturing queues + API/JSON.
+- Coalition port cyber-physical fusion: maritime COP + OT/ICS telemetry + cyber detections + AIS/STIX/USMTF.
+- Denied-PNT swarm rendezvous recovery: UxS C2 + inertial/celestial nav stacks + CoT/VMF/API.
+- Subsea chokepoint interdiction risk: maritime intelligence + subsea sensor grids + AIS/NMEA/USMTF.
+- Bridge sensorized load management: engineer mobility tools + load sensor feeds + VMF/CoT/USMTF.
+- Rapid airstrip seizure support: airborne assault planners + runway status tools + Link 16/VMF/USMTF.
+- Disconnected payroll continuity: finance/disbursing systems + offline voucher workflows + USMTF/API.
+- Civil defense warning and shelter: emergency management COP + alerting systems + OGC/CoT/API.
+- Hypersonic strike BDA correlation: missile warning + ISR fusion + battle damage assessment + Link 16/USMTF.
+- Medical AI triage governance: clinical support tools + med-regulation systems + HL7/FHIR/USMTF.
+- Rare fuel allocation and protection: strategic fuel inventories + convoy routing + threat overlays + USMTF/API.
+- Autonomous perimeter intrusion response: base-defense sensors + UGV/UAS intercept controllers + CoT/VMF/API.
+- Waterway obstacle intelligence: hydrographic feeds + ISR tracks + engineer obstacle databases + OGC/USMTF.
+- Aviation fuel contamination response: fuel QA telemetry + sortie scheduling + maintenance readiness + API/USMTF.
+- Fog forecast and sensor confidence: weather nowcasting + sensor health scoring + route-risk engines + OGC/USMTF/API.
