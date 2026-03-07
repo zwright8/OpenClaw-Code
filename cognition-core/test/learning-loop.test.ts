@@ -5,6 +5,7 @@ import {
     buildLearningRecommendations,
     evaluateLearningLoop,
     runCounterfactualReplay,
+    simulateAdaptivePolicySelection,
     summarizeOutcomes
 } from '../src/learning-loop.js';
 
@@ -59,7 +60,18 @@ test('runCounterfactualReplay ranks variants by projected gain', () => {
 test('buildLearningRecommendations emits prioritized actions', () => {
     const summary = summarizeOutcomes(sampleOutcomes());
     const replay = runCounterfactualReplay(summary);
-    const recommendations = buildLearningRecommendations(summary, replay, {
+    const adaptive = simulateAdaptivePolicySelection(replay, {
+        seed: 42,
+        episodes: 30,
+        trialsPerEpisode: 10
+    });
+    const recommendations = buildLearningRecommendations(summary, replay, null, {
+        minTimeoutRateForAction: 0.05,
+        minAgentSuccessRate: 0.8,
+        maxAvgAttempts: 1.1
+    });
+
+    const recommendationsWithAdaptive = buildLearningRecommendations(summary, replay, adaptive, {
         minTimeoutRateForAction: 0.05,
         minAgentSuccessRate: 0.8,
         maxAvgAttempts: 1.1
@@ -68,6 +80,36 @@ test('buildLearningRecommendations emits prioritized actions', () => {
     assert.ok(recommendations.length > 0);
     assert.ok(recommendations.some((item) => item.category === 'timeout_resilience'));
     assert.ok(recommendations.some((item) => item.category === 'counterfactual_winner'));
+    assert.ok(recommendationsWithAdaptive.some((item) => item.category === 'adaptive_policy_selection'));
+});
+
+test('simulateAdaptivePolicySelection converges toward stronger policy', () => {
+    const summary = summarizeOutcomes(sampleOutcomes());
+    const replay = runCounterfactualReplay(summary, [
+        {
+            id: 'weak',
+            name: 'Weak',
+            timeoutRecoveryRate: 0,
+            retryRecoveryRate: 0,
+            routingRecoveryRate: 0
+        },
+        {
+            id: 'strong',
+            name: 'Strong',
+            timeoutRecoveryRate: 0.8,
+            retryRecoveryRate: 0.4,
+            routingRecoveryRate: 0.4
+        }
+    ]);
+
+    const adaptive = simulateAdaptivePolicySelection(replay, {
+        seed: 9,
+        episodes: 80,
+        trialsPerEpisode: 8
+    });
+
+    assert.equal(adaptive.recommendedArm?.id, 'strong');
+    assert.ok(adaptive.ranking[0].selectionRate > adaptive.ranking[1].selectionRate);
 });
 
 test('buildLearningRecommendations ignores low sample routing noise and flags tail latency', () => {
@@ -77,7 +119,7 @@ test('buildLearningRecommendations ignores low sample routing noise and flags ta
     ];
     const summary = summarizeOutcomes(outcomes);
     const replay = runCounterfactualReplay(summary);
-    const recommendations = buildLearningRecommendations(summary, replay, {
+    const recommendations = buildLearningRecommendations(summary, replay, null, {
         minTimeoutRateForAction: 0.05,
         minAgentSuccessRate: 0.8,
         maxAvgAttempts: 1.1,
@@ -90,10 +132,15 @@ test('buildLearningRecommendations ignores low sample routing noise and flags ta
 });
 
 test('evaluateLearningLoop bundles summary, replay, and recommendations', () => {
-    const result = evaluateLearningLoop(sampleOutcomes());
+    const result = evaluateLearningLoop(sampleOutcomes(), {
+        adaptiveRollout: {
+            seed: 123
+        }
+    });
 
     assert.ok(result.summary);
     assert.ok(result.replay.best);
+    assert.ok(result.adaptiveRollout.recommendedArm);
     assert.ok(Array.isArray(result.recommendations));
     assert.ok(result.recommendations.length > 0);
 });

@@ -44,6 +44,57 @@ function wilsonLowerBound(successes, trials, z = 1.96) {
     return clamp((center - margin) / denominator, 0, 1);
 }
 
+function createSeededRandom(seed = 1337) {
+    let state = (Number(seed) || 1337) >>> 0;
+    return () => {
+        state = (1664525 * state + 1013904223) >>> 0;
+        return state / 0x100000000;
+    };
+}
+
+function sampleGamma(shape, random) {
+    if (shape <= 0) return 0;
+    if (shape < 1) {
+        const u = Math.max(Number.EPSILON, random());
+        return sampleGamma(shape + 1, random) * (u ** (1 / shape));
+    }
+
+    const d = shape - 1 / 3;
+    const c = 1 / Math.sqrt(9 * d);
+    while (true) {
+        let x = 0;
+        let y = 0;
+        let radius = 0;
+        do {
+            x = random() * 2 - 1;
+            y = random() * 2 - 1;
+            radius = x * x + y * y;
+        } while (radius === 0 || radius >= 1);
+        const z = x * Math.sqrt((-2 * Math.log(radius)) / radius);
+        const v = (1 + (c * z)) ** 3;
+        if (v <= 0) continue;
+        const u = random();
+        if (u < 1 - (0.331 * (z ** 4))) return d * v;
+        if (Math.log(u) < (0.5 * z * z) + (d * (1 - v + Math.log(v)))) return d * v;
+    }
+}
+
+function sampleBeta(alpha, beta, random) {
+    const x = sampleGamma(Math.max(alpha, Number.EPSILON), random);
+    const y = sampleGamma(Math.max(beta, Number.EPSILON), random);
+    const sum = x + y;
+    if (sum <= 0) return 0.5;
+    return x / sum;
+}
+
+function runBernoulliTrials(probability, trials, random) {
+    let successes = 0;
+    for (let i = 0; i < trials; i++) {
+        if (random() < probability) successes++;
+    }
+    return successes;
+}
+
 function normalizeOutcome(outcome, index) {
     if (!outcome || typeof outcome !== 'object') {
         throw new Error(`Invalid outcome at index ${index}`);
@@ -95,6 +146,7 @@ export function summarizeOutcomes(outcomes) {
     };
 
     const latencies = [];
+    const latenciesByAgent = {};
     let attemptsTotal = 0;
 
     for (const outcome of normalized) {
@@ -112,9 +164,9 @@ export function summarizeOutcomes(outcomes) {
                 successRate: 0,
                 successRateLower95: 0,
                 timeoutRate: 0,
-                latencyPercentiles: { p50: 0, p95: 0, p99: 0 },
-                latencySamples: []
+                latencyPercentiles: { p50: 0, p95: 0, p99: 0 }
             };
+            latenciesByAgent[outcome.target] = [];
         }
         if (!totals.byPriority[outcome.priority]) {
             totals.byPriority[outcome.priority] = {
@@ -127,9 +179,8 @@ export function summarizeOutcomes(outcomes) {
 
         totals.byAgent[outcome.target].tasks++;
         totals.byPriority[outcome.priority].tasks++;
-
         if (Number.isFinite(outcome.latencyMs)) {
-            totals.byAgent[outcome.target].latencySamples.push(outcome.latencyMs);
+            latenciesByAgent[outcome.target].push(outcome.latencyMs);
         }
 
         if (outcome.status === 'completed') {
@@ -163,7 +214,7 @@ export function summarizeOutcomes(outcomes) {
     }
 
     for (const [agentId, agent] of Object.entries(totals.byAgent)) {
-        const agentLatencies = agent.latencySamples;
+        const agentLatencies = latenciesByAgent[agentId] || [];
         agent.avgLatencyMs = agentLatencies.length > 0
             ? Number(mean(agentLatencies).toFixed(2))
             : 0;
@@ -177,7 +228,6 @@ export function summarizeOutcomes(outcomes) {
             ? Number((agent.timedOut / agent.tasks).toFixed(4))
             : 0;
         agent.latencyPercentiles = latencyPercentiles(agentLatencies);
-        delete agent.latencySamples;
     }
 
     totals.avgAttempts = totals.total > 0
@@ -292,9 +342,86 @@ export function runCounterfactualReplay(summary, variants = []) {
     };
 }
 
+export function simulateAdaptivePolicySelection(
+    replay,
+    {
+        episodes = 48,
+        trialsPerEpisode = 20,
+        seed = 1337
+    } = {}
+) {
+    if (!replay || !Array.isArray(replay.runs) || replay.runs.length === 0) {
+        throw new Error('simulateAdaptivePolicySelection requires replay runs');
+    }
+
+    const totalEpisodes = Math.max(1, Math.floor(Number(episodes) || 1));
+    const totalTrials = Math.max(1, Math.floor(Number(trialsPerEpisode) || 1));
+    const random = createSeededRandom(seed);
+    const bestProjected = Math.max(...replay.runs.map((run) => Number(run.projectedSuccessRate) || 0));
+
+    const arms = replay.runs.map((run) => ({
+        id: run.id,
+        name: run.name,
+        projectedSuccessRate: Number(run.projectedSuccessRate) || 0,
+        alpha: 1,
+        beta: 1,
+        selections: 0,
+        observedSuccesses: 0,
+        observedFailures: 0
+    }));
+
+    let cumulativeRegret = 0;
+    for (let episode = 0; episode < totalEpisodes; episode++) {
+        let selected = arms[0];
+        let selectedSample = -1;
+        for (const arm of arms) {
+            const sampled = sampleBeta(arm.alpha, arm.beta, random);
+            if (sampled > selectedSample) {
+                selected = arm;
+                selectedSample = sampled;
+            }
+        }
+
+        const successes = runBernoulliTrials(selected.projectedSuccessRate, totalTrials, random);
+        const failures = totalTrials - successes;
+        selected.alpha += successes;
+        selected.beta += failures;
+        selected.selections++;
+        selected.observedSuccesses += successes;
+        selected.observedFailures += failures;
+
+        cumulativeRegret += Math.max(0, bestProjected - selected.projectedSuccessRate) * totalTrials;
+    }
+
+    const ranked = arms.map((arm) => {
+        const posteriorMean = arm.alpha / (arm.alpha + arm.beta);
+        return {
+            id: arm.id,
+            name: arm.name,
+            selections: arm.selections,
+            selectionRate: Number((arm.selections / totalEpisodes).toFixed(4)),
+            projectedSuccessRate: Number(arm.projectedSuccessRate.toFixed(4)),
+            posteriorMean: Number(posteriorMean.toFixed(4)),
+            observedSuccessRate: Number((arm.observedSuccesses / Math.max(1, arm.observedSuccesses + arm.observedFailures)).toFixed(4))
+        };
+    }).sort((a, b) => {
+        if (b.posteriorMean !== a.posteriorMean) return b.posteriorMean - a.posteriorMean;
+        return b.selections - a.selections;
+    });
+
+    return {
+        episodes: totalEpisodes,
+        trialsPerEpisode: totalTrials,
+        cumulativeRegret: Number(cumulativeRegret.toFixed(2)),
+        recommendedArm: ranked[0] || null,
+        ranking: ranked
+    };
+}
+
 export function buildLearningRecommendations(
     summary,
     replay,
+    adaptiveRollout = null,
     {
         minTimeoutRateForAction = 0.1,
         minAgentSuccessRate = 0.7,
@@ -407,6 +534,21 @@ export function buildLearningRecommendations(
         });
     }
 
+    if (adaptiveRollout?.recommendedArm) {
+        recommendations.push({
+            priority: 'P1',
+            category: 'adaptive_policy_selection',
+            title: `Automate policy selection toward ${adaptiveRollout.recommendedArm.name}`,
+            rationale: `Thompson rollout selected this policy ${(adaptiveRollout.recommendedArm.selectionRate * 100).toFixed(1)}% of episodes with posterior mean ${(adaptiveRollout.recommendedArm.posteriorMean * 100).toFixed(1)}%`,
+            action: 'Deploy online Thompson sampling with a minimum exploration floor and promote policies when posterior lead remains stable for 3+ windows.',
+            expectedImpact: {
+                metric: 'successRate',
+                current: replay?.baselineSuccessRate || 0,
+                target: adaptiveRollout.recommendedArm.projectedSuccessRate
+            }
+        });
+    }
+
     return recommendations;
 }
 
@@ -417,15 +559,18 @@ export function evaluateLearningLoop(outcomes, options = {}) {
 
     const summarized = summarizeOutcomes(outcomes);
     const replay = runCounterfactualReplay(summarized, options.variants);
+    const adaptiveRollout = simulateAdaptivePolicySelection(replay, options.adaptiveRollout || {});
     const recommendations = buildLearningRecommendations(
         summarized,
         replay,
+        adaptiveRollout,
         options.thresholds || {}
     );
 
     return {
         summary: summarized.summary,
         replay,
+        adaptiveRollout,
         recommendations
     };
 }
@@ -434,5 +579,7 @@ export const __learningLoopInternals = {
     normalizeOutcome,
     normalizeVariant,
     latencyPercentiles,
-    wilsonLowerBound
+    wilsonLowerBound,
+    createSeededRandom,
+    sampleBeta
 };

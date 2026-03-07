@@ -89,6 +89,26 @@ function formatMarkdown(result) {
         lines.push(`| ${run.name} | ${(run.deltaSuccessRate * 100).toFixed(2)}pp | ${(run.projectedSuccessRate * 100).toFixed(2)}% |`);
     }
 
+    if (result.adaptiveRollout?.recommendedArm) {
+        lines.push(
+            '',
+            '## Adaptive Policy Rollout',
+            '',
+            `Episodes simulated: ${result.adaptiveRollout.episodes}`,
+            `Trials per episode: ${result.adaptiveRollout.trialsPerEpisode}`,
+            `Cumulative regret: ${result.adaptiveRollout.cumulativeRegret}`,
+            `Recommended policy: ${result.adaptiveRollout.recommendedArm.name}`,
+            '',
+            '| Policy | Selection Rate | Posterior Mean | Projected Success |',
+            '| --- | ---: | ---: | ---: |'
+        );
+        for (const policy of result.adaptiveRollout.ranking) {
+            lines.push(
+                `| ${policy.name} | ${(policy.selectionRate * 100).toFixed(2)}% | ${(policy.posteriorMean * 100).toFixed(2)}% | ${(policy.projectedSuccessRate * 100).toFixed(2)}% |`
+            );
+        }
+    }
+
     lines.push('', '## Recommendations', '');
     for (const recommendation of result.recommendations) {
         lines.push(`- [${recommendation.priority}] ${recommendation.title}`);
