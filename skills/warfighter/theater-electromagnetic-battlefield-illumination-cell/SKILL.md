@@ -114,3 +114,9 @@ Primary products for this skill: electromagnetic illumination timeline, adversar
 - Use `../_shared/references/us-joint-protocol-assurance-drill.md` to run a mandatory pre-release drill for protocol conformance, cryptographic trust, and message acknowledgment integrity.
 - Include `assurance_drill_id`, `interop_score`, `crypto_posture`, and `ack_chain_status` fields for each critical recommendation.
 - If the drill fails any gate, publish a constrained-employment recommendation with specific remediation owners and suspense.
+
+## Joint Operations External Toolchain Profiles
+
+- Use `../_shared/references/joint-operations-external-toolchain-profiles.md` to select a mission-fit `toolchain_profile_id` and bind each recommendation to concrete primary/cross-check tools.
+- Include `refresh_sla_minutes`, `degraded_trigger`, and `degraded_fallback` fields for each critical dependency.
+- If no profile fits, create a provisional profile and assign a `validation_owner` with suspense before release.

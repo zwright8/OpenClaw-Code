@@ -382,3 +382,9 @@ Every skill output should include:
 - joint-rapid-dam-and-hydroelectric-infrastructure-stabilization-cell
 - theater-rail-network-sabotage-detection-and-reroute-cell
 - allied-undersea-telemetry-cable-landing-defense-cell
+
+## Catalog Maintenance Update (2026-03-07 Run)
+
+- Total warfighter skills: 400
+- Added reference: `joint-operations-external-toolchain-profiles.md`
+- Added expansion skills this run: 20
