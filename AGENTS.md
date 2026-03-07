@@ -94,3 +94,4 @@
 - Verified `bac40da690..c52ffb61e3`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
 - Verified `345fccb4e9..1666d82e34`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
 - Verified `1666d82e34..3c6b201991`: no new root/`cognition-core`/`swarm-protocol` npm script deltas; added missing documented `swarm-protocol` `ops` entrypoint.
+- Verified `3c6b201991..e33650cf02`: no new root/`cognition-core`/`swarm-protocol` npm script deltas; docs update captured the missing `swarm-protocol` `ops` base command.
