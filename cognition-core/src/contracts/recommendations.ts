@@ -140,15 +140,23 @@ function extractRequiredApproversFromTaskMetadata(metadata: Record<string, unkno
         : [];
 
     const policyGate = isRecord(metadata.policyGate) ? metadata.policyGate : null;
+    const policyGateRequiredApprovers = policyGate && Array.isArray(policyGate.requiredApprovers)
+        ? policyGate.requiredApprovers
+        : [];
+
     const passthrough = policyGate && isRecord(policyGate.passthrough)
         ? policyGate.passthrough
         : null;
-    const policyRequiredApprovers = passthrough && Array.isArray(passthrough.requiredApprovers)
+    const policyPassthroughRequiredApprovers = passthrough && Array.isArray(passthrough.requiredApprovers)
         ? passthrough.requiredApprovers
         : [];
 
     return Array.from(new Set(
-        [...directRequiredApprovers, ...policyRequiredApprovers]
+        [
+            ...directRequiredApprovers,
+            ...policyGateRequiredApprovers,
+            ...policyPassthroughRequiredApprovers
+        ]
             .map((entry) => normalizeString(entry))
             .filter((entry): entry is string => Boolean(entry))
     )).sort(compareStringsDeterministically);
@@ -227,9 +235,20 @@ type NormalizedRecommendationRollbackMetadata = {
 function normalizeRecommendationRollbackMetadata(
     metadata: Record<string, unknown>
 ): NormalizedRecommendationRollbackMetadata {
+    const policyGate = isRecord(metadata.policyGate) ? metadata.policyGate : null;
+    const policyPassthrough = policyGate && isRecord(policyGate.passthrough)
+        ? policyGate.passthrough
+        : null;
+
     const rollbackCandidate = isRecord(metadata.rollbackPlan)
         ? metadata.rollbackPlan
-        : (isRecord(metadata.rollback) ? metadata.rollback : null);
+        : (isRecord(metadata.rollback)
+            ? metadata.rollback
+            : (isRecord(policyGate?.rollbackPlan)
+                ? policyGate.rollbackPlan
+                : (isRecord(policyPassthrough?.rollbackPlan)
+                    ? policyPassthrough.rollbackPlan
+                    : null)));
 
     if (!rollbackCandidate) {
         return {

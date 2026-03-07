@@ -162,6 +162,7 @@ function extractRequiredApprovers(input: RiskMetadataInput): string[] {
     return Array.from(new Set([
         ...normalizeApproverList(input.requiredApprovers),
         ...normalizeApproverList(metadata?.requiredApprovers),
+        ...normalizeApproverList(metadataPolicyGate?.requiredApprovers),
         ...normalizeApproverList(policyPassthrough?.requiredApprovers)
     ])).sort(compareStringsDeterministically);
 }
@@ -190,11 +191,25 @@ function resolveRequiresHumanApproval(input: RiskMetadataInput): boolean | null 
 function normalizeRollbackMetadata(input: RiskMetadataInput): RollbackMetadata {
     const metadata = extractMetadataRecord(input);
 
+    const metadataPolicyGate = metadata && isRecord(metadata.policyGate)
+        ? metadata.policyGate
+        : null;
+
+    const policyPassthrough = metadataPolicyGate && isRecord(metadataPolicyGate.passthrough)
+        ? metadataPolicyGate.passthrough
+        : null;
+
     const rollbackCandidate = isRecord(input.rollbackPlan)
         ? input.rollbackPlan
         : (isRecord(metadata?.rollbackPlan)
             ? metadata.rollbackPlan
-            : (isRecord(metadata?.rollback) ? metadata.rollback : null));
+            : (isRecord(metadata?.rollback)
+                ? metadata.rollback
+                : (isRecord(metadataPolicyGate?.rollbackPlan)
+                    ? metadataPolicyGate.rollbackPlan
+                    : (isRecord(policyPassthrough?.rollbackPlan)
+                        ? policyPassthrough.rollbackPlan
+                        : null))));
 
     if (!rollbackCandidate) {
         return {

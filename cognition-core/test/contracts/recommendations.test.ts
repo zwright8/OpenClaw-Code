@@ -92,6 +92,53 @@ test('validateCognitionRecommendation accepts valid recommendation payload', () 
     assert.equal(result.value.verificationPlan.steps.length, 1);
 });
 
+
+test('validateCognitionRecommendation accepts high-risk metadata from policyGate fallbacks', () => {
+    const result = validateCognitionRecommendation({
+        recommendationId: 'rec-high-policy-gate-metadata',
+        title: 'Constrain production egress',
+        reasoning: 'Critical networking change requires strict control metadata.',
+        evidence: [
+            {
+                evidenceId: 'e-policy-gate-1',
+                type: 'event',
+                reference: 'evt-policy-gate-1',
+                confidence: 0.86
+            }
+        ],
+        priority: 'P0',
+        riskTier: 'critical',
+        requiresHumanApproval: true,
+        estimatedImpact: {
+            metric: 'blast_radius',
+            unit: 'services',
+            expectedDelta: -3,
+            confidence: 0.72
+        },
+        verificationPlan: {
+            steps: [
+                {
+                    stepId: 'verify-policy-gate-metadata-1',
+                    description: 'Confirm service connectivity remains within expected bounds.'
+                }
+            ]
+        },
+        metadata: {
+            policyGate: {
+                requiredApprovers: ['executive-ops', 'security-ops'],
+                passthrough: {
+                    rollbackPlan: {
+                        trigger: 'Connectivity regression detected',
+                        steps: ['Restore pre-change egress policy profile']
+                    }
+                }
+            }
+        }
+    });
+
+    assert.equal(result.ok, true);
+});
+
 test('validateCognitionRecommendation fails closed for high-risk recommendation missing approval and rollback metadata', () => {
     const result = validateCognitionRecommendation({
         recommendationId: 'rec-high-missing-contract',
