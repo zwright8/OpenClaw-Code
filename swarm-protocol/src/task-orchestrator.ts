@@ -2679,6 +2679,27 @@ export class TaskOrchestrator {
             || reason === 'approval_release_failed'
             || reason === 'approval_release_retry'
         );
+        const timeoutBudgetMs = Number.isFinite(record.taskTimeoutMs) && record.taskTimeoutMs > 0
+            ? Number(record.taskTimeoutMs)
+            : this.defaultTimeoutMs;
+        const dispatchDeadlineAt = sendAt + timeoutBudgetMs;
+        const requestContext = record.request?.context && typeof record.request.context === 'object'
+            ? clone(record.request.context)
+            : {};
+        const dispatchReasonForContext = isRetryDispatch
+            ? dispatchReason
+            : formatReasonToken(parsedReason.code, parsedReason.context, parsedReason.code);
+        record.request = buildTaskRequest({
+            ...record.request,
+            context: {
+                ...requestContext,
+                swarmDispatchDeadlineAt: dispatchDeadlineAt,
+                swarmDispatchRemainingMs: timeoutBudgetMs,
+                swarmDispatchAttempt: record.attempts + 1,
+                swarmDispatchReason: dispatchReasonForContext
+            }
+        });
+
         if (isRetryDispatch) {
             await this._maybeRerouteRetry(record, sendAt, dispatchReason, dispatchReasonCode);
             const throttleDecision = this._canRetryDispatchForTarget(record.target, sendAt);
@@ -2776,10 +2797,7 @@ export class TaskOrchestrator {
                 reasonCode: isRetryDispatch ? dispatchReasonCode : parsedReason.code
             });
             record.status = 'dispatched';
-            const timeoutBudgetMs = Number.isFinite(record.taskTimeoutMs) && record.taskTimeoutMs > 0
-                ? Number(record.taskTimeoutMs)
-                : this.defaultTimeoutMs;
-            record.deadlineAt = sendAt + timeoutBudgetMs;
+            record.deadlineAt = dispatchDeadlineAt;
             record.nextRetryAt = null;
             record.lastError = null;
             lifecycle.consecutiveFailures = 0;

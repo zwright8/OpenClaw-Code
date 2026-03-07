@@ -392,6 +392,7 @@ Overload containment notes:
 - `minRetryDelayMs` enforces a floor on every retry schedule (including hinted retries) to avoid zero-delay retry storms.
 - `globalRetryBudgetPriorityReserve` preserves a configured share of retry slots for higher-priority work.
 - `rerouteOnRetry` re-runs `routeTask` before retry dispatch so timeout/rejection retries can move to a different worker when available.
+- Each dispatch attempt now annotates `task_request.context` with `swarmDispatchDeadlineAt`, `swarmDispatchRemainingMs`, `swarmDispatchAttempt`, and `swarmDispatchReason` for downstream deadline-aware execution.
 
 Safety policy integration:
 ```js

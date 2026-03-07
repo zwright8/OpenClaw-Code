@@ -59,6 +59,57 @@ test('dispatchTask sends validated request and tracks state', async () => {
     assert.equal(task.deadlineAt, 10_500);
 });
 
+test('dispatchTask propagates per-attempt deadline metadata in request context', async () => {
+    const sent = [];
+    const clock = createClock(11_000);
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message: JSON.parse(JSON.stringify(message)) });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 1,
+        retryDelayMs: 10,
+        maxRetryDelayMs: 10,
+        retryStrategy: 'fixed',
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-deadline',
+        task: 'Propagate dispatch deadline',
+        context: { sprint: '2026-W10' }
+    });
+
+    assert.equal(sent.length, 1);
+    assert.equal(sent[0].message.context.sprint, '2026-W10');
+    assert.equal(sent[0].message.context.swarmDispatchAttempt, 1);
+    assert.equal(sent[0].message.context.swarmDispatchReason, 'initial_dispatch');
+    assert.equal(sent[0].message.context.swarmDispatchRemainingMs, 100);
+    assert.equal(sent[0].message.context.swarmDispatchDeadlineAt, 11_100);
+
+    clock.set(11_101);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 1);
+
+    clock.set(11_111);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass2.retried, 1);
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(sent.length, 2);
+    assert.equal(sent[1].message.context.sprint, '2026-W10');
+    assert.equal(sent[1].message.context.swarmDispatchAttempt, 2);
+    assert.equal(sent[1].message.context.swarmDispatchReason, 'timeout_retry');
+    assert.equal(sent[1].message.context.swarmDispatchRemainingMs, 100);
+    assert.equal(sent[1].message.context.swarmDispatchDeadlineAt, 11_211);
+});
+
 test('dispatchTask applies per-task timeout override from context within bounds', async () => {
     const clock = createClock(12_000);
     const orchestrator = new TaskOrchestrator({
