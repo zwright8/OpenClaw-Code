@@ -345,6 +345,7 @@ const orchestrator = new TaskOrchestrator({
   retryDelayMs: 250,
   minRetryDelayMs: 100, // optional floor to prevent immediate retry loops
   retryHintJitterRatio: 0.2, // optional extra spread applied after server retry hints
+  isRetryableTransportError: (error) => error?.status !== 400, // optional classifier for permanent transport errors
   globalRetryBudgetRatio: 0.2,
   globalRetryBudgetWindowMs: 60_000,
   globalRetryBudgetMinBaseRequests: 5,

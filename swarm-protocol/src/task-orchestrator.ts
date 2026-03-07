@@ -54,6 +54,27 @@ const DEFAULT_CIRCUIT_FAILURE_RATE_WINDOW_MS = 60_000;
 const DEFAULT_CIRCUIT_FAILURE_RATE_MIN_SAMPLES = 10;
 const DEFAULT_MIN_TASK_TIMEOUT_MS = 100;
 const DEFAULT_TASK_TIMEOUT_MAX_MULTIPLIER = 8;
+const RETRYABLE_TRANSPORT_STATUS_CODES = new Set([408, 409, 425, 429]);
+const RETRYABLE_TRANSPORT_ERROR_CODES = new Set([
+    'ECONNRESET',
+    'ECONNREFUSED',
+    'ECONNABORTED',
+    'EPIPE',
+    'ETIMEDOUT',
+    'EAI_AGAIN',
+    'ENETUNREACH',
+    'EHOSTUNREACH',
+    'UND_ERR_CONNECT_TIMEOUT',
+    'UND_ERR_HEADERS_TIMEOUT'
+]);
+const NON_RETRYABLE_TRANSPORT_ERROR_CODES = new Set([
+    'ERR_BAD_REQUEST',
+    'ERR_INVALID_ARG_VALUE',
+    'ERR_INVALID_URL',
+    'EACCES',
+    'EPERM',
+    'EINVAL'
+]);
 const TRANSIENT_REJECTION_REASON_MARKERS = [
     '429',
     '503',
@@ -635,6 +656,65 @@ function parseRetryHintMsFromHeaders(headers, nowMs = Date.now()) {
     return null;
 }
 
+function extractTransportStatusCode(error) {
+    if (!error || typeof error !== 'object') return null;
+
+    const candidates = [
+        error.status,
+        error.statusCode,
+        error.response?.status,
+        error.response?.statusCode,
+        error.details?.status,
+        error.details?.statusCode
+    ];
+
+    for (const candidate of candidates) {
+        const numeric = Number(candidate);
+        if (Number.isInteger(numeric) && numeric >= 100) {
+            return numeric;
+        }
+    }
+
+    return null;
+}
+
+function defaultIsRetryableTransportError(error) {
+    const visited = new Set();
+    let current = error;
+
+    while (current && typeof current === 'object' && !visited.has(current)) {
+        visited.add(current);
+
+        if (typeof current.retryable === 'boolean') {
+            return current.retryable;
+        }
+
+        const statusCode = extractTransportStatusCode(current);
+        if (Number.isInteger(statusCode)) {
+            if (statusCode >= 500 || RETRYABLE_TRANSPORT_STATUS_CODES.has(statusCode)) {
+                return true;
+            }
+            if (statusCode >= 400 && statusCode < 500) {
+                return false;
+            }
+        }
+
+        const code = typeof current.code === 'string'
+            ? current.code.trim().toUpperCase()
+            : null;
+        if (code && NON_RETRYABLE_TRANSPORT_ERROR_CODES.has(code)) {
+            return false;
+        }
+        if (code && RETRYABLE_TRANSPORT_ERROR_CODES.has(code)) {
+            return true;
+        }
+
+        current = current.details?.cause ?? current.cause ?? null;
+    }
+
+    return true;
+}
+
 function parseTaskTimeoutHintMs(taskRequest) {
     if (!taskRequest || typeof taskRequest !== 'object') return null;
 
@@ -1079,6 +1159,7 @@ export class TaskOrchestrator {
         dedupeWindowMs = 300_000,
         dedupeUseContentHash = true,
         resolveIdempotencyKey = null,
+        isRetryableTransportError = null,
         now = Date.now,
         logger = console
     }) {
@@ -1209,6 +1290,9 @@ export class TaskOrchestrator {
         this.resolveIdempotencyKey = typeof resolveIdempotencyKey === 'function'
             ? resolveIdempotencyKey
             : null;
+        this.isRetryableTransportError = typeof isRetryableTransportError === 'function'
+            ? isRetryableTransportError
+            : defaultIsRetryableTransportError;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
@@ -1978,6 +2062,15 @@ export class TaskOrchestrator {
         }
 
         return null;
+    }
+
+    _isRetryableTransportFailure(error) {
+        if (typeof this.isRetryableTransportError !== 'function') return true;
+        try {
+            return this.isRetryableTransportError(error) !== false;
+        } catch {
+            return true;
+        }
     }
 
     _normalizeRetryLifecycle(record) {
@@ -3135,6 +3228,7 @@ export class TaskOrchestrator {
             retried: 0,
             timedOut: 0,
             transportFailures: 0,
+            nonRetryableTransportFailures: 0,
             globalRetryBudgetDrops: 0,
             retrySafetyDrops: 0,
             blockedRetries: 0,
@@ -3208,6 +3302,22 @@ export class TaskOrchestrator {
                     this.logger.warn?.(
                         `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
                     );
+
+                    if (!this._isRetryableTransportFailure(error)) {
+                        this._terminalizeRecordForRetry(record, {
+                            nowMs,
+                            status: 'transport_error',
+                            event: 'transport_error',
+                            reason: 'transport_failure:non_retryable',
+                            auditEvent: 'task_transport_error',
+                            auditPayload: {
+                                error: record.lastError,
+                                retryGuard: 'non_retryable_transport_failure'
+                            }
+                        });
+                        summary.nonRetryableTransportFailures++;
+                        continue;
+                    }
 
                     const scheduledAt = this._scheduleRetry(record, nowMs, 'transport_failure', {
                         error

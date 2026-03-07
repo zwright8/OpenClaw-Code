@@ -612,6 +612,88 @@ test('transport failure honors RateLimit-Reset response header when scheduling r
     assert.equal(current.nextRetryAt, 53_210);
 });
 
+test('non-retryable transport failures terminalize without scheduling another retry', async () => {
+    const clock = createClock(9_000);
+    let sendAttempts = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendAttempts += 1;
+                if (sendAttempts >= 2) {
+                    const error = new Error('HTTP 400');
+                    (error as any).status = 400;
+                    throw error;
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 3,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-non-retryable',
+        task: 'Stop retrying permanent failures'
+    });
+
+    clock.set(9_150);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 1);
+
+    clock.set(9_200);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+
+    assert.equal(pass2.transportFailures, 1);
+    assert.equal(pass2.nonRetryableTransportFailures, 1);
+    assert.equal(current.status, 'transport_error');
+    assert.equal(current.nextRetryAt, null);
+    assert.equal(current.retryLifecycle.terminalReason, 'transport_failure:non_retryable');
+});
+
+test('custom non-retryable classifier can allow retry scheduling for selected 4xx errors', async () => {
+    const clock = createClock(9_500);
+    let sendAttempts = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendAttempts += 1;
+                if (sendAttempts >= 2) {
+                    const error = new Error('HTTP 400');
+                    (error as any).status = 400;
+                    throw error;
+                }
+            }
+        },
+        isRetryableTransportError: () => true,
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 3,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-override',
+        task: 'Override retryability policy'
+    });
+
+    clock.set(9_650);
+    await orchestrator.runMaintenance(clock.now());
+
+    clock.set(9_700);
+    const pass = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+
+    assert.equal(pass.nonRetryableTransportFailures, 0);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 9_750);
+});
+
 test('HTTP 429 rejected receipt is treated as transient and schedules retry', async () => {
     const clock = createClock(3_720);
     const orchestrator = new TaskOrchestrator({
