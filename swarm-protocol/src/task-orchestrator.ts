@@ -453,6 +453,95 @@ function parseRetryHintMsFromReason(reason, nowMs = Date.now()) {
     return null;
 }
 
+function parseRetryAfterHeaderMs(value, nowMs = Date.now()) {
+    if (value === null || value === undefined) return null;
+    const text = String(value).trim();
+    if (!text) return null;
+
+    const seconds = Number(text);
+    if (Number.isFinite(seconds) && seconds >= 0) {
+        return seconds * 1000;
+    }
+
+    const dateMs = Date.parse(text);
+    if (Number.isFinite(dateMs)) {
+        return Math.max(0, dateMs - nowMs);
+    }
+
+    return null;
+}
+
+function parseRateLimitResetHeaderMs(value, nowMs = Date.now(), { treatSmallAsEpoch = false } = {}) {
+    if (value === null || value === undefined) return null;
+
+    const raw = Number(String(value).trim());
+    if (!Number.isFinite(raw) || raw < 0) return null;
+
+    if (raw >= 10_000_000_000) {
+        return Math.max(0, raw - nowMs);
+    }
+
+    if (raw >= 1_000_000_000 || treatSmallAsEpoch) {
+        return Math.max(0, (raw * 1000) - nowMs);
+    }
+
+    return raw * 1000;
+}
+
+function readHeaderValue(headers, key) {
+    if (!headers) return null;
+    const target = String(key).toLowerCase();
+
+    if (typeof headers.get === 'function') {
+        const value = headers.get(key) ?? headers.get(target);
+        return value ?? null;
+    }
+
+    if (headers instanceof Map) {
+        for (const [entryKey, entryValue] of headers.entries()) {
+            if (String(entryKey).toLowerCase() === target) {
+                return entryValue;
+            }
+        }
+        return null;
+    }
+
+    if (typeof headers === 'object') {
+        for (const [entryKey, entryValue] of Object.entries(headers)) {
+            if (entryKey.toLowerCase() === target) {
+                return entryValue;
+            }
+        }
+    }
+
+    return null;
+}
+
+function parseRetryHintMsFromHeaders(headers, nowMs = Date.now()) {
+    if (!headers) return null;
+
+    const retryAfterRaw = readHeaderValue(headers, 'retry-after');
+    const retryAfterValue = Array.isArray(retryAfterRaw) ? retryAfterRaw[0] : retryAfterRaw;
+    const retryAfterMs = parseRetryAfterHeaderMs(retryAfterValue, nowMs);
+    if (Number.isFinite(retryAfterMs)) return retryAfterMs;
+
+    const rateLimitResetRaw = readHeaderValue(headers, 'ratelimit-reset');
+    const rateLimitResetValue = Array.isArray(rateLimitResetRaw) ? rateLimitResetRaw[0] : rateLimitResetRaw;
+    const rateLimitResetMs = parseRateLimitResetHeaderMs(rateLimitResetValue, nowMs, {
+        treatSmallAsEpoch: false
+    });
+    if (Number.isFinite(rateLimitResetMs)) return rateLimitResetMs;
+
+    const xRateLimitResetRaw = readHeaderValue(headers, 'x-ratelimit-reset');
+    const xRateLimitResetValue = Array.isArray(xRateLimitResetRaw) ? xRateLimitResetRaw[0] : xRateLimitResetRaw;
+    const xRateLimitResetMs = parseRateLimitResetHeaderMs(xRateLimitResetValue, nowMs, {
+        treatSmallAsEpoch: true
+    });
+    if (Number.isFinite(xRateLimitResetMs)) return xRateLimitResetMs;
+
+    return null;
+}
+
 function parseTaskTimeoutHintMs(taskRequest) {
     if (!taskRequest || typeof taskRequest !== 'object') return null;
 
@@ -1529,6 +1618,7 @@ export class TaskOrchestrator {
     }
 
     _extractRetryHintMs(error) {
+        const nowMs = safeNow(this.now);
         const visited = new Set();
         let current = error;
 
@@ -1540,6 +1630,11 @@ export class TaskOrchestrator {
 
             const detailsHint = Number(current?.details?.retryAfterMs);
             if (Number.isFinite(detailsHint) && detailsHint >= 0) return detailsHint;
+
+            const headerHint = parseRetryHintMsFromHeaders(current?.headers, nowMs)
+                ?? parseRetryHintMsFromHeaders(current?.response?.headers, nowMs)
+                ?? parseRetryHintMsFromHeaders(current?.details?.headers, nowMs);
+            if (Number.isFinite(headerHint) && headerHint >= 0) return headerHint;
 
             current = current.cause;
         }

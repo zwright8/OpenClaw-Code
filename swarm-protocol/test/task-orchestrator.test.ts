@@ -418,6 +418,88 @@ test('X-RateLimit-Reset epoch seconds is parsed as retry hint', async () => {
     assert.equal(current.nextRetryAt, 2_005_000);
 });
 
+test('transport failure honors Retry-After response header when scheduling retry', async () => {
+    const clock = createClock(2_500);
+    let sendAttempts = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendAttempts += 1;
+                if (sendAttempts >= 2) {
+                    const error = new Error('HTTP 503');
+                    error.response = {
+                        headers: {
+                            'retry-after': '3'
+                        }
+                    };
+                    throw error;
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-header-retry-after',
+        task: 'Honor retry-after on transport error'
+    });
+
+    clock.set(2_650);
+    await orchestrator.runMaintenance(clock.now());
+    clock.set(2_700);
+    await orchestrator.runMaintenance(clock.now());
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 5_700);
+});
+
+test('transport failure honors RateLimit-Reset response header when scheduling retry', async () => {
+    const clock = createClock(8_000);
+    let sendAttempts = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendAttempts += 1;
+                if (sendAttempts >= 2) {
+                    const error = new Error('HTTP 429');
+                    error.response = {
+                        headers: {
+                            'ratelimit-reset': '45'
+                        }
+                    };
+                    throw error;
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 2,
+        retryDelayMs: 50,
+        retryJitterRatio: 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-header-ratelimit-reset',
+        task: 'Honor ratelimit-reset on transport error'
+    });
+
+    clock.set(8_160);
+    await orchestrator.runMaintenance(clock.now());
+    clock.set(8_210);
+    await orchestrator.runMaintenance(clock.now());
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 53_210);
+});
+
 test('HTTP 429 rejected receipt is treated as transient and schedules retry', async () => {
     const clock = createClock(3_720);
     const orchestrator = new TaskOrchestrator({
