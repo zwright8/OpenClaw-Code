@@ -183,6 +183,12 @@ Include these fields in outputs when tool integration is used:
 - Use `joint-mission-data-contracts.md` to choose a domain profile and validate required fields before releasing any recommendation.
 - Include the selected `contract_id` and gate status (schema/freshness/provenance/consistency/releasability) in outputs that drive operational decisions.
 
+## Human-Agent Escalation Binding (2026-03-07)
+
+- Apply `human-agent-command-escalation-matrix.md` for every high-consequence recommendation that uses external tools.
+- Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` alongside protocol/output fields.
+- If authority scope, acknowledgment integrity, or legal basis is uncertain, downgrade to advisory-only and publish explicit commander decision prompts.
+
 ## Domain Toolchain Profiles (2026-03-06 Expansion)
 
 - Electromagnetic protection and waveform agility: EW mission data tools + spectrum analytics + Link 16/USMTF/API

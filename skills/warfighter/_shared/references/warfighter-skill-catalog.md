@@ -4,8 +4,8 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 380
-- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, and this catalog
+- Total warfighter skills in this repo: 420
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
 ## Domain Coverage Matrix
@@ -383,8 +383,31 @@ Every skill output should include:
 - theater-rail-network-sabotage-detection-and-reroute-cell
 - allied-undersea-telemetry-cable-landing-defense-cell
 
+## New Expansion Wave (2026-03-07, Human-Agent Escalation and Mission Assurance Expansion)
+
+- joint-mission-digital-twin-red-blue-synchronization-cell
+- theater-maritime-insurance-and-commercial-shipping-risk-cell
+- contested-spectrum-civil-aviation-deconfliction-cell
+- joint-forward-water-security-and-source-protection-cell
+- multi-domain-humanitarian-safe-zone-assurance-cell
+- coalition-mission-data-labeling-and-releasability-cell
+- joint-electronic-warfare-order-compliance-audit-cell
+- expeditionary-battlefield-waste-and-hazardous-material-cell
+- strategic-chokepoint-economic-impact-and-force-priority-cell
+- operational-ai-agent-authority-and-escalation-cell
+- contested-weather-sensor-integrity-and-spoof-detection-cell
+- joint-emergency-bulk-fuel-substitution-and-compatibility-cell
+- coalition-digital-identity-revocation-and-rekey-cell
+- forward-manufacturing-quality-drift-and-recall-cell
+- theater-legal-attribution-and-public-disclosure-cell
+- joint-cognitive-load-and-watchfloor-fatigue-management-cell
+- expeditionary-port-health-and-biosecurity-screening-cell
+- tactical-civil-infrastructure-priority-services-restoration-cell
+- strategic-space-launch-site-defense-and-reconstitution-cell
+- joint-resilient-navigation-inertial-celestial-fusion-cell
+
 ## Catalog Maintenance Update (2026-03-07 Run)
 
-- Total warfighter skills: 400
-- Added reference: `joint-operations-external-toolchain-profiles.md`
+- Total warfighter skills: 420
+- Added reference: `human-agent-command-escalation-matrix.md`
 - Added expansion skills this run: 20
