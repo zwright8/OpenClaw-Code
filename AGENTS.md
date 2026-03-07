@@ -1,6 +1,10 @@
 # AGENTS.md
 
 ## Verified Workflows (Repo Root)
+- `npm run agent:quickstart` - display onboarding command map from `AGENTS.md`.
+- `npm run agent:map` - display machine-readable command map from `AGENT_MAP.json`.
+- `npm run agent:validate` - run the full gate (`typecheck` + artifact contract checks + core tests).
+- `npm run artifacts:validate` - validate artifact contracts via `scripts/validate-artifact-contracts.mjs`.
 - `npm run lint` - run root automated refactor/lint pass (`scripts/auto-refactor.ts`).
 - `npm run typecheck` - typecheck root + `cognition-core` + `swarm-protocol`.
 - `npm run build` - runs root lint plus tests in both packages.
@@ -39,6 +43,10 @@
 - `npm run skills:marketplace:ship` - build/validate/package/validate/demo marketplace outputs.
 - `npm run skills:improve:10000` - generate improvement catalog for the 10k skill corpus.
 - `npm run skills:improve:10000:validate` - validate generated 10k-skill improvement artifacts.
+- `npm run skills:registry:build` - generate skill registry artifacts.
+- `npm run skills:registry:validate` - validate skill registry artifacts.
+- `npm run skills:route` - run skill routing over the built registry.
+- `npm run skills:run` - execute SkillOS run orchestration entrypoint.
 - `npm run skills:harden:profile` - build hardening/deployability profile.
 - `npm run skills:harden` - apply hardening and emit deployability summaries.
 - `npm run skills:build:10000` - generate the 10k skill corpus.
@@ -52,7 +60,19 @@
 - `npm --prefix cognition-core run analyze:quick` - generate 1-day cognition analysis.
 - `npm --prefix cognition-core run plan:tasks` - emit remediation task requests.
 - `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
+- `npm --prefix cognition-core run outcomes:export` - export canonical swarm outcomes for downstream analysis.
 - `npm --prefix cognition-core run graph` - rebuild cognition graph artifacts.
+- `npm --prefix cognition-core run stability:whatsapp` - generate 24-hour WhatsApp stability report outputs.
+- `npm --prefix cognition-core run ingest` - ingest latest events into cognition state.
+- `npm --prefix cognition-core run evaluate` - evaluate current cognition outcomes.
+- `npm --prefix cognition-core run report` - generate cognition status report outputs.
+- `npm --prefix cognition-core run run` - execute cognition runtime entrypoint.
+- `npm --prefix cognition-core run dispatch` - dispatch pending cognition tasks.
+- `npm --prefix cognition-core run status` - print current cognition runtime status.
+- `npm --prefix cognition-core run run:dispatch` - execute runtime with dispatch enabled.
+- `npm --prefix cognition-core run scorecard` - generate productivity scorecard outputs.
+- `npm --prefix cognition-core run tune:recommendations` - tune recommendation thresholds from feedback.
+- `npm --prefix cognition-core run full:utilization` - run full-utilization pipeline.
 - `npm --prefix swarm-protocol run test` - run full swarm-protocol test suite (`test:unit` + `test:legacy`).
 - `npm --prefix swarm-protocol run test:unit` - run swarm-protocol unit tests only.
 - `npm --prefix swarm-protocol run test:legacy` - run swarm-protocol legacy test harness.
@@ -69,4 +89,4 @@
 
 ## TODO
 - README still references commands not present in current `package.json` scripts (`worker:loop`, `autonomous:run`, `iterate:plan`, `plan:skills`, `build:full`, `memory:*`); confirm owners before adding wrappers here.
-- Verified `e5a2980143..9d022080de`: no new root/`cognition-core`/`swarm-protocol` `package.json` script-entrypoint additions requiring AGENTS command updates.
+- Verified `9d022080de..bac40da690`: added root (`agent:*`, `artifacts:validate`, `skills:registry:*`, `skills:route`, `skills:run`) and `cognition-core` script entrypoints are now reflected above.
