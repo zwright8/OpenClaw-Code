@@ -150,3 +150,27 @@ Include these fields in outputs when tool integration is used:
 - Tool Invocation Packet fields for each critical tool dependency
 - Adapter contract status (`adapter_id`, protocol, auth mode, last-success UTC) for each critical dependency
 - Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback
+
+## Protocol Assurance Drill Requirement (2026-03-07)
+
+- Before finalizing recommendations with external dependencies, run the drill in `./us-joint-protocol-assurance-drill.md`.
+- Include these required fields in commander/staff products: `assurance_drill_id`, `interop_score`, `crypto_posture`, `ack_chain_status`, `release_status`.
+- Do not mark recommendations as mission-ready when `release_status` is `hold` or `ack_chain_status` is not `complete`.
+- If protocol assurance fails, switch to documented degraded-mode paths and identify remediation owner/suspense.
+
+## External Tool Families for Current U.S. Warfighter Integration
+
+- C2 and fires: GCCS-J/JADOCS, AFATDS, TBMCS, AOC WS, Link 16/JREAP gateways.
+- ISR and geospatial: DCGS-A/DCGS-N, TAK ecosystem, Palantir variants, OGC WMS/WFS services.
+- Cyber/defensive operations: SIEM/SOAR stacks, EDR telemetry brokers, STIX/TAXII exchanges.
+- Sustainment and mobility: GCSS-Army/GCSS-MC, LOGCOP feeds, movement control and depot systems.
+- Medical and personnel: TMIP-J, theater patient movement trackers, blood/logistics management systems.
+- Space and spectrum: SDA feeds, SATCOM network managers, EMSO planning/deconfliction tools.
+
+## Protocol Mapping Guidance (Quick Bind)
+
+- Air and missile warning dissemination: `Link 16` + `USMTF` narrative fallback.
+- Tactical ground maneuver synchronization: `VMF`/`CoT` with map tile overlays.
+- Coalition cyber threat sharing: `STIX/TAXII` with releasability tags.
+- Sensor/track geospatial overlays: `OGC` interfaces with signed metadata provenance.
+- Long-haul message continuity under disruption: message queuing with deterministic retry/ack timers.

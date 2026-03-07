@@ -83,3 +83,9 @@ Primary products for this skill: deterrence signaling options brief, escalation 
 - Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
 - Include adapter health status and last-success UTC for each mission-critical integration.
 - Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.
+
+## U.S. Joint Protocol Assurance Drill
+
+- Use `../_shared/references/us-joint-protocol-assurance-drill.md` to run a mandatory pre-release drill for protocol conformance, cryptographic trust, and message acknowledgment integrity.
+- Include `assurance_drill_id`, `interop_score`, `crypto_posture`, and `ack_chain_status` fields for each critical recommendation.
+- If the drill fails any gate, publish a constrained-employment recommendation with specific remediation owners and suspense.

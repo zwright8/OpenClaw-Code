@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 223
+- Total warfighter skills in this repo: 243
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
@@ -195,3 +195,26 @@ Every skill output should include:
 - civilian-harm-incident-response-and-remediation-cell
 - joint-orbital-reconstitution-launch-manifest-cell
 - contested-medevac-denied-airspace-synchronizer-cell
+
+## New Expansion Wave (2026-03-07, Protocol Assurance and Coalition Resilience Expansion)
+
+- homeland-cbrn-consequence-management-fusion-cell
+- strategic-rare-isotope-and-medical-radiological-supply-cell
+- joint-river-crossing-under-fire-synchronization-cell
+- contested-space-ground-optical-communications-recovery-cell
+- expeditionary-cyber-electronic-attack-range-support-cell
+- coalition-air-missile-defense-early-warning-fusion-cell
+- joint-arctic-overland-convoy-survivability-cell
+- tactical-sensor-to-shooter-latency-governance-cell
+- theater-counterfeit-component-detection-and-quarantine-cell
+- strategic-bioforensics-and-attribution-support-cell
+- joint-undersea-battle-damage-assessment-cell
+- contested-urban-subterranean-mapping-and-clearance-cell
+- expeditionary-spectrum-auction-and-priority-conflict-resolution-cell
+- coalition-rapid-language-model-red-teaming-cell
+- joint-civil-authority-maritime-evacuation-coordinator
+- theater-ai-enabled-foreign-material-exploitation-cell
+- tactical-multi-band-antenna-field-repair-cell
+- strategic-orbital-asset-maneuver-fuel-budget-cell
+- joint-electromagnetic-compatibility-test-and-certification-cell
+- expeditionary-cold-weather-humanitarian-logistics-cell
