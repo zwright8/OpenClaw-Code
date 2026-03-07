@@ -76,3 +76,9 @@ Primary products for this skill: mission estimate, synchronization matrix, risk 
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## U.S. Joint Tool Adapter Contract Drill
+
+- Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
+- Include adapter health status and last-success UTC for each mission-critical integration.
+- Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.

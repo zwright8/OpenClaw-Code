@@ -4,11 +4,12 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 199
+- Total warfighter skills in this repo: 223
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
 - All skills now include a `U.S. Warfighter Tool Auth and Access Drill` section for credential and transport readiness checks.
+- All skills now include a `U.S. Joint Tool Adapter Contract Drill` section for dependency-level protocol/auth/fallback mapping.
 
 ## Domain Coverage Matrix
 
@@ -167,3 +168,30 @@ Every skill output should include:
 - strategic-reserve-munitions-surge-manufacturing-cell
 - contested-railhead-protection-and-repair-cell
 - tactical-cloudoutage-mission-continuity-cell
+
+## New Expansion Wave (2026-03-07, Joint Adapter-Integrated Operations Expansion)
+
+- strategic-space-launch-responsiveness-and-range-survivability-cell
+- joint-electronic-attack-deconfliction-and-emission-control-cell
+- contested-humint-network-validation-and-risk-cell
+- theater-autonomous-undersea-cable-repair-coordinator
+- multi-domain-targeting-ethics-and-authority-check-cell
+- expeditionary-dna-forensics-and-family-assistance-cell
+- homeland-grid-blackstart-civil-military-fusion-cell
+- coalition-cyber-incident-mutual-defense-coordination-cell
+- denied-environment-robotic-cbrn-recon-cell
+- tactical-satcom-anti-jam-waveform-manager
+- joint-precision-fuel-demand-forecast-and-distribution-cell
+- maritime-gray-zone-fishing-fleet-pattern-analysis-cell
+- arctic-domain-sensor-picket-orchestration-cell
+- theater-digital-deception-and-opsec-assurance-cell
+- rapid-airbase-damage-assessment-autonomy-cell
+- contested-additive-manufacturing-powder-assurance-cell
+- special-operations-sensitive-compartment-integration-cell
+- coalition-cross-border-fires-clearance-governance-cell
+- strategic-cyber-reserve-force-mobilization-cell
+- expeditionary-microreactor-siting-and-risk-cell
+- multi-domain-priority-intelligence-requirements-triage-cell
+- civilian-harm-incident-response-and-remediation-cell
+- joint-orbital-reconstitution-launch-manifest-cell
+- contested-medevac-denied-airspace-synchronizer-cell

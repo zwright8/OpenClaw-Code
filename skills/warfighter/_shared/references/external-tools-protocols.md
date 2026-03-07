@@ -13,6 +13,7 @@ Use this reference when a warfighter skill needs system integration guidance. Ke
 7. Log provenance: source system, pull time, processing assumptions, and confidence level.
 8. Select and justify primary/alternate/degraded toolchain profiles from `domain-toolchain-profiles.md`.
 9. Run the mission assurance checks in `mission-assurance-checklist.md` before release.
+10. Bind critical dependencies to adapter contracts in `us-joint-tool-adapter-contracts.md`.
 
 ## Tool Invocation Packet (required in skill outputs)
 
@@ -93,6 +94,30 @@ Use profile selections that fit the mission domain:
 - Strategic aeromedical flow: patient movement systems + bed management + airlift scheduling + USMTF/HL7/API
 - Maritime convoy and sea-lane defense: fleet C2 + AIS + ASW feeds + Link 16/AIS/USMTF
 - Counter-space electronic attack response: SATCOM monitoring + EW indicators + network defense tools + API/JSON/USMTF/STIX
+- Strategic launch responsiveness and range survivability: launch/range C2 + SDA warning + cyber telemetry + USMTF/API/Link 16
+- Electronic attack deconfliction and emission control: EMS planners + EW execution consoles + SIGINT libraries + Link 16/VMF/API
+- HUMINT network validation and risk: HUMINT support systems + CI watchlists + travel/access logs + API/JSON/USMTF
+- Autonomous undersea cable repair: subsea infrastructure telemetry + ROV/UUV tasking + maritime COP + AIS/NMEA/API
+- Targeting ethics and authority checks: targeting tools + ROE/LOAC policy stores + legal workflow systems + USMTF/API
+- Expeditionary DNA forensics and family assistance: forensics case systems + mortuary affairs trackers + coordination workflows + API/JSON
+- Homeland blackstart fusion: utility telemetry + emergency management COP + cyber alerts + OGC/API/USMTF
+- Coalition cyber mutual defense: SIEM/SOAR + coalition intel exchanges + incident workflow + STIX/TAXII/API
+- Robotic CBRN reconnaissance: CBRN sensors + robotic control stations + hazard modeling + CoT/VMF/API
+- SATCOM anti-jam waveform management: SATCOM planners + spectrum monitoring + EW indicators + API/USMTF/Link 16
+- Precision fuel demand/distribution: fuel logistics systems + sortie plans + route risk tools + USMTF/API/CSV
+- Maritime gray-zone fishing analytics: AIS feeds + EO/SAR imagery + pattern-analysis tooling + AIS/NMEA/OGC/API
+- Arctic sensor picket orchestration: ice/weather feeds + autonomous sensor C2 + maritime COP + AIS/OGC/USMTF
+- Digital deception and OPSEC assurance: OPSEC assessment tools + cyber telemetry + influence monitoring + STIX/API/USMTF
+- Rapid airbase damage assessment autonomy: runway damage analytics + drone imagery + sortie schedulers + CoT/OGC/USMTF
+- Additive manufacturing powder assurance: manufacturing QA systems + lab telemetry + sustainment MIS + API/JSON/USMTF
+- SOF compartment integration: mission planning systems + compartmented access logs + releasability workflows + API/USMTF
+- Coalition cross-border fires clearance: fires C2 + airspace deconfliction + legal/authority workflows + VMF/USMTF/Link 16
+- Cyber reserve mobilization: force management systems + cyber readiness telemetry + assignment workflows + API/JSON/STIX
+- Expeditionary microreactor siting and risk: engineering models + force protection overlays + logistics planners + OGC/API/USMTF
+- Priority intelligence requirement triage: PIR trackers + ISR tasking tools + campaign assessment dashboards + VMF/USMTF/API
+- Civilian harm incident remediation: CHMR systems + geospatial evidence tools + compensation workflow + OGC/API/USMTF
+- Orbital reconstitution manifesting: launch manifest tools + SDA catalogs + logistics scheduling + API/JSON/USMTF
+- Denied-airspace MEDEVAC synchronization: med regulation systems + unmanned/crewed route planners + threat overlays + USMTF/VMF/API
 
 ## Integration Interfaces and Transports
 
@@ -123,4 +148,5 @@ Include these fields in outputs when tool integration is used:
 - Confidence and known gaps
 - Classification/handling caveat placeholder (unclassified by default unless user specifies)
 - Tool Invocation Packet fields for each critical tool dependency
+- Adapter contract status (`adapter_id`, protocol, auth mode, last-success UTC) for each critical dependency
 - Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback

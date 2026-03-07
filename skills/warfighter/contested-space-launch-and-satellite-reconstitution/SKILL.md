@@ -77,3 +77,9 @@ Primary products for this skill: space reconstitution options brief, launch-read
 - Use `../_shared/references/us-warfighter-tool-auth-and-access-drill.md` to verify account state, role binding, and transport availability before critical actions.
 - If any critical integration lacks valid credentials, publish a degraded-mode branch and request revalidation suspense.
 - Record auth/access status in the output handoff so downstream cells can execute without re-triage.
+
+## U.S. Joint Tool Adapter Contract Drill
+
+- Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
+- Include adapter health status and last-success UTC for each mission-critical integration.
+- Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.
