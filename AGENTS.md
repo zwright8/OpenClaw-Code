@@ -69,4 +69,4 @@
 
 ## TODO
 - README still references commands not present in current `package.json` scripts (`worker:loop`, `autonomous:run`, `iterate:plan`, `plan:skills`, `build:full`, `memory:*`); confirm owners before adding wrappers here.
-- Since `a312bb23b5` through `0529c96d8a` (`origin/main` at this run), no root/`cognition-core`/`swarm-protocol` `package.json` script-entrypoint changes were found; command inventory remains current.
+- Since `0529c96d8a` through `6c94ed2680` (`origin/main` at this run), no root/`cognition-core`/`swarm-protocol` `package.json` script-entrypoint changes were found; command inventory remains current.
