@@ -342,6 +342,125 @@ export function runCounterfactualReplay(summary, variants = []) {
     };
 }
 
+function computeRate(outcomes) {
+    if (!Array.isArray(outcomes) || outcomes.length === 0) return 0;
+    const successful = outcomes.filter((item) => item.status === 'completed').length;
+    return successful / outcomes.length;
+}
+
+export function analyzeWindowedPerformance(
+    outcomes,
+    {
+        recentWindowSize = 24,
+        minWindowSize = 8,
+        driftAlertThreshold = 0.12
+    } = {}
+) {
+    if (!Array.isArray(outcomes)) {
+        throw new Error('analyzeWindowedPerformance expects outcomes array');
+    }
+
+    const normalized = outcomes.map((item, index) => normalizeOutcome(item, index));
+    const cappedWindow = Math.max(1, Math.floor(Number(recentWindowSize) || 24));
+    const requiredSize = Math.max(1, Math.floor(Number(minWindowSize) || 8));
+
+    const recent = normalized.slice(-cappedWindow);
+    const baseline = normalized.slice(0, -cappedWindow);
+    const recentSuccessRate = computeRate(recent);
+    const baselineSuccessRate = computeRate(baseline);
+
+    if (normalized.length < requiredSize * 2) {
+        return {
+            sufficientData: false,
+            recentWindowSize: recent.length,
+            baselineWindowSize: baseline.length,
+            recentSuccessRate: Number(recentSuccessRate.toFixed(4)),
+            baselineSuccessRate: Number(baselineSuccessRate.toFixed(4)),
+            deltaSuccessRate: 0,
+            alert: false,
+            rationale: 'Insufficient history for robust drift signal'
+        };
+    }
+
+    const deltaSuccessRate = Number((recentSuccessRate - baselineSuccessRate).toFixed(4));
+    const alert = deltaSuccessRate <= -Math.abs(Number(driftAlertThreshold) || 0.12);
+
+    return {
+        sufficientData: true,
+        recentWindowSize: recent.length,
+        baselineWindowSize: baseline.length,
+        recentSuccessRate: Number(recentSuccessRate.toFixed(4)),
+        baselineSuccessRate: Number(baselineSuccessRate.toFixed(4)),
+        deltaSuccessRate,
+        alert,
+        rationale: alert
+            ? 'Recent success rate materially underperforms baseline window'
+            : 'Recent success rate remains within accepted drift band'
+    };
+}
+
+export function scoreAgentReliability(
+    outcomes,
+    {
+        discountFactor = 0.92,
+        minSamplesForAction = 6,
+        lowerBoundAlertThreshold = 0.55
+    } = {}
+) {
+    if (!Array.isArray(outcomes)) {
+        throw new Error('scoreAgentReliability expects outcomes array');
+    }
+
+    const normalized = outcomes.map((item, index) => normalizeOutcome(item, index));
+    const boundedDiscount = clamp(Number(discountFactor) || 0.92, 0.5, 0.999);
+    const samplesFloor = Math.max(1, Math.floor(Number(minSamplesForAction) || 6));
+    const lowerBoundFloor = clamp(Number(lowerBoundAlertThreshold) || 0.55, 0, 1);
+    const perAgent = new Map();
+
+    for (const outcome of normalized) {
+        if (!perAgent.has(outcome.target)) {
+            perAgent.set(outcome.target, {
+                agentId: outcome.target,
+                tasks: 0,
+                successes: 0,
+                discountedTasks: 0,
+                discountedSuccesses: 0
+            });
+        }
+
+        const current = perAgent.get(outcome.target);
+        current.tasks += 1;
+        if (outcome.status === 'completed') current.successes += 1;
+        current.discountedTasks = (current.discountedTasks * boundedDiscount) + 1;
+        current.discountedSuccesses = (current.discountedSuccesses * boundedDiscount) + (outcome.status === 'completed' ? 1 : 0);
+    }
+
+    const agents = Array.from(perAgent.values()).map((entry) => {
+        const empiricalRate = entry.tasks > 0 ? entry.successes / entry.tasks : 0;
+        const discountedRate = entry.discountedTasks > 0
+            ? entry.discountedSuccesses / entry.discountedTasks
+            : 0;
+        const lowerBound = wilsonLowerBound(entry.successes, entry.tasks);
+        const actionEligible = entry.tasks >= samplesFloor && lowerBound < lowerBoundFloor;
+        return {
+            agentId: entry.agentId,
+            tasks: entry.tasks,
+            empiricalSuccessRate: Number(empiricalRate.toFixed(4)),
+            discountedSuccessRate: Number(discountedRate.toFixed(4)),
+            successRateLowerBound: Number(lowerBound.toFixed(4)),
+            actionEligible
+        };
+    }).sort((a, b) => a.successRateLowerBound - b.successRateLowerBound);
+
+    return {
+        discountFactor: boundedDiscount,
+        minSamplesForAction: samplesFloor,
+        lowerBoundAlertThreshold: lowerBoundFloor,
+        agents,
+        watchlist: agents.filter((agent) => agent.actionEligible).map((agent) => agent.agentId)
+    };
+}
+
 export function simulateAdaptivePolicySelection(
     replay,
     {
@@ -422,14 +541,30 @@ export function buildLearningRecommendations(
     summary,
     replay,
     adaptiveRollout = null,
-    {
+    operationalInsightsOrThresholds = null,
+    thresholdsOverride = null
+) {
+    let operationalInsights = null;
+    let thresholdOptions = thresholdsOverride;
+    if (!thresholdOptions && operationalInsightsOrThresholds && typeof operationalInsightsOrThresholds === 'object' && (
+        Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minTimeoutRateForAction')
+        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minAgentSuccessRate')
+        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'maxAvgAttempts')
+        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minAgentSamplesForAction')
+        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minP95LatencyMsForAction')
+    )) {
+        thresholdOptions = operationalInsightsOrThresholds;
+    } else {
+        operationalInsights = operationalInsightsOrThresholds;
+    }
+
+    const {
         minTimeoutRateForAction = 0.1,
         minAgentSuccessRate = 0.7,
         maxAvgAttempts = 1.4,
         minAgentSamplesForAction = 5,
         minP95LatencyMsForAction = 1000
-    } = {}
-) {
+    } = thresholdOptions || {};
     const baseline = summary?.summary || summary;
     if (!baseline || typeof baseline !== 'object') {
         throw new Error('buildLearningRecommendations requires outcome summary');
@@ -534,6 +669,37 @@ export function buildLearningRecommendations(
         });
     }
 
+    if (operationalInsights?.drift?.sufficientData && operationalInsights.drift.alert) {
+        recommendations.push({
+            priority: 'P1',
+            category: 'nonstationarity_guard',
+            title: 'Respond to recent performance drift',
+            rationale: `Recent window success rate ${(operationalInsights.drift.recentSuccessRate * 100).toFixed(1)}% is ${(Math.abs(operationalInsights.drift.deltaSuccessRate) * 100).toFixed(1)}pp below baseline`,
+            action: 'Increase exploration toward healthy agents, shorten policy refresh cadence, and run replay over the latest window.',
+            expectedImpact: {
+                metric: 'recentSuccessRate',
+                current: operationalInsights.drift.recentSuccessRate,
+                target: Number(Math.min(0.98, operationalInsights.drift.recentSuccessRate + 0.1).toFixed(4))
+            }
+        });
+    }
+
+    if (Array.isArray(operationalInsights?.reliability?.watchlist) && operationalInsights.reliability.watchlist.length > 0) {
+        const weakest = operationalInsights.reliability.agents[0];
+        recommendations.push({
+            priority: 'P2',
+            category: 'confidence_bounded_routing',
+            title: `Route guardrail for low-confidence agent(s): ${operationalInsights.reliability.watchlist.slice(0, 2).join(', ')}`,
+            rationale: `${weakest.agentId} lower-bound success is ${(weakest.successRateLowerBound * 100).toFixed(1)}% over ${weakest.tasks} tasks`,
+            action: 'Apply temporary routing penalties and require passing health probes before high-priority assignments.',
+            expectedImpact: {
+                metric: `${weakest.agentId}.successRateLowerBound`,
+                current: weakest.successRateLowerBound,
+                target: Number(Math.min(0.9, weakest.successRateLowerBound + 0.12).toFixed(4))
+            }
+        });
+    }
+
     if (adaptiveRollout?.recommendedArm) {
         recommendations.push({
             priority: 'P1',
@@ -560,10 +726,13 @@ export function evaluateLearningLoop(outcomes, options = {}) {
     const summarized = summarizeOutcomes(outcomes);
     const replay = runCounterfactualReplay(summarized, options.variants);
     const adaptiveRollout = simulateAdaptivePolicySelection(replay, options.adaptiveRollout || {});
+    const drift = analyzeWindowedPerformance(summarized.outcomes, options.drift || {});
+    const reliability = scoreAgentReliability(summarized.outcomes, options.reliability || {});
     const recommendations = buildLearningRecommendations(
         summarized,
         replay,
         adaptiveRollout,
+        { drift, reliability },
         options.thresholds || {}
     );
 
@@ -571,6 +740,8 @@ export function evaluateLearningLoop(outcomes, options = {}) {
         summary: summarized.summary,
         replay,
         adaptiveRollout,
+        drift,
+        reliability,
         recommendations
     };
 }
@@ -581,5 +752,6 @@ export const __learningLoopInternals = {
     latencyPercentiles,
     wilsonLowerBound,
     createSeededRandom,
-    sampleBeta
+    sampleBeta,
+    computeRate
 };

@@ -109,6 +109,19 @@ function formatMarkdown(result) {
         }
     }
 
+    lines.push('', '## Non-Stationarity Drift', '');
+    lines.push(`Recent success rate: ${(result.drift.recentSuccessRate * 100).toFixed(2)}%`);
+    lines.push(`Baseline success rate: ${(result.drift.baselineSuccessRate * 100).toFixed(2)}%`);
+    lines.push(`Delta: ${(result.drift.deltaSuccessRate * 100).toFixed(2)}pp`);
+    lines.push(`Alert: ${result.drift.alert ? 'yes' : 'no'} (${result.drift.rationale})`);
+
+    lines.push('', '## Agent Reliability Bounds', '');
+    lines.push('| Agent | Tasks | Discounted Success | Lower Bound | Watchlist |');
+    lines.push('| --- | ---: | ---: | ---: | --- |');
+    for (const agent of result.reliability.agents.slice(0, 8)) {
+        lines.push(`| ${agent.agentId} | ${agent.tasks} | ${(agent.discountedSuccessRate * 100).toFixed(2)}% | ${(agent.successRateLowerBound * 100).toFixed(2)}% | ${agent.actionEligible ? 'yes' : 'no'} |`);
+    }
+
     lines.push('', '## Recommendations', '');
     for (const recommendation of result.recommendations) {
         lines.push(`- [${recommendation.priority}] ${recommendation.title}`);

@@ -1,10 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+    analyzeWindowedPerformance,
     __learningLoopInternals,
     buildLearningRecommendations,
     evaluateLearningLoop,
     runCounterfactualReplay,
+    scoreAgentReliability,
     simulateAdaptivePolicySelection,
     summarizeOutcomes
 } from '../src/learning-loop.js';
@@ -141,8 +143,64 @@ test('evaluateLearningLoop bundles summary, replay, and recommendations', () => 
     assert.ok(result.summary);
     assert.ok(result.replay.best);
     assert.ok(result.adaptiveRollout.recommendedArm);
+    assert.ok(result.drift);
+    assert.ok(result.reliability);
     assert.ok(Array.isArray(result.recommendations));
     assert.ok(result.recommendations.length > 0);
+});
+
+test('analyzeWindowedPerformance flags significant recent regressions', () => {
+    const outcomes = [];
+    for (let i = 0; i < 30; i++) {
+        outcomes.push({
+            taskId: `base-${i}`,
+            target: 'agent:a',
+            status: i < 24 ? 'completed' : 'failed',
+            attempts: 1,
+            createdAt: i * 10,
+            closedAt: i * 10 + 5
+        });
+    }
+
+    const drift = analyzeWindowedPerformance(outcomes, {
+        recentWindowSize: 10,
+        minWindowSize: 6,
+        driftAlertThreshold: 0.2
+    });
+
+    assert.equal(drift.sufficientData, true);
+    assert.equal(drift.alert, true);
+    assert.ok(drift.deltaSuccessRate < 0);
+});
+
+test('scoreAgentReliability ranks by confidence-bounded success', () => {
+    const outcomes = [
+        ...Array.from({ length: 8 }, (_, i) => ({
+            taskId: `good-${i}`,
+            target: 'agent:good',
+            status: 'completed',
+            attempts: 1,
+            createdAt: i * 20,
+            closedAt: i * 20 + 10
+        })),
+        ...Array.from({ length: 8 }, (_, i) => ({
+            taskId: `bad-${i}`,
+            target: 'agent:bad',
+            status: i < 2 ? 'completed' : 'failed',
+            attempts: 1,
+            createdAt: 200 + i * 20,
+            closedAt: 200 + i * 20 + 10
+        }))
+    ];
+
+    const reliability = scoreAgentReliability(outcomes, {
+        discountFactor: 0.9,
+        minSamplesForAction: 6
+    });
+
+    assert.equal(reliability.agents.length, 2);
+    assert.equal(reliability.agents[0].agentId, 'agent:bad');
+    assert.ok(reliability.watchlist.includes('agent:bad'));
 });
 
 test('learning-loop internals expose stable statistical helpers', () => {
@@ -152,4 +210,9 @@ test('learning-loop internals expose stable statistical helpers', () => {
 
     const lower = __learningLoopInternals.wilsonLowerBound(8, 10);
     assert.ok(lower > 0.49 && lower < 0.8);
+    assert.equal(__learningLoopInternals.computeRate([
+        { status: 'completed' },
+        { status: 'failed' },
+        { status: 'completed' }
+    ]), 2 / 3);
 });
