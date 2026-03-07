@@ -234,3 +234,34 @@ Include these fields in outputs when tool integration is used:
 - Battlefield forensics fusion: forensic evidence systems + chain-of-custody registries + STIX/TAXII + USMTF
 - Expeditionary aquaculture and nutrition resilience: sustainment dashboards + environmental sensors + logistics APIs
 - Launch window threat/weather: launch range C2 + weather/space-weather intelligence + AIXM/FIXM + USMTF
+
+## Domain Toolchain Profiles (2026-03-07 Execution-Governance Expansion)
+
+- Maritime chokepoint mining and clearance governance: mine warfare C2 + maritime COP + AIS/NMEA + Link 16 + USMTF
+- Strategic cognitive warfare detection/response: media forensics + narrative analytics + STIX/TAXII + USMTF
+- Expeditionary toxic-site restoration: CBRN survey systems + environmental telemetry + NIMS/ICS + USMTF
+- Low-slow air threat suppression: low-RCS sensor fusion + air defense C2 + Link 16 J-series + USMTF
+- Coalition procurement integrity: vendor-risk analytics + contract compliance tools + NATO APP-11/ADatP-3 + API/JSON
+- Tactical power-grid islanding/black-start: microgrid controllers + SCADA telemetry + API/JSON + USMTF
+- Cloud-denied data fusion: edge brokers + store-and-forward relays + schema validators + API/JSON + USMTF
+- River-crossing and hydrology intelligence: hydro models + engineer planning tools + VMF + CoT + USMTF
+- Autonomous robot lane clearance: robotics mission controllers + route clearance systems + CoT + VMF
+- Denied-environment HUMINT validation: HUMINT management + source reliability analytics + API/JSON + USMTF
+- Pharmaceutical supply integrity: lot traceability + med logistics systems + HL7/FHIR + USMTF
+- Electromagnetic battlefield illumination: spectrum analytics + EW mission planners + Link 16 + VMF
+- Rapid cold-start maintenance: predictive diagnostics + maintenance ERP + API/JSON + USMTF
+- Drone-port reconstitution: UAS traffic management + sortie generation + AIXM/FIXM + USMTF
+- Coalition shipyard repair surge: shipyard ERP + fleet readiness dashboards + NATO data exchanges + USMTF
+- Wargame telemetry and outcomes: simulation telemetry buses + campaign analytics + API/JSON + USMTF
+- Tactical vector control and force health: surveillance systems + vector models + HL7/FHIR + API/JSON
+- Undersea critical-node repair window optimization: subsea telemetry + repair vessel scheduling + AIS/NMEA + USMTF
+- Precision navigation signal-of-opportunity fusion: PNT integrity monitors + SoOP fusion + Link 16 + USMTF
+- Contract security and vetting: vetting services + access control systems + threat-intel exchanges + STIX/TAXII
+
+## Protocol Execution Controls (required)
+
+- Define an ordered invocation chain for all critical dependencies (`invoke_order` 1..n).
+- Attach `adapter_contract_id` and `endpoint_class` to each invocation before execution.
+- Set explicit timeout and retry policy for every invocation and log the result status.
+- If any critical invocation fails, publish degraded-mode branch actions within the same output.
+- Require human command validation before any recommendation that alters force posture or escalation risk.

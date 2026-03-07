@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 280
+- Total warfighter skills in this repo: 300
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -267,3 +267,26 @@ Every skill output should include:
 - joint-battlefield-forensics-and-evidence-fusion-cell
 - expeditionary-aquaculture-and-field-nutrition-resilience-cell
 - space-launch-window-threat-and-weather-cell
+
+## New Expansion Wave (2026-03-07, All-Domain Protocol Execution and Governance)
+
+- joint-maritime-chokepoint-mining-and-clearance-governance-cell
+- strategic-cognitive-warfare-detection-and-response-cell
+- expeditionary-bioremediation-and-toxic-site-restoration-cell
+- theater-balloon-and-low-slow-air-threat-suppression-cell
+- coalition-anti-corruption-procurement-integrity-cell
+- tactical-power-grid-islanding-and-black-start-cell
+- joint-cloud-denied-data-fusion-cell
+- contested-river-crossing-and-hydrology-intelligence-cell
+- autonomous-ground-robot-lane-clearance-cell
+- denied-environment-human-intelligence-validation-cell
+- strategic-pharmaceutical-supply-chain-integrity-cell
+- theater-electromagnetic-battlefield-illumination-cell
+- joint-rapid-cold-start-maintenance-cell
+- expeditionary-drone-port-and-launchpad-reconstitution-cell
+- coalition-shipyard-repair-and-battle-damage-surge-cell
+- multi-domain-wargame-telemetry-and-outcome-cell
+- tactical-public-health-vector-control-cell
+- undersea-critical-node-repair-window-optimizer-cell
+- joint-precision-navigation-signal-of-opportunity-fusion-cell
+- operational-contract-security-and-vetting-cell

@@ -88,3 +88,10 @@ Primary products for this skill: edge biometric verification plan, identity conf
 - Use `../_shared/references/readiness-certification-evidence-pack.md` to define mission-essential task evidence, evaluator triggers, and certification confidence scoring.
 - Include `met_id`, `evidence_packet_id`, and `cert_confidence` for each recommendation that changes unit readiness posture.
 - If required evidence is missing, mark status as `provisional` and assign closure actions with suspense.
+
+## Protocol Execution Sequence
+
+- Execute the Core Integration Protocol from `../_shared/references/external-tools-protocols.md` as an explicit step sequence, not as guidance only.
+- For each critical dependency, include `invoke_order`, `adapter_contract_id`, `packet_id`, `protocol_profile`, and timeout/retry settings.
+- Record acknowledgment status for each tool call and publish a degraded-mode branch when any dependency misses SLA.
+- Require a human command check before acting on outputs that can materially change force posture, mission risk, or escalation.
