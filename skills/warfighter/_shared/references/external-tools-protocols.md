@@ -280,3 +280,42 @@ Include these fields in outputs when tool integration is used:
 - If trust score is below mission threshold, downgrade output to `provisional` or `no-go` and provide explicit commander decision prompts.
 - Record `switch_time_ms`, `data_loss_window`, and `commander_impact` when failover is triggered.
 - Do not publish high-consequence recommendations unless at least one independent cross-check source is healthy and fresh.
+
+## Protocol Assurance Drill Requirement (2026-03-07)
+
+- Before finalizing recommendations with external dependencies, run the drill in `./us-joint-protocol-assurance-drill.md`.
+- Include these required fields in commander/staff products: `assurance_drill_id`, `interop_score`, `crypto_posture`, `ack_chain_status`, `release_status`.
+- Do not mark recommendations as mission-ready when `release_status` is `hold` or `ack_chain_status` is not `complete`.
+- If protocol assurance fails, switch to documented degraded-mode paths and identify remediation owner/suspense.
+
+## External Tool Families for Current U.S. Warfighter Integration
+
+- C2 and fires: GCCS-J/JADOCS, AFATDS, TBMCS, AOC WS, Link 16/JREAP gateways.
+- ISR and geospatial: DCGS-A/DCGS-N, TAK ecosystem, Palantir variants, OGC WMS/WFS services.
+- Cyber/defensive operations: SIEM/SOAR stacks, EDR telemetry brokers, STIX/TAXII exchanges.
+- Sustainment and mobility: GCSS-Army/GCSS-MC, LOGCOP feeds, movement control and depot systems.
+- Medical and personnel: TMIP-J, theater patient movement trackers, blood/logistics management systems.
+- Space and spectrum: SDA feeds, SATCOM network managers, EMSO planning/deconfliction tools.
+
+## Protocol Mapping Guidance (Quick Bind)
+
+- Air and missile warning dissemination: `Link 16` + `USMTF` narrative fallback.
+- Tactical ground maneuver synchronization: `VMF`/`CoT` with map tile overlays.
+- Coalition cyber threat sharing: `STIX/TAXII` with releasability tags.
+- Sensor/track geospatial overlays: `OGC` interfaces with signed metadata provenance.
+- Long-haul message continuity under disruption: message queuing with deterministic retry/ack timers.
+
+## Domain Toolchain Profiles (2026-03-07 Polar Access and Infrastructure Continuity Expansion)
+
+- Polar icebreaker convoy and port access: ice reconnaissance feeds + maritime COP + convoy routing planners + AIS/NMEA + USMTF
+- Tactical emitter deconfliction: spectrum management tools + EW planning systems + Link 16/VMF + USMTF fallback
+- Host-nation grid cyber restoration: utility ICS telemetry + cyber incident response platforms + API/JSON + NIMS/ICS + USMTF
+- Autonomous fuel-farm integrity monitoring: fuel telemetry sensors + contamination analytics + sustainment C2 + API/JSON + USMTF
+- Microchip counterfeit forensics: hardware provenance registries + firmware attestation tooling + STIX/TAXII + API/JSON
+- Dynamic humanitarian no-fly windows: airspace control systems + civil movement trackers + AIXM/FIXM + USMTF
+- Contested biometric edge sync: biometric repositories + disconnected sync brokers + secure API/JSON + CoT/USMTF
+- Cislunar PNT relay contingency: deep-space timing sources + relay planners + SATCOM management + API/JSON + USMTF
+- Waste-to-energy fuel recovery: expeditionary utilities telemetry + sustainment ERP + API/JSON + USMTF readiness reporting
+- Dam and hydroelectric stabilization: hydro telemetry + engineer mission planning + civil emergency dashboards + NIMS/ICS + USMTF
+- Rail sabotage detection and reroute: rail telemetry and schedule systems + movement-control C2 + API/JSON + USMTF
+- Undersea cable landing defense: subsea sensing networks + maritime domain awareness tools + AIS/NMEA + Link 16 + USMTF

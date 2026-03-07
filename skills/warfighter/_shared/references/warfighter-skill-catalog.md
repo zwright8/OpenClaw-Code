@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 348
+- Total warfighter skills in this repo: 380
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -344,3 +344,41 @@ Every skill output should include:
 - expeditionary-cold-weather-vehicle-start-and-maintenance-cell
 - cyber-supply-chain-firmware-trust-revalidation-cell
 - theater-coastal-inundation-and-storm-surge-mission-cell
+
+## New Expansion Wave (2026-03-07, Protocol Assurance and Coalition Resilience Expansion)
+
+- homeland-cbrn-consequence-management-fusion-cell
+- strategic-rare-isotope-and-medical-radiological-supply-cell
+- joint-river-crossing-under-fire-synchronization-cell
+- contested-space-ground-optical-communications-recovery-cell
+- expeditionary-cyber-electronic-attack-range-support-cell
+- coalition-air-missile-defense-early-warning-fusion-cell
+- joint-arctic-overland-convoy-survivability-cell
+- tactical-sensor-to-shooter-latency-governance-cell
+- theater-counterfeit-component-detection-and-quarantine-cell
+- strategic-bioforensics-and-attribution-support-cell
+- joint-undersea-battle-damage-assessment-cell
+- contested-urban-subterranean-mapping-and-clearance-cell
+- expeditionary-spectrum-auction-and-priority-conflict-resolution-cell
+- coalition-rapid-language-model-red-teaming-cell
+- joint-civil-authority-maritime-evacuation-coordinator
+- theater-ai-enabled-foreign-material-exploitation-cell
+- tactical-multi-band-antenna-field-repair-cell
+- strategic-orbital-asset-maneuver-fuel-budget-cell
+- joint-electromagnetic-compatibility-test-and-certification-cell
+- expeditionary-cold-weather-humanitarian-logistics-cell
+
+## New Expansion Wave (2026-03-07, Polar Access and Infrastructure Continuity Expansion)
+
+- joint-icebreaker-convoy-and-polar-port-access-cell
+- tactical-em-spectrum-emitter-deconfliction-cell
+- coalition-host-nation-grid-cyber-restoration-cell
+- theater-autonomous-fuel-farm-integrity-monitor-cell
+- strategic-microchip-counterfeit-forensics-cell
+- joint-dynamic-no-fly-humanitarian-window-cell
+- contested-biometric-watchlist-edge-sync-cell
+- operational-cislunar-pnt-relay-contingency-cell
+- expeditionary-waste-to-energy-and-fuel-recovery-cell
+- joint-rapid-dam-and-hydroelectric-infrastructure-stabilization-cell
+- theater-rail-network-sabotage-detection-and-reroute-cell
+- allied-undersea-telemetry-cable-landing-defense-cell

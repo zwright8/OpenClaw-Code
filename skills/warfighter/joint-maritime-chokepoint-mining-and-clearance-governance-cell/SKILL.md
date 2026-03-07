@@ -108,3 +108,9 @@ Primary products for this skill: chokepoint mine-countermine governance matrix, 
 - Use `../_shared/references/tool-health-and-trust-monitoring.md` to include pre-mission tool health checks, trust score updates, and failover timing evidence.
 - Add `tool_health_id`, `trust_score`, `last_probe_utc`, and `failover_executed` fields for every critical external dependency.
 - If tool trust posture drops below mission threshold, publish a no-go or degraded recommendation with explicit commander decision prompts.
+
+## U.S. Joint Protocol Assurance Drill
+
+- Use `../_shared/references/us-joint-protocol-assurance-drill.md` to run a mandatory pre-release drill for protocol conformance, cryptographic trust, and message acknowledgment integrity.
+- Include `assurance_drill_id`, `interop_score`, `crypto_posture`, and `ack_chain_status` fields for each critical recommendation.
+- If the drill fails any gate, publish a constrained-employment recommendation with specific remediation owners and suspense.
