@@ -3,6 +3,12 @@ import { TaskRequest } from './schemas.js';
 const HEALTHY_STATUSES = new Set(['idle', 'busy']);
 const DEFAULT_STALE_HEARTBEAT_PENALTY = 35;
 const DEFAULT_PANIC_HEALTHY_RATIO_THRESHOLD = 0.5;
+const DEFAULT_OUTLIER_CONSECUTIVE_FAILURE_THRESHOLD = 5;
+const DEFAULT_OUTLIER_SUCCESS_RATE_THRESHOLD = 0.5;
+const DEFAULT_OUTLIER_MIN_SAMPLES = 20;
+const DEFAULT_OUTLIER_BASE_EJECTION_MS = 30_000;
+const DEFAULT_OUTLIER_MAX_EJECTION_MS = 300_000;
+const DEFAULT_OUTLIER_PENALTY = 45;
 
 function normalizeCapabilities(value) {
     if (!Array.isArray(value)) return [];
@@ -22,6 +28,89 @@ function clampLoad(value, fallback = 0.5) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return fallback;
     return Math.max(0, Math.min(1, numeric));
+}
+
+function safeInteger(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return Math.max(0, Math.floor(numeric));
+}
+
+function safeProbability(value, fallback = null) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return Math.max(0, Math.min(1, numeric));
+}
+
+function normalizeOutlierOptions(options = {}) {
+    const configured = options?.outlierDetection;
+    const enabled = configured?.enabled === true;
+    return {
+        enabled,
+        enforce: configured?.enforce !== false,
+        consecutiveFailureThreshold: Math.max(
+            1,
+            safeInteger(configured?.consecutiveFailureThreshold, DEFAULT_OUTLIER_CONSECUTIVE_FAILURE_THRESHOLD)
+        ),
+        successRateThreshold: safeProbability(configured?.successRateThreshold, DEFAULT_OUTLIER_SUCCESS_RATE_THRESHOLD),
+        minSamples: Math.max(1, safeInteger(configured?.minSamples, DEFAULT_OUTLIER_MIN_SAMPLES)),
+        baseEjectionMs: Math.max(1, safeInteger(configured?.baseEjectionMs, DEFAULT_OUTLIER_BASE_EJECTION_MS)),
+        maxEjectionMs: Math.max(1, safeInteger(configured?.maxEjectionMs, DEFAULT_OUTLIER_MAX_EJECTION_MS)),
+        penalty: Math.max(0, Number(configured?.penalty ?? DEFAULT_OUTLIER_PENALTY))
+    };
+}
+
+function extractOutlierStats(agent) {
+    const snapshot = agent?.outlier && typeof agent.outlier === 'object' ? agent.outlier : agent;
+    const consecutiveFailures = safeInteger(snapshot?.consecutiveFailures, 0);
+    const sampleSize = safeInteger(snapshot?.sampleSize, 0);
+    const ejectionCount = safeInteger(snapshot?.ejectionCount, 0);
+    const successRate = safeProbability(snapshot?.successRate, null);
+    const ejectedUntilMs = Number(snapshot?.ejectedUntilMs);
+    return {
+        consecutiveFailures,
+        successRate,
+        sampleSize,
+        ejectionCount,
+        ejectedUntilMs: Number.isFinite(ejectedUntilMs) ? ejectedUntilMs : null
+    };
+}
+
+function evaluateOutlierState(agent, nowMs, options = {}) {
+    const config = normalizeOutlierOptions(options);
+    if (!config.enabled) return null;
+
+    const stats = extractOutlierStats(agent);
+    if (stats.ejectedUntilMs !== null && stats.ejectedUntilMs > nowMs) {
+        return {
+            state: 'ejected',
+            ...stats
+        };
+    }
+
+    const consecutiveFailureTriggered = stats.consecutiveFailures >= config.consecutiveFailureThreshold;
+    const successRateTriggered = stats.successRate !== null
+        && stats.sampleSize >= config.minSamples
+        && stats.successRate < config.successRateThreshold;
+
+    if (!consecutiveFailureTriggered && !successRateTriggered) {
+        return null;
+    }
+
+    const nextEjectionMs = Math.min(
+        config.maxEjectionMs,
+        config.baseEjectionMs * Math.max(1, stats.ejectionCount + 1)
+    );
+
+    return {
+        state: 'detected',
+        ...stats,
+        consecutiveFailureTriggered,
+        successRateTriggered,
+        nextEjectionMs,
+        suggestedEjectedUntilMs: nowMs + nextEjectionMs,
+        enforce: config.enforce
+    };
 }
 
 function computeBaseScore(taskRequest, {
@@ -119,11 +208,39 @@ function scoreAgent(taskRequest, agent, options) {
         };
     }
 
-    const score = computeBaseScore(taskRequest, {
+    let score = computeBaseScore(taskRequest, {
         load,
         status,
         requiredCapabilities
     });
+
+    const outlier = evaluateOutlierState(agent, nowMs, options);
+    const outlierConfig = normalizeOutlierOptions(options);
+    if (outlier) {
+        score = Number((score - outlierConfig.penalty).toFixed(2));
+    }
+
+    if (outlier?.state === 'ejected') {
+        return {
+            eligible: false,
+            degradedEligible: true,
+            score,
+            reason: 'outlier_ejected',
+            missingCapabilities: [],
+            outlier
+        };
+    }
+
+    if (outlier?.state === 'detected' && outlier.enforce) {
+        return {
+            eligible: false,
+            degradedEligible: true,
+            score,
+            reason: 'outlier_detected',
+            missingCapabilities: [],
+            outlier
+        };
+    }
 
     if (stale) {
         const stalePenalty = Number.isFinite(options.staleHeartbeatPenalty)
@@ -143,7 +260,8 @@ function scoreAgent(taskRequest, agent, options) {
         degradedEligible: false,
         score,
         reason: 'ok',
-        missingCapabilities: []
+        missingCapabilities: [],
+        ...(outlier ? { outlier } : {})
     };
 }
 
@@ -181,8 +299,17 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
     const taskRequest = TaskRequest.parse(taskRequestPayload);
     const selection = selectBestAgentForTask(taskRequest, agents, options);
 
+    const ranked = selection.ranked;
+    const outlierActions = ranked
+        .filter((item) => item.reason === 'outlier_detected' && item.outlier?.suggestedEjectedUntilMs)
+        .map((item) => ({
+            agentId: item.agentId,
+            reason: 'outlier_detected',
+            suggestedEjectedUntilMs: item.outlier.suggestedEjectedUntilMs,
+            nextEjectionMs: item.outlier.nextEjectionMs
+        }));
+
     if (!selection.selectedAgentId) {
-        const ranked = selection.ranked;
         const totalCandidates = ranked.filter((item) => typeof item.agentId === 'string' && item.agentId.trim()).length;
         const healthyCandidates = ranked.filter((item) => item.eligible && typeof item.agentId === 'string' && item.agentId.trim()).length;
         const healthyRatio = totalCandidates > 0 ? healthyCandidates / totalCandidates : 0;
@@ -198,6 +325,7 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
                 return {
                     routed: true,
                     degraded: true,
+                    ...(outlierActions.length > 0 ? { outlierActions } : {}),
                     panicMode: {
                         triggered: true,
                         healthyRatio: Number(healthyRatio.toFixed(4)),
@@ -220,6 +348,7 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
             taskRequest,
             selectedAgentId: null,
             ranked,
+            ...(outlierActions.length > 0 ? { outlierActions } : {}),
             panicMode: {
                 triggered: panicTriggered,
                 healthyRatio: Number(healthyRatio.toFixed(4)),
@@ -233,7 +362,8 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
     return {
         routed: true,
         selectedAgentId: selection.selectedAgentId,
-        ranked: selection.ranked,
+        ranked,
+        ...(outlierActions.length > 0 ? { outlierActions } : {}),
         taskRequest: {
             ...taskRequest,
             target: selection.selectedAgentId

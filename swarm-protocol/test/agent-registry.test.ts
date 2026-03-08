@@ -33,6 +33,34 @@ test('ingestHeartbeat stores presence and capabilities', () => {
     assert.deepEqual(agent.capabilities, ['analysis', 'ops']);
 });
 
+test('ingestHeartbeat preserves normalized outlier metadata for routing safeguards', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:fragile',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 3_000
+    }), {
+        capabilities: ['analysis'],
+        outlier: {
+            sampleSize: 12.8,
+            successRate: 1.4,
+            consecutiveFailures: 4.9,
+            ejectedUntilMs: 9_500.7,
+            ejectionCount: 2.2
+        }
+    });
+
+    const agent = registry.getAgent('agent:fragile');
+    assert.deepEqual(agent.outlier, {
+        sampleSize: 12,
+        successRate: 1,
+        consecutiveFailures: 4,
+        ejectedUntilMs: 9_500.7,
+        ejectionCount: 2
+    });
+});
+
 test('routeTask selects best healthy capability-compatible agent', () => {
     const registry = new AgentRegistry({ maxStalenessMs: 5_000, now: () => 10_000 });
 
@@ -145,4 +173,47 @@ test('routeTask passes advanced router options through to task-router', () => {
     assert.equal(routed.routed, true);
     assert.equal(routed.selectedAgentId, 'agent:stale-only');
     assert.equal(routed.degraded, true);
+});
+
+test('routeTask respects outlier ejection metadata when detection is enabled', () => {
+    const registry = new AgentRegistry({ now: () => 80_000, maxStalenessMs: 10_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:healthy',
+        status: 'idle',
+        load: 0.25,
+        timestamp: 79_900
+    }), { capabilities: ['routing'] });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:ejected',
+        status: 'idle',
+        load: 0.05,
+        timestamp: 79_900
+    }), {
+        capabilities: ['routing'],
+        outlier: {
+            ejectedUntilMs: 100_000
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: '44444444-4444-4444-8444-444444444444',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route with resilience policy',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 80_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 80_000,
+        outlierDetection: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:healthy');
+    const ejected = routed.ranked.find((entry) => entry.agentId === 'agent:ejected');
+    assert.equal(ejected.reason, 'outlier_ejected');
 });

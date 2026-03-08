@@ -201,3 +201,104 @@ test('panic mode can fail open to stale-capable agents when healthy pool collaps
     assert.equal(routed.selectedAgentId, 'agent:stale-failover');
     assert.equal(routed.panicMode.triggered, true);
 });
+
+test('outlier detection excludes ejected agents and surfaces action hints', () => {
+    const task = buildTaskRequest({
+        id: '66666666-6666-4666-8666-666666666666',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Handle customer escalation',
+        priority: 'high',
+        context: {
+            requiredCapabilities: ['support']
+        },
+        createdAt: 60_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:healthy',
+            status: 'idle',
+            load: 0.35,
+            capabilities: ['support'],
+            timestamp: 60_000
+        },
+        {
+            id: 'agent:ejected',
+            status: 'idle',
+            load: 0.05,
+            capabilities: ['support'],
+            timestamp: 60_000,
+            outlier: {
+                ejectedUntilMs: 120_000
+            }
+        },
+        {
+            id: 'agent:degrading',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['support'],
+            timestamp: 60_000,
+            outlier: {
+                consecutiveFailures: 6,
+                ejectionCount: 1
+            }
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 60_001,
+        outlierDetection: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:healthy');
+    const ejected = routed.ranked.find((entry) => entry.agentId === 'agent:ejected');
+    assert.equal(ejected.reason, 'outlier_ejected');
+    const detected = routed.ranked.find((entry) => entry.agentId === 'agent:degrading');
+    assert.equal(detected.reason, 'outlier_detected');
+    assert.equal(Array.isArray(routed.outlierActions), true);
+    assert.equal(routed.outlierActions[0].agentId, 'agent:degrading');
+});
+
+test('panic mode can fail open to outlier-ejected agents when no healthy candidates remain', () => {
+    const task = buildTaskRequest({
+        id: '77777777-7777-4777-8777-777777777777',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route emergency incident command',
+        priority: 'critical',
+        context: {
+            requiredCapabilities: ['incident-response']
+        },
+        createdAt: 70_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:ejected-a',
+            status: 'idle',
+            load: 0.3,
+            capabilities: ['incident-response'],
+            timestamp: 70_000,
+            outlier: {
+                ejectedUntilMs: 90_000
+            }
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 70_001,
+        outlierDetection: {
+            enabled: true
+        },
+        enablePanicMode: true
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.degraded, true);
+    assert.equal(routed.selectedAgentId, 'agent:ejected-a');
+    assert.equal(routed.panicMode.triggered, true);
+});

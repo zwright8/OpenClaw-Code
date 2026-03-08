@@ -14,6 +14,27 @@ function normalizeCapabilities(value) {
     )];
 }
 
+function normalizeOutlierMetadata(value) {
+    if (!value || typeof value !== 'object') return null;
+    const sampleSize = Number(value.sampleSize);
+    const successRate = Number(value.successRate);
+    const consecutiveFailures = Number(value.consecutiveFailures);
+    const ejectedUntilMs = Number(value.ejectedUntilMs);
+    const ejectionCount = Number(value.ejectionCount);
+
+    const normalized = {
+        sampleSize: Number.isFinite(sampleSize) && sampleSize >= 0 ? Math.floor(sampleSize) : 0,
+        successRate: Number.isFinite(successRate) ? Math.max(0, Math.min(1, successRate)) : null,
+        consecutiveFailures: Number.isFinite(consecutiveFailures) && consecutiveFailures >= 0
+            ? Math.floor(consecutiveFailures)
+            : 0,
+        ejectedUntilMs: Number.isFinite(ejectedUntilMs) ? ejectedUntilMs : null,
+        ejectionCount: Number.isFinite(ejectionCount) && ejectionCount >= 0 ? Math.floor(ejectionCount) : 0
+    };
+
+    return normalized;
+}
+
 function safeNow(nowFn) {
     const value = Number(nowFn());
     return Number.isFinite(value) ? value : Date.now();
@@ -43,7 +64,8 @@ export class AgentRegistry {
             status: signal.status,
             load: Number.isFinite(signal.load) ? signal.load : 0,
             timestamp: signal.timestamp,
-            capabilities
+            capabilities,
+            outlier: normalizeOutlierMetadata(metadata.outlier ?? existing.outlier)
         };
 
         this.agents.set(signal.from, record);
@@ -56,7 +78,8 @@ export class AgentRegistry {
             status: 'offline',
             load: 1,
             timestamp: safeNow(this.now),
-            capabilities: []
+            capabilities: [],
+            outlier: null
         };
 
         const updated = {
