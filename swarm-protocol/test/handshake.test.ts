@@ -420,3 +420,83 @@ test('honors RateLimit-Reset header when Retry-After is absent', async () => {
     assert.equal(result.attempts, 2);
     assert.deepEqual(delays, [7_000]);
 });
+
+test('honors x-ms-retry-after-ms header with millisecond values', async () => {
+    let calls = 0;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) {
+                const error: any = new Error('HTTP 429 Too Many Requests');
+                error.response = {
+                    headers: {
+                        'x-ms-retry-after-ms': '950'
+                    }
+                };
+                throw error;
+            }
+
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 1,
+        retryDelayMs: 10,
+        sleep: async (ms) => {
+            delays.push(ms);
+        },
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 2);
+    assert.deepEqual(delays, [950]);
+});
+
+test('applies one-minute fallback on secondary rate limit without explicit retry headers', async () => {
+    let calls = 0;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) {
+                const error: any = new Error('You have exceeded a secondary rate limit.');
+                error.status = 403;
+                throw error;
+            }
+
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 1,
+        retryDelayMs: 10,
+        sleep: async (ms) => {
+            delays.push(ms);
+        },
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 2);
+    assert.deepEqual(delays, [60_000]);
+});

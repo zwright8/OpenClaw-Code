@@ -9,6 +9,7 @@ const DEFAULT_RETRY_DELAY_MS = 250;
 const DEFAULT_RETRY_STRATEGY = 'exponential';
 const DEFAULT_RETRY_JITTER = 'full';
 const DEFAULT_MAX_RETRY_HINT_MS = 60_000;
+const DEFAULT_SECONDARY_RATE_LIMIT_RETRY_MS = 60_000;
 
 export class HandshakeError extends Error {
     constructor(code, message, details = {}) {
@@ -137,6 +138,29 @@ function parseRetryAfterHeaderMs(value, nowMs = Date.now()) {
     return null;
 }
 
+function parseRetryAfterMillisecondsHeaderMs(value) {
+    if (value === null || value === undefined) return null;
+    const text = String(value).trim();
+    if (!text) return null;
+
+    const numeric = Number(text);
+    if (Number.isFinite(numeric) && numeric >= 0) {
+        return numeric;
+    }
+
+    const hhmmssMatch = /^(\d+):([0-5]?\d):([0-5]?\d(?:\.\d+)?)$/.exec(text);
+    if (!hhmmssMatch) return null;
+
+    const hours = Number(hhmmssMatch[1]);
+    const minutes = Number(hhmmssMatch[2]);
+    const seconds = Number(hhmmssMatch[3]);
+    if (!Number.isFinite(hours) || !Number.isFinite(minutes) || !Number.isFinite(seconds)) {
+        return null;
+    }
+
+    return Math.round(((hours * 3600) + (minutes * 60) + seconds) * 1000);
+}
+
 function parseRateLimitResetHeaderMs(value, nowMs = Date.now()) {
     if (value === null || value === undefined) return null;
     const text = String(value).trim();
@@ -186,6 +210,48 @@ function parseRetryHintMsFromMessage(message, nowMs = Date.now()) {
     return null;
 }
 
+function extractStatusCode(error) {
+    if (!error || typeof error !== 'object') return null;
+
+    const candidates = [
+        error.status,
+        error.statusCode,
+        error.response?.status,
+        error.response?.statusCode,
+        error.details?.status,
+        error.details?.statusCode
+    ];
+
+    for (const candidate of candidates) {
+        const numeric = Number(candidate);
+        if (Number.isInteger(numeric) && numeric >= 100) {
+            return numeric;
+        }
+    }
+
+    return null;
+}
+
+function inferSecondaryRateLimitRetryMs(error) {
+    if (!error || typeof error !== 'object') return null;
+
+    const message = typeof error.message === 'string'
+        ? error.message.toLowerCase()
+        : '';
+    const statusCode = extractStatusCode(error);
+
+    if (message.includes('secondary rate limit')) {
+        return DEFAULT_SECONDARY_RATE_LIMIT_RETRY_MS;
+    }
+
+    const likelyRateLimited = statusCode === 403 || statusCode === 429;
+    if (likelyRateLimited && message.includes('rate limit')) {
+        return DEFAULT_SECONDARY_RATE_LIMIT_RETRY_MS;
+    }
+
+    return null;
+}
+
 function extractRetryHintMs(error, nowMs = Date.now()) {
     if (!error || typeof error !== 'object') return null;
 
@@ -199,11 +265,36 @@ function extractRetryHintMs(error, nowMs = Date.now()) {
         return directSeconds * 1000;
     }
 
-    const retryAfterHeader = readHeaderValue(
-        error.headers
+    const headers = error.headers
         ?? error.response?.headers
         ?? error.details?.headers
-        ?? null,
+        ?? null;
+
+    const retryAfterMillisecondsHeader = readHeaderValue(headers, 'retry-after-ms')
+        ?? readHeaderValue(headers, 'x-ms-retry-after-ms')
+        ?? readHeaderValue(headers, 'x-retry-after-ms');
+    const retryAfterMillisecondsMs = parseRetryAfterMillisecondsHeaderMs(
+        Array.isArray(retryAfterMillisecondsHeader)
+            ? retryAfterMillisecondsHeader[0]
+            : retryAfterMillisecondsHeader
+    );
+    if (Number.isFinite(retryAfterMillisecondsMs)) {
+        return retryAfterMillisecondsMs;
+    }
+
+    const xMsRetryAfterHeader = readHeaderValue(headers, 'x-ms-retry-after');
+    const xMsRetryAfterMs = parseRetryAfterHeaderMs(
+        Array.isArray(xMsRetryAfterHeader)
+            ? xMsRetryAfterHeader[0]
+            : xMsRetryAfterHeader,
+        nowMs
+    );
+    if (Number.isFinite(xMsRetryAfterMs)) {
+        return xMsRetryAfterMs;
+    }
+
+    const retryAfterHeader = readHeaderValue(
+        headers,
         'retry-after'
     );
     const retryAfterHeaderMs = parseRetryAfterHeaderMs(retryAfterHeader, nowMs);
@@ -218,16 +309,10 @@ function extractRetryHintMs(error, nowMs = Date.now()) {
     }
 
     const rateLimitResetHeader = readHeaderValue(
-        error.headers
-        ?? error.response?.headers
-        ?? error.details?.headers
-        ?? null,
+        headers,
         'ratelimit-reset'
     ) ?? readHeaderValue(
-        error.headers
-        ?? error.response?.headers
-        ?? error.details?.headers
-        ?? null,
+        headers,
         'x-ratelimit-reset'
     );
     const rateLimitResetMs = parseRateLimitResetHeaderMs(rateLimitResetHeader, nowMs);
@@ -235,7 +320,12 @@ function extractRetryHintMs(error, nowMs = Date.now()) {
         return rateLimitResetMs;
     }
 
-    return parseRetryHintMsFromMessage(error.message, nowMs);
+    const messageHintMs = parseRetryHintMsFromMessage(error.message, nowMs);
+    if (Number.isFinite(messageHintMs)) {
+        return messageHintMs;
+    }
+
+    return inferSecondaryRateLimitRetryMs(error);
 }
 
 function resolveRetryDelayMs({
