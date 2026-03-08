@@ -76,3 +76,9 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Prioritize `tool_suite_id=ts-arctic-fuel-bladder-spill-containment-v1` with `protocol_stack_id=ps-arctic-fuel-bladder-stack-v1` for cold-weather operations where container integrity and spill containment drive sustainment risk.
 - Use packet `DPL-ARCTIC-FUEL-BLADDER-001` to bind leak confirmation, containment sequencing, and sustainment impact fields.
 - If containment readiness cannot be validated, publish restricted-transfer guidance and require commander/environmental authority approval before execution.
+
+## Domain Toolchain Override (2026-03-08, Energetics Feedstock Denial Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-energetics-supply-denial-countermeasure-v1` with `protocol_stack_id=ps-energetics-supply-stack-v1` when fuel contamination events coincide with disrupted energetic precursor supply chains.
+- Use packet `DPL-ENERGETICS-SUPPLY-001` to connect refinery feedstock risk, munition line priority, and fuel reroute decisions in one decision cycle.
+- If cross-domain production confidence drops below threshold, issue a constrained-tempo sustainment recommendation and require commander concurrence.
