@@ -119,9 +119,14 @@ export class AgentRegistry {
             ? Number(options.maxStalenessMs)
             : this.maxStalenessMs;
 
-        return routeTaskRequest(taskRequest, this.listAgents(), {
+        const routeOptions = {
+            ...options,
             nowMs,
             maxStalenessMs
+        };
+
+        return routeTaskRequest(taskRequest, this.listAgents(), {
+            ...routeOptions
         });
     }
 

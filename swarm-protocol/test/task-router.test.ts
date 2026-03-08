@@ -117,3 +117,87 @@ test('filters stale heartbeats based on max staleness', () => {
     assert.equal(staleEntry.eligible, false);
     assert.equal(staleEntry.reason, 'stale_heartbeat');
 });
+
+test('supports power-of-two-choices selection strategy to reduce router herd bias', () => {
+    const task = buildTaskRequest({
+        id: '44444444-4444-4444-8444-444444444444',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Distribute indexing workload',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['indexing']
+        },
+        createdAt: 40_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:a',
+            status: 'idle',
+            load: 0.95,
+            capabilities: ['indexing'],
+            timestamp: 40_000
+        },
+        {
+            id: 'agent:b',
+            status: 'idle',
+            load: 0.4,
+            capabilities: ['indexing'],
+            timestamp: 40_000
+        },
+        {
+            id: 'agent:c',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['indexing'],
+            timestamp: 40_000
+        }
+    ];
+
+    const sequence = [0.0, 0.49, 0.9]; // pick agent:a and agent:b, tie-break value ignored
+    const random = () => sequence.shift() ?? 0;
+
+    const selected = selectBestAgentForTask(task, agents, {
+        nowMs: 40_001,
+        selectionStrategy: 'p2c',
+        random
+    });
+
+    assert.equal(selected.selectedAgentId, 'agent:b');
+});
+
+test('panic mode can fail open to stale-capable agents when healthy pool collapses', () => {
+    const task = buildTaskRequest({
+        id: '55555555-5555-4555-8555-555555555555',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Handle urgent failover orchestration',
+        priority: 'critical',
+        context: {
+            requiredCapabilities: ['failover']
+        },
+        createdAt: 50_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:stale-failover',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['failover'],
+            timestamp: 40_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 50_000,
+        maxStalenessMs: 2_000,
+        enablePanicMode: true
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.degraded, true);
+    assert.equal(routed.selectedAgentId, 'agent:stale-failover');
+    assert.equal(routed.panicMode.triggered, true);
+});

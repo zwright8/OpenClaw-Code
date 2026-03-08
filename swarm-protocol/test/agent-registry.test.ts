@@ -118,3 +118,31 @@ test('createRouteTaskFn works with orchestrator-style callback expectations', as
 
     assert.equal(selected, 'agent:router-target');
 });
+
+test('routeTask passes advanced router options through to task-router', () => {
+    const registry = new AgentRegistry({ now: () => 60_000, maxStalenessMs: 2_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:stale-only',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 40_000
+    }), { capabilities: ['routing'] });
+
+    const task = buildTaskRequest({
+        id: '33333333-3333-4333-8333-333333333333',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route under degraded capacity',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 60_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 60_000,
+        enablePanicMode: true
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:stale-only');
+    assert.equal(routed.degraded, true);
+});
