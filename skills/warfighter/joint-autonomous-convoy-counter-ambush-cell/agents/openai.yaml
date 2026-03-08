@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Autonomous Convoy Counter Ambush Cell"
+  short_description: "Support Joint Autonomous Convoy Counter Ambush Cell mission decisions"
