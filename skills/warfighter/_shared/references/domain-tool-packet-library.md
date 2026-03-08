@@ -1287,3 +1287,47 @@ validation_gates:
 - output_schema: option matrix, synchronized branch triggers, command messaging guidance
 - protocol_profile: USMTF + VMF + STIX/TAXII
 - validation_gates: source confidence floor, legal authority confirmation, policy approval record
+
+### packet_id: DPL-EP-AGILITY-001
+- domain: joint theater electronic protection frequency agility
+- objective: preserve critical command, sensor, and fires links under active jamming and emitter contention
+- primary_tools: EMS assignment manager, agile radio reconfiguration service, EW conflict analytics
+- alternate_tools: manual frequency control board and authenticated net-control readback ledger
+- degraded_mode: mission-priority frequency windows with reduced network throughput
+- input_requirements: current frequency plans, jammer indications, emitter inventories, commander priorities
+- output_schema: frequency agility matrix, retune timeline, interference mitigation tasks
+- protocol_profile: Link 16 J-series + VMF + USMTF
+- validation_gates: blue-force interference pass, communications readiness check, command approval
+
+### packet_id: DPL-HUM-CORRIDOR-001
+- domain: coalition humanitarian corridor assurance and monitoring
+- objective: synchronize corridor access, convoy protection, and abuse-prevention accountability
+- primary_tools: corridor coordination board, convoy telemetry dashboard, compliance incident workflow
+- alternate_tools: liaison coordination cell and manually reconciled checkpoint logs
+- degraded_mode: limited humanitarian windows with escorted convoy-only movement
+- input_requirements: route status, partner force commitments, civilian flow estimates, incident reports
+- output_schema: corridor operating windows, escort tasking matrix, compliance event ledger
+- protocol_profile: NIMS/ICS + NATO APP-11 + USMTF
+- validation_gates: deconfliction confirmation, coalition legal review, command release authority
+
+### packet_id: DPL-BLUE-AUTH-SPOOF-001
+- domain: joint blue-force digital authentication and spoofing resilience
+- objective: detect and contain blue-force track spoofing, replay, or synthetic identity injection
+- primary_tools: identity trust broker, track-integrity anomaly detector, revocation propagation service
+- alternate_tools: manual trust adjudication board and out-of-band identity challenge protocol
+- degraded_mode: mission-essential entity whitelist only with strict positive-control check-ins
+- input_requirements: track feeds, credential status, anomaly alerts, key revocation events
+- output_schema: spoofing triage report, trust posture score, rekey and revocation actions
+- protocol_profile: X.509/PKI + API/JSON + USMTF
+- validation_gates: revocation propagation check, false-positive tolerance check, commander concurrence
+
+### packet_id: DPL-FUEL-ADULTERATION-001
+- domain: coalition contested fuel quality assurance and adulteration response
+- objective: protect fuel integrity for aviation and ground operations under sabotage or contamination risk
+- primary_tools: fuel telemetry analyzers, contamination forensics workflow, recertification task board
+- alternate_tools: manual sample chain ledger and periodic laboratory validation cycle
+- degraded_mode: critical-mission fueling only with expanded pre-issue testing
+- input_requirements: sample telemetry, chain-of-custody logs, fuel-point statuses, sortie priorities
+- output_schema: fuel integrity status board, adulteration incident packet, recertification sequence
+- protocol_profile: API/JSON + USMTF + STANAG fuel quality reporting
+- validation_gates: sample-chain integrity check, contamination confidence threshold, release authority sign-off

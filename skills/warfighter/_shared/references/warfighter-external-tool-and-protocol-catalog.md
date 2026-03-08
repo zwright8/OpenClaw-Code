@@ -1478,3 +1478,18 @@ external_binding:
 - Primary tools: material fingerprinting analyzers, lot provenance tracking, fabrication quality release systems.
 - Cross-check tools: independent sample-chain audit and alternate part-failure anomaly monitor.
 - Typical products: authenticity confidence report, quarantine decision board, fabrication continuity fallback plan.
+
+## Skill Default Binding Registry (2026-03-08, Coalition Assurance and Contested Sustainment)
+
+- `joint-theater-electronic-protection-frequency-agility-cell`: primary `ts-spectrum-governance-v1` + `ps-ew-fratricide-mitigation-stack-v1`; alternate `ts-joint-c2-fusion-v1` + `ps-joint-tactical-link-stack-v1`.
+- `coalition-humanitarian-corridor-assurance-and-monitoring-cell`: primary `ts-civil-support-v1` + `ps-truce-observer-stack-v1`; alternate `ts-logistics-distribution-v1` + `ps-nato-coalition-stack-v1`.
+- `joint-blue-force-digital-authentication-and-spoofing-resilience-cell`: primary `ts-cyber-defense-v1` + `ps-disconnected-identity-continuity-stack-v1`; alternate `ts-joint-c2-fusion-v1` + `ps-cop-event-sharing-stack-v1`.
+- `strategic-ammunition-energetics-precursor-supply-assurance-cell`: primary `ts-strategic-supply-shock-v1` + `ps-ammunition-reliability-governance-stack-v1`; alternate `ts-logistics-distribution-v1` + `ps-harbor-safety-logistics-stack-v1`.
+- `joint-forward-repairable-electronics-salvage-cell`: primary `ts-logistics-distribution-v1` + `ps-counterfeit-parts-assurance-stack-v1`; alternate `ts-airfield-recovery-v1` + `ps-cop-event-sharing-stack-v1`.
+- `contested-aviation-weather-diversion-and-recovery-cell`: primary `ts-airfield-recovery-v1` + `ps-aviation-weather-stack-v1`; alternate `ts-fires-airspace-v1` + `ps-joint-tactical-link-stack-v1`.
+- `joint-host-nation-port-rail-customs-digital-clearance-cell`: primary `ts-logistics-distribution-v1` + `ps-border-clearance-stack-v1`; alternate `ts-civil-support-v1` + `ps-nato-coalition-stack-v1`.
+- `space-cyber-ground-segment-supply-chain-anomaly-cell`: primary `ts-space-satcom-v1` + `ps-satcom-antijam-reconstitution-stack-v1`; alternate `ts-cyber-defense-v1` + `ps-cyber-threat-stack-v1`.
+- `joint-urban-drone-signature-baseline-and-anomaly-cell`: primary `ts-fires-airspace-v1` + `ps-drone-exploitation-evidence-stack-v1`; alternate `ts-joint-c2-fusion-v1` + `ps-cop-event-sharing-stack-v1`.
+- `coalition-contested-fuel-quality-assurance-and-adulteration-cell`: primary `ts-aviation-fuel-integrity-v1` + `ps-fuel-quality-forensics-stack-v1`; alternate `ts-logistics-distribution-v1` + `ps-cop-event-sharing-stack-v1`.
+- `joint-theater-emergency-civil-alert-and-public-warning-cell`: primary `ts-civil-support-v1` + `ps-hazard-warning-stack-v1`; alternate `ts-disinformation-counter-v1` + `ps-osint-info-ops-stack-v1`.
+- `operational-cognitive-warfare-red-blue-assessment-cell`: primary `ts-disinformation-counter-v1` + `ps-osint-info-ops-stack-v1`; alternate `ts-joint-c2-fusion-v1` + `ps-cop-event-sharing-stack-v1`.

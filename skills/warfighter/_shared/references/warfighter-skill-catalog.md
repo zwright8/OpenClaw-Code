@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 654
+- Total warfighter skills in this repo: 686
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -265,3 +265,33 @@ Every skill output should include:
 - Commander-priority synthesis + JOC battle rhythm management + campaign assessment and decision support
 - Disconnected time/PNT holdover + resilient navigation inertial/celestial fusion + denied space PNT alternative navigation
 - Additive feedstock counterfeit detection + contested feedstock assurance + additive munitions QA
+
+## New Expansion Wave (2026-03-08, Coalition Assurance and Contested Sustainment)
+
+- joint-theater-electronic-protection-frequency-agility-cell
+- coalition-humanitarian-corridor-assurance-and-monitoring-cell
+- joint-blue-force-digital-authentication-and-spoofing-resilience-cell
+- strategic-ammunition-energetics-precursor-supply-assurance-cell
+- joint-forward-repairable-electronics-salvage-cell
+- contested-aviation-weather-diversion-and-recovery-cell
+- joint-host-nation-port-rail-customs-digital-clearance-cell
+- space-cyber-ground-segment-supply-chain-anomaly-cell
+- joint-urban-drone-signature-baseline-and-anomaly-cell
+- coalition-contested-fuel-quality-assurance-and-adulteration-cell
+- joint-theater-emergency-civil-alert-and-public-warning-cell
+- operational-cognitive-warfare-red-blue-assessment-cell
+
+## Updated Pairings (2026-03-08, Coalition Assurance and Contested Sustainment)
+
+- Electronic protection agility + EW fratricide mitigation + contested-spectrum mission replanning
+- Humanitarian corridor assurance + coalition truce monitoring + civilian harm mitigation and response
+- Blue-force digital authentication + denied-environment identity revocation/rekey + mission network failover
+- Energetics precursor assurance + strategic industrial mobilization readiness + ammunition interoperability/reallocation
+- Forward electronics salvage + expeditionary fabrication and battle-damage repair + counterfeit-parts assurance
+- Aviation diversion/recovery + tactical airspace control and deconfliction + airbase dispersal/reconstitution
+- Host-nation customs digital clearance + port opening/JLOTS synchronization + deployment/distribution optimizer
+- Space ground-segment anomaly triage + SATCOM continuity + cyber mission planner
+- Urban drone anomaly baselining + counter-UAS kill-chain integration + autonomous swarm countermeasures
+- Coalition fuel quality assurance + bulk-fuel contamination response + aviation maintenance forensics
+- Theater emergency civil alerting + DSCA crisis support + information integrity and attribution
+- Cognitive warfare red/blue assessment + tactical PSYOP/MISO + AI-enabled opsec leak detection
