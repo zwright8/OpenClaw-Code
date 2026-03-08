@@ -1628,3 +1628,135 @@ validation_gates:
 - output_schema: readiness fusion board, remediation queue, certification confidence summary
 - protocol_profile: NATO APP-11/ADatP-3 + USMTF + API/JSON
 - validation_gates: evidence completeness pass, coalition concurrence, approval authority check
+
+### packet_id: DPL-CISLUNAR-LOG-001
+- domain: contested cislunar logistics and relay continuity
+- objective: preserve lunar relay and sustainment paths under orbital disruption
+- primary_tools: cislunar relay planner, orbit-state monitor, sustainment scheduler
+- alternate_tools: manual relay window board with delayed state updates
+- degraded_mode: periodic text-only relay status with conservative timing assumptions
+- input_requirements: relay architecture, node health, trajectory windows, sustainment priorities
+- output_schema: relay continuity matrix, sustainment branch options, timing exception log
+- protocol_profile: API/JSON + USMTF
+- validation_gates: dual-source orbit confirmation, time integrity threshold, authority check
+
+### packet_id: DPL-IAMD-SHOT-001
+- domain: integrated air and missile defense shot doctrine
+- objective: optimize interceptor doctrine and defended-asset protection under raid saturation
+- primary_tools: fire-control planner, raid-density analyzer, inventory and launch monitor
+- alternate_tools: manual shot doctrine worksheet and protected asset priority board
+- degraded_mode: fixed doctrine with manual override at commander approval points
+- input_requirements: threat raid profile, interceptor inventory, defended assets, ROE constraints
+- output_schema: shot doctrine matrix, defended asset priority table, expenditure forecast
+- protocol_profile: Link 16 J-series + USMTF + VMF
+- validation_gates: fratricide check, magazine sufficiency, commander release gate
+
+### packet_id: DPL-UNDERSEA-REPAIR-001
+- domain: undersea infrastructure repair convoy coordination
+- objective: protect and sequence repair convoys for cable and seabed infrastructure restoration
+- primary_tools: undersea telemetry manager, convoy planner, maritime threat monitor
+- alternate_tools: manual convoy scheduler and repair queue board
+- degraded_mode: convoy movement windows with delayed restoration updates
+- input_requirements: damage registry, repair assets, escort availability, threat posture
+- output_schema: convoy timeline, repair sequence board, escort risk map
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: convoy escort sufficiency, dual-source damage verification, legal review
+
+### packet_id: DPL-SOF-BIOMETRIC-EXFIL-001
+- domain: denied special operations biometric exfiltration
+- objective: synchronize biometric exploitation with low-signature exfiltration and custody assurance
+- primary_tools: SOF planner, biometric exploitation stack, custody-chain ledger
+- alternate_tools: manual exfiltration worksheet and identity confidence log
+- degraded_mode: delayed exploit upload with physical custody transfer checkpoints
+- input_requirements: target package, collection windows, exfil routes, authority constraints
+- output_schema: exfil branch plan, custody risk ladder, exploit confidence scorecard
+- protocol_profile: CoT + USMTF + API/JSON
+- validation_gates: identity confidence threshold, custody integrity pass, authority verification
+
+### packet_id: DPL-IND-CYBER-SABOTAGE-001
+- domain: defense-industrial cyber sabotage containment
+- objective: contain OT compromise and restore critical defense production lines
+- primary_tools: OT incident response platform, industrial telemetry, production dependency map
+- alternate_tools: incident war-room tracker and manual production integrity checklist
+- degraded_mode: isolated production mode with reduced throughput and heightened QA checks
+- input_requirements: incident indicators, system dependencies, production priorities, recovery resources
+- output_schema: containment sequence, recovery ladder, OT isolation and reconnect plan
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: compromise scope confirmation, isolation integrity, legal policy concurrence
+
+### packet_id: DPL-JADC2-FABRIC-TRIAGE-001
+- domain: JADC2 data-fabric degradation triage
+- objective: identify and mitigate schema, transport, and latency failures in mission data paths
+- primary_tools: schema validator, bus health monitor, COP consistency checker
+- alternate_tools: manual message sampling board and exception worksheet
+- degraded_mode: priority-path-only data exchange with reduced update cadence
+- input_requirements: schema contracts, transport health, mission thread dependencies, SLA thresholds
+- output_schema: degradation queue, exception ledger, latency mitigation branch plan
+- protocol_profile: API/JSON + USMTF + NATO APP-11/ADatP-3
+- validation_gates: schema conformance pass, translation integrity check, releasability validation
+
+### packet_id: DPL-ARCTIC-FARP-001
+- domain: arctic forward refuel and rearm dispersal
+- objective: keep FARP nodes survivable while sustaining sortie generation in arctic theaters
+- primary_tools: weather/ice intelligence, sustainment tracker, FARP survivability planner
+- alternate_tools: manual weather-risk board and fixed-node sustainment plan
+- degraded_mode: single-node sustainment with conservative sortie allocation
+- input_requirements: FARP site options, weather forecast, threat overlays, fuel and ordnance levels
+- output_schema: dispersal matrix, sustainment timeline, survivability risk board
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: weather threshold pass, sustainment sufficiency, command approval checkpoint
+
+### packet_id: DPL-EW-EOB-REFRESH-001
+- domain: contested electronic order of battle refresh
+- objective: update emitter identity and EW targeting confidence under sensor contestation
+- primary_tools: emitter identity service, EW mission data manager, spectrum anomaly detector
+- alternate_tools: analyst workbook and daily emitter discrepancy log
+- degraded_mode: periodic EOB refresh with high-confidence emitters only
+- input_requirements: signal captures, emitter baselines, threat library, mission timelines
+- output_schema: emitter confidence ladder, EOB refresh queue, retask trigger map
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: multi-source identity corroboration, false-positive threshold, authority review
+
+### packet_id: DPL-FIRES-LATENCY-001
+- domain: precision-fires C2 latency compensation
+- objective: preserve target validity and timing under communications and processing delays
+- primary_tools: fires timeline analyzer, delay telemetry monitor, target validity tracker
+- alternate_tools: manual timing board and delayed target approval log
+- degraded_mode: restricted target sets with widened timing margins
+- input_requirements: target windows, sensor timelines, message latency, command constraints
+- output_schema: latency compensation table, timing exception log, target validity branch plan
+- protocol_profile: USMTF + VMF + Link 16 J-series
+- validation_gates: target validity threshold, legal/ROE pass, commander release gate
+
+### packet_id: DPL-BURN-MASCAL-001
+- domain: mass-casualty burn-care network operations
+- objective: route burn casualties to viable care nodes while preserving critical supplies
+- primary_tools: patient regulation platform, burn-bed board, med-log continuity tracker
+- alternate_tools: manual burn transfer worksheet and care-capacity phone tree
+- degraded_mode: triage-priority transfer only with delayed bed-state updates
+- input_requirements: casualty load, burn severity mix, facility capacity, route risk posture
+- output_schema: burn-care network map, transfer priority list, supply depletion forecast
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: medical authority confirmation, transfer risk threshold, consent and handling checks
+
+### packet_id: DPL-GRID-BLACKSTART-001
+- domain: coalition host-nation grid protection and blackstart
+- objective: sequence blackstart restoration while protecting critical military and civil loads
+- primary_tools: grid status dashboard, blackstart planner, coalition coordination board
+- alternate_tools: manual restoration board and utility liaison tracker
+- degraded_mode: critical-load-only restoration with staged re-energization checkpoints
+- input_requirements: outage map, generation status, critical loads, cyber-physical threat state
+- output_schema: blackstart branch matrix, load priority board, restoration timeline
+- protocol_profile: NIMS/ICS + API/JSON + USMTF
+- validation_gates: life safety prioritization pass, synchronization check, coalition approval record
+
+### packet_id: DPL-AUTON-CONVOY-AMBUSH-001
+- domain: autonomous convoy counter-ambush operations
+- objective: reduce convoy ambush vulnerability while enforcing autonomy authority bounds
+- primary_tools: convoy autonomy manager, route threat engine, authority policy control
+- alternate_tools: manual convoy posture board and route contingency matrix
+- degraded_mode: autonomy limited to navigation and warning with human fire-control decisions
+- input_requirements: convoy routes, threat indicators, autonomy authority profile, comm latency state
+- output_schema: convoy posture board, route contingency map, authority escalation table
+- protocol_profile: API/JSON + USMTF + CoT
+- validation_gates: authority gate pass, route threat confidence, human approval checkpoint

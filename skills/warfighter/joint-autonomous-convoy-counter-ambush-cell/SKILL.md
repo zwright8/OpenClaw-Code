@@ -1,9 +1,9 @@
 ---
-name: coalition-denied-weather-recon-and-sortie-risk-cell
-description: Support coalition warfighter weather-recon fusion and sortie-risk planning in denied environments. Use when sensor degradation and weather volatility drive air/ISR mission risk.
+name: joint-autonomous-convoy-counter-ambush-cell
+description: Support U.S. warfighter planning for autonomous convoy counter-ambush operations. Use when convoy survivability, autonomy authority controls, and route denial threats require synchronized action.
 ---
 
-# Coalition Denied Weather Recon And Sortie Risk Cell
+# Joint Autonomous Convoy Counter Ambush Cell
 
 ## Mission Scope
 
@@ -29,25 +29,25 @@ description: Support coalition warfighter weather-recon fusion and sortie-risk p
 
 ## Domain Products
 
-Primary products for this skill: sortie weather-risk scorecard, denied-sensor confidence ladder, divert and scrub trigger matrix.
+Primary products for this skill: counter-ambush convoy posture board, autonomy authority ladder, route denial contingency map.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-denied-weather-sortie-risk-v1` with `protocol_stack_id=ps-denied-weather-sortie-risk-stack-v1`.
-- Alternate: `tool_suite_id=ts-airlift-lz-viability-v1` with `protocol_stack_id=ps-airlift-lz-viability-stack-v1`.
+- Primary: `tool_suite_id=ts-autonomous-convoy-counter-ambush-v1` with `protocol_stack_id=ps-autonomy-c2-assurance-stack-v1`.
+- Alternate: `tool_suite_id=ts-logistics-distribution-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
 - Degraded: use authenticated voice/readback + UTC acknowledgment ledger + manual fallback board.
 
 ## External Tool Stack and Protocols
 
 - Preferred tools: mission-domain planners, operational dashboards, independent cross-check analytics, and command-approved audit ledgers.
-- Preferred protocol families: USMTF, API/JSON, NATO APP-11/ADatP-3 aligned.
+- Preferred protocol families: USMTF, API/JSON, Link 16 J-series, NATO APP-11/ADatP-3 where coalition exchange is required.
 - Bind recommendations to concrete suite/stack entries in `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
 - Use protocol packets in `../_shared/references/tool-protocol-playbooks.md` and `../_shared/references/domain-tool-packet-library.md`.
 - Include provenance fields: source system, refresh UTC, confidence, and key gaps.
 
 ## Domain Packet Defaults
 
-- Default packet IDs: DPL-DENIED-WX-SORTIE-001, DPL-AIRLIFT-LZ-001.
+- Default packet IDs: DPL-AUTON-CONVOY-AMBUSH-001, DPL-AUTON-WING-001.
 - If no packet fully matches, define a provisional packet using the shared schema and assign a validation owner.
 
 ## Tool Invocation Contract
@@ -61,10 +61,3 @@ Primary products for this skill: sortie weather-risk scorecard, denied-sensor co
 - Apply approval and escalation requirements from `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Run protocol conformance checks from `../_shared/references/us-joint-protocol-assurance-drill.md` before high-impact recommendations.
 - If authority, legal basis, or acknowledgment integrity is uncertain, downgrade to advisory-only with explicit commander prompts.
-
-## Operational Execution Hardening
-
-- Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending sortie posture changes.
-- Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
-- Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
-- Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
