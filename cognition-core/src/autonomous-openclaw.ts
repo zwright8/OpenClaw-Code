@@ -23,6 +23,9 @@ const SUCCESS_STATUSES = new Set([
     'partial'
 ]);
 
+const DEFAULT_FAILURE_STREAK_THRESHOLD = 2;
+const DEFAULT_FAILURE_COOLDOWN_WAVES = 2;
+
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
     return Number.isFinite(value) ? value : Date.now();
@@ -38,6 +41,21 @@ function parseNonNegativeInt(raw, fallback = 0) {
     const value = Number(raw);
     if (!Number.isInteger(value) || value < 0) return fallback;
     return value;
+}
+
+function normalizeNonNegativeRecord(rawRecord) {
+    if (!rawRecord || typeof rawRecord !== 'object' || Array.isArray(rawRecord)) {
+        return {};
+    }
+
+    const normalized = {};
+    for (const [key, value] of Object.entries(rawRecord)) {
+        if (typeof key !== 'string' || !key.trim()) continue;
+        const parsed = parseNonNegativeInt(value, -1);
+        if (parsed < 0) continue;
+        normalized[String(key)] = parsed;
+    }
+    return normalized;
 }
 
 function clamp(value, min, max) {
@@ -122,6 +140,10 @@ function normalizeState(rawState = {}) {
         failedCapabilityIds: Array.isArray(state.failedCapabilityIds)
             ? [...new Set(state.failedCapabilityIds.map((value) => normalizeCapabilityId(value)).filter(Boolean))].sort()
             : [],
+        skillFailureStreakById: normalizeNonNegativeRecord(state.skillFailureStreakById),
+        capabilityFailureStreakById: normalizeNonNegativeRecord(state.capabilityFailureStreakById),
+        skillCooldownUntilRunById: normalizeNonNegativeRecord(state.skillCooldownUntilRunById),
+        capabilityCooldownUntilRunById: normalizeNonNegativeRecord(state.capabilityCooldownUntilRunById),
         updatedAt: Number.isFinite(Number(state.updatedAt)) ? Number(state.updatedAt) : null
     };
 }
@@ -347,7 +369,20 @@ function buildCapabilityInput(capabilityId, waveIndex, nowMs) {
     };
 }
 
-function selectCatalogSlice({ catalog, cursor, limit, successfulSet }) {
+function getCatalogEntryId(candidate) {
+    if (!candidate || typeof candidate !== 'object') return String(candidate);
+    if ('id' in candidate) return String(candidate.id);
+    return String(candidate);
+}
+
+function selectCatalogSlice({
+    catalog,
+    cursor,
+    limit,
+    successfulSet,
+    cooldownUntilRunById,
+    currentRunCount
+}) {
     const list = Array.isArray(catalog) ? catalog : [];
     if (list.length === 0 || limit <= 0) {
         return {
@@ -364,8 +399,10 @@ function selectCatalogSlice({ catalog, cursor, limit, successfulSet }) {
     let scanned = 0;
     while (selected.length < limit && scanned < total) {
         const candidate = list[pointer];
-        const key = String(candidate?.id ?? candidate);
-        if (!selectedKeySet.has(key) && !successfulSet.has(key)) {
+        const key = getCatalogEntryId(candidate);
+        const cooldownUntilRun = parseNonNegativeInt(cooldownUntilRunById?.[key], 0);
+        const inCooldown = cooldownUntilRun > 0 && currentRunCount <= cooldownUntilRun;
+        if (!selectedKeySet.has(key) && !successfulSet.has(key) && !inCooldown) {
             selected.push(candidate);
             selectedKeySet.add(key);
         }
@@ -376,8 +413,8 @@ function selectCatalogSlice({ catalog, cursor, limit, successfulSet }) {
     scanned = 0;
     while (selected.length < limit && scanned < total) {
         const candidate = list[pointer];
-        const key = String(candidate?.id ?? candidate);
-        if (!selectedKeySet.has(key)) {
+        const key = getCatalogEntryId(candidate);
+        if (!selectedKeySet.has(key) && !successfulSet.has(key)) {
             selected.push(candidate);
             selectedKeySet.add(key);
         }
@@ -397,12 +434,17 @@ export function buildAutonomousBatchPlan({
     state,
     skillsPerWave = 20,
     capabilitiesPerWave = 10,
+    failureStreakThreshold = DEFAULT_FAILURE_STREAK_THRESHOLD,
+    failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     skillCatalogSource = 'manifest',
     waveIndex = 0,
     nowFactory = Date.now
 }) {
     const normalizedState = normalizeState(state);
     const nowMs = safeNow(nowFactory);
+    const currentRunCount = normalizedState.runCount + 1;
+    const normalizedFailureStreakThreshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
+    const normalizedFailureCooldownWaves = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
 
     const skillSuccessfulSet = new Set(normalizedState.successfulSkillIds.map((value) => String(value)));
     const capabilitySuccessfulSet = new Set(normalizedState.successfulCapabilityIds.map((value) => String(value)));
@@ -411,14 +453,18 @@ export function buildAutonomousBatchPlan({
         catalog: skillCatalog,
         cursor: normalizedState.skillCursor,
         limit: parseNonNegativeInt(skillsPerWave, 0),
-        successfulSet: skillSuccessfulSet
+        successfulSet: skillSuccessfulSet,
+        cooldownUntilRunById: normalizedState.skillCooldownUntilRunById,
+        currentRunCount
     });
 
     const capabilitySelection = selectCatalogSlice({
         catalog: capabilityCatalog,
         cursor: normalizedState.capabilityCursor,
         limit: parseNonNegativeInt(capabilitiesPerWave, 0),
-        successfulSet: capabilitySuccessfulSet
+        successfulSet: capabilitySuccessfulSet,
+        cooldownUntilRunById: normalizedState.capabilityCooldownUntilRunById,
+        currentRunCount
     });
 
     const tasks = [];
@@ -427,6 +473,9 @@ export function buildAutonomousBatchPlan({
         const entry = skillSelection.selected[i];
         const taskCreatedAt = nowMs + i;
         const skillCode = normalizeSkillCode(entry.code, entry.id);
+        const skillIdKey = String(entry.id);
+        const failureStreak = parseNonNegativeInt(normalizedState.skillFailureStreakById[skillIdKey], 0);
+        const cooldownUntilRun = parseNonNegativeInt(normalizedState.skillCooldownUntilRunById[skillIdKey], 0);
         tasks.push(buildTaskRequest({
             from: 'agent:autonomous-openclaw',
             target: 'agent:skills-runtime',
@@ -437,7 +486,13 @@ export function buildAutonomousBatchPlan({
                 autonomy: {
                     lane: 'skills',
                     wave: waveIndex,
-                    sourceCatalog: skillCatalogSource
+                    sourceCatalog: skillCatalogSource,
+                    reliability: {
+                        failureStreak,
+                        cooldownUntilRun,
+                        failureStreakThreshold: normalizedFailureStreakThreshold,
+                        failureCooldownWaves: normalizedFailureCooldownWaves
+                    }
                 },
                 skillId: entry.id,
                 skillCode,
@@ -457,6 +512,8 @@ export function buildAutonomousBatchPlan({
     for (let i = 0; i < capabilitySelection.selected.length; i++) {
         const capabilityId = capabilitySelection.selected[i];
         const taskCreatedAt = nowMs + skillSelection.selected.length + i;
+        const failureStreak = parseNonNegativeInt(normalizedState.capabilityFailureStreakById[capabilityId], 0);
+        const cooldownUntilRun = parseNonNegativeInt(normalizedState.capabilityCooldownUntilRunById[capabilityId], 0);
         tasks.push(buildTaskRequest({
             from: 'agent:autonomous-openclaw',
             target: 'agent:capability-runtime',
@@ -466,7 +523,13 @@ export function buildAutonomousBatchPlan({
                 planner: 'cognition-core/autonomous-openclaw',
                 autonomy: {
                     lane: 'capabilities',
-                    wave: waveIndex
+                    wave: waveIndex,
+                    reliability: {
+                        failureStreak,
+                        cooldownUntilRun,
+                        failureStreakThreshold: normalizedFailureStreakThreshold,
+                        failureCooldownWaves: normalizedFailureCooldownWaves
+                    }
                 },
                 capabilityId,
                 capabilityInput: buildCapabilityInput(capabilityId, waveIndex, taskCreatedAt)
@@ -545,6 +608,46 @@ function mergeUniqueNumeric(left = [], right = []) {
 
 function mergeUniqueString(left = [], right = []) {
     return [...new Set([...left, ...right].map((value) => normalizeCapabilityId(value)).filter(Boolean))].sort();
+}
+
+function updateReliabilityForWave({
+    selectedIds,
+    successfulSet,
+    failedSet,
+    previousFailureStreakById,
+    previousCooldownUntilRunById,
+    runCount,
+    failureStreakThreshold,
+    failureCooldownWaves
+}) {
+    const nextFailureStreakById = { ...normalizeNonNegativeRecord(previousFailureStreakById) };
+    const nextCooldownUntilRunById = { ...normalizeNonNegativeRecord(previousCooldownUntilRunById) };
+    const normalizedThreshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
+    const normalizedCooldownWaves = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
+
+    for (const rawId of selectedIds) {
+        const id = String(rawId);
+        if (!id) continue;
+
+        if (successfulSet.has(id)) {
+            delete nextFailureStreakById[id];
+            delete nextCooldownUntilRunById[id];
+            continue;
+        }
+
+        if (failedSet.has(id)) {
+            const nextFailureStreak = parseNonNegativeInt(nextFailureStreakById[id], 0) + 1;
+            nextFailureStreakById[id] = nextFailureStreak;
+            if (nextFailureStreak >= normalizedThreshold && normalizedCooldownWaves > 0) {
+                nextCooldownUntilRunById[id] = runCount + normalizedCooldownWaves;
+            }
+        }
+    }
+
+    return {
+        failureStreakById: nextFailureStreakById,
+        cooldownUntilRunById: nextCooldownUntilRunById
+    };
 }
 
 function createCoverageReport({
@@ -642,6 +745,8 @@ export async function runAutonomousOpenClaw({
     waves = 1,
     skillsPerWave = 25,
     capabilitiesPerWave = 12,
+    failureStreakThreshold = DEFAULT_FAILURE_STREAK_THRESHOLD,
+    failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     dispatchLimit = 100,
     workerCycles = 12,
     workerIdleCycles = 2,
@@ -677,6 +782,8 @@ export async function runAutonomousOpenClaw({
     const normalizedWaves = parsePositiveInt(waves, 1);
     const normalizedSkillsPerWave = parseNonNegativeInt(skillsPerWave, 0);
     const normalizedCapabilitiesPerWave = parseNonNegativeInt(capabilitiesPerWave, 0);
+    const normalizedFailureStreakThreshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
+    const normalizedFailureCooldownWaves = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
 
     const skillCatalogSource = loadSkillCatalogSource({
         repoRoot: resolvedRepoRoot,
@@ -711,6 +818,8 @@ export async function runAutonomousOpenClaw({
             state,
             skillsPerWave: normalizedSkillsPerWave,
             capabilitiesPerWave: normalizedCapabilitiesPerWave,
+            failureStreakThreshold: normalizedFailureStreakThreshold,
+            failureCooldownWaves: normalizedFailureCooldownWaves,
             skillCatalogSource: skillCatalogSource.source,
             waveIndex: state.runCount + 1,
             nowFactory
@@ -761,15 +870,41 @@ export async function runAutonomousOpenClaw({
             nowFactory
         });
 
+        const nextRunCount = state.runCount + 1;
+        const skillOutcome = updateReliabilityForWave({
+            selectedIds: plan.selection.skillIds,
+            successfulSet: new Set(coverage.successfulSkillIds.map((value) => String(value))),
+            failedSet: new Set(coverage.failedSkillIds.map((value) => String(value))),
+            previousFailureStreakById: state.skillFailureStreakById,
+            previousCooldownUntilRunById: state.skillCooldownUntilRunById,
+            runCount: nextRunCount,
+            failureStreakThreshold: normalizedFailureStreakThreshold,
+            failureCooldownWaves: normalizedFailureCooldownWaves
+        });
+        const capabilityOutcome = updateReliabilityForWave({
+            selectedIds: plan.selection.capabilityIds,
+            successfulSet: new Set(coverage.successfulCapabilityIds.map((value) => String(value))),
+            failedSet: new Set(coverage.failedCapabilityIds.map((value) => String(value))),
+            previousFailureStreakById: state.capabilityFailureStreakById,
+            previousCooldownUntilRunById: state.capabilityCooldownUntilRunById,
+            runCount: nextRunCount,
+            failureStreakThreshold: normalizedFailureStreakThreshold,
+            failureCooldownWaves: normalizedFailureCooldownWaves
+        });
+
         state = normalizeState({
             ...state,
-            runCount: state.runCount + 1,
+            runCount: nextRunCount,
             skillCursor: plan.nextCursor.skillCursor,
             capabilityCursor: plan.nextCursor.capabilityCursor,
             successfulSkillIds: mergeUniqueNumeric(state.successfulSkillIds, coverage.successfulSkillIds),
             failedSkillIds: mergeUniqueNumeric(state.failedSkillIds, coverage.failedSkillIds),
             successfulCapabilityIds: mergeUniqueString(state.successfulCapabilityIds, coverage.successfulCapabilityIds),
             failedCapabilityIds: mergeUniqueString(state.failedCapabilityIds, coverage.failedCapabilityIds),
+            skillFailureStreakById: skillOutcome.failureStreakById,
+            capabilityFailureStreakById: capabilityOutcome.failureStreakById,
+            skillCooldownUntilRunById: skillOutcome.cooldownUntilRunById,
+            capabilityCooldownUntilRunById: capabilityOutcome.cooldownUntilRunById,
             updatedAt: safeNow(nowFactory)
         });
 
@@ -849,6 +984,8 @@ export async function runAutonomousOpenClaw({
             skillCatalogPath: skillCatalogSource.sourcePath,
             skillsPerWave: normalizedSkillsPerWave,
             capabilitiesPerWave: normalizedCapabilitiesPerWave,
+            failureStreakThreshold: normalizedFailureStreakThreshold,
+            failureCooldownWaves: normalizedFailureCooldownWaves,
             dispatchLimit: parsePositiveInt(dispatchLimit, 100),
             workerCycles: parsePositiveInt(workerCycles, 12),
             workerIdleCycles: parsePositiveInt(workerIdleCycles, 2),

@@ -65,6 +65,68 @@ test('buildAutonomousBatchPlan selects skills and capabilities with cursor progr
     assert.equal(firstTask.context?.planner, 'cognition-core/autonomous-openclaw');
 });
 
+test('buildAutonomousBatchPlan deprioritizes cooldown entries and emits reliability context', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 1, code: 'SK-00001', title: 'Skill One' },
+            { id: 2, code: 'SK-00002', title: 'Skill Two' },
+            { id: 3, code: 'SK-00003', title: 'Skill Three' }
+        ],
+        capabilityCatalog: ['truth_engine', 'memory_drift'],
+        state: {
+            runCount: 3,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillFailureStreakById: {
+                '1': 2
+            },
+            skillCooldownUntilRunById: {
+                '1': 5
+            }
+        },
+        skillsPerWave: 2,
+        capabilitiesPerWave: 1,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 3,
+        waveIndex: 4,
+        nowFactory: () => 200_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [2, 3]);
+    const skillTask = plan.tasks.find((task) => task.context?.skillId === 2);
+    assert.equal(skillTask?.context?.autonomy?.reliability?.failureStreak, 0);
+    assert.equal(skillTask?.context?.autonomy?.reliability?.failureStreakThreshold, 2);
+    assert.equal(skillTask?.context?.autonomy?.reliability?.failureCooldownWaves, 3);
+});
+
+test('buildAutonomousBatchPlan backfills from cooldown entries when no alternatives exist', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 1, code: 'SK-00001', title: 'Skill One' },
+            { id: 2, code: 'SK-00002', title: 'Skill Two' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 4,
+            skillCursor: 0,
+            successfulSkillIds: [],
+            skillCooldownUntilRunById: {
+                '1': 9,
+                '2': 9
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 5,
+        nowFactory: () => 210_000
+    });
+
+    assert.equal(plan.selection.skillIds.length, 1);
+    assert.ok([1, 2].includes(plan.selection.skillIds[0]));
+});
+
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
