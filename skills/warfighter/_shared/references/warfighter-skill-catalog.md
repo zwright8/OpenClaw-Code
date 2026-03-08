@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 727
+- Total warfighter skills in this repo: 739
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -329,3 +329,33 @@ Every skill output should include:
 - Maritime boarding evidence chain + coalition cyber-incident legal attribution + detainee accountability
 - Reservist mobilization bottlenecks + strategic mobility planning + deployment/distribution optimization
 - Theater EMP hardening + EMP cascade consequence + infrastructure resilience restoration
+
+## New Expansion Wave (2026-03-08, Contested Control, Translation, and Repair Assurance)
+
+- joint-denied-environment-c2-node-mobility-and-displacement-cell
+- coalition-jadc2-schema-translation-and-validation-cell
+- theater-contested-airlift-landing-zone-viability-cell
+- expeditionary-electromagnetic-camouflage-effectiveness-cell
+- joint-space-cyber-groundstation-failover-drill-cell
+- strategic-munitions-surge-quality-escape-forecast-cell
+- joint-autonomous-medevac-ethics-governance-cell
+- coalition-contested-spectrum-fratricide-prevention-cell
+- theater-rapid-port-damage-assessment-and-sortie-reflow-cell
+- joint-precision-fires-data-lineage-and-retargeting-cell
+- arctic-denied-comms-polar-orbit-handover-cell
+- joint-battle-damage-engineering-repair-prioritization-cell
+
+## Updated Pairings (2026-03-08, Contested Control, Translation, and Repair Assurance)
+
+- C2 node displacement + hardened mobile command post displacement + mission network failover
+- Coalition JADC2 schema translation + coalition data fabric interoperability + mission data provenance/releasability auditing
+- Contested airlift LZ viability + tactical airspace control and deconfliction + expeditionary runway recovery
+- Electromagnetic camouflage effectiveness + signature lifecycle management + spectrum interference resolution
+- Space-cyber groundstation failover drill + orbital spectrum continuity + joint battle network key continuity
+- Munitions surge quality-escape forecasting + additive munitions microfactory control + munitions transport safety
+- Autonomous medevac ethics governance + casualty evacuation and medical regulation + denied casualty-data synchronization
+- Coalition spectrum fratricide prevention + coalition emitter identity + joint EW deconfliction effects
+- Rapid port damage assessment and sortie reflow + strategic port cyber resilience + deployment/distribution optimization
+- Precision fires data lineage and retargeting + targeting standards/CDE governance + battle-damage assessment fusion
+- Arctic denied comms handover + polar comms degradation operations + denied-space PNT alternatives
+- Battle-damage engineering repair prioritization + rail/bridge recovery + expeditionary fabrication and battle damage repair
