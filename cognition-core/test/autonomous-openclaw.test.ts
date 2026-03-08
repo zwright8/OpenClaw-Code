@@ -5,6 +5,7 @@ import os from 'os';
 import path from 'path';
 import {
     buildAutonomousBatchPlan,
+    collectWaveOutcomes,
     computeErrorBudgetThrottle,
     computeFailureCooldownWaves,
     computeThrottledWaveSize,
@@ -137,6 +138,29 @@ test('computeFailureCooldownWaves scales exponentially and honors caps', () => {
         failureCooldownBackoffMultiplier: 2,
         failureCooldownMaxWaves: 16
     }), 16);
+});
+
+test('computeFailureCooldownWaves applies deterministic jitter when enabled', () => {
+    const stableA = computeFailureCooldownWaves({
+        failureStreak: 4,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 3,
+        failureCooldownBackoffMultiplier: 2,
+        failureCooldownMaxWaves: 100,
+        failureCooldownJitterRatio: 0.3,
+        jitterSeed: 'skill-42:run-7'
+    });
+    const stableB = computeFailureCooldownWaves({
+        failureStreak: 4,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 3,
+        failureCooldownBackoffMultiplier: 2,
+        failureCooldownMaxWaves: 100,
+        failureCooldownJitterRatio: 0.3,
+        jitterSeed: 'skill-42:run-7'
+    });
+    assert.equal(stableA, stableB);
+    assert.ok(stableA >= 8 && stableA <= 16);
 });
 
 test('computeWaveFailureRate and error-budget throttle trigger under sustained failures', () => {
@@ -301,4 +325,76 @@ test('runAutonomousOpenClaw can execute waves from external 10,000-skill catalog
     assert.equal(report.totals.plannedCapabilityTasks, 0);
     assert.deepEqual(report.waves[0].selection.skillIds, [1001, 1002]);
     assert.ok(report.coverage.skills.successful >= 2);
+});
+
+test('collectWaveOutcomes ignores stale terminal outcomes from older mission ids', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const storePath = path.join(dir, 'tasks.journal.jsonl');
+    const staleFailedRecord = {
+        taskId: 'task-stale-failure',
+        request: {
+            context: {
+                skillId: 1,
+                missionId: 'autonomy-wave-0-skill-1'
+            }
+        },
+        status: 'failed'
+    };
+    const staleEvent = {
+        type: 'upsert',
+        taskId: staleFailedRecord.taskId,
+        at: Date.now(),
+        record: staleFailedRecord
+    };
+    fs.writeFileSync(storePath, `${JSON.stringify(staleEvent)}\n`);
+
+    const outcome = await collectWaveOutcomes({
+        storePath,
+        selectedSkillIds: [1],
+        selectedMissionIds: ['autonomy-wave-1-skill-1']
+    });
+
+    assert.equal(outcome.summary.failedCount, 0);
+    assert.equal(outcome.summary.pendingCount, 1);
+    assert.deepEqual(outcome.failedSkillIds, []);
+});
+
+test('runAutonomousOpenClaw quarantines repeatedly failing ids', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const storePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const statePath = path.join(dir, 'autonomy-state.json');
+    const catalogPath = path.join(dir, 'catalog.md');
+    fs.writeFileSync(catalogPath, '1. [SK-00001] Quarantine target skill\n   Reason: test\n');
+
+    await runAutonomousOpenClaw({
+        repoRoot: REPO_ROOT,
+        skillCatalogPath: catalogPath,
+        storePath,
+        outboxDir,
+        archiveDir,
+        statePath,
+        waves: 2,
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        dispatchLimit: 1,
+        workerCycles: 1,
+        workerIdleCycles: 1,
+        stopOnFullCoverage: false,
+        botRuntime: false,
+        failureRate: 1,
+        enqueueFollowupTasks: false,
+        failureStreakThreshold: 1,
+        failureCooldownWaves: 0,
+        quarantineFailureStreakThreshold: 2,
+        nowFactory: () => Date.now()
+    });
+
+    const state = loadAutonomousState(statePath);
+    assert.deepEqual(state.quarantinedSkillIds, [1]);
 });

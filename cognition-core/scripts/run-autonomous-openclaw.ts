@@ -24,6 +24,8 @@ Options:
   --failure-cooldown-waves <n> Base cooldown waves once threshold is reached (default: 2)
   --failure-cooldown-backoff-multiplier <n> Exponential cooldown multiplier after threshold (default: 2)
   --failure-cooldown-max-waves <n> Max cooldown waves cap (default: 16)
+  --failure-cooldown-jitter-ratio <0-1> Deterministic jitter ratio applied to cooldown waves (default: 0.2)
+  --quarantine-failure-streak-threshold <n> Failure streak at which an id is quarantined (default: 6)
   --error-budget-window-waves <n> Recent wave window for failure-pressure averaging (default: 4)
   --error-budget-failure-threshold <0-1> Failure-rate threshold that triggers throttling (default: 0.4)
   --error-budget-throttle-scale <0-1> Scaling factor for per-wave task counts under pressure (default: 0.5)
@@ -104,6 +106,8 @@ function parseArgs(argv) {
         failureCooldownWaves: 2,
         failureCooldownBackoffMultiplier: 2,
         failureCooldownMaxWaves: 16,
+        failureCooldownJitterRatio: 0.2,
+        quarantineFailureStreakThreshold: 6,
         errorBudgetWindowWaves: 4,
         errorBudgetFailureThreshold: 0.4,
         errorBudgetThrottleScale: 0.5,
@@ -225,6 +229,16 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--failure-cooldown-jitter-ratio') {
+            options.failureCooldownJitterRatio = parseUnitInterval(value, '--failure-cooldown-jitter-ratio');
+            i++;
+            continue;
+        }
+        if (token === '--quarantine-failure-streak-threshold') {
+            options.quarantineFailureStreakThreshold = parsePositiveInt(value, '--quarantine-failure-streak-threshold');
+            i++;
+            continue;
+        }
         if (token === '--error-budget-window-waves') {
             options.errorBudgetWindowWaves = parsePositiveInt(value, '--error-budget-window-waves');
             i++;
@@ -329,6 +343,8 @@ function printSummary(report) {
     console.log(`Results accepted: ${report.totals.resultsAccepted}`);
     console.log(`Follow-up tasks saved: ${report.totals.followupTasksSaved}`);
     console.log(`Bot skill hardening blocked: ${report.totals.botSkillHardeningBlocked}`);
+    console.log(`Newly quarantined skills: ${report.totals.skillQuarantinedNew}`);
+    console.log(`Newly quarantined capabilities: ${report.totals.capabilityQuarantinedNew}`);
 }
 
 (async () => {
@@ -353,6 +369,8 @@ function printSummary(report) {
             failureCooldownWaves: options.failureCooldownWaves,
             failureCooldownBackoffMultiplier: options.failureCooldownBackoffMultiplier,
             failureCooldownMaxWaves: options.failureCooldownMaxWaves,
+            failureCooldownJitterRatio: options.failureCooldownJitterRatio,
+            quarantineFailureStreakThreshold: options.quarantineFailureStreakThreshold,
             errorBudgetWindowWaves: options.errorBudgetWindowWaves,
             errorBudgetFailureThreshold: options.errorBudgetFailureThreshold,
             errorBudgetThrottleScale: options.errorBudgetThrottleScale,

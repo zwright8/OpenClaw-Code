@@ -27,6 +27,8 @@ const DEFAULT_FAILURE_STREAK_THRESHOLD = 2;
 const DEFAULT_FAILURE_COOLDOWN_WAVES = 2;
 const DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER = 2;
 const DEFAULT_FAILURE_COOLDOWN_MAX_WAVES = 16;
+const DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO = 0.2;
+const DEFAULT_QUARANTINE_FAILURE_STREAK_THRESHOLD = 6;
 const DEFAULT_ERROR_BUDGET_WINDOW_WAVES = 4;
 const DEFAULT_ERROR_BUDGET_FAILURE_THRESHOLD = 0.4;
 const DEFAULT_ERROR_BUDGET_THROTTLE_SCALE = 0.5;
@@ -79,6 +81,12 @@ function normalizeFailureRate(value) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return 0;
     return clamp(numeric, 0, 1);
+}
+
+function parseUnitInterval(raw, fallback = 0) {
+    const value = Number(raw);
+    if (!Number.isFinite(value)) return clamp(fallback, 0, 1);
+    return clamp(value, 0, 1);
 }
 
 function normalizeFailureRateSeries(rawValues, maxEntries = MAX_WAVE_FAILURE_RATE_HISTORY) {
@@ -146,7 +154,7 @@ function normalizeState(rawState = {}) {
     const state = rawState && typeof rawState === 'object' ? rawState : {};
 
     return {
-        version: 1,
+        version: 2,
         runCount: parseNonNegativeInt(state.runCount, 0),
         skillCursor: parseNonNegativeInt(state.skillCursor, 0),
         capabilityCursor: parseNonNegativeInt(state.capabilityCursor, 0),
@@ -166,6 +174,12 @@ function normalizeState(rawState = {}) {
         capabilityFailureStreakById: normalizeNonNegativeRecord(state.capabilityFailureStreakById),
         skillCooldownUntilRunById: normalizeNonNegativeRecord(state.skillCooldownUntilRunById),
         capabilityCooldownUntilRunById: normalizeNonNegativeRecord(state.capabilityCooldownUntilRunById),
+        quarantinedSkillIds: Array.isArray(state.quarantinedSkillIds)
+            ? [...new Set(state.quarantinedSkillIds.map((value) => toSkillId(value)).filter(Boolean))].sort((a, b) => a - b)
+            : [],
+        quarantinedCapabilityIds: Array.isArray(state.quarantinedCapabilityIds)
+            ? [...new Set(state.quarantinedCapabilityIds.map((value) => normalizeCapabilityId(value)).filter(Boolean))].sort()
+            : [],
         recentWaveFailureRates: normalizeFailureRateSeries(state.recentWaveFailureRates),
         updatedAt: Number.isFinite(Number(state.updatedAt)) ? Number(state.updatedAt) : null
     };
@@ -403,6 +417,7 @@ function selectCatalogSlice({
     cursor,
     limit,
     successfulSet,
+    quarantinedSet = new Set(),
     cooldownUntilRunById,
     currentRunCount
 }) {
@@ -425,7 +440,7 @@ function selectCatalogSlice({
         const key = getCatalogEntryId(candidate);
         const cooldownUntilRun = parseNonNegativeInt(cooldownUntilRunById?.[key], 0);
         const inCooldown = cooldownUntilRun > 0 && currentRunCount <= cooldownUntilRun;
-        if (!selectedKeySet.has(key) && !successfulSet.has(key) && !inCooldown) {
+        if (!selectedKeySet.has(key) && !successfulSet.has(key) && !quarantinedSet.has(key) && !inCooldown) {
             selected.push(candidate);
             selectedKeySet.add(key);
         }
@@ -437,7 +452,7 @@ function selectCatalogSlice({
     while (selected.length < limit && scanned < total) {
         const candidate = list[pointer];
         const key = getCatalogEntryId(candidate);
-        if (!selectedKeySet.has(key) && !successfulSet.has(key)) {
+        if (!selectedKeySet.has(key) && !successfulSet.has(key) && !quarantinedSet.has(key)) {
             selected.push(candidate);
             selectedKeySet.add(key);
         }
@@ -456,7 +471,9 @@ export function computeFailureCooldownWaves({
     failureStreakThreshold = DEFAULT_FAILURE_STREAK_THRESHOLD,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     failureCooldownBackoffMultiplier = DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER,
-    failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
+    failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES,
+    failureCooldownJitterRatio = DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO,
+    jitterSeed = ''
 } = {}) {
     const streak = parseNonNegativeInt(failureStreak, 0);
     const threshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
@@ -466,6 +483,7 @@ export function computeFailureCooldownWaves({
         DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER
     );
     const maxCooldown = parseNonNegativeInt(failureCooldownMaxWaves, DEFAULT_FAILURE_COOLDOWN_MAX_WAVES);
+    const jitterRatio = parseUnitInterval(failureCooldownJitterRatio, DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO);
 
     if (baseCooldown <= 0 || streak < threshold) {
         return 0;
@@ -474,8 +492,15 @@ export function computeFailureCooldownWaves({
     const extraFailures = Math.max(0, streak - threshold);
     const scaled = Math.round(baseCooldown * Math.pow(backoffMultiplier, extraFailures));
     const bounded = Math.max(baseCooldown, scaled);
-    if (maxCooldown <= 0) return bounded;
-    return Math.min(maxCooldown, bounded);
+    const capped = maxCooldown <= 0 ? bounded : Math.min(maxCooldown, bounded);
+    if (capped <= 0 || jitterRatio <= 0) {
+        return capped;
+    }
+
+    const seed = makeDeterministicSeed(`${jitterSeed}:${streak}:${threshold}:${baseCooldown}`);
+    const offsetRatio = (pseudoRatio(seed, 0) * 2) - 1;
+    const multiplier = 1 + (offsetRatio * jitterRatio);
+    return Math.max(1, Math.round(capped * multiplier));
 }
 
 export function computeWaveFailureRate({
@@ -540,6 +565,8 @@ export function buildAutonomousBatchPlan({
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     failureCooldownBackoffMultiplier = DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER,
     failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES,
+    failureCooldownJitterRatio = DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO,
+    quarantineFailureStreakThreshold = DEFAULT_QUARANTINE_FAILURE_STREAK_THRESHOLD,
     skillCatalogSource = 'manifest',
     waveIndex = 0,
     nowFactory = Date.now
@@ -557,15 +584,29 @@ export function buildAutonomousBatchPlan({
         failureCooldownMaxWaves,
         DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
     );
+    const normalizedFailureCooldownJitterRatio = parseUnitInterval(
+        failureCooldownJitterRatio,
+        DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO
+    );
+    const normalizedQuarantineFailureStreakThreshold = Math.max(
+        1,
+        parsePositiveInt(
+            quarantineFailureStreakThreshold,
+            DEFAULT_QUARANTINE_FAILURE_STREAK_THRESHOLD
+        )
+    );
 
     const skillSuccessfulSet = new Set(normalizedState.successfulSkillIds.map((value) => String(value)));
     const capabilitySuccessfulSet = new Set(normalizedState.successfulCapabilityIds.map((value) => String(value)));
+    const skillQuarantinedSet = new Set(normalizedState.quarantinedSkillIds.map((value) => String(value)));
+    const capabilityQuarantinedSet = new Set(normalizedState.quarantinedCapabilityIds.map((value) => String(value)));
 
     const skillSelection = selectCatalogSlice({
         catalog: skillCatalog,
         cursor: normalizedState.skillCursor,
         limit: parseNonNegativeInt(skillsPerWave, 0),
         successfulSet: skillSuccessfulSet,
+        quarantinedSet: skillQuarantinedSet,
         cooldownUntilRunById: normalizedState.skillCooldownUntilRunById,
         currentRunCount
     });
@@ -575,6 +616,7 @@ export function buildAutonomousBatchPlan({
         cursor: normalizedState.capabilityCursor,
         limit: parseNonNegativeInt(capabilitiesPerWave, 0),
         successfulSet: capabilitySuccessfulSet,
+        quarantinedSet: capabilityQuarantinedSet,
         cooldownUntilRunById: normalizedState.capabilityCooldownUntilRunById,
         currentRunCount
     });
@@ -605,7 +647,9 @@ export function buildAutonomousBatchPlan({
                         failureStreakThreshold: normalizedFailureStreakThreshold,
                         failureCooldownWaves: normalizedFailureCooldownWaves,
                         failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
-                        failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
+                        failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
+                        failureCooldownJitterRatio: normalizedFailureCooldownJitterRatio,
+                        quarantineFailureStreakThreshold: normalizedQuarantineFailureStreakThreshold
                     }
                 },
                 skillId: entry.id,
@@ -628,6 +672,7 @@ export function buildAutonomousBatchPlan({
         const taskCreatedAt = nowMs + skillSelection.selected.length + i;
         const failureStreak = parseNonNegativeInt(normalizedState.capabilityFailureStreakById[capabilityId], 0);
         const cooldownUntilRun = parseNonNegativeInt(normalizedState.capabilityCooldownUntilRunById[capabilityId], 0);
+        const missionId = `autonomy-wave-${waveIndex}-capability-${capabilityId}`;
         tasks.push(buildTaskRequest({
             from: 'agent:autonomous-openclaw',
             target: 'agent:capability-runtime',
@@ -644,10 +689,13 @@ export function buildAutonomousBatchPlan({
                         failureStreakThreshold: normalizedFailureStreakThreshold,
                         failureCooldownWaves: normalizedFailureCooldownWaves,
                         failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
-                        failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
+                        failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
+                        failureCooldownJitterRatio: normalizedFailureCooldownJitterRatio,
+                        quarantineFailureStreakThreshold: normalizedQuarantineFailureStreakThreshold
                     }
                 },
                 capabilityId,
+                missionId,
                 capabilityInput: buildCapabilityInput(capabilityId, waveIndex, taskCreatedAt)
             },
             createdAt: taskCreatedAt
@@ -658,7 +706,11 @@ export function buildAutonomousBatchPlan({
         tasks,
         selection: {
             skillIds: skillSelection.selected.map((entry) => entry.id),
-            capabilityIds: capabilitySelection.selected.slice()
+            capabilityIds: capabilitySelection.selected.slice(),
+            skillMissionIds: skillSelection.selected.map((entry) => `autonomy-wave-${waveIndex}-skill-${entry.id}`),
+            capabilityMissionIds: capabilitySelection.selected.map(
+                (capabilityId) => `autonomy-wave-${waveIndex}-capability-${capabilityId}`
+            )
         },
         nextCursor: {
             skillCursor: skillSelection.nextCursor,
@@ -718,10 +770,11 @@ export async function collectAutonomousCoverage({
     };
 }
 
-async function collectWaveOutcomes({
+export async function collectWaveOutcomes({
     storePath,
     selectedSkillIds = [],
     selectedCapabilityIds = [],
+    selectedMissionIds = [],
     nowFactory = Date.now
 }) {
     const store = new FileTaskStore({
@@ -732,6 +785,9 @@ async function collectWaveOutcomes({
 
     const skillOutcomeById = new Map(selectedSkillIds.map((id) => [String(id), 'pending']));
     const capabilityOutcomeById = new Map(selectedCapabilityIds.map((id) => [String(id), 'pending']));
+    const missionIdSet = new Set((Array.isArray(selectedMissionIds) ? selectedMissionIds : [])
+        .filter((value) => typeof value === 'string' && value.trim())
+        .map((value) => value.trim()));
 
     for (const record of records) {
         const status = normalizeStatus(record?.status);
@@ -740,6 +796,10 @@ async function collectWaveOutcomes({
         const context = record?.request?.context && typeof record.request.context === 'object'
             ? record.request.context
             : {};
+        if (missionIdSet.size > 0) {
+            const missionId = typeof context.missionId === 'string' ? context.missionId.trim() : '';
+            if (!missionIdSet.has(missionId)) continue;
+        }
         const skillId = toSkillId(context.skillId);
         const capabilityId = normalizeCapabilityId(context.capabilityId);
         const success = SUCCESS_STATUSES.has(status);
@@ -823,14 +883,23 @@ function updateReliabilityForWave({
     failedSet,
     previousFailureStreakById,
     previousCooldownUntilRunById,
+    previousQuarantinedIds,
     runCount,
     failureStreakThreshold,
     failureCooldownWaves,
     failureCooldownBackoffMultiplier,
-    failureCooldownMaxWaves
+    failureCooldownMaxWaves,
+    failureCooldownJitterRatio,
+    quarantineFailureStreakThreshold
 }) {
     const nextFailureStreakById = { ...normalizeNonNegativeRecord(previousFailureStreakById) };
     const nextCooldownUntilRunById = { ...normalizeNonNegativeRecord(previousCooldownUntilRunById) };
+    const nextQuarantinedSet = new Set(
+        (Array.isArray(previousQuarantinedIds) ? previousQuarantinedIds : [])
+            .map((value) => String(value))
+            .filter(Boolean)
+    );
+    const newlyQuarantinedIds = [];
     const normalizedThreshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
     const normalizedCooldownWaves = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
     const normalizedCooldownBackoffMultiplier = parsePositiveNumber(
@@ -841,6 +910,17 @@ function updateReliabilityForWave({
         failureCooldownMaxWaves,
         DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
     );
+    const normalizedCooldownJitterRatio = parseUnitInterval(
+        failureCooldownJitterRatio,
+        DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO
+    );
+    const normalizedQuarantineThreshold = Math.max(
+        1,
+        parsePositiveInt(
+            quarantineFailureStreakThreshold,
+            DEFAULT_QUARANTINE_FAILURE_STREAK_THRESHOLD
+        )
+    );
 
     for (const rawId of selectedIds) {
         const id = String(rawId);
@@ -849,28 +929,41 @@ function updateReliabilityForWave({
         if (successfulSet.has(id)) {
             delete nextFailureStreakById[id];
             delete nextCooldownUntilRunById[id];
+            nextQuarantinedSet.delete(id);
             continue;
         }
 
         if (failedSet.has(id)) {
             const nextFailureStreak = parseNonNegativeInt(nextFailureStreakById[id], 0) + 1;
             nextFailureStreakById[id] = nextFailureStreak;
-            const cooldownWaves = computeFailureCooldownWaves({
-                failureStreak: nextFailureStreak,
-                failureStreakThreshold: normalizedThreshold,
-                failureCooldownWaves: normalizedCooldownWaves,
-                failureCooldownBackoffMultiplier: normalizedCooldownBackoffMultiplier,
-                failureCooldownMaxWaves: normalizedCooldownMaxWaves
-            });
-            if (cooldownWaves > 0) {
-                nextCooldownUntilRunById[id] = runCount + cooldownWaves;
+            if (nextFailureStreak >= normalizedQuarantineThreshold) {
+                nextQuarantinedSet.add(id);
+                newlyQuarantinedIds.push(id);
+                delete nextCooldownUntilRunById[id];
+                continue;
+            }
+            if (!nextQuarantinedSet.has(id)) {
+                const cooldownWaves = computeFailureCooldownWaves({
+                    failureStreak: nextFailureStreak,
+                    failureStreakThreshold: normalizedThreshold,
+                    failureCooldownWaves: normalizedCooldownWaves,
+                    failureCooldownBackoffMultiplier: normalizedCooldownBackoffMultiplier,
+                    failureCooldownMaxWaves: normalizedCooldownMaxWaves,
+                    failureCooldownJitterRatio: normalizedCooldownJitterRatio,
+                    jitterSeed: `${id}:${runCount}`
+                });
+                if (cooldownWaves > 0) {
+                    nextCooldownUntilRunById[id] = runCount + cooldownWaves;
+                }
             }
         }
     }
 
     return {
         failureStreakById: nextFailureStreakById,
-        cooldownUntilRunById: nextCooldownUntilRunById
+        cooldownUntilRunById: nextCooldownUntilRunById,
+        quarantinedIds: [...nextQuarantinedSet],
+        newlyQuarantinedIds
     };
 }
 
@@ -919,6 +1012,8 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- resultsAccepted: ${report.totals?.resultsAccepted || 0}`,
         `- followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
         `- botSkillHardeningBlocked: ${report.totals?.botSkillHardeningBlocked || 0}`,
+        `- skillQuarantinedNew: ${report.totals?.skillQuarantinedNew || 0}`,
+        `- capabilityQuarantinedNew: ${report.totals?.capabilityQuarantinedNew || 0}`,
         '',
         '## Coverage',
         '',
@@ -934,7 +1029,7 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         lines.push('- none');
     } else {
         for (const wave of waves) {
-            lines.push(`- wave ${wave.wave}: skillTasks=${wave.planned.skillTasks} capabilityTasks=${wave.planned.capabilityTasks} accepted=${wave.enqueue.accepted} skipped=${wave.enqueue.skipped} stopReason=${wave.worker.stopReason}`);
+            lines.push(`- wave ${wave.wave}: skillTasks=${wave.planned.skillTasks} capabilityTasks=${wave.planned.capabilityTasks} accepted=${wave.enqueue.accepted} skipped=${wave.enqueue.skipped} stopReason=${wave.worker.stopReason} skillQuarantinedNew=${wave.reliability?.skillQuarantinedNew || 0} capabilityQuarantinedNew=${wave.reliability?.capabilityQuarantinedNew || 0}`);
         }
     }
 
@@ -973,6 +1068,8 @@ export async function runAutonomousOpenClaw({
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     failureCooldownBackoffMultiplier = DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER,
     failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES,
+    failureCooldownJitterRatio = DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO,
+    quarantineFailureStreakThreshold = DEFAULT_QUARANTINE_FAILURE_STREAK_THRESHOLD,
     errorBudgetWindowWaves = DEFAULT_ERROR_BUDGET_WINDOW_WAVES,
     errorBudgetFailureThreshold = DEFAULT_ERROR_BUDGET_FAILURE_THRESHOLD,
     errorBudgetThrottleScale = DEFAULT_ERROR_BUDGET_THROTTLE_SCALE,
@@ -1022,6 +1119,17 @@ export async function runAutonomousOpenClaw({
         failureCooldownMaxWaves,
         DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
     );
+    const normalizedFailureCooldownJitterRatio = parseUnitInterval(
+        failureCooldownJitterRatio,
+        DEFAULT_FAILURE_COOLDOWN_JITTER_RATIO
+    );
+    const normalizedQuarantineFailureStreakThreshold = Math.max(
+        1,
+        parsePositiveInt(
+            quarantineFailureStreakThreshold,
+            DEFAULT_QUARANTINE_FAILURE_STREAK_THRESHOLD
+        )
+    );
     const normalizedErrorBudgetWindowWaves = Math.max(
         1,
         parsePositiveInt(errorBudgetWindowWaves, DEFAULT_ERROR_BUDGET_WINDOW_WAVES)
@@ -1053,7 +1161,9 @@ export async function runAutonomousOpenClaw({
         followupTasksSaved: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
-        botSkillHardeningBlocked: 0
+        botSkillHardeningBlocked: 0,
+        skillQuarantinedNew: 0,
+        capabilityQuarantinedNew: 0
     };
 
     const waveReports = [];
@@ -1087,6 +1197,8 @@ export async function runAutonomousOpenClaw({
             failureCooldownWaves: normalizedFailureCooldownWaves,
             failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
             failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
+            failureCooldownJitterRatio: normalizedFailureCooldownJitterRatio,
+            quarantineFailureStreakThreshold: normalizedQuarantineFailureStreakThreshold,
             skillCatalogSource: skillCatalogSource.source,
             waveIndex: state.runCount + 1,
             nowFactory
@@ -1136,6 +1248,10 @@ export async function runAutonomousOpenClaw({
             storePath: resolvedStorePath,
             selectedSkillIds: plan.selection.skillIds,
             selectedCapabilityIds: plan.selection.capabilityIds,
+            selectedMissionIds: [
+                ...plan.selection.skillMissionIds,
+                ...plan.selection.capabilityMissionIds
+            ],
             nowFactory
         });
 
@@ -1146,11 +1262,14 @@ export async function runAutonomousOpenClaw({
             failedSet: new Set(waveOutcome.failedSkillIds.map((value) => String(value))),
             previousFailureStreakById: state.skillFailureStreakById,
             previousCooldownUntilRunById: state.skillCooldownUntilRunById,
+            previousQuarantinedIds: state.quarantinedSkillIds,
             runCount: nextRunCount,
             failureStreakThreshold: normalizedFailureStreakThreshold,
             failureCooldownWaves: normalizedFailureCooldownWaves,
             failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
-            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
+            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
+            failureCooldownJitterRatio: normalizedFailureCooldownJitterRatio,
+            quarantineFailureStreakThreshold: normalizedQuarantineFailureStreakThreshold
         });
         const capabilityOutcome = updateReliabilityForWave({
             selectedIds: plan.selection.capabilityIds,
@@ -1158,11 +1277,14 @@ export async function runAutonomousOpenClaw({
             failedSet: new Set(waveOutcome.failedCapabilityIds.map((value) => String(value))),
             previousFailureStreakById: state.capabilityFailureStreakById,
             previousCooldownUntilRunById: state.capabilityCooldownUntilRunById,
+            previousQuarantinedIds: state.quarantinedCapabilityIds,
             runCount: nextRunCount,
             failureStreakThreshold: normalizedFailureStreakThreshold,
             failureCooldownWaves: normalizedFailureCooldownWaves,
             failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
-            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
+            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
+            failureCooldownJitterRatio: normalizedFailureCooldownJitterRatio,
+            quarantineFailureStreakThreshold: normalizedQuarantineFailureStreakThreshold
         });
 
         state = normalizeState({
@@ -1178,6 +1300,8 @@ export async function runAutonomousOpenClaw({
             capabilityFailureStreakById: capabilityOutcome.failureStreakById,
             skillCooldownUntilRunById: skillOutcome.cooldownUntilRunById,
             capabilityCooldownUntilRunById: capabilityOutcome.cooldownUntilRunById,
+            quarantinedSkillIds: skillOutcome.quarantinedIds,
+            quarantinedCapabilityIds: capabilityOutcome.quarantinedIds,
             recentWaveFailureRates: normalizeFailureRateSeries([
                 ...normalizeFailureRateSeries(state.recentWaveFailureRates),
                 waveOutcome.summary.failureRate
@@ -1203,6 +1327,12 @@ export async function runAutonomousOpenClaw({
                 threshold: errorBudgetThrottle.threshold,
                 windowWaves: errorBudgetThrottle.windowWaves,
                 sampleCount: errorBudgetThrottle.sampleCount
+            },
+            reliability: {
+                skillQuarantinedNew: skillOutcome.newlyQuarantinedIds.length,
+                capabilityQuarantinedNew: capabilityOutcome.newlyQuarantinedIds.length,
+                skillQuarantinedTotal: state.quarantinedSkillIds.length,
+                capabilityQuarantinedTotal: state.quarantinedCapabilityIds.length
             },
             outcomes: waveOutcome.summary,
             enqueue: {
@@ -1235,6 +1365,8 @@ export async function runAutonomousOpenClaw({
         totals.botTasksExecuted += waveReport.worker.botTasksExecuted;
         totals.botTasksFailed += waveReport.worker.botTasksFailed;
         totals.botSkillHardeningBlocked += waveReport.worker.botSkillHardeningBlocked;
+        totals.skillQuarantinedNew += waveReport.reliability.skillQuarantinedNew;
+        totals.capabilityQuarantinedNew += waveReport.reliability.capabilityQuarantinedNew;
 
         const coverageReport = createCoverageReport({
             skillCatalog,
@@ -1274,6 +1406,8 @@ export async function runAutonomousOpenClaw({
             failureCooldownWaves: normalizedFailureCooldownWaves,
             failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
             failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
+            failureCooldownJitterRatio: normalizedFailureCooldownJitterRatio,
+            quarantineFailureStreakThreshold: normalizedQuarantineFailureStreakThreshold,
             errorBudgetWindowWaves: normalizedErrorBudgetWindowWaves,
             errorBudgetFailureThreshold: normalizedErrorBudgetFailureThreshold,
             errorBudgetThrottleScale: normalizedErrorBudgetThrottleScale,
