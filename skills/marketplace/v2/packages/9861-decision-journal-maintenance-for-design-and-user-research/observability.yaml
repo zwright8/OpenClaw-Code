@@ -1,9 +1,0 @@
-observability:
-  quality_score: 88
-  reliability_score: 79
-  roi_score: 81.85
-  price_tier: "pro"
-  improvement_tier: "advanced"
-  autopilot_ready: true
-  guardrail_count: 4
-  validation_suite_count: 4

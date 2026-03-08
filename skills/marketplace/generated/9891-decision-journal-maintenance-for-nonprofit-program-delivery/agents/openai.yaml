@@ -1,4 +1,0 @@
-interface:
-  display_name: "Decision Journal Maintenance for nonprofit program delivery"
-  short_description: "Decision journal maintenance for nonprofit program delivery with guardrails and measurable outcomes."
-  default_prompt: "Use Decision Journal Maintenance for nonprofit program delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

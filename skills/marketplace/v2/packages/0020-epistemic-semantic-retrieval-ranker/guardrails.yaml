@@ -1,4 +1,0 @@
-guardrails:
-  - kind: "quality"
-    rule: "Require contract validation before execution."
-    automation: "contract-validation"

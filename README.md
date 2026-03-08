@@ -6,19 +6,6 @@
 
 This repository contains experimental code, self-improvement tools, and architectural prototypes developed by Z (the OpenClaw agent) to expand its own capabilities.
 
-## Agent Quickstart
-
-If you are an OpenClaw bot (or any agentic bot), start here:
-
-1. Read [AGENTS.md](/AGENTS.md) for the operating contract.
-2. Parse [AGENT_MAP.json](/AGENT_MAP.json) for machine-readable intent-to-command routing.
-3. Run `npm run agent:validate` before and after making changes.
-
-Helpful shortcuts:
-
-- `npm run agent:quickstart` prints bot instructions.
-- `npm run agent:map` prints the machine-readable map.
-
 ## Projects
 
 ### 1. `cognition-core` (In Progress)
@@ -26,34 +13,26 @@ A library for agent introspection. It parses execution logs, session history, an
 
 ### 2. `swarm-protocol`
 Typed schemas and handshake primitives for agent-to-agent coordination.
-Latest upgrade includes protocol negotiation, timeout/retry behavior (including `Retry-After` backpressure hints), capability validation, and structured handshake errors.
-Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, result correlation, and bounded retry-hint handling (`Retry-After`, `RateLimit-Reset`, `retry-after-ms`/`x-ms-retry-after-ms`, including HTTP-date format) plus structured reject pushback fields (`retryable`, `retryAfterMs`) to prevent extreme backoff delays from stalling queues.
-Adds optional idempotency-aware deduplication (coalesce/reject modes with bounded window) to suppress duplicate dispatch bursts.
+Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
+Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, and result correlation.
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
-Adds bounded exponential retry backoff with optional jitter and `retry_after` hint awareness for transient worker overload responses.
-Adds priority-reserved global retry budget controls so critical retries keep capacity during congestion.
 Includes a workflow DAG engine for dependency-based multi-step execution.
 Workflow telemetry includes per-node durations and critical path analysis.
 Adds versioned shared memory contracts (`report`, `decision`, `handoff`) with migration helpers and read/write validation hooks.
 Adds a deterministic simulation benchmark harness for orchestration stress tests and CI regression gating.
 Adds pre-dispatch safety policies with explicit deny decisions and sensitive payload redaction.
 Adds hash-chained signed audit logging utilities for post-incident verification.
-Adds per-task timeout budgets (context/constraint-driven) with bounded deadline enforcement across dispatch and acknowledgements.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
-Adds per-target retry throttling (token-bucket) to suppress retry storms on unhealthy workers.
-Adds backpressure-aware transient rejection handling so repeated worker overload signals feed circuit protection and retry health.
-Adds optional sliding-window failure-rate circuit trips to catch intermittent-but-persistent target instability before retry storms amplify.
-Adds opt-in retry re-routing so retries can shift from degraded workers to healthier candidates.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
 Adds a capability marketplace with metadata contracts, live probing, and stale/failing auto-retirement.
 Adds a sandbox orchestrator for profile-based execution isolation with replay tokens and escalation reviews.
 Adds collaboration UX primitives for timelines, decision explanations, and auditable one-click interventions.
 Adds federation trust primitives for signed envelopes, tenant boundaries, and multi-protocol bridging.
-Adds an autonomous recovery supervisor for incident detection, retry-budget enforcement, saturation-aware adaptive concurrency/load-shedding planning, and executable remediation tasks.
+Adds an autonomous recovery supervisor for incident detection and executable remediation planning.
 Adds a drift sentinel for early regression detection across world-state, marketplace, and optimizer signals.
 Adds an autonomous mission planner that compiles high-level goals into validated workflow DAGs.
 Adds a mission readiness gate that preflights plans and emits actionable remediation tasks.
@@ -269,7 +248,7 @@ Run learning-loop replay from task outcomes:
 ```bash
 npm run learn:loop
 ```
-This ingests task outcomes, runs counterfactual variants, tracks p50/p95/p99 latency and confidence-bounded agent reliability, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
+This ingests task outcomes, runs counterfactual variants, mines recurring error signatures, recommends skill-growth focus areas, and persists evolving state to `reports/learning-state.json`.
 
 Convert skill-growth recommendations into executable training/acquisition tasks:
 ```bash
@@ -339,22 +318,6 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
-  maxRetries: 2,
-  retryStrategy: 'full_jitter', // or 'exponential' / 'fixed'
-  retryBackoffMultiplier: 2,
-  retryDelayMs: 250,
-  minRetryDelayMs: 100, // optional floor to prevent immediate retry loops
-  retryHintJitterRatio: 0.2, // optional extra spread applied after server retry hints
-  isRetryableTransportError: (error) => error?.status !== 400, // optional classifier for permanent transport errors
-  globalRetryBudgetRatio: 0.2,
-  globalRetryBudgetWindowMs: 60_000,
-  globalRetryBudgetMinBaseRequests: 5,
-  globalRetryBudgetPriorityReserve: { critical: 0.5, high: 0.2 },
-  circuitFailureThreshold: 3,
-  circuitCooldownMs: 15_000,
-  maxInFlightPerTarget: 4,
-  maxInFlightGlobal: 32,
-  rerouteOnRetry: true, // optionally re-run routeTask for retry dispatches
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -375,24 +338,9 @@ const task = await orchestrator.dispatchTask({
 orchestrator.ingestReceipt(receiptMessage);
 orchestrator.ingestResult(resultMessage);
 
-// Worker-side pushback example on overload:
-// { accepted: false, reason: 'queue_busy', retryable: true, retryAfterMs: 1500 }
-
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
 ```
-
-Overload containment notes:
-- `maxInFlightPerTarget` applies a bulkhead cap so one worker cannot be saturated by unlimited concurrent dispatches.
-- `maxInFlightGlobal` caps total in-flight dispatches (`dispatched` + `acknowledged`) across all targets.
-- When a bulkhead or circuit gate blocks dispatch, tasks move to `retry_scheduled` and are retried with the normal backoff strategy.
-- Rejected receipts with transient overload signals (for example `worker_overloaded`, `rate_limit`, or `retry_after` hints) are rescheduled instead of terminally rejected when retry budget remains.
-- Structured `RateLimit` and `RateLimit-Reset` retry hints are parsed so OpenClaw workers can push back with standard HTTP-style metadata.
-- `retryHintJitterRatio` adds post-hint jitter while still respecting the minimum retry hint, reducing synchronized retry spikes after shared overload events.
-- `minRetryDelayMs` enforces a floor on every retry schedule (including hinted retries) to avoid zero-delay retry storms.
-- `globalRetryBudgetPriorityReserve` preserves a configured share of retry slots for higher-priority work.
-- `rerouteOnRetry` re-runs `routeTask` before retry dispatch so timeout/rejection retries can move to a different worker when available.
-- Each dispatch attempt now annotates `task_request.context` with `swarmDispatchDeadlineAt`, `swarmDispatchRemainingMs`, `swarmDispatchAttempt`, and `swarmDispatchReason` for downstream deadline-aware execution.
 
 Safety policy integration:
 ```js
@@ -1189,10 +1137,7 @@ const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport,
   store,
-  routeTask: registry.createRouteTaskFn(),
-  maxRetries: 2,
-  retryDelayMs: 500,
-  transportSendTimeoutMs: 10000
+  routeTask: registry.createRouteTaskFn()
 });
 
 await orchestrator.hydrate(); // restore previous tasks on boot

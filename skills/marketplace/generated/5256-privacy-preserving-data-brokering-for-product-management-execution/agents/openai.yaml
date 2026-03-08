@@ -1,4 +1,0 @@
-interface:
-  display_name: "Privacy-Preserving Data Brokering for product management..."
-  short_description: "Privacy-preserving data brokering for product management execution with guardrails and measurable outcomes."
-  default_prompt: "Use Privacy-Preserving Data Brokering for product management execution to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

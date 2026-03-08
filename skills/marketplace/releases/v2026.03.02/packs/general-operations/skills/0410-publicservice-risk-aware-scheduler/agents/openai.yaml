@@ -1,4 +1,0 @@
-interface:
-  display_name: "PublicService Risk-Aware Scheduler"
-  short_description: "Risk-weighted sequencing for Healthcare and Public Services with guardrails and measurable outcomes."
-  default_prompt: "Use PublicService Risk-Aware Scheduler to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

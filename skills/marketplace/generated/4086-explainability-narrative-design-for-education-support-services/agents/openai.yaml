@@ -1,4 +1,0 @@
-interface:
-  display_name: "Explainability Narrative Design for education support ser..."
-  short_description: "Explainability narrative design for education support services with guardrails and measurable outcomes."
-  default_prompt: "Use Explainability Narrative Design for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

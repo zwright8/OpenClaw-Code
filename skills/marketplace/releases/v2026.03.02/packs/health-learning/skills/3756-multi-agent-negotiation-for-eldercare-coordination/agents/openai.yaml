@@ -1,4 +1,0 @@
-interface:
-  display_name: "Multi-Agent Negotiation for eldercare coordination"
-  short_description: "Multi-agent negotiation for eldercare coordination with guardrails and measurable outcomes."
-  default_prompt: "Use Multi-Agent Negotiation for eldercare coordination to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

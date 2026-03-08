@@ -6,10 +6,6 @@ const DEFAULT_CAPABILITIES = ['log-analysis', 'task-execution'];
 const DEFAULT_TIMEOUT_MS = 5000;
 const DEFAULT_RETRIES = 0;
 const DEFAULT_RETRY_DELAY_MS = 250;
-const DEFAULT_RETRY_STRATEGY = 'exponential';
-const DEFAULT_RETRY_JITTER = 'full';
-const DEFAULT_MAX_RETRY_HINT_MS = 60_000;
-const DEFAULT_SECONDARY_RATE_LIMIT_RETRY_MS = 60_000;
 
 export class HandshakeError extends Error {
     constructor(code, message, details = {}) {
@@ -88,302 +84,6 @@ function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function clampNumber(value, min, max) {
-    return Math.min(Math.max(value, min), max);
-}
-
-function readHeaderValue(headers, key) {
-    if (!headers) return null;
-    const target = String(key).toLowerCase();
-
-    if (typeof headers.get === 'function') {
-        return headers.get(key) ?? headers.get(target) ?? null;
-    }
-
-    if (headers instanceof Map) {
-        for (const [entryKey, entryValue] of headers.entries()) {
-            if (String(entryKey).toLowerCase() === target) {
-                return entryValue;
-            }
-        }
-        return null;
-    }
-
-    if (typeof headers === 'object') {
-        for (const [entryKey, entryValue] of Object.entries(headers)) {
-            if (entryKey.toLowerCase() === target) {
-                return entryValue;
-            }
-        }
-    }
-
-    return null;
-}
-
-function parseRetryAfterHeaderMs(value, nowMs = Date.now()) {
-    if (value === null || value === undefined) return null;
-    const text = String(value).trim();
-    if (!text) return null;
-
-    const seconds = Number(text);
-    if (Number.isFinite(seconds) && seconds >= 0) {
-        return seconds * 1000;
-    }
-
-    const dateMs = Date.parse(text);
-    if (Number.isFinite(dateMs)) {
-        return Math.max(0, dateMs - nowMs);
-    }
-
-    return null;
-}
-
-function parseRetryAfterMillisecondsHeaderMs(value) {
-    if (value === null || value === undefined) return null;
-    const text = String(value).trim();
-    if (!text) return null;
-
-    const numeric = Number(text);
-    if (Number.isFinite(numeric) && numeric >= 0) {
-        return numeric;
-    }
-
-    const hhmmssMatch = /^(\d+):([0-5]?\d):([0-5]?\d(?:\.\d+)?)$/.exec(text);
-    if (!hhmmssMatch) return null;
-
-    const hours = Number(hhmmssMatch[1]);
-    const minutes = Number(hhmmssMatch[2]);
-    const seconds = Number(hhmmssMatch[3]);
-    if (!Number.isFinite(hours) || !Number.isFinite(minutes) || !Number.isFinite(seconds)) {
-        return null;
-    }
-
-    return Math.round(((hours * 3600) + (minutes * 60) + seconds) * 1000);
-}
-
-function parseRateLimitResetHeaderMs(value, nowMs = Date.now()) {
-    if (value === null || value === undefined) return null;
-    const text = String(value).trim();
-    if (!text) return null;
-
-    const numeric = Number(text);
-    if (Number.isFinite(numeric) && numeric >= 0) {
-        // Common formats: delta-seconds, epoch-seconds, epoch-milliseconds.
-        if (numeric >= 1_000_000_000_000) {
-            return Math.max(0, numeric - nowMs);
-        }
-        if (numeric >= 1_000_000_000) {
-            return Math.max(0, numeric * 1000 - nowMs);
-        }
-        return numeric * 1000;
-    }
-
-    const dateMs = Date.parse(text);
-    if (Number.isFinite(dateMs)) {
-        return Math.max(0, dateMs - nowMs);
-    }
-
-    return null;
-}
-
-function parseRetryHintMsFromMessage(message, nowMs = Date.now()) {
-    if (typeof message !== 'string' || !message.trim()) return null;
-
-    const explicitMsMatch = message.match(/retry[_-]?after[_-]?ms\s*[:=]\s*(\d+)(?!\d)/i);
-    if (explicitMsMatch) {
-        return Number(explicitMsMatch[1]);
-    }
-
-    const explicitSecondsMatch = message.match(/retry[_-]?after\s*[:=]\s*(\d+)\s*(?:s|sec|secs|second|seconds)?(?![A-Za-z])/i);
-    if (explicitSecondsMatch) {
-        return Number(explicitSecondsMatch[1]) * 1000;
-    }
-
-    const explicitDateMatch = message.match(/retry[_-]?after\s*[:=]\s*([A-Za-z]{3},\s*\d{1,2}\s+[A-Za-z]{3}\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+GMT)/i);
-    if (explicitDateMatch) {
-        const dateMs = Date.parse(explicitDateMatch[1].trim());
-        if (Number.isFinite(dateMs)) {
-            return Math.max(0, dateMs - nowMs);
-        }
-    }
-
-    return null;
-}
-
-function extractStatusCode(error) {
-    if (!error || typeof error !== 'object') return null;
-
-    const candidates = [
-        error.status,
-        error.statusCode,
-        error.response?.status,
-        error.response?.statusCode,
-        error.details?.status,
-        error.details?.statusCode
-    ];
-
-    for (const candidate of candidates) {
-        const numeric = Number(candidate);
-        if (Number.isInteger(numeric) && numeric >= 100) {
-            return numeric;
-        }
-    }
-
-    return null;
-}
-
-function inferSecondaryRateLimitRetryMs(error) {
-    if (!error || typeof error !== 'object') return null;
-
-    const message = typeof error.message === 'string'
-        ? error.message.toLowerCase()
-        : '';
-    const statusCode = extractStatusCode(error);
-
-    if (message.includes('secondary rate limit')) {
-        return DEFAULT_SECONDARY_RATE_LIMIT_RETRY_MS;
-    }
-
-    const likelyRateLimited = statusCode === 403 || statusCode === 429;
-    if (likelyRateLimited && message.includes('rate limit')) {
-        return DEFAULT_SECONDARY_RATE_LIMIT_RETRY_MS;
-    }
-
-    return null;
-}
-
-function extractRetryHintMs(error, nowMs = Date.now()) {
-    if (!error || typeof error !== 'object') return null;
-
-    const directMs = Number(error.retryAfterMs ?? error.details?.retryAfterMs);
-    if (Number.isFinite(directMs) && directMs >= 0) {
-        return directMs;
-    }
-
-    const directSeconds = Number(error.retryAfterSeconds ?? error.details?.retryAfterSeconds);
-    if (Number.isFinite(directSeconds) && directSeconds >= 0) {
-        return directSeconds * 1000;
-    }
-
-    const headers = error.headers
-        ?? error.response?.headers
-        ?? error.details?.headers
-        ?? null;
-
-    const retryAfterMillisecondsHeader = readHeaderValue(headers, 'retry-after-ms')
-        ?? readHeaderValue(headers, 'x-ms-retry-after-ms')
-        ?? readHeaderValue(headers, 'x-retry-after-ms');
-    const retryAfterMillisecondsMs = parseRetryAfterMillisecondsHeaderMs(
-        Array.isArray(retryAfterMillisecondsHeader)
-            ? retryAfterMillisecondsHeader[0]
-            : retryAfterMillisecondsHeader
-    );
-    if (Number.isFinite(retryAfterMillisecondsMs)) {
-        return retryAfterMillisecondsMs;
-    }
-
-    const xMsRetryAfterHeader = readHeaderValue(headers, 'x-ms-retry-after');
-    const xMsRetryAfterMs = parseRetryAfterHeaderMs(
-        Array.isArray(xMsRetryAfterHeader)
-            ? xMsRetryAfterHeader[0]
-            : xMsRetryAfterHeader,
-        nowMs
-    );
-    if (Number.isFinite(xMsRetryAfterMs)) {
-        return xMsRetryAfterMs;
-    }
-
-    const retryAfterHeader = readHeaderValue(
-        headers,
-        'retry-after'
-    );
-    const retryAfterHeaderMs = parseRetryAfterHeaderMs(retryAfterHeader, nowMs);
-    if (Number.isFinite(retryAfterHeaderMs)) {
-        return retryAfterHeaderMs;
-    }
-
-    const retryAfterValue = error.retryAfter ?? error.details?.retryAfter;
-    const retryAfterValueMs = parseRetryAfterHeaderMs(retryAfterValue, nowMs);
-    if (Number.isFinite(retryAfterValueMs)) {
-        return retryAfterValueMs;
-    }
-
-    const rateLimitResetHeader = readHeaderValue(
-        headers,
-        'ratelimit-reset'
-    ) ?? readHeaderValue(
-        headers,
-        'x-ratelimit-reset'
-    );
-    const rateLimitResetMs = parseRateLimitResetHeaderMs(rateLimitResetHeader, nowMs);
-    if (Number.isFinite(rateLimitResetMs)) {
-        return rateLimitResetMs;
-    }
-
-    const messageHintMs = parseRetryHintMsFromMessage(error.message, nowMs);
-    if (Number.isFinite(messageHintMs)) {
-        return messageHintMs;
-    }
-
-    return inferSecondaryRateLimitRetryMs(error);
-}
-
-function resolveRetryDelayMs({
-    attempt,
-    retryDelayMs,
-    retryStrategy,
-    maxRetryDelayMs,
-    retryJitter,
-    random
-}) {
-    const multiplier = retryStrategy === 'exponential'
-        ? (2 ** Math.max(0, attempt - 1))
-        : Math.max(1, attempt);
-
-    let delayMs = retryDelayMs * multiplier;
-    if (Number.isFinite(maxRetryDelayMs) && maxRetryDelayMs >= 0) {
-        delayMs = Math.min(delayMs, maxRetryDelayMs);
-    }
-
-    if (retryJitter === 'full' && delayMs > 0) {
-        const sample = Number(random?.());
-        const ratio = Number.isFinite(sample)
-            ? clampNumber(sample, 0, 1)
-            : 0.5;
-        delayMs *= ratio;
-    }
-
-    return Math.max(0, Math.round(delayMs));
-}
-
-function resolveAttemptTimeoutMs({
-    timeoutMs,
-    retryBudgetMs,
-    startedAtMs,
-    now
-}) {
-    const boundedTimeoutMs = Number.isFinite(timeoutMs) && timeoutMs > 0
-        ? Number(timeoutMs)
-        : null;
-    const hasRetryBudget = Number.isFinite(retryBudgetMs) && retryBudgetMs > 0;
-
-    if (!hasRetryBudget) {
-        return boundedTimeoutMs;
-    }
-
-    const elapsedMs = Math.max(0, now() - startedAtMs);
-    const budgetRemainingMs = Math.max(0, retryBudgetMs - elapsedMs);
-    if (budgetRemainingMs <= 0) {
-        return 0;
-    }
-
-    if (boundedTimeoutMs === null) {
-        return budgetRemainingMs;
-    }
-
-    return Math.min(boundedTimeoutMs, budgetRemainingMs);
-}
-
 async function withTimeout(promiseFactory, timeoutMs) {
     if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
         return promiseFactory();
@@ -444,26 +144,7 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
     const retryDelayMs = Number.isFinite(options.retryDelayMs) && options.retryDelayMs >= 0
         ? Number(options.retryDelayMs)
         : DEFAULT_RETRY_DELAY_MS;
-    const retryStrategy = options.retryStrategy === 'exponential'
-        ? 'exponential'
-        : DEFAULT_RETRY_STRATEGY;
-    const retryJitter = options.retryJitter === 'full'
-        ? 'full'
-        : DEFAULT_RETRY_JITTER;
-    const maxRetryDelayMs = Number.isFinite(options.maxRetryDelayMs) && options.maxRetryDelayMs >= 0
-        ? Number(options.maxRetryDelayMs)
-        : Number.POSITIVE_INFINITY;
-    const retryBudgetMs = Number.isFinite(options.retryBudgetMs) && options.retryBudgetMs > 0
-        ? Number(options.retryBudgetMs)
-        : null;
-    const maxRetryHintMs = Number.isFinite(options.maxRetryHintMs) && options.maxRetryHintMs > 0
-        ? Number(options.maxRetryHintMs)
-        : DEFAULT_MAX_RETRY_HINT_MS;
-    const now = typeof options.now === 'function' ? options.now : Date.now;
-    const sleep = typeof options.sleep === 'function' ? options.sleep : wait;
-    const random = typeof options.random === 'function' ? options.random : Math.random;
     const logger = options.logger ?? console;
-    const startedAtMs = now();
 
     const handshakeId = uuidv4();
     const request = {
@@ -472,48 +153,27 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
         from: fromAgentId,
         supportedProtocols,
         capabilities,
-        timestamp: now()
+        timestamp: Date.now()
     };
 
     HandshakeRequest.parse(request);
 
     const maxAttempts = retries + 1;
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-        if (retryBudgetMs !== null) {
-            const elapsedMs = Math.max(0, now() - startedAtMs);
-            if (elapsedMs >= retryBudgetMs) {
-                throw new HandshakeError(
-                    'RETRY_BUDGET_EXHAUSTED',
-                    `Handshake retry budget exhausted after ${elapsedMs}ms`,
-                    {
-                        retryBudgetMs,
-                        elapsedMs,
-                        attempts: attempt - 1
-                    }
-                );
-            }
-        }
-
-        const attemptStartMs = now();
+        const attemptStartMs = Date.now();
 
         try {
             logger.info?.(
                 `[Swarm] Handshake attempt ${attempt}/${maxAttempts} ${handshakeId} from ${fromAgentId} to ${targetAgentId}`
             );
-            const attemptTimeoutMs = resolveAttemptTimeoutMs({
-                timeoutMs,
-                retryBudgetMs,
-                startedAtMs,
-                now
-            });
 
             const rawResponse = await withTimeout(
                 () => transport.sendAndWait(targetAgentId, request),
-                attemptTimeoutMs
+                timeoutMs
             );
 
             const response = HandshakeResponse.parse(rawResponse);
-            const latencyMs = now() - attemptStartMs;
+            const latencyMs = Date.now() - attemptStartMs;
 
             if (response.requestId !== handshakeId) {
                 throw new HandshakeError(
@@ -581,42 +241,8 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
 
             if (attempt < maxAttempts && isRetryableError(wrappedError)) {
                 logger.warn?.(`[Swarm] Handshake attempt ${attempt} failed (${wrappedError.code}), retrying...`);
-                const retryDelay = resolveRetryDelayMs({
-                    attempt,
-                    retryDelayMs,
-                    retryStrategy,
-                    maxRetryDelayMs,
-                    retryJitter,
-                    random
-                });
-
-                let boundedDelayMs = retryDelay;
-                const retryHintMs = extractRetryHintMs(wrappedError, now());
-                if (Number.isFinite(retryHintMs) && retryHintMs > 0) {
-                    boundedDelayMs = Math.max(
-                        boundedDelayMs,
-                        Math.min(retryHintMs, maxRetryHintMs)
-                    );
-                }
-                if (retryBudgetMs !== null) {
-                    const elapsedMs = Math.max(0, now() - startedAtMs);
-                    const budgetRemainingMs = Math.max(0, retryBudgetMs - elapsedMs);
-                    if (budgetRemainingMs <= 0) {
-                        throw new HandshakeError(
-                            'RETRY_BUDGET_EXHAUSTED',
-                            `Handshake retry budget exhausted after ${elapsedMs}ms`,
-                            {
-                                retryBudgetMs,
-                                elapsedMs,
-                                attempts: attempt
-                            }
-                        );
-                    }
-                    boundedDelayMs = Math.min(boundedDelayMs, budgetRemainingMs);
-                }
-
-                if (boundedDelayMs > 0) {
-                    await sleep(boundedDelayMs);
+                if (retryDelayMs > 0) {
+                    await wait(retryDelayMs * attempt);
                 }
                 continue;
             }

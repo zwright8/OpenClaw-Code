@@ -1,4 +1,0 @@
-interface:
-  display_name: "Autonomous Workflow Authoring for software engineering de..."
-  short_description: "Autonomous workflow authoring for software engineering delivery with guardrails and measurable outcomes."
-  default_prompt: "Use Autonomous Workflow Authoring for software engineering delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

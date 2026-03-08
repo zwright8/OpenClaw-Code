@@ -1,4 +1,0 @@
-interface:
-  display_name: "Epistemic Semantic Retrieval Ranker"
-  short_description: "Semantic relevance scoring for Truth-Seeking and Epistemics with guardrails and measurable outcomes."
-  default_prompt: "Use Epistemic Semantic Retrieval Ranker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

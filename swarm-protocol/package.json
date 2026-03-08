@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "description": "Standardized communication schemas for OpenClaw agent swarms",
   "main": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./runtime": "./runtime.ts",
+    "./capabilities": "./capabilities.ts",
+    "./package.json": "./package.json"
+  },
   "type": "module",
   "scripts": {
     "test": "tsx --test && tsx run-tests.ts",

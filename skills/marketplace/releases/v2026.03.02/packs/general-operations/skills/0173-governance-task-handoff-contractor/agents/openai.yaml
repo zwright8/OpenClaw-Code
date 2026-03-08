@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Task Handoff Contractor"
-  short_description: "Contracted payload schemas for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Task Handoff Contractor to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

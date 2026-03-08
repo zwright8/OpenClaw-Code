@@ -1,4 +1,0 @@
-interface:
-  display_name: "Comms Security Threat Modeler"
-  short_description: "Attack-surface modeling for Communication and Explainability with guardrails and measurable outcomes."
-  default_prompt: "Use Comms Security Threat Modeler to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

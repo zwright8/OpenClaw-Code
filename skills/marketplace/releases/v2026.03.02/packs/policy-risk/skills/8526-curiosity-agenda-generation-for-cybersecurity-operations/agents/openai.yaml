@@ -1,4 +1,0 @@
-interface:
-  display_name: "Curiosity Agenda Generation for cybersecurity operations"
-  short_description: "Curiosity agenda generation for cybersecurity operations with guardrails and measurable outcomes."
-  default_prompt: "Use Curiosity Agenda Generation for cybersecurity operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

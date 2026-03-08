@@ -1,4 +1,0 @@
-interface:
-  display_name: "Experiment Design for entrepreneurship operations"
-  short_description: "Experiment design for entrepreneurship operations with guardrails and measurable outcomes."
-  default_prompt: "Use Experiment Design for entrepreneurship operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

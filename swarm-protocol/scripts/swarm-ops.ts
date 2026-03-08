@@ -11,7 +11,7 @@ import {
     signAuditEntry,
     summarizeTaskRecords,
     verifySignedAuditEntry
-} from '../index.js';
+} from '../runtime.js';
 
 function printHelp() {
     console.log(`Swarm operator control plane

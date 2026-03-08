@@ -1,4 +1,0 @@
-interface:
-  display_name: "Privacy-Preserving Data Brokering for personal finance ma..."
-  short_description: "Privacy-preserving data brokering for personal finance management with guardrails and measurable outcomes."
-  default_prompt: "Use Privacy-Preserving Data Brokering for personal finance management to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

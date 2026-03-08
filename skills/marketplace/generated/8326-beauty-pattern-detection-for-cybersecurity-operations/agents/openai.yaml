@@ -1,4 +1,0 @@
-interface:
-  display_name: "Beauty Pattern Detection for cybersecurity operations"
-  short_description: "Beauty pattern detection for cybersecurity operations with guardrails and measurable outcomes."
-  default_prompt: "Use Beauty Pattern Detection for cybersecurity operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

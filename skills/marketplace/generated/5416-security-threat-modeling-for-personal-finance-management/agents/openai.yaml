@@ -1,4 +1,0 @@
-interface:
-  display_name: "Security Threat Modeling for personal finance management"
-  short_description: "Security threat modeling for personal finance management with guardrails and measurable outcomes."
-  default_prompt: "Use Security Threat Modeling for personal finance management to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

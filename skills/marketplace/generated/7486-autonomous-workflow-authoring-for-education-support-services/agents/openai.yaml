@@ -1,4 +1,0 @@
-interface:
-  display_name: "Autonomous Workflow Authoring for education support services"
-  short_description: "Autonomous workflow authoring for education support services with guardrails and measurable outcomes."
-  default_prompt: "Use Autonomous Workflow Authoring for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

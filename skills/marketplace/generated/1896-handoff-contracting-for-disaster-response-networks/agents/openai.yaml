@@ -1,4 +1,0 @@
-interface:
-  display_name: "Handoff Contracting for disaster response networks"
-  short_description: "Handoff contracting for disaster response networks with guardrails and measurable outcomes."
-  default_prompt: "Use Handoff Contracting for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

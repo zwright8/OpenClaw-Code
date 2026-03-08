@@ -1,4 +1,0 @@
-interface:
-  display_name: "Decision Journal Maintenance for disaster response networks"
-  short_description: "Decision journal maintenance for disaster response networks with guardrails and measurable outcomes."
-  default_prompt: "Use Decision Journal Maintenance for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

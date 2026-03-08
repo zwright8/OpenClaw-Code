@@ -1,4 +1,0 @@
-interface:
-  display_name: "Experiment Design for disaster response networks"
-  short_description: "Experiment design for disaster response networks with guardrails and measurable outcomes."
-  default_prompt: "Use Experiment Design for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

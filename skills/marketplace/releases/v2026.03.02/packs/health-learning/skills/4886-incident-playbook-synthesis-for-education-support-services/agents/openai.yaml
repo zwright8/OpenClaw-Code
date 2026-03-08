@@ -1,4 +1,0 @@
-interface:
-  display_name: "Incident Playbook Synthesis for education support services"
-  short_description: "Incident playbook synthesis for education support services with guardrails and measurable outcomes."
-  default_prompt: "Use Incident Playbook Synthesis for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Multi-Agent Negotiation for mental well-being practices"
-  short_description: "Multi-agent negotiation for mental well-being practices with guardrails and measurable outcomes."
-  default_prompt: "Use Multi-Agent Negotiation for mental well-being practices to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

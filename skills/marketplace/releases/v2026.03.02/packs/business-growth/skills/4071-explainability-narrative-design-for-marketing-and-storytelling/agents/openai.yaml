@@ -1,4 +1,0 @@
-interface:
-  display_name: "Explainability Narrative Design for marketing and storyte..."
-  short_description: "Explainability narrative design for marketing and storytelling with guardrails and measurable outcomes."
-  default_prompt: "Use Explainability Narrative Design for marketing and storytelling to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

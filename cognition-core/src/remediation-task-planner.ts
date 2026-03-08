@@ -1,4 +1,4 @@
-import { buildTaskRequest } from '../../swarm-protocol/index.js';
+import { buildTaskRequest } from '../../swarm-protocol/runtime.js';
 
 const DEFAULT_TARGETS = {
     P1: 'agent:ops:critical',

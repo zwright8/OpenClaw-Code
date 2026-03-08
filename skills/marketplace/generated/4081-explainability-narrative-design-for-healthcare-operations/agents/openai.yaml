@@ -1,4 +1,0 @@
-interface:
-  display_name: "Explainability Narrative Design for healthcare operations"
-  short_description: "Explainability narrative design for healthcare operations with guardrails and measurable outcomes."
-  default_prompt: "Use Explainability Narrative Design for healthcare operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

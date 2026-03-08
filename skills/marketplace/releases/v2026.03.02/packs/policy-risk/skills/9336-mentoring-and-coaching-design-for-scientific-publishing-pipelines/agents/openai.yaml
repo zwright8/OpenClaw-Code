@@ -1,4 +1,0 @@
-interface:
-  display_name: "Mentoring And Coaching Design for scientific publishing p..."
-  short_description: "Mentoring and coaching design for scientific publishing pipelines with guardrails and measurable outcomes."
-  default_prompt: "Use Mentoring And Coaching Design for scientific publishing pipelines to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

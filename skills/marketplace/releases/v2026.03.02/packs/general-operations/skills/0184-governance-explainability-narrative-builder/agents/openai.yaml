@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Explainability Narrative Builder"
-  short_description: "Reason synthesis and abstraction for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Explainability Narrative Builder to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

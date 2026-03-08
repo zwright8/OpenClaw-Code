@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance A/B Rollout Governor"
-  short_description: "Staged rollout policies for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance A/B Rollout Governor to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

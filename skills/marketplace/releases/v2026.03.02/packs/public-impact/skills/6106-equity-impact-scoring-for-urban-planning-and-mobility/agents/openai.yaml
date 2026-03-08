@@ -1,4 +1,0 @@
-interface:
-  display_name: "Equity Impact Scoring for urban planning and mobility"
-  short_description: "Equity impact scoring for urban planning and mobility with guardrails and measurable outcomes."
-  default_prompt: "Use Equity Impact Scoring for urban planning and mobility to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

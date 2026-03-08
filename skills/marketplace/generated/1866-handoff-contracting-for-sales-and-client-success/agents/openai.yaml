@@ -1,4 +1,0 @@
-interface:
-  display_name: "Handoff Contracting for sales and client success"
-  short_description: "Handoff contracting for sales and client success with guardrails and measurable outcomes."
-  default_prompt: "Use Handoff Contracting for sales and client success to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

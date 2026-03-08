@@ -127,23 +127,14 @@ function buildDirName(implementation: SkillImplementation): string {
     return `${idPart}-${titlePart}`.replace(/-+$/g, '');
 }
 
-function shardForId(id: number): string {
-    return String(id).padStart(5, '0').slice(0, 2);
-}
-
-function manifestBasePath(skillId: number, dirName: string): string {
-    return `skills/generated/shards/${shardForId(skillId)}/${dirName}/`;
-}
-
 function buildManifestEntry(implementation: SkillImplementation, dirName: string): SkillManifestEntry {
-    const basePath = manifestBasePath(implementation.skillId, dirName);
     return {
         id: implementation.skillId,
         name: implementation.skillName,
         title: implementation.title,
         domain: implementation.domain,
-        path: `${basePath}SKILL.md`,
-        implementationPath: `${basePath}implementation.json`,
+        path: `skills/generated/${dirName}/SKILL.md`,
+        implementationPath: `skills/generated/${dirName}/implementation.json`,
         reason: implementation.reason,
         stepCount: Array.isArray(implementation.implementationGuide)
             ? implementation.implementationGuide.length
@@ -156,7 +147,7 @@ function buildManifestEntry(implementation: SkillImplementation, dirName: string
 
 function writeMaterializedSkill(implementation: SkillImplementation) {
     const dirName = buildDirName(implementation);
-    const skillDir = path.join(GENERATED_ROOT, 'shards', shardForId(implementation.skillId), dirName);
+    const skillDir = path.join(GENERATED_ROOT, dirName);
     fs.mkdirSync(skillDir, { recursive: true });
 
     const skillPath = path.join(skillDir, 'SKILL.md');

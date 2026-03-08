@@ -1,4 +1,0 @@
-interface:
-  display_name: "Experiment Design for nonprofit program delivery"
-  short_description: "Experiment design for nonprofit program delivery with guardrails and measurable outcomes."
-  default_prompt: "Use Experiment Design for nonprofit program delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

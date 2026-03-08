@@ -43,8 +43,6 @@ export const TaskReceipt = z.object({
     from: AgentId,
     accepted: z.boolean(),
     reason: z.string().optional().describe('Optional rejection reason'),
-    retryable: z.boolean().optional().describe('Whether a rejected receipt should be retried'),
-    retryAfterMs: z.number().int().nonnegative().optional().describe('Backoff delay in milliseconds when retrying a rejected receipt'),
     etaMs: z.number().int().nonnegative().optional().describe('Estimated completion time in milliseconds'),
     timestamp: Timestamp
 });

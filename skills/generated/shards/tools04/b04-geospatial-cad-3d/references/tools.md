@@ -1,5 +1,0 @@
-# Geospatial, CAD & 3D tooling tool catalog
-
-Tools in this skill: **9**.
-
-| Rank | Tool | Command | Type | Description |\n|---:|---|---|---|---|\n| 1506 | `tippecanoe` | `tippecanoe` | cli | Build vector tilesets from collections of GeoJSON features |\n| 1543 | `gts` | `gts` | library/runtime | GNU triangulated surface library |\n| 1557 | `osmium-tool` | `osmium-tool` | cli | Libosmium-based command-line tool for processing OpenStreetMap data |\n| 1561 | `libgeotiff` | `libgeotiff` | library/runtime | Library and tools for dealing with GeoTIFF |\n| 1686 | `lammps` | `lammps` | cli | Molecular Dynamics Simulator |\n| 1799 | `gmt` | `gmt` | cli | Tools for manipulating and plotting geographic and Cartesian data |\n| 1876 | `open-babel` | `open-babel` | cli | Chemical toolbox |\n| 1941 | `mapnik` | `mapnik` | cli | Toolkit for developing mapping applications |\n| 1997 | `opencascade` | `opencascade` | cli | 3D modeling and numerical simulation software for CAD/CAM/CAE |\n

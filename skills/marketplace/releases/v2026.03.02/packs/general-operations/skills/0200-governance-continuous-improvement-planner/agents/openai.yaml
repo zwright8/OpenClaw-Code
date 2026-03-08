@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Continuous Improvement Planner"
-  short_description: "Closed-loop prioritization for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Continuous Improvement Planner to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Cost-Benefit Forecaster"
-  short_description: "Cost-impact simulation for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Cost-Benefit Forecaster to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

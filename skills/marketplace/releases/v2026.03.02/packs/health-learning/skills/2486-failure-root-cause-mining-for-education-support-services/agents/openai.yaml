@@ -1,4 +1,0 @@
-interface:
-  display_name: "Failure Root Cause Mining for education support services"
-  short_description: "Failure root cause mining for education support services with guardrails and measurable outcomes."
-  default_prompt: "Use Failure Root Cause Mining for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

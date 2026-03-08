@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Semantic Retrieval Ranker"
-  short_description: "Semantic relevance scoring for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Semantic Retrieval Ranker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

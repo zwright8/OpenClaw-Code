@@ -5,7 +5,10 @@ import { pathToFileURL } from 'url';
 const REPO_ROOT = process.cwd();
 const NEXT_100_PATH = path.join(REPO_ROOT, 'CAPABILITY_NEXT_100.md');
 const BLUEPRINT_PATH = path.join(REPO_ROOT, 'CAPABILITY_BLUEPRINT.md');
-const INDEX_PATH = path.join(REPO_ROOT, 'swarm-protocol', 'index.ts');
+const CAPABILITY_ENTRYPOINT_CANDIDATES = [
+    path.join(REPO_ROOT, 'swarm-protocol', 'capabilities.ts'),
+    path.join(REPO_ROOT, 'swarm-protocol', 'index.ts')
+];
 const TEST_DIR = path.join(REPO_ROOT, 'swarm-protocol', 'test');
 const OUTPUT_PATH = path.join(REPO_ROOT, 'CAPABILITY_DEPLOYABILITY_AUDIT.md');
 
@@ -34,17 +37,17 @@ function parseBlueprintCoverage(text) {
     return covered;
 }
 
-function parseCapabilityModuleMap(indexText) {
+function parseCapabilityModuleMap(entryText, sourcePath) {
     const exports = [];
     const pattern = /^export \* from '\.\/src\/(?<module>[^']+)\.js';$/gm;
     let match;
-    while ((match = pattern.exec(indexText)) !== null) {
+    while ((match = pattern.exec(entryText)) !== null) {
         exports.push(match.groups.module.trim());
     }
 
     const start = exports.indexOf('intervention-portfolio');
     if (start < 0) {
-        throw new Error('Could not find capability 32 start module (intervention-portfolio) in swarm-protocol/index.ts');
+        throw new Error(`Could not find capability 32 start module (intervention-portfolio) in ${path.relative(REPO_ROOT, sourcePath)}`);
     }
 
     const modules = exports.slice(start, start + 100);
@@ -57,6 +60,22 @@ function parseCapabilityModuleMap(indexText) {
         map.set(32 + i, modules[i]);
     }
     return map;
+}
+
+function loadCapabilityEntrypointText() {
+    for (const candidate of CAPABILITY_ENTRYPOINT_CANDIDATES) {
+        if (!fs.existsSync(candidate)) continue;
+        const text = fs.readFileSync(candidate, 'utf8');
+        if (text.includes("export * from './src/intervention-portfolio.js';")) {
+            return { sourcePath: candidate, text };
+        }
+    }
+
+    throw new Error(
+        `Could not find a capability export entrypoint. Checked: ${CAPABILITY_ENTRYPOINT_CANDIDATES
+            .map((filePath) => path.relative(REPO_ROOT, filePath))
+            .join(', ')}`
+    );
 }
 
 function collectTests() {
@@ -219,7 +238,7 @@ async function auditCapability(entry, moduleName, blueprintCoverage, tests) {
     };
 }
 
-function renderMarkdown(summary, results) {
+function renderMarkdown(summary, results, exportSourcePath) {
     const lines = [];
     const generatedAt = new Date().toISOString();
 
@@ -228,7 +247,7 @@ function renderMarkdown(summary, results) {
     lines.push(`Generated: ${generatedAt}`);
     lines.push('');
     lines.push('## Criteria');
-    lines.push('- Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/index.ts` mapping.');
+    lines.push(`- Module implementation exists in \`swarm-protocol/src\` and is exported via \`${path.relative(REPO_ROOT, exportSourcePath)}\` mapping.`);
     lines.push('- Capability exports evaluator + `ToTasks` adapter + manager class.');
     lines.push('- Evaluator, task conversion, and manager wrapper pass a smoke execution check.');
     lines.push('- Capability section exists in `CAPABILITY_BLUEPRINT.md`.');
@@ -257,11 +276,11 @@ function renderMarkdown(summary, results) {
 async function main() {
     const next100Text = fs.readFileSync(NEXT_100_PATH, 'utf8');
     const blueprintText = fs.readFileSync(BLUEPRINT_PATH, 'utf8');
-    const indexText = fs.readFileSync(INDEX_PATH, 'utf8');
+    const capabilityEntrypoint = loadCapabilityEntrypointText();
 
     const capabilities = parseCapabilityList(next100Text);
     const blueprintCoverage = parseBlueprintCoverage(blueprintText);
-    const moduleMap = parseCapabilityModuleMap(indexText);
+    const moduleMap = parseCapabilityModuleMap(capabilityEntrypoint.text, capabilityEntrypoint.sourcePath);
     const tests = collectTests();
 
     const results = [];
@@ -280,7 +299,7 @@ async function main() {
                 taskContract: false,
                 managerContract: false,
                 deployable: false,
-                notes: 'No module mapping in index export chain'
+                notes: 'No module mapping in capability export chain'
             });
             continue;
         }
@@ -291,7 +310,7 @@ async function main() {
     }
 
     const summary = buildSummaryRows(results);
-    const markdown = renderMarkdown(summary, results);
+    const markdown = renderMarkdown(summary, results, capabilityEntrypoint.sourcePath);
     fs.writeFileSync(OUTPUT_PATH, markdown);
 
     const failures = results.filter((entry) => !entry.deployable).length;

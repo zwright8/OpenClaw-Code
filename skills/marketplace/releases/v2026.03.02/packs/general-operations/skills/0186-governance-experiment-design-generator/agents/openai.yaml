@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Experiment Design Generator"
-  short_description: "Hypothesis-driven design for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Experiment Design Generator to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Failure Root Cause Mining for design and user research"
-  short_description: "Failure root cause mining for design and user research with guardrails and measurable outcomes."
-  default_prompt: "Use Failure Root Cause Mining for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

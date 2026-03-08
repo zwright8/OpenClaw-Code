@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Signal Ingestion Normalizer"
-  short_description: "Schema mapping and validation for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Signal Ingestion Normalizer to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

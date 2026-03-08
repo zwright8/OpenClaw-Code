@@ -1,4 +1,0 @@
-interface:
-  display_name: "Writing And Rhetoric Optimization for scientific publishi..."
-  short_description: "Writing and rhetoric optimization for scientific publishing pipelines with guardrails and measurable outcomes."
-  default_prompt: "Use Writing And Rhetoric Optimization for scientific publishing pipelines to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

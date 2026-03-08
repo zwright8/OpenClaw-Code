@@ -1,4 +1,0 @@
-interface:
-  display_name: "Retry And Backoff Orchestration for agriculture and food..."
-  short_description: "Retry and backoff orchestration for agriculture and food systems with guardrails and measurable outcomes."
-  default_prompt: "Use Retry And Backoff Orchestration for agriculture and food systems to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

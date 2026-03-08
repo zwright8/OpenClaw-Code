@@ -1,4 +1,0 @@
-interface:
-  display_name: "Continuous Improvement Planning for personal finance mana..."
-  short_description: "Continuous improvement planning for personal finance management with guardrails and measurable outcomes."
-  default_prompt: "Use Continuous Improvement Planning for personal finance management to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

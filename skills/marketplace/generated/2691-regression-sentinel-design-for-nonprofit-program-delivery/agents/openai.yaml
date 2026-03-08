@@ -1,4 +1,0 @@
-interface:
-  display_name: "Regression Sentinel Design for nonprofit program delivery"
-  short_description: "Regression sentinel design for nonprofit program delivery with guardrails and measurable outcomes."
-  default_prompt: "Use Regression Sentinel Design for nonprofit program delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

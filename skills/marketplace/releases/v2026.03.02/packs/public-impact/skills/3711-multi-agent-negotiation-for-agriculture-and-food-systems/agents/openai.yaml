@@ -1,4 +1,0 @@
-interface:
-  display_name: "Multi-Agent Negotiation for agriculture and food systems"
-  short_description: "Multi-agent negotiation for agriculture and food systems with guardrails and measurable outcomes."
-  default_prompt: "Use Multi-Agent Negotiation for agriculture and food systems to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

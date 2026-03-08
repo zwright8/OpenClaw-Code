@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Contradiction Detector"
-  short_description: "Cross-claim consistency checks for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Contradiction Detector to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

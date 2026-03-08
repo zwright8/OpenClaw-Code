@@ -1,4 +1,0 @@
-interface:
-  display_name: "Comms Disaster Recovery Orchestrator"
-  short_description: "Failover and restoration sequencing for Communication and Explainability with guardrails and measurable outcomes."
-  default_prompt: "Use Comms Disaster Recovery Orchestrator to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

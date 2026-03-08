@@ -1,4 +1,0 @@
-interface:
-  display_name: "Knowledge Graph Linking for nonprofit program delivery"
-  short_description: "Knowledge graph linking for nonprofit program delivery with guardrails and measurable outcomes."
-  default_prompt: "Use Knowledge Graph Linking for nonprofit program delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

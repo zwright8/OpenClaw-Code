@@ -1,4 +1,0 @@
-interface:
-  display_name: "Continuous Improvement Planning for disaster response net..."
-  short_description: "Continuous improvement planning for disaster response networks with guardrails and measurable outcomes."
-  default_prompt: "Use Continuous Improvement Planning for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

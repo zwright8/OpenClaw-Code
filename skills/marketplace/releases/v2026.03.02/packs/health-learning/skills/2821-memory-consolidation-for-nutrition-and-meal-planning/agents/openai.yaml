@@ -1,4 +1,0 @@
-interface:
-  display_name: "Memory Consolidation for nutrition and meal planning"
-  short_description: "Memory consolidation for nutrition and meal planning with guardrails and measurable outcomes."
-  default_prompt: "Use Memory Consolidation for nutrition and meal planning to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

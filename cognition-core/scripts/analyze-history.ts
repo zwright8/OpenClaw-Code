@@ -2,6 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { LogAnalyzerV2, buildComparison, buildRemediationPlan } from '../src/log-analyzer-v2.js';
+import { analyzeMemoryDriftFromFiles } from '../src/memory-drift.js';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -17,6 +18,9 @@ Options:
   --sessions-file <p>   Path to sessions.json
   --no-compare          Disable previous-window trend comparison
   --compare-days <n>    Baseline window size in days (default: same as --days)
+  --no-memory           Disable memory drift analysis
+  --memory-root <p>     Root directory containing memory markdown files
+  --memory-max <n>      Cap scanned memory entries per window
   --json <p>            Write JSON summary to file
   --markdown <p>        Write Markdown report to file
   --quiet               Skip terminal report output
@@ -39,6 +43,9 @@ function parseArgs(argv) {
         sessionsFile: path.join(os.homedir(), '.openclaw/agents/main/sessions/sessions.json'),
         compare: true,
         compareDays: null,
+        memory: true,
+        memoryRoot: path.join(os.homedir(), '.openclaw/workspace/memory'),
+        memoryMaxEntries: Number.POSITIVE_INFINITY,
         jsonPath: null,
         markdownPath: null,
         quiet: false,
@@ -58,6 +65,10 @@ function parseArgs(argv) {
         }
         if (token === '--no-compare') {
             options.compare = false;
+            continue;
+        }
+        if (token === '--no-memory') {
+            options.memory = false;
             continue;
         }
 
@@ -83,6 +94,16 @@ function parseArgs(argv) {
         }
         if (token === '--compare-days') {
             options.compareDays = parsePositiveInt(value, '--compare-days');
+            i++;
+            continue;
+        }
+        if (token === '--memory-root') {
+            options.memoryRoot = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
+        if (token === '--memory-max') {
+            options.memoryMaxEntries = parsePositiveInt(value, '--memory-max');
             i++;
             continue;
         }
@@ -132,54 +153,19 @@ function formatMarkdown(summary) {
     lines.push(`- Tool calls: ${summary.toolCalls}`);
     lines.push(`- Tool results: ${summary.toolResults}`);
     lines.push(`- Errors: ${summary.errors}`);
-    lines.push(`- Unresolved tool calls: ${summary.unresolvedToolCalls || 0}`);
-    lines.push(`- Orphan tool results: ${summary.orphanToolResults || 0}`);
     lines.push(`- Malformed lines: ${summary.malformedLines}`);
-    lines.push(`- Incidents detected: ${summary.incidentCount || 0}`);
-    lines.push(`- Recurring incident patterns: ${summary.recurringIncidentCount || 0}`);
     lines.push(`- Reliability score: ${summary.reliabilityScore}/100`);
     lines.push('');
     lines.push('## Top Tools');
     lines.push('');
-    lines.push('| Tool | Calls | Errors | Error Rate | Avg Duration (ms) | P95 Duration (ms) |');
-    lines.push('| --- | ---: | ---: | ---: | ---: | ---: |');
+    lines.push('| Tool | Calls | Errors | Error Rate | Avg Duration (ms) |');
+    lines.push('| --- | ---: | ---: | ---: | ---: |');
     for (const tool of summary.topTools || []) {
         const avgDuration = tool.avgDurationMs === null ? '-' : tool.avgDurationMs;
-        const p95Duration = tool.p95DurationMs === null ? '-' : tool.p95DurationMs;
-        lines.push(`| ${tool.name} | ${tool.calls} | ${tool.errors} | ${formatPercent(tool.errorRate)} | ${avgDuration} | ${p95Duration} |`);
+        lines.push(`| ${tool.name} | ${tool.calls} | ${tool.errors} | ${formatPercent(tool.errorRate)} | ${avgDuration} |`);
     }
     if ((summary.topTools || []).length === 0) {
-        lines.push('| (no tools) | 0 | 0 | 0.00% | - | - |');
-    }
-    lines.push('');
-
-    lines.push('## Detected Incidents');
-    lines.push('');
-    lines.push('| Type | Tool | Window Start (UTC) | Observed | Baseline | Severity |');
-    lines.push('| --- | --- | --- | --- | --- | ---: |');
-    for (const incident of summary.incidents || []) {
-        const observed = incident.type === 'error_spike'
-            ? `${incident.observed.errorRate}% (${incident.observed.errors}/${incident.observed.calls})`
-            : `p95 ${incident.observed.p95DurationMs}ms`;
-        const baseline = incident.type === 'error_spike'
-            ? `${incident.baseline.medianErrorRate}%`
-            : `p95 ${incident.baseline.medianP95DurationMs}ms`;
-        lines.push(`| ${incident.type} | ${incident.tool} | ${incident.windowStartIso} | ${observed} | ${baseline} | ${incident.severityScore} |`);
-    }
-    if ((summary.incidents || []).length === 0) {
-        lines.push('| (none) | - | - | - | - | 0 |');
-    }
-    lines.push('');
-
-    lines.push('## Recurring Incident Patterns');
-    lines.push('');
-    lines.push('| Type | Tool | Count | Max Consecutive Windows | Max Severity | First Seen (UTC) | Last Seen (UTC) |');
-    lines.push('| --- | --- | ---: | ---: | ---: | --- | --- |');
-    for (const pattern of summary.incidentPatterns || []) {
-        lines.push(`| ${pattern.type} | ${pattern.tool} | ${pattern.count} | ${pattern.maxConsecutiveWindows} | ${pattern.maxSeverityScore} | ${pattern.firstWindowStartIso || '-'} | ${pattern.lastWindowStartIso || '-'} |`);
-    }
-    if ((summary.incidentPatterns || []).length === 0) {
-        lines.push('| (none) | - | 0 | 0 | 0 | - | - |');
+        lines.push('| (no tools) | 0 | 0 | 0.00% | - |');
     }
     lines.push('');
 
@@ -201,8 +187,6 @@ function formatMarkdown(summary) {
             toolCalls: 'Tool Calls',
             toolResults: 'Tool Results',
             malformedLines: 'Malformed Lines',
-            unresolvedToolCalls: 'Unresolved Tool Calls',
-            orphanToolResults: 'Orphan Tool Results',
             errorRate: 'Error Rate (%)'
         };
 
@@ -214,15 +198,41 @@ function formatMarkdown(summary) {
 
         lines.push('### Top Regressions');
         lines.push('');
-        lines.push('| Tool | Calls Delta | Error Rate Delta (pp) | Avg Duration Delta (ms) | P95 Duration Delta (ms) |');
-        lines.push('| --- | ---: | ---: | ---: | ---: |');
+        lines.push('| Tool | Calls Delta | Error Rate Delta (pp) | Avg Duration Delta (ms) |');
+        lines.push('| --- | ---: | ---: | ---: |');
         for (const regression of comparison.topRegressions || []) {
             const durationDelta = regression.avgDurationDeltaMs === null ? 'n/a' : regression.avgDurationDeltaMs;
-            const p95DurationDelta = regression.p95DurationDeltaMs === null ? 'n/a' : regression.p95DurationDeltaMs;
-            lines.push(`| ${regression.tool} | ${formatDelta(regression.callDelta)} | ${formatDelta(regression.errorRateDelta)} | ${formatDelta(durationDelta)} | ${formatDelta(p95DurationDelta)} |`);
+            lines.push(`| ${regression.tool} | ${formatDelta(regression.callDelta)} | ${formatDelta(regression.errorRateDelta)} | ${formatDelta(durationDelta)} |`);
         }
         if ((comparison.topRegressions || []).length === 0) {
-            lines.push('| (none) | 0 | 0 | n/a | n/a |');
+            lines.push('| (none) | 0 | 0 | n/a |');
+        }
+        lines.push('');
+    }
+
+    if (summary.memoryDrift) {
+        const memory = summary.memoryDrift;
+        lines.push('## Memory Drift');
+        lines.push('');
+        lines.push(`Memory root: ${memory.memoryRoot}`);
+        lines.push(`Drift level: **${memory.driftLevel}** (score ${memory.driftScore})`);
+        lines.push(`Current entries: ${memory.currentEntries}`);
+        lines.push(`Baseline entries: ${memory.baselineEntries}`);
+        lines.push('');
+        lines.push('| Metric | Current | Baseline | Delta |');
+        lines.push('| --- | ---: | ---: | ---: |');
+        lines.push(`| Error intensity | ${memory.currentWindow.errorIntensity} | ${memory.baselineWindow.errorIntensity} | ${formatDelta(memory.deltas.errorIntensity)} |`);
+        lines.push(`| Reflection coverage | ${memory.currentWindow.reflectionCoverage} | ${memory.baselineWindow.reflectionCoverage} | ${formatDelta(memory.deltas.reflectionCoverage)} |`);
+        lines.push(`| Learning density | ${memory.currentWindow.learningDensity} | ${memory.baselineWindow.learningDensity} | ${formatDelta(memory.deltas.learningDensity)} |`);
+        lines.push(`| Skill signal rate | ${memory.currentWindow.skillSignalRate} | ${memory.baselineWindow.skillSignalRate} | ${formatDelta(memory.deltas.skillSignalRate)} |`);
+        lines.push('');
+        lines.push('### Memory Insights');
+        lines.push('');
+        for (const insight of memory.insights || []) {
+            lines.push(`- ${insight}`);
+        }
+        if ((memory.insights || []).length === 0) {
+            lines.push('- No memory insights generated.');
         }
         lines.push('');
     }
@@ -256,18 +266,6 @@ function formatMarkdown(summary) {
     }
     lines.push('');
 
-    lines.push('## Top Active UTC Hours');
-    lines.push('');
-    lines.push('| Hour (UTC) | Messages | Tool Calls | Errors |');
-    lines.push('| --- | ---: | ---: | ---: |');
-    for (const hour of summary.topActiveHours || []) {
-        lines.push(`| ${hour.hourUtc}:00 | ${hour.messages} | ${hour.toolCalls} | ${hour.errors} |`);
-    }
-    if ((summary.topActiveHours || []).length === 0) {
-        lines.push('| (no activity) | 0 | 0 | 0 |');
-    }
-    lines.push('');
-
     lines.push('## Insights');
     lines.push('');
     for (const insight of summary.insights || []) {
@@ -293,8 +291,7 @@ function printComparison(comparison) {
         console.log('\nTop Regressions:');
         for (const regression of comparison.topRegressions) {
             const durationDelta = regression.avgDurationDeltaMs === null ? 'n/a' : `${formatDelta(regression.avgDurationDeltaMs)}ms`;
-            const p95DurationDelta = regression.p95DurationDeltaMs === null ? 'n/a' : `${formatDelta(regression.p95DurationDeltaMs)}ms`;
-            console.log(`  - ${regression.tool}: calls ${formatDelta(regression.callDelta)}, error rate ${formatDelta(regression.errorRateDelta)}pp, avg duration ${durationDelta}, p95 ${p95DurationDelta}`);
+            console.log(`  - ${regression.tool}: calls ${formatDelta(regression.callDelta)}, error rate ${formatDelta(regression.errorRateDelta)}pp, avg duration ${durationDelta}`);
         }
     }
 }
@@ -305,6 +302,22 @@ function printRemediationPlan(remediationPlan) {
         console.log(`- [${item.priority}] ${item.title}`);
         console.log(`  Why: ${item.rationale}`);
         console.log(`  Action: ${item.action}`);
+    }
+}
+
+function printMemoryDrift(memoryDrift) {
+    if (!memoryDrift) return;
+    console.log('\n--- Memory Drift ---');
+    console.log(`Root:           ${memoryDrift.memoryRoot}`);
+    console.log(`Drift level:    ${memoryDrift.driftLevel} (score ${memoryDrift.driftScore})`);
+    console.log(`Entries:        current=${memoryDrift.currentEntries} baseline=${memoryDrift.baselineEntries}`);
+    console.log(`Error intensity ${formatDelta(memoryDrift.deltas.errorIntensity)}`);
+    console.log(`Reflection Δ    ${formatDelta(memoryDrift.deltas.reflectionCoverage)}`);
+    if ((memoryDrift.insights || []).length > 0) {
+        console.log('Memory insights:');
+        for (const insight of memoryDrift.insights) {
+            console.log(`  - ${insight}`);
+        }
     }
 }
 
@@ -319,6 +332,8 @@ function printRemediationPlan(remediationPlan) {
         const anchorMs = Date.now();
         const currentEndMs = anchorMs;
         const currentStartMs = currentEndMs - (options.days * DAY_MS);
+        let baselineStartMs = null;
+        let baselineEndMs = null;
 
         const currentAnalyzer = new LogAnalyzerV2(options.sessionsFile);
         const currentSummary = await currentAnalyzer.analyze(options.days, {
@@ -331,8 +346,8 @@ function printRemediationPlan(remediationPlan) {
         let baselineSummary = null;
         if (options.compare) {
             const compareDays = options.compareDays || options.days;
-            const baselineEndMs = currentStartMs;
-            const baselineStartMs = baselineEndMs - (compareDays * DAY_MS);
+            baselineEndMs = currentStartMs;
+            baselineStartMs = baselineEndMs - (compareDays * DAY_MS);
             const baselineAnalyzer = new LogAnalyzerV2(options.sessionsFile);
             baselineSummary = await baselineAnalyzer.analyze(compareDays, {
                 limitSessions: options.limitSessions,
@@ -342,21 +357,36 @@ function printRemediationPlan(remediationPlan) {
             });
         }
 
+        let memoryDrift = null;
+        if (options.memory && fs.existsSync(options.memoryRoot)) {
+            memoryDrift = analyzeMemoryDriftFromFiles(options.memoryRoot, {
+                currentStartMs,
+                currentEndMs,
+                baselineStartMs,
+                baselineEndMs,
+                maxEntries: options.memoryMaxEntries
+            });
+        }
+
         const comparison = baselineSummary
             ? buildComparison(currentSummary, baselineSummary)
             : null;
-        const remediationPlan = buildRemediationPlan(currentSummary, comparison);
+        const remediationPlan = buildRemediationPlan(currentSummary, comparison, {
+            memoryDrift
+        });
 
         const finalSummary = {
             ...currentSummary,
             baseline: baselineSummary,
             comparison,
+            memoryDrift,
             remediationPlan
         };
 
         if (!options.quiet) {
             currentAnalyzer.report(currentSummary);
             printComparison(comparison);
+            printMemoryDrift(memoryDrift);
             printRemediationPlan(remediationPlan);
         }
 

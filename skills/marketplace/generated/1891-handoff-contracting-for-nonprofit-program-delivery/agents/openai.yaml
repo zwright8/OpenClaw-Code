@@ -1,4 +1,0 @@
-interface:
-  display_name: "Handoff Contracting for nonprofit program delivery"
-  short_description: "Handoff contracting for nonprofit program delivery with guardrails and measurable outcomes."
-  default_prompt: "Use Handoff Contracting for nonprofit program delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

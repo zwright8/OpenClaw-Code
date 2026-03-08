@@ -7,92 +7,181 @@ function mean(values) {
     return values.reduce((acc, value) => acc + value, 0) / values.length;
 }
 
-function quantileSorted(sortedValues, percentile) {
-    if (!Array.isArray(sortedValues) || sortedValues.length === 0) return null;
-    const p = clamp(Number(percentile) || 0, 0, 1);
-    const index = (sortedValues.length - 1) * p;
-    const lowerIndex = Math.floor(index);
-    const upperIndex = Math.ceil(index);
-    const lower = sortedValues[lowerIndex];
-    const upper = sortedValues[upperIndex];
-    if (!Number.isFinite(lower) || !Number.isFinite(upper)) return null;
-    if (lowerIndex === upperIndex) return lower;
-    return lower + (upper - lower) * (index - lowerIndex);
+function round(value, decimals = 4) {
+    if (!Number.isFinite(value)) return value;
+    return Number(value.toFixed(decimals));
 }
 
-function latencyPercentiles(values) {
-    if (!Array.isArray(values) || values.length === 0) {
-        return { p50: 0, p95: 0, p99: 0 };
+function normalizeText(input) {
+    if (typeof input !== 'string') return '';
+    return input.trim().toLowerCase();
+}
+
+function normalizeStringArray(input) {
+    if (!Array.isArray(input)) return [];
+    return [...new Set(input
+        .map((item) => normalizeText(typeof item === 'string' ? item : String(item)))
+        .filter(Boolean))];
+}
+
+function compactList(values) {
+    return values.filter((value) => value !== null && value !== undefined && value !== '');
+}
+
+const FAILURE_STATUSES = new Set([
+    'timed_out',
+    'rejected',
+    'transport_error',
+    'failed'
+]);
+
+const TERMINAL_STATUSES = new Set([
+    'completed',
+    'partial',
+    ...FAILURE_STATUSES
+]);
+
+const KNOWN_ISSUE_CATEGORIES = [
+    'timeout',
+    'transport',
+    'rejection',
+    'execution_failure',
+    'unknown_failure'
+];
+
+const PRIORITY_WEIGHT = {
+    critical: 1.15,
+    high: 1,
+    normal: 0.85,
+    low: 0.7
+};
+
+const SKILL_FOCUS_PLAYBOOK = {
+    timeout: {
+        focus: 'timeout_resilience',
+        label: 'Timeout resilience',
+        priority: 'P1',
+        keywords: [
+            'auto-retry-and-backoff-coordinator',
+            'risk-aware-scheduler',
+            'tool-health-monitor'
+        ],
+        action: 'Tune timeout budgets, apply jittered retry/backoff, and route long-running work to resilient workers.'
+    },
+    transport: {
+        focus: 'transport_reliability',
+        label: 'Transport reliability',
+        priority: 'P1',
+        keywords: [
+            'tool-health-monitor',
+            'disaster-recovery-orchestrator',
+            'signal-ingestion-normalizer'
+        ],
+        action: 'Add transport heartbeat monitoring, failover routing, and retry-safe idempotency guards.'
+    },
+    rejection: {
+        focus: 'routing_and_constraints',
+        label: 'Routing and constraints',
+        priority: 'P2',
+        keywords: [
+            'policy-constraint-compiler',
+            'human-approval-router',
+            'task-handoff-contractor'
+        ],
+        action: 'Refine request constraints, improve capability matching, and tighten preflight validation before dispatch.'
+    },
+    execution_failure: {
+        focus: 'failure_root_cause',
+        label: 'Failure root-cause mining',
+        priority: 'P1',
+        keywords: [
+            'failure-root-cause-miner',
+            'regression-sentinel',
+            'continuous-improvement-planner'
+        ],
+        action: 'Cluster execution failures by signature, patch dominant failure classes, and gate rollout behind regression checks.'
+    },
+    unknown_failure: {
+        focus: 'error_observability',
+        label: 'Error observability',
+        priority: 'P2',
+        keywords: [
+            'evidence-provenance-tracker',
+            'kpi-dashboard-publisher',
+            'context-window-prioritizer'
+        ],
+        action: 'Capture structured error codes/contexts and enforce richer tracing for unresolved failures.'
     }
-    const sorted = [...values].sort((a, b) => a - b);
-    return {
-        p50: Number((quantileSorted(sorted, 0.5) || 0).toFixed(2)),
-        p95: Number((quantileSorted(sorted, 0.95) || 0).toFixed(2)),
-        p99: Number((quantileSorted(sorted, 0.99) || 0).toFixed(2))
-    };
-}
+};
 
-function wilsonLowerBound(successes, trials, z = 1.96) {
-    const n = Number(trials) || 0;
-    if (n <= 0) return 0;
-    const s = clamp(Number(successes) || 0, 0, n);
-    const phat = s / n;
-    const z2 = z * z;
-    const denominator = 1 + (z2 / n);
-    const center = phat + (z2 / (2 * n));
-    const margin = z * Math.sqrt((phat * (1 - phat) / n) + (z2 / (4 * n * n)));
-    return clamp((center - margin) / denominator, 0, 1);
-}
+const OUTCOME_BOOTSTRAP_PLAYBOOK = {
+    focus: 'outcome_telemetry_bootstrap',
+    label: 'Outcome telemetry bootstrap',
+    priority: 'P1',
+    keywords: [
+        'signal-ingestion-normalizer',
+        'kpi-dashboard-publisher',
+        'evidence-provenance-tracker'
+    ],
+    action: 'Backfill execution outcomes into the task journal, enforce terminal status writes, and run synthetic failure drills to seed learning data.'
+};
 
-function createSeededRandom(seed = 1337) {
-    let state = (Number(seed) || 1337) >>> 0;
-    return () => {
-        state = (1664525 * state + 1013904223) >>> 0;
-        return state / 0x100000000;
-    };
-}
+function classifyIssue(status, errorCode, errorMessage) {
+    const normalizedStatus = normalizeText(status);
+    const code = normalizeText(errorCode);
+    const message = normalizeText(errorMessage);
 
-function sampleGamma(shape, random) {
-    if (shape <= 0) return 0;
-    if (shape < 1) {
-        const u = Math.max(Number.EPSILON, random());
-        return sampleGamma(shape + 1, random) * (u ** (1 / shape));
+    if (normalizedStatus === 'timed_out' || code.includes('timeout') || message.includes('timeout') || message.includes('deadline')) {
+        return 'timeout';
     }
-
-    const d = shape - 1 / 3;
-    const c = 1 / Math.sqrt(9 * d);
-    while (true) {
-        let x = 0;
-        let y = 0;
-        let radius = 0;
-        do {
-            x = random() * 2 - 1;
-            y = random() * 2 - 1;
-            radius = x * x + y * y;
-        } while (radius === 0 || radius >= 1);
-        const z = x * Math.sqrt((-2 * Math.log(radius)) / radius);
-        const v = (1 + (c * z)) ** 3;
-        if (v <= 0) continue;
-        const u = random();
-        if (u < 1 - (0.331 * (z ** 4))) return d * v;
-        if (Math.log(u) < (0.5 * z * z) + (d * (1 - v + Math.log(v)))) return d * v;
+    if (normalizedStatus === 'transport_error' || code.includes('transport') || code.includes('network') || message.includes('connection')) {
+        return 'transport';
     }
+    if (normalizedStatus === 'rejected' || code.includes('rejected') || message.includes('rejected') || message.includes('denied')) {
+        return 'rejection';
+    }
+    if (normalizedStatus === 'failed' || code.includes('failed') || message.includes('exception') || message.includes('stack') || message.includes('error')) {
+        return 'execution_failure';
+    }
+    if (FAILURE_STATUSES.has(normalizedStatus)) {
+        return 'unknown_failure';
+    }
+    return 'none';
 }
 
-function sampleBeta(alpha, beta, random) {
-    const x = sampleGamma(Math.max(alpha, Number.EPSILON), random);
-    const y = sampleGamma(Math.max(beta, Number.EPSILON), random);
-    const sum = x + y;
-    if (sum <= 0) return 0.5;
-    return x / sum;
+function normalizeErrorSignature(outcome) {
+    if (!FAILURE_STATUSES.has(outcome.status)) return null;
+    const issue = outcome.issueCategory === 'none' ? 'unknown_failure' : outcome.issueCategory;
+    const tool = normalizeText(outcome.toolName || 'general');
+    const code = normalizeText(outcome.errorCode);
+    const rawMessage = normalizeText(outcome.errorMessage);
+    const message = rawMessage
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 5)
+        .join('_');
+    const discriminator = code || message || 'unspecified';
+    return `${issue}:${tool}:${discriminator}`;
 }
 
-function runBernoulliTrials(probability, trials, random) {
-    let successes = 0;
-    for (let i = 0; i < trials; i++) {
-        if (random() < probability) successes++;
-    }
-    return successes;
+function collectSkillHints(outcome) {
+    const hints = compactList([
+        ...(Array.isArray(outcome?.request?.context?.requiredCapabilities)
+            ? outcome.request.context.requiredCapabilities
+            : []),
+        ...(Array.isArray(outcome?.request?.context?.capabilities)
+            ? outcome.request.context.capabilities
+            : []),
+        ...(Array.isArray(outcome?.request?.constraints?.requiredCapabilities)
+            ? outcome.request.constraints.requiredCapabilities
+            : []),
+        ...(Array.isArray(outcome?.context?.skillHints)
+            ? outcome.context.skillHints
+            : [])
+    ]);
+
+    return normalizeStringArray(hints);
 }
 
 function normalizeOutcome(outcome, index) {
@@ -100,17 +189,53 @@ function normalizeOutcome(outcome, index) {
         throw new Error(`Invalid outcome at index ${index}`);
     }
 
-    const taskId = typeof outcome.taskId === 'string' ? outcome.taskId : `unknown-${index}`;
-    const target = typeof outcome.target === 'string' ? outcome.target : 'unassigned';
-    const status = typeof outcome.status === 'string' ? outcome.status : 'unknown';
+    const taskId = typeof outcome.taskId === 'string'
+        ? outcome.taskId
+        : (typeof outcome.id === 'string' ? outcome.id : `unknown-${index}`);
+    const target = typeof outcome.target === 'string'
+        ? outcome.target
+        : (typeof outcome.request?.target === 'string' ? outcome.request.target : 'unassigned');
+    const status = normalizeText(
+        typeof outcome.status === 'string'
+            ? outcome.status
+            : (typeof outcome.result?.status === 'string' ? outcome.result.status : 'unknown')
+    ) || 'unknown';
     const attempts = Number.isFinite(Number(outcome.attempts)) ? Number(outcome.attempts) : 0;
-    const priority = typeof outcome.request?.priority === 'string'
-        ? outcome.request.priority
-        : (typeof outcome.priority === 'string' ? outcome.priority : 'normal');
-    const createdAt = Number.isFinite(Number(outcome.createdAt)) ? Number(outcome.createdAt) : null;
-    const closedAt = Number.isFinite(Number(outcome.closedAt)) ? Number(outcome.closedAt) : null;
+    const priority = normalizeText(
+        typeof outcome.request?.priority === 'string'
+            ? outcome.request.priority
+            : (typeof outcome.priority === 'string' ? outcome.priority : 'normal')
+    ) || 'normal';
+    const createdAtRaw = compactList([outcome.createdAt, outcome.request?.createdAt])[0];
+    const closedAtRaw = compactList([outcome.closedAt, outcome.updatedAt, outcome.result?.completedAt])[0];
+    const createdAt = Number.isFinite(Number(createdAtRaw)) ? Number(createdAtRaw) : null;
+    const closedAt = Number.isFinite(Number(closedAtRaw)) ? Number(closedAtRaw) : null;
 
-    return {
+    const toolName = normalizeText(compactList([
+        outcome.toolName,
+        outcome.request?.context?.toolName,
+        outcome.request?.context?.tool,
+        outcome.lastError?.toolName
+    ])[0]) || 'general';
+
+    const errorCode = normalizeText(compactList([
+        outcome.errorCode,
+        outcome.lastError?.code,
+        outcome.result?.errorCode,
+        outcome.result?.metrics?.errorCode
+    ])[0]) || null;
+
+    const errorMessage = compactList([
+        outcome.errorMessage,
+        outcome.lastError?.message,
+        outcome.result?.output?.error,
+        outcome.result?.output,
+        outcome.reason
+    ]).map((item) => typeof item === 'string' ? item.trim() : null).filter(Boolean)[0] || null;
+
+    const issueCategory = classifyIssue(status, errorCode, errorMessage);
+
+    const normalized = {
         taskId,
         target,
         status,
@@ -120,7 +245,26 @@ function normalizeOutcome(outcome, index) {
         closedAt,
         latencyMs: createdAt !== null && closedAt !== null
             ? Math.max(0, closedAt - createdAt)
-            : null
+            : null,
+        toolName,
+        errorCode,
+        errorMessage,
+        issueCategory,
+        skillHints: collectSkillHints(outcome),
+        isFailure: FAILURE_STATUSES.has(status),
+        isTerminal: TERMINAL_STATUSES.has(status)
+    };
+
+    normalized.errorSignature = normalizeErrorSignature(normalized);
+    return normalized;
+}
+
+function normalizeSummaryInput(summaryOrSummarized) {
+    if (!summaryOrSummarized || typeof summaryOrSummarized !== 'object') return null;
+    if (Array.isArray(summaryOrSummarized.outcomes)) return summaryOrSummarized;
+    return {
+        outcomes: [],
+        summary: summaryOrSummarized
     };
 }
 
@@ -129,6 +273,8 @@ export function summarizeOutcomes(outcomes) {
 
     const totals = {
         total: normalized.length,
+        terminal: 0,
+        open: 0,
         success: 0,
         partial: 0,
         failure: 0,
@@ -137,20 +283,21 @@ export function summarizeOutcomes(outcomes) {
         transportError: 0,
         avgAttempts: 0,
         avgLatencyMs: 0,
-        latencyPercentiles: { p50: 0, p95: 0, p99: 0 },
         successRate: 0,
         timeoutRate: 0,
+        failureRate: 0,
         byStatus: {},
+        byIssue: {},
         byAgent: {},
         byPriority: {}
     };
 
     const latencies = [];
-    const latenciesByAgent = {};
     let attemptsTotal = 0;
 
     for (const outcome of normalized) {
         totals.byStatus[outcome.status] = (totals.byStatus[outcome.status] || 0) + 1;
+        totals.byIssue[outcome.issueCategory] = (totals.byIssue[outcome.issueCategory] || 0) + 1;
         attemptsTotal += outcome.attempts;
         if (Number.isFinite(outcome.latencyMs)) latencies.push(outcome.latencyMs);
 
@@ -160,13 +307,9 @@ export function summarizeOutcomes(outcomes) {
                 success: 0,
                 failure: 0,
                 timedOut: 0,
-                avgLatencyMs: 0,
-                successRate: 0,
-                successRateLower95: 0,
-                timeoutRate: 0,
-                latencyPercentiles: { p50: 0, p95: 0, p99: 0 }
+                issueCounts: {},
+                avgLatencyMs: 0
             };
-            latenciesByAgent[outcome.target] = [];
         }
         if (!totals.byPriority[outcome.priority]) {
             totals.byPriority[outcome.priority] = {
@@ -179,8 +322,13 @@ export function summarizeOutcomes(outcomes) {
 
         totals.byAgent[outcome.target].tasks++;
         totals.byPriority[outcome.priority].tasks++;
-        if (Number.isFinite(outcome.latencyMs)) {
-            latenciesByAgent[outcome.target].push(outcome.latencyMs);
+        totals.byAgent[outcome.target].issueCounts[outcome.issueCategory]
+            = (totals.byAgent[outcome.target].issueCounts[outcome.issueCategory] || 0) + 1;
+
+        if (outcome.isTerminal) {
+            totals.terminal++;
+        } else {
+            totals.open++;
         }
 
         if (outcome.status === 'completed') {
@@ -214,20 +362,21 @@ export function summarizeOutcomes(outcomes) {
     }
 
     for (const [agentId, agent] of Object.entries(totals.byAgent)) {
-        const agentLatencies = latenciesByAgent[agentId] || [];
+        const agentLatencies = normalized
+            .filter((item) => item.target === agentId && Number.isFinite(item.latencyMs))
+            .map((item) => item.latencyMs);
         agent.avgLatencyMs = agentLatencies.length > 0
             ? Number(mean(agentLatencies).toFixed(2))
             : 0;
         agent.successRate = agent.tasks > 0
             ? Number((agent.success / agent.tasks).toFixed(4))
             : 0;
-        agent.successRateLower95 = agent.tasks > 0
-            ? Number(wilsonLowerBound(agent.success, agent.tasks, 1.96).toFixed(4))
-            : 0;
         agent.timeoutRate = agent.tasks > 0
             ? Number((agent.timedOut / agent.tasks).toFixed(4))
             : 0;
-        agent.latencyPercentiles = latencyPercentiles(agentLatencies);
+        agent.failureRate = agent.tasks > 0
+            ? Number((agent.failure / agent.tasks).toFixed(4))
+            : 0;
     }
 
     totals.avgAttempts = totals.total > 0
@@ -236,12 +385,14 @@ export function summarizeOutcomes(outcomes) {
     totals.avgLatencyMs = latencies.length > 0
         ? Number(mean(latencies).toFixed(2))
         : 0;
-    totals.latencyPercentiles = latencyPercentiles(latencies);
     totals.successRate = totals.total > 0
         ? Number((totals.success / totals.total).toFixed(4))
         : 0;
     totals.timeoutRate = totals.total > 0
         ? Number((totals.timedOut / totals.total).toFixed(4))
+        : 0;
+    totals.failureRate = totals.total > 0
+        ? Number((totals.failure / totals.total).toFixed(4))
         : 0;
 
     return {
@@ -268,6 +419,56 @@ function normalizeVariant(variant, index) {
         retryRecoveryRate: clamp(Number(variant.retryRecoveryRate) || 0, 0, 1),
         routingRecoveryRate: clamp(Number(variant.routingRecoveryRate) || 0, 0, 1)
     };
+}
+
+function normalizeSkillCatalog(catalogLike) {
+    if (!catalogLike) return [];
+    if (Array.isArray(catalogLike)) return catalogLike;
+    if (Array.isArray(catalogLike.entries)) return catalogLike.entries;
+    return [];
+}
+
+function lookupSkillSuggestions(playbookEntry, catalog, maxPerFocus = 3) {
+    if (!playbookEntry || catalog.length === 0) return [];
+    const hits = [];
+    const keywordSet = [...new Set(playbookEntry.keywords.map((keyword) => normalizeText(keyword)).filter(Boolean))];
+
+    for (const entry of catalog) {
+        if (!entry || typeof entry !== 'object') continue;
+        const blob = normalizeText([
+            entry.name,
+            entry.archetype,
+            entry.coreMethod,
+            entry.primaryArtifact,
+            entry.domain
+        ].filter(Boolean).join(' '));
+        const score = keywordSet.reduce((acc, keyword) => acc + (blob.includes(keyword) ? 1 : 0), 0);
+        if (score <= 0) continue;
+
+        hits.push({
+            id: entry.id ?? null,
+            name: entry.name || `catalog:${hits.length + 1}`,
+            domain: entry.domain || null,
+            archetype: entry.archetype || null,
+            implementationPath: entry.implementationPath || null,
+            score
+        });
+    }
+
+    return hits
+        .sort((a, b) => b.score - a.score)
+        .slice(0, maxPerFocus);
+}
+
+function toSkillCandidate(playbookEntry) {
+    return playbookEntry.keywords.map((keyword, index) => ({
+        id: null,
+        name: keyword,
+        domain: null,
+        archetype: index === 0 ? 'recommended' : null,
+        implementationPath: null,
+        score: 0
+    }));
 }
 
 export function runCounterfactualReplay(summary, variants = []) {
@@ -304,12 +505,9 @@ export function runCounterfactualReplay(summary, variants = []) {
 
     const outcomesTotal = Number(baseline.total) || 0;
     const baselineSuccess = Number(baseline.success) || 0;
-    const baselineSuccessRate = Number(baseline.successRate) || 0;
     const timedOut = Number(baseline.timedOut) || 0;
     const failed = Number(baseline.failure) || 0;
     const rejected = Number(baseline.rejected) || 0;
-    const replayRuns = Math.max(24, Math.floor(Math.min(2000, Math.max(24, outcomesTotal * 18))));
-    const random = createSeededRandom(outcomesTotal + baselineSuccess + timedOut + failed + rejected + 1337);
 
     const runs = variantList.map((variant) => {
         const recoveredTimeout = timedOut * variant.timeoutRecoveryRate;
@@ -324,30 +522,6 @@ export function runCounterfactualReplay(summary, variants = []) {
         const projectedSuccessRate = outcomesTotal > 0
             ? projectedSuccess / outcomesTotal
             : 0;
-        const simulatedRates = [];
-        let betterThanBaselineCount = 0;
-
-        // Self-consistency style replay: sample many plausible outcome paths and score agreement.
-        for (let i = 0; i < replayRuns; i++) {
-            const simulatedRecoveredTimeout = runBernoulliTrials(variant.timeoutRecoveryRate, timedOut, random);
-            const simulatedRecoveredFailure = runBernoulliTrials(variant.retryRecoveryRate, Math.max(0, failed - timedOut), random);
-            const simulatedRecoveredRejected = runBernoulliTrials(variant.routingRecoveryRate, rejected, random);
-            const simulatedSuccess = clamp(
-                baselineSuccess + simulatedRecoveredTimeout + simulatedRecoveredFailure + simulatedRecoveredRejected,
-                0,
-                outcomesTotal
-            );
-            const simulatedRate = outcomesTotal > 0 ? simulatedSuccess / outcomesTotal : 0;
-            simulatedRates.push(simulatedRate);
-            if (simulatedRate > baselineSuccessRate) betterThanBaselineCount++;
-        }
-        simulatedRates.sort((a, b) => a - b);
-        const projectedSuccessRateP10 = Number((quantileSorted(simulatedRates, 0.1) || 0).toFixed(4));
-        const projectedSuccessRateP50 = Number((quantileSorted(simulatedRates, 0.5) || 0).toFixed(4));
-        const projectedSuccessRateP90 = Number((quantileSorted(simulatedRates, 0.9) || 0).toFixed(4));
-        const improvementConfidence = replayRuns > 0
-            ? Number((betterThanBaselineCount / replayRuns).toFixed(4))
-            : 0;
 
         return {
             ...variant,
@@ -358,269 +532,171 @@ export function runCounterfactualReplay(summary, variants = []) {
             },
             projectedSuccess: Number(projectedSuccess.toFixed(2)),
             projectedSuccessRate: Number(projectedSuccessRate.toFixed(4)),
-            deltaSuccessRate: Number((projectedSuccessRate - baselineSuccessRate).toFixed(4)),
-            projectedSuccessRateP10,
-            projectedSuccessRateP50,
-            projectedSuccessRateP90,
-            improvementConfidence
+            deltaSuccessRate: Number((projectedSuccessRate - (baseline.successRate || 0)).toFixed(4))
         };
-    }).sort((a, b) => (
-        (b.improvementConfidence - a.improvementConfidence)
-        || (b.projectedSuccessRateP50 - a.projectedSuccessRateP50)
-        || (b.deltaSuccessRate - a.deltaSuccessRate)
-    ));
+    }).sort((a, b) => b.deltaSuccessRate - a.deltaSuccessRate);
 
     return {
-        baselineSuccessRate,
-        replayRuns,
+        baselineSuccessRate: Number(baseline.successRate || 0),
         runs,
         best: runs[0] || null
     };
 }
 
-function computeRate(outcomes) {
-    if (!Array.isArray(outcomes) || outcomes.length === 0) return 0;
-    const successful = outcomes.filter((item) => item.status === 'completed').length;
-    return successful / outcomes.length;
-}
-
-export function analyzeWindowedPerformance(
-    outcomes,
-    {
-        recentWindowSize = 24,
-        minWindowSize = 8,
-        driftAlertThreshold = 0.12
-    } = {}
-) {
-    if (!Array.isArray(outcomes)) {
-        throw new Error('analyzeWindowedPerformance expects outcomes array');
+export function buildErrorTaxonomy(summaryOrSummarized) {
+    const summarized = normalizeSummaryInput(summaryOrSummarized);
+    if (!summarized) {
+        throw new Error('buildErrorTaxonomy requires summarized outcomes or summary object');
     }
 
-    const normalized = outcomes.map((item, index) => normalizeOutcome(item, index));
-    const cappedWindow = Math.max(1, Math.floor(Number(recentWindowSize) || 24));
-    const requiredSize = Math.max(1, Math.floor(Number(minWindowSize) || 8));
+    const outcomes = Array.isArray(summarized.outcomes) ? summarized.outcomes : [];
+    const baseline = summarized.summary || {};
+    const failures = outcomes.filter((outcome) => outcome.isFailure);
+    const inferredFailures = Number(baseline.failure) || 0;
+    const totalFailures = failures.length > 0 ? failures.length : inferredFailures;
+    const totalOutcomes = Number(baseline.total) || outcomes.length || 0;
 
-    const recent = normalized.slice(-cappedWindow);
-    const baseline = normalized.slice(0, -cappedWindow);
-    const recentSuccessRate = computeRate(recent);
-    const baselineSuccessRate = computeRate(baseline);
-
-    if (normalized.length < requiredSize * 2) {
-        return {
-            sufficientData: false,
-            recentWindowSize: recent.length,
-            baselineWindowSize: baseline.length,
-            recentSuccessRate: Number(recentSuccessRate.toFixed(4)),
-            baselineSuccessRate: Number(baselineSuccessRate.toFixed(4)),
-            deltaSuccessRate: 0,
-            alert: false,
-            rationale: 'Insufficient history for robust drift signal'
+    const categoryMap = {};
+    for (const category of KNOWN_ISSUE_CATEGORIES) {
+        categoryMap[category] = {
+            category,
+            count: 0,
+            weightedCount: 0
         };
     }
 
-    const deltaSuccessRate = Number((recentSuccessRate - baselineSuccessRate).toFixed(4));
-    const alert = deltaSuccessRate <= -Math.abs(Number(driftAlertThreshold) || 0.12);
+    const signatureMap = {};
+    const byAgent = {};
 
-    return {
-        sufficientData: true,
-        recentWindowSize: recent.length,
-        baselineWindowSize: baseline.length,
-        recentSuccessRate: Number(recentSuccessRate.toFixed(4)),
-        baselineSuccessRate: Number(baselineSuccessRate.toFixed(4)),
-        deltaSuccessRate,
-        alert,
-        rationale: alert
-            ? 'Recent success rate materially underperforms baseline window'
-            : 'Recent success rate remains within accepted drift band'
-    };
-}
+    for (const outcome of failures) {
+        const category = categoryMap[outcome.issueCategory]
+            ? outcome.issueCategory
+            : 'unknown_failure';
+        const priorityWeight = PRIORITY_WEIGHT[outcome.priority] || PRIORITY_WEIGHT.normal;
+        categoryMap[category].count++;
+        categoryMap[category].weightedCount = round(categoryMap[category].weightedCount + priorityWeight, 2);
 
-export function scoreAgentReliability(
-    outcomes,
-    {
-        discountFactor = 0.92,
-        minSamplesForAction = 6,
-        lowerBoundAlertThreshold = 0.55
-    } = {}
-) {
-    if (!Array.isArray(outcomes)) {
-        throw new Error('scoreAgentReliability expects outcomes array');
+        if (!byAgent[outcome.target]) {
+            byAgent[outcome.target] = {
+                agent: outcome.target,
+                failures: 0,
+                weightedFailures: 0,
+                categories: {}
+            };
+        }
+        byAgent[outcome.target].failures++;
+        byAgent[outcome.target].weightedFailures = round(byAgent[outcome.target].weightedFailures + priorityWeight, 2);
+        byAgent[outcome.target].categories[category] = (byAgent[outcome.target].categories[category] || 0) + 1;
+
+        const signature = outcome.errorSignature || `${category}:general:unspecified`;
+        if (!signatureMap[signature]) {
+            signatureMap[signature] = {
+                signature,
+                category,
+                tool: outcome.toolName || 'general',
+                errorCode: outcome.errorCode || null,
+                sampleErrorMessage: outcome.errorMessage || null,
+                count: 0,
+                weightedCount: 0,
+                firstTaskId: outcome.taskId,
+                lastTaskId: outcome.taskId,
+                skillHints: {}
+            };
+        }
+        const record = signatureMap[signature];
+        record.count++;
+        record.weightedCount = round(record.weightedCount + priorityWeight, 2);
+        record.lastTaskId = outcome.taskId;
+        for (const hint of outcome.skillHints || []) {
+            record.skillHints[hint] = (record.skillHints[hint] || 0) + 1;
+        }
     }
 
-    const normalized = outcomes.map((item, index) => normalizeOutcome(item, index));
-    const boundedDiscount = clamp(Number(discountFactor) || 0.92, 0.5, 0.999);
-    const samplesFloor = Math.max(1, Math.floor(Number(minSamplesForAction) || 6));
-    const lowerBoundFloor = clamp(Number(lowerBoundAlertThreshold) || 0.55, 0, 1);
-    const perAgent = new Map();
+    if (failures.length === 0 && totalFailures > 0) {
+        const issueTotals = {
+            timeout: Number(baseline?.byIssue?.timeout) || Number(baseline.timedOut) || 0,
+            transport: Number(baseline?.byIssue?.transport) || Number(baseline.transportError) || 0,
+            rejection: Number(baseline?.byIssue?.rejection) || Number(baseline.rejected) || 0,
+            execution_failure: Number(baseline?.byIssue?.execution_failure) || Number(baseline.failed) || 0,
+            unknown_failure: Number(baseline?.byIssue?.unknown_failure) || 0
+        };
 
-    for (const outcome of normalized) {
-        if (!perAgent.has(outcome.target)) {
-            perAgent.set(outcome.target, {
-                agentId: outcome.target,
-                tasks: 0,
-                successes: 0,
-                discountedTasks: 0,
-                discountedSuccesses: 0
-            });
+        let assigned = Object.values(issueTotals).reduce((acc, value) => acc + value, 0);
+        if (assigned < totalFailures) {
+            issueTotals.unknown_failure += (totalFailures - assigned);
+            assigned = totalFailures;
+        }
+        if (assigned === 0 && totalFailures > 0) {
+            issueTotals.unknown_failure = totalFailures;
         }
 
-        const current = perAgent.get(outcome.target);
-        current.tasks += 1;
-        if (outcome.status === 'completed') current.successes += 1;
-        current.discountedTasks = (current.discountedTasks * boundedDiscount) + 1;
-        current.discountedSuccesses = (current.discountedSuccesses * boundedDiscount) + (outcome.status === 'completed' ? 1 : 0);
-    }
-
-    const agents = Array.from(perAgent.values()).map((entry) => {
-        const empiricalRate = entry.tasks > 0 ? entry.successes / entry.tasks : 0;
-        const discountedRate = entry.discountedTasks > 0
-            ? entry.discountedSuccesses / entry.discountedTasks
-            : 0;
-        const lowerBound = wilsonLowerBound(entry.successes, entry.tasks);
-        const actionEligible = entry.tasks >= samplesFloor && lowerBound < lowerBoundFloor;
-        return {
-            agentId: entry.agentId,
-            tasks: entry.tasks,
-            empiricalSuccessRate: Number(empiricalRate.toFixed(4)),
-            discountedSuccessRate: Number(discountedRate.toFixed(4)),
-            successRateLowerBound: Number(lowerBound.toFixed(4)),
-            actionEligible
-        };
-    }).sort((a, b) => a.successRateLowerBound - b.successRateLowerBound);
-
-    return {
-        discountFactor: boundedDiscount,
-        minSamplesForAction: samplesFloor,
-        lowerBoundAlertThreshold: lowerBoundFloor,
-        agents,
-        watchlist: agents.filter((agent) => agent.actionEligible).map((agent) => agent.agentId)
-    };
-}
-
-export function simulateAdaptivePolicySelection(
-    replay,
-    {
-        episodes = 48,
-        trialsPerEpisode = 20,
-        seed = 1337
-    } = {}
-) {
-    if (!replay || !Array.isArray(replay.runs) || replay.runs.length === 0) {
-        throw new Error('simulateAdaptivePolicySelection requires replay runs');
-    }
-
-    const totalEpisodes = Math.max(1, Math.floor(Number(episodes) || 1));
-    const totalTrials = Math.max(1, Math.floor(Number(trialsPerEpisode) || 1));
-    const random = createSeededRandom(seed);
-    const bestProjected = Math.max(...replay.runs.map((run) => Number(run.projectedSuccessRate) || 0));
-
-    const arms = replay.runs.map((run) => ({
-        id: run.id,
-        name: run.name,
-        projectedSuccessRate: Number(run.projectedSuccessRate) || 0,
-        alpha: 1,
-        beta: 1,
-        selections: 0,
-        observedSuccesses: 0,
-        observedFailures: 0
-    }));
-
-    let cumulativeRegret = 0;
-    for (let episode = 0; episode < totalEpisodes; episode++) {
-        let selected = arms[0];
-        let selectedSample = -1;
-        for (const arm of arms) {
-            const sampled = sampleBeta(arm.alpha, arm.beta, random);
-            if (sampled > selectedSample) {
-                selected = arm;
-                selectedSample = sampled;
-            }
+        for (const [category, count] of Object.entries(issueTotals)) {
+            if (!categoryMap[category] || count <= 0) continue;
+            categoryMap[category].count = count;
+            categoryMap[category].weightedCount = round(count, 2);
         }
-
-        const successes = runBernoulliTrials(selected.projectedSuccessRate, totalTrials, random);
-        const failures = totalTrials - successes;
-        selected.alpha += successes;
-        selected.beta += failures;
-        selected.selections++;
-        selected.observedSuccesses += successes;
-        selected.observedFailures += failures;
-
-        cumulativeRegret += Math.max(0, bestProjected - selected.projectedSuccessRate) * totalTrials;
     }
 
-    const ranked = arms.map((arm) => {
-        const posteriorMean = arm.alpha / (arm.alpha + arm.beta);
-        return {
-            id: arm.id,
-            name: arm.name,
-            selections: arm.selections,
-            selectionRate: Number((arm.selections / totalEpisodes).toFixed(4)),
-            projectedSuccessRate: Number(arm.projectedSuccessRate.toFixed(4)),
-            posteriorMean: Number(posteriorMean.toFixed(4)),
-            observedSuccessRate: Number((arm.observedSuccesses / Math.max(1, arm.observedSuccesses + arm.observedFailures)).toFixed(4))
-        };
-    }).sort((a, b) => {
-        if (b.posteriorMean !== a.posteriorMean) return b.posteriorMean - a.posteriorMean;
-        return b.selections - a.selections;
-    });
+    const categories = Object.values(categoryMap)
+        .map((item) => ({
+            ...item,
+            rate: totalFailures > 0 ? round(item.count / totalFailures, 4) : 0
+        }))
+        .filter((item) => item.count > 0)
+        .sort((a, b) => b.weightedCount - a.weightedCount || b.count - a.count);
+
+    const topSignatures = Object.values(signatureMap)
+        .map((item) => ({
+            ...item,
+            skillHints: Object.entries(item.skillHints)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5)
+                .map(([hint, count]) => ({ hint, count }))
+        }))
+        .sort((a, b) => b.weightedCount - a.weightedCount || b.count - a.count);
+
+    const recurringSignatures = topSignatures.filter((item) => item.count >= 2).length;
+    const topSignatureShare = totalFailures > 0
+        ? round((topSignatures[0]?.count || 0) / totalFailures, 4)
+        : 0;
+
+    let driftLevel = 'stable';
+    if (totalFailures >= 6 || (recurringSignatures >= 2 && topSignatureShare >= 0.4)) {
+        driftLevel = 'critical';
+    } else if (totalFailures >= 3 || recurringSignatures >= 1) {
+        driftLevel = 'watch';
+    }
 
     return {
-        episodes: totalEpisodes,
-        trialsPerEpisode: totalTrials,
-        cumulativeRegret: Number(cumulativeRegret.toFixed(2)),
-        recommendedArm: ranked[0] || null,
-        ranking: ranked
+        totalFailures,
+        failureRate: totalOutcomes > 0 ? round(totalFailures / totalOutcomes, 4) : 0,
+        recurringSignatures,
+        driftLevel,
+        categories,
+        topSignatures: topSignatures.slice(0, 10),
+        byAgent: Object.values(byAgent)
+            .sort((a, b) => b.weightedFailures - a.weightedFailures || b.failures - a.failures),
+        summaryText: totalFailures === 0
+            ? 'No terminal failures were detected.'
+            : `${totalFailures} failure(s) detected with ${recurringSignatures} recurring signature(s).`
     };
 }
 
 export function buildLearningRecommendations(
     summary,
     replay,
-    adaptiveRollout = null,
-    operationalInsightsOrThresholds = null,
-    thresholdsOverride = null
-) {
-    let operationalInsights = null;
-    let thresholdOptions = thresholdsOverride;
-    if (!thresholdOptions && operationalInsightsOrThresholds && typeof operationalInsightsOrThresholds === 'object' && (
-        Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minTimeoutRateForAction')
-        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minAgentSuccessRate')
-        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'maxAvgAttempts')
-        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minAgentSamplesForAction')
-        || Object.prototype.hasOwnProperty.call(operationalInsightsOrThresholds, 'minP95LatencyMsForAction')
-    )) {
-        thresholdOptions = operationalInsightsOrThresholds;
-    } else {
-        operationalInsights = operationalInsightsOrThresholds;
-    }
-
-    const {
+    {
         minTimeoutRateForAction = 0.1,
         minAgentSuccessRate = 0.7,
-        maxAvgAttempts = 1.4,
-        minAgentSamplesForAction = 5,
-        minP95LatencyMsForAction = 1000
-    } = thresholdOptions || {};
+        maxAvgAttempts = 1.4
+    } = {}
+) {
     const baseline = summary?.summary || summary;
     if (!baseline || typeof baseline !== 'object') {
         throw new Error('buildLearningRecommendations requires outcome summary');
     }
 
     const recommendations = [];
-    if ((baseline.total || 0) < 25) {
-        recommendations.push({
-            priority: 'P2',
-            category: 'evidence_density',
-            title: 'Increase outcome sample size before major policy shifts',
-            rationale: `Only ${baseline.total} outcomes are available; policy estimates can be noisy`,
-            action: 'Run shadow traffic and collect at least 25 labeled outcomes before irreversible rollout changes.',
-            expectedImpact: {
-                metric: 'outcomeSampleSize',
-                current: baseline.total || 0,
-                target: 25
-            }
-        });
-    }
 
     if ((baseline.timeoutRate || 0) >= minTimeoutRateForAction) {
         recommendations.push({
@@ -652,137 +728,333 @@ export function buildLearningRecommendations(
         });
     }
 
-    if ((baseline.latencyPercentiles?.p95 || 0) >= minP95LatencyMsForAction) {
-        recommendations.push({
-            priority: 'P2',
-            category: 'tail_latency',
-            title: 'Reduce p95 orchestration latency',
-            rationale: `p95 latency is ${baseline.latencyPercentiles.p95}ms (p99: ${baseline.latencyPercentiles.p99}ms)`,
-            action: 'Limit queue depth per worker, prioritize short tasks, and move long-tail tasks to isolated pools.',
-            expectedImpact: {
-                metric: 'latencyPercentiles.p95',
-                current: baseline.latencyPercentiles.p95,
-                target: Number(Math.max(0, baseline.latencyPercentiles.p95 * 0.8).toFixed(2))
-            }
-        });
-    }
-
     const lowPerformers = Object.entries(baseline.byAgent || {})
-        .filter(([, stats]) => {
-            const tasks = Number(stats.tasks) || 0;
-            const lowerBound = Number(stats.successRateLower95);
-            const observed = Number(stats.successRate || 0);
-            const score = Number.isFinite(lowerBound) ? lowerBound : observed;
-            return tasks >= minAgentSamplesForAction && score < minAgentSuccessRate;
-        })
-        .sort((a, b) => {
-            const aScore = Number.isFinite(Number(a[1].successRateLower95))
-                ? Number(a[1].successRateLower95)
-                : Number(a[1].successRate || 0);
-            const bScore = Number.isFinite(Number(b[1].successRateLower95))
-                ? Number(b[1].successRateLower95)
-                : Number(b[1].successRate || 0);
-            if (aScore !== bScore) return aScore - bScore;
-            return (Number(b[1].tasks) || 0) - (Number(a[1].tasks) || 0);
-        });
+        .filter(([, stats]) => Number(stats.successRate || 0) < minAgentSuccessRate)
+        .sort((a, b) => (a[1].successRate || 0) - (b[1].successRate || 0));
 
     for (const [agentId, stats] of lowPerformers.slice(0, 2)) {
-        const lower95 = Number.isFinite(Number(stats.successRateLower95))
-            ? Number(stats.successRateLower95)
-            : Number(stats.successRate || 0);
         recommendations.push({
             priority: 'P2',
             category: 'routing_quality',
             title: `Improve routing quality for ${agentId}`,
-            rationale: `Agent success is ${(stats.successRate * 100).toFixed(1)}% with 95% lower bound ${(lower95 * 100).toFixed(1)}% across ${stats.tasks} tasks`,
+            rationale: `Agent success rate is ${(stats.successRate * 100).toFixed(1)}% across ${stats.tasks} tasks`,
             action: 'Apply optimizer penalties for this agent until reliability recovers and add targeted health checks.',
             expectedImpact: {
-                metric: `${agentId}.successRateLower95`,
-                current: lower95,
-                target: Number(Math.min(0.95, lower95 + 0.12).toFixed(4))
+                metric: `${agentId}.successRate`,
+                current: stats.successRate,
+                target: Number(Math.min(0.95, stats.successRate + 0.12).toFixed(4))
             }
         });
     }
 
     if (replay?.best) {
-        const highConfidence = (replay.best.improvementConfidence || 0) >= 0.7
-            && (replay.best.projectedSuccessRateP10 || 0) > (replay.baselineSuccessRate || 0);
-        if (highConfidence) {
-            recommendations.push({
-                priority: 'P1',
-                category: 'counterfactual_winner',
-                title: `Adopt replay winner: ${replay.best.name}`,
-                rationale: `Projected gain is +${(replay.best.deltaSuccessRate * 100).toFixed(1)}pp with ${(replay.best.improvementConfidence * 100).toFixed(1)}% confidence`,
-                action: 'Roll out this policy variant behind a feature flag and compare against control over next 7 days.',
-                expectedImpact: {
-                    metric: 'successRate',
-                    current: replay.baselineSuccessRate,
-                    target: replay.best.projectedSuccessRate
-                }
-            });
-        } else {
-            recommendations.push({
-                priority: 'P2',
-                category: 'counterfactual_validation',
-                title: `Validate replay leader before full rollout: ${replay.best.name}`,
-                rationale: `Projected gain is uncertain (confidence ${(replay.best.improvementConfidence * 100).toFixed(1)}%, p10 ${(replay.best.projectedSuccessRateP10 * 100).toFixed(1)}%)`,
-                action: 'Run A/B shadow validation for this variant and require confidence >= 70% before promotion.',
-                expectedImpact: {
-                    metric: 'successRate.confidence',
-                    current: replay.best.improvementConfidence,
-                    target: 0.7
-                }
-            });
-        }
-    }
-
-    if (operationalInsights?.drift?.sufficientData && operationalInsights.drift.alert) {
         recommendations.push({
             priority: 'P1',
-            category: 'nonstationarity_guard',
-            title: 'Respond to recent performance drift',
-            rationale: `Recent window success rate ${(operationalInsights.drift.recentSuccessRate * 100).toFixed(1)}% is ${(Math.abs(operationalInsights.drift.deltaSuccessRate) * 100).toFixed(1)}pp below baseline`,
-            action: 'Increase exploration toward healthy agents, shorten policy refresh cadence, and run replay over the latest window.',
-            expectedImpact: {
-                metric: 'recentSuccessRate',
-                current: operationalInsights.drift.recentSuccessRate,
-                target: Number(Math.min(0.98, operationalInsights.drift.recentSuccessRate + 0.1).toFixed(4))
-            }
-        });
-    }
-
-    if (Array.isArray(operationalInsights?.reliability?.watchlist) && operationalInsights.reliability.watchlist.length > 0) {
-        const weakest = operationalInsights.reliability.agents[0];
-        recommendations.push({
-            priority: 'P2',
-            category: 'confidence_bounded_routing',
-            title: `Route guardrail for low-confidence agent(s): ${operationalInsights.reliability.watchlist.slice(0, 2).join(', ')}`,
-            rationale: `${weakest.agentId} lower-bound success is ${(weakest.successRateLowerBound * 100).toFixed(1)}% over ${weakest.tasks} tasks`,
-            action: 'Apply temporary routing penalties and require passing health probes before high-priority assignments.',
-            expectedImpact: {
-                metric: `${weakest.agentId}.successRateLowerBound`,
-                current: weakest.successRateLowerBound,
-                target: Number(Math.min(0.9, weakest.successRateLowerBound + 0.12).toFixed(4))
-            }
-        });
-    }
-
-    if (adaptiveRollout?.recommendedArm) {
-        recommendations.push({
-            priority: 'P1',
-            category: 'adaptive_policy_selection',
-            title: `Automate policy selection toward ${adaptiveRollout.recommendedArm.name}`,
-            rationale: `Thompson rollout selected this policy ${(adaptiveRollout.recommendedArm.selectionRate * 100).toFixed(1)}% of episodes with posterior mean ${(adaptiveRollout.recommendedArm.posteriorMean * 100).toFixed(1)}%`,
-            action: 'Deploy online Thompson sampling with a minimum exploration floor and promote policies when posterior lead remains stable for 3+ windows.',
+            category: 'counterfactual_winner',
+            title: `Adopt replay winner: ${replay.best.name}`,
+            rationale: `Counterfactual replay projects +${(replay.best.deltaSuccessRate * 100).toFixed(1)}pp success rate`,
+            action: 'Roll out this policy variant behind a feature flag and compare against control over next 7 days.',
             expectedImpact: {
                 metric: 'successRate',
-                current: replay?.baselineSuccessRate || 0,
-                target: adaptiveRollout.recommendedArm.projectedSuccessRate
+                current: replay.baselineSuccessRate,
+                target: replay.best.projectedSuccessRate
             }
         });
     }
 
     return recommendations;
+}
+
+export function buildSkillGrowthPlan(
+    summaryOrSummarized,
+    taxonomy,
+    {
+        minFailuresForSkill = 2,
+        maxFocusAreas = 6,
+        maxSkillsPerFocus = 3,
+        skillCatalog = [],
+        previousState = null
+    } = {}
+) {
+    const summarized = normalizeSummaryInput(summaryOrSummarized);
+    const baseline = summarized?.summary || {};
+    const totalOutcomes = Number(baseline.total) || 0;
+    const tax = taxonomy && typeof taxonomy === 'object'
+        ? taxonomy
+        : buildErrorTaxonomy(summarized);
+    const catalog = normalizeSkillCatalog(skillCatalog);
+    const focusAreas = [];
+    const seenFocus = new Set();
+    const previousFocusMastery = previousState?.focusMastery || {};
+
+    for (const categoryStats of tax.categories || []) {
+        if (!categoryStats || categoryStats.count < minFailuresForSkill) continue;
+        const playbook = SKILL_FOCUS_PLAYBOOK[categoryStats.category]
+            || SKILL_FOCUS_PLAYBOOK.unknown_failure;
+        if (seenFocus.has(playbook.focus)) continue;
+        seenFocus.add(playbook.focus);
+
+        const suggestions = lookupSkillSuggestions(playbook, catalog, maxSkillsPerFocus);
+        const priorScore = Number(previousFocusMastery?.[playbook.focus]?.score);
+        const skillPressure = round(categoryStats.rate * (playbook.priority === 'P1' ? 1.3 : 1), 4);
+
+        focusAreas.push({
+            focus: playbook.focus,
+            label: playbook.label,
+            priority: playbook.priority,
+            category: categoryStats.category,
+            rationale: `${categoryStats.count} ${categoryStats.category.replace('_', ' ')} failures (${(categoryStats.rate * 100).toFixed(1)}% of failures).`,
+            evidence: {
+                failures: categoryStats.count,
+                weightedFailures: categoryStats.weightedCount,
+                shareOfFailures: categoryStats.rate
+            },
+            learningAction: playbook.action,
+            skillPressure,
+            priorMasteryScore: Number.isFinite(priorScore) ? priorScore : null,
+            projectedMasteryTarget: Number.isFinite(priorScore)
+                ? round(clamp(priorScore + (skillPressure < 0.2 ? 0.08 : 0.03), 0, 1), 4)
+                : round(clamp(0.55 + (skillPressure < 0.2 ? 0.08 : 0), 0, 1), 4),
+            suggestedSkills: suggestions.length > 0
+                ? suggestions
+                : toSkillCandidate(playbook).slice(0, maxSkillsPerFocus)
+        });
+    }
+
+    const weakAgents = Object.entries(baseline.byAgent || {})
+        .filter(([, stats]) => Number(stats.failureRate || 0) >= 0.35 || Number(stats.successRate || 0) < 0.6)
+        .sort((a, b) => (b[1].failureRate || 0) - (a[1].failureRate || 0));
+
+    if (weakAgents.length > 0 && !seenFocus.has('agent_reliability_coaching')) {
+        const [agentId, stats] = weakAgents[0];
+        focusAreas.push({
+            focus: 'agent_reliability_coaching',
+            label: 'Agent reliability coaching',
+            priority: 'P2',
+            category: 'execution_failure',
+            rationale: `${agentId} success rate ${(Number(stats.successRate || 0) * 100).toFixed(1)}% over ${stats.tasks} tasks.`,
+            evidence: {
+                failures: stats.failure,
+                weightedFailures: stats.failure,
+                shareOfFailures: baseline.failure > 0 ? round((stats.failure || 0) / baseline.failure, 4) : 0
+            },
+            learningAction: 'Create targeted drills and routing guardrails for the lowest-performing agent until success recovers.',
+            skillPressure: round(Math.max(Number(stats.failureRate || 0), 0.35), 4),
+            priorMasteryScore: Number(previousFocusMastery?.agent_reliability_coaching?.score) || null,
+            projectedMasteryTarget: 0.72,
+            suggestedSkills: [
+                {
+                    id: null,
+                    name: 'skill-gap-diagnoser',
+                    domain: null,
+                    archetype: 'recommended',
+                    implementationPath: null,
+                    score: 0
+                },
+                {
+                    id: null,
+                    name: 'training-curriculum-composer',
+                    domain: null,
+                    archetype: null,
+                    implementationPath: null,
+                    score: 0
+                }
+            ]
+        });
+    }
+
+    if (focusAreas.length === 0 && totalOutcomes === 0) {
+        const playbook = OUTCOME_BOOTSTRAP_PLAYBOOK;
+        const suggestions = lookupSkillSuggestions(playbook, catalog, maxSkillsPerFocus);
+        const priorScore = Number(previousFocusMastery?.[playbook.focus]?.score);
+        const skillPressure = 0.55;
+
+        focusAreas.push({
+            focus: playbook.focus,
+            label: playbook.label,
+            priority: playbook.priority,
+            category: 'unknown_failure',
+            rationale: 'No recent outcome records were found, so the learning loop cannot infer failure signatures yet.',
+            evidence: {
+                failures: 0,
+                weightedFailures: 0,
+                shareOfFailures: 0
+            },
+            learningAction: playbook.action,
+            skillPressure,
+            priorMasteryScore: Number.isFinite(priorScore) ? priorScore : null,
+            projectedMasteryTarget: Number.isFinite(priorScore)
+                ? round(clamp(priorScore + 0.08, 0, 1), 4)
+                : 0.65,
+            suggestedSkills: suggestions.length > 0
+                ? suggestions
+                : toSkillCandidate(playbook).slice(0, maxSkillsPerFocus)
+        });
+    }
+
+    const sorted = focusAreas
+        .sort((a, b) => {
+            if (a.priority !== b.priority) return a.priority === 'P1' ? -1 : 1;
+            return b.skillPressure - a.skillPressure;
+        })
+        .slice(0, maxFocusAreas);
+
+    const topSkillCandidates = [];
+    const seenSkillName = new Set();
+    for (const area of sorted) {
+        for (const candidate of area.suggestedSkills || []) {
+            const key = candidate?.name;
+            if (!key || seenSkillName.has(key)) continue;
+            seenSkillName.add(key);
+            topSkillCandidates.push({
+                ...candidate,
+                focus: area.focus,
+                focusPriority: area.priority
+            });
+        }
+    }
+
+    return {
+        driftLevel: tax.driftLevel,
+        learningPressure: round(sorted.reduce((acc, item) => acc + item.skillPressure, 0), 4),
+        focusAreas: sorted,
+        topSkillCandidates: topSkillCandidates.slice(0, 12)
+    };
+}
+
+export function updateLearningState(
+    previousState,
+    {
+        summary,
+        taxonomy,
+        skillGrowthPlan
+    }
+) {
+    const nowIso = new Date().toISOString();
+    const previous = previousState && typeof previousState === 'object'
+        ? previousState
+        : {};
+    const previousRunCount = Number(previous.runCount) || 0;
+    const previousFailureRate = Number(previous?.baseline?.failureRate);
+    const previousSuccessRate = Number(previous?.baseline?.successRate);
+    const previousRecurringErrors = previous.recurringErrors && typeof previous.recurringErrors === 'object'
+        ? previous.recurringErrors
+        : {};
+    const previousFocus = previous.focusMastery && typeof previous.focusMastery === 'object'
+        ? previous.focusMastery
+        : {};
+
+    const focusMastery = {};
+    const touchedFocus = new Set();
+
+    for (const area of skillGrowthPlan.focusAreas || []) {
+        const priorScore = Number(previousFocus?.[area.focus]?.score);
+        const baseScore = Number.isFinite(priorScore) ? priorScore : 0.65;
+        const pressurePenalty = area.skillPressure * (area.priority === 'P1' ? 0.3 : 0.2);
+        const reliabilityBoost = Number(summary.successRate || 0) * 0.08;
+        const nextScore = clamp(baseScore - pressurePenalty + reliabilityBoost, 0, 1);
+        touchedFocus.add(area.focus);
+
+        focusMastery[area.focus] = {
+            score: round(nextScore, 4),
+            priority: area.priority,
+            pressure: round(area.skillPressure, 4),
+            trend: nextScore > baseScore
+                ? 'improving'
+                : (nextScore < baseScore ? 'declining' : 'stable'),
+            updatedAt: nowIso
+        };
+    }
+
+    for (const [focus, snapshot] of Object.entries(previousFocus)) {
+        if (touchedFocus.has(focus)) continue;
+        const priorScore = Number(snapshot?.score);
+        const recovered = clamp((Number.isFinite(priorScore) ? priorScore : 0.6) + 0.03, 0, 1);
+        focusMastery[focus] = {
+            score: round(recovered, 4),
+            priority: snapshot?.priority || 'P3',
+            pressure: 0,
+            trend: recovered > priorScore ? 'improving' : 'stable',
+            updatedAt: nowIso
+        };
+    }
+
+    const recurringErrors = {};
+    const currentSignatures = {};
+    for (const signature of taxonomy.topSignatures || []) {
+        currentSignatures[signature.signature] = signature;
+    }
+
+    const runCount = previousRunCount + 1;
+    for (const [key, current] of Object.entries(currentSignatures)) {
+        const prior = previousRecurringErrors[key];
+        recurringErrors[key] = {
+            signature: key,
+            category: current.category,
+            count: (Number(prior?.count) || 0) + current.count,
+            occurrencesLastRun: current.count,
+            streak: (Number(prior?.streak) || 0) + 1,
+            firstSeenRun: Number(prior?.firstSeenRun) || runCount,
+            lastSeenRun: runCount,
+            sampleErrorMessage: current.sampleErrorMessage || prior?.sampleErrorMessage || null
+        };
+    }
+
+    for (const [key, prior] of Object.entries(previousRecurringErrors)) {
+        if (currentSignatures[key]) continue;
+        const staleStreak = Math.max((Number(prior?.streak) || 1) - 1, 0);
+        if ((Number(prior?.count) || 0) <= 0 && staleStreak <= 0) continue;
+        recurringErrors[key] = {
+            ...prior,
+            occurrencesLastRun: 0,
+            streak: staleStreak,
+            lastSeenRun: Number(prior?.lastSeenRun) || previousRunCount
+        };
+    }
+
+    const successRate = Number(summary.successRate) || 0;
+    const failureRate = Number(summary.failureRate) || 0;
+    const timeoutRate = Number(summary.timeoutRate) || 0;
+    const successRateDelta = Number.isFinite(previousSuccessRate)
+        ? round(successRate - previousSuccessRate, 4)
+        : null;
+    const failureRateDelta = Number.isFinite(previousFailureRate)
+        ? round(failureRate - previousFailureRate, 4)
+        : null;
+
+    let driftLevel = taxonomy.driftLevel;
+    if (failureRateDelta !== null && failureRateDelta >= 0.05) {
+        driftLevel = 'critical';
+    } else if (driftLevel === 'stable' && failureRateDelta !== null && failureRateDelta >= 0.01) {
+        driftLevel = 'watch';
+    }
+
+    return {
+        version: 1,
+        generatedAt: nowIso,
+        runCount,
+        driftLevel,
+        baseline: {
+            total: Number(summary.total) || 0,
+            successRate: round(successRate, 4),
+            failureRate: round(failureRate, 4),
+            timeoutRate: round(timeoutRate, 4)
+        },
+        trend: {
+            successRateDelta,
+            failureRateDelta,
+            learningVelocity: failureRateDelta === null ? null : round(-failureRateDelta, 4)
+        },
+        focusMastery,
+        recurringErrors,
+        nextActions: (skillGrowthPlan.focusAreas || [])
+            .slice(0, 5)
+            .map((area) => ({
+                focus: area.focus,
+                priority: area.priority,
+                action: area.learningAction
+            }))
+    };
 }
 
 export function evaluateLearningLoop(outcomes, options = {}) {
@@ -792,33 +1064,36 @@ export function evaluateLearningLoop(outcomes, options = {}) {
 
     const summarized = summarizeOutcomes(outcomes);
     const replay = runCounterfactualReplay(summarized, options.variants);
-    const adaptiveRollout = simulateAdaptivePolicySelection(replay, options.adaptiveRollout || {});
-    const drift = analyzeWindowedPerformance(summarized.outcomes, options.drift || {});
-    const reliability = scoreAgentReliability(summarized.outcomes, options.reliability || {});
     const recommendations = buildLearningRecommendations(
         summarized,
         replay,
-        adaptiveRollout,
-        { drift, reliability },
         options.thresholds || {}
     );
+    const taxonomy = buildErrorTaxonomy(summarized);
+    const skillGrowthPlan = buildSkillGrowthPlan(summarized, taxonomy, {
+        ...options.skillGrowth,
+        skillCatalog: options.skillCatalog,
+        previousState: options.previousState
+    });
+    const state = updateLearningState(options.previousState, {
+        summary: summarized.summary,
+        taxonomy,
+        skillGrowthPlan
+    });
 
     return {
         summary: summarized.summary,
         replay,
-        adaptiveRollout,
-        drift,
-        reliability,
-        recommendations
+        recommendations,
+        errorTaxonomy: taxonomy,
+        skillGrowthPlan,
+        state
     };
 }
 
 export const __learningLoopInternals = {
     normalizeOutcome,
     normalizeVariant,
-    latencyPercentiles,
-    wilsonLowerBound,
-    createSeededRandom,
-    sampleBeta,
-    computeRate
+    classifyIssue,
+    normalizeErrorSignature
 };

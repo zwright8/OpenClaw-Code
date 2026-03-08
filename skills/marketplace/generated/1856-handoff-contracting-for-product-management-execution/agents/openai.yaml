@@ -1,4 +1,0 @@
-interface:
-  display_name: "Handoff Contracting for product management execution"
-  short_description: "Handoff contracting for product management execution with guardrails and measurable outcomes."
-  default_prompt: "Use Handoff Contracting for product management execution to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

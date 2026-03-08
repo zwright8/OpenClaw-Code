@@ -1,4 +1,0 @@
-interface:
-  display_name: "Disaster Recovery Orchestration for entrepreneurship oper..."
-  short_description: "Disaster recovery orchestration for entrepreneurship operations with guardrails and measurable outcomes."
-  default_prompt: "Use Disaster Recovery Orchestration for entrepreneurship operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

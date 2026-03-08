@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Knowledge Graph Linker"
-  short_description: "Entity and relation linking for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Knowledge Graph Linker to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

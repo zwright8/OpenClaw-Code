@@ -1,4 +1,0 @@
-interface:
-  display_name: "Security Threat Modeling for disaster response networks"
-  short_description: "Security threat modeling for disaster response networks with guardrails and measurable outcomes."
-  default_prompt: "Use Security Threat Modeling for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

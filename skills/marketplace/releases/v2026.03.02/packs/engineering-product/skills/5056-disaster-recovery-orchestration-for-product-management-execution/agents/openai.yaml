@@ -1,4 +1,0 @@
-interface:
-  display_name: "Disaster Recovery Orchestration for product management ex..."
-  short_description: "Disaster recovery orchestration for product management execution with guardrails and measurable outcomes."
-  default_prompt: "Use Disaster Recovery Orchestration for product management execution to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

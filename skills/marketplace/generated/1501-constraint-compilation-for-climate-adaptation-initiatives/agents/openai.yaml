@@ -1,4 +1,0 @@
-interface:
-  display_name: "Constraint Compilation for climate adaptation initiatives"
-  short_description: "Constraint compilation for climate adaptation initiatives with guardrails and measurable outcomes."
-  default_prompt: "Use Constraint Compilation for climate adaptation initiatives to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

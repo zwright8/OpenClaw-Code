@@ -1,9 +1,0 @@
-observability:
-  quality_score: 60
-  reliability_score: 55.5
-  roi_score: 66.08
-  price_tier: "growth"
-  improvement_tier: "foundation"
-  autopilot_ready: false
-  guardrail_count: 0
-  validation_suite_count: 4

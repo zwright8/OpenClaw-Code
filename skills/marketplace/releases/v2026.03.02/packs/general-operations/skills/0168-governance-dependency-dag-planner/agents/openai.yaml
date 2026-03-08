@@ -1,4 +1,0 @@
-interface:
-  display_name: "Governance Dependency DAG Planner"
-  short_description: "Dependency graph compilation for Safety and Governance with guardrails and measurable outcomes."
-  default_prompt: "Use Governance Dependency DAG Planner to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Semantic Retrieval Ranking for entrepreneurship operations"
-  short_description: "Semantic retrieval ranking for entrepreneurship operations with guardrails and measurable outcomes."
-  default_prompt: "Use Semantic Retrieval Ranking for entrepreneurship operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

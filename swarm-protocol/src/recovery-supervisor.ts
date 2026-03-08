@@ -15,19 +15,6 @@ function safeNumber(value, fallback = 0) {
     return Number.isFinite(numeric) ? numeric : fallback;
 }
 
-function mean(values) {
-    if (!Array.isArray(values) || values.length === 0) return 0;
-    return values.reduce((acc, value) => acc + safeNumber(value), 0) / values.length;
-}
-
-function clamp(value, min, max) {
-    return Math.max(min, Math.min(max, value));
-}
-
-function average(values) {
-    return mean(values);
-}
-
 function normalizePriority(priority) {
     const map = {
         P0: 'critical',
@@ -112,24 +99,10 @@ export class RecoverySupervisor {
         timeoutRateThreshold = 0.18,
         failureRateThreshold = 0.2,
         avgAttemptsThreshold = 1.6,
-        retryBudgetRateThreshold = 0.2,
-        minRequestsForRetryBudget = 100,
         dispatchErrorThreshold = 3,
-        openQueueRatioThreshold = 0.35,
-        latencyInflationThreshold = 1.5,
-        avgLatencyThresholdForSaturation = 350,
-        minRequestsForConcurrencySaturation = 40,
-        minBaselineLatencyMs = 20,
         agentSuccessRateThreshold = 0.6,
         agentTimeoutRateThreshold = 0.25,
-        agentOverloadThreshold = 0.9,
-        sloTarget = 0.99,
-        errorBudgetPeriodMs = 30 * 24 * 60 * 60 * 1_000,
-        burnRatePageThreshold = 14.4,
-        burnRateTicketThreshold = 6,
-        minRequestsForBurnRate = 100,
-        minShortWindowSize = 2,
-        shortWindowRatio = 12
+        agentOverloadThreshold = 0.9
     } = {}) {
         const window = this.snapshots.slice(-Math.max(1, Number(lookback) || 20));
         if (window.length === 0) {
@@ -147,68 +120,7 @@ export class RecoverySupervisor {
         const avgTimeoutRate = window.reduce((acc, row) => acc + row.simulation.timeoutRate, 0) / window.length;
         const avgFailureRate = window.reduce((acc, row) => acc + row.simulation.failureRate, 0) / window.length;
         const avgAttempts = window.reduce((acc, row) => acc + row.orchestrator.avgAttempts, 0) / window.length;
-        const avgRequests = window.reduce((acc, row) => acc + Math.max(0, row.orchestrator.total), 0) / window.length;
         const totalDispatchErrors = window.reduce((acc, row) => acc + row.simulation.dispatchErrorCount, 0);
-        const totalWindowRequests = window.reduce((acc, row) => acc + row.orchestrator.terminal, 0);
-
-        const safeSlo = Math.min(0.9999, Math.max(0.8, safeNumber(sloTarget, 0.99)));
-        const errorBudget = Math.max(1e-6, 1 - safeSlo);
-        const longWindowSize = window.length;
-        const computedShort = Math.floor(longWindowSize / Math.max(1, Number(shortWindowRatio) || 12));
-        const shortWindowSize = Math.max(minShortWindowSize, computedShort);
-        const shortWindow = window.slice(-shortWindowSize);
-        const longBurnRate = mean(window.map((row) => row.simulation.failureRate)) / errorBudget;
-        const shortBurnRate = mean(shortWindow.map((row) => row.simulation.failureRate)) / errorBudget;
-        const windowDurationMs = Math.max(1, endAt - startAt);
-        const budgetConsumption = (longBurnRate * windowDurationMs) / Math.max(1, errorBudgetPeriodMs);
-
-        const abovePageThreshold = longBurnRate >= burnRatePageThreshold && shortBurnRate >= burnRatePageThreshold;
-        const aboveTicketThreshold = longBurnRate >= burnRateTicketThreshold && shortBurnRate >= burnRateTicketThreshold;
-        if (totalWindowRequests >= minRequestsForBurnRate && (abovePageThreshold || aboveTicketThreshold)) {
-            incidents.push({
-                code: 'error_budget_burn',
-                priority: abovePageThreshold ? 'P0' : 'P1',
-                severity: abovePageThreshold ? 'critical' : 'high',
-                target: 'global',
-                summary: `Error budget burn rate elevated (long=${longBurnRate.toFixed(2)}x short=${shortBurnRate.toFixed(2)}x)`,
-                metrics: {
-                    sloTarget: safeSlo,
-                    longBurnRate: Number(longBurnRate.toFixed(4)),
-                    shortBurnRate: Number(shortBurnRate.toFixed(4)),
-                    burnRatePageThreshold,
-                    burnRateTicketThreshold,
-                    windowRequests: totalWindowRequests,
-                    windowDurationMs,
-                    errorBudgetPeriodMs,
-                    estimatedBudgetConsumed: Number(budgetConsumption.toFixed(4))
-                },
-                windowStartAt: startAt,
-                windowEndAt: endAt
-            });
-        }
-        const avgRequestVolume = average(window.map((row) => Math.max(0, row.orchestrator.total)));
-        const avgOpenQueueRatio = average(window.map((row) => {
-            const total = Math.max(0, row.orchestrator.total);
-            if (total <= 0) return 0;
-            return clamp(row.orchestrator.open / total, 0, 1);
-        }));
-
-        const latencyWindow = Math.max(2, Math.ceil(window.length * 0.35));
-        const baselineRows = window.slice(0, Math.max(1, window.length - latencyWindow));
-        const recentRows = window.slice(-latencyWindow);
-        const baselineLatency = average(
-            baselineRows
-                .map((row) => row.simulation.avgLatencyMs)
-                .filter((value) => Number.isFinite(value) && value > 0)
-        );
-        const recentLatency = average(
-            recentRows
-                .map((row) => row.simulation.avgLatencyMs)
-                .filter((value) => Number.isFinite(value) && value > 0)
-        );
-        const latencyInflation = baselineLatency > 0
-            ? recentLatency / baselineLatency
-            : 1;
 
         if (avgTimeoutRate >= timeoutRateThreshold) {
             incidents.push({
@@ -258,25 +170,6 @@ export class RecoverySupervisor {
             });
         }
 
-        const observedRetryRate = Math.max(0, avgAttempts - 1);
-        if (avgRequests >= minRequestsForRetryBudget && observedRetryRate >= retryBudgetRateThreshold) {
-            incidents.push({
-                code: 'retry_budget_exhausted',
-                priority: 'P1',
-                severity: 'high',
-                target: 'global',
-                summary: `Retry rate ${observedRetryRate.toFixed(4)} exceeded budget ${retryBudgetRateThreshold}`,
-                metrics: {
-                    observedRetryRate,
-                    threshold: retryBudgetRateThreshold,
-                    avgRequests,
-                    minRequestsForRetryBudget
-                },
-                windowStartAt: startAt,
-                windowEndAt: endAt
-            });
-        }
-
         if (totalDispatchErrors >= dispatchErrorThreshold) {
             incidents.push({
                 code: 'dispatch_error_cluster',
@@ -287,34 +180,6 @@ export class RecoverySupervisor {
                 metrics: {
                     totalDispatchErrors,
                     threshold: dispatchErrorThreshold
-                },
-                windowStartAt: startAt,
-                windowEndAt: endAt
-            });
-        }
-
-        const hasConcurrencyTraffic = avgRequestVolume >= minRequestsForConcurrencySaturation;
-        const hasQueueSaturation = avgOpenQueueRatio >= openQueueRatioThreshold;
-        const hasLatencySaturation = (
-            baselineLatency >= minBaselineLatencyMs &&
-            latencyInflation >= latencyInflationThreshold
-        ) || recentLatency >= avgLatencyThresholdForSaturation;
-
-        if (hasConcurrencyTraffic && hasQueueSaturation && hasLatencySaturation) {
-            incidents.push({
-                code: 'concurrency_saturation',
-                priority: 'P0',
-                severity: 'critical',
-                target: 'global',
-                summary: `Open queue ratio ${avgOpenQueueRatio.toFixed(4)} with latency inflation ${latencyInflation.toFixed(2)} indicates saturation`,
-                metrics: {
-                    avgRequestVolume,
-                    avgOpenQueueRatio,
-                    openQueueRatioThreshold,
-                    baselineLatency,
-                    recentLatency,
-                    latencyInflation,
-                    latencyInflationThreshold
                 },
                 windowStartAt: startAt,
                 windowEndAt: endAt
@@ -397,33 +262,6 @@ export class RecoverySupervisor {
         const actions = [];
 
         for (const incident of source) {
-            if (incident.code === 'concurrency_saturation') {
-                actions.push({
-                    incidentCode: incident.code,
-                    priority: 'P0',
-                    actionType: 'enforce_adaptive_concurrency_limit',
-                    target: 'global',
-                    title: 'Apply adaptive concurrency limits (AIMD)',
-                    description: incident.summary
-                });
-                actions.push({
-                    incidentCode: incident.code,
-                    priority: 'P0',
-                    actionType: 'enable_load_shedding',
-                    target: 'global',
-                    title: 'Enable load shedding for non-critical traffic',
-                    description: incident.summary
-                });
-                actions.push({
-                    incidentCode: incident.code,
-                    priority: 'P1',
-                    actionType: 'isolate_dependency_bulkhead',
-                    target: 'global',
-                    title: 'Isolate slow dependencies via bulkhead routing',
-                    description: incident.summary
-                });
-            }
-
             if (incident.code === 'timeout_spike') {
                 actions.push({
                     incidentCode: incident.code,
@@ -443,25 +281,6 @@ export class RecoverySupervisor {
                 });
             }
 
-            if (incident.code === 'error_budget_burn') {
-                actions.push({
-                    incidentCode: incident.code,
-                    priority: incident.priority || 'P1',
-                    actionType: 'enable_circuit_breaker',
-                    target: 'global',
-                    title: 'Enable circuit-breaker protections on failing dependencies',
-                    description: incident.summary
-                });
-                actions.push({
-                    incidentCode: incident.code,
-                    priority: incident.priority || 'P1',
-                    actionType: 'enforce_full_jitter_backoff',
-                    target: 'global',
-                    title: 'Enforce full-jitter exponential backoff in retry paths',
-                    description: incident.summary
-                });
-            }
-
             if (incident.code === 'failure_spike' || incident.code === 'dispatch_error_cluster') {
                 actions.push({
                     incidentCode: incident.code,
@@ -469,25 +288,6 @@ export class RecoverySupervisor {
                     actionType: 'route_to_stable_pool',
                     target: 'global',
                     title: 'Route critical tasks to proven stable agent pool',
-                    description: incident.summary
-                });
-            }
-
-            if (incident.code === 'retry_budget_exhausted') {
-                actions.push({
-                    incidentCode: incident.code,
-                    priority: 'P1',
-                    actionType: 'enforce_retry_budget',
-                    target: 'global',
-                    title: 'Enforce retry budgets and cap non-idempotent retries',
-                    description: incident.summary
-                });
-                actions.push({
-                    incidentCode: incident.code,
-                    priority: 'P1',
-                    actionType: 'shed_noncritical_load',
-                    target: 'global',
-                    title: 'Shed non-critical load to preserve critical task success',
                     description: incident.summary
                 });
             }
@@ -540,17 +340,12 @@ export class RecoverySupervisor {
     buildRecoveryTasks(actions, {
         defaultTarget = 'agent:ops',
         targetMap = {
-            enforce_adaptive_concurrency_limit: 'agent:routing',
-            enable_load_shedding: 'agent:ops',
-            isolate_dependency_bulkhead: 'agent:ops',
             drain_agent: 'agent:ops',
             deprioritize_agent: 'agent:routing',
             route_to_stable_pool: 'agent:routing',
             benchmark_rerun: 'agent:simulation',
             increase_retry_delay: 'agent:ops',
-            tune_timeout_budget: 'agent:ops',
-            enforce_retry_budget: 'agent:ops',
-            shed_noncritical_load: 'agent:routing'
+            tune_timeout_budget: 'agent:ops'
         }
     } = {}) {
         const items = Array.isArray(actions) ? actions : [];

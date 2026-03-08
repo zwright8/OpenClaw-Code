@@ -74,8 +74,6 @@ test('uses sessionId fallback and tracks malformed lines and tool errors', async
     assert.equal(summary.tools.exec.calls, 1);
     assert.equal(summary.tools.exec.errors, 1);
     assert.equal(summary.tools.exec.avgDurationMs, 250);
-    assert.equal(summary.tools.exec.p50DurationMs, 250);
-    assert.equal(summary.tools.exec.p95DurationMs, 250);
     assert.equal(summary.stopReasons.toolUse, 1);
     assert.equal(summary.providers.google, 1);
     assert.ok(summary.reliabilityScore >= 0 && summary.reliabilityScore <= 100);
@@ -230,373 +228,6 @@ test('supports explicit time windows and tracks future/old skips', async (t) => 
     assert.equal(summary.endIso, new Date(end).toISOString());
 });
 
-test('captures hourly activity and concentration insight for bursty windows', async (t) => {
-    const dir = mkTmpDir();
-    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-
-    const baseTs = Date.UTC(2026, 1, 28, 14, 0, 0); // 14:00 UTC
-    const sessionId = '88888888-8888-4888-8888-888888888888';
-    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
-    const sessionsFile = path.join(dir, 'sessions.json');
-
-    const lines = [];
-
-    for (let i = 0; i < 6; i++) {
-        const ts = baseTs + (i * 60_000);
-        lines.push(JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'assistant',
-                content: [{ type: 'toolCall', name: 'exec' }],
-                timestamp: ts
-            }
-        }));
-    }
-
-    for (let i = 0; i < 4; i++) {
-        const ts = baseTs + (60 * 60 * 1000) + (i * 60_000); // 15:00 UTC
-        lines.push(JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'assistant',
-                content: [{ type: 'toolCall', name: 'read' }],
-                timestamp: ts
-            }
-        }));
-    }
-
-    writeJsonl(sessionFile, lines);
-
-    writeJson(sessionsFile, {
-        burst: { sessionId, updatedAt: baseTs + (2 * 60 * 60 * 1000) }
-    });
-
-    const analyzer = new LogAnalyzerV2(sessionsFile);
-    await analyzer.analyze(7, {
-        rangeStartMs: baseTs - (60 * 1000),
-        rangeEndMs: baseTs + (3 * 60 * 60 * 1000)
-    });
-
-    const summary = analyzer.toJSON();
-
-    assert.equal(summary.hourlyActivity['14'].toolCalls, 6);
-    assert.equal(summary.hourlyActivity['15'].toolCalls, 4);
-    assert.equal(summary.topActiveHours[0].hourUtc, '14');
-    assert.ok(summary.insights.some((line) => line.includes('concentrated around 14:00')));
-});
-
-test('detects tail latency percentiles and emits remediation guidance', async (t) => {
-    const dir = mkTmpDir();
-    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-
-    const now = Date.now() - 5_000;
-    const sessionId = '12121212-1212-4121-8121-121212121212';
-    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
-    const sessionsFile = path.join(dir, 'sessions.json');
-
-    const durations = [100, 150, 200, 250, 10000];
-    const lines = [];
-
-    for (let i = 0; i < durations.length; i++) {
-        const ts = now + (i * 10);
-        lines.push(JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'assistant',
-                content: [{ type: 'toolCall', id: `call-${i}`, name: 'exec' }],
-                timestamp: ts
-            }
-        }));
-        lines.push(JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'toolResult',
-                toolName: 'exec',
-                callId: `call-${i}`,
-                details: { durationMs: durations[i] },
-                timestamp: ts + 1
-            }
-        }));
-    }
-
-    writeJsonl(sessionFile, lines);
-    writeJson(sessionsFile, {
-        tailLatency: { sessionId, updatedAt: now }
-    });
-
-    const analyzer = new LogAnalyzerV2(sessionsFile);
-    await analyzer.analyze(1);
-    const summary = analyzer.toJSON();
-
-    assert.equal(summary.tools.exec.calls, 5);
-    assert.equal(summary.tools.exec.durationSamples, 5);
-    assert.equal(summary.tools.exec.p50DurationMs, 200);
-    assert.equal(summary.tools.exec.p95DurationMs, 8050);
-    assert.ok(summary.insights.some((line) => line.includes('Tail latency risk: exec p95 is 8050ms')));
-
-    const remediation = buildRemediationPlan(summary);
-    assert.ok(remediation.some((item) => item.title === 'Reduce exec tail latency'));
-});
-
-test('detects incident spikes for hourly error and latency windows', async (t) => {
-    const dir = mkTmpDir();
-    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-
-    const baseTs = Date.UTC(2026, 1, 28, 10, 0, 0);
-    const sessionId = '34343434-3434-4343-8343-343434343434';
-    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
-    const sessionsFile = path.join(dir, 'sessions.json');
-
-    const lines = [];
-    let callCounter = 0;
-
-    for (let hourIndex = 0; hourIndex < 5; hourIndex++) {
-        const hourStart = baseTs + (hourIndex * 60 * 60 * 1000);
-        for (let i = 0; i < 6; i++) {
-            const ts = hourStart + (i * 10_000);
-            const callId = `baseline-${callCounter++}`;
-            lines.push(JSON.stringify({
-                type: 'message',
-                message: {
-                    role: 'assistant',
-                    content: [{ type: 'toolCall', id: callId, name: 'exec' }],
-                    timestamp: ts
-                }
-            }));
-            lines.push(JSON.stringify({
-                type: 'message',
-                message: {
-                    role: 'toolResult',
-                    toolName: 'exec',
-                    callId,
-                    isError: false,
-                    details: { durationMs: 120 },
-                    timestamp: ts + 1
-                }
-            }));
-        }
-    }
-
-    const spikeHourStart = baseTs + (5 * 60 * 60 * 1000);
-    const spikeDurations = [150, 220, 8000, 8800, 9100, 9400];
-    for (let i = 0; i < spikeDurations.length; i++) {
-        const ts = spikeHourStart + (i * 10_000);
-        const callId = `spike-${i}`;
-        lines.push(JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'assistant',
-                content: [{ type: 'toolCall', id: callId, name: 'exec' }],
-                timestamp: ts
-            }
-        }));
-        lines.push(JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'toolResult',
-                toolName: 'exec',
-                callId,
-                isError: i < 4,
-                details: { durationMs: spikeDurations[i] },
-                timestamp: ts + 1
-            }
-        }));
-    }
-
-    writeJsonl(sessionFile, lines);
-    writeJson(sessionsFile, {
-        incidentCase: { sessionId, updatedAt: spikeHourStart + (10 * 60 * 1000) }
-    });
-
-    const analyzer = new LogAnalyzerV2(sessionsFile);
-    await analyzer.analyze(7, {
-        rangeStartMs: baseTs - (60 * 60 * 1000),
-        rangeEndMs: baseTs + (7 * 60 * 60 * 1000)
-    });
-
-    const summary = analyzer.toJSON();
-    assert.ok(summary.incidentCount >= 2);
-
-    const errorIncident = summary.incidents.find((incident) => incident.type === 'error_spike' && incident.tool === 'exec');
-    assert.ok(errorIncident);
-    assert.ok(errorIncident.observed.errorRate > errorIncident.baseline.medianErrorRate);
-
-    const latencyIncident = summary.incidents.find((incident) => incident.type === 'latency_spike' && incident.tool === 'exec');
-    assert.ok(latencyIncident);
-    assert.ok(latencyIncident.observed.p95DurationMs > latencyIncident.baseline.medianP95DurationMs);
-
-    assert.ok(summary.insights.some((line) => line.includes('Incident detected: exec error spike')));
-    assert.ok(summary.insights.some((line) => line.includes('Incident detected: exec latency spike')));
-
-    const remediation = buildRemediationPlan(summary);
-    assert.ok(remediation.some((item) => item.title.includes('Contain exec error spike')));
-    assert.ok(remediation.some((item) => item.title.includes('Contain exec latency spike')));
-});
-
-test('summarizes recurring incident patterns and upgrades remediation priority', async (t) => {
-    const dir = mkTmpDir();
-    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-
-    const baseTs = Date.UTC(2026, 1, 28, 0, 0, 0);
-    const sessionId = '56565656-5656-4565-8565-565656565656';
-    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
-    const sessionsFile = path.join(dir, 'sessions.json');
-
-    const lines = [];
-    let callCounter = 0;
-
-    for (let hourIndex = 0; hourIndex < 6; hourIndex++) {
-        const hourStart = baseTs + (hourIndex * 60 * 60 * 1000);
-        for (let i = 0; i < 6; i++) {
-            const ts = hourStart + (i * 20_000);
-            const callId = `baseline-${callCounter++}`;
-            lines.push(JSON.stringify({
-                type: 'message',
-                message: {
-                    role: 'assistant',
-                    content: [{ type: 'toolCall', id: callId, name: 'exec' }],
-                    timestamp: ts
-                }
-            }));
-            lines.push(JSON.stringify({
-                type: 'message',
-                message: {
-                    role: 'toolResult',
-                    toolName: 'exec',
-                    callId,
-                    isError: false,
-                    details: { durationMs: 120 },
-                    timestamp: ts + 1
-                }
-            }));
-        }
-    }
-
-    for (let spikeHour = 6; spikeHour < 8; spikeHour++) {
-        const hourStart = baseTs + (spikeHour * 60 * 60 * 1000);
-        for (let i = 0; i < 6; i++) {
-            const ts = hourStart + (i * 20_000);
-            const callId = `spike-${spikeHour}-${i}`;
-            lines.push(JSON.stringify({
-                type: 'message',
-                message: {
-                    role: 'assistant',
-                    content: [{ type: 'toolCall', id: callId, name: 'exec' }],
-                    timestamp: ts
-                }
-            }));
-            lines.push(JSON.stringify({
-                type: 'message',
-                message: {
-                    role: 'toolResult',
-                    toolName: 'exec',
-                    callId,
-                    isError: i < 4,
-                    details: { durationMs: 150 },
-                    timestamp: ts + 1
-                }
-            }));
-        }
-    }
-
-    writeJsonl(sessionFile, lines);
-    writeJson(sessionsFile, {
-        recurringIncidentCase: { sessionId, updatedAt: baseTs + (8 * 60 * 60 * 1000) }
-    });
-
-    const analyzer = new LogAnalyzerV2(sessionsFile);
-    await analyzer.analyze(7, {
-        rangeStartMs: baseTs - (60 * 60 * 1000),
-        rangeEndMs: baseTs + (9 * 60 * 60 * 1000)
-    });
-
-    const summary = analyzer.toJSON();
-    assert.ok(summary.incidentCount >= 2);
-    assert.ok(summary.recurringIncidentCount >= 1);
-
-    const recurringPattern = summary.incidentPatterns.find((pattern) => (
-        pattern.type === 'error_spike' && pattern.tool === 'exec'
-    ));
-    assert.ok(recurringPattern);
-    assert.equal(recurringPattern.count, 2);
-    assert.equal(recurringPattern.maxConsecutiveWindows, 2);
-
-    assert.ok(summary.insights.some((line) => line.includes('Recurring incident pattern: exec error spike occurred 2 times')));
-
-    const remediation = buildRemediationPlan(summary);
-    assert.ok(remediation.some((item) => item.title === 'Stabilize recurring exec error spikes'));
-});
-
-test('tracks unresolved tool calls and orphan tool results per session', async (t) => {
-    const dir = mkTmpDir();
-    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-
-    const now = Date.now() - 5_000;
-    const sessionId = '99999999-9999-4999-8999-999999999999';
-    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
-    const sessionsFile = path.join(dir, 'sessions.json');
-
-    writeJsonl(sessionFile, [
-        JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'assistant',
-                content: [
-                    { type: 'toolCall', id: 'call-1', name: 'exec' },
-                    { type: 'toolCall', name: 'read' },
-                    { type: 'toolCall', id: 'missing-call', name: 'browser' }
-                ],
-                timestamp: now
-            }
-        }),
-        JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'toolResult',
-                toolName: 'exec',
-                callId: 'call-1',
-                details: { durationMs: 120 },
-                timestamp: now + 10
-            }
-        }),
-        JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'toolResult',
-                toolName: 'read',
-                details: { durationMs: 80 },
-                timestamp: now + 20
-            }
-        }),
-        JSON.stringify({
-            type: 'message',
-            message: {
-                role: 'toolResult',
-                toolName: 'write',
-                details: { durationMs: 55 },
-                timestamp: now + 30
-            }
-        })
-    ]);
-
-    writeJson(sessionsFile, {
-        unresolved: { sessionId, updatedAt: now }
-    });
-
-    const analyzer = new LogAnalyzerV2(sessionsFile);
-    await analyzer.analyze(1);
-    const summary = analyzer.toJSON();
-
-    assert.equal(summary.toolCalls, 3);
-    assert.equal(summary.toolResults, 3);
-    assert.equal(summary.unresolvedToolCalls, 1);
-    assert.equal(summary.orphanToolResults, 1);
-    assert.equal(summary.tools.browser.unresolvedCalls, 1);
-    assert.equal(summary.tools.write.orphanResults, 1);
-    assert.equal(summary.tools.browser.unresolvedRate, 100);
-    assert.equal(summary.tools.write.orphanResultRate, 100);
-});
-
 test('builds trend comparison and prioritized remediation plan', () => {
     const current = {
         startIso: '2026-02-20T00:00:00.000Z',
@@ -608,32 +239,20 @@ test('builds trend comparison and prioritized remediation plan', () => {
         toolResults: 30,
         malformedLines: 2,
         sessionsMissingFile: 1,
-        unresolvedToolCalls: 4,
-        orphanToolResults: 1,
         tools: {
             exec: {
                 calls: 20,
                 errors: 6,
-                unresolvedCalls: 4,
-                orphanResults: 1,
                 results: 18,
                 avgDurationMs: 4200,
-                p50DurationMs: 1800,
-                p95DurationMs: 9000,
-                errorRate: 30,
-                unresolvedRate: 20,
-                orphanResultRate: 5.56
+                errorRate: 30
             },
             read: {
                 calls: 10,
                 errors: 0,
-                unresolvedCalls: 0,
-                orphanResults: 0,
                 results: 0,
                 avgDurationMs: null,
-                errorRate: 0,
-                unresolvedRate: 0,
-                orphanResultRate: 0
+                errorRate: 0
             }
         }
     };
@@ -647,32 +266,20 @@ test('builds trend comparison and prioritized remediation plan', () => {
         toolResults: 32,
         malformedLines: 0,
         sessionsMissingFile: 0,
-        unresolvedToolCalls: 0,
-        orphanToolResults: 0,
         tools: {
             exec: {
                 calls: 18,
                 errors: 1,
-                unresolvedCalls: 0,
-                orphanResults: 0,
                 results: 18,
                 avgDurationMs: 1200,
-                p50DurationMs: 700,
-                p95DurationMs: 2000,
-                errorRate: 5.56,
-                unresolvedRate: 0,
-                orphanResultRate: 0
+                errorRate: 5.56
             },
             read: {
                 calls: 12,
                 errors: 0,
-                unresolvedCalls: 0,
-                orphanResults: 0,
                 results: 0,
                 avgDurationMs: null,
-                errorRate: 0,
-                unresolvedRate: 0,
-                orphanResultRate: 0
+                errorRate: 0
             }
         }
     };
@@ -683,13 +290,37 @@ test('builds trend comparison and prioritized remediation plan', () => {
     assert.ok(comparison.topRegressions.length > 0);
     assert.equal(comparison.topRegressions[0].tool, 'exec');
     assert.ok(comparison.topRegressions[0].errorRateDelta > 0);
-    assert.ok(comparison.topRegressions[0].p95DurationDeltaMs > 0);
-    assert.ok(comparison.kpis.unresolvedToolCalls.delta > 0);
-    assert.ok(comparison.kpis.orphanToolResults.delta > 0);
 
     const remediation = buildRemediationPlan(current, comparison);
     assert.ok(remediation.length > 0);
     assert.equal(remediation[0].priority, 'P1');
     assert.ok(remediation.some((item) => item.title.includes('exec')));
-    assert.ok(remediation.some((item) => item.title.includes('dangling tool calls')));
+});
+
+test('injects memory-drift actions into remediation plan when drift is elevated', () => {
+    const current = {
+        reliabilityScore: 95,
+        errors: 0,
+        toolCalls: 10,
+        toolResults: 10,
+        malformedLines: 0,
+        sessionsMissingFile: 0,
+        tools: {}
+    };
+
+    const remediation = buildRemediationPlan(current, null, {
+        memoryDrift: {
+            driftLevel: 'watch',
+            driftScore: 0.45,
+            deltas: {
+                skillSignalRate: -0.2
+            },
+            currentWindow: {
+                reflectionCoverage: 0.5
+            }
+        }
+    });
+
+    assert.ok(remediation.some((item) => item.title === 'Improve memory reflection coverage'));
+    assert.ok(remediation.some((item) => item.title === 'Increase memory skill tagging'));
 });

@@ -6,7 +6,6 @@ import path from 'path';
 import {
     FileAuditLogStore,
     SignedAuditLog,
-    __auditInternals,
     signAuditEntry,
     verifySignedAuditEntry
 } from '../index.js';
@@ -51,30 +50,12 @@ test('SignedAuditLog verifies chain and detects tampering', () => {
     assert.equal(tampered.failedAt, 1);
 });
 
-test('stableStringify sorts nested keys for deterministic audit payload serialization', () => {
-    const payload = {
-        b: 2,
-        a: {
-            d: 4,
-            c: 3,
-            drop: undefined
-        },
-        z: [{ y: 2, x: 1 }]
-    };
-
-    const rendered = __auditInternals.stableStringify(payload);
-    assert.equal(rendered, '{"a":{"c":3,"d":4},"b":2,"z":[{"x":1,"y":2}]}');
-});
-
 test('FileAuditLogStore append/load roundtrip and skips malformed lines', () => {
     const dir = mkTmpDir();
     const filePath = path.join(dir, 'audit.log.jsonl');
     const store = new FileAuditLogStore({ filePath });
 
-    store.append({ id: '1', eventType: 'a', payload: { z: 2, a: 1 } });
-    const firstLine = fs.readFileSync(filePath, 'utf8').split('\n')[0];
-    assert.equal(firstLine, '{"eventType":"a","id":"1","payload":{"a":1,"z":2}}');
-
+    store.append({ id: '1', eventType: 'a' });
     fs.appendFileSync(filePath, '{bad json\n');
     store.append({ id: '2', eventType: 'b' });
 

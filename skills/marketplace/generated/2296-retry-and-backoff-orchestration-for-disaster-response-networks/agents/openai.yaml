@@ -1,4 +1,0 @@
-interface:
-  display_name: "Retry And Backoff Orchestration for disaster response net..."
-  short_description: "Retry and backoff orchestration for disaster response networks with guardrails and measurable outcomes."
-  default_prompt: "Use Retry And Backoff Orchestration for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

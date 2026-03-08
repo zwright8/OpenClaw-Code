@@ -1,8 +1,0 @@
-rank,tool,installs_365d,percent_365d,access,description,homepage,license
-1054,gnuradio,8396,0.01,local-installable,SDK for signal processing blocks to implement software radios,https://www.gnuradio.org/,GPL-3.0-or-later
-1098,ipatool,7808,0.01,local-installable,CLI tool for searching and downloading app packages from the iOS App Store,https://github.com/majd/ipatool,MIT
-1338,ipsw,5478,0.01,local-installable,Research tool for iOS & macOS devices,https://blacktop.github.io/ipsw,MIT
-1374,tiger-vnc,5198,0.01,local-installable,"High-performance, platform-neutral implementation of VNC",https://tigervnc.org/,GPL-2.0-or-later
-1382,hidapi,5139,0.01,local-installable,Library for communicating with USB and Bluetooth HID devices,https://github.com/libusb/hidapi,GPL-3.0-only OR BSD-3-Clause OR HIDAPI
-1478,firefoxpwa,4507,0,local-installable,"Tool to install, manage and use Progressive Web Apps in Mozilla Firefox",https://pwasforfirefox.filips.si/,MPL-2.0
-1493,dosbox-x,4406,0,local-installable,DOSBox with accurate emulation and wide testing,https://dosbox-x.com/,GPL-2.0-or-later

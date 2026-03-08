@@ -1,4 +1,0 @@
-interface:
-  display_name: "Disaster Recovery Orchestration for disaster response net..."
-  short_description: "Disaster recovery orchestration for disaster response networks with guardrails and measurable outcomes."
-  default_prompt: "Use Disaster Recovery Orchestration for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

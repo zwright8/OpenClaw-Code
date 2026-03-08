@@ -1,4 +1,0 @@
-interface:
-  display_name: "Comms Skill Gap Diagnoser"
-  short_description: "Competency coverage analysis for Communication and Explainability with guardrails and measurable outcomes."
-  default_prompt: "Use Comms Skill Gap Diagnoser to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

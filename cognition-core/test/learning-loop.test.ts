@@ -1,14 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-    analyzeWindowedPerformance,
-    __learningLoopInternals,
+    buildErrorTaxonomy,
+    buildSkillGrowthPlan,
     buildLearningRecommendations,
     evaluateLearningLoop,
     runCounterfactualReplay,
-    scoreAgentReliability,
-    simulateAdaptivePolicySelection,
-    summarizeOutcomes
+    summarizeOutcomes,
+    updateLearningState
 } from '../src/learning-loop.js';
 
 function sampleOutcomes() {
@@ -29,10 +28,8 @@ test('summarizeOutcomes builds aggregate and per-agent metrics', () => {
     assert.equal(result.summary.timedOut, 1);
     assert.equal(result.summary.failure, 3);
     assert.equal(result.summary.successRate, 0.4);
-    assert.equal(result.summary.latencyPercentiles.p95, 158);
     assert.ok(result.summary.byAgent['agent:a']);
     assert.ok(result.summary.byAgent['agent:b']);
-    assert.ok(result.summary.byAgent['agent:a'].successRateLower95 < result.summary.byAgent['agent:a'].successRate);
 });
 
 test('runCounterfactualReplay ranks variants by projected gain', () => {
@@ -56,25 +53,13 @@ test('runCounterfactualReplay ranks variants by projected gain', () => {
 
     assert.equal(replay.runs.length, 2);
     assert.equal(replay.runs[0].id, 'large');
-    assert.ok(replay.runs[0].improvementConfidence >= replay.runs[1].improvementConfidence);
-    assert.ok(replay.runs[0].projectedSuccessRateP90 >= replay.runs[0].projectedSuccessRateP10);
+    assert.ok(replay.runs[0].deltaSuccessRate >= replay.runs[1].deltaSuccessRate);
 });
 
 test('buildLearningRecommendations emits prioritized actions', () => {
     const summary = summarizeOutcomes(sampleOutcomes());
     const replay = runCounterfactualReplay(summary);
-    const adaptive = simulateAdaptivePolicySelection(replay, {
-        seed: 42,
-        episodes: 30,
-        trialsPerEpisode: 10
-    });
-    const recommendations = buildLearningRecommendations(summary, replay, null, {
-        minTimeoutRateForAction: 0.05,
-        minAgentSuccessRate: 0.8,
-        maxAvgAttempts: 1.1
-    });
-
-    const recommendationsWithAdaptive = buildLearningRecommendations(summary, replay, adaptive, {
+    const recommendations = buildLearningRecommendations(summary, replay, {
         minTimeoutRateForAction: 0.05,
         minAgentSuccessRate: 0.8,
         maxAvgAttempts: 1.1
@@ -82,157 +67,83 @@ test('buildLearningRecommendations emits prioritized actions', () => {
 
     assert.ok(recommendations.length > 0);
     assert.ok(recommendations.some((item) => item.category === 'timeout_resilience'));
-    assert.ok(recommendations.some((item) => (
-        item.category === 'counterfactual_winner' || item.category === 'counterfactual_validation'
-    )));
-    assert.ok(recommendationsWithAdaptive.some((item) => item.category === 'adaptive_policy_selection'));
+    assert.ok(recommendations.some((item) => item.category === 'counterfactual_winner'));
 });
 
-test('buildLearningRecommendations requests validation when replay confidence is low', () => {
-    const summary = summarizeOutcomes(sampleOutcomes());
-    const replay = {
-        baselineSuccessRate: 0.4,
-        best: {
-            name: 'Risky variant',
-            deltaSuccessRate: 0.12,
-            projectedSuccessRate: 0.52,
-            projectedSuccessRateP10: 0.36,
-            projectedSuccessRateP90: 0.58,
-            improvementConfidence: 0.55
-        }
-    };
-    const recommendations = buildLearningRecommendations(summary, replay);
-    assert.ok(recommendations.some((item) => item.category === 'counterfactual_validation'));
-});
-
-test('simulateAdaptivePolicySelection converges toward stronger policy', () => {
-    const summary = summarizeOutcomes(sampleOutcomes());
-    const replay = runCounterfactualReplay(summary, [
-        {
-            id: 'weak',
-            name: 'Weak',
-            timeoutRecoveryRate: 0,
-            retryRecoveryRate: 0,
-            routingRecoveryRate: 0
-        },
-        {
-            id: 'strong',
-            name: 'Strong',
-            timeoutRecoveryRate: 0.8,
-            retryRecoveryRate: 0.4,
-            routingRecoveryRate: 0.4
-        }
-    ]);
-
-    const adaptive = simulateAdaptivePolicySelection(replay, {
-        seed: 9,
-        episodes: 80,
-        trialsPerEpisode: 8
-    });
-
-    assert.equal(adaptive.recommendedArm?.id, 'strong');
-    assert.ok(adaptive.ranking[0].selectionRate > adaptive.ranking[1].selectionRate);
-});
-
-test('buildLearningRecommendations ignores low sample routing noise and flags tail latency', () => {
-    const outcomes = [
+test('buildErrorTaxonomy extracts failure categories and recurring signatures', () => {
+    const summary = summarizeOutcomes([
         ...sampleOutcomes(),
-        { taskId: '6', target: 'agent:c', status: 'failed', attempts: 1, createdAt: 600, closedAt: 1800, request: { priority: 'normal' } }
-    ];
-    const summary = summarizeOutcomes(outcomes);
-    const replay = runCounterfactualReplay(summary);
-    const recommendations = buildLearningRecommendations(summary, replay, null, {
-        minTimeoutRateForAction: 0.05,
-        minAgentSuccessRate: 0.8,
-        maxAvgAttempts: 1.1,
-        minAgentSamplesForAction: 2,
-        minP95LatencyMsForAction: 200
+        { taskId: '6', target: 'agent:a', status: 'timed_out', attempts: 2, createdAt: 600, closedAt: 700, request: { priority: 'high' } }
+    ]);
+    const taxonomy = buildErrorTaxonomy(summary);
+
+    assert.equal(taxonomy.totalFailures, 4);
+    assert.ok(taxonomy.categories.some((item) => item.category === 'timeout'));
+    assert.ok(taxonomy.recurringSignatures >= 1);
+    assert.ok(taxonomy.topSignatures.length > 0);
+});
+
+test('buildSkillGrowthPlan maps failure pressure to focus areas and skill candidates', () => {
+    const summary = summarizeOutcomes([
+        { taskId: '1', target: 'agent:a', status: 'timed_out', attempts: 2, request: { priority: 'critical' } },
+        { taskId: '2', target: 'agent:b', status: 'timed_out', attempts: 2, request: { priority: 'high' } },
+        { taskId: '3', target: 'agent:b', status: 'failed', attempts: 1, request: { priority: 'normal' } },
+        { taskId: '4', target: 'agent:b', status: 'completed', attempts: 1, request: { priority: 'normal' } }
+    ]);
+    const taxonomy = buildErrorTaxonomy(summary);
+    const plan = buildSkillGrowthPlan(summary, taxonomy, {
+        skillCatalog: [
+            { id: 1, name: 'u0015-epistemic-auto-retry-and-backoff-coordinator', archetype: 'general-capability' },
+            { id: 2, name: 'u0016-epistemic-failure-root-cause-miner', archetype: 'general-capability' }
+        ]
     });
 
-    assert.ok(recommendations.some((item) => item.category === 'tail_latency'));
-    assert.ok(!recommendations.some((item) => item.title.includes('agent:c')));
+    assert.ok(plan.focusAreas.length > 0);
+    assert.ok(plan.topSkillCandidates.some((candidate) => candidate.name.includes('auto-retry')));
+    assert.ok(plan.learningPressure > 0);
+});
+
+test('buildSkillGrowthPlan bootstraps telemetry focus when outcomes are empty', () => {
+    const summary = summarizeOutcomes([]);
+    const taxonomy = buildErrorTaxonomy(summary);
+    const plan = buildSkillGrowthPlan(summary, taxonomy, {
+        skillCatalog: [
+            { id: 1, name: 'u0156-tooling-kpi-dashboard-publisher', archetype: 'general-capability' }
+        ]
+    });
+
+    assert.ok(plan.focusAreas.some((area) => area.focus === 'outcome_telemetry_bootstrap'));
+    assert.ok(plan.topSkillCandidates.length > 0);
+    assert.ok(plan.learningPressure > 0);
+});
+
+test('updateLearningState increments run counters and tracks recurring error streaks', () => {
+    const summary = summarizeOutcomes([
+        { taskId: '1', target: 'agent:a', status: 'timed_out', attempts: 2, request: { priority: 'high' } },
+        { taskId: '2', target: 'agent:a', status: 'timed_out', attempts: 2, request: { priority: 'high' } },
+        { taskId: '3', target: 'agent:b', status: 'completed', attempts: 1, request: { priority: 'normal' } }
+    ]);
+    const taxonomy = buildErrorTaxonomy(summary);
+    const skillGrowthPlan = buildSkillGrowthPlan(summary, taxonomy);
+    const state1 = updateLearningState(null, { summary: summary.summary, taxonomy, skillGrowthPlan });
+    const state2 = updateLearningState(state1, { summary: summary.summary, taxonomy, skillGrowthPlan });
+
+    assert.equal(state1.runCount, 1);
+    assert.equal(state2.runCount, 2);
+    const recurring = Object.values(state2.recurringErrors);
+    assert.ok(recurring.length > 0);
+    assert.ok(recurring.some((item) => item.streak >= 2));
 });
 
 test('evaluateLearningLoop bundles summary, replay, and recommendations', () => {
-    const result = evaluateLearningLoop(sampleOutcomes(), {
-        adaptiveRollout: {
-            seed: 123
-        }
-    });
+    const result = evaluateLearningLoop(sampleOutcomes());
 
     assert.ok(result.summary);
     assert.ok(result.replay.best);
-    assert.ok(result.adaptiveRollout.recommendedArm);
-    assert.ok(result.drift);
-    assert.ok(result.reliability);
     assert.ok(Array.isArray(result.recommendations));
     assert.ok(result.recommendations.length > 0);
-});
-
-test('analyzeWindowedPerformance flags significant recent regressions', () => {
-    const outcomes = [];
-    for (let i = 0; i < 30; i++) {
-        outcomes.push({
-            taskId: `base-${i}`,
-            target: 'agent:a',
-            status: i < 24 ? 'completed' : 'failed',
-            attempts: 1,
-            createdAt: i * 10,
-            closedAt: i * 10 + 5
-        });
-    }
-
-    const drift = analyzeWindowedPerformance(outcomes, {
-        recentWindowSize: 10,
-        minWindowSize: 6,
-        driftAlertThreshold: 0.2
-    });
-
-    assert.equal(drift.sufficientData, true);
-    assert.equal(drift.alert, true);
-    assert.ok(drift.deltaSuccessRate < 0);
-});
-
-test('scoreAgentReliability ranks by confidence-bounded success', () => {
-    const outcomes = [
-        ...Array.from({ length: 8 }, (_, i) => ({
-            taskId: `good-${i}`,
-            target: 'agent:good',
-            status: 'completed',
-            attempts: 1,
-            createdAt: i * 20,
-            closedAt: i * 20 + 10
-        })),
-        ...Array.from({ length: 8 }, (_, i) => ({
-            taskId: `bad-${i}`,
-            target: 'agent:bad',
-            status: i < 2 ? 'completed' : 'failed',
-            attempts: 1,
-            createdAt: 200 + i * 20,
-            closedAt: 200 + i * 20 + 10
-        }))
-    ];
-
-    const reliability = scoreAgentReliability(outcomes, {
-        discountFactor: 0.9,
-        minSamplesForAction: 6
-    });
-
-    assert.equal(reliability.agents.length, 2);
-    assert.equal(reliability.agents[0].agentId, 'agent:bad');
-    assert.ok(reliability.watchlist.includes('agent:bad'));
-});
-
-test('learning-loop internals expose stable statistical helpers', () => {
-    const p = __learningLoopInternals.latencyPercentiles([100, 200, 300, 400, 500]);
-    assert.equal(p.p50, 300);
-    assert.equal(p.p95, 480);
-
-    const lower = __learningLoopInternals.wilsonLowerBound(8, 10);
-    assert.ok(lower > 0.49 && lower < 0.8);
-    assert.equal(__learningLoopInternals.computeRate([
-        { status: 'completed' },
-        { status: 'failed' },
-        { status: 'completed' }
-    ]), 2 / 3);
+    assert.ok(result.errorTaxonomy);
+    assert.ok(result.skillGrowthPlan);
+    assert.ok(result.state);
+    assert.equal(result.state.runCount, 1);
 });

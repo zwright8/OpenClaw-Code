@@ -1,4 +1,0 @@
-interface:
-  display_name: "Resource Budget Allocation for cybersecurity operations"
-  short_description: "Resource budget allocation for cybersecurity operations with guardrails and measurable outcomes."
-  default_prompt: "Use Resource Budget Allocation for cybersecurity operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."
