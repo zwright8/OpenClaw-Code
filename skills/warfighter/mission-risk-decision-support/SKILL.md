@@ -181,3 +181,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
 - Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
 - Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Domain Toolchain Override (2026-03-08, Signature and Data Integrity Addendum)
+
+- Add `tool_suite_id=ts-electronic-signature-survivability-v1` + `protocol_stack_id=ps-electronic-signature-survivability-stack-v1` when risk posture depends on adversary sensing pressure.
+- Add `tool_suite_id=ts-multi-cloud-mission-data-integrity-v1` + `protocol_stack_id=ps-multi-cloud-mission-data-integrity-stack-v1` when branch viability depends on cross-cloud data trust.
+- Add `packet_id=DPL-PRIORITY-OF-LIFE-ROUTING-001` when force protection and civil continuity tradeoffs affect commander risk acceptance.
