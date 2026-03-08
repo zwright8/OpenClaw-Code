@@ -2396,3 +2396,63 @@ external_binding:
 - Primary tools: signature management planner, movement randomization engine, OPSEC exposure scanner.
 - Cross-check tools: independent adversary collection-likelihood model and alternate route signature monitor.
 - Typical products: obfuscation playbook, exposure risk scorecard, branch trigger matrix.
+
+### `ts-seabed-grid-sustainment-v1`
+- Use for: seabed sensor grid reconstitution, chokepoint acoustic continuity, and repair-vs-redeploy decisions.
+- Primary tools: seabed sensor orchestrator, undersea acoustic fusion service, cable/power node health telemetry.
+- Cross-check tools: independent passive acoustic monitor and repair vessel status mirror.
+- Typical products: coverage-gap matrix, repair sequencing board, contact-confidence timeline.
+
+### `ts-quantum-key-fallback-v1`
+- Use for: QKD path degradation response, strategic key continuity, and trusted fallback orchestration.
+- Primary tools: QKD link monitor, key integrity ledger, strategic key management broker.
+- Cross-check tools: alternate timing-integrity validator and independent key custody audit board.
+- Typical products: key continuity branch plan, trust-domain impact map, fallback activation matrix.
+
+### `ts-port-hazmat-screening-v1`
+- Use for: autonomous coalition port screening, hazardous cargo adjudication, and legal-evidence continuity.
+- Primary tools: autonomous inspection fleet manager, hazmat signature analytics, port throughput orchestrator.
+- Cross-check tools: independent customs manifest validator and chain-of-custody review board.
+- Typical products: vessel screening priority list, hazmat exception queue, evidence handoff log.
+
+### `ts-counter-loitering-swarm-v1`
+- Use for: loitering munition swarm detection, layered attrition planning, and defended-asset survivability tuning.
+- Primary tools: counter-UAS fusion stack, threat trajectory predictor, interceptor/deception allocator.
+- Cross-check tools: independent visual-confirmation network and expenditure-rate monitor.
+- Typical products: swarm engagement matrix, shot/deception doctrine branch, defended-area risk score.
+
+### `ts-space-power-link-protection-v1`
+- Use for: orbital power-beam link defense, relay continuity, and power-priority adjudication under contestation.
+- Primary tools: orbital relay status services, power-beam safety monitor, expeditionary microgrid priority controller.
+- Cross-check tools: independent orbital conjunction monitor and alternate power demand ledger.
+- Typical products: relay protection posture, power continuity branch chart, hazard adjudication packet.
+
+### `ts-field-biologics-assurance-v1`
+- Use for: field bioreactor governance, vaccine quality continuity, and contamination-control response.
+- Primary tools: bioreactor process telemetry, biologics QA analytics, cold-chain distribution tracker.
+- Cross-check tools: independent lot assay verifier and alternate contamination confidence board.
+- Typical products: lot-release decision matrix, contamination incident branch plan, biologics continuity tracker.
+
+### `ts-robotic-airfield-repair-v1`
+- Use for: robotic crater repair orchestration, runway re-open timing, and repair team synchronization.
+- Primary tools: runway damage mapper, robotic engineering task manager, sortie regeneration planner.
+- Cross-check tools: independent pavement integrity survey and alternate airfield timeline board.
+- Typical products: crater repair sequence, runway availability timeline, sortie recovery branch map.
+
+### `ts-undersea-pipeline-defense-v1`
+- Use for: undersea pipeline cyber-physical defense, leak/sabotage attribution, and flow continuity.
+- Primary tools: subsea pipeline telemetry services, anomaly detection and flow analytics, incident command board.
+- Cross-check tools: independent pressure-chain audit service and alternate maritime patrol cue board.
+- Typical products: incident attribution ladder, flow-priority continuity plan, repair security sequence.
+
+### `ts-autonomy-model-integrity-v1`
+- Use for: autonomy model poisoning detection, drift adjudication, and safe-mode transition governance.
+- Primary tools: model integrity monitor, deployment registry and attestation ledger, mission behavior anomaly fusion.
+- Cross-check tools: independent red-team replay harness and alternate validation dataset service.
+- Typical products: model integrity status board, rollback/containment decision tree, mission assurance notes.
+
+### `ts-underwater-cooling-protection-v1`
+- Use for: data center underwater cooling resilience, intake/outflow threat response, and compute continuity.
+- Primary tools: thermal plant telemetry, underwater intake anomaly detection, compute workload migration planner.
+- Cross-check tools: independent coolant-path verification and alternate facility power/thermal mirror.
+- Typical products: thermal risk posture, workload failover sequence, cooling restoration branch plan.

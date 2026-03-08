@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Counter-Autonomy Model Poisoning and Drift Cell"
+  short_description: "Detect autonomy model poisoning and drift"
