@@ -240,15 +240,17 @@ export class AgentRegistry {
         const maxStalenessMs = Number.isFinite(options.maxStalenessMs)
             ? Number(options.maxStalenessMs)
             : this.maxStalenessMs;
+        const { nowMs: _ignoredNow, maxStalenessMs: _ignoredMax, routingPolicy: optionRoutingPolicy, ...routeOptions } = options;
         const routingPolicy = normalizeRoutingPolicy({
             ...this.routingPolicy,
-            ...(options.routingPolicy || {})
+            ...(optionRoutingPolicy || {})
         });
 
         return routeTaskRequest(taskRequest, this.listAgents(), {
             nowMs,
             maxStalenessMs,
-            routingPolicy
+            routingPolicy,
+            ...routeOptions
         });
     }
 

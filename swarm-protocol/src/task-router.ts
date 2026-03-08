@@ -83,6 +83,53 @@ function extractRequiredCapabilities(taskRequest) {
     return normalizeCapabilities(required);
 }
 
+function normalizeAgentIdList(value) {
+    if (!Array.isArray(value)) return [];
+    return [...new Set(value
+        .filter((item) => typeof item === 'string')
+        .map((item) => item.trim())
+        .filter(Boolean)
+    )];
+}
+
+function normalizeTaskRoutingDirectives(taskRequest, options = {}) {
+    const context = taskRequest?.context && typeof taskRequest.context === 'object'
+        ? taskRequest.context
+        : {};
+
+    const contextRouting = context.routing && typeof context.routing === 'object'
+        ? context.routing
+        : {};
+    const contextPreferences = context.routingPreferences && typeof context.routingPreferences === 'object'
+        ? context.routingPreferences
+        : {};
+
+    const excludedAgents = normalizeAgentIdList([
+        ...(Array.isArray(options.excludedAgents) ? options.excludedAgents : []),
+        ...(Array.isArray(contextRouting.excludeAgents) ? contextRouting.excludeAgents : []),
+        ...(Array.isArray(contextPreferences.excludedAgents) ? contextPreferences.excludedAgents : [])
+    ]);
+
+    const preferredAgents = normalizeAgentIdList([
+        ...(Array.isArray(options.preferredAgents) ? options.preferredAgents : []),
+        ...(Array.isArray(contextRouting.preferAgents) ? contextRouting.preferAgents : []),
+        ...(Array.isArray(contextPreferences.preferredAgents) ? contextPreferences.preferredAgents : [])
+    ]).filter((agentId) => !excludedAgents.includes(agentId));
+
+    const preferredAgentBoost = resolveNonNegativeOption(
+        options.preferredAgentBoost
+            ?? contextRouting.preferredAgentBoost
+            ?? contextPreferences.preferredAgentBoost,
+        18
+    );
+
+    return {
+        excludedAgents: new Set(excludedAgents),
+        preferredAgents: new Set(preferredAgents),
+        preferredAgentBoost
+    };
+}
+
 function normalizeRoutingPolicy(options = {}) {
     const policy = options?.routingPolicy && typeof options.routingPolicy === 'object'
         ? options.routingPolicy
@@ -868,6 +915,17 @@ function scoreAgent(taskRequest, agent, context) {
         };
     }
 
+    const agentId = getAgentId(agent);
+    if (context.routingDirectives.excludedAgents.has(agentId)) {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: 'excluded_by_task',
+            benchmarkConfidence: 0,
+            timeoutPressurePenalty: 0
+        };
+    }
+
     const load = Number.isFinite(Number(agent.load))
         ? Math.max(0, Math.min(1, Number(agent.load)))
         : 0.5;
@@ -978,6 +1036,10 @@ function scoreAgent(taskRequest, agent, context) {
     score -= timeoutPressurePenalty;
 
     score += benchmark.adjustment;
+
+    if (context.routingDirectives.preferredAgents.has(agentId)) {
+        score += context.routingDirectives.preferredAgentBoost;
+    }
 
     if (routingHints.attempts >= routingPolicy.minSamplesForReliability) {
         score += (routingHints.successRate - 0.5) * 40;
@@ -1092,7 +1154,8 @@ function buildScoringContext(options = {}) {
             options.p95TimeoutPressureExponent,
             DEFAULT_P95_TIMEOUT_PRESSURE_EXPONENT
         ),
-        routingPolicy: normalizeRoutingPolicy(options)
+        routingPolicy: normalizeRoutingPolicy(options),
+        routingDirectives: normalizeTaskRoutingDirectives(options.taskRequest, options)
     };
 }
 
@@ -1206,7 +1269,10 @@ export function rankAgentsForTask(taskRequestPayload, agents, options = {}) {
         throw new Error('agents must be an array');
     }
 
-    const scoringContext = buildScoringContext(options);
+    const scoringContext = buildScoringContext({
+        ...options,
+        taskRequest
+    });
 
     return agents
         .map((agent, index) => {

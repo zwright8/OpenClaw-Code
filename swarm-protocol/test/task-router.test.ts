@@ -1224,3 +1224,92 @@ test('critical/high routing keeps reliability-floor breaches unrouted unless exp
     assert.equal(normalRoute.fallbackUsed, true);
     assert.equal(normalRoute.fallbackReason, 'reliability_floor_breach');
 });
+
+test('honors per-task excluded agent directives', () => {
+    const task = buildTaskRequest({
+        id: '37373737-3737-4373-8373-373737373737',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route with explicit exclusion',
+        priority: 'high',
+        context: {
+            requiredCapabilities: ['analysis'],
+            routing: {
+                excludeAgents: ['agent:best-on-paper']
+            }
+        },
+        createdAt: 100_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:best-on-paper',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['analysis'],
+            timestamp: 100_000
+        },
+        {
+            id: 'agent:fallback',
+            status: 'busy',
+            load: 0.2,
+            capabilities: ['analysis'],
+            timestamp: 100_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, { nowMs: 100_000 });
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:fallback');
+    const excluded = routed.ranked.find((item) => item.agentId === 'agent:best-on-paper');
+    assert.equal(excluded.eligible, false);
+    assert.equal(excluded.reason, 'excluded_by_task');
+});
+
+test('honors preferred agent directives when candidates are otherwise close', () => {
+    const task = buildTaskRequest({
+        id: '38383838-3838-4383-8383-383838383838',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route with explicit preference',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['analysis'],
+            routingPreferences: {
+                preferredAgents: ['agent:preferred']
+            }
+        },
+        createdAt: 101_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:preferred',
+            status: 'busy',
+            load: 0.35,
+            capabilities: ['analysis'],
+            timestamp: 101_000
+        },
+        {
+            id: 'agent:default',
+            status: 'idle',
+            load: 0.25,
+            capabilities: ['analysis'],
+            timestamp: 101_000
+        }
+    ];
+
+    const noPreference = routeTaskRequest(
+        { ...task, context: { requiredCapabilities: ['analysis'] } },
+        agents,
+        { nowMs: 101_000 }
+    );
+    assert.equal(noPreference.selectedAgentId, 'agent:default');
+
+    const withPreference = routeTaskRequest(task, agents, {
+        nowMs: 101_000,
+        preferredAgentBoost: 30
+    });
+    assert.equal(withPreference.routed, true);
+    assert.equal(withPreference.selectedAgentId, 'agent:preferred');
+});

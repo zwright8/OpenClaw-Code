@@ -204,3 +204,41 @@ test('routeTask reintroduces agent after cooldown and successful outcomes', () =
     const recovered = registry.routeTask(task, { nowMs: 52_300 });
     assert.equal(recovered.selectedAgentId, 'agent:alpha');
 });
+
+test('routeTask forwards per-request routing directives to router', () => {
+    const registry = new AgentRegistry({
+        now: () => 60_000,
+        maxStalenessMs: 5_000
+    });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:alpha',
+        status: 'idle',
+        load: 0.1,
+        timestamp: 59_900
+    }), { capabilities: ['analysis'] });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:beta',
+        status: 'idle',
+        load: 0.3,
+        timestamp: 59_900
+    }), { capabilities: ['analysis'] });
+
+    const task = buildTaskRequest({
+        id: '55555555-5555-4555-8555-555555555555',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Force route away from alpha',
+        context: { requiredCapabilities: ['analysis'] },
+        createdAt: 60_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 60_000,
+        excludedAgents: ['agent:alpha']
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:beta');
+});
