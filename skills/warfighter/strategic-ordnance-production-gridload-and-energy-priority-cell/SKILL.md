@@ -1,9 +1,9 @@
 ---
-name: mission-risk-decision-support
-description: Quantify and communicate mission risk for commander decisions. Use when comparing options under uncertainty and documenting risk acceptance with controls.
+name: strategic-ordnance-production-gridload-and-energy-priority-cell
+description: Support U.S. warfighter industrial sustainment planning by prioritizing energy allocation to critical ordnance production under grid stress.
 ---
 
-# Mission Risk Decision Support
+# Strategic Ordnance Production Gridload And Energy Priority Cell
 
 ## Mission Scope
 
@@ -13,17 +13,17 @@ description: Quantify and communicate mission risk for commander decisions. Use 
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: COAs, threat likelihood/severity, control measures, commander risk tolerance.
-2. Identify assumptions, decision thresholds, and what intelligence or reporting would invalidate the current plan.
-3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
+1. Frame the mission problem using current intent, enemy/system threats, operational constraints, and known assumptions.
+2. Define measurable objectives, risk thresholds, branch conditions, and indicators that would invalidate the preferred plan.
+3. Build a recommended option and at least two alternatives with explicit tradeoffs in tempo, survivability, sustainment load, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
-5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
+5. Convert the decision into execution-ready products with owners, suspense dates, coordination links, and required reports.
 
 ## Required Output Format
 
 Deliver results in this order:
 
-1. Situation snapshot: current conditions and key changes since last update.
+1. Situation snapshot: current conditions and key changes since the last update.
 2. Recommended option: one clearly stated recommendation and rationale.
 3. Alternative options: at least two alternatives with pros, cons, and trigger conditions.
 4. Decision points: what must be decided now, later, or pre-delegated.
@@ -31,33 +31,32 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: risk decision matrix, recommended controls, risk acceptance statement draft.
+Primary products for this skill: energy-to-output prioritization matrix, production continuity branch plan, strategic risk brief.
 
 ## Domain Tool Stack
 
-Use these tool categories as the default stack for this skill: mission risk analytics boards, campaign dependency graph engines, cross-domain readiness dashboards.
+Use these tool categories as the default stack for this skill: industrial production telemetry, utility grid load data, mission dependency graph services, restoration planning tools.
 
 ## Protocol Profile
 
-Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3 aligned.
+Preferred protocol families for this skill: STIX/TAXII, API/JSON, USMTF.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-strategic-deterrence-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
-- Alternate: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
-- Degraded: command-approved risk ledger with authenticated voice confirmation and UTC acknowledgment logging.
+- Primary: \ with \.\n- Alternate: \ with \.\n- Degraded: mission-essential production allocation order with 6-hour reassessment cycle.
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Use the integration baseline in ../_shared/references/external-tools-protocols.md and select specific systems-of-record aligned to this mission.
+- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
-- Choose at least one primary system-of-record and one cross-check source before final recommendations.
-- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, or `OGC`).
+- Use at least one primary source and one cross-check source before final recommendations.
+- Prefer these protocol families for this skill: STIX/TAXII, API/JSON, USMTF.
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
 ## Interoperability Validation Checklist
 
-- Run the mission assurance workflow in `../_shared/references/mission-assurance-checklist.md` before final release.
+- Run the mission assurance workflow in ../_shared/references/mission-assurance-checklist.md before final release.
 - Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
 - If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
 
