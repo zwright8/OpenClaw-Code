@@ -1287,3 +1287,69 @@ validation_gates:
 - output_schema: option matrix, synchronized branch triggers, command messaging guidance
 - protocol_profile: USMTF + VMF + STIX/TAXII
 - validation_gates: source confidence floor, legal authority confirmation, policy approval record
+
+### packet_id: DPL-EW-REPROG-001
+- domain: electronic protection mission-data rapid reprogramming
+- objective: accelerate trusted EW mission-data updates with interoperability safeguards
+- primary_tools: EW mission-data managers, platform load-control systems, RF validation dashboards
+- alternate_tools: manual load authorization log with checksum verification
+- degraded_mode: mission-essential platform updates only with manual dual-control release
+- input_requirements: threat emitter deltas, platform mission profiles, interoperability constraints, authority scope
+- output_schema: update priority queue, release packet, interoperability risk note
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: checksum pass, acknowledgment chain complete, commander approval gate
+
+### packet_id: DPL-MED-COLDCHAIN-001
+- domain: theater prepositioned medical cold-chain continuity
+- objective: preserve lifesaving medical inventory integrity through contested transport/storage disruption
+- primary_tools: med logistics systems, cold-chain telemetry services, transport condition monitors
+- alternate_tools: manual temperature log and inventory exception board
+- degraded_mode: critical-care inventory only with frequent manual verification cycles
+- input_requirements: inventory lots, temperature excursions, transport status, casualty demand forecast
+- output_schema: cold-chain risk board, relocation priorities, casualty-impact mitigation branches
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: temperature integrity threshold, lot traceability completeness, medical authority concurrence
+
+### packet_id: DPL-FIBER-CUTOVER-001
+- domain: contested expeditionary fiber build and cutover
+- objective: establish resilient high-capacity links and control cutover risk under threat
+- primary_tools: network build planners, geospatial route survey, optical telemetry dashboards
+- alternate_tools: manual route worksheet and SATCOM bridge board
+- degraded_mode: staged cutover with low-bandwidth fallback windows and strict rollback criteria
+- input_requirements: route options, node priorities, threat overlays, synchronization windows
+- output_schema: build/cutover sequence, comms risk matrix, rollback trigger table
+- protocol_profile: OGC + API/JSON + USMTF
+- validation_gates: route viability pass, cryptographic validation, cross-domain comms acknowledgment
+
+### packet_id: DPL-FUEL-LEAK-ATTRIB-001
+- domain: contested bulk fuel pipeline leak attribution
+- objective: detect leak origin confidence and sustain fuel flow through reroute branches
+- primary_tools: pipeline telemetry, fuel quality forensic analytics, sustainment reroute planners
+- alternate_tools: manual leak-trend ledger and quality sample reconciliation board
+- degraded_mode: mission-essential fuel corridor protection with conservative loss assumptions
+- input_requirements: pressure telemetry, quality test samples, route dependencies, threat indicators
+- output_schema: attribution confidence matrix, reroute sequence, repair priority recommendations
+- protocol_profile: API/JSON + USMTF + STIX/TAXII
+- validation_gates: dual-source corroboration, safety threshold pass, sustainment authority release
+
+### packet_id: DPL-MCP-DISP-001
+- domain: hardened mobile command-post displacement
+- objective: preserve command continuity by sequencing displacement and comm-path transitions
+- primary_tools: command mobility planners, comm-path assurance monitors, COP synchronization tools
+- alternate_tools: manual displacement matrix with scheduled check-ins
+- degraded_mode: preplanned displacement triggers with courier-backed command updates
+- input_requirements: threat timeline, mobility windows, comms path status, authority chain
+- output_schema: displacement trigger ladder, continuity branch options, survivability confidence notes
+- protocol_profile: USMTF + CoT + Link 16 J-series
+- validation_gates: authority confirmation, communication acknowledgment chain, survivability threshold pass
+
+### packet_id: DPL-RESERVE-MOB-001
+- domain: strategic reservist mobilization bottleneck and readiness
+- objective: identify mobilization bottlenecks and sequence corrective actions before force-flow deadlines
+- primary_tools: readiness systems, mobilization workflow orchestration, staging and transport dashboards
+- alternate_tools: manual bottleneck tracker and readiness exception workbook
+- degraded_mode: phased mobilization with mission-essential capability prioritization only
+- input_requirements: reservist readiness records, training currency, staging capacity, movement timelines
+- output_schema: bottleneck heat map, readiness recovery queue, force-flow risk summary
+- protocol_profile: USMTF + API/JSON + NATO APP-11/ADatP-3
+- validation_gates: readiness evidence completeness, training currency check, commander risk acceptance
