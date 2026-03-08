@@ -2510,3 +2510,113 @@ validation_gates:
 - output_schema: thermal risk matrix, workload failover plan, cooling restoration sequence
 - protocol_profile: API/JSON + USMTF + OGC
 - validation_gates: thermal safety threshold, mission workload preservation check, infrastructure authority approval
+
+### packet_id: DPL-ADDITIVE-MICROGRID-BLACKSTART-001
+- domain: additive-enabled expeditionary microgrid blackstart and load shedding
+- objective: restore mission-essential power while managing repair-part bottlenecks and tactical load priorities
+- primary_tools: microgrid controller, additive parts readiness board, tactical load-priority engine
+- alternate_tools: manual blackstart checklist and power-priority whiteboard
+- degraded_mode: mission-essential circuits only with fixed blackout windows
+- input_requirements: generator status, damaged parts list, load priority tiers, fuel state, threat posture
+- output_schema: blackstart sequence, load-shed trigger matrix, power restoration confidence ladder
+- protocol_profile: API/JSON + OGC + USMTF
+- validation_gates: electrical safety pass, commander load-priority approval, acknowledgment-chain completeness
+
+### packet_id: DPL-DEEP-OCEAN-SALVAGE-RECOMP-001
+- domain: coalition deep-ocean salvage and recompression operations
+- objective: recover assets safely while minimizing diver pressure injuries and mission delay
+- primary_tools: salvage mission planner, recompression monitor, subsea lift status board
+- alternate_tools: manual dive profile board and salvage timeline worksheet
+- degraded_mode: diver operations restricted to conservative depth-time envelopes
+- input_requirements: depth profile, asset location, diver health status, weather/sea state, lift capacity
+- output_schema: salvage sequence plan, recompression queue, diver risk matrix
+- protocol_profile: API/JSON + USMTF + NIMS/ICS
+- validation_gates: dive medicine clearance, pressure telemetry integrity, coalition authority confirmation
+
+### packet_id: DPL-FIBER-PRECURSOR-DENIAL-001
+- domain: strategic fiber precursor chemical denial and substitution
+- objective: sustain defense production output under precursor shortage or interdiction
+- primary_tools: precursor supply graph, substitution model, defense production readiness dashboard
+- alternate_tools: manual supplier risk board and process engineering review cell
+- degraded_mode: top-priority programs only with constrained production cadence
+- input_requirements: precursor inventories, supplier reliability, substitution candidates, throughput demand
+- output_schema: denial impact map, substitution queue, production continuity recommendation set
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: dual-source supply verification, engineering feasibility pass, policy release gate
+
+### packet_id: DPL-SHIPBOARD-AI-PROGNOSTICS-001
+- domain: contested shipboard AI maintenance prognostics
+- objective: forecast failures and schedule maintenance to protect fleet readiness under cyber and EW pressure
+- primary_tools: shipboard health telemetry fusion, AI prognostics service, afloat maintenance planner
+- alternate_tools: engineering watch log and manual trend analysis worksheet
+- degraded_mode: fault-threshold alerting only with manual maintenance sequencing
+- input_requirements: subsystem telemetry, mission schedule, spare-part status, cyber/EW anomaly indicators
+- output_schema: failure-risk table, maintenance window plan, readiness confidence score
+- protocol_profile: API/JSON + Link 16 J-series + USMTF
+- validation_gates: model-confidence threshold, cross-check pass, commanding officer maintenance approval
+
+### packet_id: DPL-HOSPITAL-CP-EVAC-001
+- domain: theater cyber-physical hospital evacuation and care continuity
+- objective: evacuate safely while preserving continuity of care during infrastructure compromise
+- primary_tools: hospital incident dashboard, patient movement regulator, cyber-physical failure correlator
+- alternate_tools: paper triage board and manual ambulance routing cell
+- degraded_mode: life-critical patients first with delayed digital records reconciliation
+- input_requirements: patient acuity, bed capacity, utility status, network health, route security
+- output_schema: evacuation order, care continuity routing matrix, restoration dependency map
+- protocol_profile: HL7/FHIR + API/JSON + NIMS/ICS
+- validation_gates: medical authority release, route threat threshold, patient identity reconciliation
+
+### packet_id: DPL-EVIDENCE-TRIBUNAL-HANDOFF-001
+- domain: coalition evidence translation and tribunal handoff
+- objective: preserve multilingual evidentiary integrity and legal admissibility across coalition jurisdictions
+- primary_tools: evidence custody ledger, translation QA workflow, legal handoff packet manager
+- alternate_tools: bilingual legal cell and manual custody packet review
+- degraded_mode: high-priority evidence only with delayed full translation QA
+- input_requirements: source media, custody records, jurisdiction mappings, language pairs, legal standards
+- output_schema: translated evidence packet, chain-of-custody verification report, handoff readiness score
+- protocol_profile: API/JSON + XML + NATO APP-11/ADatP-3
+- validation_gates: translation quality gate, custody integrity pass, legal authority concurrence
+
+### packet_id: DPL-RUNWAY-MAG-ANOMALY-001
+- domain: rapid runway magnetic anomaly clearance
+- objective: adjudicate and clear subsurface or unexploded hazards to restore sortie safety
+- primary_tools: magnetic anomaly mapper, EOD tasking board, runway safety release dashboard
+- alternate_tools: manual anomaly map and engineering clearance checklist
+- degraded_mode: daylight-only restricted runway operations with tightened separation
+- input_requirements: anomaly coordinates, runway status, EOD assets, sortie priorities, weather limits
+- output_schema: clearance timeline, hazard confidence table, runway release recommendation
+- protocol_profile: OGC + API/JSON + USMTF
+- validation_gates: dual-sensor anomaly confirmation, EOD clearance sign-off, air boss release
+
+### packet_id: DPL-DESAL-BRINE-COMPLIANCE-001
+- domain: tactical portable desalination brine and chemical discharge compliance
+- objective: sustain freshwater output while keeping discharge within operational and legal bounds
+- primary_tools: desalination process monitor, discharge compliance tracker, littoral risk board
+- alternate_tools: manual sample log and paper environmental compliance checklist
+- degraded_mode: reduced-output desalination with conservative discharge intervals
+- input_requirements: intake quality, production rate, brine concentration, additive chemical use, local constraints
+- output_schema: discharge compliance ledger, freshwater continuity estimate, mitigation action queue
+- protocol_profile: API/JSON + OGC + NIMS/ICS
+- validation_gates: sample-chain integrity, compliance threshold pass, command/legal concurrence
+
+### packet_id: DPL-SPACEPORT-FUEL-SABOTAGE-001
+- domain: joint spaceport launch fuel safety and sabotage response
+- objective: preserve launch fuel integrity while triaging sabotage indicators and continuity risk
+- primary_tools: fuel farm telemetry monitor, sabotage anomaly detector, launch ops risk board
+- alternate_tools: manual tank sampling board and perimeter incident coordination cell
+- degraded_mode: mission-essential launches only with expanded fueling checks
+- input_requirements: tank telemetry, sample results, perimeter events, launch timeline, security posture
+- output_schema: fuel safety status card, sabotage confidence ladder, launch continuity branch plan
+- protocol_profile: API/JSON + USMTF + STIX/TAXII
+- validation_gates: fuel assay confirmation, security incident adjudication, launch authority approval
+
+### packet_id: DPL-ARCTIC-FUEL-BLADDER-001
+- domain: arctic fuel bladder integrity and spill containment
+- objective: prevent or contain cold-weather fuel spills while preserving sustainment throughput
+- primary_tools: bladder pressure telemetry network, spill response planner, arctic logistics dashboard
+- alternate_tools: manual pressure logbook and environmental containment worksheet
+- degraded_mode: conservative fuel transfer schedule with pre-positioned containment teams
+- input_requirements: bladder pressure/temperature logs, terrain and weather, transfer schedule, containment resources
+- output_schema: integrity confidence map, spill containment timeline, sustainment impact estimate
+- protocol_profile: API/JSON + OGC + USMTF
+- validation_gates: leak confirmation gate, containment readiness pass, commander/environmental authority approval
