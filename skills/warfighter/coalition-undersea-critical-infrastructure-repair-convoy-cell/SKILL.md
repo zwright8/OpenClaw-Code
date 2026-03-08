@@ -67,3 +67,9 @@ Primary products for this skill: undersea repair convoy timeline, seabed restora
 - Elevate `tool_suite_id=ts-underice-forensics-v1` with `protocol_stack_id=ps-maritime-undersea-coordination-stack-v1` when sabotage likelihood exceeds baseline anomaly thresholds.
 - Use packet `DPL-UNDERICE-ATTR-001` to bind attribution confidence, restoration sequencing, and evidence custody fields.
 - If independent anomaly confirmation fails, downgrade to provisional recovery guidance and require command/interagency review.
+
+## Domain Toolchain Override (2026-03-08, Seabed Grid Sustainment Expansion)
+
+- Elevate `tool_suite_id=ts-seabed-grid-sustainment-v1` when convoy timing is constrained by degraded seabed sensing coverage.
+- Use packet `DPL-SEABED-GRID-001` to synchronize sensor redeployment, escort posture, and repair-vessel sequencing.
+- If coverage-gap confidence exceeds mission threshold, restrict convoy windows and require commander acceptance before execution.
