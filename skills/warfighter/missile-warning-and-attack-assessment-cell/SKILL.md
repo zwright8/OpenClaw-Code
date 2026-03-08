@@ -156,3 +156,9 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Prioritize `tool_suite_id=ts-counter-loitering-swarm-v1` when defended assets face mixed ballistic plus loitering saturation conditions.
 - Use packet `DPL-CLM-ATTRITION-001` to bind defensive allocation, interceptor burn-rate, and commander release checkpoints.
 - If friend-or-foe confidence cannot be sustained, downgrade to protective maneuver and sheltering advisory-only recommendations.
+
+## Domain Toolchain Override (2026-03-08, Hypersonic S2S Compression Expansion)
+
+- Prioritize `tool_suite_id=ts-hypersonic-s2s-compression-v1` with `protocol_stack_id=ps-hypersonic-s2s-stack-v1` when warning-to-engagement windows drop below baseline timelines.
+- Use packet `DPL-HYPERSONIC-S2S-001` to enforce track custody confidence, cue prioritization, and shooter assignment gating.
+- If dual-source track confirmation fails, issue warning-only recommendations and require command approval before any posture escalation.
