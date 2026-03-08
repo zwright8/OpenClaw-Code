@@ -181,3 +181,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-denied-fuel-bladder-integrity-v1` + `protocol_stack_id=ps-denied-fuel-bladder-integrity-stack-v1` for forward fuel-storage reliability and sabotage detection.
 - Add `packet_id=DPL-CRITICAL-MINERAL-SHIPPING-001` when sustainment courses of action depend on strategic material flow continuity.
 - Add `packet_id=DPL-MICROREACTOR-EMPLOY-001` when expeditionary power constraints materially change sustainment branch feasibility.
+
+## Logistics Continuity Addendum (2026-03-08, Signature and Feedstock Integrity)
+
+- Add `tool_suite_id=ts-logistics-signature-masking-v1` + `protocol_stack_id=ps-logistics-signature-masking-stack-v1` when convoy detectability is a primary sustainment risk.
+- Add `packet_id=DPL-ADDITIVE-FEEDSTOCK-AUTH-001` for sustainment plans that rely on additive repair or microfactory throughput.
+- Add `packet_id=DPL-SEMICONDUCTOR-FAB-CONTINGENCY-001` when strategic electronics shortages can cascade into theater sustainment delays.
