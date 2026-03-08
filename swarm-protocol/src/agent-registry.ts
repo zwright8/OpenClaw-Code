@@ -39,10 +39,16 @@ function normalizeRoutingMetadata(value) {
     if (!value || typeof value !== 'object') return null;
     const inFlight = Number(value.inFlight);
     const maxInFlight = Number(value.maxInFlight);
+    const concurrencyLimit = Number(value.concurrencyLimit);
+    const minRttMs = Number(value.minRttMs);
+    const sampleRttMs = Number(value.sampleRttMs);
     const recoveredAtMs = Number(value.recoveredAtMs);
     return {
         inFlight: Number.isFinite(inFlight) && inFlight >= 0 ? Math.floor(inFlight) : 0,
         maxInFlight: Number.isFinite(maxInFlight) && maxInFlight >= 0 ? Math.floor(maxInFlight) : 0,
+        concurrencyLimit: Number.isFinite(concurrencyLimit) && concurrencyLimit >= 0 ? Math.floor(concurrencyLimit) : 0,
+        minRttMs: Number.isFinite(minRttMs) && minRttMs > 0 ? minRttMs : null,
+        sampleRttMs: Number.isFinite(sampleRttMs) && sampleRttMs > 0 ? sampleRttMs : null,
         recoveredAtMs: Number.isFinite(recoveredAtMs) ? recoveredAtMs : null
     };
 }

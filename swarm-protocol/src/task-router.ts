@@ -12,6 +12,9 @@ const DEFAULT_OUTLIER_PENALTY = 45;
 const DEFAULT_OVERLOAD_PENALTY = 40;
 const DEFAULT_SLOW_START_WINDOW_MS = 60_000;
 const DEFAULT_SLOW_START_MIN_WEIGHT = 0.15;
+const DEFAULT_ADAPTIVE_SATURATION_PENALTY = 35;
+const DEFAULT_ADAPTIVE_LATENCY_PENALTY = 20;
+const DEFAULT_ADAPTIVE_QUEUEING_TARGET_MULTIPLIER = 1.5;
 
 function normalizeCapabilities(value) {
     if (!Array.isArray(value)) return [];
@@ -85,6 +88,21 @@ function normalizeSlowStartOptions(options = {}) {
     };
 }
 
+function normalizeAdaptiveConcurrencyOptions(options = {}) {
+    const configured = options?.adaptiveConcurrency;
+    const enabled = configured?.enabled === true;
+    return {
+        enabled,
+        enforce: configured?.enforce === true,
+        saturationPenalty: Math.max(0, Number(configured?.saturationPenalty ?? DEFAULT_ADAPTIVE_SATURATION_PENALTY)),
+        latencyPenalty: Math.max(0, Number(configured?.latencyPenalty ?? DEFAULT_ADAPTIVE_LATENCY_PENALTY)),
+        queueingTargetMultiplier: Math.max(
+            1,
+            Number(configured?.queueingTargetMultiplier ?? DEFAULT_ADAPTIVE_QUEUEING_TARGET_MULTIPLIER)
+        )
+    };
+}
+
 function extractOutlierStats(agent) {
     const snapshot = agent?.outlier && typeof agent.outlier === 'object' ? agent.outlier : agent;
     const consecutiveFailures = safeInteger(snapshot?.consecutiveFailures, 0);
@@ -108,6 +126,21 @@ function extractConcurrencyStats(agent) {
     return {
         inFlight,
         maxInFlight
+    };
+}
+
+function extractAdaptiveRoutingStats(agent) {
+    const routing = agent?.routing && typeof agent.routing === 'object' ? agent.routing : {};
+    const inFlight = safeInteger(routing.inFlight ?? agent?.inFlight, 0);
+    const concurrencyLimit = safeInteger(routing.concurrencyLimit ?? routing.maxInFlight ?? agent?.maxInFlight, 0);
+    const minRttMs = Number(routing.minRttMs);
+    const sampleRttMs = Number(routing.sampleRttMs);
+
+    return {
+        inFlight,
+        concurrencyLimit,
+        minRttMs: Number.isFinite(minRttMs) && minRttMs > 0 ? minRttMs : null,
+        sampleRttMs: Number.isFinite(sampleRttMs) && sampleRttMs > 0 ? sampleRttMs : null
     };
 }
 
@@ -323,6 +356,38 @@ function scoreAgent(taskRequest, agent, options) {
     const slowStart = evaluateSlowStartState(agent, nowMs, options);
     if (slowStart && slowStart.weight < 1) {
         score = Number((score * slowStart.weight).toFixed(2));
+    }
+
+    const adaptive = normalizeAdaptiveConcurrencyOptions(options);
+    if (adaptive.enabled) {
+        const routing = extractAdaptiveRoutingStats(agent);
+        if (routing.concurrencyLimit > 0) {
+            const utilization = routing.inFlight / routing.concurrencyLimit;
+            if (adaptive.enforce && utilization >= 1) {
+                return {
+                    eligible: false,
+                    degradedEligible: false,
+                    score: -Infinity,
+                    reason: 'adaptive_concurrency_limited',
+                    missingCapabilities: [],
+                    ...(overload ? { overload } : {}),
+                    ...(slowStart ? { slowStart } : {}),
+                    ...(outlier ? { outlier } : {})
+                };
+            }
+
+            const saturationPenalty = Math.max(0, utilization - 0.7) * adaptive.saturationPenalty;
+            score = Number((score - saturationPenalty).toFixed(2));
+        }
+
+        if (
+            routing.minRttMs !== null &&
+            routing.sampleRttMs !== null &&
+            routing.sampleRttMs > routing.minRttMs * adaptive.queueingTargetMultiplier
+        ) {
+            const queueingRatio = (routing.sampleRttMs / routing.minRttMs) - adaptive.queueingTargetMultiplier;
+            score = Number((score - (queueingRatio * adaptive.latencyPenalty)).toFixed(2));
+        }
     }
 
     if (overload?.enforce) {

@@ -403,3 +403,108 @@ test('slow-start weights recently recovered agents to prevent instant full traff
     assert.equal(recovered.reason, 'ok');
     assert.equal(recovered.slowStart.weight < 1, true);
 });
+
+test('adaptive concurrency can exclude agents at their concurrency limit', () => {
+    const task = buildTaskRequest({
+        id: 'abababab-abab-4bab-8bab-abababababab',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route low-latency analysis',
+        priority: 'high',
+        context: {
+            requiredCapabilities: ['analysis']
+        },
+        createdAt: 100_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:saturated',
+            status: 'idle',
+            load: 0.05,
+            capabilities: ['analysis'],
+            timestamp: 100_000,
+            routing: {
+                inFlight: 10,
+                concurrencyLimit: 10
+            }
+        },
+        {
+            id: 'agent:headroom',
+            status: 'busy',
+            load: 0.3,
+            capabilities: ['analysis'],
+            timestamp: 100_000,
+            routing: {
+                inFlight: 2,
+                concurrencyLimit: 10
+            }
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 100_001,
+        adaptiveConcurrency: {
+            enabled: true,
+            enforce: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:headroom');
+    const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated');
+    assert.equal(saturated.reason, 'adaptive_concurrency_limited');
+});
+
+test('adaptive concurrency penalizes queueing latency even before saturation', () => {
+    const task = buildTaskRequest({
+        id: 'cdcdcdcd-cdcd-4dcd-8dcd-cdcdcdcdcdcd',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Select steady endpoint',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['analysis']
+        },
+        createdAt: 110_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:queueing',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['analysis'],
+            timestamp: 110_000,
+            routing: {
+                inFlight: 2,
+                concurrencyLimit: 20,
+                minRttMs: 40,
+                sampleRttMs: 140
+            }
+        },
+        {
+            id: 'agent:steady',
+            status: 'busy',
+            load: 0.2,
+            capabilities: ['analysis'],
+            timestamp: 110_000,
+            routing: {
+                inFlight: 3,
+                concurrencyLimit: 20,
+                minRttMs: 40,
+                sampleRttMs: 50
+            }
+        }
+    ];
+
+    const ranked = rankAgentsForTask(task, agents, {
+        nowMs: 110_001,
+        adaptiveConcurrency: {
+            enabled: true
+        }
+    });
+
+    assert.equal(ranked[0].agentId, 'agent:steady');
+    assert.equal(ranked[1].agentId, 'agent:queueing');
+});

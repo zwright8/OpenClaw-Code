@@ -291,3 +291,79 @@ test('routeTask can enforce overload protection using routing metadata', () => {
     const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated');
     assert.equal(saturated.reason, 'concurrency_saturated');
 });
+
+test('ingestHeartbeat normalizes adaptive concurrency routing telemetry', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:adaptive-latency',
+        status: 'idle',
+        load: 0.1,
+        timestamp: 120_000
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 4.8,
+            concurrencyLimit: 12.2,
+            minRttMs: 30.4,
+            sampleRttMs: 80.1
+        }
+    });
+
+    const agent = registry.getAgent('agent:adaptive-latency');
+    assert.equal(agent.routing.inFlight, 4);
+    assert.equal(agent.routing.concurrencyLimit, 12);
+    assert.equal(agent.routing.minRttMs, 30.4);
+    assert.equal(agent.routing.sampleRttMs, 80.1);
+});
+
+test('routeTask applies adaptive concurrency options end-to-end', () => {
+    const registry = new AgentRegistry({ now: () => 130_000, maxStalenessMs: 10_000 });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:saturated-adaptive',
+        status: 'idle',
+        load: 0.1,
+        timestamp: 129_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 6,
+            concurrencyLimit: 6
+        }
+    });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:healthy-adaptive',
+        status: 'busy',
+        load: 0.35,
+        timestamp: 129_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 2,
+            concurrencyLimit: 6
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: 'bcbcbcbc-bcbc-4cbc-8cbc-bcbcbcbcbcbc',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route latency-sensitive request',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 130_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 130_000,
+        adaptiveConcurrency: {
+            enabled: true,
+            enforce: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:healthy-adaptive');
+    const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated-adaptive');
+    assert.equal(saturated.reason, 'adaptive_concurrency_limited');
+});
