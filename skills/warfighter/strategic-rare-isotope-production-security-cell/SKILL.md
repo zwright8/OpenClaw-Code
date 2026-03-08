@@ -1,9 +1,9 @@
 ---
-name: theater-maritime-drone-mine-countermeasure-corridor-cell
-description: Coordinate maritime drone-enabled mine countermeasure corridors for convoy and amphibious access. Use when sea-lane access is constrained by mined chokepoints or littoral threats.
+name: strategic-rare-isotope-production-security-cell
+description: Support U.S. warfighter planning for strategic rare-isotope production security, sabotage detection, and continuity operations. Use when defense or medical mission sets depend on fragile isotope supply chains.
 ---
 
-# Theater Maritime Drone Mine Countermeasure Corridor Cell
+# Strategic Rare Isotope Production Security Cell
 
 ## Mission Scope
 
@@ -29,31 +29,32 @@ description: Coordinate maritime drone-enabled mine countermeasure corridors for
 
 ## Domain Products
 
-Primary products for this skill: mine-risk corridor overlay, MCM sortie synchronization plan, convoy access window board.
+Primary products for this skill: isotope facility risk register, continuity production ladder, interdiction and sabotage warning board.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-maritime-undersea-v1` with `protocol_stack_id=ps-maritime-interdiction-stack-v1`.
-- Alternate: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
+- Primary:   `tool_suite_id=ts-strategic-supply-shock-v1` with `protocol_stack_id=ps-logistics-ledger-stack-v1`.
+- Alternate:   `tool_suite_id=ts-cyber-defense-v1` with `protocol_stack_id=ps-cyber-threat-stack-v1`.
 - Degraded: use authenticated voice/readback + UTC acknowledgment ledger + manual fallback board.
 
-## External Tools and Protocol Integration
+## External Tool Stack and Protocols
 
-- Use baseline guidance in `../_shared/references/external-tools-protocols.md`.
-- Use protocol packets in `../_shared/references/tool-protocol-playbooks.md` and `../_shared/references/domain-tool-packet-library.md`.
+- Preferred tools: industrial control telemetry, supply-chain risk analytics, insider-threat indicators, strategic inventory governance boards.
+- Preferred protocol families: API/JSON, STIX/TAXII, USMTF.
 - Bind recommendations to concrete suite/stack entries in `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
+- Use protocol packets in `../_shared/references/tool-protocol-playbooks.md` and `../_shared/references/domain-tool-packet-library.md`.
 - Include provenance fields: source system, refresh UTC, confidence, and key gaps.
 
 ## Domain Packet Defaults
 
-- Default packet IDs: `DPL-UNDERSEA-BARRIER-001`, `DPL-MARITIME-MCM-001`.
-- If no packet captures mine-countermeasure sortie constraints, create a provisional packet and assign validation owner.
+- Default packet IDs: DPL-MUNI-QA-001, DPL-CEMA-BDA-001.
+- If no packet fully matches, define a provisional packet using the shared schema and assign a validation owner.
 
 ## Tool Invocation Contract
 
 - For each critical dependency include: objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
-- Require blue-force track reconciliation and civilian maritime conflict checks prior to recommendation release.
-- If sensor integrity or mine classification confidence degrades, publish a constrained corridor option with explicit commander prompts.
+- Map each tool output to a commander decision point and a staff task with suspense.
+- If confidence drops below mission threshold, mark recommendations `provisional` and issue a degraded-mode branch.
 
 ## Authority and Assurance Gates
 
