@@ -33,6 +33,14 @@ Deliver results in this order:
 
 Primary products for this skill: sustainment posture plan, resupply branch options, critical-shortfall forecast.
 
+## Domain Tool Stack
+
+Use these tool categories as the default stack for this skill: movement and distribution control systems, stockpile and consumption analytics, convoy and route risk dashboards.
+
+## Protocol Profile
+
+Preferred protocol families for this skill: USMTF, API/JSON, OGC.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
@@ -143,4 +151,3 @@ Primary products for this skill: sustainment posture plan, resupply branch optio
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
