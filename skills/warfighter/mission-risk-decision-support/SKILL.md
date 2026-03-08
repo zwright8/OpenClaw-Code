@@ -41,12 +41,6 @@ Use these tool categories as the default stack for this skill: mission risk anal
 
 Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3 aligned.
 
-## Domain Toolchain Defaults
-
-- Primary: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
-- Alternate: `tool_suite_id=ts-intel-fusion-v1` with `protocol_stack_id=ps-cyber-threat-stack-v1`.
-- Degraded: use manual risk board updates with timestamped command-post voice confirmation and acknowledgment ledger.
-
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.

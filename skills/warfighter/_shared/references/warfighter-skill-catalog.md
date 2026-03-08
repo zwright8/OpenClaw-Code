@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 632
+- Total warfighter skills in this repo: 654
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -191,3 +191,33 @@ Every skill output should include:
 - Tactical deception rehearsal + deception signature management and decoy employment + AI red-team operational model threat cell
 - Energy grid cyber-physical deterrence + homeland grid blackstart military support + strategic electrical transformer supply restoration
 - Denied PNT time transfer assurance + denied space PNT alternative navigation + tactical satellite anti-jam reconstitution
+
+## New Expansion Wave (2026-03-08, Multi-Domain Precision and Continuity)
+
+- joint-counterspace-satellite-anomaly-attribution-cell
+- contested-orbital-refueling-and-servicing-mission-assurance-cell
+- joint-deepfake-battlefield-media-authentication-cell
+- theater-additive-munitions-microfactory-control-cell
+- joint-autonomous-underwater-sensor-mesh-reconstitution-cell
+- coalition-denied-environment-casualty-data-synchronization-cell
+- joint-electronic-warfare-spectrum-leasing-and-priority-cell
+- strategic-homeland-port-cyber-physical-surge-protection-cell
+- theater-drone-swarm-air-defense-ammunition-economy-cell
+- joint-battle-network-zero-trust-key-material-continuity-cell
+- contested-space-weather-gnss-outage-fusion-cell
+- joint-hostage-crisis-multi-theater-decision-cell
+
+## Updated Pairings (2026-03-08, Multi-Domain Precision and Continuity)
+
+- Counterspace anomaly attribution + space-ground integration and reentry risk + contested orbital launch reconstitution
+- Orbital servicing assurance + denied PNT time transfer assurance + tactical satellite anti-jam reconstitution
+- Deepfake authentication + information integrity and attribution + coalition cyber legal attribution
+- Additive munitions microfactory control + additive quality attestation + theater-level ammunition interoperability
+- Underwater sensor mesh reconstitution + undersea cable protection and restoration + ASW support
+- Denied casualty data sync + casualty evacuation and medical regulation + contested medevac airbridge prioritization
+- EW spectrum leasing and priority + spectrum interference resolution + electromagnetic deception network coordination
+- Homeland port cyber-physical surge protection + strategic port cyber resilience + deployment and distribution optimizer
+- Drone-swarm air-defense ammunition economy + counter-swarm logistics denial protection + integrated air and missile defense
+- Zero-trust key material continuity + tactical zero-trust network hardening + theater mission network failover
+- Space-weather GNSS outage fusion + denied space PNT alternative navigation + precision navigation integrity monitoring
+- Multi-theater hostage crisis decision + POW/MIA and missing persons fusion + personnel recovery integration
