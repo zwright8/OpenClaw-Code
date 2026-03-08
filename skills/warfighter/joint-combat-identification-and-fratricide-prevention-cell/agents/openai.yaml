@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Combat Identification And Fratricide Prevention Cell"
+  short_description: "Help with Joint Combat Identification And Fratricide Prevention Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Combat Identification And Fratricide Prevention Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

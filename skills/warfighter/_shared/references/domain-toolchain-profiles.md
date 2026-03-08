@@ -1,26 +1,114 @@
-# Domain Toolchain Profiles (Warfighter)
+# Domain Toolchain Profiles
 
-Select a profile in every skill output and justify the choice.
+Use this reference to bind each warfighter skill output to a concrete external-tool stack and protocol contract.
 
-## Profile Structure
+## Required Packet Fields
 
-- Primary: preferred system-of-record stack for current mission phase.
-- Alternate: validated backup stack when primary links or systems degrade.
-- Degraded: minimum viable manual or low-bandwidth workflow with expected time and confidence penalty.
+For every critical recommendation, include:
 
-## Mission Domain Profile Starters
+- `toolchain_id`: domain profile identifier from this file
+- `primary_system`: system of record used for decision support
+- `cross_check_system`: independent verification source
+- `protocol_binding`: message/data protocol profile used for exchange
+- `credential_scope`: required authority boundary and token role
+- `fallback_path`: degraded-mode workflow when primary data source fails
 
-- Joint fires and targeting: AFATDS, JADOCS, ATO/airspace tools; protocols `VMF`, `USMTF`, `Link 16 J-series`.
-- Air defense and missile warning: IAMD C2, radar track fusion, warning dissemination; protocols `Link 16`, `USMTF`, `CoT`.
-- Maritime and littoral control: fleet COP, AIS/NMEA, mine/ASW mission tools; protocols `AIS/NMEA`, `Link 16`, `USMTF`.
-- Space and SATCOM resilience: SDA catalogs, SATCOM planners, spectrum managers; protocols `API/JSON`, `USMTF`, `Link 16` where available.
-- Cyber defense and CEMA: SIEM/SOAR, endpoint telemetry, threat intel exchange; protocols `STIX/TAXII`, `API/JSON`.
-- Logistics and mobility: GCSS variants, movement planners, maintenance and fuel systems; protocols `USMTF`, `XML/JSON`, secure APIs.
-- Medical movement and force health: patient regulation, med logistics, CASEVAC tracking; protocols `USMTF`, `HL7/FHIR`, `API/JSON`.
-- Coalition/interagency planning: coalition COP and disclosure workflows; protocols `NATO APP-11/ADatP-3`, `OGC`, releasable message sets.
+## Toolchain Profiles
 
-## Output Requirement
+### `TC-MISSION-C2-001`
 
-Always include a one-line profile declaration:
+- Domain: mission command and joint C2 synchronization
+- Primary systems: GCCS-J, JADOCS, AFATDS, CPOF
+- Cross-check systems: DCGS federation node, coalition COP relay
+- Protocol binding: USMTF + VMF + Link 16 J-series
+- Fallback path: formatted voice report + CSV decision matrix over SIPR chat
 
-`toolchain_profile: primary=<stack>; alternate=<stack>; degraded=<stack>; confidence_impact=<low|medium|high>`
+### `TC-ISR-TGT-002`
+
+- Domain: ISR fusion, targeting, and reattack logic
+- Primary systems: DCGS, Palantir, MPE data fabric
+- Cross-check systems: tactical UAS FMV archive, SIGINT report queue
+- Protocol binding: STANAG 4609 + CoT + STIX/TAXII
+- Fallback path: static target worksheet with manual mensuration checks
+
+### `TC-AIR-MSL-003`
+
+- Domain: air defense and missile warning/engagement support
+- Primary systems: IBCS, C2BMC, Aegis C2 interface
+- Cross-check systems: FAA/ADS-B feed gateway, allied track manager
+- Protocol binding: Link 16 J-series + ICD-301 messages
+- Fallback path: sectorized engagement matrix and voice-control net
+
+### `TC-MAR-SUB-004`
+
+- Domain: maritime surface, undersea, and chokepoint operations
+- Primary systems: GCCS-M, Minotaur, distributed ASW mission manager
+- Cross-check systems: SOSUS-like undersea feed, AIS intelligence broker
+- Protocol binding: OTH-Gold + NMEA + NATO APP-11 tactical reports
+- Fallback path: bearing-only contact boards and manual contact correlation
+
+### `TC-LAND-MOB-005`
+
+- Domain: land maneuver, mobility, and counter-obstacle operations
+- Primary systems: TIGR/ATAK, AFATDS, engineer mission planner
+- Cross-check systems: Blue Force Tracker, route reconnaissance packets
+- Protocol binding: CoT + VMF + MIL-STD-2525 symbology exports
+- Fallback path: paper strip maps with time-distance route cards
+
+### `TC-SUST-MED-006`
+
+- Domain: contested sustainment, medical regulation, and distribution
+- Primary systems: GCSS-Army, GATES, TMDS
+- Cross-check systems: convoy telematics, blood inventory ledger mirror
+- Protocol binding: EDI X12 logistics packets + HL7/FHIR for patient flow
+- Fallback path: prioritized load list and manual medevac board
+
+### `TC-CYBER-EMSO-007`
+
+- Domain: cyber operations, EW, and EMSO deconfliction
+- Primary systems: SIEM/SOAR stack, EW mission management suite
+- Cross-check systems: packet-capture sensor mesh, spectrum monitor grid
+- Protocol binding: STIX/TAXII + syslog CEF + NATO EW reporting format
+- Fallback path: playbook-driven manual containment and frequency blacklists
+
+### `TC-SPACE-PNT-008`
+
+- Domain: space support, PNT resilience, and launch/reconstitution planning
+- Primary systems: SSA catalog broker, SATCOM network manager
+- Cross-check systems: ground telescope feed, commercial ephemeris provider
+- Protocol binding: CCSDS + TLE exchange + USMTF updates
+- Fallback path: terrestrial timing beacon network and inertial nav uplift
+
+### `TC-HUMAN-TERRAIN-009`
+
+- Domain: civil affairs, information environment, and partner force advising
+- Primary systems: MISO analysis platform, civil network mapper, partner CRM
+- Cross-check systems: OSINT media verification queue, HUMINT summary board
+- Protocol binding: CoT + STANAG 2022 human terrain reports
+- Fallback path: commander update with confidence-banded influence map
+
+### `TC-IND-STRAT-010`
+
+- Domain: industrial mobilization, acquisition, and strategic competition
+- Primary systems: ERP/PLM stack, contract lifecycle manager, supplier risk graph
+- Cross-check systems: customs/shipping telemetry, financial sanctions monitor
+- Protocol binding: NIEM + ISO 28000 event packets + STIX indicators
+- Fallback path: manual supplier criticality matrix with weekly validation cycle
+
+## Authority and Credential Protocol
+
+1. Verify mission authority for each tool call before execution.
+2. Match credential scope to need-to-know and releasability tags.
+3. Log `operator_id`, `authz_basis`, and UTC timestamp for every external query.
+4. Block automated action if tool output implies escalation outside commander intent.
+
+## Interoperability Gate
+
+- Do not publish recommendations until `toolchain_id`, `protocol_binding`, and `fallback_path` are present.
+- Mark recommendation `provisional` if cross-check source is stale beyond mission SLA.
+
+## Tool Health Binding Requirement
+
+- Pair each selected `toolchain_id` with a tool health check sequence from `tool-health-and-trust-monitoring.md`.
+- Include `tool_health_id`, `trust_score`, and `last_probe_utc` in the same packet that declares toolchain fields.
+- If `trust_score < 0.70`, mark outputs `provisional`; if `trust_score < 0.50`, require degraded/no-go recommendation.

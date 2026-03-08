@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Water Production And Distribution Security Cell"
+  short_description: "Help with Joint Water Production And Distribution Security Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Water Production And Distribution Security Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

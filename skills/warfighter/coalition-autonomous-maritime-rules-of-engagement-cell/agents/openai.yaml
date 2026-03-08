@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coalition Autonomous Maritime Rules Of Engagement Cell"
+  short_description: "Help with Coalition Autonomous Maritime Rules Of Engagement Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Coalition Autonomous Maritime Rules of Engagement Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

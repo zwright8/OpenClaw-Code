@@ -1,135 +1,176 @@
-# Tool and Protocol Playbooks (Warfighter Skills)
+# Tool Protocol Playbooks (Warfighter)
 
-Use this reference to convert recommendations into operator-ready tool actions and transport selections.
+Use these concise playbooks to turn tool recommendations into machine-ingestible and commander-readable packets.
 
-## Standard Tool Action Packet
+## How to Use This File
 
-For each external system action, provide:
+1. Pick the playbook that matches your mission domain.
+2. Fill the packet fields with mission-specific values and UTC timestamps.
+3. Publish one machine-ingestible message and one commander summary.
+4. Include primary, alternate, and degraded transport selections.
+5. Attach adapter IDs and endpoint classes from `external-tool-endpoints-and-adapters.md`.
 
-- System: authoritative tool name and functional owner
-- Action: query/update/export action in imperative form
-- Input contract: required identifiers, AOI, timeframe, and confidence threshold
-- Output contract: mandatory fields consumed by follow-on cells
-- Transport: delivery format and path (`USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`, `API/JSON`)
-- Failure mode: fallback procedure, expected delay, and confidence degradation
+## Playbook: C2 and Battle Rhythm Updates
 
-## Standard Escalation Packet
+```text
+Tool Invocation Packet
+- Tool/System: GCCS-J/COP + workflow board
+- Objective: Keep command decision cycle synchronized
+- Inputs: unit, AOI, update interval, pending decisions
+- Query or Action Template: pull latest COP deltas + task tracker changes
+- Expected Output Schema: event_id, unit, location, status, suspense, owner, confidence
+- Protocol/Transport: USMTF + CoT/API mirror
+- Primary/Alternate/Degraded: COP bus / secure chat task sync / voice + manual log
+- Fallback Procedure: publish decision tracker via USMTF text report every 30 min
+- Confidence Impact if Degraded: medium
+```
 
-For each cross-domain escalation, provide:
+## Playbook: ISR and GEOINT Fusion
 
-- Trigger: measurable threshold or event condition
-- Receiving cell: owning cell or staff function responsible for response
-- Report format: message format (`USMTF`, `VMF`, `CoT`, `STIX/TAXII`, or approved local format)
-- Delivery path: primary and alternate transport route
-- No-fail fallback: voice/courier/manual relay with expected delay
+```text
+Tool Invocation Packet
+- Tool/System: DCGS/GEOINT exploitation + collection manager
+- Objective: Build validated target/area understanding
+- Inputs: AOI, named areas of interest, time window, priority intelligence requirements
+- Query or Action Template: retrieve latest imagery/SIGINT summaries and retask for gaps
+- Expected Output Schema: source_id, collection_time_utc, georef, finding, confidence, gap
+- Protocol/Transport: OGC services + USMTF collection request
+- Primary/Alternate/Degraded: DCGS pipeline / partner relay / manual analyst pull
+- Fallback Procedure: issue manual RFI and annotate stale collection age
+- Confidence Impact if Degraded: high
+```
 
-## Domain Playbooks
+## Playbook: Airspace/Fires Deconfliction
 
-### Joint C2 and Battle Rhythm
+```text
+Tool Invocation Packet
+- Tool/System: TBMCS/TAIS/AFATDS/JADOCS
+- Objective: Prevent fratricide and timing conflicts during effects delivery
+- Inputs: fire support coordination measures, ATO/ACO cycle, restricted operating zones
+- Query or Action Template: cross-check planned effects against airspace control measures
+- Expected Output Schema: mission_id, airspace_block, conflict_flag, resolution_action, owner
+- Protocol/Transport: Link 16 J-series + VMF + USMTF
+- Primary/Alternate/Degraded: automated deconfliction / manual cell review / voice-control net
+- Fallback Procedure: enforce restrictive FSCMs and revalidate before execution
+- Confidence Impact if Degraded: high
+```
 
-- Primary systems: GCCS-J, CPOF, JADOCS, ATAK/WinTAK
-- Action pattern: pull COP delta, validate key tracks/events, publish synchronized decision board update
-- Protocol baseline: `USMTF` for formal reporting plus `CoT` for tactical event updates
+## Playbook: Sustainment and Mobility
 
-### Intelligence, ISR, Targeting
+```text
+Tool Invocation Packet
+- Tool/System: GCSS + movement control planner
+- Objective: Sustain combat power under contested logistics
+- Inputs: stock levels, movement requests, route threats, fuel demand
+- Query or Action Template: reconcile supply deltas and route risk for next 24/72 hours
+- Expected Output Schema: commodity, quantity_on_hand, burn_rate, convoy_plan, risk_score
+- Protocol/Transport: USMTF + API/JSON + CoT route overlays
+- Primary/Alternate/Degraded: automated logistics bus / nightly batch / manual spreadsheet rollup
+- Fallback Procedure: publish minimum viable sustainment estimate with uncertainty bands
+- Confidence Impact if Degraded: medium-high
+```
 
-- Primary systems: DCGS variants, GEOINT exploitation stacks, ISR collection managers
-- Action pattern: ingest collection status, retask sensors, produce confidence-graded target package
-- Protocol baseline: `USMTF`/`VMF` tasking plus `OGC` layers for geospatial dissemination
+## Playbook: Cyber and Information Defense
 
-### Air, Fires, and Airspace Deconfliction
+```text
+Tool Invocation Packet
+- Tool/System: SIEM/SOAR + threat intel exchange
+- Objective: Detect and contain cyber/information attacks impacting mission systems
+- Inputs: event window, mission systems list, IOC feeds, current defensive posture
+- Query or Action Template: correlate alerts with mission dependencies and trigger containment options
+- Expected Output Schema: incident_id, system, severity, mission_effect, recommended_action, confidence
+- Protocol/Transport: STIX/TAXII + API/JSON + USMTF summary
+- Primary/Alternate/Degraded: automated playbooks / analyst triage / watchfloor manual reporting
+- Fallback Procedure: isolate affected segment and issue commander impact statement
+- Confidence Impact if Degraded: medium
+```
 
-- Primary systems: TBMCS, TAIS, AFATDS, JADOCS
-- Action pattern: reconcile ATO/ACO/fire support control measures, run fratricide checks, publish execution updates
-- Protocol baseline: `Link 16 J-series`, `VMF`, `USMTF`
+## Playbook: Maritime and Undersea Security
 
-### Maritime, Littoral, Subsea
+```text
+Tool Invocation Packet
+- Tool/System: maritime COP + AIS/NMEA + subsea telemetry
+- Objective: Protect sea lanes and critical undersea infrastructure
+- Inputs: chokepoints, shipping patterns, sensor status, threat reports
+- Query or Action Template: detect anomalous tracks/sensor outages and assign response priorities
+- Expected Output Schema: track_id, zone, anomaly_type, time_utc, response_owner, confidence
+- Protocol/Transport: AIS/NMEA + Link 16 + USMTF
+- Primary/Alternate/Degraded: fused maritime COP / regional feed handoff / manual watch bill reporting
+- Fallback Procedure: raise patrol density and publish uncertainty in lane risk estimate
+- Confidence Impact if Degraded: medium-high
+```
 
-- Primary systems: afloat C2 suites, AIS feeds, mine/ASW mission systems
-- Action pattern: fuse track picture, evaluate chokepoint risk, publish maritime control measures
-- Protocol baseline: `AIS/NMEA`, `Link 16 J-series`, `USMTF`
+## Playbook: Medical Evacuation and Patient Movement
 
-### Space, Launch, and Counter-Space Response
+```text
+Tool Invocation Packet
+- Tool/System: patient regulation + med logistics + evacuation coordination
+- Objective: Move casualties to definitive care within timeline thresholds
+- Inputs: casualty category, bed status, transport availability, blood/oxygen state
+- Query or Action Template: match casualty load to treatment/transport capacity
+- Expected Output Schema: patient_category, pickup_site, destination, eta, resource_gap, confidence
+- Protocol/Transport: USMTF medical + HL7/FHIR + API/JSON
+- Primary/Alternate/Degraded: integrated med C2 / regional med cell / manual paper medevac board
+- Fallback Procedure: prioritize by survivability window and annotate unmet demand
+- Confidence Impact if Degraded: high
+```
 
-- Primary systems: SDA catalogs, SATCOM monitors, launch range defense boards, EW interference telemetry
-- Action pattern: detect attack/interference indicators, triage impacted services, issue restoration and protection tasks
-- Protocol baseline: `API/JSON`, `USMTF`, `STIX/TAXII`, `Link 16 J-series` where applicable
+## Playbook: Space and SATCOM Resilience
 
-### Cislunar and Deep-Space Domain Awareness
+```text
+Tool Invocation Packet
+- Tool/System: SDA catalog + SATCOM planner + spectrum monitor
+- Objective: Maintain PNT/comms despite counterspace effects
+- Inputs: satellite/service status, interference reports, user priority list
+- Query or Action Template: assess service degradation and propose reroute/reconstitution sequence
+- Expected Output Schema: service_id, degraded_function, alternate_path, restore_eta, confidence
+- Protocol/Transport: API/JSON + USMTF + Link 16 where applicable
+- Primary/Alternate/Degraded: automated network management / planned alternates / HF/LOS fallback
+- Fallback Procedure: enforce comms priority matrix and issue timing delta by unit
+- Confidence Impact if Degraded: medium-high
+```
 
-- Primary systems: deep-space object catalogs, cislunar conjunction risk engines, mission service dependency maps
-- Action pattern: triage conjunction and interference events, rank service-impact risk, publish restoration and warning packets
-- Protocol baseline: `API/JSON`, `USMTF`, `OGC`, `STIX/TAXII`
+## Playbook: Autonomous Teaming Governance
 
-### Personnel Recovery and Aeromedical Flow
+```text
+Tool Invocation Packet
+- Tool/System: autonomy mission manager + authority policy engine
+- Objective: enforce human command authority boundaries for autonomous teammates
+- Inputs: mission phase, authority profile, ROE constraints, comms latency
+- Query or Action Template: evaluate requested autonomous actions against authority matrix and veto points
+- Expected Output Schema: action_id, authority_state, required_human_gate, confidence, override_path
+- Protocol/Transport: API/JSON + USMTF command summary
+- Primary/Alternate/Degraded: policy engine / manual authority board / autonomous observe-only mode
+- Fallback Procedure: freeze autonomy to assist-only behaviors and notify command cell
+- Confidence Impact if Degraded: medium-high
+```
 
-- Primary systems: PR coordination tools, patient movement systems, bed and lift planners
-- Action pattern: authenticate isolated personnel/casualties, prioritize movement windows, synchronize recovery and treatment flow
-- Protocol baseline: `USMTF`, `VMF`, `HL7/FHIR` where available
+## Playbook: Civil Defense Evacuation and Shelter Operations
 
-### Airbase and Expeditionary Basing Resilience
+```text
+Tool Invocation Packet
+- Tool/System: emergency operations dashboard + evacuation routing + shelter manager
+- Objective: move at-risk populations and prevent shelter overload
+- Inputs: hazard map, population sectors, transport assets, shelter occupancy
+- Query or Action Template: generate phased evacuation route and shelter assignment recommendations
+- Expected Output Schema: sector_id, departure_window, route_id, shelter_id, occupancy_projection, risk
+- Protocol/Transport: NIMS/ICS + EDXL-DE + CAP
+- Primary/Alternate/Degraded: integrated dashboard / liaison board / local triage bulletin
+- Fallback Procedure: prioritize life-safety sectors and issue manual zone bulletins every 2 hours
+- Confidence Impact if Degraded: high
+```
 
-- Primary systems: base defense COP, runway restoration trackers, logistics and engineering readiness tools
-- Action pattern: posture passive defenses, sequence restoration actions, trigger displacement and sustainment branches
-- Protocol baseline: `USMTF`, `CoT`, `API/JSON`
+## Playbook: Cross-Domain Data Diode Synchronization
 
-### Expeditionary Seabasing and Offshore Staging
-
-- Primary systems: maritime C2 suites, afloat logistics boards, weather-ocean forecast feeds
-- Action pattern: evaluate staging posture, rebalance afloat sustainment loads, publish sea-base branch options
-- Protocol baseline: `AIS/NMEA`, `USMTF`, `OGC`, `Link 16 J-series`
-
-### Cyber, EMSO, and Information Operations
-
-- Primary systems: SIEM/SOAR, endpoint telemetry, EW mission tools, audience assessment dashboards
-- Action pattern: correlate events by mission thread, prioritize mitigations/effects, issue synchronized response tasks
-- Protocol baseline: `STIX/TAXII`, `API/JSON`, `USMTF`
-
-### Electromagnetic Signature and PNT Integrity Management
-
-- Primary systems: spectrum monitoring systems, emission-control status tools, PNT integrity monitors, inertial cross-check services
-- Action pattern: detect spoofing/signature anomalies, trigger emission-control branches, publish navigation fallback tasks
-- Protocol baseline: `USMTF`, `Link 16 J-series`, `API/JSON`, `CoT`
-
-### Data Fabric Schema Governance
-
-- Primary systems: schema registries, data contract validators, cross-domain gateway policy engines
-- Action pattern: detect schema drift, prioritize migration path, publish translation risk and cutover plan
-- Protocol baseline: `API/JSON`, `OGC`, `USMTF`, `NATO APP-11/ADatP-3`
-
-### Collaborative Combat Aircraft and Autonomous Swarm Integration
-
-- Primary systems: air C2 mission managers, autonomy control consoles, data-link health monitors
-- Action pattern: assign crewed-uncrewed tasking, monitor command integrity, trigger fallback control profile
-- Protocol baseline: `Link 16 J-series`, `VMF`, `CoT`, `USMTF`, `API/JSON`
-
-### Sustainment, Mobility, and Industrial Base
-
-- Primary systems: GCSS variants, movement planners, maintenance/readiness dashboards
-- Action pattern: detect bottlenecks and at-risk nodes, reflow distribution plan, publish branch options
-- Protocol baseline: `USMTF`, `XML/JSON`, `API`
-
-### Medical and Personnel Support
-
-- Primary systems: patient regulation, blood and med-log inventories, casualty movement trackers
-- Action pattern: reconcile demand/supply and lift constraints, issue regulation priorities
-- Protocol baseline: `USMTF medical reports`, `HL7/FHIR` where available, `API/JSON`
-
-### Coalition and Interagency Coordination
-
-- Primary systems: coalition COP tools, liaison data fabrics, host-nation coordination systems
-- Action pattern: produce releasable common picture, mark caveats, synchronize handoff products
-- Protocol baseline: `NATO APP-11/ADatP-3`, `OGC`, `USMTF`
-
-## Degraded Operations Patterns
-
-- Comms degradation: switch from streaming feeds to scheduled pull-push bundles with checksum validation
-- Data-source outage: preserve stale-data marker, increase cross-check count, and shorten review cycle
-- Tool outage: execute manual worksheet fallback, annotate confidence penalty, and set recovery trigger
-
-## Data Feed Validation Playbook
-
-- Build a three-feed matrix for each critical decision: authoritative primary, independent cross-check, and degraded/manual.
-- Assign freshness thresholds (minutes/hours) by mission tempo and mark automatic stale-data triggers.
-- Define deterministic reconciliation rules for feed conflicts (authority precedence, tie-break logic, manual review trigger).
-- Publish the handling and releasability caveat for each feed before handoff to coalition or interagency partners.
+```text
+Tool Invocation Packet
+- Tool/System: data-diode controller + cross-domain guard + schema validator
+- Objective: transfer mission-critical data between security domains with releasability controls
+- Inputs: source payload, release tags, destination schema, sync window
+- Query or Action Template: validate release policy, transform schema, publish one-way transfer manifest
+- Expected Output Schema: transfer_id, source_hash, destination_hash, releasability_status, validation_state
+- Protocol/Transport: XML/JSON + USMTF metadata wrapper
+- Primary/Alternate/Degraded: automated diode sync / staged batch transfer / text-only critical summary
+- Fallback Procedure: issue minimal critical report and schedule full sync at next approved window
+- Confidence Impact if Degraded: medium
+```

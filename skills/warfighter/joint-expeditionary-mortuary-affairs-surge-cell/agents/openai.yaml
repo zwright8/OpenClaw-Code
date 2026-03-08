@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Expeditionary Mortuary Affairs Surge Cell"
+  short_description: "Help with Joint Expeditionary Mortuary Affairs Surge Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Expeditionary Mortuary Affairs Surge Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

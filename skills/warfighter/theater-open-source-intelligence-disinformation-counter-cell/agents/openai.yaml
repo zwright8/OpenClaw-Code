@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Theater Open Source Intelligence Disinformation Counter Cell"
+  short_description: "Help with Theater Open Source Intelligence Disinformation Counter Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Theater Open Source Intelligence Disinformation Counter Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

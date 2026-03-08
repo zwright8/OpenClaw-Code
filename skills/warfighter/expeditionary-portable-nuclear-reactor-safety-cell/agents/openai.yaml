@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expeditionary Portable Nuclear Reactor Safety Cell"
+  short_description: "Help with Expeditionary Portable Nuclear Reactor Safety Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Expeditionary Portable Nuclear Reactor Safety Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

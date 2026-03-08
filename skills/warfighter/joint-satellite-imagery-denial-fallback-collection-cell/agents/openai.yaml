@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Satellite Imagery Denial Fallback Collection Cell"
+  short_description: "Joint Satellite Imagery Denial Fallback Collection Cell helper"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Satellite Imagery Denial Fallback Collection Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

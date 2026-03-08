@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Railhead And Intermodal Military Throughput Cell"
+  short_description: "Help with Joint Railhead And Intermodal Military Throughput Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Railhead And Intermodal Military Throughput Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Finance And Pay Continuity In Contested Theaters Cell"
+  short_description: "Help with Joint Finance And Pay Continuity In Contested Theaters Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Finance And Pay Continuity In Contested Theaters Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

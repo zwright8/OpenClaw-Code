@@ -7,12 +7,16 @@ Use this checklist before delivering any mission recommendation.
 - Confirm mission objective, commander's intent, and desired effects.
 - Confirm echelon, supported/supporting relationships, and decision authority.
 - Confirm legal and policy boundaries (ROE, LOAC, domestic authorities where applicable).
+- Confirm release authority and releasability constraints for coalition/interagency dissemination.
 
 ## 2) Data Integrity and Timeliness
 
 - Verify source systems and data freshness (UTC timestamp on each critical input).
 - Validate geospatial, unit, and track identifiers for consistency.
 - Mark stale, conflicting, or low-confidence data explicitly.
+- For AI-generated analysis, include model-assist caveat and require human review before execution.
+- Validate that recommendations are traceable to cited source inputs (no source-free claims).
+- Confirm any automated fusion output includes source confidence/latency and conflict-resolution rule used.
 
 ## 3) Interoperability and Protocol Compliance
 
@@ -20,24 +24,32 @@ Use this checklist before delivering any mission recommendation.
 - Verify schema completeness and mandatory field population.
 - Confirm transport path and fallback path if primary comms are degraded.
 - Select and document `Primary`, `Alternate`, and `Degraded` domain toolchain profiles with rationale.
+- Confirm coalition packets include translation assumptions and known field-loss risks.
+- For multi-domain recommendations, bind and validate an `integration_id` using `cross-domain-integration-playbook.md`.
 
 ## 4) Tool Invocation Packet Completeness
 
 - For each critical tool dependency, include objective, required inputs, query/action template, and expected output schema.
 - Confirm protocol/transport is explicit for each dependency and maps to the receiving system.
 - Document manual fallback procedures and expected mission impact if integration is unavailable.
+- Confirm `Primary`, `Alternate`, and `Degraded` profile triggers are objective and time-bound.
+- Confirm each packet has UTC refresh timestamp, owner, and revalidation trigger.
 
 ## 5) Risk and Branch Planning
 
 - Identify top mission risks, likelihood, impact, and mitigations.
 - Define branch/sequel triggers with objective thresholds.
 - Note assumptions that would invalidate the recommendation.
+- For cross-domain options, document second-order effects (civil, alliance, logistics, legal, and information environment) and who owns each mitigation.
+- Include one explicit "stop-condition" trigger that forces immediate human revalidation if conditions shift.
 
 ## 6) Human Review and Handoff
 
 - Provide a concise commander summary and a staff execution task list.
 - Include provenance: source systems, pull time, confidence, and known gaps.
 - End with explicit decision points: decide now, monitor, pre-delegate.
+- Include a no-go criterion list that pauses execution when authority, legality, or data integrity is uncertain.
+- Explicitly state that recommendations are decision support and require authorized human approval for execution.
 
 ## Required Output Footer (append to products)
 
@@ -50,22 +62,6 @@ Use this checklist before delivering any mission recommendation.
 - `Known gaps:`
 - `Fallback if tool unavailable:`
 - `Classification/Handling:`
-- `Escalation hooks (trigger/owner/format/fallback):`
-
-## 7) Machine-Readable Handoff Quality
-
-- Validate the handoff block includes: `mission_id`, `decision_window_utc`, `recommendation_id`, `option_rank`, and `confidence`.
-- Confirm each staff action has `owner`, `action`, and `due_utc` fields populated.
-- Confirm degraded-mode output explicitly states fallback tools, expected delay, and confidence penalty.
-
-## 8) Cross-Domain Escalation Coverage
-
-- Confirm at least two adjacent cells are identified for escalation based on mission risk thresholds.
-- Confirm each escalation trigger is measurable and includes an owner plus required report format.
-- Confirm each escalation path has a no-fail comms fallback and expected delay annotation.
-
-## 9) Minimum Data Feed Assurance
-
-- Confirm each product identifies one primary feed, one independent cross-check feed, and one degraded/manual feed.
-- Confirm freshness thresholds and stale-data actions are explicit for every critical feed.
-- Confirm releasability/handling caveats are attached before any cross-echelon or coalition dissemination.
+- `No-go criteria hit (Y/N):`
+- `Second-order effects tracked (Y/N):`
+- `Stop-condition trigger defined (Y/N):`

@@ -4,13 +4,9 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 243
-- Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
+- Total warfighter skills in this repo: 620
+- Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, cross-domain integration playbook, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
-- All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
-- All skills now include a `U.S. Warfighter Tool Auth and Access Drill` section for credential and transport readiness checks.
-- All skills now include a `U.S. Joint Tool Adapter Contract Drill` section for dependency-level protocol/auth/fallback mapping.
-- All skills now include a `Minimum Data Feed Contract` section for primary/cross-check/degraded data assurance.
 
 ## Domain Coverage Matrix
 
@@ -25,6 +21,7 @@ This catalog maps warfighter skill coverage across major military action domains
 - Medical/personnel support: casualty-evac-and-medical-regulation, austere-surgical-support-coordinator, preventive-medicine-and-force-health-protection, medical-logistics-and-blood-supply-coordination, mortuary-affairs-and-personnel-accountability
 - Civil-military/legal/coalition/competition: civil-affairs-stability-ops, legal-roe-compliance-checker, theater-security-cooperation-planner, host-nation-access-basing-overflight-support, strategic-competition-gray-zone-response-cell, arms-control-treaty-compliance-monitor, tactical-psychological-operations-and-miso-cell, security-assistance-and-partner-capability-integration
 - Enterprise adaptation and fielding: digital-engineering-mission-thread-analyst, mission-assured-software-factory-support, rapid-prototyping-and-fielding-accelerator, acquisition-and-contracting-support, supply-chain-risk-and-industrial-base-monitor
+- Cross-domain resilience and governance: theater-mission-network-failover-cell, operational-energy-resilience-and-microgrid-cell, joint-targeting-standards-and-cde-governance-cell, information-integrity-and-attribution-cell, joint-allied-data-link-interoperability-cell, joint-special-access-and-compartmented-integration-cell
 
 ## New Expansion Wave (2026-03-06)
 
@@ -66,6 +63,92 @@ This catalog maps warfighter skill coverage across major military action domains
 - mega-city-operations-sustainment-coordinator
 - arctic-maritime-air-corridor-deconfliction
 
+## New Expansion Wave (2026-03-06, Full-Spectrum Additions)
+
+- air-defense-artillery-fire-control-cell
+- ballistic-missile-defense-battle-management
+- combat-search-and-rescue-coordinator
+- offensive-counter-air-mission-planner
+- suppression-of-enemy-air-defenses-cell
+- dynamic-targeting-and-time-sensitive-strike-cell
+- strategic-bomber-and-global-strike-support
+- expeditionary-runway-repair-and-airfield-recovery
+- anti-ship-missile-defense-coordinator
+- naval-integrated-fire-control-cell
+- submarine-deterrence-patrol-support
+- expeditionary-salvage-and-harbor-clearance
+- littoral-anti-ship-denial-planner
+- military-deception-and-operational-security-planner
+- biometrics-and-watchlist-exploitation-cell
+- border-security-and-counter-transnational-threat-cell
+- strategic-nuclear-triad-readiness-support
+- defense-support-of-civil-authorities-crisis-cell
+- combat-engineering-obstacle-intelligence-cell
+- underwater-uncrewed-systems-mission-control
+- defensive-space-control-counterspace-cell
+- electromagnetic-battle-management-cell
+- expeditionary-fuel-pipeline-and-bulk-water-terminal-support
+- naval-convoy-escort-and-sea-lane-protection
+
+## New Expansion Wave (2026-03-06, All-Domain Coverage Surge)
+
+- joint-targeting-standards-and-cde-governance-cell
+- joint-allied-data-link-interoperability-cell
+- expeditionary-multi-domain-sensing-fusion-cell
+- contested-maritime-logistics-protection-cell
+- airbase-dispersal-and-rapid-reconstitution-cell
+- joint-ems-target-system-harmonization-cell
+- theater-mission-network-failover-cell
+- cyber-physical-infrastructure-defense-cell
+- operational-energy-resilience-and-microgrid-cell
+- joint-personnel-recovery-integration-cell
+- medical-c4i-and-patient-movement-fusion-cell
+- wmd-counterproliferation-operations-cell
+- strategic-industrial-mobilization-readiness-cell
+- joint-deployment-and-distribution-ops-center-optimizer
+- information-integrity-and-attribution-cell
+- human-performance-and-combat-stress-risk-cell
+- space-ground-integration-and-reentry-risk-cell
+- joint-special-access-and-compartmented-integration-cell
+
+## New Expansion Wave (2026-03-06, Warfighter Capability Deepening)
+
+- homeland-integrated-airspace-security-cell
+- contested-orbital-servicing-and-debris-mitigation-cell
+- maritime-chokepoint-control-and-blockade-analysis-cell
+- electronic-warfare-mission-data-reprogramming-cell
+- long-range-precision-fires-deep-sensing-integration-cell
+- expeditionary-cold-chain-biomedical-sustainment-cell
+- joint-cyber-electromagnetic-target-development-cell
+- deception-signature-management-and-decoy-employment-cell
+- ai-enabled-language-and-cultural-mediation-cell
+- strategic-critical-materials-security-cell
+- autonomous-maritime-uncrewed-corridor-manager
+- denied-pnt-time-synchronization-cell
+- joint-rear-area-security-and-sabotage-response-cell
+- contested-undersea-communications-resilience-cell
+- defense-innovation-transition-and-experimentation-cell
+- mission-finance-and-disconnected-payments-support-cell
+
+## New Expansion Wave (2026-03-06, Domain Coverage Completion Pass)
+
+- zero-trust-coalition-cross-domain-guard-cell
+- joint-fusion-center-watchfloor-automation-cell
+- contested-theater-opening-and-port-denial-recovery-cell
+- drone-logistics-air-corridor-deconfliction-cell
+- precision-fratricide-prevention-and-blue-force-tracking-cell
+- contested-electronic-signature-intelligence-fusion-cell
+- expeditionary-additive-munitions-quality-assurance-cell
+- satellite-ground-station-cyber-hardening-cell
+- joint-civil-infrastructure-restoration-prioritization-cell
+- tactical-biometric-edge-identity-assurance-cell
+- deepfake-detection-and-operational-media-authentication-cell
+- counter-space-electronic-attack-mitigation-cell
+- joint-weather-denied-sensor-substitution-cell
+- autonomous-undersea-mine-countermeasure-swarm-cell
+- strategic-communications-denial-and-restoration-cell
+- theater-level-ammunition-interoperability-and-reallocation-cell
+
 ## Suggested Cross-Skill Pairings
 
 - Campaign planning + ISR tasking + targeting + battle damage assessment
@@ -80,6 +163,11 @@ This catalog maps warfighter skill coverage across major military action domains
 - Hunt-forward cyber + CEMA integration + contested ICAM + zero trust hardening
 - UAS traffic management + tactical airspace control + counter-UAS kill chain + CAS digital integration
 - Arctic corridor deconfliction + weather-space-weather effects + maritime operations + SATCOM defense
+- Joint targeting governance + fires synchronization + legal/ROE compliance + battle damage assessment
+- Data-link interoperability + coalition data fabric + spectrum interference resolution + mission-data-link management
+- Network failover + denied comms planning + tactical cloud edge compute + zero-trust hardening
+- Cyber-physical infrastructure defense + base cluster defense + operational energy resilience + contested logistics
+- Medical C4I and patient movement + casualty evacuation + austere surgical support + med logistics
 
 ## Minimum Product Quality Standard
 
@@ -92,130 +180,536 @@ Every skill output should include:
 - Confidence, gaps, and branch triggers
 - Tool Invocation Packet for critical external dependencies
 
-## New Expansion Wave (2026-03-06, Protocol-Centric Expansion)
+## New Expansion Wave (2026-03-06, Emerging Technology and Irregular Competition Additions)
 
-- air-defense-early-warning-battle-management
-- orbital-maneuver-and-space-control-cell
-- expeditionary-port-repair-and-salvage-cell
-- strategic-rail-and-inland-logistics-security
-- contested-communications-electromagnetic-hardening
-- coalition-intelligence-release-governance-cell
-- theater-information-environment-assessment-cell
-- autonomous-maritime-surface-swarm-operations
-- cross-domain-fires-clearance-and-fratricide-prevention
-- degraded-navigation-and-alt-pnt-integration
-- joint-cbrn-consequence-management-cell
-- humanitarian-corridor-monitoring-and-deconfliction
-- theater-missile-magazine-depth-optimization
-- battlefield-spectrum-anomaly-triage-cell
-- digital-twin-basing-resilience-planner
-- expeditionary-runway-rapid-repair-orchestrator
-- partner-force-vetting-and-trust-assurance
-- contested-medical-telemetry-and-remote-triage
-- seabed-surveillance-and-maritime-chokepoint-monitor
-- strategic-cyber-effects-deconfliction-cell
+- ai-native-mission-command-assistant-cell
+- contested-undersea-infrastructure-restoration-cell
+- tactical-5g-and-private-wireless-expeditionary-cell
+- electromagnetic-pulse-recovery-and-grid-restoration-cell
+- joint-biosurveillance-and-outbreak-containment-cell
+- tactical-edge-ai-model-assurance-cell
+- human-machine-teaming-authority-governance-cell
+- hyperspectral-and-multi-int-fusion-exploitation-cell
+- high-altitude-platform-pseudolite-integration-cell
+- expeditionary-microelectronics-reconstitution-cell
+- joint-illicit-finance-and-sanctions-disruption-cell
+- rapid-theater-uas-manufacturing-and-certification-cell
+- coalition-identity-federation-and-access-bridging-cell
+- unmanned-surface-vessel-littoral-screening-cell
+- deep-underground-facility-characterization-cell
+- joint-cognitive-electronic-protection-cell
+- strategic-rare-earth-recovery-and-recycling-cell
+- resilient-mesh-network-self-healing-cell
+- joint-disaster-logistics-and-humanitarian-airbridge-cell
+- counter-autonomy-red-force-assessment-cell
 
-## New Expansion Wave (2026-03-06, Full-Spectrum Operations Expansion)
+## New Expansion Wave (2026-03-06, Domain Tool Packet Expansion)
 
-- expeditionary-advanced-base-operations-cell
-- strategic-aerial-refueling-allocation-cell
-- joint-personnel-recovery-isolation-coordination-cell
-- contested-biometrics-identity-management-cell
-- integrated-airbase-passive-defense-cell
-- long-range-precision-fires-deconfliction-cell
-- expeditionary-fiber-and-line-of-sight-network-planner
-- contested-aviation-maintenance-recovery-cell
-- aerial-port-contested-throughput-manager
-- under-ice-submarine-operations-support
-- tactical-human-machine-teaming-robotics-cell
-- denied-terrain-casualty-evacuation-uncrewed-integration
-- foreign-disclosure-and-releasability-governance-cell
-- joint-electronic-protection-frequency-management-cell
-- space-launch-range-defense-coordination-cell
-- strategic-aeromedical-evacuation-flow-manager
-- military-working-dog-mission-employment-cell
-- electromagnetic-battle-damage-assessment-cell
-- expeditionary-bulk-fuel-terminal-defense-cell
-- critical-infrastructure-civil-grid-restoration-support
-- theater-reserve-stock-and-prepositioned-set-integrator
-- joint-forcible-entry-airborne-assault-cell
-- high-altitude-platform-isr-integration-cell
-- maritime-convoy-escort-and-sea-lane-defense-cell
-- counter-space-electronic-attack-response-cell
+- contested-logistics-ice-corridor-resilience-cell
+- joint-counter-drone-urban-airspace-shield-cell
+- expeditionary-rail-and-port-repair-prioritization-cell
+- cyber-electromagnetic-battle-damage-assessment-cell
+- tactical-lasercom-and-line-of-sight-network-manager
+- multi-domain-deception-indicator-warning-cell
+- joint-hostage-recovery-intelligence-fusion-cell
+- strategic-arctic-basing-and-prepositioning-cell
+- resilient-munition-production-and-quality-surveillance-cell
+- coalition-fires-clearance-and-digital-roe-cell
+- undersea-chokepoint-sensor-barrier-operations-cell
+- contested-megacity-essential-services-stabilization-cell
+- autonomous-casualty-evacuation-routing-cell
+- electromagnetic-signature-lifecycle-management-cell
+- contested-orbit-pnt-augmentation-cell
+- adversary-kill-web-vulnerability-mapping-cell
 
-## New Expansion Wave (2026-03-07, Integrated Warfighter Support Expansion)
+## New Expansion Wave (2026-03-06, Full-Spectrum Edge Cases and Governance)
 
-- homeland-critical-infrastructure-defense-support-cell
-- contested-strategic-communications-jamming-resilience-cell
-- joint-civilian-mariner-sealift-activation-cell
-- autonomous-combat-engineering-route-expansion-cell
-- multi-domain-deception-and-denial-planning-cell
-- theater-quantum-sensing-countermeasure-cell
-- hypersonic-basing-dispersal-and-recovery-cell
-- coalition-integrated-missile-defense-data-fusion-cell
-- denied-environment-3d-print-spare-parts-certification-cell
-- tactical-icebreaker-and-arctic-port-access-cell
-- joint-biosecurity-outbreak-response-cell
-- contested-space-gps-alternative-pnt-network-cell
-- expeditionary-fuel-pipeline-rapid-restoration-cell
-- forward-observer-ai-fire-support-validation-cell
-- strategic-ai-enabled-wargaming-redcell-support
-- cyber-electromagnetic-order-of-battle-prediction-cell
-- littoral-autonomous-landing-zone-clearance-cell
-- special-operations-multi-node-exfiltration-cell
-- theater-water-desalination-and-distribution-cell
-- joint-drone-traffic-border-security-cell
-- coalition-humanitarian-airbridge-deconfliction-cell
-- strategic-reserve-munitions-surge-manufacturing-cell
-- contested-railhead-protection-and-repair-cell
-- tactical-cloudoutage-mission-continuity-cell
+- joint-electromagnetic-protection-waveform-agility-cell
+- autonomous-wingman-engagement-governance-cell
+- gps-denied-precision-approach-landing-cell
+- coalition-humanitarian-corridor-deconfliction-cell
+- polar-subsea-cable-sabotage-detection-cell
+- strategic-biomanufacturing-countermeasure-cell
+- expeditionary-data-diode-cross-domain-sync-cell
+- civil-defense-mass-evacuation-shelter-cell
+- electromagnetic-environmental-effects-hardening-cell
+- joint-campaign-red-cell-simulation-wargaming-cell
+- maritime-autonomous-vessel-traffic-control-cell
+- allied-munitions-safety-stock-interoperability-cell
+- tactical-quantum-sensing-anomaly-fusion-cell
+- directed-energy-thermal-power-budget-cell
+- contested-legal-attribution-responsibility-cell
+- space-weather-pnt-comms-degradation-cell
+- counter-swarm-logistics-denial-protection-cell
+- expeditionary-waterway-denial-bridge-control-cell
+- joint-digital-twin-battlefield-infrastructure-cell
+- tactical-climate-hazard-mission-adaptation-cell
 
-## New Expansion Wave (2026-03-07, Joint Adapter-Integrated Operations Expansion)
+## New Expansion Wave (2026-03-07, Readiness Certification and Irregular Domain Expansion)
 
-- strategic-space-launch-responsiveness-and-range-survivability-cell
-- joint-electronic-attack-deconfliction-and-emission-control-cell
-- contested-humint-network-validation-and-risk-cell
-- theater-autonomous-undersea-cable-repair-coordinator
-- multi-domain-targeting-ethics-and-authority-check-cell
-- expeditionary-dna-forensics-and-family-assistance-cell
-- homeland-grid-blackstart-civil-military-fusion-cell
-- coalition-cyber-incident-mutual-defense-coordination-cell
-- denied-environment-robotic-cbrn-recon-cell
-- tactical-satcom-anti-jam-waveform-manager
-- joint-precision-fuel-demand-forecast-and-distribution-cell
-- maritime-gray-zone-fishing-fleet-pattern-analysis-cell
-- arctic-domain-sensor-picket-orchestration-cell
-- theater-digital-deception-and-opsec-assurance-cell
-- rapid-airbase-damage-assessment-autonomy-cell
-- contested-additive-manufacturing-powder-assurance-cell
-- special-operations-sensitive-compartment-integration-cell
-- coalition-cross-border-fires-clearance-governance-cell
-- strategic-cyber-reserve-force-mobilization-cell
-- expeditionary-microreactor-siting-and-risk-cell
-- multi-domain-priority-intelligence-requirements-triage-cell
-- civilian-harm-incident-response-and-remediation-cell
-- joint-orbital-reconstitution-launch-manifest-cell
-- contested-medevac-denied-airspace-synchronizer-cell
+- joint-cbrn-urban-decontamination-corridor-cell
+- theater-deepfake-voice-spoofing-command-authentication-cell
+- autonomous-combat-engineer-route-breach-cell
+- joint-rapid-airbase-camouflage-and-decoy-cell
+- coalition-legal-interoperability-and-status-of-forces-cell
+- distributed-maritime-sensor-buoy-orchestration-cell
+- theater-civil-telecom-restoration-and-priority-routing-cell
+- tactical-solar-radiation-hardening-and-space-event-response-cell
+- contested-stratospheric-balloon-surveillance-countermeasure-cell
+- strategic-fuel-refinery-disruption-impact-cell
+- tactical-amphibious-littoral-gap-crossing-cell
+- joint-psyops-counter-disinformation-measurement-cell
+- expeditionary-drinking-water-contamination-response-cell
+- multi-domain-reserve-mobilization-readiness-cell
+- contested-quantum-key-distribution-satcom-cell
+- battlefield-electromagnetic-fratricide-prevention-cell
+- allied-maintenance-data-rights-and-tech-transfer-cell
+- joint-battlefield-forensics-and-evidence-fusion-cell
+- expeditionary-aquaculture-and-field-nutrition-resilience-cell
+- space-launch-window-threat-and-weather-cell
 
-## New Expansion Wave (2026-03-06, Warfighter Comprehensive Expansion)
+## New Expansion Wave (2026-03-07, All-Domain Protocol Execution and Governance)
 
-- contested-polar-satcom-restoration-cell
-- strategic-missile-defense-sensor-fusion-cell
-- joint-deep-strike-target-system-analysis-cell
-- coalition-fires-releasability-and-disclosure-cell
-- denied-logistics-aerial-resupply-optimizer
-- combat-engineering-urban-breach-synchronizer
-- autonomous-ew-swarm-countermeasure-coordinator
-- dynamic-civil-evacuation-route-protection-cell
-- expeditionary-additive-manufacturing-quality-assurance
-- tactical-data-fabric-schema-governance-cell
-- contested-financial-network-disruption-assessor
-- weather-driven-mission-risk-nowcasting-cell
-- multi-domain-sar-and-disaster-relief-coordinator
-- electromagnetic-spectrum-compliance-and-certification-cell
-- theater-bulk-water-portability-and-hygiene-cell
-- high-threat-vip-movement-protection-planner
-- joint-civil-cyber-infrastructure-continuity-cell
-- strategic-homeland-critical-node-defense-cell
-- theater-undersea-sensor-grid-orchestrator
-- ai-enabled-deception-signature-orchestration
+- joint-maritime-chokepoint-mining-and-clearance-governance-cell
+- strategic-cognitive-warfare-detection-and-response-cell
+- expeditionary-bioremediation-and-toxic-site-restoration-cell
+- theater-balloon-and-low-slow-air-threat-suppression-cell
+- coalition-anti-corruption-procurement-integrity-cell
+- tactical-power-grid-islanding-and-black-start-cell
+- joint-cloud-denied-data-fusion-cell
+- contested-river-crossing-and-hydrology-intelligence-cell
+- autonomous-ground-robot-lane-clearance-cell
+- denied-environment-human-intelligence-validation-cell
+- strategic-pharmaceutical-supply-chain-integrity-cell
+- theater-electromagnetic-battlefield-illumination-cell
+- joint-rapid-cold-start-maintenance-cell
+- expeditionary-drone-port-and-launchpad-reconstitution-cell
+- coalition-shipyard-repair-and-battle-damage-surge-cell
+- multi-domain-wargame-telemetry-and-outcome-cell
+- tactical-public-health-vector-control-cell
+- undersea-critical-node-repair-window-optimizer-cell
+- joint-precision-navigation-signal-of-opportunity-fusion-cell
+- operational-contract-security-and-vetting-cell
+
+## New Expansion Wave (2026-03-07, Strategic Deterrence and Toolchain Registry Expansion)
+
+- joint-sead-and-dead-kill-web-optimizer
+- cyber-deception-and-honeynet-operations-cell
+- nuclear-command-control-communications-resilience-cell
+- strategic-deterrence-messaging-and-escalation-control-cell
+- contested-medevac-airbridge-prioritization-cell
+- denied-space-pnt-alternative-navigation-cell
+- homeland-critical-infrastructure-black-sky-recovery-cell
+- joint-theater-ballistic-missile-salvo-allocation-cell
+- autonomous-maritime-minefield-reseeding-and-clearance-cell
+- expeditionary-fiber-and-satcom-hybrid-backhaul-cell
+- coalition-electronic-order-of-battle-sharing-cell
+- gray-zone-maritime-militia-attribution-cell
+- joint-cyber-fires-deconfliction-cell
+- tactical-loitering-munition-swarm-defense-cell
+- strategic-seaport-throughput-and-contested-unload-cell
+- hypersonic-glide-vehicle-track-fusion-cell
+- arctic-subsea-infrastructure-under-ice-repair-cell
+- human-machine-target-validation-cell
+- joint-theater-cloud-denied-ai-inference-cell
+- expeditionary-air-defense-counter-rocket-mortar-cell
+- coalition-jadc2-data-priority-routing-cell
+- underwater-uncrewed-asset-trust-and-control-cell
+- theater-electronic-signature-deception-campaign-cell
+- joint-precision-deep-strike-battle-damage-reattack-cell
+
+## New Expansion Wave (2026-03-07, Tool Trust and Infrastructure Resilience Expansion)
+
+- joint-denied-terrain-signal-relay-balloon-network-cell
+- expeditionary-runway-uxo-clearance-and-reopen-cell
+- theater-maritime-fuel-blending-and-quality-assurance-cell
+- allied-space-object-collision-avoidance-coordination-cell
+- tactical-underground-water-mapping-and-well-restoration-cell
+- joint-ai-red-teaming-and-model-poisoning-defense-cell
+- strategic-electrical-transformer-supply-and-grid-restoration-cell
+- contested-port-crane-reconstitution-and-throughput-cell
+- autonomous-littoral-reconnaissance-buoy-network-cell
+- cyber-contested-spectrum-gps-holdover-oscillator-cell
+- joint-mountain-aviation-high-altitude-rescue-cell
+- coalition-digital-camouflage-and-multi-spectral-signature-cell
+- expeditionary-battery-recycling-and-energy-salvage-cell
+- theater-prisoner-operations-and-detainee-transfer-cell
+- strategic-telemetry-denial-and-range-reconstitution-cell
+- tactical-biomonitoring-and-heat-injury-prevention-cell
+- joint-disconnected-manufacturing-bom-substitution-cell
+- contested-pipeline-leak-detection-and-rapid-isolation-cell
+- allied-satcom-leasing-and-bandwidth-arbitration-cell
+- joint-aerial-refueling-track-threat-adaptation-cell
+- electromagnetic-decoy-network-coordination-cell
+- expeditionary-cold-weather-vehicle-start-and-maintenance-cell
+- cyber-supply-chain-firmware-trust-revalidation-cell
+- theater-coastal-inundation-and-storm-surge-mission-cell
+
+## New Expansion Wave (2026-03-07, Protocol Assurance and Coalition Resilience Expansion)
+
+- homeland-cbrn-consequence-management-fusion-cell
+- strategic-rare-isotope-and-medical-radiological-supply-cell
+- joint-river-crossing-under-fire-synchronization-cell
+- contested-space-ground-optical-communications-recovery-cell
+- expeditionary-cyber-electronic-attack-range-support-cell
+- coalition-air-missile-defense-early-warning-fusion-cell
+- joint-arctic-overland-convoy-survivability-cell
+- tactical-sensor-to-shooter-latency-governance-cell
+- theater-counterfeit-component-detection-and-quarantine-cell
+- strategic-bioforensics-and-attribution-support-cell
+- joint-undersea-battle-damage-assessment-cell
+- contested-urban-subterranean-mapping-and-clearance-cell
+- expeditionary-spectrum-auction-and-priority-conflict-resolution-cell
+- coalition-rapid-language-model-red-teaming-cell
+- joint-civil-authority-maritime-evacuation-coordinator
+- theater-ai-enabled-foreign-material-exploitation-cell
+- tactical-multi-band-antenna-field-repair-cell
+- strategic-orbital-asset-maneuver-fuel-budget-cell
+- joint-electromagnetic-compatibility-test-and-certification-cell
+- expeditionary-cold-weather-humanitarian-logistics-cell
+
+## New Expansion Wave (2026-03-07, Polar Access and Infrastructure Continuity Expansion)
+
+- joint-icebreaker-convoy-and-polar-port-access-cell
+- tactical-em-spectrum-emitter-deconfliction-cell
+- coalition-host-nation-grid-cyber-restoration-cell
+- theater-autonomous-fuel-farm-integrity-monitor-cell
+- strategic-microchip-counterfeit-forensics-cell
+- joint-dynamic-no-fly-humanitarian-window-cell
+- contested-biometric-watchlist-edge-sync-cell
+- operational-cislunar-pnt-relay-contingency-cell
+- expeditionary-waste-to-energy-and-fuel-recovery-cell
+- joint-rapid-dam-and-hydroelectric-infrastructure-stabilization-cell
+- theater-rail-network-sabotage-detection-and-reroute-cell
+- allied-undersea-telemetry-cable-landing-defense-cell
+
+## New Expansion Wave (2026-03-07, Human-Agent Escalation and Mission Assurance Expansion)
+
+- joint-mission-digital-twin-red-blue-synchronization-cell
+- theater-maritime-insurance-and-commercial-shipping-risk-cell
+- contested-spectrum-civil-aviation-deconfliction-cell
+- joint-forward-water-security-and-source-protection-cell
+- multi-domain-humanitarian-safe-zone-assurance-cell
+- coalition-mission-data-labeling-and-releasability-cell
+- joint-electronic-warfare-order-compliance-audit-cell
+- expeditionary-battlefield-waste-and-hazardous-material-cell
+- strategic-chokepoint-economic-impact-and-force-priority-cell
+- operational-ai-agent-authority-and-escalation-cell
+- contested-weather-sensor-integrity-and-spoof-detection-cell
+- joint-emergency-bulk-fuel-substitution-and-compatibility-cell
+- coalition-digital-identity-revocation-and-rekey-cell
+- forward-manufacturing-quality-drift-and-recall-cell
+- theater-legal-attribution-and-public-disclosure-cell
+- joint-cognitive-load-and-watchfloor-fatigue-management-cell
+- expeditionary-port-health-and-biosecurity-screening-cell
+- tactical-civil-infrastructure-priority-services-restoration-cell
+- strategic-space-launch-site-defense-and-reconstitution-cell
+- joint-resilient-navigation-inertial-celestial-fusion-cell
+
+## Catalog Maintenance Update (2026-03-07 Run)
+
+- Total warfighter skills: 462
+- Added references: `human-agent-command-escalation-matrix.md`, `warfighter-tool-authority-gates.md`
+- Added expansion skills this run: 20
+
+## New Expansion Wave (2026-03-07, Authority-Gated Full-Domain Support)
+
+- ai-enabled-contested-spectrum-mission-replanning-cell
+- joint-uncrewed-medevac-swarm-deconfliction-cell
+- expeditionary-water-desalination-energy-coupling-cell
+- homeland-grid-blackstart-military-support-cell
+- coalition-satellite-imagery-release-governance-cell
+- denied-environment-financial-disbursement-assurance-cell
+- joint-prisoner-exchange-and-ceasefire-monitoring-cell
+- strategic-arms-depot-dispersal-risk-cell
+- tactical-counter-tunnel-detection-fusion-cell
+- maritime-insurance-and-commercial-shipping-risk-cell
+- joint-fog-of-war-communications-prioritization-cell
+- autonomous-runway-incursion-prevention-cell
+- electronic-signature-camouflage-deception-auditor
+- theater-food-security-and-civil-stability-cell
+- joint-orbital-reconstitution-launch-window-cell
+- contested-bridgehead-fuel-water-node-cell
+- coalition-cyber-incident-legal-attribution-cell
+- ai-red-team-operational-model-threat-cell
+- rapid-civil-infrastructure-damage-estimation-cell
+- reserve-component-family-readiness-surge-cell
+
+## New Expansion Wave (2026-03-07, Strategic Governance and Continuity Expansion)
+
+- strategic-deterrence-escalation-management-cell
+- nuclear-command-control-continuity-cell
+- joint-detainee-operations-and-law-of-war-compliance-cell
+- expeditionary-mortuary-affairs-and-dna-identification-cell
+- tactical-financial-rails-and-disconnected-payments-integrity-cell
+- quantum-resistant-mission-crypto-migration-cell
+- contested-public-health-surveillance-and-force-protection-cell
+- denied-environment-additive-bioprinting-medical-support-cell
+- submarine-cable-legal-attribution-and-response-cell
+- orbital-spectrum-conflict-resolution-and-traffic-priority-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Strategic Governance Expansion)
+
+- Added skills this run: 10
+- Added shared toolchain profiles: 10
+- Added shared domain tool packets: 10
+
+## New Expansion Wave (2026-03-07, All-Domain Mission Assurance and Infrastructure Continuity)
+
+- joint-homeland-critical-infrastructure-priority-defense-cell
+- tactical-additive-battery-cell-repair-and-recertification-cell
+- expeditionary-veterinary-and-zoonotic-risk-cell
+- joint-priority-intelligence-requirements-governance-cell
+- theater-maritime-quarantine-and-biosecurity-control-cell
+- coalition-contested-financial-sanctions-evasion-tracking-cell
+- joint-evacuation-control-center-throughput-cell
+- strategic-rare-gas-and-cryogenic-supply-assurance-cell
+- denied-environment-map-production-and-geodesy-cell
+- autonomous-cbrn-sensor-cueing-and-isolation-cell
+- joint-force-posture-political-risk-forecast-cell
+- contested-orbital-ground-station-physical-security-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Mission Assurance and Continuity Expansion)
+
+- Added skills this run: 12
+- Updated shared references this run: external-tools-protocols.md and mission-assurance-checklist.md
+- Total warfighter skills after this run: 462
+
+## New Expansion Wave (2026-03-07, Comprehensive Cross-Domain Continuity and Governance Expansion)
+
+- joint-theater-electromagnetic-deception-governance-cell
+- expeditionary-data-center-thermal-and-power-survivability-cell
+- strategic-hyperscale-cloud-outage-mission-continuity-cell
+- joint-civil-maritime-critical-infrastructure-prioritization-cell
+- autonomous-sensor-custody-and-chain-of-evidence-cell
+- tactical-hf-beyond-line-of-sight-fallback-network-cell
+- joint-space-launch-window-conflict-deconfliction-cell
+- theater-cognitive-security-and-misinformation-counter-cell
+- expeditionary-runway-lighting-and-nav-aid-restoration-cell
+- joint-fuel-convoy-signature-suppression-cell
+- maritime-uncrewed-underwater-glider-persistent-isr-cell
+- theater-electronic-warfare-spectrum-priority-board
+- joint-precision-navigation-integrity-monitoring-cell
+- strategic-harbor-mining-risk-and-commercial-diversion-cell
+- coalition-cyber-range-and-readiness-exchange-cell
+- tactical-digital-twin-training-scenario-synthesis-cell
+- forward-operating-base-waste-water-and-sanitation-resilience-cell
+- joint-space-based-sar-persistent-cueing-cell
+- mission-data-labeling-and-governance-cell
+- joint-austere-portable-air-traffic-surveillance-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Comprehensive Cross-Domain Expansion)
+
+- Added skills this run: 20
+- Added shared reference this run: cross-domain-integration-playbook.md
+- Updated all warfighter skill playbooks with cross-domain integration binding: 482/482
+- Total warfighter skills after this run: 482
+
+## New Expansion Wave (2026-03-07, Strategic Continuity and Homeland Resilience Additions)
+
+- homeland-critical-infrastructure-defense-coordination-cell
+- tactical-battery-repair-and-recertification-cell
+- expeditionary-veterinary-and-zoonotic-risk-cell
+- joint-priority-intelligence-requirements-governance-cell
+- coalition-sanctions-evasion-network-disruption-cell
+- joint-mass-evacuation-flow-control-cell
+- strategic-rare-gas-and-cryogenic-supply-resilience-cell
+- joint-electromagnetic-battle-damage-recovery-cell
+- contested-orbital-ground-station-defense-cell
+- expeditionary-bulk-fuel-contamination-response-cell
+- joint-prisoner-transfer-and-status-accountability-cell
+- nc3-emergency-action-message-integrity-assurance-cell
+- strategic-deterrence-signaling-options-cell
+- coalition-sof-information-bridge-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Joint Support and Continuity Expansion)
+
+- Added skills this run: 16
+- Updated shared reference this run: warfighter-external-tool-and-protocol-catalog.md
+- Total warfighter skills after this run: 511
+
+## New Expansion Wave (2026-03-07, Joint Support, Governance, and Recovery Additions)
+
+- joint-cyber-defense-hunt-and-incident-containment-cell
+- joint-cbrn-consequence-management-and-restoration-cell
+- joint-combat-identification-and-fratricide-prevention-cell
+- theater-airfield-damage-assessment-and-rapid-repair-cell
+- joint-maritime-boarding-and-vessel-search-coordination-cell
+- joint-hostage-recovery-mission-integration-cell
+- joint-military-police-and-detainee-evidence-chain-cell
+- joint-finance-and-pay-continuity-in-contested-theaters-cell
+- joint-religious-affairs-and-moral-injury-support-cell
+- joint-railhead-and-intermodal-military-throughput-cell
+- air-missile-defense-early-warning-network-resilience-cell
+- joint-spectrum-governance-and-emissions-control-cell
+- joint-port-opening-and-jlots-synchronization-cell
+- joint-water-production-and-distribution-security-cell
+- joint-pow-mia-and-missing-persons-fusion-cell
+- joint-electronic-attack-deconfliction-effects-cell
+
+## New Expansion Wave (2026-03-07, Cross-Domain Irregular, Infrastructure, and Information Operations Expansion)
+
+- joint-integrated-prisoner-exchange-and-truce-monitoring-cell
+- theater-open-source-intelligence-disinformation-counter-cell
+- joint-radiological-dirty-bomb-urban-response-cell
+- expeditionary-atmospheric-effects-monitor-cell
+- joint-expeditionary-mortuary-affairs-surge-cell
+- coalition-undersea-cable-repair-diplomacy-and-clearance-cell
+- strategic-food-water-insecurity-instability-forecast-cell
+- joint-critical-mineral-theater-supply-security-cell
+- maritime-chokepoint-inspection-and-quarantine-control-cell
+- contested-theater-additive-biomedical-device-fabrication-cell
+- joint-high-altitude-electromagnetic-pulse-consequence-cell
+- coalition-host-nation-civil-order-restoration-cell
+- joint-information-campaign-attribution-cell
+- expeditionary-tactical-rail-bridge-repair-cell
+- integrated-icebreaker-task-force-routing-cell
+- joint-post-strike-critical-infrastructure-triage-cell
+- theater-digital-twin-climate-risk-adaptation-cell
+- joint-force-veterinary-and-working-dog-support-cell
+- autonomous-multi-domain-decoy-synchronization-cell
+- joint-counter-wmd-site-neutralization-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Cross-Domain Irregular and Infrastructure Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Total warfighter skills after this run: 530
+
+## New Expansion Wave (2026-03-07, Deep Maritime, Infrastructure Integrity, and Civil Synchronization Expansion)
+
+- joint-submarine-rescue-and-deep-submergence-coordination-cell
+- joint-munitions-port-safety-and-explosive-arc-zoning-cell
+- contested-theater-courier-network-and-physical-message-assurance-cell
+- joint-aviation-fuel-quality-and-contamination-forensics-cell
+- expeditionary-ammunition-demilitarization-and-safe-disposal-cell
+- joint-coastal-tsunami-early-warning-and-force-protection-cell
+- theater-telemetry-denied-missile-launch-characterization-cell
+- joint-undersea-volcanic-seismic-impact-operations-cell
+- coalition-contested-customs-border-clearance-cell
+- expeditionary-field-laundry-and-textile-decontamination-cell
+- joint-ocean-forecast-anti-submarine-acoustic-advantage-cell
+- coalition-humanitarian-airdrop-corridor-governance-cell
+- expeditionary-bridge-inspection-digital-nondestructive-evaluation-cell
+- joint-energy-infrastructure-physical-cyber-convergence-cell
+- theater-satellite-navwar-civil-timing-protection-cell
+- joint-psychological-health-suicide-postvention-command-support-cell
+- joint-space-launch-debris-reentry-civil-warning-cell
+- joint-siege-urban-utility-restoration-sequencing-cell
+- expeditionary-additive-spare-part-intellectual-property-compliance-cell
+- joint-maritime-salvage-diver-life-support-and-decompression-cell
+
+## Catalog Maintenance Update (2026-03-07 Run, Deep Maritime and Infrastructure Integrity Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Total warfighter skills after this run: 550
+
+## New Expansion Wave (2026-03-08, Coalition Interdiction, Navigation Integrity, and Continuity Expansion)
+
+- contested-electronic-navigation-chart-denial-recovery-cell
+- expeditionary-aircraft-battle-damage-forensic-triage-cell
+- joint-space-object-maneuver-intent-assessment-cell
+- coalition-critical-mineral-smuggling-interdiction-cell
+- contested-geospatial-datum-and-coordinate-integrity-cell
+- battlefield-drone-forensics-and-attribution-cell
+- joint-rail-sabotage-detection-and-continuity-cell
+- expeditionary-food-supply-safety-and-contamination-cell
+- tactical-smoke-obscurant-and-visibility-management-cell
+- joint-legal-sensitive-target-nomination-review-cell
+- coalition-refugee-screening-and-biometrics-deconfliction-cell
+- strategic-harbor-siltation-and-dredging-contingency-cell
+- contested-polar-comms-ionospheric-degradation-cell
+- joint-civil-dam-failure-and-floodplain-operations-cell
+- expeditionary-battlefield-noise-and-hearing-conservation-cell
+- tactical-farp-under-uas-threat-dispersion-cell
+- joint-solar-grid-geomagnetic-storm-hardening-cell
+- joint-cold-chain-ration-and-medical-cargo-assurance-cell
+- autonomous-perimeter-intrusion-false-alarm-suppression-cell
+- coalition-aviation-language-phraseology-assurance-cell
+
+## Catalog Maintenance Update (2026-03-08 Run, Coalition Interdiction and Continuity Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Added missing skill metadata files this run: 40 `agents/openai.yaml`
+- Total warfighter skills after this run: 570
+
+## New Expansion Wave (2026-03-08, Strategic Continuity, Infrastructure, and Governance Expansion)
+
+- joint-nuclear-weapon-accident-consequence-management-cell
+- tactical-satellite-ground-terminal-anti-jam-reconstitution-cell
+- coalition-red-sea-commercial-shipping-protection-cell
+- joint-long-range-fires-ammunition-lot-reliability-cell
+- expeditionary-biomass-to-fuel-conversion-cell
+- joint-arctic-over-snow-logistics-corridor-cell
+- contested-megacity-underground-utility-mapping-cell
+- joint-civilian-airlift-requisition-and-priority-cell
+- theater-prison-facility-overrun-contingency-cell
+- joint-autonomous-convoy-legal-liability-governance-cell
+- expeditionary-waterborne-disease-outbreak-response-cell
+- coalition-cross-border-fire-deconfliction-hotline-cell
+- joint-electronic-warfare-fratricide-risk-mitigation-cell
+- strategic-rare-earth-refining-sabotage-response-cell
+- theater-fiber-backbone-restoration-and-reroute-cell
+- joint-cislunar-logistics-window-and-reentry-support-cell
+- expeditionary-camouflage-multispectral-effectiveness-cell
+- joint-amphibious-humanitarian-shore-entry-control-cell
+- tactical-language-enabled-civil-engagement-cell
+- joint-weapon-system-software-supply-chain-assurance-cell
+
+## Catalog Maintenance Update (2026-03-08 Run, Strategic Continuity and Governance Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Added shared toolchain profiles this run: 20
+- Added shared protocol stack profiles this run: 20
+- Total warfighter skills after this run: 590
+
+## New Expansion Wave (2026-03-08, Full-Spectrum Warfighter Operations Deepening)
+
+- joint-balloon-and-high-altitude-object-response-cell
+- theater-quantum-navigation-test-and-transition-cell
+- expeditionary-portable-nuclear-reactor-safety-cell
+- joint-military-working-animal-evacuation-cell
+- coalition-military-rail-gauge-interoperability-cell
+- joint-under-ice-submarine-transit-risk-cell
+- tactical-civilian-hospital-overflow-integration-cell
+- joint-battlefield-geothermal-power-site-assessment-cell
+- contested-spectrum-cognitive-radio-governance-cell
+- coalition-autonomous-maritime-rules-of-engagement-cell
+- joint-counterfeit-spare-parts-detection-cell
+- theater-electronic-order-of-life-pattern-shift-cell
+- expeditionary-droneport-airworthiness-and-traffic-cell
+- joint-rocket-artillery-munition-dud-risk-cell
+- joint-satellite-imagery-denial-fallback-collection-cell
+- coalition-human-rights-detention-oversight-cell
+- strategic-stratospheric-sensor-layer-reconstitution-cell
+- joint-battlefield-cloud-seeding-weather-governance-cell
+- expeditionary-rare-blood-type-donor-network-cell
+- theater-civil-power-grid-load-shedding-coordination-cell
+
+## Catalog Maintenance Update (2026-03-08 Run, Full-Spectrum Operations Deepening)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Total warfighter skills after this run: 610
+
+## New Expansion Wave (2026-03-08, Emerging Joint and Coalition Edge Cases)
+
+- joint-contested-maritime-legal-attribution-and-prize-court-cell
+- theater-open-ran-5g-denied-network-reconstitution-cell
+- joint-gene-edited-bio-threat-attribution-and-containment-cell
+- coalition-civilian-spectrum-refugee-camp-comms-cell
+- strategic-commercial-space-launch-surge-integration-cell
+- joint-undersea-data-center-and-cable-landing-defense-cell
+- tactical-autonomous-systems-fratricide-simulation-cell
+- theater-disconnected-identity-wallet-and-credential-continuity-cell
+- joint-battlefield-additive-medical-device-regulatory-cell
+- expeditionary-hostile-deepfake-battlefield-voice-countermeasure-cell
+
+## Existing Skill Upgrades (2026-03-08)
+
+- coalition-red-sea-commercial-shipping-protection-cell (upgraded to full tool/protocol + authority-gated template)
+- theater-fiber-backbone-restoration-and-reroute-cell (upgraded to full tool/protocol + authority-gated template)
+- joint-nuclear-weapon-accident-consequence-management-cell (upgraded to full tool/protocol + authority-gated template)

@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Pow Mia And Missing Persons Fusion Cell"
+  short_description: "Help with Joint Pow Mia And Missing Persons Fusion Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Pow Mia And Missing Persons Fusion Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

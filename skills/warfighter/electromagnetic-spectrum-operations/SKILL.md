@@ -35,7 +35,7 @@ Primary products for this skill: EMS allocation plan, EW support matrix, interfe
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and the action templates in `../_shared/references/tool-protocol-playbooks.md`.
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
 - State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, or `OGC`).
@@ -53,24 +53,6 @@ Primary products for this skill: EMS allocation plan, EW support matrix, interfe
 - Explicitly map tool outputs to decision points so operators can validate mission relevance quickly.
 - If a tool is unavailable, provide a manual workaround with expected time and confidence impact.
 
-## Machine-Readable Output Contract
-
-- Provide a compact handoff block with fields: `mission_id`, `decision_window_utc`, `recommendation_id`, `option_rank`, `trigger_conditions`, `required_actions`, `tool_dependencies`, `protocols`, `confidence`, and `known_gaps`.
-- Structure tasking entries as `owner`, `action`, `due_utc`, `status`, and `dependency` to enable direct ingestion by workflow systems.
-- Include an explicit `degraded_mode` object listing fallback tools, expected delay, and confidence penalty when integrations fail.
-
-## Cross-Domain Escalation Hooks
-
-- Identify at least two adjacent cells or staff functions that must be notified when risk crosses thresholds (for example fires, intel, cyber, logistics, legal, coalition liaison).
-- Include escalation triggers in measurable terms and map each trigger to an owner and required report format.
-- Provide a no-fail communication fallback for each escalation path (alternate network, voice relay, or courier) with expected delay.
-
-## Minimum Data Feed Contract
-
-- Name one authoritative primary feed, one independent cross-check feed, and one degraded/manual feed for this mission.
-- Set freshness thresholds for each feed and define the stale-data action when thresholds are breached.
-- Annotate release caveats and handling constraints before sharing outputs across echelons or coalition boundaries.
-
 ## Guardrails
 
 - Flag gaps where assumptions exceed evidence.
@@ -78,14 +60,87 @@ Primary products for this skill: EMS allocation plan, EW support matrix, interfe
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
 
-## U.S. Warfighter Tool Auth and Access Drill
+## Tool Protocol Playbooks
 
-- Use `../_shared/references/us-warfighter-tool-auth-and-access-drill.md` to verify account state, role binding, and transport availability before critical actions.
-- If any critical integration lacks valid credentials, publish a degraded-mode branch and request revalidation suspense.
-- Record auth/access status in the output handoff so downstream cells can execute without re-triage.
+- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
+- Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
+- Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
 
-## U.S. Joint Tool Adapter Contract Drill
+## Domain Tool Packet Library
 
-- Use `../_shared/references/us-joint-tool-adapter-contracts.md` to define adapter_id, protocol, auth mode, and fallback per critical dependency.
-- Include adapter health status and last-success UTC for each mission-critical integration.
-- Trigger degraded-mode and escalation actions when adapter latency, failures, or schema drift exceed mission thresholds.
+- Use scenario packets in ../_shared/references/domain-tool-packet-library.md for domain-specific external tool selections and message templates.
+- Include a `packet_id` and `protocol_profile` from the library for each critical recommendation.
+- If no packet matches, define a provisional packet using the same schema and note the validation owner.
+
+## Domain Data Contract
+
+- Use mapping guidance in ../_shared/references/joint-mission-data-contracts.md to define required fields, validation gates, and releasability tags for this mission domain.
+- Ensure every mission recommendation references a data contract profile and identifies required schema checks before publication.
+
+## Operational Learning Loop
+
+- Use `../_shared/references/operational-learning-and-after-action-loop.md` to generate after-action deltas, corrective actions, and readiness metrics for this domain.
+- Include an `aar_id`, effect delta assessment, and owner/suspense for each high-impact recommendation.
+- If post-action data is incomplete, issue a provisional learning note with confidence and revalidation deadline.
+
+## Readiness Certification Evidence Pack
+
+- Use `../_shared/references/readiness-certification-evidence-pack.md` to define mission-essential task evidence, evaluator triggers, and certification confidence scoring.
+- Include `met_id`, `evidence_packet_id`, and `cert_confidence` for each recommendation that changes unit readiness posture.
+- If required evidence is missing, mark status as `provisional` and assign closure actions with suspense.
+
+## Protocol Execution Sequence
+
+- Execute the Core Integration Protocol from `../_shared/references/external-tools-protocols.md` as an explicit step sequence, not as guidance only.
+- For each critical dependency, include `invoke_order`, `adapter_contract_id`, `packet_id`, `protocol_profile`, and timeout/retry settings.
+- Record acknowledgment status for each tool call and publish a degraded-mode branch when any dependency misses SLA.
+- Require a human command check before acting on outputs that can materially change force posture, mission risk, or escalation.
+
+## Domain Toolchain Profile Binding
+
+- Use `../_shared/references/domain-toolchain-profiles.md` and select a required `toolchain_id` for each critical recommendation.
+- Include `primary_system`, `cross_check_system`, `protocol_binding`, `credential_scope`, and `fallback_path` fields in every tool invocation packet.
+- Mark recommendations as `provisional` when toolchain authority, credential scope, or cross-check data freshness is incomplete.
+
+## Tool Health and Trust Monitoring
+
+- Use `../_shared/references/tool-health-and-trust-monitoring.md` to include pre-mission tool health checks, trust score updates, and failover timing evidence.
+- Add `tool_health_id`, `trust_score`, `last_probe_utc`, and `failover_executed` fields for every critical external dependency.
+- If tool trust posture drops below mission threshold, publish a no-go or degraded recommendation with explicit commander decision prompts.
+
+## U.S. Joint Protocol Assurance Drill
+
+- Use `../_shared/references/us-joint-protocol-assurance-drill.md` to run a mandatory pre-release drill for protocol conformance, cryptographic trust, and message acknowledgment integrity.
+- Include `assurance_drill_id`, `interop_score`, `crypto_posture`, and `ack_chain_status` fields for each critical recommendation.
+- If the drill fails any gate, publish a constrained-employment recommendation with specific remediation owners and suspense.
+
+## Joint Operations External Toolchain Profiles
+
+- Use `../_shared/references/joint-operations-external-toolchain-profiles.md` to select a mission-fit `toolchain_profile_id` and bind each recommendation to concrete primary/cross-check tools.
+- Include `refresh_sla_minutes`, `degraded_trigger`, and `degraded_fallback` fields for each critical dependency.
+- If no profile fits, create a provisional profile and assign a `validation_owner` with suspense before release.
+
+## Human-Agent Command Escalation Matrix
+
+- Use `../_shared/references/human-agent-command-escalation-matrix.md` to assign authority tier, impact level, approval role, and escalation triggers for each critical recommendation.
+- Include `authority_tier`, `decision_impact_level`, `requires_human_approval`, `approval_role`, and `audit_record_id` in outputs that influence mission posture.
+- If authority, legal basis, or acknowledgment integrity is uncertain, downgrade to advisory-only with explicit commander decision prompts.
+
+## Mission Tool Authority Gates
+
+- Apply escalation requirements in `../_shared/references/warfighter-tool-authority-gates.md` for high-consequence recommendations.
+- Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for recommendations that can alter mission posture.
+- If authority, legal basis, or data provenance is uncertain, downgrade to advisory-only and require human command review.
+
+## Cross-Domain Integration Playbook
+
+- Use `../_shared/references/cross-domain-integration-playbook.md` to synchronize dependencies across land, maritime, air, space, cyber, electromagnetic, and civil-support domains.
+- Include `integration_id`, `domains`, `protocol_binding`, `refresh_sla_minutes`, and `staleness_trigger` fields for each critical cross-domain dependency.
+- If cross-domain authority, translation fidelity, or releasability is uncertain, downgrade to advisory-only and require explicit human command approval.
+
+## Mission Tool and Protocol Catalog Binding
+
+- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
+- Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
+- If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+

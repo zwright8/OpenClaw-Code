@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expeditionary Droneport Airworthiness and Traffic Cell"
+  short_description: "Help with Expeditionary Droneport Airworthiness and Traffic Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Expeditionary Droneport Airworthiness and Traffic Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

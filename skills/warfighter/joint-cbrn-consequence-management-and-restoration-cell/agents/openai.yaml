@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Cbrn Consequence Management And Restoration Cell"
+  short_description: "Help with Joint Cbrn Consequence Management And Restoration Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Cbrn Consequence Management And Restoration Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---
