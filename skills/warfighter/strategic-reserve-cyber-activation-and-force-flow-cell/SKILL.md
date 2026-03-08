@@ -44,6 +44,17 @@ Primary products for this skill: reserve activation timeline, mission-ready cybe
 - Bind recommendations to concrete suite/stack entries in `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
 - Include provenance fields: source system, refresh UTC, confidence, and key gaps.
 
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-CEMA-BDA-001`, `DPL-KILLWEB-MAP-001`.
+- If no packet fully matches mission context, publish a provisional packet with a validation owner and revalidation UTC.
+
+## Tool Invocation Contract
+
+- For each critical dependency include: objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
+- Map each external tool output to one commander decision and one staff action with suspense.
+- If credential status, identity assurance, or source freshness drops below threshold, mark recommendations `provisional`.
+
 ## Authority and Assurance Gates
 
 - Apply approval and escalation requirements from `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
