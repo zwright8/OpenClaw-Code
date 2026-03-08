@@ -1554,3 +1554,123 @@ external_binding:
 ### `ps-command-post-displacement-stack-v1`
 - Protocols: `USMTF`, `CoT`, `Link 16 J-series`.
 - Use for: mobile command-post displacement sequencing, acknowledgment chains, and continuity posture reporting.
+
+### `ts-c2-node-displacement-v1`
+- Use for: denied-environment command-node displacement and continuity trigger governance.
+- Primary tools: command mobility planners, comm-path assurance monitors, COP synchronization services.
+- Cross-check tools: independent survivability simulation board and alternate movement-risk monitor.
+- Typical products: displacement trigger ladder, continuity branch matrix, acknowledgment integrity status.
+
+### `ts-jadc2-schema-assurance-v1`
+- Use for: coalition JADC2 schema translation, validation gates, and releasability-safe data exchange.
+- Primary tools: schema registry services, translation gateways, coalition data validation harnesses.
+- Cross-check tools: independent schema conformance validator and releaseability audit ledger.
+- Typical products: schema delta matrix, translation confidence log, releasability validation packet.
+
+### `ts-airlift-lz-viability-v1`
+- Use for: contested-airlift landing-zone viability scoring and sortie-divert prioritization.
+- Primary tools: LZ condition monitors, weather/threat overlays, airlift scheduling planners.
+- Cross-check tools: independent geospatial hazard validation and alternate sortie-risk board.
+- Typical products: LZ viability scorecard, divert trigger matrix, sortie recovery timeline.
+
+### `ts-em-signature-camouflage-v1`
+- Use for: expeditionary electromagnetic camouflage planning and detectability reduction assessment.
+- Primary tools: RF signature libraries, emitter management services, detection-risk analytics.
+- Cross-check tools: independent RF collection monitor and alternate interoperability check board.
+- Typical products: camouflage effectiveness heatmap, EMCON timeline, blue-force interference risk log.
+
+### `ts-groundstation-failover-v1`
+- Use for: space-cyber groundstation failover drills and resilience certification.
+- Primary tools: groundstation health telemetry, failover orchestration engines, path integrity validators.
+- Cross-check tools: independent acknowledgment chain monitor and alternate route readiness board.
+- Typical products: failover drill packet, route transition sequence, resilience confidence score.
+
+### `ts-munitions-quality-escape-v1`
+- Use for: munitions surge quality-escape forecasting and release-risk mitigation.
+- Primary tools: production quality telemetry, lot genealogy services, release-control workflows.
+- Cross-check tools: independent quality evidence board and alternate defect trend adjudication.
+- Typical products: quality-escape forecast, lot release matrix, mitigation branch queue.
+
+### `ts-autonomous-medevac-governance-v1`
+- Use for: autonomous casualty-evacuation authority controls, ethics governance, and clinical risk escalation.
+- Primary tools: autonomous medevac planners, policy enforcement engines, casualty-priority dashboards.
+- Cross-check tools: independent medical ethics review board and alternate safety incident ledger.
+- Typical products: authority matrix, ethics exception packet, autonomous medevac risk posture.
+
+### `ts-spectrum-fratricide-prevention-v1`
+- Use for: coalition spectrum fratricide prevention under contested EW conditions.
+- Primary tools: coalition emitter management services, EMS conflict analytics, deconfliction workflow tools.
+- Cross-check tools: independent RF monitoring mesh and alternate coalition conflict log.
+- Typical products: emitter conflict board, spectrum deconfliction order, fratricide risk ladder.
+
+### `ts-port-damage-sortie-reflow-v1`
+- Use for: rapid port damage triage and sortie/sustainment reflow planning.
+- Primary tools: port damage assessment services, throughput schedulers, vessel priority orchestrators.
+- Cross-check tools: independent berth status monitor and alternate cargo flow confidence board.
+- Typical products: damage severity matrix, throughput reflow plan, repair/sortie synchronization timeline.
+
+### `ts-fires-data-lineage-v1`
+- Use for: precision-fires data provenance assurance and retargeting governance.
+- Primary tools: target-data lineage graph engines, sensor timeline correlation boards, fires authorization workflows.
+- Cross-check tools: independent provenance validator and alternate collateral-estimate audit board.
+- Typical products: lineage graph, retargeting decision matrix, strike confidence note.
+
+### `ts-polar-orbit-handover-v1`
+- Use for: polar-orbit communications handover governance in denied Arctic conditions.
+- Primary tools: orbit handover schedulers, timing-integrity monitors, high-latitude comm planners.
+- Cross-check tools: independent ephemeris validator and alternate latency confidence monitor.
+- Typical products: handover timeline, denied-comms fallback matrix, timing confidence status.
+
+### `ts-engineering-repair-prioritization-v1`
+- Use for: battle-damage engineering repair prioritization across constrained resources.
+- Primary tools: engineering damage trackers, mission dependency graph tools, repair sequencing planners.
+- Cross-check tools: independent feasibility validator and alternate mission-impact restoration board.
+- Typical products: repair priority queue, restoration map, resource-constrained branch plan.
+
+### `ps-c2-node-displacement-stack-v1`
+- Protocols: `USMTF`, `CoT`, `Link 16 J-series`.
+- Use for: command-node displacement sequencing, acknowledgment chains, and command continuity reporting.
+
+### `ps-jadc2-schema-assurance-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `NATO APP-11/ADatP-3`.
+- Use for: coalition schema translation packets, validation exceptions, and releaseability-safe exchange.
+
+### `ps-airlift-lz-viability-stack-v1`
+- Protocols: `USMTF`, `VMF`, `OGC`.
+- Use for: landing-zone viability updates, sortie-divert triggers, and airlift deconfliction actions.
+
+### `ps-em-camouflage-control-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Use for: EM camouflage plans, signature control updates, and deconfliction acknowledgments.
+
+### `ps-space-ground-failover-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `API/JSON`.
+- Use for: groundstation failover route exchanges, timing-integrity checks, and resilience reporting.
+
+### `ps-munitions-quality-escape-stack-v1`
+- Protocols: `API/JSON`, `XML`, `USMTF`.
+- Use for: lot quality exception exchange, release controls, and surge risk reporting.
+
+### `ps-autonomous-medevac-governance-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Use for: autonomous medevac authority packets, ethics review records, and clinical-risk escalation.
+
+### `ps-spectrum-fratricide-prevention-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`.
+- Use for: coalition emitter conflict resolution, spectrum risk reporting, and fratricide prevention orders.
+
+### `ps-port-damage-reflow-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NIMS/ICS`.
+- Use for: port damage updates, throughput reflow coordination, and recovery branch synchronization.
+
+### `ps-fires-lineage-retargeting-stack-v1`
+- Protocols: `VMF`, `Link 16 J-series`, `USMTF`.
+- Use for: precision-fires lineage exchange, retarget approval packets, and re-attack confidence reports.
+
+### `ps-polar-orbit-handover-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `API/JSON`.
+- Use for: polar orbit handover timing packets, denied-comms fallback coordination, and latency reporting.
+
+### `ps-engineering-repair-prioritization-stack-v1`
+- Protocols: `USMTF`, `OGC`, `API/JSON`.
+- Use for: engineering damage triage packets, repair sequence updates, and restoration decision synchronization.
