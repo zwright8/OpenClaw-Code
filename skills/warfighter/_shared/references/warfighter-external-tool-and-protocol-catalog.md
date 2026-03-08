@@ -2606,3 +2606,107 @@ external_binding:
 - Primary tools: grid telemetry and outage analytics, installation mission-power dependency boards, restoration dispatch tools.
 - Cross-check tools: independent utility-state mirror and alternate transformer replacement tracker.
 - Typical products: mission-power continuity matrix, restoration priority ladder, defense-civil coordination order.
+
+## Tool Suite Catalog (2026-03-08 Domain Expansion - Cislunar, IAMD Latency, Identity Recovery)
+
+### `ts-cislunar-rescue-assurance-v1`
+- Use for: cislunar logistics coordination, contingency rescue synchronization, and reentry support continuity.
+- Primary tools: cislunar ephemeris planners, life-support status boards, orbital rendezvous timeline managers.
+- Cross-check tools: independent conjunction risk monitor and alternate trajectory validation service.
+- Typical products: cislunar logistics window matrix, rescue branch triggers, reentry support decision board.
+
+### `ts-combined-arms-digital-twin-v1`
+- Use for: combined-arms rehearsal with digital twins, branch stress testing, and dependency fault injection.
+- Primary tools: mission digital twin simulator, force posture replay engine, red-cell behavior modeler.
+- Cross-check tools: independent after-action telemetry checker and manual branch timeline board.
+- Typical products: rehearsal branch scorecard, dependency failure map, go/no-go confidence ladder.
+
+### `ts-coalition-iamd-latency-v1`
+- Use for: coalition IAMD track latency reduction and cross-system handoff assurance.
+- Primary tools: coalition track gateway, latency telemetry analyzers, handoff adjudication dashboards.
+- Cross-check tools: allied track mirror and independent timestamp integrity verifier.
+- Typical products: latency remediation plan, handoff assurance matrix, approval timing ledger.
+
+### `ts-harbor-mcm-autonomy-v1`
+- Use for: autonomous and crewed mine-countermeasure synchronization in constrained harbors.
+- Primary tools: autonomous MCM tasking manager, harbor clearance scheduler, underwater contact fusion board.
+- Cross-check tools: independent harbor contact correlation tool and alternate sortie-health verifier.
+- Typical products: harbor reopen sequence, MCM autonomy task matrix, residual risk register.
+
+### `ts-eob-decay-forecast-v1`
+- Use for: forecasting electronic order-of-battle decay, drift, and retask priorities.
+- Primary tools: emitter behavior analytics, mission-data drift detector, EW retask orchestration board.
+- Cross-check tools: independent RF monitor mesh and alternate confidence adjudication board.
+- Typical products: EOB decay forecast, retune timeline, mission survivability delta brief.
+
+### `ts-identity-access-recovery-v1`
+- Use for: contested identity lifecycle restoration, access revocation/reissue, and privileged trust continuity.
+- Primary tools: identity governance services, credential revocation brokers, mission role policy engines.
+- Cross-check tools: signed identity ledger mirror and independent privilege anomaly monitor.
+- Typical products: identity recovery sequence, access trust scorecard, reissue audit packet.
+
+### `ts-bioindustrial-assurance-v1`
+- Use for: strategic bioindustrial supply continuity and sabotage impact triage.
+- Primary tools: bioindustrial production telemetry, lot release governance systems, strategic supplier risk graph.
+- Cross-check tools: independent facility integrity verifier and alternate cold-chain continuity board.
+- Typical products: sabotage impact brief, critical-node restoration sequence, supply assurance timeline.
+
+### `ts-long-range-fires-magazine-v1`
+- Use for: long-range fires magazine depth optimization and reconstitution pacing.
+- Primary tools: munitions burn-rate models, theater stockpile allocators, reconstitution scheduling tools.
+- Cross-check tools: independent lot-availability verifier and alternate transport feasibility board.
+- Typical products: magazine depth outlook, reconstitution timeline, campaign risk matrix.
+
+### `ts-grid-islanding-priority-power-v1`
+- Use for: mission-priority power allocation and civil grid islanding under homeland contingencies.
+- Primary tools: grid islanding orchestration systems, mission-load prioritization dashboards, utility telemetry fusers.
+- Cross-check tools: independent grid-state estimator and alternate restoration sequencing board.
+- Typical products: islanding priority matrix, critical-load schedule, restoration branch triggers.
+
+### `ts-arctic-aerostat-othr-v1`
+- Use for: arctic aerostat and over-the-horizon radar posture optimization and continuity.
+- Primary tools: atmospheric persistence planners, radar coverage analyzers, payload handover schedulers.
+- Cross-check tools: independent weather-impact monitor and alternate coverage-gap validator.
+- Typical products: arctic sensor posture plan, coverage risk ladder, persistence contingency board.
+
+## Protocol Stack Catalog (2026-03-08 Domain Expansion)
+
+### `ps-cislunar-rescue-assurance-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `API/JSON`.
+- Use for: cislunar logistics/rescue synchronization with commander-ready timing assurance updates.
+
+### `ps-simulation-rehearsal-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `CoT`.
+- Use for: digital twin rehearsal telemetry exchange and branch recommendation publication.
+
+### `ps-coalition-iamd-latency-stack-v1`
+- Protocols: `Link 16 J-series`, `NATO APP-11/ADatP-3 aligned`, `USMTF`.
+- Use for: coalition IAMD handoff timing assurance and latency remediation workflows.
+
+### `ps-harbor-mcm-autonomy-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `USMTF`, `API/JSON`.
+- Use for: harbor mine-countermeasure autonomy coordination and clearance certification.
+
+### `ps-eob-decay-forecast-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: EOB decay reporting, retask synchronization, and EW mission-data governance.
+
+### `ps-identity-access-recovery-stack-v1`
+- Protocols: `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: contested identity/access revocation-recovery, trust evidence exchange, and incident linkage.
+
+### `ps-bioindustrial-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Use for: bioindustrial continuity monitoring, lot-risk coordination, and force-health relevant supply decisions.
+
+### `ps-long-range-fires-magazine-stack-v1`
+- Protocols: `USMTF`, `VMF`, `API/JSON`.
+- Use for: long-range fires stockpile decisions, allocation updates, and reconstitution synchronization.
+
+### `ps-grid-islanding-priority-power-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Use for: mission-priority power routing, civil warning coordination, and restoration branch control.
+
+### `ps-arctic-aerostat-othr-stack-v1`
+- Protocols: `AIXM/FIXM/IWXXM`, `USMTF`, `API/JSON`.
+- Use for: arctic aerostat/OTHR persistence management and weather-driven sensor handovers.
