@@ -158,6 +158,17 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-TELECOM-PRIORITY-001`, `DPL-AUTON-MAP-POISON-001`, `DPL-FINRAIL-PAYROLL-001`.
+- If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-03-08)
+
+- Prioritize `tool_suite_id=ts-telecom-priority-routing-v1` + `protocol_stack_id=ps-telecom-priority-routing-stack-v1` when commander risk hinges on communications continuity.
+- Elevate `tool_suite_id=ts-autonomy-map-poisoning-detect-v1` + `protocol_stack_id=ps-autonomy-map-poisoning-stack-v1` when navigation trust is uncertain.
+- If financial rail disruption affects force readiness, add `tool_suite_id=ts-financial-rail-payroll-v1` + `protocol_stack_id=ps-financial-rail-payroll-stack-v1` as a required cross-check branch.
+
 ## Operational Execution Hardening
 
 - Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
