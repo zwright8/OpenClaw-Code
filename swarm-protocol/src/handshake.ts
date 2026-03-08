@@ -6,6 +6,8 @@ const DEFAULT_CAPABILITIES = ['log-analysis', 'task-execution'];
 const DEFAULT_TIMEOUT_MS = 5000;
 const DEFAULT_RETRIES = 0;
 const DEFAULT_RETRY_DELAY_MS = 250;
+const DEFAULT_BACKOFF_MULTIPLIER = 2;
+const DEFAULT_MAX_RETRY_DELAY_MS = 5_000;
 
 export class HandshakeError extends Error {
     constructor(code, message, details = {}) {
@@ -106,10 +108,80 @@ async function withTimeout(promiseFactory, timeoutMs) {
 
 function isRetryableError(error) {
     if (error instanceof HandshakeError) {
-        return error.code === 'TIMEOUT' || error.code === 'TRANSPORT_ERROR';
+        return (
+            error.code === 'TIMEOUT' ||
+            error.code === 'TRANSPORT_ERROR' ||
+            error.code === 'RETRYABLE_REJECTION'
+        );
     }
 
     return false;
+}
+
+function parseRetryAfterMsFromError(error) {
+    if (!error || typeof error !== 'object') return null;
+
+    const candidateValues = [
+        error.retryAfterMs,
+        error?.details?.retryAfterMs
+    ];
+
+    for (const value of candidateValues) {
+        const numeric = Number(value);
+        if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric;
+        }
+    }
+
+    return null;
+}
+
+function isTransientRetrySignal(error) {
+    if (!error || typeof error !== 'object') return false;
+
+    const status = Number(error.status ?? error.statusCode ?? error?.details?.status);
+    if (status === 429 || status === 503) return true;
+
+    const code = String(error.code ?? error?.details?.code ?? '').toUpperCase();
+    return code === 'TOO_MANY_REQUESTS' || code === 'RATE_LIMITED' || code === 'SERVICE_UNAVAILABLE';
+}
+
+function resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, startedAtMs) {
+    if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) return timeoutMs;
+    if (!Number.isFinite(retryBudgetMs) || retryBudgetMs <= 0) return timeoutMs;
+
+    const elapsedMs = Math.max(0, Date.now() - startedAtMs);
+    const remainingBudgetMs = retryBudgetMs - elapsedMs;
+    if (remainingBudgetMs <= 0) {
+        throw new HandshakeError('RETRY_BUDGET_EXCEEDED', 'Handshake retry budget exhausted', {
+            retryBudgetMs,
+            elapsedMs
+        });
+    }
+
+    return Math.max(1, Math.min(timeoutMs, remainingBudgetMs));
+}
+
+function computeRetryDelayMs({
+    attempt,
+    baseDelayMs,
+    multiplier,
+    maxDelayMs,
+    random,
+    retryAfterMs
+}) {
+    if (!Number.isFinite(baseDelayMs) || baseDelayMs <= 0) return 0;
+
+    const exponent = Math.max(0, attempt - 1);
+    const exponentialDelay = baseDelayMs * Math.pow(multiplier, exponent);
+    const cappedDelay = Math.min(exponentialDelay, maxDelayMs);
+    const floorDelay = Number.isFinite(retryAfterMs) && retryAfterMs > 0
+        ? Math.max(cappedDelay, retryAfterMs)
+        : cappedDelay;
+
+    // Full jitter backoff reduces synchronized retry storms under contention.
+    const r = Math.max(0, Math.min(1, Number(random())));
+    return Math.max(1, Math.floor(r * floorDelay));
 }
 
 /**
@@ -144,6 +216,16 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
     const retryDelayMs = Number.isFinite(options.retryDelayMs) && options.retryDelayMs >= 0
         ? Number(options.retryDelayMs)
         : DEFAULT_RETRY_DELAY_MS;
+    const retryBackoffMultiplier = Number.isFinite(options.retryBackoffMultiplier) && options.retryBackoffMultiplier >= 1
+        ? Number(options.retryBackoffMultiplier)
+        : DEFAULT_BACKOFF_MULTIPLIER;
+    const maxRetryDelayMs = Number.isFinite(options.maxRetryDelayMs) && options.maxRetryDelayMs > 0
+        ? Number(options.maxRetryDelayMs)
+        : DEFAULT_MAX_RETRY_DELAY_MS;
+    const retryBudgetMs = Number.isFinite(options.retryBudgetMs) && options.retryBudgetMs > 0
+        ? Number(options.retryBudgetMs)
+        : null;
+    const random = typeof options.random === 'function' ? options.random : Math.random;
     const logger = options.logger ?? console;
 
     const handshakeId = uuidv4();
@@ -159,6 +241,7 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
     HandshakeRequest.parse(request);
 
     const maxAttempts = retries + 1;
+    const handshakeStartedAtMs = Date.now();
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
         const attemptStartMs = Date.now();
 
@@ -169,7 +252,7 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
 
             const rawResponse = await withTimeout(
                 () => transport.sendAndWait(targetAgentId, request),
-                timeoutMs
+                resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, handshakeStartedAtMs)
             );
 
             const response = HandshakeResponse.parse(rawResponse);
@@ -187,6 +270,13 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
             const negotiatedProtocol = negotiateProtocol(supportedProtocols, response);
 
             if (!response.accepted) {
+                const retryAfterMs = Number(response.retryAfterMs);
+                if (attempt < maxAttempts && Number.isFinite(retryAfterMs) && retryAfterMs > 0) {
+                    throw new HandshakeError('RETRYABLE_REJECTION', 'Handshake peer requested retry', {
+                        reason: response.reason ?? null,
+                        retryAfterMs
+                    });
+                }
                 logger.warn?.(`[Swarm] Handshake rejected by ${targetAgentId}: ${response.reason ?? 'no reason provided'}`);
                 return {
                     accepted: false,
@@ -239,10 +329,22 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
                 ? error
                 : new HandshakeError('TRANSPORT_ERROR', error?.message || 'Transport handshake failed', { cause: error });
 
-            if (attempt < maxAttempts && isRetryableError(wrappedError)) {
+            if (
+                attempt < maxAttempts &&
+                (isRetryableError(wrappedError) || isTransientRetrySignal(error))
+            ) {
                 logger.warn?.(`[Swarm] Handshake attempt ${attempt} failed (${wrappedError.code}), retrying...`);
                 if (retryDelayMs > 0) {
-                    await wait(retryDelayMs * attempt);
+                    const retryAfterMs = parseRetryAfterMsFromError(error) ?? parseRetryAfterMsFromError(wrappedError);
+                    const delayMs = computeRetryDelayMs({
+                        attempt,
+                        baseDelayMs: retryDelayMs,
+                        multiplier: retryBackoffMultiplier,
+                        maxDelayMs: maxRetryDelayMs,
+                        random,
+                        retryAfterMs
+                    });
+                    await wait(delayMs);
                 }
                 continue;
             }
