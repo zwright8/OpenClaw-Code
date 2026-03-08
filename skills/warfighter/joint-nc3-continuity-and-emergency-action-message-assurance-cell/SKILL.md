@@ -64,3 +64,9 @@ Preferred protocol families for this skill: USMTF, MIL-STD-188 variants, API/JSO
 - Flag assumptions that exceed available evidence.
 - Identify legal, policy, ROE, coalition, and safety constraints early.
 - Do not fabricate sources, authorities, approvals, or system access.
+
+## Domain Toolchain Override (2026-03-08, Spaceport Fuel Contingency Expansion)
+
+- Prioritize `tool_suite_id=ts-spaceport-fuel-sabotage-response-v1` with `protocol_stack_id=ps-spaceport-fuel-sabotage-stack-v1` when NC3 continuity is sensitive to launch-fuel sabotage risk.
+- Use packet `DPL-SPACEPORT-FUEL-SABOTAGE-001` to bind fuel integrity checks, sabotage confidence, and launch authority release fields.
+- If sabotage adjudication remains single-source, downgrade to advisory-only continuity guidance and require explicit commander review.
