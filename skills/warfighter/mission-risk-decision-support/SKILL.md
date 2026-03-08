@@ -169,6 +169,12 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Elevate `tool_suite_id=ts-autonomy-map-poisoning-detect-v1` + `protocol_stack_id=ps-autonomy-map-poisoning-stack-v1` when navigation trust is uncertain.
 - If financial rail disruption affects force readiness, add `tool_suite_id=ts-financial-rail-payroll-v1` + `protocol_stack_id=ps-financial-rail-payroll-stack-v1` as a required cross-check branch.
 
+## Domain Toolchain Override (2026-03-08, Timing and Sustainment Integrity Addendum)
+
+- Add `tool_suite_id=ts-anti-jam-gps-epoch-recovery-v1` + `protocol_stack_id=ps-anti-jam-gps-epoch-stack-v1` when risk posture depends on synchronized timing in denied PNT conditions.
+- Add `tool_suite_id=ts-denied-fuel-bladder-integrity-v1` + `protocol_stack_id=ps-denied-fuel-bladder-integrity-stack-v1` when sustainment reliability is vulnerable to fuel contamination or sabotage.
+- Add `packet_id=DPL-LONG-RANGE-FIRES-LOT-001` for any recommendation that changes long-range fires allocation based on ammunition reliability assumptions.
+
 ## Operational Execution Hardening
 
 - Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
