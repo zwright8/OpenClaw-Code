@@ -1,9 +1,9 @@
 ---
-name: mission-risk-decision-support
-description: Quantify and communicate mission risk for commander decisions. Use when comparing options under uncertainty and documenting risk acceptance with controls.
+name: joint-theater-emergency-civil-alert-and-public-warning-cell
+description: Coordinate emergency civil alerting and protective public warning in active operational theaters. Use when commanders must balance force protection, civilian safety, and information credibility under time pressure.
 ---
 
-# Mission Risk Decision Support
+# Joint Theater Emergency Civil Alert And Public Warning Cell
 
 ## Mission Scope
 
@@ -13,10 +13,10 @@ description: Quantify and communicate mission risk for commander decisions. Use 
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: COAs, threat likelihood/severity, control measures, commander risk tolerance.
-2. Identify assumptions, decision thresholds, and what intelligence or reporting would invalidate the current plan.
+1. Frame the mission problem using domain-specific indicators, commander priorities, and expected branch triggers.
+2. Identify assumptions, decision thresholds, and what reporting would invalidate the current plan.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
-4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
+4. Integrate dependencies across command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
 5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
 
 ## Required Output Format
@@ -31,21 +31,13 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: risk decision matrix, recommended controls, risk acceptance statement draft.
-
-## Domain Tool Stack
-
-Use these tool categories as the default stack for this skill: mission risk analytics boards, campaign dependency graph engines, cross-domain readiness dashboards.
-
-## Protocol Profile
-
-Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3 aligned.
+Primary products for this skill: public warning decision matrix, alert dissemination plan, rumor-control branch.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
-- Alternate: `tool_suite_id=ts-intel-fusion-v1` with `protocol_stack_id=ps-cyber-threat-stack-v1`.
-- Degraded: use manual risk board updates with timestamped command-post voice confirmation and acknowledgment ledger.
+- Primary: `tool_suite_id=ts-civil-support-v1` with `protocol_stack_id=ps-hazard-warning-stack-v1`.
+- Alternate: `tool_suite_id=ts-disinformation-counter-v1` with `protocol_stack_id=ps-osint-info-ops-stack-v1`.
+- Degraded: switch to manually curated operator logs + authenticated voice readback with UTC ack tracking.
 
 ## External Tools and Protocol Integration
 
