@@ -99,3 +99,4 @@
 - Verified `4ab4ec5eff..ef79dbfe21`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
 - Verified `0d7ded54a5..8f96958f0c`: restored `AGENTS.md` after deletion and refreshed command map for current root (`embeddings:route-corpus`, `skills:tools:*`) plus current `cognition-core` runtime/planning scripts.
 - Verified `8f96958f0c..ee246d6ce5`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `ee246d6ce5..8be485594f`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
