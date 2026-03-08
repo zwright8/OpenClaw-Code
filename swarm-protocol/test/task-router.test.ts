@@ -302,3 +302,104 @@ test('panic mode can fail open to outlier-ejected agents when no healthy candida
     assert.equal(routed.selectedAgentId, 'agent:ejected-a');
     assert.equal(routed.panicMode.triggered, true);
 });
+
+test('overload protection can exclude saturated agents when enforcement is enabled', () => {
+    const task = buildTaskRequest({
+        id: '88888888-8888-4888-8888-888888888888',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route heavy indexing batch',
+        priority: 'high',
+        context: {
+            requiredCapabilities: ['indexing']
+        },
+        createdAt: 80_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:saturated',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['indexing'],
+            timestamp: 80_000,
+            routing: {
+                inFlight: 8,
+                maxInFlight: 8
+            }
+        },
+        {
+            id: 'agent:available',
+            status: 'idle',
+            load: 0.4,
+            capabilities: ['indexing'],
+            timestamp: 80_000,
+            routing: {
+                inFlight: 3,
+                maxInFlight: 8
+            }
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 80_001,
+        overloadProtection: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:available');
+    const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated');
+    assert.equal(saturated.reason, 'concurrency_saturated');
+    assert.equal(saturated.eligible, false);
+});
+
+test('slow-start weights recently recovered agents to prevent instant full traffic', () => {
+    const task = buildTaskRequest({
+        id: '99999999-9999-4999-8999-999999999999',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route post-recovery workload',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['analysis']
+        },
+        createdAt: 90_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:recovered',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['analysis'],
+            timestamp: 90_000,
+            routing: {
+                recoveredAtMs: 89_500
+            }
+        },
+        {
+            id: 'agent:steady',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['analysis'],
+            timestamp: 90_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 90_000,
+        slowStart: {
+            enabled: true,
+            windowMs: 10_000,
+            minWeight: 0.2
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:steady');
+    const recovered = routed.ranked.find((entry) => entry.agentId === 'agent:recovered');
+    assert.equal(recovered.reason, 'ok');
+    assert.equal(recovered.slowStart.weight < 1, true);
+});

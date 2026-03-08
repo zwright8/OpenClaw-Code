@@ -35,6 +35,18 @@ function normalizeOutlierMetadata(value) {
     return normalized;
 }
 
+function normalizeRoutingMetadata(value) {
+    if (!value || typeof value !== 'object') return null;
+    const inFlight = Number(value.inFlight);
+    const maxInFlight = Number(value.maxInFlight);
+    const recoveredAtMs = Number(value.recoveredAtMs);
+    return {
+        inFlight: Number.isFinite(inFlight) && inFlight >= 0 ? Math.floor(inFlight) : 0,
+        maxInFlight: Number.isFinite(maxInFlight) && maxInFlight >= 0 ? Math.floor(maxInFlight) : 0,
+        recoveredAtMs: Number.isFinite(recoveredAtMs) ? recoveredAtMs : null
+    };
+}
+
 function safeNow(nowFn) {
     const value = Number(nowFn());
     return Number.isFinite(value) ? value : Date.now();
@@ -65,7 +77,8 @@ export class AgentRegistry {
             load: Number.isFinite(signal.load) ? signal.load : 0,
             timestamp: signal.timestamp,
             capabilities,
-            outlier: normalizeOutlierMetadata(metadata.outlier ?? existing.outlier)
+            outlier: normalizeOutlierMetadata(metadata.outlier ?? existing.outlier),
+            routing: normalizeRoutingMetadata(metadata.routing ?? existing.routing)
         };
 
         this.agents.set(signal.from, record);

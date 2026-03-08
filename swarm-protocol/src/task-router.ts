@@ -9,6 +9,9 @@ const DEFAULT_OUTLIER_MIN_SAMPLES = 20;
 const DEFAULT_OUTLIER_BASE_EJECTION_MS = 30_000;
 const DEFAULT_OUTLIER_MAX_EJECTION_MS = 300_000;
 const DEFAULT_OUTLIER_PENALTY = 45;
+const DEFAULT_OVERLOAD_PENALTY = 40;
+const DEFAULT_SLOW_START_WINDOW_MS = 60_000;
+const DEFAULT_SLOW_START_MIN_WEIGHT = 0.15;
 
 function normalizeCapabilities(value) {
     if (!Array.isArray(value)) return [];
@@ -60,6 +63,28 @@ function normalizeOutlierOptions(options = {}) {
     };
 }
 
+function normalizeOverloadProtectionOptions(options = {}) {
+    const configured = options?.overloadProtection;
+    const enabled = configured?.enabled === true;
+    return {
+        enabled,
+        enforce: configured?.enforce !== false,
+        penalty: Math.max(0, Number(configured?.penalty ?? DEFAULT_OVERLOAD_PENALTY))
+    };
+}
+
+function normalizeSlowStartOptions(options = {}) {
+    const configured = options?.slowStart;
+    const enabled = configured?.enabled === true;
+    const windowMs = Math.max(1, safeInteger(configured?.windowMs, DEFAULT_SLOW_START_WINDOW_MS));
+    const minWeight = safeProbability(configured?.minWeight, DEFAULT_SLOW_START_MIN_WEIGHT);
+    return {
+        enabled,
+        windowMs,
+        minWeight
+    };
+}
+
 function extractOutlierStats(agent) {
     const snapshot = agent?.outlier && typeof agent.outlier === 'object' ? agent.outlier : agent;
     const consecutiveFailures = safeInteger(snapshot?.consecutiveFailures, 0);
@@ -73,6 +98,75 @@ function extractOutlierStats(agent) {
         sampleSize,
         ejectionCount,
         ejectedUntilMs: Number.isFinite(ejectedUntilMs) ? ejectedUntilMs : null
+    };
+}
+
+function extractConcurrencyStats(agent) {
+    const routing = agent?.routing && typeof agent.routing === 'object' ? agent.routing : {};
+    const inFlight = safeInteger(routing.inFlight ?? agent?.inFlight, 0);
+    const maxInFlight = safeInteger(routing.maxInFlight ?? agent?.maxInFlight, 0);
+    return {
+        inFlight,
+        maxInFlight
+    };
+}
+
+function evaluateOverloadState(agent, options = {}) {
+    const config = normalizeOverloadProtectionOptions(options);
+    if (!config.enabled) return null;
+
+    const concurrency = extractConcurrencyStats(agent);
+    if (concurrency.maxInFlight <= 0) return null;
+    if (concurrency.inFlight < concurrency.maxInFlight) return null;
+
+    return {
+        ...concurrency,
+        saturated: true,
+        enforce: config.enforce
+    };
+}
+
+function extractRecoveredAtMs(agent) {
+    const routing = agent?.routing && typeof agent.routing === 'object' ? agent.routing : {};
+    const candidate = Number(routing.recoveredAtMs ?? agent?.recoveredAtMs);
+    return Number.isFinite(candidate) ? candidate : null;
+}
+
+function evaluateSlowStartState(agent, nowMs, options = {}) {
+    const config = normalizeSlowStartOptions(options);
+    if (!config.enabled) return null;
+
+    const recoveredAtMs = extractRecoveredAtMs(agent);
+    if (recoveredAtMs === null) return null;
+    if (nowMs <= recoveredAtMs) {
+        return {
+            recoveredAtMs,
+            elapsedMs: 0,
+            progress: 0,
+            weight: Number(config.minWeight.toFixed(4)),
+            windowMs: config.windowMs
+        };
+    }
+
+    const elapsedMs = Math.max(0, nowMs - recoveredAtMs);
+    const progress = Math.max(0, Math.min(1, elapsedMs / config.windowMs));
+    const weight = config.minWeight + ((1 - config.minWeight) * progress);
+    if (progress >= 1) {
+        return {
+            recoveredAtMs,
+            elapsedMs,
+            progress: 1,
+            weight: 1,
+            windowMs: config.windowMs
+        };
+    }
+
+    return {
+        recoveredAtMs,
+        elapsedMs,
+        progress: Number(progress.toFixed(4)),
+        weight: Number(weight.toFixed(4)),
+        windowMs: config.windowMs
     };
 }
 
@@ -214,10 +308,34 @@ function scoreAgent(taskRequest, agent, options) {
         requiredCapabilities
     });
 
+    const overload = evaluateOverloadState(agent, options);
+    const overloadConfig = normalizeOverloadProtectionOptions(options);
+    if (overload) {
+        score = Number((score - overloadConfig.penalty).toFixed(2));
+    }
+
     const outlier = evaluateOutlierState(agent, nowMs, options);
     const outlierConfig = normalizeOutlierOptions(options);
     if (outlier) {
         score = Number((score - outlierConfig.penalty).toFixed(2));
+    }
+
+    const slowStart = evaluateSlowStartState(agent, nowMs, options);
+    if (slowStart && slowStart.weight < 1) {
+        score = Number((score * slowStart.weight).toFixed(2));
+    }
+
+    if (overload?.enforce) {
+        return {
+            eligible: false,
+            degradedEligible: true,
+            score,
+            reason: 'concurrency_saturated',
+            missingCapabilities: [],
+            overload,
+            ...(slowStart ? { slowStart } : {}),
+            ...(outlier ? { outlier } : {})
+        };
     }
 
     if (outlier?.state === 'ejected') {
@@ -227,7 +345,9 @@ function scoreAgent(taskRequest, agent, options) {
             score,
             reason: 'outlier_ejected',
             missingCapabilities: [],
-            outlier
+            outlier,
+            ...(overload ? { overload } : {}),
+            ...(slowStart ? { slowStart } : {})
         };
     }
 
@@ -238,7 +358,9 @@ function scoreAgent(taskRequest, agent, options) {
             score,
             reason: 'outlier_detected',
             missingCapabilities: [],
-            outlier
+            outlier,
+            ...(overload ? { overload } : {}),
+            ...(slowStart ? { slowStart } : {})
         };
     }
 
@@ -251,7 +373,10 @@ function scoreAgent(taskRequest, agent, options) {
             degradedEligible: true,
             score: Number((score - stalePenalty).toFixed(2)),
             reason: 'stale_heartbeat',
-            missingCapabilities: []
+            missingCapabilities: [],
+            ...(overload ? { overload } : {}),
+            ...(slowStart ? { slowStart } : {}),
+            ...(outlier ? { outlier } : {})
         };
     }
 
@@ -261,6 +386,8 @@ function scoreAgent(taskRequest, agent, options) {
         score,
         reason: 'ok',
         missingCapabilities: [],
+        ...(overload ? { overload } : {}),
+        ...(slowStart ? { slowStart } : {}),
         ...(outlier ? { outlier } : {})
     };
 }

@@ -217,3 +217,77 @@ test('routeTask respects outlier ejection metadata when detection is enabled', (
     const ejected = routed.ranked.find((entry) => entry.agentId === 'agent:ejected');
     assert.equal(ejected.reason, 'outlier_ejected');
 });
+
+test('ingestHeartbeat preserves normalized routing metadata for overload/slow-start policies', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:adaptive',
+        status: 'idle',
+        load: 0.25,
+        timestamp: 90_000
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 7.7,
+            maxInFlight: 12.9,
+            recoveredAtMs: 88_123.4
+        }
+    });
+
+    const agent = registry.getAgent('agent:adaptive');
+    assert.deepEqual(agent.routing, {
+        inFlight: 7,
+        maxInFlight: 12,
+        recoveredAtMs: 88_123.4
+    });
+});
+
+test('routeTask can enforce overload protection using routing metadata', () => {
+    const registry = new AgentRegistry({ now: () => 100_000, maxStalenessMs: 10_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:saturated',
+        status: 'idle',
+        load: 0.15,
+        timestamp: 99_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 5,
+            maxInFlight: 5
+        }
+    });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:available',
+        status: 'idle',
+        load: 0.35,
+        timestamp: 99_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 1,
+            maxInFlight: 5
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route overload-aware task',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 100_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 100_000,
+        overloadProtection: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:available');
+    const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated');
+    assert.equal(saturated.reason, 'concurrency_saturated');
+});
