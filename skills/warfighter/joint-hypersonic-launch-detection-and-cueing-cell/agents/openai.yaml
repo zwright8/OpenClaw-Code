@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Hypersonic Launch Detection and Cueing Cell"
+  short_description: "Fuse hypersonic warning and cueing decisions"

@@ -144,3 +144,9 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-08, Hypersonic Cueing Expansion)
+
+- Prioritize `tool_suite_id=ts-hypersonic-cueing-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1` when warning timelines compress below established threshold.
+- Use packet `DPL-HYP-CUE-001` and require dual-sensor confirmation before commander-ready cue recommendations.
+- If track custody confidence is degraded, pivot to advisory-only warning posture with explicit revalidation suspense.
