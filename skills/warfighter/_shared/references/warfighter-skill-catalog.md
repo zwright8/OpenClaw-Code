@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 739
+- Total warfighter skills in this repo: 751
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -359,3 +359,33 @@ Every skill output should include:
 - Precision fires data lineage and retargeting + targeting standards/CDE governance + battle-damage assessment fusion
 - Arctic denied comms handover + polar comms degradation operations + denied-space PNT alternatives
 - Battle-damage engineering repair prioritization + rail/bridge recovery + expeditionary fabrication and battle damage repair
+
+## New Expansion Wave (2026-03-08, Theater Sustainment, Navigation Trust, and Coalition Continuity)
+
+- joint-maritime-chokepoint-closure-and-reopening-cell
+- theater-civil-gridload-blackstart-fuel-priority-cell
+- coalition-denied-weather-recon-and-sortie-risk-cell
+- joint-precision-navigation-spoofing-attribution-cell
+- strategic-microelectronics-radiation-hardening-supply-assurance-cell
+- theater-expeditionary-bridge-load-class-verification-cell
+- joint-cbrn-urban-plume-evacuation-decision-cell
+- coalition-contested-satcom-terminal-key-rotation-cell
+- joint-rail-airfield-intermodal-sustainment-scheduler-cell
+- theater-forward-watercraft-autonomy-collision-avoidance-cell
+- joint-battlefield-power-generation-signature-management-cell
+- coalition-partner-force-digital-training-readiness-fusion-cell
+
+## Updated Pairings (2026-03-08, Theater Sustainment, Navigation Trust, and Coalition Continuity)
+
+- Maritime chokepoint closure/reopening + port damage sortie reflow + coalition maritime security governance
+- Civil gridload blackstart fuel priority + EMP cascade consequence + strategic energy grid deterrence
+- Denied weather recon sortie risk + contested airlift LZ viability + tactical airspace deconfliction
+- Precision navigation spoofing attribution + disconnected time/PNT holdover + denied-space handover governance
+- Radiation-hardened microelectronics assurance + strategic autonomous component security + additive feedstock authenticity controls
+- Expeditionary bridge load-class verification + engineering repair prioritization + contested crossing survivability
+- CBRN urban plume evacuation + force-health protection + civil-order restoration and movement control
+- Coalition SATCOM key rotation + orbital spectrum continuity + groundstation failover drill assurance
+- Rail-airfield intermodal sustainment scheduling + strategic mobility chokepoint wargaming + deployment/distribution optimization
+- Watercraft autonomy collision avoidance + riverine operations + autonomous maritime corridor defense
+- Battlefield power generation signature management + operational energy demand signature reduction + base-defense survivability
+- Coalition training readiness fusion + partner capability integration + reservist mobilization readiness

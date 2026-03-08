@@ -150,6 +150,11 @@ Primary products for this skill: mission brief, decision support matrix, branch-
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-C2-DISP-002`, `DPL-JADC2-SCHEMA-001`, `DPL-FIRES-LINEAGE-001`.
+- If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
 ## Operational Execution Hardening (2026-03-08)
 
 - Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
