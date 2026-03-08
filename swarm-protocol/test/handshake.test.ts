@@ -295,6 +295,30 @@ test('throws RETRY_BUDGET_EXHAUSTED when retry budget is consumed', async () => 
     assert.deepEqual(delays, [200, 50]);
 });
 
+test('caps per-attempt timeout to remaining retry budget', async () => {
+    const transport = {
+        async sendAndWait() {
+            return new Promise(() => {});
+        }
+    };
+
+    await assert.rejects(
+        () => performHandshake('agent:alpha', 'agent:beta', transport, {
+            retries: 0,
+            timeoutMs: 5_000,
+            retryBudgetMs: 15,
+            logger: createSilentLogger()
+        }),
+        (error) => {
+            assert.equal(error instanceof HandshakeError, true);
+            assert.equal(error.code, 'TIMEOUT');
+            assert.equal(Number.isFinite(error.details?.timeoutMs), true);
+            assert.equal(error.details.timeoutMs <= 15, true);
+            return true;
+        }
+    );
+});
+
 test('honors structured retryAfterMs on transport error before retrying handshake', async () => {
     let calls = 0;
     const delays = [];

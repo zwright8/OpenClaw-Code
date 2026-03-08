@@ -356,6 +356,34 @@ function resolveRetryDelayMs({
     return Math.max(0, Math.round(delayMs));
 }
 
+function resolveAttemptTimeoutMs({
+    timeoutMs,
+    retryBudgetMs,
+    startedAtMs,
+    now
+}) {
+    const boundedTimeoutMs = Number.isFinite(timeoutMs) && timeoutMs > 0
+        ? Number(timeoutMs)
+        : null;
+    const hasRetryBudget = Number.isFinite(retryBudgetMs) && retryBudgetMs > 0;
+
+    if (!hasRetryBudget) {
+        return boundedTimeoutMs;
+    }
+
+    const elapsedMs = Math.max(0, now() - startedAtMs);
+    const budgetRemainingMs = Math.max(0, retryBudgetMs - elapsedMs);
+    if (budgetRemainingMs <= 0) {
+        return 0;
+    }
+
+    if (boundedTimeoutMs === null) {
+        return budgetRemainingMs;
+    }
+
+    return Math.min(boundedTimeoutMs, budgetRemainingMs);
+}
+
 async function withTimeout(promiseFactory, timeoutMs) {
     if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
         return promiseFactory();
@@ -472,10 +500,16 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
             logger.info?.(
                 `[Swarm] Handshake attempt ${attempt}/${maxAttempts} ${handshakeId} from ${fromAgentId} to ${targetAgentId}`
             );
+            const attemptTimeoutMs = resolveAttemptTimeoutMs({
+                timeoutMs,
+                retryBudgetMs,
+                startedAtMs,
+                now
+            });
 
             const rawResponse = await withTimeout(
                 () => transport.sendAndWait(targetAgentId, request),
-                timeoutMs
+                attemptTimeoutMs
             );
 
             const response = HandshakeResponse.parse(rawResponse);
