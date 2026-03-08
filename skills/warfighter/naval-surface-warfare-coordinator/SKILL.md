@@ -149,3 +149,20 @@ Use these tool categories as the default stack for this skill: maritime C2 syste
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-maritime-undersea-v1` with `protocol_stack_id=ps-maritime-chokepoint-closure-stack-v1`.
+- Alternate: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
+- Degraded: use authenticated voice/readback + UTC acknowledgment ledger + manual fallback board.
+
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-MARITIME-MCM-001`, `DPL-MARITIME-CHOKE-001`.
+- If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Operational Execution Hardening
+
+- Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
+- Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
+- Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
+- Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
