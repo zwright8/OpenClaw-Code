@@ -256,3 +256,38 @@ For each critical recommendation, include:
 - Cross-check tools: independent sample-chain audit and alternate failure anomaly review.
 - Protocols: `API/JSON`, signed provenance exports, `USMTF` sustainment summaries.
 - Degraded fallback: approved-lot-only fabrication with part quarantine and increased inspections.
+
+### `c2-node-displacement-assurance-v1`
+- Use for denied-environment command-node displacement and continuity governance.
+- Primary tools: command mobility planners, comm-path assurance monitors, survivability risk models.
+- Cross-check tools: independent displacement rehearsal board and alternate movement-risk validator.
+- Protocols: `USMTF`, `CoT`, `Link 16 J-series`.
+- Degraded fallback: preapproved displacement matrix with bounded update windows.
+
+### `coalition-jadc2-schema-assurance-v1`
+- Use for coalition JADC2 schema translation, validation, and releasability-safe exchange.
+- Primary tools: schema registry services, translation gateways, coalition validation harnesses.
+- Cross-check tools: independent conformance validator and releaseability audit ledger.
+- Protocols: `API/JSON`, `USMTF`, `NATO APP-11/ADatP-3`.
+- Degraded fallback: minimum-field exchange profile with delayed reconciliation.
+
+### `contested-airlift-lz-viability-v1`
+- Use for contested-airlift landing-zone viability updates and divert decisions.
+- Primary tools: LZ condition monitors, threat overlays, airlift scheduling planners.
+- Cross-check tools: independent geospatial hazard validator and alternate sortie-risk board.
+- Protocols: `USMTF`, `VMF`, `OGC`.
+- Degraded fallback: mission-essential LZ set with conservative viability thresholds.
+
+### `space-cyber-groundstation-failover-v1`
+- Use for space-cyber groundstation failover drills and timing-integrity assurance.
+- Primary tools: groundstation telemetry boards, failover orchestrators, route integrity validators.
+- Cross-check tools: independent acknowledgment-chain monitor and alternate route-readiness board.
+- Protocols: `CCSDS`, `USMTF`, `API/JSON`.
+- Degraded fallback: scheduled failover windows with critical-traffic-only routing.
+
+### `precision-fires-lineage-retargeting-v1`
+- Use for precision-fires data provenance assurance and retarget governance.
+- Primary tools: target lineage graph engines, sensor timeline correlators, fires authorization workflows.
+- Cross-check tools: independent provenance validator and alternate collateral audit board.
+- Protocols: `VMF`, `Link 16 J-series`, `USMTF`.
+- Degraded fallback: prevalidated target sets only with conservative re-attack thresholds.
