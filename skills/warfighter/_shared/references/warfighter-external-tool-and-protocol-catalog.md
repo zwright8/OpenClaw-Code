@@ -2456,3 +2456,93 @@ external_binding:
 - Primary tools: thermal plant telemetry, underwater intake anomaly detection, compute workload migration planner.
 - Cross-check tools: independent coolant-path verification and alternate facility power/thermal mirror.
 - Typical products: thermal risk posture, workload failover sequence, cooling restoration branch plan.
+
+### `ts-additive-microgrid-blackstart-v1`
+- Use for: additive-enabled microgrid blackstart, power islanding, and tactical load-shedding under attack.
+- Primary tools: microgrid controller, additive parts readiness board, tactical load-priority engine.
+- Cross-check tools: independent power-quality telemetry and manual blackstart sequence board.
+- Typical products: blackstart sequence matrix, load-shed trigger ladder, power resilience branch plan.
+
+### `ts-deep-ocean-salvage-recompression-v1`
+- Use for: deep-ocean salvage sequencing, diver recompression governance, and pressure-hazard controls.
+- Primary tools: salvage mission planner, dive medicine recompression monitor, subsea lift status board.
+- Cross-check tools: independent pressure telemetry verifier and alternate salvage timeline board.
+- Typical products: salvage/recompression plan, diver risk matrix, pressure-event response checklist.
+
+### `ts-fiber-precursor-denial-substitution-v1`
+- Use for: strategic precursor-chemical denial assessment and industrial substitution routing.
+- Primary tools: precursor supply graph, industrial process substitution model, defense production readiness dashboard.
+- Cross-check tools: independent commodity verification feed and alternate manufacturing feasibility board.
+- Typical products: denial impact map, substitution option matrix, production continuity ladder.
+
+### `ts-shipboard-ai-maintenance-prognostics-v1`
+- Use for: contested shipboard predictive maintenance, failure-forecast triage, and readiness-preserving repair windows.
+- Primary tools: shipboard health telemetry fusion, AI prognostics service, afloat maintenance planner.
+- Cross-check tools: independent fault-signature validator and manual engineering watch log board.
+- Typical products: failure-risk queue, repair window sequence, sortie-readiness confidence table.
+
+### `ts-hospital-cyber-physical-evac-v1`
+- Use for: cyber-physical hospital evacuation planning, care continuity routing, and medical infrastructure recovery.
+- Primary tools: hospital incident command dashboard, patient movement regulator, cyber-physical failure correlation service.
+- Cross-check tools: independent bed-status mirror and alternate utility outage adjudication board.
+- Typical products: evacuation ladder, care-continuity routing matrix, restoration priority board.
+
+### `ts-evidence-translation-tribunal-handoff-v1`
+- Use for: multilingual battlefield evidence normalization, legal metadata assurance, and tribunal handoff traceability.
+- Primary tools: evidence custody ledger, translation QA workflow, legal handoff packet manager.
+- Cross-check tools: independent translation adjudication board and chain-of-custody integrity monitor.
+- Typical products: evidence translation packet, jurisdiction mapping table, tribunal handoff checklist.
+
+### `ts-runway-magnetic-anomaly-clearance-v1`
+- Use for: runway magnetic anomaly triage, UXO-like signature adjudication, and clearance-to-launch assurance.
+- Primary tools: magnetic anomaly mapper, EOD tasking board, runway safety release dashboard.
+- Cross-check tools: independent ground-penetrating survey and alternate sortie risk board.
+- Typical products: anomaly clearance plan, hazard confidence table, runway release timeline.
+
+### `ts-portable-desalination-compliance-v1`
+- Use for: portable desalination governance, brine discharge control, and chemical compliance under expeditionary conditions.
+- Primary tools: desalination process monitor, discharge compliance tracker, littoral environmental risk board.
+- Cross-check tools: independent sample-chain audit and alternate hydrology status board.
+- Typical products: discharge compliance summary, freshwater continuity plan, mitigation action matrix.
+
+### `ts-spaceport-fuel-sabotage-response-v1`
+- Use for: joint spaceport fuel safety assurance, sabotage indicator triage, and launch continuity.
+- Primary tools: fuel farm telemetry monitor, sabotage anomaly detector, launch operations risk board.
+- Cross-check tools: independent cryogenic quality assay service and alternate perimeter incident ledger.
+- Typical products: fuel safety posture report, sabotage response branch map, launch-governance timeline.
+
+### `ts-arctic-fuel-bladder-spill-containment-v1`
+- Use for: arctic fuel bladder integrity assurance, leak attribution, and spill containment sequencing.
+- Primary tools: bladder pressure telemetry network, spill response planner, cold-weather fuel logistics dashboard.
+- Cross-check tools: independent environmental sampling board and alternate leak-confirmation audit service.
+- Typical products: integrity confidence matrix, containment branch order, sustainment risk curve.
+
+### `ps-additive-microgrid-blackstart-stack-v1`
+- Protocol profile: API/JSON + OGC + USMTF.
+
+### `ps-deep-ocean-salvage-recompression-stack-v1`
+- Protocol profile: API/JSON + USMTF + NIMS/ICS.
+
+### `ps-fiber-precursor-denial-stack-v1`
+- Protocol profile: API/JSON + XML + USMTF.
+
+### `ps-shipboard-ai-prognostics-stack-v1`
+- Protocol profile: API/JSON + Link 16 J-series + USMTF.
+
+### `ps-hospital-cyber-physical-evac-stack-v1`
+- Protocol profile: HL7/FHIR + API/JSON + NIMS/ICS.
+
+### `ps-evidence-tribunal-handoff-stack-v1`
+- Protocol profile: API/JSON + XML + NATO APP-11/ADatP-3.
+
+### `ps-runway-magnetic-anomaly-stack-v1`
+- Protocol profile: OGC + API/JSON + USMTF.
+
+### `ps-desalination-compliance-stack-v1`
+- Protocol profile: API/JSON + OGC + NIMS/ICS.
+
+### `ps-spaceport-fuel-sabotage-stack-v1`
+- Protocol profile: API/JSON + USMTF + STIX/TAXII.
+
+### `ps-arctic-fuel-bladder-stack-v1`
+- Protocol profile: API/JSON + OGC + USMTF.
