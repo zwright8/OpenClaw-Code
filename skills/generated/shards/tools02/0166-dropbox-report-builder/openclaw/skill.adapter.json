@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 166,
+  "name": "dropbox-report-builder",
+  "title": "Dropbox Report Builder",
+  "description": "Generates operational and KPI reports from Dropbox activity.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0166-dropbox-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0166-dropbox-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dropbox report builder",
+    "dropbox report builder workflow",
+    "dropbox report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Dropbox",
+    "operation": "report-builder",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0166-dropbox-report-builder"
+  }
+}

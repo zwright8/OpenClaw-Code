@@ -1,9 +1,9 @@
 # Capability Deployability Audit (32-131)
 
-Generated: 2026-02-26T03:09:35.635Z
+Generated: 2026-02-26T17:31:59.379Z
 
 ## Criteria
-- Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/index.ts` mapping.
+- Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/capabilities.ts` mapping.
 - Capability exports evaluator + `ToTasks` adapter + manager class.
 - Evaluator, task conversion, and manager wrapper pass a smoke execution check.
 - Capability section exists in `CAPABILITY_BLUEPRINT.md`.
@@ -93,31 +93,31 @@ Generated: 2026-02-26T03:09:35.635Z
 | 102 | Carbon and Sustainability Guard | `carbon-sustainability-guard` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 | 103 | Local Language Community Adapter | `local-language-community-adapter` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 | 104 | Cultural Context Translator | `cultural-context-translator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 105 | Accessibility Personalization Engine | `accessibility-personalization-engine` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 106 | Mental Health Safety Companion | `mental-health-safety-companion` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 107 | Emotional Harm Detection Guard | `emotional-harm-detection-guard` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 108 | Child Safety Protection Layer | `child-safety-protection-layer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 109 | Fraud and Scam Prevention Shield | `fraud-scam-prevention-shield` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 110 | Digital Rights Compliance Monitor | `digital-rights-compliance-monitor` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 111 | Public Transparency Portal Generator | `public-transparency-portal-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 112 | Trustworthy Reporting Publisher | `trustworthy-reporting-publisher` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 113 | Learning Curriculum Generator | `learning-curriculum-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 114 | Skill Gap Diagnostic Engine | `skill-gap-diagnostic-engine` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 115 | Human-AI Pair Programming Coach | `human-ai-pair-programming-coach` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 116 | Scientific Literature Synthesizer | `scientific-literature-synthesizer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 117 | Knowledge Gap Explorer | `knowledge-gap-explorer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 118 | Autonomous Research Program Manager | `autonomous-research-program-manager` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 119 | Hypothesis Prioritization Exchange | `hypothesis-prioritization-exchange` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 120 | Breakthrough Opportunity Radar | `breakthrough-opportunity-radar` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 121 | Strategic Scenario War-Gamer | `strategic-scenario-war-gamer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 122 | Policy Intervention Optimizer | `policy-intervention-optimizer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 123 | Global Risk Observatory | `global-risk-observatory` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 124 | Humanitarian Logistics Coordinator | `humanitarian-logistics-coordinator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 125 | Emergency Resource Dispatcher | `emergency-resource-dispatcher` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 126 | Community Impact Measurement Studio | `community-impact-measurement-studio` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 127 | Social Benefit KPI Dashboard | `social-benefit-kpi-dashboard` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 128 | Philanthropic Program Optimizer | `philanthropic-program-optimizer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 129 | Inclusive Governance Co-Designer | `inclusive-governance-co-designer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 130 | Collective Intelligence Commons | `collective-intelligence-commons` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 131 | Humanity Mission Operating System | `humanity-mission-operating-system` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 105 | Accessibility Personalization Engine | `cultural-signal-ingestion-normalizer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 106 | Mental Health Safety Companion | `cultural-context-window-prioritizer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 107 | Emotional Harm Detection Guard | `cultural-evidence-provenance-tracker` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 108 | Child Safety Protection Layer | `cultural-contradiction-detector` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 109 | Fraud and Scam Prevention Shield | `cultural-confidence-calibration-engine` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 110 | Digital Rights Compliance Monitor | `cultural-counterfactual-simulator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 111 | Public Transparency Portal Generator | `cultural-goal-decomposer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 112 | Trustworthy Reporting Publisher | `cultural-dependency-dag-planner` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 113 | Learning Curriculum Generator | `cultural-resource-budget-allocator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 114 | Skill Gap Diagnostic Engine | `cultural-risk-aware-scheduler` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 115 | Human-AI Pair Programming Coach | `cultural-policy-constraint-compiler` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 116 | Scientific Literature Synthesizer | `accessibility-personalization-engine` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 117 | Knowledge Gap Explorer | `mental-health-safety-companion` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 118 | Autonomous Research Program Manager | `emotional-harm-detection-guard` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 119 | Hypothesis Prioritization Exchange | `child-safety-protection-layer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 120 | Breakthrough Opportunity Radar | `fraud-scam-prevention-shield` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 121 | Strategic Scenario War-Gamer | `digital-rights-compliance-monitor` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 122 | Policy Intervention Optimizer | `public-transparency-portal-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 123 | Global Risk Observatory | `trustworthy-reporting-publisher` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 124 | Humanitarian Logistics Coordinator | `learning-curriculum-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 125 | Emergency Resource Dispatcher | `skill-gap-diagnostic-engine` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 126 | Community Impact Measurement Studio | `human-ai-pair-programming-coach` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 127 | Social Benefit KPI Dashboard | `scientific-literature-synthesizer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 128 | Philanthropic Program Optimizer | `knowledge-gap-explorer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 129 | Inclusive Governance Co-Designer | `autonomous-research-program-manager` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 130 | Collective Intelligence Commons | `hypothesis-prioritization-exchange` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 131 | Humanity Mission Operating System | `breakthrough-opportunity-radar` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 

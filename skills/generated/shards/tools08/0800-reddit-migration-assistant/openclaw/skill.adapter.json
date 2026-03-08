@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 800,
+  "name": "reddit-migration-assistant",
+  "title": "Reddit Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Reddit.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools08/0800-reddit-migration-assistant/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools08/0800-reddit-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "reddit migration assistant",
+    "reddit migration assistant workflow",
+    "reddit migration assistant automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Reddit",
+    "operation": "migration-assistant",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools08/0800-reddit-migration-assistant"
+  }
+}

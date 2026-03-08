@@ -2,6 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { LogAnalyzerV2, buildComparison, buildRemediationPlan } from '../src/log-analyzer-v2.js';
+import { analyzeMemoryDriftFromFiles } from '../src/memory-drift.js';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -17,6 +18,9 @@ Options:
   --sessions-file <p>   Path to sessions.json
   --no-compare          Disable previous-window trend comparison
   --compare-days <n>    Baseline window size in days (default: same as --days)
+  --no-memory           Disable memory drift analysis
+  --memory-root <p>     Root directory containing memory markdown files
+  --memory-max <n>      Cap scanned memory entries per window
   --json <p>            Write JSON summary to file
   --markdown <p>        Write Markdown report to file
   --quiet               Skip terminal report output
@@ -39,6 +43,9 @@ function parseArgs(argv) {
         sessionsFile: path.join(os.homedir(), '.openclaw/agents/main/sessions/sessions.json'),
         compare: true,
         compareDays: null,
+        memory: true,
+        memoryRoot: path.join(os.homedir(), '.openclaw/workspace/memory'),
+        memoryMaxEntries: Number.POSITIVE_INFINITY,
         jsonPath: null,
         markdownPath: null,
         quiet: false,
@@ -58,6 +65,10 @@ function parseArgs(argv) {
         }
         if (token === '--no-compare') {
             options.compare = false;
+            continue;
+        }
+        if (token === '--no-memory') {
+            options.memory = false;
             continue;
         }
 
@@ -83,6 +94,16 @@ function parseArgs(argv) {
         }
         if (token === '--compare-days') {
             options.compareDays = parsePositiveInt(value, '--compare-days');
+            i++;
+            continue;
+        }
+        if (token === '--memory-root') {
+            options.memoryRoot = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
+        if (token === '--memory-max') {
+            options.memoryMaxEntries = parsePositiveInt(value, '--memory-max');
             i++;
             continue;
         }
@@ -189,6 +210,33 @@ function formatMarkdown(summary) {
         lines.push('');
     }
 
+    if (summary.memoryDrift) {
+        const memory = summary.memoryDrift;
+        lines.push('## Memory Drift');
+        lines.push('');
+        lines.push(`Memory root: ${memory.memoryRoot}`);
+        lines.push(`Drift level: **${memory.driftLevel}** (score ${memory.driftScore})`);
+        lines.push(`Current entries: ${memory.currentEntries}`);
+        lines.push(`Baseline entries: ${memory.baselineEntries}`);
+        lines.push('');
+        lines.push('| Metric | Current | Baseline | Delta |');
+        lines.push('| --- | ---: | ---: | ---: |');
+        lines.push(`| Error intensity | ${memory.currentWindow.errorIntensity} | ${memory.baselineWindow.errorIntensity} | ${formatDelta(memory.deltas.errorIntensity)} |`);
+        lines.push(`| Reflection coverage | ${memory.currentWindow.reflectionCoverage} | ${memory.baselineWindow.reflectionCoverage} | ${formatDelta(memory.deltas.reflectionCoverage)} |`);
+        lines.push(`| Learning density | ${memory.currentWindow.learningDensity} | ${memory.baselineWindow.learningDensity} | ${formatDelta(memory.deltas.learningDensity)} |`);
+        lines.push(`| Skill signal rate | ${memory.currentWindow.skillSignalRate} | ${memory.baselineWindow.skillSignalRate} | ${formatDelta(memory.deltas.skillSignalRate)} |`);
+        lines.push('');
+        lines.push('### Memory Insights');
+        lines.push('');
+        for (const insight of memory.insights || []) {
+            lines.push(`- ${insight}`);
+        }
+        if ((memory.insights || []).length === 0) {
+            lines.push('- No memory insights generated.');
+        }
+        lines.push('');
+    }
+
     lines.push('## Prioritized Remediation Plan');
     lines.push('');
     const remediation = summary.remediationPlan || [];
@@ -257,6 +305,22 @@ function printRemediationPlan(remediationPlan) {
     }
 }
 
+function printMemoryDrift(memoryDrift) {
+    if (!memoryDrift) return;
+    console.log('\n--- Memory Drift ---');
+    console.log(`Root:           ${memoryDrift.memoryRoot}`);
+    console.log(`Drift level:    ${memoryDrift.driftLevel} (score ${memoryDrift.driftScore})`);
+    console.log(`Entries:        current=${memoryDrift.currentEntries} baseline=${memoryDrift.baselineEntries}`);
+    console.log(`Error intensity ${formatDelta(memoryDrift.deltas.errorIntensity)}`);
+    console.log(`Reflection Δ    ${formatDelta(memoryDrift.deltas.reflectionCoverage)}`);
+    if ((memoryDrift.insights || []).length > 0) {
+        console.log('Memory insights:');
+        for (const insight of memoryDrift.insights) {
+            console.log(`  - ${insight}`);
+        }
+    }
+}
+
 (async () => {
     try {
         const options = parseArgs(process.argv.slice(2));
@@ -268,6 +332,8 @@ function printRemediationPlan(remediationPlan) {
         const anchorMs = Date.now();
         const currentEndMs = anchorMs;
         const currentStartMs = currentEndMs - (options.days * DAY_MS);
+        let baselineStartMs = null;
+        let baselineEndMs = null;
 
         const currentAnalyzer = new LogAnalyzerV2(options.sessionsFile);
         const currentSummary = await currentAnalyzer.analyze(options.days, {
@@ -280,8 +346,8 @@ function printRemediationPlan(remediationPlan) {
         let baselineSummary = null;
         if (options.compare) {
             const compareDays = options.compareDays || options.days;
-            const baselineEndMs = currentStartMs;
-            const baselineStartMs = baselineEndMs - (compareDays * DAY_MS);
+            baselineEndMs = currentStartMs;
+            baselineStartMs = baselineEndMs - (compareDays * DAY_MS);
             const baselineAnalyzer = new LogAnalyzerV2(options.sessionsFile);
             baselineSummary = await baselineAnalyzer.analyze(compareDays, {
                 limitSessions: options.limitSessions,
@@ -291,21 +357,36 @@ function printRemediationPlan(remediationPlan) {
             });
         }
 
+        let memoryDrift = null;
+        if (options.memory && fs.existsSync(options.memoryRoot)) {
+            memoryDrift = analyzeMemoryDriftFromFiles(options.memoryRoot, {
+                currentStartMs,
+                currentEndMs,
+                baselineStartMs,
+                baselineEndMs,
+                maxEntries: options.memoryMaxEntries
+            });
+        }
+
         const comparison = baselineSummary
             ? buildComparison(currentSummary, baselineSummary)
             : null;
-        const remediationPlan = buildRemediationPlan(currentSummary, comparison);
+        const remediationPlan = buildRemediationPlan(currentSummary, comparison, {
+            memoryDrift
+        });
 
         const finalSummary = {
             ...currentSummary,
             baseline: baselineSummary,
             comparison,
+            memoryDrift,
             remediationPlan
         };
 
         if (!options.quiet) {
             currentAnalyzer.report(currentSummary);
             printComparison(comparison);
+            printMemoryDrift(memoryDrift);
             printRemediationPlan(remediationPlan);
         }
 

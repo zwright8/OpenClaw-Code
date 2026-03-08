@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 176,
+  "name": "box-report-builder",
+  "title": "Box Report Builder",
+  "description": "Generates operational and KPI reports from Box activity.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0176-box-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0176-box-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "box report builder",
+    "box report builder workflow",
+    "box report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Box",
+    "operation": "report-builder",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0176-box-report-builder"
+  }
+}

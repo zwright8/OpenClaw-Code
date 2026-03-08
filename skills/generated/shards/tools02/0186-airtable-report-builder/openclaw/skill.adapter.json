@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 186,
+  "name": "airtable-report-builder",
+  "title": "Airtable Report Builder",
+  "description": "Generates operational and KPI reports from Airtable activity.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0186-airtable-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0186-airtable-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "airtable report builder",
+    "airtable report builder workflow",
+    "airtable report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Airtable",
+    "operation": "report-builder",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0186-airtable-report-builder"
+  }
+}

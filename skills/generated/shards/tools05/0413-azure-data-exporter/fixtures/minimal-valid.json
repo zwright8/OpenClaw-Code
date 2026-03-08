@@ -1,0 +1,51 @@
+{
+  "skillId": 413,
+  "skillName": "azure-data-exporter",
+  "title": "Azure Data Exporter",
+  "provider": "Azure",
+  "category": "Cloud and infrastructure platforms",
+  "operation": "data-exporter",
+  "authContext": {
+    "mode": "service_account",
+    "envVars": [
+      "AZURE_SERVICE_ACCOUNT_JSON",
+      "AZURE_CREDENTIALS_FILE"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "export_specification": "sample_export_specification",
+      "query_filters": "sample_query_filters",
+      "destination_contract": "sample_destination_contract"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "data-scope-review"
+    ],
+    "rollbackStrategy": "stop-export-and-invalidate-partial-deliveries"
+  },
+  "expected": {
+    "primaryArtifact": "azure-export-package",
+    "kpiFocus": [
+      "export completeness",
+      "schema conformance",
+      "delivery latency"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 54,
+      "reviewRisk": 62,
+      "criticalRisk": 82
+    }
+  },
+  "regressionHint": {
+    "scenario": "Export request with unauthorized fields and a schema change mid-run.",
+    "mutation": "Expand the export spec beyond approved scope and mutate the fixture schema version."
+  }
+}

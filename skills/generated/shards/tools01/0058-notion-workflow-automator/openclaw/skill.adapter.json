@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 58,
+  "name": "notion-workflow-automator",
+  "title": "Notion Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Notion.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools01/0058-notion-workflow-automator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools01/0058-notion-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "notion workflow automator",
+    "notion workflow automator workflow",
+    "notion workflow automator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Notion",
+    "operation": "workflow-automator",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools01/0058-notion-workflow-automator"
+  }
+}

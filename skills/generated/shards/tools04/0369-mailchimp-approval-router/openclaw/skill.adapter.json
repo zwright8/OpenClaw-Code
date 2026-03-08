@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 369,
+  "name": "mailchimp-approval-router",
+  "title": "Mailchimp Approval Router",
+  "description": "Routes Mailchimp-driven decisions to the right approvers.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools04/0369-mailchimp-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools04/0369-mailchimp-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mailchimp approval router",
+    "mailchimp approval router workflow",
+    "mailchimp approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Mailchimp",
+    "operation": "approval-router",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools04/0369-mailchimp-approval-router"
+  }
+}

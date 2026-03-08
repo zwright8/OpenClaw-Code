@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 107,
+  "name": "gmail-alert-monitor",
+  "title": "Gmail Alert Monitor",
+  "description": "Monitors key Gmail signals and raises actionable alerts.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0107-gmail-alert-monitor/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0107-gmail-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gmail alert monitor",
+    "gmail alert monitor workflow",
+    "gmail alert monitor automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Gmail",
+    "operation": "alert-monitor",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0107-gmail-alert-monitor"
+  }
+}

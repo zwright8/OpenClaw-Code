@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 767,
+  "name": "instagram-alert-monitor",
+  "title": "Instagram Alert Monitor",
+  "description": "Monitors key Instagram signals and raises actionable alerts.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools08/0767-instagram-alert-monitor/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools08/0767-instagram-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "instagram alert monitor",
+    "instagram alert monitor workflow",
+    "instagram alert monitor automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Instagram",
+    "operation": "alert-monitor",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools08/0767-instagram-alert-monitor"
+  }
+}

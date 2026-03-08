@@ -1,0 +1,52 @@
+{
+  "skillId": 487,
+  "skillName": "kubernetes-alert-monitor",
+  "title": "Kubernetes Alert Monitor",
+  "provider": "Kubernetes",
+  "category": "Cloud and infrastructure platforms",
+  "operation": "alert-monitor",
+  "authContext": {
+    "mode": "service_account",
+    "envVars": [
+      "KUBERNETES_SERVICE_ACCOUNT_JSON",
+      "KUBERNETES_CREDENTIALS_FILE"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "monitor_targets": "sample_monitor_targets",
+      "threshold_policy": "sample_threshold_policy",
+      "escalation_channels": "sample_escalation_channels"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "threshold-review"
+    ],
+    "rollbackStrategy": "silence-alert-pipeline-and-reload-last-stable-thresholds"
+  },
+  "expected": {
+    "primaryArtifact": "kubernetes-alert-state-bundle",
+    "kpiFocus": [
+      "alert precision",
+      "mean time to acknowledge",
+      "noise rate"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 56,
+      "reviewRisk": 59,
+      "criticalRisk": 78
+    }
+  },
+  "regressionHint": {
+    "scenario": "Alert monitor with stale signals and a duplicate storm caused by an unreviewed threshold change.",
+    "mutation": "Age the signals beyond the freshness window and lower thresholds below the approved baseline."
+  }
+}

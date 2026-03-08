@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 831,
+  "name": "azure-openai-connector",
+  "title": "Azure OpenAI Connector",
+  "description": "Unified read/write connector for Azure OpenAI APIs and data.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools09/0831-azure-openai-connector/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools09/0831-azure-openai-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure openai connector",
+    "azure openai connector workflow",
+    "azure openai connector automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Azure OpenAI",
+    "operation": "connector",
+    "authModes": [
+      "api_key"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools09/0831-azure-openai-connector"
+  }
+}

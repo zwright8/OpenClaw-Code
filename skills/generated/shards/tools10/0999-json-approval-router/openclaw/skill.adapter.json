@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 999,
+  "name": "json-approval-router",
+  "title": "JSON Approval Router",
+  "description": "Routes JSON-driven decisions to the right approvers.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools10/0999-json-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools10/0999-json-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "json approval router",
+    "json approval router workflow",
+    "json approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "JSON",
+    "operation": "approval-router",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools10/0999-json-approval-router"
+  }
+}

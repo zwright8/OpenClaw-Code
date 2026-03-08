@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 505,
+  "skillName": "postgres-webhook-listener",
+  "title": "Postgres Webhook Listener",
+  "domain": "Data platforms",
+  "domainSlug": "data-platforms",
+  "reason": "We need this skill because Postgres workflows degrade when unverified events can trigger unsafe downstream actions. This specific skill turns Postgres Webhook Listener into a deterministic, auth-checked workflow for captures, verifies, and routes postgres webhook events..",
+  "implementationGuide": [
+    "Define the accepted event types, replay window, and downstream side effects for Postgres Webhook Listener, then register the signing-secret policy for Postgres.",
+    "Validate credential reuse for the listener and verify that signature, timestamp, and dedupe stores are all healthy before accepting events.",
+    "Implement captures, verifies, and routes postgres webhook events. so that every payload is verified, normalized, and either routed or quarantined deterministically.",
+    "Preserve accepted event IDs, quarantine references, and downstream trigger artifacts for every dispatch decision.",
+    "Run simulation and regression suites that cover invalid signatures, replay attacks, duplicate deliveries, and routing-policy violations.",
+    "Publish an event-intake log with accepted IDs, quarantined deliveries, and any replay guidance needed for downstream operators."
+  ],
+  "runtimeProfile": {
+    "archetype": "signed-event-ingestion-engine",
+    "coreMethod": "signed event intake and routing",
+    "primaryArtifact": "postgres-event-intake-log",
+    "requiredSignals": [
+      "signed event payload",
+      "secret reference",
+      "routing rules"
+    ],
+    "kpiFocus": [
+      "signature verification pass rate",
+      "event processing latency",
+      "duplicate suppression accuracy"
+    ],
+    "scoringWeights": {
+      "truth": 0.24,
+      "execution": 0.28,
+      "safety": 0.34,
+      "impact": 0.14
+    },
+    "postureThresholds": {
+      "readyMin": 78,
+      "reviewMin": 58,
+      "reviewRisk": 56,
+      "criticalRisk": 75
+    },
+    "orchestration": {
+      "routingTag": "postgres:webhook-listener",
+      "approvalGates": [
+        "signing-secret-check",
+        "handler-policy-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 500,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "pause-listener-and-replay-from-quarantine-queue",
+      "components": [
+        "signature verification",
+        "dedupe check",
+        "routing policy",
+        "quarantine queue"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0505_postgres",
+      "releaseCycles": 3,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:505:postgres:webhook-listener"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "mission_critical",
+    "humanUseCases": [
+      "Receive external provider events without trusting unsigned, replayed, or schema-drifted payloads.",
+      "Quarantine ambiguous events while preserving enough trace data to replay safely."
+    ],
+    "runbook": {
+      "preflight": [
+        "Validate the signing secret, replay window, and dedupe cache before accepting live events.",
+        "Confirm the routing rules and downstream side effects that each event type may trigger."
+      ],
+      "execution": [
+        "Verify signatures and timestamps before deserializing the payload.",
+        "Route verified events through a dedupe check and quarantine anything that violates policy."
+      ],
+      "recovery": [
+        "Pause live acceptance when signature verification or replay detection regresses.",
+        "Replay only from the quarantine queue after the root cause is corrected."
+      ],
+      "handoff": [
+        "Return accepted event IDs, quarantined deliveries, and downstream trigger references.",
+        "Document the active replay window and any signature policy overrides used during recovery."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "safety",
+        "rule": "Reject unsigned or replayed events before any downstream side effects are triggered.",
+        "automation": "signature-check+replay-window"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Persist a quarantine queue for every event that cannot be safely dispatched.",
+        "automation": "quarantine-queue"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Route policy-violating payloads to manual review instead of auto-retrying.",
+        "automation": "handler-policy-review"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.9% successful runs per 7-day window",
+      "errorBudget": "<=0.1% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": false,
+      "parallelism": 1,
+      "maxCycleMinutes": 15,
+      "approvals": [
+        "signing-secret-check",
+        "handler-policy-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "signature verification pass rate",
+      "secondaryMetrics": [
+        "event processing latency",
+        "duplicate suppression accuracy"
+      ],
+      "reviewCadence": "daily"
+    }
+  },
+  "integrationProfile": {
+    "provider": "Postgres",
+    "providerSlug": "postgres",
+    "category": "Data platforms",
+    "operation": "Webhook Listener",
+    "operationSlug": "webhook-listener",
+    "protocols": [
+      "HTTPS/REST",
+      "SQL or driver/SDK"
+    ],
+    "authModes": [
+      {
+        "kind": "service_account",
+        "label": "Service account or machine credential",
+        "envVars": [
+          "POSTGRES_SERVICE_ACCOUNT_JSON",
+          "POSTGRES_CREDENTIALS_FILE"
+        ],
+        "required": true,
+        "validation": "Verify the machine credential or profile against the target environment before any mutating step."
+      },
+      {
+        "kind": "session",
+        "label": "Existing session or local profile",
+        "envVars": [
+          "POSTGRES_SESSION",
+          "POSTGRES_PROFILE"
+        ],
+        "required": true,
+        "validation": "Check the current session/profile and confirm it points at the intended tenant or workspace."
+      },
+      {
+        "kind": "signing_secret",
+        "label": "Webhook signing secret",
+        "envVars": [
+          "POSTGRES_WEBHOOK_SECRET",
+          "POSTGRES_SIGNING_SECRET"
+        ],
+        "required": true,
+        "validation": "Verify signature generation against a known sample payload before accepting live webhook traffic."
+      },
+      {
+        "kind": "token",
+        "label": "Access token or personal access token",
+        "envVars": [
+          "POSTGRES_TOKEN",
+          "POSTGRES_ACCESS_TOKEN"
+        ],
+        "required": true,
+        "validation": "Validate the token with the smallest read-only endpoint that proves scope and tenancy."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": false,
+    "mutating": true,
+    "webhookCapable": true,
+    "notes": [
+      "Validate destination environment and query scope to avoid uncontrolled data exposure."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the accepted event types, replay window, and downstream side effects for Postgres Webhook Listener, then register the signing-secret policy for Postgres.",
+    "contractStep": "Validate credential reuse for the listener and verify that signature, timestamp, and dedupe stores are all healthy before accepting events.",
+    "coreStep": "Implement captures, verifies, and routes postgres webhook events. so that every payload is verified, normalized, and either routed or quarantined deterministically.",
+    "orchestrationStep": "Preserve accepted event IDs, quarantine references, and downstream trigger artifacts for every dispatch decision.",
+    "validationStep": "Run simulation and regression suites that cover invalid signatures, replay attacks, duplicate deliveries, and routing-policy violations.",
+    "rolloutStep": "Publish an event-intake log with accepted IDs, quarantined deliveries, and any replay guidance needed for downstream operators."
+  }
+}

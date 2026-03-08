@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 104,
+  "name": "gmail-data-importer",
+  "title": "Gmail Data Importer",
+  "description": "Validates and imports bulk updates into Gmail.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0104-gmail-data-importer/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0104-gmail-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gmail data importer",
+    "gmail data importer workflow",
+    "gmail data importer automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Gmail",
+    "operation": "data-importer",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0104-gmail-data-importer"
+  }
+}

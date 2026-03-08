@@ -1,10 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+    buildErrorTaxonomy,
+    buildSkillGrowthPlan,
     buildLearningRecommendations,
     evaluateLearningLoop,
     runCounterfactualReplay,
-    summarizeOutcomes
+    summarizeOutcomes,
+    updateLearningState
 } from '../src/learning-loop.js';
 
 function sampleOutcomes() {
@@ -67,6 +70,71 @@ test('buildLearningRecommendations emits prioritized actions', () => {
     assert.ok(recommendations.some((item) => item.category === 'counterfactual_winner'));
 });
 
+test('buildErrorTaxonomy extracts failure categories and recurring signatures', () => {
+    const summary = summarizeOutcomes([
+        ...sampleOutcomes(),
+        { taskId: '6', target: 'agent:a', status: 'timed_out', attempts: 2, createdAt: 600, closedAt: 700, request: { priority: 'high' } }
+    ]);
+    const taxonomy = buildErrorTaxonomy(summary);
+
+    assert.equal(taxonomy.totalFailures, 4);
+    assert.ok(taxonomy.categories.some((item) => item.category === 'timeout'));
+    assert.ok(taxonomy.recurringSignatures >= 1);
+    assert.ok(taxonomy.topSignatures.length > 0);
+});
+
+test('buildSkillGrowthPlan maps failure pressure to focus areas and skill candidates', () => {
+    const summary = summarizeOutcomes([
+        { taskId: '1', target: 'agent:a', status: 'timed_out', attempts: 2, request: { priority: 'critical' } },
+        { taskId: '2', target: 'agent:b', status: 'timed_out', attempts: 2, request: { priority: 'high' } },
+        { taskId: '3', target: 'agent:b', status: 'failed', attempts: 1, request: { priority: 'normal' } },
+        { taskId: '4', target: 'agent:b', status: 'completed', attempts: 1, request: { priority: 'normal' } }
+    ]);
+    const taxonomy = buildErrorTaxonomy(summary);
+    const plan = buildSkillGrowthPlan(summary, taxonomy, {
+        skillCatalog: [
+            { id: 1, name: 'u0015-epistemic-auto-retry-and-backoff-coordinator', archetype: 'general-capability' },
+            { id: 2, name: 'u0016-epistemic-failure-root-cause-miner', archetype: 'general-capability' }
+        ]
+    });
+
+    assert.ok(plan.focusAreas.length > 0);
+    assert.ok(plan.topSkillCandidates.some((candidate) => candidate.name.includes('auto-retry')));
+    assert.ok(plan.learningPressure > 0);
+});
+
+test('buildSkillGrowthPlan bootstraps telemetry focus when outcomes are empty', () => {
+    const summary = summarizeOutcomes([]);
+    const taxonomy = buildErrorTaxonomy(summary);
+    const plan = buildSkillGrowthPlan(summary, taxonomy, {
+        skillCatalog: [
+            { id: 1, name: 'u0156-tooling-kpi-dashboard-publisher', archetype: 'general-capability' }
+        ]
+    });
+
+    assert.ok(plan.focusAreas.some((area) => area.focus === 'outcome_telemetry_bootstrap'));
+    assert.ok(plan.topSkillCandidates.length > 0);
+    assert.ok(plan.learningPressure > 0);
+});
+
+test('updateLearningState increments run counters and tracks recurring error streaks', () => {
+    const summary = summarizeOutcomes([
+        { taskId: '1', target: 'agent:a', status: 'timed_out', attempts: 2, request: { priority: 'high' } },
+        { taskId: '2', target: 'agent:a', status: 'timed_out', attempts: 2, request: { priority: 'high' } },
+        { taskId: '3', target: 'agent:b', status: 'completed', attempts: 1, request: { priority: 'normal' } }
+    ]);
+    const taxonomy = buildErrorTaxonomy(summary);
+    const skillGrowthPlan = buildSkillGrowthPlan(summary, taxonomy);
+    const state1 = updateLearningState(null, { summary: summary.summary, taxonomy, skillGrowthPlan });
+    const state2 = updateLearningState(state1, { summary: summary.summary, taxonomy, skillGrowthPlan });
+
+    assert.equal(state1.runCount, 1);
+    assert.equal(state2.runCount, 2);
+    const recurring = Object.values(state2.recurringErrors);
+    assert.ok(recurring.length > 0);
+    assert.ok(recurring.some((item) => item.streak >= 2));
+});
+
 test('evaluateLearningLoop bundles summary, replay, and recommendations', () => {
     const result = evaluateLearningLoop(sampleOutcomes());
 
@@ -74,5 +142,8 @@ test('evaluateLearningLoop bundles summary, replay, and recommendations', () => 
     assert.ok(result.replay.best);
     assert.ok(Array.isArray(result.recommendations));
     assert.ok(result.recommendations.length > 0);
+    assert.ok(result.errorTaxonomy);
+    assert.ok(result.skillGrowthPlan);
+    assert.ok(result.state);
+    assert.equal(result.state.runCount, 1);
 });
-

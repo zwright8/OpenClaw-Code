@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 129,
+  "name": "google-calendar-approval-router",
+  "title": "Google Calendar Approval Router",
+  "description": "Routes Google Calendar-driven decisions to the right approvers.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0129-google-calendar-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0129-google-calendar-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google calendar approval router",
+    "google calendar approval router workflow",
+    "google calendar approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Google Calendar",
+    "operation": "approval-router",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0129-google-calendar-approval-router"
+  }
+}

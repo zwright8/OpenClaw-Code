@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 310,
+  "name": "shopify-migration-assistant",
+  "title": "Shopify Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Shopify.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools04/0310-shopify-migration-assistant/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools04/0310-shopify-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "shopify migration assistant",
+    "shopify migration assistant workflow",
+    "shopify migration assistant automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Shopify",
+    "operation": "migration-assistant",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools04/0310-shopify-migration-assistant"
+  }
+}

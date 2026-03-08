@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 494,
+  "name": "docker-data-importer",
+  "title": "Docker Data Importer",
+  "description": "Validates and imports bulk updates into Docker.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools05/0494-docker-data-importer/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools05/0494-docker-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "docker data importer",
+    "docker data importer workflow",
+    "docker data importer automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Docker",
+    "operation": "data-importer",
+    "authModes": [
+      "service_account",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools05/0494-docker-data-importer"
+  }
+}

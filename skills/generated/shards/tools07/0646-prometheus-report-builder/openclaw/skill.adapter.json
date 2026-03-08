@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 646,
+  "name": "prometheus-report-builder",
+  "title": "Prometheus Report Builder",
+  "description": "Generates operational and KPI reports from Prometheus activity.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0646-prometheus-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0646-prometheus-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "prometheus report builder",
+    "prometheus report builder workflow",
+    "prometheus report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Prometheus",
+    "operation": "report-builder",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0646-prometheus-report-builder"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 339,
+  "name": "amazon-seller-approval-router",
+  "title": "Amazon Seller Approval Router",
+  "description": "Routes Amazon Seller-driven decisions to the right approvers.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools04/0339-amazon-seller-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools04/0339-amazon-seller-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "amazon seller approval router",
+    "amazon seller approval router workflow",
+    "amazon seller approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Amazon Seller",
+    "operation": "approval-router",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools04/0339-amazon-seller-approval-router"
+  }
+}

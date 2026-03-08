@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 207,
+  "name": "salesforce-alert-monitor",
+  "title": "Salesforce Alert Monitor",
+  "description": "Monitors key Salesforce signals and raises actionable alerts.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools03/0207-salesforce-alert-monitor/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools03/0207-salesforce-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "salesforce alert monitor",
+    "salesforce alert monitor workflow",
+    "salesforce alert monitor automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Salesforce",
+    "operation": "alert-monitor",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools03/0207-salesforce-alert-monitor"
+  }
+}

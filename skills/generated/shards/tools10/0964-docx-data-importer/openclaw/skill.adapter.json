@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 964,
+  "name": "docx-data-importer",
+  "title": "DOCX Data Importer",
+  "description": "Validates and imports bulk updates into DOCX.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools10/0964-docx-data-importer/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools10/0964-docx-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "docx data importer",
+    "docx data importer workflow",
+    "docx data importer automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "DOCX",
+    "operation": "data-importer",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools10/0964-docx-data-importer"
+  }
+}

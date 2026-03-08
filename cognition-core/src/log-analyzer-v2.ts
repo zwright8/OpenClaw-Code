@@ -200,12 +200,13 @@ export function buildComparison(currentSummary, baselineSummary) {
     };
 }
 
-export function buildRemediationPlan(currentSummary, comparison = null) {
+export function buildRemediationPlan(currentSummary, comparison = null, options = {}) {
     if (!currentSummary) return [];
 
     const plan = [];
     const seen = new Set();
     const priorityRank = { P1: 1, P2: 2, P3: 3 };
+    const memoryDrift = options?.memoryDrift || null;
 
     function add(priority, title, rationale, action, impactScore = 0) {
         const key = `${priority}:${title}`;
@@ -306,6 +307,36 @@ export function buildRemediationPlan(currentSummary, comparison = null) {
                     regression.avgDurationDeltaMs / 1000
                 );
             }
+        }
+    }
+
+    if (memoryDrift && typeof memoryDrift === 'object') {
+        if (memoryDrift.driftLevel === 'critical') {
+            add(
+                'P1',
+                'Recover memory-learning drift',
+                `Memory drift is critical (score ${memoryDrift.driftScore}); reflection coverage is ${memoryDrift.currentWindow?.reflectionCoverage}.`,
+                'Require root-cause + mitigation sections in memory entries and run a focused incident-retrospective cycle this week.',
+                Number(memoryDrift.driftScore) || 0
+            );
+        } else if (memoryDrift.driftLevel === 'watch') {
+            add(
+                'P2',
+                'Improve memory reflection coverage',
+                `Memory drift is watch-level (score ${memoryDrift.driftScore}); lessons are not keeping up with incident notes.`,
+                'Add a postmortem template to memory files and track lesson-to-error ratio in weekly review.',
+                Number(memoryDrift.driftScore) || 0
+            );
+        }
+
+        if ((memoryDrift.deltas?.skillSignalRate || 0) < 0) {
+            add(
+                'P2',
+                'Increase memory skill tagging',
+                `Skill signal rate dropped by ${memoryDrift.deltas.skillSignalRate} compared to baseline.`,
+                'Tag memory entries with explicit capability/skill labels so skill acquisition can be tracked over time.',
+                Math.abs(Number(memoryDrift.deltas.skillSignalRate) || 0)
+            );
         }
     }
 

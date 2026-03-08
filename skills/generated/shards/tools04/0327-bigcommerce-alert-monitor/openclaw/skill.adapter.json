@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 327,
+  "name": "bigcommerce-alert-monitor",
+  "title": "BigCommerce Alert Monitor",
+  "description": "Monitors key BigCommerce signals and raises actionable alerts.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools04/0327-bigcommerce-alert-monitor/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools04/0327-bigcommerce-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bigcommerce alert monitor",
+    "bigcommerce alert monitor workflow",
+    "bigcommerce alert monitor automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "BigCommerce",
+    "operation": "alert-monitor",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools04/0327-bigcommerce-alert-monitor"
+  }
+}

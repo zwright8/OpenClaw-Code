@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 510,
+  "name": "postgres-migration-assistant",
+  "title": "Postgres Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Postgres.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0510-postgres-migration-assistant/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0510-postgres-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "postgres migration assistant",
+    "postgres migration assistant workflow",
+    "postgres migration assistant automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Postgres",
+    "operation": "migration-assistant",
+    "authModes": [
+      "service_account",
+      "session"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0510-postgres-migration-assistant"
+  }
+}

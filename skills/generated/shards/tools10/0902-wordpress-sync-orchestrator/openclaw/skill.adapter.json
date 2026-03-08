@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 902,
+  "name": "wordpress-sync-orchestrator",
+  "title": "WordPress Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for WordPress records.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools10/0902-wordpress-sync-orchestrator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools10/0902-wordpress-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "wordpress sync orchestrator",
+    "wordpress sync orchestrator workflow",
+    "wordpress sync orchestrator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "WordPress",
+    "operation": "sync-orchestrator",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools10/0902-wordpress-sync-orchestrator"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 241,
+  "name": "intercom-connector",
+  "title": "Intercom Connector",
+  "description": "Unified read/write connector for Intercom APIs and data.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools03/0241-intercom-connector/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools03/0241-intercom-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "intercom connector",
+    "intercom connector workflow",
+    "intercom connector automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Intercom",
+    "operation": "connector",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools03/0241-intercom-connector"
+  }
+}

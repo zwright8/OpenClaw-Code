@@ -296,3 +296,31 @@ test('builds trend comparison and prioritized remediation plan', () => {
     assert.equal(remediation[0].priority, 'P1');
     assert.ok(remediation.some((item) => item.title.includes('exec')));
 });
+
+test('injects memory-drift actions into remediation plan when drift is elevated', () => {
+    const current = {
+        reliabilityScore: 95,
+        errors: 0,
+        toolCalls: 10,
+        toolResults: 10,
+        malformedLines: 0,
+        sessionsMissingFile: 0,
+        tools: {}
+    };
+
+    const remediation = buildRemediationPlan(current, null, {
+        memoryDrift: {
+            driftLevel: 'watch',
+            driftScore: 0.45,
+            deltas: {
+                skillSignalRate: -0.2
+            },
+            currentWindow: {
+                reflectionCoverage: 0.5
+            }
+        }
+    });
+
+    assert.ok(remediation.some((item) => item.title === 'Improve memory reflection coverage'));
+    assert.ok(remediation.some((item) => item.title === 'Increase memory skill tagging'));
+});

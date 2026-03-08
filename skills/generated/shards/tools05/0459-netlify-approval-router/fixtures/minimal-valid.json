@@ -1,0 +1,52 @@
+{
+  "skillId": 459,
+  "skillName": "netlify-approval-router",
+  "title": "Netlify Approval Router",
+  "provider": "Netlify",
+  "category": "Cloud and infrastructure platforms",
+  "operation": "approval-router",
+  "authContext": {
+    "mode": "service_account",
+    "envVars": [
+      "NETLIFY_SERVICE_ACCOUNT_JSON",
+      "NETLIFY_CREDENTIALS_FILE"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "decision_payload": "sample_decision_payload",
+      "routing_policy": "sample_routing_policy",
+      "approver_roster": "sample_approver_roster"
+    },
+    "approvalGates": [
+      "routing-policy-review",
+      "human-approval-router"
+    ],
+    "rollbackStrategy": "pause-routing-and-revert-to-manual-review-queue"
+  },
+  "expected": {
+    "primaryArtifact": "netlify-approval-decision-packet",
+    "kpiFocus": [
+      "routing accuracy",
+      "time to decision",
+      "escalation coverage"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 59,
+      "reviewRisk": 57,
+      "criticalRisk": 75
+    }
+  },
+  "regressionHint": {
+    "scenario": "Approval routing with no matching policy and a stale approver roster.",
+    "mutation": "Remove all matching policy clauses from the fixture and mark the candidate approver unavailable."
+  }
+}

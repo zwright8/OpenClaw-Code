@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-03-06T12:44:13.054Z",
+  "manifestPath": "/Users/zacharywright/Documents/GitHub/OpenClaw-Code/skills/generated/skills.manifest.10000.json",
+  "memoryRoot": null,
+  "counts": {
+    "skillRecords": 10000,
+    "domainRecords": 65,
+    "memoryRecords": 0
+  },
+  "bytes": {
+    "rawSkillMarkdownBytes": 24455505,
+    "compactSkillChars": 3812117,
+    "compactDomainChars": 27429,
+    "compactMemoryChars": 0,
+    "totalCompactChars": 3839546
+  },
+  "estimatedTokens": {
+    "rawSkillMarkdown": 6113877,
+    "compactSkills": 953030,
+    "compactDomains": 6858,
+    "compactMemory": 0,
+    "totalCompact": 959887
+  },
+  "reduction": {
+    "rawSkillsToCompactSkillsRatio": 6.42,
+    "rawSkillsToCompactTotalRatio": 6.37
+  },
+  "namespaces": [
+    {
+      "namespace": "skills.domain",
+      "purpose": "First-hop routing by domain before any skill hydration."
+    },
+    {
+      "namespace": "skills.route",
+      "purpose": "Compact skill lookup cards. Hydrate full SKILL.md or implementation.json only after retrieval."
+    },
+    {
+      "namespace": "memory.route",
+      "purpose": "Recent memory summaries. Keep raw memory markdown outside the embedding index."
+    }
+  ],
+  "recommendations": [
+    "Embed routing cards, not full generated skill documents.",
+    "Use metadata filters before vector search whenever domain, recency, or skill id is known.",
+    "Hydrate source files lazily after selecting a short candidate list."
+  ]
+}

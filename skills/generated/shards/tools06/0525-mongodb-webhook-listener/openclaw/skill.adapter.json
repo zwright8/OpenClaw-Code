@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 525,
+  "name": "mongodb-webhook-listener",
+  "title": "MongoDB Webhook Listener",
+  "description": "Captures, verifies, and routes MongoDB webhook events.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0525-mongodb-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0525-mongodb-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "mongodb webhook listener",
+    "mongodb webhook listener workflow",
+    "mongodb webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "MongoDB",
+    "operation": "webhook-listener",
+    "authModes": [
+      "service_account",
+      "session",
+      "signing_secret",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0525-mongodb-webhook-listener"
+  }
+}

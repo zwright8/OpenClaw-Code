@@ -1,0 +1,52 @@
+{
+  "skillId": 758,
+  "skillName": "tiktok-workflow-automator",
+  "title": "TikTok Workflow Automator",
+  "provider": "TikTok",
+  "category": "External SaaS integrations",
+  "operation": "workflow-automator",
+  "authContext": {
+    "mode": "oauth2",
+    "envVars": [
+      "TIKTOK_CLIENT_ID",
+      "TIKTOK_CLIENT_SECRET"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "workflow_specification": "sample_workflow_specification",
+      "trigger_context": "sample_trigger_context",
+      "approval_policy": "sample_approval_policy"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "workflow-approval-check"
+    ],
+    "rollbackStrategy": "halt-workflow-and-replay-from-last-approved-step"
+  },
+  "expected": {
+    "primaryArtifact": "tiktok-workflow-runbook",
+    "kpiFocus": [
+      "workflow success rate",
+      "approval latency",
+      "retry recovery rate"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 57,
+      "reviewRisk": 58,
+      "criticalRisk": 77
+    }
+  },
+  "regressionHint": {
+    "scenario": "Workflow run reaches a mutating step without approval and has no valid checkpoint to replay from.",
+    "mutation": "Strip the approval token and remove the checkpoint reference from the fixture."
+  }
+}

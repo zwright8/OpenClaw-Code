@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 346,
+  "name": "ebay-seller-report-builder",
+  "title": "eBay Seller Report Builder",
+  "description": "Generates operational and KPI reports from eBay Seller activity.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools04/0346-ebay-seller-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools04/0346-ebay-seller-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ebay seller report builder",
+    "ebay seller report builder workflow",
+    "ebay seller report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "eBay Seller",
+    "operation": "report-builder",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools04/0346-ebay-seller-report-builder"
+  }
+}

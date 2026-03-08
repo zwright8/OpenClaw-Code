@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 136,
+  "name": "microsoft-calendar-report-builder",
+  "title": "Microsoft Calendar Report Builder",
+  "description": "Generates operational and KPI reports from Microsoft Calendar activity.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0136-microsoft-calendar-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0136-microsoft-calendar-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft calendar report builder",
+    "microsoft calendar report builder workflow",
+    "microsoft calendar report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Microsoft Calendar",
+    "operation": "report-builder",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0136-microsoft-calendar-report-builder"
+  }
+}

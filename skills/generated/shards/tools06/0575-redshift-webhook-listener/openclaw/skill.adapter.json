@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 575,
+  "name": "redshift-webhook-listener",
+  "title": "Redshift Webhook Listener",
+  "description": "Captures, verifies, and routes Redshift webhook events.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0575-redshift-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0575-redshift-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "redshift webhook listener",
+    "redshift webhook listener workflow",
+    "redshift webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Redshift",
+    "operation": "webhook-listener",
+    "authModes": [
+      "service_account",
+      "session",
+      "signing_secret",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0575-redshift-webhook-listener"
+  }
+}

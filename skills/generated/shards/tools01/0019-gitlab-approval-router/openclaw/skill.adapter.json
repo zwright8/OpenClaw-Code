@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 19,
+  "name": "gitlab-approval-router",
+  "title": "GitLab Approval Router",
+  "description": "Routes GitLab-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools01/0019-gitlab-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools01/0019-gitlab-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gitlab approval router",
+    "gitlab approval router workflow",
+    "gitlab approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "GitLab",
+    "operation": "approval-router",
+    "authModes": [
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools01/0019-gitlab-approval-router"
+  }
+}

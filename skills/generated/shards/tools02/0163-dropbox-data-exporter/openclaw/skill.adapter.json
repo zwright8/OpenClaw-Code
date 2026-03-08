@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 163,
+  "name": "dropbox-data-exporter",
+  "title": "Dropbox Data Exporter",
+  "description": "Exports Dropbox entities into clean, typed datasets.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0163-dropbox-data-exporter/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0163-dropbox-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "dropbox data exporter",
+    "dropbox data exporter workflow",
+    "dropbox data exporter automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Dropbox",
+    "operation": "data-exporter",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0163-dropbox-data-exporter"
+  }
+}

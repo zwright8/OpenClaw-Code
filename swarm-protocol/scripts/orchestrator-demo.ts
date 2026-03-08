@@ -4,7 +4,7 @@ import {
     buildTaskReceipt,
     buildTaskResult,
     routeTaskRequest
-} from '../index.js';
+} from '../runtime.js';
 
 function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));

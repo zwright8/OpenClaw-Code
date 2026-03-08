@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 102,
+  "name": "gmail-sync-orchestrator",
+  "title": "Gmail Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Gmail records.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0102-gmail-sync-orchestrator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0102-gmail-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gmail sync orchestrator",
+    "gmail sync orchestrator workflow",
+    "gmail sync orchestrator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Gmail",
+    "operation": "sync-orchestrator",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0102-gmail-sync-orchestrator"
+  }
+}

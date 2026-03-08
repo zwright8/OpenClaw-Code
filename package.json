@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "tsx scripts/auto-refactor.ts",
     "build": "npm run lint && npm --prefix cognition-core test && npm --prefix swarm-protocol test",
+    "embeddings:route-corpus": "tsx scripts/build-embedding-routing-corpus.ts",
     "capabilities:blueprint": "tsx scripts/sync-capability-blueprint.ts",
     "capabilities:audit": "tsx scripts/audit-capabilities.ts",
     "typecheck": "tsc --noEmit -p tsconfig.json && npm --prefix cognition-core run typecheck && npm --prefix swarm-protocol run typecheck",
@@ -24,6 +25,8 @@
     "skills:improve:10000:validate": "tsx scripts/validate-10000-skill-improvements.ts",
     "skills:harden:profile": "tsx scripts/build-skill-hardening-profile.ts",
     "skills:harden": "tsx scripts/harden-skills.ts",
+    "skills:tools:build": "tsx scripts/build-tool-shard-skills.ts",
+    "skills:tools:validate": "tsx scripts/validate-tool-shard-skills.ts",
     "skills:validate": "tsx scripts/validate-1000-skills.ts",
     "skills:test": "tsx scripts/exercise-1000-skills.ts",
     "skills:plan": "tsx scripts/plan-1000-skills-rollout.ts",

@@ -100,6 +100,37 @@ export type SkillImprovementProfile = {
     outcomes: SkillImprovementOutcomes;
 };
 
+export type SkillIntegrationAuthKind =
+    | 'oauth2'
+    | 'token'
+    | 'api_key'
+    | 'service_account'
+    | 'session'
+    | 'signing_secret';
+
+export type SkillIntegrationAuthMode = {
+    kind: SkillIntegrationAuthKind;
+    label: string;
+    envVars: string[];
+    required: boolean;
+    validation: string;
+};
+
+export type SkillIntegrationProfile = {
+    provider: string;
+    providerSlug: string;
+    category: string;
+    operation: string;
+    operationSlug: string;
+    protocols: string[];
+    authModes: SkillIntegrationAuthMode[];
+    externalAuthRequired: boolean;
+    apiKeyLikelyRequired: boolean;
+    mutating: boolean;
+    webhookCapable: boolean;
+    notes: string[];
+};
+
 export type SkillImplementation = {
     version: 1;
     sourceFile: string;
@@ -112,6 +143,7 @@ export type SkillImplementation = {
     implementationGuide: string[];
     runtimeProfile: SkillRuntimeProfile;
     improvementProfile?: SkillImprovementProfile;
+    integrationProfile?: SkillIntegrationProfile;
     traceability: {
         scopeStep: string;
         contractStep: string;

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 506,
+  "name": "postgres-report-builder",
+  "title": "Postgres Report Builder",
+  "description": "Generates operational and KPI reports from Postgres activity.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0506-postgres-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0506-postgres-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "postgres report builder",
+    "postgres report builder workflow",
+    "postgres report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Postgres",
+    "operation": "report-builder",
+    "authModes": [
+      "service_account",
+      "session"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0506-postgres-report-builder"
+  }
+}

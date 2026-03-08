@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 323,
+  "skillName": "bigcommerce-data-exporter",
+  "title": "BigCommerce Data Exporter",
+  "domain": "External SaaS integrations",
+  "domainSlug": "external-saas-integrations",
+  "reason": "We need this skill because BigCommerce workflows degrade when auth, schema, and side-effect handling drift when integrations are run ad hoc. This specific skill turns BigCommerce Data Exporter into a deterministic, auth-checked workflow for exports bigcommerce entities into clean, typed datasets..",
+  "implementationGuide": [
+    "Define the approved entities, fields, and destination contract for BigCommerce Data Exporter, then constrain the export scope for BigCommerce before running queries.",
+    "Validate credential reuse, pagination strategy, and the exact schema version that downstream consumers expect.",
+    "Implement exports bigcommerce entities into clean, typed datasets. with deterministic extraction, normalization, and integrity metadata for every page or batch.",
+    "Attach counts, checksums, and schema fingerprints to the export package and block delivery when the contract drifts.",
+    "Run integration and regression suites that cover unauthorized field expansion, pagination gaps, and partial delivery failures.",
+    "Publish a delivery-ready export package with scope notes, integrity metadata, and any quarantined records called out explicitly."
+  ],
+  "runtimeProfile": {
+    "archetype": "typed-export-engine",
+    "coreMethod": "typed extraction and delivery",
+    "primaryArtifact": "bigcommerce-export-package",
+    "requiredSignals": [
+      "export specification",
+      "query filters",
+      "destination contract"
+    ],
+    "kpiFocus": [
+      "export completeness",
+      "schema conformance",
+      "delivery latency"
+    ],
+    "scoringWeights": {
+      "truth": 0.28,
+      "execution": 0.34,
+      "safety": 0.2,
+      "impact": 0.18
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 54,
+      "reviewRisk": 62,
+      "criticalRisk": 82
+    },
+    "orchestration": {
+      "routingTag": "bigcommerce:data-exporter",
+      "approvalGates": [
+        "provider-auth-check",
+        "data-scope-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 700,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "stop-export-and-invalidate-partial-deliveries",
+      "components": [
+        "scope validation",
+        "query execution",
+        "schema normalization",
+        "delivery confirmation"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0323_bigcommerce",
+      "releaseCycles": 1,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:323:bigcommerce:data-exporter"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "foundation",
+    "humanUseCases": [
+      "Extract provider data into a clean, typed payload without expanding access scope.",
+      "Create repeatable export jobs that downstream systems can trust without hand repair."
+    ],
+    "runbook": {
+      "preflight": [
+        "Validate export scope, filters, and destination expectations before running queries.",
+        "Confirm credentials and verify that the export respects the agreed data minimization policy."
+      ],
+      "execution": [
+        "Run deterministic queries, preserve pagination/cursor details, and normalize the output schema.",
+        "Attach checksums and row counts to every export package."
+      ],
+      "recovery": [
+        "Invalidate partial exports and rerun from the last clean page or cursor on failure.",
+        "Stop delivery when the schema drifts outside the declared contract."
+      ],
+      "handoff": [
+        "Return the export package location, checksums, and schema summary.",
+        "Note any rows filtered, dropped, or quarantined before the package was finalized."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "quality",
+        "rule": "Attach counts, checksums, and schema version to every export package.",
+        "automation": "export-integrity-check"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Reject exports that exceed the approved data scope.",
+        "automation": "data-scope-review"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Invalidate partial deliveries instead of handing off incomplete datasets.",
+        "automation": "partial-delivery-block"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.5% successful runs per 7-day window",
+      "errorBudget": "<=0.5% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": true,
+      "parallelism": 3,
+      "maxCycleMinutes": 25,
+      "approvals": [
+        "provider-auth-check",
+        "data-scope-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "export completeness",
+      "secondaryMetrics": [
+        "schema conformance",
+        "delivery latency"
+      ],
+      "reviewCadence": "weekly"
+    }
+  },
+  "integrationProfile": {
+    "provider": "BigCommerce",
+    "providerSlug": "bigcommerce",
+    "category": "External SaaS integrations",
+    "operation": "Data Exporter",
+    "operationSlug": "data-exporter",
+    "protocols": [
+      "HTTPS/REST"
+    ],
+    "authModes": [
+      {
+        "kind": "oauth2",
+        "label": "OAuth client or delegated session",
+        "envVars": [
+          "BIGCOMMERCE_CLIENT_ID",
+          "BIGCOMMERCE_CLIENT_SECRET"
+        ],
+        "required": true,
+        "validation": "Reuse an active delegated session or validate the client credentials with a lightweight identity call."
+      },
+      {
+        "kind": "token",
+        "label": "Access token or personal access token",
+        "envVars": [
+          "BIGCOMMERCE_TOKEN",
+          "BIGCOMMERCE_ACCESS_TOKEN"
+        ],
+        "required": true,
+        "validation": "Validate the token with the smallest read-only endpoint that proves scope and tenancy."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": false,
+    "mutating": false,
+    "webhookCapable": false,
+    "notes": [
+      "Reuse existing sessions or provider tokens before requesting new credentials."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the approved entities, fields, and destination contract for BigCommerce Data Exporter, then constrain the export scope for BigCommerce before running queries.",
+    "contractStep": "Validate credential reuse, pagination strategy, and the exact schema version that downstream consumers expect.",
+    "coreStep": "Implement exports bigcommerce entities into clean, typed datasets. with deterministic extraction, normalization, and integrity metadata for every page or batch.",
+    "orchestrationStep": "Attach counts, checksums, and schema fingerprints to the export package and block delivery when the contract drifts.",
+    "validationStep": "Run integration and regression suites that cover unauthorized field expansion, pagination gaps, and partial delivery failures.",
+    "rolloutStep": "Publish a delivery-ready export package with scope notes, integrity metadata, and any quarantined records called out explicitly."
+  }
+}

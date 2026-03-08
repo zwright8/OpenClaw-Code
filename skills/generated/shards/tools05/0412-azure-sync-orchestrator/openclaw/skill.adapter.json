@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 412,
+  "name": "azure-sync-orchestrator",
+  "title": "Azure Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Azure records.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools05/0412-azure-sync-orchestrator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools05/0412-azure-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure sync orchestrator",
+    "azure sync orchestrator workflow",
+    "azure sync orchestrator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Azure",
+    "operation": "sync-orchestrator",
+    "authModes": [
+      "service_account",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools05/0412-azure-sync-orchestrator"
+  }
+}

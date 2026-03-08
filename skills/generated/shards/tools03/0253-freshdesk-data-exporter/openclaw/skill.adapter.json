@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 253,
+  "name": "freshdesk-data-exporter",
+  "title": "Freshdesk Data Exporter",
+  "description": "Exports Freshdesk entities into clean, typed datasets.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools03/0253-freshdesk-data-exporter/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools03/0253-freshdesk-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "freshdesk data exporter",
+    "freshdesk data exporter workflow",
+    "freshdesk data exporter automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Freshdesk",
+    "operation": "data-exporter",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools03/0253-freshdesk-data-exporter"
+  }
+}

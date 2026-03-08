@@ -1,0 +1,52 @@
+{
+  "skillId": 330,
+  "skillName": "bigcommerce-migration-assistant",
+  "title": "BigCommerce Migration Assistant",
+  "provider": "BigCommerce",
+  "category": "External SaaS integrations",
+  "operation": "migration-assistant",
+  "authContext": {
+    "mode": "oauth2",
+    "envVars": [
+      "BIGCOMMERCE_CLIENT_ID",
+      "BIGCOMMERCE_CLIENT_SECRET"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "source_inventory": "sample_source_inventory",
+      "target_mapping": "sample_target_mapping",
+      "rollback_plan": "sample_rollback_plan"
+    },
+    "approvalGates": [
+      "migration-plan-review",
+      "rollback-readiness-check"
+    ],
+    "rollbackStrategy": "abort-cutover-and-revert-to-last-stable-platform-state"
+  },
+  "expected": {
+    "primaryArtifact": "bigcommerce-migration-cutover-plan",
+    "kpiFocus": [
+      "migration completeness",
+      "cutover risk",
+      "rollback success rate"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 80,
+      "reviewMin": 60,
+      "reviewRisk": 56,
+      "criticalRisk": 74
+    }
+  },
+  "regressionHint": {
+    "scenario": "Migration rehearsal with an incomplete source inventory and no rollback checkpoint.",
+    "mutation": "Remove items from the source inventory and strip the rollback checkpoint reference from the fixture."
+  }
+}

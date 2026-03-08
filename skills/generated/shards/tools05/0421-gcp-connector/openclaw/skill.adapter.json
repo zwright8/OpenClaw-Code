@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 421,
+  "name": "gcp-connector",
+  "title": "GCP Connector",
+  "description": "Unified read/write connector for GCP APIs and data.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools05/0421-gcp-connector/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools05/0421-gcp-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gcp connector",
+    "gcp connector workflow",
+    "gcp connector automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "GCP",
+    "operation": "connector",
+    "authModes": [
+      "service_account",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools05/0421-gcp-connector"
+  }
+}

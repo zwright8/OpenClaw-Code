@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 836,
+  "name": "azure-openai-report-builder",
+  "title": "Azure OpenAI Report Builder",
+  "description": "Generates operational and KPI reports from Azure OpenAI activity.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools09/0836-azure-openai-report-builder/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools09/0836-azure-openai-report-builder/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure openai report builder",
+    "azure openai report builder workflow",
+    "azure openai report builder automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Azure OpenAI",
+    "operation": "report-builder",
+    "authModes": [
+      "api_key"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools09/0836-azure-openai-report-builder"
+  }
+}
