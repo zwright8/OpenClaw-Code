@@ -481,6 +481,99 @@ test('metrics expose retry token bucket state', async () => {
     assert.equal(metrics.retry.tokenBucket.tokensAvailable, 3);
 });
 
+test('circuit breaker defers dispatch when target is open', async () => {
+    const clock = createClock(30_000);
+    let sends = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sends += 1;
+                throw new Error('worker unavailable');
+            }
+        },
+        now: clock.now,
+        circuitBreakerFailureThreshold: 2,
+        circuitBreakerCooldownMs: 1_000,
+        retryDelayMs: 10
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-circuit',
+            task: 'Trigger failure 1'
+        }),
+        /worker unavailable/
+    );
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-circuit',
+            task: 'Trigger failure 2'
+        }),
+        /worker unavailable/
+    );
+
+    const deferred = await orchestrator.dispatchTask({
+        target: 'agent:worker-circuit',
+        task: 'Should be deferred by open circuit'
+    });
+
+    assert.equal(deferred.status, 'retry_scheduled');
+    assert.equal(deferred.attempts, 0);
+    assert.equal(deferred.nextRetryAt, clock.now() + 1_000);
+    assert.equal(sends, 2);
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.circuitBreaker.openTargets, 1);
+});
+
+test('circuit breaker closes after half-open probe succeeds', async () => {
+    const clock = createClock(31_000);
+    let sends = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sends += 1;
+                if (sends === 1) {
+                    throw new Error('temporary outage');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 2,
+        retryDelayMs: 10,
+        circuitBreakerFailureThreshold: 1,
+        circuitBreakerCooldownMs: 500
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-circuit-recovery',
+            task: 'Open breaker on first failure'
+        }),
+        /temporary outage/
+    );
+
+    const deferred = await orchestrator.dispatchTask({
+        target: 'agent:worker-circuit-recovery',
+        task: 'Wait for half-open probe'
+    });
+    assert.equal(deferred.status, 'retry_scheduled');
+
+    clock.advance(500);
+    const pass = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(deferred.taskId);
+    assert.equal(pass.retried, 1);
+    assert.equal(current.status, 'dispatched');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.circuitBreaker.openTargets, 0);
+    assert.equal(metrics.retry.circuitBreaker.halfOpenTargets, 0);
+    assert.equal(sends, 2);
+});
+
 test('dispatchTask can resolve target through routeTask callback', async () => {
     const sent = [];
     const orchestrator = new TaskOrchestrator({

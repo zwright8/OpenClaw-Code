@@ -20,6 +20,7 @@ const OPEN_STATUSES = new Set([
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
 const RETRY_BACKOFF_STRATEGIES = new Set(['fixed', 'exponential']);
 const RETRY_JITTER_STRATEGIES = new Set(['none', 'full']);
+const CIRCUIT_STATES = new Set(['closed', 'open', 'half_open']);
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -167,6 +168,9 @@ export class TaskOrchestrator {
         retryTokenRefillPerSecond = 4,
         retryTokenCost = 1,
         idempotencyKeyTtlMs = 5 * 60_000,
+        circuitBreakerFailureThreshold = 3,
+        circuitBreakerCooldownMs = 15_000,
+        circuitBreakerHalfOpenProbeCooldownMs = 250,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -217,6 +221,16 @@ export class TaskOrchestrator {
         this.idempotencyKeyTtlMs = clampNonNegativeNumber(idempotencyKeyTtlMs, 5 * 60_000);
         this.idempotencyCache = new Map();
         this.idempotencyTaskIndex = new Map();
+        this.circuitBreakerFailureThreshold = Math.max(
+            1,
+            Math.floor(clampPositiveNumber(circuitBreakerFailureThreshold, 3))
+        );
+        this.circuitBreakerCooldownMs = clampNonNegativeNumber(circuitBreakerCooldownMs, 15_000);
+        this.circuitBreakerHalfOpenProbeCooldownMs = clampNonNegativeNumber(
+            circuitBreakerHalfOpenProbeCooldownMs,
+            250
+        );
+        this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
         this.retryTokenLastRefillAt = safeNow(this.now);
@@ -277,6 +291,117 @@ export class TaskOrchestrator {
         if (!key) return;
         this.idempotencyTaskIndex.delete(taskId);
         this.idempotencyCache.delete(key);
+    }
+
+    _getCircuitState(target) {
+        const existing = this.circuitBreakers.get(target);
+        if (existing) return existing;
+        const baseline = {
+            target,
+            state: 'closed',
+            failures: 0,
+            openedAt: null,
+            nextAttemptAt: null,
+            halfOpenProbeInFlight: false
+        };
+        this.circuitBreakers.set(target, baseline);
+        return baseline;
+    }
+
+    _setCircuitState(state, nextState) {
+        state.state = CIRCUIT_STATES.has(nextState) ? nextState : 'closed';
+    }
+
+    _allowTargetSend(target, nowMs) {
+        const state = this._getCircuitState(target);
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+
+        if (state.state === 'open') {
+            const readyAt = Number.isFinite(state.nextAttemptAt)
+                ? Number(state.nextAttemptAt)
+                : at + this.circuitBreakerCooldownMs;
+
+            if (at < readyAt) {
+                return {
+                    allowed: false,
+                    state: state.state,
+                    retryAfterMs: Math.max(0, readyAt - at)
+                };
+            }
+
+            this._setCircuitState(state, 'half_open');
+            state.halfOpenProbeInFlight = false;
+            state.nextAttemptAt = null;
+        }
+
+        if (state.state === 'half_open') {
+            if (state.halfOpenProbeInFlight) {
+                return {
+                    allowed: false,
+                    state: state.state,
+                    retryAfterMs: Math.max(1, this.circuitBreakerHalfOpenProbeCooldownMs)
+                };
+            }
+            state.halfOpenProbeInFlight = true;
+        }
+
+        return {
+            allowed: true,
+            state: state.state,
+            retryAfterMs: 0
+        };
+    }
+
+    _closeCircuit(target) {
+        const state = this._getCircuitState(target);
+        state.failures = 0;
+        state.openedAt = null;
+        state.nextAttemptAt = null;
+        state.halfOpenProbeInFlight = false;
+        this._setCircuitState(state, 'closed');
+    }
+
+    _openCircuit(target, nowMs) {
+        const state = this._getCircuitState(target);
+        state.openedAt = nowMs;
+        state.nextAttemptAt = nowMs + this.circuitBreakerCooldownMs;
+        state.halfOpenProbeInFlight = false;
+        this._setCircuitState(state, 'open');
+    }
+
+    _recordCircuitSendSuccess(target, nowMs) {
+        const state = this._getCircuitState(target);
+        const previousState = state.state;
+        state.halfOpenProbeInFlight = false;
+        state.failures = 0;
+        if (state.state !== 'closed') {
+            this._closeCircuit(target);
+            this._emitAudit('target_circuit_closed', {
+                target,
+                previousState
+            }, nowMs);
+        }
+    }
+
+    _recordCircuitSendFailure(target, nowMs) {
+        const state = this._getCircuitState(target);
+        state.halfOpenProbeInFlight = false;
+        state.failures += 1;
+
+        if (
+            state.state === 'half_open'
+            || state.failures >= this.circuitBreakerFailureThreshold
+        ) {
+            const previousState = state.state;
+            this._openCircuit(target, nowMs);
+            this._emitAudit('target_circuit_opened', {
+                target,
+                previousState,
+                failures: state.failures,
+                failureThreshold: this.circuitBreakerFailureThreshold,
+                cooldownMs: this.circuitBreakerCooldownMs
+            }, nowMs);
+        }
     }
 
     async hydrate({ replace = true } = {}) {
@@ -773,6 +898,23 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'initial_dispatch');
         } catch (error) {
+            if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
+                if (this._canRetry(record)) {
+                    this._scheduleRetry(record, dispatchAt, {
+                        reason: 'circuit_open_on_dispatch',
+                        event: 'dispatch_deferred_circuit_open',
+                        hintMs: Number.isFinite(error?.details?.retryAfterMs)
+                            ? Number(error.details.retryAfterMs)
+                            : null,
+                        auditEvent: 'task_dispatch_deferred_circuit_open',
+                        metadata: {
+                            circuitState: error?.details?.circuitState || null
+                        }
+                    });
+                    return this.getTask(record.taskId);
+                }
+            }
+
             this.tasks.delete(record.taskId);
             this._deleteRecord(record.taskId);
             this._clearIdempotencyKeyForTask(record.taskId);
@@ -852,6 +994,36 @@ export class TaskOrchestrator {
 
     async _sendTask(record, reason) {
         const sendAt = safeNow(this.now);
+        const circuitGate = this._allowTargetSend(record.target, sendAt);
+        if (!circuitGate.allowed) {
+            record.updatedAt = sendAt;
+            record.history.push({
+                at: sendAt,
+                event: 'send_blocked_circuit_open',
+                reason,
+                circuitState: circuitGate.state,
+                retryAfterMs: circuitGate.retryAfterMs
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_send_blocked_circuit_open', {
+                taskId: record.taskId,
+                target: record.target,
+                reason,
+                circuitState: circuitGate.state,
+                retryAfterMs: circuitGate.retryAfterMs
+            }, sendAt);
+            throw new TaskOrchestratorError(
+                'CIRCUIT_OPEN',
+                `Target ${record.target} circuit is ${circuitGate.state}`,
+                {
+                    taskId: record.taskId,
+                    target: record.target,
+                    circuitState: circuitGate.state,
+                    retryAfterMs: circuitGate.retryAfterMs
+                }
+            );
+        }
+
         record.attempts += 1;
         record.updatedAt = sendAt;
         record.history.push({
@@ -878,6 +1050,7 @@ export class TaskOrchestrator {
                 event: 'send_success',
                 attempt: record.attempts
             });
+            this._recordCircuitSendSuccess(record.target, record.updatedAt);
             this._persistRecord(record);
             this._emitAudit('task_send_success', {
                 taskId: record.taskId,
@@ -894,6 +1067,7 @@ export class TaskOrchestrator {
                 attempt: record.attempts,
                 error: message
             });
+            this._recordCircuitSendFailure(record.target, record.updatedAt);
             this._persistRecord(record);
             this._emitAudit('task_send_failed', {
                 taskId: record.taskId,
@@ -1052,6 +1226,22 @@ export class TaskOrchestrator {
                 await this._sendTask(record, 'timeout_retry');
                 summary.retried++;
             } catch (error) {
+                if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
+                    this._scheduleRetry(record, nowMs, {
+                        reason: 'circuit_open',
+                        event: 'retry_deferred_circuit_open',
+                        hintMs: Number.isFinite(error?.details?.retryAfterMs)
+                            ? Number(error.details.retryAfterMs)
+                            : null,
+                        auditEvent: 'task_retry_deferred_circuit_open',
+                        metadata: {
+                            circuitState: error?.details?.circuitState || null
+                        }
+                    });
+                    summary.scheduledRetries++;
+                    continue;
+                }
+
                 summary.transportFailures++;
                 this.logger.warn?.(
                     `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
@@ -1130,6 +1320,14 @@ export class TaskOrchestrator {
                 idempotency: {
                     ttlMs: this.idempotencyKeyTtlMs,
                     activeKeys: this.idempotencyCache.size
+                },
+                circuitBreaker: {
+                    failureThreshold: this.circuitBreakerFailureThreshold,
+                    cooldownMs: this.circuitBreakerCooldownMs,
+                    halfOpenProbeCooldownMs: this.circuitBreakerHalfOpenProbeCooldownMs,
+                    targetCount: this.circuitBreakers.size,
+                    openTargets: 0,
+                    halfOpenTargets: 0
                 }
             }
         };
@@ -1143,6 +1341,14 @@ export class TaskOrchestrator {
                 metrics.terminal++;
             } else {
                 metrics.open++;
+            }
+        }
+
+        for (const state of this.circuitBreakers.values()) {
+            if (state.state === 'open') {
+                metrics.retry.circuitBreaker.openTargets++;
+            } else if (state.state === 'half_open') {
+                metrics.retry.circuitBreaker.halfOpenTargets++;
             }
         }
 
