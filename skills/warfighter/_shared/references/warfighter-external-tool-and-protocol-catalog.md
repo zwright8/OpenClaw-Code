@@ -1986,3 +1986,123 @@ external_binding:
 ### `ps-maritime-insurance-reconstitution-stack-v1`
 - Protocols: `AIS/NMEA`, `USMTF`, `API/JSON`.
 - Use for: insurance risk status exchange, charter continuity actions, and coalition sealift reconstitution reporting.
+
+### `ts-ai-camouflage-discipline-audit-v1`
+- Use for: AI-enabled camouflage discipline audits, signature drift detection, and corrective control sequencing.
+- Primary tools: multispectral signature analytics, decoy posture planners, deception effectiveness dashboards.
+- Cross-check tools: independent ISR review board and alternate thermal/visual signature verifier.
+- Typical products: camouflage compliance ledger, drift remediation queue, deception confidence map.
+
+### `ts-additive-propellant-safety-v1`
+- Use for: additive propellant production safety governance, hazard threshold monitoring, and release authority checks.
+- Primary tools: additive energetics QA pipeline, lot genealogy services, hazard modeling workbench.
+- Cross-check tools: independent blast-safety calculator and alternate lot-integrity audit board.
+- Typical products: lot safety matrix, hazard branch triggers, release authority packet.
+
+### `ts-expeditionary-radiation-dosimetry-v1`
+- Use for: expeditionary dosimetry management, coalition exposure tracking, and mission continuation thresholds.
+- Primary tools: portable dosimeter telemetry collectors, exposure analytics dashboards, shelter threshold planners.
+- Cross-check tools: independent sample-chain verifier and alternate medical exposure reconciliation board.
+- Typical products: exposure posture map, dosimeter allocation matrix, continuation decision table.
+
+### `ts-vertical-datum-reconciliation-v1`
+- Use for: vertical datum mismatch reconciliation across denied-environment terrain sources and fires systems.
+- Primary tools: geodesy normalization services, terrain model differencing engines, precision-effects error analyzers.
+- Cross-check tools: independent survey-control board and alternate elevation confidence monitor.
+- Typical products: datum discrepancy ledger, correction priority queue, precision risk advisory.
+
+### `ts-orbital-debris-hostile-screening-v1`
+- Use for: orbital debris coincidence screening to distinguish natural conjunctions from hostile shaping patterns.
+- Primary tools: conjunction assessment systems, maneuver-history analytics, threat-pattern classifiers.
+- Cross-check tools: independent orbital event mirror and alternate hostile-indicator review board.
+- Typical products: coincidence confidence ladder, maneuver recommendation queue, hostile-pattern alert set.
+
+### `ts-maritime-desal-water-continuity-v1`
+- Use for: maritime desalination continuity and water distribution resilience under contamination or platform disruption.
+- Primary tools: desal throughput monitors, onboard water quality analyzers, distribution demand schedulers.
+- Cross-check tools: independent lab verification service and alternate afloat storage integrity dashboard.
+- Typical products: water continuity map, contamination branch plan, distribution priority matrix.
+
+### `ts-convoy-fuel-fraud-detection-v1`
+- Use for: convoy fuel-fraud detection, diversion attribution, and endurance-risk mitigation.
+- Primary tools: fuel transaction anomaly engines, tanker telemetry boards, convoy endurance models.
+- Cross-check tools: independent reconciliation ledger and alternate refuel event audit service.
+- Typical products: anomaly confidence board, fraud branch matrix, endurance risk forecast.
+
+### `ts-coalition-medical-credentialing-v1`
+- Use for: coalition cross-border medical credentialing, privileging verification, and legal authority synchronization.
+- Primary tools: credential verification services, privileging workflow engines, coalition legal-adjudication trackers.
+- Cross-check tools: independent license-status mirror and alternate treatment-authority validation board.
+- Typical products: credentialing status board, privileging exception queue, authority release log.
+
+### `ts-electronics-reverse-logistics-v1`
+- Use for: expeditionary electronic component reverse logistics and repair-vs-replace prioritization.
+- Primary tools: component traceability ledgers, reverse-logistics routing planners, depot repair backlog dashboards.
+- Cross-check tools: independent provenance checker and alternate disposition audit board.
+- Typical products: recovery priority queue, reverse-flow route matrix, disposition decision board.
+
+### `ts-cloudburst-flood-route-survivability-v1`
+- Use for: cloudburst flood-route survivability assessment for movement, sustainment, and evacuation lanes.
+- Primary tools: flood nowcast fusion services, route capacity analyzers, mobility interruption simulators.
+- Cross-check tools: independent hydrology monitor and alternate route viability verifier.
+- Typical products: survivability overlay, reroute trigger chart, movement branch matrix.
+
+### `ts-rail-signaling-cyber-failover-v1`
+- Use for: railway signaling cyber-physical failover planning and throughput continuity under attack or outage.
+- Primary tools: signaling health telemetry, OT incident orchestration boards, rail throughput schedulers.
+- Cross-check tools: independent interlocking status monitor and alternate route-control ledger.
+- Typical products: failover sequence board, throughput continuity forecast, reconnect authority checklist.
+
+### `ts-energetics-precursor-counterfeit-v1`
+- Use for: counterfeit energetics precursor detection, source attribution, and lot quarantine governance.
+- Primary tools: chemical provenance analytics, supplier risk intelligence dashboards, lot-test reconciliation services.
+- Cross-check tools: independent lab assay board and alternate supplier integrity monitor.
+- Typical products: counterfeit risk ledger, quarantine recommendation matrix, source disruption options.
+
+### `ps-ai-camouflage-discipline-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: signature drift alerts, camouflage compliance packets, and deception remediation orders.
+
+### `ps-additive-propellant-safety-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `XML`.
+- Use for: additive lot safety validation, hazard release gating, and energetics exception reporting.
+
+### `ps-expeditionary-radiation-dosimetry-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `NIMS/ICS`.
+- Use for: dosimetry exposure exchange, coalition medical risk updates, and shelter trigger coordination.
+
+### `ps-vertical-datum-reconciliation-stack-v1`
+- Protocols: `OGC`, `USMTF`, `API/JSON`.
+- Use for: elevation correction packets, datum reconciliation decisions, and precision-fires integrity notices.
+
+### `ps-orbital-debris-hostile-screening-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `API/JSON`.
+- Use for: conjunction screening reports, maneuver advisories, and hostile-coincidence confidence updates.
+
+### `ps-maritime-desal-water-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `API/JSON`.
+- Use for: desalination status exchange, contamination alerts, and distribution continuity actions.
+
+### `ps-convoy-fuel-fraud-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `ISO 20022`.
+- Use for: fuel anomaly records, fraud investigation actions, and disbursement/control reconciliation.
+
+### `ps-coalition-medical-credentialing-stack-v1`
+- Protocols: `HL7/FHIR`, `NATO APP-11/ADatP-3`, `USMTF`.
+- Use for: coalition credential verification, privileging approvals, and treatment-authority exchange.
+
+### `ps-electronics-reverse-logistics-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `NATO APP-11/ADatP-3`.
+- Use for: component recovery manifests, reverse-logistics routing orders, and depot disposition updates.
+
+### `ps-cloudburst-flood-route-stack-v1`
+- Protocols: `OGC`, `USMTF`, `CAP`.
+- Use for: flood-route status updates, movement reroute triggers, and emergency mobility advisories.
+
+### `ps-rail-signaling-cyber-failover-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `STIX/TAXII`.
+- Use for: signaling outage incident exchange, failover sequence orders, and OT threat indicators.
+
+### `ps-energetics-precursor-counterfeit-stack-v1`
+- Protocols: `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: counterfeit precursor intelligence packets, lot quarantine orders, and supplier risk alerts.
