@@ -169,3 +169,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
 - Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
 - Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Logistics Continuity Addendum (2026-03-08)
+
+- For Arctic or littoral denial scenarios, bind `tool_suite_id=ts-under-ice-resupply-v1` with `protocol_stack_id=ps-under-ice-resupply-stack-v1`.
+- For strategic sealift availability stress, add `tool_suite_id=ts-maritime-insurance-reconstitution-v1` with `protocol_stack_id=ps-maritime-insurance-reconstitution-stack-v1`.
+- For sustainment plans with life-support dependencies, include `packet_id=DPL-RARE-BLOOD-MATCH-001` as a mandatory medical-logistics cross-check.
