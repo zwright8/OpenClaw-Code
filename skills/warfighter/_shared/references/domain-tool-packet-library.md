@@ -2730,3 +2730,113 @@ validation_gates:
 - output_schema: continuity posture matrix, restoration sequence, load-shedding decision ladder
 - protocol_profile: NIMS/ICS + USMTF + API/JSON
 - validation_gates: utility state verification, mission load priority confirmation, command authority approval
+
+### packet_id: DPL-CISLUNAR-RESCUE-001
+- domain: cislunar logistics and contingency rescue
+- objective: synchronize logistics windows and rescue branches under trajectory and comm-path uncertainty
+- primary_tools: cislunar ephemeris planner, rendezvous timeline manager, life-support status monitor
+- alternate_tools: manual orbital timing board and delayed telemetry digest
+- degraded_mode: 6-hour confidence-banded mission timeline updates via USMTF summary
+- input_requirements: orbit set, crew status, consumables state, rendezvous windows, conjunction risks
+- output_schema: logistics window table, rescue trigger ladder, commander decision prompts
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: dual-ephemeris confirmation, life-support confidence threshold, authority validation
+
+### packet_id: DPL-COMBINED-ARMS-DIGITAL-TWIN-001
+- domain: combined arms rehearsal digital twin
+- objective: stress-test mission branches and dependency failures before execution
+- primary_tools: mission digital twin simulator, red-cell model service, after-action telemetry comparer
+- alternate_tools: manual branch matrix and replay board
+- degraded_mode: single-branch rehearsal with conservative assumptions and explicit unknowns
+- input_requirements: order of battle, branch assumptions, timeline constraints, sustainment dependencies
+- output_schema: branch scorecard, failure map, mitigation recommendation list
+- protocol_profile: API/JSON + USMTF + CoT
+- validation_gates: scenario-data integrity pass, red/blue challenge complete, commander review gate
+
+### packet_id: DPL-COAL-IAMD-LATENCY-001
+- domain: coalition integrated air and missile defense latency
+- objective: reduce track and decision latency across coalition IAMD exchanges
+- primary_tools: coalition track gateway, latency telemetry analyzer, handoff adjudication board
+- alternate_tools: liaison timing log and manual track-handoff matrix
+- degraded_mode: priority-track-only handoff with voice confirmation and delayed ledger sync
+- input_requirements: track IDs, source timestamps, coalition release tags, defended asset priorities
+- output_schema: latency root-cause matrix, remediation sequence, authority timing ledger
+- protocol_profile: Link 16 J-series + NATO APP-11/ADatP-3 + USMTF
+- validation_gates: timestamp integrity check, coalition caveat pass, acknowledgment chain complete
+
+### packet_id: DPL-HARBOR-MCM-AUTONOMY-001
+- domain: harbor mine countermeasure autonomy
+- objective: reopen harbor throughput with synchronized autonomous and crewed MCM operations
+- primary_tools: autonomous MCM task manager, harbor clearance scheduler, underwater contact fusion
+- alternate_tools: manual sortie board with periodic sonar confidence updates
+- degraded_mode: daylight-only clearance windows with conservative channel restrictions
+- input_requirements: harbor geometry, contact confidence, sortie status, weather/tide, throughput targets
+- output_schema: clearance sequence board, reopen timeline, residual risk matrix
+- protocol_profile: AIS/NMEA + OGC + USMTF + API/JSON
+- validation_gates: contact-custody confidence floor, safety corridor verification, commander approval gate
+
+### packet_id: DPL-EOB-DECAY-FORECAST-001
+- domain: electronic order-of-battle decay forecasting
+- objective: forecast emitter network degradation and prioritize EW retasking actions
+- primary_tools: emitter analytics, drift detector, retask planning dashboard
+- alternate_tools: manual emitter trend board with periodic adjudication
+- degraded_mode: 12-hour EOB estimate with confidence bands and advisory-only posture
+- input_requirements: emitter observations, mission-data baseline, terrain/weather effects, threat profile
+- output_schema: decay forecast, retask priority queue, survivability delta
+- protocol_profile: Link 16 J-series + VMF + USMTF + API/JSON
+- validation_gates: independent RF cross-check, confidence threshold, legal/authority gate
+
+### packet_id: DPL-IDENTITY-ACCESS-RECOVERY-001
+- domain: contested identity and access recovery
+- objective: restore mission identity trust and privilege continuity during active disruption
+- primary_tools: identity governance platform, revocation status broker, privilege anomaly detector
+- alternate_tools: manual credential revocation board and out-of-band approval ledger
+- degraded_mode: least-privilege emergency profile with manual dual-control approvals
+- input_requirements: affected identities, role mappings, revocation events, mission criticality tags
+- output_schema: recovery sequence plan, trust-risk matrix, reissue audit log
+- protocol_profile: API/JSON + STIX/TAXII + USMTF
+- validation_gates: identity proof confidence, role-approval traceability, commander risk acceptance
+
+### packet_id: DPL-BIOINDUSTRIAL-ASSURANCE-001
+- domain: strategic bioindustrial supply assurance
+- objective: preserve bioindustrial continuity and isolate sabotage-driven production risks
+- primary_tools: production telemetry hub, lot-release governance system, supplier integrity graph
+- alternate_tools: plant status rollup and manual quality adjudication board
+- degraded_mode: weekly risk-banded production outlook with constrained release authority
+- input_requirements: production line status, lot quality indicators, supplier health, cold-chain metrics
+- output_schema: critical-node risk map, continuity branch options, restoration task list
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: quality evidence completeness, sabotage confidence rating, legal-policy checkpoint
+
+### packet_id: DPL-LONG-RANGE-FIRES-MAG-001
+- domain: long-range fires magazine depth and reconstitution
+- objective: optimize fires stockpile use and reconstitution pacing for campaign continuity
+- primary_tools: burn-rate modeler, stockpile allocator, reconstitution scheduler
+- alternate_tools: manual munitions board and transport-lane capacity worksheet
+- degraded_mode: priority target-class allocation with slower reconstitution updates
+- input_requirements: inventory state, expenditure forecast, transport constraints, campaign objectives
+- output_schema: magazine depth outlook, reconstitution timeline, risk-to-campaign table
+- protocol_profile: USMTF + VMF + API/JSON
+- validation_gates: inventory integrity pass, transport feasibility check, authority gate validation
+
+### packet_id: DPL-HOMELAND-GRID-ISLANDING-001
+- domain: homeland civil grid islanding and mission-priority power
+- objective: sustain mission-critical power while coordinating civil islanding and restoration
+- primary_tools: islanding orchestration system, utility telemetry fusion, mission-load prioritization board
+- alternate_tools: manual load-shed matrix and utility liaison coordination log
+- degraded_mode: fixed critical-load schedule with 4-hour reassessment cycle
+- input_requirements: critical loads, grid segment health, restoration crews, hazard forecasts
+- output_schema: islanding priority matrix, restoration trigger chart, command decision prompts
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + API/JSON
+- validation_gates: life-safety priority confirmation, utility concurrence, commander approval checkpoint
+
+### packet_id: DPL-ARCTIC-AEROSTAT-OTHR-001
+- domain: expeditionary arctic aerostat and OTH radar operations
+- objective: maintain arctic early-warning coverage with weather-aware aerostat/OTHR posture management
+- primary_tools: atmospheric persistence planner, OTHR coverage analyzer, payload handover scheduler
+- alternate_tools: manual station timeline board and conservative weather envelope charts
+- degraded_mode: fixed-station watch windows and reduced-resolution warning products
+- input_requirements: sensor locations, weather forecasts, payload health, threat vectors, endurance bands
+- output_schema: sensor posture plan, coverage-gap ledger, contingency handover timeline
+- protocol_profile: AIXM/FIXM/IWXXM + USMTF + API/JSON
+- validation_gates: weather margin threshold, coverage confidence check, authority and safety approval
