@@ -1493,3 +1493,135 @@ external_binding:
 - `coalition-contested-fuel-quality-assurance-and-adulteration-cell`: primary `ts-aviation-fuel-integrity-v1` + `ps-fuel-quality-forensics-stack-v1`; alternate `ts-logistics-distribution-v1` + `ps-cop-event-sharing-stack-v1`.
 - `joint-theater-emergency-civil-alert-and-public-warning-cell`: primary `ts-civil-support-v1` + `ps-hazard-warning-stack-v1`; alternate `ts-disinformation-counter-v1` + `ps-osint-info-ops-stack-v1`.
 - `operational-cognitive-warfare-red-blue-assessment-cell`: primary `ts-disinformation-counter-v1` + `ps-osint-info-ops-stack-v1`; alternate `ts-joint-c2-fusion-v1` + `ps-cop-event-sharing-stack-v1`.
+
+### `ts-arctic-prepositioned-stock-v1`
+- Use for: Arctic prepositioned stock attrition tracking and phased reconstitution under weather and infrastructure constraints.
+- Primary tools: stock readiness ledger, climate route feasibility engine, depot viability monitor.
+- Cross-check tools: independent maintenance readiness mirror and alternate sealift/airlift status board.
+- Typical products: attrition heatmap, reconstitution sequence matrix, priority replenishment order.
+
+### `ts-maritime-drone-mcm-v1`
+- Use for: maritime drone-enabled mine countermeasure corridor opening for convoy and amphibious movement.
+- Primary tools: UxV mission controller, mine-likelihood analytics, corridor deconfliction planner.
+- Cross-check tools: independent hydrographic review and alternate convoy risk timeline board.
+- Typical products: MCM corridor card, sortie schedule, convoy clearance windows.
+
+### `ts-battlefield-forensics-evidence-v1`
+- Use for: battlefield forensics intake, chain-of-custody management, and legal-evidence synchronization.
+- Primary tools: evidence custody ledger, biometric and geotag capture service, legal review queue.
+- Cross-check tools: independent custody audit board and alternate provenance integrity checker.
+- Typical products: evidence packet index, chain-of-custody exceptions list, admissibility confidence note.
+
+### `ts-cyber-reserve-forceflow-v1`
+- Use for: strategic cyber reserve activation, credentialing, and force assignment flow.
+- Primary tools: reserve personnel readiness board, credential issuance workflow, mission-tasking allocator.
+- Cross-check tools: independent access trust mirror and alternate mission qualification tracker.
+- Typical products: forceflow timeline, credential readiness scorecard, reserve allocation matrix.
+
+### `ts-quantum-nav-transition-v1`
+- Use for: transition from GNSS-reliant navigation to quantum and non-GNSS assured-PNT methods.
+- Primary tools: timing integrity monitor, navigation confidence fusion engine, holdover management service.
+- Cross-check tools: independent inertial/celestial confidence board and alternate time-transfer verifier.
+- Typical products: PNT transition branches, confidence degradation map, recovery trigger packet.
+
+### `ts-coalition-fires-clearance-v1`
+- Use for: coalition digital fires clearance, no-strike governance, and fratricide risk containment.
+- Primary tools: digital fires clearance board, coalition ROE constraint manager, deconfliction timeline service.
+- Cross-check tools: independent no-strike audit queue and alternate airspace conflict monitor.
+- Typical products: clearance matrix, fratricide risk register, coalition approval packet.
+
+### `ts-uas-launch-pattern-disruption-v1`
+- Use for: detection and disruption of adversary UAS launch-site patterns across a theater campaign.
+- Primary tools: launch-pattern analytics, geo-cluster activity monitor, strike/non-kinetic tasking board.
+- Cross-check tools: independent ISR pattern validation and alternate collateral-risk assessor.
+- Typical products: launch-site atlas, disruption priority board, reconstitution warning triggers.
+
+### `ts-bioindustrial-surveillance-v1`
+- Use for: dual-use bioindustrial risk surveillance and military force-health protection decisions.
+- Primary tools: biosurveillance fusion dashboard, anomaly triage workflow, force-health advisory board.
+- Cross-check tools: independent lab confirmation tracker and alternate epidemiology confidence board.
+- Typical products: bioindustrial threat brief, protective posture matrix, escalation trigger ledger.
+
+### `ts-austere-water-assurance-v1`
+- Use for: austere water production, quality assurance, and contested distribution continuity.
+- Primary tools: water point telemetry board, purification throughput analyzer, distribution prioritization planner.
+- Cross-check tools: independent sample-chain audit and alternate logistics status mirror.
+- Typical products: water continuity plan, contamination exception list, distribution priority timeline.
+
+### `ts-electronic-deception-effects-v1`
+- Use for: joint electronic deception order generation and measurable effects assessment.
+- Primary tools: deception planning board, EMS effect telemetry analyzer, adversary reaction tracker.
+- Cross-check tools: independent red-cell adjudication and alternate fratricide risk validator.
+- Typical products: electronic deception order, effect scorecard, escalation guardrails packet.
+
+### `ts-commercial-satcom-priority-v1`
+- Use for: strategic commercial SATCOM priority allocation and preemption management under contention.
+- Primary tools: SATCOM demand allocator, mission-priority traffic scheduler, lease arbitration board.
+- Cross-check tools: independent bandwidth probe network and alternate congestion risk monitor.
+- Typical products: priority allocation matrix, preemption sequence, continuity branch map.
+
+### `ts-rail-sabotage-recovery-v1`
+- Use for: rail-node sabotage attribution and military throughput restoration.
+- Primary tools: rail damage triage board, forensic incident linkage service, throughput recovery planner.
+- Cross-check tools: independent civil rail status mirror and alternate route feasibility board.
+- Typical products: sabotage attribution brief, restoration sequence, movement recovery timeline.
+
+### `ts-cema-targeting-approval-v1`
+- Use for: theater cyber-electromagnetic targeting approvals with authority, legal, and timing controls.
+- Primary tools: CEMA target registry, authority gate workflow, timing deconfliction matrix.
+- Cross-check tools: independent legal-policy review board and alternate command concurrence tracker.
+- Typical products: approved effects packet, authority-chain log, approval timing matrix.
+
+### `ts-eod-robotics-swarm-clearance-v1`
+- Use for: robotics-swarm EOD route and facility clearance under contested conditions.
+- Primary tools: EOD robotic mission manager, hazard classification service, clearance throughput board.
+- Cross-check tools: independent blast-risk audit and alternate route hazard monitor.
+- Typical products: robotic clearance sequence, residual hazard map, route release recommendation.
+
+### `ts-translation-roe-assurance-v1`
+- Use for: coalition human-machine translation assurance for ROE and legal precision.
+- Primary tools: multilingual ROE lexicon verifier, translation confidence scorer, ambiguity adjudication queue.
+- Cross-check tools: independent human linguist review cell and alternate legal phrasing monitor.
+- Typical products: ROE translation assurance packet, ambiguity risk matrix, release recommendation.
+
+### `ps-arctic-mobility-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: Arctic sustainment and mobility attrition/reconstitution updates.
+
+### `ps-joint-fires-clearance-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`.
+- Use for: coalition digital fires clearance and fratricide mitigation packet exchange.
+
+### `ps-biosecurity-response-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Use for: bioindustrial anomaly reporting and force-health protective posture updates.
+
+### `ps-water-infrastructure-protection-stack-v1`
+- Protocols: `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Use for: water production/quality incident reporting and restoration synchronization.
+
+### `ps-rail-mobility-recovery-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: rail sabotage attribution and throughput restoration planning.
+
+### `ps-cema-targeting-approval-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: cyber-electromagnetic targeting approval exchanges with legal/authority traceability.
+
+## Skill Default Binding Registry (2026-03-08, Arctic-Cyber-Legal Convergence Surge)
+
+- `joint-arctic-prepositioned-stock-attrition-and-reconstitution-cell`: primary `ts-arctic-prepositioned-stock-v1` + `ps-arctic-mobility-stack-v1`; alternate `ts-logistics-distribution-v1` + `ps-contested-logistics-sustainment-stack-v1`.
+- `theater-maritime-drone-mine-countermeasure-corridor-cell`: primary `ts-maritime-drone-mcm-v1` + `ps-maritime-interdiction-stack-v1`; alternate `ts-maritime-undersea-v1` + `ps-cop-event-sharing-stack-v1`.
+- `joint-battlefield-forensics-war-crimes-evidence-chain-cell`: primary `ts-battlefield-forensics-evidence-v1` + `ps-detainee-compliance-stack-v1`; alternate `ts-detainee-accountability-v1` + `ps-nato-coalition-stack-v1`.
+- `strategic-reserve-cyber-activation-and-force-flow-cell`: primary `ts-cyber-reserve-forceflow-v1` + `ps-cyber-threat-stack-v1`; alternate `ts-cyber-defense-v1` + `ps-cop-event-sharing-stack-v1`.
+- `joint-quantum-navigation-contested-pnt-transition-cell`: primary `ts-quantum-nav-transition-v1` + `ps-time-sync-holdover-stack-v1`; alternate `ts-disconnected-time-pnt-holdover-v1` + `ps-space-weather-gnss-fusion-stack-v1`.
+- `coalition-joint-fires-digital-clearance-and-fratricide-prevention-cell`: primary `ts-coalition-fires-clearance-v1` + `ps-joint-fires-clearance-stack-v1`; alternate `ts-fires-airspace-v1` + `ps-joint-tactical-link-stack-v1`.
+- `theater-uas-launch-site-pattern-disruption-cell`: primary `ts-uas-launch-pattern-disruption-v1` + `ps-counter-uas-killchain-stack-v1`; alternate `ts-air-defense-ammo-economy-v1` + `ps-cop-event-sharing-stack-v1`.
+- `joint-bioindustrial-surveillance-and-force-protection-cell`: primary `ts-bioindustrial-surveillance-v1` + `ps-biosecurity-response-stack-v1`; alternate `ts-biosecurity-lab-incident-v1` + `ps-medical-evacuation-stack-v1`.
+- `contested-austere-water-production-distribution-assurance-cell`: primary `ts-austere-water-assurance-v1` + `ps-water-infrastructure-protection-stack-v1`; alternate `ts-water-infrastructure-protection-v1` + `ps-contested-logistics-sustainment-stack-v1`.
+- `joint-electronic-deception-order-and-effects-assessment-cell`: primary `ts-electronic-deception-effects-v1` + `ps-ew-fratricide-mitigation-stack-v1`; alternate `ts-ew-spectrum-priority-leasing-v1` + `ps-osint-info-ops-stack-v1`.
+- `strategic-commercial-satcom-priority-allocation-cell`: primary `ts-commercial-satcom-priority-v1` + `ps-satcom-antijam-reconstitution-stack-v1`; alternate `ts-orbital-spectrum-continuity-v1` + `ps-space-weather-gnss-fusion-stack-v1`.
+- `joint-rail-node-sabotage-attribution-and-recovery-cell`: primary `ts-rail-sabotage-recovery-v1` + `ps-rail-mobility-recovery-stack-v1`; alternate `ts-rail-bridge-recovery-v1` + `ps-contested-logistics-sustainment-stack-v1`.
+- `theater-cyber-electromagnetic-targeting-approval-cell`: primary `ts-cema-targeting-approval-v1` + `ps-cema-targeting-approval-stack-v1`; alternate `ts-spectrum-governance-v1` + `ps-cyber-threat-stack-v1`.
+- `joint-explosive-ordnance-robotics-swarm-clearance-cell`: primary `ts-eod-robotics-swarm-clearance-v1` + `ps-explosive-demil-safety-stack-v1`; alternate `ts-explosive-demil-safety-v1` + `ps-cop-event-sharing-stack-v1`.
+- `coalition-human-machine-translation-roe-assurance-cell`: primary `ts-translation-roe-assurance-v1` + `ps-nato-coalition-stack-v1`; alternate `ts-joint-c2-fusion-v1` + `ps-osint-info-ops-stack-v1`.

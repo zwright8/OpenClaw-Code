@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 686
+- Total warfighter skills in this repo: 702
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -295,3 +295,39 @@ Every skill output should include:
 - Coalition fuel quality assurance + bulk-fuel contamination response + aviation maintenance forensics
 - Theater emergency civil alerting + DSCA crisis support + information integrity and attribution
 - Cognitive warfare red/blue assessment + tactical PSYOP/MISO + AI-enabled opsec leak detection
+
+## New Expansion Wave (2026-03-08, Arctic-Cyber-Legal Convergence Surge)
+
+- joint-arctic-prepositioned-stock-attrition-and-reconstitution-cell
+- theater-maritime-drone-mine-countermeasure-corridor-cell
+- joint-battlefield-forensics-war-crimes-evidence-chain-cell
+- strategic-reserve-cyber-activation-and-force-flow-cell
+- joint-quantum-navigation-contested-pnt-transition-cell
+- coalition-joint-fires-digital-clearance-and-fratricide-prevention-cell
+- theater-uas-launch-site-pattern-disruption-cell
+- joint-bioindustrial-surveillance-and-force-protection-cell
+- contested-austere-water-production-distribution-assurance-cell
+- joint-electronic-deception-order-and-effects-assessment-cell
+- strategic-commercial-satcom-priority-allocation-cell
+- joint-rail-node-sabotage-attribution-and-recovery-cell
+- theater-cyber-electromagnetic-targeting-approval-cell
+- joint-explosive-ordnance-robotics-swarm-clearance-cell
+- coalition-human-machine-translation-roe-assurance-cell
+
+## Updated Pairings (2026-03-08, Arctic-Cyber-Legal Convergence Surge)
+
+- Arctic prepositioned stock attrition/reconstitution + polar routing + strategic mobility chokepoint wargaming
+- Maritime drone MCM corridors + naval mine warfare planner + convoy escort and sea-lane protection
+- Battlefield forensics evidence chain + detainee operations compliance + coalition legal attribution
+- Cyber reserve force activation + defensive cyber hunt-forward coordination + mission network failover
+- Quantum navigation transition + denied-PNT time transfer assurance + disconnected time sync holdover
+- Coalition digital fires clearance + joint targeting CDE governance + tactical airspace deconfliction
+- UAS launch pattern disruption + counter-UAS kill-chain integration + urban drone anomaly baselining
+- Bioindustrial surveillance + preventive medicine force health protection + CBRN sensor cueing
+- Austere water assurance + cyber-physical water treatment protection + contested logistics sustainment
+- Electronic deception effects assessment + multi-domain tactical deception rehearsal + spectrum governance
+- Commercial SATCOM priority allocation + orbital spectrum continuity + allied SATCOM leasing arbitration
+- Rail sabotage attribution/recovery + rail bridge recovery + deployment/distribution optimization
+- CEMA targeting approval + cyber mission planner + electromagnetic battle management
+- EOD robotics swarm clearance + route clearance and counter-IED fusion + explosive demil safety
+- Human-machine translation ROE assurance + AI-enabled language/cultural mediation + legal ROE compliance
