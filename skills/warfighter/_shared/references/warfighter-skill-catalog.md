@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 570
+- Total warfighter skills in this repo: 590
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, cross-domain integration playbook, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -634,3 +634,34 @@ Every skill output should include:
 - Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
 - Added missing skill metadata files this run: 40 `agents/openai.yaml`
 - Total warfighter skills after this run: 570
+
+## New Expansion Wave (2026-03-08, Strategic Continuity, Infrastructure, and Governance Expansion)
+
+- joint-nuclear-weapon-accident-consequence-management-cell
+- tactical-satellite-ground-terminal-anti-jam-reconstitution-cell
+- coalition-red-sea-commercial-shipping-protection-cell
+- joint-long-range-fires-ammunition-lot-reliability-cell
+- expeditionary-biomass-to-fuel-conversion-cell
+- joint-arctic-over-snow-logistics-corridor-cell
+- contested-megacity-underground-utility-mapping-cell
+- joint-civilian-airlift-requisition-and-priority-cell
+- theater-prison-facility-overrun-contingency-cell
+- joint-autonomous-convoy-legal-liability-governance-cell
+- expeditionary-waterborne-disease-outbreak-response-cell
+- coalition-cross-border-fire-deconfliction-hotline-cell
+- joint-electronic-warfare-fratricide-risk-mitigation-cell
+- strategic-rare-earth-refining-sabotage-response-cell
+- theater-fiber-backbone-restoration-and-reroute-cell
+- joint-cislunar-logistics-window-and-reentry-support-cell
+- expeditionary-camouflage-multispectral-effectiveness-cell
+- joint-amphibious-humanitarian-shore-entry-control-cell
+- tactical-language-enabled-civil-engagement-cell
+- joint-weapon-system-software-supply-chain-assurance-cell
+
+## Catalog Maintenance Update (2026-03-08 Run, Strategic Continuity and Governance Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Added shared toolchain profiles this run: 20
+- Added shared protocol stack profiles this run: 20
+- Total warfighter skills after this run: 590

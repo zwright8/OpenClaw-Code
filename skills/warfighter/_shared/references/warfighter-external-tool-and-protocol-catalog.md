@@ -426,6 +426,126 @@ Include these fields whenever a recommendation depends on external systems:
 - Cross-check tools: independent incident debrief board and alternate miscommunication trend monitor.
 - Typical products: phraseology control plan, misunderstanding risk matrix, mandatory readback checklist.
 
+### `ts-nuclear-accident-consequence-v1`
+- Use for: nuclear weapon accident consequence management, contamination control, and restoration sequencing.
+- Primary tools: radiological sensor fusion services, hazard-plume models, restoration coordination boards.
+- Cross-check tools: independent dosimetry sampling chain and alternate consequence confidence board.
+- Typical products: consequence packet, contamination control matrix, phased restoration timeline.
+
+### `ts-satcom-anti-jam-reconstitution-v1`
+- Use for: anti-jam tactical SATCOM terminal reconstitution and mission-priority connectivity restoration.
+- Primary tools: SATCOM link health monitors, anti-jam waveform managers, terminal provisioning orchestrators.
+- Cross-check tools: independent signal integrity analyzer and alternate path assurance board.
+- Typical products: reconstitution plan, terminal priority board, comms continuity branch.
+
+### `ts-commercial-shipping-protection-v1`
+- Use for: coalition commercial shipping protection, convoy threat routing, and chokepoint assurance.
+- Primary tools: maritime COP, vessel threat-intel fusion tools, escort assignment planners.
+- Cross-check tools: independent shipping risk monitor and alternate route feasibility board.
+- Typical products: shipping protection plan, convoy risk board, reroute decision matrix.
+
+### `ts-ammo-lot-reliability-v1`
+- Use for: long-range fires ammunition lot reliability screening and risk-informed release controls.
+- Primary tools: ammunition telemetry repositories, lot quality analytics, fires sustainment planners.
+- Cross-check tools: independent ballistic confidence board and alternate lot-sampling validator.
+- Typical products: lot reliability assessment, hold/release matrix, expenditure risk plan.
+
+### `ts-biomass-fuel-expeditionary-v1`
+- Use for: expeditionary biomass fuel conversion planning and local energy generation continuity.
+- Primary tools: feedstock characterization tools, conversion-output analyzers, fuel quality governance boards.
+- Cross-check tools: independent chemistry validation service and alternate logistics demand model.
+- Typical products: conversion feasibility brief, feedstock matrix, output quality risk ledger.
+
+### `ts-arctic-over-snow-logistics-v1`
+- Use for: over-snow corridor planning, mobility assurance, and Arctic sustainment pacing.
+- Primary tools: snow/ice route intelligence tools, over-snow vehicle readiness dashboards, throughput planners.
+- Cross-check tools: independent weather-ice risk board and alternate route survivability model.
+- Typical products: corridor plan, mobility-risk overlay, sustainment throughput timeline.
+
+### `ts-megacity-underground-infrastructure-v1`
+- Use for: megacity underground utility mapping for maneuver safety, targeting protection, and restoration.
+- Primary tools: subsurface mapping fusion systems, utility geodata registries, conflict-avoidance planners.
+- Cross-check tools: independent engineering survey mirror and alternate infrastructure confidence board.
+- Typical products: utility risk map, no-strike utility register, restoration sequencing options.
+
+### `ts-civil-airlift-requisition-v1`
+- Use for: civilian airlift requisition, aircraft allocation governance, and throughput prioritization.
+- Primary tools: civil reserve air fleet coordination systems, air movement prioritization boards, slot managers.
+- Cross-check tools: independent carrier availability monitor and alternate flow optimization board.
+- Typical products: airlift requisition packet, allocation matrix, movement timeline.
+
+### `ts-prison-overrun-contingency-v1`
+- Use for: prison overrun contingency planning with detainee accountability and force protection.
+- Primary tools: detainee accountability ledgers, facility security telemetry, crisis response tasking boards.
+- Cross-check tools: independent custody reconciliation monitor and alternate incident adjudication board.
+- Typical products: overrun contingency plan, detainee accountability branch, stabilization task board.
+
+### `ts-autonomous-convoy-liability-v1`
+- Use for: autonomous convoy legal-liability governance, incident traceability, and command approval routing.
+- Primary tools: autonomous route controllers, safety evidence ledgers, legal review workflow tools.
+- Cross-check tools: independent incident reconstruction service and alternate liability scoring board.
+- Typical products: governance packet, liability matrix, authority escalation chain.
+
+### `ts-waterborne-outbreak-response-v1`
+- Use for: expeditionary waterborne disease outbreak detection, containment, and treatment coordination.
+- Primary tools: force-health surveillance systems, water quality telemetry, treatment capacity dashboards.
+- Cross-check tools: independent lab confirmation chain and alternate epidemiology monitor.
+- Typical products: outbreak response plan, source risk board, treatment timeline.
+
+### `ts-cross-border-fire-hotline-v1`
+- Use for: coalition cross-border fires hotline operations, deconfliction governance, and escalation prevention.
+- Primary tools: fires coordination networks, hotline logging systems, escalation decision boards.
+- Cross-check tools: independent strike-event reconciler and alternate diplomatic coordination tracker.
+- Typical products: hotline matrix, deconfliction window board, escalation trigger map.
+
+### `ts-ew-fratricide-mitigation-v1`
+- Use for: EW fratricide mitigation through emitter protection, effects timing controls, and spectrum governance.
+- Primary tools: EW tasking boards, emitter identity ledgers, effect simulation tools.
+- Cross-check tools: independent blue-force emissions monitor and alternate conflict adjudication board.
+- Typical products: EW fratricide matrix, protected emitter list, deconfliction timeline.
+
+### `ts-rare-earth-refining-protection-v1`
+- Use for: sabotage response and continuity planning for strategic rare-earth refining capacity.
+- Primary tools: industrial telemetry analytics, strategic materials dashboards, restoration schedulers.
+- Cross-check tools: independent production capacity verifier and alternate market-shock monitor.
+- Typical products: sabotage impact brief, restoration priority board, continuity plan.
+
+### `ts-fiber-backbone-restoration-v1`
+- Use for: theater fiber backbone restoration, reroute orchestration, and mission-network prioritization.
+- Primary tools: telecom fault localization systems, route engineering planners, mission traffic prioritizers.
+- Cross-check tools: independent link integrity monitor and alternate route assurance board.
+- Typical products: restoration plan, reroute matrix, resilience timeline.
+
+### `ts-cislunar-logistics-window-v1`
+- Use for: cislunar logistics window planning and reentry support timing assurance.
+- Primary tools: orbital ephemeris planners, mission timing coordinators, reentry support dashboards.
+- Cross-check tools: independent orbital risk monitor and alternate timing confidence board.
+- Typical products: logistics window plan, reentry support matrix, timing risk ledger.
+
+### `ts-multispectral-camouflage-assurance-v1`
+- Use for: multispectral camouflage effectiveness testing and signature suppression optimization.
+- Primary tools: spectral signature analyzers, ISR threat modelers, camouflage design evaluators.
+- Cross-check tools: independent red-team ISR assessment and alternate detectability trend monitor.
+- Typical products: camouflage assessment, signature reduction options, survivability board.
+
+### `ts-amphibious-shore-entry-control-v1`
+- Use for: amphibious humanitarian shore-entry control, beach throughput, and aid security governance.
+- Primary tools: littoral traffic managers, beach logistics dashboards, aid handoff tracking tools.
+- Cross-check tools: independent shoreline risk assessor and alternate humanitarian flow board.
+- Typical products: shore-entry control plan, throughput matrix, aid governance packet.
+
+### `ts-civil-engagement-language-support-v1`
+- Use for: tactical civil engagement planning with interpreter scheduling and language-risk controls.
+- Primary tools: language service dispatch systems, civil engagement trackers, message assurance tools.
+- Cross-check tools: independent cultural-risk review board and alternate miscommunication monitor.
+- Typical products: engagement packet, interpreter tasking plan, message risk matrix.
+
+### `ts-weapons-software-supply-chain-v1`
+- Use for: weapon-system software supply-chain assurance, provenance checks, and release governance.
+- Primary tools: SBOM repositories, signed artifact verifiers, mission risk gate workflows.
+- Cross-check tools: independent vulnerability intelligence service and alternate release-integrity board.
+- Typical products: supply assurance report, hold/release matrix, risk acceptance packet.
+
 ## Protocol Stack Catalog
 
 ### `ps-joint-tactical-link-stack-v1`
@@ -627,6 +747,86 @@ Include these fields whenever a recommendation depends on external systems:
 ### `ps-coalition-aviation-phraseology-stack-v1`
 - Protocols: `NATO APP-11/ADatP-3 aligned`, `AIXM/FIXM/IWXXM`, `USMTF`, `API/JSON`.
 - Use for: coalition aviation phraseology standardization, readback assurance, and comms risk reduction.
+
+### `ps-nuclear-accident-consequence-stack-v1`
+- Protocols: `EDXL-DE/CAP`, `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Use for: nuclear weapon accident consequence coordination and restoration control.
+
+### `ps-satcom-antijam-reconstitution-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: anti-jam SATCOM reconstitution and mission-priority terminal synchronization.
+
+### `ps-commercial-shipping-protection-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: coalition shipping protection and contested chokepoint convoy control.
+
+### `ps-ammunition-reliability-governance-stack-v1`
+- Protocols: `USMTF`, `VMF`, `API/JSON`.
+- Use for: ammunition lot reliability governance and fires release/hold controls.
+
+### `ps-expeditionary-energy-conversion-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `API/JSON`.
+- Use for: expeditionary biomass fuel conversion coordination and fuel quality governance.
+
+### `ps-arctic-logistics-corridor-stack-v1`
+- Protocols: `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: Arctic over-snow logistics corridor control and route survivability updates.
+
+### `ps-underground-utility-mapping-stack-v1`
+- Protocols: `OGC WMS/WFS/WMTS`, `USMTF`, `API/JSON`.
+- Use for: contested megacity underground utility mapping and no-strike infrastructure coordination.
+
+### `ps-civil-airlift-requisition-stack-v1`
+- Protocols: `AIXM/FIXM/IWXXM`, `USMTF`, `API/JSON`.
+- Use for: civilian airlift requisition workflows and priority movement assignment.
+
+### `ps-prison-overrun-contingency-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: prison overrun contingency response and detainee accountability transitions.
+
+### `ps-autonomous-convoy-liability-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: autonomous convoy incident evidence, liability routing, and safety-governance escalation.
+
+### `ps-waterborne-outbreak-response-stack-v1`
+- Protocols: `HL7/FHIR`, `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Use for: waterborne disease outbreak response in expeditionary and host-nation interfaces.
+
+### `ps-cross-border-fire-deconfliction-stack-v1`
+- Protocols: `USMTF`, `VMF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: cross-border fire hotline deconfliction and escalation prevention.
+
+### `ps-ew-fratricide-mitigation-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: electronic warfare fratricide-risk mitigation and protected-emitter coordination.
+
+### `ps-rare-earth-refining-response-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `STIX/TAXII`, `API/JSON`.
+- Use for: strategic rare-earth refining sabotage response and continuity governance.
+
+### `ps-fiber-backbone-restoration-stack-v1`
+- Protocols: `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: theater fiber restoration and reroute command synchronization.
+
+### `ps-cislunar-logistics-support-stack-v1`
+- Protocols: `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: cislunar logistics window planning and reentry support coordination.
+
+### `ps-multispectral-camouflage-assurance-stack-v1`
+- Protocols: `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: multispectral camouflage validation and ISR detectability reduction workflows.
+
+### `ps-amphibious-shore-entry-control-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `CoT`, `API/JSON`.
+- Use for: amphibious humanitarian shore-entry and beach throughput control.
+
+### `ps-civil-engagement-language-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Use for: tactical language-enabled civil engagement and interpreter-driven risk reduction.
+
+### `ps-weapons-software-supply-chain-stack-v1`
+- Protocols: `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: weapon-system software provenance assurance and release-governance risk gates.
 
 ## Endpoint Security Profiles
 
