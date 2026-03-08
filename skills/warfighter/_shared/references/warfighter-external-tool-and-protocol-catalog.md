@@ -2336,3 +2336,63 @@ external_binding:
 
 ### `ps-multi-cloud-mission-data-integrity-stack-v1`
 - Protocol profile: API/JSON + TLS mTLS + USMTF command summaries.
+
+### `ts-hypersonic-cueing-v1`
+- Use for: hypersonic launch detection fusion, track custody, and rapid cue dissemination across missile warning and air defense nodes.
+- Primary tools: missile warning fusion boards, multi-sensor track manager, launch characterization engine.
+- Cross-check tools: independent trajectory verification board and alternate cue-timeline monitor.
+- Typical products: launch confidence ledger, cue dissemination matrix, interception decision timeline.
+
+### `ts-gray-zone-maritime-attribution-v1`
+- Use for: maritime militia pattern attribution, legal evidence curation, and escalation-bounded response support.
+- Primary tools: maritime COP, vessel identity graph analytics, AIS anomaly detector.
+- Cross-check tools: independent hull registry auditor and alternate behavior-pattern adjudication board.
+- Typical products: militia attribution packet, legal evidence chain, response option ladder.
+
+### `ts-underice-forensics-v1`
+- Use for: under-ice cable/sensor sabotage attribution with forensic confidence and rapid restoration branching.
+- Primary tools: subsea telemetry monitors, underwater incident forensics workflow, repair convoy planner.
+- Cross-check tools: independent acoustic anomaly validator and alternate cable segment status board.
+- Typical products: sabotage attribution matrix, restoration branch plan, confidence-scored incident log.
+
+### `ts-subterranean-mission-assurance-v1`
+- Use for: subterranean route support, tunnel risk estimation, and denied-environment force-protection sequencing.
+- Primary tools: subterranean mapping stack, geotechnical stability analyzer, route survivability planner.
+- Cross-check tools: independent structural risk board and alternate tunnel occupancy telemetry monitor.
+- Typical products: tunnel risk map, route recommendation matrix, collapse hazard trigger chart.
+
+### `ts-expeditionary-ledger-resilience-v1`
+- Use for: contested-theater finance continuity, disconnected ledger integrity, and anti-fraud disbursement assurance.
+- Primary tools: deployable ledger service, disbursement reconciliation engine, fraud analytics dashboard.
+- Cross-check tools: treasury mirror reconciliation board and alternate transaction provenance ledger.
+- Typical products: continuity of pay plan, fraud risk exception list, transaction integrity report.
+
+### `ts-ew-range-safety-v1`
+- Use for: EW live-range safety deconfliction, spectrum release sequencing, and fratricide-prevention controls.
+- Primary tools: EW range scheduler, spectrum conflict adjudicator, safety corridor monitor.
+- Cross-check tools: independent RF exposure tracker and alternate range risk validation board.
+- Typical products: range deconfliction matrix, safety gate checklist, spectrum release timeline.
+
+### `ts-maritime-vbss-autonomy-v1`
+- Use for: autonomous-assisted VBSS planning, boarding risk control, and evidence/custody synchronization.
+- Primary tools: boarding mission planner, autonomy mission manager, custody evidence ledger.
+- Cross-check tools: independent legal-evidence verifier and alternate maritime identity validation board.
+- Typical products: VBSS sequencing order, autonomy authority matrix, custody trail packet.
+
+### `ts-space-weather-strike-assurance-v1`
+- Use for: space-weather impact forecasting on precision-strike kill chains and resilient timing/communications branching.
+- Primary tools: space-weather analytics, strike timing integrity monitor, comms degradation estimator.
+- Cross-check tools: independent ephemeris/timing validator and alternate strike window confidence board.
+- Typical products: strike timing risk map, mitigation branch matrix, confidence-scored sortie windows.
+
+### `ts-critical-mineral-denial-mitigation-v1`
+- Use for: critical mineral supply denial monitoring, industrial fallback activation, and force-readiness protection.
+- Primary tools: mineral flow analytics, industrial readiness dashboards, supplier risk graph.
+- Cross-check tools: independent market disruption monitor and alternate strategic stockpile tracker.
+- Typical products: denial impact forecast, mitigation options board, inventory burn-rate timeline.
+
+### `ts-pol-obfuscation-survivability-v1`
+- Use for: pattern-of-life obfuscation planning to reduce adversary targeting quality while preserving mission execution.
+- Primary tools: signature management planner, movement randomization engine, OPSEC exposure scanner.
+- Cross-check tools: independent adversary collection-likelihood model and alternate route signature monitor.
+- Typical products: obfuscation playbook, exposure risk scorecard, branch trigger matrix.
