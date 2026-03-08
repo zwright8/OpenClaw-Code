@@ -40,6 +40,7 @@ const TRANSIENT_REJECTION_MARKERS = [
 const DEFAULT_DEAD_LETTER_MAX_ENTRIES = 250;
 const DEFAULT_ADAPTIVE_TIMEOUT_ALPHA = 0.125;
 const DEFAULT_ADAPTIVE_TIMEOUT_BETA = 0.25;
+const IN_FLIGHT_STATUSES = new Set(['dispatched', 'acknowledged']);
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -85,6 +86,13 @@ function clampRatio(value, fallback) {
     const numeric = Number(value);
     if (numeric <= 0 || numeric >= 1) return fallback;
     return numeric;
+}
+
+function normalizeBulkheadLimit(value, fallback) {
+    if (value === null || value === undefined) return fallback;
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric) || numeric <= 0) return Number.POSITIVE_INFINITY;
+    return Math.max(1, Math.floor(numeric));
 }
 
 export function buildTaskRequest({
@@ -182,6 +190,8 @@ export class TaskOrchestrator {
         circuitBreakerFailureThreshold = 3,
         circuitBreakerCooldownMs = 15_000,
         circuitBreakerHalfOpenProbeCooldownMs = 250,
+        bulkheadMaxInFlightPerTarget = 8,
+        bulkheadRetryDelayMs = 250,
         deadLetterMaxEntries = DEFAULT_DEAD_LETTER_MAX_ENTRIES,
         adaptiveTimeoutEnabled = true,
         adaptiveTimeoutMinMs = 250,
@@ -247,6 +257,14 @@ export class TaskOrchestrator {
         this.circuitBreakerHalfOpenProbeCooldownMs = clampNonNegativeNumber(
             circuitBreakerHalfOpenProbeCooldownMs,
             250
+        );
+        this.bulkheadMaxInFlightPerTarget = normalizeBulkheadLimit(
+            bulkheadMaxInFlightPerTarget,
+            8
+        );
+        this.bulkheadRetryDelayMs = Math.max(
+            1,
+            Math.floor(clampPositiveNumber(bulkheadRetryDelayMs, 250))
         );
         this.deadLetterMaxEntries = Math.max(
             0,
@@ -507,6 +525,53 @@ export class TaskOrchestrator {
                 cooldownMs: this.circuitBreakerCooldownMs
             }, nowMs);
         }
+    }
+
+    _countTargetInFlight(target, {
+        excludeTaskId = null
+    } = {}) {
+        if (typeof target !== 'string' || !target.trim()) return 0;
+
+        let inFlight = 0;
+        for (const record of this.tasks.values()) {
+            if (!record || record.target !== target) continue;
+            if (excludeTaskId && record.taskId === excludeTaskId) continue;
+            if (record._sending === true) {
+                inFlight++;
+                continue;
+            }
+            if (!IN_FLIGHT_STATUSES.has(record.status)) continue;
+            inFlight++;
+        }
+        return inFlight;
+    }
+
+    _allowTargetBulkheadSend(target, taskId) {
+        if (!Number.isFinite(this.bulkheadMaxInFlightPerTarget)) {
+            return {
+                allowed: true,
+                inFlight: 0,
+                limit: Number.POSITIVE_INFINITY,
+                retryAfterMs: 0
+            };
+        }
+
+        const inFlight = this._countTargetInFlight(target, { excludeTaskId: taskId });
+        if (inFlight < this.bulkheadMaxInFlightPerTarget) {
+            return {
+                allowed: true,
+                inFlight,
+                limit: this.bulkheadMaxInFlightPerTarget,
+                retryAfterMs: 0
+            };
+        }
+
+        return {
+            allowed: false,
+            inFlight,
+            limit: this.bulkheadMaxInFlightPerTarget,
+            retryAfterMs: this.bulkheadRetryDelayMs
+        };
     }
 
     _isDeadLettered(record) {
@@ -1133,6 +1198,27 @@ export class TaskOrchestrator {
                     return this.getTask(record.taskId);
                 }
             }
+            if (error instanceof TaskOrchestratorError && error.code === 'TARGET_BACKPRESSURE') {
+                if (this._canRetry(record)) {
+                    this._scheduleRetry(record, dispatchAt, {
+                        reason: 'target_backpressure_on_dispatch',
+                        event: 'dispatch_deferred_target_backpressure',
+                        hintMs: Number.isFinite(error?.details?.retryAfterMs)
+                            ? Number(error.details.retryAfterMs)
+                            : this.bulkheadRetryDelayMs,
+                        auditEvent: 'task_dispatch_deferred_target_backpressure',
+                        metadata: {
+                            inFlight: Number.isFinite(error?.details?.inFlight)
+                                ? Number(error.details.inFlight)
+                                : null,
+                            inFlightLimit: Number.isFinite(error?.details?.limit)
+                                ? Number(error.details.limit)
+                                : null
+                        }
+                    });
+                    return this.getTask(record.taskId);
+                }
+            }
 
             this.tasks.delete(record.taskId);
             this._deleteRecord(record.taskId);
@@ -1213,6 +1299,39 @@ export class TaskOrchestrator {
 
     async _sendTask(record, reason) {
         const sendAt = safeNow(this.now);
+        const bulkheadGate = this._allowTargetBulkheadSend(record.target, record.taskId);
+        if (!bulkheadGate.allowed) {
+            record.updatedAt = sendAt;
+            record.history.push({
+                at: sendAt,
+                event: 'send_blocked_target_backpressure',
+                reason,
+                inFlight: bulkheadGate.inFlight,
+                inFlightLimit: bulkheadGate.limit,
+                retryAfterMs: bulkheadGate.retryAfterMs
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_send_blocked_target_backpressure', {
+                taskId: record.taskId,
+                target: record.target,
+                reason,
+                inFlight: bulkheadGate.inFlight,
+                inFlightLimit: bulkheadGate.limit,
+                retryAfterMs: bulkheadGate.retryAfterMs
+            }, sendAt);
+            throw new TaskOrchestratorError(
+                'TARGET_BACKPRESSURE',
+                `Target ${record.target} reached in-flight limit (${bulkheadGate.inFlight}/${bulkheadGate.limit})`,
+                {
+                    taskId: record.taskId,
+                    target: record.target,
+                    inFlight: bulkheadGate.inFlight,
+                    limit: bulkheadGate.limit,
+                    retryAfterMs: bulkheadGate.retryAfterMs
+                }
+            );
+        }
+
         const circuitGate = this._allowTargetSend(record.target, sendAt);
         if (!circuitGate.allowed) {
             record.updatedAt = sendAt;
@@ -1257,9 +1376,11 @@ export class TaskOrchestrator {
             reason,
             attempt: record.attempts
         }, sendAt);
+        record._sending = true;
 
         try {
             await this.transport.send(record.target, record.request);
+            delete record._sending;
             record.status = 'dispatched';
             record.lastDispatchAt = sendAt;
             record.deadlineAt = sendAt + this._resolveTimeoutMs(record.target);
@@ -1278,6 +1399,7 @@ export class TaskOrchestrator {
                 attempt: record.attempts
             }, record.updatedAt);
         } catch (error) {
+            delete record._sending;
             const message = error?.message || 'Failed to dispatch task';
             record.lastError = message;
             record.updatedAt = safeNow(this.now);
@@ -1474,6 +1596,26 @@ export class TaskOrchestrator {
                 await this._sendTask(record, 'timeout_retry');
                 summary.retried++;
             } catch (error) {
+                if (error instanceof TaskOrchestratorError && error.code === 'TARGET_BACKPRESSURE') {
+                    this._scheduleRetry(record, nowMs, {
+                        reason: 'target_backpressure',
+                        event: 'retry_deferred_target_backpressure',
+                        hintMs: Number.isFinite(error?.details?.retryAfterMs)
+                            ? Number(error.details.retryAfterMs)
+                            : this.bulkheadRetryDelayMs,
+                        auditEvent: 'task_retry_deferred_target_backpressure',
+                        metadata: {
+                            inFlight: Number.isFinite(error?.details?.inFlight)
+                                ? Number(error.details.inFlight)
+                                : null,
+                            inFlightLimit: Number.isFinite(error?.details?.limit)
+                                ? Number(error.details.limit)
+                                : null
+                        }
+                    });
+                    summary.scheduledRetries++;
+                    continue;
+                }
                 if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
                     this._scheduleRetry(record, nowMs, {
                         reason: 'circuit_open',
@@ -1655,6 +1797,14 @@ export class TaskOrchestrator {
                     openTargets: 0,
                     halfOpenTargets: 0
                 },
+                bulkhead: {
+                    maxInFlightPerTarget: Number.isFinite(this.bulkheadMaxInFlightPerTarget)
+                        ? this.bulkheadMaxInFlightPerTarget
+                        : null,
+                    retryDelayMs: this.bulkheadRetryDelayMs,
+                    activeTargets: 0,
+                    targets: {}
+                },
                 adaptiveTimeout: {
                     enabled: this.adaptiveTimeoutEnabled,
                     defaultTimeoutMs: this.defaultTimeoutMs,
@@ -1723,6 +1873,25 @@ export class TaskOrchestrator {
                 lastUpdatedAt: Number.isFinite(state.lastUpdatedAt) ? state.lastUpdatedAt : null
             };
         }
+        const inFlightByTarget = new Map();
+        for (const record of this.tasks.values()) {
+            if (!record || typeof record.target !== 'string' || !record.target.trim()) continue;
+            if (record._sending !== true && !IN_FLIGHT_STATUSES.has(record.status)) continue;
+            const current = inFlightByTarget.get(record.target) || 0;
+            inFlightByTarget.set(record.target, current + 1);
+        }
+        for (const [target, inFlight] of inFlightByTarget.entries()) {
+            metrics.retry.bulkhead.targets[target] = {
+                inFlight,
+                limit: Number.isFinite(this.bulkheadMaxInFlightPerTarget)
+                    ? this.bulkheadMaxInFlightPerTarget
+                    : null,
+                saturated: Number.isFinite(this.bulkheadMaxInFlightPerTarget)
+                    ? inFlight >= this.bulkheadMaxInFlightPerTarget
+                    : false
+            };
+        }
+        metrics.retry.bulkhead.activeTargets = inFlightByTarget.size;
 
         metrics.avgAttempts = this.tasks.size > 0
             ? Number((attemptsTotal / this.tasks.size).toFixed(2))

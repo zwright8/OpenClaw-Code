@@ -481,6 +481,90 @@ test('metrics expose retry token bucket state', async () => {
     assert.equal(metrics.retry.tokenBucket.tokensAvailable, 3);
 });
 
+test('bulkhead defers dispatch when target in-flight limit is reached', async () => {
+    const clock = createClock(25_000);
+    let sendCount = 0;
+    let releaseFirstSend = null;
+    const firstSendGate = new Promise((resolve) => {
+        releaseFirstSend = resolve;
+    });
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount === 1) {
+                    await firstSendGate;
+                }
+            }
+        },
+        now: clock.now,
+        maxRetries: 2,
+        retryDelayMs: 10,
+        bulkheadMaxInFlightPerTarget: 1,
+        bulkheadRetryDelayMs: 200
+    });
+
+    const firstDispatchPromise = orchestrator.dispatchTask({
+        target: 'agent:worker-bulkhead',
+        task: 'Long-running task'
+    });
+
+    await Promise.resolve();
+
+    const deferred = await orchestrator.dispatchTask({
+        target: 'agent:worker-bulkhead',
+        task: 'Should be deferred by bulkhead'
+    });
+
+    assert.equal(deferred.status, 'retry_scheduled');
+    assert.equal(deferred.attempts, 0);
+    assert.equal(deferred.nextRetryAt, clock.now() + 200);
+    assert.equal(sendCount, 1);
+
+    releaseFirstSend();
+    const first = await firstDispatchPromise;
+    assert.equal(first.status, 'dispatched');
+    assert.equal(first.attempts, 1);
+});
+
+test('metrics expose bulkhead in-flight state per target', async () => {
+    const clock = createClock(26_000);
+    let releaseSend = null;
+    const sendGate = new Promise((resolve) => {
+        releaseSend = resolve;
+    });
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                await sendGate;
+            }
+        },
+        now: clock.now,
+        bulkheadMaxInFlightPerTarget: 1,
+        bulkheadRetryDelayMs: 100
+    });
+
+    const dispatchPromise = orchestrator.dispatchTask({
+        target: 'agent:worker-bulkhead-metrics',
+        task: 'Hold in flight for metrics'
+    });
+
+    await Promise.resolve();
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.bulkhead.maxInFlightPerTarget, 1);
+    assert.equal(metrics.retry.bulkhead.retryDelayMs, 100);
+    assert.equal(metrics.retry.bulkhead.activeTargets, 1);
+    assert.equal(metrics.retry.bulkhead.targets['agent:worker-bulkhead-metrics'].inFlight, 1);
+    assert.equal(metrics.retry.bulkhead.targets['agent:worker-bulkhead-metrics'].saturated, true);
+
+    releaseSend();
+    await dispatchPromise;
+});
+
 test('circuit breaker defers dispatch when target is open', async () => {
     const clock = createClock(30_000);
     let sends = 0;
