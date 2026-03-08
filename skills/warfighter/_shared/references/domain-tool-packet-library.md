@@ -2156,3 +2156,137 @@ validation_gates:
 - output_schema: shipping risk map, route protection matrix, interdiction response queue
 - protocol_profile: AIS/NMEA + USMTF + API/JSON
 - validation_gates: route threat validation, cargo criticality gate, coalition/command concurrence
+
+## New Packet Wave (2026-03-08, Signature Integrity and Contested Data)
+
+### packet_id: DPL-ELECTRONIC-SIGNATURE-SURVIVABILITY-001
+- domain: joint electronic signature survivability governance
+- objective: quantify and reduce force-wide signature exposure before adversary targeting windows
+- primary_tools: EW spectrum analytics, signature baseline registry, EMCON policy board
+- alternate_tools: manual signature risk worksheet and daily commander scorecard
+- degraded_mode: sector-level signature controls with voice-confirmed risk updates every 6 hours
+- input_requirements: platform emissions, mission phase, adversary sensor posture, EMCON constraints
+- output_schema: signature exposure scorecard, high-risk emitter list, mitigation timeline
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: cross-source emitter verification, human authority gate, acknowledgment integrity
+
+### packet_id: DPL-DENIED-BIOMETRICS-SYNC-001
+- domain: denied biometrics watchlist synchronization
+- objective: synchronize high-risk biometric watchlists across disconnected and intermittently connected nodes
+- primary_tools: biometric matcher services, watchlist policy engine, identity reconciliation board
+- alternate_tools: local watchlist cache and custody-chain ledger
+- degraded_mode: one-way text digest exchange with delayed biometric hash reconciliation
+- input_requirements: biometric templates, releasability tags, custody authority, sync windows
+- output_schema: sync status ledger, false-match risk table, unresolved identity queue
+- protocol_profile: API/JSON + XML + USMTF metadata wrapper
+- validation_gates: chain-of-custody completeness, schema validation, authority approval
+
+### packet_id: DPL-HYPERSPECTRAL-DECOY-DETECTION-001
+- domain: hyperspectral decoy and camouflage assurance
+- objective: detect decoy signatures and camouflage drift before strike or maneuver commitments
+- primary_tools: hyperspectral exploitation stack, imagery fusion board, decoy confidence model
+- alternate_tools: multispectral analyst worksheet and manual anomaly registry
+- degraded_mode: conservative decoy-confidence advisory with restricted target recommendations
+- input_requirements: spectral collections, terrain baselines, weather effects, target signatures
+- output_schema: decoy likelihood map, camouflage drift alerts, collection retask priorities
+- protocol_profile: OGC + API/JSON + USMTF
+- validation_gates: dual-analyst concurrence, spectral quality threshold, legal-policy review
+
+### packet_id: DPL-CISLUNAR-SDA-CONTESTED-001
+- domain: contested cislunar space domain awareness
+- objective: maintain contact and maneuver-risk awareness for cislunar assets under interference and deception
+- primary_tools: cislunar track fusion service, relay-health dashboard, maneuver intent inference model
+- alternate_tools: ephemeris mirror and manual conjunction board
+- degraded_mode: restricted warning timeline with confidence-banded maneuver advisories
+- input_requirements: orbital tracks, relay status, interference reports, mission priorities
+- output_schema: cislunar risk board, relay continuity branch plan, maneuver intent confidence ladder
+- protocol_profile: CCSDS + API/JSON + USMTF
+- validation_gates: track correlation pass, timing integrity check, command authority confirmation
+
+### packet_id: DPL-LOGISTICS-SIGNATURE-MASKING-001
+- domain: logistics convoy electronic signature masking
+- objective: reduce convoy detectability while preserving sustainment throughput and timing
+- primary_tools: convoy planning system, signature modeling engine, route risk dashboard
+- alternate_tools: manual convoy timing matrix and decoy route workbook
+- degraded_mode: fixed EMCON convoy windows with voice-confirmed branch triggers
+- input_requirements: convoy schedule, route risk, emitter inventory, sustainment priorities
+- output_schema: masking schedule, decoy route matrix, detection-risk vs throughput chart
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: mission sustainment sufficiency, signature reduction threshold, commander approval
+
+### packet_id: DPL-COALITION-FIRES-LATENCY-001
+- domain: coalition fires digital clearance latency reduction
+- objective: shorten coalition fires clearance cycle time without bypassing ROE and legal controls
+- primary_tools: fires clearance workflow board, ROE rule engine, coalition liaison tracker
+- alternate_tools: manual liaison matrix and voice readback clearance log
+- degraded_mode: constrained fires support with pre-approved target classes and delayed digital reconciliation
+- input_requirements: target nominations, ROE profiles, coalition caveats, latency baseline
+- output_schema: clearance latency dashboard, bottleneck heatmap, pre-delegation candidate list
+- protocol_profile: VMF + NATO APP-11/ADatP-3 + USMTF
+- validation_gates: ROE pass, coalition caveat check, command approval record
+
+### packet_id: DPL-COUNTER-PRECISION-THERMAL-SIGNATURE-001
+- domain: tactical counter-precision-fires thermal signature management
+- objective: suppress thermal signatures and schedule displacement before adversary precision fires can exploit exposure
+- primary_tools: thermal signature model, sensor coverage estimator, displacement planner
+- alternate_tools: manual thermal discipline checklist and platform heat log
+- degraded_mode: thermal discipline minimum standard with forced displacement windows
+- input_requirements: unit posture, thermal output baselines, sensor threat map, mobility constraints
+- output_schema: thermal suppression plan, exposure timeline, displacement trigger matrix
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: survivability threshold pass, mobility feasibility check, human release authority
+
+### packet_id: DPL-SEMICONDUCTOR-FAB-CONTINGENCY-001
+- domain: strategic semiconductor fab disruption contingency
+- objective: preserve defense-priority semiconductor supply during sabotage, sanctions, or disaster impacts
+- primary_tools: fab status telemetry, supplier risk graph, mission-priority allocation board
+- alternate_tools: manual allocation worksheet and alternate-source queue
+- degraded_mode: defense-priority rationing ledger with daily reassessment cycle
+- input_requirements: fab throughput, part criticality, demand forecasts, supplier constraints
+- output_schema: disruption impact map, allocation board, alternate sourcing decision tree
+- protocol_profile: API/JSON + NIEM + USMTF summary
+- validation_gates: critical mission coverage check, supplier trust floor, policy/legal approval
+
+### packet_id: DPL-UNDERSEA-AUTONOMY-C2-LINK-001
+- domain: undersea autonomy command-link assurance
+- objective: assure reliable and trustworthy command links for undersea autonomous missions
+- primary_tools: undersea comm-link monitor, autonomy mission controller, trust and latency analytics
+- alternate_tools: fallback comm schedule and manual autonomy safe-mode board
+- degraded_mode: autonomy restricted to safe-return and observe-only behaviors
+- input_requirements: link telemetry, mission intent, fail-safe policy, environmental interference indicators
+- output_schema: link assurance matrix, latency and burst-loss ladder, safe-mode trigger board
+- protocol_profile: USMTF + API/JSON + acoustic telemetry encapsulation
+- validation_gates: control-link integrity pass, authority gate, acknowledgment chain verification
+
+### packet_id: DPL-PRIORITY-OF-LIFE-ROUTING-001
+- domain: theater dynamic reconstitution priority-of-life routing
+- objective: route restoration assets to preserve life-safety and mission continuity under contested conditions
+- primary_tools: infrastructure restoration optimizer, dependency graph service, civil support dashboard
+- alternate_tools: manual priority board and route feasibility worksheet
+- degraded_mode: priority-of-life minimum routing plan with twice-daily updates
+- input_requirements: life-safety nodes, restoration crews, route security, mission dependencies
+- output_schema: route matrix, restoration sequence board, conflict-resolution notes
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: life-safety first check, route risk threshold, command endorsement
+
+### packet_id: DPL-ADDITIVE-FEEDSTOCK-AUTH-001
+- domain: battlefield additive feedstock authentication
+- objective: prevent counterfeit or degraded feedstock from entering additive production and repair workflows
+- primary_tools: material assay telemetry, lot-traceability ledger, additive process quality monitor
+- alternate_tools: manual batch quarantine board and destructive test checklist
+- degraded_mode: hold-and-verify process with limited emergency exceptions
+- input_requirements: lot identifiers, assay results, approved material baselines, production demand
+- output_schema: feedstock authenticity ledger, counterfeit indicator heatmap, hold/release queue
+- protocol_profile: API/JSON + XML + USMTF quality summary
+- validation_gates: assay integrity pass, chain-of-custody completeness, authority approval
+
+### packet_id: DPL-MULTI-CLOUD-MISSION-DATA-INTEGRITY-001
+- domain: contested theater multi-cloud mission data integrity
+- objective: preserve data trust across multi-cloud mission systems under active disruption and partial outages
+- primary_tools: cross-cloud consistency auditor, cryptographic attestation service, failover orchestrator
+- alternate_tools: offline hash ledger and manual divergence reconciliation board
+- degraded_mode: read-only trusted snapshot mode with constrained updates
+- input_requirements: dataset manifests, hash attestations, replication policy, mission criticality tags
+- output_schema: integrity attestation board, divergence tracker, failover trust plan
+- protocol_profile: API/JSON + TLS mTLS + USMTF command summary
+- validation_gates: hash-chain verification, replication lag threshold, commander release gate

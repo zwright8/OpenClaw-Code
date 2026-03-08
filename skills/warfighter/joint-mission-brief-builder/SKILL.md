@@ -173,3 +173,9 @@ Primary products for this skill: mission brief, decision support matrix, branch-
 - Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
 - Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
 - Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Mission Continuity Override (2026-03-08, Signature and Data Integrity Addendum)
+
+- Add `packet_id=DPL-ELECTRONIC-SIGNATURE-SURVIVABILITY-001` when brief recommendations require emission-control posture changes.
+- Add `packet_id=DPL-MULTI-CLOUD-MISSION-DATA-INTEGRITY-001` when brief confidence depends on cross-cloud data consistency.
+- Add `tool_suite_id=ts-coalition-fires-latency-reduction-v1` + `protocol_stack_id=ps-coalition-fires-latency-stack-v1` for coalition fires brief cycles with approval bottlenecks.
