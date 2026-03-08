@@ -155,6 +155,12 @@ Primary products for this skill: mission brief, decision support matrix, branch-
 - Default packet IDs: `DPL-C2-DISP-002`, `DPL-JADC2-SCHEMA-001`, `DPL-FIRES-LINEAGE-001`.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
 
+## Mission Continuity Override (2026-03-08)
+
+- Add `packet_id=DPL-TELECOM-PRIORITY-001` when C2 flow depends on contested civilian infrastructure.
+- Add `packet_id=DPL-SPECTRUM-LICENSE-001` for coalition deployment briefs that require host-nation frequency approvals.
+- Add `packet_id=DPL-WASTEWATER-BIOSURV-001` for force-health risk contexts where epidemiological triggers affect COA selection.
+
 ## Operational Execution Hardening (2026-03-08)
 
 - Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
