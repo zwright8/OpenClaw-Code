@@ -1496,3 +1496,135 @@ validation_gates:
 - output_schema: repair priority queue, restoration map, resource-constrained branch plan
 - protocol_profile: USMTF + OGC + API/JSON
 - validation_gates: feasibility review pass, mission impact scoring check, command risk acceptance
+
+### packet_id: DPL-MARITIME-CHOKE-001
+- domain: joint maritime chokepoint closure and reopening
+- objective: sequence denial and reopening actions while minimizing coalition shipping disruption
+- primary_tools: maritime traffic COP, chokepoint threat analytics, convoy-routing planner
+- alternate_tools: manual closure board and liaison shipping tracker
+- degraded_mode: mission-essential lanes only with periodic command updates
+- input_requirements: threat timeline, lane capacities, coalition shipping priorities, legal constraints
+- output_schema: closure trigger ladder, reopening branch matrix, shipping risk report
+- protocol_profile: AIS/NMEA + USMTF + NATO APP-11/ADatP-3
+- validation_gates: legal authority check, coalition coordination pass, acknowledgment chain complete
+
+### packet_id: DPL-GRID-BLACKSTART-001
+- domain: theater civil gridload blackstart fuel priority
+- objective: restore critical mission and civil loads through phased blackstart and fuel allocation
+- primary_tools: grid dependency engine, blackstart scheduler, fuel-priority dashboard
+- alternate_tools: manual restoration matrix and fuel reconciliation ledger
+- degraded_mode: life-safety and mission-critical nodes only with bounded update cycles
+- input_requirements: load inventory, generation status, fuel stocks, restoration dependencies
+- output_schema: critical-load map, fuel priority matrix, blackstart branch timeline
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: load-priority approval, fuel sufficiency check, command risk acceptance
+
+### packet_id: DPL-DENIED-WX-SORTIE-001
+- domain: coalition denied weather recon and sortie risk
+- objective: fuse degraded weather and reconnaissance signals to drive sortie go/no-go decisions
+- primary_tools: weather-recon fusion board, sensor confidence model, sortie planner
+- alternate_tools: manual weather card and diversion worksheet
+- degraded_mode: high-priority sorties only with conservative weather thresholds
+- input_requirements: weather indicators, sensor health, mission priorities, threat overlays
+- output_schema: sortie risk scorecard, denied-sensor confidence ladder, scrub/divert triggers
+- protocol_profile: USMTF + VMF + OGC
+- validation_gates: confidence floor pass, airspace deconfliction check, commander approval
+
+### packet_id: DPL-NAV-SPOOF-ATTRIB-001
+- domain: joint precision navigation spoofing attribution
+- objective: attribute navigation anomalies and define trusted mitigation branches
+- primary_tools: PNT anomaly detector, spoofing classifier, timing assurance monitor
+- alternate_tools: manual anomaly log and inertial confidence worksheet
+- degraded_mode: trusted route subsets only with frequent manual checks
+- input_requirements: nav residuals, timing deltas, emitter observations, route priorities
+- output_schema: spoofing confidence matrix, trust ladder, mitigation branch plan
+- protocol_profile: API/JSON + USMTF + CCSDS
+- validation_gates: dual-source corroboration, timing integrity pass, authority gate
+
+### packet_id: DPL-RADHARD-SUPPLY-001
+- domain: strategic microelectronics radiation-hardening supply assurance
+- objective: preserve mission continuity by prioritizing validated rad-hard component supply
+- primary_tools: part provenance graph, qualification repository, mission impact scorer
+- alternate_tools: manual substitute-part review board and counterfeit-risk worksheet
+- degraded_mode: mission-essential component lanes only with elevated inspection hold points
+- input_requirements: part inventories, qualification records, supplier status, platform dependencies
+- output_schema: component risk board, substitute approval matrix, restoration sequence
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: provenance pass, qualification concurrence, command release authority
+
+### packet_id: DPL-BRIDGE-LC-VERIFY-001
+- domain: theater expeditionary bridge load-class verification
+- objective: verify crossing feasibility and sequence heavy-equipment movement safely
+- primary_tools: engineering survey services, structural load analyzers, route scheduler
+- alternate_tools: manual bridge card and route-go worksheet
+- degraded_mode: restricted load classes with staged crossings and escort control
+- input_requirements: bridge dimensions, structural indicators, vehicle profiles, traffic priorities
+- output_schema: load-class confidence map, route go/no-go matrix, verification tasks
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: engineering pass, route deconfliction, risk acceptance sign-off
+
+### packet_id: DPL-CBRN-URBAN-PLUME-001
+- domain: joint CBRN urban plume evacuation decision
+- objective: synchronize contamination-driven evacuation and force-protection controls
+- primary_tools: plume model service, urban mobility planner, contamination-control dashboard
+- alternate_tools: manual corridor board and exposure mitigation worksheet
+- degraded_mode: priority districts only with phased movement windows
+- input_requirements: release estimate, weather state, population nodes, unit posture
+- output_schema: plume hazard map, phased evacuation matrix, protection controls package
+- protocol_profile: NIMS/ICS + USMTF + CAP
+- validation_gates: hazard confidence threshold, authority confirmation, civil coordination gate
+
+### packet_id: DPL-SATCOM-KEYROT-001
+- domain: coalition contested SATCOM terminal key rotation
+- objective: rotate compromised or at-risk terminal keys without breaking coalition mission traffic
+- primary_tools: key lifecycle manager, terminal readiness monitor, releasability control board
+- alternate_tools: manual key ledger and priority terminal worksheet
+- degraded_mode: critical terminals only with manual dual-control release
+- input_requirements: key compromise indicators, terminal inventories, traffic priorities, coalition caveats
+- output_schema: key-rotation ledger, continuity branch matrix, releasability gate report
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: cryptographic validation pass, coalition caveat check, ack-chain completion
+
+### packet_id: DPL-INTERMODAL-RAIL-AIR-001
+- domain: joint rail-airfield intermodal sustainment scheduling
+- objective: maximize throughput across rail and airfield nodes while controlling disruption risk
+- primary_tools: rail scheduler, airfield throughput service, ground distribution planner
+- alternate_tools: manual bottleneck board and movement worksheet
+- degraded_mode: mission-essential cargo classes only with staged windows
+- input_requirements: rail timetables, apron capacity, cargo priorities, route constraints
+- output_schema: intermodal schedule, chokepoint reroute matrix, sustainment risk timeline
+- protocol_profile: USMTF + API/JSON + NATO APP-11/ADatP-3
+- validation_gates: throughput feasibility pass, force-protection check, movement authority approval
+
+### packet_id: DPL-WATERCRAFT-AUTONOMY-001
+- domain: theater forward watercraft autonomy collision avoidance
+- objective: prevent collisions and preserve mission tempo in mixed manned/unmanned waterways
+- primary_tools: autonomy nav monitor, traffic fusion service, collision predictor
+- alternate_tools: manual traffic control board and route spacing worksheet
+- degraded_mode: reduced speed corridors with prioritized vessel classes
+- input_requirements: vessel tracks, autonomy health, channel restrictions, mission priorities
+- output_schema: transit conflict board, collision trigger ladder, fallback routing plan
+- protocol_profile: AIS/NMEA + USMTF + CoT
+- validation_gates: collision-risk threshold, comms readiness pass, command release
+
+### packet_id: DPL-POWER-SIG-MGMT-001
+- domain: joint battlefield power generation signature management
+- objective: manage energy delivery while minimizing detection and sustainment exposure
+- primary_tools: power telemetry boards, signature analyzer, dispatch planner
+- alternate_tools: manual generator schedule and signature observation log
+- degraded_mode: critical loads only with predefined concealment windows
+- input_requirements: load demand, generator status, signature constraints, threat sensors
+- output_schema: power-node signature map, dispatch/concealment matrix, exposure report
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: signature reduction threshold, sustainment sufficiency check, commander approval
+
+### packet_id: DPL-COALITION-TRAINREADY-001
+- domain: coalition partner-force digital training readiness fusion
+- objective: unify multinational training evidence and prioritize interoperability remediation
+- primary_tools: readiness evidence repository, partner readiness dashboard, gap-closure queue manager
+- alternate_tools: manual readiness ledger and partner coordination worksheet
+- degraded_mode: mission-essential partner units only with periodic evidence reconciliation
+- input_requirements: training records, certification status, interoperability findings, force-flow timelines
+- output_schema: readiness fusion board, remediation queue, certification confidence summary
+- protocol_profile: NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: evidence completeness pass, coalition concurrence, approval authority check
