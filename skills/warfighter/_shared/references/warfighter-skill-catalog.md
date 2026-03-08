@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 550
+- Total warfighter skills in this repo: 570
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, cross-domain integration playbook, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -604,3 +604,33 @@ Every skill output should include:
 - Added skills this run: 20
 - Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
 - Total warfighter skills after this run: 550
+
+## New Expansion Wave (2026-03-08, Coalition Interdiction, Navigation Integrity, and Continuity Expansion)
+
+- contested-electronic-navigation-chart-denial-recovery-cell
+- expeditionary-aircraft-battle-damage-forensic-triage-cell
+- joint-space-object-maneuver-intent-assessment-cell
+- coalition-critical-mineral-smuggling-interdiction-cell
+- contested-geospatial-datum-and-coordinate-integrity-cell
+- battlefield-drone-forensics-and-attribution-cell
+- joint-rail-sabotage-detection-and-continuity-cell
+- expeditionary-food-supply-safety-and-contamination-cell
+- tactical-smoke-obscurant-and-visibility-management-cell
+- joint-legal-sensitive-target-nomination-review-cell
+- coalition-refugee-screening-and-biometrics-deconfliction-cell
+- strategic-harbor-siltation-and-dredging-contingency-cell
+- contested-polar-comms-ionospheric-degradation-cell
+- joint-civil-dam-failure-and-floodplain-operations-cell
+- expeditionary-battlefield-noise-and-hearing-conservation-cell
+- tactical-farp-under-uas-threat-dispersion-cell
+- joint-solar-grid-geomagnetic-storm-hardening-cell
+- joint-cold-chain-ration-and-medical-cargo-assurance-cell
+- autonomous-perimeter-intrusion-false-alarm-suppression-cell
+- coalition-aviation-language-phraseology-assurance-cell
+
+## Catalog Maintenance Update (2026-03-08 Run, Coalition Interdiction and Continuity Expansion)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Added missing skill metadata files this run: 40 `agents/openai.yaml`
+- Total warfighter skills after this run: 570
