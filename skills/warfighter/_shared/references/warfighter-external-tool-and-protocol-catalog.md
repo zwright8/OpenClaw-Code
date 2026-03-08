@@ -2106,3 +2106,123 @@ external_binding:
 ### `ps-energetics-precursor-counterfeit-stack-v1`
 - Protocols: `API/JSON`, `STIX/TAXII`, `USMTF`.
 - Use for: counterfeit precursor intelligence packets, lot quarantine orders, and supplier risk alerts.
+
+### `ts-anti-jam-gps-epoch-recovery-v1`
+- Use for: denied PNT epoch coherence recovery under anti-jam and spoofing pressure.
+- Primary tools: epoch-offset estimators, holdover clock health dashboards, multi-source timing reconcilers.
+- Cross-check tools: independent timing reference monitor and manual epoch-drift worksheet.
+- Typical products: epoch recovery board, timing confidence ladder, PNT branch trigger matrix.
+
+### `ts-portable-microreactor-employment-v1`
+- Use for: portable microreactor emplacement and critical-load power assignment in contested theaters.
+- Primary tools: microreactor placement planners, load-priority allocators, radiological safety dashboards.
+- Cross-check tools: independent reactor-status mirror and alternate load-shedding planner.
+- Typical products: emplacement decision matrix, load-allocation schedule, safety control branch table.
+
+### `ts-disaster-relief-airbridge-integrity-v1`
+- Use for: coalition disaster relief air bridge slot integrity, cargo assurance, and delivery continuity.
+- Primary tools: airlift slot coordinators, cargo custody trackers, distribution throughput dashboards.
+- Cross-check tools: independent manifest reconciliation board and alternate sortie reliability monitor.
+- Typical products: air bridge integrity board, slot deconfliction matrix, aid leakage risk ledger.
+
+### `ts-undersea-acoustic-deception-v1`
+- Use for: undersea chokepoint acoustic deception planning and adversary cueing disruption.
+- Primary tools: undersea acoustic modelers, emitter posture planners, cueing disruption analytics.
+- Cross-check tools: independent hydroacoustic monitor and alternate choke-lane deception board.
+- Typical products: acoustic deception lane plan, cueing disruption matrix, maritime risk ladder.
+
+### `ts-cyber-reserve-mobilization-assurance-v1`
+- Use for: cyber reserve mobilization assurance, credential validation, and mission assignment readiness.
+- Primary tools: reserve activation dashboards, credential trust services, assignment readiness trackers.
+- Cross-check tools: independent identity-status verifier and alternate mobilization ledger.
+- Typical products: mobilization readiness map, credential risk board, assignment execution timeline.
+
+### `ts-multi-domain-decoy-inventory-v1`
+- Use for: multi-domain decoy inventory allocation to maximize adversary targeting uncertainty.
+- Primary tools: decoy inventory allocators, domain-level effects analyzers, replenishment schedulers.
+- Cross-check tools: independent stock accountability board and alternate effects estimator.
+- Typical products: decoy allocation matrix, depletion forecast, replenishment branch chart.
+
+### `ts-contested-cas-evac-c2-fallback-v1`
+- Use for: contested casualty evacuation C2 failover and medical movement continuity.
+- Primary tools: medevac C2 orchestration boards, triage transport planners, handoff integrity monitors.
+- Cross-check tools: independent patient movement ledger and alternate CASEVAC routing board.
+- Typical products: C2 fallback sequence, triage transport matrix, handoff confidence ladder.
+
+### `ts-runway-ice-fod-clearance-v1`
+- Use for: runway ice/FOD clearance prioritization for coalition sortie continuity in severe weather.
+- Primary tools: runway condition sensors, clearance asset schedulers, sortie interruption predictors.
+- Cross-check tools: independent airfield surface verifier and alternate clearance sequencing board.
+- Typical products: runway recovery schedule, sortie interruption matrix, equipment tasking queue.
+
+### `ts-long-range-fires-lot-reliability-v1`
+- Use for: long-range fires ammunition lot reliability and defect-impact risk assessment.
+- Primary tools: lot genealogy analyzers, reliability trend models, defect quarantine dashboards.
+- Cross-check tools: independent ballistic test review board and alternate lot confidence ledger.
+- Typical products: lot reliability heatmap, quarantine decision table, fires constraint matrix.
+
+### `ts-denied-fuel-bladder-integrity-v1`
+- Use for: denied theater fuel bladder leak/sabotage detection and contamination-risk management.
+- Primary tools: fuel bladder pressure telemetry, contamination assay trackers, sustainment risk planners.
+- Cross-check tools: independent fuel-quality verification board and alternate leak attribution worksheet.
+- Typical products: integrity monitor board, contamination branch matrix, resupply protection queue.
+
+### `ts-mobile-satcom-emission-discipline-v1`
+- Use for: mobile SATCOM emission discipline and movement-linked EMCON governance.
+- Primary tools: SATCOM emission schedulers, platform movement planners, detection-risk analytics.
+- Cross-check tools: independent RF exposure monitor and alternate EMCON compliance board.
+- Typical products: emission timing board, movement/emit sync matrix, detection-risk reduction plan.
+
+### `ts-critical-mineral-shipping-protection-v1`
+- Use for: strategic critical-mineral shipping protection and route continuity under interdiction pressure.
+- Primary tools: shipping risk intelligence dashboards, convoy routing planners, port continuity boards.
+- Cross-check tools: independent maritime exposure monitor and alternate cargo protection ledger.
+- Typical products: shipment risk map, route protection matrix, interdiction response queue.
+
+### `ps-anti-jam-gps-epoch-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `OGC`.
+- Use for: epoch-recovery updates, timing integrity alerts, and degraded PNT branch coordination.
+
+### `ps-portable-microreactor-employment-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `NIMS/ICS`.
+- Use for: microreactor emplacement orders, power-priority updates, and radiological safety actions.
+
+### `ps-disaster-relief-airbridge-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3`, `API/JSON`.
+- Use for: coalition air bridge slot updates, cargo custody exchange, and aid continuity directives.
+
+### `ps-undersea-acoustic-deception-stack-v1`
+- Protocols: `USMTF`, `AIS/NMEA`, `API/JSON`.
+- Use for: undersea deception posture updates, chokepoint cueing controls, and maritime branch signaling.
+
+### `ps-cyber-reserve-mobilization-stack-v1`
+- Protocols: `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: reserve mobilization events, credential assurance status, and mission assignment dispatch.
+
+### `ps-multi-domain-decoy-inventory-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: decoy allocation orders, domain effects updates, and replenishment trigger reports.
+
+### `ps-contested-cas-evac-c2-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `NATO APP-11/ADatP-3`.
+- Use for: CASEVAC C2 failover packets, patient movement handoffs, and medical branch decisions.
+
+### `ps-runway-ice-fod-clearance-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `CAP`.
+- Use for: runway status reports, clearance tasking, and sortie resumption notifications.
+
+### `ps-long-range-fires-lot-reliability-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `XML`.
+- Use for: lot reliability updates, quarantine decisions, and fires employment constraints.
+
+### `ps-denied-fuel-bladder-integrity-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `ISO 20022`.
+- Use for: fuel integrity alerts, contamination reports, and sustainment branch controls.
+
+### `ps-mobile-satcom-emission-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: SATCOM emission-control updates, movement-linked emission windows, and detection-risk notices.
+
+### `ps-critical-mineral-shipping-protection-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `API/JSON`.
+- Use for: critical-mineral shipping risk exchange, convoy protection orders, and port continuity updates.
