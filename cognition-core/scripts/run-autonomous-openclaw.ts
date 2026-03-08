@@ -24,6 +24,10 @@ Options:
   --failure-cooldown-waves <n> Base cooldown waves once threshold is reached (default: 2)
   --failure-cooldown-backoff-multiplier <n> Exponential cooldown multiplier after threshold (default: 2)
   --failure-cooldown-max-waves <n> Max cooldown waves cap (default: 16)
+  --error-budget-window-waves <n> Recent wave window for failure-pressure averaging (default: 4)
+  --error-budget-failure-threshold <0-1> Failure-rate threshold that triggers throttling (default: 0.4)
+  --error-budget-throttle-scale <0-1> Scaling factor for per-wave task counts under pressure (default: 0.5)
+  --error-budget-min-tasks-per-lane <n> Minimum tasks per lane when throttled (default: 1)
   --dispatch-limit <n>         Dispatch limit per worker cycle (default: 100)
   --worker-cycles <n>          Max worker cycles per wave (default: 12)
   --worker-idle-cycles <n>     Idle cycles before worker stop (default: 2)
@@ -60,6 +64,14 @@ function parseFailureRate(raw) {
     return value;
 }
 
+function parseUnitInterval(raw, flag) {
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value < 0 || value > 1) {
+        throw new Error(`${flag} must be between 0 and 1`);
+    }
+    return value;
+}
+
 function parseHardeningPolicy(raw) {
     const value = String(raw || '').trim().toLowerCase();
     if (value !== 'off' && value !== 'report' && value !== 'enforce') {
@@ -92,6 +104,10 @@ function parseArgs(argv) {
         failureCooldownWaves: 2,
         failureCooldownBackoffMultiplier: 2,
         failureCooldownMaxWaves: 16,
+        errorBudgetWindowWaves: 4,
+        errorBudgetFailureThreshold: 0.4,
+        errorBudgetThrottleScale: 0.5,
+        errorBudgetMinTasksPerLane: 1,
         dispatchLimit: 100,
         workerCycles: 12,
         workerIdleCycles: 2,
@@ -209,6 +225,30 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--error-budget-window-waves') {
+            options.errorBudgetWindowWaves = parsePositiveInt(value, '--error-budget-window-waves');
+            i++;
+            continue;
+        }
+        if (token === '--error-budget-failure-threshold') {
+            options.errorBudgetFailureThreshold = parseUnitInterval(value, '--error-budget-failure-threshold');
+            i++;
+            continue;
+        }
+        if (token === '--error-budget-throttle-scale') {
+            const parsed = parseUnitInterval(value, '--error-budget-throttle-scale');
+            if (parsed <= 0) {
+                throw new Error('--error-budget-throttle-scale must be > 0 and <= 1');
+            }
+            options.errorBudgetThrottleScale = parsed;
+            i++;
+            continue;
+        }
+        if (token === '--error-budget-min-tasks-per-lane') {
+            options.errorBudgetMinTasksPerLane = parsePositiveInt(value, '--error-budget-min-tasks-per-lane', true);
+            i++;
+            continue;
+        }
         if (token === '--worker-cycles') {
             options.workerCycles = parsePositiveInt(value, '--worker-cycles');
             i++;
@@ -313,6 +353,10 @@ function printSummary(report) {
             failureCooldownWaves: options.failureCooldownWaves,
             failureCooldownBackoffMultiplier: options.failureCooldownBackoffMultiplier,
             failureCooldownMaxWaves: options.failureCooldownMaxWaves,
+            errorBudgetWindowWaves: options.errorBudgetWindowWaves,
+            errorBudgetFailureThreshold: options.errorBudgetFailureThreshold,
+            errorBudgetThrottleScale: options.errorBudgetThrottleScale,
+            errorBudgetMinTasksPerLane: options.errorBudgetMinTasksPerLane,
             dispatchLimit: options.dispatchLimit,
             workerCycles: options.workerCycles,
             workerIdleCycles: options.workerIdleCycles,

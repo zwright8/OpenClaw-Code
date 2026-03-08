@@ -5,7 +5,10 @@ import os from 'os';
 import path from 'path';
 import {
     buildAutonomousBatchPlan,
+    computeErrorBudgetThrottle,
     computeFailureCooldownWaves,
+    computeThrottledWaveSize,
+    computeWaveFailureRate,
     loadCapabilityCatalog,
     loadExternalSkillCatalog,
     loadAutonomousState,
@@ -134,6 +137,31 @@ test('computeFailureCooldownWaves scales exponentially and honors caps', () => {
         failureCooldownBackoffMultiplier: 2,
         failureCooldownMaxWaves: 16
     }), 16);
+});
+
+test('computeWaveFailureRate and error-budget throttle trigger under sustained failures', () => {
+    assert.equal(computeWaveFailureRate({
+        successfulCount: 6,
+        failedCount: 4
+    }), 0.4);
+
+    const throttle = computeErrorBudgetThrottle({
+        recentWaveFailureRates: [0.2, 0.5, 0.6, 0.3],
+        errorBudgetWindowWaves: 3,
+        errorBudgetFailureThreshold: 0.45,
+        errorBudgetThrottleScale: 0.4
+    });
+
+    assert.equal(throttle.applied, true);
+    assert.equal(throttle.scale, 0.4);
+    assert.equal(throttle.averageFailureRate, 0.4667);
+    assert.equal(throttle.sampleCount, 3);
+
+    assert.equal(computeThrottledWaveSize({
+        baseCount: 12,
+        throttle,
+        minimumCount: 2
+    }), 4);
 });
 
 test('buildAutonomousBatchPlan backfills from cooldown entries when no alternatives exist', () => {

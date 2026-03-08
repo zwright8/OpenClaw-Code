@@ -27,6 +27,11 @@ const DEFAULT_FAILURE_STREAK_THRESHOLD = 2;
 const DEFAULT_FAILURE_COOLDOWN_WAVES = 2;
 const DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER = 2;
 const DEFAULT_FAILURE_COOLDOWN_MAX_WAVES = 16;
+const DEFAULT_ERROR_BUDGET_WINDOW_WAVES = 4;
+const DEFAULT_ERROR_BUDGET_FAILURE_THRESHOLD = 0.4;
+const DEFAULT_ERROR_BUDGET_THROTTLE_SCALE = 0.5;
+const DEFAULT_ERROR_BUDGET_MIN_TASKS_PER_LANE = 1;
+const MAX_WAVE_FAILURE_RATE_HISTORY = 24;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -74,6 +79,15 @@ function normalizeFailureRate(value) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return 0;
     return clamp(numeric, 0, 1);
+}
+
+function normalizeFailureRateSeries(rawValues, maxEntries = MAX_WAVE_FAILURE_RATE_HISTORY) {
+    if (!Array.isArray(rawValues)) return [];
+    const normalized = rawValues
+        .map((value) => normalizeFailureRate(value))
+        .filter((value) => Number.isFinite(value));
+    if (normalized.length <= maxEntries) return normalized;
+    return normalized.slice(normalized.length - maxEntries);
 }
 
 function normalizeCapabilityId(value) {
@@ -152,6 +166,7 @@ function normalizeState(rawState = {}) {
         capabilityFailureStreakById: normalizeNonNegativeRecord(state.capabilityFailureStreakById),
         skillCooldownUntilRunById: normalizeNonNegativeRecord(state.skillCooldownUntilRunById),
         capabilityCooldownUntilRunById: normalizeNonNegativeRecord(state.capabilityCooldownUntilRunById),
+        recentWaveFailureRates: normalizeFailureRateSeries(state.recentWaveFailureRates),
         updatedAt: Number.isFinite(Number(state.updatedAt)) ? Number(state.updatedAt) : null
     };
 }
@@ -463,6 +478,58 @@ export function computeFailureCooldownWaves({
     return Math.min(maxCooldown, bounded);
 }
 
+export function computeWaveFailureRate({
+    successfulCount = 0,
+    failedCount = 0
+} = {}) {
+    const successful = parseNonNegativeInt(successfulCount, 0);
+    const failed = parseNonNegativeInt(failedCount, 0);
+    const terminal = successful + failed;
+    if (terminal <= 0) return 0;
+    return Number((failed / terminal).toFixed(4));
+}
+
+export function computeErrorBudgetThrottle({
+    recentWaveFailureRates = [],
+    errorBudgetWindowWaves = DEFAULT_ERROR_BUDGET_WINDOW_WAVES,
+    errorBudgetFailureThreshold = DEFAULT_ERROR_BUDGET_FAILURE_THRESHOLD,
+    errorBudgetThrottleScale = DEFAULT_ERROR_BUDGET_THROTTLE_SCALE
+} = {}) {
+    const normalizedWindow = Math.max(1, parsePositiveInt(errorBudgetWindowWaves, DEFAULT_ERROR_BUDGET_WINDOW_WAVES));
+    const normalizedThreshold = normalizeFailureRate(errorBudgetFailureThreshold);
+    const normalizedScale = clamp(Number(errorBudgetThrottleScale), 0.1, 1);
+    const samples = normalizeFailureRateSeries(recentWaveFailureRates).slice(-normalizedWindow);
+    const averageFailureRate = samples.length > 0
+        ? Number((samples.reduce((sum, value) => sum + value, 0) / samples.length).toFixed(4))
+        : 0;
+
+    return {
+        applied: samples.length > 0 && averageFailureRate >= normalizedThreshold && normalizedScale < 1,
+        scale: samples.length > 0 && averageFailureRate >= normalizedThreshold ? normalizedScale : 1,
+        averageFailureRate,
+        threshold: normalizedThreshold,
+        windowWaves: normalizedWindow,
+        sampleCount: samples.length
+    };
+}
+
+export function computeThrottledWaveSize({
+    baseCount = 0,
+    throttle = {},
+    minimumCount = DEFAULT_ERROR_BUDGET_MIN_TASKS_PER_LANE
+} = {}) {
+    const normalizedBase = parseNonNegativeInt(baseCount, 0);
+    if (normalizedBase <= 0 || !throttle || !throttle.applied) {
+        return normalizedBase;
+    }
+    const normalizedMinimum = parseNonNegativeInt(minimumCount, DEFAULT_ERROR_BUDGET_MIN_TASKS_PER_LANE);
+    const rawScaled = Math.floor(normalizedBase * Number(throttle.scale || 1));
+    return Math.min(
+        normalizedBase,
+        Math.max(normalizedMinimum, rawScaled)
+    );
+}
+
 export function buildAutonomousBatchPlan({
     skillCatalog,
     capabilityCatalog,
@@ -651,6 +718,97 @@ export async function collectAutonomousCoverage({
     };
 }
 
+async function collectWaveOutcomes({
+    storePath,
+    selectedSkillIds = [],
+    selectedCapabilityIds = [],
+    nowFactory = Date.now
+}) {
+    const store = new FileTaskStore({
+        filePath: storePath,
+        now: nowFactory
+    });
+    const records = await store.loadRecords();
+
+    const skillOutcomeById = new Map(selectedSkillIds.map((id) => [String(id), 'pending']));
+    const capabilityOutcomeById = new Map(selectedCapabilityIds.map((id) => [String(id), 'pending']));
+
+    for (const record of records) {
+        const status = normalizeStatus(record?.status);
+        if (!TERMINAL_STATUSES.has(status)) continue;
+
+        const context = record?.request?.context && typeof record.request.context === 'object'
+            ? record.request.context
+            : {};
+        const skillId = toSkillId(context.skillId);
+        const capabilityId = normalizeCapabilityId(context.capabilityId);
+        const success = SUCCESS_STATUSES.has(status);
+
+        if (skillId !== null) {
+            const key = String(skillId);
+            if (skillOutcomeById.has(key)) {
+                if (success) {
+                    skillOutcomeById.set(key, 'success');
+                } else if (skillOutcomeById.get(key) !== 'success') {
+                    skillOutcomeById.set(key, 'failed');
+                }
+            }
+        }
+
+        if (capabilityId) {
+            if (capabilityOutcomeById.has(capabilityId)) {
+                if (success) {
+                    capabilityOutcomeById.set(capabilityId, 'success');
+                } else if (capabilityOutcomeById.get(capabilityId) !== 'success') {
+                    capabilityOutcomeById.set(capabilityId, 'failed');
+                }
+            }
+        }
+    }
+
+    const successfulSkillIds = [];
+    const failedSkillIds = [];
+    for (const [id, outcome] of skillOutcomeById.entries()) {
+        if (outcome === 'success') successfulSkillIds.push(Number(id));
+        else if (outcome === 'failed') failedSkillIds.push(Number(id));
+    }
+
+    const successfulCapabilityIds = [];
+    const failedCapabilityIds = [];
+    for (const [id, outcome] of capabilityOutcomeById.entries()) {
+        if (outcome === 'success') successfulCapabilityIds.push(id);
+        else if (outcome === 'failed') failedCapabilityIds.push(id);
+    }
+
+    successfulSkillIds.sort((a, b) => a - b);
+    failedSkillIds.sort((a, b) => a - b);
+    successfulCapabilityIds.sort();
+    failedCapabilityIds.sort();
+
+    const successfulCount = successfulSkillIds.length + successfulCapabilityIds.length;
+    const failedCount = failedSkillIds.length + failedCapabilityIds.length;
+    const plannedCount = skillOutcomeById.size + capabilityOutcomeById.size;
+    const terminalCount = successfulCount + failedCount;
+
+    return {
+        successfulSkillIds,
+        failedSkillIds,
+        successfulCapabilityIds,
+        failedCapabilityIds,
+        summary: {
+            plannedCount,
+            terminalCount,
+            successfulCount,
+            failedCount,
+            pendingCount: Math.max(0, plannedCount - terminalCount),
+            failureRate: computeWaveFailureRate({
+                successfulCount,
+                failedCount
+            })
+        }
+    };
+}
+
 function mergeUniqueNumeric(left = [], right = []) {
     return [...new Set([...left, ...right].map((value) => toSkillId(value)).filter(Boolean))].sort((a, b) => a - b);
 }
@@ -815,6 +973,10 @@ export async function runAutonomousOpenClaw({
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     failureCooldownBackoffMultiplier = DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER,
     failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES,
+    errorBudgetWindowWaves = DEFAULT_ERROR_BUDGET_WINDOW_WAVES,
+    errorBudgetFailureThreshold = DEFAULT_ERROR_BUDGET_FAILURE_THRESHOLD,
+    errorBudgetThrottleScale = DEFAULT_ERROR_BUDGET_THROTTLE_SCALE,
+    errorBudgetMinTasksPerLane = DEFAULT_ERROR_BUDGET_MIN_TASKS_PER_LANE,
     dispatchLimit = 100,
     workerCycles = 12,
     workerIdleCycles = 2,
@@ -860,6 +1022,16 @@ export async function runAutonomousOpenClaw({
         failureCooldownMaxWaves,
         DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
     );
+    const normalizedErrorBudgetWindowWaves = Math.max(
+        1,
+        parsePositiveInt(errorBudgetWindowWaves, DEFAULT_ERROR_BUDGET_WINDOW_WAVES)
+    );
+    const normalizedErrorBudgetFailureThreshold = normalizeFailureRate(errorBudgetFailureThreshold);
+    const normalizedErrorBudgetThrottleScale = clamp(Number(errorBudgetThrottleScale), 0.1, 1);
+    const normalizedErrorBudgetMinTasksPerLane = parseNonNegativeInt(
+        errorBudgetMinTasksPerLane,
+        DEFAULT_ERROR_BUDGET_MIN_TASKS_PER_LANE
+    );
 
     const skillCatalogSource = loadSkillCatalogSource({
         repoRoot: resolvedRepoRoot,
@@ -888,12 +1060,29 @@ export async function runAutonomousOpenClaw({
     let stopReason = 'max_waves_reached';
 
     for (let wave = 1; wave <= normalizedWaves; wave++) {
+        const errorBudgetThrottle = computeErrorBudgetThrottle({
+            recentWaveFailureRates: state.recentWaveFailureRates,
+            errorBudgetWindowWaves: normalizedErrorBudgetWindowWaves,
+            errorBudgetFailureThreshold: normalizedErrorBudgetFailureThreshold,
+            errorBudgetThrottleScale: normalizedErrorBudgetThrottleScale
+        });
+        const effectiveSkillsPerWave = computeThrottledWaveSize({
+            baseCount: normalizedSkillsPerWave,
+            throttle: errorBudgetThrottle,
+            minimumCount: normalizedErrorBudgetMinTasksPerLane
+        });
+        const effectiveCapabilitiesPerWave = computeThrottledWaveSize({
+            baseCount: normalizedCapabilitiesPerWave,
+            throttle: errorBudgetThrottle,
+            minimumCount: normalizedErrorBudgetMinTasksPerLane
+        });
+
         const plan = buildAutonomousBatchPlan({
             skillCatalog,
             capabilityCatalog,
             state,
-            skillsPerWave: normalizedSkillsPerWave,
-            capabilitiesPerWave: normalizedCapabilitiesPerWave,
+            skillsPerWave: effectiveSkillsPerWave,
+            capabilitiesPerWave: effectiveCapabilitiesPerWave,
             failureStreakThreshold: normalizedFailureStreakThreshold,
             failureCooldownWaves: normalizedFailureCooldownWaves,
             failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
@@ -943,16 +1132,18 @@ export async function runAutonomousOpenClaw({
         });
 
         // eslint-disable-next-line no-await-in-loop
-        const coverage = await collectAutonomousCoverage({
+        const waveOutcome = await collectWaveOutcomes({
             storePath: resolvedStorePath,
+            selectedSkillIds: plan.selection.skillIds,
+            selectedCapabilityIds: plan.selection.capabilityIds,
             nowFactory
         });
 
         const nextRunCount = state.runCount + 1;
         const skillOutcome = updateReliabilityForWave({
             selectedIds: plan.selection.skillIds,
-            successfulSet: new Set(coverage.successfulSkillIds.map((value) => String(value))),
-            failedSet: new Set(coverage.failedSkillIds.map((value) => String(value))),
+            successfulSet: new Set(waveOutcome.successfulSkillIds.map((value) => String(value))),
+            failedSet: new Set(waveOutcome.failedSkillIds.map((value) => String(value))),
             previousFailureStreakById: state.skillFailureStreakById,
             previousCooldownUntilRunById: state.skillCooldownUntilRunById,
             runCount: nextRunCount,
@@ -963,8 +1154,8 @@ export async function runAutonomousOpenClaw({
         });
         const capabilityOutcome = updateReliabilityForWave({
             selectedIds: plan.selection.capabilityIds,
-            successfulSet: new Set(coverage.successfulCapabilityIds.map((value) => String(value))),
-            failedSet: new Set(coverage.failedCapabilityIds.map((value) => String(value))),
+            successfulSet: new Set(waveOutcome.successfulCapabilityIds.map((value) => String(value))),
+            failedSet: new Set(waveOutcome.failedCapabilityIds.map((value) => String(value))),
             previousFailureStreakById: state.capabilityFailureStreakById,
             previousCooldownUntilRunById: state.capabilityCooldownUntilRunById,
             runCount: nextRunCount,
@@ -979,14 +1170,18 @@ export async function runAutonomousOpenClaw({
             runCount: nextRunCount,
             skillCursor: plan.nextCursor.skillCursor,
             capabilityCursor: plan.nextCursor.capabilityCursor,
-            successfulSkillIds: mergeUniqueNumeric(state.successfulSkillIds, coverage.successfulSkillIds),
-            failedSkillIds: mergeUniqueNumeric(state.failedSkillIds, coverage.failedSkillIds),
-            successfulCapabilityIds: mergeUniqueString(state.successfulCapabilityIds, coverage.successfulCapabilityIds),
-            failedCapabilityIds: mergeUniqueString(state.failedCapabilityIds, coverage.failedCapabilityIds),
+            successfulSkillIds: mergeUniqueNumeric(state.successfulSkillIds, waveOutcome.successfulSkillIds),
+            failedSkillIds: mergeUniqueNumeric(state.failedSkillIds, waveOutcome.failedSkillIds),
+            successfulCapabilityIds: mergeUniqueString(state.successfulCapabilityIds, waveOutcome.successfulCapabilityIds),
+            failedCapabilityIds: mergeUniqueString(state.failedCapabilityIds, waveOutcome.failedCapabilityIds),
             skillFailureStreakById: skillOutcome.failureStreakById,
             capabilityFailureStreakById: capabilityOutcome.failureStreakById,
             skillCooldownUntilRunById: skillOutcome.cooldownUntilRunById,
             capabilityCooldownUntilRunById: capabilityOutcome.cooldownUntilRunById,
+            recentWaveFailureRates: normalizeFailureRateSeries([
+                ...normalizeFailureRateSeries(state.recentWaveFailureRates),
+                waveOutcome.summary.failureRate
+            ]),
             updatedAt: safeNow(nowFactory)
         });
 
@@ -1001,6 +1196,15 @@ export async function runAutonomousOpenClaw({
                 skillTasks: plan.selection.skillIds.length,
                 capabilityTasks: plan.selection.capabilityIds.length
             },
+            errorBudget: {
+                throttleApplied: errorBudgetThrottle.applied,
+                throttleScale: errorBudgetThrottle.scale,
+                averageFailureRate: errorBudgetThrottle.averageFailureRate,
+                threshold: errorBudgetThrottle.threshold,
+                windowWaves: errorBudgetThrottle.windowWaves,
+                sampleCount: errorBudgetThrottle.sampleCount
+            },
+            outcomes: waveOutcome.summary,
             enqueue: {
                 accepted: enqueueResult.stats.accepted,
                 saved: enqueueResult.stats.saved,
@@ -1070,6 +1274,10 @@ export async function runAutonomousOpenClaw({
             failureCooldownWaves: normalizedFailureCooldownWaves,
             failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
             failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
+            errorBudgetWindowWaves: normalizedErrorBudgetWindowWaves,
+            errorBudgetFailureThreshold: normalizedErrorBudgetFailureThreshold,
+            errorBudgetThrottleScale: normalizedErrorBudgetThrottleScale,
+            errorBudgetMinTasksPerLane: normalizedErrorBudgetMinTasksPerLane,
             dispatchLimit: parsePositiveInt(dispatchLimit, 100),
             workerCycles: parsePositiveInt(workerCycles, 12),
             workerIdleCycles: parsePositiveInt(workerIdleCycles, 2),
