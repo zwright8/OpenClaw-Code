@@ -1382,3 +1382,99 @@ external_binding:
 ### `ps-hostage-crisis-multitheater-stack-v1`
 - Protocols: `USMTF`, `VMF`, `STIX/TAXII`.
 - Use for: multi-theater hostage decision synchronization and partner coordination packets.
+
+### `ts-biosecurity-lab-incident-v1`
+- Use for: biosurveillance anomaly triage, lab incident containment, and military public-health coordination.
+- Primary tools: disease surveillance boards, lab incident reporting systems, force-health readiness dashboards.
+- Cross-check tools: independent epidemiology review queue and laboratory confirmation mirror.
+- Typical products: containment branch plan, incident confidence scorecard, force-protection health advisory.
+
+### `ts-identity-wallet-revocation-v1`
+- Use for: deployed digital identity wallet trust, credential revocation, and disconnected access continuity.
+- Primary tools: PKI/identity lifecycle managers, credential-status APIs, access policy orchestration boards.
+- Cross-check tools: revocation ledger mirror and independent access anomaly monitor.
+- Typical products: revocation priority list, access continuity branch plan, trust posture update.
+
+### `ts-quantum-crypto-transition-v1`
+- Use for: mission-safe migration to quantum-resistant cryptography in mixed-fleet environments.
+- Primary tools: crypto asset inventory services, key lifecycle orchestrators, interoperability validation harnesses.
+- Cross-check tools: cryptographic conformance scanner and mission assurance exception board.
+- Typical products: migration tranche matrix, interoperability exception ledger, risk-accepted transition timeline.
+
+### `ts-undersea-cable-sabotage-v1`
+- Use for: undersea cable sabotage attribution, legal evidence stitching, and repair prioritization.
+- Primary tools: cable telemetry services, maritime anomaly analytics, legal evidence chain workflow systems.
+- Cross-check tools: coalition maritime COP and forensic confidence adjudication board.
+- Typical products: attribution confidence report, repair priority matrix, continuity reroute packet.
+
+### `ts-orbital-spectrum-continuity-v1`
+- Use for: orbital spectrum arbitration and SATCOM continuity under interference or congestion.
+- Primary tools: SATCOM allocation planners, interference monitors, mission-priority traffic controllers.
+- Cross-check tools: independent link-quality probe network and coalition bandwidth mirror.
+- Typical products: spectrum priority order, continuity reroute plan, congestion mitigation timeline.
+
+### `ts-autonomy-safety-assurance-v1`
+- Use for: autonomous-system incident review, safety control updates, and fleet risk containment.
+- Primary tools: autonomy telemetry review stacks, safety case management systems, corrective action boards.
+- Cross-check tools: independent incident replay harness and certification evidence monitor.
+- Typical products: incident causal matrix, corrective action queue, operational risk containment order.
+
+### `ts-ai-model-governance-v1`
+- Use for: contested AI model governance, rollback authority, and mission assurance for model-driven decisions.
+- Primary tools: model registry and deployment controls, evaluation dashboards, policy exception workflows.
+- Cross-check tools: independent red-team benchmark harness and model drift monitor.
+- Typical products: model trust posture brief, rollback trigger matrix, mission AI governance packet.
+
+### `ts-water-infrastructure-protection-v1`
+- Use for: cyber-physical protection of water treatment and distribution supporting force sustainment.
+- Primary tools: ICS/SCADA monitoring stacks, water quality telemetry systems, infrastructure incident response boards.
+- Cross-check tools: independent laboratory sample chain and alternate utility status mirror.
+- Typical products: hardening priority matrix, contamination risk alert, continuity operations packet.
+
+### `ts-port-health-biosecurity-v1`
+- Use for: military-port biosecurity control, vessel screening, and throughput-risk balancing.
+- Primary tools: port operations dashboards, vessel health screening systems, quarantine coordination platforms.
+- Cross-check tools: host-nation compliance mirror and independent berth-risk monitor.
+- Typical products: screening priority list, quarantine decision matrix, throughput continuity plan.
+
+### `ts-osint-verification-v1`
+- Use for: expeditionary verification of open-source battlefield claims and media artifacts.
+- Primary tools: OSINT aggregation suites, media authenticity forensics, geolocation and chronolocation services.
+- Cross-check tools: independent credibility ledger and alternate source corroboration board.
+- Typical products: verification confidence packet, commander use/no-use note, misinformation risk map.
+
+### `ts-munitions-fragmentation-safety-v1`
+- Use for: distributed munitions transport/storage safety and catastrophic-loss risk reduction.
+- Primary tools: explosive compatibility ledgers, route risk planning systems, storage hazard modeling tools.
+- Cross-check tools: independent safety compliance board and alternate incident trend monitor.
+- Typical products: dispersion safety matrix, transport sequence plan, compatibility exception register.
+
+### `ts-runway-crater-repair-v1`
+- Use for: rapid runway crater repair synchronization with sortie recovery and force protection.
+- Primary tools: airfield engineering schedulers, runway status analytics, sortie regeneration planners.
+- Cross-check tools: independent pavement damage assessment and alternate engineering timeline board.
+- Typical products: repair deconfliction matrix, sortie risk timeline, engineering branch plan.
+
+### `ts-emp-cascade-consequence-v1`
+- Use for: EMP cascade consequence assessment and theater-level restoration sequencing.
+- Primary tools: mission dependency graph tools, infrastructure restoration boards, comm-path resilience dashboards.
+- Cross-check tools: independent continuity monitor and alternate critical-node status tracker.
+- Typical products: consequence cascade map, phased restoration matrix, degraded C2 continuity packet.
+
+### `ts-commander-priority-synthesis-v1`
+- Use for: commander-priority information synthesis from contested multi-domain data feeds.
+- Primary tools: COP fusion boards, alert prioritization engines, commander update automation workflows.
+- Cross-check tools: independent watchfloor timeline and alternate confidence adjudication board.
+- Typical products: commander priority brief, confidence-ranked indicator board, decision trigger timeline.
+
+### `ts-disconnected-time-pnt-holdover-v1`
+- Use for: disconnected time synchronization and PNT holdover under GNSS denial.
+- Primary tools: precision timing distribution systems, oscillator health monitors, PNT confidence fusion services.
+- Cross-check tools: independent time-transfer validator and alternate inertial/celestial fusion monitor.
+- Typical products: holdover posture report, synchronization branch triggers, resync execution checklist.
+
+### `ts-additive-feedstock-authenticity-v1`
+- Use for: counterfeit feedstock detection and additive manufacturing supply integrity assurance.
+- Primary tools: material fingerprinting analyzers, lot provenance tracking, fabrication quality release systems.
+- Cross-check tools: independent sample-chain audit and alternate part-failure anomaly monitor.
+- Typical products: authenticity confidence report, quarantine decision board, fabrication continuity fallback plan.
