@@ -1794,3 +1794,75 @@ external_binding:
 ### `ps-coalition-training-readiness-fusion-stack-v1`
 - Protocols: `NATO APP-11/ADatP-3`, `USMTF`, `API/JSON`.
 - Use for: coalition readiness evidence exchange, interoperability gap closure packets, and certification confidence updates.
+
+### `ts-cislunar-logistics-relay-v1`
+- Use for: contested cislunar relay continuity, lunar-node sustainment routing, and timing-integrity branching.
+- Primary tools: SDA catalog services, relay path planners, cislunar logistics schedulers.
+- Cross-check tools: independent orbit-state mirror and timing-integrity watchdog.
+- Typical products: relay continuity matrix, sustainment branch table, timing exception ledger.
+
+### `ts-iamd-shot-doctrine-v1`
+- Use for: integrated air and missile defense shot doctrine tuning and defended-asset prioritization.
+- Primary tools: IAMD fire-control planners, raid-density analyzers, interceptor inventory dashboards.
+- Cross-check tools: independent engagement replay board and magazine-depth validator.
+- Typical products: shot doctrine matrix, raid response branch map, interceptor expenditure forecast.
+
+### `ts-undersea-repair-convoy-v1`
+- Use for: undersea infrastructure repair convoy scheduling, escort planning, and restoration deconfliction.
+- Primary tools: undersea telemetry dashboards, maritime convoy planners, seabed repair schedulers.
+- Cross-check tools: independent vessel identity validator and subsea anomaly monitor.
+- Typical products: convoy protection plan, repair sequence board, restoration risk ladder.
+
+### `ts-special-operations-biometric-exfil-v1`
+- Use for: denied biometric extraction/exfiltration planning with custody and identity assurance.
+- Primary tools: SOF mission planning suites, biometric exploitation systems, custody-chain ledgers.
+- Cross-check tools: independent identity confidence board and alternate custody audit log.
+- Typical products: exfiltration branch packet, custody confidence table, exploitation task matrix.
+
+### `ts-industrial-cyber-sabotage-containment-v1`
+- Use for: defense-industrial OT sabotage containment, production recovery, and surge continuity.
+- Primary tools: OT incident response platforms, manufacturing telemetry boards, industrial dependency maps.
+- Cross-check tools: independent incident timeline ledger and alternate production integrity monitor.
+- Typical products: containment sequence order, production recovery ladder, OT isolation matrix.
+
+### `ts-jadc2-fabric-triage-v1`
+- Use for: JADC2 data-fabric degradation triage, translation integrity checks, and latency mitigation.
+- Primary tools: schema translation validators, fusion-bus health monitors, latency analytics dashboards.
+- Cross-check tools: independent message-conformance checker and alternate COP consistency board.
+- Typical products: degradation triage matrix, schema exception log, latency compensation plan.
+
+### `ts-arctic-farp-dispersal-v1`
+- Use for: arctic forward refuel/rearm dispersal planning under weather and threat stress.
+- Primary tools: polar route/weather intelligence, fuel/munitions trackers, FARP survivability planners.
+- Cross-check tools: independent weather-model mirror and alternate sustainment sufficiency calculator.
+- Typical products: dispersal matrix, sustainment timeline, FARP survivability branch plan.
+
+### `ts-ew-order-of-battle-refresh-v1`
+- Use for: rapid EW order-of-battle refresh with contested sensor confidence management.
+- Primary tools: emitter identity services, EW mission-data managers, spectrum anomaly analytics.
+- Cross-check tools: independent RF monitoring mesh and alternate emitter signature ledger.
+- Typical products: EOB refresh queue, confidence ladder, retask trigger board.
+
+### `ts-precision-fires-latency-comp-v1`
+- Use for: precision-fires C2 latency compensation and sensor-to-shooter timing control.
+- Primary tools: fires C2 sequence analytics, timing integrity monitors, target validity trackers.
+- Cross-check tools: independent message-delay ledger and alternate targeting timeline replay.
+- Typical products: latency compensation table, timing risk map, delayed-effects branch matrix.
+
+### `ts-burn-care-austere-network-v1`
+- Use for: mass-casualty burn-care routing and austere treatment network synchronization.
+- Primary tools: patient regulation systems, burn-bed availability boards, med-log depletion monitors.
+- Cross-check tools: independent transfer-status mirror and alternate care-capacity validator.
+- Typical products: burn-care triage network map, transfer ladder, consumables continuity plan.
+
+### `ts-coalition-grid-blackstart-v1`
+- Use for: coalition host-nation grid protection, blackstart sequencing, and critical-load prioritization.
+- Primary tools: grid resilience dashboards, ICS restoration planners, coalition utility coordination boards.
+- Cross-check tools: independent load-restoration verifier and alternate cyber-physical fault board.
+- Typical products: blackstart branch matrix, critical-load board, restoration synchronization timeline.
+
+### `ts-autonomous-convoy-counter-ambush-v1`
+- Use for: autonomous convoy counter-ambush planning with route-risk adaptation and authority gates.
+- Primary tools: convoy autonomy managers, route threat analytics, engagement-governance dashboards.
+- Cross-check tools: independent route-denial monitor and alternate autonomy confidence board.
+- Typical products: convoy counter-ambush posture board, route contingency map, authority escalation matrix.
