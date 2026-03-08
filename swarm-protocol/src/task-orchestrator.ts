@@ -40,6 +40,24 @@ function clone(value) {
     return JSON.parse(JSON.stringify(value));
 }
 
+function canonicalize(value) {
+    if (Array.isArray(value)) {
+        return value.map((entry) => canonicalize(entry));
+    }
+    if (value && typeof value === 'object') {
+        const ordered = {};
+        for (const key of Object.keys(value).sort()) {
+            ordered[key] = canonicalize(value[key]);
+        }
+        return ordered;
+    }
+    return value;
+}
+
+function stableStringify(value) {
+    return JSON.stringify(canonicalize(value));
+}
+
 function safeNow(nowFn) {
     const value = Number(nowFn());
     return Number.isFinite(value) ? value : Date.now();
@@ -148,6 +166,7 @@ export class TaskOrchestrator {
         retryTokenBucketCapacity = 32,
         retryTokenRefillPerSecond = 4,
         retryTokenCost = 1,
+        idempotencyKeyTtlMs = 5 * 60_000,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -195,12 +214,69 @@ export class TaskOrchestrator {
         this.retryTokenRefillPerSecond = clampPositiveNumber(retryTokenRefillPerSecond, 4);
         this.retryTokenCost = clampPositiveNumber(retryTokenCost, 1);
         this.retryTokens = this.retryTokenBucketCapacity;
-        this.retryTokenLastRefillAt = safeNow(this.now);
+        this.idempotencyKeyTtlMs = clampNonNegativeNumber(idempotencyKeyTtlMs, 5 * 60_000);
+        this.idempotencyCache = new Map();
+        this.idempotencyTaskIndex = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
+        this.retryTokenLastRefillAt = safeNow(this.now);
         this.logger = logger;
         this.tasks = new Map();
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _buildIdempotencyFingerprint({
+        target,
+        task,
+        priority,
+        context,
+        constraints
+    }) {
+        return stableStringify({
+            target,
+            task,
+            priority,
+            context: context ?? null,
+            constraints: constraints ?? null
+        });
+    }
+
+    _normalizeIdempotencyKey(value) {
+        if (typeof value !== 'string') return null;
+        const normalized = value.trim();
+        return normalized ? normalized : null;
+    }
+
+    _cleanupExpiredIdempotencyEntries(nowMs = safeNow(this.now)) {
+        if (this.idempotencyCache.size === 0) return;
+        for (const [key, entry] of this.idempotencyCache.entries()) {
+            if (!entry || !Number.isFinite(entry.expiresAt) || nowMs >= entry.expiresAt) {
+                this.idempotencyCache.delete(key);
+                if (entry?.taskId) {
+                    this.idempotencyTaskIndex.delete(entry.taskId);
+                }
+            }
+        }
+    }
+
+    _registerIdempotencyKey(key, taskId, fingerprint, nowMs) {
+        if (!key || this.idempotencyKeyTtlMs <= 0) return;
+        const expiresAt = nowMs + this.idempotencyKeyTtlMs;
+        this.idempotencyCache.set(key, {
+            key,
+            taskId,
+            fingerprint,
+            createdAt: nowMs,
+            expiresAt
+        });
+        this.idempotencyTaskIndex.set(taskId, key);
+    }
+
+    _clearIdempotencyKeyForTask(taskId) {
+        const key = this.idempotencyTaskIndex.get(taskId);
+        if (!key) return;
+        this.idempotencyTaskIndex.delete(taskId);
+        this.idempotencyCache.delete(key);
     }
 
     async hydrate({ replace = true } = {}) {
@@ -217,14 +293,37 @@ export class TaskOrchestrator {
 
         if (replace) {
             this.tasks.clear();
+            this.idempotencyCache.clear();
+            this.idempotencyTaskIndex.clear();
         }
 
+        const hydratedAt = safeNow(this.now);
         let applied = 0;
         for (const record of loaded) {
             if (!record || typeof record !== 'object' || typeof record.taskId !== 'string') {
                 continue;
             }
             this.tasks.set(record.taskId, clone(record));
+            const idempotencyKey = this._normalizeIdempotencyKey(record?.idempotency?.key);
+            const idempotencyFingerprint = typeof record?.idempotency?.fingerprint === 'string'
+                ? record.idempotency.fingerprint
+                : null;
+            if (idempotencyKey && idempotencyFingerprint && this.idempotencyKeyTtlMs > 0) {
+                const createdAt = Number.isFinite(Number(record.createdAt))
+                    ? Number(record.createdAt)
+                    : hydratedAt;
+                const expiresAt = createdAt + this.idempotencyKeyTtlMs;
+                if (expiresAt > hydratedAt) {
+                    this.idempotencyCache.set(idempotencyKey, {
+                        key: idempotencyKey,
+                        taskId: record.taskId,
+                        fingerprint: idempotencyFingerprint,
+                        createdAt,
+                        expiresAt
+                    });
+                    this.idempotencyTaskIndex.set(record.taskId, idempotencyKey);
+                }
+            }
             applied++;
         }
 
@@ -446,9 +545,44 @@ export class TaskOrchestrator {
         priority = 'normal',
         context,
         constraints,
+        idempotencyKey = null,
         id = randomUUID(),
         createdAt = safeNow(this.now)
     }) {
+        const dispatchAt = safeNow(this.now);
+        this._cleanupExpiredIdempotencyEntries(dispatchAt);
+        const normalizedIdempotencyKey = this._normalizeIdempotencyKey(idempotencyKey);
+        const idempotencyFingerprint = this._buildIdempotencyFingerprint({
+            target,
+            task,
+            priority,
+            context,
+            constraints
+        });
+        if (normalizedIdempotencyKey) {
+            const existingEntry = this.idempotencyCache.get(normalizedIdempotencyKey);
+            if (existingEntry) {
+                if (existingEntry.fingerprint !== idempotencyFingerprint) {
+                    throw new TaskOrchestratorError(
+                        'IDEMPOTENCY_KEY_REUSED',
+                        `idempotency key ${normalizedIdempotencyKey} was reused with a different task payload`,
+                        {
+                            idempotencyKey: normalizedIdempotencyKey,
+                            existingTaskId: existingEntry.taskId
+                        }
+                    );
+                }
+
+                const existingRecord = this.tasks.get(existingEntry.taskId);
+                if (existingRecord) {
+                    return this.getTask(existingEntry.taskId);
+                }
+
+                this.idempotencyCache.delete(normalizedIdempotencyKey);
+                this.idempotencyTaskIndex.delete(existingEntry.taskId);
+            }
+        }
+
         const routingDraft = buildTaskRequest({
             from: this.localAgentId,
             target,
@@ -572,7 +706,13 @@ export class TaskOrchestrator {
             result: null,
             history: [
                 { at: request.createdAt, event: 'created' }
-            ]
+            ],
+            idempotency: normalizedIdempotencyKey
+                ? {
+                    key: normalizedIdempotencyKey,
+                    fingerprint: idempotencyFingerprint
+                }
+                : null
         };
 
         if (policyDecision?.redactions?.length > 0) {
@@ -606,6 +746,12 @@ export class TaskOrchestrator {
         }
 
         this.tasks.set(record.taskId, record);
+        this._registerIdempotencyKey(
+            normalizedIdempotencyKey,
+            record.taskId,
+            idempotencyFingerprint,
+            request.createdAt
+        );
         this._persistRecord(record);
         this._emitAudit('task_created', {
             taskId: record.taskId,
@@ -629,6 +775,7 @@ export class TaskOrchestrator {
         } catch (error) {
             this.tasks.delete(record.taskId);
             this._deleteRecord(record.taskId);
+            this._clearIdempotencyKeyForTask(record.taskId);
             throw error;
         }
 
@@ -979,6 +1126,10 @@ export class TaskOrchestrator {
                     refillPerSecond: this.retryTokenRefillPerSecond,
                     tokenCost: this.retryTokenCost,
                     tokensAvailable: Number(this.retryTokens.toFixed(3))
+                },
+                idempotency: {
+                    ttlMs: this.idempotencyKeyTtlMs,
+                    activeKeys: this.idempotencyCache.size
                 }
             }
         };

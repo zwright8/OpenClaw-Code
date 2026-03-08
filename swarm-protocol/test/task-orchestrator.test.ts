@@ -311,6 +311,100 @@ test('retry token bucket delays scheduling when tokens are exhausted', async () 
     assert.equal(current.nextRetryAt, clock.now() + lastEvent.retryDelayMs);
 });
 
+test('dispatchTask reuses active task for matching idempotency key', async () => {
+    const clock = createClock(14_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        idempotencyKeyTtlMs: 60_000
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-idempotent',
+        task: 'Generate changelog',
+        context: { release: '2026.03.1' },
+        idempotencyKey: 'release-changelog-2026.03.1'
+    });
+
+    clock.advance(250);
+    const replay = await orchestrator.dispatchTask({
+        target: 'agent:worker-idempotent',
+        task: 'Generate changelog',
+        context: { release: '2026.03.1' },
+        idempotencyKey: 'release-changelog-2026.03.1'
+    });
+
+    assert.equal(first.taskId, replay.taskId);
+    assert.equal(sent.length, 1);
+});
+
+test('dispatchTask rejects reused idempotency key when payload changes', async () => {
+    const clock = createClock(15_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now
+    });
+
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-idempotent-mismatch',
+        task: 'Summarize customer interviews',
+        context: { quarter: 'Q1' },
+        idempotencyKey: 'customer-summary-q1'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-idempotent-mismatch',
+            task: 'Summarize customer interviews',
+            context: { quarter: 'Q2' },
+            idempotencyKey: 'customer-summary-q1'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'IDEMPOTENCY_KEY_REUSED');
+            return true;
+        }
+    );
+});
+
+test('dispatchTask idempotency cache expires after ttl', async () => {
+    const clock = createClock(16_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        idempotencyKeyTtlMs: 500
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-idempotent-ttl',
+        task: 'Compile weekly status',
+        idempotencyKey: 'weekly-status'
+    });
+
+    clock.advance(501);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-idempotent-ttl',
+        task: 'Compile weekly status',
+        idempotencyKey: 'weekly-status'
+    });
+
+    assert.notEqual(first.taskId, second.taskId);
+    assert.equal(sent.length, 2);
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({
