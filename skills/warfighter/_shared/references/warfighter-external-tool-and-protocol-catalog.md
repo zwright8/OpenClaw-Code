@@ -1202,3 +1202,63 @@ external_binding:
 - Primary tools: cross-domain guard policy manager, data diode transfer controller, releasability workflow service.
 - Cross-check tools: independent audit-log verifier and alternate transfer integrity monitor.
 - Typical products: releasability-compliant exchange matrix, assurance evidence packet, transfer exception board.
+
+### `ts-nc3-eam-assurance-v1`
+- Use for: NC3 continuity posture checks, emergency action message assurance, and acknowledgment-chain integrity.
+- Primary tools: NC3 continuity monitors, EAM integrity validators, comm-path resilience orchestration services.
+- Cross-check tools: independent acknowledgment ledger and alternate comm-path health mirror.
+- Typical products: NC3 continuity dashboard, EAM assurance exception list, path failover decision matrix.
+
+### `ts-port-rail-chokepoint-v1`
+- Use for: strategic deployment stress tests across ports, rail corridors, and transload chokepoints.
+- Primary tools: port throughput dashboards, rail movement control systems, transload queue analytics.
+- Cross-check tools: independent route capacity board and alternate movement feasibility mirror.
+- Typical products: chokepoint stress map, throughput risk timeline, branch-and-sequel mobility matrix.
+
+### `ts-coalition-emitter-identity-v1`
+- Use for: coalition electronic order of battle fusion and emitter identity confidence management.
+- Primary tools: RF signature libraries, coalition data-sharing gateways, all-source emitter correlation boards.
+- Cross-check tools: independent emitter baseline validator and alternate coalition metadata verifier.
+- Typical products: emitter identity ledger, EOB confidence map, retask recommendation matrix.
+
+### `ts-swarm-logistics-defense-v1`
+- Use for: sustainment corridor protection against uncrewed swarm threats in contested environments.
+- Primary tools: counter-UxS C2 suites, convoy telemetry services, route defense analytics systems.
+- Cross-check tools: independent threat-track mirror and alternate convoy status reconciliation board.
+- Typical products: swarm route threat overlay, convoy defense posture board, logistics continuity branches.
+
+### `ts-river-crossing-risk-v1`
+- Use for: contested river crossing risk analysis and military watercraft synchronization.
+- Primary tools: hydrographic intelligence feeds, combat engineer planning tools, inland watercraft movement dashboards.
+- Cross-check tools: independent current-depth monitor and alternate crossing feasibility board.
+- Typical products: crossing-window risk map, synchronized crossing matrix, branch trigger list.
+
+### `ts-hypersonic-warning-passive-defense-v1`
+- Use for: hypersonic warning fusion and passive defense trigger governance.
+- Primary tools: missile warning fusion systems, track confidence analytics, passive defense planners.
+- Cross-check tools: independent sensor-track validator and alternate warning confidence monitor.
+- Typical products: warning confidence ladder, passive defense trigger matrix, protected-asset relocation plan.
+
+### `ts-additive-quality-attestation-v1`
+- Use for: deployed additive manufacturing quality attestation and traceable fielding decisions.
+- Primary tools: manufacturing execution systems, digital thread registries, NDI and lot traceability services.
+- Cross-check tools: independent quality evidence auditor and alternate lot genealogy verification board.
+- Typical products: part attestation packet, lot risk register, release or quarantine decision board.
+
+### `ts-multidomain-deception-rehearsal-v1`
+- Use for: rehearsal and synchronization of tactical deception effects across multiple domains.
+- Primary tools: red-cell simulation environments, signature management suites, deception indicator trackers.
+- Cross-check tools: independent adversary-observation model and alternate deception fidelity board.
+- Typical products: deception rehearsal storyboard, execution trigger ladder, branch protection matrix.
+
+### `ts-grid-cyber-physical-deterrence-v1`
+- Use for: cyber-physical deterrence planning for strategic energy grid dependencies and restoration resilience.
+- Primary tools: ICS/OT telemetry defense platforms, grid dependency graph engines, restoration orchestration systems.
+- Cross-check tools: independent outage propagation simulator and alternate critical-load priority board.
+- Typical products: deterrence dependency map, disruption impact table, restoration deterrence branch plan.
+
+### `ts-denied-pnt-time-transfer-v1`
+- Use for: assured timing transfer and navigation integrity under PNT denial or spoofing pressure.
+- Primary tools: timing integrity monitors, pseudolite planners, terrestrial and network time transfer services.
+- Cross-check tools: independent time-source confidence monitor and alternate synchronization audit board.
+- Typical products: timing mesh plan, denied-PNT confidence board, fallback synchronization sequence.
