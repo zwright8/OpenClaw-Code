@@ -1674,3 +1674,123 @@ external_binding:
 ### `ps-engineering-repair-prioritization-stack-v1`
 - Protocols: `USMTF`, `OGC`, `API/JSON`.
 - Use for: engineering damage triage packets, repair sequence updates, and restoration decision synchronization.
+
+### `ts-maritime-chokepoint-closure-v1`
+- Use for: maritime chokepoint closure and controlled reopening under adversary pressure.
+- Primary tools: maritime traffic COP, chokepoint risk planners, coalition shipping deconfliction services.
+- Cross-check tools: independent AIS anomaly monitor and alternate convoy-routing board.
+- Typical products: closure trigger ladder, reopening branch matrix, coalition traffic risk report.
+
+### `ts-gridload-blackstart-fuel-v1`
+- Use for: theater civil gridload restoration and blackstart fuel-priority sequencing.
+- Primary tools: power-grid dependency graph engines, blackstart scheduling dashboards, fuel allocation boards.
+- Cross-check tools: independent utility telemetry mirror and alternate critical-load adjudication board.
+- Typical products: critical-load restoration map, fuel-priority matrix, blackstart branch timeline.
+
+### `ts-denied-weather-sortie-risk-v1`
+- Use for: denied-weather reconnaissance fusion and sortie risk governance.
+- Primary tools: weather-recon fusion boards, sensor confidence models, sortie risk planners.
+- Cross-check tools: independent meteorology cell and alternate threat-weather correlation board.
+- Typical products: sortie weather-risk scorecard, denied-sensor confidence ladder, divert/scrub triggers.
+
+### `ts-nav-spoofing-attribution-v1`
+- Use for: precision-navigation spoofing attribution and trust posture decisions.
+- Primary tools: PNT anomaly analytics, spoofing signature classifiers, route risk planners.
+- Cross-check tools: independent inertial/celestial confidence monitor and alternate timing assurance ledger.
+- Typical products: spoofing confidence matrix, navigation trust ladder, mitigation branch plan.
+
+### `ts-radhard-microelectronics-assurance-v1`
+- Use for: radiation-hardened microelectronics supply assurance for strategic mission systems.
+- Primary tools: part provenance graph services, rad-hard qualification repositories, mission dependency scorers.
+- Cross-check tools: independent counterfeit-risk monitor and alternate component qualification ledger.
+- Typical products: component risk board, substitute-part approval matrix, mission-impact sequence.
+
+### `ts-bridge-load-class-verification-v1`
+- Use for: expeditionary bridge load-class verification and heavy-maneuver route assurance.
+- Primary tools: engineering survey tools, bridge load analyzers, route throughput schedulers.
+- Cross-check tools: independent structural validation board and alternate route feasibility monitor.
+- Typical products: load-class confidence map, route go/no-go matrix, engineer verification queue.
+
+### `ts-cbrn-urban-plume-evac-v1`
+- Use for: CBRN urban plume evacuation branch planning and force-protection controls.
+- Primary tools: plume dispersion models, population movement planners, contamination-control dashboards.
+- Cross-check tools: independent hazard sampling board and alternate evacuation corridor validator.
+- Typical products: plume hazard corridor map, phased evacuation matrix, protection control package.
+
+### `ts-satcom-terminal-key-rotation-v1`
+- Use for: coalition SATCOM terminal key rotation and continuity under compromise risk.
+- Primary tools: key lifecycle managers, SATCOM terminal status services, coalition releasability controls.
+- Cross-check tools: independent key-audit ledger and alternate traffic integrity monitor.
+- Typical products: key-rotation priority ledger, terminal continuity branch matrix, releasability gate report.
+
+### `ts-intermodal-rail-airfield-sustainment-v1`
+- Use for: rail-airfield intermodal sustainment scheduling under disruption and surge.
+- Primary tools: rail flow schedulers, airfield throughput boards, ground distribution planners.
+- Cross-check tools: independent bottleneck monitor and alternate force-flow adjudication board.
+- Typical products: intermodal throughput schedule, chokepoint reroute matrix, sustainment risk timeline.
+
+### `ts-watercraft-autonomy-collision-avoidance-v1`
+- Use for: forward watercraft autonomy collision-avoidance and waterway deconfliction.
+- Primary tools: autonomous navigation monitors, maritime traffic fusion services, collision-risk predictors.
+- Cross-check tools: independent riverine COP board and alternate manual traffic control ledger.
+- Typical products: transit conflict board, collision trigger ladder, comms fallback plan.
+
+### `ts-power-signature-management-v1`
+- Use for: battlefield power-generation posture and thermal/acoustic/electromagnetic signature management.
+- Primary tools: power-node telemetry, signature analytics, generator dispatch planners.
+- Cross-check tools: independent emissions monitor and alternate sustainment exposure board.
+- Typical products: power-node signature map, concealment matrix, sustainment exposure report.
+
+### `ts-coalition-training-readiness-fusion-v1`
+- Use for: coalition partner-force digital training readiness fusion and interoperability closure.
+- Primary tools: training evidence repositories, readiness dashboards, interoperability gap trackers.
+- Cross-check tools: independent certification evidence monitor and alternate coalition readiness ledger.
+- Typical products: partner readiness board, gap closure queue, certification confidence summary.
+
+### `ps-maritime-chokepoint-closure-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NATO APP-11/ADatP-3`.
+- Use for: chokepoint closure/reopening orders, coalition ship-routing updates, and acknowledgment tracking.
+
+### `ps-gridload-blackstart-fuel-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Use for: critical-load restoration sequencing, fuel-priority exchange, and civil-military blackstart coordination.
+
+### `ps-denied-weather-sortie-risk-stack-v1`
+- Protocols: `USMTF`, `VMF`, `OGC`.
+- Use for: weather-risk updates, sortie scrub/divert triggers, and denied-sensor confidence packets.
+
+### `ps-nav-spoofing-attribution-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `CCSDS`.
+- Use for: navigation anomaly attribution, timing-confidence exchange, and spoofing mitigation triggers.
+
+### `ps-radhard-microelectronics-assurance-stack-v1`
+- Protocols: `API/JSON`, `XML`, `USMTF`.
+- Use for: component provenance exchange, qualification exceptions, and mission-impact risk reporting.
+
+### `ps-bridge-load-class-verification-stack-v1`
+- Protocols: `USMTF`, `OGC`, `API/JSON`.
+- Use for: engineering survey packets, load-class verification decisions, and route authority updates.
+
+### `ps-cbrn-urban-plume-evac-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `CAP`.
+- Use for: plume hazard corridor updates, evacuation branch decisions, and force-protection advisories.
+
+### `ps-satcom-terminal-key-rotation-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `API/JSON`.
+- Use for: key-rotation schedules, terminal continuity status, and coalition releasability acknowledgment.
+
+### `ps-intermodal-rail-airfield-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3`.
+- Use for: intermodal throughput scheduling, rail-airfield handoff updates, and bottleneck escalation packets.
+
+### `ps-watercraft-autonomy-collision-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `CoT`.
+- Use for: autonomous watercraft conflict alerts, deconfliction orders, and route handoff acknowledgments.
+
+### `ps-power-signature-management-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `Link 16 J-series`.
+- Use for: generator signature posture updates, concealment actions, and sustainment risk reporting.
+
+### `ps-coalition-training-readiness-fusion-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3`, `USMTF`, `API/JSON`.
+- Use for: coalition readiness evidence exchange, interoperability gap closure packets, and certification confidence updates.
