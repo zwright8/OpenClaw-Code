@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 713
+- Total warfighter skills in this repo: 727
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -221,6 +221,40 @@ Every skill output should include:
 - Zero-trust key material continuity + tactical zero-trust network hardening + theater mission network failover
 - Space-weather GNSS outage fusion + denied space PNT alternative navigation + precision navigation integrity monitoring
 - Multi-theater hostage crisis decision + POW/MIA and missing persons fusion + personnel recovery integration
+
+## New Expansion Wave (2026-03-08, Advanced Warfighter Integration Set)
+
+- joint-lunar-communications-relay-contingency-cell
+- joint-quantum-sensor-battlefield-calibration-cell
+- joint-additive-electronics-repair-and-assurance-cell
+- theater-hardened-positioning-time-distribution-over-fiber-cell
+- coalition-autonomous-convoy-ethical-governance-cell
+- joint-battlefield-neuromorphic-sensor-fusion-cell
+- expeditionary-directed-energy-counter-drone-power-cell
+- joint-austere-blood-plasma-synthesis-and-distribution-cell
+- strategic-rare-isotope-production-security-cell
+- joint-climate-conflict-migration-pressure-forecast-cell
+- theater-rapid-airbase-decoy-and-deception-layout-cell
+- joint-maritime-gray-zone-lawfare-evidence-cell
+- joint-denied-environment-3d-terrain-model-refresh-cell
+- coalition-aviation-cyber-airworthiness-assurance-cell
+
+## Updated Pairings (2026-03-08, Advanced Warfighter Integration Set)
+
+- Lunar relay contingency + orbital spectrum priority + denied-PNT timing assurance
+- Quantum sensor calibration + electronic order of battle management + contested geodesy integrity
+- Additive electronics repair + expeditionary fabrication and battle damage repair + software supply-chain assurance
+- Hardened time distribution over fiber + mission network failover + battle-network key continuity
+- Coalition autonomous convoy governance + contested logistics sustainment + coalition legal interoperability
+- Neuromorphic sensor fusion + dynamic targeting + fratricide-prevention and blue-force tracking
+- Directed-energy C-UAS power management + base energy resilience + counter-swarm defense
+- Austere blood/plasma distribution + medevac prioritization + denied casualty-data synchronization
+- Rare isotope security + strategic industrial mobilization readiness + insider-threat analysis
+- Climate migration forecasting + civil defense mass evacuation + host-nation stabilization
+- Rapid airbase decoy layout + runway recovery + airbase dispersal and reconstitution
+- Maritime gray-zone lawfare evidence + maritime interdiction + coalition cyber legal attribution
+- Denied 3D terrain refresh + map production and geodesy + maneuver and fires synchronization
+- Aviation cyber airworthiness assurance + mission-assured software factory support + coalition flight-safety governance
 
 ## New Expansion Wave (2026-03-08, Warfighter Domain Completion Surge)
 
