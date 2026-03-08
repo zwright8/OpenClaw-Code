@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 751
+- Total warfighter skills in this repo: 763
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -389,3 +389,33 @@ Every skill output should include:
 - Watercraft autonomy collision avoidance + riverine operations + autonomous maritime corridor defense
 - Battlefield power generation signature management + operational energy demand signature reduction + base-defense survivability
 - Coalition training readiness fusion + partner capability integration + reservist mobilization readiness
+
+## New Expansion Wave (2026-03-08, Contested Continuity and Coalition Resilience)
+
+- joint-contested-cislunar-logistics-and-lunar-relay-cell
+- theater-integrated-air-and-missile-defense-shot-doctrine-cell
+- coalition-undersea-critical-infrastructure-repair-convoy-cell
+- joint-special-operations-denied-biometric-exfiltration-cell
+- strategic-domestic-industrial-cyber-sabotage-containment-cell
+- theater-jadc2-data-fabric-degradation-triage-cell
+- joint-arctic-forward-refuel-and-rearm-dispersal-cell
+- contested-electronic-warfare-order-of-battle-refresh-cell
+- joint-precision-fires-c2-latency-compensation-cell
+- theater-mass-casualty-burn-care-austere-network-cell
+- coalition-host-nation-grid-protection-and-blackstart-cell
+- joint-autonomous-convoy-counter-ambush-cell
+
+## Updated Pairings (2026-03-08, Contested Continuity and Coalition Resilience)
+
+- Cislunar logistics relay continuity + space-domain awareness and SATCOM defense + denied PNT time transfer assurance
+- IAMD shot doctrine + integrated air and missile defense cell + missile warning and attack assessment
+- Undersea infrastructure repair convoy + naval undersea cable protection and restoration + maritime chokepoint closure/reopening
+- SOF biometric exfiltration + deepfake battlefield media authentication + detainee accountability and custody transfer
+- Industrial cyber sabotage containment + mission-assured software factory support + strategic industrial mobilization readiness
+- JADC2 data-fabric triage + coalition data fabric interoperability + joint allied data-link interoperability
+- Arctic FARP dispersal + arctic and extreme environment ops + expeditionary cold weather vehicle start and maintenance
+- EW order-of-battle refresh + coalition electronic order of battle and emitter identity + joint spectrum interference resolution
+- Precision-fires latency compensation + targeting cycle manager + joint targeting standards and CDE governance
+- Burn care austere network + casualty evacuation and medical regulation + austere surgical support coordinator
+- Coalition grid protection and blackstart + operational energy resilience and microgrid + DSCA crisis cell
+- Autonomous convoy counter-ambush + contested logistics sustainment + autonomous ground resupply convoy control
