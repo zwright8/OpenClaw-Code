@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 172
+- Total warfighter skills in this repo: 632
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -141,3 +141,27 @@ Every skill output should include:
 - Sources, tool stack, and protocol details
 - Confidence, gaps, and branch triggers
 - Tool Invocation Packet for critical external dependencies
+
+## New Expansion Wave (2026-03-08, Critical Gap Closure)
+
+- joint-civilian-critical-infrastructure-cyber-kinetic-coordination-cell
+- strategic-rare-earth-alloy-and-magnet-industrial-assurance-cell
+- joint-ai-enabled-commander-critical-information-briefing-cell
+- theater-spectrum-to-targeting-latency-auditor
+- expeditionary-waterborne-disease-forecast-and-force-protection-cell
+- theater-civil-maritime-evacuation-sea-bridge-cell
+- joint-contested-electromagnetic-maneuver-rehearsal-cell
+- strategic-autonomous-systems-component-security-cell
+- joint-operational-energy-demand-signature-reduction-cell
+- tactical-disconnected-mission-data-replication-cell
+- coalition-cross-domain-data-diode-operations-cell
+- joint-infrastructure-resilience-priority-of-life-restoration-cell
+
+## Updated Pairings (2026-03-08)
+
+- Civil infrastructure defense + DSCA crisis support + cyber-physical infrastructure defense + priority-of-life restoration
+- Spectrum maneuver rehearsal + EW mission data reprogramming + spectrum interference resolution + fires timing integration
+- Rare-earth industrial assurance + industrial mobilization readiness + supply-chain risk monitor + acquisition/contracting support
+- Disconnected mission-data replication + mission-data-link management + theater mission network failover + contested comms planning
+- Maritime evacuation sea bridge + population protection/NEO + port opening/JRSOI + maritime chokepoint control
+- Waterborne disease forecasting + preventive medicine + med logistics continuity + water production and distribution support

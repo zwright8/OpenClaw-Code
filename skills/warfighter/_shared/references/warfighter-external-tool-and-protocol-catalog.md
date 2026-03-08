@@ -1160,3 +1160,45 @@ external_binding:
 ### `ps-voice-deepfake-countermeasure-stack-v1`
 - Protocols: `STIX/TAXII`, `VMF`, `USMTF`, `API/JSON`.
 - Use for: synthetic-voice incident reporting, command-authentication escalation, and countermeasure synchronization.
+
+### `ts-critical-infrastructure-cyber-kinetic-v1`
+- Use for: synchronizing cyber defense, kinetic protection, and civilian infrastructure restoration under attack.
+- Primary tools: ICS/SCADA security telemetry, civil utility outage dashboards, mission dependency graphing tools.
+- Cross-check tools: independent civil emergency management mirror and alternate cyber incident board.
+- Typical products: priority-of-life restoration board, cyber-kinetic risk matrix, phased restoration timeline.
+
+### `ts-rare-earth-industrial-assurance-v1`
+- Use for: strategic rare-earth, alloy, and magnet supply assurance for defense industrial readiness.
+- Primary tools: mining/refining throughput monitors, MES quality systems, defense demand forecasting tools.
+- Cross-check tools: independent market/supplier verification service and alternate production confidence board.
+- Typical products: industrial choke-point brief, surge allocation plan, program-impact risk ledger.
+
+### `ts-ccir-ai-briefing-v1`
+- Use for: commander CCIR briefing acceleration and confidence-weighted decision updates.
+- Primary tools: watchfloor event fusion platform, CCIR tagging engine, briefing automation workspace.
+- Cross-check tools: independent analyst review queue and alternate source-provenance ledger.
+- Typical products: CCIR delta brief, decision trigger timeline, confidence-labeled recommendation packet.
+
+### `ts-spectrum-targeting-latency-v1`
+- Use for: measuring and reducing latency from spectrum detection to targeting recommendation.
+- Primary tools: EW/sensor timeline collectors, kill-chain latency analytics, fires workflow trackers.
+- Cross-check tools: independent timing integrity monitor and alternate mission-thread replay service.
+- Typical products: latency bottleneck map, remediation branch matrix, timing-readiness scorecard.
+
+### `ts-expeditionary-waterborne-health-v1`
+- Use for: forecasting and controlling waterborne disease risks affecting force health in austere environments.
+- Primary tools: water quality sensing systems, epidemiological forecast models, field sanitation tracking boards.
+- Cross-check tools: independent lab sampling ledger and alternate public health surveillance mirror.
+- Typical products: outbreak risk forecast, force-health protection actions, water treatment priority board.
+
+### `ts-maritime-evacuation-sea-bridge-v1`
+- Use for: protected civilian maritime evacuation routing with port and sea-control constraints.
+- Primary tools: maritime COP, port processing dashboards, passenger manifest and vessel readiness systems.
+- Cross-check tools: independent harbor traffic monitor and alternate evacuation registry verifier.
+- Typical products: sea-bridge corridor order, embarkation/debarkation schedule, route-risk trigger map.
+
+### `ts-coalition-data-diode-xdomain-v1`
+- Use for: coalition cross-domain exchange through data diodes and guard-enforced one-way transfer paths.
+- Primary tools: cross-domain guard policy manager, data diode transfer controller, releasability workflow service.
+- Cross-check tools: independent audit-log verifier and alternate transfer integrity monitor.
+- Typical products: releasability-compliant exchange matrix, assurance evidence packet, transfer exception board.
