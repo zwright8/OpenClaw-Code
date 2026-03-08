@@ -175,3 +175,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - For Arctic or littoral denial scenarios, bind `tool_suite_id=ts-under-ice-resupply-v1` with `protocol_stack_id=ps-under-ice-resupply-stack-v1`.
 - For strategic sealift availability stress, add `tool_suite_id=ts-maritime-insurance-reconstitution-v1` with `protocol_stack_id=ps-maritime-insurance-reconstitution-stack-v1`.
 - For sustainment plans with life-support dependencies, include `packet_id=DPL-RARE-BLOOD-MATCH-001` as a mandatory medical-logistics cross-check.
+
+## Logistics Continuity Addendum (2026-03-08, Fuel and Critical Cargo Integrity)
+
+- Add `tool_suite_id=ts-denied-fuel-bladder-integrity-v1` + `protocol_stack_id=ps-denied-fuel-bladder-integrity-stack-v1` for forward fuel-storage reliability and sabotage detection.
+- Add `packet_id=DPL-CRITICAL-MINERAL-SHIPPING-001` when sustainment courses of action depend on strategic material flow continuity.
+- Add `packet_id=DPL-MICROREACTOR-EMPLOY-001` when expeditionary power constraints materially change sustainment branch feasibility.
