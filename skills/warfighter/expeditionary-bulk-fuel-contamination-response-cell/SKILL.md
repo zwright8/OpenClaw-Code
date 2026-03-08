@@ -82,3 +82,9 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Prioritize `tool_suite_id=ts-energetics-supply-denial-countermeasure-v1` with `protocol_stack_id=ps-energetics-supply-stack-v1` when fuel contamination events coincide with disrupted energetic precursor supply chains.
 - Use packet `DPL-ENERGETICS-SUPPLY-001` to connect refinery feedstock risk, munition line priority, and fuel reroute decisions in one decision cycle.
 - If cross-domain production confidence drops below threshold, issue a constrained-tempo sustainment recommendation and require commander concurrence.
+
+## Domain Toolchain Override (2026-03-08, Bioindustrial Supply Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-bioindustrial-assurance-v1` with `protocol_stack_id=ps-bioindustrial-assurance-stack-v1` when fuel contamination overlaps with strategic bioindustrial supply disruption.
+- Use packet `DPL-BIOINDUSTRIAL-ASSURANCE-001` to synchronize lot integrity, cold-chain continuity, and operational sustainment risk controls.
+- If quality evidence completeness falls below threshold, issue constrained-tempo recommendations and escalate for commander decision.
