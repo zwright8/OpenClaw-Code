@@ -44,6 +44,17 @@ Primary products for this skill: ROE translation validation packet, coalition ph
 - Bind recommendations to concrete suite/stack entries in `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
 - Include provenance fields: source system, refresh UTC, confidence, and key gaps.
 
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-COAL-FIRES-001`, `DPL-HUM-COR-001`.
+- If a packet does not capture translation ambiguity risk, define a provisional packet and assign coalition validation ownership.
+
+## Tool Invocation Contract
+
+- For each critical dependency include: objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
+- Require both machine-translated and human-validated ROE phrase checks before release.
+- If translation confidence is below mission threshold, downgrade to advisory-only and route for human command review.
+
 ## Authority and Assurance Gates
 
 - Apply approval and escalation requirements from `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
