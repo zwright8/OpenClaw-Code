@@ -1478,3 +1478,43 @@ external_binding:
 - Primary tools: material fingerprinting analyzers, lot provenance tracking, fabrication quality release systems.
 - Cross-check tools: independent sample-chain audit and alternate part-failure anomaly monitor.
 - Typical products: authenticity confidence report, quarantine decision board, fabrication continuity fallback plan.
+
+### `ts-ew-mission-data-rapid-reprogramming-v1`
+- Use for: rapid electronic-protection mission-data updates and deployment control under active jamming pressure.
+- Primary tools: EW mission-data managers, platform data-load orchestration, RF performance verification dashboards.
+- Cross-check tools: independent waveform validation harness and alternate emitter conflict board.
+- Typical products: reprogramming priority list, release authorization packet, interoperability risk ledger.
+
+### `ts-reservist-mobilization-readiness-v1`
+- Use for: reserve component mobilization bottleneck detection and readiness recovery sequencing.
+- Primary tools: personnel readiness systems, mobilization workflow boards, transportation staging trackers.
+- Cross-check tools: independent training currency ledger and alternate force-flow adjudication board.
+- Typical products: bottleneck map, readiness recovery branch plan, mobilization timeline matrix.
+
+### `ts-fuel-pipeline-attribution-v1`
+- Use for: bulk fuel pipeline leak attribution and sustainment continuity under sabotage risk.
+- Primary tools: pipeline telemetry monitors, fuel quality forensic systems, sustainment reroute planners.
+- Cross-check tools: independent leak-validation chain and alternate inventory-loss confidence board.
+- Typical products: leak attribution packet, continuity reroute matrix, repair prioritization queue.
+
+### `ts-command-post-displacement-survivability-v1`
+- Use for: hardened mobile command-post displacement decisions under precision fires and EW threat.
+- Primary tools: COP movement planners, comm-path assurance services, counter-targeting analytics.
+- Cross-check tools: independent survivability simulator and alternate route-risk monitor.
+- Typical products: displacement trigger matrix, command continuity branch plan, survivability confidence brief.
+
+### `ps-ew-mission-data-reprogramming-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Use for: mission-data reprogramming dissemination, platform loading acknowledgments, and interoperability verification.
+
+### `ps-reservist-mobilization-readiness-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: reserve mobilization status synchronization and readiness bottleneck escalation reporting.
+
+### `ps-fuel-pipeline-attribution-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `STIX/TAXII`.
+- Use for: contested fuel pipeline incident attribution, forensic confidence exchange, and sustainment reroute control.
+
+### `ps-command-post-displacement-stack-v1`
+- Protocols: `USMTF`, `CoT`, `Link 16 J-series`.
+- Use for: mobile command-post displacement sequencing, acknowledgment chains, and continuity posture reporting.

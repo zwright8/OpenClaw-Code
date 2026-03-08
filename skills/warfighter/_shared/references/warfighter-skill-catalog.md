@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 654
+- Total warfighter skills in this repo: 713
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -265,3 +265,33 @@ Every skill output should include:
 - Commander-priority synthesis + JOC battle rhythm management + campaign assessment and decision support
 - Disconnected time/PNT holdover + resilient navigation inertial/celestial fusion + denied space PNT alternative navigation
 - Additive feedstock counterfeit detection + contested feedstock assurance + additive munitions QA
+
+## New Expansion Wave (2026-03-08, Mission Continuity and Force Regeneration)
+
+- joint-electronic-protection-mission-data-rapid-reprogramming-cell
+- theater-prepositioned-medical-supply-cold-chain-continuity-cell
+- coalition-joint-personnel-recovery-authentication-and-comms-cell
+- strategic-ordnance-production-gridload-and-energy-priority-cell
+- contested-expeditionary-fiber-line-build-and-cutover-cell
+- joint-deployed-identity-credential-loss-and-reissuance-cell
+- theater-contested-bulk-fuel-pipeline-leak-attribution-cell
+- joint-hardened-mobile-command-post-displacement-cell
+- coalition-shore-based-anti-ship-sensor-fusion-cell
+- joint-maritime-boarding-evidence-digital-chain-cell
+- strategic-reservist-mobilization-bottleneck-and-readiness-cell
+- joint-theater-battlefield-electromagnetic-pulse-hardening-cell
+
+## Updated Pairings (2026-03-08, Mission Continuity and Force Regeneration)
+
+- Electronic protection reprogramming + spectrum interference resolution + EW fratricide mitigation
+- Medical cold-chain continuity + contested medevac airbridge prioritization + force-health protection
+- Coalition personnel recovery authentication + POW/MIA fusion + isolated personnel comms assurance
+- Ordnance production gridload priority + industrial mobilization readiness + strategic energy deterrence
+- Expeditionary fiber cutover + theater mission network failover + tactical cloud-edge orchestration
+- Identity credential reissuance + digital revocation operations + zero-trust key continuity
+- Bulk fuel leak attribution + aviation fuel integrity + contested logistics sustainment
+- Hardened command post displacement + mission brief builder + force-protection and base defense
+- Shore anti-ship sensor fusion + anti-ship missile defense + coalition interoperability coordinator
+- Maritime boarding evidence chain + coalition cyber-incident legal attribution + detainee accountability
+- Reservist mobilization bottlenecks + strategic mobility planning + deployment/distribution optimization
+- Theater EMP hardening + EMP cascade consequence + infrastructure resilience restoration
