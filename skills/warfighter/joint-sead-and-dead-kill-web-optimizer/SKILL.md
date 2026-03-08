@@ -144,3 +144,8 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-08, Runway Magnetic Clearance Expansion)
+
+- Prioritize `tool_suite_id=ts-runway-magnetic-anomaly-clearance-v1` with `protocol_stack_id=ps-runway-magnetic-anomaly-stack-v1` when SEAD/DEAD follow-on sorties are constrained by runway hazard uncertainty.
+- Use packet `DPL-RUNWAY-MAG-ANOMALY-001` to bind anomaly confidence, EOD sequencing, and sortie reattack window synchronization.
+- If anomaly confidence remains below threshold, downgrade to conservative sortie generation guidance and require air boss and commander concurrence.
