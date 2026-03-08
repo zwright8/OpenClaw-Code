@@ -161,6 +161,12 @@ Primary products for this skill: mission brief, decision support matrix, branch-
 - Add `packet_id=DPL-SPECTRUM-LICENSE-001` for coalition deployment briefs that require host-nation frequency approvals.
 - Add `packet_id=DPL-WASTEWATER-BIOSURV-001` for force-health risk contexts where epidemiological triggers affect COA selection.
 
+## Mission Continuity Override (2026-03-08, C2 Integrity Addendum)
+
+- Add `packet_id=DPL-CONTESTED-CASEVAC-C2-001` when CASEVAC command/control continuity is a commander decision gate.
+- Add `packet_id=DPL-RUNWAY-ICE-FOD-001` when runway condition recovery directly changes sortie and branch timelines.
+- Add `tool_suite_id=ts-mobile-satcom-emission-discipline-v1` + `protocol_stack_id=ps-mobile-satcom-emission-stack-v1` when mobile C2 survivability depends on strict EMCON movement synchronization.
+
 ## Operational Execution Hardening (2026-03-08)
 
 - Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
