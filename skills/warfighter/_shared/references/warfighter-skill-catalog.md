@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 590
+- Total warfighter skills in this repo: 620
 - Shared references and validation assets: external tools/protocol baseline, tool protocol playbooks, endpoint adapter contracts, mission assurance checklist, readiness certification evidence pack, joint operations external toolchain profiles, human-agent command escalation matrix, warfighter tool authority gates, cross-domain integration playbook, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -694,3 +694,22 @@ Every skill output should include:
 - Added skills this run: 20
 - Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
 - Total warfighter skills after this run: 610
+
+## New Expansion Wave (2026-03-08, Emerging Joint and Coalition Edge Cases)
+
+- joint-contested-maritime-legal-attribution-and-prize-court-cell
+- theater-open-ran-5g-denied-network-reconstitution-cell
+- joint-gene-edited-bio-threat-attribution-and-containment-cell
+- coalition-civilian-spectrum-refugee-camp-comms-cell
+- strategic-commercial-space-launch-surge-integration-cell
+- joint-undersea-data-center-and-cable-landing-defense-cell
+- tactical-autonomous-systems-fratricide-simulation-cell
+- theater-disconnected-identity-wallet-and-credential-continuity-cell
+- joint-battlefield-additive-medical-device-regulatory-cell
+- expeditionary-hostile-deepfake-battlefield-voice-countermeasure-cell
+
+## Existing Skill Upgrades (2026-03-08)
+
+- coalition-red-sea-commercial-shipping-protection-cell (upgraded to full tool/protocol + authority-gated template)
+- theater-fiber-backbone-restoration-and-reroute-cell (upgraded to full tool/protocol + authority-gated template)
+- joint-nuclear-weapon-accident-consequence-management-cell (upgraded to full tool/protocol + authority-gated template)

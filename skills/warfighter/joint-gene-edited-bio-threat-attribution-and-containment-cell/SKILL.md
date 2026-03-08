@@ -1,9 +1,9 @@
 ---
-name: coalition-red-sea-commercial-shipping-protection-cell
-description: Synchronize coalition escort, inspection, and rerouting actions to protect commercial shipping in contested chokepoints.
+name: joint-gene-edited-bio-threat-attribution-and-containment-cell
+description: Assess suspected gene-edited biological incidents, synchronize containment decisions, and coordinate attribution evidence with military-civil authorities.
 ---
 
-# Coalition Red Sea Commercial Shipping Protection Cell
+# Joint Gene-Edited Bio-Threat Attribution And Containment Cell
 
 ## Mission Scope
 
@@ -31,13 +31,13 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: shipping protection plan, convoy risk board, reroute decision matrix.
+Primary products for this skill: bio-threat attribution dossier, containment-control matrix, civil-military risk communication plan.
 
 ## External Tools and Protocol Integration
 
 - Use shared guidance in `../_shared/references/external-tools-protocols.md` and bind each recommendation to concrete tools.
-- Prioritize these domain tools: maritime COP, vessel identity analytics, convoy planning services, sanctions and legal-traceability workflows.
-- Prioritize these protocol families: AIS/NMEA, USMTF, NATO APP-11/ADatP-3 aligned, API/JSON.
+- Prioritize these domain tools: biosurveillance fusion systems, genomic analysis pipelines, laboratory chain-of-custody trackers, emergency operations dashboards.
+- Prioritize these protocol families: HL7/FHIR, EDXL-DE/CAP, USMTF, API/JSON.
 - Use at least one primary system-of-record and one independent cross-check source before final recommendations.
 - Include source provenance metadata: source system, refresh timestamp (UTC), confidence, and known gaps.
 
@@ -55,8 +55,8 @@ For each external tool recommendation, include objective, required inputs, query
 
 Use this baseline unless mission context requires a different stack:
 
-- `tool_suite_id`: `ts-commercial-shipping-protection-v1`
-- `protocol_stack_id`: `ps-commercial-shipping-protection-stack-v1`
+- `tool_suite_id`: `ts-gene-edited-biothreat-response-v1`
+- `protocol_stack_id`: `ps-gene-edited-biothreat-response-stack-v1`
 - `endpoint_security_profile`: `esp-mission-secret-api-gateway-v1`
 - `degraded_exchange_method`: `queued store-and-forward with signed summary packet`
 

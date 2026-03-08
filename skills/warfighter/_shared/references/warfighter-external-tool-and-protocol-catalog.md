@@ -1058,3 +1058,105 @@ external_binding:
 ### `ps-civil-grid-load-shedding-stack-v1`
 - Protocols: `NIMS/ICS`, `USMTF`, `API/JSON`.
 - Use for: civil grid load-shedding coordination and critical-service restoration synchronization.
+
+## Expansion Wave Additions (2026-03-08)
+
+### `ts-maritime-legal-attribution-v1`
+- Use for: contested maritime legal attribution, boarding/seizure governance, and prize-court evidence continuity.
+- Primary tools: maritime COP track services, vessel identity resolution, sanctions/intelligence ledgers, legal case workflow systems.
+- Cross-check tools: independent vessel ownership/provenance verifier and alternate coalition legal adjudication board.
+- Typical products: legal attribution packet, seizure authority matrix, prize-court evidence chain.
+
+### `ts-open-ran-network-reconstitution-v1`
+- Use for: Open RAN and private 5G mission-network restoration after EW/cyber/kinetic disruption.
+- Primary tools: RAN orchestration controllers, transport fault isolation systems, mission traffic prioritizers, security telemetry brokers.
+- Cross-check tools: independent link-health mirror and alternate service-slice integrity board.
+- Typical products: reconstitution plan, mission-slice priority matrix, comms continuity timeline.
+
+### `ts-gene-edited-biothreat-response-v1`
+- Use for: suspected gene-edited biothreat attribution and integrated containment governance.
+- Primary tools: biosurveillance fusion platforms, genomic analysis pipelines, laboratory chain-of-custody systems, emergency operations boards.
+- Cross-check tools: independent genomic confidence review and alternate epidemiological anomaly board.
+- Typical products: attribution dossier, containment-control matrix, civil-military risk communication packet.
+
+### `ts-refugee-camp-spectrum-comms-v1`
+- Use for: coalition communications and spectrum governance in displaced-person/refugee concentrations.
+- Primary tools: spectrum assignment services, emergency communications dispatch systems, camp service telemetry boards, liaison coordination portals.
+- Cross-check tools: independent RF interference monitor and alternate humanitarian comms continuity board.
+- Typical products: camp communications architecture, interference adjudication matrix, priority-services map.
+
+### `ts-commercial-space-launch-surge-v1`
+- Use for: commercial launch surge integration for national-security space reconstitution.
+- Primary tools: launch manifest orchestrators, range safety coordination systems, orbital timing planners, payload prioritization dashboards.
+- Cross-check tools: independent range status monitor and alternate orbital deconfliction board.
+- Typical products: launch surge plan, payload priority board, reconstitution timeline.
+
+### `ts-undersea-datacenter-cable-defense-v1`
+- Use for: defense of undersea cable landings and maritime data-center nodes against sabotage and cyber-physical attack.
+- Primary tools: undersea telemetry networks, maritime surveillance COP, cable route integrity monitors, restoration orchestration services.
+- Cross-check tools: independent seabed anomaly detector and alternate cable continuity verification board.
+- Typical products: defense plan, threat matrix, restoration branch map.
+
+### `ts-autonomy-fratricide-simulation-v1`
+- Use for: simulation-based fratricide risk assessment for autonomous and semi-autonomous systems.
+- Primary tools: digital twin mission simulators, behavior replay engines, blue-force position feeds, autonomy governance dashboards.
+- Cross-check tools: independent safety model checker and alternate command-override latency monitor.
+- Typical products: fratricide risk simulation packet, override ladder, release-governance recommendation set.
+
+### `ts-disconnected-identity-continuity-v1`
+- Use for: disconnected identity and credential continuity under denied/degraded network conditions.
+- Primary tools: offline credential wallet platforms, identity federation controllers, revocation ledgers, coalition access governance tools.
+- Cross-check tools: independent trust-anchor verifier and alternate credential conflict reconciliation board.
+- Typical products: credential continuity plan, rekey/revocation matrix, trust recovery timeline.
+
+### `ts-additive-medical-device-regulatory-v1`
+- Use for: battlefield additive medical device governance with quality, safety, and legal traceability controls.
+- Primary tools: additive manufacturing QA systems, med-log part traceability ledgers, biomedical validation services, clinical governance workflows.
+- Cross-check tools: independent biocompatibility review board and alternate defect-trend surveillance service.
+- Typical products: device release board packet, quality-traceability evidence pack, regulatory exception matrix.
+
+### `ts-voice-deepfake-countermeasure-v1`
+- Use for: hostile synthetic-voice detection and command-channel trust restoration.
+- Primary tools: voice authenticity forensics pipelines, secure radio authentication services, command-net incident ledgers, influence monitoring platforms.
+- Cross-check tools: independent speaker-signature verifier and alternate command-authentication confidence board.
+- Typical products: spoof attribution packet, command-channel trust restoration plan, authentication risk board.
+
+### `ps-maritime-legal-attribution-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: maritime legal attribution, seizure authority handoff, and prize-court evidence synchronization.
+
+### `ps-open-ran-network-reconstitution-stack-v1`
+- Protocols: `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: Open RAN/private-5G restoration sequencing, cyber status exchange, and service-priority governance.
+
+### `ps-gene-edited-biothreat-response-stack-v1`
+- Protocols: `HL7/FHIR`, `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Use for: biothreat case exchange, containment coordination, and military-civil public-health synchronization.
+
+### `ps-refugee-camp-spectrum-comms-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Use for: spectrum adjudication, emergency communications continuity, and camp-service coordination.
+
+### `ps-commercial-space-launch-surge-stack-v1`
+- Protocols: `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: launch-window synchronization, range safety coordination, and surge reconstitution planning.
+
+### `ps-undersea-datacenter-cable-defense-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `USMTF`, `API/JSON`.
+- Use for: subsea infrastructure defense, anomaly alerting, and restoration command handoffs.
+
+### `ps-autonomy-fratricide-simulation-stack-v1`
+- Protocols: `VMF`, `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Use for: autonomy fratricide simulation exchange, command override governance, and safety release controls.
+
+### `ps-disconnected-identity-continuity-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: credential continuity, revocation/rekey workflows, and coalition identity assurance under disconnection.
+
+### `ps-additive-medical-device-regulatory-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Use for: additive medical-device quality evidence exchange and field-use release governance.
+
+### `ps-voice-deepfake-countermeasure-stack-v1`
+- Protocols: `STIX/TAXII`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: synthetic-voice incident reporting, command-authentication escalation, and countermeasure synchronization.
