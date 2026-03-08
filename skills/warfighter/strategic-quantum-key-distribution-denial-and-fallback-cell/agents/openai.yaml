@@ -1,0 +1,3 @@
+interface:
+  display_name: "Strategic Quantum Key Distribution Denial and Fallback Cell"
+  short_description: "Harden and fallback critical keying"
