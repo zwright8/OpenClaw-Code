@@ -968,3 +968,80 @@ validation_gates:
 - output_schema: spectrum conflict board, traffic routing matrix, mitigation branch plan
 - protocol_profile: API/JSON + USMTF + Link 16 J-series (interoperable paths)
 - validation_gates: mission priority concurrence, interference mitigation validation, commander release decision
+
+### packet_id: DPL-CIVINFRA-CYBERKIN-001
+- domain: critical infrastructure cyber-kinetic coordination
+- objective: defend and restore life-critical infrastructure while synchronizing cyber and physical protection actions
+- primary_tools: ICS security telemetry, civil utility outage board, mission dependency graphing service
+- alternate_tools: manual utility liaison board plus cyber incident spreadsheet tracker
+- degraded_mode: 6-hour restoration/defense synchronization bulletin
+- input_requirements: critical node inventory, outage map, threat indicators, repair resources, legal authority constraints
+- output_schema: restoration priority queue, cyber-kinetic risk matrix, decision trigger table
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: life-safety prioritization pass, authority verification, dual-source status confirmation
+
+### packet_id: DPL-RAREEARTH-ASSURE-001
+- domain: strategic rare-earth alloy and magnet assurance
+- objective: protect and surge strategic rare-earth production pathways for defense demand
+- primary_tools: refinery throughput monitor, alloy plant MES, demand forecast platform
+- alternate_tools: supplier liaison tracker and manual production board
+- degraded_mode: weekly strategic materials risk rollup
+- input_requirements: mining/refining throughput, plant quality status, inventory levels, demand signal, disruption alerts
+- output_schema: choke-point list, surge allocation matrix, defense program impact score
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: supplier verification, quality evidence completeness, reserve policy compliance
+
+### packet_id: DPL-CCIR-AI-BRIEF-001
+- domain: AI-enabled commander critical information briefing
+- objective: compress high-volume reporting into decision-ready CCIR updates with explicit confidence
+- primary_tools: watchfloor fusion board, CCIR tagging engine, briefing synthesis workspace
+- alternate_tools: analyst triage queue and manual briefing worksheet
+- degraded_mode: periodic CCIR digest with confidence bands
+- input_requirements: CCIR list, latest reporting feed, source confidence, decision timeline
+- output_schema: CCIR delta brief, decision trigger ladder, confidence-attributed recommendation set
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: provenance traceability, contradiction scan, human approval checkpoint
+
+### packet_id: DPL-SPEC2TARGET-LAT-001
+- domain: spectrum-to-targeting latency audit
+- objective: identify and reduce delay from electromagnetic detection to target engagement recommendation
+- primary_tools: EW event timeline collector, targeting workflow analytics, mission-thread replay engine
+- alternate_tools: manual timeline board with timestamp reconciliation
+- degraded_mode: daily latency trend report with bottleneck triage
+- input_requirements: detection events, processing timestamps, approval workflow durations, network delays
+- output_schema: latency breakdown table, bottleneck ranking, remediation action list
+- protocol_profile: Link 16 J-series + VMF + API/JSON
+- validation_gates: synchronized time source check, workflow integrity pass, authority gate review
+
+### packet_id: DPL-WATERBORNE-FHP-001
+- domain: expeditionary waterborne disease and force health protection
+- objective: forecast outbreak risk and prioritize preventive actions for mission continuity
+- primary_tools: water quality sensor network, epidemiology model service, force-health dashboard
+- alternate_tools: field sampling log and manual medical risk board
+- degraded_mode: 12-hour force-health risk bulletin
+- input_requirements: water source test data, symptoms surveillance, sanitation posture, med capacity
+- output_schema: outbreak probability forecast, mitigation action matrix, treatment capacity risk map
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: laboratory confirmation threshold, med authority review, population/force segregation check
+
+### packet_id: DPL-SEABRIDGE-NEO-001
+- domain: civil maritime evacuation sea bridge
+- objective: execute protected civilian sea evacuation with synchronized military maritime control
+- primary_tools: maritime COP, port throughput planner, vessel/passenger manifest manager
+- alternate_tools: manual embarkation board and route risk worksheet
+- degraded_mode: fixed-window convoy departures with conservative routing
+- input_requirements: evacuee counts, vessel status, threat tracks, embarkation capacity, host-nation constraints
+- output_schema: departure schedule, protected corridor map, throughput and risk forecast
+- protocol_profile: AIS/NMEA + NATO APP-11/ADatP-3 + USMTF
+- validation_gates: manifest integrity check, maritime threat deconfliction, authority approval record
+
+### packet_id: DPL-DATADIOD-XDOM-001
+- domain: coalition cross-domain data diode operations
+- objective: enforce releasable one-way coalition data transfer with assurance evidence
+- primary_tools: data diode transfer service, guard policy engine, coalition releasability workflow
+- alternate_tools: staged file exchange with manual two-person integrity checks
+- degraded_mode: delayed batch transfer with preapproved data bundles
+- input_requirements: data classifications, partner releasability rules, transfer queue, audit controls
+- output_schema: transfer authorization matrix, delivery confirmation ledger, policy exception report
+- protocol_profile: STIX/TAXII + API/JSON + NATO APP-11/ADatP-3
+- validation_gates: releasability pass, checksum/integrity verification, audit trail completeness
