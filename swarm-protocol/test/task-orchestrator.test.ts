@@ -574,6 +574,134 @@ test('circuit breaker closes after half-open probe succeeds', async () => {
     assert.equal(sends, 2);
 });
 
+test('failed results are captured in dead-letter metrics and listing', async () => {
+    const clock = createClock(35_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        deadLetterMaxEntries: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-dead-letter',
+        task: 'Produce terminal failure'
+    });
+
+    clock.advance(20);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-dead-letter',
+        status: 'failed',
+        output: 'Unable to complete task',
+        completedAt: clock.now()
+    }));
+
+    const deadLetters = orchestrator.listDeadLetters();
+    assert.equal(deadLetters.length, 1);
+    assert.equal(deadLetters[0].taskId, task.taskId);
+    assert.equal(deadLetters[0].status, 'failed');
+    assert.equal(deadLetters[0].deadLetter.reason, 'result_status:failed');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.deadLetter.total, 1);
+    assert.equal(metrics.deadLetter.byStatus.failed, 1);
+    assert.equal(metrics.deadLetter.byReason['result_status:failed'], 1);
+});
+
+test('dead-letter retention evicts oldest entries when over capacity', async () => {
+    const clock = createClock(36_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        deadLetterMaxEntries: 1
+    });
+
+    const taskA = await orchestrator.dispatchTask({
+        target: 'agent:worker-evict',
+        task: 'Old failed task'
+    });
+    clock.advance(5);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: taskA.taskId,
+        from: 'agent:worker-evict',
+        status: 'failed',
+        output: 'first failure',
+        completedAt: clock.now()
+    }));
+
+    const taskB = await orchestrator.dispatchTask({
+        target: 'agent:worker-evict',
+        task: 'New failed task'
+    });
+    clock.advance(5);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: taskB.taskId,
+        from: 'agent:worker-evict',
+        status: 'failed',
+        output: 'second failure',
+        completedAt: clock.now()
+    }));
+
+    const deadLetters = orchestrator.listDeadLetters();
+    assert.equal(deadLetters.length, 1);
+    assert.equal(deadLetters[0].taskId, taskB.taskId);
+    assert.equal(orchestrator.getTask(taskA.taskId).deadLetter, undefined);
+});
+
+test('redriveDeadLetter reopens terminal task and schedules retry', async () => {
+    const clock = createClock(37_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        deadLetterMaxEntries: 5
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-redrive',
+        task: 'Fail then redrive'
+    });
+
+    clock.advance(10);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-redrive',
+        status: 'failed',
+        output: 'failure before redrive',
+        completedAt: clock.now()
+    }));
+
+    clock.advance(10);
+    const redriven = await orchestrator.redriveDeadLetter(task.taskId, {
+        delayMs: 50,
+        reason: 'operator_redrive',
+        resetAttempts: true
+    });
+    assert.equal(redriven.status, 'retry_scheduled');
+    assert.equal(redriven.attempts, 0);
+    assert.equal(redriven.nextRetryAt, clock.now() + 50);
+
+    clock.advance(49);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.retried, 0);
+
+    clock.advance(1);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.retried, 1);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.attempts, 1);
+    assert.equal(orchestrator.listDeadLetters().length, 0);
+    assert.equal(sent.length, 2);
+});
+
 test('dispatchTask can resolve target through routeTask callback', async () => {
     const sent = [];
     const orchestrator = new TaskOrchestrator({

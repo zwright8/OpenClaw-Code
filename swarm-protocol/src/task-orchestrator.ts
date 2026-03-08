@@ -37,6 +37,8 @@ const TRANSIENT_REJECTION_MARKERS = [
     'capacity'
 ];
 
+const DEFAULT_DEAD_LETTER_MAX_ENTRIES = 250;
+
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
 }
@@ -171,6 +173,7 @@ export class TaskOrchestrator {
         circuitBreakerFailureThreshold = 3,
         circuitBreakerCooldownMs = 15_000,
         circuitBreakerHalfOpenProbeCooldownMs = 250,
+        deadLetterMaxEntries = DEFAULT_DEAD_LETTER_MAX_ENTRIES,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -229,6 +232,10 @@ export class TaskOrchestrator {
         this.circuitBreakerHalfOpenProbeCooldownMs = clampNonNegativeNumber(
             circuitBreakerHalfOpenProbeCooldownMs,
             250
+        );
+        this.deadLetterMaxEntries = Math.max(
+            0,
+            Math.floor(clampNonNegativeNumber(deadLetterMaxEntries, DEFAULT_DEAD_LETTER_MAX_ENTRIES))
         );
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
@@ -404,6 +411,101 @@ export class TaskOrchestrator {
         }
     }
 
+    _isDeadLettered(record) {
+        return Boolean(
+            record
+            && record.deadLetter
+            && Number.isFinite(Number(record.deadLetter.at))
+        );
+    }
+
+    _markDeadLetter(record, nowMs, {
+        reason = null,
+        sourceEvent = null
+    } = {}) {
+        if (!record || this.deadLetterMaxEntries <= 0) return false;
+
+        const at = Number.isFinite(Number(nowMs))
+            ? Number(nowMs)
+            : safeNow(this.now);
+        const deadLetterReason = typeof reason === 'string' && reason.trim()
+            ? reason
+            : record.status;
+
+        const existing = this._isDeadLettered(record)
+            ? record.deadLetter
+            : null;
+
+        record.deadLetter = {
+            at: existing?.at ?? at,
+            reason: deadLetterReason,
+            sourceEvent: typeof sourceEvent === 'string' && sourceEvent.trim()
+                ? sourceEvent
+                : (existing?.sourceEvent ?? null),
+            updatedAt: at,
+            redriveCount: Number.isFinite(existing?.redriveCount)
+                ? Number(existing.redriveCount)
+                : 0,
+            lastRedriveAt: Number.isFinite(existing?.lastRedriveAt)
+                ? Number(existing.lastRedriveAt)
+                : null
+        };
+        record.history.push({
+            at,
+            event: 'dead_lettered',
+            reason: deadLetterReason,
+            sourceEvent: record.deadLetter.sourceEvent
+        });
+        this._persistRecord(record);
+        this._emitAudit('task_dead_lettered', {
+            taskId: record.taskId,
+            target: record.target,
+            status: record.status,
+            reason: deadLetterReason,
+            sourceEvent: record.deadLetter.sourceEvent,
+            attempts: record.attempts
+        }, at);
+        this._enforceDeadLetterCapacity(at);
+        return true;
+    }
+
+    _enforceDeadLetterCapacity(nowMs) {
+        if (this.deadLetterMaxEntries <= 0) return;
+
+        const deadLettered = [];
+        for (const record of this.tasks.values()) {
+            if (!this._isDeadLettered(record)) continue;
+            deadLettered.push(record);
+        }
+
+        if (deadLettered.length <= this.deadLetterMaxEntries) return;
+
+        deadLettered.sort((a, b) => {
+            const aAt = Number(a.deadLetter?.at) || 0;
+            const bAt = Number(b.deadLetter?.at) || 0;
+            return aAt - bAt;
+        });
+
+        const overflow = deadLettered.length - this.deadLetterMaxEntries;
+        for (let index = 0; index < overflow; index++) {
+            const record = deadLettered[index];
+            const evicted = clone(record.deadLetter);
+            delete record.deadLetter;
+            record.history.push({
+                at: nowMs,
+                event: 'dead_letter_evicted',
+                reason: evicted.reason || null
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_dead_letter_evicted', {
+                taskId: record.taskId,
+                target: record.target,
+                status: record.status,
+                reason: evicted.reason || null
+            }, nowMs);
+        }
+    }
+
     async hydrate({ replace = true } = {}) {
         if (!this.store || typeof this.store.loadRecords !== 'function') {
             return {
@@ -449,8 +551,11 @@ export class TaskOrchestrator {
                     this.idempotencyTaskIndex.set(record.taskId, idempotencyKey);
                 }
             }
+
             applied++;
         }
+
+        this._enforceDeadLetterCapacity(hydratedAt);
 
         return {
             loaded: applied
@@ -832,6 +937,7 @@ export class TaskOrchestrator {
             history: [
                 { at: request.createdAt, event: 'created' }
             ],
+            deadLetter: null,
             idempotency: normalizedIdempotencyKey
                 ? {
                     key: normalizedIdempotencyKey,
@@ -1127,6 +1233,10 @@ export class TaskOrchestrator {
                 from: receipt.from,
                 reason
             }, receipt.timestamp);
+            this._markDeadLetter(record, receipt.timestamp, {
+                reason,
+                sourceEvent: 'receipt_rejected'
+            });
             return true;
         }
 
@@ -1178,6 +1288,13 @@ export class TaskOrchestrator {
             status: result.status
         }, result.completedAt);
 
+        if (record.status === 'failed') {
+            this._markDeadLetter(record, result.completedAt, {
+                reason: `result_status:${result.status}`,
+                sourceEvent: 'result_failed'
+            });
+        }
+
         return true;
     }
 
@@ -1207,6 +1324,10 @@ export class TaskOrchestrator {
                     target: record.target,
                     attempts: record.attempts
                 }, nowMs);
+                this._markDeadLetter(record, nowMs, {
+                    reason: 'timed_out',
+                    sourceEvent: 'maintenance_timeout'
+                });
                 summary.timedOut++;
                 continue;
             }
@@ -1262,6 +1383,10 @@ export class TaskOrchestrator {
                         target: record.target,
                         error: record.lastError
                     }, nowMs);
+                    this._markDeadLetter(record, nowMs, {
+                        reason: `transport_error:${record.lastError || 'unknown'}`,
+                        sourceEvent: 'maintenance_transport_error'
+                    });
                 } else {
                     this._scheduleRetry(record, nowMs, {
                         reason: 'transport_send_failed',
@@ -1298,6 +1423,80 @@ export class TaskOrchestrator {
         return this.listTasks({ status: APPROVAL_PENDING_STATUS });
     }
 
+    listDeadLetters({ target = null, status = null, limit = null } = {}) {
+        const output = [];
+        for (const record of this.tasks.values()) {
+            if (!this._isDeadLettered(record)) continue;
+            if (target && record.target !== target) continue;
+            if (status && record.status !== status) continue;
+            output.push(clone(record));
+        }
+
+        output.sort((a, b) => Number(b.deadLetter?.at || 0) - Number(a.deadLetter?.at || 0));
+        if (Number.isFinite(Number(limit)) && Number(limit) >= 0) {
+            return output.slice(0, Number(limit));
+        }
+        return output;
+    }
+
+    async redriveDeadLetter(taskId, {
+        resetAttempts = true,
+        delayMs = 0,
+        reason = 'manual_redrive'
+    } = {}) {
+        const record = this.tasks.get(taskId);
+        if (!record) return null;
+
+        if (!this._isDeadLettered(record)) {
+            throw new TaskOrchestratorError(
+                'NOT_DEAD_LETTERED',
+                `Task ${taskId} is not in the dead-letter set`
+            );
+        }
+
+        const at = safeNow(this.now);
+        const normalizedDelayMs = Math.max(0, Math.floor(clampNonNegativeNumber(delayMs, 0)));
+        const previousDeadLetter = clone(record.deadLetter);
+        const previousStatus = record.status;
+
+        if (resetAttempts) {
+            record.attempts = 0;
+        }
+
+        record.status = 'retry_scheduled';
+        record.updatedAt = at;
+        record.closedAt = null;
+        record.lastError = null;
+        record.result = null;
+        record.deadlineAt = at - 1;
+        record.nextRetryAt = at + normalizedDelayMs;
+        record.deadLetter = {
+            ...previousDeadLetter,
+            redriveCount: Number(previousDeadLetter?.redriveCount || 0) + 1,
+            lastRedriveAt: at
+        };
+        record.history.push({
+            at,
+            event: 'dead_letter_redriven',
+            reason,
+            resetAttempts,
+            delayMs: normalizedDelayMs,
+            previousStatus
+        });
+        delete record.deadLetter;
+        this._persistRecord(record);
+        this._emitAudit('task_dead_letter_redriven', {
+            taskId: record.taskId,
+            target: record.target,
+            previousStatus,
+            reason,
+            resetAttempts,
+            delayMs: normalizedDelayMs
+        }, at);
+
+        return this.getTask(record.taskId);
+    }
+
     getMetrics() {
         const metrics = {
             total: this.tasks.size,
@@ -1329,6 +1528,14 @@ export class TaskOrchestrator {
                     openTargets: 0,
                     halfOpenTargets: 0
                 }
+            },
+            deadLetter: {
+                maxEntries: this.deadLetterMaxEntries,
+                total: 0,
+                byStatus: {},
+                byReason: {},
+                oldestAt: null,
+                newestAt: null
             }
         };
 
@@ -1341,6 +1548,20 @@ export class TaskOrchestrator {
                 metrics.terminal++;
             } else {
                 metrics.open++;
+            }
+
+            if (this._isDeadLettered(record)) {
+                const reason = record.deadLetter.reason || 'unknown';
+                const at = Number(record.deadLetter.at) || 0;
+                metrics.deadLetter.total++;
+                metrics.deadLetter.byStatus[record.status] = (metrics.deadLetter.byStatus[record.status] || 0) + 1;
+                metrics.deadLetter.byReason[reason] = (metrics.deadLetter.byReason[reason] || 0) + 1;
+                metrics.deadLetter.oldestAt = metrics.deadLetter.oldestAt === null
+                    ? at
+                    : Math.min(metrics.deadLetter.oldestAt, at);
+                metrics.deadLetter.newestAt = metrics.deadLetter.newestAt === null
+                    ? at
+                    : Math.max(metrics.deadLetter.newestAt, at);
             }
         }
 
