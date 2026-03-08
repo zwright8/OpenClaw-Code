@@ -2546,3 +2546,63 @@ external_binding:
 
 ### `ps-arctic-fuel-bladder-stack-v1`
 - Protocol profile: API/JSON + OGC + USMTF.
+
+### `ts-hypersonic-s2s-compression-v1`
+- Use for: compressing hypersonic sensor-to-shooter handoffs, cue prioritization, and engagement timeline control.
+- Primary tools: missile warning fusion boards, fire-control quality track managers, dynamic engagement timeline planners.
+- Cross-check tools: independent track-custody verifier and alternate warning timeline monitor.
+- Typical products: cue priority ladder, timeline compression matrix, shooter assignment branch plan.
+
+### `ts-gray-zone-maritime-attribution-v1`
+- Use for: attributing gray-zone maritime militia activity and calibrating coalition response thresholds.
+- Primary tools: maritime COP analytics, vessel behavior anomaly classifiers, identity and ownership link-analysis services.
+- Cross-check tools: independent forensics ledger and neutral-actor traffic baseline monitor.
+- Typical products: attribution confidence board, escalation options matrix, sanctioned-action evidence packet.
+
+### `ts-subterranean-robotic-recon-v1`
+- Use for: subterranean robotic reconnaissance, tunnel hazard mapping, and breach path recommendation.
+- Primary tools: robotic mapping orchestration suites, subterranean SLAM analytics, confined-space hazard fusion boards.
+- Cross-check tools: independent geospatial mesh validator and alternate route-feasibility board.
+- Typical products: tunnel risk overlay, breach decision matrix, robotic tasking ladder.
+
+### `ts-mobile-reactor-security-recovery-v1`
+- Use for: mobile nuclear reactor security, theft/sabotage response, and rapid expeditionary power recovery.
+- Primary tools: reactor telemetry assurance systems, nuclear convoy security dashboards, radiological event response planners.
+- Cross-check tools: independent radiation sample chain monitor and alternate custody-event ledger.
+- Typical products: reactor security posture board, recovery timeline branch map, contamination control checklist.
+
+### `ts-energetics-supply-denial-countermeasure-v1`
+- Use for: preserving additive energetics production under precursor denial, sabotage, or supply-chain disruption.
+- Primary tools: energetics feedstock inventory analytics, munitions line throughput dashboards, supplier risk intelligence services.
+- Cross-check tools: independent lot genealogy verifier and alternate procurement integrity tracker.
+- Typical products: precursor substitution matrix, production continuity ladder, denial-impact mitigation brief.
+
+### `ts-arctic-satnav-resilience-v1`
+- Use for: Arctic satnav spoofing resilience, PNT trust recovery, and navigation fallback orchestration.
+- Primary tools: PNT integrity monitors, spoofing/meaconing detectors, polar navigation fallback planners.
+- Cross-check tools: independent trusted-time transfer service and alternate terrain/inertial confidence board.
+- Typical products: PNT confidence map, movement/fires timing fallback plan, spoofing response timeline.
+
+### `ts-waterway-bridge-denial-gap-crossing-v1`
+- Use for: friendly gap-crossing synchronization while denying adversary bridge and waterway maneuver options.
+- Primary tools: engineer crossing planners, riverine surveillance feeds, joint maneuver synchronization boards.
+- Cross-check tools: independent hydrographic route-risk monitor and alternate crossing capacity ledger.
+- Typical products: crossing sequence matrix, denial timing windows, bridge survivability branch plan.
+
+### `ts-biosurveillance-genomic-warning-v1`
+- Use for: contested-theater biosurveillance fusion and genomic drift early warning for force-health continuity.
+- Primary tools: genomic surveillance pipelines, field-sample custody systems, force-health outbreak analytics boards.
+- Cross-check tools: independent sequence confidence validator and alternate epidemiology anomaly tracker.
+- Typical products: genomic threat watchlist, outbreak warning posture, sampling retask priority board.
+
+### `ts-ew-order-of-battle-drift-v1`
+- Use for: detecting adversary EW order-of-battle drift and updating mission data and countermeasure priorities.
+- Primary tools: emitter baseline libraries, EW spectrum behavior analytics, mission-data update orchestration systems.
+- Cross-check tools: independent emitter fingerprint service and alternate drift-confidence board.
+- Typical products: EW drift ledger, mission-data update queue, countermeasure reallocation plan.
+
+### `ts-grid-transformer-sabotage-contingency-v1`
+- Use for: coordinated transformer sabotage contingency response affecting military installation mission power.
+- Primary tools: grid telemetry and outage analytics, installation mission-power dependency boards, restoration dispatch tools.
+- Cross-check tools: independent utility-state mirror and alternate transformer replacement tracker.
+- Typical products: mission-power continuity matrix, restoration priority ladder, defense-civil coordination order.
