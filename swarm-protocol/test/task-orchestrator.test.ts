@@ -1197,6 +1197,110 @@ test('adaptive timeout can be disabled to keep fixed deadlines', async () => {
     assert.equal(orchestrator.getMetrics().retry.adaptiveTimeout.enabled, false);
 });
 
+test('cancelTask marks open tasks terminal and blocks late receipt/result updates', async () => {
+    const clock = createClock(95_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-cancel',
+        task: 'Long running task'
+    });
+
+    clock.advance(10);
+    const cancelled = orchestrator.cancelTask(task.taskId, {
+        reason: 'superseded_task',
+        actor: 'human:ops',
+        cancelledAt: clock.now()
+    });
+    assert.equal(cancelled.status, 'cancelled');
+    assert.equal(cancelled.closedAt, clock.now());
+    assert.equal(cancelled.history.at(-1).event, 'cancelled');
+
+    const receiptAccepted = orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-cancel',
+        accepted: true,
+        timestamp: clock.now() + 5
+    }));
+    const resultAccepted = orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-cancel',
+        status: 'success',
+        output: 'late completion',
+        completedAt: clock.now() + 20
+    }));
+
+    assert.equal(receiptAccepted, false);
+    assert.equal(resultAccepted, false);
+    assert.equal(orchestrator.getTask(task.taskId).status, 'cancelled');
+});
+
+test('cancelTask clears idempotency key so replacement task can be dispatched', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        maxRetries: 0
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-idempotent',
+        task: 'Run with idempotency key',
+        idempotencyKey: 'replaceable-key'
+    });
+    assert.equal(first.status, 'dispatched');
+
+    const cancelled = orchestrator.cancelTask(first.taskId, {
+        reason: 'replace_with_new_context'
+    });
+    assert.equal(cancelled.status, 'cancelled');
+
+    const replacement = await orchestrator.dispatchTask({
+        target: 'agent:worker-idempotent',
+        task: 'Run with idempotency key',
+        context: { version: 2 },
+        idempotencyKey: 'replaceable-key'
+    });
+
+    assert.notEqual(replacement.taskId, first.taskId);
+    assert.equal(replacement.status, 'dispatched');
+});
+
+test('cancelTask rejects attempts to cancel non-cancelled terminal tasks', async () => {
+    const clock = createClock(96_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-terminal',
+        task: 'Will fail'
+    });
+
+    clock.advance(5);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-terminal',
+        status: 'failure',
+        output: 'failed',
+        completedAt: clock.now()
+    }));
+
+    assert.throws(
+        () => orchestrator.cancelTask(task.taskId),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'NOT_CANCELLABLE');
+            return true;
+        }
+    );
+});
+
 test('audit log records signed lifecycle entries', async () => {
     const auditLog = new SignedAuditLog({
         secret: 'audit-secret',

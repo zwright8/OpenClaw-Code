@@ -5,6 +5,7 @@ const TERMINAL_STATUSES = new Set([
     'completed',
     'partial',
     'failed',
+    'cancelled',
     'rejected',
     'timed_out',
     'transport_error'
@@ -1770,18 +1771,14 @@ export class TaskOrchestrator {
         record.result = null;
         record.deadlineAt = at - 1;
         record.nextRetryAt = at + normalizedDelayMs;
-        record.deadLetter = {
-            ...previousDeadLetter,
-            redriveCount: Number(previousDeadLetter?.redriveCount || 0) + 1,
-            lastRedriveAt: at
-        };
         record.history.push({
             at,
             event: 'dead_letter_redriven',
             reason,
             resetAttempts,
             delayMs: normalizedDelayMs,
-            previousStatus
+            previousStatus,
+            deadLetterRedriveCount: Number(previousDeadLetter?.redriveCount || 0) + 1
         });
         delete record.deadLetter;
         this._persistRecord(record);
@@ -1795,6 +1792,57 @@ export class TaskOrchestrator {
         }, at);
 
         return this.getTask(record.taskId);
+    }
+
+    cancelTask(taskId, {
+        reason = 'manual_cancelled',
+        actor = null,
+        cancelledAt = null
+    } = {}) {
+        const record = this.tasks.get(taskId);
+        if (!record) return null;
+
+        if (TERMINAL_STATUSES.has(record.status)) {
+            if (record.status === 'cancelled') {
+                return this.getTask(taskId);
+            }
+            throw new TaskOrchestratorError(
+                'NOT_CANCELLABLE',
+                `Task ${taskId} is already terminal (${record.status})`
+            );
+        }
+
+        const at = Number.isFinite(Number(cancelledAt))
+            ? Number(cancelledAt)
+            : safeNow(this.now);
+        const cancelReason = typeof reason === 'string' && reason.trim()
+            ? reason
+            : 'manual_cancelled';
+        const priorStatus = record.status;
+
+        record.status = 'cancelled';
+        record.updatedAt = at;
+        record.closedAt = at;
+        record.nextRetryAt = null;
+        record.deadlineAt = at;
+        record.history.push({
+            at,
+            event: 'cancelled',
+            reason: cancelReason,
+            actor: typeof actor === 'string' && actor.trim() ? actor : null,
+            priorStatus
+        });
+        this._persistRecord(record);
+        this._emitAudit('task_cancelled', {
+            taskId: record.taskId,
+            target: record.target,
+            reason: cancelReason,
+            actor: typeof actor === 'string' && actor.trim() ? actor : null,
+            priorStatus
+        }, at);
+        this._clearIdempotencyKeyForTask(record.taskId);
+
+        return this.getTask(taskId);
     }
 
     getMetrics() {

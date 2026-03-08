@@ -35,6 +35,7 @@ const TerminalStatuses = new Set([
     'completed',
     'partial',
     'failed',
+    'cancelled',
     'rejected',
     'timed_out',
     'transport_error'
