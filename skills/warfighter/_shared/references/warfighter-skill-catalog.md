@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 763
+- Total warfighter skills in this repo: 775
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -419,3 +419,33 @@ Every skill output should include:
 - Burn care austere network + casualty evacuation and medical regulation + austere surgical support coordinator
 - Coalition grid protection and blackstart + operational energy resilience and microgrid + DSCA crisis cell
 - Autonomous convoy counter-ambush + contested logistics sustainment + autonomous ground resupply convoy control
+
+## New Expansion Wave (2026-03-08, Infrastructure Trust and Human Sustainment)
+
+- joint-civilian-telecom-military-priority-routing-cell
+- theater-distributed-decoy-heat-signature-orchestration-cell
+- coalition-under-ice-autonomous-resupply-corridor-cell
+- strategic-shipyard-nuclear-maintenance-workforce-surge-cell
+- joint-rapid-air-defense-emitter-relocation-cell
+- contested-theater-financial-rail-and-payroll-continuity-cell
+- coalition-expeditionary-spectrum-licensing-and-host-nation-clearance-cell
+- joint-battlefield-wastewater-biosurveillance-early-warning-cell
+- theater-denied-terrain-autonomy-map-poisoning-detection-cell
+- strategic-space-launch-fuel-oxidizer-contested-allocation-cell
+- joint-forward-rare-blood-typing-and-donor-matching-cell
+- coalition-maritime-insurance-risk-and-reconstitution-cell
+
+## Updated Pairings (2026-03-08, Infrastructure Trust and Human Sustainment)
+
+- Civil telecom priority routing + mission network failover + joint mission brief builder
+- Distributed thermal decoy orchestration + airbase decoy layout + military deception planner
+- Coalition under-ice autonomous resupply + arctic maritime corridor deconfliction + contested logistics sustainment
+- Nuclear shipyard workforce surge + strategic industrial mobilization readiness + maintenance readiness manager
+- Air-defense emitter relocation + integrated air and missile defense + spectrum interference resolution
+- Theater financial rail/payroll continuity + strategic reserve cyber activation + coalition legal interoperability
+- Expeditionary spectrum licensing clearance + coalition emitter identity + tactical airspace deconfliction
+- Battlefield wastewater biosurveillance + preventive medicine + mass-casualty network coordination
+- Terrain map poisoning detection + denied terrain model refresh + autonomous convoy counter-ambush
+- Strategic launch propellant allocation + cislunar logistics relay continuity + launch reconstitution planning
+- Forward rare blood matching + austere blood/plasma distribution + casualty evacuation and regulation
+- Maritime insurance reconstitution + strategic sealift and prepositioning + chokepoint closure/reopening

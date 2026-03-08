@@ -1760,3 +1760,135 @@ validation_gates:
 - output_schema: convoy posture board, route contingency map, authority escalation table
 - protocol_profile: API/JSON + USMTF + CoT
 - validation_gates: authority gate pass, route threat confidence, human approval checkpoint
+
+### packet_id: DPL-TELECOM-PRIORITY-001
+- domain: joint civilian telecom military-priority routing
+- objective: preserve mission-critical communications across contested civil telecom infrastructure
+- primary_tools: telecom routing controller, carrier outage monitor, priority service arbiter
+- alternate_tools: manual priority-call roster and outage recovery tracker
+- degraded_mode: mission-essential circuits only with periodic command readback checks
+- input_requirements: comms priority tiers, carrier health, legal emergency authorities, mission timeline
+- output_schema: routing matrix, outage mitigation branches, authority escalation log
+- protocol_profile: USMTF + API/JSON + CAP
+- validation_gates: legal authority confirmation, route integrity check, acknowledgment completeness
+
+### packet_id: DPL-DECOY-HEAT-001
+- domain: theater distributed decoy heat-signature orchestration
+- objective: reduce adversary targeting confidence through synchronized thermal deception
+- primary_tools: thermal signature planner, decoy placement optimizer, sustainment burn-rate board
+- alternate_tools: manual decoy placement card and thermal-observer log
+- degraded_mode: static decoy lanes with fixed update windows
+- input_requirements: target threat model, terrain overlays, decoy inventory, sustainment limits
+- output_schema: decoy disposition board, sensor confusion estimate, sustainment branch plan
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: fratricide deconfliction, thermal signature threshold, command approval
+
+### packet_id: DPL-UNDERICE-RESUPPLY-001
+- domain: coalition under-ice autonomous resupply corridor
+- objective: sustain distributed arctic forces through survivable under-ice convoy operations
+- primary_tools: under-ice route planner, autonomy health dashboard, ice-condition fusion board
+- alternate_tools: manual corridor board and convoy timing worksheet
+- degraded_mode: single-corridor operations with conservative transit windows
+- input_requirements: ice conditions, autonomy status, resupply priorities, recovery assets
+- output_schema: corridor viability map, convoy timing matrix, rescue/recovery trigger ladder
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: route viability pass, autonomy confidence threshold, coalition concurrence
+
+### packet_id: DPL-SHIPYARD-NUKE-WF-001
+- domain: strategic shipyard nuclear-maintenance workforce surge
+- objective: increase certified nuclear-maintenance throughput while controlling quality and safety risk
+- primary_tools: workforce scheduler, certification pipeline monitor, critical-skill inventory service
+- alternate_tools: manual qualification board and shift deconfliction ledger
+- degraded_mode: critical-path maintenance only with staged certification checkpoints
+- input_requirements: maintenance backlog, certification status, labor availability, readiness priorities
+- output_schema: surge matrix, throughput forecast, skill-gap closure queue
+- protocol_profile: API/JSON + USMTF + XML
+- validation_gates: certification compliance pass, safety review completion, command release authority
+
+### packet_id: DPL-AIRDEF-EMITTER-RELOC-001
+- domain: joint rapid air-defense emitter relocation
+- objective: preserve air-defense survivability and coverage continuity under targeting pressure
+- primary_tools: emitter relocation planner, coverage overlap engine, emissions control board
+- alternate_tools: manual relocation card and coverage handoff worksheet
+- degraded_mode: fixed fallback sites with strict emission windows
+- input_requirements: threat timelines, emitter status, site options, defended-asset priorities
+- output_schema: relocation sequence board, coverage/handoff matrix, emissions risk ledger
+- protocol_profile: Link 16 J-series + USMTF + VMF
+- validation_gates: coverage continuity threshold, fratricide check, authority confirmation
+
+### packet_id: DPL-FINRAIL-PAYROLL-001
+- domain: contested theater financial rail and payroll continuity
+- objective: maintain force payroll and disbursement under financial network disruption
+- primary_tools: payroll continuity engine, transaction rail monitor, disbursement priority dashboard
+- alternate_tools: manual payroll ledger and cash-distribution tracker
+- degraded_mode: essential-pay disbursements only with delayed reconciliation
+- input_requirements: payroll obligations, rail availability, force priorities, legal constraints
+- output_schema: disbursement board, disruption impact matrix, alternate rail decision log
+- protocol_profile: API/JSON + ISO 20022 + USMTF
+- validation_gates: ledger integrity pass, legal authority check, financial control approval
+
+### packet_id: DPL-SPECTRUM-LICENSE-001
+- domain: coalition expeditionary spectrum licensing and host-nation clearance
+- objective: secure legal spectrum access and deconfliction for expeditionary coalition operations
+- primary_tools: spectrum assignment planner, host-nation clearance tracker, coalition conflict dashboard
+- alternate_tools: manual licensing board and liaison approval worksheet
+- degraded_mode: mission-essential frequency lanes only with periodic revalidation
+- input_requirements: frequency requests, host-nation policy, coalition assignments, deployment timeline
+- output_schema: licensing status board, clearance queue, conflict resolution matrix
+- protocol_profile: NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: legal clearance pass, deconfliction check, coalition concurrence
+
+### packet_id: DPL-WASTEWATER-BIOSURV-001
+- domain: joint battlefield wastewater biosurveillance early warning
+- objective: detect emerging health threats early enough to preserve force readiness
+- primary_tools: wastewater biosurveillance analytics, sample logistics scheduler, force-health dashboard
+- alternate_tools: manual sample log and trend worksheet
+- degraded_mode: sentinel-site monitoring only with slower trend updates
+- input_requirements: sampling cadence, lab capacity, population footprint, symptom surveillance
+- output_schema: sentinel map, pathogen trend confidence ladder, intervention trigger matrix
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: lab confidence threshold, medical authority validation, command approval
+
+### packet_id: DPL-AUTON-MAP-POISON-001
+- domain: theater denied-terrain autonomy map poisoning detection
+- objective: identify and quarantine manipulated map sources used by autonomous systems
+- primary_tools: map provenance engine, route confidence analyzer, tamper-alert pipeline
+- alternate_tools: manual source-trust board and autonomy route sanity checklist
+- degraded_mode: high-confidence map sources only with restricted autonomy profiles
+- input_requirements: map source lineage, anomaly indicators, route plans, mission priorities
+- output_schema: trust anomaly board, route confidence ladder, quarantine/remediation plan
+- protocol_profile: API/JSON + OGC + USMTF
+- validation_gates: source corroboration pass, anomaly threshold check, human approval gate
+
+### packet_id: DPL-SPACE-PROPELLANT-ALLOC-001
+- domain: strategic space-launch fuel oxidizer contested allocation
+- objective: allocate propellant to preserve deterrence and launch campaign continuity
+- primary_tools: propellant inventory manager, launch scheduler, throughput risk analyzer
+- alternate_tools: manual tank-status board and launch-priority worksheet
+- degraded_mode: highest-priority launch lanes only with extended turnaround windows
+- input_requirements: inventory state, launch timeline, supplier status, mission priorities
+- output_schema: allocation board, launch slip-risk matrix, substitute sourcing timeline
+- protocol_profile: API/JSON + USMTF + CCSDS
+- validation_gates: inventory integrity pass, mission-priority approval, safety concurrence
+
+### packet_id: DPL-RARE-BLOOD-MATCH-001
+- domain: joint forward rare-blood typing and donor matching
+- objective: rapidly identify compatible blood products and donors for austere casualty care
+- primary_tools: blood inventory service, donor compatibility engine, transfer prioritization board
+- alternate_tools: manual donor registry and compatibility worksheet
+- degraded_mode: emergency donor pools only with manual dual-verification
+- input_requirements: casualty typing needs, donor data, blood inventory, transfer options
+- output_schema: availability map, matching confidence matrix, urgent transfer board
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: compatibility verification pass, custody handling check, medical authority approval
+
+### packet_id: DPL-MARITIME-INSURE-001
+- domain: coalition maritime insurance risk and reconstitution
+- objective: preserve military sealift and protected shipping under insurance market disruption
+- primary_tools: insurance risk dashboard, charter market monitor, strategic sealift continuity planner
+- alternate_tools: manual exposure ledger and coalition financing worksheet
+- degraded_mode: mission-essential shipping classes only with command-approved risk acceptance
+- input_requirements: vessel insurance status, charter availability, route threat, cargo priorities
+- output_schema: insurance exposure matrix, reconstitution options board, continuity risk ladder
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: market data corroboration, legal review pass, coalition approval checkpoint
