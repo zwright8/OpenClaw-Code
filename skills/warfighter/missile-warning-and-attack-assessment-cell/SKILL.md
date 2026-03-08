@@ -150,3 +150,9 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Prioritize `tool_suite_id=ts-hypersonic-cueing-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1` when warning timelines compress below established threshold.
 - Use packet `DPL-HYP-CUE-001` and require dual-sensor confirmation before commander-ready cue recommendations.
 - If track custody confidence is degraded, pivot to advisory-only warning posture with explicit revalidation suspense.
+
+## Domain Toolchain Override (2026-03-08, Counter-Loitering Saturation Expansion)
+
+- Prioritize `tool_suite_id=ts-counter-loitering-swarm-v1` when defended assets face mixed ballistic plus loitering saturation conditions.
+- Use packet `DPL-CLM-ATTRITION-001` to bind defensive allocation, interceptor burn-rate, and commander release checkpoints.
+- If friend-or-foe confidence cannot be sustained, downgrade to protective maneuver and sheltering advisory-only recommendations.
