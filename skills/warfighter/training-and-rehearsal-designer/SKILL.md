@@ -152,7 +152,7 @@ Primary products for this skill: training progression plan, rehearsal script, ev
 
 ## Domain Packet Defaults
 
-- Default packet IDs: `DPL-C2-DISP-002`, `DPL-FIRES-LINEAGE-001`.
+- Default packet IDs: `DPL-C2-DISP-002`, `DPL-FIRES-LINEAGE-001`, `DPL-COALITION-TRAINREADY-001`.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
 
 ## Operational Execution Hardening
@@ -160,4 +160,5 @@ Primary products for this skill: training progression plan, rehearsal script, ev
 - Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
 - Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
 - Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
+- Require rehearsal-release products to include `authority_tier`, `requires_human_approval`, and `audit_record_id`.
 - Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
