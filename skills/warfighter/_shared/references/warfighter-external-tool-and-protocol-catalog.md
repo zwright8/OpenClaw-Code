@@ -258,6 +258,42 @@ Include these fields whenever a recommendation depends on external systems:
 - Cross-check tools: independent aid delivery verification board and alternate civilian risk tracker.
 - Typical products: airdrop governance order, corridor deconfliction matrix, drop-zone risk map.
 
+### `ts-lunar-cislunar-relay-v1`
+- Use for: lunar relay communications continuity, cislunar transport messaging, and deep-space timing resilience.
+- Primary tools: SDA catalog services, relay schedule planners, optical crosslink managers, timing-integrity monitors.
+- Cross-check tools: independent ephemeris validator and acknowledgment-chain mirror.
+- Typical products: relay continuity matrix, timing confidence brief, alternate comm-path branch plan.
+
+### `ts-quantum-sensor-assurance-v1`
+- Use for: quantum-enabled sensor calibration governance, drift detection, and mission-confidence adjudication.
+- Primary tools: quantum sensor health telemetry, calibration orchestration service, all-source fusion board.
+- Cross-check tools: independent geodesy and timing baseline validator.
+- Typical products: calibration schedule, drift-confidence heatmap, sensor trust decision log.
+
+### `ts-autonomy-governance-v1`
+- Use for: autonomous convoy authority management, behavior assurance, and incident review under coalition constraints.
+- Primary tools: autonomy mission managers, route-risk engines, policy and caveat enforcement gateways.
+- Cross-check tools: independent authority-state ledger and legal-policy adjudication board.
+- Typical products: authority-state matrix, autonomy constraint order, exception escalation packet.
+
+### `ts-directed-energy-power-v1`
+- Use for: directed-energy engagement power budgeting, thermal envelope control, and recharge-cycle prioritization.
+- Primary tools: DE fire control telemetry, thermal model services, microgrid power allocators.
+- Cross-check tools: independent power draw validator and alternate thermal safety monitor.
+- Typical products: engagement power budget, cooldown timeline, constraint-based engagement ladder.
+
+### `ts-climate-migration-forecast-v1`
+- Use for: climate-linked migration pressure forecasting, instability trigger tracking, and civil-support prioritization.
+- Primary tools: climate hazard models, population movement analytics, critical-infrastructure stress dashboards.
+- Cross-check tools: independent humanitarian demand telemetry and alternate social-risk monitor.
+- Typical products: migration pressure forecast, instability trigger ledger, support branch matrix.
+
+### `ts-aviation-cyber-airworthiness-v1`
+- Use for: cyber-informed aviation airworthiness assurance, firmware trust validation, and recertification sequencing.
+- Primary tools: fleet maintenance systems, firmware attestation services, SIEM/SOAR airworthiness incident board.
+- Cross-check tools: independent flight safety review ledger and alternate software provenance verifier.
+- Typical products: grounding risk matrix, recertification plan, cyber airworthiness release packet.
+
 ### `ts-bridge-nde-recovery-v1`
 - Use for: rapid bridge integrity inspection with digital non-destructive evaluation for mobility restoration.
 - Primary tools: structural NDE sensor suites, bridge digital inspection workflows, route release planners.
