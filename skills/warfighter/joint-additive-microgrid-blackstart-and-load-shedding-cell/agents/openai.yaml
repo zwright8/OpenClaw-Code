@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Additive Microgrid Blackstart And Load Shedding Cell"
+  short_description: "Coordinate additive microgrid blackstart"
