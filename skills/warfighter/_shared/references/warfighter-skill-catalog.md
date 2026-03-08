@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 775
+- Total warfighter skills in this repo: 787
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -449,3 +449,33 @@ Every skill output should include:
 - Strategic launch propellant allocation + cislunar logistics relay continuity + launch reconstitution planning
 - Forward rare blood matching + austere blood/plasma distribution + casualty evacuation and regulation
 - Maritime insurance reconstitution + strategic sealift and prepositioning + chokepoint closure/reopening
+
+## New Expansion Wave (2026-03-08, Terrain Trust, Sustainment Integrity, and Coalition Medical Continuity)
+
+- joint-theater-ai-enabled-camouflage-discipline-auditor-cell
+- contested-battlefield-additive-propellant-safety-governance-cell
+- coalition-expeditionary-nuclear-radiation-dosimetry-cell
+- joint-denied-environment-vertical-datum-reconciliation-cell
+- strategic-orbital-debris-hostile-coincidence-screening-cell
+- theater-maritime-desal-water-distribution-continuity-cell
+- joint-high-value-asset-ground-convoy-fuel-fraud-detection-cell
+- coalition-cross-border-medical-credentialing-privileging-cell
+- joint-expeditionary-electronic-component-reverse-logistics-cell
+- theater-battlefield-cloudburst-flood-route-survivability-cell
+- joint-railway-signaling-cyber-physical-failover-cell
+- strategic-energetics-precursor-counterfeit-intelligence-cell
+
+## Updated Pairings (2026-03-08, Terrain Trust, Sustainment Integrity, and Coalition Medical Continuity)
+
+- AI-enabled camouflage discipline auditing + distributed thermal decoy orchestration + military deception and OPSEC planning
+- Additive propellant safety governance + munitions microfactory control + explosive demilitarization safety
+- Coalition expeditionary dosimetry + CBRN urban plume evacuation decision + radiological urban response
+- Vertical datum reconciliation + denied-environment 3D terrain model refresh + precision-fires data lineage and retargeting
+- Orbital debris hostile coincidence screening + contested orbital refueling/servicing assurance + space-domain awareness and SATCOM defense
+- Maritime desalination continuity + contested austere water production/distribution assurance + cyber-physical water treatment protection
+- Ground convoy fuel-fraud detection + contested bulk fuel pipeline leak attribution + logistics sustainment risk management
+- Cross-border medical credentialing and privileging + coalition denied-environment casualty data synchronization + austere burn-care network operations
+- Expeditionary electronic reverse logistics + forward-repairable electronics salvage + maintenance readiness manager
+- Cloudburst flood-route survivability + theater contested airlift LZ viability + rail-airfield intermodal sustainment scheduler
+- Railway signaling cyber-physical failover + rail-node sabotage attribution/recovery + strategic mobility port/rail chokepoint wargaming
+- Energetics precursor counterfeit intelligence + strategic ammunition energetics precursor supply assurance + additive feedstock counterfeit detection
