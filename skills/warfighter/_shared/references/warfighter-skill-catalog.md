@@ -165,3 +165,29 @@ Every skill output should include:
 - Disconnected mission-data replication + mission-data-link management + theater mission network failover + contested comms planning
 - Maritime evacuation sea bridge + population protection/NEO + port opening/JRSOI + maritime chokepoint control
 - Waterborne disease forecasting + preventive medicine + med logistics continuity + water production and distribution support
+
+## New Expansion Wave (2026-03-08, Strategic Continuity and Contested Mobility)
+
+- joint-nc3-continuity-and-emergency-action-message-assurance-cell
+- joint-strategic-mobility-port-rail-chokepoint-wargame-cell
+- coalition-electronic-order-of-battle-and-emitter-identity-cell
+- joint-uncrewed-swarm-logistics-defense-cell
+- theater-contested-watercraft-river-crossing-risk-cell
+- joint-hypersonic-warning-passive-defense-cell
+- joint-additive-manufacturing-quality-attestation-cell
+- joint-multi-domain-tactical-deception-rehearsal-cell
+- strategic-energy-grid-cyber-physical-deterrence-cell
+- joint-denied-pnt-time-transfer-assurance-cell
+
+## Updated Pairings (2026-03-08, Strategic Continuity and Contested Mobility)
+
+- NC3 continuity assurance + missile warning and attack assessment + joint denied-PNT time transfer assurance
+- Strategic mobility chokepoint wargaming + joint deployment and distribution ops center optimization + port opening and JLOTS synchronization
+- Coalition emitter identity + electronic order of battle management + contested electronic signature intelligence fusion
+- Uncrewed swarm logistics defense + autonomous swarm countermeasures + contested logistics sustainment planning
+- River crossing risk + contested bridge and gap crossing operations + expeditionary waterway denial and bridge control
+- Hypersonic warning passive defense + ballistic missile defense battle management + theater-level passive protection planning
+- Additive quality attestation + expeditionary fabrication and battle damage repair + disconnected manufacturing BOM substitution
+- Tactical deception rehearsal + deception signature management and decoy employment + AI red-team operational model threat cell
+- Energy grid cyber-physical deterrence + homeland grid blackstart military support + strategic electrical transformer supply restoration
+- Denied PNT time transfer assurance + denied space PNT alternative navigation + tactical satellite anti-jam reconstitution

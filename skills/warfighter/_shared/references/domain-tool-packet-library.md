@@ -1045,3 +1045,113 @@ validation_gates:
 - output_schema: transfer authorization matrix, delivery confirmation ledger, policy exception report
 - protocol_profile: STIX/TAXII + API/JSON + NATO APP-11/ADatP-3
 - validation_gates: releasability pass, checksum/integrity verification, audit trail completeness
+
+### packet_id: DPL-NC3-EAM-001
+- domain: NC3 continuity and emergency action message assurance
+- objective: preserve NC3 continuity and validate EAM integrity across degraded communication paths
+- primary_tools: NC3 status monitors, EAM integrity validators, path survivability orchestration
+- alternate_tools: acknowledgment ledger plus manual continuity verification board
+- degraded_mode: command-essential message routing only with manual ack confirmation
+- input_requirements: alert posture, path status, message priority, crypto posture
+- output_schema: continuity status by path, message integrity exceptions, failover recommendation sequence
+- protocol_profile: USMTF + MIL-STD-188 + API/JSON
+- validation_gates: ack-chain integrity, cryptographic posture pass, human command verification
+
+### packet_id: DPL-PORTRAIL-WAR-001
+- domain: strategic mobility port-rail chokepoint wargaming
+- objective: stress-test deployment throughput under disruption and identify decisive bottlenecks
+- primary_tools: port throughput dashboards, rail movement control, transload queue analytics
+- alternate_tools: manual route capacity board and transport synchronization worksheet
+- degraded_mode: twice-daily movement status update with static priority corridors
+- input_requirements: force package, port and rail node capacities, route constraints, disruption assumptions
+- output_schema: chokepoint risk ranking, throughput timeline, branch and sequel options
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: dual-source capacity check, route feasibility review, command release approval
+
+### packet_id: DPL-COAL-EOB-001
+- domain: coalition electronic order of battle and emitter identity
+- objective: maintain coalition EOB confidence and reduce emitter misidentification risk
+- primary_tools: RF signature libraries, coalition exchange gateway, all-source emitter correlation board
+- alternate_tools: liaison-led emitter ledger and manual confidence scoring board
+- degraded_mode: coalition releasable emitter summary every 8 hours
+- input_requirements: emitter observations, coalition metadata tags, adversary baseline library, confidence thresholds
+- output_schema: emitter identity confidence table, EOB deltas, collection retask priorities
+- protocol_profile: Link 16 J-series + NATO APP-11/ADatP-3 + STIX/TAXII
+- validation_gates: coalition releasability check, false-match threshold, human adjudication gate
+
+### packet_id: DPL-SWARM-LOG-001
+- domain: uncrewed swarm logistics defense
+- objective: protect sustainment movement from swarm disruption while maintaining throughput
+- primary_tools: counter-UxS C2, convoy telemetry, route defense analytics
+- alternate_tools: manual convoy protection board and observer reporting net
+- degraded_mode: mission-essential convoys only with fixed defense sectors
+- input_requirements: convoy schedule, threat tracks, route geometry, defense asset posture
+- output_schema: defended route matrix, convoy risk tiers, fallback movement timeline
+- protocol_profile: CoT + Link 16 J-series + USMTF
+- validation_gates: friendly track deconfliction, collateral risk check, human engagement authority
+
+### packet_id: DPL-RIVER-XING-001
+- domain: contested river crossing risk
+- objective: sequence safe and timely military watercraft crossings under threat and hydrologic uncertainty
+- primary_tools: hydrographic feeds, engineer crossing planner, inland movement dashboard
+- alternate_tools: manual crossing board and contingency route worksheet
+- degraded_mode: limited crossing windows with strict asset prioritization
+- input_requirements: crossing points, current and depth conditions, enemy threat, engineer asset status
+- output_schema: crossing feasibility and timing table, risk triggers, synchronization tasks
+- protocol_profile: USMTF + VMF + OGC
+- validation_gates: hydrography freshness check, engineer feasibility pass, command approval gate
+
+### packet_id: DPL-HYPERWARN-001
+- domain: hypersonic warning passive defense
+- objective: fuse warning signals and trigger timely passive defense actions for critical assets
+- primary_tools: missile warning fusion systems, confidence analytics, passive defense planners
+- alternate_tools: warning board plus manual relocation and hardening checklist
+- degraded_mode: alert-protect-prioritize actions only for designated critical assets
+- input_requirements: warning tracks, confidence bands, protected asset roster, defense posture
+- output_schema: warning confidence ladder, passive defense trigger matrix, relocation sequence
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: confidence threshold pass, fratricide and congestion check, command release authority
+
+### packet_id: DPL-AM-ATTEST-001
+- domain: additive manufacturing quality attestation
+- objective: ensure fielded additively manufactured parts meet quality and traceability requirements
+- primary_tools: manufacturing execution systems, digital thread registry, NDI and lot traceability services
+- alternate_tools: manual QA checklist and lot genealogy worksheet
+- degraded_mode: mission-critical part-only attestation with extended hold points
+- input_requirements: part specification, process telemetry, inspection evidence, intended platform use
+- output_schema: attestation decision record, lot traceability matrix, risk and mitigation notes
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: quality evidence completeness, independent inspector concurrence, release authority sign-off
+
+### packet_id: DPL-MDD-REHEARSAL-001
+- domain: multi-domain tactical deception rehearsal
+- objective: rehearse deception actions and synchronize execution triggers across domains
+- primary_tools: red-cell simulation, signature management suite, deception indicator tracker
+- alternate_tools: manual storyboard board and deception rehearsal checklist
+- degraded_mode: advisory deception windows with strict human release
+- input_requirements: deception objectives, adversary sensing assumptions, friendly constraints, ROE limits
+- output_schema: deception storyboard, trigger ladder, branch and sequel matrix
+- protocol_profile: USMTF + CoT + STIX/TAXII
+- validation_gates: legal-policy review, blue-force risk check, commander rehearsal approval
+
+### packet_id: DPL-GRID-DET-001
+- domain: strategic energy grid cyber-physical deterrence
+- objective: identify mission-critical grid dependencies and deterrence-restoration options under attack risk
+- primary_tools: ICS and OT telemetry defense platforms, dependency graph engines, restoration orchestrators
+- alternate_tools: manual dependency map and outage impact worksheet
+- degraded_mode: priority-load sustainment recommendations only
+- input_requirements: mission dependency graph, grid status, known threats, restoration assets
+- output_schema: deterrence dependency map, disruption impact table, restoration branch plan
+- protocol_profile: STIX/TAXII + API/JSON + NIMS/ICS
+- validation_gates: dependency accuracy check, civil-military coordination check, authority review gate
+
+### packet_id: DPL-DENIED-PNT-001
+- domain: denied PNT time transfer assurance
+- objective: maintain trusted timing and navigation confidence during GNSS disruption
+- primary_tools: timing integrity monitors, pseudolite planning services, terrestrial time transfer systems
+- alternate_tools: manual synchronization procedures with periodic confidence checks
+- degraded_mode: minimal timing cells with reduced navigation assurance
+- input_requirements: theater timing tolerances, threat emitters, platform timing requirements, backup assets
+- output_schema: timing mesh plan, integrity confidence grid, fallback synchronization sequence
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: multi-source timing validation, spoof detection threshold pass, command concurrence
