@@ -14,6 +14,10 @@ function normalizeCapabilities(value) {
     )];
 }
 
+function normalizeString(value) {
+    return typeof value === 'string' && value.trim() ? value.trim() : null;
+}
+
 function normalizeOutlierMetadata(value) {
     if (!value || typeof value !== 'object') return null;
     const sampleSize = Number(value.sampleSize);
@@ -76,6 +80,12 @@ export class AgentRegistry {
         const capabilities = normalizeCapabilities(
             metadata.capabilities ?? existing.capabilities ?? []
         );
+        const zone = normalizeString(
+            metadata.locality?.zone
+            ?? metadata.routing?.zone
+            ?? metadata.zone
+            ?? existing.zone
+        );
 
         const record = {
             id: signal.from,
@@ -83,6 +93,7 @@ export class AgentRegistry {
             load: Number.isFinite(signal.load) ? signal.load : 0,
             timestamp: signal.timestamp,
             capabilities,
+            zone,
             outlier: normalizeOutlierMetadata(metadata.outlier ?? existing.outlier),
             routing: normalizeRoutingMetadata(metadata.routing ?? existing.routing)
         };

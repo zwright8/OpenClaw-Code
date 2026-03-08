@@ -508,3 +508,101 @@ test('adaptive concurrency penalizes queueing latency even before saturation', (
     assert.equal(ranked[0].agentId, 'agent:steady');
     assert.equal(ranked[1].agentId, 'agent:queueing');
 });
+
+test('locality routing prefers same-zone agents for latency-sensitive traffic', () => {
+    const task = buildTaskRequest({
+        id: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route zone-sensitive workload',
+        priority: 'high',
+        context: {
+            requiredCapabilities: ['routing'],
+            routing: {
+                clientZone: 'us-east-1a'
+            }
+        },
+        createdAt: 140_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:local-zone',
+            status: 'busy',
+            load: 0.35,
+            capabilities: ['routing'],
+            zone: 'us-east-1a',
+            timestamp: 140_000
+        },
+        {
+            id: 'agent:remote-zone',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['routing'],
+            zone: 'us-east-1b',
+            timestamp: 140_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 140_005,
+        locality: {
+            enabled: true,
+            localZoneBoost: 35,
+            crossZonePenalty: 8
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:local-zone');
+    assert.equal(routed.localityFallbackApplied, false);
+});
+
+test('strict locality can fail open to cluster-wide routing when local zone is unavailable', () => {
+    const task = buildTaskRequest({
+        id: 'dddddddd-dddd-4ddd-8ddd-dddddddddddd',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Fallback on zone depletion',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['routing'],
+            routing: {
+                clientZone: 'us-west-2a',
+                strictZoneAffinity: true
+            }
+        },
+        createdAt: 150_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:remote-a',
+            status: 'idle',
+            load: 0.25,
+            capabilities: ['routing'],
+            zone: 'us-west-2b',
+            timestamp: 150_000
+        },
+        {
+            id: 'agent:remote-b',
+            status: 'idle',
+            load: 0.15,
+            capabilities: ['routing'],
+            zone: 'us-west-2c',
+            timestamp: 150_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 150_005,
+        locality: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:remote-b');
+    assert.equal(routed.localityFallbackApplied, true);
+    assert.equal(routed.localityFallbackReason, 'strict_zone_affinity');
+});

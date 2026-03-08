@@ -316,6 +316,24 @@ test('ingestHeartbeat normalizes adaptive concurrency routing telemetry', () => 
     assert.equal(agent.routing.sampleRttMs, 80.1);
 });
 
+test('ingestHeartbeat stores zone metadata for locality-aware routing', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:zone-aware',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 121_000
+    }), {
+        capabilities: ['routing'],
+        locality: {
+            zone: 'us-east-1a'
+        }
+    });
+
+    const agent = registry.getAgent('agent:zone-aware');
+    assert.equal(agent.zone, 'us-east-1a');
+});
+
 test('routeTask applies adaptive concurrency options end-to-end', () => {
     const registry = new AgentRegistry({ now: () => 130_000, maxStalenessMs: 10_000 });
 
@@ -366,4 +384,58 @@ test('routeTask applies adaptive concurrency options end-to-end', () => {
     assert.equal(routed.selectedAgentId, 'agent:healthy-adaptive');
     const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated-adaptive');
     assert.equal(saturated.reason, 'adaptive_concurrency_limited');
+});
+
+test('routeTask supports strict locality with cluster fallback behavior', () => {
+    const registry = new AgentRegistry({ now: () => 140_000, maxStalenessMs: 10_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:remote-locality-a',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 139_900
+    }), {
+        capabilities: ['routing'],
+        locality: {
+            zone: 'us-central-1b'
+        }
+    });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:remote-locality-b',
+        status: 'idle',
+        load: 0.1,
+        timestamp: 139_900
+    }), {
+        capabilities: ['routing'],
+        locality: {
+            zone: 'us-central-1c'
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: 'cececece-cece-4ece-8ece-cececececece',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route with zone preference',
+        context: {
+            requiredCapabilities: ['routing'],
+            routing: {
+                clientZone: 'us-central-1a',
+                strictZoneAffinity: true
+            }
+        },
+        createdAt: 140_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 140_000,
+        locality: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:remote-locality-b');
+    assert.equal(routed.localityFallbackApplied, true);
+    assert.equal(routed.localityFallbackReason, 'strict_zone_affinity');
 });
