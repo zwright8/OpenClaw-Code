@@ -4,12 +4,13 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 223
+- Total warfighter skills in this repo: 243
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 - All skills now include a `Cross-Domain Escalation Hooks` section for threshold-based handoffs and fallback communications.
 - All skills now include a `U.S. Warfighter Tool Auth and Access Drill` section for credential and transport readiness checks.
 - All skills now include a `U.S. Joint Tool Adapter Contract Drill` section for dependency-level protocol/auth/fallback mapping.
+- All skills now include a `Minimum Data Feed Contract` section for primary/cross-check/degraded data assurance.
 
 ## Domain Coverage Matrix
 
@@ -195,3 +196,26 @@ Every skill output should include:
 - civilian-harm-incident-response-and-remediation-cell
 - joint-orbital-reconstitution-launch-manifest-cell
 - contested-medevac-denied-airspace-synchronizer-cell
+
+## New Expansion Wave (2026-03-06, Warfighter Comprehensive Expansion)
+
+- contested-polar-satcom-restoration-cell
+- strategic-missile-defense-sensor-fusion-cell
+- joint-deep-strike-target-system-analysis-cell
+- coalition-fires-releasability-and-disclosure-cell
+- denied-logistics-aerial-resupply-optimizer
+- combat-engineering-urban-breach-synchronizer
+- autonomous-ew-swarm-countermeasure-coordinator
+- dynamic-civil-evacuation-route-protection-cell
+- expeditionary-additive-manufacturing-quality-assurance
+- tactical-data-fabric-schema-governance-cell
+- contested-financial-network-disruption-assessor
+- weather-driven-mission-risk-nowcasting-cell
+- multi-domain-sar-and-disaster-relief-coordinator
+- electromagnetic-spectrum-compliance-and-certification-cell
+- theater-bulk-water-portability-and-hygiene-cell
+- high-threat-vip-movement-protection-planner
+- joint-civil-cyber-infrastructure-continuity-cell
+- strategic-homeland-critical-node-defense-cell
+- theater-undersea-sensor-grid-orchestrator
+- ai-enabled-deception-signature-orchestration

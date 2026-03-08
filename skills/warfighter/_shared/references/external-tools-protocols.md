@@ -26,6 +26,15 @@ For each external tool recommendation, include:
 - Protocol/transport: format and delivery path (for example USMTF over message bus)
 - Fallback: manual workaround and confidence/timeline impact if the tool is unavailable
 
+## Minimum Data Feed Contract (required in skill outputs)
+
+For each mission recommendation, include:
+
+- Primary feed: authoritative source, expected refresh rate, and stale-data threshold
+- Cross-check feed: independent corroboration source and reconciliation logic
+- Degraded/manual feed: fallback data collection path, latency expectation, and confidence penalty
+- Handling caveats: release restrictions and sanitization requirements for each feed
+
 ## Tool Families and Typical Use
 
 - C2/COP tools: GCCS-J, CPOF, JADOCS, ATAK/WinTAK, JBC-P
@@ -150,3 +159,4 @@ Include these fields in outputs when tool integration is used:
 - Tool Invocation Packet fields for each critical tool dependency
 - Adapter contract status (`adapter_id`, protocol, auth mode, last-success UTC) for each critical dependency
 - Cross-domain escalation hooks: trigger, owning cell, report format, and comms fallback
+- Minimum Data Feed Contract fields: primary, cross-check, degraded/manual, and handling caveats

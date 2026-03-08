@@ -96,3 +96,10 @@ For each cross-domain escalation, provide:
 - Comms degradation: switch from streaming feeds to scheduled pull-push bundles with checksum validation
 - Data-source outage: preserve stale-data marker, increase cross-check count, and shorten review cycle
 - Tool outage: execute manual worksheet fallback, annotate confidence penalty, and set recovery trigger
+
+## Data Feed Validation Playbook
+
+- Build a three-feed matrix for each critical decision: authoritative primary, independent cross-check, and degraded/manual.
+- Assign freshness thresholds (minutes/hours) by mission tempo and mark automatic stale-data triggers.
+- Define deterministic reconciliation rules for feed conflicts (authority precedence, tie-break logic, manual review trigger).
+- Publish the handling and releasability caveat for each feed before handoff to coalition or interagency partners.
