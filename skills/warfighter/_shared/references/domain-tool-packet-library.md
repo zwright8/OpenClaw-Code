@@ -2620,3 +2620,113 @@ validation_gates:
 - output_schema: integrity confidence map, spill containment timeline, sustainment impact estimate
 - protocol_profile: API/JSON + OGC + USMTF
 - validation_gates: leak confirmation gate, containment readiness pass, commander/environmental authority approval
+
+### packet_id: DPL-HYPERSONIC-S2S-001
+- domain: hypersonic sensor-to-shooter compression
+- objective: preserve cue quality while compressing detect-track-engage timelines under saturation.
+- primary_tools: missile warning fusion, track custody manager, engagement timeline planner
+- alternate_tools: manual cue board with strict shooter pre-allocation matrix
+- degraded_mode: warning-only posture with conservative engagement release windows
+- input_requirements: threat tracks, defended asset priority, sensor confidence, shooter availability
+- output_schema: cue queue, custody confidence ladder, shooter timeline matrix
+- protocol_profile: Link 16 J-series + USMTF + VMF
+- validation_gates: dual-sensor custody check, timeline feasibility pass, approval authority confirmation
+
+### packet_id: DPL-GRAYZONE-MARITIME-001
+- domain: gray-zone maritime militia attribution
+- objective: attribute deniable maritime militia behavior and support calibrated coalition response.
+- primary_tools: maritime COP analytics, vessel identity graphing, sanctions and legal evidence services
+- alternate_tools: manual vessel pattern ledger with coalition liaison adjudication
+- degraded_mode: daily attribution confidence bulletin with no kinetic recommendation
+- input_requirements: vessel tracks, AIS gaps, ownership records, incident reports
+- output_schema: attribution confidence set, response options, legal-evidence checklist
+- protocol_profile: AIS/NMEA + NATO APP-11/ADatP-3 + USMTF
+- validation_gates: multi-source identity corroboration, legal-policy check, escalation review
+
+### packet_id: DPL-SUBTERRANEAN-ROBOTICS-001
+- domain: subterranean robotic reconnaissance and breach
+- objective: map and clear subterranean routes with robotic sensors before human entry.
+- primary_tools: robotic mission planner, SLAM map fusion, hazard sensor network
+- alternate_tools: manual tunnel sketch board with periodic robot telemetry upload
+- degraded_mode: limited reconnaissance lanes only, no breaching recommendation
+- input_requirements: entry points, tunnel geometry hints, hazard indicators, comms state
+- output_schema: mapped route graph, hazard confidence table, breach recommendation ladder
+- protocol_profile: API/JSON + CoT + USMTF
+- validation_gates: map-confidence floor, comms integrity check, assault authority approval
+
+### packet_id: DPL-MOBILE-REACTOR-SECURITY-001
+- domain: mobile nuclear reactor security and recovery
+- objective: secure, recover, and reconstitute mobile reactor assets during sabotage or theft scenarios.
+- primary_tools: reactor telemetry assurance, convoy security tracker, radiological response planner
+- alternate_tools: manual custody ledger and radiation sampling board
+- degraded_mode: containment-focused static posture and reduced-power mission continuity branch
+- input_requirements: reactor status, convoy route, security incidents, radiation samples
+- output_schema: security posture board, recovery sequence, contamination control matrix
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: custody verification, radiological sample chain check, command/legal concurrence
+
+### packet_id: DPL-ENERGETICS-SUPPLY-001
+- domain: additive energetics supply denial countermeasure
+- objective: protect munitions output by substituting and rerouting disrupted precursor inputs.
+- primary_tools: feedstock inventory monitors, supplier risk analytics, munitions throughput dashboards
+- alternate_tools: manual precursor allocation board with QA hold points
+- degraded_mode: priority munition lines only with constrained release cadence
+- input_requirements: precursor stock levels, supplier status, line throughput targets, quality metrics
+- output_schema: substitution matrix, production risk ladder, mitigation task list
+- protocol_profile: API/JSON + USMTF + XML
+- validation_gates: quality release confirmation, supplier trust threshold, production priority approval
+
+### packet_id: DPL-ARCTIC-SATNAV-001
+- domain: arctic satnav spoofing resilience
+- objective: maintain navigation and timing integrity under satnav spoofing/meaconing in polar regions.
+- primary_tools: satnav integrity monitor, spoofing detector, inertial/terrain fallback planner
+- alternate_tools: manual timing sync schedule and route confidence worksheet
+- degraded_mode: reduced-tempo maneuver with strict timing uncertainty bounds
+- input_requirements: platform nav state, spoofing indicators, terrain references, timing tolerance
+- output_schema: nav confidence map, fallback sequence, mission timing risk bands
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: spoofing confidence threshold, fallback nav check, fire-timing authority check
+
+### packet_id: DPL-GAP-CROSSING-DENIAL-001
+- domain: waterway bridge denial and friendly gap crossing
+- objective: deny adversary crossing while synchronizing friendly gap operations and deception windows.
+- primary_tools: engineer crossing planner, river surveillance feed, maneuver synchronization board
+- alternate_tools: manual crossing timing board with liaison update cycle
+- degraded_mode: defensive holding posture with limited crossing attempts
+- input_requirements: bridge status, current velocity, crossing assets, threat fires coverage
+- output_schema: crossing timeline, denial trigger matrix, survivability risk map
+- protocol_profile: VMF + USMTF + OGC
+- validation_gates: crossing asset readiness, river condition confirmation, command approval gate
+
+### packet_id: DPL-GENOMIC-EARLY-WARNING-001
+- domain: contested theater biosurveillance genomic warning
+- objective: identify pathogen drift and operational health threats from distributed contested sampling.
+- primary_tools: genomic sequence pipeline, sample custody registry, outbreak analytics board
+- alternate_tools: manual sample ledger and delayed lab correlation board
+- degraded_mode: sentinel sampling-only advisory with delayed actionable windows
+- input_requirements: sample metadata, sequence outputs, force-health indicators, lab confidence
+- output_schema: genomic alert board, drift confidence ladder, mitigation priority list
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: sample provenance check, sequence quality threshold, medical authority signoff
+
+### packet_id: DPL-EW-OB-DRIFT-001
+- domain: electronic warfare order-of-battle drift
+- objective: detect emitter behavior drift and rapidly retune EW/countermeasure posture.
+- primary_tools: emitter fingerprint analytics, EW mission-data manager, spectrum timeline fusion
+- alternate_tools: manual emitter change log with periodic update synchronization
+- degraded_mode: conservative spectrum plan and limited adaptive maneuver recommendations
+- input_requirements: emitter tracks, baseline signatures, mission-data versions, threat priorities
+- output_schema: drift delta ledger, retune recommendations, mission-data update queue
+- protocol_profile: Link 16 J-series + STIX/TAXII + USMTF
+- validation_gates: emitter identity confidence, retune compatibility check, EW authority approval
+
+### packet_id: DPL-GRID-TRANSFORMER-SABOTAGE-001
+- domain: homeland grid transformer sabotage contingency
+- objective: preserve military mission power continuity during coordinated transformer sabotage.
+- primary_tools: grid outage analytics, installation dependency board, restoration dispatch planner
+- alternate_tools: manual blackout operations board with utility liaison hotline
+- degraded_mode: base islanding and mission-priority load shedding only
+- input_requirements: outage map, transformer damage reports, installation load priorities, repair assets
+- output_schema: continuity posture matrix, restoration sequence, load-shedding decision ladder
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: utility state verification, mission load priority confirmation, command authority approval
