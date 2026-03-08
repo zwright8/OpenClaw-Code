@@ -258,6 +258,17 @@ validation_gates:
 - primary_tools: biomanufacturing MES, QA release registry, med logistics orchestrator
 - alternate_tools: lot-level spreadsheet control with manual QA sign-off
 - degraded_mode: priority-only production and distribution cycle
+
+### packet_id: DPL-MARITIME-MCM-001
+- domain: maritime drone-enabled mine countermeasure corridors
+- objective: synchronize mine detection, classification, and corridor-clearing windows for convoy and amphibious access
+- primary_tools: MCM mission manager, maritime COP, autonomous drone swarm control, hydrographic hazard overlays
+- alternate_tools: manual sortie board with periodic sonar replay review
+- degraded_mode: daylight-only corridor sweeps with conservative safety buffers and delayed convoy release
+- input_requirements: mine threat baseline, hydrographic conditions, friendly route priorities, sortie asset status
+- output_schema: corridor confidence map, cleared-lane timeline, convoy release recommendation, unresolved hazard list
+- protocol_profile: AIS/NMEA + Link 16 J-series + USMTF
+- validation_gates: blue-force deconfliction pass, mine-classification confidence threshold, commander approval checkpoint
 - input_requirements: line capacity, lot quality, demand forecast, cold chain constraints
 - output_schema: surge schedule, lot release risk map, delivery timeline bands
 - protocol_profile: API/JSON + HL7/FHIR + USMTF
