@@ -1,6 +1,24 @@
 import { TaskRequest } from './schemas.js';
 
 const HEALTHY_STATUSES = new Set(['idle', 'busy']);
+const DEFAULT_STALE_HEARTBEAT_PENALTY = 35;
+const DEFAULT_PANIC_HEALTHY_RATIO_THRESHOLD = 0.5;
+const DEFAULT_OUTLIER_CONSECUTIVE_FAILURE_THRESHOLD = 5;
+const DEFAULT_OUTLIER_SUCCESS_RATE_THRESHOLD = 0.5;
+const DEFAULT_OUTLIER_MIN_SAMPLES = 20;
+const DEFAULT_OUTLIER_BASE_EJECTION_MS = 30_000;
+const DEFAULT_OUTLIER_MAX_EJECTION_MS = 300_000;
+const DEFAULT_OUTLIER_PENALTY = 45;
+const DEFAULT_OVERLOAD_PENALTY = 40;
+const DEFAULT_SLOW_START_WINDOW_MS = 60_000;
+const DEFAULT_SLOW_START_MIN_WEIGHT = 0.15;
+const DEFAULT_ADAPTIVE_SATURATION_PENALTY = 35;
+const DEFAULT_ADAPTIVE_LATENCY_PENALTY = 20;
+const DEFAULT_ADAPTIVE_QUEUEING_TARGET_MULTIPLIER = 1.5;
+const DEFAULT_LOCAL_ZONE_BOOST = 18;
+const DEFAULT_CROSS_ZONE_PENALTY = 10;
+const DEFAULT_PREFERRED_ZONE_BOOST = 8;
+const LOCALITY_FALLBACK_MODES = new Set(['cluster', 'strict']);
 
 function normalizeCapabilities(value) {
     if (!Array.isArray(value)) return [];
@@ -11,55 +29,309 @@ function normalizeCapabilities(value) {
     )];
 }
 
+function normalizeString(value) {
+    return typeof value === 'string' && value.trim() ? value.trim() : null;
+}
+
+function normalizeStringList(value) {
+    if (!Array.isArray(value)) return [];
+    return [...new Set(value.map((entry) => normalizeString(entry)).filter(Boolean))];
+}
+
 function extractRequiredCapabilities(taskRequest) {
     const required = taskRequest?.context?.requiredCapabilities;
     return normalizeCapabilities(required);
 }
 
-function scoreAgent(taskRequest, agent, options) {
-    if (!agent || typeof agent !== 'object') {
+function clampLoad(value, fallback = 0.5) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return Math.max(0, Math.min(1, numeric));
+}
+
+function safeInteger(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return Math.max(0, Math.floor(numeric));
+}
+
+function safeProbability(value, fallback = null) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return Math.max(0, Math.min(1, numeric));
+}
+
+function normalizeOutlierOptions(options = {}) {
+    const configured = options?.outlierDetection;
+    const enabled = configured?.enabled === true;
+    return {
+        enabled,
+        enforce: configured?.enforce !== false,
+        consecutiveFailureThreshold: Math.max(
+            1,
+            safeInteger(configured?.consecutiveFailureThreshold, DEFAULT_OUTLIER_CONSECUTIVE_FAILURE_THRESHOLD)
+        ),
+        successRateThreshold: safeProbability(configured?.successRateThreshold, DEFAULT_OUTLIER_SUCCESS_RATE_THRESHOLD),
+        minSamples: Math.max(1, safeInteger(configured?.minSamples, DEFAULT_OUTLIER_MIN_SAMPLES)),
+        baseEjectionMs: Math.max(1, safeInteger(configured?.baseEjectionMs, DEFAULT_OUTLIER_BASE_EJECTION_MS)),
+        maxEjectionMs: Math.max(1, safeInteger(configured?.maxEjectionMs, DEFAULT_OUTLIER_MAX_EJECTION_MS)),
+        penalty: Math.max(0, Number(configured?.penalty ?? DEFAULT_OUTLIER_PENALTY))
+    };
+}
+
+function normalizeOverloadProtectionOptions(options = {}) {
+    const configured = options?.overloadProtection;
+    const enabled = configured?.enabled === true;
+    return {
+        enabled,
+        enforce: configured?.enforce !== false,
+        penalty: Math.max(0, Number(configured?.penalty ?? DEFAULT_OVERLOAD_PENALTY))
+    };
+}
+
+function normalizeSlowStartOptions(options = {}) {
+    const configured = options?.slowStart;
+    const enabled = configured?.enabled === true;
+    const windowMs = Math.max(1, safeInteger(configured?.windowMs, DEFAULT_SLOW_START_WINDOW_MS));
+    const minWeight = safeProbability(configured?.minWeight, DEFAULT_SLOW_START_MIN_WEIGHT);
+    return {
+        enabled,
+        windowMs,
+        minWeight
+    };
+}
+
+function normalizeAdaptiveConcurrencyOptions(options = {}) {
+    const configured = options?.adaptiveConcurrency;
+    const enabled = configured?.enabled === true;
+    return {
+        enabled,
+        enforce: configured?.enforce === true,
+        saturationPenalty: Math.max(0, Number(configured?.saturationPenalty ?? DEFAULT_ADAPTIVE_SATURATION_PENALTY)),
+        latencyPenalty: Math.max(0, Number(configured?.latencyPenalty ?? DEFAULT_ADAPTIVE_LATENCY_PENALTY)),
+        queueingTargetMultiplier: Math.max(
+            1,
+            Number(configured?.queueingTargetMultiplier ?? DEFAULT_ADAPTIVE_QUEUEING_TARGET_MULTIPLIER)
+        )
+    };
+}
+
+function normalizeZoneWeights(value) {
+    if (!value || typeof value !== 'object') return {};
+    const normalized = {};
+    for (const [zone, weight] of Object.entries(value)) {
+        const key = normalizeString(zone);
+        const numeric = Number(weight);
+        if (!key || !Number.isFinite(numeric)) continue;
+        normalized[key] = numeric;
+    }
+    return normalized;
+}
+
+function normalizeLocalityOptions(taskRequest, options = {}) {
+    const routing = taskRequest?.context?.routing && typeof taskRequest.context.routing === 'object'
+        ? taskRequest.context.routing
+        : {};
+    const routingPreferences = taskRequest?.context?.routingPreferences && typeof taskRequest.context.routingPreferences === 'object'
+        ? taskRequest.context.routingPreferences
+        : {};
+    const configured = options?.locality && typeof options.locality === 'object'
+        ? options.locality
+        : {};
+
+    const fallbackValue = normalizeString(
+        configured.fallbackMode
+        ?? routing.localityFallback
+        ?? routingPreferences.localityFallback
+    );
+    const fallbackMode = LOCALITY_FALLBACK_MODES.has(fallbackValue) ? fallbackValue : 'cluster';
+
+    const clientZone = normalizeString(
+        configured.clientZone
+        ?? routing.clientZone
+        ?? routing.zone
+        ?? routingPreferences.clientZone
+    );
+    const preferredZones = normalizeStringList(
+        configured.preferredZones
+        ?? routing.preferredZones
+        ?? routing.preferZones
+        ?? routingPreferences.preferredZones
+    );
+    const strictZoneAffinity = Boolean(
+        configured.strictZoneAffinity
+        ?? routing.strictZoneAffinity
+        ?? routingPreferences.strictZoneAffinity
+    );
+
+    return {
+        enabled: configured.enabled === true || Boolean(clientZone) || preferredZones.length > 0 || strictZoneAffinity,
+        clientZone,
+        preferredZones,
+        strictZoneAffinity,
+        fallbackMode,
+        localZoneBoost: Math.max(0, Number(configured.localZoneBoost ?? DEFAULT_LOCAL_ZONE_BOOST)),
+        crossZonePenalty: Math.max(0, Number(configured.crossZonePenalty ?? DEFAULT_CROSS_ZONE_PENALTY)),
+        preferredZoneBoost: Math.max(0, Number(configured.preferredZoneBoost ?? DEFAULT_PREFERRED_ZONE_BOOST)),
+        zoneWeights: normalizeZoneWeights(
+            configured.zoneWeights
+            ?? routing.zoneWeights
+            ?? routingPreferences.zoneWeights
+        )
+    };
+}
+
+function extractAgentZone(agent) {
+    return normalizeString(
+        agent?.routing?.zone
+        ?? agent?.locality?.zone
+        ?? agent?.zone
+        ?? agent?.metadata?.zone
+    );
+}
+
+function extractOutlierStats(agent) {
+    const snapshot = agent?.outlier && typeof agent.outlier === 'object' ? agent.outlier : agent;
+    const consecutiveFailures = safeInteger(snapshot?.consecutiveFailures, 0);
+    const sampleSize = safeInteger(snapshot?.sampleSize, 0);
+    const ejectionCount = safeInteger(snapshot?.ejectionCount, 0);
+    const successRate = safeProbability(snapshot?.successRate, null);
+    const ejectedUntilMs = Number(snapshot?.ejectedUntilMs);
+    return {
+        consecutiveFailures,
+        successRate,
+        sampleSize,
+        ejectionCount,
+        ejectedUntilMs: Number.isFinite(ejectedUntilMs) ? ejectedUntilMs : null
+    };
+}
+
+function extractConcurrencyStats(agent) {
+    const routing = agent?.routing && typeof agent.routing === 'object' ? agent.routing : {};
+    const inFlight = safeInteger(routing.inFlight ?? agent?.inFlight, 0);
+    const maxInFlight = safeInteger(routing.maxInFlight ?? agent?.maxInFlight, 0);
+    return {
+        inFlight,
+        maxInFlight
+    };
+}
+
+function extractAdaptiveRoutingStats(agent) {
+    const routing = agent?.routing && typeof agent.routing === 'object' ? agent.routing : {};
+    const inFlight = safeInteger(routing.inFlight ?? agent?.inFlight, 0);
+    const concurrencyLimit = safeInteger(routing.concurrencyLimit ?? routing.maxInFlight ?? agent?.maxInFlight, 0);
+    const minRttMs = Number(routing.minRttMs);
+    const sampleRttMs = Number(routing.sampleRttMs);
+
+    return {
+        inFlight,
+        concurrencyLimit,
+        minRttMs: Number.isFinite(minRttMs) && minRttMs > 0 ? minRttMs : null,
+        sampleRttMs: Number.isFinite(sampleRttMs) && sampleRttMs > 0 ? sampleRttMs : null
+    };
+}
+
+function evaluateOverloadState(agent, options = {}) {
+    const config = normalizeOverloadProtectionOptions(options);
+    if (!config.enabled) return null;
+
+    const concurrency = extractConcurrencyStats(agent);
+    if (concurrency.maxInFlight <= 0) return null;
+    if (concurrency.inFlight < concurrency.maxInFlight) return null;
+
+    return {
+        ...concurrency,
+        saturated: true,
+        enforce: config.enforce
+    };
+}
+
+function extractRecoveredAtMs(agent) {
+    const routing = agent?.routing && typeof agent.routing === 'object' ? agent.routing : {};
+    const candidate = Number(routing.recoveredAtMs ?? agent?.recoveredAtMs);
+    return Number.isFinite(candidate) ? candidate : null;
+}
+
+function evaluateSlowStartState(agent, nowMs, options = {}) {
+    const config = normalizeSlowStartOptions(options);
+    if (!config.enabled) return null;
+
+    const recoveredAtMs = extractRecoveredAtMs(agent);
+    if (recoveredAtMs === null) return null;
+    if (nowMs <= recoveredAtMs) {
         return {
-            eligible: false,
-            score: -Infinity,
-            reason: 'invalid_agent'
+            recoveredAtMs,
+            elapsedMs: 0,
+            progress: 0,
+            weight: Number(config.minWeight.toFixed(4)),
+            windowMs: config.windowMs
         };
     }
 
-    const status = typeof agent.status === 'string' ? agent.status : 'offline';
-    if (!HEALTHY_STATUSES.has(status)) {
+    const elapsedMs = Math.max(0, nowMs - recoveredAtMs);
+    const progress = Math.max(0, Math.min(1, elapsedMs / config.windowMs));
+    const weight = config.minWeight + ((1 - config.minWeight) * progress);
+    if (progress >= 1) {
         return {
-            eligible: false,
-            score: -Infinity,
-            reason: `status_${status}`
+            recoveredAtMs,
+            elapsedMs,
+            progress: 1,
+            weight: 1,
+            windowMs: config.windowMs
         };
     }
 
-    const nowMs = Number.isFinite(options.nowMs) ? options.nowMs : Date.now();
-    const maxStalenessMs = Number.isFinite(options.maxStalenessMs) ? options.maxStalenessMs : 60_000;
-    const timestamp = Number(agent.timestamp ?? agent.lastHeartbeat ?? nowMs);
-    if (Number.isFinite(timestamp) && nowMs - timestamp > maxStalenessMs) {
+    return {
+        recoveredAtMs,
+        elapsedMs,
+        progress: Number(progress.toFixed(4)),
+        weight: Number(weight.toFixed(4)),
+        windowMs: config.windowMs
+    };
+}
+
+function evaluateOutlierState(agent, nowMs, options = {}) {
+    const config = normalizeOutlierOptions(options);
+    if (!config.enabled) return null;
+
+    const stats = extractOutlierStats(agent);
+    if (stats.ejectedUntilMs !== null && stats.ejectedUntilMs > nowMs) {
         return {
-            eligible: false,
-            score: -Infinity,
-            reason: 'stale_heartbeat'
+            state: 'ejected',
+            ...stats
         };
     }
 
-    const load = Number.isFinite(Number(agent.load))
-        ? Math.max(0, Math.min(1, Number(agent.load)))
-        : 0.5;
-    const capabilities = normalizeCapabilities(agent.capabilities);
-    const requiredCapabilities = extractRequiredCapabilities(taskRequest);
-    const missingCapabilities = requiredCapabilities.filter((capability) => !capabilities.includes(capability));
-    if (missingCapabilities.length > 0) {
-        return {
-            eligible: false,
-            score: -Infinity,
-            reason: 'missing_capabilities',
-            missingCapabilities
-        };
+    const consecutiveFailureTriggered = stats.consecutiveFailures >= config.consecutiveFailureThreshold;
+    const successRateTriggered = stats.successRate !== null
+        && stats.sampleSize >= config.minSamples
+        && stats.successRate < config.successRateThreshold;
+
+    if (!consecutiveFailureTriggered && !successRateTriggered) {
+        return null;
     }
 
+    const nextEjectionMs = Math.min(
+        config.maxEjectionMs,
+        config.baseEjectionMs * Math.max(1, stats.ejectionCount + 1)
+    );
+
+    return {
+        state: 'detected',
+        ...stats,
+        consecutiveFailureTriggered,
+        successRateTriggered,
+        nextEjectionMs,
+        suggestedEjectedUntilMs: nowMs + nextEjectionMs,
+        enforce: config.enforce
+    };
+}
+
+function computeBaseScore(taskRequest, {
+    load,
+    status,
+    requiredCapabilities
+}) {
     const priority = taskRequest.priority || 'normal';
     let score = 100;
     score -= load * 60;
@@ -78,23 +350,248 @@ function scoreAgent(taskRequest, agent, options) {
         score -= 5;
     }
 
+    return Number(score.toFixed(2));
+}
+
+function safeRandom(options) {
+    const sample = Number(options?.random?.());
+    const value = Number.isFinite(sample) ? sample : Math.random();
+    return Math.max(0, Math.min(0.999999999, value));
+}
+
+function pickWithPowerOfTwoChoices(eligible, options) {
+    if (!Array.isArray(eligible) || eligible.length === 0) return null;
+    if (eligible.length === 1) return eligible[0];
+
+    const firstIndex = Math.floor(safeRandom(options) * eligible.length);
+    let secondIndex = Math.floor(safeRandom(options) * eligible.length);
+    if (secondIndex === firstIndex) {
+        secondIndex = (secondIndex + 1) % eligible.length;
+    }
+
+    const first = eligible[firstIndex];
+    const second = eligible[secondIndex];
+    if (second.score > first.score) return second;
+    if (second.score < first.score) return first;
+
+    return safeRandom(options) < 0.5 ? first : second;
+}
+
+function pickBestEligible(ranked, options = {}) {
+    const eligible = ranked.filter((item) => item.eligible && typeof item.agentId === 'string' && item.agentId.trim());
+    if (eligible.length === 0) return null;
+    if (options.selectionStrategy === 'p2c') {
+        return pickWithPowerOfTwoChoices(eligible, options);
+    }
+    return eligible[0];
+}
+
+function scoreAgent(taskRequest, agent, options, localityOptions) {
+    if (!agent || typeof agent !== 'object') {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: 'invalid_agent'
+        };
+    }
+
+    const status = typeof agent.status === 'string' ? agent.status : 'offline';
+    if (!HEALTHY_STATUSES.has(status)) {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: `status_${status}`
+        };
+    }
+
+    const nowMs = Number.isFinite(options.nowMs) ? Number(options.nowMs) : Date.now();
+    const maxStalenessMs = Number.isFinite(options.maxStalenessMs) ? Number(options.maxStalenessMs) : 60_000;
+    const timestamp = Number(agent.timestamp ?? agent.lastHeartbeat ?? nowMs);
+    const stale = Number.isFinite(timestamp) && nowMs - timestamp > maxStalenessMs;
+
+    const load = clampLoad(agent.load, 0.5);
+    const capabilities = normalizeCapabilities(agent.capabilities);
+    const requiredCapabilities = extractRequiredCapabilities(taskRequest);
+    const missingCapabilities = requiredCapabilities.filter((capability) => !capabilities.includes(capability));
+    if (missingCapabilities.length > 0) {
+        return {
+            eligible: false,
+            score: -Infinity,
+            reason: 'missing_capabilities',
+            missingCapabilities
+        };
+    }
+
+    let score = computeBaseScore(taskRequest, {
+        load,
+        status,
+        requiredCapabilities
+    });
+    const zone = extractAgentZone(agent);
+
+    if (localityOptions.enabled) {
+        if (localityOptions.clientZone && zone && zone !== localityOptions.clientZone) {
+            if (localityOptions.strictZoneAffinity) {
+                return {
+                    eligible: false,
+                    degradedEligible: true,
+                    score: -Infinity,
+                    reason: 'cross_zone_blocked',
+                    missingCapabilities: [],
+                    zone
+                };
+            }
+            score = Number((score - localityOptions.crossZonePenalty).toFixed(2));
+        }
+
+        if (localityOptions.clientZone && zone && zone === localityOptions.clientZone) {
+            score = Number((score + localityOptions.localZoneBoost).toFixed(2));
+        }
+
+        if (zone && localityOptions.preferredZones.includes(zone)) {
+            score = Number((score + localityOptions.preferredZoneBoost).toFixed(2));
+        }
+
+        if (zone && Object.hasOwn(localityOptions.zoneWeights, zone)) {
+            score = Number((score + localityOptions.zoneWeights[zone]).toFixed(2));
+        }
+    }
+
+    const overload = evaluateOverloadState(agent, options);
+    const overloadConfig = normalizeOverloadProtectionOptions(options);
+    if (overload) {
+        score = Number((score - overloadConfig.penalty).toFixed(2));
+    }
+
+    const outlier = evaluateOutlierState(agent, nowMs, options);
+    const outlierConfig = normalizeOutlierOptions(options);
+    if (outlier) {
+        score = Number((score - outlierConfig.penalty).toFixed(2));
+    }
+
+    const slowStart = evaluateSlowStartState(agent, nowMs, options);
+    if (slowStart && slowStart.weight < 1) {
+        score = Number((score * slowStart.weight).toFixed(2));
+    }
+
+    const adaptive = normalizeAdaptiveConcurrencyOptions(options);
+    if (adaptive.enabled) {
+        const routing = extractAdaptiveRoutingStats(agent);
+        if (routing.concurrencyLimit > 0) {
+            const utilization = routing.inFlight / routing.concurrencyLimit;
+            if (adaptive.enforce && utilization >= 1) {
+                return {
+                    eligible: false,
+                    degradedEligible: false,
+                    score: -Infinity,
+                    reason: 'adaptive_concurrency_limited',
+                    missingCapabilities: [],
+                    ...(overload ? { overload } : {}),
+                    ...(slowStart ? { slowStart } : {}),
+                    ...(outlier ? { outlier } : {}),
+                    ...(zone ? { zone } : {})
+                };
+            }
+
+            const saturationPenalty = Math.max(0, utilization - 0.7) * adaptive.saturationPenalty;
+            score = Number((score - saturationPenalty).toFixed(2));
+        }
+
+        if (
+            routing.minRttMs !== null &&
+            routing.sampleRttMs !== null &&
+            routing.sampleRttMs > routing.minRttMs * adaptive.queueingTargetMultiplier
+        ) {
+            const queueingRatio = (routing.sampleRttMs / routing.minRttMs) - adaptive.queueingTargetMultiplier;
+            score = Number((score - (queueingRatio * adaptive.latencyPenalty)).toFixed(2));
+        }
+    }
+
+    if (overload?.enforce) {
+        return {
+            eligible: false,
+            degradedEligible: true,
+            score,
+            reason: 'concurrency_saturated',
+            missingCapabilities: [],
+            overload,
+            ...(slowStart ? { slowStart } : {}),
+            ...(outlier ? { outlier } : {}),
+            ...(zone ? { zone } : {})
+        };
+    }
+
+    if (outlier?.state === 'ejected') {
+        return {
+            eligible: false,
+            degradedEligible: true,
+            score,
+            reason: 'outlier_ejected',
+            missingCapabilities: [],
+            outlier,
+            ...(overload ? { overload } : {}),
+            ...(slowStart ? { slowStart } : {}),
+            ...(zone ? { zone } : {})
+        };
+    }
+
+    if (outlier?.state === 'detected' && outlier.enforce) {
+        return {
+            eligible: false,
+            degradedEligible: true,
+            score,
+            reason: 'outlier_detected',
+            missingCapabilities: [],
+            outlier,
+            ...(overload ? { overload } : {}),
+            ...(slowStart ? { slowStart } : {}),
+            ...(zone ? { zone } : {})
+        };
+    }
+
+    if (stale) {
+        const stalePenalty = Number.isFinite(options.staleHeartbeatPenalty)
+            ? Number(options.staleHeartbeatPenalty)
+            : DEFAULT_STALE_HEARTBEAT_PENALTY;
+        return {
+            eligible: false,
+            degradedEligible: true,
+            score: Number((score - stalePenalty).toFixed(2)),
+            reason: 'stale_heartbeat',
+            missingCapabilities: [],
+            ...(overload ? { overload } : {}),
+            ...(slowStart ? { slowStart } : {}),
+            ...(outlier ? { outlier } : {}),
+            ...(zone ? { zone } : {})
+        };
+    }
+
     return {
         eligible: true,
-        score: Number(score.toFixed(2)),
+        degradedEligible: false,
+        score,
         reason: 'ok',
-        missingCapabilities: []
+        missingCapabilities: [],
+        ...(overload ? { overload } : {}),
+        ...(slowStart ? { slowStart } : {}),
+        ...(outlier ? { outlier } : {}),
+        ...(zone ? { zone } : {})
     };
 }
 
-export function rankAgentsForTask(taskRequestPayload, agents, options = {}) {
-    const taskRequest = TaskRequest.parse(taskRequestPayload);
+function ensureTaskRequest(taskRequestPayload) {
+    return TaskRequest.parse(taskRequestPayload);
+}
+
+function rankAgents(taskRequest, agents, options = {}) {
     if (!Array.isArray(agents)) {
         throw new Error('agents must be an array');
     }
 
+    const localityOptions = normalizeLocalityOptions(taskRequest, options);
     return agents
         .map((agent) => {
-            const evaluation = scoreAgent(taskRequest, agent, options);
+            const evaluation = scoreAgent(taskRequest, agent, options, localityOptions);
             return {
                 agentId: agent?.id || agent?.agentId || null,
                 status: agent?.status,
@@ -106,33 +603,122 @@ export function rankAgentsForTask(taskRequestPayload, agents, options = {}) {
         .sort((a, b) => b.score - a.score);
 }
 
+export function rankAgentsForTask(taskRequestPayload, agents, options = {}) {
+    const taskRequest = ensureTaskRequest(taskRequestPayload);
+    return rankAgents(taskRequest, agents, options);
+}
+
 export function selectBestAgentForTask(taskRequestPayload, agents, options = {}) {
-    const ranked = rankAgentsForTask(taskRequestPayload, agents, options);
-    const best = ranked.find((item) => item.eligible && typeof item.agentId === 'string' && item.agentId.trim());
+    const taskRequest = ensureTaskRequest(taskRequestPayload);
+    const localityOptions = normalizeLocalityOptions(taskRequest, options);
+    const ranked = rankAgents(taskRequest, agents, options);
+    let best = pickBestEligible(ranked, options);
+
+    let localityFallbackApplied = false;
+    let localityFallbackReason = null;
+    let selectionRanked = ranked;
+
+    if (
+        !best
+        && localityOptions.enabled
+        && localityOptions.strictZoneAffinity
+        && localityOptions.fallbackMode !== 'strict'
+        && ranked.some((entry) => entry.reason === 'cross_zone_blocked')
+    ) {
+        const fallbackOptions = {
+            ...options,
+            locality: {
+                ...(options.locality || {}),
+                strictZoneAffinity: false
+            }
+        };
+        selectionRanked = rankAgents(taskRequest, agents, fallbackOptions);
+        best = pickBestEligible(selectionRanked, fallbackOptions);
+        localityFallbackApplied = Boolean(best);
+        localityFallbackReason = localityFallbackApplied ? 'strict_zone_affinity' : null;
+    }
 
     return {
         selectedAgentId: best?.agentId || null,
-        ranked
+        ranked: selectionRanked,
+        localityFallbackApplied,
+        localityFallbackReason
     };
 }
 
 export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
-    const taskRequest = TaskRequest.parse(taskRequestPayload);
+    const taskRequest = ensureTaskRequest(taskRequestPayload);
     const selection = selectBestAgentForTask(taskRequest, agents, options);
 
+    const ranked = selection.ranked;
+    const outlierActions = ranked
+        .filter((item) => item.reason === 'outlier_detected' && item.outlier?.suggestedEjectedUntilMs)
+        .map((item) => ({
+            agentId: item.agentId,
+            reason: 'outlier_detected',
+            suggestedEjectedUntilMs: item.outlier.suggestedEjectedUntilMs,
+            nextEjectionMs: item.outlier.nextEjectionMs
+        }));
+
     if (!selection.selectedAgentId) {
+        const totalCandidates = ranked.filter((item) => typeof item.agentId === 'string' && item.agentId.trim()).length;
+        const healthyCandidates = ranked.filter((item) => item.eligible && typeof item.agentId === 'string' && item.agentId.trim()).length;
+        const healthyRatio = totalCandidates > 0 ? healthyCandidates / totalCandidates : 0;
+        const panicModeEnabled = options.enablePanicMode === true;
+        const panicThreshold = Number.isFinite(options.panicHealthyRatioThreshold)
+            ? Math.max(0, Math.min(1, Number(options.panicHealthyRatioThreshold)))
+            : DEFAULT_PANIC_HEALTHY_RATIO_THRESHOLD;
+        const panicTriggered = panicModeEnabled && totalCandidates > 0 && healthyRatio <= panicThreshold;
+
+        if (panicTriggered) {
+            const degraded = ranked.find((item) => item.degradedEligible && typeof item.agentId === 'string' && item.agentId.trim());
+            if (degraded?.agentId) {
+                return {
+                    routed: true,
+                    degraded: true,
+                    ...(outlierActions.length > 0 ? { outlierActions } : {}),
+                    panicMode: {
+                        triggered: true,
+                        healthyRatio: Number(healthyRatio.toFixed(4)),
+                        healthyCandidates,
+                        totalCandidates,
+                        threshold: panicThreshold
+                    },
+                    selectedAgentId: degraded.agentId,
+                    ranked,
+                    taskRequest: {
+                        ...taskRequest,
+                        target: degraded.agentId
+                    }
+                };
+            }
+        }
+
         return {
             routed: false,
             taskRequest,
             selectedAgentId: null,
-            ranked: selection.ranked
+            ranked,
+            localityFallbackApplied: selection.localityFallbackApplied,
+            localityFallbackReason: selection.localityFallbackReason,
+            ...(outlierActions.length > 0 ? { outlierActions } : {}),
+            panicMode: {
+                triggered: panicTriggered,
+                healthyRatio: Number(healthyRatio.toFixed(4)),
+                healthyCandidates,
+                totalCandidates,
+                threshold: panicThreshold
+            }
         };
     }
 
     return {
         routed: true,
         selectedAgentId: selection.selectedAgentId,
-        ranked: selection.ranked,
+        ranked,
+        localityFallbackApplied: selection.localityFallbackApplied,
+        localityFallbackReason: selection.localityFallbackReason,
+        ...(outlierActions.length > 0 ? { outlierActions } : {}),
         taskRequest: {
             ...taskRequest,
             target: selection.selectedAgentId

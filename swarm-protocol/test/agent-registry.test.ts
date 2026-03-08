@@ -33,6 +33,34 @@ test('ingestHeartbeat stores presence and capabilities', () => {
     assert.deepEqual(agent.capabilities, ['analysis', 'ops']);
 });
 
+test('ingestHeartbeat preserves normalized outlier metadata for routing safeguards', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:fragile',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 3_000
+    }), {
+        capabilities: ['analysis'],
+        outlier: {
+            sampleSize: 12.8,
+            successRate: 1.4,
+            consecutiveFailures: 4.9,
+            ejectedUntilMs: 9_500.7,
+            ejectionCount: 2.2
+        }
+    });
+
+    const agent = registry.getAgent('agent:fragile');
+    assert.deepEqual(agent.outlier, {
+        sampleSize: 12,
+        successRate: 1,
+        consecutiveFailures: 4,
+        ejectedUntilMs: 9_500.7,
+        ejectionCount: 2
+    });
+});
+
 test('routeTask selects best healthy capability-compatible agent', () => {
     const registry = new AgentRegistry({ maxStalenessMs: 5_000, now: () => 10_000 });
 
@@ -117,4 +145,297 @@ test('createRouteTaskFn works with orchestrator-style callback expectations', as
     }));
 
     assert.equal(selected, 'agent:router-target');
+});
+
+test('routeTask passes advanced router options through to task-router', () => {
+    const registry = new AgentRegistry({ now: () => 60_000, maxStalenessMs: 2_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:stale-only',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 40_000
+    }), { capabilities: ['routing'] });
+
+    const task = buildTaskRequest({
+        id: '33333333-3333-4333-8333-333333333333',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route under degraded capacity',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 60_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 60_000,
+        enablePanicMode: true
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:stale-only');
+    assert.equal(routed.degraded, true);
+});
+
+test('routeTask respects outlier ejection metadata when detection is enabled', () => {
+    const registry = new AgentRegistry({ now: () => 80_000, maxStalenessMs: 10_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:healthy',
+        status: 'idle',
+        load: 0.25,
+        timestamp: 79_900
+    }), { capabilities: ['routing'] });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:ejected',
+        status: 'idle',
+        load: 0.05,
+        timestamp: 79_900
+    }), {
+        capabilities: ['routing'],
+        outlier: {
+            ejectedUntilMs: 100_000
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: '44444444-4444-4444-8444-444444444444',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route with resilience policy',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 80_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 80_000,
+        outlierDetection: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:healthy');
+    const ejected = routed.ranked.find((entry) => entry.agentId === 'agent:ejected');
+    assert.equal(ejected.reason, 'outlier_ejected');
+});
+
+test('ingestHeartbeat preserves normalized routing metadata for overload/slow-start policies', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:adaptive',
+        status: 'idle',
+        load: 0.25,
+        timestamp: 90_000
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 7.7,
+            maxInFlight: 12.9,
+            recoveredAtMs: 88_123.4
+        }
+    });
+
+    const agent = registry.getAgent('agent:adaptive');
+    assert.deepEqual(agent.routing, {
+        inFlight: 7,
+        maxInFlight: 12,
+        recoveredAtMs: 88_123.4
+    });
+});
+
+test('routeTask can enforce overload protection using routing metadata', () => {
+    const registry = new AgentRegistry({ now: () => 100_000, maxStalenessMs: 10_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:saturated',
+        status: 'idle',
+        load: 0.15,
+        timestamp: 99_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 5,
+            maxInFlight: 5
+        }
+    });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:available',
+        status: 'idle',
+        load: 0.35,
+        timestamp: 99_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 1,
+            maxInFlight: 5
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route overload-aware task',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 100_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 100_000,
+        overloadProtection: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:available');
+    const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated');
+    assert.equal(saturated.reason, 'concurrency_saturated');
+});
+
+test('ingestHeartbeat normalizes adaptive concurrency routing telemetry', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:adaptive-latency',
+        status: 'idle',
+        load: 0.1,
+        timestamp: 120_000
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 4.8,
+            concurrencyLimit: 12.2,
+            minRttMs: 30.4,
+            sampleRttMs: 80.1
+        }
+    });
+
+    const agent = registry.getAgent('agent:adaptive-latency');
+    assert.equal(agent.routing.inFlight, 4);
+    assert.equal(agent.routing.concurrencyLimit, 12);
+    assert.equal(agent.routing.minRttMs, 30.4);
+    assert.equal(agent.routing.sampleRttMs, 80.1);
+});
+
+test('ingestHeartbeat stores zone metadata for locality-aware routing', () => {
+    const registry = new AgentRegistry();
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:zone-aware',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 121_000
+    }), {
+        capabilities: ['routing'],
+        locality: {
+            zone: 'us-east-1a'
+        }
+    });
+
+    const agent = registry.getAgent('agent:zone-aware');
+    assert.equal(agent.zone, 'us-east-1a');
+});
+
+test('routeTask applies adaptive concurrency options end-to-end', () => {
+    const registry = new AgentRegistry({ now: () => 130_000, maxStalenessMs: 10_000 });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:saturated-adaptive',
+        status: 'idle',
+        load: 0.1,
+        timestamp: 129_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 6,
+            concurrencyLimit: 6
+        }
+    });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:healthy-adaptive',
+        status: 'busy',
+        load: 0.35,
+        timestamp: 129_900
+    }), {
+        capabilities: ['routing'],
+        routing: {
+            inFlight: 2,
+            concurrencyLimit: 6
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: 'bcbcbcbc-bcbc-4cbc-8cbc-bcbcbcbcbcbc',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route latency-sensitive request',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 130_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 130_000,
+        adaptiveConcurrency: {
+            enabled: true,
+            enforce: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:healthy-adaptive');
+    const saturated = routed.ranked.find((entry) => entry.agentId === 'agent:saturated-adaptive');
+    assert.equal(saturated.reason, 'adaptive_concurrency_limited');
+});
+
+test('routeTask supports strict locality with cluster fallback behavior', () => {
+    const registry = new AgentRegistry({ now: () => 140_000, maxStalenessMs: 10_000 });
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:remote-locality-a',
+        status: 'idle',
+        load: 0.2,
+        timestamp: 139_900
+    }), {
+        capabilities: ['routing'],
+        locality: {
+            zone: 'us-central-1b'
+        }
+    });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:remote-locality-b',
+        status: 'idle',
+        load: 0.1,
+        timestamp: 139_900
+    }), {
+        capabilities: ['routing'],
+        locality: {
+            zone: 'us-central-1c'
+        }
+    });
+
+    const task = buildTaskRequest({
+        id: 'cececece-cece-4ece-8ece-cececececece',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route with zone preference',
+        context: {
+            requiredCapabilities: ['routing'],
+            routing: {
+                clientZone: 'us-central-1a',
+                strictZoneAffinity: true
+            }
+        },
+        createdAt: 140_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 140_000,
+        locality: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:remote-locality-b');
+    assert.equal(routed.localityFallbackApplied, true);
+    assert.equal(routed.localityFallbackReason, 'strict_zone_affinity');
 });

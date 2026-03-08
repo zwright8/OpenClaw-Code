@@ -1,0 +1,105 @@
+# AGENTS.md
+
+## Verified Workflows (Repo Root)
+- `npm run lint` - run root automated refactor/lint pass (`scripts/auto-refactor.ts`).
+- `npm run typecheck` - typecheck root + `cognition-core` + `swarm-protocol`.
+- `npm run build` - runs root lint plus tests in both packages.
+- `npm run embeddings:route-corpus` - build embedding routing corpus artifacts.
+- `npm run capabilities:blueprint` - regenerate capability blueprint artifacts.
+- `npm run capabilities:audit` - run capability deployability audit.
+- `npm run skills:sync` - execute the 1000-skill lifecycle pipeline.
+- `npm run skills:build` - generate baseline 1000-skill artifacts.
+- `npm run skills:validate` - validate generated 1000-skill artifacts.
+- `npm run skills:test` - execute 1000-skill exercise checks.
+- `npm run skills:plan` - generate rollout planning artifacts.
+- `npm run skills:plan:validate` - validate rollout planning artifacts.
+- `npm run skills:orchestrate` - generate rollout orchestration artifacts.
+- `npm run skills:orchestrate:validate` - validate rollout orchestration artifacts.
+- `npm run skills:control` - generate rollout control artifacts.
+- `npm run skills:control:validate` - validate rollout control artifacts.
+- `npm run skills:optimize` - generate rollout optimization artifacts.
+- `npm run skills:optimize:validate` - validate rollout optimization artifacts.
+- `npm run skills:promote` - generate rollout promotion task artifacts.
+- `npm run skills:promote:validate` - validate rollout promotion artifacts.
+- `npm run skills:promote:control` - generate promotion control artifacts.
+- `npm run skills:promote:control:validate` - validate promotion control artifacts.
+- `npm run skills:promote:history` - generate promotion history artifacts.
+- `npm run skills:promote:history:validate` - validate promotion history artifacts.
+- `npm run skills:promote:policy-lab` - generate policy-lab promotion artifacts.
+- `npm run skills:promote:policy-lab:validate` - validate policy-lab promotion artifacts.
+- `npm run skills:promote:policy-canary` - generate policy-canary promotion artifacts.
+- `npm run skills:promote:policy-canary:validate` - validate policy-canary promotion artifacts.
+- `npm run skills:marketplace:build` - build marketplace skill packages (v1).
+- `npm run skills:marketplace:validate` - validate marketplace skill packages (v1).
+- `npm run skills:marketplace:analytics` - generate marketplace analytics artifacts.
+- `npm run skills:marketplace:release` - package marketplace release artifacts.
+- `npm run skills:marketplace:release:validate` - validate packaged marketplace release artifacts.
+- `npm run skills:marketplace:v2:build` - build marketplace skill packages v2.
+- `npm run skills:marketplace:v2:validate` - validate marketplace skill packages v2.
+- `npm run skills:marketplace:v2:demo` - run top-package demo for v2 outputs.
+- `npm run skills:marketplace:ship` - build/validate/package/validate/demo marketplace outputs.
+- `npm run skills:improve:10000` - generate improvement catalog for the 10k skill corpus.
+- `npm run skills:improve:10000:validate` - validate generated 10k-skill improvement artifacts.
+- `npm run skills:harden:profile` - build hardening/deployability profile.
+- `npm run skills:harden` - apply hardening and emit deployability summaries.
+- `npm run skills:tools:build` - build tool-shard skill artifacts.
+- `npm run skills:tools:validate` - validate tool-shard skill artifacts.
+- `npm run skills:build:10000` - generate the 10k skill corpus.
+- `npm run skills:materialize:10000` - materialize generated 10k skill outputs.
+
+## Verified Package Workflows
+- `npm --prefix cognition-core run test` - run cognition-core test suite.
+- `npm --prefix cognition-core run typecheck` - run cognition-core TypeScript type checks.
+- `npm --prefix cognition-core run build` - run cognition-core package build (`npm test`).
+- `npm --prefix cognition-core run analyze` - generate 7-day cognition analysis.
+- `npm --prefix cognition-core run analyze:quick` - generate 1-day cognition analysis.
+- `npm --prefix cognition-core run memory:guardrails` - generate memory guardrail reports.
+- `npm --prefix cognition-core run memory:backfill` - backfill memory guardrail reports.
+- `npm --prefix cognition-core run iterate:plan` - generate cognition iteration plan + task bundle artifacts.
+- `npm --prefix cognition-core run enqueue:tasks` - enqueue planned task bundles.
+- `npm --prefix cognition-core run dispatch:created` - dispatch newly created queued tasks.
+- `npm --prefix cognition-core run review:approvals` - process pending approval reviews.
+- `npm --prefix cognition-core run process:outbox` - process outbox tasks/events.
+- `npm --prefix cognition-core run worker:loop` - run persistent cognition worker loop.
+- `npm --prefix cognition-core run autonomous:run` - run autonomous cognition entrypoint.
+- `npm --prefix cognition-core run autopilot:loop` - run autopilot loop orchestration.
+- `npm --prefix cognition-core run build:full` - run the full cognition build pipeline.
+- `npm --prefix cognition-core run plan:tasks` - emit remediation task requests.
+- `npm --prefix cognition-core run plan:skills` - emit skill-growth task planning outputs.
+- `npm --prefix cognition-core run learn:loop` - run learning-loop replay outputs.
+- `npm --prefix cognition-core run graph` - rebuild cognition graph artifacts.
+- `npm --prefix swarm-protocol run test` - run full swarm-protocol test suite (`test:unit` + `test:legacy`).
+- `npm --prefix swarm-protocol run test:unit` - run swarm-protocol unit tests only.
+- `npm --prefix swarm-protocol run test:legacy` - run swarm-protocol legacy test harness.
+- `npm --prefix swarm-protocol run typecheck` - run swarm-protocol TypeScript type checks.
+- `npm --prefix swarm-protocol run build` - run swarm-protocol package build (`npm test`).
+- `npm --prefix swarm-protocol run demo:orchestrator` - run orchestrator demo flow.
+- `npm --prefix swarm-protocol run approval:queue` - export approval queue reports.
+- `npm --prefix swarm-protocol run benchmark:simulate` - run simulation benchmark scenario.
+- `npm --prefix swarm-protocol run ops` - run swarm operator tooling entrypoint.
+- `npm --prefix swarm-protocol run ops -- status` - inspect operator status.
+- `npm --prefix swarm-protocol run ops -- queue --limit 10` - inspect queued tasks with a bounded view.
+- `npm --prefix swarm-protocol run ops -- queue --approvals` - inspect approval-pending tasks only.
+- `npm --prefix swarm-protocol run ops -- tail --limit 20` - tail recent lifecycle events.
+- `npm --prefix swarm-protocol run ops -- audit-verify` - verify signed operator audit chain integrity.
+
+## TODO
+- Verified `9d022080de..bac40da690`: added root (`agent:*`, `artifacts:validate`, `skills:registry:*`, `skills:route`, `skills:run`) and `cognition-core` script entrypoints are now reflected above.
+- Verified `bac40da690..c52ffb61e3`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `345fccb4e9..1666d82e34`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `1666d82e34..3c6b201991`: no new root/`cognition-core`/`swarm-protocol` npm script deltas; added missing documented `swarm-protocol` `ops` entrypoint.
+- Verified `3c6b201991..e33650cf02`: no new root/`cognition-core`/`swarm-protocol` npm script deltas; docs update captured the missing `swarm-protocol` `ops` base command.
+- Verified `e33650cf02..0fd3da80e1`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+
+- Verified `0fd3da80e1..e5b7cf4c40`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `e5b7cf4c40..cc21e82acd`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `cc21e82acd..7b739137e9`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `7b739137e9..f2b5763dec`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `f2b5763dec..4ab4ec5eff`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `4ab4ec5eff..ef79dbfe21`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `0d7ded54a5..8f96958f0c`: restored `AGENTS.md` after deletion and refreshed command map for current root (`embeddings:route-corpus`, `skills:tools:*`) plus current `cognition-core` runtime/planning scripts.
+- Verified `8f96958f0c..ee246d6ce5`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `ee246d6ce5..8be485594f`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `8be485594f..881e23659d`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `881e23659d..ff5bf82ad4`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `ff5bf82ad4..1eb2323107`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.

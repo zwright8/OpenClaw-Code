@@ -179,3 +179,132 @@ test('throws HandshakeError on request/response id mismatch', async () => {
         }
     );
 });
+
+test('caps per-attempt timeout to remaining retry budget', async () => {
+    let calls = 0;
+    const durationsMs = [60, 35];
+    const transport = {
+        async sendAndWait(target, request) {
+            const delay = durationsMs[calls] ?? 35;
+            calls++;
+            await new Promise((resolve) => setTimeout(resolve, delay));
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    await assert.rejects(
+        () => performHandshake('agent:alpha', 'agent:beta', transport, {
+            retries: 2,
+            timeoutMs: 50,
+            retryBudgetMs: 70,
+            retryDelayMs: 1,
+            random: () => 1,
+            logger: createSilentLogger()
+        }),
+        (error) => {
+            assert.equal(error instanceof HandshakeError, true);
+            assert.equal(error.code, 'TIMEOUT');
+            return true;
+        }
+    );
+
+    assert.equal(calls, 2);
+});
+
+test('honors retryAfterMs on handshake rejection before retrying', async () => {
+    let calls = 0;
+    let firstAttemptAt = 0;
+    let secondAttemptAt = 0;
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) {
+                firstAttemptAt = Date.now();
+                return {
+                    kind: 'handshake_response',
+                    requestId: request.id,
+                    from: target,
+                    accepted: false,
+                    reason: 'rate_limited',
+                    retryAfterMs: 20,
+                    timestamp: Date.now()
+                };
+            }
+
+            secondAttemptAt = Date.now();
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 1,
+        retryDelayMs: 5,
+        retryBackoffMultiplier: 2,
+        maxRetryDelayMs: 100,
+        random: () => 1,
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 2);
+    assert.equal(calls, 2);
+    assert.ok(secondAttemptAt - firstAttemptAt >= 18);
+});
+
+test('retries transient transport status with jittered exponential backoff', async () => {
+    let calls = 0;
+    let firstAttemptAt = 0;
+    let secondAttemptAt = 0;
+    let thirdAttemptAt = 0;
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) firstAttemptAt = Date.now();
+            if (calls === 2) secondAttemptAt = Date.now();
+            if (calls <= 2) {
+                const error = new Error('Service unavailable') as Error & { status?: number };
+                error.status = 503;
+                throw error;
+            }
+
+            thirdAttemptAt = Date.now();
+
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 2,
+        retryDelayMs: 10,
+        retryBackoffMultiplier: 2,
+        maxRetryDelayMs: 100,
+        random: () => 1,
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(calls, 3);
+    assert.ok(secondAttemptAt - firstAttemptAt >= 9);
+    assert.ok(thirdAttemptAt - secondAttemptAt >= 19);
+});

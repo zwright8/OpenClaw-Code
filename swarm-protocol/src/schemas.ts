@@ -77,6 +77,7 @@ export const HandshakeResponse = z.object({
     supportedProtocols: z.array(ProtocolVersion).optional().describe('Remote supported protocol versions (for negotiation fallback)'),
     capabilities: z.array(z.string()).optional().describe('Capabilities exposed by remote peer'),
     reason: z.string().optional().describe('Optional human-readable rejection reason'),
+    retryAfterMs: z.number().int().positive().optional().describe('Optional retry hint for transient rejection'),
     timestamp: Timestamp
 });
 
