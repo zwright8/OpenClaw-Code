@@ -439,3 +439,44 @@ test('routeTask supports strict locality with cluster fallback behavior', () => 
     assert.equal(routed.localityFallbackApplied, true);
     assert.equal(routed.localityFallbackReason, 'strict_zone_affinity');
 });
+
+test('routeTask applies admission control shedding options end-to-end', () => {
+    const registry = new AgentRegistry({ now: () => 150_000, maxStalenessMs: 10_000 });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:busy-a',
+        status: 'busy',
+        load: 0.96,
+        timestamp: 149_900
+    }), { capabilities: ['routing'] });
+
+    registry.ingestHeartbeat(heartbeat({
+        from: 'agent:busy-b',
+        status: 'busy',
+        load: 0.93,
+        timestamp: 149_900
+    }), { capabilities: ['routing'] });
+
+    const task = buildTaskRequest({
+        id: 'ddddcccc-cccc-4ccc-8ccc-cccccccccccc',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route best-effort async refresh',
+        priority: 'low',
+        context: { requiredCapabilities: ['routing'] },
+        createdAt: 150_000
+    });
+
+    const routed = registry.routeTask(task, {
+        nowMs: 150_000,
+        admissionControl: {
+            enabled: true,
+            shedPriorities: ['low'],
+            averageLoadThreshold: 0.8
+        }
+    });
+
+    assert.equal(routed.routed, false);
+    assert.equal(routed.selectedAgentId, null);
+    assert.equal(routed.admissionControl.shed, true);
+});

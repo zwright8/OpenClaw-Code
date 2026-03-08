@@ -23,7 +23,11 @@ const DEFAULT_HEDGE_SCORE_DELTA = 12;
 const DEFAULT_HEDGE_MAX_CANDIDATES = 1;
 const DEFAULT_HEDGE_MIN_CANDIDATE_SCORE = 40;
 const DEFAULT_HEDGE_MAX_CANDIDATE_LOAD = 0.85;
+const DEFAULT_ADMISSION_AVERAGE_LOAD_THRESHOLD = 0.8;
+const DEFAULT_ADMISSION_HEALTHY_RATIO_THRESHOLD = 0.4;
+const DEFAULT_ADMISSION_SATURATION_RATIO_THRESHOLD = 0.5;
 const LOCALITY_FALLBACK_MODES = new Set(['cluster', 'strict']);
+const VALID_TASK_PRIORITIES = new Set(['low', 'normal', 'high', 'critical']);
 
 function normalizeCapabilities(value) {
     if (!Array.isArray(value)) return [];
@@ -222,6 +226,41 @@ function normalizeHedgingOptions(taskRequest, options = {}) {
         ),
         requireDifferentZone: configured.requireDifferentZone === true || routing.hedgeDifferentZone === true,
         priorities
+    };
+}
+
+function normalizeAdmissionControlOptions(taskRequest, options = {}) {
+    const routing = taskRequest?.context?.routing && typeof taskRequest.context.routing === 'object'
+        ? taskRequest.context.routing
+        : {};
+    const configured = options?.admissionControl && typeof options.admissionControl === 'object'
+        ? options.admissionControl
+        : {};
+
+    const shedPriorities = normalizeStringList(
+        configured.shedPriorities
+        ?? routing.shedPriorities
+        ?? ['low']
+    ).filter((priority) => VALID_TASK_PRIORITIES.has(priority));
+
+    return {
+        enabled: configured.enabled === true || routing.enableAdmissionControl === true,
+        shedPriorities,
+        averageLoadThreshold: Math.max(
+            0,
+            Math.min(1, Number(configured.averageLoadThreshold ?? routing.averageLoadThreshold ?? DEFAULT_ADMISSION_AVERAGE_LOAD_THRESHOLD))
+        ),
+        healthyRatioThreshold: Math.max(
+            0,
+            Math.min(1, Number(configured.healthyRatioThreshold ?? routing.healthyRatioThreshold ?? DEFAULT_ADMISSION_HEALTHY_RATIO_THRESHOLD))
+        ),
+        saturationRatioThreshold: Math.max(
+            0,
+            Math.min(
+                1,
+                Number(configured.saturationRatioThreshold ?? routing.saturationRatioThreshold ?? DEFAULT_ADMISSION_SATURATION_RATIO_THRESHOLD)
+            )
+        )
     };
 }
 
@@ -463,6 +502,42 @@ function buildHedgePlan(taskRequest, ranked, selectedAgentId, options = {}) {
         enabled: true,
         delayMs: hedging.delayMs,
         candidates
+    };
+}
+
+function evaluateAdmissionPressure(ranked = [], options = {}) {
+    const totalCandidates = ranked.filter((item) => typeof item.agentId === 'string' && item.agentId.trim()).length;
+    if (totalCandidates === 0) {
+        return {
+            overloaded: false,
+            totalCandidates: 0,
+            healthyCandidates: 0,
+            healthyRatio: 0,
+            averageLoad: 0,
+            saturationRatio: 0
+        };
+    }
+
+    const healthyCandidates = ranked.filter((item) => item.eligible && typeof item.agentId === 'string' && item.agentId.trim()).length;
+    const healthyRatio = healthyCandidates / totalCandidates;
+    const totalLoad = ranked
+        .filter((item) => typeof item.agentId === 'string' && item.agentId.trim())
+        .reduce((sum, item) => sum + clampLoad(item.load, 0.5), 0);
+    const averageLoad = totalLoad / totalCandidates;
+    const saturationSignals = ranked.filter((item) => item.reason === 'concurrency_saturated' || item.reason === 'adaptive_concurrency_limited').length;
+    const saturationRatio = saturationSignals / totalCandidates;
+
+    const overloaded = averageLoad >= options.averageLoadThreshold
+        || healthyRatio <= options.healthyRatioThreshold
+        || saturationRatio >= options.saturationRatioThreshold;
+
+    return {
+        overloaded,
+        totalCandidates,
+        healthyCandidates,
+        healthyRatio: Number(healthyRatio.toFixed(4)),
+        averageLoad: Number(averageLoad.toFixed(4)),
+        saturationRatio: Number(saturationRatio.toFixed(4))
     };
 }
 
@@ -730,6 +805,7 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
     const taskRequest = ensureTaskRequest(taskRequestPayload);
     const selection = selectBestAgentForTask(taskRequest, agents, options);
     const hedgePlan = buildHedgePlan(taskRequest, selection.ranked, selection.selectedAgentId, options);
+    const admissionControl = normalizeAdmissionControlOptions(taskRequest, options);
 
     const ranked = selection.ranked;
     const outlierActions = ranked
@@ -740,6 +816,31 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
             suggestedEjectedUntilMs: item.outlier.suggestedEjectedUntilMs,
             nextEjectionMs: item.outlier.nextEjectionMs
         }));
+
+    if (admissionControl.enabled) {
+        const taskPriority = normalizeString(taskRequest?.priority) || 'normal';
+        const pressure = evaluateAdmissionPressure(ranked, admissionControl);
+        if (pressure.overloaded && admissionControl.shedPriorities.includes(taskPriority)) {
+            return {
+                routed: false,
+                taskRequest,
+                selectedAgentId: null,
+                ranked,
+                localityFallbackApplied: selection.localityFallbackApplied,
+                localityFallbackReason: selection.localityFallbackReason,
+                ...(outlierActions.length > 0 ? { outlierActions } : {}),
+                ...(hedgePlan ? { hedgePlan } : {}),
+                admissionControl: {
+                    enabled: true,
+                    shed: true,
+                    reason: 'priority_shed_under_overload',
+                    taskPriority,
+                    shedPriorities: admissionControl.shedPriorities,
+                    pressure
+                }
+            };
+        }
+    }
 
     if (!selection.selectedAgentId) {
         const totalCandidates = ranked.filter((item) => typeof item.agentId === 'string' && item.agentId.trim()).length;

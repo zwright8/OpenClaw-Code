@@ -705,3 +705,104 @@ test('hedging plan is suppressed for normal-priority tasks by default', () => {
     assert.equal(routed.selectedAgentId, 'agent:primary');
     assert.equal(routed.hedgePlan, undefined);
 });
+
+test('admission control sheds low-priority tasks during overload pressure', () => {
+    const task = buildTaskRequest({
+        id: '9999ffff-ffff-4fff-8fff-ffffffffffff',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Run low-priority background enrichment',
+        priority: 'low',
+        context: {
+            requiredCapabilities: ['routing']
+        },
+        createdAt: 180_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:busy-a',
+            status: 'busy',
+            load: 0.97,
+            capabilities: ['routing'],
+            timestamp: 180_000,
+            routing: {
+                inFlight: 12,
+                concurrencyLimit: 12
+            }
+        },
+        {
+            id: 'agent:busy-b',
+            status: 'busy',
+            load: 0.95,
+            capabilities: ['routing'],
+            timestamp: 180_000,
+            routing: {
+                inFlight: 11,
+                concurrencyLimit: 11
+            }
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 180_001,
+        adaptiveConcurrency: {
+            enabled: true,
+            enforce: true
+        },
+        admissionControl: {
+            enabled: true,
+            shedPriorities: ['low'],
+            averageLoadThreshold: 0.8
+        }
+    });
+
+    assert.equal(routed.routed, false);
+    assert.equal(routed.selectedAgentId, null);
+    assert.equal(routed.admissionControl.shed, true);
+    assert.equal(routed.admissionControl.reason, 'priority_shed_under_overload');
+});
+
+test('admission control keeps routing critical tasks under the same overload', () => {
+    const task = buildTaskRequest({
+        id: 'aaaaeeee-eeee-4eee-8eee-eeeeeeeeeeee',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Handle critical incident workflow',
+        priority: 'critical',
+        context: {
+            requiredCapabilities: ['routing']
+        },
+        createdAt: 181_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:busy-a',
+            status: 'busy',
+            load: 0.9,
+            capabilities: ['routing'],
+            timestamp: 181_000
+        },
+        {
+            id: 'agent:busy-b',
+            status: 'busy',
+            load: 0.88,
+            capabilities: ['routing'],
+            timestamp: 181_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 181_001,
+        admissionControl: {
+            enabled: true,
+            shedPriorities: ['low', 'normal'],
+            averageLoadThreshold: 0.8
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(typeof routed.selectedAgentId, 'string');
+    assert.equal(routed.admissionControl, undefined);
+});
