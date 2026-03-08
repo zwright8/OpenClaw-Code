@@ -266,6 +266,51 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     assert.equal(sent.length, 2);
 });
 
+test('retry token bucket delays scheduling when tokens are exhausted', async () => {
+    const clock = createClock(12_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 2,
+        retryDelayMs: 5,
+        retryTokenBucketCapacity: 1,
+        retryTokenRefillPerSecond: 0.5,
+        retryTokenCost: 1
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-throttle',
+        task: 'Exercise retry throttle scheduling'
+    });
+
+    clock.set(12_025);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 12_030);
+
+    clock.set(12_030);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.retried, 1);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.attempts, 2);
+
+    clock.set(12_055);
+    const pass3 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass3.scheduledRetries, 1);
+    assert.equal(current.status, 'retry_scheduled');
+
+    const lastEvent = current.history[current.history.length - 1];
+    assert.equal(lastEvent.retryTokenGranted, false);
+    assert.ok(lastEvent.retryTokenRecoveryDelayMs >= 1_900);
+    assert.equal(current.nextRetryAt, clock.now() + lastEvent.retryDelayMs);
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({
@@ -317,6 +362,29 @@ test('helper builders emit schema-valid messages', () => {
     assert.equal(request.kind, 'task_request');
     assert.equal(receipt.kind, 'task_receipt');
     assert.equal(result.kind, 'task_result');
+});
+
+test('metrics expose retry token bucket state', async () => {
+    const clock = createClock(20_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        retryTokenBucketCapacity: 3,
+        retryTokenRefillPerSecond: 2,
+        retryTokenCost: 1.5
+    });
+
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-metrics',
+        task: 'Inspect retry metrics'
+    });
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.tokenBucket.capacity, 3);
+    assert.equal(metrics.retry.tokenBucket.refillPerSecond, 2);
+    assert.equal(metrics.retry.tokenBucket.tokenCost, 1.5);
+    assert.equal(metrics.retry.tokenBucket.tokensAvailable, 3);
 });
 
 test('dispatchTask can resolve target through routeTask callback', async () => {

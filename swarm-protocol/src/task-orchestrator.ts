@@ -51,6 +51,12 @@ function clampNonNegativeNumber(value, fallback) {
         : fallback;
 }
 
+function clampPositiveNumber(value, fallback) {
+    return Number.isFinite(value) && value > 0
+        ? Number(value)
+        : fallback;
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -139,6 +145,9 @@ export class TaskOrchestrator {
         retryJitter = 'none',
         maxRetryDelayMs = 30_000,
         maxRetryHintMs = null,
+        retryTokenBucketCapacity = 32,
+        retryTokenRefillPerSecond = 4,
+        retryTokenCost = 1,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -182,6 +191,11 @@ export class TaskOrchestrator {
             this.retryDelayMs,
             clampNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs)
         );
+        this.retryTokenBucketCapacity = clampPositiveNumber(retryTokenBucketCapacity, 32);
+        this.retryTokenRefillPerSecond = clampPositiveNumber(retryTokenRefillPerSecond, 4);
+        this.retryTokenCost = clampPositiveNumber(retryTokenCost, 1);
+        this.retryTokens = this.retryTokenBucketCapacity;
+        this.retryTokenLastRefillAt = safeNow(this.now);
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
@@ -340,6 +354,45 @@ export class TaskOrchestrator {
         return Math.max(0, Math.floor(delayMs));
     }
 
+    _refillRetryTokens(nowMs) {
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        if (!Number.isFinite(this.retryTokenLastRefillAt)) {
+            this.retryTokenLastRefillAt = at;
+            return;
+        }
+
+        const elapsedMs = Math.max(0, at - this.retryTokenLastRefillAt);
+        if (elapsedMs <= 0) return;
+
+        const refill = (elapsedMs / 1_000) * this.retryTokenRefillPerSecond;
+        if (refill > 0) {
+            this.retryTokens = Math.min(
+                this.retryTokenBucketCapacity,
+                Math.max(0, this.retryTokens + refill)
+            );
+        }
+        this.retryTokenLastRefillAt = at;
+    }
+
+    _consumeRetryToken(nowMs, tokenCost = this.retryTokenCost) {
+        const cost = clampPositiveNumber(tokenCost, this.retryTokenCost);
+        this._refillRetryTokens(nowMs);
+        if (this.retryTokens + Number.EPSILON < cost) {
+            return false;
+        }
+        this.retryTokens = Math.max(0, this.retryTokens - cost);
+        return true;
+    }
+
+    _retryTokenRecoveryDelayMs(nowMs, tokenCost = this.retryTokenCost) {
+        const cost = clampPositiveNumber(tokenCost, this.retryTokenCost);
+        this._refillRetryTokens(nowMs);
+        if (this.retryTokens + Number.EPSILON >= cost) return 0;
+        const deficit = cost - this.retryTokens;
+        const seconds = deficit / this.retryTokenRefillPerSecond;
+        return Math.max(0, Math.ceil(seconds * 1_000));
+    }
+
     _scheduleRetry(record, nowMs, {
         reason = 'retry_scheduled',
         event = 'retry_scheduled',
@@ -347,7 +400,12 @@ export class TaskOrchestrator {
         auditEvent = 'task_retry_scheduled',
         metadata = null
     } = {}) {
-        const retryDelayMs = this._resolveRetryDelayMs(record, hintMs);
+        const baseRetryDelayMs = this._resolveRetryDelayMs(record, hintMs);
+        const tokenGranted = this._consumeRetryToken(nowMs);
+        const tokenRecoveryDelayMs = tokenGranted ? 0 : this._retryTokenRecoveryDelayMs(nowMs);
+        const retryDelayMs = tokenGranted
+            ? baseRetryDelayMs
+            : Math.max(baseRetryDelayMs, tokenRecoveryDelayMs);
         const nextRetryAt = nowMs + retryDelayMs;
 
         record.status = 'retry_scheduled';
@@ -359,6 +417,10 @@ export class TaskOrchestrator {
             reason,
             nextRetryAt,
             retryDelayMs,
+            retryBaseDelayMs: baseRetryDelayMs,
+            retryTokenGranted: tokenGranted,
+            retryTokenRecoveryDelayMs: tokenRecoveryDelayMs,
+            retryTokensAvailable: Number(this.retryTokens.toFixed(3)),
             retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
             ...(metadata && typeof metadata === 'object' ? metadata : {})
         });
@@ -369,6 +431,10 @@ export class TaskOrchestrator {
             reason,
             nextRetryAt,
             retryDelayMs,
+            retryBaseDelayMs: baseRetryDelayMs,
+            retryTokenGranted: tokenGranted,
+            retryTokenRecoveryDelayMs: tokenRecoveryDelayMs,
+            retryTokensAvailable: Number(this.retryTokens.toFixed(3)),
             retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
             ...(metadata && typeof metadata === 'object' ? metadata : {})
         }, nowMs);
@@ -907,7 +973,13 @@ export class TaskOrchestrator {
                 strategy: this.retryBackoffStrategy,
                 jitter: this.retryJitter,
                 maxDelayMs: this.maxRetryDelayMs,
-                maxHintMs: this.maxRetryHintMs
+                maxHintMs: this.maxRetryHintMs,
+                tokenBucket: {
+                    capacity: this.retryTokenBucketCapacity,
+                    refillPerSecond: this.retryTokenRefillPerSecond,
+                    tokenCost: this.retryTokenCost,
+                    tokensAvailable: Number(this.retryTokens.toFixed(3))
+                }
             }
         };
 
