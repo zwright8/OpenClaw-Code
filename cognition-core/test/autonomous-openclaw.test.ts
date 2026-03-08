@@ -5,6 +5,7 @@ import os from 'os';
 import path from 'path';
 import {
     buildAutonomousBatchPlan,
+    computeFailureCooldownWaves,
     loadCapabilityCatalog,
     loadExternalSkillCatalog,
     loadAutonomousState,
@@ -90,6 +91,8 @@ test('buildAutonomousBatchPlan deprioritizes cooldown entries and emits reliabil
         capabilitiesPerWave: 1,
         failureStreakThreshold: 2,
         failureCooldownWaves: 3,
+        failureCooldownBackoffMultiplier: 2,
+        failureCooldownMaxWaves: 10,
         waveIndex: 4,
         nowFactory: () => 200_000
     });
@@ -99,6 +102,38 @@ test('buildAutonomousBatchPlan deprioritizes cooldown entries and emits reliabil
     assert.equal(skillTask?.context?.autonomy?.reliability?.failureStreak, 0);
     assert.equal(skillTask?.context?.autonomy?.reliability?.failureStreakThreshold, 2);
     assert.equal(skillTask?.context?.autonomy?.reliability?.failureCooldownWaves, 3);
+    assert.equal(skillTask?.context?.autonomy?.reliability?.failureCooldownBackoffMultiplier, 2);
+    assert.equal(skillTask?.context?.autonomy?.reliability?.failureCooldownMaxWaves, 10);
+});
+
+test('computeFailureCooldownWaves scales exponentially and honors caps', () => {
+    assert.equal(computeFailureCooldownWaves({
+        failureStreak: 1,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 3
+    }), 0);
+
+    assert.equal(computeFailureCooldownWaves({
+        failureStreak: 2,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 3,
+        failureCooldownBackoffMultiplier: 2
+    }), 3);
+
+    assert.equal(computeFailureCooldownWaves({
+        failureStreak: 4,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 3,
+        failureCooldownBackoffMultiplier: 2
+    }), 12);
+
+    assert.equal(computeFailureCooldownWaves({
+        failureStreak: 6,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 3,
+        failureCooldownBackoffMultiplier: 2,
+        failureCooldownMaxWaves: 16
+    }), 16);
 });
 
 test('buildAutonomousBatchPlan backfills from cooldown entries when no alternatives exist', () => {

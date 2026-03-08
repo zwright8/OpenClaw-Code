@@ -20,6 +20,10 @@ Options:
   --waves <n>                  Number of autonomous waves to run (default: 1)
   --skills-per-wave <n>        Skill tasks to plan per wave (default: 25)
   --capabilities-per-wave <n>  Capability tasks to plan per wave (default: 12)
+  --failure-streak-threshold <n> Failure streak count before cooldown starts (default: 2)
+  --failure-cooldown-waves <n> Base cooldown waves once threshold is reached (default: 2)
+  --failure-cooldown-backoff-multiplier <n> Exponential cooldown multiplier after threshold (default: 2)
+  --failure-cooldown-max-waves <n> Max cooldown waves cap (default: 16)
   --dispatch-limit <n>         Dispatch limit per worker cycle (default: 100)
   --worker-cycles <n>          Max worker cycles per wave (default: 12)
   --worker-idle-cycles <n>     Idle cycles before worker stop (default: 2)
@@ -84,6 +88,10 @@ function parseArgs(argv) {
         waves: 1,
         skillsPerWave: 25,
         capabilitiesPerWave: 12,
+        failureStreakThreshold: 2,
+        failureCooldownWaves: 2,
+        failureCooldownBackoffMultiplier: 2,
+        failureCooldownMaxWaves: 16,
         dispatchLimit: 100,
         workerCycles: 12,
         workerIdleCycles: 2,
@@ -174,6 +182,30 @@ function parseArgs(argv) {
         }
         if (token === '--dispatch-limit') {
             options.dispatchLimit = parsePositiveInt(value, '--dispatch-limit');
+            i++;
+            continue;
+        }
+        if (token === '--failure-streak-threshold') {
+            options.failureStreakThreshold = parsePositiveInt(value, '--failure-streak-threshold');
+            i++;
+            continue;
+        }
+        if (token === '--failure-cooldown-waves') {
+            options.failureCooldownWaves = parsePositiveInt(value, '--failure-cooldown-waves', true);
+            i++;
+            continue;
+        }
+        if (token === '--failure-cooldown-backoff-multiplier') {
+            const parsed = Number(value);
+            if (!Number.isFinite(parsed) || parsed <= 0) {
+                throw new Error('--failure-cooldown-backoff-multiplier must be a number > 0');
+            }
+            options.failureCooldownBackoffMultiplier = parsed;
+            i++;
+            continue;
+        }
+        if (token === '--failure-cooldown-max-waves') {
+            options.failureCooldownMaxWaves = parsePositiveInt(value, '--failure-cooldown-max-waves', true);
             i++;
             continue;
         }
@@ -277,6 +309,10 @@ function printSummary(report) {
             waves: options.waves,
             skillsPerWave: options.skillsPerWave,
             capabilitiesPerWave: options.capabilitiesPerWave,
+            failureStreakThreshold: options.failureStreakThreshold,
+            failureCooldownWaves: options.failureCooldownWaves,
+            failureCooldownBackoffMultiplier: options.failureCooldownBackoffMultiplier,
+            failureCooldownMaxWaves: options.failureCooldownMaxWaves,
             dispatchLimit: options.dispatchLimit,
             workerCycles: options.workerCycles,
             workerIdleCycles: options.workerIdleCycles,

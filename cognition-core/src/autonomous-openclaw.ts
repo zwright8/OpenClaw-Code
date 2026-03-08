@@ -25,6 +25,8 @@ const SUCCESS_STATUSES = new Set([
 
 const DEFAULT_FAILURE_STREAK_THRESHOLD = 2;
 const DEFAULT_FAILURE_COOLDOWN_WAVES = 2;
+const DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER = 2;
+const DEFAULT_FAILURE_COOLDOWN_MAX_WAVES = 16;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -34,6 +36,12 @@ function safeNow(nowFactory = Date.now) {
 function parsePositiveInt(raw, fallback = 1) {
     const value = Number(raw);
     if (!Number.isInteger(value) || value <= 0) return fallback;
+    return value;
+}
+
+function parsePositiveNumber(raw, fallback = 1) {
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value <= 0) return fallback;
     return value;
 }
 
@@ -428,6 +436,33 @@ function selectCatalogSlice({
     };
 }
 
+export function computeFailureCooldownWaves({
+    failureStreak = 0,
+    failureStreakThreshold = DEFAULT_FAILURE_STREAK_THRESHOLD,
+    failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
+    failureCooldownBackoffMultiplier = DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER,
+    failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
+} = {}) {
+    const streak = parseNonNegativeInt(failureStreak, 0);
+    const threshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
+    const baseCooldown = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
+    const backoffMultiplier = parsePositiveNumber(
+        failureCooldownBackoffMultiplier,
+        DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER
+    );
+    const maxCooldown = parseNonNegativeInt(failureCooldownMaxWaves, DEFAULT_FAILURE_COOLDOWN_MAX_WAVES);
+
+    if (baseCooldown <= 0 || streak < threshold) {
+        return 0;
+    }
+
+    const extraFailures = Math.max(0, streak - threshold);
+    const scaled = Math.round(baseCooldown * Math.pow(backoffMultiplier, extraFailures));
+    const bounded = Math.max(baseCooldown, scaled);
+    if (maxCooldown <= 0) return bounded;
+    return Math.min(maxCooldown, bounded);
+}
+
 export function buildAutonomousBatchPlan({
     skillCatalog,
     capabilityCatalog,
@@ -436,6 +471,8 @@ export function buildAutonomousBatchPlan({
     capabilitiesPerWave = 10,
     failureStreakThreshold = DEFAULT_FAILURE_STREAK_THRESHOLD,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
+    failureCooldownBackoffMultiplier = DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER,
+    failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES,
     skillCatalogSource = 'manifest',
     waveIndex = 0,
     nowFactory = Date.now
@@ -445,6 +482,14 @@ export function buildAutonomousBatchPlan({
     const currentRunCount = normalizedState.runCount + 1;
     const normalizedFailureStreakThreshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
     const normalizedFailureCooldownWaves = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
+    const normalizedFailureCooldownBackoffMultiplier = parsePositiveNumber(
+        failureCooldownBackoffMultiplier,
+        DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER
+    );
+    const normalizedFailureCooldownMaxWaves = parseNonNegativeInt(
+        failureCooldownMaxWaves,
+        DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
+    );
 
     const skillSuccessfulSet = new Set(normalizedState.successfulSkillIds.map((value) => String(value)));
     const capabilitySuccessfulSet = new Set(normalizedState.successfulCapabilityIds.map((value) => String(value)));
@@ -491,7 +536,9 @@ export function buildAutonomousBatchPlan({
                         failureStreak,
                         cooldownUntilRun,
                         failureStreakThreshold: normalizedFailureStreakThreshold,
-                        failureCooldownWaves: normalizedFailureCooldownWaves
+                        failureCooldownWaves: normalizedFailureCooldownWaves,
+                        failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
+                        failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
                     }
                 },
                 skillId: entry.id,
@@ -528,7 +575,9 @@ export function buildAutonomousBatchPlan({
                         failureStreak,
                         cooldownUntilRun,
                         failureStreakThreshold: normalizedFailureStreakThreshold,
-                        failureCooldownWaves: normalizedFailureCooldownWaves
+                        failureCooldownWaves: normalizedFailureCooldownWaves,
+                        failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
+                        failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
                     }
                 },
                 capabilityId,
@@ -618,12 +667,22 @@ function updateReliabilityForWave({
     previousCooldownUntilRunById,
     runCount,
     failureStreakThreshold,
-    failureCooldownWaves
+    failureCooldownWaves,
+    failureCooldownBackoffMultiplier,
+    failureCooldownMaxWaves
 }) {
     const nextFailureStreakById = { ...normalizeNonNegativeRecord(previousFailureStreakById) };
     const nextCooldownUntilRunById = { ...normalizeNonNegativeRecord(previousCooldownUntilRunById) };
     const normalizedThreshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
     const normalizedCooldownWaves = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
+    const normalizedCooldownBackoffMultiplier = parsePositiveNumber(
+        failureCooldownBackoffMultiplier,
+        DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER
+    );
+    const normalizedCooldownMaxWaves = parseNonNegativeInt(
+        failureCooldownMaxWaves,
+        DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
+    );
 
     for (const rawId of selectedIds) {
         const id = String(rawId);
@@ -638,8 +697,15 @@ function updateReliabilityForWave({
         if (failedSet.has(id)) {
             const nextFailureStreak = parseNonNegativeInt(nextFailureStreakById[id], 0) + 1;
             nextFailureStreakById[id] = nextFailureStreak;
-            if (nextFailureStreak >= normalizedThreshold && normalizedCooldownWaves > 0) {
-                nextCooldownUntilRunById[id] = runCount + normalizedCooldownWaves;
+            const cooldownWaves = computeFailureCooldownWaves({
+                failureStreak: nextFailureStreak,
+                failureStreakThreshold: normalizedThreshold,
+                failureCooldownWaves: normalizedCooldownWaves,
+                failureCooldownBackoffMultiplier: normalizedCooldownBackoffMultiplier,
+                failureCooldownMaxWaves: normalizedCooldownMaxWaves
+            });
+            if (cooldownWaves > 0) {
+                nextCooldownUntilRunById[id] = runCount + cooldownWaves;
             }
         }
     }
@@ -747,6 +813,8 @@ export async function runAutonomousOpenClaw({
     capabilitiesPerWave = 12,
     failureStreakThreshold = DEFAULT_FAILURE_STREAK_THRESHOLD,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
+    failureCooldownBackoffMultiplier = DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER,
+    failureCooldownMaxWaves = DEFAULT_FAILURE_COOLDOWN_MAX_WAVES,
     dispatchLimit = 100,
     workerCycles = 12,
     workerIdleCycles = 2,
@@ -784,6 +852,14 @@ export async function runAutonomousOpenClaw({
     const normalizedCapabilitiesPerWave = parseNonNegativeInt(capabilitiesPerWave, 0);
     const normalizedFailureStreakThreshold = Math.max(1, parsePositiveInt(failureStreakThreshold, DEFAULT_FAILURE_STREAK_THRESHOLD));
     const normalizedFailureCooldownWaves = parseNonNegativeInt(failureCooldownWaves, DEFAULT_FAILURE_COOLDOWN_WAVES);
+    const normalizedFailureCooldownBackoffMultiplier = parsePositiveNumber(
+        failureCooldownBackoffMultiplier,
+        DEFAULT_FAILURE_COOLDOWN_BACKOFF_MULTIPLIER
+    );
+    const normalizedFailureCooldownMaxWaves = parseNonNegativeInt(
+        failureCooldownMaxWaves,
+        DEFAULT_FAILURE_COOLDOWN_MAX_WAVES
+    );
 
     const skillCatalogSource = loadSkillCatalogSource({
         repoRoot: resolvedRepoRoot,
@@ -820,6 +896,8 @@ export async function runAutonomousOpenClaw({
             capabilitiesPerWave: normalizedCapabilitiesPerWave,
             failureStreakThreshold: normalizedFailureStreakThreshold,
             failureCooldownWaves: normalizedFailureCooldownWaves,
+            failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
+            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
             skillCatalogSource: skillCatalogSource.source,
             waveIndex: state.runCount + 1,
             nowFactory
@@ -879,7 +957,9 @@ export async function runAutonomousOpenClaw({
             previousCooldownUntilRunById: state.skillCooldownUntilRunById,
             runCount: nextRunCount,
             failureStreakThreshold: normalizedFailureStreakThreshold,
-            failureCooldownWaves: normalizedFailureCooldownWaves
+            failureCooldownWaves: normalizedFailureCooldownWaves,
+            failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
+            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
         });
         const capabilityOutcome = updateReliabilityForWave({
             selectedIds: plan.selection.capabilityIds,
@@ -889,7 +969,9 @@ export async function runAutonomousOpenClaw({
             previousCooldownUntilRunById: state.capabilityCooldownUntilRunById,
             runCount: nextRunCount,
             failureStreakThreshold: normalizedFailureStreakThreshold,
-            failureCooldownWaves: normalizedFailureCooldownWaves
+            failureCooldownWaves: normalizedFailureCooldownWaves,
+            failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
+            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves
         });
 
         state = normalizeState({
@@ -986,6 +1068,8 @@ export async function runAutonomousOpenClaw({
             capabilitiesPerWave: normalizedCapabilitiesPerWave,
             failureStreakThreshold: normalizedFailureStreakThreshold,
             failureCooldownWaves: normalizedFailureCooldownWaves,
+            failureCooldownBackoffMultiplier: normalizedFailureCooldownBackoffMultiplier,
+            failureCooldownMaxWaves: normalizedFailureCooldownMaxWaves,
             dispatchLimit: parsePositiveInt(dispatchLimit, 100),
             workerCycles: parsePositiveInt(workerCycles, 12),
             workerIdleCycles: parsePositiveInt(workerIdleCycles, 2),
