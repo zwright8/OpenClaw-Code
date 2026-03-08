@@ -181,6 +181,92 @@ test('transient rejected receipt schedules retry and honors retry_after hint', a
     assert.equal(sent.length, 2);
 });
 
+test('transient rejection honors Retry-After HTTP-date hints', async () => {
+    const clock = createClock(1_700_000_000_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-http-date',
+        task: 'Respect retry-after dates'
+    });
+
+    const retryAt = new Date(clock.now() + 8_000).toUTCString();
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-http-date',
+        accepted: false,
+        reason: `service_unavailable Retry-After: ${retryAt}`,
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 8_000);
+});
+
+test('transient rejection honors x-ratelimit-reset epoch hints', async () => {
+    const clock = createClock(1_700_000_010_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-epoch-reset',
+        task: 'Respect reset epoch'
+    });
+
+    const resetEpochSeconds = Math.floor((clock.now() + 5_000) / 1_000);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-epoch-reset',
+        accepted: false,
+        reason: `rate_limited x-ratelimit-reset=${resetEpochSeconds}`,
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 5_000);
+});
+
+test('transient rejection honors ratelimit-reset delta-second hints', async () => {
+    const clock = createClock(1_700_000_020_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-delta-reset',
+        task: 'Respect reset delta'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-delta-reset',
+        accepted: false,
+        reason: 'rate_limited ratelimit-reset=6',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 6_000);
+});
+
 test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
     const clock = createClock(9_000);
     let sendCount = 0;

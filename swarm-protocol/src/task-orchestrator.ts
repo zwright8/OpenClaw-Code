@@ -800,13 +800,44 @@ export class TaskOrchestrator {
             return null;
         }
 
-        const retryAfterMatch = reason.match(
-            /\b(?:retry[-_\s]?after|x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]?\s*(\d{1,10})\b/i
+        const nowMs = safeNow(this.now);
+        const retryAfterDelayMatch = reason.match(
+            /\bretry[-_\s]?after\b\s*[:=]?\s*(\d{1,10})\b/i
         );
-        if (retryAfterMatch) {
-            const seconds = Number(retryAfterMatch[1]);
+        if (retryAfterDelayMatch) {
+            const seconds = Number(retryAfterDelayMatch[1]);
             if (Number.isFinite(seconds) && seconds >= 0) {
                 return seconds * 1_000;
+            }
+        }
+
+        const retryAfterDateMatch = reason.match(
+            /\bretry[-_\s]?after\b\s*[:=]?\s*([A-Za-z]{3},\s*\d{1,2}\s+[A-Za-z]{3}\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+GMT|\d{4}-\d{2}-\d{2}T[0-9:.+-Z]+)/i
+        );
+        if (retryAfterDateMatch) {
+            const retryAtMs = Date.parse(retryAfterDateMatch[1]);
+            if (Number.isFinite(retryAtMs)) {
+                return Math.max(0, retryAtMs - nowMs);
+            }
+        }
+
+        const rateLimitResetMatch = reason.match(
+            /\b(x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]?\s*(\d{1,13})\b/i
+        );
+        if (rateLimitResetMatch) {
+            const marker = rateLimitResetMatch[1].toLowerCase();
+            const rawValue = Number(rateLimitResetMatch[2]);
+            if (Number.isFinite(rawValue) && rawValue >= 0) {
+                if (marker.includes('x-')) {
+                    const epochMs = rawValue >= 1_000_000_000_000 ? rawValue : rawValue * 1_000;
+                    return Math.max(0, epochMs - nowMs);
+                }
+
+                if (rawValue >= 1_000_000_000) {
+                    return Math.max(0, (rawValue * 1_000) - nowMs);
+                }
+
+                return rawValue * 1_000;
             }
         }
 
