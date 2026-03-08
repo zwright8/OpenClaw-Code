@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 523,
+  "skillName": "u0523-engineering-evidence-provenance-tracker",
+  "title": "Engineering Evidence Provenance Tracker",
+  "domain": "Software Engineering Automation",
+  "domainSlug": "software-engineering-automation",
+  "reason": "We need this skill because delivery speed must increase without sacrificing correctness. This specific skill preserves source lineage so claims remain auditable.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Engineering Evidence Provenance Tracker`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "provenance-tracker",
+    "coreMethod": "signed provenance links",
+    "primaryArtifact": "evidence lineage graphs",
+    "requiredSignals": [
+      "code changes",
+      "tests",
+      "incidents",
+      "rollout data",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "regressions",
+      "brittle release pipelines",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1573,
+      "execution": 0.1511,
+      "safety": 0.2885,
+      "impact": 0.4031
+    },
+    "postureThresholds": {
+      "readyMin": 80,
+      "reviewMin": 42,
+      "reviewRisk": 46,
+      "criticalRisk": 66
+    },
+    "orchestration": {
+      "routingTag": "software-engineering-automation:provenance-tracker",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0523_engineering-evidence-provenance-",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0523-engineering-evidence-provenance-tracker:523:provenance-tracker"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Engineering Evidence Provenance Tracker`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "contractStep": "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

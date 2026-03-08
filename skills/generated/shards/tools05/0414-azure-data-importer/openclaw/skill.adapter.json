@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 414,
+  "name": "azure-data-importer",
+  "title": "Azure Data Importer",
+  "description": "Validates and imports bulk updates into Azure.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools05/0414-azure-data-importer/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools05/0414-azure-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure data importer",
+    "azure data importer workflow",
+    "azure data importer automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Azure",
+    "operation": "data-importer",
+    "authModes": [
+      "service_account",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools05/0414-azure-data-importer"
+  }
+}

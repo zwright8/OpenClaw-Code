@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 348,
+  "skillName": "u0348-economic-incident-playbook-synthesizer",
+  "title": "Economic Incident Playbook Synthesizer",
+  "domain": "Economic Optimization",
+  "domainSlug": "economic-optimization",
+  "reason": "We need this skill because missions need explicit tradeoff logic for cost, speed, and impact. This specific skill creates repeatable response procedures from incident history.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Economic Incident Playbook Synthesizer`, including at least three measurable KPIs tied to overspending and low-impact allocation.",
+    "Design and version the input/output contract for budgets, costs, benefits, and opportunity values, then add schema validation and failure-mode handling.",
+    "Implement the core capability using pattern-to-playbook synthesis, and produce incident playbooks with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover overspending and low-impact allocation, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "pattern-to-playbook synthesis",
+    "primaryArtifact": "incident playbooks",
+    "requiredSignals": [
+      "budgets",
+      "costs",
+      "benefits",
+      "opportunity values",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "overspending",
+      "low-impact allocation",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1994,
+      "execution": 0.3312,
+      "safety": 0.2386,
+      "impact": 0.2308
+    },
+    "postureThresholds": {
+      "readyMin": 70,
+      "reviewMin": 62,
+      "reviewRisk": 52,
+      "criticalRisk": 82
+    },
+    "orchestration": {
+      "routingTag": "economic-optimization:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "budget-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0348_economic-incident-playbook-synth",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0348-economic-incident-playbook-synthesizer:348:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Economic Incident Playbook Synthesizer`, including at least three measurable KPIs tied to overspending and low-impact allocation.",
+    "contractStep": "Design and version the input/output contract for budgets, costs, benefits, and opportunity values, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using pattern-to-playbook synthesis, and produce incident playbooks with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover overspending and low-impact allocation, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

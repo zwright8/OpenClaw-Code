@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 283,
+  "skillName": "u0283-federation-evidence-provenance-tracker",
+  "title": "Federation Evidence Provenance Tracker",
+  "domain": "Federation and Interoperability",
+  "domainSlug": "federation-and-interoperability",
+  "reason": "We need this skill because cross-org collaboration fails without shared contracts and trust primitives. This specific skill preserves source lineage so claims remain auditable.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Federation Evidence Provenance Tracker`, including at least three measurable KPIs tied to integration breakage and trust boundary violations.",
+    "Design and version the input/output contract for envelopes, tenant boundaries, and protocol bridges, then add schema validation and failure-mode handling.",
+    "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover integration breakage and trust boundary violations, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "provenance-tracker",
+    "coreMethod": "signed provenance links",
+    "primaryArtifact": "evidence lineage graphs",
+    "requiredSignals": [
+      "envelopes",
+      "tenant boundaries",
+      "protocol bridges",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "integration breakage",
+      "trust boundary violations",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2735,
+      "execution": 0.3126,
+      "safety": 0.2153,
+      "impact": 0.1986
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 47,
+      "reviewRisk": 41,
+      "criticalRisk": 66
+    },
+    "orchestration": {
+      "routingTag": "federation-and-interoperability:provenance-tracker",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0283_federation-evidence-provenance-t",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0283-federation-evidence-provenance-tracker:283:provenance-tracker"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Federation Evidence Provenance Tracker`, including at least three measurable KPIs tied to integration breakage and trust boundary violations.",
+    "contractStep": "Design and version the input/output contract for envelopes, tenant boundaries, and protocol bridges, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using signed provenance links, and produce evidence lineage graphs with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover integration breakage and trust boundary violations, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

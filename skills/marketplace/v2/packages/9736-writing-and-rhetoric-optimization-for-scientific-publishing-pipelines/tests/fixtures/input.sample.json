@@ -1,0 +1,13 @@
+{
+  "task": "Execute writing and rhetoric optimization",
+  "objective": "Deliver Writing And Rhetoric Optimization for scientific publishing pipelines outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

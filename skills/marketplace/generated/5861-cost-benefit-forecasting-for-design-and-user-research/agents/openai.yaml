@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cost-Benefit Forecasting for design and user research"
+  short_description: "Cost-benefit forecasting for design and user research with guardrails and measurable outcomes."
+  default_prompt: "Use Cost-Benefit Forecasting for design and user research to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

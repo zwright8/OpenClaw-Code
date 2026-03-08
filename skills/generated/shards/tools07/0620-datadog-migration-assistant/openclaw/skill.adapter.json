@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 620,
+  "name": "datadog-migration-assistant",
+  "title": "Datadog Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Datadog.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0620-datadog-migration-assistant/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0620-datadog-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "datadog migration assistant",
+    "datadog migration assistant workflow",
+    "datadog migration assistant automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Datadog",
+    "operation": "migration-assistant",
+    "authModes": [
+      "api_key",
+      "token"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0620-datadog-migration-assistant"
+  }
+}

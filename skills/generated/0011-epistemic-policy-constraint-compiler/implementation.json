@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 11,
+  "skillName": "u0011-epistemic-policy-constraint-compiler",
+  "title": "Epistemic Policy Constraint Compiler",
+  "domain": "Truth-Seeking and Epistemics",
+  "domainSlug": "truth-seeking-and-epistemics",
+  "reason": "We need this skill because decisions drift when claims are accepted without verification. This specific skill turns governance language into enforceable runtime checks.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Epistemic Policy Constraint Compiler`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "rule compilation",
+    "primaryArtifact": "executable policy bundles",
+    "requiredSignals": [
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "false certainty",
+      "unverified assumptions",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2848,
+      "execution": 0.1812,
+      "safety": 0.1894,
+      "impact": 0.3446
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 58,
+      "reviewRisk": 50,
+      "criticalRisk": 74
+    },
+    "orchestration": {
+      "routingTag": "truth-seeking-and-epistemics:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0011_epistemic-policy-constraint-comp",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0011-epistemic-policy-constraint-compiler:11:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Epistemic Policy Constraint Compiler`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "contractStep": "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

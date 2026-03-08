@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 650,
+  "skillName": "u0650-crisis-risk-aware-scheduler",
+  "title": "Crisis Risk-Aware Scheduler",
+  "domain": "Crisis and Incident Response",
+  "domainSlug": "crisis-and-incident-response",
+  "reason": "We need this skill because response quality determines whether incidents are contained or amplified. This specific skill times execution based on risk posture instead of urgency alone.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Crisis Risk-Aware Scheduler`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "risk-weighted sequencing",
+    "primaryArtifact": "risk-gated schedules",
+    "requiredSignals": [
+      "incident timelines",
+      "response roles",
+      "recovery artifacts",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow containment",
+      "repeated outages",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2461,
+      "execution": 0.1996,
+      "safety": 0.3201,
+      "impact": 0.2342
+    },
+    "postureThresholds": {
+      "readyMin": 78,
+      "reviewMin": 46,
+      "reviewRisk": 44,
+      "criticalRisk": 64
+    },
+    "orchestration": {
+      "routingTag": "crisis-and-incident-response:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0650_crisis-risk-aware-scheduler",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0650-crisis-risk-aware-scheduler:650:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Crisis Risk-Aware Scheduler`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "contractStep": "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

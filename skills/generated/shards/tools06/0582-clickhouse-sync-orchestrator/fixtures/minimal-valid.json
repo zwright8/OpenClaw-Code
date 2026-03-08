@@ -1,0 +1,52 @@
+{
+  "skillId": 582,
+  "skillName": "clickhouse-sync-orchestrator",
+  "title": "ClickHouse Sync Orchestrator",
+  "provider": "ClickHouse",
+  "category": "External SaaS integrations",
+  "operation": "sync-orchestrator",
+  "authContext": {
+    "mode": "oauth2",
+    "envVars": [
+      "CLICKHOUSE_CLIENT_ID",
+      "CLICKHOUSE_CLIENT_SECRET"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "source_cursor": "sample_source_cursor",
+      "destination_state": "sample_destination_state",
+      "conflict_policy": "sample_conflict_policy"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "conflict-policy-review"
+    ],
+    "rollbackStrategy": "freeze-sync-window-and-reconcile-from-last-stable-cursor"
+  },
+  "expected": {
+    "primaryArtifact": "clickhouse-reconciliation-bundle",
+    "kpiFocus": [
+      "sync lag",
+      "reconciliation completion rate",
+      "conflict resolution accuracy"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 56,
+      "reviewRisk": 60,
+      "criticalRisk": 79
+    }
+  },
+  "regressionHint": {
+    "scenario": "Sync replay with a stale destination cursor and an unresolved conflict burst.",
+    "mutation": "Provide mismatched checkpoints and a conflict policy that permits no automatic merge."
+  }
+}

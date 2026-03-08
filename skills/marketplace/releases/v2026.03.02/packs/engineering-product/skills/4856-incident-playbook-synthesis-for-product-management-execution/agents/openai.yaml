@@ -1,0 +1,4 @@
+interface:
+  display_name: "Incident Playbook Synthesis for product management execution"
+  short_description: "Incident playbook synthesis for product management execution with guardrails and measurable outcomes."
+  default_prompt: "Use Incident Playbook Synthesis for product management execution to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

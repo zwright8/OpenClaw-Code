@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 236,
+  "skillName": "u0236-oversight-kpi-dashboard-publisher",
+  "title": "Oversight KPI Dashboard Publisher",
+  "domain": "Human Oversight and Operator UX",
+  "domainSlug": "human-oversight-and-operator-ux",
+  "reason": "We need this skill because human teams need fast, legible control when stakes are high. This specific skill keeps mission status observable in real time.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Oversight KPI Dashboard Publisher`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "Implement the core capability using metric synthesis and publication, and produce operator KPI dashboards with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "metric synthesis and publication",
+    "primaryArtifact": "operator KPI dashboards",
+    "requiredSignals": [
+      "approval queues",
+      "operator workload",
+      "intervention history",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow interventions",
+      "approval bottlenecks",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1862,
+      "execution": 0.1879,
+      "safety": 0.3169,
+      "impact": 0.309
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 49,
+      "reviewRisk": 45,
+      "criticalRisk": 70
+    },
+    "orchestration": {
+      "routingTag": "human-oversight-and-operator-ux:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0236_oversight-kpi-dashboard-publishe",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0236-oversight-kpi-dashboard-publisher:236:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Oversight KPI Dashboard Publisher`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "contractStep": "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using metric synthesis and publication, and produce operator KPI dashboards with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

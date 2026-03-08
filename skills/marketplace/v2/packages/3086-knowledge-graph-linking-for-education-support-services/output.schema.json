@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge Graph Linking for education support servicesOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "summary",
+    "plan",
+    "controls",
+    "kpis",
+    "evidence"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "needs_review"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 1400
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 400
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 400
+      }
+    },
+    "kpis": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 220
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceSkillId",
+        "sourceImplementationPath",
+        "generatedAt"
+      ],
+      "properties": {
+        "sourceSkillId": {
+          "type": "number",
+          "minimum": 1
+        },
+        "sourceImplementationPath": {
+          "type": "string",
+          "minLength": 3
+        },
+        "generatedAt": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    }
+  }
+}

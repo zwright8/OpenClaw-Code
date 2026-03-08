@@ -1,0 +1,659 @@
+{
+  "version": 1,
+  "releaseVersion": "v2026.03.02",
+  "verticalId": "health-learning",
+  "verticalName": "Health and Learning Systems",
+  "description": "Healthcare, education, caregiving, and human capability development.",
+  "count": 72,
+  "generatedAt": "2026-03-02T22:49:55.652Z",
+  "skills": [
+    {
+      "id": 1081,
+      "marketplaceSkillName": "openclaw-1081-resource-budget-allocation",
+      "title": "Resource Budget Allocation for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "path": "packs/health-learning/skills/1081-resource-budget-allocation-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 1086,
+      "marketplaceSkillName": "openclaw-1086-resource-budget-allocation",
+      "title": "Resource Budget Allocation for education support services",
+      "domain": "education support services",
+      "coreMethod": "resource budget allocation",
+      "score": 7,
+      "path": "packs/health-learning/skills/1086-resource-budget-allocation-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 1281,
+      "marketplaceSkillName": "openclaw-1281-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "path": "packs/health-learning/skills/1281-risk-aware-scheduling-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 1286,
+      "marketplaceSkillName": "openclaw-1286-risk-aware-scheduling",
+      "title": "Risk-Aware Scheduling for education support services",
+      "domain": "education support services",
+      "coreMethod": "risk-aware scheduling",
+      "score": 14,
+      "path": "packs/health-learning/skills/1286-risk-aware-scheduling-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 1481,
+      "marketplaceSkillName": "openclaw-1481-constraint-compilation",
+      "title": "Constraint Compilation for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "path": "packs/health-learning/skills/1481-constraint-compilation-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 1486,
+      "marketplaceSkillName": "openclaw-1486-constraint-compilation",
+      "title": "Constraint Compilation for education support services",
+      "domain": "education support services",
+      "coreMethod": "constraint compilation",
+      "score": 7,
+      "path": "packs/health-learning/skills/1486-constraint-compilation-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 1681,
+      "marketplaceSkillName": "openclaw-1681-human-approval-routing",
+      "title": "Human Approval Routing for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "path": "packs/health-learning/skills/1681-human-approval-routing-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 1686,
+      "marketplaceSkillName": "openclaw-1686-human-approval-routing",
+      "title": "Human Approval Routing for education support services",
+      "domain": "education support services",
+      "coreMethod": "human approval routing",
+      "score": 13,
+      "path": "packs/health-learning/skills/1686-human-approval-routing-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 1881,
+      "marketplaceSkillName": "openclaw-1881-handoff-contracting",
+      "title": "Handoff Contracting for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "path": "packs/health-learning/skills/1881-handoff-contracting-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 1886,
+      "marketplaceSkillName": "openclaw-1886-handoff-contracting",
+      "title": "Handoff Contracting for education support services",
+      "domain": "education support services",
+      "coreMethod": "handoff contracting",
+      "score": 13,
+      "path": "packs/health-learning/skills/1886-handoff-contracting-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 2081,
+      "marketplaceSkillName": "openclaw-2081-tool-health-monitoring",
+      "title": "Tool Health Monitoring for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "path": "packs/health-learning/skills/2081-tool-health-monitoring-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 2086,
+      "marketplaceSkillName": "openclaw-2086-tool-health-monitoring",
+      "title": "Tool Health Monitoring for education support services",
+      "domain": "education support services",
+      "coreMethod": "tool health monitoring",
+      "score": 7,
+      "path": "packs/health-learning/skills/2086-tool-health-monitoring-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 2281,
+      "marketplaceSkillName": "openclaw-2281-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "path": "packs/health-learning/skills/2281-retry-and-backoff-orchestration-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 2286,
+      "marketplaceSkillName": "openclaw-2286-retry-and-backoff-orchestration",
+      "title": "Retry And Backoff Orchestration for education support services",
+      "domain": "education support services",
+      "coreMethod": "retry and backoff orchestration",
+      "score": 7,
+      "path": "packs/health-learning/skills/2286-retry-and-backoff-orchestration-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 2481,
+      "marketplaceSkillName": "openclaw-2481-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "path": "packs/health-learning/skills/2481-failure-root-cause-mining-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 2486,
+      "marketplaceSkillName": "openclaw-2486-failure-root-cause-mining",
+      "title": "Failure Root Cause Mining for education support services",
+      "domain": "education support services",
+      "coreMethod": "failure root cause mining",
+      "score": 15,
+      "path": "packs/health-learning/skills/2486-failure-root-cause-mining-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 2681,
+      "marketplaceSkillName": "openclaw-2681-regression-sentinel-design",
+      "title": "Regression Sentinel Design for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "path": "packs/health-learning/skills/2681-regression-sentinel-design-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 2686,
+      "marketplaceSkillName": "openclaw-2686-regression-sentinel-design",
+      "title": "Regression Sentinel Design for education support services",
+      "domain": "education support services",
+      "coreMethod": "regression sentinel design",
+      "score": 15,
+      "path": "packs/health-learning/skills/2686-regression-sentinel-design-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 2801,
+      "marketplaceSkillName": "openclaw-2801-memory-consolidation",
+      "title": "Memory Consolidation for personal health routines",
+      "domain": "personal health routines",
+      "coreMethod": "memory consolidation",
+      "score": 2,
+      "path": "packs/health-learning/skills/2801-memory-consolidation-for-personal-health-routines/SKILL.md"
+    },
+    {
+      "id": 2806,
+      "marketplaceSkillName": "openclaw-2806-memory-consolidation",
+      "title": "Memory Consolidation for family caregiving systems",
+      "domain": "family caregiving systems",
+      "coreMethod": "memory consolidation",
+      "score": 2,
+      "path": "packs/health-learning/skills/2806-memory-consolidation-for-family-caregiving-systems/SKILL.md"
+    },
+    {
+      "id": 2821,
+      "marketplaceSkillName": "openclaw-2821-memory-consolidation",
+      "title": "Memory Consolidation for nutrition and meal planning",
+      "domain": "nutrition and meal planning",
+      "coreMethod": "memory consolidation",
+      "score": 2,
+      "path": "packs/health-learning/skills/2821-memory-consolidation-for-nutrition-and-meal-planning/SKILL.md"
+    },
+    {
+      "id": 2826,
+      "marketplaceSkillName": "openclaw-2826-memory-consolidation",
+      "title": "Memory Consolidation for fitness and recovery training",
+      "domain": "fitness and recovery training",
+      "coreMethod": "memory consolidation",
+      "score": 2,
+      "path": "packs/health-learning/skills/2826-memory-consolidation-for-fitness-and-recovery-training/SKILL.md"
+    },
+    {
+      "id": 3081,
+      "marketplaceSkillName": "openclaw-3081-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "path": "packs/health-learning/skills/3081-knowledge-graph-linking-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 3086,
+      "marketplaceSkillName": "openclaw-3086-knowledge-graph-linking",
+      "title": "Knowledge Graph Linking for education support services",
+      "domain": "education support services",
+      "coreMethod": "knowledge graph linking",
+      "score": 13,
+      "path": "packs/health-learning/skills/3086-knowledge-graph-linking-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 3281,
+      "marketplaceSkillName": "openclaw-3281-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "path": "packs/health-learning/skills/3281-semantic-retrieval-ranking-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 3286,
+      "marketplaceSkillName": "openclaw-3286-semantic-retrieval-ranking",
+      "title": "Semantic Retrieval Ranking for education support services",
+      "domain": "education support services",
+      "coreMethod": "semantic retrieval ranking",
+      "score": 13,
+      "path": "packs/health-learning/skills/3286-semantic-retrieval-ranking-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 3401,
+      "marketplaceSkillName": "openclaw-3401-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for personal health routines",
+      "domain": "personal health routines",
+      "coreMethod": "plan quality evaluation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3401-plan-quality-evaluation-for-personal-health-routines/SKILL.md"
+    },
+    {
+      "id": 3406,
+      "marketplaceSkillName": "openclaw-3406-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for family caregiving systems",
+      "domain": "family caregiving systems",
+      "coreMethod": "plan quality evaluation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3406-plan-quality-evaluation-for-family-caregiving-systems/SKILL.md"
+    },
+    {
+      "id": 3421,
+      "marketplaceSkillName": "openclaw-3421-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for nutrition and meal planning",
+      "domain": "nutrition and meal planning",
+      "coreMethod": "plan quality evaluation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3421-plan-quality-evaluation-for-nutrition-and-meal-planning/SKILL.md"
+    },
+    {
+      "id": 3426,
+      "marketplaceSkillName": "openclaw-3426-plan-quality-evaluation",
+      "title": "Plan Quality Evaluation for fitness and recovery training",
+      "domain": "fitness and recovery training",
+      "coreMethod": "plan quality evaluation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3426-plan-quality-evaluation-for-fitness-and-recovery-training/SKILL.md"
+    },
+    {
+      "id": 3601,
+      "marketplaceSkillName": "openclaw-3601-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for personal health routines",
+      "domain": "personal health routines",
+      "coreMethod": "multi-agent negotiation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3601-multi-agent-negotiation-for-personal-health-routines/SKILL.md"
+    },
+    {
+      "id": 3606,
+      "marketplaceSkillName": "openclaw-3606-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for family caregiving systems",
+      "domain": "family caregiving systems",
+      "coreMethod": "multi-agent negotiation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3606-multi-agent-negotiation-for-family-caregiving-systems/SKILL.md"
+    },
+    {
+      "id": 3621,
+      "marketplaceSkillName": "openclaw-3621-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for nutrition and meal planning",
+      "domain": "nutrition and meal planning",
+      "coreMethod": "multi-agent negotiation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3621-multi-agent-negotiation-for-nutrition-and-meal-planning/SKILL.md"
+    },
+    {
+      "id": 3626,
+      "marketplaceSkillName": "openclaw-3626-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for fitness and recovery training",
+      "domain": "fitness and recovery training",
+      "coreMethod": "multi-agent negotiation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3626-multi-agent-negotiation-for-fitness-and-recovery-training/SKILL.md"
+    },
+    {
+      "id": 3631,
+      "marketplaceSkillName": "openclaw-3631-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for mental well-being practices",
+      "domain": "mental well-being practices",
+      "coreMethod": "multi-agent negotiation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3631-multi-agent-negotiation-for-mental-well-being-practices/SKILL.md"
+    },
+    {
+      "id": 3756,
+      "marketplaceSkillName": "openclaw-3756-multi-agent-negotiation",
+      "title": "Multi-Agent Negotiation for eldercare coordination",
+      "domain": "eldercare coordination",
+      "coreMethod": "multi-agent negotiation",
+      "score": 2,
+      "path": "packs/health-learning/skills/3756-multi-agent-negotiation-for-eldercare-coordination/SKILL.md"
+    },
+    {
+      "id": 3801,
+      "marketplaceSkillName": "openclaw-3801-conflict-resolution-coaching",
+      "title": "Conflict Resolution Coaching for personal health routines",
+      "domain": "personal health routines",
+      "coreMethod": "conflict resolution coaching",
+      "score": 2,
+      "path": "packs/health-learning/skills/3801-conflict-resolution-coaching-for-personal-health-routines/SKILL.md"
+    },
+    {
+      "id": 3806,
+      "marketplaceSkillName": "openclaw-3806-conflict-resolution-coaching",
+      "title": "Conflict Resolution Coaching for family caregiving systems",
+      "domain": "family caregiving systems",
+      "coreMethod": "conflict resolution coaching",
+      "score": 2,
+      "path": "packs/health-learning/skills/3806-conflict-resolution-coaching-for-family-caregiving-systems/SKILL.md"
+    },
+    {
+      "id": 4081,
+      "marketplaceSkillName": "openclaw-4081-explainability-narrative-design",
+      "title": "Explainability Narrative Design for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "path": "packs/health-learning/skills/4081-explainability-narrative-design-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 4086,
+      "marketplaceSkillName": "openclaw-4086-explainability-narrative-design",
+      "title": "Explainability Narrative Design for education support services",
+      "domain": "education support services",
+      "coreMethod": "explainability narrative design",
+      "score": 11,
+      "path": "packs/health-learning/skills/4086-explainability-narrative-design-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 4281,
+      "marketplaceSkillName": "openclaw-4281-uncertainty-communication",
+      "title": "Uncertainty Communication for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "path": "packs/health-learning/skills/4281-uncertainty-communication-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 4286,
+      "marketplaceSkillName": "openclaw-4286-uncertainty-communication",
+      "title": "Uncertainty Communication for education support services",
+      "domain": "education support services",
+      "coreMethod": "uncertainty communication",
+      "score": 11,
+      "path": "packs/health-learning/skills/4286-uncertainty-communication-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 4481,
+      "marketplaceSkillName": "openclaw-4481-experiment-design",
+      "title": "Experiment Design for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "path": "packs/health-learning/skills/4481-experiment-design-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 4486,
+      "marketplaceSkillName": "openclaw-4486-experiment-design",
+      "title": "Experiment Design for education support services",
+      "domain": "education support services",
+      "coreMethod": "experiment design",
+      "score": 12,
+      "path": "packs/health-learning/skills/4486-experiment-design-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 4681,
+      "marketplaceSkillName": "openclaw-4681-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "path": "packs/health-learning/skills/4681-a-b-rollout-governance-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 4686,
+      "marketplaceSkillName": "openclaw-4686-a-b-rollout-governance",
+      "title": "A/B Rollout Governance for education support services",
+      "domain": "education support services",
+      "coreMethod": "a/b rollout governance",
+      "score": 14,
+      "path": "packs/health-learning/skills/4686-a-b-rollout-governance-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 4881,
+      "marketplaceSkillName": "openclaw-4881-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "path": "packs/health-learning/skills/4881-incident-playbook-synthesis-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 4886,
+      "marketplaceSkillName": "openclaw-4886-incident-playbook-synthesis",
+      "title": "Incident Playbook Synthesis for education support services",
+      "domain": "education support services",
+      "coreMethod": "incident playbook synthesis",
+      "score": 13,
+      "path": "packs/health-learning/skills/4886-incident-playbook-synthesis-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 5081,
+      "marketplaceSkillName": "openclaw-5081-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "path": "packs/health-learning/skills/5081-disaster-recovery-orchestration-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 5086,
+      "marketplaceSkillName": "openclaw-5086-disaster-recovery-orchestration",
+      "title": "Disaster Recovery Orchestration for education support services",
+      "domain": "education support services",
+      "coreMethod": "disaster recovery orchestration",
+      "score": 13,
+      "path": "packs/health-learning/skills/5086-disaster-recovery-orchestration-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 5281,
+      "marketplaceSkillName": "openclaw-5281-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "path": "packs/health-learning/skills/5281-privacy-preserving-data-brokering-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 5286,
+      "marketplaceSkillName": "openclaw-5286-privacy-preserving-data-brokering",
+      "title": "Privacy-Preserving Data Brokering for education support services",
+      "domain": "education support services",
+      "coreMethod": "privacy-preserving data brokering",
+      "score": 14,
+      "path": "packs/health-learning/skills/5286-privacy-preserving-data-brokering-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 5481,
+      "marketplaceSkillName": "openclaw-5481-security-threat-modeling",
+      "title": "Security Threat Modeling for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "path": "packs/health-learning/skills/5481-security-threat-modeling-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 5486,
+      "marketplaceSkillName": "openclaw-5486-security-threat-modeling",
+      "title": "Security Threat Modeling for education support services",
+      "domain": "education support services",
+      "coreMethod": "security threat modeling",
+      "score": 14,
+      "path": "packs/health-learning/skills/5486-security-threat-modeling-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 5681,
+      "marketplaceSkillName": "openclaw-5681-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "path": "packs/health-learning/skills/5681-compliance-evidence-mapping-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 5686,
+      "marketplaceSkillName": "openclaw-5686-compliance-evidence-mapping",
+      "title": "Compliance Evidence Mapping for education support services",
+      "domain": "education support services",
+      "coreMethod": "compliance evidence mapping",
+      "score": 13,
+      "path": "packs/health-learning/skills/5686-compliance-evidence-mapping-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 5881,
+      "marketplaceSkillName": "openclaw-5881-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "path": "packs/health-learning/skills/5881-cost-benefit-forecasting-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 5886,
+      "marketplaceSkillName": "openclaw-5886-cost-benefit-forecasting",
+      "title": "Cost-Benefit Forecasting for education support services",
+      "domain": "education support services",
+      "coreMethod": "cost-benefit forecasting",
+      "score": 12,
+      "path": "packs/health-learning/skills/5886-cost-benefit-forecasting-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 6481,
+      "marketplaceSkillName": "openclaw-6481-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "path": "packs/health-learning/skills/6481-kpi-dashboard-publishing-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 6486,
+      "marketplaceSkillName": "openclaw-6486-kpi-dashboard-publishing",
+      "title": "KPI Dashboard Publishing for education support services",
+      "domain": "education support services",
+      "coreMethod": "kpi dashboard publishing",
+      "score": 12,
+      "path": "packs/health-learning/skills/6486-kpi-dashboard-publishing-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 6681,
+      "marketplaceSkillName": "openclaw-6681-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "path": "packs/health-learning/skills/6681-skill-gap-diagnosis-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 6686,
+      "marketplaceSkillName": "openclaw-6686-skill-gap-diagnosis",
+      "title": "Skill Gap Diagnosis for education support services",
+      "domain": "education support services",
+      "coreMethod": "skill gap diagnosis",
+      "score": 11,
+      "path": "packs/health-learning/skills/6686-skill-gap-diagnosis-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 7281,
+      "marketplaceSkillName": "openclaw-7281-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "path": "packs/health-learning/skills/7281-continuous-improvement-planning-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 7286,
+      "marketplaceSkillName": "openclaw-7286-continuous-improvement-planning",
+      "title": "Continuous Improvement Planning for education support services",
+      "domain": "education support services",
+      "coreMethod": "continuous improvement planning",
+      "score": 11,
+      "path": "packs/health-learning/skills/7286-continuous-improvement-planning-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 7481,
+      "marketplaceSkillName": "openclaw-7481-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "path": "packs/health-learning/skills/7481-autonomous-workflow-authoring-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 7486,
+      "marketplaceSkillName": "openclaw-7486-autonomous-workflow-authoring",
+      "title": "Autonomous Workflow Authoring for education support services",
+      "domain": "education support services",
+      "coreMethod": "autonomous workflow authoring",
+      "score": 17,
+      "path": "packs/health-learning/skills/7486-autonomous-workflow-authoring-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 7681,
+      "marketplaceSkillName": "openclaw-7681-personal-habit-optimization",
+      "title": "Personal Habit Optimization for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "path": "packs/health-learning/skills/7681-personal-habit-optimization-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 7686,
+      "marketplaceSkillName": "openclaw-7686-personal-habit-optimization",
+      "title": "Personal Habit Optimization for education support services",
+      "domain": "education support services",
+      "coreMethod": "personal habit optimization",
+      "score": 12,
+      "path": "packs/health-learning/skills/7686-personal-habit-optimization-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 7881,
+      "marketplaceSkillName": "openclaw-7881-attention-management-architecture",
+      "title": "Attention Management Architecture for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "path": "packs/health-learning/skills/7881-attention-management-architecture-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 7886,
+      "marketplaceSkillName": "openclaw-7886-attention-management-architecture",
+      "title": "Attention Management Architecture for education support services",
+      "domain": "education support services",
+      "coreMethod": "attention management architecture",
+      "score": 10,
+      "path": "packs/health-learning/skills/7886-attention-management-architecture-for-education-support-services/SKILL.md"
+    },
+    {
+      "id": 9881,
+      "marketplaceSkillName": "openclaw-9881-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for healthcare operations",
+      "domain": "healthcare operations",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "path": "packs/health-learning/skills/9881-decision-journal-maintenance-for-healthcare-operations/SKILL.md"
+    },
+    {
+      "id": 9886,
+      "marketplaceSkillName": "openclaw-9886-decision-journal-maintenance",
+      "title": "Decision Journal Maintenance for education support services",
+      "domain": "education support services",
+      "coreMethod": "decision journal maintenance",
+      "score": 10,
+      "path": "packs/health-learning/skills/9886-decision-journal-maintenance-for-education-support-services/SKILL.md"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Retry And Backoff Orchestration for cybersecurity operations"
+  short_description: "Retry and backoff orchestration for cybersecurity operations with guardrails and measurable outcomes."
+  default_prompt: "Use Retry And Backoff Orchestration for cybersecurity operations to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

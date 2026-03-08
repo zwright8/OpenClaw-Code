@@ -1,0 +1,23 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 5691
+  name: "openclaw-v2-5691-compliance-evidence-mapping"
+  title: "Compliance Evidence Mapping for nonprofit program delivery"
+  domain: "nonprofit program delivery"
+  vertical_id: "public-impact"
+  vertical_name: "Public Impact and Resilience"
+  method: "compliance evidence mapping"
+  archetype: "mapping-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 85
+  roi_score: 73.24
+  trust_badges:
+    - "Reliability-Proven"
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/5691-compliance-evidence-mapping-for-nonprofit-program-delivery/SKILL.md"

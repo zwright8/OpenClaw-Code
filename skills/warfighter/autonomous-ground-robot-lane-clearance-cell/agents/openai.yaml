@@ -1,0 +1,3 @@
+interface:
+  display_name: "Autonomous Ground Robot Lane Clearance Cell"
+  short_description: "Help with Autonomous Ground Robot Lane Clearance Cell tasks"

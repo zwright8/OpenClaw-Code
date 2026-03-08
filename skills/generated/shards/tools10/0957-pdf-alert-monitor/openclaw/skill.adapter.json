@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 957,
+  "name": "pdf-alert-monitor",
+  "title": "PDF Alert Monitor",
+  "description": "Monitors key PDF signals and raises actionable alerts.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools10/0957-pdf-alert-monitor/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools10/0957-pdf-alert-monitor/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "pdf alert monitor",
+    "pdf alert monitor workflow",
+    "pdf alert monitor automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "PDF",
+    "operation": "alert-monitor",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools10/0957-pdf-alert-monitor"
+  }
+}

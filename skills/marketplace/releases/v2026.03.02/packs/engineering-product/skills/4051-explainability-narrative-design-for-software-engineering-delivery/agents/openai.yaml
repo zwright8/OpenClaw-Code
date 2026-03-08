@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explainability Narrative Design for software engineering..."
+  short_description: "Explainability narrative design for software engineering delivery with guardrails and measurable outcomes."
+  default_prompt: "Use Explainability Narrative Design for software engineering delivery to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 752,
+    "name": "openclaw-v2-0752-requirement-to-evidence-mapping",
+    "title": "Comms Compliance Evidence Mapper",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "requirement-to-evidence mapping",
+    "archetype": "normalization-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 66,
+    "roiScore": 62.45,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0752-comms-compliance-evidence-mapper/SKILL.md"
+  }
+}

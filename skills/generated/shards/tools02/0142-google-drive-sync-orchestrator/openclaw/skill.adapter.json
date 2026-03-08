@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 142,
+  "name": "google-drive-sync-orchestrator",
+  "title": "Google Drive Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Google Drive records.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0142-google-drive-sync-orchestrator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0142-google-drive-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "google drive sync orchestrator",
+    "google drive sync orchestrator workflow",
+    "google drive sync orchestrator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Google Drive",
+    "operation": "sync-orchestrator",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0142-google-drive-sync-orchestrator"
+  }
+}

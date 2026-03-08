@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 731,
+  "skillName": "u0731-comms-policy-constraint-compiler",
+  "title": "Comms Policy Constraint Compiler",
+  "domain": "Communication and Explainability",
+  "domainSlug": "communication-and-explainability",
+  "reason": "We need this skill because complex systems require explanations humans can act on quickly. This specific skill turns governance language into enforceable runtime checks.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Comms Policy Constraint Compiler`, including at least three measurable KPIs tied to misinterpretation and trust erosion.",
+    "Design and version the input/output contract for decision factors, uncertainty markers, and audience summaries, then add schema validation and failure-mode handling.",
+    "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover misinterpretation and trust erosion, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "rule compilation",
+    "primaryArtifact": "executable policy bundles",
+    "requiredSignals": [
+      "decision factors",
+      "uncertainty markers",
+      "audience summaries",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "misinterpretation",
+      "trust erosion",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2593,
+      "execution": 0.3276,
+      "safety": 0.1355,
+      "impact": 0.2776
+    },
+    "postureThresholds": {
+      "readyMin": 75,
+      "reviewMin": 52,
+      "reviewRisk": 37,
+      "criticalRisk": 70
+    },
+    "orchestration": {
+      "routingTag": "communication-and-explainability:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0731_comms-policy-constraint-compiler",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0731-comms-policy-constraint-compiler:731:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Comms Policy Constraint Compiler`, including at least three measurable KPIs tied to misinterpretation and trust erosion.",
+    "contractStep": "Design and version the input/output contract for decision factors, uncertainty markers, and audience summaries, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover misinterpretation and trust erosion, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

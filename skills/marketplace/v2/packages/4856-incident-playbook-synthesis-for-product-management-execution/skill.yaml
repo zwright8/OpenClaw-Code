@@ -1,0 +1,24 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 4856
+  name: "openclaw-v2-4856-incident-playbook-synthesis"
+  title: "Incident Playbook Synthesis for product management execution"
+  domain: "product management execution"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "incident playbook synthesis"
+  archetype: "incident-response-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 99
+  roi_score: 78.63
+  trust_badges:
+    - "Verified-Quality"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/4856-incident-playbook-synthesis-for-product-management-execution/SKILL.md"

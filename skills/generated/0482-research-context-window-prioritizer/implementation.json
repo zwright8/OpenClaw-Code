@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 482,
+  "skillName": "u0482-research-context-window-prioritizer",
+  "title": "Research Context Window Prioritizer",
+  "domain": "Scientific Research Systems",
+  "domainSlug": "scientific-research-systems",
+  "reason": "We need this skill because research throughput degrades without reproducibility and prioritization. This specific skill surfaces the most decision-relevant context under tight token budgets.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Research Context Window Prioritizer`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "Implement the core capability using importance scoring, and produce ranked context bundles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "importance scoring",
+    "primaryArtifact": "ranked context bundles",
+    "requiredSignals": [
+      "hypotheses",
+      "experiments",
+      "replication evidence",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "non-reproducible results",
+      "wasted cycles",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3708,
+      "execution": 0.1256,
+      "safety": 0.2193,
+      "impact": 0.2843
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 49,
+      "reviewRisk": 37,
+      "criticalRisk": 61
+    },
+    "orchestration": {
+      "routingTag": "scientific-research-systems:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0482_research-context-window-prioriti",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0482-research-context-window-prioritizer:482:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Research Context Window Prioritizer`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "contractStep": "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using importance scoring, and produce ranked context bundles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

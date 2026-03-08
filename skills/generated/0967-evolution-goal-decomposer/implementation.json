@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 967,
+  "skillName": "u0967-evolution-goal-decomposer",
+  "title": "Evolution Goal Decomposer",
+  "domain": "Autonomous Learning and Evolution",
+  "domainSlug": "autonomous-learning-and-evolution",
+  "reason": "We need this skill because agents stagnate without structured reflection and continuous improvement loops. This specific skill breaks ambiguous missions into executable units.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Evolution Goal Decomposer`, including at least three measurable KPIs tied to capability stagnation and repeated blind spots.",
+    "Design and version the input/output contract for outcomes, error taxonomies, and adaptation decisions, then add schema validation and failure-mode handling.",
+    "Implement the core capability using hierarchical decomposition, and produce atomic task trees with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover capability stagnation and repeated blind spots, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "hierarchical decomposition",
+    "primaryArtifact": "atomic task trees",
+    "requiredSignals": [
+      "outcomes",
+      "error taxonomies",
+      "adaptation decisions",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "capability stagnation",
+      "repeated blind spots",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.1912,
+      "execution": 0.1425,
+      "safety": 0.27,
+      "impact": 0.3963
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 52,
+      "reviewRisk": 50,
+      "criticalRisk": 81
+    },
+    "orchestration": {
+      "routingTag": "autonomous-learning-and-evolution:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0967_evolution-goal-decomposer",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0967-evolution-goal-decomposer:967:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Evolution Goal Decomposer`, including at least three measurable KPIs tied to capability stagnation and repeated blind spots.",
+    "contractStep": "Design and version the input/output contract for outcomes, error taxonomies, and adaptation decisions, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using hierarchical decomposition, and produce atomic task trees with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover capability stagnation and repeated blind spots, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

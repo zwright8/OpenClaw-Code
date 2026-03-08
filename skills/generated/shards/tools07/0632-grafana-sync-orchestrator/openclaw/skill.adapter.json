@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 632,
+  "name": "grafana-sync-orchestrator",
+  "title": "Grafana Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Grafana records.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0632-grafana-sync-orchestrator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0632-grafana-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grafana sync orchestrator",
+    "grafana sync orchestrator workflow",
+    "grafana sync orchestrator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Grafana",
+    "operation": "sync-orchestrator",
+    "authModes": [
+      "api_key",
+      "token"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0632-grafana-sync-orchestrator"
+  }
+}

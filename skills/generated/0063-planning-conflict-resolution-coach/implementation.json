@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 63,
+  "skillName": "u0063-planning-conflict-resolution-coach",
+  "title": "Planning Conflict Resolution Coach",
+  "domain": "Strategic Planning and Decomposition",
+  "domainSlug": "strategic-planning-and-decomposition",
+  "reason": "We need this skill because large goals fail when decomposition is inconsistent or incomplete. This specific skill reduces deadlocks in human-agent collaboration loops.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Planning Conflict Resolution Coach`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.",
+    "Design and version the input/output contract for goals, dependencies, milestones, and constraints, then add schema validation and failure-mode handling.",
+    "Implement the core capability using guided mediation prompts, and produce conflict remediation playbooks with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover execution stalls and hidden dependency failures, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "collaboration-mediator",
+    "coreMethod": "guided mediation prompts",
+    "primaryArtifact": "conflict remediation playbooks",
+    "requiredSignals": [
+      "goals",
+      "dependencies",
+      "milestones",
+      "constraints",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "execution stalls",
+      "hidden dependency failures",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2964,
+      "execution": 0.3001,
+      "safety": 0.2694,
+      "impact": 0.1341
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 43,
+      "reviewRisk": 45,
+      "criticalRisk": 72
+    },
+    "orchestration": {
+      "routingTag": "strategic-planning-and-decomposition:collaboration-mediator",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0063_planning-conflict-resolution-coa",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0063-planning-conflict-resolution-coach:63:collaboration-mediator"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Planning Conflict Resolution Coach`, including at least three measurable KPIs tied to execution stalls and hidden dependency failures.",
+    "contractStep": "Design and version the input/output contract for goals, dependencies, milestones, and constraints, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using guided mediation prompts, and produce conflict remediation playbooks with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover execution stalls and hidden dependency failures, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

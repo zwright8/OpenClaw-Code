@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2101
+  name: "openclaw-v2-2101-tool-health-monitoring"
+  title: "Tool Health Monitoring for climate adaptation initiatives"
+  domain: "climate adaptation initiatives"
+  vertical_id: "public-impact"
+  vertical_name: "Public Impact and Resilience"
+  method: "tool health monitoring"
+  archetype: "monitoring-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 73
+  roi_score: 62.79
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2101-tool-health-monitoring-for-climate-adaptation-initiatives/SKILL.md"

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 773,
+  "skillName": "u0773-cultural-task-handoff-contractor",
+  "title": "Cultural Task Handoff Contractor",
+  "domain": "Multilingual and Cultural Adaptation",
+  "domainSlug": "multilingual-and-cultural-adaptation",
+  "reason": "We need this skill because global utility requires language and cultural context fidelity. This specific skill standardizes handoffs between agents and humans.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Cultural Task Handoff Contractor`, including at least three measurable KPIs tied to context mismatch and exclusion.",
+    "Design and version the input/output contract for language variants, cultural norms, and local preferences, then add schema validation and failure-mode handling.",
+    "Implement the core capability using contracted payload schemas, and produce typed handoff artifacts with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover context mismatch and exclusion, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "contracted payload schemas",
+    "primaryArtifact": "typed handoff artifacts",
+    "requiredSignals": [
+      "language variants",
+      "cultural norms",
+      "local preferences",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "context mismatch",
+      "exclusion",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2022,
+      "execution": 0.3063,
+      "safety": 0.2405,
+      "impact": 0.251
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 45,
+      "reviewRisk": 40,
+      "criticalRisk": 67
+    },
+    "orchestration": {
+      "routingTag": "multilingual-and-cultural-adaptation:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0773_cultural-task-handoff-contractor",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0773-cultural-task-handoff-contractor:773:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Cultural Task Handoff Contractor`, including at least three measurable KPIs tied to context mismatch and exclusion.",
+    "contractStep": "Design and version the input/output contract for language variants, cultural norms, and local preferences, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using contracted payload schemas, and produce typed handoff artifacts with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover context mismatch and exclusion, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

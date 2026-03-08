@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 948,
+  "skillName": "u0948-infra-incident-playbook-synthesizer",
+  "title": "Infra Incident Playbook Synthesizer",
+  "domain": "Infrastructure and Sustainability",
+  "domainSlug": "infrastructure-and-sustainability",
+  "reason": "We need this skill because long-term scale depends on resilient and sustainable infrastructure choices. This specific skill creates repeatable response procedures from incident history.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Infra Incident Playbook Synthesizer`, including at least three measurable KPIs tied to capacity collapse and environmental debt.",
+    "Design and version the input/output contract for capacity forecasts, energy usage, and sustainability metrics, then add schema validation and failure-mode handling.",
+    "Implement the core capability using pattern-to-playbook synthesis, and produce incident playbooks with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover capacity collapse and environmental debt, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "pattern-to-playbook synthesis",
+    "primaryArtifact": "incident playbooks",
+    "requiredSignals": [
+      "capacity forecasts",
+      "energy usage",
+      "sustainability metrics",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "capacity collapse",
+      "environmental debt",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2732,
+      "execution": 0.2259,
+      "safety": 0.2352,
+      "impact": 0.2657
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 54,
+      "reviewRisk": 61,
+      "criticalRisk": 80
+    },
+    "orchestration": {
+      "routingTag": "infrastructure-and-sustainability:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0948_infra-incident-playbook-synthesi",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0948-infra-incident-playbook-synthesizer:948:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Infra Incident Playbook Synthesizer`, including at least three measurable KPIs tied to capacity collapse and environmental debt.",
+    "contractStep": "Design and version the input/output contract for capacity forecasts, energy usage, and sustainability metrics, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using pattern-to-playbook synthesis, and produce incident playbooks with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover capacity collapse and environmental debt, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

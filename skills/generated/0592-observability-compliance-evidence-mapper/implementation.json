@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 592,
+  "skillName": "u0592-observability-compliance-evidence-mapper",
+  "title": "Observability Compliance Evidence Mapper",
+  "domain": "Data Quality and Observability",
+  "domainSlug": "data-quality-and-observability",
+  "reason": "We need this skill because decisions are only as good as the quality and visibility of data. This specific skill keeps proof of control coverage continuously current.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Observability Compliance Evidence Mapper`, including at least three measurable KPIs tied to data drift and blind spots.",
+    "Design and version the input/output contract for freshness, drift, schema health, and telemetry coverage, then add schema validation and failure-mode handling.",
+    "Implement the core capability using requirement-to-evidence mapping, and produce compliance evidence matrices with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover data drift and blind spots, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "normalization-engine",
+    "coreMethod": "requirement-to-evidence mapping",
+    "primaryArtifact": "compliance evidence matrices",
+    "requiredSignals": [
+      "freshness",
+      "drift",
+      "schema health",
+      "telemetry coverage",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "data drift",
+      "blind spots",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2321,
+      "execution": 0.2199,
+      "safety": 0.2876,
+      "impact": 0.2604
+    },
+    "postureThresholds": {
+      "readyMin": 80,
+      "reviewMin": 44,
+      "reviewRisk": 38,
+      "criticalRisk": 74
+    },
+    "orchestration": {
+      "routingTag": "data-quality-and-observability:normalization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0592_observability-compliance-evidenc",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0592-observability-compliance-evidence-mapper:592:normalization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Observability Compliance Evidence Mapper`, including at least three measurable KPIs tied to data drift and blind spots.",
+    "contractStep": "Design and version the input/output contract for freshness, drift, schema health, and telemetry coverage, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using requirement-to-evidence mapping, and produce compliance evidence matrices with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover data drift and blind spots, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

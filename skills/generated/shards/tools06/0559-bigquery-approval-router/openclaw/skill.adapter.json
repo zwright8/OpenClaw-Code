@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 559,
+  "name": "bigquery-approval-router",
+  "title": "BigQuery Approval Router",
+  "description": "Routes BigQuery-driven decisions to the right approvers.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0559-bigquery-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0559-bigquery-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bigquery approval router",
+    "bigquery approval router workflow",
+    "bigquery approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "BigQuery",
+    "operation": "approval-router",
+    "authModes": [
+      "service_account",
+      "session"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0559-bigquery-approval-router"
+  }
+}

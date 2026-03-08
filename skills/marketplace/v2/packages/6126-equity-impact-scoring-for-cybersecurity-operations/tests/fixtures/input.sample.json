@@ -1,0 +1,13 @@
+{
+  "task": "Execute equity impact scoring",
+  "objective": "Deliver Equity Impact Scoring for cybersecurity operations outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

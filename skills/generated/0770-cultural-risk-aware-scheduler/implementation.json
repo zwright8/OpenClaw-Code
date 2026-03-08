@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 770,
+  "skillName": "u0770-cultural-risk-aware-scheduler",
+  "title": "Cultural Risk-Aware Scheduler",
+  "domain": "Multilingual and Cultural Adaptation",
+  "domainSlug": "multilingual-and-cultural-adaptation",
+  "reason": "We need this skill because global utility requires language and cultural context fidelity. This specific skill times execution based on risk posture instead of urgency alone.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Cultural Risk-Aware Scheduler`, including at least three measurable KPIs tied to context mismatch and exclusion.",
+    "Design and version the input/output contract for language variants, cultural norms, and local preferences, then add schema validation and failure-mode handling.",
+    "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover context mismatch and exclusion, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "risk-weighted sequencing",
+    "primaryArtifact": "risk-gated schedules",
+    "requiredSignals": [
+      "language variants",
+      "cultural norms",
+      "local preferences",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "context mismatch",
+      "exclusion",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3463,
+      "execution": 0.247,
+      "safety": 0.119,
+      "impact": 0.2877
+    },
+    "postureThresholds": {
+      "readyMin": 78,
+      "reviewMin": 46,
+      "reviewRisk": 37,
+      "criticalRisk": 59
+    },
+    "orchestration": {
+      "routingTag": "multilingual-and-cultural-adaptation:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0770_cultural-risk-aware-scheduler",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0770-cultural-risk-aware-scheduler:770:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Cultural Risk-Aware Scheduler`, including at least three measurable KPIs tied to context mismatch and exclusion.",
+    "contractStep": "Design and version the input/output contract for language variants, cultural norms, and local preferences, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover context mismatch and exclusion, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

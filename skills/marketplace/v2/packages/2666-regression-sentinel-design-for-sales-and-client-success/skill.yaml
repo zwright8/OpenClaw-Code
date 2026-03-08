@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2666
+  name: "openclaw-v2-2666-regression-sentinel-design"
+  title: "Regression Sentinel Design for sales and client success"
+  domain: "sales and client success"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "regression sentinel design"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 89
+  roi_score: 68.95
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2666-regression-sentinel-design-for-sales-and-client-success/SKILL.md"

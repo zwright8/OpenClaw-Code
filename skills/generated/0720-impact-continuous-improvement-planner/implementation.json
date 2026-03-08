@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 720,
+  "skillName": "u0720-impact-continuous-improvement-planner",
+  "title": "Impact Continuous Improvement Planner",
+  "domain": "Social Impact Measurement",
+  "domainSlug": "social-impact-measurement",
+  "reason": "We need this skill because missions need measurable outcomes, not just activity volume. This specific skill turns findings into sustained upgrade cycles.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Impact Continuous Improvement Planner`, including at least three measurable KPIs tied to impact theater and unmeasured harm.",
+    "Design and version the input/output contract for community outcomes, KPI trends, and intervention deltas, then add schema validation and failure-mode handling.",
+    "Implement the core capability using closed-loop prioritization, and produce improvement roadmaps with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover impact theater and unmeasured harm, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "closed-loop prioritization",
+    "primaryArtifact": "improvement roadmaps",
+    "requiredSignals": [
+      "community outcomes",
+      "kpi trends",
+      "intervention deltas",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "impact theater",
+      "unmeasured harm",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.279,
+      "execution": 0.2961,
+      "safety": 0.2834,
+      "impact": 0.1415
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 46,
+      "reviewRisk": 42,
+      "criticalRisk": 66
+    },
+    "orchestration": {
+      "routingTag": "social-impact-measurement:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0720_impact-continuous-improvement-pl",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0720-impact-continuous-improvement-planner:720:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Impact Continuous Improvement Planner`, including at least three measurable KPIs tied to impact theater and unmeasured harm.",
+    "contractStep": "Design and version the input/output contract for community outcomes, KPI trends, and intervention deltas, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using closed-loop prioritization, and produce improvement roadmaps with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover impact theater and unmeasured harm, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

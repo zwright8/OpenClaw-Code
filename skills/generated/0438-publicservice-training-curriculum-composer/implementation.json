@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 438,
+  "skillName": "u0438-publicservice-training-curriculum-composer",
+  "title": "PublicService Training Curriculum Composer",
+  "domain": "Healthcare and Public Services",
+  "domainSlug": "healthcare-and-public-services",
+  "reason": "We need this skill because public-facing workflows require strict safety and reliability controls. This specific skill converts capability gaps into actionable upskilling programs.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `PublicService Training Curriculum Composer`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "sequenced learning path design",
+    "primaryArtifact": "role-specific curricula",
+    "requiredSignals": [
+      "protocol checks",
+      "service queues",
+      "compliance flags",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "service harm",
+      "procedural violations",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3178,
+      "execution": 0.1882,
+      "safety": 0.2776,
+      "impact": 0.2164
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 46,
+      "reviewRisk": 45,
+      "criticalRisk": 68
+    },
+    "orchestration": {
+      "routingTag": "healthcare-and-public-services:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0438_publicservice-training-curriculu",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0438-publicservice-training-curriculum-composer:438:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `PublicService Training Curriculum Composer`, including at least three measurable KPIs tied to service harm and procedural violations.",
+    "contractStep": "Design and version the input/output contract for protocol checks, service queues, and compliance flags, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover service harm and procedural violations, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

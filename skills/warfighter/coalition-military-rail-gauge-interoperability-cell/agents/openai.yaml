@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coalition Military Rail Gauge Interoperability Cell"
+  short_description: "Help with Coalition Military Rail Gauge Interoperability Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Coalition Military Rail Gauge Interoperability Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

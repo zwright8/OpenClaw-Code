@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 351,
+    "name": "openclaw-v2-0351-attack-surface-modeling",
+    "title": "Economic Security Threat Modeler",
+    "domain": "Economic Optimization",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "attack-surface modeling",
+    "archetype": "detection-guard"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 60,
+    "roiScore": 59.33,
+    "trustBadges": [
+      "Baseline-Validated"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0351-economic-security-threat-modeler/SKILL.md"
+  }
+}

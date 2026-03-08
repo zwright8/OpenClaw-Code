@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Critical Mineral Theater Supply Security Cell"
+  short_description: "Help with Joint Critical Mineral Theater Supply Security Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Critical Mineral Theater Supply Security Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

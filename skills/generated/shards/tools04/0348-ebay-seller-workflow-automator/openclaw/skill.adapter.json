@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 348,
+  "name": "ebay-seller-workflow-automator",
+  "title": "eBay Seller Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using eBay Seller.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools04/0348-ebay-seller-workflow-automator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools04/0348-ebay-seller-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "ebay seller workflow automator",
+    "ebay seller workflow automator workflow",
+    "ebay seller workflow automator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "eBay Seller",
+    "operation": "workflow-automator",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools04/0348-ebay-seller-workflow-automator"
+  }
+}

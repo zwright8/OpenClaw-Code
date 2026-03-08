@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Military Police And Detainee Evidence Chain Cell"
+  short_description: "Help with Joint Military Police And Detainee Evidence Chain Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Military Police And Detainee Evidence Chain Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

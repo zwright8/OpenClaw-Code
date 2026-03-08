@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theater Quantum Navigation Test and Transition Cell"
+  short_description: "Help with Theater Quantum Navigation Test and Transition Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Theater Quantum Navigation Test and Transition Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

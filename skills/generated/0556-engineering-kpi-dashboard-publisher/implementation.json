@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 556,
+  "skillName": "u0556-engineering-kpi-dashboard-publisher",
+  "title": "Engineering KPI Dashboard Publisher",
+  "domain": "Software Engineering Automation",
+  "domainSlug": "software-engineering-automation",
+  "reason": "We need this skill because delivery speed must increase without sacrificing correctness. This specific skill keeps mission status observable in real time.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Engineering KPI Dashboard Publisher`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "Implement the core capability using metric synthesis and publication, and produce operator KPI dashboards with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "communication-engine",
+    "coreMethod": "metric synthesis and publication",
+    "primaryArtifact": "operator KPI dashboards",
+    "requiredSignals": [
+      "code changes",
+      "tests",
+      "incidents",
+      "rollout data",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "regressions",
+      "brittle release pipelines",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2638,
+      "execution": 0.2234,
+      "safety": 0.2728,
+      "impact": 0.24
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 52,
+      "reviewRisk": 40,
+      "criticalRisk": 72
+    },
+    "orchestration": {
+      "routingTag": "software-engineering-automation:communication-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0556_engineering-kpi-dashboard-publis",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0556-engineering-kpi-dashboard-publisher:556:communication-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Engineering KPI Dashboard Publisher`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "contractStep": "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using metric synthesis and publication, and produce operator KPI dashboards with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

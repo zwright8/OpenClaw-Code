@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 444,
+  "skillName": "u0444-education-contradiction-detector",
+  "title": "Education Contradiction Detector",
+  "domain": "Education and Upskilling",
+  "domainSlug": "education-and-upskilling",
+  "reason": "We need this skill because human capability growth requires targeted planning under constraints. This specific skill catches internal and external claim conflicts early.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Education Contradiction Detector`, including at least three measurable KPIs tied to persistent skill gaps and poor learning outcomes.",
+    "Design and version the input/output contract for skill profiles, learning paths, and support resources, then add schema validation and failure-mode handling.",
+    "Implement the core capability using cross-claim consistency checks, and produce contradiction alerts with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover persistent skill gaps and poor learning outcomes, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "detection-guard",
+    "coreMethod": "cross-claim consistency checks",
+    "primaryArtifact": "contradiction alerts",
+    "requiredSignals": [
+      "skill profiles",
+      "learning paths",
+      "support resources",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "persistent skill gaps",
+      "poor learning outcomes",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2354,
+      "execution": 0.28,
+      "safety": 0.2519,
+      "impact": 0.2327
+    },
+    "postureThresholds": {
+      "readyMin": 72,
+      "reviewMin": 59,
+      "reviewRisk": 51,
+      "criticalRisk": 78
+    },
+    "orchestration": {
+      "routingTag": "education-and-upskilling:detection-guard",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0444_education-contradiction-detector",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0444-education-contradiction-detector:444:detection-guard"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Education Contradiction Detector`, including at least three measurable KPIs tied to persistent skill gaps and poor learning outcomes.",
+    "contractStep": "Design and version the input/output contract for skill profiles, learning paths, and support resources, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using cross-claim consistency checks, and produce contradiction alerts with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover persistent skill gaps and poor learning outcomes, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

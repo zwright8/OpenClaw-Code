@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 4066,
+    "name": "openclaw-v2-4066-explainability-narrative-design",
+    "title": "Explainability Narrative Design for sales and client success",
+    "domain": "sales and client success",
+    "verticalId": "business-growth",
+    "verticalName": "Business and Growth",
+    "method": "explainability narrative design",
+    "archetype": "narrative-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 81,
+    "roiScore": 83.7,
+    "trustBadges": [
+      "ROI-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/4066-explainability-narrative-design-for-sales-and-client-success/SKILL.md"
+  }
+}

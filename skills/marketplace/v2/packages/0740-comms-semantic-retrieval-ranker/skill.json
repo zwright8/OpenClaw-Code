@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 740,
+    "name": "openclaw-v2-0740-semantic-relevance-scoring",
+    "title": "Comms Semantic Retrieval Ranker",
+    "domain": "Communication and Explainability",
+    "verticalId": "general-operations",
+    "verticalName": "General Operations",
+    "method": "semantic relevance scoring",
+    "archetype": "planning-router"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 66,
+    "roiScore": 77.38,
+    "trustBadges": [
+      "Reliability-Proven"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/0740-comms-semantic-retrieval-ranker/SKILL.md"
+  }
+}

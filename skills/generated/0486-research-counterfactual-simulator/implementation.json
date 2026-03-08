@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 486,
+  "skillName": "u0486-research-counterfactual-simulator",
+  "title": "Research Counterfactual Simulator",
+  "domain": "Scientific Research Systems",
+  "domainSlug": "scientific-research-systems",
+  "reason": "We need this skill because research throughput degrades without reproducibility and prioritization. This specific skill tests alternatives before costly commitments.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Research Counterfactual Simulator`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "Implement the core capability using counterfactual replay, and produce scenario comparison reports with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "simulation-lab",
+    "coreMethod": "counterfactual replay",
+    "primaryArtifact": "scenario comparison reports",
+    "requiredSignals": [
+      "hypotheses",
+      "experiments",
+      "replication evidence",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "non-reproducible results",
+      "wasted cycles",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3549,
+      "execution": 0.3495,
+      "safety": 0.134,
+      "impact": 0.1616
+    },
+    "postureThresholds": {
+      "readyMin": 75,
+      "reviewMin": 47,
+      "reviewRisk": 40,
+      "criticalRisk": 63
+    },
+    "orchestration": {
+      "routingTag": "scientific-research-systems:simulation-lab",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "scenario-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0486_research-counterfactual-simulato",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0486-research-counterfactual-simulator:486:simulation-lab"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Research Counterfactual Simulator`, including at least three measurable KPIs tied to non-reproducible results and wasted cycles.",
+    "contractStep": "Design and version the input/output contract for hypotheses, experiments, and replication evidence, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using counterfactual replay, and produce scenario comparison reports with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover non-reproducible results and wasted cycles, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

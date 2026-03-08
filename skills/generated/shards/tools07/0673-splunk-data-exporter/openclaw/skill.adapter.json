@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 673,
+  "name": "splunk-data-exporter",
+  "title": "Splunk Data Exporter",
+  "description": "Exports Splunk entities into clean, typed datasets.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0673-splunk-data-exporter/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0673-splunk-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "splunk data exporter",
+    "splunk data exporter workflow",
+    "splunk data exporter automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Splunk",
+    "operation": "data-exporter",
+    "authModes": [
+      "api_key",
+      "token"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0673-splunk-data-exporter"
+  }
+}

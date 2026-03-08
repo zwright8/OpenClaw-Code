@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 207,
+  "skillName": "u0207-oversight-goal-decomposer",
+  "title": "Oversight Goal Decomposer",
+  "domain": "Human Oversight and Operator UX",
+  "domainSlug": "human-oversight-and-operator-ux",
+  "reason": "We need this skill because human teams need fast, legible control when stakes are high. This specific skill breaks ambiguous missions into executable units.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Oversight Goal Decomposer`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "Implement the core capability using hierarchical decomposition, and produce atomic task trees with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "hierarchical decomposition",
+    "primaryArtifact": "atomic task trees",
+    "requiredSignals": [
+      "approval queues",
+      "operator workload",
+      "intervention history",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow interventions",
+      "approval bottlenecks",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2912,
+      "execution": 0.1911,
+      "safety": 0.3136,
+      "impact": 0.2041
+    },
+    "postureThresholds": {
+      "readyMin": 71,
+      "reviewMin": 52,
+      "reviewRisk": 51,
+      "criticalRisk": 81
+    },
+    "orchestration": {
+      "routingTag": "human-oversight-and-operator-ux:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0207_oversight-goal-decomposer",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0207-oversight-goal-decomposer:207:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Oversight Goal Decomposer`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "contractStep": "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using hierarchical decomposition, and produce atomic task trees with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 549,
+  "name": "snowflake-approval-router",
+  "title": "Snowflake Approval Router",
+  "description": "Routes Snowflake-driven decisions to the right approvers.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0549-snowflake-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0549-snowflake-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "snowflake approval router",
+    "snowflake approval router workflow",
+    "snowflake approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Snowflake",
+    "operation": "approval-router",
+    "authModes": [
+      "service_account",
+      "session"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0549-snowflake-approval-router"
+  }
+}

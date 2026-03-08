@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theater Electronic Order Of Life Pattern Shift Cell"
+  short_description: "Help with Theater Electronic Order Of Life Pattern Shift Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Theater Electronic Order of Life Pattern Shift Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 91,
+  "skillName": "u0091-memory-policy-constraint-compiler",
+  "title": "Memory Policy Constraint Compiler",
+  "domain": "Memory and Knowledge Operations",
+  "domainSlug": "memory-and-knowledge-operations",
+  "reason": "We need this skill because agents lose performance when lessons are not retained and reused. This specific skill turns governance language into enforceable runtime checks.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Memory Policy Constraint Compiler`, including at least three measurable KPIs tied to repeated mistakes and context loss.",
+    "Design and version the input/output contract for episodic logs, knowledge nodes, and retrieval metadata, then add schema validation and failure-mode handling.",
+    "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover repeated mistakes and context loss, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "rule compilation",
+    "primaryArtifact": "executable policy bundles",
+    "requiredSignals": [
+      "episodic logs",
+      "knowledge nodes",
+      "retrieval metadata",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "repeated mistakes",
+      "context loss",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.4006,
+      "execution": 0.1667,
+      "safety": 0.2584,
+      "impact": 0.1743
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 62,
+      "reviewRisk": 46,
+      "criticalRisk": 77
+    },
+    "orchestration": {
+      "routingTag": "memory-and-knowledge-operations:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0091_memory-policy-constraint-compile",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0091-memory-policy-constraint-compiler:91:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Memory Policy Constraint Compiler`, including at least three measurable KPIs tied to repeated mistakes and context loss.",
+    "contractStep": "Design and version the input/output contract for episodic logs, knowledge nodes, and retrieval metadata, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover repeated mistakes and context loss, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

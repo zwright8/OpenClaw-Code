@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 866,
+  "skillName": "u0866-community-experiment-design-generator",
+  "title": "Community Experiment Design Generator",
+  "domain": "Community Engagement and Feedback",
+  "domainSlug": "community-engagement-and-feedback",
+  "reason": "We need this skill because real-world feedback loops are necessary for continuous alignment. This specific skill converts unknowns into testable learning loops.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Community Experiment Design Generator`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "hypothesis-driven design",
+    "primaryArtifact": "experiment plans",
+    "requiredSignals": [
+      "feedback channels",
+      "sentiment",
+      "urgency",
+      "follow-ups",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "community trust loss",
+      "unaddressed concerns",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3045,
+      "execution": 0.3404,
+      "safety": 0.2363,
+      "impact": 0.1188
+    },
+    "postureThresholds": {
+      "readyMin": 80,
+      "reviewMin": 60,
+      "reviewRisk": 53,
+      "criticalRisk": 84
+    },
+    "orchestration": {
+      "routingTag": "community-engagement-and-feedback:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0866_community-experiment-design-gene",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0866-community-experiment-design-generator:866:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Community Experiment Design Generator`, including at least three measurable KPIs tied to community trust loss and unaddressed concerns.",
+    "contractStep": "Design and version the input/output contract for feedback channels, sentiment, urgency, and follow-ups, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using hypothesis-driven design, and produce experiment plans with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover community trust loss and unaddressed concerns, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

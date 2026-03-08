@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Expeditionary Tactical Rail Bridge Repair Cell"
+  short_description: "Help with Expeditionary Tactical Rail Bridge Repair Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Expeditionary Tactical Rail Bridge Repair Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

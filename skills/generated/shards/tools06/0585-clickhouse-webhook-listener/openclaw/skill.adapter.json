@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 585,
+  "name": "clickhouse-webhook-listener",
+  "title": "ClickHouse Webhook Listener",
+  "description": "Captures, verifies, and routes ClickHouse webhook events.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0585-clickhouse-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0585-clickhouse-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "clickhouse webhook listener",
+    "clickhouse webhook listener workflow",
+    "clickhouse webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "ClickHouse",
+    "operation": "webhook-listener",
+    "authModes": [
+      "oauth2",
+      "token",
+      "signing_secret"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0585-clickhouse-webhook-listener"
+  }
+}

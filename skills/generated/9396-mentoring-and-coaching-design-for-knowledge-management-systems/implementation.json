@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "sourceFile": "SKILLS_UPDATES_10000.md",
+  "skillId": 9396,
+  "skillName": "u09396-mentoring-and-coaching-design-for-knowledge-management-systems",
+  "title": "Mentoring And Coaching Design for knowledge management systems",
+  "domain": "knowledge management systems",
+  "domainSlug": "knowledge-management-systems",
+  "reason": "Use mentoring and coaching design in knowledge management systems with emphasis on evidence quality, falsifiability, and calibration.",
+  "implementationGuide": [
+    "Define measurable outcomes for Mentoring And Coaching Design for knowledge management systems, including baseline and target metrics for knowledge management systems.",
+    "Specify structured inputs/outputs for mentoring and coaching design and validate schema contract edge cases.",
+    "Implement the core mentoring and coaching design logic with deterministic scoring and reproducible execution traces.",
+    "Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.",
+    "Run unit, integration, simulation, and regression suites for Mentoring And Coaching Design for knowledge management systems under maximally truth-seeking conditions.",
+    "Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "coaching-engine",
+    "coreMethod": "mentoring and coaching design",
+    "primaryArtifact": "mentoring-and-coaching-design-artifact-knowledge-management-syst",
+    "requiredSignals": [
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "accuracy lift",
+      "contradiction reduction",
+      "evidence coverage in knowledge management systems"
+    ],
+    "scoringWeights": {
+      "truth": 0.45,
+      "execution": 0.2,
+      "safety": 0.2,
+      "impact": 0.15
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 54,
+      "reviewRisk": 62,
+      "criticalRisk": 81
+    },
+    "orchestration": {
+      "routingTag": "knowledge-management-systems:coaching-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "evidence-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_09396_mentoring-and-coaching-design",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "SK-09396:maximally-truth-seeking:coaching-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define measurable outcomes for Mentoring And Coaching Design for knowledge management systems, including baseline and target metrics for knowledge management systems.",
+    "contractStep": "Specify structured inputs/outputs for mentoring and coaching design and validate schema contract edge cases.",
+    "coreStep": "Implement the core mentoring and coaching design logic with deterministic scoring and reproducible execution traces.",
+    "orchestrationStep": "Integrate orchestration policy, routing, approval gates, retries, and rollback for autonomous execution.",
+    "validationStep": "Run unit, integration, simulation, and regression suites for Mentoring And Coaching Design for knowledge management systems under maximally truth-seeking conditions.",
+    "rolloutStep": "Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes."
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "foundation",
+    "humanUseCases": [
+      "Run Mentoring And Coaching Design for knowledge management systems as a repeatable production workflow for humans and agents.",
+      "Use Mentoring And Coaching Design for knowledge management systems to accelerate decisions while preserving safety, quality, and auditability."
+    ],
+    "runbook": {
+      "preflight": [
+        "Validate mission scope, contracts, and required inputs.",
+        "Verify feature flag posture, dependencies, and approval prerequisites."
+      ],
+      "execution": [
+        "Execute mentoring and coaching design workflow with deterministic scoring and trace capture.",
+        "Track posture transitions and preserve reproducible evidence artifacts."
+      ],
+      "recovery": [
+        "Apply rollback strategy if posture is critical or guardrails fail.",
+        "Escalate blocked execution to oversight with incident packet and trace references."
+      ],
+      "handoff": [
+        "Publish outcome report, scorecard, and telemetry links.",
+        "Queue follow-up tasks for unresolved risks, approvals, or optimization work."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "quality",
+        "rule": "Require unit and integration validations before promoting Mentoring And Coaching Design for knowledge management systems.",
+        "automation": "run-validation:unit+integration+simulation+regression-baseline"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Trigger rollback on critical posture or repeated failures.",
+        "automation": "rollback:rollback-to-last-stable-baseline"
+      },
+      {
+        "kind": "cost",
+        "rule": "Respect bounded resource pressure and execution budget during scaling.",
+        "automation": "budget-guard:resource-pressure-cap"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.5% successful runs per 7-day window",
+      "errorBudget": "<=0.5% critical failures per 7-day window",
+      "alertTriggers": [
+        "critical posture exceeds baseline trend",
+        "validation regression crosses threshold",
+        "hardening or approval bottlenecks persist"
+      ]
+    },
+    "automation": {
+      "autopilotReady": true,
+      "parallelism": 4,
+      "maxCycleMinutes": 25,
+      "approvals": [
+        "policy-constraint-check",
+        "evidence-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "accuracy lift",
+      "secondaryMetrics": [
+        "contradiction reduction",
+        "evidence coverage in knowledge management systems"
+      ],
+      "reviewCadence": "weekly"
+    }
+  }
+}

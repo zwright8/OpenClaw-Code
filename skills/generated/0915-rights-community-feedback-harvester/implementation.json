@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 915,
+  "skillName": "u0915-rights-community-feedback-harvester",
+  "title": "Rights Community Feedback Harvester",
+  "domain": "Legal, Rights, and Compliance",
+  "domainSlug": "legal-rights-and-compliance",
+  "reason": "We need this skill because operations must preserve rights and satisfy jurisdictional obligations. This specific skill integrates lived user feedback into planning cycles.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Rights Community Feedback Harvester`, including at least three measurable KPIs tied to rights violations and compliance penalties.",
+    "Design and version the input/output contract for requirements mappings, legal decisions, and evidence trails, then add schema validation and failure-mode handling.",
+    "Implement the core capability using feedback normalization and clustering, and produce theme-prioritized feedback digests with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover rights violations and compliance penalties, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "normalization-engine",
+    "coreMethod": "feedback normalization and clustering",
+    "primaryArtifact": "theme-prioritized feedback digests",
+    "requiredSignals": [
+      "requirements mappings",
+      "legal decisions",
+      "evidence trails",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "rights violations",
+      "compliance penalties",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.158,
+      "execution": 0.225,
+      "safety": 0.298,
+      "impact": 0.319
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 48,
+      "reviewRisk": 34,
+      "criticalRisk": 60
+    },
+    "orchestration": {
+      "routingTag": "legal-rights-and-compliance:normalization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0915_rights-community-feedback-harves",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0915-rights-community-feedback-harvester:915:normalization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Rights Community Feedback Harvester`, including at least three measurable KPIs tied to rights violations and compliance penalties.",
+    "contractStep": "Design and version the input/output contract for requirements mappings, legal decisions, and evidence trails, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using feedback normalization and clustering, and produce theme-prioritized feedback digests with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover rights violations and compliance penalties, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

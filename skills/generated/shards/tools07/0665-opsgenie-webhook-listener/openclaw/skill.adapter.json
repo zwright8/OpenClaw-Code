@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 665,
+  "name": "opsgenie-webhook-listener",
+  "title": "Opsgenie Webhook Listener",
+  "description": "Captures, verifies, and routes Opsgenie webhook events.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0665-opsgenie-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0665-opsgenie-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "opsgenie webhook listener",
+    "opsgenie webhook listener workflow",
+    "opsgenie webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Opsgenie",
+    "operation": "webhook-listener",
+    "authModes": [
+      "oauth2",
+      "token",
+      "signing_secret"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0665-opsgenie-webhook-listener"
+  }
+}

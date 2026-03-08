@@ -1,0 +1,24 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 7681
+  name: "openclaw-v2-7681-personal-habit-optimization"
+  title: "Personal Habit Optimization for healthcare operations"
+  domain: "healthcare operations"
+  vertical_id: "health-learning"
+  vertical_name: "Health and Learning Systems"
+  method: "personal habit optimization"
+  archetype: "habit-optimization-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 97
+  roi_score: 77.44
+  trust_badges:
+    - "Verified-Quality"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/7681-personal-habit-optimization-for-healthcare-operations/SKILL.md"

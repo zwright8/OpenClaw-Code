@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 651,
+  "skillName": "pagerduty-connector",
+  "title": "PagerDuty Connector",
+  "domain": "Observability and incident platforms",
+  "domainSlug": "observability-and-incident-platforms",
+  "reason": "We need this skill because PagerDuty workflows degrade when auth, schema, and side-effect handling drift when integrations are run ad hoc. This specific skill turns PagerDuty Connector into a deterministic, auth-checked workflow for unified read/write connector for pagerduty apis and data..",
+  "implementationGuide": [
+    "Define the objective, target resources, and permitted side effects for PagerDuty Connector, then confirm the smallest read-only probe that proves access to PagerDuty.",
+    "Resolve credential reuse first, validate identity and scopes, and only ask for new secrets if the existing auth context is missing, invalid, or expired.",
+    "Specify the request and response contract for unified read/write connector for pagerduty apis and data., including idempotency rules and provider rate-limit posture.",
+    "Execute the read-only probe, widen to the minimum required write scope, and capture deterministic request/response traces for every call.",
+    "Run integration and regression checks that cover auth expiry, scope mismatch, and rate limiting before approving downstream automation reuse.",
+    "Publish a connection bundle with scopes, created artifacts, and next-action guidance for any workflow that depends on this provider session."
+  ],
+  "runtimeProfile": {
+    "archetype": "integration-connector",
+    "coreMethod": "auth-scoped api mediation",
+    "primaryArtifact": "pagerduty-connection-trace-bundle",
+    "requiredSignals": [
+      "auth context",
+      "resource scope",
+      "request contract"
+    ],
+    "kpiFocus": [
+      "auth success rate",
+      "request validation pass rate",
+      "side-effect correctness"
+    ],
+    "scoringWeights": {
+      "truth": 0.22,
+      "execution": 0.36,
+      "safety": 0.28,
+      "impact": 0.14
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 54,
+      "reviewRisk": 60,
+      "criticalRisk": 80
+    },
+    "orchestration": {
+      "routingTag": "pagerduty:connector",
+      "approvalGates": [
+        "provider-auth-check",
+        "mutation-safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "revoke-write-session-and-replay-read-only",
+      "components": [
+        "auth preflight",
+        "read-only probe",
+        "scoped mutation",
+        "artifact capture"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0651_pagerduty",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:651:pagerduty:connector"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "mission_critical",
+    "humanUseCases": [
+      "Establish a deterministic, auditable integration path before any write-capable automation is enabled.",
+      "Normalize external API access so downstream workflows inherit the same auth and validation policy."
+    ],
+    "runbook": {
+      "preflight": [
+        "Verify credential reuse candidates before asking for new secrets.",
+        "Start with the minimum read-only probe that proves identity, scope, and rate-limit posture."
+      ],
+      "execution": [
+        "Execute the smallest valid API operation first, then widen scope only after validation passes.",
+        "Capture endpoint, request shape, and response identifiers in the handoff bundle."
+      ],
+      "recovery": [
+        "On auth or permission failure, stop writes, preserve diagnostics, and fall back to read-only verification.",
+        "On mutating error, revoke the write session and reconcile resulting state before retry."
+      ],
+      "handoff": [
+        "Return the validated connection state, scopes used, and any newly created IDs or URLs.",
+        "Document whether the session is safe for downstream automation or requires human re-approval."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "quality",
+        "rule": "Require an auth preflight and read-only probe before any write-capable call.",
+        "automation": "auth-preflight+read-probe"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Throttle retries and reconcile provider state after write failures.",
+        "automation": "retry-budget+state-reconcile"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Enforce least privilege and preserve the scopes used for the run.",
+        "automation": "scope-audit"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Validate provider key or secret mode (sandbox vs production) before any mutating execution.",
+        "automation": "credential-mode-check"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.9% successful runs per 7-day window",
+      "errorBudget": "<=0.1% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": false,
+      "parallelism": 1,
+      "maxCycleMinutes": 15,
+      "approvals": [
+        "provider-auth-check",
+        "mutation-safety-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "auth success rate",
+      "secondaryMetrics": [
+        "request validation pass rate",
+        "side-effect correctness"
+      ],
+      "reviewCadence": "daily"
+    }
+  },
+  "integrationProfile": {
+    "provider": "PagerDuty",
+    "providerSlug": "pagerduty",
+    "category": "Observability and incident platforms",
+    "operation": "Connector",
+    "operationSlug": "connector",
+    "protocols": [
+      "HTTPS/REST",
+      "webhook callbacks"
+    ],
+    "authModes": [
+      {
+        "kind": "api_key",
+        "label": "API key or account secret",
+        "envVars": [
+          "PAGERDUTY_API_KEY"
+        ],
+        "required": true,
+        "validation": "Validate the key with a lightweight authenticated request and confirm environment or mode (sandbox vs production)."
+      },
+      {
+        "kind": "token",
+        "label": "Access token or personal access token",
+        "envVars": [
+          "PAGERDUTY_TOKEN",
+          "PAGERDUTY_ACCESS_TOKEN"
+        ],
+        "required": true,
+        "validation": "Validate the token with the smallest read-only endpoint that proves scope and tenancy."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": true,
+    "mutating": true,
+    "webhookCapable": false,
+    "notes": [
+      "Preserve incident IDs, monitors, and alert routes in every artifact bundle."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the objective, target resources, and permitted side effects for PagerDuty Connector, then confirm the smallest read-only probe that proves access to PagerDuty.",
+    "contractStep": "Resolve credential reuse first, validate identity and scopes, and only ask for new secrets if the existing auth context is missing, invalid, or expired.",
+    "coreStep": "Specify the request and response contract for unified read/write connector for pagerduty apis and data., including idempotency rules and provider rate-limit posture.",
+    "orchestrationStep": "Execute the read-only probe, widen to the minimum required write scope, and capture deterministic request/response traces for every call.",
+    "validationStep": "Run integration and regression checks that cover auth expiry, scope mismatch, and rate limiting before approving downstream automation reuse.",
+    "rolloutStep": "Publish a connection bundle with scopes, created artifacts, and next-action guidance for any workflow that depends on this provider session."
+  }
+}

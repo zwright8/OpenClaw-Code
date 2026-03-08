@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 817,
+  "skillName": "anthropic-alert-monitor",
+  "title": "Anthropic Alert Monitor",
+  "domain": "AI and model platforms",
+  "domainSlug": "ai-and-model-platforms",
+  "reason": "We need this skill because Anthropic workflows degrade when auth, schema, and side-effect handling drift when integrations are run ad hoc. This specific skill turns Anthropic Alert Monitor into a deterministic, auth-checked workflow for monitors key anthropic signals and raises actionable alerts..",
+  "implementationGuide": [
+    "Define the monitored signals, freshness expectations, and escalation policy for Anthropic Alert Monitor, then lock the reviewed threshold set for Anthropic.",
+    "Validate credential reuse, dedupe windows, and acknowledgement ownership before the monitor starts polling.",
+    "Implement monitors key anthropic signals and raises actionable alerts. with deterministic threshold evaluation, duplicate suppression, and evidence attachment.",
+    "Persist alert state, suppressed duplicates, and escalation routing details so responders can audit every decision.",
+    "Run simulation and regression suites that cover stale signals, threshold drift, and duplicate alert storms.",
+    "Publish an alert-state bundle with threshold version, triggered alerts, and the next review action required for any degraded posture."
+  ],
+  "runtimeProfile": {
+    "archetype": "monitoring-engine",
+    "coreMethod": "threshold evaluation and escalation",
+    "primaryArtifact": "anthropic-alert-state-bundle",
+    "requiredSignals": [
+      "monitor targets",
+      "threshold policy",
+      "escalation channels"
+    ],
+    "kpiFocus": [
+      "alert precision",
+      "mean time to acknowledge",
+      "noise rate"
+    ],
+    "scoringWeights": {
+      "truth": 0.26,
+      "execution": 0.3,
+      "safety": 0.28,
+      "impact": 0.16
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 56,
+      "reviewRisk": 59,
+      "criticalRisk": 78
+    },
+    "orchestration": {
+      "routingTag": "anthropic:alert-monitor",
+      "approvalGates": [
+        "provider-auth-check",
+        "threshold-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 550,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "silence-alert-pipeline-and-reload-last-stable-thresholds",
+      "components": [
+        "signal poll",
+        "threshold evaluation",
+        "dedupe suppression",
+        "escalation routing"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0817_anthropic",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:817:anthropic:alert-monitor"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "mission_critical",
+    "humanUseCases": [
+      "Monitor provider signals and raise only the alerts that meet the agreed escalation policy.",
+      "Reduce alert fatigue by enforcing dedupe and threshold-review guardrails."
+    ],
+    "runbook": {
+      "preflight": [
+        "Validate the signal targets, thresholds, and escalation channels before polling begins.",
+        "Confirm the dedupe window and acknowledge who owns follow-up for triggered alerts."
+      ],
+      "execution": [
+        "Evaluate signals deterministically against the active threshold set.",
+        "Suppress duplicates and attach enough evidence for the responder to act without re-querying first."
+      ],
+      "recovery": [
+        "Silence the pipeline when threshold drift or duplicate storms exceed tolerance.",
+        "Reload the last stable thresholds before resuming alert delivery."
+      ],
+      "handoff": [
+        "Return triggered alerts, suppressed duplicates, and escalation destinations.",
+        "Include threshold version, supporting evidence links, and acknowledgement expectations."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "quality",
+        "rule": "Suppress duplicates and require evidence links on every alert.",
+        "automation": "dedupe+evidence-attach"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Reload last stable thresholds when alert noise exceeds tolerance.",
+        "automation": "threshold-rollback"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Do not change escalation channels or thresholds without recorded review.",
+        "automation": "threshold-review"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Validate provider key or secret mode (sandbox vs production) before any mutating execution.",
+        "automation": "credential-mode-check"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.9% successful runs per 7-day window",
+      "errorBudget": "<=0.1% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": false,
+      "parallelism": 1,
+      "maxCycleMinutes": 15,
+      "approvals": [
+        "provider-auth-check",
+        "threshold-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "alert precision",
+      "secondaryMetrics": [
+        "mean time to acknowledge",
+        "noise rate"
+      ],
+      "reviewCadence": "daily"
+    }
+  },
+  "integrationProfile": {
+    "provider": "Anthropic",
+    "providerSlug": "anthropic",
+    "category": "AI and model platforms",
+    "operation": "Alert Monitor",
+    "operationSlug": "alert-monitor",
+    "protocols": [
+      "HTTPS/REST"
+    ],
+    "authModes": [
+      {
+        "kind": "api_key",
+        "label": "API key or account secret",
+        "envVars": [
+          "ANTHROPIC_API_KEY"
+        ],
+        "required": true,
+        "validation": "Validate the key with a lightweight authenticated request and confirm environment or mode (sandbox vs production)."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": true,
+    "mutating": true,
+    "webhookCapable": false,
+    "notes": [
+      "Prefer existing model provider keys and verify quota before batch execution."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the monitored signals, freshness expectations, and escalation policy for Anthropic Alert Monitor, then lock the reviewed threshold set for Anthropic.",
+    "contractStep": "Validate credential reuse, dedupe windows, and acknowledgement ownership before the monitor starts polling.",
+    "coreStep": "Implement monitors key anthropic signals and raises actionable alerts. with deterministic threshold evaluation, duplicate suppression, and evidence attachment.",
+    "orchestrationStep": "Persist alert state, suppressed duplicates, and escalation routing details so responders can audit every decision.",
+    "validationStep": "Run simulation and regression suites that cover stale signals, threshold drift, and duplicate alert storms.",
+    "rolloutStep": "Publish an alert-state bundle with threshold version, triggered alerts, and the next review action required for any degraded posture."
+  }
+}

@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Autonomous Multi Domain Decoy Synchronization Cell"
+  short_description: "Help with Autonomous Multi Domain Decoy Synchronization Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Autonomous Multi Domain Decoy Synchronization Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

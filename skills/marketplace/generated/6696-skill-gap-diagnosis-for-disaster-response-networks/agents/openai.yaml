@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Gap Diagnosis for disaster response networks"
+  short_description: "Skill gap diagnosis for disaster response networks with guardrails and measurable outcomes."
+  default_prompt: "Use Skill Gap Diagnosis for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

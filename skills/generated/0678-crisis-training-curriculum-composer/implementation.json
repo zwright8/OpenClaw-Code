@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 678,
+  "skillName": "u0678-crisis-training-curriculum-composer",
+  "title": "Crisis Training Curriculum Composer",
+  "domain": "Crisis and Incident Response",
+  "domainSlug": "crisis-and-incident-response",
+  "reason": "We need this skill because response quality determines whether incidents are contained or amplified. This specific skill converts capability gaps into actionable upskilling programs.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Crisis Training Curriculum Composer`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "sequenced learning path design",
+    "primaryArtifact": "role-specific curricula",
+    "requiredSignals": [
+      "incident timelines",
+      "response roles",
+      "recovery artifacts",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow containment",
+      "repeated outages",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.266,
+      "execution": 0.2427,
+      "safety": 0.2639,
+      "impact": 0.2274
+    },
+    "postureThresholds": {
+      "readyMin": 71,
+      "reviewMin": 61,
+      "reviewRisk": 56,
+      "criticalRisk": 75
+    },
+    "orchestration": {
+      "routingTag": "crisis-and-incident-response:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1050,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0678_crisis-training-curriculum-compo",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0678-crisis-training-curriculum-composer:678:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Crisis Training Curriculum Composer`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "contractStep": "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using sequenced learning path design, and produce role-specific curricula with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

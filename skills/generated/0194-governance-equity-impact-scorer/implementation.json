@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 194,
+  "skillName": "u0194-governance-equity-impact-scorer",
+  "title": "Governance Equity Impact Scorer",
+  "domain": "Safety and Governance",
+  "domainSlug": "safety-and-governance",
+  "reason": "We need this skill because high-speed autonomy needs enforceable guardrails to stay aligned. This specific skill exposes uneven benefit/harm distribution before rollout.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Governance Equity Impact Scorer`, including at least three measurable KPIs tied to unsafe actions and policy drift.",
+    "Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.",
+    "Implement the core capability using group-level impact scoring, and produce equity impact profiles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "group-level impact scoring",
+    "primaryArtifact": "equity impact profiles",
+    "requiredSignals": [
+      "policies",
+      "violations",
+      "mitigation actions",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "unsafe actions",
+      "policy drift",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2516,
+      "execution": 0.1407,
+      "safety": 0.3112,
+      "impact": 0.2965
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 61,
+      "reviewRisk": 60,
+      "criticalRisk": 82
+    },
+    "orchestration": {
+      "routingTag": "safety-and-governance:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0194_governance-equity-impact-scorer",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0194-governance-equity-impact-scorer:194:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Governance Equity Impact Scorer`, including at least three measurable KPIs tied to unsafe actions and policy drift.",
+    "contractStep": "Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using group-level impact scoring, and produce equity impact profiles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

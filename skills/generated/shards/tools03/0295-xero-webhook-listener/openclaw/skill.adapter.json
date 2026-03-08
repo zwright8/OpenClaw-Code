@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 295,
+  "name": "xero-webhook-listener",
+  "title": "Xero Webhook Listener",
+  "description": "Captures, verifies, and routes Xero webhook events.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools03/0295-xero-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools03/0295-xero-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "xero webhook listener",
+    "xero webhook listener workflow",
+    "xero webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Xero",
+    "operation": "webhook-listener",
+    "authModes": [
+      "oauth2",
+      "token",
+      "signing_secret"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools03/0295-xero-webhook-listener"
+  }
+}

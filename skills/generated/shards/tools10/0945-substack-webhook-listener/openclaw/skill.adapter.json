@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 945,
+  "name": "substack-webhook-listener",
+  "title": "Substack Webhook Listener",
+  "description": "Captures, verifies, and routes Substack webhook events.",
+  "agent": "agent10",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools10/0945-substack-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools10/0945-substack-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "substack webhook listener",
+    "substack webhook listener workflow",
+    "substack webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Substack",
+    "operation": "webhook-listener",
+    "authModes": [
+      "oauth2",
+      "token",
+      "signing_secret"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools10/0945-substack-webhook-listener"
+  }
+}

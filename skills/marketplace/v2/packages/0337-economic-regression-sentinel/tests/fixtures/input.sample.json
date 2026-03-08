@@ -1,0 +1,13 @@
+{
+  "task": "Execute baseline-delta detection",
+  "objective": "Deliver Economic Regression Sentinel outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

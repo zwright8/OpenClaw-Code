@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 331,
+  "skillName": "u0331-economic-policy-constraint-compiler",
+  "title": "Economic Policy Constraint Compiler",
+  "domain": "Economic Optimization",
+  "domainSlug": "economic-optimization",
+  "reason": "We need this skill because missions need explicit tradeoff logic for cost, speed, and impact. This specific skill turns governance language into enforceable runtime checks.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Economic Policy Constraint Compiler`, including at least three measurable KPIs tied to overspending and low-impact allocation.",
+    "Design and version the input/output contract for budgets, costs, benefits, and opportunity values, then add schema validation and failure-mode handling.",
+    "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover overspending and low-impact allocation, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "contract-compiler",
+    "coreMethod": "rule compilation",
+    "primaryArtifact": "executable policy bundles",
+    "requiredSignals": [
+      "budgets",
+      "costs",
+      "benefits",
+      "opportunity values",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "overspending",
+      "low-impact allocation",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2016,
+      "execution": 0.3169,
+      "safety": 0.2519,
+      "impact": 0.2296
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 62,
+      "reviewRisk": 51,
+      "criticalRisk": 83
+    },
+    "orchestration": {
+      "routingTag": "economic-optimization:contract-compiler",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "budget-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0331_economic-policy-constraint-compi",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0331-economic-policy-constraint-compiler:331:contract-compiler"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Economic Policy Constraint Compiler`, including at least three measurable KPIs tied to overspending and low-impact allocation.",
+    "contractStep": "Design and version the input/output contract for budgets, costs, benefits, and opportunity values, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using rule compilation, and produce executable policy bundles with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover overspending and low-impact allocation, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

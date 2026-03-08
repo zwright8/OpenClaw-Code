@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 633,
+  "name": "grafana-data-exporter",
+  "title": "Grafana Data Exporter",
+  "description": "Exports Grafana entities into clean, typed datasets.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0633-grafana-data-exporter/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0633-grafana-data-exporter/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "grafana data exporter",
+    "grafana data exporter workflow",
+    "grafana data exporter automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Grafana",
+    "operation": "data-exporter",
+    "authModes": [
+      "api_key",
+      "token"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": false
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0633-grafana-data-exporter"
+  }
+}

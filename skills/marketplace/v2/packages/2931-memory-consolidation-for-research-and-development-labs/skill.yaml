@@ -1,0 +1,24 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 2931
+  name: "openclaw-v2-2931-memory-consolidation"
+  title: "Memory Consolidation for research and development labs"
+  domain: "research and development labs"
+  vertical_id: "engineering-product"
+  vertical_name: "Engineering and Product"
+  method: "memory consolidation"
+  archetype: "generalist-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 82
+  roi_score: 66.11
+  trust_badges:
+    - "Reliability-Proven"
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/2931-memory-consolidation-for-research-and-development-labs/SKILL.md"

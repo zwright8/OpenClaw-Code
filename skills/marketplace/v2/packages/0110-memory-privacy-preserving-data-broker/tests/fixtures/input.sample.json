@@ -1,0 +1,13 @@
+{
+  "task": "Execute policy-scoped data mediation",
+  "objective": "Deliver Memory Privacy Preserving Data Broker outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

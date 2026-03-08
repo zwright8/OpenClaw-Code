@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 6126,
+    "name": "openclaw-v2-6126-equity-impact-scoring",
+    "title": "Equity Impact Scoring for cybersecurity operations",
+    "domain": "cybersecurity operations",
+    "verticalId": "policy-risk",
+    "verticalName": "Policy, Risk, and Security",
+    "method": "equity impact scoring",
+    "archetype": "scoring-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 87,
+    "roiScore": 85.1,
+    "trustBadges": [
+      "Reliability-Proven",
+      "ROI-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/6126-equity-impact-scoring-for-cybersecurity-operations/SKILL.md"
+  }
+}

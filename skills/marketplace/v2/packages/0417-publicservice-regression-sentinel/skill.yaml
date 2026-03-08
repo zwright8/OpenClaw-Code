@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 417
+  name: "openclaw-v2-0417-baseline-delta-detection"
+  title: "PublicService Regression Sentinel"
+  domain: "Healthcare and Public Services"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "baseline-delta detection"
+  archetype: "detection-guard"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 62
+  roi_score: 51.43
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0417-publicservice-regression-sentinel/SKILL.md"

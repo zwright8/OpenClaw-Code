@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 982,
+  "skillName": "u0982-evolution-multi-agent-negotiation-mediator",
+  "title": "Evolution Multi-Agent Negotiation Mediator",
+  "domain": "Autonomous Learning and Evolution",
+  "domainSlug": "autonomous-learning-and-evolution",
+  "reason": "We need this skill because agents stagnate without structured reflection and continuous improvement loops. This specific skill resolves resource and strategy conflicts with explicit tradeoffs.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Evolution Multi-Agent Negotiation Mediator`, including at least three measurable KPIs tied to capability stagnation and repeated blind spots.",
+    "Design and version the input/output contract for outcomes, error taxonomies, and adaptation decisions, then add schema validation and failure-mode handling.",
+    "Implement the core capability using structured bargaining protocols, and produce negotiated agreement sets with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover capability stagnation and repeated blind spots, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "collaboration-mediator",
+    "coreMethod": "structured bargaining protocols",
+    "primaryArtifact": "negotiated agreement sets",
+    "requiredSignals": [
+      "outcomes",
+      "error taxonomies",
+      "adaptation decisions",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "capability stagnation",
+      "repeated blind spots",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2028,
+      "execution": 0.3014,
+      "safety": 0.1301,
+      "impact": 0.3657
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 52,
+      "reviewRisk": 36,
+      "criticalRisk": 74
+    },
+    "orchestration": {
+      "routingTag": "autonomous-learning-and-evolution:collaboration-mediator",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0982_evolution-multi-agent-negotiatio",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0982-evolution-multi-agent-negotiation-mediator:982:collaboration-mediator"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Evolution Multi-Agent Negotiation Mediator`, including at least three measurable KPIs tied to capability stagnation and repeated blind spots.",
+    "contractStep": "Design and version the input/output contract for outcomes, error taxonomies, and adaptation decisions, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using structured bargaining protocols, and produce negotiated agreement sets with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover capability stagnation and repeated blind spots, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

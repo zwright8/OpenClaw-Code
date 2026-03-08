@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 272,
+  "skillName": "u0272-collab-compliance-evidence-mapper",
+  "title": "Collab Compliance Evidence Mapper",
+  "domain": "Collaboration and Negotiation",
+  "domainSlug": "collaboration-and-negotiation",
+  "reason": "We need this skill because multi-agent systems underperform without explicit conflict resolution. This specific skill keeps proof of control coverage continuously current.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Collab Compliance Evidence Mapper`, including at least three measurable KPIs tied to deadlocks and degraded trust.",
+    "Design and version the input/output contract for proposals, contention signals, and negotiated outcomes, then add schema validation and failure-mode handling.",
+    "Implement the core capability using requirement-to-evidence mapping, and produce compliance evidence matrices with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover deadlocks and degraded trust, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "normalization-engine",
+    "coreMethod": "requirement-to-evidence mapping",
+    "primaryArtifact": "compliance evidence matrices",
+    "requiredSignals": [
+      "proposals",
+      "contention signals",
+      "negotiated outcomes",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "deadlocks",
+      "degraded trust",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3494,
+      "execution": 0.2249,
+      "safety": 0.2205,
+      "impact": 0.2052
+    },
+    "postureThresholds": {
+      "readyMin": 71,
+      "reviewMin": 55,
+      "reviewRisk": 52,
+      "criticalRisk": 79
+    },
+    "orchestration": {
+      "routingTag": "collaboration-and-negotiation:normalization-engine",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0272_collab-compliance-evidence-mappe",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0272-collab-compliance-evidence-mapper:272:normalization-engine"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Collab Compliance Evidence Mapper`, including at least three measurable KPIs tied to deadlocks and degraded trust.",
+    "contractStep": "Design and version the input/output contract for proposals, contention signals, and negotiated outcomes, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using requirement-to-evidence mapping, and produce compliance evidence matrices with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover deadlocks and degraded trust, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

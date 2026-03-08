@@ -1,0 +1,52 @@
+{
+  "skillId": 117,
+  "skillName": "outlook-alert-monitor",
+  "title": "Outlook Alert Monitor",
+  "provider": "Outlook",
+  "category": "Productivity and file platforms",
+  "operation": "alert-monitor",
+  "authContext": {
+    "mode": "oauth2",
+    "envVars": [
+      "OUTLOOK_CLIENT_ID",
+      "OUTLOOK_CLIENT_SECRET"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "monitor_targets": "sample_monitor_targets",
+      "threshold_policy": "sample_threshold_policy",
+      "escalation_channels": "sample_escalation_channels"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "threshold-review"
+    ],
+    "rollbackStrategy": "silence-alert-pipeline-and-reload-last-stable-thresholds"
+  },
+  "expected": {
+    "primaryArtifact": "outlook-alert-state-bundle",
+    "kpiFocus": [
+      "alert precision",
+      "mean time to acknowledge",
+      "noise rate"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 56,
+      "reviewRisk": 59,
+      "criticalRisk": 78
+    }
+  },
+  "regressionHint": {
+    "scenario": "Alert monitor with stale signals and a duplicate storm caused by an unreviewed threshold change.",
+    "mutation": "Age the signals beyond the freshness window and lower thresholds below the approved baseline."
+  }
+}

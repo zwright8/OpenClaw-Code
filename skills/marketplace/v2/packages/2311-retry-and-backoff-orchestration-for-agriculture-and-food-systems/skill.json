@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 2311,
+    "name": "openclaw-v2-2311-retry-and-backoff-orchestration",
+    "title": "Retry And Backoff Orchestration for agriculture and food systems",
+    "domain": "agriculture and food systems",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "retry and backoff orchestration",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 68,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/2311-retry-and-backoff-orchestration-for-agriculture-and-food-systems/SKILL.md"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "task": "Execute plan quality evaluation",
+  "objective": "Deliver Plan Quality Evaluation for research and development labs outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

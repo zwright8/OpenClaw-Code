@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 530,
+  "skillName": "u0530-engineering-risk-aware-scheduler",
+  "title": "Engineering Risk-Aware Scheduler",
+  "domain": "Software Engineering Automation",
+  "domainSlug": "software-engineering-automation",
+  "reason": "We need this skill because delivery speed must increase without sacrificing correctness. This specific skill times execution based on risk posture instead of urgency alone.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Engineering Risk-Aware Scheduler`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "planning-router",
+    "coreMethod": "risk-weighted sequencing",
+    "primaryArtifact": "risk-gated schedules",
+    "requiredSignals": [
+      "code changes",
+      "tests",
+      "incidents",
+      "rollout data",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "regressions",
+      "brittle release pipelines",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2606,
+      "execution": 0.1215,
+      "safety": 0.2964,
+      "impact": 0.3215
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 42,
+      "reviewRisk": 44,
+      "criticalRisk": 64
+    },
+    "orchestration": {
+      "routingTag": "software-engineering-automation:planning-router",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 600,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0530_engineering-risk-aware-scheduler",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0530-engineering-risk-aware-scheduler:530:planning-router"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Engineering Risk-Aware Scheduler`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "contractStep": "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using risk-weighted sequencing, and produce risk-gated schedules with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

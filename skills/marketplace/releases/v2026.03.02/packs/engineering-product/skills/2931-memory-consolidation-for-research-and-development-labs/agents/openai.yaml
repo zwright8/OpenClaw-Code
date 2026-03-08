@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Consolidation for research and development labs"
+  short_description: "Memory consolidation for research and development labs with guardrails and measurable outcomes."
+  default_prompt: "Use Memory Consolidation for research and development labs to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

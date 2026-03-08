@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 182,
+  "skillName": "u0182-governance-multi-agent-negotiation-mediator",
+  "title": "Governance Multi-Agent Negotiation Mediator",
+  "domain": "Safety and Governance",
+  "domainSlug": "safety-and-governance",
+  "reason": "We need this skill because high-speed autonomy needs enforceable guardrails to stay aligned. This specific skill resolves resource and strategy conflicts with explicit tradeoffs.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Governance Multi-Agent Negotiation Mediator`, including at least three measurable KPIs tied to unsafe actions and policy drift.",
+    "Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.",
+    "Implement the core capability using structured bargaining protocols, and produce negotiated agreement sets with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "collaboration-mediator",
+    "coreMethod": "structured bargaining protocols",
+    "primaryArtifact": "negotiated agreement sets",
+    "requiredSignals": [
+      "policies",
+      "violations",
+      "mitigation actions",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "unsafe actions",
+      "policy drift",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2029,
+      "execution": 0.3673,
+      "safety": 0.2932,
+      "impact": 0.1366
+    },
+    "postureThresholds": {
+      "readyMin": 71,
+      "reviewMin": 55,
+      "reviewRisk": 54,
+      "criticalRisk": 84
+    },
+    "orchestration": {
+      "routingTag": "safety-and-governance:collaboration-mediator",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "safety-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0182_governance-multi-agent-negotiati",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0182-governance-multi-agent-negotiation-mediator:182:collaboration-mediator"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Governance Multi-Agent Negotiation Mediator`, including at least three measurable KPIs tied to unsafe actions and policy drift.",
+    "contractStep": "Design and version the input/output contract for policies, violations, and mitigation actions, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using structured bargaining protocols, and produce negotiated agreement sets with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover unsafe actions and policy drift, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

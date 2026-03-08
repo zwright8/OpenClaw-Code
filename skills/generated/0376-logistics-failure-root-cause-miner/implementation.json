@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 376,
+  "skillName": "u0376-logistics-failure-root-cause-miner",
+  "title": "Logistics Failure Root-Cause Miner",
+  "domain": "Resource Allocation and Logistics",
+  "domainSlug": "resource-allocation-and-logistics",
+  "reason": "We need this skill because impact work fails when scarce resources are not routed intelligently. This specific skill finds recurring break patterns to speed remediation.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Logistics Failure Root-Cause Miner`, including at least three measurable KPIs tied to supply shortfalls and fairness gaps.",
+    "Design and version the input/output contract for capacity, bottlenecks, and distribution plans, then add schema validation and failure-mode handling.",
+    "Implement the core capability using error pattern mining, and produce root-cause clusters with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover supply shortfalls and fairness gaps, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "error pattern mining",
+    "primaryArtifact": "root-cause clusters",
+    "requiredSignals": [
+      "capacity",
+      "bottlenecks",
+      "distribution plans",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "supply shortfalls",
+      "fairness gaps",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3434,
+      "execution": 0.1969,
+      "safety": 0.1462,
+      "impact": 0.3135
+    },
+    "postureThresholds": {
+      "readyMin": 71,
+      "reviewMin": 49,
+      "reviewRisk": 44,
+      "criticalRisk": 62
+    },
+    "orchestration": {
+      "routingTag": "resource-allocation-and-logistics:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0376_logistics-failure-root-cause-min",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0376-logistics-failure-root-cause-miner:376:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Logistics Failure Root-Cause Miner`, including at least three measurable KPIs tied to supply shortfalls and fairness gaps.",
+    "contractStep": "Design and version the input/output contract for capacity, bottlenecks, and distribution plans, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using error pattern mining, and produce root-cause clusters with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover supply shortfalls and fairness gaps, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

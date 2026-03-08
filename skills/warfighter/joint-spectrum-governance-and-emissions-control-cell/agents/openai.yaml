@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Spectrum Governance And Emissions Control Cell"
+  short_description: "Help with Joint Spectrum Governance And Emissions Control Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Spectrum Governance And Emissions Control Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

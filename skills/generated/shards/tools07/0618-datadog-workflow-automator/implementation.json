@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 618,
+  "skillName": "datadog-workflow-automator",
+  "title": "Datadog Workflow Automator",
+  "domain": "Observability and incident platforms",
+  "domainSlug": "observability-and-incident-platforms",
+  "reason": "We need this skill because Datadog workflows degrade when auth, schema, and side-effect handling drift when integrations are run ad hoc. This specific skill turns Datadog Workflow Automator into a deterministic, auth-checked workflow for executes repeatable multi-step workflows using datadog..",
+  "implementationGuide": [
+    "Define the workflow graph, mutating boundaries, and approval requirements for Datadog Workflow Automator, then checkpoint where Datadog state can be replayed safely.",
+    "Validate credential reuse and trigger context before any step begins, with a focus on which branches require explicit human sign-off.",
+    "Implement executes repeatable multi-step workflows using datadog. as a deterministic sequence of step contracts, approvals, and checkpoint writes.",
+    "Capture step-level artifacts, side-effect evidence, and pending approvals in the workflow runbook so every branch remains auditable.",
+    "Run simulation and regression suites that cover missing approvals, missing checkpoints, and contract drift at each step boundary.",
+    "Publish the workflow runbook with completion state, pending approvals, and the exact checkpoint required for any safe replay."
+  ],
+  "runtimeProfile": {
+    "archetype": "workflow-orchestration-engine",
+    "coreMethod": "stateful workflow execution",
+    "primaryArtifact": "datadog-workflow-runbook",
+    "requiredSignals": [
+      "workflow specification",
+      "trigger context",
+      "approval policy"
+    ],
+    "kpiFocus": [
+      "workflow success rate",
+      "approval latency",
+      "retry recovery rate"
+    ],
+    "scoringWeights": {
+      "truth": 0.22,
+      "execution": 0.34,
+      "safety": 0.28,
+      "impact": 0.16
+    },
+    "postureThresholds": {
+      "readyMin": 77,
+      "reviewMin": 57,
+      "reviewRisk": 58,
+      "criticalRisk": 77
+    },
+    "orchestration": {
+      "routingTag": "datadog:workflow-automator",
+      "approvalGates": [
+        "provider-auth-check",
+        "workflow-approval-check"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 700,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "halt-workflow-and-replay-from-last-approved-step",
+      "components": [
+        "trigger validation",
+        "step sequencing",
+        "approval gates",
+        "step checkpointing"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0618_datadog",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:618:datadog:workflow-automator"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "mission_critical",
+    "humanUseCases": [
+      "Execute multi-step provider workflows with deterministic checkpoints and explicit approvals.",
+      "Keep side-effect-heavy automation auditable by treating every step as replayable state."
+    ],
+    "runbook": {
+      "preflight": [
+        "Validate the trigger context, approval policy, and downstream side effects for the workflow.",
+        "Confirm which steps are replay-safe and where checkpoints must be stored."
+      ],
+      "execution": [
+        "Run one step at a time with checkpointing and approval gates between mutating boundaries.",
+        "Stop immediately when an unapproved branch or ambiguous side effect is encountered."
+      ],
+      "recovery": [
+        "Replay only from the last approved checkpoint after correcting the failing step.",
+        "Suspend the workflow when downstream state can no longer be reconciled deterministically."
+      ],
+      "handoff": [
+        "Return the executed steps, pending approvals, and checkpoint references.",
+        "Explain whether the workflow finished, paused, rolled back, or is awaiting human action."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "quality",
+        "rule": "Checkpoint every step boundary and attach side-effect evidence before proceeding.",
+        "automation": "step-checkpoint+evidence-attach"
+      },
+      {
+        "kind": "safety",
+        "rule": "Pause the workflow when approval context is missing or stale.",
+        "automation": "workflow-approval-check"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Replay only from approved checkpoints after step failures.",
+        "automation": "checkpoint-replay"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Validate provider key or secret mode (sandbox vs production) before any mutating execution.",
+        "automation": "credential-mode-check"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.9% successful runs per 7-day window",
+      "errorBudget": "<=0.1% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": false,
+      "parallelism": 1,
+      "maxCycleMinutes": 15,
+      "approvals": [
+        "provider-auth-check",
+        "workflow-approval-check"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "workflow success rate",
+      "secondaryMetrics": [
+        "approval latency",
+        "retry recovery rate"
+      ],
+      "reviewCadence": "daily"
+    }
+  },
+  "integrationProfile": {
+    "provider": "Datadog",
+    "providerSlug": "datadog",
+    "category": "Observability and incident platforms",
+    "operation": "Workflow Automator",
+    "operationSlug": "workflow-automator",
+    "protocols": [
+      "HTTPS/REST",
+      "webhook callbacks"
+    ],
+    "authModes": [
+      {
+        "kind": "api_key",
+        "label": "API key or account secret",
+        "envVars": [
+          "DATADOG_API_KEY"
+        ],
+        "required": true,
+        "validation": "Validate the key with a lightweight authenticated request and confirm environment or mode (sandbox vs production)."
+      },
+      {
+        "kind": "token",
+        "label": "Access token or personal access token",
+        "envVars": [
+          "DATADOG_TOKEN",
+          "DATADOG_ACCESS_TOKEN"
+        ],
+        "required": true,
+        "validation": "Validate the token with the smallest read-only endpoint that proves scope and tenancy."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": true,
+    "mutating": true,
+    "webhookCapable": false,
+    "notes": [
+      "Preserve incident IDs, monitors, and alert routes in every artifact bundle."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the workflow graph, mutating boundaries, and approval requirements for Datadog Workflow Automator, then checkpoint where Datadog state can be replayed safely.",
+    "contractStep": "Validate credential reuse and trigger context before any step begins, with a focus on which branches require explicit human sign-off.",
+    "coreStep": "Implement executes repeatable multi-step workflows using datadog. as a deterministic sequence of step contracts, approvals, and checkpoint writes.",
+    "orchestrationStep": "Capture step-level artifacts, side-effect evidence, and pending approvals in the workflow runbook so every branch remains auditable.",
+    "validationStep": "Run simulation and regression suites that cover missing approvals, missing checkpoints, and contract drift at each step boundary.",
+    "rolloutStep": "Publish the workflow runbook with completion state, pending approvals, and the exact checkpoint required for any safe replay."
+  }
+}

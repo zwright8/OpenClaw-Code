@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "hardened": true,
+  "requirements": {
+    "credential_preflight": true,
+    "api_key_or_token_awareness": true,
+    "deterministic_tolerances": true,
+    "fail_closed_validation_gates": true,
+    "explicit_handoff_contract": true,
+    "fixtures_minimal_valid": true,
+    "tests_regression_case": true
+  },
+  "integration": {
+    "provider": "Grafana",
+    "operation": "Alert Monitor",
+    "apiKeyLikelyRequired": true,
+    "authModes": [
+      "api_key",
+      "token"
+    ]
+  },
+  "artifacts": {
+    "skill": "SKILL.md",
+    "implementation": "implementation.json",
+    "fixture": "fixtures/minimal-valid.json",
+    "regressionTest": "tests/regression-case.md",
+    "adapter": "openclaw/skill.adapter.json"
+  }
+}

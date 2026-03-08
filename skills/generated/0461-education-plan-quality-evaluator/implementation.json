@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 461,
+  "skillName": "u0461-education-plan-quality-evaluator",
+  "title": "Education Plan Quality Evaluator",
+  "domain": "Education and Upskilling",
+  "domainSlug": "education-and-upskilling",
+  "reason": "We need this skill because human capability growth requires targeted planning under constraints. This specific skill quantifies whether plans are complete, safe, and feasible.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Education Plan Quality Evaluator`, including at least three measurable KPIs tied to persistent skill gaps and poor learning outcomes.",
+    "Design and version the input/output contract for skill profiles, learning paths, and support resources, then add schema validation and failure-mode handling.",
+    "Implement the core capability using multi-criteria plan scoring, and produce plan quality scorecards with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover persistent skill gaps and poor learning outcomes, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "multi-criteria plan scoring",
+    "primaryArtifact": "plan quality scorecards",
+    "requiredSignals": [
+      "skill profiles",
+      "learning paths",
+      "support resources",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "persistent skill gaps",
+      "poor learning outcomes",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3603,
+      "execution": 0.2955,
+      "safety": 0.2132,
+      "impact": 0.131
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 56,
+      "reviewRisk": 58,
+      "criticalRisk": 84
+    },
+    "orchestration": {
+      "routingTag": "education-and-upskilling:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0461_education-plan-quality-evaluator",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0461-education-plan-quality-evaluator:461:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Education Plan Quality Evaluator`, including at least three measurable KPIs tied to persistent skill gaps and poor learning outcomes.",
+    "contractStep": "Design and version the input/output contract for skill profiles, learning paths, and support resources, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using multi-criteria plan scoring, and produce plan quality scorecards with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover persistent skill gaps and poor learning outcomes, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

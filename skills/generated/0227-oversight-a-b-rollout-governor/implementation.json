@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 227,
+  "skillName": "u0227-oversight-a-b-rollout-governor",
+  "title": "Oversight A/B Rollout Governor",
+  "domain": "Human Oversight and Operator UX",
+  "domainSlug": "human-oversight-and-operator-ux",
+  "reason": "We need this skill because human teams need fast, legible control when stakes are high. This specific skill controls production risk during behavioral changes.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Oversight A/B Rollout Governor`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "Implement the core capability using staged rollout policies, and produce safe rollout decisions with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "staged rollout policies",
+    "primaryArtifact": "safe rollout decisions",
+    "requiredSignals": [
+      "approval queues",
+      "operator workload",
+      "intervention history",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow interventions",
+      "approval bottlenecks",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.198,
+      "execution": 0.3987,
+      "safety": 0.2774,
+      "impact": 0.1259
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 44,
+      "reviewRisk": 36,
+      "criticalRisk": 61
+    },
+    "orchestration": {
+      "routingTag": "human-oversight-and-operator-ux:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0227_oversight-a-b-rollout-governor",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0227-oversight-a-b-rollout-governor:227:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Oversight A/B Rollout Governor`, including at least three measurable KPIs tied to slow interventions and approval bottlenecks.",
+    "contractStep": "Design and version the input/output contract for approval queues, operator workload, and intervention history, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using staged rollout policies, and produce safe rollout decisions with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow interventions and approval bottlenecks, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 30,
+  "name": "bitbucket-migration-assistant",
+  "title": "Bitbucket Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Bitbucket.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools01/0030-bitbucket-migration-assistant/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools01/0030-bitbucket-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "bitbucket migration assistant",
+    "bitbucket migration assistant workflow",
+    "bitbucket migration assistant automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Bitbucket",
+    "operation": "migration-assistant",
+    "authModes": [
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools01/0030-bitbucket-migration-assistant"
+  }
+}

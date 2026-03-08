@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 634,
+  "skillName": "grafana-data-importer",
+  "title": "Grafana Data Importer",
+  "domain": "Observability and incident platforms",
+  "domainSlug": "observability-and-incident-platforms",
+  "reason": "We need this skill because Grafana workflows degrade when state changes are hard to undo once they begin. This specific skill turns Grafana Data Importer into a deterministic, auth-checked workflow for validates and imports bulk updates into grafana..",
+  "implementationGuide": [
+    "Define the import blast radius, rollback ledger, and required dry-run evidence for Grafana Data Importer before any Grafana write is approved.",
+    "Validate credential reuse, schema mappings, and the exact dry-run diff that the operator approved for the batch.",
+    "Implement validates and imports bulk updates into grafana. in staged batches that preserve before/after state and stop immediately on contract drift.",
+    "Attach rollback identifiers, affected object counts, and quarantined rows to the import ledger for every execution.",
+    "Run simulation and regression suites that cover missing dry-run approval, mapping drift, and partial provider writes.",
+    "Publish a handoff packet with the import ledger, rollback readiness, and explicit follow-up actions for every quarantined record."
+  ],
+  "runtimeProfile": {
+    "archetype": "validated-import-engine",
+    "coreMethod": "validated bulk mutation",
+    "primaryArtifact": "grafana-import-ledger",
+    "requiredSignals": [
+      "input dataset",
+      "mapping rules",
+      "dry-run diff"
+    ],
+    "kpiFocus": [
+      "dry-run mismatch rate",
+      "import success rate",
+      "rollback readiness"
+    ],
+    "scoringWeights": {
+      "truth": 0.2,
+      "execution": 0.28,
+      "safety": 0.38,
+      "impact": 0.14
+    },
+    "postureThresholds": {
+      "readyMin": 78,
+      "reviewMin": 58,
+      "reviewRisk": 58,
+      "criticalRisk": 76
+    },
+    "orchestration": {
+      "routingTag": "grafana:data-importer",
+      "approvalGates": [
+        "provider-auth-check",
+        "import-impact-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 2,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "abort-import-and-replay-from-dry-run-ledger",
+      "components": [
+        "schema validation",
+        "dry-run diff",
+        "staged mutation",
+        "rollback ledger"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0634_grafana",
+      "releaseCycles": 3,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:634:grafana:data-importer"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "mission_critical",
+    "humanUseCases": [
+      "Apply large or high-risk updates safely by forcing dry-run evidence before mutation.",
+      "Preserve a rollback ledger that lets operators reverse partial imports without guesswork."
+    ],
+    "runbook": {
+      "preflight": [
+        "Require a dry-run diff and approved mapping rules before any provider write is attempted.",
+        "Validate the input dataset, rollback ledger location, and blast-radius constraints."
+      ],
+      "execution": [
+        "Apply imports in staged batches, persisting before/after state for every mutation.",
+        "Stop on the first unapproved schema or impact deviation instead of partially continuing."
+      ],
+      "recovery": [
+        "Replay the rollback ledger when batch-level validation or approval gates fail.",
+        "Quarantine invalid rows and route the exact diff to human review."
+      ],
+      "handoff": [
+        "Return the import ledger, dry-run diff, rollback status, and any quarantined records.",
+        "State explicitly whether the provider is fully applied, partially rolled back, or paused pending review."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "safety",
+        "rule": "Block every import batch that lacks an approved dry-run diff and rollback ledger.",
+        "automation": "dry-run-gate+rollback-ledger"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Escalate mapping drift or blast-radius expansion before retrying.",
+        "automation": "import-impact-review"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Persist before/after state for every mutation so rollback remains deterministic.",
+        "automation": "write-ledger"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Validate provider key or secret mode (sandbox vs production) before any mutating execution.",
+        "automation": "credential-mode-check"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.9% successful runs per 7-day window",
+      "errorBudget": "<=0.1% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": false,
+      "parallelism": 1,
+      "maxCycleMinutes": 15,
+      "approvals": [
+        "provider-auth-check",
+        "import-impact-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "dry-run mismatch rate",
+      "secondaryMetrics": [
+        "import success rate",
+        "rollback readiness"
+      ],
+      "reviewCadence": "daily"
+    }
+  },
+  "integrationProfile": {
+    "provider": "Grafana",
+    "providerSlug": "grafana",
+    "category": "Observability and incident platforms",
+    "operation": "Data Importer",
+    "operationSlug": "data-importer",
+    "protocols": [
+      "HTTPS/REST",
+      "webhook callbacks"
+    ],
+    "authModes": [
+      {
+        "kind": "api_key",
+        "label": "API key or account secret",
+        "envVars": [
+          "GRAFANA_API_KEY"
+        ],
+        "required": true,
+        "validation": "Validate the key with a lightweight authenticated request and confirm environment or mode (sandbox vs production)."
+      },
+      {
+        "kind": "token",
+        "label": "Access token or personal access token",
+        "envVars": [
+          "GRAFANA_TOKEN",
+          "GRAFANA_ACCESS_TOKEN"
+        ],
+        "required": true,
+        "validation": "Validate the token with the smallest read-only endpoint that proves scope and tenancy."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": true,
+    "mutating": true,
+    "webhookCapable": false,
+    "notes": [
+      "Preserve incident IDs, monitors, and alert routes in every artifact bundle."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the import blast radius, rollback ledger, and required dry-run evidence for Grafana Data Importer before any Grafana write is approved.",
+    "contractStep": "Validate credential reuse, schema mappings, and the exact dry-run diff that the operator approved for the batch.",
+    "coreStep": "Implement validates and imports bulk updates into grafana. in staged batches that preserve before/after state and stop immediately on contract drift.",
+    "orchestrationStep": "Attach rollback identifiers, affected object counts, and quarantined rows to the import ledger for every execution.",
+    "validationStep": "Run simulation and regression suites that cover missing dry-run approval, mapping drift, and partial provider writes.",
+    "rolloutStep": "Publish a handoff packet with the import ledger, rollback readiness, and explicit follow-up actions for every quarantined record."
+  }
+}

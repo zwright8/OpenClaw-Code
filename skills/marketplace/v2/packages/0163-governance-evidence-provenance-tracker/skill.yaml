@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 163
+  name: "openclaw-v2-0163-signed-provenance-links"
+  title: "Governance Evidence Provenance Tracker"
+  domain: "Safety and Governance"
+  vertical_id: "general-operations"
+  vertical_name: "General Operations"
+  method: "signed provenance links"
+  archetype: "provenance-tracker"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 60
+  roi_score: 66.08
+  trust_badges:
+    - "Baseline-Validated"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/0163-governance-evidence-provenance-tracker/SKILL.md"

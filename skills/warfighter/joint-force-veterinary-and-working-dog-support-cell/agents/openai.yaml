@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Force Veterinary and Working Dog Support Cell"
+  short_description: "Help with Joint Force Veterinary and Working Dog Support Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Force Veterinary and Working Dog Support Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

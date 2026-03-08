@@ -1,0 +1,4 @@
+interface:
+  display_name: "Retry And Backoff Orchestration for education support ser..."
+  short_description: "Retry and backoff orchestration for education support services with guardrails and measurable outcomes."
+  default_prompt: "Use Retry And Backoff Orchestration for education support services to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

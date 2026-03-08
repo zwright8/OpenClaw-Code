@@ -1,0 +1,4 @@
+interface:
+  display_name: "Autonomous Workflow Authoring for disaster response networks"
+  short_description: "Autonomous workflow authoring for disaster response networks with guardrails and measurable outcomes."
+  default_prompt: "Use Autonomous Workflow Authoring for disaster response networks to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

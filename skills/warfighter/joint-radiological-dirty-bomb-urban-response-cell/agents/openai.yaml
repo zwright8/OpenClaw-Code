@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Radiological Dirty Bomb Urban Response Cell"
+  short_description: "Help with Joint Radiological Dirty Bomb Urban Response Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Radiological Dirty Bomb Urban Response Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

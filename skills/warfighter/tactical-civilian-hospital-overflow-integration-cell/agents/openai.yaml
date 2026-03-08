@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tactical Civilian Hospital Overflow Integration Cell"
+  short_description: "Help with Tactical Civilian Hospital Overflow Integration Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Tactical Civilian Hospital Overflow Integration Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

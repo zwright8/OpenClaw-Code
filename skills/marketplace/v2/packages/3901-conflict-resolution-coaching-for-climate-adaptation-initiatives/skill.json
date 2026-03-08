@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3901,
+    "name": "openclaw-v2-3901-conflict-resolution-coaching",
+    "title": "Conflict Resolution Coaching for climate adaptation initiatives",
+    "domain": "climate adaptation initiatives",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "conflict resolution coaching",
+    "archetype": "coaching-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 73,
+    "roiScore": 71.47,
+    "trustBadges": [
+      "Reliability-Proven",
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3901-conflict-resolution-coaching-for-climate-adaptation-initiatives/SKILL.md"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 1111,
+    "name": "openclaw-v2-1111-resource-budget-allocation",
+    "title": "Resource Budget Allocation for agriculture and food systems",
+    "domain": "agriculture and food systems",
+    "verticalId": "public-impact",
+    "verticalName": "Public Impact and Resilience",
+    "method": "resource budget allocation",
+    "archetype": "generalist-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 82,
+    "roiScore": 71.18,
+    "trustBadges": [
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/1111-resource-budget-allocation-for-agriculture-and-food-systems/SKILL.md"
+  }
+}

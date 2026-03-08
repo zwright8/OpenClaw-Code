@@ -1,0 +1,4 @@
+interface:
+  display_name: "Governance Disaster Recovery Orchestrator"
+  short_description: "Failover and restoration sequencing for Safety and Governance with guardrails and measurable outcomes."
+  default_prompt: "Use Governance Disaster Recovery Orchestrator to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

@@ -1,0 +1,23 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 9911
+  name: "openclaw-v2-9911-decision-journal-maintenance"
+  title: "Decision Journal Maintenance for agriculture and food systems"
+  domain: "agriculture and food systems"
+  vertical_id: "public-impact"
+  vertical_name: "Public Impact and Resilience"
+  method: "decision journal maintenance"
+  archetype: "journal-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 88
+  roi_score: 67.68
+  trust_badges:
+    - "Autopilot-Ready"
+    - "Safety-Hardened"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/9911-decision-journal-maintenance-for-agriculture-and-food-systems/SKILL.md"

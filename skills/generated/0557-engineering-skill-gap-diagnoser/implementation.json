@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 557,
+  "skillName": "u0557-engineering-skill-gap-diagnoser",
+  "title": "Engineering Skill Gap Diagnoser",
+  "domain": "Software Engineering Automation",
+  "domainSlug": "software-engineering-automation",
+  "reason": "We need this skill because delivery speed must increase without sacrificing correctness. This specific skill identifies where agents and humans need capability upgrades.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Engineering Skill Gap Diagnoser`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "Implement the core capability using competency coverage analysis, and produce skill gap reports with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "competency coverage analysis",
+    "primaryArtifact": "skill gap reports",
+    "requiredSignals": [
+      "code changes",
+      "tests",
+      "incidents",
+      "rollout data",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "regressions",
+      "brittle release pipelines",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3482,
+      "execution": 0.3106,
+      "safety": 0.1894,
+      "impact": 0.1518
+    },
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 62,
+      "reviewRisk": 55,
+      "criticalRisk": 88
+    },
+    "orchestration": {
+      "routingTag": "software-engineering-automation:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 900,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0557_engineering-skill-gap-diagnoser",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0557-engineering-skill-gap-diagnoser:557:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Engineering Skill Gap Diagnoser`, including at least three measurable KPIs tied to regressions and brittle release pipelines.",
+    "contractStep": "Design and version the input/output contract for code changes, tests, incidents, and rollout data, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using competency coverage analysis, and produce skill gap reports with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover regressions and brittle release pipelines, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

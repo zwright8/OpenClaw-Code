@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Integrated Icebreaker Task Force Routing Cell"
+  short_description: "Help with Integrated Icebreaker Task Force Routing Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Integrated Icebreaker Task Force Routing Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

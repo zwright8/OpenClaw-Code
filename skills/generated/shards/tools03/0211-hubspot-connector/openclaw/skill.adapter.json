@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 211,
+  "name": "hubspot-connector",
+  "title": "HubSpot Connector",
+  "description": "Unified read/write connector for HubSpot APIs and data.",
+  "agent": "agent03",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools03/0211-hubspot-connector/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools03/0211-hubspot-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "hubspot connector",
+    "hubspot connector workflow",
+    "hubspot connector automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "HubSpot",
+    "operation": "connector",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools03/0211-hubspot-connector"
+  }
+}

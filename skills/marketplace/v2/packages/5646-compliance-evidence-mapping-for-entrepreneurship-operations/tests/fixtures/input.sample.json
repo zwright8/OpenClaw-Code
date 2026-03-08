@@ -1,0 +1,13 @@
+{
+  "task": "Execute compliance evidence mapping",
+  "objective": "Deliver Compliance Evidence Mapping for entrepreneurship operations outcome with guardrails",
+  "constraints": [
+    "Preserve safety checks",
+    "Provide measurable KPIs"
+  ],
+  "context": {
+    "urgency": "medium",
+    "riskTolerance": "medium",
+    "budgetTier": "medium"
+  }
+}

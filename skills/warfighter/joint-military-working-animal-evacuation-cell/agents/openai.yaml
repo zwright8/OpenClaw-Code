@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Military Working Animal Evacuation Cell"
+  short_description: "Help with Joint Military Working Animal Evacuation Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Military Working Animal Evacuation Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

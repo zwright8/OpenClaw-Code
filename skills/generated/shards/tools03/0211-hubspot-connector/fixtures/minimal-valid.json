@@ -1,0 +1,51 @@
+{
+  "skillId": 211,
+  "skillName": "hubspot-connector",
+  "title": "HubSpot Connector",
+  "provider": "HubSpot",
+  "category": "Business systems and customer operations",
+  "operation": "connector",
+  "authContext": {
+    "mode": "oauth2",
+    "envVars": [
+      "HUBSPOT_CLIENT_ID",
+      "HUBSPOT_CLIENT_SECRET"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "auth_context": "sample_auth_context",
+      "resource_scope": "sample_resource_scope",
+      "request_contract": "sample_request_contract"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "mutation-safety-review"
+    ],
+    "rollbackStrategy": "revoke-write-session-and-replay-read-only"
+  },
+  "expected": {
+    "primaryArtifact": "hubspot-connection-trace-bundle",
+    "kpiFocus": [
+      "auth success rate",
+      "request validation pass rate",
+      "side-effect correctness"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 74,
+      "reviewMin": 54,
+      "reviewRisk": 60,
+      "criticalRisk": 80
+    }
+  },
+  "regressionHint": {
+    "scenario": "Connector run with stale credentials and a mutation attempt before the read-only probe succeeds.",
+    "mutation": "Set the auth context to expired and request a write operation without completing auth validation."
+  }
+}

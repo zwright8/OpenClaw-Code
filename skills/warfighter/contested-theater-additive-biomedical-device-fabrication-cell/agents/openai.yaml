@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Contested Theater Additive Biomedical Device Fabrication Cell"
+  short_description: "Help with Contested Theater Additive Biomedical Device Fabrication Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Contested Theater Additive Biomedical Device Fabrication Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

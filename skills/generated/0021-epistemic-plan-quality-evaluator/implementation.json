@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 21,
+  "skillName": "u0021-epistemic-plan-quality-evaluator",
+  "title": "Epistemic Plan Quality Evaluator",
+  "domain": "Truth-Seeking and Epistemics",
+  "domainSlug": "truth-seeking-and-epistemics",
+  "reason": "We need this skill because decisions drift when claims are accepted without verification. This specific skill quantifies whether plans are complete, safe, and feasible.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Epistemic Plan Quality Evaluator`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "Implement the core capability using multi-criteria plan scoring, and produce plan quality scorecards with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "multi-criteria plan scoring",
+    "primaryArtifact": "plan quality scorecards",
+    "requiredSignals": [
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "false certainty",
+      "unverified assumptions",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3196,
+      "execution": 0.1532,
+      "safety": 0.3296,
+      "impact": 0.1976
+    },
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 53,
+      "reviewRisk": 48,
+      "criticalRisk": 87
+    },
+    "orchestration": {
+      "routingTag": "truth-seeking-and-epistemics:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0021_epistemic-plan-quality-evaluator",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0021-epistemic-plan-quality-evaluator:21:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Epistemic Plan Quality Evaluator`, including at least three measurable KPIs tied to false certainty and unverified assumptions.",
+    "contractStep": "Design and version the input/output contract for claims, evidence, and confidence traces, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using multi-criteria plan scoring, and produce plan quality scorecards with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover false certainty and unverified assumptions, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

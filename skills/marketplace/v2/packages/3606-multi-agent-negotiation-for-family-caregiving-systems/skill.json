@@ -1,0 +1,29 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 3606,
+    "name": "openclaw-v2-3606-multi-agent-negotiation",
+    "title": "Multi-Agent Negotiation for family caregiving systems",
+    "domain": "family caregiving systems",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "multi-agent negotiation",
+    "archetype": "negotiation-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 63,
+    "roiScore": 75.93,
+    "trustBadges": [
+      "Autopilot-Ready"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/3606-multi-agent-negotiation-for-family-caregiving-systems/SKILL.md"
+  }
+}

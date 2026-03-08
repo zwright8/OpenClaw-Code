@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 134,
+  "name": "microsoft-calendar-data-importer",
+  "title": "Microsoft Calendar Data Importer",
+  "description": "Validates and imports bulk updates into Microsoft Calendar.",
+  "agent": "agent02",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools02/0134-microsoft-calendar-data-importer/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools02/0134-microsoft-calendar-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft calendar data importer",
+    "microsoft calendar data importer workflow",
+    "microsoft calendar data importer automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Microsoft Calendar",
+    "operation": "data-importer",
+    "authModes": [
+      "oauth2"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools02/0134-microsoft-calendar-data-importer"
+  }
+}

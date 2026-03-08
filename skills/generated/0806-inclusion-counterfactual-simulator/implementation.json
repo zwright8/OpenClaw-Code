@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 806,
+  "skillName": "u0806-inclusion-counterfactual-simulator",
+  "title": "Inclusion Counterfactual Simulator",
+  "domain": "Accessibility and Inclusion",
+  "domainSlug": "accessibility-and-inclusion",
+  "reason": "We need this skill because systems must be operable and understandable for diverse users. This specific skill tests alternatives before costly commitments.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Inclusion Counterfactual Simulator`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.",
+    "Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.",
+    "Implement the core capability using counterfactual replay, and produce scenario comparison reports with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "simulation-lab",
+    "coreMethod": "counterfactual replay",
+    "primaryArtifact": "scenario comparison reports",
+    "requiredSignals": [
+      "accessibility audits",
+      "accommodations",
+      "usability feedback",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "barriers for disabled",
+      "underserved groups",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.3956,
+      "execution": 0.2766,
+      "safety": 0.1822,
+      "impact": 0.1456
+    },
+    "postureThresholds": {
+      "readyMin": 75,
+      "reviewMin": 51,
+      "reviewRisk": 39,
+      "criticalRisk": 59
+    },
+    "orchestration": {
+      "routingTag": "accessibility-and-inclusion:simulation-lab",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router",
+        "scenario-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "baseDelayMs": 750,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0806_inclusion-counterfactual-simulat",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0806-inclusion-counterfactual-simulator:806:simulation-lab"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Inclusion Counterfactual Simulator`, including at least three measurable KPIs tied to barriers for disabled and underserved groups.",
+    "contractStep": "Design and version the input/output contract for accessibility audits, accommodations, and usability feedback, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using counterfactual replay, and produce scenario comparison reports with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover barriers for disabled and underserved groups, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}

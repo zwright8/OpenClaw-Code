@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Battlefield Cloud Seeding Weather Governance Cell"
+  short_description: "Joint Battlefield Cloud Seeding Weather Governance Cell helper"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Battlefield Cloud Seeding Weather Governance Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

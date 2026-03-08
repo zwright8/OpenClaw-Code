@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 340,
+  "name": "amazon-seller-migration-assistant",
+  "title": "Amazon Seller Migration Assistant",
+  "description": "Plans and executes safe migrations to or from Amazon Seller.",
+  "agent": "agent04",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools04/0340-amazon-seller-migration-assistant/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools04/0340-amazon-seller-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "amazon seller migration assistant",
+    "amazon seller migration assistant workflow",
+    "amazon seller migration assistant automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Amazon Seller",
+    "operation": "migration-assistant",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools04/0340-amazon-seller-migration-assistant"
+  }
+}

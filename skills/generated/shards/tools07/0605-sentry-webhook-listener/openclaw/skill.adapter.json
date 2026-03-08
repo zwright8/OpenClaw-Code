@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 605,
+  "name": "sentry-webhook-listener",
+  "title": "Sentry Webhook Listener",
+  "description": "Captures, verifies, and routes Sentry webhook events.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0605-sentry-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0605-sentry-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sentry webhook listener",
+    "sentry webhook listener workflow",
+    "sentry webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Sentry",
+    "operation": "webhook-listener",
+    "authModes": [
+      "api_key",
+      "token",
+      "signing_secret"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0605-sentry-webhook-listener"
+  }
+}

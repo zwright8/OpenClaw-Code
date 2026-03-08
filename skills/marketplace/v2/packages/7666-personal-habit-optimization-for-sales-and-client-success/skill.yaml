@@ -1,0 +1,22 @@
+package_version: "2.0.0"
+schema_version: 1
+skill:
+  id: 7666
+  name: "openclaw-v2-7666-personal-habit-optimization"
+  title: "Personal Habit Optimization for sales and client success"
+  domain: "sales and client success"
+  vertical_id: "business-growth"
+  vertical_name: "Business and Growth"
+  method: "personal habit optimization"
+  archetype: "habit-optimization-engine"
+contracts:
+  input_schema_path: "input.schema.json"
+  output_schema_path: "output.schema.json"
+quality:
+  score: 83
+  roi_score: 67.56
+  trust_badges:
+    - "Autopilot-Ready"
+references:
+  implementation_path: "references/implementation.json"
+  source_marketplace_path: "skills/marketplace/generated/7666-personal-habit-optimization-for-sales-and-client-success/SKILL.md"

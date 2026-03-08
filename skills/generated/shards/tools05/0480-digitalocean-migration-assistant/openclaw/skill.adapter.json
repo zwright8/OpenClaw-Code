@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 480,
+  "name": "digitalocean-migration-assistant",
+  "title": "DigitalOcean Migration Assistant",
+  "description": "Plans and executes safe migrations to or from DigitalOcean.",
+  "agent": "agent05",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools05/0480-digitalocean-migration-assistant/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools05/0480-digitalocean-migration-assistant/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "digitalocean migration assistant",
+    "digitalocean migration assistant workflow",
+    "digitalocean migration assistant automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "DigitalOcean",
+    "operation": "migration-assistant",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools05/0480-digitalocean-migration-assistant"
+  }
+}

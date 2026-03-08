@@ -1,0 +1,32 @@
+{
+  "packageVersion": "2.0.0",
+  "schemaVersion": 1,
+  "skill": {
+    "id": 9881,
+    "name": "openclaw-v2-9881-decision-journal-maintenance",
+    "title": "Decision Journal Maintenance for healthcare operations",
+    "domain": "healthcare operations",
+    "verticalId": "health-learning",
+    "verticalName": "Health and Learning Systems",
+    "method": "decision journal maintenance",
+    "archetype": "journal-engine"
+  },
+  "contracts": {
+    "inputSchemaPath": "input.schema.json",
+    "outputSchemaPath": "output.schema.json"
+  },
+  "quality": {
+    "score": 93,
+    "roiScore": 78.21,
+    "trustBadges": [
+      "Verified-Quality",
+      "Reliability-Proven",
+      "Autopilot-Ready",
+      "Safety-Hardened"
+    ]
+  },
+  "references": {
+    "implementationPath": "references/implementation.json",
+    "sourceMarketplacePath": "skills/marketplace/generated/9881-decision-journal-maintenance-for-healthcare-operations/SKILL.md"
+  }
+}

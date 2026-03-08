@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comms Cost-Benefit Forecaster"
+  short_description: "Cost-impact simulation for Communication and Explainability with guardrails and measurable outcomes."
+  default_prompt: "Use Comms Cost-Benefit Forecaster to scope the task, execute the workflow, enforce guardrails, and return a concrete outcome artifact with next actions."

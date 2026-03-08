@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sourceFile": "SKILL_UPDATES_1000.md",
+  "skillId": 659,
+  "skillName": "u0659-crisis-knowledge-graph-linker",
+  "title": "Crisis Knowledge Graph Linker",
+  "domain": "Crisis and Incident Response",
+  "domainSlug": "crisis-and-incident-response",
+  "reason": "We need this skill because response quality determines whether incidents are contained or amplified. This specific skill connects fragmented facts into reusable structures.",
+  "implementationGuide": [
+    "Define the scope and success metrics for `Crisis Knowledge Graph Linker`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "Implement the core capability using entity and relation linking, and produce linked knowledge entities with deterministic scoring.",
+    "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  ],
+  "runtimeProfile": {
+    "archetype": "general-capability",
+    "coreMethod": "entity and relation linking",
+    "primaryArtifact": "linked knowledge entities",
+    "requiredSignals": [
+      "incident timelines",
+      "response roles",
+      "recovery artifacts",
+      "claims",
+      "evidence",
+      "confidence traces"
+    ],
+    "kpiFocus": [
+      "slow containment",
+      "repeated outages",
+      "decision drift"
+    ],
+    "scoringWeights": {
+      "truth": 0.2335,
+      "execution": 0.1962,
+      "safety": 0.3035,
+      "impact": 0.2668
+    },
+    "postureThresholds": {
+      "readyMin": 79,
+      "reviewMin": 56,
+      "reviewRisk": 58,
+      "criticalRisk": 77
+    },
+    "orchestration": {
+      "routingTag": "crisis-and-incident-response:general-capability",
+      "approvalGates": [
+        "policy-constraint-check",
+        "human-approval-router"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 1200,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "rollback-to-last-stable-baseline",
+      "components": [
+        "task routing",
+        "approval gates",
+        "retry strategy",
+        "rollback controls"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "skill_0659_crisis-knowledge-graph-linker",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "u0659-crisis-knowledge-graph-linker:659:general-capability"
+  },
+  "traceability": {
+    "scopeStep": "Define the scope and success metrics for `Crisis Knowledge Graph Linker`, including at least three measurable KPIs tied to slow containment and repeated outages.",
+    "contractStep": "Design and version the input/output contract for incident timelines, response roles, and recovery artifacts, then add schema validation and failure-mode handling.",
+    "coreStep": "Implement the core capability using entity and relation linking, and produce linked knowledge entities with deterministic scoring.",
+    "orchestrationStep": "Integrate the skill into swarm orchestration: task routing, approval gates, retry strategy, and rollback controls.",
+    "validationStep": "Add unit, integration, and simulation tests that explicitly cover slow containment and repeated outages, then run regression baselines.",
+    "rolloutStep": "Deploy behind a feature flag, monitor telemetry/alerts for two release cycles, and iterate thresholds based on observed outcomes."
+  }
+}
