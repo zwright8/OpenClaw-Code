@@ -61,3 +61,9 @@ Primary products for this skill: undersea repair convoy timeline, seabed restora
 - Apply approval and escalation requirements from `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Run protocol conformance checks from `../_shared/references/us-joint-protocol-assurance-drill.md` before high-impact recommendations.
 - If authority, legal basis, or acknowledgment integrity is uncertain, downgrade to advisory-only with explicit commander prompts.
+
+## Domain Toolchain Override (2026-03-08, Under-Ice Attribution Expansion)
+
+- Elevate `tool_suite_id=ts-underice-forensics-v1` with `protocol_stack_id=ps-maritime-undersea-coordination-stack-v1` when sabotage likelihood exceeds baseline anomaly thresholds.
+- Use packet `DPL-UNDERICE-ATTR-001` to bind attribution confidence, restoration sequencing, and evidence custody fields.
+- If independent anomaly confirmation fails, downgrade to provisional recovery guidance and require command/interagency review.

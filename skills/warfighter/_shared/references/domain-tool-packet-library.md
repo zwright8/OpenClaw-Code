@@ -2290,3 +2290,113 @@ validation_gates:
 - output_schema: integrity attestation board, divergence tracker, failover trust plan
 - protocol_profile: API/JSON + TLS mTLS + USMTF command summary
 - validation_gates: hash-chain verification, replication lag threshold, commander release gate
+
+### packet_id: DPL-HYP-CUE-001
+- domain: hypersonic launch detection and cueing
+- objective: establish rapid multi-sensor track custody and cue downstream defense nodes within bounded latency
+- primary_tools: missile warning fusion board, trajectory characterization engine, cue dissemination manager
+- alternate_tools: manual warning net plus timeline worksheet
+- degraded_mode: confidence-banded launch bulletin every 10 minutes
+- input_requirements: sensor tracks, launch point estimate, timebase quality, threat library
+- output_schema: cue timeline, track confidence ledger, interception decision triggers
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: dual-sensor confirmation, timing-integrity pass, command acknowledgment
+
+### packet_id: DPL-GRAY-MAR-001
+- domain: gray-zone maritime militia attribution
+- objective: attribute militia-linked maritime behavior with legal evidence integrity and escalation controls
+- primary_tools: maritime COP, AIS anomaly analytics, vessel identity graph
+- alternate_tools: liaison watch board and manual pattern log
+- degraded_mode: twice-daily attribution update with explicit uncertainty bands
+- input_requirements: vessel tracks, ownership records, behavior signatures, jurisdiction map
+- output_schema: attribution confidence ladder, evidence chain log, bounded response options
+- protocol_profile: AIS/NMEA + API/JSON + USMTF
+- validation_gates: identity corroboration, legal review, policy-escalation gate
+
+### packet_id: DPL-UNDERICE-ATTR-001
+- domain: under-ice cable sabotage attribution and response
+- objective: determine likely sabotage vectors and prioritize restoration without losing evidence integrity
+- primary_tools: subsea telemetry monitor, acoustic anomaly fusion, repair convoy scheduler
+- alternate_tools: manual fault-isolation board and repair estimate workbook
+- degraded_mode: daily restoration status with provisional attribution confidence
+- input_requirements: cable segment telemetry, acoustic events, maintenance logs, threat indicators
+- output_schema: attribution hypothesis table, restoration sequence queue, confidence-based branch plan
+- protocol_profile: API/JSON + OGC + USMTF
+- validation_gates: independent anomaly confirmation, custody evidence trace, command release check
+
+### packet_id: DPL-SUBTERRAIN-OPS-001
+- domain: contested subterranean operations support
+- objective: assess route viability and force-protection risk in tunnel/underground mission sets
+- primary_tools: subterranean mapping engine, geotechnical risk analyzer, route survivability planner
+- alternate_tools: engineering sketch board and manual risk worksheet
+- degraded_mode: conservative route-only guidance with no-entry exclusion zones
+- input_requirements: map layers, structural data, enemy activity indicators, unit profile
+- output_schema: route recommendations, hazard confidence map, trigger-based no-go criteria
+- protocol_profile: API/JSON + OGC + USMTF
+- validation_gates: geotechnical threshold pass, exposure-risk review, authority confirmation
+
+### packet_id: DPL-LEDGER-RES-001
+- domain: expeditionary finance ledger denial and recovery
+- objective: preserve pay/disbursement continuity and transaction trust under disconnected or degraded networks
+- primary_tools: deployable ledger service, reconciliation engine, fraud anomaly detector
+- alternate_tools: offline transaction logbook and periodic reconciliation board
+- degraded_mode: delayed-batch disbursement with daily integrity attestations
+- input_requirements: unit rosters, transaction batches, identity proofs, connectivity status
+- output_schema: continuity posture, exception queue, fraud risk flags, recovery actions
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: double-entry integrity check, anti-fraud threshold, finance authority release
+
+### packet_id: DPL-EW-RANGE-001
+- domain: electronic warfare range safety and deconfliction
+- objective: synchronize EW effects with range safety gates and spectrum deconfliction constraints
+- primary_tools: EW scheduler, spectrum conflict adjudicator, safety corridor monitor
+- alternate_tools: range whiteboard and manual release log
+- degraded_mode: restricted EW windows with static safety constraints
+- input_requirements: event timeline, emitter inventory, protected systems, safety standoff rules
+- output_schema: deconfliction matrix, safety gate status, release/hold decisions
+- protocol_profile: VMF + API/JSON + USMTF
+- validation_gates: fratricide-risk check, safety clearance, command authorization record
+
+### packet_id: DPL-VBSS-AUTO-001
+- domain: autonomous maritime VBSS support
+- objective: plan and supervise autonomy-assisted boarding while preserving legal custody and operator control
+- primary_tools: boarding planner, autonomy mission manager, evidence custody ledger
+- alternate_tools: manual boarding matrix and paper custody chain
+- degraded_mode: autonomy limited to surveillance and approach support
+- input_requirements: vessel profile, boarding authority, team composition, evidence objectives
+- output_schema: sequence of actions, autonomy authority map, custody event log
+- protocol_profile: AIS/NMEA + API/JSON + USMTF
+- validation_gates: legal authority confirmation, human veto checkpoints, custody completeness
+
+### packet_id: DPL-SPACE-WX-STRIKE-001
+- domain: space-weather effects on precision strike
+- objective: quantify space-weather-induced degradation on timing/comms and adapt strike timing branches
+- primary_tools: space-weather model feed, timing integrity monitor, strike window optimizer
+- alternate_tools: manual weather impact card and conservative strike scheduler
+- degraded_mode: widened timing tolerances with reduced confidence for precision effects
+- input_requirements: strike plan, platform dependencies, solar event forecasts, timing limits
+- output_schema: strike-risk overlay, adjusted timing windows, mitigation recommendations
+- protocol_profile: API/JSON + USMTF + Link 16 J-series
+- validation_gates: timing-integrity threshold, comms resilience pass, commander approval
+
+### packet_id: DPL-RARE-EARTH-001
+- domain: strategic rare-earth supply denial mitigation
+- objective: forecast readiness impact of mineral denial and sequence industrial/fleet mitigation actions
+- primary_tools: commodity flow analytics, industrial readiness board, stockpile monitor
+- alternate_tools: manual supplier status board and burn-rate calculator
+- degraded_mode: weekly mitigation bulletin with conservative depletion assumptions
+- input_requirements: demand forecast, supplier availability, stockpile position, substitution options
+- output_schema: denial impact forecast, mitigation action queue, readiness risk trend
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: dual-source market verification, industrial feasibility check, policy release gate
+
+### packet_id: DPL-POL-OBFUSCATION-001
+- domain: tactical pattern-of-life obfuscation
+- objective: degrade adversary targeting confidence by randomizing observable patterns without mission failure
+- primary_tools: signature management planner, movement randomization engine, OPSEC exposure scanner
+- alternate_tools: manual pattern board and periodic OPSEC review cell
+- degraded_mode: high-value movement obfuscation only
+- input_requirements: mission rhythm, key personnel/platform movements, threat collection posture, constraints
+- output_schema: obfuscation schedule, exposure-risk score, branch triggers
+- protocol_profile: CoT + API/JSON + USMTF
+- validation_gates: mission-impact tolerance check, legal/policy review, command authority approval

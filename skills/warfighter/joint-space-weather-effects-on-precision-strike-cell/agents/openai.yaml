@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Space Weather Effects on Precision Strike Cell"
+  short_description: "Adapt precision strike timing for space weather"
