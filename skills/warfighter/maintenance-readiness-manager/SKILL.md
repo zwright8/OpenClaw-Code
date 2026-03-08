@@ -161,3 +161,9 @@ Primary products for this skill: readiness recovery plan, maintenance priority l
 - Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
 - Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
 - Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Domain Toolchain Override (2026-03-08, Regeneration Assurance)
+
+- Prioritize `tool_suite_id=ts-electronics-reverse-logistics-v1` with `protocol_stack_id=ps-electronics-reverse-logistics-stack-v1` when readiness losses are driven by recoverable electronic component failures.
+- Elevate `tool_suite_id=ts-energetics-precursor-counterfeit-v1` with `protocol_stack_id=ps-energetics-precursor-counterfeit-stack-v1` when maintenance delays correlate with suspect energetics lots or supply-chain integrity warnings.
+- If route survivability or rail timing degrades recovery timelines, add `tool_suite_id=ts-rail-signaling-cyber-failover-v1` with `protocol_stack_id=ps-rail-signaling-cyber-failover-stack-v1` as a required cross-check branch.
