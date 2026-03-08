@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Contested Shipboard AI Maintenance Prognostics Cell"
+  short_description: "Run contested shipboard prognostics"
