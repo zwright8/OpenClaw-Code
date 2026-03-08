@@ -6,8 +6,8 @@ const DEFAULT_CAPABILITIES = ['log-analysis', 'task-execution'];
 const DEFAULT_TIMEOUT_MS = 5000;
 const DEFAULT_RETRIES = 0;
 const DEFAULT_RETRY_DELAY_MS = 250;
-const DEFAULT_RETRY_STRATEGY = 'linear';
-const DEFAULT_RETRY_JITTER = 'none';
+const DEFAULT_RETRY_STRATEGY = 'exponential';
+const DEFAULT_RETRY_JITTER = 'full';
 const DEFAULT_MAX_RETRY_HINT_MS = 60_000;
 
 export class HandshakeError extends Error {
@@ -137,6 +137,31 @@ function parseRetryAfterHeaderMs(value, nowMs = Date.now()) {
     return null;
 }
 
+function parseRateLimitResetHeaderMs(value, nowMs = Date.now()) {
+    if (value === null || value === undefined) return null;
+    const text = String(value).trim();
+    if (!text) return null;
+
+    const numeric = Number(text);
+    if (Number.isFinite(numeric) && numeric >= 0) {
+        // Common formats: delta-seconds, epoch-seconds, epoch-milliseconds.
+        if (numeric >= 1_000_000_000_000) {
+            return Math.max(0, numeric - nowMs);
+        }
+        if (numeric >= 1_000_000_000) {
+            return Math.max(0, numeric * 1000 - nowMs);
+        }
+        return numeric * 1000;
+    }
+
+    const dateMs = Date.parse(text);
+    if (Number.isFinite(dateMs)) {
+        return Math.max(0, dateMs - nowMs);
+    }
+
+    return null;
+}
+
 function parseRetryHintMsFromMessage(message, nowMs = Date.now()) {
     if (typeof message !== 'string' || !message.trim()) return null;
 
@@ -190,6 +215,24 @@ function extractRetryHintMs(error, nowMs = Date.now()) {
     const retryAfterValueMs = parseRetryAfterHeaderMs(retryAfterValue, nowMs);
     if (Number.isFinite(retryAfterValueMs)) {
         return retryAfterValueMs;
+    }
+
+    const rateLimitResetHeader = readHeaderValue(
+        error.headers
+        ?? error.response?.headers
+        ?? error.details?.headers
+        ?? null,
+        'ratelimit-reset'
+    ) ?? readHeaderValue(
+        error.headers
+        ?? error.response?.headers
+        ?? error.details?.headers
+        ?? null,
+        'x-ratelimit-reset'
+    );
+    const rateLimitResetMs = parseRateLimitResetHeaderMs(rateLimitResetHeader, nowMs);
+    if (Number.isFinite(rateLimitResetMs)) {
+        return rateLimitResetMs;
     }
 
     return parseRetryHintMsFromMessage(error.message, nowMs);

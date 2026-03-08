@@ -127,6 +127,42 @@ test('retries once on timeout and then succeeds', async () => {
     assert.equal(calls, 2);
 });
 
+test('uses exponential backoff with full jitter by default', async () => {
+    let calls = 0;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) {
+                throw new Error('temporary transport failure');
+            }
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: Date.now()
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 1,
+        retryDelayMs: 100,
+        random: () => 0.5,
+        sleep: async (ms) => {
+            delays.push(ms);
+        },
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 2);
+    assert.deepEqual(delays, [50]);
+});
+
 test('throws HandshakeError when no mutual protocol exists', async () => {
     const transport = {
         async sendAndWait(target, request) {
@@ -239,6 +275,7 @@ test('throws RETRY_BUDGET_EXHAUSTED when retry budget is consumed', async () => 
             retries: 3,
             retryDelayMs: 200,
             retryStrategy: 'exponential',
+            retryJitter: 'none',
             retryBudgetMs: 250,
             now: () => nowMs,
             sleep: async (ms) => {
@@ -337,4 +374,49 @@ test('honors Retry-After header and clamps large hints with maxRetryHintMs', asy
     assert.equal(result.accepted, true);
     assert.equal(result.attempts, 2);
     assert.deepEqual(delays, [1_250]);
+});
+
+test('honors RateLimit-Reset header when Retry-After is absent', async () => {
+    let calls = 0;
+    let nowMs = 50_000;
+    const delays = [];
+
+    const transport = {
+        async sendAndWait(target, request) {
+            calls++;
+            if (calls === 1) {
+                const error: any = new Error('HTTP 429 Too Many Requests');
+                error.response = {
+                    headers: {
+                        'ratelimit-reset': '57'
+                    }
+                };
+                throw error;
+            }
+
+            return {
+                kind: 'handshake_response',
+                requestId: request.id,
+                from: target,
+                accepted: true,
+                protocol: 'swarm/0.1',
+                timestamp: nowMs
+            };
+        }
+    };
+
+    const result = await performHandshake('agent:alpha', 'agent:beta', transport, {
+        retries: 1,
+        retryDelayMs: 10,
+        now: () => nowMs,
+        sleep: async (ms) => {
+            delays.push(ms);
+            nowMs += ms;
+        },
+        logger: createSilentLogger()
+    });
+
+    assert.equal(result.accepted, true);
+    assert.equal(result.attempts, 2);
+    assert.deepEqual(delays, [7_000]);
 });
