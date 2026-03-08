@@ -166,3 +166,9 @@ Use these tool categories as the default stack for this skill: maritime C2 syste
 - Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
 - Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
 - Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Domain Toolchain Override (2026-03-08, Maritime Water and Orbital Risk Coupling)
+
+- Prioritize `tool_suite_id=ts-maritime-desal-water-continuity-v1` with `protocol_stack_id=ps-maritime-desal-water-stack-v1` when sea-control options are constrained by afloat freshwater sustainment and contamination risk.
+- Elevate `tool_suite_id=ts-orbital-debris-hostile-screening-v1` with `protocol_stack_id=ps-orbital-debris-hostile-screening-stack-v1` when SATCOM and maritime COP continuity depend on credible conjunction attribution.
+- If convoy endurance or fuel integrity is uncertain, add `tool_suite_id=ts-convoy-fuel-fraud-detection-v1` with `protocol_stack_id=ps-convoy-fuel-fraud-stack-v1` as a required logistics and deception cross-check branch.
