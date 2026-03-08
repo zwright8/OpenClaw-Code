@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coalition Human Rights Detention Oversight Cell"
+  short_description: "Help with Coalition Human Rights Detention Oversight Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Coalition Human Rights Detention Oversight Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

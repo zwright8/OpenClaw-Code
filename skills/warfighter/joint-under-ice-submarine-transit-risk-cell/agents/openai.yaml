@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Under Ice Submarine Transit Risk Cell"
+  short_description: "Help with Joint Under Ice Submarine Transit Risk Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Under-Ice Submarine Transit Risk Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

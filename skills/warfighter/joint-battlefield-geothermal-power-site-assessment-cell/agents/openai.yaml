@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Battlefield Geothermal Power Site Assessment Cell"
+  short_description: "Joint Battlefield Geothermal Power Site Assessment Cell helper"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Battlefield Geothermal Power Site Assessment Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theater Civil Power Grid Load Shedding Coordination Cell"
+  short_description: "Theater Civil Power Grid Load Shedding Coordination Cell helper"
+  default_prompt: "Use this skill to produce decision-ready outputs for Theater Civil Power Grid Load Shedding Coordination Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

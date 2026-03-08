@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Counterfeit Spare Parts Detection Cell"
+  short_description: "Help with Joint Counterfeit Spare Parts Detection Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Counterfeit Spare Parts Detection Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

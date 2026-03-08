@@ -1,0 +1,4 @@
+interface:
+  display_name: "Contested Spectrum Cognitive Radio Governance Cell"
+  short_description: "Help with Contested Spectrum Cognitive Radio Governance Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Contested Spectrum Cognitive Radio Governance Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

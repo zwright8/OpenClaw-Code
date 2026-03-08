@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expeditionary Rare Blood Type Donor Network Cell"
+  short_description: "Help with Expeditionary Rare Blood Type Donor Network Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Expeditionary Rare Blood Type Donor Network Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

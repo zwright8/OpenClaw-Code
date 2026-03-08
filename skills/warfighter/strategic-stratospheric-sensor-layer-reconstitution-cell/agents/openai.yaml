@@ -1,0 +1,4 @@
+interface:
+  display_name: "Strategic Stratospheric Sensor Layer Reconstitution Cell"
+  short_description: "Strategic Stratospheric Sensor Layer Reconstitution Cell helper"
+  default_prompt: "Use this skill to produce decision-ready outputs for Strategic Stratospheric Sensor Layer Reconstitution Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

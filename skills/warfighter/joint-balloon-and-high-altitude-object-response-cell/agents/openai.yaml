@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Balloon and High Altitude Object Response Cell"
+  short_description: "Help with Joint Balloon and High Altitude Object Response Cell"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Balloon and High-Altitude Object Response Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."

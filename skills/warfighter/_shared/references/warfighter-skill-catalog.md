@@ -665,3 +665,32 @@ Every skill output should include:
 - Added shared toolchain profiles this run: 20
 - Added shared protocol stack profiles this run: 20
 - Total warfighter skills after this run: 590
+
+## New Expansion Wave (2026-03-08, Full-Spectrum Warfighter Operations Deepening)
+
+- joint-balloon-and-high-altitude-object-response-cell
+- theater-quantum-navigation-test-and-transition-cell
+- expeditionary-portable-nuclear-reactor-safety-cell
+- joint-military-working-animal-evacuation-cell
+- coalition-military-rail-gauge-interoperability-cell
+- joint-under-ice-submarine-transit-risk-cell
+- tactical-civilian-hospital-overflow-integration-cell
+- joint-battlefield-geothermal-power-site-assessment-cell
+- contested-spectrum-cognitive-radio-governance-cell
+- coalition-autonomous-maritime-rules-of-engagement-cell
+- joint-counterfeit-spare-parts-detection-cell
+- theater-electronic-order-of-life-pattern-shift-cell
+- expeditionary-droneport-airworthiness-and-traffic-cell
+- joint-rocket-artillery-munition-dud-risk-cell
+- joint-satellite-imagery-denial-fallback-collection-cell
+- coalition-human-rights-detention-oversight-cell
+- strategic-stratospheric-sensor-layer-reconstitution-cell
+- joint-battlefield-cloud-seeding-weather-governance-cell
+- expeditionary-rare-blood-type-donor-network-cell
+- theater-civil-power-grid-load-shedding-coordination-cell
+
+## Catalog Maintenance Update (2026-03-08 Run, Full-Spectrum Operations Deepening)
+
+- Added skills this run: 20
+- Updated shared references this run: warfighter-external-tool-and-protocol-catalog.md and warfighter-skill-catalog.md
+- Total warfighter skills after this run: 610
