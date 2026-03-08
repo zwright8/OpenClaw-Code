@@ -155,3 +155,9 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Prioritize `tool_suite_id=ts-ew-order-of-battle-drift-v1` with `protocol_stack_id=ps-ew-ob-drift-stack-v1` when adversary emitter behavior diverges from mission-data baselines.
 - Use packet `DPL-EW-OB-DRIFT-001` to bind drift confidence, mission-data retune actions, and reattack timing decisions.
 - If mission-data retune cannot be verified in time, publish an advisory-only branch with explicit risk-to-package survivability annotations.
+
+## Domain Toolchain Override (2026-03-08, EOB Decay Forecast Integration)
+
+- Prioritize `tool_suite_id=ts-eob-decay-forecast-v1` with `protocol_stack_id=ps-eob-decay-forecast-stack-v1` when adversary emitter behaviors drift beyond mission-data confidence thresholds.
+- Use packet `DPL-EOB-DECAY-FORECAST-001` to connect drift confidence, retune sequencing, and reattack timing decisions.
+- If independent RF cross-check data is stale, downgrade to advisory-only and require explicit command review before execution.

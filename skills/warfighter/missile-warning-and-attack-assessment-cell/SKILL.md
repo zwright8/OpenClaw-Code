@@ -162,3 +162,9 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Prioritize `tool_suite_id=ts-hypersonic-s2s-compression-v1` with `protocol_stack_id=ps-hypersonic-s2s-stack-v1` when warning-to-engagement windows drop below baseline timelines.
 - Use packet `DPL-HYPERSONIC-S2S-001` to enforce track custody confidence, cue prioritization, and shooter assignment gating.
 - If dual-source track confirmation fails, issue warning-only recommendations and require command approval before any posture escalation.
+
+## Domain Toolchain Override (2026-03-08, Coalition IAMD Latency Recovery)
+
+- Prioritize `tool_suite_id=ts-coalition-iamd-latency-v1` with `protocol_stack_id=ps-coalition-iamd-latency-stack-v1` when coalition track handoff delays exceed warning timeline tolerance.
+- Use packet `DPL-COAL-IAMD-LATENCY-001` to bind timestamp integrity checks, handoff remediation actions, and release-authority timing records.
+- If timestamp or acknowledgment integrity fails, publish warning-only recommendations with explicit commander risk prompts.
