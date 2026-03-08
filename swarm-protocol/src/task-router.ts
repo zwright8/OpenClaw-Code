@@ -18,6 +18,11 @@ const DEFAULT_ADAPTIVE_QUEUEING_TARGET_MULTIPLIER = 1.5;
 const DEFAULT_LOCAL_ZONE_BOOST = 18;
 const DEFAULT_CROSS_ZONE_PENALTY = 10;
 const DEFAULT_PREFERRED_ZONE_BOOST = 8;
+const DEFAULT_HEDGE_DELAY_MS = 75;
+const DEFAULT_HEDGE_SCORE_DELTA = 12;
+const DEFAULT_HEDGE_MAX_CANDIDATES = 1;
+const DEFAULT_HEDGE_MIN_CANDIDATE_SCORE = 40;
+const DEFAULT_HEDGE_MAX_CANDIDATE_LOAD = 0.85;
 const LOCALITY_FALLBACK_MODES = new Set(['cluster', 'strict']);
 
 function normalizeCapabilities(value) {
@@ -178,6 +183,45 @@ function normalizeLocalityOptions(taskRequest, options = {}) {
             ?? routing.zoneWeights
             ?? routingPreferences.zoneWeights
         )
+    };
+}
+
+function normalizeHedgingOptions(taskRequest, options = {}) {
+    const routing = taskRequest?.context?.routing && typeof taskRequest.context.routing === 'object'
+        ? taskRequest.context.routing
+        : {};
+    const configured = options?.hedging && typeof options.hedging === 'object'
+        ? options.hedging
+        : {};
+
+    const priorities = normalizeStringList(
+        configured.priorities
+        ?? routing.hedgePriorities
+        ?? ['high', 'critical']
+    ).filter((priority) => ['low', 'normal', 'high', 'critical'].includes(priority));
+
+    return {
+        enabled: configured.enabled === true || routing.enableHedging === true,
+        delayMs: Math.max(0, safeInteger(configured.delayMs ?? routing.hedgeDelayMs, DEFAULT_HEDGE_DELAY_MS)),
+        scoreDelta: Math.max(0, Number(configured.scoreDelta ?? routing.hedgeScoreDelta ?? DEFAULT_HEDGE_SCORE_DELTA)),
+        maxCandidates: Math.max(
+            1,
+            safeInteger(configured.maxCandidates ?? routing.maxHedgeCandidates, DEFAULT_HEDGE_MAX_CANDIDATES)
+        ),
+        minCandidateScore: Number(
+            configured.minCandidateScore
+            ?? routing.minHedgeCandidateScore
+            ?? DEFAULT_HEDGE_MIN_CANDIDATE_SCORE
+        ),
+        maxCandidateLoad: Math.max(
+            0,
+            Math.min(
+                1,
+                Number(configured.maxCandidateLoad ?? routing.maxHedgeCandidateLoad ?? DEFAULT_HEDGE_MAX_CANDIDATE_LOAD)
+            )
+        ),
+        requireDifferentZone: configured.requireDifferentZone === true || routing.hedgeDifferentZone === true,
+        priorities
     };
 }
 
@@ -384,6 +428,42 @@ function pickBestEligible(ranked, options = {}) {
         return pickWithPowerOfTwoChoices(eligible, options);
     }
     return eligible[0];
+}
+
+function buildHedgePlan(taskRequest, ranked, selectedAgentId, options = {}) {
+    if (!selectedAgentId || !Array.isArray(ranked) || ranked.length === 0) return null;
+    const hedging = normalizeHedgingOptions(taskRequest, options);
+    if (!hedging.enabled) return null;
+
+    const priority = normalizeString(taskRequest?.priority) || 'normal';
+    if (!hedging.priorities.includes(priority)) return null;
+
+    const primary = ranked.find((entry) => entry.agentId === selectedAgentId && entry.eligible);
+    if (!primary || !Number.isFinite(primary.score)) return null;
+
+    const minimumScore = primary.score - hedging.scoreDelta;
+    const candidates = ranked
+        .filter((entry) => entry.eligible && entry.agentId !== selectedAgentId && Number.isFinite(entry.score))
+        .filter((entry) => entry.score >= minimumScore && entry.score >= hedging.minCandidateScore)
+        .filter((entry) => clampLoad(entry.load, 1) <= hedging.maxCandidateLoad)
+        .filter((entry) => {
+            if (!hedging.requireDifferentZone) return true;
+            if (!primary.zone || !entry.zone) return false;
+            return primary.zone !== entry.zone;
+        })
+        .slice(0, hedging.maxCandidates)
+        .map((entry) => ({
+            agentId: entry.agentId,
+            score: entry.score,
+            ...(entry.zone ? { zone: entry.zone } : {})
+        }));
+
+    if (candidates.length === 0) return null;
+    return {
+        enabled: true,
+        delayMs: hedging.delayMs,
+        candidates
+    };
 }
 
 function scoreAgent(taskRequest, agent, options, localityOptions) {
@@ -649,6 +729,7 @@ export function selectBestAgentForTask(taskRequestPayload, agents, options = {})
 export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
     const taskRequest = ensureTaskRequest(taskRequestPayload);
     const selection = selectBestAgentForTask(taskRequest, agents, options);
+    const hedgePlan = buildHedgePlan(taskRequest, selection.ranked, selection.selectedAgentId, options);
 
     const ranked = selection.ranked;
     const outlierActions = ranked
@@ -677,6 +758,7 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
                     routed: true,
                     degraded: true,
                     ...(outlierActions.length > 0 ? { outlierActions } : {}),
+                    ...(hedgePlan ? { hedgePlan } : {}),
                     panicMode: {
                         triggered: true,
                         healthyRatio: Number(healthyRatio.toFixed(4)),
@@ -702,6 +784,7 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
             localityFallbackApplied: selection.localityFallbackApplied,
             localityFallbackReason: selection.localityFallbackReason,
             ...(outlierActions.length > 0 ? { outlierActions } : {}),
+            ...(hedgePlan ? { hedgePlan } : {}),
             panicMode: {
                 triggered: panicTriggered,
                 healthyRatio: Number(healthyRatio.toFixed(4)),
@@ -719,6 +802,7 @@ export function routeTaskRequest(taskRequestPayload, agents, options = {}) {
         localityFallbackApplied: selection.localityFallbackApplied,
         localityFallbackReason: selection.localityFallbackReason,
         ...(outlierActions.length > 0 ? { outlierActions } : {}),
+        ...(hedgePlan ? { hedgePlan } : {}),
         taskRequest: {
             ...taskRequest,
             target: selection.selectedAgentId

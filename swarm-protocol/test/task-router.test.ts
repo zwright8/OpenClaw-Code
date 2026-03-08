@@ -606,3 +606,102 @@ test('strict locality can fail open to cluster-wide routing when local zone is u
     assert.equal(routed.localityFallbackApplied, true);
     assert.equal(routed.localityFallbackReason, 'strict_zone_affinity');
 });
+
+test('hedging plan returns backup candidates for critical tasks', () => {
+    const task = buildTaskRequest({
+        id: 'eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Handle p99-sensitive critical workflow',
+        priority: 'critical',
+        context: {
+            requiredCapabilities: ['routing']
+        },
+        createdAt: 160_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:primary',
+            status: 'idle',
+            load: 0.2,
+            capabilities: ['routing'],
+            zone: 'us-east-1a',
+            timestamp: 160_000
+        },
+        {
+            id: 'agent:backup',
+            status: 'idle',
+            load: 0.22,
+            capabilities: ['routing'],
+            zone: 'us-east-1b',
+            timestamp: 160_000
+        },
+        {
+            id: 'agent:too-slow',
+            status: 'idle',
+            load: 0.75,
+            capabilities: ['routing'],
+            zone: 'us-east-1c',
+            timestamp: 160_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 160_001,
+        hedging: {
+            enabled: true,
+            delayMs: 60,
+            maxCandidates: 2,
+            scoreDelta: 8
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:primary');
+    assert.equal(routed.hedgePlan.delayMs, 60);
+    assert.equal(routed.hedgePlan.candidates.length, 1);
+    assert.equal(routed.hedgePlan.candidates[0].agentId, 'agent:backup');
+});
+
+test('hedging plan is suppressed for normal-priority tasks by default', () => {
+    const task = buildTaskRequest({
+        id: 'ffffffff-ffff-4fff-8fff-ffffffffffff',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Run routine aggregation',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['routing']
+        },
+        createdAt: 170_000
+    });
+
+    const agents = [
+        {
+            id: 'agent:primary',
+            status: 'idle',
+            load: 0.3,
+            capabilities: ['routing'],
+            timestamp: 170_000
+        },
+        {
+            id: 'agent:backup',
+            status: 'idle',
+            load: 0.31,
+            capabilities: ['routing'],
+            timestamp: 170_000
+        }
+    ];
+
+    const routed = routeTaskRequest(task, agents, {
+        nowMs: 170_001,
+        hedging: {
+            enabled: true
+        }
+    });
+
+    assert.equal(routed.routed, true);
+    assert.equal(routed.selectedAgentId, 'agent:primary');
+    assert.equal(routed.hedgePlan, undefined);
+});
