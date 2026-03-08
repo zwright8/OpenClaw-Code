@@ -18,6 +18,23 @@ const OPEN_STATUSES = new Set([
 ]);
 
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
+const RETRY_BACKOFF_STRATEGIES = new Set(['fixed', 'exponential']);
+const RETRY_JITTER_STRATEGIES = new Set(['none', 'full']);
+const TRANSIENT_REJECTION_MARKERS = [
+    'overload',
+    'overloaded',
+    'busy',
+    'rate_limit',
+    'rate-limit',
+    'too_many_requests',
+    'service_unavailable',
+    'temporarily_unavailable',
+    'throttle',
+    'backpressure',
+    'try_again',
+    'retry_later',
+    'capacity'
+];
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -26,6 +43,12 @@ function clone(value) {
 function safeNow(nowFn) {
     const value = Number(nowFn());
     return Number.isFinite(value) ? value : Date.now();
+}
+
+function clampNonNegativeNumber(value, fallback) {
+    return Number.isFinite(value) && value >= 0
+        ? Number(value)
+        : fallback;
 }
 
 export function buildTaskRequest({
@@ -112,6 +135,11 @@ export class TaskOrchestrator {
         defaultTimeoutMs = 30_000,
         maxRetries = 1,
         retryDelayMs = 500,
+        retryBackoffStrategy = 'fixed',
+        retryJitter = 'none',
+        maxRetryDelayMs = 30_000,
+        maxRetryHintMs = null,
+        random = Math.random,
         now = Date.now,
         logger = console
     }) {
@@ -139,9 +167,22 @@ export class TaskOrchestrator {
         this.maxRetries = Number.isInteger(maxRetries) && maxRetries >= 0
             ? maxRetries
             : 1;
-        this.retryDelayMs = Number.isFinite(retryDelayMs) && retryDelayMs >= 0
-            ? Number(retryDelayMs)
-            : 500;
+        this.retryDelayMs = clampNonNegativeNumber(retryDelayMs, 500);
+        this.retryBackoffStrategy = RETRY_BACKOFF_STRATEGIES.has(retryBackoffStrategy)
+            ? retryBackoffStrategy
+            : 'fixed';
+        this.retryJitter = RETRY_JITTER_STRATEGIES.has(retryJitter)
+            ? retryJitter
+            : 'none';
+        this.maxRetryDelayMs = Math.max(
+            this.retryDelayMs,
+            clampNonNegativeNumber(maxRetryDelayMs, 30_000)
+        );
+        this.maxRetryHintMs = Math.max(
+            this.retryDelayMs,
+            clampNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs)
+        );
+        this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
         this.tasks = new Map();
@@ -228,6 +269,109 @@ export class TaskOrchestrator {
 
     async flush() {
         await this._persistenceQueue;
+    }
+
+    _canRetry(record) {
+        return record.attempts <= record.maxRetries;
+    }
+
+    _parseRetryHintMsFromReason(reason) {
+        if (typeof reason !== 'string' || !reason.trim()) {
+            return null;
+        }
+
+        const retryAfterMatch = reason.match(
+            /\b(?:retry[-_\s]?after|x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]?\s*(\d{1,10})\b/i
+        );
+        if (retryAfterMatch) {
+            const seconds = Number(retryAfterMatch[1]);
+            if (Number.isFinite(seconds) && seconds >= 0) {
+                return seconds * 1_000;
+            }
+        }
+
+        const delayMatch = reason.match(
+            /\b(?:retry[-_\s]?in|retry[-_\s]?delay|backoff)\b\s*[:=]?\s*(\d{1,10})\s*(ms|msec|milliseconds?|s|sec|seconds?)?\b/i
+        );
+        if (!delayMatch) {
+            return null;
+        }
+
+        const amount = Number(delayMatch[1]);
+        if (!Number.isFinite(amount) || amount < 0) {
+            return null;
+        }
+        const unit = (delayMatch[2] || '').toLowerCase();
+        if (unit.startsWith('s')) {
+            return amount * 1_000;
+        }
+        return amount;
+    }
+
+    _isTransientRejectionReason(reason) {
+        if (typeof reason !== 'string' || !reason.trim()) {
+            return false;
+        }
+        const normalized = reason.toLowerCase();
+        if (/\b(?:429|503)\b/.test(normalized)) {
+            return true;
+        }
+        return TRANSIENT_REJECTION_MARKERS.some((marker) => normalized.includes(marker));
+    }
+
+    _resolveRetryDelayMs(record, hintMs = null) {
+        const attemptIndex = Math.max(record.attempts, 1);
+        let delayMs = this.retryDelayMs;
+        if (this.retryBackoffStrategy === 'exponential') {
+            const exponentialDelay = this.retryDelayMs * (2 ** (attemptIndex - 1));
+            delayMs = Math.min(this.maxRetryDelayMs, exponentialDelay);
+        }
+
+        if (Number.isFinite(hintMs) && hintMs >= 0) {
+            delayMs = Math.min(this.maxRetryHintMs, Number(hintMs));
+        }
+
+        if (this.retryJitter === 'full' && delayMs > 1) {
+            const randomSample = Number(this.random());
+            const randomValue = Number.isFinite(randomSample) ? randomSample : Math.random();
+            delayMs = Math.floor(Math.min(Math.max(randomValue, 0), 1) * delayMs);
+        }
+
+        return Math.max(0, Math.floor(delayMs));
+    }
+
+    _scheduleRetry(record, nowMs, {
+        reason = 'retry_scheduled',
+        event = 'retry_scheduled',
+        hintMs = null,
+        auditEvent = 'task_retry_scheduled',
+        metadata = null
+    } = {}) {
+        const retryDelayMs = this._resolveRetryDelayMs(record, hintMs);
+        const nextRetryAt = nowMs + retryDelayMs;
+
+        record.status = 'retry_scheduled';
+        record.nextRetryAt = nextRetryAt;
+        record.updatedAt = nowMs;
+        record.history.push({
+            at: nowMs,
+            event,
+            reason,
+            nextRetryAt,
+            retryDelayMs,
+            retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
+            ...(metadata && typeof metadata === 'object' ? metadata : {})
+        });
+        this._persistRecord(record);
+        this._emitAudit(auditEvent, {
+            taskId: record.taskId,
+            target: record.target,
+            reason,
+            nextRetryAt,
+            retryDelayMs,
+            retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
+            ...(metadata && typeof metadata === 'object' ? metadata : {})
+        }, nowMs);
     }
 
     async dispatchTask({
@@ -481,15 +625,13 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'approval_release');
         } catch (error) {
-            record.status = 'retry_scheduled';
-            record.nextRetryAt = reviewedAt + this.retryDelayMs;
-            record.updatedAt = reviewedAt;
-            record.history.push({
-                at: reviewedAt,
-                event: 'approval_release_failed',
-                error: error.message
+            this._scheduleRetry(record, reviewedAt, {
+                reason: 'approval_release_failed',
+                event: 'approval_release_retry_scheduled',
+                metadata: {
+                    error: error.message
+                }
             });
-            this._persistRecord(record);
         }
 
         return this.getTask(taskId);
@@ -565,18 +707,38 @@ export class TaskOrchestrator {
         record.updatedAt = receipt.timestamp;
 
         if (!receipt.accepted) {
+            const reason = receipt.reason || 'rejected_by_worker';
+            const receiptHintMs = Number.isFinite(receipt.etaMs) ? Number(receipt.etaMs) : null;
+            const reasonHintMs = this._parseRetryHintMsFromReason(reason);
+            const retryHintMs = receiptHintMs !== null ? receiptHintMs : reasonHintMs;
+            const transient = this._isTransientRejectionReason(reason);
+
+            if (transient && this._canRetry(record)) {
+                this._scheduleRetry(record, receipt.timestamp, {
+                    reason: 'rejected_transient',
+                    event: 'rejected_retry_scheduled',
+                    hintMs: retryHintMs,
+                    auditEvent: 'task_rejected_retry_scheduled',
+                    metadata: {
+                        from: receipt.from,
+                        rejectionReason: reason
+                    }
+                });
+                return true;
+            }
+
             record.status = 'rejected';
             record.closedAt = receipt.timestamp;
             record.history.push({
                 at: receipt.timestamp,
                 event: 'rejected',
-                reason: receipt.reason || 'rejected_by_worker'
+                reason
             });
             this._persistRecord(record);
             this._emitAudit('task_rejected', {
                 taskId: record.taskId,
                 from: receipt.from,
-                reason: receipt.reason || 'rejected_by_worker'
+                reason
             }, receipt.timestamp);
             return true;
         }
@@ -647,7 +809,7 @@ export class TaskOrchestrator {
 
             if (nowMs <= record.deadlineAt) continue;
 
-            if (record.attempts > record.maxRetries) {
+            if (!this._canRetry(record)) {
                 record.status = 'timed_out';
                 record.updatedAt = nowMs;
                 record.closedAt = nowMs;
@@ -663,20 +825,10 @@ export class TaskOrchestrator {
             }
 
             if (record.nextRetryAt === null) {
-                record.status = 'retry_scheduled';
-                record.nextRetryAt = nowMs + this.retryDelayMs;
-                record.updatedAt = nowMs;
-                record.history.push({
-                    at: nowMs,
-                    event: 'retry_scheduled',
-                    nextRetryAt: record.nextRetryAt
+                this._scheduleRetry(record, nowMs, {
+                    reason: 'deadline_exceeded',
+                    event: 'retry_scheduled'
                 });
-                this._persistRecord(record);
-                this._emitAudit('task_retry_scheduled', {
-                    taskId: record.taskId,
-                    target: record.target,
-                    nextRetryAt: record.nextRetryAt
-                }, nowMs);
                 summary.scheduledRetries++;
                 continue;
             }
@@ -692,7 +844,7 @@ export class TaskOrchestrator {
                     `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
                 );
 
-                if (record.attempts > record.maxRetries) {
+                if (!this._canRetry(record)) {
                     record.status = 'transport_error';
                     record.updatedAt = nowMs;
                     record.closedAt = nowMs;
@@ -708,15 +860,13 @@ export class TaskOrchestrator {
                         error: record.lastError
                     }, nowMs);
                 } else {
-                    record.status = 'retry_scheduled';
-                    record.nextRetryAt = nowMs + this.retryDelayMs;
-                    record.updatedAt = nowMs;
-                    this._persistRecord(record);
-                    this._emitAudit('task_retry_scheduled', {
-                        taskId: record.taskId,
-                        target: record.target,
-                        nextRetryAt: record.nextRetryAt
-                    }, nowMs);
+                    this._scheduleRetry(record, nowMs, {
+                        reason: 'transport_send_failed',
+                        event: 'retry_scheduled',
+                        metadata: {
+                            error: record.lastError
+                        }
+                    });
                 }
             }
         }
@@ -751,7 +901,14 @@ export class TaskOrchestrator {
             open: 0,
             terminal: 0,
             byStatus: {},
-            avgAttempts: 0
+            avgAttempts: 0,
+            retry: {
+                delayMs: this.retryDelayMs,
+                strategy: this.retryBackoffStrategy,
+                jitter: this.retryJitter,
+                maxDelayMs: this.maxRetryDelayMs,
+                maxHintMs: this.maxRetryHintMs
+            }
         };
 
         let attemptsTotal = 0;
