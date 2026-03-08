@@ -381,3 +381,26 @@ Include these fields in outputs when tool integration is used:
 - PQC migration governance: include transitional crypto mode tags, interoperability gate status, and rollback plan references.
 - Public-health and medical fabrication operations: include clinical authority tags, quality release gates, and force-readiness impact deltas.
 - Subsea/orbital incident response: include legal-attribution confidence ladders, coalition acknowledgment status, and degraded options when evidence is incomplete.
+
+## Domain Toolchain Profiles (2026-03-08 Expansion)
+
+- Joint biosecurity and lab incident response: biosurveillance fusion + lab incident reporting + force-health dashboards + HL7/FHIR + USMTF + NIMS/ICS
+- Deployed digital identity wallet revocation: identity lifecycle orchestration + revocation status brokers + access policy engines + API/JSON + signed ledgers + USMTF
+- Quantum-resistant crypto transition: crypto asset inventory + PKI lifecycle managers + interoperability test harnesses + API/JSON + PKI protocols + USMTF
+- Undersea cable sabotage attribution and repair prioritization: cable telemetry analytics + maritime anomaly fusion + legal evidence chain workflows + AIS/NMEA + OGC + STIX/TAXII + USMTF
+- Orbital spectrum priority and SATCOM continuity: SATCOM arbitration tools + interference monitors + mission-priority routing + API/JSON + USMTF + Link 16 where interoperable
+- Coalition electromagnetic compatibility certification: spectrum assignment and emitter databases + RF monitoring meshes + conflict adjudication boards + USMTF + coalition formats + API/JSON
+- Autonomous systems safety incident governance: autonomy telemetry replay + safety case management + corrective action workflows + API/JSON + signed audit records + USMTF
+- Contested AI model governance: model registry/deployment controls + trust evaluation harnesses + red-team benchmarks + API/JSON + signed model attestations + USMTF
+- Military deception effects measurement: influence telemetry analytics + adversary behavior indicators + assessment dashboards + API/JSON + STIX/TAXII + USMTF
+- Cyber-physical water treatment protection: ICS/SCADA monitoring + water quality telemetry + incident response boards + API/JSON + OGC + NIMS/ICS + USMTF
+- Host-nation port health and biosecurity: port operations systems + vessel screening workflows + quarantine control boards + AIS/NMEA + HL7/FHIR + USMTF
+- Expeditionary OSINT verification: source aggregation + media authenticity forensics + geolocation chronolocation + API/JSON + STIX/TAXII + USMTF
+- Munitions transport/storage fragmentation safety: explosive compatibility tools + route risk planners + storage hazard models + USMTF + API/JSON + NATO logistics formats
+- High-altitude platform persistence management: stratospheric platform C2 + payload handover schedulers + atmospheric route effects analytics + API/JSON + OGC + USMTF
+- Mission-data provenance and releasability auditing: provenance graph services + coalition releasability policy engines + schema validators + API/JSON + coalition exchange formats + USMTF
+- Rapid runway crater repair deconfliction: engineering repair schedulers + runway condition analytics + sortie regeneration boards + USMTF + Link 16 + AIXM/FIXM
+- EMP cascade consequence management: mission dependency graphing + infrastructure restoration orchestration + comm-path resilience monitors + USMTF + API/JSON + NIMS/ICS
+- Commander-priority information synthesis: fused COP analytics + priority alerting + command decision boards + USMTF + CoT + API/JSON
+- Disconnected time synchronization and PNT holdover: timing distribution systems + oscillator health analytics + alternate navigation confidence fusion + API/JSON + time-transfer standards + USMTF
+- Additive feedstock counterfeit detection: material fingerprinting + provenance ledgers + quality release systems + API/JSON + signed provenance artifacts + USMTF

@@ -221,3 +221,47 @@ Every skill output should include:
 - Zero-trust key material continuity + tactical zero-trust network hardening + theater mission network failover
 - Space-weather GNSS outage fusion + denied space PNT alternative navigation + precision navigation integrity monitoring
 - Multi-theater hostage crisis decision + POW/MIA and missing persons fusion + personnel recovery integration
+
+## New Expansion Wave (2026-03-08, Warfighter Domain Completion Surge)
+
+- joint-biosecurity-and-lab-incident-response-cell
+- deployed-digital-identity-wallet-and-credential-revocation-cell
+- joint-quantum-resistant-crypto-transition-cell
+- theater-undersea-cable-sabotage-attribution-and-repair-prioritization-cell
+- joint-orbital-spectrum-priority-and-satcom-continuity-cell
+- coalition-battlefield-electromagnetic-compatibility-certification-cell
+- joint-autonomous-systems-safety-incident-review-board
+- contested-ai-model-governance-and-mission-assurance-cell
+- joint-military-deception-effects-measurement-cell
+- theater-cyber-physical-water-treatment-protection-cell
+- joint-host-nation-port-health-and-biosecurity-cell
+- expeditionary-open-source-intelligence-verification-cell
+- joint-munitions-safety-transport-and-storage-fragmentation-cell
+- joint-high-altitude-platform-persistence-management-cell
+- coalition-mission-data-provenance-and-releasability-auditor
+- joint-rapid-runway-crater-repair-deconfliction-cell
+- theater-electromagnetic-pulse-cascade-consequence-cell
+- joint-ai-enabled-commander-priority-information-synthesis-cell
+- joint-disconnected-time-synchronization-and-pnt-holdover-cell
+- theater-additive-manufacturing-feedstock-counterfeit-detection-cell
+
+## Updated Pairings (2026-03-08, Warfighter Domain Completion Surge)
+
+- Quantum-resistant crypto transition + denied PNT time transfer assurance + tactical disconnected mission-data replication
+- Undersea sabotage attribution + subsea infrastructure protection + coalition maritime chokepoint governance
+- Orbital spectrum priority + SATCOM leasing arbitration + space-ground integration and reentry risk
+- Electromagnetic compatibility certification + EW fratricide mitigation + joint spectrum governance and emissions control
+- Autonomous safety incident review + autonomous wingman governance + strategic autonomous component security
+- AI model governance assurance + AI red team operational model threat + mission-assured software factory support
+- Deception effects measurement + military deception planner + theater cognitive security and misinformation counter
+- Water-treatment cyber-physical protection + civil infrastructure restoration + contested public-health surveillance
+- Port health and biosecurity + port opening/JLOTS synchronization + maritime evacuation sea bridge
+- OSINT verification + deepfake battlefield media authentication + information integrity and attribution
+- Munitions fragmentation safety + munitions microfactory control + expeditionary additive quality assurance
+- High-altitude platform persistence + denied terrain signal relay balloon network + tactical weather and atmospheric effects
+- Data provenance/releasability auditing + coalition mission data labeling + coalition identity federation and access bridging
+- Rapid runway crater repair deconfliction + airbase camouflage/decoy + expeditionary runway repair and airfield recovery
+- EMP cascade consequence + homeland grid blackstart + strategic energy grid cyber-physical deterrence
+- Commander-priority synthesis + JOC battle rhythm management + campaign assessment and decision support
+- Disconnected time/PNT holdover + resilient navigation inertial/celestial fusion + denied space PNT alternative navigation
+- Additive feedstock counterfeit detection + contested feedstock assurance + additive munitions QA

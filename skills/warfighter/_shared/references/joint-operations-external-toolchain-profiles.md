@@ -144,3 +144,115 @@ For each critical recommendation, include:
 3. Include one machine-ingestible output and one commander-readable summary.
 4. If no profile fits, create a provisional profile with explicit validation owner and suspense.
 5. If any tool misses SLA, switch to degraded mode and report impact on confidence and timeline.
+
+### `biosecurity-lab-incident-response-v1`
+- Use for joint biosecurity and military-public-health incident response.
+- Primary tools: biosurveillance fusion, lab incident reporting, force health dashboards.
+- Cross-check tools: epidemiology review mirror and lab confirmation queue.
+- Protocols: `HL7/FHIR`, `USMTF`, `NIMS/ICS`.
+- Degraded fallback: sentinel-site reporting with conservative containment assumptions.
+
+### `identity-wallet-revocation-v1`
+- Use for deployed digital identity wallet trust and rapid credential revocation.
+- Primary tools: identity lifecycle services, revocation status brokers, access policy orchestration.
+- Cross-check tools: independent revocation ledger and access anomaly monitor.
+- Protocols: `API/JSON`, signed status exports, `USMTF` governance summaries.
+- Degraded fallback: mission-essential allowlist with dual-control revocation checks.
+
+### `quantum-crypto-transition-v1`
+- Use for phased quantum-resistant migration without mission interoperability breakage.
+- Primary tools: crypto inventory services, key lifecycle orchestration, interoperability test harness.
+- Cross-check tools: cryptographic conformance validator and mission assurance dashboard.
+- Protocols: PKI management protocols, `API/JSON`, `USMTF` transition summaries.
+- Degraded fallback: hybrid-crypto mode with bounded risk exceptions.
+
+### `undersea-cable-sabotage-attribution-v1`
+- Use for undersea cable sabotage attribution and continuity repair prioritization.
+- Primary tools: cable telemetry analytics, maritime anomaly detection, legal evidence chain systems.
+- Cross-check tools: coalition maritime COP and forensic confidence review board.
+- Protocols: `AIS/NMEA`, `OGC`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: provisional attribution posture with conservative confidence bands.
+
+### `orbital-spectrum-continuity-v1`
+- Use for orbital spectrum conflict resolution and SATCOM mission continuity.
+- Primary tools: SATCOM arbitration managers, interference monitors, mission-priority routing boards.
+- Cross-check tools: independent link health monitor and coalition bandwidth mirror.
+- Protocols: `API/JSON`, `USMTF`, `Link 16 J-series` where interoperable.
+- Degraded fallback: critical-traffic-only windows and fixed-priority scheduling.
+
+### `autonomy-safety-incident-governance-v1`
+- Use for autonomous platform safety incident review and corrective action governance.
+- Primary tools: autonomy telemetry replay services, safety case trackers, corrective action systems.
+- Cross-check tools: independent incident reconstruction harness and certification board.
+- Protocols: `API/JSON`, signed audit logs, `USMTF` safety summaries.
+- Degraded fallback: restricted autonomy employment with commander-approved controls.
+
+### `ai-model-governance-assurance-v1`
+- Use for contested AI model governance and rollback authority in operations.
+- Primary tools: model registry and deployment controls, trust evaluation dashboards, policy exception workflows.
+- Cross-check tools: independent red-team benchmark service and drift detection monitor.
+- Protocols: `API/JSON`, signed model attestations, `USMTF` governance packets.
+- Degraded fallback: approved-baseline-only model operation with manual review gates.
+
+### `water-treatment-cyber-physical-protection-v1`
+- Use for cyber-physical protection of water treatment and distribution systems.
+- Primary tools: ICS/SCADA monitoring, water quality telemetry, infrastructure incident boards.
+- Cross-check tools: independent sampling chain and alternate utility status monitor.
+- Protocols: `API/JSON`, `OGC`, `USMTF`, `NIMS/ICS`.
+- Degraded fallback: manual testing cadence and emergency purification branch actions.
+
+### `port-health-biosecurity-control-v1`
+- Use for host-nation port health controls while sustaining military throughput.
+- Primary tools: port ops dashboards, vessel screening workflows, quarantine coordination tools.
+- Cross-check tools: independent compliance ledger and berth-risk monitor.
+- Protocols: `AIS/NMEA`, `HL7/FHIR`, `USMTF`, coalition formats.
+- Degraded fallback: prioritized screening lane with reduced throughput assumptions.
+
+### `osint-verification-expeditionary-v1`
+- Use for verification of open-source battlefield reporting before command action.
+- Primary tools: OSINT aggregation, media forensics, geolocation verification tools.
+- Cross-check tools: independent source credibility ledger and alternate corroboration board.
+- Protocols: `API/JSON`, `STIX/TAXII`, `USMTF` command summaries.
+- Degraded fallback: high-confidence-source-only posture with explicit uncertainty notes.
+
+### `munitions-fragmentation-safety-v1`
+- Use for distributed munitions transport/storage safety planning under strike threat.
+- Primary tools: explosive compatibility ledgers, route risk tools, storage hazard models.
+- Cross-check tools: independent safety verification board and alternate incident trend monitor.
+- Protocols: `USMTF`, `API/JSON`, NATO logistics formats where relevant.
+- Degraded fallback: safety-maximized distribution with reduced throughput and explicit risk acceptance.
+
+### `runway-crater-repair-deconfliction-v1`
+- Use for rapid runway crater repair coordination and sortie regeneration.
+- Primary tools: airfield engineering schedulers, damage assessment tools, sortie recovery dashboards.
+- Cross-check tools: independent pavement survey and alternate repair timeline board.
+- Protocols: `USMTF`, `Link 16 J-series`, `AIXM/FIXM` where applicable.
+- Degraded fallback: manual repair window board and conservative sortie allocation.
+
+### `emp-cascade-consequence-v1`
+- Use for EMP cascade consequence triage and phased restoration sequencing.
+- Primary tools: mission dependency graphers, infrastructure restoration tools, comm-path resilience monitors.
+- Cross-check tools: independent continuity status mirror and alternate critical-node tracker.
+- Protocols: `USMTF`, `API/JSON`, `NIMS/ICS`.
+- Degraded fallback: minimum-essential command loop with fixed restoration priorities.
+
+### `commander-priority-synthesis-v1`
+- Use for commander-priority information synthesis from noisy multi-domain feeds.
+- Primary tools: fused COP analytics, alert prioritization engines, decision support dashboards.
+- Cross-check tools: independent watchfloor timeline and confidence adjudication board.
+- Protocols: `USMTF`, `CoT`, `API/JSON`.
+- Degraded fallback: manual commander update cycle with strict priority triage.
+
+### `disconnected-time-pnt-holdover-v1`
+- Use for disconnected time sync and PNT holdover management during denial.
+- Primary tools: time-transfer services, oscillator monitors, PNT confidence fusion tools.
+- Cross-check tools: independent timing validator and inertial/celestial navigation monitor.
+- Protocols: `USMTF`, `API/JSON`, timing transfer standards.
+- Degraded fallback: local holdover-only mode with compressed re-sync checkpoints.
+
+### `additive-feedstock-counterfeit-detection-v1`
+- Use for theater additive feedstock counterfeit detection and quality risk containment.
+- Primary tools: material fingerprint analyzers, provenance ledgers, fabrication quality release tools.
+- Cross-check tools: independent sample-chain audit and alternate failure anomaly review.
+- Protocols: `API/JSON`, signed provenance exports, `USMTF` sustainment summaries.
+- Degraded fallback: approved-lot-only fabrication with part quarantine and increased inspections.
