@@ -1331,3 +1331,91 @@ validation_gates:
 - output_schema: fuel integrity status board, adulteration incident packet, recertification sequence
 - protocol_profile: API/JSON + USMTF + STANAG fuel quality reporting
 - validation_gates: sample-chain integrity check, contamination confidence threshold, release authority sign-off
+
+### packet_id: DPL-ARCTIC-STOCK-RECON-001
+- domain: joint arctic prepositioned stock attrition and reconstitution
+- objective: preserve Arctic sustainment readiness by prioritizing attrition response and reconstitution actions
+- primary_tools: prepositioned stock ledger, climate route feasibility engine, depot viability monitor
+- alternate_tools: manual attrition board and theater logistics synchronization cell
+- degraded_mode: mission-essential stock classes only with delayed replenishment cycles
+- input_requirements: stock posture, failure/attrition events, route viability, mobility assets
+- output_schema: attrition heatmap, reconstitution sequence matrix, replenishment priority list
+- protocol_profile: USMTF + API/JSON + NATO APP-11
+- validation_gates: stock-accountability pass, command priority confirmation, sustainment authority release
+
+### packet_id: DPL-MARITIME-DRONE-MCM-001
+- domain: theater maritime drone mine countermeasure corridors
+- objective: open and sustain mine-safe maritime corridors for convoy and amphibious movement
+- primary_tools: UxV mission controller, mine-likelihood analytics, corridor deconfliction planner
+- alternate_tools: hydrographic manual review and convoy risk coordination board
+- degraded_mode: narrow protected transit windows with strict escort controls
+- input_requirements: mine indicators, UxV status, convoy plans, hydrographic constraints
+- output_schema: MCM corridor card, sortie schedule, corridor risk rating
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: route safety threshold, blue-force deconfliction check, maritime authority concurrence
+
+### packet_id: DPL-FORENSICS-CUSTODY-001
+- domain: joint battlefield forensics war crimes evidence chain
+- objective: ensure admissible chain-of-custody and evidence integrity in joint/coalition operations
+- primary_tools: evidence custody ledger, geotag/biometric evidence capture, legal review queue
+- alternate_tools: manual custody register and liaison legal review board
+- degraded_mode: high-priority evidence classes only with immediate custody sealing
+- input_requirements: evidence artifacts, capture metadata, custody transfers, legal authorities
+- output_schema: evidence packet index, custody exception log, admissibility confidence brief
+- protocol_profile: USMTF + API/JSON + NATO APP-11
+- validation_gates: custody continuity pass, metadata completeness threshold, legal authority confirmation
+
+### packet_id: DPL-QUANTUM-PNT-TRANSITION-001
+- domain: joint quantum navigation contested PNT transition
+- objective: maintain assured timing/navigation while transitioning from GNSS dependence
+- primary_tools: timing integrity monitor, navigation confidence fusion service, holdover management board
+- alternate_tools: inertial/celestial fallback worksheet and manual timing transfer logs
+- degraded_mode: critical-platform timing assurance only with mission-priority navigation updates
+- input_requirements: GNSS quality metrics, oscillator status, platform timing tolerances, mission priorities
+- output_schema: transition branch plan, confidence degradation map, resync trigger checklist
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: timing error budget pass, spoofing/jamming check, command approval gate
+
+### packet_id: DPL-FIRES-CLEARANCE-COALITION-001
+- domain: coalition joint fires digital clearance and fratricide prevention
+- objective: synchronize coalition fires approvals with no-strike and fratricide controls
+- primary_tools: digital fires clearance board, coalition ROE manager, deconfliction timeline service
+- alternate_tools: manual clearance matrix and coalition fires liaison cell
+- degraded_mode: pre-authorized target categories only with tighter fire approval authority
+- input_requirements: target nominations, no-strike lists, coalition ROE constraints, airspace status
+- output_schema: clearance matrix, fratricide risk register, approval decision log
+- protocol_profile: Link 16 J-series + VMF + USMTF
+- validation_gates: no-strike compliance pass, deconfliction confirmation, coalition authority sign-off
+
+### packet_id: DPL-BIOINDUSTRIAL-FP-001
+- domain: joint bioindustrial surveillance and force protection
+- objective: fuse bioindustrial anomalies into actionable force-health and protective posture recommendations
+- primary_tools: biosurveillance fusion board, anomaly triage workflow, force-health readiness dashboard
+- alternate_tools: manual epidemiology review queue and lab confirmation roster
+- degraded_mode: essential outbreak indicators only with delayed non-critical updates
+- input_requirements: biosignal feeds, lab incidents, force-health status, exposure indicators
+- output_schema: threat confidence note, protective posture matrix, escalation trigger list
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: lab confirmation threshold, medical authority review, command release gate
+
+### packet_id: DPL-AUSTERE-WATER-ASSURANCE-001
+- domain: contested austere water production and distribution assurance
+- objective: maintain potable water continuity and safe distribution under contested conditions
+- primary_tools: water telemetry dashboard, purification throughput planner, distribution prioritization board
+- alternate_tools: manual quality testing log and convoy-based water issue schedule
+- degraded_mode: critical units only with strict water rationing and expanded QC checks
+- input_requirements: production capacity, quality indicators, demand profile, distribution constraints
+- output_schema: production continuity plan, contamination exceptions, delivery priority schedule
+- protocol_profile: NIMS/ICS + API/JSON + USMTF
+- validation_gates: potability threshold pass, sample-chain integrity check, sustainment authority approval
+
+### packet_id: DPL-CEMA-APPROVAL-001
+- domain: theater cyber electromagnetic targeting approval
+- objective: enforce authority/legal/timing controls for synchronized CEMA effects approvals
+- primary_tools: CEMA target registry, authority workflow engine, timing deconfliction matrix
+- alternate_tools: manual approval ledger and legal-policy review cell
+- degraded_mode: pre-approved low-risk effect sets only with enhanced commander concurrence
+- input_requirements: target requests, legal basis, authority chain, mission timing windows
+- output_schema: approval status board, authority-chain log, deconfliction timeline
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: authority chain complete, legal review pass, command concurrence recorded
