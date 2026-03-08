@@ -950,6 +950,83 @@ test('dispatch policy can sanitize request before dispatch', async () => {
     assert.equal(task.policy.redactions.length, 1);
 });
 
+test('adaptive timeout learns per-target latency and updates future deadlines', async () => {
+    const clock = createClock(80_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 1_000,
+        adaptiveTimeoutEnabled: true,
+        adaptiveTimeoutMinMs: 100,
+        adaptiveTimeoutMaxMs: 10_000,
+        adaptiveTimeoutSafetyMarginMs: 0
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive',
+        task: 'Warm up timeout model'
+    });
+    assert.equal(first.deadlineAt, 81_000);
+
+    clock.advance(300);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: first.taskId,
+        from: 'agent:worker-adaptive',
+        status: 'success',
+        output: 'ok',
+        completedAt: clock.now()
+    }));
+
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive',
+        task: 'Use learned timeout model'
+    });
+
+    // First RTT sample (300ms) => timeout ~= srtt + 4*rttvar = 300 + 600 = 900ms.
+    assert.equal(second.deadlineAt, clock.now() + 900);
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.adaptiveTimeout.targets['agent:worker-adaptive'].samples, 1);
+    assert.equal(metrics.retry.adaptiveTimeout.targets['agent:worker-adaptive'].timeoutMs, 900);
+});
+
+test('adaptive timeout can be disabled to keep fixed deadlines', async () => {
+    const clock = createClock(90_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 750,
+        adaptiveTimeoutEnabled: false
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-fixed-timeout',
+        task: 'Dispatch one'
+    });
+    assert.equal(first.deadlineAt, 90_750);
+
+    clock.advance(400);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: first.taskId,
+        from: 'agent:worker-fixed-timeout',
+        status: 'success',
+        output: 'done',
+        completedAt: clock.now()
+    }));
+
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-fixed-timeout',
+        task: 'Dispatch two'
+    });
+    assert.equal(second.deadlineAt, clock.now() + 750);
+    assert.equal(orchestrator.getMetrics().retry.adaptiveTimeout.enabled, false);
+});
+
 test('audit log records signed lifecycle entries', async () => {
     const auditLog = new SignedAuditLog({
         secret: 'audit-secret',

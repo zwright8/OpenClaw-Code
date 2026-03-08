@@ -38,6 +38,8 @@ const TRANSIENT_REJECTION_MARKERS = [
 ];
 
 const DEFAULT_DEAD_LETTER_MAX_ENTRIES = 250;
+const DEFAULT_ADAPTIVE_TIMEOUT_ALPHA = 0.125;
+const DEFAULT_ADAPTIVE_TIMEOUT_BETA = 0.25;
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -76,6 +78,13 @@ function clampPositiveNumber(value, fallback) {
     return Number.isFinite(value) && value > 0
         ? Number(value)
         : fallback;
+}
+
+function clampRatio(value, fallback) {
+    if (!Number.isFinite(value)) return fallback;
+    const numeric = Number(value);
+    if (numeric <= 0 || numeric >= 1) return fallback;
+    return numeric;
 }
 
 export function buildTaskRequest({
@@ -174,6 +183,12 @@ export class TaskOrchestrator {
         circuitBreakerCooldownMs = 15_000,
         circuitBreakerHalfOpenProbeCooldownMs = 250,
         deadLetterMaxEntries = DEFAULT_DEAD_LETTER_MAX_ENTRIES,
+        adaptiveTimeoutEnabled = true,
+        adaptiveTimeoutMinMs = 250,
+        adaptiveTimeoutMaxMs = 120_000,
+        adaptiveTimeoutSafetyMarginMs = 100,
+        adaptiveTimeoutAlpha = DEFAULT_ADAPTIVE_TIMEOUT_ALPHA,
+        adaptiveTimeoutBeta = DEFAULT_ADAPTIVE_TIMEOUT_BETA,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -237,6 +252,22 @@ export class TaskOrchestrator {
             0,
             Math.floor(clampNonNegativeNumber(deadLetterMaxEntries, DEFAULT_DEAD_LETTER_MAX_ENTRIES))
         );
+        this.adaptiveTimeoutEnabled = adaptiveTimeoutEnabled !== false;
+        this.adaptiveTimeoutMinMs = Math.max(
+            1,
+            Math.floor(clampPositiveNumber(adaptiveTimeoutMinMs, 250))
+        );
+        this.adaptiveTimeoutMaxMs = Math.max(
+            this.adaptiveTimeoutMinMs,
+            Math.floor(clampPositiveNumber(adaptiveTimeoutMaxMs, 120_000))
+        );
+        this.adaptiveTimeoutSafetyMarginMs = Math.max(
+            0,
+            Math.floor(clampNonNegativeNumber(adaptiveTimeoutSafetyMarginMs, 100))
+        );
+        this.adaptiveTimeoutAlpha = clampRatio(adaptiveTimeoutAlpha, DEFAULT_ADAPTIVE_TIMEOUT_ALPHA);
+        this.adaptiveTimeoutBeta = clampRatio(adaptiveTimeoutBeta, DEFAULT_ADAPTIVE_TIMEOUT_BETA);
+        this.targetLatencyStats = new Map();
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
@@ -317,6 +348,73 @@ export class TaskOrchestrator {
 
     _setCircuitState(state, nextState) {
         state.state = CIRCUIT_STATES.has(nextState) ? nextState : 'closed';
+    }
+
+    _getTargetLatencyState(target) {
+        const key = typeof target === 'string' ? target.trim() : '';
+        if (!key) return null;
+        const existing = this.targetLatencyStats.get(key);
+        if (existing) return existing;
+        const baseline = {
+            target: key,
+            samples: 0,
+            srttMs: null,
+            rttvarMs: null,
+            lastSampleMs: null,
+            lastUpdatedAt: null,
+            timeoutMs: this.defaultTimeoutMs
+        };
+        this.targetLatencyStats.set(key, baseline);
+        return baseline;
+    }
+
+    _computeAdaptiveTimeoutMs(state) {
+        if (!state || state.samples <= 0 || !Number.isFinite(state.srttMs)) {
+            return this.defaultTimeoutMs;
+        }
+        const rttVariance = Number.isFinite(state.rttvarMs) ? state.rttvarMs : 0;
+        const raw = state.srttMs + (4 * rttVariance) + this.adaptiveTimeoutSafetyMarginMs;
+        const bounded = Math.max(this.adaptiveTimeoutMinMs, Math.min(this.adaptiveTimeoutMaxMs, raw));
+        return Math.floor(bounded);
+    }
+
+    _recordTargetLatencySample(target, sampleMs, nowMs) {
+        if (!this.adaptiveTimeoutEnabled) return null;
+        const normalizedSampleMs = Number(sampleMs);
+        if (!Number.isFinite(normalizedSampleMs) || normalizedSampleMs < 0) return null;
+        const state = this._getTargetLatencyState(target);
+        if (!state) return null;
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+
+        if (state.samples <= 0 || !Number.isFinite(state.srttMs)) {
+            state.samples = 1;
+            state.srttMs = normalizedSampleMs;
+            state.rttvarMs = normalizedSampleMs / 2;
+        } else {
+            const prevSrtt = state.srttMs;
+            const error = Math.abs(prevSrtt - normalizedSampleMs);
+            state.rttvarMs = ((1 - this.adaptiveTimeoutBeta) * state.rttvarMs)
+                + (this.adaptiveTimeoutBeta * error);
+            state.srttMs = ((1 - this.adaptiveTimeoutAlpha) * prevSrtt)
+                + (this.adaptiveTimeoutAlpha * normalizedSampleMs);
+            state.samples += 1;
+        }
+
+        state.lastSampleMs = normalizedSampleMs;
+        state.lastUpdatedAt = at;
+        state.timeoutMs = this._computeAdaptiveTimeoutMs(state);
+        return state.timeoutMs;
+    }
+
+    _resolveTimeoutMs(target) {
+        if (!this.adaptiveTimeoutEnabled) {
+            return this.defaultTimeoutMs;
+        }
+        const state = this._getTargetLatencyState(target);
+        if (!state || state.samples <= 0) {
+            return this.defaultTimeoutMs;
+        }
+        return this._computeAdaptiveTimeoutMs(state);
     }
 
     _allowTargetSend(target, nowMs) {
@@ -522,6 +620,7 @@ export class TaskOrchestrator {
             this.tasks.clear();
             this.idempotencyCache.clear();
             this.idempotencyTaskIndex.clear();
+            this.targetLatencyStats.clear();
         }
 
         const hydratedAt = safeNow(this.now);
@@ -550,6 +649,19 @@ export class TaskOrchestrator {
                     });
                     this.idempotencyTaskIndex.set(record.taskId, idempotencyKey);
                 }
+            }
+
+            if (
+                this.adaptiveTimeoutEnabled
+                && Number.isFinite(record?.lastDispatchAt)
+                && Number.isFinite(record?.closedAt)
+                && Number(record.closedAt) >= Number(record.lastDispatchAt)
+            ) {
+                this._recordTargetLatencySample(
+                    record.target,
+                    Number(record.closedAt) - Number(record.lastDispatchAt),
+                    Number(record.closedAt)
+                );
             }
 
             applied++;
@@ -931,6 +1043,7 @@ export class TaskOrchestrator {
             deadlineAt: request.createdAt + this.defaultTimeoutMs,
             nextRetryAt: null,
             closedAt: null,
+            lastDispatchAt: null,
             lastError: null,
             receipts: [],
             result: null,
@@ -1148,7 +1261,8 @@ export class TaskOrchestrator {
         try {
             await this.transport.send(record.target, record.request);
             record.status = 'dispatched';
-            record.deadlineAt = sendAt + this.defaultTimeoutMs;
+            record.lastDispatchAt = sendAt;
+            record.deadlineAt = sendAt + this._resolveTimeoutMs(record.target);
             record.nextRetryAt = null;
             record.lastError = null;
             record.history.push({
@@ -1267,6 +1381,19 @@ export class TaskOrchestrator {
         record.result = result;
         record.updatedAt = result.completedAt;
         record.closedAt = result.completedAt;
+
+        if (
+            this.adaptiveTimeoutEnabled
+            && Number.isFinite(record.lastDispatchAt)
+            && Number.isFinite(result.completedAt)
+            && result.completedAt >= record.lastDispatchAt
+        ) {
+            this._recordTargetLatencySample(
+                record.target,
+                result.completedAt - record.lastDispatchAt,
+                result.completedAt
+            );
+        }
 
         if (result.status === 'success') {
             record.status = 'completed';
@@ -1527,6 +1654,17 @@ export class TaskOrchestrator {
                     targetCount: this.circuitBreakers.size,
                     openTargets: 0,
                     halfOpenTargets: 0
+                },
+                adaptiveTimeout: {
+                    enabled: this.adaptiveTimeoutEnabled,
+                    defaultTimeoutMs: this.defaultTimeoutMs,
+                    minTimeoutMs: this.adaptiveTimeoutMinMs,
+                    maxTimeoutMs: this.adaptiveTimeoutMaxMs,
+                    safetyMarginMs: this.adaptiveTimeoutSafetyMarginMs,
+                    alpha: this.adaptiveTimeoutAlpha,
+                    beta: this.adaptiveTimeoutBeta,
+                    targetCount: this.targetLatencyStats.size,
+                    targets: {}
                 }
             },
             deadLetter: {
@@ -1571,6 +1709,19 @@ export class TaskOrchestrator {
             } else if (state.state === 'half_open') {
                 metrics.retry.circuitBreaker.halfOpenTargets++;
             }
+        }
+
+        for (const [target, state] of this.targetLatencyStats.entries()) {
+            metrics.retry.adaptiveTimeout.targets[target] = {
+                samples: state.samples,
+                srttMs: Number.isFinite(state.srttMs) ? Number(state.srttMs.toFixed(2)) : null,
+                rttvarMs: Number.isFinite(state.rttvarMs) ? Number(state.rttvarMs.toFixed(2)) : null,
+                timeoutMs: this._computeAdaptiveTimeoutMs(state),
+                lastSampleMs: Number.isFinite(state.lastSampleMs)
+                    ? Number(state.lastSampleMs.toFixed(2))
+                    : null,
+                lastUpdatedAt: Number.isFinite(state.lastUpdatedAt) ? state.lastUpdatedAt : null
+            };
         }
 
         metrics.avgAttempts = this.tasks.size > 0
