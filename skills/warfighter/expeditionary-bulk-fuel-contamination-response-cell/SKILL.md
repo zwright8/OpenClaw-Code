@@ -70,3 +70,9 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Toolchain Override (2026-03-08, Arctic Bladder Integrity Expansion)
+
+- Prioritize `tool_suite_id=ts-arctic-fuel-bladder-spill-containment-v1` with `protocol_stack_id=ps-arctic-fuel-bladder-stack-v1` for cold-weather operations where container integrity and spill containment drive sustainment risk.
+- Use packet `DPL-ARCTIC-FUEL-BLADDER-001` to bind leak confirmation, containment sequencing, and sustainment impact fields.
+- If containment readiness cannot be validated, publish restricted-transfer guidance and require commander/environmental authority approval before execution.
