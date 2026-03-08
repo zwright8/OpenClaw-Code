@@ -149,3 +149,9 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Prioritize `tool_suite_id=ts-runway-magnetic-anomaly-clearance-v1` with `protocol_stack_id=ps-runway-magnetic-anomaly-stack-v1` when SEAD/DEAD follow-on sorties are constrained by runway hazard uncertainty.
 - Use packet `DPL-RUNWAY-MAG-ANOMALY-001` to bind anomaly confidence, EOD sequencing, and sortie reattack window synchronization.
 - If anomaly confidence remains below threshold, downgrade to conservative sortie generation guidance and require air boss and commander concurrence.
+
+## Domain Toolchain Override (2026-03-08, EW Order-Of-Battle Drift Expansion)
+
+- Prioritize `tool_suite_id=ts-ew-order-of-battle-drift-v1` with `protocol_stack_id=ps-ew-ob-drift-stack-v1` when adversary emitter behavior diverges from mission-data baselines.
+- Use packet `DPL-EW-OB-DRIFT-001` to bind drift confidence, mission-data retune actions, and reattack timing decisions.
+- If mission-data retune cannot be verified in time, publish an advisory-only branch with explicit risk-to-package survivability annotations.
