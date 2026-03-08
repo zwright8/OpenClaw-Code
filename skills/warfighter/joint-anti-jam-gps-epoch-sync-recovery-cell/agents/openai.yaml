@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Anti Jam GPS Epoch Sync Recovery Cell"
+  short_description: "Support Joint Anti Jam GPS Epoch Sync Recovery Cell mission decisions"
