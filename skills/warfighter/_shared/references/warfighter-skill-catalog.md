@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 787
+- Total warfighter skills in this repo: 799
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -479,3 +479,33 @@ Every skill output should include:
 - Cloudburst flood-route survivability + theater contested airlift LZ viability + rail-airfield intermodal sustainment scheduler
 - Railway signaling cyber-physical failover + rail-node sabotage attribution/recovery + strategic mobility port/rail chokepoint wargaming
 - Energetics precursor counterfeit intelligence + strategic ammunition energetics precursor supply assurance + additive feedstock counterfeit detection
+
+## New Expansion Wave (2026-03-08, Assured Timing, Energy Resilience, and Sustainment Integrity)
+
+- joint-anti-jam-gps-epoch-sync-recovery-cell
+- theater-portable-microreactor-power-employment-cell
+- coalition-disaster-relief-air-bridge-integrity-cell
+- joint-undersea-chokepoint-acoustic-deception-cell
+- strategic-cyber-reserve-mobilization-assurance-cell
+- theater-multi-domain-decoy-inventory-allocator-cell
+- joint-contested-casualty-evacuation-c2-fallback-cell
+- coalition-rapid-runway-ice-fod-clearance-cell
+- joint-long-range-fires-ammo-lot-reliability-cell
+- theater-denied-fuel-bladder-integrity-monitor-cell
+- joint-mobile-satcom-emission-discipline-cell
+- strategic-critical-mineral-shipping-protection-cell
+
+## Updated Pairings (2026-03-08, Assured Timing, Energy Resilience, and Sustainment Integrity)
+
+- Anti-jam GPS epoch sync recovery + denied PNT time transfer assurance + precision navigation spoofing attribution
+- Portable microreactor employment + operational energy resilience and microgrid + battlefield power signature management
+- Disaster-relief air-bridge integrity + contested airlift LZ viability + coalition humanitarian corridor assurance
+- Undersea chokepoint acoustic deception + ASW support + undersea infrastructure protection and restoration
+- Cyber reserve mobilization assurance + strategic reserve cyber activation + mission-assured software factory support
+- Multi-domain decoy inventory allocation + AI camouflage discipline auditing + rapid airbase decoy layout
+- Contested CASEVAC C2 fallback + denied casualty data synchronization + austere burn-care network operations
+- Rapid runway ice/FOD clearance + expeditionary runway repair and airfield recovery + denied weather sortie risk
+- Long-range fires lot reliability + additive propellant safety governance + precision-fires retargeting governance
+- Denied fuel bladder integrity monitoring + convoy fuel fraud detection + contested logistics sustainment
+- Mobile SATCOM emission discipline + coalition SATCOM key rotation + theater mission network failover
+- Critical mineral shipping protection + maritime insurance risk reconstitution + strategic industrial mobilization readiness
