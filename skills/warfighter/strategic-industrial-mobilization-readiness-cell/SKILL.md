@@ -151,3 +151,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Prioritize `tool_suite_id=ts-critical-mineral-denial-mitigation-v1` with `protocol_stack_id=ps-industrial-mobilization-stack-v1` when readiness risk is driven by rare-earth or critical mineral constraints.
 - Use packet `DPL-RARE-EARTH-001` to frame denial impact forecast, substitution options, and stockpile burn-rate controls.
 - If supply-source validation is incomplete, publish advisory-only mitigation options and assign validation owner with suspense.
+
+## Domain Toolchain Override (2026-03-08, Field Biologics Resilience Expansion)
+
+- Prioritize `tool_suite_id=ts-field-biologics-assurance-v1` when biologics shortages or contamination risk threatens force-readiness timelines.
+- Use packet `DPL-BIOREACTOR-VAX-001` to map lot assurance, contamination controls, and distribution continuity triggers.
+- If assay chain confidence is incomplete, downgrade to contingency-only readiness guidance and require medical authority review.
