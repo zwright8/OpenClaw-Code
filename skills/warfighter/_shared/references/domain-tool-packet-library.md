@@ -2400,3 +2400,113 @@ validation_gates:
 - output_schema: obfuscation schedule, exposure-risk score, branch triggers
 - protocol_profile: CoT + API/JSON + USMTF
 - validation_gates: mission-impact tolerance check, legal/policy review, command authority approval
+
+### packet_id: DPL-SEABED-GRID-001
+- domain: seabed warfare sensor sustainment
+- objective: preserve underwater sensing coverage and restore degraded chokepoint warning timelines
+- primary_tools: seabed sensor orchestrator, acoustic contact fusion, cable/power telemetry
+- alternate_tools: patrol-based passive sensing board with manual correlation
+- degraded_mode: time-bucket contact confidence bulletin every 6 hours
+- input_requirements: sensor map, health telemetry, choke geometry, repair asset availability, threat estimates
+- output_schema: coverage gap table, repair/redeploy sequence, contact confidence trend
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: sensor health provenance, dual-source contact corroboration, commander risk acceptance
+
+### packet_id: DPL-QKD-FALLBACK-001
+- domain: strategic quantum key continuity
+- objective: maintain strategic cryptographic trust when QKD links are degraded or denied
+- primary_tools: QKD integrity monitor, key custody ledger, fallback key broker
+- alternate_tools: classical key-management bridge with manual trust adjudication
+- degraded_mode: pre-approved key-rotation schedule with constrained trust domains
+- input_requirements: trust topology, QKD status, key expiration horizon, route latency profile
+- output_schema: fallback activation matrix, trust impact summary, key continuity timeline
+- protocol_profile: API/JSON + USMTF + STIX/TAXII
+- validation_gates: key custody verification, policy/legal concurrence, independent timing check
+
+### packet_id: DPL-PORT-HAZMAT-AUTO-001
+- domain: coalition autonomous port hazmat inspection
+- objective: screen vessels and cargo for hazardous material risk without collapsing throughput
+- primary_tools: autonomous inspection scheduler, hazmat detection analytics, manifest fusion service
+- alternate_tools: manual boarding matrix with paper manifest reconciliation
+- degraded_mode: high-risk-only screening and delayed full manifest audit
+- input_requirements: vessel queue, manifests, hazard signatures, coalition legal constraints, berth status
+- output_schema: screening queue, hazmat confidence flags, disposition and evidence ledger
+- protocol_profile: API/JSON + NIMS/ICS + USMTF
+- validation_gates: custody evidence check, coalition legal caveat pass, throughput safety threshold
+
+### packet_id: DPL-CLM-ATTRITION-001
+- domain: counter loitering munition swarm defense
+- objective: attrit hostile swarms while conserving interceptors and preserving critical nodes
+- primary_tools: CUAS sensor fusion, trajectory predictor, interceptor/deception allocator
+- alternate_tools: visual reporting net and manual engagement board
+- degraded_mode: protect-top-tier-assets-only shot doctrine with constrained firing windows
+- input_requirements: defended asset map, threat tracks, interceptor inventory, decoy stock, ROE profile
+- output_schema: engagement ladder, inventory burn forecast, defended-area residual risk
+- protocol_profile: Link 16 J-series + VMF + USMTF
+- validation_gates: friend-or-foe check, collateral threshold pass, human release authority
+
+### packet_id: DPL-SBSP-LINK-001
+- domain: strategic space-based power-link protection
+- objective: preserve orbital power relay continuity for expeditionary and strategic mission systems
+- primary_tools: orbital relay telemetry, beam safety monitor, power-priority allocator
+- alternate_tools: ground microgrid priority board with manual orbital status ingest
+- degraded_mode: mission-essential loads only with rolling outage schedule
+- input_requirements: relay status, demand priority tiers, orbital conjunction risk, weather and obscuration
+- output_schema: relay protection plan, load shedding matrix, continuity branch triggers
+- protocol_profile: API/JSON + USMTF + OGC
+- validation_gates: beam safety clearance, orbital conjunction confidence, command approval for shedding
+
+### packet_id: DPL-BIOREACTOR-VAX-001
+- domain: contested field biologics assurance
+- objective: sustain safe vaccine production and distribution from forward bioreactor microfactories
+- primary_tools: bioreactor process monitor, lot QA analytics, cold-chain distribution tracker
+- alternate_tools: manual lot-release board with sample-chain reconciliation
+- degraded_mode: restricted lot release by highest-risk population priority
+- input_requirements: process telemetry, lot assay outputs, contamination indicators, cold-chain capacity
+- output_schema: lot release recommendations, contamination control branch, distribution priority list
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: assay confidence threshold, contamination containment review, medical authority sign-off
+
+### packet_id: DPL-AIRFIELD-ROBOT-REPAIR-001
+- domain: robotic airfield crater repair orchestration
+- objective: synchronize robotic-human repair teams to restore runway operations under repeated attack
+- primary_tools: crater mapping service, robotic engineer tasking controller, sortie regeneration planner
+- alternate_tools: manual engineering board and periodic runway status survey
+- degraded_mode: short-strip operations with partial repair and strict sortie limits
+- input_requirements: crater damage map, repair asset status, material stock, sortie demand profile
+- output_schema: repair sequence timeline, runway availability windows, sortie recovery estimate
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: pavement integrity check, engineering feasibility approval, air boss release
+
+### packet_id: DPL-UNDERSEA-PIPELINE-CP-001
+- domain: homeland undersea pipeline cyber-physical defense
+- objective: detect sabotage, preserve flow continuity, and coordinate secure repair under threat
+- primary_tools: subsea telemetry monitor, cyber anomaly analytics, flow-control command board
+- alternate_tools: manual pressure trend review with patrol cueing board
+- degraded_mode: conservative pressure profile with staged flow throttling
+- input_requirements: pipeline topology, sensor health, flow rates, anomaly events, repair asset status
+- output_schema: incident confidence ladder, flow continuity plan, repair security sequence
+- protocol_profile: API/JSON + STIX/TAXII + NIMS/ICS
+- validation_gates: telemetry provenance, dual-detection corroboration, DHS/DOD authority confirmation
+
+### packet_id: DPL-AUTON-MODEL-INTEGRITY-001
+- domain: autonomy model poisoning and drift defense
+- objective: detect model integrity compromise and enforce safe fallback before mission failure
+- primary_tools: model attestation ledger, behavior anomaly fusion, rollback and quarantine controller
+- alternate_tools: manual mission-safe mode checklist and independent replay harness
+- degraded_mode: autonomy restricted to advisory/observe-only mode
+- input_requirements: model hashes, validation metrics, live behavior telemetry, adversary threat indicators
+- output_schema: integrity status card, rollback recommendation, authority escalation path
+- protocol_profile: API/JSON + USMTF + STIX/TAXII
+- validation_gates: attestation pass, mission-risk threshold check, commander authorization
+
+### packet_id: DPL-DC-UNDERWATER-COOLING-001
+- domain: theater data-center underwater cooling resilience
+- objective: sustain compute and C2 continuity when underwater thermal infrastructure is disrupted
+- primary_tools: thermal telemetry system, underwater intake anomaly monitor, workload migration orchestrator
+- alternate_tools: manual thermal-load board with fixed failover runbooks
+- degraded_mode: prioritize critical workloads and execute planned thermal throttling
+- input_requirements: facility thermal state, intake/outflow sensor health, workload priority tiers, power margins
+- output_schema: thermal risk matrix, workload failover plan, cooling restoration sequence
+- protocol_profile: API/JSON + USMTF + OGC
+- validation_gates: thermal safety threshold, mission workload preservation check, infrastructure authority approval
