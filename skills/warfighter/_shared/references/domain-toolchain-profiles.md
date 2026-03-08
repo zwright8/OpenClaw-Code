@@ -112,3 +112,53 @@ For every critical recommendation, include:
 - Pair each selected `toolchain_id` with a tool health check sequence from `tool-health-and-trust-monitoring.md`.
 - Include `tool_health_id`, `trust_score`, and `last_probe_utc` in the same packet that declares toolchain fields.
 - If `trust_score < 0.70`, mark outputs `provisional`; if `trust_score < 0.50`, require degraded/no-go recommendation.
+
+## New Toolchain Wave (2026-03-08, Signature Integrity and Contested Data)
+
+### `TC-SIG-SURV-011`
+
+- Domain: electronic signature survivability and thermal exposure reduction
+- Primary systems: EW signature analytics, thermal exposure model, EMCON policy manager
+- Cross-check systems: independent emitter monitor mesh, route-level adversary sensor baseline
+- Protocol binding: Link 16 J-series + USMTF + API/JSON
+- Fallback path: commander-approved signature control matrix with manual acknowledgment ledger
+
+### `TC-BIO-SYNC-012`
+
+- Domain: denied biometrics and watchlist synchronization
+- Primary systems: biometric matcher cluster, watchlist synchronization broker, custody audit ledger
+- Cross-check systems: local enclave watchlist mirror, independent false-match adjudication board
+- Protocol binding: API/JSON + XML + USMTF metadata wrapper
+- Fallback path: one-way hash digest sync plus delayed full-template reconciliation
+
+### `TC-CISLUNAR-SDA-013`
+
+- Domain: contested cislunar awareness and relay continuity
+- Primary systems: cislunar track fusion, relay health manager, maneuver-risk inference service
+- Cross-check systems: independent ephemeris provider, alternate conjunction risk monitor
+- Protocol binding: CCSDS + API/JSON + USMTF warning summary
+- Fallback path: confidence-banded warning timeline with constrained maneuver recommendations
+
+### `TC-COAL-FIRES-LAT-014`
+
+- Domain: coalition digital fires clearance latency reduction
+- Primary systems: coalition fires workflow board, ROE rule engine, digital caveat adjudicator
+- Cross-check systems: liaison officer clearance mirror, independent delay telemetry board
+- Protocol binding: VMF + NATO APP-11/ADatP-3 + USMTF
+- Fallback path: pre-approved target class playbook with voice-confirmed clearance ledger
+
+### `TC-IND-SEMICON-015`
+
+- Domain: strategic semiconductor fabrication disruption contingency
+- Primary systems: fab telemetry hub, supplier criticality graph, mission-priority allocation planner
+- Cross-check systems: independent supply-chain disruption monitor, part authenticity service
+- Protocol binding: API/JSON + NIEM + USMTF strategic summary
+- Fallback path: manual rationing board with defense-priority adjudication cycle
+
+### `TC-MULTICLOUD-INTEG-016`
+
+- Domain: contested multi-cloud mission data integrity and failover
+- Primary systems: cross-cloud consistency auditor, cryptographic attestation service, mission-data failover orchestrator
+- Cross-check systems: offline hash-chain ledger, independent divergence verifier
+- Protocol binding: API/JSON + mTLS + USMTF command summary
+- Fallback path: read-only trusted snapshot mode with delayed write reconciliation

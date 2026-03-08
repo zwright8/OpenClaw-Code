@@ -2226,3 +2226,113 @@ external_binding:
 ### `ps-critical-mineral-shipping-protection-stack-v1`
 - Protocols: `AIS/NMEA`, `USMTF`, `API/JSON`.
 - Use for: critical-mineral shipping risk exchange, convoy protection orders, and port continuity updates.
+
+## Expansion Addendum (2026-03-08, Signature Integrity and Contested Data)
+
+### `ts-electronic-signature-survivability-v1`
+- Use for: force-wide electronic signature exposure scoring, EMCON branch planning, and decoy prioritization.
+- Primary tools: EW spectrum analytics, signature baseline registry, thermal exposure model.
+- Cross-check tools: independent emitter monitor mesh and adversary sensor watchboard.
+- Typical products: signature survivability scorecard, high-risk emitter ladder, mitigation plan.
+
+### `ts-denied-biometrics-sync-v1`
+- Use for: denied watchlist synchronization, biometric confidence management, and custody-governed identity reconciliation.
+- Primary tools: biometric matcher service, watchlist synchronization broker, custody audit ledger.
+- Cross-check tools: enclave watchlist mirror and false-match adjudication board.
+- Typical products: sync integrity board, unresolved identity queue, false-match risk map.
+
+### `ts-hyperspectral-decoy-detection-v1`
+- Use for: hyperspectral anomaly detection, decoy discrimination, and camouflage assurance.
+- Primary tools: hyperspectral exploitation stack, imagery fusion analytics, decoy confidence model.
+- Cross-check tools: multispectral analyst workflow and independent anomaly monitor.
+- Typical products: decoy likelihood map, camouflage drift alerts, retask recommendation set.
+
+### `ts-cislunar-domain-awareness-v1`
+- Use for: contested cislunar tracking, relay survivability assessment, and maneuver-risk warning.
+- Primary tools: cislunar track fusion service, relay health monitor, maneuver intent model.
+- Cross-check tools: alternate ephemeris service and independent conjunction risk board.
+- Typical products: cislunar risk board, relay branch plan, maneuver confidence ledger.
+
+### `ts-logistics-signature-masking-v1`
+- Use for: convoy signature masking and sustainment movement concealment under contested sensing.
+- Primary tools: convoy planner, signature modeler, route risk analytics.
+- Cross-check tools: independent route surveillance board and decoy performance tracker.
+- Typical products: signature masking schedule, decoy route matrix, throughput risk curve.
+
+### `ts-coalition-fires-latency-reduction-v1`
+- Use for: coalition fires clearance cycle compression with legal/ROE traceability.
+- Primary tools: coalition clearance workflow board, ROE decision support engine, liaison coordination dashboard.
+- Cross-check tools: independent latency telemetry monitor and clearance audit ledger.
+- Typical products: latency dashboard, bottleneck heatmap, pre-delegation option set.
+
+### `ts-counter-precision-fires-thermal-signature-v1`
+- Use for: thermal signature suppression and displacement timing against precision-fire threat.
+- Primary tools: thermal signature model, exposure timeline engine, tactical displacement planner.
+- Cross-check tools: independent sensor coverage estimator and unit heat-state monitor.
+- Typical products: thermal control plan, exposure timeline, displacement trigger matrix.
+
+### `ts-semiconductor-fab-contingency-v1`
+- Use for: strategic semiconductor disruption response and defense-priority allocation.
+- Primary tools: fab telemetry aggregator, supplier risk graph, allocation decision board.
+- Cross-check tools: alternate supply-chain monitor and part authenticity service.
+- Typical products: disruption impact map, allocation matrix, alternate source decision tree.
+
+### `ts-undersea-autonomy-command-link-assurance-v1`
+- Use for: resilient C2 assurance of undersea autonomous systems in contested environments.
+- Primary tools: undersea link monitor, autonomy mission manager, trust and latency analytics.
+- Cross-check tools: independent underwater comm-status mirror and control-link integrity board.
+- Typical products: link assurance matrix, safe-mode trigger board, branch routing plan.
+
+### `ts-priority-of-life-routing-v1`
+- Use for: life-safety-first routing of restoration assets during dynamic theater reconstitution.
+- Primary tools: dependency graph planner, restoration optimizer, civil support dashboard.
+- Cross-check tools: independent infrastructure status monitor and route feasibility board.
+- Typical products: priority-of-life route matrix, restoration sequence board, conflict resolver.
+
+### `ts-additive-feedstock-authentication-v1`
+- Use for: authentication and quarantine governance of battlefield additive feedstock.
+- Primary tools: material assay service, lot traceability ledger, additive QA monitor.
+- Cross-check tools: independent assay audit pipeline and counterfeit anomaly board.
+- Typical products: feedstock authenticity ledger, hold/release queue, counterfeit risk map.
+
+### `ts-multi-cloud-mission-data-integrity-v1`
+- Use for: contested multi-cloud data trust validation and failover governance.
+- Primary tools: cross-cloud consistency auditor, attestation engine, failover orchestrator.
+- Cross-check tools: offline hash-chain ledger and independent divergence verifier.
+- Typical products: integrity attestation board, divergence tracker, trusted failover branch plan.
+
+### `ps-electronic-signature-survivability-stack-v1`
+- Protocol profile: Link 16 J-series + USMTF + API/JSON telemetry.
+
+### `ps-denied-biometrics-sync-stack-v1`
+- Protocol profile: API/JSON + XML + USMTF metadata wrapper.
+
+### `ps-hyperspectral-decoy-detection-stack-v1`
+- Protocol profile: OGC + API/JSON + USMTF collection and warning messages.
+
+### `ps-cislunar-domain-awareness-stack-v1`
+- Protocol profile: CCSDS + API/JSON + USMTF warning summaries.
+
+### `ps-logistics-signature-masking-stack-v1`
+- Protocol profile: USMTF + CoT + API/JSON convoy telemetry exchange.
+
+### `ps-coalition-fires-latency-stack-v1`
+- Protocol profile: VMF + NATO APP-11/ADatP-3 + USMTF.
+
+### `ps-counter-precision-thermal-signature-stack-v1`
+- Protocol profile: USMTF + API/JSON + Link 16 J-series.
+
+### `ps-semiconductor-fab-contingency-stack-v1`
+- Protocol profile: API/JSON + NIEM + USMTF strategic continuity reporting.
+
+### `ps-undersea-autonomy-command-link-stack-v1`
+- Protocol profile: USMTF + API/JSON + authenticated acoustic telemetry encapsulation.
+
+### `ps-priority-of-life-routing-stack-v1`
+- Protocol profile: NIMS/ICS + USMTF + API/JSON.
+
+### `ps-additive-feedstock-authentication-stack-v1`
+- Protocol profile: API/JSON + XML + USMTF quality governance summaries.
+
+### `ps-multi-cloud-mission-data-integrity-stack-v1`
+- Protocol profile: API/JSON + TLS mTLS + USMTF command summaries.

@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 799
+- Total warfighter skills in this repo: 811
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -509,3 +509,33 @@ Every skill output should include:
 - Denied fuel bladder integrity monitoring + convoy fuel fraud detection + contested logistics sustainment
 - Mobile SATCOM emission discipline + coalition SATCOM key rotation + theater mission network failover
 - Critical mineral shipping protection + maritime insurance risk reconstitution + strategic industrial mobilization readiness
+
+## New Expansion Wave (2026-03-08, Signature Integrity and Contested Data)
+
+- joint-electronic-signature-survivability-scorecard-cell
+- theater-denied-biometrics-watchlist-synchronization-cell
+- strategic-hyperspectral-decoy-detection-and-camouflage-assurance-cell
+- joint-contested-cislunar-space-domain-awareness-cell
+- theater-electronic-signature-logistics-convoy-masking-cell
+- coalition-joint-fires-digital-clearance-latency-reduction-cell
+- tactical-counter-precision-fires-thermal-signature-management-cell
+- strategic-semiconductor-fab-disruption-contingency-cell
+- joint-resilient-undersea-autonomy-command-link-assurance-cell
+- theater-dynamic-reconstitution-priority-of-life-routing-cell
+- joint-battlefield-additive-feedstock-authentication-cell
+- contested-theater-multi-cloud-mission-data-integrity-cell
+
+## Updated Pairings (2026-03-08, Signature Integrity and Contested Data)
+
+- Electronic signature survivability scoring + EW spectrum governance + tactical thermal signature management
+- Denied biometrics watchlist synchronization + detainee accountability + theater disconnected identity continuity
+- Hyperspectral decoy detection + AI-enabled camouflage discipline auditing + deception and OPSEC planning
+- Contested cislunar awareness + orbital spectrum conflict prioritization + strategic launch reconstitution
+- Logistics convoy signature masking + contested logistics sustainment + autonomous convoy defense planning
+- Coalition fires clearance latency reduction + joint targeting governance + coalition legal attribution support
+- Counter precision-fires thermal signature management + rapid displacement planning + base defense survivability
+- Strategic semiconductor fab contingency + strategic autonomous component security + industrial mobilization readiness
+- Undersea autonomy command-link assurance + undersea infrastructure protection + underwater uncrewed mission control
+- Dynamic priority-of-life routing + civil infrastructure restoration + DSCA crisis coordination
+- Additive feedstock authentication + additive munitions microfactory control + expeditionary fabrication and repair
+- Multi-cloud mission data integrity + battle-network key continuity + mission network failover governance
