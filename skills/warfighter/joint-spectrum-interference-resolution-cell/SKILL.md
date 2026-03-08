@@ -161,3 +161,9 @@ Use these tool categories as the default stack for this skill: spectrum manageme
 - Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
 - Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
 - Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Domain Toolchain Override (2026-03-08, Spectrum Integrity and Deception Control)
+
+- Prioritize `tool_suite_id=ts-ai-camouflage-discipline-audit-v1` with `protocol_stack_id=ps-ai-camouflage-discipline-stack-v1` when emitter survivability depends on deception discipline and signature-control compliance.
+- Elevate `tool_suite_id=ts-vertical-datum-reconciliation-v1` with `protocol_stack_id=ps-vertical-datum-reconciliation-stack-v1` when targeting or fires timing uncertainty originates from terrain/datum mismatch across systems.
+- If coalition frequency access is constrained by legal clearance delays, add `tool_suite_id=ts-spectrum-licensing-clearance-v1` with `protocol_stack_id=ps-spectrum-licensing-clearance-stack-v1` as a mandatory adjudication branch.
