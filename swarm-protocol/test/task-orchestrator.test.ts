@@ -274,6 +274,66 @@ test('transient rejection honors X-RateLimit-Reset Unix epoch milliseconds hint'
     assert.equal(current.nextRetryAt, retryAtEpochMs);
 });
 
+test('transient rejection honors grpc-retry-pushback-ms hint', async () => {
+    const clock = createClock(22_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-pushback',
+        task: 'Respect grpc pushback hint'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-pushback',
+        accepted: false,
+        reason: 'service_unavailable grpc-retry-pushback-ms=1750',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 1_750);
+});
+
+test('negative grpc-retry-pushback-ms disables retry for transient rejection', async () => {
+    const clock = createClock(23_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-pushback-no-retry',
+        task: 'Honor no retry pushback'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-pushback-no-retry',
+        accepted: false,
+        reason: 'service_unavailable grpc-retry-pushback-ms=-1',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'rejected');
+    assert.equal(current.history.at(-1)?.event, 'rejected_no_retry_pushback');
+});
+
 test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
     const clock = createClock(9_000);
     let sendCount = 0;
