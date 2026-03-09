@@ -266,6 +266,76 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     assert.equal(sent.length, 2);
 });
 
+test('transient rejection is terminal when retry throttle budget is exhausted', async () => {
+    const clock = createClock(8_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 3,
+        retryDelayMs: 25,
+        retryThrottling: {
+            maxTokens: 1,
+            retryCost: 1,
+            threshold: 1,
+            tokenRatio: 0
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-throttle',
+        task: 'Retry should be throttled'
+    });
+
+    clock.advance(10);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-throttle',
+        accepted: false,
+        reason: 'worker_overloaded retry_after=1',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'rejected');
+    assert.equal(current.history.at(-1)?.event, 'retry_throttled');
+});
+
+test('maintenance marks timeout when retry throttling blocks retry schedule', async () => {
+    const clock = createClock(12_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 1,
+        retryDelayMs: 10,
+        retryThrottling: {
+            maxTokens: 1,
+            retryCost: 1,
+            threshold: 1,
+            tokenRatio: 0
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-timeout-throttle',
+        task: 'Timeout should not retry when throttled'
+    });
+
+    clock.set(12_051);
+    const summary = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(summary.scheduledRetries, 0);
+    assert.equal(summary.timedOut, 1);
+    assert.equal(current.status, 'timed_out');
+    assert.equal(current.history.at(-1)?.event, 'timed_out_retry_throttled');
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({

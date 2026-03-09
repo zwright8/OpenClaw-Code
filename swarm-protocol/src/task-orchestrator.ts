@@ -20,6 +20,12 @@ const OPEN_STATUSES = new Set([
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
 const RETRY_BACKOFF_STRATEGIES = new Set(['fixed', 'exponential']);
 const RETRY_JITTER_STRATEGIES = new Set(['none', 'full']);
+const DEFAULT_RETRY_THROTTLE = Object.freeze({
+    maxTokens: 10,
+    tokenRatio: 0.1,
+    retryCost: 1,
+    threshold: 5
+});
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -49,6 +55,38 @@ function clampNonNegativeNumber(value, fallback) {
     return Number.isFinite(value) && value >= 0
         ? Number(value)
         : fallback;
+}
+
+function clampPositiveNumber(value, fallback) {
+    return Number.isFinite(value) && value > 0
+        ? Number(value)
+        : fallback;
+}
+
+function resolveRetryThrottling(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_RETRY_THROTTLE
+        };
+    }
+
+    const maxTokens = clampPositiveNumber(value.maxTokens, DEFAULT_RETRY_THROTTLE.maxTokens);
+    const tokenRatio = clampPositiveNumber(value.tokenRatio, DEFAULT_RETRY_THROTTLE.tokenRatio);
+    const retryCost = clampPositiveNumber(value.retryCost, DEFAULT_RETRY_THROTTLE.retryCost);
+    const defaultThreshold = maxTokens / 2;
+    let threshold = clampNonNegativeNumber(value.threshold, defaultThreshold);
+    if (threshold >= maxTokens) {
+        threshold = defaultThreshold;
+    }
+
+    return {
+        enabled: true,
+        maxTokens,
+        tokenRatio,
+        retryCost,
+        threshold
+    };
 }
 
 export function buildTaskRequest({
@@ -139,6 +177,7 @@ export class TaskOrchestrator {
         retryJitter = 'none',
         maxRetryDelayMs = 30_000,
         maxRetryHintMs = null,
+        retryThrottling = null,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -182,6 +221,10 @@ export class TaskOrchestrator {
             this.retryDelayMs,
             clampNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs)
         );
+        this.retryThrottling = resolveRetryThrottling(retryThrottling);
+        this.retryThrottleTokens = this.retryThrottling.enabled
+            ? this.retryThrottling.maxTokens
+            : null;
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
@@ -345,8 +388,13 @@ export class TaskOrchestrator {
         event = 'retry_scheduled',
         hintMs = null,
         auditEvent = 'task_retry_scheduled',
+        consumeThrottleToken = false,
         metadata = null
     } = {}) {
+        if (consumeThrottleToken && !this._consumeRetryThrottleToken(nowMs, record.taskId, reason)) {
+            return false;
+        }
+
         const retryDelayMs = this._resolveRetryDelayMs(record, hintMs);
         const nextRetryAt = nowMs + retryDelayMs;
 
@@ -371,6 +419,50 @@ export class TaskOrchestrator {
             retryDelayMs,
             retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
             ...(metadata && typeof metadata === 'object' ? metadata : {})
+        }, nowMs);
+        return true;
+    }
+
+    _consumeRetryThrottleToken(nowMs, taskId, reason) {
+        if (!this.retryThrottling.enabled) return true;
+        const tokenCount = Number(this.retryThrottleTokens);
+        if (!Number.isFinite(tokenCount) || tokenCount <= this.retryThrottling.threshold) {
+            this._emitAudit('task_retry_throttled', {
+                taskId,
+                reason,
+                tokenCount: Number.isFinite(tokenCount) ? tokenCount : 0,
+                threshold: this.retryThrottling.threshold
+            }, nowMs);
+            return false;
+        }
+
+        this.retryThrottleTokens = Math.max(0, tokenCount - this.retryThrottling.retryCost);
+        this._emitAudit('task_retry_throttle_token_spent', {
+            taskId,
+            reason,
+            tokenCount: this.retryThrottleTokens,
+            threshold: this.retryThrottling.threshold
+        }, nowMs);
+        return true;
+    }
+
+    _creditRetryThrottleTokens(nowMs, taskId, source) {
+        if (!this.retryThrottling.enabled) return;
+        const tokenCount = Number(this.retryThrottleTokens);
+        const current = Number.isFinite(tokenCount)
+            ? tokenCount
+            : this.retryThrottling.maxTokens;
+        const next = Math.min(
+            this.retryThrottling.maxTokens,
+            current + this.retryThrottling.tokenRatio
+        );
+        if (next === current) return;
+        this.retryThrottleTokens = next;
+        this._emitAudit('task_retry_throttle_token_credit', {
+            taskId,
+            source,
+            tokenCount: next,
+            maxTokens: this.retryThrottling.maxTokens
         }, nowMs);
     }
 
@@ -714,16 +806,29 @@ export class TaskOrchestrator {
             const transient = this._isTransientRejectionReason(reason);
 
             if (transient && this._canRetry(record)) {
-                this._scheduleRetry(record, receipt.timestamp, {
+                const scheduled = this._scheduleRetry(record, receipt.timestamp, {
                     reason: 'rejected_transient',
                     event: 'rejected_retry_scheduled',
                     hintMs: retryHintMs,
                     auditEvent: 'task_rejected_retry_scheduled',
+                    consumeThrottleToken: true,
                     metadata: {
                         from: receipt.from,
                         rejectionReason: reason
                     }
                 });
+
+                if (!scheduled) {
+                    record.status = 'rejected';
+                    record.closedAt = receipt.timestamp;
+                    record.history.push({
+                        at: receipt.timestamp,
+                        event: 'retry_throttled',
+                        reason
+                    });
+                    this._persistRecord(record);
+                    return true;
+                }
                 return true;
             }
 
@@ -747,6 +852,7 @@ export class TaskOrchestrator {
         if (Number.isFinite(receipt.etaMs)) {
             record.deadlineAt = receipt.timestamp + Number(receipt.etaMs);
         }
+        this._creditRetryThrottleTokens(receipt.timestamp, record.taskId, 'receipt_acknowledged');
         record.history.push({
             at: receipt.timestamp,
             event: 'acknowledged',
@@ -773,8 +879,10 @@ export class TaskOrchestrator {
 
         if (result.status === 'success') {
             record.status = 'completed';
+            this._creditRetryThrottleTokens(result.completedAt, record.taskId, 'result_success');
         } else if (result.status === 'partial') {
             record.status = 'partial';
+            this._creditRetryThrottleTokens(result.completedAt, record.taskId, 'result_partial');
         } else {
             record.status = 'failed';
         }
@@ -825,11 +933,29 @@ export class TaskOrchestrator {
             }
 
             if (record.nextRetryAt === null) {
-                this._scheduleRetry(record, nowMs, {
+                const scheduled = this._scheduleRetry(record, nowMs, {
                     reason: 'deadline_exceeded',
-                    event: 'retry_scheduled'
+                    event: 'retry_scheduled',
+                    consumeThrottleToken: true
                 });
-                summary.scheduledRetries++;
+                if (scheduled) {
+                    summary.scheduledRetries++;
+                } else {
+                    record.status = 'timed_out';
+                    record.updatedAt = nowMs;
+                    record.closedAt = nowMs;
+                    record.history.push({
+                        at: nowMs,
+                        event: 'timed_out_retry_throttled'
+                    });
+                    this._persistRecord(record);
+                    this._emitAudit('task_timed_out', {
+                        taskId: record.taskId,
+                        target: record.target,
+                        attempts: record.attempts
+                    }, nowMs);
+                    summary.timedOut++;
+                }
                 continue;
             }
 
@@ -860,13 +986,30 @@ export class TaskOrchestrator {
                         error: record.lastError
                     }, nowMs);
                 } else {
-                    this._scheduleRetry(record, nowMs, {
+                    const scheduled = this._scheduleRetry(record, nowMs, {
                         reason: 'transport_send_failed',
                         event: 'retry_scheduled',
+                        consumeThrottleToken: true,
                         metadata: {
                             error: record.lastError
                         }
                     });
+                    if (!scheduled) {
+                        record.status = 'transport_error';
+                        record.updatedAt = nowMs;
+                        record.closedAt = nowMs;
+                        record.history.push({
+                            at: nowMs,
+                            event: 'transport_error_retry_throttled',
+                            error: record.lastError
+                        });
+                        this._persistRecord(record);
+                        this._emitAudit('task_transport_error', {
+                            taskId: record.taskId,
+                            target: record.target,
+                            error: record.lastError
+                        }, nowMs);
+                    }
                 }
             }
         }
@@ -907,7 +1050,17 @@ export class TaskOrchestrator {
                 strategy: this.retryBackoffStrategy,
                 jitter: this.retryJitter,
                 maxDelayMs: this.maxRetryDelayMs,
-                maxHintMs: this.maxRetryHintMs
+                maxHintMs: this.maxRetryHintMs,
+                throttling: {
+                    enabled: this.retryThrottling.enabled,
+                    maxTokens: this.retryThrottling.maxTokens,
+                    tokenRatio: this.retryThrottling.tokenRatio,
+                    retryCost: this.retryThrottling.retryCost,
+                    threshold: this.retryThrottling.threshold,
+                    tokenCount: this.retryThrottling.enabled
+                        ? Number(this.retryThrottleTokens)
+                        : null
+                }
             }
         };
 
