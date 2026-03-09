@@ -2952,3 +2952,115 @@ validation_gates:
 - output_schema: lot suitability ranking, rework/disposition recommendations, surge readiness timeline
 - protocol_profile: API/JSON + XML + USMTF
 - validation_gates: dual-source lot verification, aging model confidence threshold, authority release record
+
+## Domain Packet Library (2026-03-09 Domain Expansion - Additive Forensics, Hospital Ships, Grid Sabotage, Spaceport Continuity)
+
+### packet_id: DPL-ADDITIVE-EXPLOSIVES-FORENSICS-001
+- domain: contested additive explosives forensics and safety
+- objective: identify unsafe lot drift, attribute anomalies, and gate safe disposition under mission pressure
+- primary_tools: energetics process telemetry board, blast-signature analytics engine, lot genealogy registry
+- alternate_tools: manual lot review board and independent explosive safety checklist
+- degraded_mode: advisory-only lot restrictions with conservative release criteria
+- input_requirements: lot genealogy, process anomalies, blast test deltas, mission demand priorities
+- output_schema: lot-risk matrix, attribution confidence table, rework/disposition decision ladder
+- protocol_profile: API/JSON + USMTF + XML
+- validation_gates: dual-source evidence check, explosive safety authority approval, custody-chain integrity
+
+### packet_id: DPL-HOSPITAL-SHIP-CYBER-PHYSICAL-TRIAGE-001
+- domain: coalition hospital ship cyber-physical triage
+- objective: preserve casualty care continuity while isolating cyber-physical failures afloat
+- primary_tools: clinical network observability suite, connected-device integrity monitor, triage orchestration board
+- alternate_tools: manual casualty-capacity board and paper downtime procedures
+- degraded_mode: life-saving triage only with delayed digital chart reconciliation
+- input_requirements: casualty queue, bed/OR status, device telemetry anomalies, network health posture
+- output_schema: triage continuity matrix, containment sequence, coalition care-capacity timeline
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: patient safety authority gate, device trust verification, coalition releasability pass
+
+### packet_id: DPL-SPECTRUM-SENSOR-DECEPTION-ATTRIBUTION-001
+- domain: theater battlefield spectrum sensor deception attribution
+- objective: attribute adversary deception effects and restore trusted sensor confidence for operations
+- primary_tools: RF deception analytics service, multi-sensor confidence fusion, EW drift monitor
+- alternate_tools: manual deception hypothesis board and periodic red-team adjudication
+- degraded_mode: confidence-banded sensing advisories with no automated retask actions
+- input_requirements: sensor confidence deltas, RF anomaly tracks, EW logs, mission impacts
+- output_schema: attribution confidence ladder, sensor restoration priorities, retask recommendation queue
+- protocol_profile: Link 16 J-series + STIX/TAXII + USMTF
+- validation_gates: independent RF corroboration, source-provenance check, command authority confirmation
+
+### packet_id: DPL-MARITIME-PREPOSITIONING-INTEGRITY-DIVERSION-001
+- domain: joint maritime prepositioning ship integrity and diversion
+- objective: sustain cargo readiness while managing ship integrity risk and diversion decisions
+- primary_tools: hull/machinery integrity dashboard, cargo readiness tracker, route-risk planner
+- alternate_tools: manual vessel status board and port acceptance call tree
+- degraded_mode: priority cargo preservation with constrained diversion options
+- input_requirements: ship condition reports, cargo criticality, route threat updates, port constraints
+- output_schema: integrity status matrix, diversion options table, cargo continuity timeline
+- protocol_profile: AIS/NMEA + OGC + USMTF + API/JSON
+- validation_gates: vessel condition confidence floor, cargo custody checks, command diversion approval
+
+### packet_id: DPL-RARE-EARTH-MAGNET-CONTINUITY-001
+- domain: strategic rare-earth magnet manufacturing continuity
+- objective: maintain magnet production for defense systems despite feedstock and quality disruptions
+- primary_tools: manufacturing telemetry board, material dependency graph, quality drift analytics
+- alternate_tools: manual supplier risk workbook and lot-level QA board
+- degraded_mode: reduced-tempo production with strict mission-priority allocation
+- input_requirements: feedstock status, throughput trends, defect rates, mission demand priorities
+- output_schema: continuity forecast, substitution/surge matrix, risk-to-production scorecard
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: supplier verification, QA completeness, release authority record
+
+### packet_id: DPL-URBAN-SUBSTATION-SABOTAGE-ISOLATION-001
+- domain: tactical urban substation sabotage isolation
+- objective: isolate sabotage impacts and restore mission-priority loads in dense urban grids
+- primary_tools: SCADA anomaly monitor, distribution switching orchestrator, utility coordination dashboard
+- alternate_tools: manual load-transfer board and incident command worksheet
+- degraded_mode: fixed critical-load schedule with periodic manual reassessment
+- input_requirements: breaker states, anomaly alarms, critical-load priorities, repair crew availability
+- output_schema: isolation sequence, load-transfer order, restoration trigger chart
+- protocol_profile: NIMS/ICS + API/JSON + USMTF
+- validation_gates: utility concurrence, life-safety priority check, commander approval gate
+
+### packet_id: DPL-DENIED-WEATHER-MODIFICATION-ATTRIBUTION-001
+- domain: operational denied weather modification attribution
+- objective: determine likely weather-modification influence and recommend mission-safe mitigations
+- primary_tools: atmospheric anomaly fusion service, weather sensor integrity analytics, impact forecast board
+- alternate_tools: manual weather adjudication board and delayed model updates
+- degraded_mode: conservative weather risk posture with shorter operational windows
+- input_requirements: sensor divergence logs, atmospheric anomaly tracks, mission abort data, adversary indicators
+- output_schema: attribution confidence brief, mission-impact delta map, mitigation action queue
+- protocol_profile: IWXXM + API/JSON + USMTF
+- validation_gates: model-consistency threshold, source confidence floor, command risk acceptance
+
+### packet_id: DPL-FORWARD-DRONE-BATTERY-SWAP-SURVIVABILITY-001
+- domain: joint forward drone battery-swap network survivability
+- objective: keep drone energy sustainment nodes alive and synchronized under attack and disruption
+- primary_tools: battery inventory telemetry board, swap-node uptime monitor, sortie demand allocator
+- alternate_tools: manual battery ledger and route-based resupply board
+- degraded_mode: critical-sortie-only battery allocation with manual node synchronization
+- input_requirements: battery state-of-health, node readiness, sortie demand, threat overlays
+- output_schema: node survivability map, swap allocation schedule, reconstitution branch plan
+- protocol_profile: API/JSON + CoT + USMTF
+- validation_gates: battery quality verification, node trust attestation, command approval for node moves
+
+### packet_id: DPL-AIR-BRIDGE-CUSTOMS-FRAUD-DISRUPTION-001
+- domain: coalition expeditionary air-bridge customs fraud disruption
+- objective: detect and disrupt manifest/customs fraud without collapsing coalition air-bridge throughput
+- primary_tools: manifest risk analytics, customs exception adjudication board, throughput telemetry dashboard
+- alternate_tools: manual hold-and-release matrix and liaison-driven customs review log
+- degraded_mode: high-risk cargo inspection-only posture with delayed reconciliation
+- input_requirements: manifests, inspection flags, coalition caveats, throughput targets
+- output_schema: fraud-risk triage list, hold/release decisions, throughput impact estimate
+- protocol_profile: API/JSON + NATO APP-11/ADatP-3 + USMTF
+- validation_gates: fraud-evidence confidence, coalition caveat compliance, command/legal approval
+
+### packet_id: DPL-HOMELAND-SPACEPORT-RANGE-SAFETY-CONTINUITY-001
+- domain: homeland military spaceport range safety continuity
+- objective: preserve range safety authority and launch continuity during cyber, weather, or sabotage disruptions
+- primary_tools: range safety telemetry fusion, countdown integrity monitor, infrastructure continuity board
+- alternate_tools: manual hold/release board and procedural range safety checklist
+- degraded_mode: hold-at-safe-state posture with timed reassessment windows
+- input_requirements: launch timeline, range telemetry, weather and hazard status, infrastructure health
+- output_schema: continuity matrix, hold/release recommendation set, recovery timeline
+- protocol_profile: CCSDS + API/JSON + USMTF
+- validation_gates: range safety chain integrity, hazard threshold check, launch authority approval

@@ -167,3 +167,9 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Prioritize `tool_suite_id=ts-lidar-obscurant-navigation-assurance-v1` with `protocol_stack_id=ps-lidar-obscurant-navigation-assurance-stack-v1` when SEAD ingress/egress timing is sensitive to dust, smoke, or obscurant-driven sensor degradation.
 - Use packet `DPL-LIDAR-OBSCURANT-NAV-001` to bind sensor confidence gates, timing windows, and fallback navigation branches for strike packages.
 - If cross-sensor confidence cannot be sustained, downgrade to constrained-tempo options and require explicit package commander concurrence.
+
+## Domain Toolchain Override (2026-03-09, Spectrum Sensor Deception Attribution)
+
+- Prioritize `tool_suite_id=ts-spectrum-sensor-deception-attribution-v1` with `protocol_stack_id=ps-spectrum-sensor-deception-attribution-stack-v1` when adversary sensor-deception activity degrades emitter confidence for SEAD/DEAD targeting.
+- Use packet `DPL-SPECTRUM-SENSOR-DECEPTION-ATTRIBUTION-001` to bind attribution confidence, retask timing, and commander decision checkpoints.
+- If independent corroboration or command authority validation fails, downgrade to advisory-only recommendations and require explicit package commander review.
