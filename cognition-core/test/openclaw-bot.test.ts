@@ -460,3 +460,55 @@ test('OpenClawBot propagates task deadlines to generated follow-up tasks', async
         );
     }
 });
+
+test('OpenClawBot rejects tasks that exceed context payload budget', async () => {
+    const bot = new OpenClawBot({
+        repoRoot: REPO_ROOT,
+        nowFactory: () => 300_000,
+        maxTaskContextBytes: 200
+    });
+
+    const task = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000914',
+        from: 'agent:main',
+        target: 'agent:ops',
+        task: 'Oversized context payload',
+        context: {
+            largePayload: 'x'.repeat(1000)
+        },
+        createdAt: 299_900
+    });
+
+    const result = await bot.executeTask(task);
+
+    assert.equal(result.mode, 'generic');
+    assert.equal(result.status, 'failure');
+    assert.equal(result.metrics.taskValidationRejected, 1);
+    assert.match(result.output, /context payload size/);
+});
+
+test('OpenClawBot truncates generated follow-up tasks to configured budget', async () => {
+    const bot = new OpenClawBot({
+        repoRoot: REPO_ROOT,
+        nowFactory: () => 400_000,
+        maxFollowupTasks: 1
+    });
+
+    const task = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000915',
+        from: 'agent:main',
+        target: 'agent:skills-runtime',
+        task: 'Run skill runtime for id 1 with capped followups',
+        context: {
+            skillId: 1
+        },
+        createdAt: 399_900
+    });
+
+    const result = await bot.executeTask(task);
+
+    assert.equal(result.mode, 'skill');
+    assert.equal(result.status, 'success');
+    assert.equal(result.followupTasks.length, 1);
+    assert.ok((result.metrics.followupTaskDropped || 0) > 0);
+});

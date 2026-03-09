@@ -53,6 +53,9 @@ const SignalFieldNames = [
 const DEFAULT_HARDENING_MIN_SCORE = 82;
 const DEFAULT_TASK_REPLAY_TTL_MS = 5 * 60 * 1000;
 const DEFAULT_MAX_REPLAY_ENTRIES = 1024;
+const DEFAULT_MAX_TASK_CONTEXT_BYTES = 1_048_576;
+const DEFAULT_MAX_TASK_TEXT_LENGTH = 4_096;
+const DEFAULT_MAX_FOLLOWUP_TASKS = 64;
 const VALID_HARDENING_POLICIES = new Set<SkillHardeningPolicy>([
     'off',
     'report',
@@ -507,6 +510,9 @@ export type OpenClawBotOptions = {
     maxReplayEntries?: number;
     maxTaskAgeMs?: number;
     defaultTaskTimeoutMs?: number;
+    maxTaskContextBytes?: number;
+    maxTaskTextLength?: number;
+    maxFollowupTasks?: number;
 };
 
 function isSkillExecutionSubtask(context: Record<string, unknown>, taskText: string): boolean {
@@ -612,6 +618,9 @@ export class OpenClawBot {
     maxReplayEntries: number;
     maxTaskAgeMs: number;
     defaultTaskTimeoutMs: number;
+    maxTaskContextBytes: number;
+    maxTaskTextLength: number;
+    maxFollowupTasks: number;
 
     constructor({
         agentId = 'agent:openclaw-bot',
@@ -624,7 +633,10 @@ export class OpenClawBot {
         taskReplayTtlMs = DEFAULT_TASK_REPLAY_TTL_MS,
         maxReplayEntries = DEFAULT_MAX_REPLAY_ENTRIES,
         maxTaskAgeMs = 0,
-        defaultTaskTimeoutMs = 0
+        defaultTaskTimeoutMs = 0,
+        maxTaskContextBytes = DEFAULT_MAX_TASK_CONTEXT_BYTES,
+        maxTaskTextLength = DEFAULT_MAX_TASK_TEXT_LENGTH,
+        maxFollowupTasks = DEFAULT_MAX_FOLLOWUP_TASKS
     }: OpenClawBotOptions = {}) {
         this.agentId = agentId;
         this.repoRoot = path.resolve(repoRoot);
@@ -654,6 +666,35 @@ export class OpenClawBot {
         this.maxReplayEntries = normalizePositiveInt(maxReplayEntries, DEFAULT_MAX_REPLAY_ENTRIES);
         this.maxTaskAgeMs = normalizeNonNegativeInt(maxTaskAgeMs, 0);
         this.defaultTaskTimeoutMs = normalizeNonNegativeInt(defaultTaskTimeoutMs, 0);
+        this.maxTaskContextBytes = normalizePositiveInt(maxTaskContextBytes, DEFAULT_MAX_TASK_CONTEXT_BYTES);
+        this.maxTaskTextLength = normalizePositiveInt(maxTaskTextLength, DEFAULT_MAX_TASK_TEXT_LENGTH);
+        this.maxFollowupTasks = normalizePositiveInt(maxFollowupTasks, DEFAULT_MAX_FOLLOWUP_TASKS);
+    }
+
+    private estimateContextBytes(context: Record<string, unknown>): number {
+        return Buffer.byteLength(stableStringify(context), 'utf8');
+    }
+
+    private applyFollowupTaskBudget(tasks: Record<string, unknown>[]): {
+        tasks: Record<string, unknown>[];
+        dropped: number;
+    } {
+        if (this.maxFollowupTasks <= 0) {
+            return {
+                tasks: [],
+                dropped: tasks.length
+            };
+        }
+        if (tasks.length <= this.maxFollowupTasks) {
+            return {
+                tasks,
+                dropped: 0
+            };
+        }
+        return {
+            tasks: tasks.slice(0, this.maxFollowupTasks),
+            dropped: tasks.length - this.maxFollowupTasks
+        };
     }
 
     private pruneReplayCache(nowMs: number): void {
@@ -963,6 +1004,41 @@ export class OpenClawBot {
         }
 
         const context = isPlainObject(request.context) ? request.context : {};
+        if (request.task.length > this.maxTaskTextLength) {
+            const result: OpenClawBotExecution = {
+                mode: 'generic',
+                status: 'failure',
+                output: `Task execution failed: task text length ${request.task.length} exceeds max ${this.maxTaskTextLength}.`,
+                metrics: buildMetrics({
+                    durationMs: clampNonNegative(safeNow(this.nowFactory) - startedAt),
+                    taskValidationRejected: 1,
+                    taskTextLength: request.task.length,
+                    maxTaskTextLength: this.maxTaskTextLength
+                }),
+                artifacts: [],
+                followupTasks: []
+            };
+            return result;
+        }
+
+        const contextBytes = this.estimateContextBytes(context);
+        if (contextBytes > this.maxTaskContextBytes) {
+            const result: OpenClawBotExecution = {
+                mode: 'generic',
+                status: 'failure',
+                output: `Task execution failed: context payload size ${contextBytes} bytes exceeds max ${this.maxTaskContextBytes} bytes.`,
+                metrics: buildMetrics({
+                    durationMs: clampNonNegative(safeNow(this.nowFactory) - startedAt),
+                    taskValidationRejected: 1,
+                    taskContextBytes: contextBytes,
+                    maxTaskContextBytes: this.maxTaskContextBytes
+                }),
+                artifacts: [],
+                followupTasks: []
+            };
+            return result;
+        }
+
         const requestFingerprint = this.makeRequestFingerprint(request);
         const nowMs = safeNow(this.nowFactory);
         this.pruneReplayCache(nowMs);
@@ -1149,12 +1225,13 @@ export class OpenClawBot {
                         fromAgentId: this.agentId,
                         defaultTarget: 'agent:human-oversight'
                     });
-                    const followupTasks = normalizeFollowupTasks(generatedHardeningTasks, {
+                    const normalizedFollowupTasks = normalizeFollowupTasks(generatedHardeningTasks, {
                         nowFactory: this.nowFactory,
                         defaultFrom: this.agentId,
                         defaultTarget: 'agent:human-oversight',
                         inheritedDeadlineAtMs: executionDeadline.deadlineAtMs
                     });
+                    const followupBudget = this.applyFollowupTaskBudget(normalizedFollowupTasks);
                     const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
                     const reason = hardeningAssessment.reasons[0] || 'Hardening gate failed.';
 
@@ -1176,7 +1253,8 @@ export class OpenClawBot {
                             hardeningStrict: hardeningAssessment.appliedPolicy.strict ? 1 : 0,
                             hardeningRuleMatchCount: hardeningAssessment.appliedPolicy.matchedRuleIds.length,
                             hardeningIndexed: hardeningAssessment.fromIndex ? 1 : 0,
-                            followupTaskCount: followupTasks.length
+                            followupTaskCount: followupBudget.tasks.length,
+                            followupTaskDropped: followupBudget.dropped
                         }),
                         artifacts: [
                             {
@@ -1185,7 +1263,7 @@ export class OpenClawBot {
                                 type: 'skill_hardening'
                             }
                         ],
-                        followupTasks
+                        followupTasks: followupBudget.tasks
                     });
                 }
 
@@ -1197,12 +1275,13 @@ export class OpenClawBot {
                     fromAgentId: this.agentId,
                     toAgentId: request.target || `agent:${execution.domainSlug}-swarm`
                 });
-                const followupTasks = normalizeFollowupTasks(generatedTasks, {
+                const normalizedFollowupTasks = normalizeFollowupTasks(generatedTasks, {
                     nowFactory: this.nowFactory,
                     defaultFrom: this.agentId,
                     defaultTarget: request.target || `agent:${execution.domainSlug}-swarm`,
                     inheritedDeadlineAtMs: executionDeadline.deadlineAtMs
                 });
+                const followupBudget = this.applyFollowupTaskBudget(normalizedFollowupTasks);
                 const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
 
                 return finalize({
@@ -1228,7 +1307,8 @@ export class OpenClawBot {
                         hardeningStrict: hardeningAssessment.appliedPolicy.strict ? 1 : 0,
                         hardeningRuleMatchCount: hardeningAssessment.appliedPolicy.matchedRuleIds.length,
                         hardeningIndexed: hardeningAssessment.fromIndex ? 1 : 0,
-                        followupTaskCount: followupTasks.length
+                        followupTaskCount: followupBudget.tasks.length,
+                        followupTaskDropped: followupBudget.dropped
                     }),
                     artifacts: [
                         {
@@ -1244,7 +1324,7 @@ export class OpenClawBot {
                             type: 'skill_hardening'
                         }
                     ],
-                    followupTasks
+                    followupTasks: followupBudget.tasks
                 });
             }
 
@@ -1277,12 +1357,13 @@ export class OpenClawBot {
                     const alertCount = Array.isArray(report.alerts)
                         ? report.alerts.length
                         : 0;
-                    const followupTasks = normalizeFollowupTasks(capabilityExecution.followupTasks, {
+                    const normalizedFollowupTasks = normalizeFollowupTasks(capabilityExecution.followupTasks, {
                         nowFactory: this.nowFactory,
                         defaultFrom: this.agentId,
                         defaultTarget: request.target || 'agent:ops',
                         inheritedDeadlineAtMs: executionDeadline.deadlineAtMs
                     });
+                    const followupBudget = this.applyFollowupTaskBudget(normalizedFollowupTasks);
                     const posture = typeof summary.posture === 'string'
                         ? summary.posture
                         : 'unknown';
@@ -1296,7 +1377,8 @@ export class OpenClawBot {
                             durationMs,
                             recommendationCount,
                             alertCount,
-                            followupTaskCount: followupTasks.length,
+                            followupTaskCount: followupBudget.tasks.length,
+                            followupTaskDropped: followupBudget.dropped,
                             entityCount: summary.entityCount,
                             holdCount: summary.laneCounts?.hold,
                             nextCount: summary.laneCounts?.next,
@@ -1312,7 +1394,7 @@ export class OpenClawBot {
                                 type: 'capability_report'
                             }
                         ],
-                        followupTasks
+                        followupTasks: followupBudget.tasks
                     });
                 }
 
