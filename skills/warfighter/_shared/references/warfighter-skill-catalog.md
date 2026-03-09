@@ -771,49 +771,24 @@ Every skill output should include:
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
 
-## New Expansion Wave (2026-03-10, Civil-Military Deconfliction and Mission Assurance Surge)
+## New Expansion Wave (2026-03-09, Black-Sky Continuity and Operational Assurance)
 
-- joint-civilian-maritime-traffic-military-deconfliction-cell
-- theater-autonomous-casevac-corridor-assurance-cell
-- joint-expeditionary-spectrum-cyber-weather-fusion-cell
-- strategic-homeland-rail-port-mobilization-recovery-cell
-- joint-uncrewed-ground-sensor-border-denial-cell
-- coalition-disconnected-fires-clearance-ledger-cell
-- theater-additive-battle-damage-microgrid-restoration-cell
-- joint-civil-infrastructure-priority-fuel-allocation-cell
-- arctic-multi-domain-sustainment-weather-routing-cell
-- joint-mission-assurance-digital-twin-red-cell
+- joint-black-sky-hf-satcom-bridge-restoration-cell
+- theater-arctic-ground-convoy-ice-route-assurance-cell
+- coalition-harbor-chemical-release-decon-and-reopen-cell
+- strategic-space-isr-collection-priority-arbitration-cell
+- joint-fires-weather-effects-coupling-cell
+- expeditionary-military-working-dog-health-protection-cell
+- joint-deep-ocean-sensor-gap-closure-cell
+- coalition-critical-grid-restoration-claims-evidence-cell
 
-## Updated Pairings (2026-03-10, Civil-Military Deconfliction and Mission Assurance Surge)
+## Updated Pairings (2026-03-09, Black-Sky Continuity and Operational Assurance)
 
-- Civilian maritime deconfliction + contested maritime logistics protection + strategic port security and harbor defense
-- Autonomous CASEVAC corridor assurance + casualty evacuation and medical regulation + medical C4I and patient movement fusion
-- Spectrum-cyber-weather fusion + electromagnetic battle management + weather-space-weather effects forecast cell
-- Strategic rail-port mobilization recovery + joint deployment and distribution ops center optimizer + strategic mobility deployment planner
-- Uncrewed ground sensor border denial + border security and counter transnational threat + biometrics and watchlist exploitation
-- Coalition disconnected fires clearance ledger + joint targeting standards and CDE governance + legal ROE compliance checker
-- Additive battle-damage microgrid restoration + expeditionary fabrication and battle damage repair + operational energy resilience and microgrid cell
-- Civil infrastructure priority fuel allocation + defense support of civil authorities crisis cell + cyber-physical infrastructure defense
-- Arctic sustainment weather routing + arctic maritime-air corridor deconfliction + arctic denied comms polar-orbit handover cell
-- Mission assurance digital twin red cell + digital engineering mission thread analyst + AI red-team operational model threat cell
-## New Expansion Wave (2026-03-10, Biocustody Integrity, Sovereign Data Continuity, and Industrial Allocation)
-
-- joint-biocustody-chain-and-pathogen-evidence-integrity-cell
-- theater-electromagnetic-cyber-deception-breach-attribution-cell
-- coalition-sovereign-cloud-mission-data-continuity-cell
-- homeland-military-ai-model-weight-provenance-and-poisoning-response-cell
-- joint-spaceport-propellant-sabotage-and-toxic-release-response-cell
-- operational-undersea-drone-charging-node-tamper-response-cell
-- coalition-civil-hospital-microgrid-blackstart-triage-cell
-- strategic-rare-earth-magnet-recycling-and-missile-allocation-cell
-
-## Updated Pairings (2026-03-10, Biocustody Integrity, Sovereign Data Continuity, and Industrial Allocation)
-
-- Biocustody and pathogen evidence integrity + bio-threat attribution + coalition legal interoperability + battlefield forensics evidence preservation
-- EM-cyber deception breach attribution + cognitive EW-PSYOPS synchronization + mission data poisoning detection + command authentication assurance
-- Coalition sovereign cloud continuity + coalition data fabric interoperability + cross-domain data diode operations + mission-data releasability governance
-- Model-weight provenance and poisoning response + operational AI authority and escalation + tactical edge LLM guarded C2 assistant + software supply-chain assurance
-- Spaceport propellant sabotage and toxic release response + military spaceport range-safety continuity + contested launch fuel/oxidizer allocation + homeland spaceport GNSS emergency
-- Undersea charging-node tamper response + autonomous undersea MCM swarm control + undersea data-mule exfiltration denial + maritime chokepoint sensor barrier operations
-- Hospital microgrid blackstart triage + coalition hospital cyber-evacuation network + host-nation grid protection and blackstart + force-health casualty regulation
-- Rare-earth magnet recycling and missile allocation + strategic rare-earth refinery sabotage recovery + strategic industrial mobilization readiness + long-range fires reconstitution
+- Black-sky C2 bridge restoration + theater mission network failover + physical message assurance
+- Arctic ice-route assurance + movement control and convoy planning + denied-environment weather nowcast fallback
+- Harbor chemical decon/reopen + maritime chokepoint control + expeditionary CBRN consequence response
+- Space ISR priority arbitration + contested space launch reconstitution + commander priority information synthesis
+- Joint fires-weather coupling + dynamic targeting support + tactical airspace deconfliction
+- Military working dog health protection + preventive medicine and force health protection + med-log continuity
+- Deep-ocean sensor gap closure + undersea cable protection and restoration + anti-submarine warfare support
+- Coalition grid claims evidence + critical infrastructure restoration + legal interoperability and accountability tracking

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Black-Sky HF-SATCOM Bridge Restoration Cell"
+  short_description: "Maintain command-and-control continuity during black-sky events by synchronizing HF fallback, SATCOM recovery, and priority message routing."

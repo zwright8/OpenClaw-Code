@@ -145,7 +145,8 @@ Primary products for this skill: data link execution plan, network load manageme
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
 
-## Domain Toolchain Override (2026-03-10, Disconnected Fires and Spectrum-Cyber-Weather Expansion)
+## Domain Toolchain Override (2026-03-09, Black-Sky Link Resilience Addendum)
 
-- Add `tool_suite_id=ts-coalition-disconnected-fires-clearance-ledger-v1` + `protocol_stack_id=ps-coalition-disconnected-fires-clearance-ledger-stack-v1` when fires approval chains must survive disconnected coalition data-link conditions.
-- Add `tool_suite_id=ts-spectrum-cyber-weather-fusion-v1` + `protocol_stack_id=ps-spectrum-cyber-weather-fusion-stack-v1` when mission-data-link reliability depends on synchronized EW, cyber, and weather effects forecasting.
+- Prioritize `tool_suite_id=ts-black-sky-c2-bridge-v1` + `protocol_stack_id=ps-black-sky-c2-bridge-stack-v1` when terrestrial transport and primary SATCOM pathways are degraded.
+- Prioritize `tool_suite_id=ts-space-isr-priority-arbitration-v1` + `protocol_stack_id=ps-space-isr-priority-arbitration-stack-v1` when data-link bandwidth must be rebalanced against ISR collection priorities.
+- Add `packet_id=DPL-BLACK-SKY-C2-BRIDGE-001` and `packet_id=DPL-SPACE-ISR-PRIORITY-ARB-001` for message-priority, bandwidth-allocation, and acknowledgment integrity decisions.

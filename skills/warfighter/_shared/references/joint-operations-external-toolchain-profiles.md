@@ -256,3 +256,61 @@ For each critical recommendation, include:
 - Cross-check tools: independent sample-chain audit and alternate failure anomaly review.
 - Protocols: `API/JSON`, signed provenance exports, `USMTF` sustainment summaries.
 - Degraded fallback: approved-lot-only fabrication with part quarantine and increased inspections.
+
+## Profile Set (2026-03-09 Domain Expansion - Black-Sky Command Continuity, Arctic Mobility, and Coalition Recovery Evidence)
+
+### `black-sky-c2-bridge-v1`
+- Use for black-sky command continuity by bridging HF fallback and SATCOM restoration.
+- Primary tools: HF status monitor, SATCOM path restoration board, command message priority broker.
+- Cross-check tools: independent command acknowledgment board and alternate oscillator holdover monitor.
+- Protocols: `USMTF`, `API/JSON`, HF readback logs.
+- Degraded fallback: command-essential message classes only with explicit acknowledgment gates.
+
+### `arctic-ice-route-assurance-v1`
+- Use for arctic convoy movement over variable ice-load corridors under contested conditions.
+- Primary tools: ice-route load-class model, convoy telemetry board, route threat timeline service.
+- Cross-check tools: independent weather/ice confidence monitor and alternate engineer reconnaissance board.
+- Protocols: `USMTF`, `API/JSON`, `OGC`.
+- Degraded fallback: single-route critical convoy posture with conservative load and spacing controls.
+
+### `harbor-chemical-decon-reopen-v1`
+- Use for coalition harbor chemical release response with phased decon and safe throughput reopening.
+- Primary tools: contamination plume model, decon scheduler, berth recovery tracker.
+- Cross-check tools: independent sampling confidence board and alternate port safety compliance queue.
+- Protocols: `USMTF`, `API/JSON`, `NIEM`, `NIMS/ICS`.
+- Degraded fallback: life-safety and command-essential berths only with strict hazard boundaries.
+
+### `space-isr-priority-arbitration-v1`
+- Use for strategic arbitration of contested space ISR collection demand across theaters.
+- Primary tools: ISR tasking arbitration board, orbital asset monitor, collection value scorer.
+- Cross-check tools: independent mission-priority adjudication board and alternate theater request mirror.
+- Protocols: `USMTF`, `API/JSON`, `CCSDS`.
+- Degraded fallback: high-priority intelligence requirements only with periodic reallocation windows.
+
+### `joint-fires-weather-coupling-v1`
+- Use for integrating weather effects into joint fires timing and effects confidence.
+- Primary tools: fire-weather effects model, fires timeline board, collateral hazard estimator.
+- Cross-check tools: independent meteorology confidence monitor and alternate firing-solution validator.
+- Protocols: `USMTF`, `VMF`, `API/JSON`.
+- Degraded fallback: prevalidated target sets and conservative weather go/no-go criteria.
+
+### `mwd-health-protection-v1`
+- Use for expeditionary military working dog force-health continuity and veterinary triage.
+- Primary tools: veterinary case board, preventive treatment scheduler, kennel biosecurity monitor.
+- Cross-check tools: independent lab result verifier and alternate readiness board.
+- Protocols: `USMTF`, `HL7/FHIR`, `API/JSON`.
+- Degraded fallback: urgent-case triage and mission-critical preventive care only.
+
+### `deep-ocean-sensor-gap-closure-v1`
+- Use for closing deep-ocean sensor gaps with integrated seabed, glider, and patrol tasking.
+- Primary tools: acoustic gap analyzer, seabed placement optimizer, patrol/glider mission board.
+- Cross-check tools: independent ocean-state model and alternate undersea contact confidence monitor.
+- Protocols: `USMTF`, `API/JSON`, `OGC`.
+- Degraded fallback: chokepoint-only sensing posture with explicit confidence penalties.
+
+### `coalition-grid-claims-evidence-v1`
+- Use for coalition grid restoration evidence governance, accountability, and cost-share claim support.
+- Primary tools: restoration event ledger, cost attribution tracker, evidence packet compiler.
+- Cross-check tools: independent utility telemetry mirror and alternate legal review queue.
+- Protocols: `NIMS/ICS`, `USMTF`, `API/JSON`, `NIEM`.
+- Degraded fallback: essential claims only with delayed adjudication and explicit uncertainty tags.

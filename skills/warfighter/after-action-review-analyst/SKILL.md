@@ -144,3 +144,9 @@ Primary products for this skill: AAR findings report, corrective action tracker,
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-09, Evidence Integrity and Claims Addendum)
+
+- Prioritize `tool_suite_id=ts-coalition-grid-claims-evidence-v1` + `protocol_stack_id=ps-coalition-grid-claims-evidence-stack-v1` when AAR findings must support coalition accountability, restoration adjudication, or legal claims.
+- Prioritize `tool_suite_id=ts-harbor-chemical-decon-reopen-v1` + `protocol_stack_id=ps-harbor-chemical-decon-reopen-stack-v1` when AAR review spans chemical release response and phased infrastructure reopening.
+- Add `packet_id=DPL-COALITION-GRID-CLAIMS-EVIDENCE-001` and `packet_id=DPL-HARBOR-CHEM-DECON-REOPEN-001` for findings requiring auditable chain-of-custody and remediation timelines.
