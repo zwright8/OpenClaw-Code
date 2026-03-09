@@ -155,3 +155,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-urban-vtol-lz-auth-v1` + `protocol_stack_id=ps-urban-vtol-lz-auth-stack-v1` when urban vertical-lift landing zones face spoofing, decoy, or civilian congestion risk.
 - Prioritize `tool_suite_id=ts-spaceport-gnss-emergency-v1` + `protocol_stack_id=ps-spaceport-gnss-emergency-stack-v1` when ATO timing, launch windows, or range safety are sensitive to GNSS degradation.
 - Add `packet_id=DPL-VTOL-LZ-001` and `packet_id=DPL-SPACEPORT-GNSS-001` for ATO branches that re-sequence air mobility, personnel recovery, or strategic launch support.
+
+## Domain Toolchain Override (2026-03-09, GPS-Denied Refueling and EW Reprogram Addendum)
+
+- Prioritize `tool_suite_id=ts-aerial-refuel-gps-denied-v1` + `protocol_stack_id=ps-aerial-refuel-gps-denied-stack-v1` when ATO frag updates include tanker-receiver rendezvous under PNT degradation.
+- Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when sortie survivability depends on rapid EW mission-data release.
+- Add `packet_id=DPL-AERIAL-REFUEL-GPS-DENIED-001` and `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` for ATO branches that alter launch windows, escort plans, or strike timing.

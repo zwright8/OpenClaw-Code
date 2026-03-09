@@ -363,3 +363,59 @@ For each critical recommendation, include:
 - Cross-check tools: independent casualty severity adjudication cell and alternate bed-status federation mirror.
 - Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
 - Degraded fallback: movement of highest-acuity categories only with explicit risk acceptance.
+
+### `aerial-refuel-gps-denied-assurance-v1`
+- Use for GPS-denied aerial refueling rendezvous assurance and timing-confidence governance.
+- Primary tools: tanker/receiver rendezvous planner, anti-spoof navigation verifier.
+- Cross-check tools: independent inertial/celestial confidence monitor.
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`, `API/JSON`.
+- Degraded fallback: pre-briefed rendezvous windows with voice confirmation and conservative abort triggers.
+
+### `ew-mission-data-reprogramming-v1`
+- Use for coalition EW mission-data rapid reprogramming, release, and rollback control.
+- Primary tools: EW mission-data compiler and release governance workflow.
+- Cross-check tools: independent EOB validator and waveform regression harness.
+- Protocols: `USMTF`, `STIX/TAXII`, `NATO APP-11/ADatP-3`, `API/JSON`.
+- Degraded fallback: approved baseline-only operation with restricted emitter sets until revalidation.
+
+### `urban-substation-islanding-defense-v1`
+- Use for urban substation islanding defense where mission-critical power loads must be preserved.
+- Primary tools: ICS/SCADA protection monitor and load-priority orchestrator.
+- Cross-check tools: independent utility telemetry mirror and alternate relay-state checker.
+- Protocols: `NIMS/ICS`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: manual load-shed and physical switchyard control with hourly command sync.
+
+### `microelectronics-trusted-fab-surge-v1`
+- Use for strategic trusted-fab surge and anti-tamper lot release governance.
+- Primary tools: fab execution and secure lot provenance services.
+- Cross-check tools: independent counterfeit-risk adjudication board.
+- Protocols: `API/JSON`, signed ledger exports, `USMTF`.
+- Degraded fallback: defense-priority lot release only with manual dual-control validation.
+
+### `long-range-fires-stockpile-assurance-v1`
+- Use for long-range fires stockpile prepositioning and contested reload continuity.
+- Primary tools: munitions positioning planner and launcher readiness board.
+- Cross-check tools: depot throughput mirror and route survivability monitor.
+- Protocols: `USMTF`, `VMF`, `Link 16 J-series`, `API/JSON`.
+- Degraded fallback: fixed-priority resupply schedule with reduced tempo assumptions.
+
+### `seabed-node-tamper-repair-v1`
+- Use for coalition seabed critical-node tamper detection, evidence hold, and repair convoy sequencing.
+- Primary tools: undersea telemetry fusion and repair task orchestration service.
+- Cross-check tools: independent acoustic anomaly board and forensic custody ledger.
+- Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `API/JSON`.
+- Degraded fallback: critical-node-only patrol and delayed repair windows with elevated risk posture.
+
+### `disinformation-kinetic-escalation-warning-v1`
+- Use for early warning when narrative operations indicate likely kinetic escalation.
+- Primary tools: narrative telemetry analytics and escalation indicator fusion board.
+- Cross-check tools: independent source credibility and corroboration cell.
+- Protocols: `STIX/TAXII`, `MISP`, `USMTF`, `API/JSON`.
+- Degraded fallback: high-confidence-source-only warning posture with shorter review cadence.
+
+### `dual-use-port-cyber-unified-command-v1`
+- Use for unified command during cyber incidents at dual-use ports affecting force flow.
+- Primary tools: port OT/IT incident command dashboard and berth continuity planner.
+- Cross-check tools: independent logistics mirror and cyber forensic triage queue.
+- Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, `AIS/NMEA`, `API/JSON`.
+- Degraded fallback: ICS manual command board with protected military movement lane prioritization.

@@ -4852,3 +4852,91 @@ validation_gates:
 - output_schema: loadshed matrix, restoration branch ladder, impact summary
 - protocol_profile: NIMS/ICS + API/JSON + XML
 - validation_gates: critical load preservation pass, civil impact gate, command approval
+
+### packet_id: DPL-AERIAL-REFUEL-GPS-DENIED-001
+- domain: aerial refueling rendezvous under GNSS denial
+- objective: preserve tanker-receiver rendezvous timing and authentication under spoofing/jamming
+- primary_tools: rendezvous track planner, anti-spoof nav validator, tanker cycle monitor
+- alternate_tools: manual rendezvous timeline card with inertial/celestial checkpoints
+- degraded_mode: fixed rendezvous windows with voice plus acknowledgment chain
+- input_requirements: tanker and receiver tracks, timing windows, nav confidence, threat indicators
+- output_schema: rendezvous confidence score, abort triggers, branch timing options
+- protocol_profile: Link 16 J-series + VMF + USMTF + API/JSON
+- validation_gates: anti-spoof check pass, timing uncertainty bound, command approval
+
+### packet_id: DPL-EW-MISSION-DATA-REPROGRAM-001
+- domain: coalition EW mission-data rapid reprogramming
+- objective: reprogram and validate emitter/countermeasure mission data without coalition interoperability breakage
+- primary_tools: EW mission-data compiler, EOB manager, release governance board
+- alternate_tools: approved baseline library plus manual exception register
+- degraded_mode: baseline-only operation until urgent patch validation clears
+- input_requirements: emitter changes, mission data deltas, compatibility constraints, authority tags
+- output_schema: release decision packet, rollback branch, interoperability risk score
+- protocol_profile: USMTF + STIX/TAXII + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: regression pass, coalition schema check, human release authority
+
+### packet_id: DPL-URBAN-SUBSTATION-ISLANDING-DEFENSE-001
+- domain: urban substation cyber-physical islanding defense
+- objective: preserve mission-essential power islands while containing urban grid cascade effects
+- primary_tools: ICS telemetry fusion, relay-state controller, critical-load priority planner
+- alternate_tools: manual switchyard control board and utility status checks
+- degraded_mode: mission-critical feeder-only islanding plan with manual updates
+- input_requirements: substation topology, critical-load list, incident status, repair estimates
+- output_schema: islanding sequence, load-shed matrix, reintegration triggers
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: relay verification, safety perimeter confirmation, civil authority coordination
+
+### packet_id: DPL-MICROELECTRONICS-TRUSTED-FAB-SURGE-001
+- domain: trusted microelectronics surge and anti-tamper lot release
+- objective: increase defense-priority chip output while preserving trust chain and anti-counterfeit controls
+- primary_tools: fab execution stack, secure lot provenance ledger, tamper-screening workflow
+- alternate_tools: approved supplier-only release board with manual dual-control review
+- degraded_mode: essential-platform lot allocation with extended test sampling
+- input_requirements: demand signal, lot inventory, supplier trust score, QA throughput
+- output_schema: surge allocation plan, lot release confidence, risk hold queue
+- protocol_profile: API/JSON + signed ledger exports + USMTF
+- validation_gates: provenance pass, test lot confidence threshold, authority tier check
+
+### packet_id: DPL-LONG-RANGE-FIRES-STOCKPILE-ASSURANCE-001
+- domain: long-range fires stockpile prepositioning
+- objective: position munitions for survivable launch support and reload continuity
+- primary_tools: stockpile allocation manager, contested-route planner, launcher readiness board
+- alternate_tools: fixed theater staging matrix plus manual risk overlays
+- degraded_mode: critical-mission stockpile lane only with reduced sortie assumptions
+- input_requirements: munitions inventory, launcher demand, route risk, adversary strike indicators
+- output_schema: prepositioning matrix, exposure risk score, reload branch triggers
+- protocol_profile: USMTF + VMF + Link 16 J-series + API/JSON
+- validation_gates: depot confirmation, route survivability check, command priority approval
+
+### packet_id: DPL-SEABED-NODE-TAMPER-REPAIR-001
+- domain: seabed critical node tamper alert and repair
+- objective: detect tamper events, preserve evidence, and sequence repair under threat
+- primary_tools: undersea telemetry monitor, ROV tasking planner, repair convoy scheduler
+- alternate_tools: patrol-only anomaly watch with manual evidence log
+- degraded_mode: critical-node triage with delayed repair and heightened monitoring
+- input_requirements: node health streams, anomaly signatures, repair asset readiness, legal constraints
+- output_schema: tamper confidence ladder, repair queue, evidence custody status
+- protocol_profile: AIS/NMEA + OGC + USMTF + API/JSON
+- validation_gates: dual-source anomaly corroboration, custody chain integrity, coalition authorization
+
+### packet_id: DPL-DISINFORMATION-KINETIC-ESCALATION-001
+- domain: disinformation to kinetic escalation warning
+- objective: detect narrative indicators that signal likely near-term kinetic escalation
+- primary_tools: influence telemetry analytics, narrative integrity forensics, escalation indicator board
+- alternate_tools: manual analyst warning board with corroborated source set
+- degraded_mode: high-confidence-source-only watch with commander warning thresholds
+- input_requirements: narrative feeds, engagement spikes, force posture context, adversary patterns
+- output_schema: escalation ladder, trigger probabilities, preemption option board
+- protocol_profile: STIX/TAXII + MISP + USMTF + API/JSON
+- validation_gates: corroboration depth check, false-positive screen, legal-policy review
+
+### packet_id: DPL-DUAL-USE-PORT-CYBER-UNIFIED-COMMAND-001
+- domain: dual-use port cyber incident unified command
+- objective: sustain military force flow and port safety during major OT/IT cyber incidents
+- primary_tools: port cyber SOC dashboard, ICS unified command board, berth throughput planner
+- alternate_tools: manual ICS command board and protected military lane schedule
+- degraded_mode: mission-essential movement-only posture with strict berth control
+- input_requirements: incident scope, berth status, cargo priorities, remediation timeline
+- output_schema: unified command action plan, force-flow continuity matrix, phased recovery gates
+- protocol_profile: NIMS/ICS + USMTF + STIX/TAXII + AIS/NMEA + API/JSON
+- validation_gates: incident containment status, safety gate checks, command authority acknowledgment

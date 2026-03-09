@@ -144,3 +144,9 @@ Primary products for this skill: data link execution plan, network load manageme
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-09, Coalition EW and Seabed Continuity Addendum)
+
+- Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when coalition data-link behavior depends on urgent emitter-library or waveform profile updates.
+- Prioritize `tool_suite_id=ts-seabed-node-tamper-repair-v1` + `protocol_stack_id=ps-seabed-node-tamper-repair-stack-v1` when undersea node disruptions degrade long-haul data-link continuity.
+- Add `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` and `packet_id=DPL-SEABED-NODE-TAMPER-REPAIR-001` for recommendations that modify coalition link plans or SATCOM/terrestrial failover posture.

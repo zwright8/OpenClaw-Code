@@ -862,3 +862,25 @@ Every skill output should include:
 - Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
+
+## New Expansion Wave (2026-03-09, High-Tempo Escalation and Infrastructure Assurance)
+
+- joint-aerial-refueling-gps-denied-rendezvous-assurance-cell
+- coalition-theater-electronic-warfare-mission-data-reprogramming-cell
+- contested-urban-power-substation-islanding-defense-cell
+- strategic-microelectronics-trusted-fab-surge-cell
+- joint-long-range-fires-stockpile-prepositioning-assurance-cell
+- coalition-seabed-critical-node-tamper-alert-and-repair-cell
+- theater-disinformation-to-kinetic-escalation-early-warning-cell
+- homeland-dual-use-port-cyber-incident-unified-command-cell
+
+## Updated Pairings (2026-03-09, High-Tempo Escalation and Infrastructure Assurance)
+
+- GPS-denied aerial refueling assurance + air tasking cycle support + tactical airspace deconfliction + denied PNT time transfer assurance
+- EW mission-data reprogramming + contested spectrum fratricide prevention + electronic order-of-battle management + mission-data-link management
+- Urban substation islanding defense + cyber-physical infrastructure defense + homeland grid blackstart military support + base defense
+- Trusted fab surge + strategic industrial mobilization readiness + supply-chain risk monitor + mission-assured software factory support
+- Long-range fires stockpile assurance + fires and effects synchronizer + contested logistics sustainment + strategic mobility planner
+- Seabed tamper repair + naval undersea cable protection and restoration + maritime operations planner + coalition legal interoperability
+- Disinformation-to-kinetic warning + information integrity and attribution + strategic indications and warning + campaign assessment cell
+- Dual-use port cyber unified command + strategic port cyber resilience + deployment/distribution optimizer + DSCA crisis support

@@ -144,3 +144,9 @@ Primary products for this skill: AAR findings report, corrective action tracker,
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-09, Escalation and Infrastructure Assurance Addendum)
+
+- Prioritize `tool_suite_id=ts-disinformation-kinetic-escalation-warning-v1` + `protocol_stack_id=ps-disinformation-kinetic-escalation-warning-stack-v1` when AAR scope includes narrative activity that preceded force-protection or kinetic incidents.
+- Prioritize `tool_suite_id=ts-dual-use-port-cyber-unified-command-v1` + `protocol_stack_id=ps-dual-use-port-cyber-unified-command-stack-v1` when AAR scope includes deployment disruption from dual-use port OT/IT compromise.
+- Add `packet_id=DPL-DISINFORMATION-KINETIC-ESCALATION-001` and `packet_id=DPL-DUAL-USE-PORT-CYBER-UNIFIED-COMMAND-001` when corrective actions require cross-command incident synchronization.

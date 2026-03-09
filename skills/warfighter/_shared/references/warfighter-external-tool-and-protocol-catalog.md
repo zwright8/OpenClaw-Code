@@ -4725,3 +4725,85 @@ external_binding:
 - Messaging: NIMS/ICS + USMTF + API/JSON convoy and install-state events.
 - Transport: homeland defense restoration network + civil utility coordination bus + voice/readback fallback.
 - Security: signed escort and install directives + dual-operator safety confirmations + immutable restoration audit chain.
+
+## Expansion Addendum (2026-03-09, Theater Continuity and Strategic Surge)
+
+### `ts-aerial-refuel-gps-denied-v1`
+- Use for: aerial refueling rendezvous assurance under GNSS denial/spoofing and timing uncertainty.
+- Primary tools: tanker-receiver timing planners, anti-spoof navigation validators, refueling track conflict monitors.
+- Cross-check tools: independent inertial/celestial navigation confidence board and alternate mission replay service.
+- Typical products: rendezvous assurance matrix, abort trigger ladder, tanker cycle continuity plan.
+
+### `ts-ew-mission-data-reprogram-v1`
+- Use for: urgent electronic warfare mission-data reprogramming and coalition validation.
+- Primary tools: EW mission-data compilers, emitter-library management services, reprogram release governance workflows.
+- Cross-check tools: independent electronic order-of-battle verifier and alternate waveform test harness.
+- Typical products: reprogram approval packet, compatibility risk matrix, release/revert decision board.
+
+### `ts-urban-substation-islanding-defense-v1`
+- Use for: cyber-physical defense and islanding control of urban substations serving mission-critical nodes.
+- Primary tools: ICS/SCADA telemetry monitors, protective relaying orchestration services, urban load-priority planners.
+- Cross-check tools: independent substation health mirror and alternate distributed-energy verification board.
+- Typical products: islanding sequence order, load-shedding matrix, reintegration risk timeline.
+
+### `ts-microelectronics-trusted-fab-surge-v1`
+- Use for: trusted microelectronics surge production, anti-tamper lot release, and defense priority allocation.
+- Primary tools: fab execution systems, anti-counterfeit validation pipelines, secure lot provenance ledgers.
+- Cross-check tools: independent destructive sample audit and alternate supply-risk adjudication board.
+- Typical products: trusted-fab surge board, lot release confidence ledger, supplier risk branch map.
+
+### `ts-long-range-fires-stockpile-assurance-v1`
+- Use for: long-range fires stockpile placement, transport survivability, and reload continuity.
+- Primary tools: munitions stockpile managers, contested-route sustainment planners, launcher readiness dashboards.
+- Cross-check tools: independent depot throughput monitor and alternate theater movement viability board.
+- Typical products: prepositioning matrix, exposure-risk heatmap, reload continuity triggers.
+
+### `ts-seabed-node-tamper-repair-v1`
+- Use for: seabed critical-node tamper detection, forensic hold, and repair convoy sequencing.
+- Primary tools: undersea telemetry monitors, ROV inspection tasking systems, repair asset orchestration boards.
+- Cross-check tools: independent acoustic anomaly analysis and alternate legal-evidence custody ledger.
+- Typical products: tamper alert board, repair priority packet, attribution confidence ladder.
+
+### `ts-disinformation-kinetic-escalation-warning-v1`
+- Use for: early warning when coordinated disinformation campaigns indicate near-term kinetic escalation risk.
+- Primary tools: narrative anomaly detection systems, influence network telemetry, escalation indicator fusion dashboards.
+- Cross-check tools: independent source credibility adjudication and alternate all-source warning cell.
+- Typical products: escalation warning ladder, preemption decision matrix, confidence-ranked trigger list.
+
+### `ts-dual-use-port-cyber-unified-command-v1`
+- Use for: unified command of cyber incidents at dual-use ports supporting military deployment and civil commerce.
+- Primary tools: port OT/IT security telemetry, berth throughput control dashboards, ICS incident command boards.
+- Cross-check tools: independent coastwise logistics status mirror and alternate cyber forensic triage service.
+- Typical products: unified command action board, force-flow continuity plan, phased recovery decision packet.
+
+### `ps-aerial-refuel-gps-denied-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: GPS-denied aerial refueling rendezvous synchronization and authentication.
+
+### `ps-ew-mission-data-reprogram-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: urgent EW mission-data updates and coalition validation/release workflows.
+
+### `ps-urban-substation-islanding-defense-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: urban substation islanding defense and military-civil load restoration coordination.
+
+### `ps-microelectronics-trusted-fab-surge-stack-v1`
+- Protocols: `API/JSON`, signed ledger exports, `USMTF`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: trusted semiconductor surge governance and anti-tamper lot release traceability.
+
+### `ps-long-range-fires-stockpile-assurance-stack-v1`
+- Protocols: `USMTF`, `VMF`, `Link 16 J-series`, `API/JSON`.
+- Use for: long-range fires stockpile prepositioning and reload continuity control.
+
+### `ps-seabed-node-tamper-repair-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `USMTF`, `API/JSON`.
+- Use for: seabed node tamper alerting, repair tasking, and evidence-preserving handoffs.
+
+### `ps-disinformation-kinetic-escalation-warning-stack-v1`
+- Protocols: `STIX/TAXII`, `MISP`, `USMTF`, `API/JSON`.
+- Use for: disinformation-to-kinetic escalation indicator sharing and warning governance.
+
+### `ps-dual-use-port-cyber-unified-command-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, `AIS/NMEA`, `API/JSON`.
+- Use for: dual-use port cyber incident command with military-civil throughput continuity.
