@@ -3166,3 +3166,117 @@ external_binding:
 - Messaging: API/JSON + NATO APP-11/ADatP-3 custody records + USMTF legal-status updates.
 - Transport: coalition detainee systems + federated biometric exchange + delayed-sync evidence channel.
 - Security: identity confidence signing + releasability tagging + immutable custody audit chain.
+
+## Tool and Protocol Catalog (2026-03-09 Domain Expansion - Solar Storm, Beacon Deception, Counterfeit Microelectronics)
+
+### `ts-space-weather-solar-storm-mission-assurance-v1`
+- Use for: joint mission assurance during severe solar weather with cross-domain impacts to SATCOM, timing, and grid stability.
+- Primary tools: space weather fusion service, SATCOM outage predictor, mission dependency impact engine.
+- Cross-check tools: independent timing-integrity monitor and alternate power continuity board.
+- Typical products: mission impact timeline, comms failover order, command risk posture prompt.
+
+### `ts-personnel-recovery-beacon-deception-counter-v1`
+- Use for: joint personnel recovery under beacon spoofing, replay, and deliberate authentication deception.
+- Primary tools: beacon authenticity analyzer, ISR corroboration board, recovery mission router.
+- Cross-check tools: independent PR confidence review board and alternate survival-signal adjudicator.
+- Typical products: authenticated survivor confidence ladder, recovery branch matrix, false-signal suppression order.
+
+### `ts-expeditionary-blood-cold-chain-denial-recovery-v1`
+- Use for: expeditionary blood and biologics cold-chain restoration when contested logistics causes repeated excursion risk.
+- Primary tools: cold-chain telemetry fusion, med-log demand allocator, excursion remediation planner.
+- Cross-check tools: independent temperature chain auditor and alternate senior medical review board.
+- Typical products: excursion triage queue, reroute and stabilization sequence, release restriction matrix.
+
+### `ts-urban-spectrum-hidden-emitter-hunt-v1`
+- Use for: tactical hunt of hidden, low-power, and burst transmitters in dense urban electromagnetic clutter.
+- Primary tools: RF geolocation mesh, emitter behavior classifier, urban maneuver deconfliction board.
+- Cross-check tools: independent spectrum forensics board and alternate visual ISR corroboration channel.
+- Typical products: emitter confidence map, suppression or capture priority list, fratricide-safe maneuver triggers.
+
+### `ts-port-crane-ransomware-manual-throughput-v1`
+- Use for: operational port throughput continuity when crane automation is disrupted by ransomware.
+- Primary tools: port OT incident board, manual throughput scheduler, cargo priority reconciliation service.
+- Cross-check tools: independent safety interlock verifier and alternate movement-control mirror.
+- Typical products: manual throughput battle rhythm, cyber containment gates, cargo release priority matrix.
+
+### `ts-strategic-rare-gas-sensor-supply-resilience-v1`
+- Use for: strategic continuity of rare-gas dependent sensor and semiconductor manufacturing during supply shocks.
+- Primary tools: rare-gas inventory and demand dashboard, supplier disruption model, mission-priority allocation board.
+- Cross-check tools: independent supplier attestation ledger and alternate industrial yield monitor.
+- Typical products: scarce-gas allocation ladder, sensor production continuity forecast, mitigation branch options.
+
+### `ts-denied-pnt-celestial-tercom-requalification-v1`
+- Use for: requalification of navigation and timing posture using celestial, TERCOM, and inertial fallback under denied PNT.
+- Primary tools: multi-source navigation confidence engine, terrain-correlation validator, timing drift monitor.
+- Cross-check tools: independent inertial integrity board and alternate mission route safety checker.
+- Typical products: fallback navigation confidence ladder, platform requalification matrix, commander go/no-go prompts.
+
+### `ts-maritime-drone-mothership-attribution-v1`
+- Use for: coalition attribution and interdiction planning for maritime motherships enabling one-way and loitering drone attacks.
+- Primary tools: maritime behavior anomaly engine, launch-signature correlation board, coalition interdiction planner.
+- Cross-check tools: independent AIS anomaly verifier and alternate legal-evidence custody board.
+- Typical products: mothership confidence index, interdiction sequence plan, legal handoff packet.
+
+### `ts-homeland-microelectronics-counterfeit-quarantine-v1`
+- Use for: homeland quarantine and triage of counterfeit microelectronics entering military supply and depot pipelines.
+- Primary tools: part authenticity scanner, lot genealogy reconciler, depot quarantine task board.
+- Cross-check tools: independent lab adjudication chain and alternate supplier provenance tracker.
+- Typical products: counterfeit risk ladder, quarantine-and-release matrix, mission impact advisory.
+
+### `ts-expeditionary-runway-fod-autonomy-v1`
+- Use for: expeditionary runway foreign-object-debris detection and clearance with human-autonomy teaming.
+- Primary tools: autonomous FOD patrol planner, runway hazard confidence board, sortie regeneration scheduler.
+- Cross-check tools: independent tower or vehicle sweep verification and alternate airfield safety board.
+- Typical products: FOD clearance timeline, sortie risk gates, autonomy-to-human handoff triggers.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Solar Storm, Beacon Deception, Counterfeit Microelectronics)
+
+### `ps-space-weather-solar-storm-mission-assurance-stack-v1`
+- Messaging: CCSDS + USMTF + API/JSON mission-impact advisories.
+- Transport: space-weather feed bus + SATCOM operations network + delayed-sync fallback path.
+- Security: signed event provenance + timing trust attestations + acknowledgment integrity ledger.
+
+### `ps-personnel-recovery-beacon-deception-counter-stack-v1`
+- Messaging: VMF + CoT + USMTF personnel recovery updates.
+- Transport: recovery C2 network + ISR fusion bus + constrained-bandwidth contingency path.
+- Security: beacon authenticity signatures + dual-source survivor confidence checks + command approval trace.
+
+### `ps-expeditionary-blood-cold-chain-denial-recovery-stack-v1`
+- Messaging: HL7/FHIR + USMTF + API/JSON med-log synchronization.
+- Transport: medical logistics exchange + sensor gateway network + low-bandwidth fallback sync.
+- Security: custody-chain integrity hashes + medical authority role gates + immutable excursion logs.
+
+### `ps-urban-spectrum-hidden-emitter-hunt-stack-v1`
+- Messaging: Link 16 J-series + CoT + API/JSON emitter confidence reports.
+- Transport: tactical RF sensor mesh + mission edge fusion network + manual report fallback.
+- Security: signed geolocation confidence records + anti-spoof verification + commander acknowledgment chain.
+
+### `ps-port-crane-ransomware-manual-throughput-stack-v1`
+- Messaging: API/JSON + ICS incident records + USMTF throughput status updates.
+- Transport: OT incident response enclave + port ops data fabric + manual dispatch fallback.
+- Security: signed safety restart gates + dual-approval cargo release + tamper-evident forensic ledger.
+
+### `ps-strategic-rare-gas-sensor-supply-resilience-stack-v1`
+- Messaging: API/JSON + XML supply evidence payloads + USMTF readiness advisories.
+- Transport: industrial telemetry network + strategic supplier exchanges + offline reconciliation path.
+- Security: supplier provenance signatures + lot integrity checks + strategic approval workflow logging.
+
+### `ps-denied-pnt-celestial-tercom-requalification-stack-v1`
+- Messaging: API/JSON + Link 16 J-series + USMTF timing updates.
+- Transport: edge navigation fusion nodes + mission data links + reduced-bandwidth fallback channel.
+- Security: timing integrity attestation + cross-source navigation confidence signing + command release gate.
+
+### `ps-maritime-drone-mothership-attribution-stack-v1`
+- Messaging: AIS/NMEA + API/JSON + USMTF maritime threat advisories.
+- Transport: maritime COP bus + coalition interdiction network + deferred-sync fallback.
+- Security: vessel identity assertions + evidence custody signatures + legal authority acknowledgment chain.
+
+### `ps-homeland-microelectronics-counterfeit-quarantine-stack-v1`
+- Messaging: API/JSON + XML part-auth evidence + USMTF sustainment risk updates.
+- Transport: depot quality network + supplier verification exchange + offline quarantine reconciliation path.
+- Security: part provenance signatures + role-scoped release approvals + immutable audit ledger.
+
+### `ps-expeditionary-runway-fod-autonomy-stack-v1`
+- Messaging: AIXM/FIXM + API/JSON + USMTF airfield status reports.
+- Transport: airfield autonomy mesh + tower operations network + manual radio/readback fallback.
+- Security: signed hazard confidence chain + autonomous action authority gates + air boss approval log.

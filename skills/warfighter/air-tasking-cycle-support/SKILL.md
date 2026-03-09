@@ -144,3 +144,8 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-09, Beacon and FOD Assurance Addendum)
+
+- Prioritize `tool_suite_id=ts-personnel-recovery-beacon-deception-counter-v1` + `protocol_stack_id=ps-personnel-recovery-beacon-deception-counter-stack-v1` when CSAR tasking depends on contested survivor authentication.
+- Prioritize `tool_suite_id=ts-expeditionary-runway-fod-autonomy-v1` + `protocol_stack_id=ps-expeditionary-runway-fod-autonomy-stack-v1` when sortie generation risk is constrained by runway foreign object debris volatility.
+- Add `packet_id=DPL-PERSONNEL-RECOVERY-BEACON-DECEPTION-COUNTER-001` and `packet_id=DPL-EXPEDITIONARY-RUNWAY-FOD-AUTONOMY-001` for ATO branch decisions that alter rescue timelines or launch windows.
