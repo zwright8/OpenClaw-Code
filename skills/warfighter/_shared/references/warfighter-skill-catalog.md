@@ -770,3 +770,25 @@ Every skill output should include:
 - Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
+
+## New Expansion Wave (2026-03-09, Black-Sky Continuity and Operational Assurance)
+
+- joint-black-sky-hf-satcom-bridge-restoration-cell
+- theater-arctic-ground-convoy-ice-route-assurance-cell
+- coalition-harbor-chemical-release-decon-and-reopen-cell
+- strategic-space-isr-collection-priority-arbitration-cell
+- joint-fires-weather-effects-coupling-cell
+- expeditionary-military-working-dog-health-protection-cell
+- joint-deep-ocean-sensor-gap-closure-cell
+- coalition-critical-grid-restoration-claims-evidence-cell
+
+## Updated Pairings (2026-03-09, Black-Sky Continuity and Operational Assurance)
+
+- Black-sky C2 bridge restoration + theater mission network failover + physical message assurance
+- Arctic ice-route assurance + movement control and convoy planning + denied-environment weather nowcast fallback
+- Harbor chemical decon/reopen + maritime chokepoint control + expeditionary CBRN consequence response
+- Space ISR priority arbitration + contested space launch reconstitution + commander priority information synthesis
+- Joint fires-weather coupling + dynamic targeting support + tactical airspace deconfliction
+- Military working dog health protection + preventive medicine and force health protection + med-log continuity
+- Deep-ocean sensor gap closure + undersea cable protection and restoration + anti-submarine warfare support
+- Coalition grid claims evidence + critical infrastructure restoration + legal interoperability and accountability tracking

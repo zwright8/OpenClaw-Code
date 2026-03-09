@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Deep Ocean Sensor Gap Closure Cell"
+  short_description: "Close deep-ocean sensing gaps by prioritizing seabed, glider, and patrol asset placement against submarine and infrastructure threats."

@@ -144,3 +144,9 @@ Primary products for this skill: data link execution plan, network load manageme
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-09, Black-Sky Link Resilience Addendum)
+
+- Prioritize `tool_suite_id=ts-black-sky-c2-bridge-v1` + `protocol_stack_id=ps-black-sky-c2-bridge-stack-v1` when terrestrial transport and primary SATCOM pathways are degraded.
+- Prioritize `tool_suite_id=ts-space-isr-priority-arbitration-v1` + `protocol_stack_id=ps-space-isr-priority-arbitration-stack-v1` when data-link bandwidth must be rebalanced against ISR collection priorities.
+- Add `packet_id=DPL-BLACK-SKY-C2-BRIDGE-001` and `packet_id=DPL-SPACE-ISR-PRIORITY-ARB-001` for message-priority, bandwidth-allocation, and acknowledgment integrity decisions.

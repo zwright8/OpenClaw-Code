@@ -4390,3 +4390,91 @@ validation_gates:
 - output_schema: loadshed matrix, restoration branch ladder, impact summary
 - protocol_profile: NIMS/ICS + API/JSON + XML
 - validation_gates: critical load preservation pass, civil impact gate, command approval
+
+### packet_id: DPL-BLACK-SKY-C2-BRIDGE-001
+- domain: joint black-sky C2 bridge restoration
+- objective: preserve command continuity across HF and recovering SATCOM during regional grid and telecom outage
+- primary_tools: HF status monitor, SATCOM recovery board, message-priority broker
+- alternate_tools: manual message matrix and secure voice readback board
+- degraded_mode: mission-critical command traffic only with strict acknowledgment windows
+- input_requirements: priority traffic list, path health status, authority matrix, acknowledgment logs
+- output_schema: C2 bridge sequence, priority queue, continuity trigger matrix
+- protocol_profile: USMTF + API/JSON + HF readback logs
+- validation_gates: command acknowledgment pass, authority gate, continuity threshold
+
+### packet_id: DPL-ARCTIC-ICE-ROUTE-ASSURANCE-001
+- domain: theater arctic ground convoy ice route assurance
+- objective: maintain convoy throughput while controlling ice-load and interdiction risk
+- primary_tools: ice-load model, convoy telemetry board, threat timeline service
+- alternate_tools: engineer manual route card and weather watch board
+- degraded_mode: critical routes only with increased spacing and conservative load limits
+- input_requirements: route segments, ice forecasts, convoy loads, threat indicators
+- output_schema: route viability matrix, branch route options, convoy timing triggers
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: load-class threshold pass, convoy security gate, command concurrence
+
+### packet_id: DPL-HARBOR-CHEM-DECON-REOPEN-001
+- domain: coalition harbor chemical release decon and reopen
+- objective: bound hazard spread, restore safe berthing, and resume prioritized throughput
+- primary_tools: contamination model, decon scheduler, berth throughput board
+- alternate_tools: manual sampling board and port operations worksheet
+- degraded_mode: life-safety and command-essential pier operations only
+- input_requirements: sample data, plume model outputs, berth status, cleanup resources
+- output_schema: hazard map, reopen timeline, residual-risk and mitigation log
+- protocol_profile: USMTF + API/JSON + NIEM
+- validation_gates: contamination confidence pass, decon completion threshold, harbor authority approval
+
+### packet_id: DPL-SPACE-ISR-PRIORITY-ARB-001
+- domain: strategic space ISR collection priority arbitration
+- objective: optimize ISR collection allocation across competing combatant command demand
+- primary_tools: ISR arbitration board, orbital asset monitor, collection value scorer
+- alternate_tools: manual priority board and theater demand worksheet
+- degraded_mode: highest-priority intelligence requirements only with periodic reallocation windows
+- input_requirements: collection requests, mission priorities, asset availability, timing windows
+- output_schema: collection allocation matrix, retasking sequence, confidence-weighted rationale
+- protocol_profile: USMTF + API/JSON + CCSDS
+- validation_gates: mission-priority alignment pass, asset health gate, authority approval
+
+### packet_id: DPL-JOINT-FIRES-WX-COUPLING-001
+- domain: joint fires weather effects coupling
+- objective: reduce fires execution risk by integrating weather constraints into timing and effects
+- primary_tools: fire-weather model, fires timeline board, collateral hazard estimator
+- alternate_tools: manual met-watch card and firing solution cross-check worksheet
+- degraded_mode: only prevalidated target sets with conservative weather thresholds
+- input_requirements: weather nowcast, target windows, munition profiles, fires timeline
+- output_schema: weather-adjusted fires matrix, effect confidence notes, go/no-go triggers
+- protocol_profile: USMTF + VMF + API/JSON
+- validation_gates: weather-confidence floor, collateral risk gate, fires authority concurrence
+
+### packet_id: DPL-MWD-HEALTH-PROTECTION-001
+- domain: expeditionary military working dog health protection
+- objective: sustain canine operational readiness while controlling zoonotic and injury risk
+- primary_tools: veterinary case board, treatment scheduler, biosecurity monitor
+- alternate_tools: manual treatment ledger and kennel inspection worksheet
+- degraded_mode: urgent-case treatment and essential preventive controls only
+- input_requirements: case severity, vaccination/preventive status, kennel conditions, mission demand
+- output_schema: canine readiness register, treatment priority queue, risk mitigation tasks
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: clinical priority pass, biosecurity threshold, veterinary command approval
+
+### packet_id: DPL-DEEP-OCEAN-SENSOR-GAP-001
+- domain: joint deep ocean sensor gap closure
+- objective: close undersea sensing gaps against submarine and critical infrastructure threats
+- primary_tools: gap analyzer, seabed sensor planner, patrol/glider tasking board
+- alternate_tools: manual ocean sector board and acoustic watch bill
+- degraded_mode: mission-critical chokepoints only with reduced detection confidence
+- input_requirements: coverage map, threat vectors, asset readiness, ocean-state conditions
+- output_schema: gap closure plan, placement priority matrix, warning-confidence ladder
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: coverage threshold pass, deployment feasibility gate, command concurrence
+
+### packet_id: DPL-COALITION-GRID-CLAIMS-EVIDENCE-001
+- domain: coalition critical grid restoration claims evidence
+- objective: capture auditable restoration evidence and support transparent coalition cost-share adjudication
+- primary_tools: restoration ledger, cost attribution tracker, evidence packet compiler
+- alternate_tools: manual incident chronology and signed document bundle workflow
+- degraded_mode: command-essential restoration claims only with delayed adjudication
+- input_requirements: outage records, restoration actions, cost artifacts, role authority matrix
+- output_schema: claims evidence packet, accountability timeline, adjudication recommendations
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: chain-of-custody integrity pass, evidence completeness threshold, legal authority review

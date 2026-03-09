@@ -144,3 +144,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-09, Fires-Weather and Space ISR Arbitration Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-fires-weather-coupling-v1` + `protocol_stack_id=ps-joint-fires-weather-coupling-stack-v1` when weather volatility can shift release windows, effects confidence, or collateral constraints.
+- Prioritize `tool_suite_id=ts-space-isr-priority-arbitration-v1` + `protocol_stack_id=ps-space-isr-priority-arbitration-stack-v1` when ATO sequencing depends on contested ISR collection tradeoffs.
+- Add `packet_id=DPL-JOINT-FIRES-WX-COUPLING-001` and `packet_id=DPL-SPACE-ISR-PRIORITY-ARB-001` for branches that alter mission timing, target servicing, or collection synchronization.
