@@ -174,3 +174,9 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Prioritize `tool_suite_id=ts-air-defense-emitter-relocation-v1` with `protocol_stack_id=ps-air-defense-emitter-relocation-stack-v1` when warning fidelity is degraded by adversary anti-radiation targeting pressure.
 - Use packet `DPL-ADA-EMITTER-RELOCATION-001` to bind relocation timing, decoy activation windows, and defended-asset coverage continuity checks.
 - If relocation acknowledgment integrity or coverage confidence falls below threshold, downgrade to warning-only recommendations and require explicit commander approval.
+
+## Domain Toolchain Override (2026-03-09, Spaceport Range Safety Warning Linkage)
+
+- Prioritize `tool_suite_id=ts-homeland-spaceport-range-safety-continuity-v1` with `protocol_stack_id=ps-homeland-spaceport-range-safety-continuity-stack-v1` when missile warning timelines intersect homeland military launch windows or range-safety constraints.
+- Use packet `DPL-HOMELAND-SPACEPORT-RANGE-SAFETY-CONTINUITY-001` to couple warning dissemination timing, hold/release decision gates, and escalation prompts.
+- If range-safety chain integrity or acknowledgment completeness degrades, downgrade to advisory-only warning products and require explicit commander approval.
