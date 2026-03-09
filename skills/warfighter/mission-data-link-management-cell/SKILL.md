@@ -150,3 +150,9 @@ Primary products for this skill: data link execution plan, network load manageme
 - Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when coalition data-link behavior depends on urgent emitter-library or waveform profile updates.
 - Prioritize `tool_suite_id=ts-seabed-node-tamper-repair-v1` + `protocol_stack_id=ps-seabed-node-tamper-repair-stack-v1` when undersea node disruptions degrade long-haul data-link continuity.
 - Add `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` and `packet_id=DPL-SEABED-NODE-TAMPER-REPAIR-001` for recommendations that modify coalition link plans or SATCOM/terrestrial failover posture.
+
+## Domain Toolchain Override (2026-03-09, Maritime Autonomy Liability and Decoy Telemetry Addendum)
+
+- Prioritize `tool_suite_id=ts-autonomous-maritime-traffic-liability-v1` + `protocol_stack_id=ps-autonomous-maritime-traffic-liability-stack-v1` when maritime tactical links must deconflict autonomous and crewed traffic with legally defensible event logging.
+- Prioritize `tool_suite_id=ts-electro-optical-decoy-audit-v1` + `protocol_stack_id=ps-electro-optical-decoy-audit-stack-v1` when data-link distribution affects decoy posture, sensor deception timing, or emissions control in contested targeting cycles.
+- Add `packet_id=DPL-AUTONOMOUS-MARITIME-TRAFFIC-LIABILITY-001` and `packet_id=DPL-ELECTRO-OPTICAL-DECOY-AUDIT-001` for recommendations that adjust coalition link lanes, sensor release authorities, or attribution data retention rules.

@@ -1,9 +1,9 @@
 ---
-name: after-action-review-analyst
-description: Run structured AAR analysis and improvement tracking. Use when synthesizing event data into lessons learned, corrective actions, and ownership timelines.
+name: tactical-electro-optical-decoy-effectiveness-auditor-cell
+description: Assess EO/IR decoy effectiveness against adversary targeting and adjust deception posture. Use when survivability depends on rapidly validating decoy signatures and retuning camouflage and deception plans.
 ---
 
-# After Action Review Analyst
+# Tactical Electro Optical Decoy Effectiveness Auditor Cell
 
 ## Mission Scope
 
@@ -13,8 +13,8 @@ description: Run structured AAR analysis and improvement tracking. Use when synt
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: exercise or mission timeline, observed events, performance metrics, participant feedback.
-2. Identify assumptions, decision thresholds, and what intelligence or reporting would invalidate the current plan.
+1. Frame the mission problem using domain-specific mission data, readiness status, and adversary/environmental constraints.
+2. Identify assumptions, decision thresholds, and what evidence would invalidate the current recommendation.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
 5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
@@ -31,7 +31,7 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: AAR findings report, corrective action tracker, lessons-to-doctrine recommendations.
+Primary products for this skill: decoy effectiveness scorecard, adversary sensor exposure matrix, decoy retuning and redeployment plan.
 
 ## External Tools and Protocol Integration
 
@@ -62,19 +62,19 @@ Primary products for this skill: AAR findings report, corrective action tracker,
 
 ## Tool Protocol Playbooks
 
-- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
-- Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
+- Use protocol examples in `../_shared/references/tool-protocol-playbooks.md` to produce operator-ready tool invocation packets.
+- Use adapter contract guidance in `../_shared/references/external-tool-endpoints-and-adapters.md` to define endpoint schemas, transport, and fallback behavior.
 - Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
 
 ## Domain Tool Packet Library
 
-- Use scenario packets in ../_shared/references/domain-tool-packet-library.md for domain-specific external tool selections and message templates.
+- Use scenario packets in `../_shared/references/domain-tool-packet-library.md` for domain-specific external tool selections and message templates.
 - Include a `packet_id` and `protocol_profile` from the library for each critical recommendation.
 - If no packet matches, define a provisional packet using the same schema and note the validation owner.
 
 ## Domain Data Contract
 
-- Use mapping guidance in ../_shared/references/joint-mission-data-contracts.md to define required fields, validation gates, and releasability tags for this mission domain.
+- Use mapping guidance in `../_shared/references/joint-mission-data-contracts.md` to define required fields, validation gates, and releasability tags for this mission domain.
 - Ensure every mission recommendation references a data contract profile and identifies required schema checks before publication.
 
 ## Operational Learning Loop
@@ -144,15 +144,7 @@ Primary products for this skill: AAR findings report, corrective action tracker,
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-09, Automation Expansion Addendum)
 
-## Domain Toolchain Override (2026-03-09, Escalation and Infrastructure Assurance Addendum)
-
-- Prioritize `tool_suite_id=ts-disinformation-kinetic-escalation-warning-v1` + `protocol_stack_id=ps-disinformation-kinetic-escalation-warning-stack-v1` when AAR scope includes narrative activity that preceded force-protection or kinetic incidents.
-- Prioritize `tool_suite_id=ts-dual-use-port-cyber-unified-command-v1` + `protocol_stack_id=ps-dual-use-port-cyber-unified-command-stack-v1` when AAR scope includes deployment disruption from dual-use port OT/IT compromise.
-- Add `packet_id=DPL-DISINFORMATION-KINETIC-ESCALATION-001` and `packet_id=DPL-DUAL-USE-PORT-CYBER-UNIFIED-COMMAND-001` when corrective actions require cross-command incident synchronization.
-
-## Domain Toolchain Override (2026-03-09, Polar Logistics and Fuel Integrity Addendum)
-
-- Prioritize `tool_suite_id=ts-antarctic-logistics-treaty-compliance-v1` + `protocol_stack_id=ps-antarctic-logistics-treaty-compliance-stack-v1` when AAR scope includes coalition polar sustainment, treaty obligations, and environmental compliance under contested access.
-- Prioritize `tool_suite_id=ts-fuel-adulteration-vehicle-protection-v1` + `protocol_stack_id=ps-fuel-adulteration-vehicle-protection-stack-v1` when AAR scope includes unexplained mobility degradation, contamination alerts, or suspected fuel sabotage.
-- Add `packet_id=DPL-ANTARCTIC-LOGISTICS-TREATY-COMPLIANCE-001` and `packet_id=DPL-FUEL-ADULTERATION-VEHICLE-PROTECTION-001` when corrective actions require treaty-safe sustainment controls or fleet fuel-integrity countermeasures.
+- Prioritize tool_suite_id=ts-electro-optical-decoy-audit-v1 + protocol_stack_id=ps-electro-optical-decoy-audit-stack-v1 when force protection posture depends on validating decoy efficacy against evolving sensor kill chains.
+- Add packet_id=DPL-ELECTRO-OPTICAL-DECOY-AUDIT-001 for recommendation branches that alter decoy placement, emissions posture, or deception release authority.

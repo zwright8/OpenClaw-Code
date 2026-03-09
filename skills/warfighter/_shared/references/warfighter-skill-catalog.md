@@ -884,3 +884,25 @@ Every skill output should include:
 - Seabed tamper repair + naval undersea cable protection and restoration + maritime operations planner + coalition legal interoperability
 - Disinformation-to-kinetic warning + information integrity and attribution + strategic indications and warning + campaign assessment cell
 - Dual-use port cyber unified command + strategic port cyber resilience + deployment/distribution optimizer + DSCA crisis support
+
+## New Expansion Wave (2026-03-09, Polar Sustainment, Deception Assurance, and Infrastructure Integrity)
+
+- joint-stratospheric-balloon-isr-reconstitution-cell
+- coalition-antarctic-logistics-and-treaty-compliance-cell
+- theater-fuel-adulteration-detection-and-vehicle-protection-cell
+- tactical-electro-optical-decoy-effectiveness-auditor-cell
+- strategic-veteran-medical-surge-transition-cell
+- contested-geothermal-power-node-security-cell
+- joint-denied-terrain-avalanche-route-and-rescue-cell
+- coalition-autonomous-maritime-traffic-separation-and-liability-cell
+
+## Updated Pairings (2026-03-09, Polar Sustainment, Deception Assurance, and Infrastructure Integrity)
+
+- Stratospheric ISR reconstitution + all-source collection management board + tactical cloud edge compute orchestrator + mission data link management
+- Antarctic logistics and treaty compliance + arctic maritime air corridor deconfliction + coalition interoperability coordinator + legal-ROE compliance checker
+- Fuel adulteration detection and fleet protection + contested logistics sustainment + munitions and fuel convoy signature suppression + maintenance readiness manager
+- EO and IR decoy effectiveness auditing + survivability camouflage deception planner + electromagnetic signature lifecycle management + force protection and base defense
+- Veteran medical surge transition + casualty evacuation and medical regulation + strategic reserve component medical readiness surge + personnel replacement reconstitution planner
+- Geothermal node security + operational energy resilience and microgrid + cyber-physical infrastructure defense + infrastructure priority-of-life restoration
+- Denied terrain avalanche route and rescue + mountain warfare planner + contested medevac airbridge prioritization + weather-space-weather effects forecasting
+- Autonomous maritime traffic separation and liability + maritime operations planner + coalition electronic order of battle sharing + coalition legal attribution workflows

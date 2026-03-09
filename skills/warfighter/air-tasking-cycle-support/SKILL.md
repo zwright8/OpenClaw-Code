@@ -161,3 +161,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-aerial-refuel-gps-denied-v1` + `protocol_stack_id=ps-aerial-refuel-gps-denied-stack-v1` when ATO frag updates include tanker-receiver rendezvous under PNT degradation.
 - Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when sortie survivability depends on rapid EW mission-data release.
 - Add `packet_id=DPL-AERIAL-REFUEL-GPS-DENIED-001` and `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` for ATO branches that alter launch windows, escort plans, or strike timing.
+
+## Domain Toolchain Override (2026-03-09, Balloon ISR and Avalanche Corridor Addendum)
+
+- Prioritize `tool_suite_id=ts-stratospheric-balloon-isr-reconstitution-v1` + `protocol_stack_id=ps-stratospheric-balloon-isr-reconstitution-stack-v1` when ATO updates depend on restoring ISR relay persistence for strike timing, tanker routing, or personnel recovery windows.
+- Prioritize `tool_suite_id=ts-denied-terrain-avalanche-route-rescue-v1` + `protocol_stack_id=ps-denied-terrain-avalanche-route-rescue-stack-v1` when air mobility, CASEVAC, or rescue launch windows depend on mountain avalanche corridor viability.
+- Add `packet_id=DPL-STRATOSPHERIC-BALLOON-ISR-RECONSTITUTION-001` and `packet_id=DPL-DENIED-TERRAIN-AVALANCHE-ROUTE-RESCUE-001` for ATO branches that change route profiles, on-station persistence, or rescue sequencing.

@@ -4940,3 +4940,91 @@ validation_gates:
 - output_schema: unified command action plan, force-flow continuity matrix, phased recovery gates
 - protocol_profile: NIMS/ICS + USMTF + STIX/TAXII + AIS/NMEA + API/JSON
 - validation_gates: incident containment status, safety gate checks, command authority acknowledgment
+
+### packet_id: DPL-STRATOSPHERIC-BALLOON-ISR-RECONSTITUTION-001
+- domain: stratospheric ISR balloon network reconstitution
+- objective: restore high-altitude ISR persistence and relay continuity after attrition, drift, or attack
+- primary_tools: balloon fleet telemetry fusion, payload retasking planner, relay continuity board
+- alternate_tools: manual coverage-gap board and conservative relaunch sequence worksheet
+- degraded_mode: critical ISR lanes only with preplanned relay priorities
+- input_requirements: balloon health states, payload availability, weather drift model, ISR priority map
+- output_schema: relaunch sequence order, ISR recovery matrix, relay fallback branch ladder
+- protocol_profile: USMTF + CoT + OGC + API/JSON
+- validation_gates: launch safety pass, coverage restoration threshold, commander approval
+
+### packet_id: DPL-ANTARCTIC-LOGISTICS-TREATY-COMPLIANCE-001
+- domain: coalition Antarctic sustainment and treaty compliance
+- objective: maintain mission sustainment while preserving treaty restrictions, environmental safety, and partner coordination
+- primary_tools: polar logistics scheduler, treaty compliance rules engine, weather window board
+- alternate_tools: manual protected-area routing board and legal liaison log
+- degraded_mode: essential sustainment missions only with enhanced legal review
+- input_requirements: cargo priorities, protected-zone maps, weather forecasts, treaty caveats, partner capabilities
+- output_schema: treaty-safe route plan, sustainment timeline, compliance exception queue
+- protocol_profile: USMTF + NIMS/ICS + OGC + API/JSON
+- validation_gates: treaty conformance pass, environmental safety gate, coalition concurrence
+
+### packet_id: DPL-FUEL-ADULTERATION-VEHICLE-PROTECTION-001
+- domain: contested fuel integrity and fleet protection
+- objective: detect contaminated fuel, quarantine affected lots, and protect vehicle readiness
+- primary_tools: fuel assay anomaly detector, lot custody tracker, fleet degradation monitor
+- alternate_tools: manual sample chain and emergency clean-fuel dispatch worksheet
+- degraded_mode: mission-critical platforms only with strict fuel source restrictions
+- input_requirements: fuel assay readings, lot provenance records, vehicle failure trends, route availability
+- output_schema: contamination confidence ladder, quarantine and reroute order, platform operating limits matrix
+- protocol_profile: USMTF + API/JSON + XML + NATO APP-11/ADatP-3
+- validation_gates: contamination threshold pass, lot custody integrity, command risk acceptance
+
+### packet_id: DPL-ELECTRO-OPTICAL-DECOY-AUDIT-001
+- domain: tactical EO and IR decoy effectiveness
+- objective: assess decoy performance and retune deception posture against adversary sensors
+- primary_tools: decoy signature analyzer, sensor exposure fusion board, deception placement optimizer
+- alternate_tools: manual red-cell replay review and camouflage confidence worksheet
+- degraded_mode: high-value target decoy sets only with conservative placement controls
+- input_requirements: decoy placement data, sensor detections, strike near-miss events, terrain and weather context
+- output_schema: effectiveness scorecard, retuning recommendation packet, emissions and placement branch options
+- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
+- validation_gates: detection-reduction threshold pass, fratricide safety check, commander concurrence
+
+### packet_id: DPL-VETERAN-MEDICAL-SURGE-TRANSITION-001
+- domain: DoD-to-veteran medical surge transition
+- objective: prioritize safe patient transfer and continuity of care from military treatment to veteran care systems
+- primary_tools: patient transition broker, specialty bed matcher, continuity risk tracker
+- alternate_tools: manual patient movement board and paper handoff checklist
+- degraded_mode: highest-acuity transfer categories only with enhanced callback checks
+- input_requirements: patient acuity roster, specialty bed availability, transport capacity, follow-up constraints
+- output_schema: transfer priority matrix, bed-matching decisions, continuity risk mitigation plan
+- protocol_profile: HL7/FHIR + USMTF + API/JSON + NIEM
+- validation_gates: record integrity pass, destination capability check, authority approval
+
+### packet_id: DPL-GEOTHERMAL-POWER-NODE-SECURITY-001
+- domain: contested geothermal power node security
+- objective: protect geothermal production and restore mission-critical power loads after disruption
+- primary_tools: geothermal telemetry fusion, ICS anomaly correlator, restoration priority planner
+- alternate_tools: manual plant status board and utility dispatch worksheet
+- degraded_mode: mission-essential load restoration only with hourly risk review
+- input_requirements: generation status, ICS alerts, critical load priorities, repair crew readiness
+- output_schema: security posture report, restoration sequence, load islanding and reintegration triggers
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: safety interlock verification, mission-load preservation pass, authority concurrence
+
+### packet_id: DPL-DENIED-TERRAIN-AVALANCHE-ROUTE-RESCUE-001
+- domain: denied-terrain avalanche route and rescue control
+- objective: preserve mountain mobility while sequencing rescue under avalanche threat and comm degradation
+- primary_tools: avalanche hazard fusion, route viability engine, rescue launch scheduler
+- alternate_tools: manual hazard board and convoy timing card
+- degraded_mode: critical-route convoy windows only with preplanned rescue contingencies
+- input_requirements: snowpack stability data, weather trends, route usage priorities, rescue asset status
+- output_schema: route risk board, closure and reroute directive, rescue synchronization packet
+- protocol_profile: USMTF + VMF + CoT + OGC + API/JSON
+- validation_gates: hazard threshold pass, rescue asset readiness check, command approval
+
+### packet_id: DPL-AUTONOMOUS-MARITIME-TRAFFIC-LIABILITY-001
+- domain: coalition autonomous maritime traffic separation and liability
+- objective: deconflict crewed and autonomous vessels while preserving evidentiary quality for post-incident liability action
+- primary_tools: autonomous lane manager, collision predictor, legal evidence custody ledger
+- alternate_tools: manual traffic separation board and incident chronology worksheet
+- degraded_mode: mission-priority vessel lanes only with restricted autonomy behaviors
+- input_requirements: vessel tracks, autonomy mode states, chokepoint restrictions, legal policy constraints
+- output_schema: lane assignment order, autonomy constraint directives, liability evidence packet
+- protocol_profile: AIS/NMEA + USMTF + STIX/TAXII + API/JSON + NATO APP-11/ADatP-3
+- validation_gates: separation safety threshold pass, custody chain integrity, coalition legal concurrence

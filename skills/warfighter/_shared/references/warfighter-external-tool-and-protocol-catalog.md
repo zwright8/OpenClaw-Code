@@ -4807,3 +4807,85 @@ external_binding:
 ### `ps-dual-use-port-cyber-unified-command-stack-v1`
 - Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, `AIS/NMEA`, `API/JSON`.
 - Use for: dual-use port cyber incident command with military-civil throughput continuity.
+
+## Expansion Addendum (2026-03-09, Polar Sustainment, Deception Assurance, and Infrastructure Integrity)
+
+### `ts-stratospheric-balloon-isr-reconstitution-v1`
+- Use for: rapid reconstitution of stratospheric ISR balloon constellations, payload retasking, and comms-relay continuity.
+- Primary tools: balloon fleet health telemetry, payload retasking planner, high-altitude comms relay scheduler.
+- Cross-check tools: independent weather-drift predictor and alternate ISR gap-corroboration board.
+- Typical products: balloon relaunch priority board, ISR coverage recovery matrix, relay continuity branch plan.
+
+### `ts-antarctic-logistics-treaty-compliance-v1`
+- Use for: coalition Antarctic sustainment planning with treaty-safe routing, fuel accountability, and environmental constraint enforcement.
+- Primary tools: polar logistics scheduler, treaty compliance rule engine, weather-window mission board.
+- Cross-check tools: independent protected-area boundary verifier and alternate coalition legal review queue.
+- Typical products: treaty-safe sustainment plan, protected-zone transit register, contingency resupply ladder.
+
+### `ts-fuel-adulteration-vehicle-protection-v1`
+- Use for: detection of adulterated fuel lots, quarantine decisions, and platform protection sequencing.
+- Primary tools: fuel assay anomaly detector, lot provenance tracker, fleet degradation monitor.
+- Cross-check tools: independent lab-chain ledger and alternate maintenance trend validator.
+- Typical products: contaminated-lot quarantine order, fleet operating restrictions matrix, clean-fuel reroute plan.
+
+### `ts-electro-optical-decoy-audit-v1`
+- Use for: evaluating EO and IR decoy effectiveness and retuning deception posture against dynamic adversary sensing.
+- Primary tools: decoy signature effectiveness analyzer, sensor exposure fusion board, deception placement optimizer.
+- Cross-check tools: independent red-cell sensor replay and alternate camouflage confidence adjudication board.
+- Typical products: decoy effectiveness scorecard, retuning recommendations, emissions and placement branch options.
+
+### `ts-veteran-medical-surge-transition-v1`
+- Use for: synchronized DoD-to-VA transfer planning during sustained casualty surges and specialty-care bottlenecks.
+- Primary tools: patient transition broker, specialty bed-matching engine, continuity-of-care tracker.
+- Cross-check tools: independent medical record reconciliation queue and alternate family-notification audit board.
+- Typical products: transition priority matrix, specialty-care transfer board, continuity risk mitigation plan.
+
+### `ts-geothermal-power-node-security-v1`
+- Use for: geothermal node hardening, anomaly triage, and phased restoration of mission-critical loads.
+- Primary tools: geothermal plant telemetry fusion, ICS anomaly correlator, mission-load restoration planner.
+- Cross-check tools: independent turbine-state verifier and alternate utility dispatch integrity board.
+- Typical products: geothermal security posture brief, restoration ladder, islanding and reintegration sequence.
+
+### `ts-denied-terrain-avalanche-route-rescue-v1`
+- Use for: avalanche-threat route assurance, convoy reroute control, and denied-terrain rescue synchronization.
+- Primary tools: avalanche hazard forecast fusion, route viability engine, rescue force scheduler.
+- Cross-check tools: independent snowpack stress validator and alternate mountain weather mission board.
+- Typical products: route risk matrix, closure and reroute order, rescue launch timing packet.
+
+### `ts-autonomous-maritime-traffic-liability-v1`
+- Use for: coalition separation of autonomous and crewed maritime traffic with evidentiary-grade incident logging.
+- Primary tools: autonomous vessel lane manager, collision risk predictor, legal evidence custody ledger.
+- Cross-check tools: independent AIS behavior adjudicator and alternate maritime legal review board.
+- Typical products: traffic separation order, collision liability packet, autonomy constraint matrix.
+
+### `ps-stratospheric-balloon-isr-reconstitution-stack-v1`
+- Protocols: `USMTF`, `CoT`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: stratospheric ISR payload retasking, relay continuity events, and cross-domain ISR coverage updates.
+
+### `ps-antarctic-logistics-treaty-compliance-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: coalition polar sustainment messaging, treaty compliance status exchange, and severe-weather route revalidation.
+
+### `ps-fuel-adulteration-vehicle-protection-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `XML`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: fuel integrity alerting, quarantine tasking, and fleet protection directives.
+
+### `ps-electro-optical-decoy-audit-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `API/JSON`.
+- Use for: decoy-effectiveness telemetry exchange and deception retuning tasking.
+
+### `ps-veteran-medical-surge-transition-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`, `NIEM`.
+- Use for: surge military-to-veteran medical transfer coordination and continuity-of-care assurance.
+
+### `ps-geothermal-power-node-security-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: geothermal ICS security operations and mission-load restoration synchronization.
+
+### `ps-denied-terrain-avalanche-route-rescue-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: avalanche route risk dissemination, rescue tasking, and mountain mobility coordination.
+
+### `ps-autonomous-maritime-traffic-liability-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `STIX/TAXII`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: autonomous maritime separation commands, incident attribution, and coalition liability reporting.

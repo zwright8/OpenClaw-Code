@@ -419,3 +419,61 @@ For each critical recommendation, include:
 - Cross-check tools: independent logistics mirror and cyber forensic triage queue.
 - Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, `AIS/NMEA`, `API/JSON`.
 - Degraded fallback: ICS manual command board with protected military movement lane prioritization.
+
+## Profile Set (2026-03-09 Domain Expansion - Polar Sustainment, Deception Assurance, and Infrastructure Integrity)
+
+### `stratospheric-balloon-isr-reconstitution-v1`
+- Use for stratospheric ISR balloon persistence recovery after attrition, weather displacement, or adversary disruption.
+- Primary tools: balloon fleet telemetry dashboard, payload retasking planner, relay continuity orchestrator.
+- Cross-check tools: independent weather-drift model and alternate ISR coverage validator.
+- Protocols: `USMTF`, `CoT`, `OGC`, `API/JSON`.
+- Degraded fallback: critical ISR coverage bands only with pre-approved relaunch priorities.
+
+### `antarctic-logistics-treaty-compliance-v1`
+- Use for coalition Antarctic sustainment planning with treaty-safe routing and severe-weather branch control.
+- Primary tools: polar sustainment scheduler, treaty compliance policy engine, weather-window operations board.
+- Cross-check tools: independent protected-area boundary verifier and coalition legal review queue.
+- Protocols: `USMTF`, `NIMS/ICS`, `OGC`, `API/JSON`.
+- Degraded fallback: life-safety and mission-essential sustainment with strict legal gate checks.
+
+### `fuel-adulteration-vehicle-protection-v1`
+- Use for contamination detection, lot quarantine, and platform operating-limit controls in contested fuel networks.
+- Primary tools: fuel assay anomaly analytics, lot provenance graph, fleet degradation monitor.
+- Cross-check tools: independent lab-chain validator and alternate maintenance trend monitor.
+- Protocols: `USMTF`, `API/JSON`, `XML`, `NATO APP-11/ADatP-3`.
+- Degraded fallback: approved-source fuel only and restricted platform employment.
+
+### `electro-optical-decoy-audit-v1`
+- Use for EO and IR decoy effectiveness review and deception retuning against evolving sensor threats.
+- Primary tools: decoy effectiveness scorer, sensor exposure fusion dashboard, deception optimizer.
+- Cross-check tools: independent red-cell replay service and alternate camouflage confidence board.
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `API/JSON`.
+- Degraded fallback: high-value-target decoy packages only with conservative release authority.
+
+### `veteran-medical-surge-transition-v1`
+- Use for synchronized DoD-to-veteran medical transitions during casualty surge conditions.
+- Primary tools: patient transition broker, specialty bed matcher, continuity-of-care tracker.
+- Cross-check tools: independent record reconciliation queue and family-notification audit board.
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`, `NIEM`.
+- Degraded fallback: highest-acuity transfer classes only with intensified handoff verification.
+
+### `geothermal-power-node-security-v1`
+- Use for geothermal generation-node protection and mission-load restoration in cyber/kinetic contested conditions.
+- Primary tools: geothermal ICS telemetry fusion, anomaly triage engine, restoration planner.
+- Cross-check tools: independent plant-state verifier and utility dispatch integrity board.
+- Protocols: `NIMS/ICS`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: mission-critical load restoration only with manual plant controls.
+
+### `denied-terrain-avalanche-route-rescue-v1`
+- Use for avalanche-threat route assurance and rescue sequencing in mountain terrain with degraded communications.
+- Primary tools: avalanche hazard fusion board, route viability engine, rescue launch scheduler.
+- Cross-check tools: independent snowpack stress validator and alternate weather-risk board.
+- Protocols: `USMTF`, `VMF`, `CoT`, `OGC`, `API/JSON`.
+- Degraded fallback: preauthorized critical routes only and bounded rescue launch windows.
+
+### `autonomous-maritime-traffic-liability-v1`
+- Use for coalition crewed-uncrewed maritime separation and evidentiary-quality liability management.
+- Primary tools: autonomous lane manager, collision predictor, maritime legal evidence ledger.
+- Cross-check tools: independent AIS anomaly adjudication and coalition legal review board.
+- Protocols: `AIS/NMEA`, `USMTF`, `STIX/TAXII`, `API/JSON`, `NATO APP-11/ADatP-3`.
+- Degraded fallback: mission-priority lanes only with restricted autonomous behavior profiles.

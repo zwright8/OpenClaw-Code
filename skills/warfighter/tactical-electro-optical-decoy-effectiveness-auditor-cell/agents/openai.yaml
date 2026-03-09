@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tactical Electro Optical Decoy Effectiveness Auditor Cell"
+  short_description: "Help audit EO and IR decoy effectiveness"
