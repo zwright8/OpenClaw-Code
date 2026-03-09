@@ -150,3 +150,10 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain-Specific Tool and Protocol Baseline
+
+- Default `tool_suite_id`: `ts-fires-airspace-v1` with supporting cross-check from `ts-killchain-time-coherence-v1`.
+- Default `protocol_stack_id`: `ps-joint-tactical-link-stack-v1` with timing fallback to `ps-killchain-time-coherence-stack-v1`.
+- Recommended external tools: TBMCS/JADOCS mission products, Link 16 track-quality monitors, tanker availability boards, and IADS emitter status feeds.
+- Required protocol families: `Link 16 J-series`, `VMF`, `USMTF`, and `NATO APP-11`.
+- Required packet fields for strike recommendations: `time_on_target_utc`, `timing_confidence`, `deconfliction_id`, `authority_tier`, `approval_role`, and `ack_chain_status`.

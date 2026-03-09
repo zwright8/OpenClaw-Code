@@ -2186,3 +2186,183 @@ external_binding:
 - Messaging: USMTF timing advisories + Link 16 J-series + API/JSON timing integrity events.
 - Transport: resilient timing distribution mesh + mission network replication + holdover fallback mode.
 - Security: cryptographic time-source attestations + timing anomaly audit chain + authority-tier release checks.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Deep Sustainment, AI Integrity, and Optical Contested Comms)
+
+### `ts-littoral-hydrogen-sustainment-v1`
+- Use for: contested littoral hydrogen generation, storage safety, and fuel-cell sustainment planning.
+- Primary tools: hydrogen plant telemetry, cryogenic storage monitor, maritime sustainment planner.
+- Cross-check tools: independent purity assay workflow and alternate harbor throughput risk board.
+- Typical products: hydrogen sustainment posture, contamination trigger matrix, refuel branch plan.
+
+### `ts-directed-energy-power-management-v1`
+- Use for: power and thermal orchestration for directed-energy air defense nodes in sustained raids.
+- Primary tools: directed-energy duty-cycle manager, microgrid dispatch board, thermal envelope analytics.
+- Cross-check tools: independent generator stress monitor and alternate raid-load forecast board.
+- Typical products: shot budget matrix, thermal exceedance ladder, power reallocation order.
+
+### `ts-quantum-submarine-countermeasure-v1`
+- Use for: quantum and classical sensing fusion for submarine tracking and deception adjudication.
+- Primary tools: undersea sensor fusion graph, acoustic propagation model, ASW prosecution planner.
+- Cross-check tools: independent sonar confidence replay and alternate oceanographic anomaly board.
+- Typical products: contact confidence ledger, decoy adjudication packet, prosecution cue timeline.
+
+### `ts-denied-medevac-blood-substitute-v1`
+- Use for: denied-environment casualty regulation with scarce blood and oxygen-carrier substitutes.
+- Primary tools: patient regulation broker, blood substitute inventory board, medevac route survivability planner.
+- Cross-check tools: independent triage severity review and alternate bed-capacity federation mirror.
+- Typical products: casualty priority board, blood-substitute allocation ladder, medevac branch triggers.
+
+### `ts-radhard-microelectronics-policy-v1`
+- Use for: strategic sparing policy for radiation-tolerant microelectronics supporting NC3 and weapons sustainment.
+- Primary tools: rad-hard component provenance ledger, lifecycle test evidence manager, depot sparing optimizer.
+- Cross-check tools: independent parts authenticity verifier and alternate mission-impact substitution board.
+- Typical products: sparing policy memo, substitution authority matrix, risk-ranked shortage forecast.
+
+### `ts-cyber-em-deception-targeting-v1`
+- Use for: coordinated cyber and electromagnetic deception shaping adversary kill-chain sensing.
+- Primary tools: EW deception planner, cyber effects orchestration board, adversary sensor model.
+- Cross-check tools: independent indicator validation cell and alternate deception effectiveness ledger.
+- Typical products: deception sequence card, timing synchronization order, adversary miscue confidence map.
+
+### `ts-expeditionary-droneport-dispersal-v1`
+- Use for: droneport dispersal, relocation, and survivable launch-recovery sequencing under strike risk.
+- Primary tools: UAS launch slot scheduler, expeditionary airfield condition tracker, relocation route planner.
+- Cross-check tools: independent runway/FARP survivability monitor and alternate weather-go/no-go service.
+- Typical products: dispersion layout, launch conflict deconfliction board, relocation trigger matrix.
+
+### `ts-laser-comms-weather-gating-v1`
+- Use for: optical space-ground communications windowing with weather and obscurant gating.
+- Primary tools: optical link planner, cloud/visibility nowcast service, gateway health telemetry.
+- Cross-check tools: independent orbital geometry replay and alternate RF fallback readiness board.
+- Typical products: optical window schedule, fallback trigger card, throughput confidence report.
+
+### `ts-coalition-fires-voice-fallback-v1`
+- Use for: coalition fires coordination assurance during digital-link degradation via voice fallback drills.
+- Primary tools: fires voice-readback logger, brevity-code validation board, language assurance workflow.
+- Cross-check tools: independent call-sign compliance monitor and alternate digital clearance reconciliation board.
+- Typical products: voice fallback playbook, brevity drift report, authorization call-card set.
+
+### `ts-additive-propellant-quality-surveillance-v1`
+- Use for: quality and safety surveillance for additive propellant and explosive production lines.
+- Primary tools: propellant line instrumentation, spectroscopy quality analyzer, lot release workflow manager.
+- Cross-check tools: independent explosive stability board and alternate ammo-lot anomaly monitor.
+- Typical products: lot release confidence packet, stop-production trigger ladder, safety exception register.
+
+### `ts-rare-earth-magnet-recycling-surge-v1`
+- Use for: surge planning for recycled rare-earth magnet feedstock in defense production lines.
+- Primary tools: feedstock assay pipeline, industrial recycling throughput dashboard, supplier risk engine.
+- Cross-check tools: independent purity verification workflow and alternate production impact estimator.
+- Typical products: recycling allocation plan, feedstock confidence map, continuity branch options.
+
+### `ts-farp-water-fuel-hazard-v1`
+- Use for: forward arming/rearming hazard management for water, fuel, and fire-risk control.
+- Primary tools: fuel contamination analyzer, water treatment monitor, FARP hazard control board.
+- Cross-check tools: independent sample-chain audit and alternate CBRN contamination corroboration feed.
+- Typical products: FARP hazard posture card, contamination response matrix, fueling go/no-go ladder.
+
+### `ts-mission-model-poisoning-recovery-v1`
+- Use for: mission AI model poisoning detection, rollback governance, and trusted recovery paths.
+- Primary tools: model lineage and drift monitor, attested model registry, rollback authority workflow.
+- Cross-check tools: independent benchmark replay harness and alternate policy exception ledger.
+- Typical products: poisoning incident packet, rollback decision tree, retraining provenance summary.
+
+### `ts-mission-ledger-disconnected-audit-v1`
+- Use for: zero-trust mission ledger integrity and disconnected audit reconciliation across partitions.
+- Primary tools: signed action ledger, identity governance audit service, delayed-sync reconciliation queue.
+- Cross-check tools: independent privilege drift detector and alternate endpoint trust-state mirror.
+- Typical products: disconnected audit report, privilege exception board, reconciliation suspense list.
+
+### `ts-subsea-geothermal-power-denial-v1`
+- Use for: subsea sensor power continuity under cable denial using geothermal and hybrid alternatives.
+- Primary tools: subsea power telemetry, geothermal node management console, UUV inspection planner.
+- Cross-check tools: independent cable fault localization service and alternate sensor duty-cycle optimizer.
+- Typical products: power continuity map, reroute-versus-repair decision matrix, sensor degradation ladder.
+
+### `ts-medical-oxygen-plant-resilience-v1`
+- Use for: deployed oxygen generation resilience and distribution continuity under kinetic/cyber disruption.
+- Primary tools: oxygen plant health telemetry, biomedical maintenance scheduler, hospital demand forecaster.
+- Cross-check tools: independent cylinder chain verifier and alternate transport route risk board.
+- Typical products: oxygen resilience plan, redistribution priority matrix, outage response branch triggers.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Deep Sustainment, AI Integrity, and Optical Contested Comms)
+
+### `ps-littoral-hydrogen-sustainment-stack-v1`
+- Messaging: USMTF + API/JSON plant telemetry + OGC maritime overlays.
+- Transport: littoral sustainment data bus + harbor logistics exchange + delayed-sync fallback.
+- Security: signed purity reports + hazard release dual-check + immutable resupply event chain.
+
+### `ps-directed-energy-power-management-stack-v1`
+- Messaging: Link 16 J-series + API/JSON power telemetry + USMTF defense posture updates.
+- Transport: IAMD battle-network + base microgrid control exchange + low-bandwidth fallback path.
+- Security: role-scoped shot authorization + signed thermal thresholds + acknowledgment-chain logging.
+
+### `ps-quantum-submarine-countermeasure-stack-v1`
+- Messaging: Link 16 J-series + NMEA + API/JSON undersea confidence events.
+- Transport: maritime ASW mission network + acoustic model exchange + disconnected patrol fallback.
+- Security: signed contact confidence metadata + dual-source corroboration gates + immutable prosecution timeline.
+
+### `ps-denied-medevac-blood-substitute-stack-v1`
+- Messaging: HL7/FHIR + USMTF + API/JSON medevac status updates.
+- Transport: theater medical exchange + patient movement bus + low-bandwidth contingency sync.
+- Security: medical role authorization + patient minimization rules + signed transfer acknowledgments.
+
+### `ps-radhard-microelectronics-policy-stack-v1`
+- Messaging: STIX/TAXII + CycloneDX SBOM + API/JSON sustainment advisories.
+- Transport: industrial-base assurance bus + depot readiness exchange + offline reconciliation path.
+- Security: signed provenance attestations + release authority gates + immutable lot decision log.
+
+### `ps-cyber-em-deception-targeting-stack-v1`
+- Messaging: STIX/TAXII + VMF + Link 16 J-series deception updates.
+- Transport: cyber mission fabric + EW planning network + delayed-sync courier fallback.
+- Security: dual-approval deception release + signed effect packets + audit-linked acknowledgment ledger.
+
+### `ps-expeditionary-droneport-dispersal-stack-v1`
+- Messaging: STANAG 4586 + CoT + API/JSON launch and relocation events.
+- Transport: UAS traffic management mesh + expeditionary airfield C2 + voice/readback fallback.
+- Security: signed launch authorization + geofence integrity checks + immutable sortie event log.
+
+### `ps-laser-comms-weather-gating-stack-v1`
+- Messaging: CCSDS + API/JSON weather gating events + USMTF comms advisories.
+- Transport: optical gateway exchange + SATCOM fallback network + constrained-bandwidth backup channel.
+- Security: signed link-state attestations + weather confidence scoring + dual-approval failover release.
+
+### `ps-coalition-fires-voice-fallback-stack-v1`
+- Messaging: NATO APP-11 + VMF + ACP 125 voice fallback records.
+- Transport: coalition fires coordination bus + tactical voice nets + delayed digital reconciliation path.
+- Security: coalition releasability tagging + call-sign authentication + immutable readback audit trail.
+
+### `ps-additive-propellant-quality-surveillance-stack-v1`
+- Messaging: ISA-95 B2MML + API/JSON lot telemetry + USMTF safety advisories.
+- Transport: additive manufacturing network + explosive safety exchange + disconnected QA fallback.
+- Security: signed lot evidence packets + stop-line authority gates + immutable release audit chain.
+
+### `ps-rare-earth-magnet-recycling-surge-stack-v1`
+- Messaging: EDIFACT + API/JSON assay updates + NIEM sustainment exchanges.
+- Transport: industrial recovery coordination bus + logistics data exchange + batch fallback ingest.
+- Security: signed assay provenance + supplier trust-score gating + acknowledgment-tracked allocation releases.
+
+### `ps-farp-water-fuel-hazard-stack-v1`
+- Messaging: USMTF + CoT + HL7/FHIR force-health risk updates.
+- Transport: FARP ops network + fuel/water telemetry exchange + manual readback fallback.
+- Security: signed sample-chain records + commander release gate + immutable hazard incident log.
+
+### `ps-mission-model-poisoning-recovery-stack-v1`
+- Messaging: in-toto/Sigstore attestations + STIX/TAXII + API/JSON rollback events.
+- Transport: MLOps mission enclave + model registry replication + disconnected signed-package fallback.
+- Security: cryptographic model lineage proofs + dual-approval rollback authority + immutable audit ledger.
+
+### `ps-mission-ledger-disconnected-audit-stack-v1`
+- Messaging: CBOR/COSE signed ledger events + OpenID Connect claims + SCIM identity deltas.
+- Transport: zero-trust mission mesh + gateway sync queues + store-and-forward contingency path.
+- Security: signed action records + privilege drift threshold gating + acknowledgment integrity checks.
+
+### `ps-subsea-geothermal-power-denial-stack-v1`
+- Messaging: NMEA 2000 + DDS + API/JSON power telemetry.
+- Transport: subsea sensor mesh + maritime energy exchange + delayed UUV sync fallback.
+- Security: signed power-state attestations + tamper-evident fault chronology + repair authority checkpoints.
+
+### `ps-medical-oxygen-plant-resilience-stack-v1`
+- Messaging: HL7/FHIR + DICOM + API/JSON plant status advisories.
+- Transport: medical logistics exchange + hospital demand bus + low-bandwidth contingency channel.
+- Security: biomedical role-based access + signed maintenance events + immutable transfer acknowledgment chain.
