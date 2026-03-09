@@ -957,6 +957,122 @@ test('metrics expose bulkhead in-flight state per target', async () => {
     await dispatchPromise;
 });
 
+test('adaptive concurrency can enforce tighter per-target backpressure than configured bulkhead', async () => {
+    const clock = createClock(26_500);
+    let releaseSend = null;
+    const sendGate = new Promise((resolve) => {
+        releaseSend = resolve;
+    });
+    let sendCount = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount === 1) {
+                    await sendGate;
+                }
+            }
+        },
+        now: clock.now,
+        bulkheadMaxInFlightPerTarget: 10,
+        bulkheadRetryDelayMs: 100,
+        adaptiveConcurrencyEnabled: true,
+        adaptiveConcurrencyInitialLimit: 1,
+        adaptiveConcurrencyMinLimit: 1,
+        adaptiveConcurrencyMaxLimit: 3,
+        adaptiveConcurrencyQueueLowWater: 0,
+        adaptiveConcurrencyQueueHighWater: 1
+    });
+
+    const firstDispatchPromise = orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-concurrency',
+        task: 'Long-running task'
+    });
+
+    await Promise.resolve();
+
+    const deferred = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-concurrency',
+        task: 'Should defer due to adaptive limit'
+    });
+    assert.equal(deferred.status, 'retry_scheduled');
+    assert.equal(deferred.attempts, 0);
+    assert.equal(deferred.nextRetryAt, clock.now() + 100);
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.bulkhead.targets['agent:worker-adaptive-concurrency'].configuredLimit, 10);
+    assert.equal(metrics.retry.bulkhead.targets['agent:worker-adaptive-concurrency'].adaptiveLimit, 1);
+    assert.equal(metrics.retry.adaptiveConcurrency.blockedTotal >= 1, true);
+
+    releaseSend();
+    await firstDispatchPromise;
+});
+
+test('adaptive concurrency increases target limit after low-queue latency samples', async () => {
+    const clock = createClock(26_800);
+    let holdDispatch = false;
+    let heldSendCount = 0;
+    let releaseHeldSend = null;
+    const heldGate = new Promise((resolve) => {
+        releaseHeldSend = resolve;
+    });
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                if (holdDispatch && heldSendCount === 0) {
+                    heldSendCount += 1;
+                    await heldGate;
+                }
+            }
+        },
+        now: clock.now,
+        bulkheadMaxInFlightPerTarget: 10,
+        adaptiveConcurrencyEnabled: true,
+        adaptiveConcurrencyInitialLimit: 1,
+        adaptiveConcurrencyMinLimit: 1,
+        adaptiveConcurrencyMaxLimit: 3,
+        adaptiveConcurrencyQueueLowWater: 0.5,
+        adaptiveConcurrencyQueueHighWater: 2
+    });
+
+    const warmup = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-growth',
+        task: 'Warm up latency sample'
+    });
+    clock.advance(50);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: warmup.taskId,
+        from: 'agent:worker-adaptive-growth',
+        status: 'success',
+        output: 'ok',
+        completedAt: clock.now()
+    }));
+
+    holdDispatch = true;
+    const firstInFlightPromise = orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-growth',
+        task: 'Hold one in-flight slot'
+    });
+    await Promise.resolve();
+
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-growth',
+        task: 'Should still dispatch because adaptive limit increased'
+    });
+
+    assert.equal(second.status, 'dispatched');
+    assert.equal(second.attempts, 1);
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.adaptiveConcurrency.targets['agent:worker-adaptive-growth'].limit >= 2, true);
+    assert.equal(metrics.retry.adaptiveConcurrency.targets['agent:worker-adaptive-growth'].increaseCount >= 1, true);
+
+    releaseHeldSend();
+    await firstInFlightPromise;
+});
+
 test('global bulkhead reserves capacity for high-priority dispatch', async () => {
     const clock = createClock(27_000);
     let sendCount = 0;

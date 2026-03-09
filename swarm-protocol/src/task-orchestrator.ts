@@ -53,6 +53,11 @@ const DEFAULT_HEDGE_ELIGIBLE_PRIORITIES = ['high', 'critical'];
 const DEFAULT_ADAPTIVE_THROTTLE_WINDOW_MS = 30_000;
 const DEFAULT_ADAPTIVE_THROTTLE_MIN_SAMPLES = 10;
 const DEFAULT_ADAPTIVE_THROTTLE_DROP_THRESHOLD = 0.5;
+const DEFAULT_ADAPTIVE_CONCURRENCY_INITIAL_LIMIT = 8;
+const DEFAULT_ADAPTIVE_CONCURRENCY_MIN_LIMIT = 1;
+const DEFAULT_ADAPTIVE_CONCURRENCY_MAX_LIMIT = 64;
+const DEFAULT_ADAPTIVE_CONCURRENCY_LOW_QUEUE = 2;
+const DEFAULT_ADAPTIVE_CONCURRENCY_HIGH_QUEUE = 4;
 const IN_FLIGHT_STATUSES = new Set(['dispatched', 'acknowledged']);
 const HIGH_PRIORITY_TASKS = new Set(['critical', 'high']);
 const PRIORITY_RANK = {
@@ -263,6 +268,12 @@ export class TaskOrchestrator {
         adaptiveThrottleMinSamples = DEFAULT_ADAPTIVE_THROTTLE_MIN_SAMPLES,
         adaptiveThrottleDropThreshold = DEFAULT_ADAPTIVE_THROTTLE_DROP_THRESHOLD,
         adaptiveThrottleBypassPriorities = ['high', 'critical'],
+        adaptiveConcurrencyEnabled = false,
+        adaptiveConcurrencyInitialLimit = DEFAULT_ADAPTIVE_CONCURRENCY_INITIAL_LIMIT,
+        adaptiveConcurrencyMinLimit = DEFAULT_ADAPTIVE_CONCURRENCY_MIN_LIMIT,
+        adaptiveConcurrencyMaxLimit = DEFAULT_ADAPTIVE_CONCURRENCY_MAX_LIMIT,
+        adaptiveConcurrencyQueueLowWater = DEFAULT_ADAPTIVE_CONCURRENCY_LOW_QUEUE,
+        adaptiveConcurrencyQueueHighWater = DEFAULT_ADAPTIVE_CONCURRENCY_HIGH_QUEUE,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -459,10 +470,58 @@ export class TaskOrchestrator {
                 .map((priority) => this._classifyTaskPriority(priority))
                 .filter((priority) => PRIORITY_RANK[priority] !== undefined)
         );
+        this.adaptiveConcurrencyEnabled = adaptiveConcurrencyEnabled === true;
+        const requestedAdaptiveMin = Math.max(
+            1,
+            Math.floor(
+                clampPositiveNumber(
+                    adaptiveConcurrencyMinLimit,
+                    DEFAULT_ADAPTIVE_CONCURRENCY_MIN_LIMIT
+                )
+            )
+        );
+        const requestedAdaptiveMax = Math.max(
+            requestedAdaptiveMin,
+            Math.floor(
+                clampPositiveNumber(
+                    adaptiveConcurrencyMaxLimit,
+                    DEFAULT_ADAPTIVE_CONCURRENCY_MAX_LIMIT
+                )
+            )
+        );
+        this.adaptiveConcurrencyMinLimit = requestedAdaptiveMin;
+        this.adaptiveConcurrencyMaxLimit = requestedAdaptiveMax;
+        this.adaptiveConcurrencyInitialLimit = Math.min(
+            this.adaptiveConcurrencyMaxLimit,
+            Math.max(
+                this.adaptiveConcurrencyMinLimit,
+                Math.floor(
+                    clampPositiveNumber(
+                        adaptiveConcurrencyInitialLimit,
+                        DEFAULT_ADAPTIVE_CONCURRENCY_INITIAL_LIMIT
+                    )
+                )
+            )
+        );
+        this.adaptiveConcurrencyQueueLowWater = Math.max(
+            0,
+            clampNonNegativeNumber(
+                adaptiveConcurrencyQueueLowWater,
+                DEFAULT_ADAPTIVE_CONCURRENCY_LOW_QUEUE
+            )
+        );
+        this.adaptiveConcurrencyQueueHighWater = Math.max(
+            this.adaptiveConcurrencyQueueLowWater,
+            clampNonNegativeNumber(
+                adaptiveConcurrencyQueueHighWater,
+                DEFAULT_ADAPTIVE_CONCURRENCY_HIGH_QUEUE
+            )
+        );
         this.retryWindowExhaustedCount = 0;
         this.targetLatencyStats = new Map();
         this.targetOutlierStats = new Map();
         this.targetAdaptiveThrottleStats = new Map();
+        this.targetAdaptiveConcurrencyStats = new Map();
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
@@ -599,6 +658,77 @@ export class TaskOrchestrator {
         state.lastUpdatedAt = at;
         state.timeoutMs = this._computeAdaptiveTimeoutMs(state);
         return state.timeoutMs;
+    }
+
+    _getTargetAdaptiveConcurrencyState(target) {
+        const key = normalizeNonEmptyString(target);
+        if (!key) return null;
+        const existing = this.targetAdaptiveConcurrencyStats.get(key);
+        if (existing) return existing;
+        const baseline = {
+            target: key,
+            limit: this.adaptiveConcurrencyInitialLimit,
+            minRttMs: null,
+            lastRttMs: null,
+            lastQueueEstimate: null,
+            samples: 0,
+            increaseCount: 0,
+            decreaseCount: 0,
+            blockedCount: 0,
+            lastAdjustedAt: null,
+            lastBlockedAt: null
+        };
+        this.targetAdaptiveConcurrencyStats.set(key, baseline);
+        return baseline;
+    }
+
+    _getAdaptiveTargetLimit(target) {
+        if (!this.adaptiveConcurrencyEnabled) return Number.POSITIVE_INFINITY;
+        const state = this._getTargetAdaptiveConcurrencyState(target);
+        if (!state) return Number.POSITIVE_INFINITY;
+        return Math.max(
+            this.adaptiveConcurrencyMinLimit,
+            Math.min(this.adaptiveConcurrencyMaxLimit, Math.floor(state.limit))
+        );
+    }
+
+    _recordAdaptiveConcurrencySample(target, sampleMs, inFlightAtDispatch, nowMs = safeNow(this.now)) {
+        if (!this.adaptiveConcurrencyEnabled) return null;
+        const state = this._getTargetAdaptiveConcurrencyState(target);
+        if (!state) return null;
+        const rttMs = Number(sampleMs);
+        if (!Number.isFinite(rttMs) || rttMs <= 0) return state;
+        const inFlight = Math.max(
+            1,
+            Math.floor(clampPositiveNumber(inFlightAtDispatch, 1))
+        );
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+
+        const previousMinRtt = Number.isFinite(state.minRttMs)
+            ? state.minRttMs
+            : rttMs;
+        const nextMinRtt = Math.min(previousMinRtt, rttMs);
+        const queueEstimate = inFlight * Math.max(0, 1 - (nextMinRtt / rttMs));
+        let nextLimit = state.limit;
+
+        if (queueEstimate > this.adaptiveConcurrencyQueueHighWater) {
+            nextLimit -= 1;
+            state.decreaseCount += 1;
+        } else if (queueEstimate < this.adaptiveConcurrencyQueueLowWater) {
+            nextLimit += 1;
+            state.increaseCount += 1;
+        }
+
+        state.limit = Math.max(
+            this.adaptiveConcurrencyMinLimit,
+            Math.min(this.adaptiveConcurrencyMaxLimit, nextLimit)
+        );
+        state.minRttMs = nextMinRtt;
+        state.lastRttMs = rttMs;
+        state.lastQueueEstimate = queueEstimate;
+        state.samples += 1;
+        state.lastAdjustedAt = at;
+        return state;
     }
 
     _getTargetOutlierState(target) {
@@ -1308,29 +1438,55 @@ export class TaskOrchestrator {
     }
 
     _allowTargetBulkheadSend(target, taskId) {
-        if (!Number.isFinite(this.bulkheadMaxInFlightPerTarget)) {
+        const configuredLimit = Number.isFinite(this.bulkheadMaxInFlightPerTarget)
+            ? this.bulkheadMaxInFlightPerTarget
+            : Number.POSITIVE_INFINITY;
+        const adaptiveLimit = this._getAdaptiveTargetLimit(target);
+        const effectiveLimit = Math.min(configuredLimit, adaptiveLimit);
+
+        if (!Number.isFinite(effectiveLimit)) {
             return {
                 allowed: true,
                 inFlight: 0,
                 limit: Number.POSITIVE_INFINITY,
+                configuredLimit: Number.isFinite(configuredLimit) ? configuredLimit : null,
+                adaptiveLimit: Number.isFinite(adaptiveLimit) ? adaptiveLimit : null,
                 retryAfterMs: 0
             };
         }
 
         const inFlight = this._countTargetInFlight(target, { excludeTaskId: taskId });
-        if (inFlight < this.bulkheadMaxInFlightPerTarget) {
+        if (inFlight < effectiveLimit) {
             return {
                 allowed: true,
                 inFlight,
-                limit: this.bulkheadMaxInFlightPerTarget,
+                limit: effectiveLimit,
+                configuredLimit: Number.isFinite(configuredLimit) ? configuredLimit : null,
+                adaptiveLimit: Number.isFinite(adaptiveLimit) ? adaptiveLimit : null,
                 retryAfterMs: 0
             };
+        }
+
+        const adaptiveSaturated = Number.isFinite(adaptiveLimit) && inFlight >= adaptiveLimit;
+        const configuredSaturated = Number.isFinite(configuredLimit) && inFlight >= configuredLimit;
+        const saturationReason = adaptiveSaturated && (!configuredSaturated || adaptiveLimit <= configuredLimit)
+            ? 'adaptive_limit'
+            : 'configured_limit';
+        if (saturationReason === 'adaptive_limit') {
+            const state = this._getTargetAdaptiveConcurrencyState(target);
+            if (state) {
+                state.blockedCount += 1;
+                state.lastBlockedAt = safeNow(this.now);
+            }
         }
 
         return {
             allowed: false,
             inFlight,
-            limit: this.bulkheadMaxInFlightPerTarget,
+            limit: effectiveLimit,
+            configuredLimit: Number.isFinite(configuredLimit) ? configuredLimit : null,
+            adaptiveLimit: Number.isFinite(adaptiveLimit) ? adaptiveLimit : null,
+            saturationReason,
             retryAfterMs: this.bulkheadRetryDelayMs
         };
     }
@@ -1449,6 +1605,7 @@ export class TaskOrchestrator {
             this.targetLatencyStats.clear();
             this.targetOutlierStats.clear();
             this.targetAdaptiveThrottleStats.clear();
+            this.targetAdaptiveConcurrencyStats.clear();
         }
 
         const hydratedAt = safeNow(this.now);
@@ -1490,6 +1647,20 @@ export class TaskOrchestrator {
                 this._recordTargetLatencySample(
                     record.target,
                     Number(record.closedAt) - Number(record.lastDispatchAt),
+                    Number(record.closedAt)
+                );
+            }
+
+            if (
+                this.adaptiveConcurrencyEnabled
+                && Number.isFinite(record?.lastDispatchAt)
+                && Number.isFinite(record?.closedAt)
+                && Number(record.closedAt) >= Number(record.lastDispatchAt)
+            ) {
+                this._recordAdaptiveConcurrencySample(
+                    record.target,
+                    Number(record.closedAt) - Number(record.lastDispatchAt),
+                    record?.dispatchInFlight,
                     Number(record.closedAt)
                 );
             }
@@ -2298,7 +2469,14 @@ export class TaskOrchestrator {
                                 : null,
                             inFlightLimit: Number.isFinite(error?.details?.limit)
                                 ? Number(error.details.limit)
-                                : null
+                                : null,
+                            configuredLimit: Number.isFinite(error?.details?.configuredLimit)
+                                ? Number(error.details.configuredLimit)
+                                : null,
+                            adaptiveLimit: Number.isFinite(error?.details?.adaptiveLimit)
+                                ? Number(error.details.adaptiveLimit)
+                                : null,
+                            saturationReason: error?.details?.saturationReason || null
                         }
                     });
                     return this.getTask(record.taskId);
@@ -2527,6 +2705,9 @@ export class TaskOrchestrator {
                 reason,
                 inFlight: bulkheadGate.inFlight,
                 inFlightLimit: bulkheadGate.limit,
+                configuredLimit: bulkheadGate.configuredLimit ?? null,
+                adaptiveLimit: bulkheadGate.adaptiveLimit ?? null,
+                saturationReason: bulkheadGate.saturationReason ?? null,
                 retryAfterMs: bulkheadGate.retryAfterMs
             });
             this._persistRecord(record);
@@ -2536,6 +2717,9 @@ export class TaskOrchestrator {
                 reason,
                 inFlight: bulkheadGate.inFlight,
                 inFlightLimit: bulkheadGate.limit,
+                configuredLimit: bulkheadGate.configuredLimit ?? null,
+                adaptiveLimit: bulkheadGate.adaptiveLimit ?? null,
+                saturationReason: bulkheadGate.saturationReason ?? null,
                 retryAfterMs: bulkheadGate.retryAfterMs
             }, sendAt);
             throw new TaskOrchestratorError(
@@ -2546,6 +2730,9 @@ export class TaskOrchestrator {
                     target: record.target,
                     inFlight: bulkheadGate.inFlight,
                     limit: bulkheadGate.limit,
+                    configuredLimit: bulkheadGate.configuredLimit ?? null,
+                    adaptiveLimit: bulkheadGate.adaptiveLimit ?? null,
+                    saturationReason: bulkheadGate.saturationReason ?? null,
                     retryAfterMs: bulkheadGate.retryAfterMs
                 }
             );
@@ -2656,6 +2843,9 @@ export class TaskOrchestrator {
             delete record._sending;
             record.status = 'dispatched';
             record.lastDispatchAt = sendAt;
+            if (this.adaptiveConcurrencyEnabled) {
+                record.dispatchInFlight = this._countTargetInFlight(record.target);
+            }
             record.deadlineAt = sendAt + this._resolveTimeoutMs(record.target);
             record.nextRetryAt = null;
             record.lastError = null;
@@ -2782,16 +2972,27 @@ export class TaskOrchestrator {
         record.closedAt = result.completedAt;
 
         if (
-            this.adaptiveTimeoutEnabled
+            (this.adaptiveTimeoutEnabled || this.adaptiveConcurrencyEnabled)
             && Number.isFinite(record.lastDispatchAt)
             && Number.isFinite(result.completedAt)
             && result.completedAt >= record.lastDispatchAt
         ) {
-            this._recordTargetLatencySample(
-                record.target,
-                result.completedAt - record.lastDispatchAt,
-                result.completedAt
-            );
+            const latencyMs = result.completedAt - record.lastDispatchAt;
+            if (this.adaptiveTimeoutEnabled) {
+                this._recordTargetLatencySample(
+                    record.target,
+                    latencyMs,
+                    result.completedAt
+                );
+            }
+            if (this.adaptiveConcurrencyEnabled) {
+                this._recordAdaptiveConcurrencySample(
+                    record.target,
+                    latencyMs,
+                    record?.dispatchInFlight,
+                    result.completedAt
+                );
+            }
         }
 
         if (result.status === 'success') {
@@ -2929,7 +3130,14 @@ export class TaskOrchestrator {
                                 : null,
                             inFlightLimit: Number.isFinite(error?.details?.limit)
                                 ? Number(error.details.limit)
-                                : null
+                                : null,
+                            configuredLimit: Number.isFinite(error?.details?.configuredLimit)
+                                ? Number(error.details.configuredLimit)
+                                : null,
+                            adaptiveLimit: Number.isFinite(error?.details?.adaptiveLimit)
+                                ? Number(error.details.adaptiveLimit)
+                                : null,
+                            saturationReason: error?.details?.saturationReason || null
                         }
                     });
                     if (scheduled) {
@@ -3346,6 +3554,17 @@ export class TaskOrchestrator {
                     targetCount: this.targetAdaptiveThrottleStats.size,
                     targets: {}
                 },
+                adaptiveConcurrency: {
+                    enabled: this.adaptiveConcurrencyEnabled,
+                    initialLimit: this.adaptiveConcurrencyInitialLimit,
+                    minLimit: this.adaptiveConcurrencyMinLimit,
+                    maxLimit: this.adaptiveConcurrencyMaxLimit,
+                    queueLowWater: this.adaptiveConcurrencyQueueLowWater,
+                    queueHighWater: this.adaptiveConcurrencyQueueHighWater,
+                    blockedTotal: 0,
+                    targetCount: this.targetAdaptiveConcurrencyStats.size,
+                    targets: {}
+                },
                 outlierDetection: {
                     failureThreshold: this.targetOutlierFailureThreshold,
                     baseEjectionMs: this.targetOutlierBaseEjectionMs,
@@ -3483,6 +3702,27 @@ export class TaskOrchestrator {
                     : null
             };
         }
+        for (const [target, state] of this.targetAdaptiveConcurrencyStats.entries()) {
+            metrics.retry.adaptiveConcurrency.blockedTotal += Number(state.blockedCount || 0);
+            metrics.retry.adaptiveConcurrency.targets[target] = {
+                limit: Number.isFinite(state.limit) ? Number(state.limit.toFixed(2)) : null,
+                minRttMs: Number.isFinite(state.minRttMs) ? Number(state.minRttMs.toFixed(2)) : null,
+                lastRttMs: Number.isFinite(state.lastRttMs) ? Number(state.lastRttMs.toFixed(2)) : null,
+                lastQueueEstimate: Number.isFinite(state.lastQueueEstimate)
+                    ? Number(state.lastQueueEstimate.toFixed(3))
+                    : null,
+                samples: Number(state.samples || 0),
+                increaseCount: Number(state.increaseCount || 0),
+                decreaseCount: Number(state.decreaseCount || 0),
+                blockedCount: Number(state.blockedCount || 0),
+                lastAdjustedAt: Number.isFinite(state.lastAdjustedAt)
+                    ? Number(state.lastAdjustedAt)
+                    : null,
+                lastBlockedAt: Number.isFinite(state.lastBlockedAt)
+                    ? Number(state.lastBlockedAt)
+                    : null
+            };
+        }
         for (const [target, state] of this.targetOutlierStats.entries()) {
             const ejected = this._isTargetOutlierEjected(target, metricNowMs);
             if (ejected) {
@@ -3506,13 +3746,22 @@ export class TaskOrchestrator {
             inFlightByTarget.set(record.target, current + 1);
         }
         for (const [target, inFlight] of inFlightByTarget.entries()) {
+            const configuredLimit = Number.isFinite(this.bulkheadMaxInFlightPerTarget)
+                ? this.bulkheadMaxInFlightPerTarget
+                : Number.POSITIVE_INFINITY;
+            const adaptiveLimit = this._getAdaptiveTargetLimit(target);
+            const effectiveLimit = Math.min(configuredLimit, adaptiveLimit);
             metrics.retry.bulkhead.targets[target] = {
                 inFlight,
-                limit: Number.isFinite(this.bulkheadMaxInFlightPerTarget)
+                limit: Number.isFinite(effectiveLimit) ? effectiveLimit : null,
+                configuredLimit: Number.isFinite(this.bulkheadMaxInFlightPerTarget)
                     ? this.bulkheadMaxInFlightPerTarget
                     : null,
-                saturated: Number.isFinite(this.bulkheadMaxInFlightPerTarget)
-                    ? inFlight >= this.bulkheadMaxInFlightPerTarget
+                adaptiveLimit: Number.isFinite(adaptiveLimit)
+                    ? adaptiveLimit
+                    : null,
+                saturated: Number.isFinite(effectiveLimit)
+                    ? inFlight >= effectiveLimit
                     : false
             };
         }
