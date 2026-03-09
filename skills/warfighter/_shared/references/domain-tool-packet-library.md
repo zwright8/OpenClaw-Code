@@ -4258,3 +4258,113 @@ validation_gates:
 - output_schema: recycling and blend plan, certification confidence ladder, production-risk timeline
 - protocol_profile: USMTF + API/JSON + XML
 - validation_gates: feedstock provenance check, certification confidence floor, release authority approval
+
+### packet_id: DPL-ARCTIC-SAR-SATCOM-DEGRADED-001
+- domain: joint Arctic SAR satellite-degraded coordination
+- objective: synchronize rescue operations when SATCOM and PNT degrade in high-latitude environments
+- primary_tools: polar comms status board, SAR incident fusion map, rescue asset allocator
+- alternate_tools: manual distress log and HF voice coordination worksheet
+- degraded_mode: life-saving extraction priorities only with widened route confidence bounds
+- input_requirements: distress reports, weather and ice risk, asset availability, comm/nav status
+- output_schema: rescue corridor matrix, fallback comm/nav ladder, extraction priority board
+- protocol_profile: USMTF + API/JSON + CAP
+- validation_gates: distress verification pass, route risk threshold, authority release approval
+
+### packet_id: DPL-COALITION-HOSPITAL-CYBER-EVAC-001
+- domain: coalition hospital cyber evacuation network
+- objective: maintain safe patient movement when hospital IT systems degrade due to cyber disruption
+- primary_tools: hospital cyber status dashboard, patient movement broker, bed capacity exchange
+- alternate_tools: manual transfer board and paper continuity checklist
+- degraded_mode: critical-care transfers only with manual confirmation loops
+- input_requirements: hospital outage state, patient acuity, transport lanes, legal sharing constraints
+- output_schema: medevac reroute matrix, care continuity branch plan, transfer risk board
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: clinical handoff completeness, cyber risk containment pass, command/medical concurrence
+
+### packet_id: DPL-MUNITIONS-PRECURSOR-DIVERSION-001
+- domain: strategic munitions precursor chemical diversion detection
+- objective: detect and contain precursor diversion or contamination before mission-impacting failures occur
+- primary_tools: precursor inventory integrity monitor, contamination assay queue, supplier risk graph
+- alternate_tools: manual custody ledger and supplier adjudication worksheet
+- degraded_mode: mission-critical production lines only with tightened quality gates
+- input_requirements: lot-level inventory state, assay signals, supplier reliability, demand priorities
+- output_schema: diversion risk board, hold-point ladder, replacement sourcing branch plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: custody integrity threshold, contamination confidence pass, release authority gate
+
+### packet_id: DPL-PORTABLE-BRIDGE-DRONE-LOAD-001
+- domain: tactical portable bridge drone load verification
+- objective: validate portable bridge span integrity and crossing safety under contested reconnaissance constraints
+- primary_tools: bridge geometry assessor, drone structural imaging board, route load classifier
+- alternate_tools: manual engineer span checklist and load estimate worksheet
+- degraded_mode: light vehicle crossings only with expanded safety margins
+- input_requirements: site imagery, span geometry, load demands, threat and timing constraints
+- output_schema: bridge feasibility matrix, load class recommendation, crossing sequence timeline
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: structural confidence floor, engineer concurrence, command release gate
+
+### packet_id: DPL-UNDERSEA-GLIDER-BARRIER-001
+- domain: joint undersea glider barrier and chokepoint surveillance
+- objective: sustain barrier surveillance and rapid cueing across maritime chokepoints with contested ISR
+- primary_tools: glider mission scheduler, acoustic anomaly correlator, chokepoint alert board
+- alternate_tools: manual barrier patrol board and contact-confidence worksheet
+- degraded_mode: high-priority chokepoints only with reduced revisit frequency
+- input_requirements: glider status, acoustic events, chokepoint criticality, recharge availability
+- output_schema: barrier placement plan, sortie and recharge ladder, escalation trigger map
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: barrier coverage threshold, cueing confidence pass, authority release approval
+
+### packet_id: DPL-CIVIL-ALERT-AUTHENTICITY-001
+- domain: theater disinformation civil alert authenticity
+- objective: authenticate public warning messages and suppress false narratives that degrade protective action compliance
+- primary_tools: alert signature verifier, narrative anomaly detector, correction tracker
+- alternate_tools: manual source attestation worksheet and local authority callback log
+- degraded_mode: trusted-source alerts only with mandatory human confirmation
+- input_requirements: alert payloads, source signatures, narrative telemetry, civil authority roster
+- output_schema: authenticity confidence board, false-alert containment plan, corrective messaging timeline
+- protocol_profile: CAP + NIMS/ICS + API/JSON
+- validation_gates: signature verification pass, source attestation threshold, release authority confirmation
+
+### packet_id: DPL-SOLAR-MICROGRID-SIGNATURE-CONTROL-001
+- domain: expeditionary solar microgrid camouflage and signature control
+- objective: preserve mission power while minimizing visual, thermal, and RF detectability
+- primary_tools: microgrid signature modeler, camouflage placement planner, mission load allocator
+- alternate_tools: manual concealment checklist and power rationing worksheet
+- degraded_mode: command and life-safety loads only with conservative signature controls
+- input_requirements: site topology, load priorities, storage state, adversary sensor threat profile
+- output_schema: signature-aware placement matrix, survivability ladder, concealment sustainment plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: signature risk threshold, load continuity floor, command approval gate
+
+### packet_id: DPL-ADDITIVE-PROPELLANT-QA-001
+- domain: joint contested additive propellant quality assurance
+- objective: assure safe release of additive-manufactured propellant components under denied logistics
+- primary_tools: propellant batch analyzer, process control board, release gate tracker
+- alternate_tools: manual lab adjudication worksheet and safety hold-point board
+- degraded_mode: non-critical energetics only pending full certification confidence
+- input_requirements: batch process records, contamination signals, part criticality classes, mission demand
+- output_schema: QA confidence ladder, release and hold matrix, production-risk timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: provenance pass, certification confidence floor, authority release approval
+
+### packet_id: DPL-FOOD-COLD-STORAGE-GRID-DENIAL-001
+- domain: strategic food cold-storage grid denial continuity
+- objective: sustain food readiness and reduce spoilage under prolonged power and fuel disruption
+- primary_tools: cold storage telemetry broker, spoilage risk predictor, distribution reprioritization board
+- alternate_tools: manual inventory quality checks and contingency routing worksheet
+- degraded_mode: mission-essential and life-support rations only with strict rotation controls
+- input_requirements: storage temperatures, inventory criticality, power and fuel status, route access
+- output_schema: continuity map, spoilage-risk ladder, sustainment reroute matrix
+- protocol_profile: NIMS/ICS + API/JSON + XML
+- validation_gates: quality threshold pass, continuity floor, command/sustainment concurrence
+
+### packet_id: DPL-RAILGUN-POWER-BUDGET-001
+- domain: theater electromagnetic railgun power budgeting
+- objective: balance charging cycles, safety margins, and mission shot priorities under constrained energy supply
+- primary_tools: pulse-power planner, charging cycle scheduler, mission shot-priority board
+- alternate_tools: manual power allocation sheet and thermal safety checklist
+- degraded_mode: protective and deterrent readiness posture only with reduced charging cadence
+- input_requirements: power availability, capacitor state, thermal limits, mission priorities
+- output_schema: power budget matrix, charging and shot window ladder, resilience branch plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: thermal safety pass, energy margin threshold, command authority release

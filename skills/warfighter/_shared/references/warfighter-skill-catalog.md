@@ -762,3 +762,29 @@ Every skill output should include:
 - Privacy-preserving biometrics federation + coalition refugee screening and biometrics deconfliction + denied biometric exfiltration support
 - Port desalination brine and output assurance + contested austere water production assurance + offshore energy platform defense integration
 - Additive feedstock recycling certification + contested additive metallurgy quality assurance + expeditionary fabrication and battle damage repair
+
+## New Expansion Wave (2026-03-09, Arctic Rescue, Industrial Defense, and Grid-Denied Sustainment)
+
+- joint-arctic-sar-satellite-degraded-coordination-cell
+- coalition-hospital-cyber-evacuation-network-cell
+- strategic-munitions-precursor-chemical-diversion-detection-cell
+- tactical-portable-bridge-drone-load-verification-cell
+- joint-undersea-glider-barrier-and-chokepoint-surveillance-cell
+- theater-disinformation-civil-alert-authenticity-cell
+- expeditionary-solar-microgrid-camouflage-and-signature-cell
+- joint-contested-additive-propellant-quality-assurance-cell
+- strategic-food-cold-storage-grid-denial-continuity-cell
+- theater-electromagnetic-railgun-power-budget-cell
+
+## Suggested Cross-Skill Pairings (2026-03-09 Additions)
+
+- Arctic SAR coordination + weather-space-weather-effects-forecast-cell + tactical-airspace-control-and-deconfliction + joint-civil-authority-maritime-evacuation-coordinator
+- Coalition hospital cyber evacuation + casualty-evac-and-medical-regulation + theater-mission-network-failover-cell + tactical-zero-trust-network-hardening
+- Munitions precursor diversion detection + strategic-industrial-mobilization-readiness-cell + strategic-pharmaceutical-supply-chain-integrity-cell + supply-chain-risk-and-industrial-base-monitor
+- Portable bridge drone load verification + contested-bridge-and-gap-crossing-operations + route-clearance-and-counter-ied-fusion + expeditionary-airfield-operations
+- Undersea glider chokepoint surveillance + anti-submarine-warfare-support + maritime-operations-planner + naval-undersea-cable-protection-and-restoration
+- Civil alert authenticity + information-integrity-and-attribution-cell + tactical-psychological-operations-and-miso-cell + defense-support-of-civil-authorities-crisis-cell
+- Solar microgrid signature control + operational-energy-resilience-and-microgrid-cell + force-protection-and-base-defense + electromagnetic-spectrum-operations
+- Additive propellant QA + expeditionary-fabrication-and-battle-damage-repair + strategic-ordnance-production-gridload-and-energy-priority-cell + rapid-prototyping-and-fielding-accelerator
+- Food cold storage continuity + contested-logistics-sustainment + theater-food-security-and-civil-stability-cell + medical-logistics-and-blood-supply-coordination
+- Railgun power budgeting + fires-and-effects-synchronizer + integrated-air-and-missile-defense-cell + electromagnetic-battle-management-cell

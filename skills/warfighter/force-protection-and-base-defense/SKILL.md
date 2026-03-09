@@ -165,3 +165,5 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For orbital debris reentry force-protection warning impacts, include `ts-orbital-reentry-population-risk-v1` with `ps-orbital-reentry-population-risk-stack-v1`.
 - For strategic port water assurance under prolonged disruption, include `ts-port-desalination-brine-output-assurance-v1` with `ps-port-desalination-brine-output-assurance-stack-v1`.
 - For coalition identity sharing under privacy and legal constraints, include `ts-privacy-preserving-biometrics-federation-v1` with `ps-privacy-preserving-biometrics-federation-stack-v1`.
+- For civil warning authentication during adversary information attacks near installations, include `ts-civil-alert-authenticity-v1` with `ps-civil-alert-authenticity-stack-v1`.
+- For expeditionary power survivability with low-signature generation, include `ts-solar-microgrid-signature-control-v1` with `ps-solar-microgrid-signature-control-stack-v1`.

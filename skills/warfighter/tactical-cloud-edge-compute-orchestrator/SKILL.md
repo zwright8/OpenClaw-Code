@@ -169,3 +169,5 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For low-bandwidth ISR clip triage feeding edge analytics workflows, include `ts-spectrum-frugal-video-prioritization-v1` with `ps-spectrum-frugal-video-prioritization-stack-v1`.
 - For launch-operations telemetry and schedule resilience data feeds, include `ts-contested-space-launch-reconstitution-v1` with `ps-contested-space-launch-reconstitution-stack-v1`.
 - For expeditionary manufacturing data assurance when recycled feedstock is used, include `ts-additive-feedstock-recycling-certification-v1` with `ps-additive-feedstock-recycling-certification-stack-v1`.
+- For coalition hospital cyber outage synchronization and protected patient-routing data exchange, include `ts-coalition-hospital-cyber-evac-v1` with `ps-coalition-hospital-cyber-evac-stack-v1`.
+- For strategic cold-storage sustainment telemetry under long-duration grid denial, include `ts-food-cold-storage-grid-denial-v1` with `ps-food-cold-storage-grid-denial-stack-v1`.

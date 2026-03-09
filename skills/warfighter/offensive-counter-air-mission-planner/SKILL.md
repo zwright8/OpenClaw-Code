@@ -174,3 +174,5 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For expeditionary microgrid restart options using ammonia conversion at airbases, include `ts-microgrid-ammonia-blackstart-v1` with `ps-microgrid-ammonia-blackstart-stack-v1`.
 - For disrupted national-security launch cadence affecting air-space integration windows, include `ts-contested-space-launch-reconstitution-v1` with `ps-contested-space-launch-reconstitution-stack-v1`.
 - For contested polar communications recovery paths supporting long-range OCA coordination, include `ts-under-ice-cable-break-repair-priority-v1` with `ps-under-ice-cable-break-repair-priority-stack-v1`.
+- For Arctic SAR support demands competing for OCA support sorties, include `ts-arctic-sar-satcom-degraded-v1` with `ps-arctic-sar-satcom-degraded-stack-v1`.
+- For electromagnetic launch-system power deconfliction impacts in theater fires planning, include `ts-railgun-power-budget-v1` with `ps-railgun-power-budget-stack-v1`.

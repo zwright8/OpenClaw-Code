@@ -4170,3 +4170,117 @@ external_binding:
 - Messaging: USMTF + API/JSON feedstock quality events + XML certification records.
 - Transport: expeditionary manufacturing exchange + quality governance bus + delayed-sync fallback.
 - Security: signed feedstock provenance + dual-approval certification release + immutable part-risk adjudication ledger.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Arctic Rescue, Industrial Defense, and Grid-Denied Sustainment)
+
+### `ts-arctic-sar-satcom-degraded-v1`
+- Use for: Arctic search-and-rescue coordination when satellite comms or PNT are degraded.
+- Primary tools: polar comms status board, SAR incident fusion map, rescue asset allocator.
+- Cross-check tools: independent weather-route risk monitor and alternate distress verification ledger.
+- Typical products: rescue corridor matrix, comm/nav fallback ladder, extraction priority board.
+
+### `ts-coalition-hospital-cyber-evac-v1`
+- Use for: coalition hospital cyber outage response with medevac rerouting and bed-network continuity.
+- Primary tools: hospital cyber status dashboard, patient movement broker, bed capacity exchange.
+- Cross-check tools: independent clinical priority validator and alternate manual routing ledger.
+- Typical products: cyber-safe evacuation matrix, continuity-of-care branch plan, transfer risk board.
+
+### `ts-munitions-precursor-diversion-v1`
+- Use for: detection and mitigation of diversion, contamination, or sabotage in munitions precursor supply chains.
+- Primary tools: precursor inventory integrity monitor, contamination assay queue, supplier risk graph.
+- Cross-check tools: independent chain-of-custody review board and alternate substitution planner.
+- Typical products: diversion alert board, quality hold-point ladder, strategic replacement timeline.
+
+### `ts-portable-bridge-drone-load-v1`
+- Use for: tactical bridge placement and load verification using drone reconnaissance under contested conditions.
+- Primary tools: bridge geometry and span assessor, drone structural imaging board, route load classifier.
+- Cross-check tools: independent engineer review queue and alternate manual load worksheet.
+- Typical products: placement feasibility matrix, load class recommendation, crossing sequence card.
+
+### `ts-undersea-glider-barrier-v1`
+- Use for: persistent undersea glider barrier surveillance and chokepoint cueing.
+- Primary tools: glider mission scheduler, acoustic anomaly correlator, chokepoint alert board.
+- Cross-check tools: independent sonar confidence monitor and alternate maritime patrol confirmation queue.
+- Typical products: barrier placement plan, sortie and recharge ladder, escalation trigger map.
+
+### `ts-civil-alert-authenticity-v1`
+- Use for: civil warning authentication and disinformation suppression during crisis operations.
+- Primary tools: alert signature verifier, narrative anomaly detector, public message correction tracker.
+- Cross-check tools: independent source attestation board and alternate local authority readback log.
+- Typical products: authenticity confidence board, false-alert containment plan, corrective messaging timeline.
+
+### `ts-solar-microgrid-signature-control-v1`
+- Use for: expeditionary solar microgrid deployment with visual/thermal/RF signature minimization.
+- Primary tools: microgrid signature modeler, camouflage placement planner, mission load allocator.
+- Cross-check tools: independent thermal observability monitor and alternate power survivability worksheet.
+- Typical products: signature-aware placement matrix, load survivability ladder, concealment sustainment card.
+
+### `ts-additive-propellant-qa-v1`
+- Use for: additive-manufactured propellant and energetics quality assurance under denied logistics.
+- Primary tools: propellant batch integrity analyzer, additive process control board, release gate tracker.
+- Cross-check tools: independent energetics lab validation queue and alternate risk adjudication panel.
+- Typical products: QA confidence ladder, release and hold-point matrix, production-risk timeline.
+
+### `ts-food-cold-storage-grid-denial-v1`
+- Use for: strategic cold-chain continuity for food sustainment during prolonged grid/fuel denial.
+- Primary tools: cold storage telemetry broker, spoilage risk predictor, distribution reprioritization board.
+- Cross-check tools: independent quality assay queue and alternate fuel continuity monitor.
+- Typical products: continuity map, spoilage-risk ladder, sustainment reroute branch matrix.
+
+### `ts-railgun-power-budget-v1`
+- Use for: electromagnetic launch-system charging and mission power allocation under constrained energy supply.
+- Primary tools: pulse-power availability planner, charging cycle scheduler, mission shot-priority board.
+- Cross-check tools: independent thermal safety monitor and alternate energy reserve ledger.
+- Typical products: power budget matrix, charging and shot window ladder, resilience branch card.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Arctic Rescue, Industrial Defense, and Grid-Denied Sustainment)
+
+### `ps-arctic-sar-satcom-degraded-stack-v1`
+- Messaging: USMTF + API/JSON SAR-state events + CAP rescue warning payloads.
+- Transport: polar comms exchange + maritime rescue portal + voice/readback fallback.
+- Security: signed rescue tasking updates + dual-source distress validation + immutable acknowledgment chain.
+
+### `ps-coalition-hospital-cyber-evac-stack-v1`
+- Messaging: USMTF + NIEM patient movement records + API/JSON bed status events.
+- Transport: coalition medical exchange + protected health network + delayed-sync fallback.
+- Security: signed transfer approvals + role-scoped clinical privacy controls + immutable movement ledger.
+
+### `ps-munitions-precursor-diversion-stack-v1`
+- Messaging: USMTF + API/JSON precursor integrity events + XML compliance records.
+- Transport: strategic sustainment bus + industrial security exchange + disconnected evidence fallback.
+- Security: signed custody transitions + dual-approval release gates + immutable contamination audit chain.
+
+### `ps-portable-bridge-drone-load-stack-v1`
+- Messaging: USMTF + OGC geospatial overlays + API/JSON structural assessment events.
+- Transport: engineer operations exchange + tactical ISR gateway + local mesh fallback.
+- Security: signed load assessments + dual-operator verification + immutable crossing approval ledger.
+
+### `ps-undersea-glider-barrier-stack-v1`
+- Messaging: USMTF + API/JSON mission-state events + OGC maritime chokepoint overlays.
+- Transport: maritime undersea exchange + coalition ASW portal + low-bandwidth fallback.
+- Security: signed mission retask packets + role-scoped sensor disclosure + immutable cueing audit chain.
+
+### `ps-civil-alert-authenticity-stack-v1`
+- Messaging: CAP + NIMS/ICS updates + API/JSON authenticity confidence events.
+- Transport: civil alert distribution hub + emergency operations portal + voice/readback fallback.
+- Security: signed alert provenance + dual-approval release gates + immutable correction chronology.
+
+### `ps-solar-microgrid-signature-control-stack-v1`
+- Messaging: USMTF + API/JSON microgrid telemetry + XML concealment and maintenance records.
+- Transport: installation energy ops bus + expeditionary engineering portal + disconnected checklist fallback.
+- Security: signed configuration updates + dual-authorization signature exceptions + immutable posture ledger.
+
+### `ps-additive-propellant-qa-stack-v1`
+- Messaging: USMTF + API/JSON batch-quality events + XML certification records.
+- Transport: expeditionary manufacturing exchange + quality governance bus + delayed-sync fallback.
+- Security: signed batch provenance + dual-approval release gates + immutable QA adjudication chain.
+
+### `ps-food-cold-storage-grid-denial-stack-v1`
+- Messaging: NIMS/ICS + API/JSON cold-chain telemetry + XML inventory quality records.
+- Transport: strategic logistics exchange + installation sustainment portal + manual report fallback.
+- Security: signed quality status updates + role-scoped distribution controls + immutable spoilage audit chain.
+
+### `ps-railgun-power-budget-stack-v1`
+- Messaging: USMTF + API/JSON power-state telemetry + XML safety and maintenance records.
+- Transport: weapons power management exchange + mission command bus + delayed-sync fallback.
+- Security: signed charging state updates + dual-approval engagement readiness gates + immutable power allocation ledger.
