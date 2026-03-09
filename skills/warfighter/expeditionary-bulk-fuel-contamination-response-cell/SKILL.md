@@ -88,3 +88,9 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Prioritize `tool_suite_id=ts-bioindustrial-assurance-v1` with `protocol_stack_id=ps-bioindustrial-assurance-stack-v1` when fuel contamination overlaps with strategic bioindustrial supply disruption.
 - Use packet `DPL-BIOINDUSTRIAL-ASSURANCE-001` to synchronize lot integrity, cold-chain continuity, and operational sustainment risk controls.
 - If quality evidence completeness falls below threshold, issue constrained-tempo recommendations and escalate for commander decision.
+
+## Domain Toolchain Override (2026-03-09, Port Throughput and Sabotage Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-port-digital-twin-sabotage-v1` with `protocol_stack_id=ps-port-digital-twin-sabotage-stack-v1` when bulk-fuel contamination events coincide with port throughput disruption or suspected sabotage.
+- Use packet `DPL-PORT-DIGITAL-TWIN-SABOTAGE-001` to connect berth/cargo constraints, contamination isolation actions, and sustainment reroute decisions in one decision cycle.
+- If sabotage attribution confidence remains low, issue advisory-only reroute recommendations and require commander plus movement-control approval before execution.

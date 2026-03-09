@@ -168,3 +168,9 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Prioritize `tool_suite_id=ts-coalition-iamd-latency-v1` with `protocol_stack_id=ps-coalition-iamd-latency-stack-v1` when coalition track handoff delays exceed warning timeline tolerance.
 - Use packet `DPL-COAL-IAMD-LATENCY-001` to bind timestamp integrity checks, handoff remediation actions, and release-authority timing records.
 - If timestamp or acknowledgment integrity fails, publish warning-only recommendations with explicit commander risk prompts.
+
+## Domain Toolchain Override (2026-03-09, Emitter Relocation and Decoy Continuity)
+
+- Prioritize `tool_suite_id=ts-air-defense-emitter-relocation-v1` with `protocol_stack_id=ps-air-defense-emitter-relocation-stack-v1` when warning fidelity is degraded by adversary anti-radiation targeting pressure.
+- Use packet `DPL-ADA-EMITTER-RELOCATION-001` to bind relocation timing, decoy activation windows, and defended-asset coverage continuity checks.
+- If relocation acknowledgment integrity or coverage confidence falls below threshold, downgrade to warning-only recommendations and require explicit commander approval.
