@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 811
+- Total warfighter skills in this repo: 921
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -539,3 +539,28 @@ Every skill output should include:
 - Dynamic priority-of-life routing + civil infrastructure restoration + DSCA crisis coordination
 - Additive feedstock authentication + additive munitions microfactory control + expeditionary fabrication and repair
 - Multi-cloud mission data integrity + battle-network key continuity + mission network failover governance
+
+## New Expansion Wave (2026-03-09, Waterway Defense and Strategic Continuity)
+
+- joint-orbital-debris-evasion-and-satcom-restoration-cell
+- theater-dam-and-lock-critical-waterway-defense-cell
+- coalition-detainee-access-and-icrc-notification-assurance-cell
+- strategic-hardened-fiber-nc3-failover-assurance-cell
+- joint-expeditionary-critical-mineral-recovery-and-recycling-cell
+- operational-disconnected-ai-model-rollback-and-assurance-cell
+- tactical-urban-vertical-lift-landing-zone-authentication-cell
+- maritime-autonomous-picket-board-and-search-cell
+- homeland-spaceport-gnss-interference-emergency-cell
+- joint-multi-theater-aeromedical-evacuation-priority-broker-cell
+
+## Updated Pairings (2026-03-09, Waterway Defense and Strategic Continuity)
+
+- Orbital debris evasion + SATCOM continuity + NC3 failover assurance + denied-PNT time transfer
+- Dam and lock defense + rail bridge recovery + contested logistics sustainment + civil evacuation support
+- Detainee ICRC notification assurance + detainee operations compliance + coalition legal attribution workflows
+- Critical mineral recycling + strategic supply shock mitigation + additive manufacturing quality attestation
+- Disconnected AI rollback assurance + AI model governance + autonomy safety incident governance
+- Urban vertical lift LZ authentication + tactical airspace control + civilian harm mitigation and response
+- Autonomous maritime picket and search + maritime interdiction support + gray-zone militia attribution
+- Spaceport GNSS emergency response + missile warning posture + space weather mission assurance
+- Multi-theater aeromedical brokerage + casualty regulation + blood cold-chain continuity and donor matching
