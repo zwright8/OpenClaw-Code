@@ -3052,3 +3052,117 @@ external_binding:
 - Messaging: HL7/FHIR + USMTF + API/JSON medical logistics packets.
 - Transport: med-log exchange network + cold-chain sensor gateways + constrained-bandwidth sync fallback.
 - Security: custody-chain integrity checks + role-scoped medical authority gates + immutable excursion ledger.
+
+## Tool and Protocol Catalog (2026-03-09 Domain Expansion - Subsea Repeater, Ceramic Armor, Dam Breach, ICS Recovery)
+
+### `ts-subsea-repeater-tamper-restoration-v1`
+- Use for: rapid detection, attribution, and restoration of tampered subsea telecom repeaters supporting joint military traffic.
+- Primary tools: optical repeater telemetry monitor, undersea fault localization engine, repair convoy scheduler.
+- Cross-check tools: independent landing-station traffic integrity board and alternate cable health mirror.
+- Typical products: tamper confidence ladder, reroute execution matrix, repair synchronization timeline.
+
+### `ts-additive-ceramic-armor-surge-v1`
+- Use for: coalition surge production and controlled release of additively manufactured ceramic armor kits.
+- Primary tools: additive MES quality tracker, ballistic test evidence board, coalition allocation planner.
+- Cross-check tools: independent lot-certification validator and alternate defect-trend adjudication board.
+- Typical products: lot release board, mission-priority armor allocation plan, reconstitution timeline.
+
+### `ts-dam-breach-force-protection-evacuation-v1`
+- Use for: emergency force-protection and evacuation sequencing during impending or active dam-breach hazards.
+- Primary tools: hydrology breach forecast engine, evacuation route throughput model, shelter capacity dashboard.
+- Cross-check tools: independent flood-map corroboration feed and alternate civil alert acknowledgment board.
+- Typical products: inundation risk timeline, phased evacuation matrix, continuity branch packet.
+
+### `ts-portable-nuclear-detection-attribution-v1`
+- Use for: tactical radiological/nuclear signal validation, sample custody assurance, and attribution decision support.
+- Primary tools: portable detector fusion board, isotope signature analyzer, plume confidence mapper.
+- Cross-check tools: independent lab adjudication chain and alternate CBRN confidence review board.
+- Typical products: radiological confidence ladder, maneuver restriction recommendations, attribution escalation packet.
+
+### `ts-maritime-chokepoint-contraband-interdiction-v1`
+- Use for: AI-enabled detection and interdiction of military-relevant contraband in strategic chokepoints.
+- Primary tools: vessel behavior anomaly engine, cargo risk scoring platform, interdiction mission planner.
+- Cross-check tools: independent customs-ledger verifier and alternate legal custody evidence board.
+- Typical products: interdiction priority list, board-hold-release matrix, legal handoff package.
+
+### `ts-gps-mcode-keyfill-denial-recovery-v1`
+- Use for: strategic recovery from M-code keyfill denial and associated timing trust degradation.
+- Primary tools: key-distribution status monitor, crypto trust integrity checker, mission PNT dependency graph.
+- Cross-check tools: independent key provenance ledger and alternate timing trust monitor.
+- Typical products: keyfill recovery ladder, fallback PNT matrix, mission risk-to-time synchronization brief.
+
+### `ts-ics-ransomware-rapid-recovery-v1`
+- Use for: defense-industrial OT ransomware containment, safe restart sequencing, and mission-output restoration.
+- Primary tools: OT SIEM/SOAR response board, PLC integrity attestation service, industrial incident command tracker.
+- Cross-check tools: independent safety interlock verifier and alternate forensic evidence custody monitor.
+- Typical products: containment action sequence, safe restart gates, production restoration decision matrix.
+
+### `ts-austere-plasma-reconstitution-v1`
+- Use for: expeditionary freeze-dried plasma reconstitution quality and casualty-priority distribution under austere conditions.
+- Primary tools: blood-product quality telemetry board, plasma reconstitution checklist engine, med-log demand allocator.
+- Cross-check tools: independent excursion evidence validator and alternate senior medical review board.
+- Typical products: plasma issue priority ladder, quality exception log, casualty-support continuity timeline.
+
+### `ts-geomagnetic-storm-grid-satcom-posture-v1`
+- Use for: cross-domain mission posture management during geomagnetic storm impacts on power grids and SATCOM.
+- Primary tools: space weather alert fusion service, grid disturbance status board, SATCOM failover orchestrator.
+- Cross-check tools: independent timing-integrity monitor and alternate infrastructure resilience status mirror.
+- Typical products: joint posture transition matrix, failover trigger ladder, commander risk prompt set.
+
+### `ts-prisoner-biometric-identity-fraud-v1`
+- Use for: coalition prisoner identity-fraud adjudication across biometric, custody, and legal workflows.
+- Primary tools: biometric mismatch adjudication service, detainee transfer integrity ledger, legal evidence chain manager.
+- Cross-check tools: independent identity confidence review board and alternate custody audit trail verifier.
+- Typical products: identity fraud confidence matrix, custody correction order set, tribunal-ready evidence packet.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Subsea Repeater, Ceramic Armor, Dam Breach, ICS Recovery)
+
+### `ps-subsea-repeater-tamper-restoration-stack-v1`
+- Messaging: API/JSON + USMTF + OGC cable route overlays.
+- Transport: undersea telemetry gateways + maritime operations data bus + delayed courier fallback.
+- Security: route-custody signatures + dual-approval repair release + immutable restoration log.
+
+### `ps-additive-ceramic-armor-surge-stack-v1`
+- Messaging: API/JSON + XML lot certification payloads + USMTF sustainment updates.
+- Transport: additive factory data buses + coalition sustainment exchange + offline reconciliation path.
+- Security: signed lot genealogy + dual-source ballistic validation + role-scoped release authority.
+
+### `ps-dam-breach-force-protection-evacuation-stack-v1`
+- Messaging: NIMS/ICS forms + API/JSON + USMTF force protection advisories.
+- Transport: emergency operations platforms + mission command networks + voice/readback fallback.
+- Security: signed warning chain + evacuation order acknowledgment ledger + authority-tier gating.
+
+### `ps-portable-nuclear-detection-attribution-stack-v1`
+- Messaging: API/JSON + USMTF + CBRN evidence XML records.
+- Transport: tactical sensor mesh + CBRN operations network + low-bandwidth fallback sync.
+- Security: sample-custody cryptographic hashes + attribution confidence attestation + approval chain logging.
+
+### `ps-maritime-chokepoint-contraband-interdiction-stack-v1`
+- Messaging: AIS/NMEA + API/JSON + USMTF interdiction status packets.
+- Transport: maritime COP data fabric + coalition interdiction coordination links + deferred-sync fallback.
+- Security: vessel identity assertions + evidence-chain immutability + legal authority acknowledgment record.
+
+### `ps-gps-mcode-keyfill-denial-recovery-stack-v1`
+- Messaging: API/JSON + USMTF + key distribution status records.
+- Transport: secure key management networks + mission enclave distribution paths + procedural courier fallback.
+- Security: key provenance signatures + crypto trust attestation + dual-control key release gate.
+
+### `ps-ics-ransomware-rapid-recovery-stack-v1`
+- Messaging: API/JSON + ICS incident records + USMTF strategic readiness updates.
+- Transport: OT incident response network + isolated recovery enclaves + manual safety log fallback.
+- Security: zero-trust OT segmentation + signed restart approvals + tamper-evident forensic ledger.
+
+### `ps-austere-plasma-reconstitution-stack-v1`
+- Messaging: HL7/FHIR + USMTF + API/JSON med-log updates.
+- Transport: expeditionary medical data links + cold-chain sensor gateways + constrained-bandwidth sync fallback.
+- Security: custody-chain signatures + medical role authorization + immutable excursion audit records.
+
+### `ps-geomagnetic-storm-grid-satcom-posture-stack-v1`
+- Messaging: CCSDS + API/JSON + USMTF posture advisories.
+- Transport: space-weather feed bus + utility resilience exchanges + SATCOM and HF fallback paths.
+- Security: timing trust attestation + cross-domain acknowledgment checks + command approval ledger.
+
+### `ps-prisoner-biometric-identity-fraud-stack-v1`
+- Messaging: API/JSON + NATO APP-11/ADatP-3 custody records + USMTF legal-status updates.
+- Transport: coalition detainee systems + federated biometric exchange + delayed-sync evidence channel.
+- Security: identity confidence signing + releasability tagging + immutable custody audit chain.

@@ -179,3 +179,9 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Prioritize `tool_suite_id=ts-precision-navigation-spoofing-adjudication-v1` with `protocol_stack_id=ps-precision-navigation-spoofing-adjudication-stack-v1` when spoofing or timing drift threatens SEAD ingress/egress geometry.
 - Use packet `DPL-PRECISION-NAVIGATION-SPOOFING-ADJUDICATION-001` to bind navigation-confidence bands, fallback path timing, and package commander release checkpoints.
 - If timing integrity or cross-sensor confidence is incomplete, downgrade to constrained-tempo recommendations and require explicit commander concurrence.
+
+## Domain Toolchain Override (2026-03-09, Chokepoint Interdiction and Repeater Route Protection)
+
+- Prioritize tool_suite_id=ts-subsea-repeater-tamper-restoration-v1 and tool_suite_id=ts-maritime-chokepoint-contraband-interdiction-v1 when kill-web support depends on contested maritime and undersea relay pathways.
+- Use packets DPL-SUBSEA-REPEATER-TAMPER-RESTORATION-001 and DPL-MARITIME-CHOKEPOINT-CONTRABAND-INTERDICTION-001 to bind routing continuity, interdiction priorities, and command-approved retask gates.
+- If route-custody evidence or legal acknowledgment integrity is incomplete, downgrade to advisory-only retask recommendations until command review is complete.

@@ -106,3 +106,9 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Prioritize `tool_suite_id=ts-littoral-desal-cyber-physical-defense-v1` with `protocol_stack_id=ps-littoral-desal-cyber-physical-defense-stack-v1` when fuel contamination coincides with contested expeditionary water production risk.
 - Use packet `DPL-LITTORAL-DESAL-CYBER-PHYSICAL-DEFENSE-001` to synchronize contamination isolation, throughput preservation, and sustainment reroute decisions.
 - If plant telemetry trust, sample custody, or coalition acknowledgment is incomplete, issue constrained-output recommendations and require commander plus host-nation utility authority approval.
+
+## Domain Toolchain Override (2026-03-09, Dam-Breach and ICS Co-Contingency Sustainment)
+
+- Prioritize tool_suite_id=ts-dam-breach-force-protection-evacuation-v1 and tool_suite_id=ts-ics-ransomware-rapid-recovery-v1 when fuel sustainment nodes face concurrent flood hazard and OT disruption risk.
+- Use packets DPL-DAM-BREACH-FORCE-PROTECTION-EVACUATION-001 and DPL-ICS-RANSOMWARE-RAPID-RECOVERY-001 to bind movement reroutes, safe restart checkpoints, and high-priority fuel distribution continuity.
+- If hydrology confidence, OT safety interlock trust, or acknowledgment chain integrity falls below threshold, issue advisory-only sustainment options and require commander approval for branch transitions.
