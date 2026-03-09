@@ -2840,3 +2840,115 @@ validation_gates:
 - output_schema: sensor posture plan, coverage-gap ledger, contingency handover timeline
 - protocol_profile: AIXM/FIXM/IWXXM + USMTF + API/JSON
 - validation_gates: weather margin threshold, coverage confidence check, authority and safety approval
+
+## Domain Packet Library (2026-03-09 Domain Expansion)
+
+### packet_id: DPL-GA-GE-ASSURE-001
+- domain: strategic gallium/germanium denial and substitution assurance
+- objective: maintain defense-electronics production continuity through mineral denial and substitution branches
+- primary_tools: mineral flow intelligence board, refinery telemetry monitor, substitution engineering tracker
+- alternate_tools: supplier risk workbook and manual critical-component prioritization board
+- degraded_mode: 24-hour strategic material status rollup with conservative assumptions
+- input_requirements: refinery throughput, supplier dependency map, inventory on hand, mission demand priorities
+- output_schema: continuity forecast, substitution branch options, surge-priority matrix
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: dual-source supplier validation, substitution feasibility confirmation, approval authority record
+
+### packet_id: DPL-CISLUNAR-RAD-STORM-001
+- domain: cislunar deep-space crew radiation storm response
+- objective: synchronize warning, shielding, maneuver, and rescue fallback under radiation storm conditions
+- primary_tools: space weather hazard service, crew dosimetry monitor, orbital mission timeline planner
+- alternate_tools: manual crew timeline board plus delayed space-weather products
+- degraded_mode: conservative shelter protocol with fixed reporting interval
+- input_requirements: current trajectory, shielding status, crew exposure baselines, warning confidence
+- output_schema: radiation response timeline, action gates, rescue fallback triggers
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: warning chain integrity, dosimetry cross-check, command authority acknowledgment
+
+### packet_id: DPL-PORT-DIGITAL-TWIN-SABOTAGE-001
+- domain: coalition expeditionary port digital twin throughput and sabotage defense
+- objective: preserve throughput while detecting and isolating sabotage indicators in port operations
+- primary_tools: port digital twin platform, berth/cargo telemetry analytics, maritime COP
+- alternate_tools: yard operations board and manual anomaly report workflow
+- degraded_mode: 12-hour throughput and sabotage-risk report cycle
+- input_requirements: berth schedule, cargo flow telemetry, crane status, sabotage indicator feed
+- output_schema: throughput protection plan, risk heat map, prioritized restoration actions
+- protocol_profile: API/JSON + OGC + AIS/NMEA
+- validation_gates: coalition releasability tags, anomaly corroboration, movement control confirmation
+
+### packet_id: DPL-ADA-EMITTER-RELOCATION-001
+- domain: theater rapid air defense emitter relocation and decoy management
+- objective: relocate emitters and synchronize decoys to preserve IAMD survivability
+- primary_tools: IAMD sensor layout planner, emitter health dashboard, decoy deployment tracker
+- alternate_tools: manual relocation matrix and decoy timing worksheet
+- degraded_mode: voice-readback relocation orders with UTC ledger
+- input_requirements: current emitter map, threat targeting pattern, mobility assets, decoy inventory
+- output_schema: relocation sequence, coverage impact estimate, decoy employment board
+- protocol_profile: Link 16 J-series + VMF + USMTF
+- validation_gates: coverage continuity threshold, fratricide-spectrum check, commander release authority
+
+### packet_id: DPL-URBAN-WATER-CONTAM-HUNT-001
+- domain: tactical urban drinking-water contamination hunt
+- objective: detect, isolate, and mitigate deliberate water contamination in military-civil grids
+- primary_tools: water telemetry analytics, contamination lab workflow, distribution digital twin
+- alternate_tools: manual sampling tracker and utility liaison status board
+- degraded_mode: manual contamination watch with fixed sampling intervals
+- input_requirements: network topology, sensor alerts, sample chain logs, population/service priorities
+- output_schema: isolation order, contamination confidence map, continuity branch recommendations
+- protocol_profile: NIMS/ICS + API/JSON + USMTF
+- validation_gates: sample chain-of-custody check, dual-lab confirmation, public health authority coordination
+
+### packet_id: DPL-HYPERSCALE-REGION-FAILOVER-001
+- domain: homeland hyperscale cloud region loss mission failover
+- objective: sustain mission workloads and command functions through region/provider outages
+- primary_tools: multi-region orchestration dashboard, workload dependency graph, key continuity service
+- alternate_tools: DR workbook and manual service-priority board
+- degraded_mode: critical-workload-only failover with deferred nonessential services
+- input_requirements: mission service inventory, dependency graph, RTO/RPO constraints, key-state posture
+- output_schema: failover sequence, service restoration timeline, residual mission risk report
+- protocol_profile: API/JSON + USMTF + IaC change packet
+- validation_gates: dependency integrity check, key continuity validation, command approval log
+
+### packet_id: DPL-ADDITIVE-BATTERY-HAZMAT-001
+- domain: operational additive battery-cell manufacturing and hazmat control
+- objective: maintain safe battery production throughput while controlling hazmat and quality risk
+- primary_tools: additive process monitor, battery QA analytics, hazmat compliance ledger
+- alternate_tools: manual lot tracking plus safety compliance checklist
+- degraded_mode: reduced-tempo production with safety-first gating
+- input_requirements: process telemetry, lot quality metrics, hazmat inventory, mission energy demand
+- output_schema: production safety posture, lot acceptance board, hazard mitigation actions
+- protocol_profile: API/JSON + USMTF + compliance XML
+- validation_gates: thermal runaway threshold check, QA completeness, hazmat authority signoff
+
+### packet_id: DPL-LIDAR-OBSCURANT-NAV-001
+- domain: battlefield lidar dust obscurant navigation assurance
+- objective: preserve navigation and targeting confidence despite obscurant-induced sensor degradation
+- primary_tools: lidar quality monitor, obscurant dispersion model, multi-sensor fusion engine
+- alternate_tools: terrain-referenced navigation board and EO/IR fallback tracker
+- degraded_mode: conservative movement corridors with limited autonomous reliance
+- input_requirements: platform sensor status, obscurant density estimate, terrain profile, mission timing constraints
+- output_schema: navigation confidence overlay, fallback sensor plan, timing risk matrix
+- protocol_profile: Link 16 J-series + CoT + API/JSON
+- validation_gates: cross-sensor consistency, anti-spoof confidence floor, command approval for high-risk movement
+
+### packet_id: DPL-FWD-MEDICAL-OXYGEN-001
+- domain: coalition forward medical oxygen generation and purity assurance
+- objective: ensure forward oxygen generation quality and distribution continuity for casualty care
+- primary_tools: oxygen generation telemetry, purity lab workflow, coalition med-log dashboard
+- alternate_tools: manual cylinder inventory board and paper purity log chain
+- degraded_mode: emergency oxygen rationing matrix with manual handoff controls
+- input_requirements: oxygen demand forecast, generator status, purity test results, evacuation load
+- output_schema: oxygen continuity plan, purity exception log, distribution priority board
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: purity threshold pass, med authority approval, coalition releasability validation
+
+### packet_id: DPL-SRM-PROPELLANT-AGING-001
+- domain: strategic solid rocket motor propellant aging and surge readiness
+- objective: assess lot aging risk and synchronize surge production or rework decisions
+- primary_tools: propellant condition analytics, lot genealogy registry, depot readiness planner
+- alternate_tools: inspection worksheet and manual lot risk scoring board
+- degraded_mode: conservative lot-use restrictions pending full inspection
+- input_requirements: lot age profile, storage condition telemetry, test sample history, surge demand signal
+- output_schema: lot suitability ranking, rework/disposition recommendations, surge readiness timeline
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: dual-source lot verification, aging model confidence threshold, authority release record

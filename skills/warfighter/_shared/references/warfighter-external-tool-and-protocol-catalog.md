@@ -2710,3 +2710,117 @@ external_binding:
 ### `ps-arctic-aerostat-othr-stack-v1`
 - Protocols: `AIXM/FIXM/IWXXM`, `USMTF`, `API/JSON`.
 - Use for: arctic aerostat/OTHR persistence management and weather-driven sensor handovers.
+
+## Tool and Protocol Catalog (2026-03-09 Domain Expansion)
+
+### `ts-gallium-germanium-assurance-v1`
+- Use for: strategic gallium/germanium refining risk, denial response, and substitution planning for defense electronics.
+- Primary tools: mineral flow intelligence board, refinery telemetry monitor, substitution engineering tracker.
+- Cross-check tools: independent commodity disruption mirror and alternate supplier validation ledger.
+- Typical products: gallium/germanium continuity forecast, substitution branch matrix, surge-priority queue.
+
+### `ts-cislunar-radiation-storm-response-v1`
+- Use for: cislunar/deep-space radiation storm warning, crew shelter timing, and rescue fallback planning.
+- Primary tools: space weather hazard services, crew dosimetry monitor, orbital timeline planner.
+- Cross-check tools: independent heliophysics alert feed and alternate exposure risk model.
+- Typical products: radiation hazard timeline, crew action matrix, recovery branch package.
+
+### `ts-port-digital-twin-sabotage-v1`
+- Use for: coalition expeditionary port throughput optimization with sabotage/anomaly detection.
+- Primary tools: port digital twin platform, cargo movement telemetry, berth scheduling analytics.
+- Cross-check tools: independent vessel/yard anomaly board and alternate throughput estimator.
+- Typical products: throughput protection plan, sabotage-risk heat map, restoration decision sequence.
+
+### `ts-air-defense-emitter-relocation-v1`
+- Use for: rapid emitter relocation and decoy synchronization to preserve air defense survivability.
+- Primary tools: IAMD sensor layout planner, emission-control manager, decoy deployment tracker.
+- Cross-check tools: independent RF coverage mirror and alternate mobility feasibility board.
+- Typical products: relocation timeline, decoy employment matrix, survivability risk ladder.
+
+### `ts-urban-water-contamination-hunt-v1`
+- Use for: deliberate contamination detection and isolation across urban military-civil water distribution systems.
+- Primary tools: water telemetry analytics, contamination forensics service, municipal distribution digital twin.
+- Cross-check tools: independent lab-chain verification and alternate pressure/flow anomaly monitor.
+- Typical products: contamination isolation order, service continuity branch plan, public health risk update.
+
+### `ts-hyperscale-region-mission-failover-v1`
+- Use for: mission workload failover across cloud-region loss and provider disruption scenarios.
+- Primary tools: multi-region orchestration dashboard, mission workload dependency graph, key-management continuity service.
+- Cross-check tools: independent DR readiness mirror and alternate provider status feed.
+- Typical products: mission failover sequence, priority service restoration matrix, residual-risk timeline.
+
+### `ts-additive-battery-hazmat-assurance-v1`
+- Use for: additive battery-cell production safety, hazmat controls, and fielded energy continuity.
+- Primary tools: additive process monitor, hazmat compliance ledger, battery quality assurance analytics.
+- Cross-check tools: independent thermal runaway risk model and alternate lot-audit board.
+- Typical products: production safety posture, lot acceptance decision board, hazard mitigation timeline.
+
+### `ts-lidar-obscurant-navigation-assurance-v1`
+- Use for: navigation and targeting assurance when dust/smoke obscurants degrade lidar sensing.
+- Primary tools: lidar quality monitor, obscurant dispersion model, multi-sensor fusion tracker.
+- Cross-check tools: independent terrain-referenced nav confidence board and alternate EO/IR fusion status mirror.
+- Typical products: navigation confidence overlay, sensor fallback sequence, mission timing risk update.
+
+### `ts-forward-medical-oxygen-assurance-v1`
+- Use for: forward medical oxygen generation, purity verification, and coalition distribution continuity.
+- Primary tools: oxygen generation telemetry, purity lab workflow, med-log distribution dashboard.
+- Cross-check tools: independent gas quality audit chain and alternate bed/oxygen demand monitor.
+- Typical products: oxygen assurance status, distribution priority matrix, contingency support plan.
+
+### `ts-solid-rocket-propellant-aging-v1`
+- Use for: solid rocket motor propellant aging assessment and surge readiness decisions.
+- Primary tools: propellant condition analytics, lot genealogy registry, motor test-readiness planner.
+- Cross-check tools: independent aging model board and alternate depot inspection ledger.
+- Typical products: lot suitability ranking, surge reconstitution plan, readiness risk scorecard.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion)
+
+### `ps-gallium-germanium-assurance-stack-v1`
+- Messaging: USMTF + API/JSON + XML evidence exchange.
+- Transport: mission network APIs + signed partner data feeds.
+- Security: PKI auth + role-scoped access + provenance signatures.
+
+### `ps-cislunar-radiation-storm-response-stack-v1`
+- Messaging: CCSDS advisories + USMTF + API/JSON mission updates.
+- Transport: space-domain operations links + SATCOM fallback + delayed-sync buffers.
+- Security: signed warning chains + timing integrity checks + acknowledgment ledger.
+
+### `ps-port-digital-twin-sabotage-stack-v1`
+- Messaging: API/JSON + OGC + AIS/NMEA exchange profiles.
+- Transport: coalition mission data fabric + maritime COP event stream + resilient queueing.
+- Security: federation trust assertions + releasability tagging + immutable event log.
+
+### `ps-air-defense-emitter-relocation-stack-v1`
+- Messaging: Link 16 J-series + VMF + USMTF tasking.
+- Transport: tactical data links + mission command bus + degraded voice/readback fallback.
+- Security: crypto key-state checks + emission authority gates + acknowledgment chain.
+
+### `ps-urban-water-contamination-hunt-stack-v1`
+- Messaging: API/JSON + NIMS/ICS forms + USMTF summaries.
+- Transport: ICS dashboards + municipal telemetry gateways + delayed courier fallback.
+- Security: zero-trust gateway policy + chain-of-custody hashes + audit ledger.
+
+### `ps-hyperscale-region-mission-failover-stack-v1`
+- Messaging: API/JSON + infrastructure-as-code change packets + USMTF status summaries.
+- Transport: multi-cloud control planes + mission enclave overlays + offline recovery scripts.
+- Security: hardware-rooted identity + key escrow continuity + signed failover approvals.
+
+### `ps-additive-battery-hazmat-assurance-stack-v1`
+- Messaging: API/JSON + hazardous-material compliance records + USMTF logistics updates.
+- Transport: manufacturing telemetry bus + quality systems integration + manual safety log fallback.
+- Security: role-based segregation + integrity checks on sensor streams + immutable QA records.
+
+### `ps-lidar-obscurant-navigation-assurance-stack-v1`
+- Messaging: Link 16 J-series + CoT + API/JSON sensor confidence updates.
+- Transport: tactical mission network + edge fusion nodes + low-bandwidth fallback channel.
+- Security: trust-scored sensor fusion + anti-spoof validation + command acknowledgment chain.
+
+### `ps-forward-medical-oxygen-assurance-stack-v1`
+- Messaging: HL7/FHIR + USMTF + API/JSON med-log exchange.
+- Transport: medical mission network + coalition med-log bridge + delayed-sync contingency.
+- Security: patient safety controls + purity evidence signing + role-scoped medical authority gates.
+
+### `ps-solid-rocket-propellant-aging-stack-v1`
+- Messaging: API/JSON + XML lot genealogy + USMTF readiness reports.
+- Transport: depot systems integration + secure supplier feeds + disconnected report fallback.
+- Security: signed lot records + dual-source verification + approval-role traceability.
