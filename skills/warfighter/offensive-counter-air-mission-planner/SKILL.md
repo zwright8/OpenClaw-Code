@@ -59,6 +59,9 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+- Provide decision-support framing only; do not generate platform-specific weapon employment instructions, weaponeering parameters, or target-coordinate execution packets.
+- Require explicit human command approval (`requires_human_approval: true`) before any recommendation that could change engagement posture or escalation risk.
+- Include a civilian-risk mitigation note and no-strike validation status for each high-consequence recommendation.
 
 ## Tool Protocol Playbooks
 
@@ -143,4 +146,3 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
