@@ -42,6 +42,13 @@ const DEFAULT_DEAD_LETTER_MAX_ENTRIES = 250;
 const DEFAULT_ADAPTIVE_TIMEOUT_ALPHA = 0.125;
 const DEFAULT_ADAPTIVE_TIMEOUT_BETA = 0.25;
 const IN_FLIGHT_STATUSES = new Set(['dispatched', 'acknowledged']);
+const HIGH_PRIORITY_TASKS = new Set(['critical', 'high']);
+const PRIORITY_RANK = {
+    critical: 0,
+    high: 1,
+    normal: 2,
+    low: 3
+};
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -93,6 +100,14 @@ function normalizeBulkheadLimit(value, fallback) {
     if (value === null || value === undefined) return fallback;
     const numeric = Number(value);
     if (!Number.isFinite(numeric) || numeric <= 0) return Number.POSITIVE_INFINITY;
+    return Math.max(1, Math.floor(numeric));
+}
+
+function normalizePositiveIntOrInfinity(value, fallback) {
+    if (value === null || value === undefined) return fallback;
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return Number.POSITIVE_INFINITY;
+    if (numeric <= 0) return Number.POSITIVE_INFINITY;
     return Math.max(1, Math.floor(numeric));
 }
 
@@ -200,6 +215,8 @@ export class TaskOrchestrator {
         adaptiveTimeoutSafetyMarginMs = 100,
         adaptiveTimeoutAlpha = DEFAULT_ADAPTIVE_TIMEOUT_ALPHA,
         adaptiveTimeoutBeta = DEFAULT_ADAPTIVE_TIMEOUT_BETA,
+        maintenanceRetryBatchLimit = Number.POSITIVE_INFINITY,
+        maintenanceHighPriorityShare = 2,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -286,6 +303,14 @@ export class TaskOrchestrator {
         );
         this.adaptiveTimeoutAlpha = clampRatio(adaptiveTimeoutAlpha, DEFAULT_ADAPTIVE_TIMEOUT_ALPHA);
         this.adaptiveTimeoutBeta = clampRatio(adaptiveTimeoutBeta, DEFAULT_ADAPTIVE_TIMEOUT_BETA);
+        this.maintenanceRetryBatchLimit = normalizePositiveIntOrInfinity(
+            maintenanceRetryBatchLimit,
+            Number.POSITIVE_INFINITY
+        );
+        this.maintenanceHighPriorityShare = Math.max(
+            1,
+            Math.floor(clampPositiveNumber(maintenanceHighPriorityShare, 2))
+        );
         this.targetLatencyStats = new Map();
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
@@ -978,6 +1003,88 @@ export class TaskOrchestrator {
         }, nowMs);
     }
 
+    _classifyTaskPriority(priority) {
+        if (typeof priority !== 'string') return 'normal';
+        const normalized = priority.trim().toLowerCase();
+        if (normalized in PRIORITY_RANK) return normalized;
+        return 'normal';
+    }
+
+    _sortRetryCandidates(records, nowMs) {
+        const at = Number.isFinite(Number(nowMs))
+            ? Number(nowMs)
+            : safeNow(this.now);
+        const sorted = [...records];
+        sorted.sort((a, b) => {
+            const priorityA = this._classifyTaskPriority(a?.request?.priority);
+            const priorityB = this._classifyTaskPriority(b?.request?.priority);
+            const priorityDelta = (PRIORITY_RANK[priorityA] ?? 2) - (PRIORITY_RANK[priorityB] ?? 2);
+            if (priorityDelta !== 0) return priorityDelta;
+
+            const dueA = Number.isFinite(Number(a?.nextRetryAt)) ? Number(a.nextRetryAt) : at;
+            const dueB = Number.isFinite(Number(b?.nextRetryAt)) ? Number(b.nextRetryAt) : at;
+            if (dueA !== dueB) return dueA - dueB;
+
+            const attemptsA = Number.isFinite(Number(a?.attempts)) ? Number(a.attempts) : 0;
+            const attemptsB = Number.isFinite(Number(b?.attempts)) ? Number(b.attempts) : 0;
+            if (attemptsA !== attemptsB) return attemptsA - attemptsB;
+
+            return String(a?.taskId || '').localeCompare(String(b?.taskId || ''));
+        });
+        return sorted;
+    }
+
+    _buildMaintenanceRetryPlan(candidates, nowMs) {
+        const limit = this.maintenanceRetryBatchLimit;
+        if (!Array.isArray(candidates) || candidates.length === 0) {
+            return {
+                selected: [],
+                deferredCount: 0
+            };
+        }
+
+        const sorted = this._sortRetryCandidates(candidates, nowMs);
+        if (!Number.isFinite(limit)) {
+            return {
+                selected: sorted,
+                deferredCount: 0
+            };
+        }
+
+        const highQueue = [];
+        const regularQueue = [];
+        for (const record of sorted) {
+            const priority = this._classifyTaskPriority(record?.request?.priority);
+            if (HIGH_PRIORITY_TASKS.has(priority)) {
+                highQueue.push(record);
+            } else {
+                regularQueue.push(record);
+            }
+        }
+
+        const selected = [];
+        let highBurstBudget = this.maintenanceHighPriorityShare;
+        while (selected.length < limit && (highQueue.length > 0 || regularQueue.length > 0)) {
+            const canTakeHigh = highQueue.length > 0 && (highBurstBudget > 0 || regularQueue.length === 0);
+            if (canTakeHigh) {
+                selected.push(highQueue.shift());
+                highBurstBudget = Math.max(0, highBurstBudget - 1);
+                continue;
+            }
+
+            if (regularQueue.length > 0) {
+                selected.push(regularQueue.shift());
+                highBurstBudget = this.maintenanceHighPriorityShare;
+                continue;
+            }
+        }
+
+        return {
+            selected,
+            deferredCount: Math.max(0, candidates.length - selected.length)
+        };
+    }
+
     async dispatchTask({
         target,
         task,
@@ -1585,8 +1692,10 @@ export class TaskOrchestrator {
             scheduledRetries: 0,
             retried: 0,
             timedOut: 0,
-            transportFailures: 0
+            transportFailures: 0,
+            retryBacklog: 0
         };
+        const dueRetryCandidates = [];
 
         for (const record of this.tasks.values()) {
             if (!OPEN_STATUSES.has(record.status)) continue;
@@ -1623,7 +1732,12 @@ export class TaskOrchestrator {
             }
 
             if (nowMs < record.nextRetryAt) continue;
+            dueRetryCandidates.push(record);
+        }
 
+        const retryPlan = this._buildMaintenanceRetryPlan(dueRetryCandidates, nowMs);
+        summary.retryBacklog = retryPlan.deferredCount;
+        for (const record of retryPlan.selected) {
             try {
                 await this._sendTask(record, 'timeout_retry');
                 summary.retried++;
@@ -1894,6 +2008,12 @@ export class TaskOrchestrator {
                     beta: this.adaptiveTimeoutBeta,
                     targetCount: this.targetLatencyStats.size,
                     targets: {}
+                },
+                maintenance: {
+                    retryBatchLimit: Number.isFinite(this.maintenanceRetryBatchLimit)
+                        ? this.maintenanceRetryBatchLimit
+                        : null,
+                    highPriorityShare: this.maintenanceHighPriorityShare
                 }
             },
             deadLetter: {

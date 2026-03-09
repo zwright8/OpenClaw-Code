@@ -352,6 +352,97 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     assert.equal(sent.length, 2);
 });
 
+test('maintenance retry batching caps due retries and reports backlog', async () => {
+    const clock = createClock(10_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 25,
+        maxRetries: 2,
+        retryDelayMs: 10,
+        maintenanceRetryBatchLimit: 2
+    });
+
+    const tasks = await Promise.all([
+        orchestrator.dispatchTask({ target: 'agent:worker-batch', task: 'Batch task A' }),
+        orchestrator.dispatchTask({ target: 'agent:worker-batch', task: 'Batch task B' }),
+        orchestrator.dispatchTask({ target: 'agent:worker-batch', task: 'Batch task C' })
+    ]);
+
+    clock.advance(30);
+    const schedulePass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(schedulePass.scheduledRetries, 3);
+
+    clock.advance(10);
+    const retryPass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(retryPass.retried, 2);
+    assert.equal(retryPass.retryBacklog, 1);
+
+    const records = tasks.map((task) => orchestrator.getTask(task.taskId));
+    const retriedCount = records.filter((record) => record.attempts === 2).length;
+    const pendingCount = records.filter((record) => record.status === 'retry_scheduled').length;
+    assert.equal(retriedCount, 2);
+    assert.equal(pendingCount, 1);
+});
+
+test('maintenance retry batching preserves progress for normal priority under high-priority load', async () => {
+    const clock = createClock(11_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 2,
+        retryDelayMs: 10,
+        maintenanceRetryBatchLimit: 3,
+        maintenanceHighPriorityShare: 2
+    });
+
+    const [criticalTask, highTaskA, highTaskB, normalTask] = await Promise.all([
+        orchestrator.dispatchTask({
+            target: 'agent:worker-priority-fairness',
+            task: 'Critical retry candidate',
+            priority: 'critical'
+        }),
+        orchestrator.dispatchTask({
+            target: 'agent:worker-priority-fairness',
+            task: 'High retry candidate A',
+            priority: 'high'
+        }),
+        orchestrator.dispatchTask({
+            target: 'agent:worker-priority-fairness',
+            task: 'High retry candidate B',
+            priority: 'high'
+        }),
+        orchestrator.dispatchTask({
+            target: 'agent:worker-priority-fairness',
+            task: 'Normal retry candidate',
+            priority: 'normal'
+        })
+    ]);
+
+    clock.advance(25);
+    const schedulePass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(schedulePass.scheduledRetries, 4);
+
+    clock.advance(10);
+    const retryPass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(retryPass.retried, 3);
+    assert.equal(retryPass.retryBacklog, 1);
+
+    const normalRecord = orchestrator.getTask(normalTask.taskId);
+    assert.equal(normalRecord.attempts, 2);
+    assert.equal(normalRecord.status, 'dispatched');
+
+    const highRecords = [criticalTask, highTaskA, highTaskB]
+        .map((task) => orchestrator.getTask(task.taskId));
+    const highRetried = highRecords.filter((record) => record.attempts === 2).length;
+    const highPending = highRecords.filter((record) => record.status === 'retry_scheduled').length;
+    assert.equal(highRetried, 2);
+    assert.equal(highPending, 1);
+});
+
 test('retry token bucket delays scheduling when tokens are exhausted', async () => {
     const clock = createClock(12_000);
     const orchestrator = new TaskOrchestrator({
