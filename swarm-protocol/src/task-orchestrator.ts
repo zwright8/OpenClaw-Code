@@ -227,6 +227,7 @@ export class TaskOrchestrator {
         retryBudgetRatio = 0.2,
         retryBudgetMinPerWindow = 3,
         retryBudgetWindowMs = 10_000,
+        maxRetryElapsedMs = null,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -330,6 +331,10 @@ export class TaskOrchestrator {
         this.retryBudgetRequestEvents = [];
         this.retryBudgetRetryEvents = [];
         this.retryBudgetExhaustedCount = 0;
+        this.maxRetryElapsedMs = maxRetryElapsedMs === null || maxRetryElapsedMs === undefined
+            ? null
+            : normalizeNonNegativeInt(maxRetryElapsedMs, 0);
+        this.retryWindowExhaustedCount = 0;
         this.targetLatencyStats = new Map();
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
@@ -836,8 +841,66 @@ export class TaskOrchestrator {
         await this._persistenceQueue;
     }
 
-    _canRetry(record) {
-        return record.attempts <= record.maxRetries;
+    _resolveTaskMaxRetryElapsedMs(value) {
+        if (value === null || value === undefined) return this.maxRetryElapsedMs;
+        return normalizeNonNegativeInt(value, this.maxRetryElapsedMs ?? 0);
+    }
+
+    _retryEligibility(record, nowMs = safeNow(this.now)) {
+        if (!record || typeof record !== 'object') {
+            return {
+                allowed: false,
+                reason: 'invalid_record',
+                maxRetryElapsedMs: null,
+                elapsedMs: null
+            };
+        }
+
+        if (record.attempts > record.maxRetries) {
+            return {
+                allowed: false,
+                reason: 'max_retries_exceeded',
+                maxRetryElapsedMs: Number.isFinite(record?.maxRetryElapsedMs)
+                    ? Number(record.maxRetryElapsedMs)
+                    : null,
+                elapsedMs: null
+            };
+        }
+
+        const retryWindowMs = Number.isFinite(record?.maxRetryElapsedMs)
+            ? Math.max(0, Number(record.maxRetryElapsedMs))
+            : null;
+        if (retryWindowMs === null) {
+            return {
+                allowed: true,
+                reason: null,
+                maxRetryElapsedMs: null,
+                elapsedMs: null
+            };
+        }
+
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        const createdAt = Number.isFinite(record.createdAt) ? Number(record.createdAt) : at;
+        const elapsedMs = Math.max(0, at - createdAt);
+        if (elapsedMs > retryWindowMs) {
+            return {
+                allowed: false,
+                reason: 'retry_window_exhausted',
+                maxRetryElapsedMs: retryWindowMs,
+                elapsedMs
+            };
+        }
+
+        return {
+            allowed: true,
+            reason: null,
+            maxRetryElapsedMs: retryWindowMs,
+            elapsedMs
+        };
+    }
+
+    _canRetry(record, nowMs = safeNow(this.now)) {
+        return this._retryEligibility(record, nowMs).allowed;
     }
 
     _parseRetryHintMsFromReason(reason) {
@@ -1205,6 +1268,7 @@ export class TaskOrchestrator {
         priority = 'normal',
         context,
         constraints,
+        maxRetryElapsedMs = null,
         idempotencyKey = null,
         id = randomUUID(),
         createdAt = safeNow(this.now)
@@ -1356,6 +1420,9 @@ export class TaskOrchestrator {
             policy: policyDecision,
             attempts: 0,
             maxRetries: this.maxRetries,
+            maxRetryElapsedMs: this._resolveTaskMaxRetryElapsedMs(
+                maxRetryElapsedMs ?? context?.retryMaxElapsedMs
+            ),
             createdAt: request.createdAt,
             updatedAt: request.createdAt,
             deadlineAt: request.createdAt + this.defaultTimeoutMs,
@@ -1436,7 +1503,7 @@ export class TaskOrchestrator {
             await this._sendTask(record, 'initial_dispatch');
         } catch (error) {
             if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
-                if (this._canRetry(record)) {
+                if (this._canRetry(record, dispatchAt)) {
                     this._scheduleRetry(record, dispatchAt, {
                         reason: 'circuit_open_on_dispatch',
                         event: 'dispatch_deferred_circuit_open',
@@ -1452,7 +1519,7 @@ export class TaskOrchestrator {
                 }
             }
             if (error instanceof TaskOrchestratorError && error.code === 'TARGET_BACKPRESSURE') {
-                if (this._canRetry(record)) {
+                if (this._canRetry(record, dispatchAt)) {
                     this._scheduleRetry(record, dispatchAt, {
                         reason: 'target_backpressure_on_dispatch',
                         event: 'dispatch_deferred_target_backpressure',
@@ -1538,13 +1605,35 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'approval_release');
         } catch (error) {
-            this._scheduleRetry(record, reviewedAt, {
-                reason: 'approval_release_failed',
-                event: 'approval_release_retry_scheduled',
-                metadata: {
+            if (this._canRetry(record, reviewedAt)) {
+                this._scheduleRetry(record, reviewedAt, {
+                    reason: 'approval_release_failed',
+                    event: 'approval_release_retry_scheduled',
+                    metadata: {
+                        error: error.message
+                    }
+                });
+            } else {
+                record.status = 'transport_error';
+                record.updatedAt = reviewedAt;
+                record.closedAt = reviewedAt;
+                record.history.push({
+                    at: reviewedAt,
+                    event: 'approval_release_retry_exhausted',
+                    reason: 'approval_release_failed',
                     error: error.message
-                }
-            });
+                });
+                this._persistRecord(record);
+                this._emitAudit('task_approval_release_retry_exhausted', {
+                    taskId: record.taskId,
+                    target: record.target,
+                    error: error.message
+                }, reviewedAt);
+                this._markDeadLetter(record, reviewedAt, {
+                    reason: 'approval_release_failed',
+                    sourceEvent: 'approval_release_failed'
+                });
+            }
         }
 
         return this.getTask(taskId);
@@ -1698,7 +1787,7 @@ export class TaskOrchestrator {
             const retryHintMs = receiptHintMs !== null ? receiptHintMs : reasonHintMs;
             const transient = this._isTransientRejectionReason(reason);
 
-            if (transient && this._canRetry(record)) {
+            if (transient && this._canRetry(record, receipt.timestamp)) {
                 this._scheduleRetry(record, receipt.timestamp, {
                     reason: 'rejected_transient',
                     event: 'rejected_retry_scheduled',
@@ -1820,20 +1909,33 @@ export class TaskOrchestrator {
 
             if (nowMs <= record.deadlineAt) continue;
 
-            if (!this._canRetry(record)) {
+            const retryEligibility = this._retryEligibility(record, nowMs);
+            if (!retryEligibility.allowed) {
+                const exhaustedByWindow = retryEligibility.reason === 'retry_window_exhausted';
+                if (exhaustedByWindow) {
+                    this.retryWindowExhaustedCount += 1;
+                }
                 record.status = 'timed_out';
                 record.updatedAt = nowMs;
                 record.closedAt = nowMs;
-                record.history.push({ at: nowMs, event: 'timed_out' });
+                record.history.push({
+                    at: nowMs,
+                    event: exhaustedByWindow ? 'retry_window_exhausted' : 'timed_out',
+                    reason: exhaustedByWindow ? 'retry_window_exhausted' : undefined,
+                    elapsedMs: exhaustedByWindow ? retryEligibility.elapsedMs : undefined,
+                    maxRetryElapsedMs: exhaustedByWindow ? retryEligibility.maxRetryElapsedMs : undefined
+                });
                 this._persistRecord(record);
-                this._emitAudit('task_timed_out', {
+                this._emitAudit(exhaustedByWindow ? 'task_retry_window_exhausted' : 'task_timed_out', {
                     taskId: record.taskId,
                     target: record.target,
-                    attempts: record.attempts
+                    attempts: record.attempts,
+                    elapsedMs: exhaustedByWindow ? retryEligibility.elapsedMs : undefined,
+                    maxRetryElapsedMs: exhaustedByWindow ? retryEligibility.maxRetryElapsedMs : undefined
                 }, nowMs);
                 this._markDeadLetter(record, nowMs, {
-                    reason: 'timed_out',
-                    sourceEvent: 'maintenance_timeout'
+                    reason: exhaustedByWindow ? 'retry_window_exhausted' : 'timed_out',
+                    sourceEvent: exhaustedByWindow ? 'maintenance_retry_window_exhausted' : 'maintenance_timeout'
                 });
                 summary.timedOut++;
                 continue;
@@ -1912,24 +2014,38 @@ export class TaskOrchestrator {
                     `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
                 );
 
-                if (!this._canRetry(record)) {
+                const retryEligibility = this._retryEligibility(record, nowMs);
+                if (!retryEligibility.allowed) {
+                    const exhaustedByWindow = retryEligibility.reason === 'retry_window_exhausted';
+                    if (exhaustedByWindow) {
+                        this.retryWindowExhaustedCount += 1;
+                    }
                     record.status = 'transport_error';
                     record.updatedAt = nowMs;
                     record.closedAt = nowMs;
                     record.history.push({
                         at: nowMs,
-                        event: 'transport_error',
-                        error: record.lastError
+                        event: exhaustedByWindow ? 'retry_window_exhausted' : 'transport_error',
+                        error: record.lastError,
+                        reason: exhaustedByWindow ? 'retry_window_exhausted' : undefined,
+                        elapsedMs: exhaustedByWindow ? retryEligibility.elapsedMs : undefined,
+                        maxRetryElapsedMs: exhaustedByWindow ? retryEligibility.maxRetryElapsedMs : undefined
                     });
                     this._persistRecord(record);
-                    this._emitAudit('task_transport_error', {
+                    this._emitAudit(exhaustedByWindow ? 'task_retry_window_exhausted' : 'task_transport_error', {
                         taskId: record.taskId,
                         target: record.target,
-                        error: record.lastError
+                        error: record.lastError,
+                        elapsedMs: exhaustedByWindow ? retryEligibility.elapsedMs : undefined,
+                        maxRetryElapsedMs: exhaustedByWindow ? retryEligibility.maxRetryElapsedMs : undefined
                     }, nowMs);
                     this._markDeadLetter(record, nowMs, {
-                        reason: `transport_error:${record.lastError || 'unknown'}`,
-                        sourceEvent: 'maintenance_transport_error'
+                        reason: exhaustedByWindow
+                            ? 'retry_window_exhausted'
+                            : `transport_error:${record.lastError || 'unknown'}`,
+                        sourceEvent: exhaustedByWindow
+                            ? 'maintenance_retry_window_exhausted'
+                            : 'maintenance_transport_error'
                     });
                 } else {
                     const scheduled = this._scheduleRetry(record, nowMs, {
@@ -2158,6 +2274,10 @@ export class TaskOrchestrator {
                     maxRetriesInWindow: 0,
                     budgetRemaining: 0,
                     exhaustedCount: this.retryBudgetExhaustedCount
+                },
+                retryWindow: {
+                    maxRetryElapsedMs: this.maxRetryElapsedMs,
+                    exhaustedCount: this.retryWindowExhaustedCount
                 }
             },
             deadLetter: {

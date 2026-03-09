@@ -1505,6 +1505,74 @@ test('cancelTask rejects attempts to cancel non-cancelled terminal tasks', async
     );
 });
 
+test('retry window exhaustion terminalizes overdue retries even when attempts remain', async () => {
+    const clock = createClock(100_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 100,
+        maxRetries: 5,
+        retryDelayMs: 10,
+        maxRetryElapsedMs: 150
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-window',
+        task: 'Bound retry lifetime'
+    });
+
+    clock.set(100_151);
+    const pass = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(pass.timedOut, 1);
+    assert.equal(pass.scheduledRetries, 0);
+    assert.equal(current.status, 'timed_out');
+    assert.equal(current.deadLetter.reason, 'retry_window_exhausted');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.retryWindow.maxRetryElapsedMs, 150);
+    assert.equal(metrics.retry.retryWindow.exhaustedCount, 1);
+});
+
+test('dispatchTask maxRetryElapsedMs override is honored per task', async () => {
+    const clock = createClock(101_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 40,
+        maxRetries: 5,
+        retryDelayMs: 10,
+        maxRetryElapsedMs: 10_000
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-window-override',
+        task: 'Use tight per-task retry window',
+        maxRetryElapsedMs: 50
+    });
+
+    clock.set(101_041);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(current.status, 'retry_scheduled');
+
+    clock.set(current.nextRetryAt);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.retried, 1);
+    assert.equal(current.status, 'dispatched');
+
+    clock.set(101_100);
+    const pass3 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass3.timedOut, 1);
+    assert.equal(current.status, 'timed_out');
+    assert.equal(current.deadLetter.reason, 'retry_window_exhausted');
+});
+
 test('audit log records signed lifecycle entries', async () => {
     const auditLog = new SignedAuditLog({
         secret: 'audit-secret',
