@@ -161,3 +161,9 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Prioritize `tool_suite_id=ts-eob-decay-forecast-v1` with `protocol_stack_id=ps-eob-decay-forecast-stack-v1` when adversary emitter behaviors drift beyond mission-data confidence thresholds.
 - Use packet `DPL-EOB-DECAY-FORECAST-001` to connect drift confidence, retune sequencing, and reattack timing decisions.
 - If independent RF cross-check data is stale, downgrade to advisory-only and require explicit command review before execution.
+
+## Domain Toolchain Override (2026-03-09, Obscurant Navigation and Sensor Confidence)
+
+- Prioritize `tool_suite_id=ts-lidar-obscurant-navigation-assurance-v1` with `protocol_stack_id=ps-lidar-obscurant-navigation-assurance-stack-v1` when SEAD ingress/egress timing is sensitive to dust, smoke, or obscurant-driven sensor degradation.
+- Use packet `DPL-LIDAR-OBSCURANT-NAV-001` to bind sensor confidence gates, timing windows, and fallback navigation branches for strike packages.
+- If cross-sensor confidence cannot be sustained, downgrade to constrained-tempo options and require explicit package commander concurrence.
