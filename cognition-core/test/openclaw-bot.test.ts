@@ -313,3 +313,93 @@ test('OpenClawBot supports task-level hardening policy override', async (t) => {
     assert.equal(result.status, 'success');
     assert.equal(result.metrics.hardeningPolicyReport, 1);
 });
+
+test('OpenClawBot replays cached result for duplicate task requests', async () => {
+    const bot = new OpenClawBot({
+        repoRoot: REPO_ROOT,
+        nowFactory: () => 4_200_000,
+        taskReplayTtlMs: 60_000
+    });
+
+    const task = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000909',
+        from: 'agent:main',
+        target: 'agent:ops',
+        task: 'Generic replay-safe operation',
+        context: {
+            planner: 'cognition-core/test'
+        },
+        createdAt: 4_199_900
+    });
+
+    const first = await bot.executeTask(task);
+    const replayed = await bot.executeTask(task);
+
+    assert.equal(first.status, 'success');
+    assert.equal(replayed.status, 'success');
+    assert.equal(replayed.metrics.replayCacheHit, 1);
+    assert.equal(replayed.metrics.duplicateDelivery, 1);
+    assert.match(replayed.output, /duplicate_task_replay/);
+});
+
+test('OpenClawBot rejects duplicate task ids with mismatched payload fingerprints', async () => {
+    const bot = new OpenClawBot({
+        repoRoot: REPO_ROOT,
+        nowFactory: () => 4_300_000,
+        taskReplayTtlMs: 60_000
+    });
+
+    const baseTask = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000910',
+        from: 'agent:main',
+        target: 'agent:ops',
+        task: 'First payload',
+        context: {
+            planner: 'cognition-core/test'
+        },
+        createdAt: 4_299_900
+    });
+
+    const conflictingTask = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000910',
+        from: 'agent:main',
+        target: 'agent:ops',
+        task: 'Second payload',
+        context: {
+            planner: 'cognition-core/test',
+            variant: 'conflict'
+        },
+        createdAt: 4_299_901
+    });
+
+    await bot.executeTask(baseTask);
+    const conflict = await bot.executeTask(conflictingTask);
+
+    assert.equal(conflict.status, 'failure');
+    assert.equal(conflict.metrics.duplicateTaskIdConflict, 1);
+    assert.match(conflict.output, /reused with a different payload/);
+});
+
+test('OpenClawBot drops stale tasks when maxTaskAgeMs is configured', async () => {
+    const bot = new OpenClawBot({
+        repoRoot: REPO_ROOT,
+        nowFactory: () => 50_000,
+        maxTaskAgeMs: 1_000
+    });
+
+    const staleTask = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000911',
+        from: 'agent:main',
+        target: 'agent:ops',
+        task: 'Expired generic operation',
+        createdAt: 47_000
+    });
+
+    const result = await bot.executeTask(staleTask);
+
+    assert.equal(result.mode, 'generic');
+    assert.equal(result.status, 'partial');
+    assert.equal(result.metrics.staleTaskDropped, 1);
+    assert.equal(result.metrics.taskAgeMs, 3_000);
+    assert.equal(result.metrics.taskMaxAgeMs, 1_000);
+});

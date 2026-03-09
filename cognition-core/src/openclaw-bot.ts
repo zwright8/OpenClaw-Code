@@ -51,6 +51,8 @@ const SignalFieldNames = [
 ];
 
 const DEFAULT_HARDENING_MIN_SCORE = 82;
+const DEFAULT_TASK_REPLAY_TTL_MS = 5 * 60 * 1000;
+const DEFAULT_MAX_REPLAY_ENTRIES = 1024;
 const VALID_HARDENING_POLICIES = new Set<SkillHardeningPolicy>([
     'off',
     'report',
@@ -67,6 +69,14 @@ type SkillHardeningAssessment = {
     hardeningScore: number;
     blockingFindings: number;
     reasons: string[];
+};
+
+type CachedTaskExecution = {
+    taskId: string;
+    fingerprint: string;
+    createdAt: number;
+    expiresAt: number;
+    execution: OpenClawBotExecution;
 };
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -111,6 +121,18 @@ function normalizeHardeningMinScore(value: unknown): number {
     return Math.max(1, Math.min(100, Math.round(numeric)));
 }
 
+function normalizePositiveInt(value: unknown, fallback: number): number {
+    const numeric = Number(value);
+    if (!Number.isInteger(numeric) || numeric <= 0) return fallback;
+    return numeric;
+}
+
+function normalizeNonNegativeInt(value: unknown, fallback = 0): number {
+    const numeric = Number(value);
+    if (!Number.isInteger(numeric) || numeric < 0) return fallback;
+    return numeric;
+}
+
 function normalizeOptionalBoolean(value: unknown): boolean | undefined {
     if (typeof value === 'boolean') return value;
     if (typeof value === 'string') {
@@ -119,6 +141,22 @@ function normalizeOptionalBoolean(value: unknown): boolean | undefined {
         if (normalized === 'false' || normalized === '0' || normalized === 'no') return false;
     }
     return undefined;
+}
+
+function stableStringify(value: unknown): string {
+    if (Array.isArray(value)) {
+        return `[${value.map((entry) => stableStringify(entry)).join(',')}]`;
+    }
+    if (value && typeof value === 'object') {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .sort(([left], [right]) => left.localeCompare(right));
+        const body = entries
+            .map(([key, entry]) => `${JSON.stringify(key)}:${stableStringify(entry)}`)
+            .join(',');
+        return `{${body}}`;
+    }
+    const serialized = JSON.stringify(value);
+    return serialized === undefined ? 'null' : serialized;
 }
 
 function parseTaskHardeningOverrides(context: Record<string, unknown>): {
@@ -423,6 +461,9 @@ export type OpenClawBotOptions = {
     skillHardeningMinScore?: number;
     skillDeployabilityIndexPath?: string | null;
     skillHardeningProfilePath?: string | null;
+    taskReplayTtlMs?: number;
+    maxReplayEntries?: number;
+    maxTaskAgeMs?: number;
 };
 
 function isSkillExecutionSubtask(context: Record<string, unknown>, taskText: string): boolean {
@@ -523,6 +564,10 @@ export class OpenClawBot {
     skillHardeningProfile: SkillHardeningProfile;
     skillDeployabilityIndex: Map<string, SkillDeployabilityIndexEntry>;
     skillHardeningReportCache: Map<string, SkillHardeningReport>;
+    taskReplayCache: Map<string, CachedTaskExecution>;
+    taskReplayTtlMs: number;
+    maxReplayEntries: number;
+    maxTaskAgeMs: number;
 
     constructor({
         agentId = 'agent:openclaw-bot',
@@ -531,7 +576,10 @@ export class OpenClawBot {
         skillHardeningPolicy = 'enforce',
         skillHardeningMinScore = DEFAULT_HARDENING_MIN_SCORE,
         skillDeployabilityIndexPath = null,
-        skillHardeningProfilePath = null
+        skillHardeningProfilePath = null,
+        taskReplayTtlMs = DEFAULT_TASK_REPLAY_TTL_MS,
+        maxReplayEntries = DEFAULT_MAX_REPLAY_ENTRIES,
+        maxTaskAgeMs = 0
     }: OpenClawBotOptions = {}) {
         this.agentId = agentId;
         this.repoRoot = path.resolve(repoRoot);
@@ -556,6 +604,120 @@ export class OpenClawBot {
             minDeployableScore: this.skillHardeningMinScore
         });
         this.skillHardeningReportCache = new Map();
+        this.taskReplayCache = new Map();
+        this.taskReplayTtlMs = normalizeNonNegativeInt(taskReplayTtlMs, DEFAULT_TASK_REPLAY_TTL_MS);
+        this.maxReplayEntries = normalizePositiveInt(maxReplayEntries, DEFAULT_MAX_REPLAY_ENTRIES);
+        this.maxTaskAgeMs = normalizeNonNegativeInt(maxTaskAgeMs, 0);
+    }
+
+    private pruneReplayCache(nowMs: number): void {
+        if (this.taskReplayCache.size === 0) return;
+
+        for (const [taskId, cached] of this.taskReplayCache.entries()) {
+            if (cached.expiresAt <= nowMs) {
+                this.taskReplayCache.delete(taskId);
+            }
+        }
+
+        if (this.taskReplayCache.size <= this.maxReplayEntries) return;
+        const overflow = this.taskReplayCache.size - this.maxReplayEntries;
+        const sorted = [...this.taskReplayCache.values()]
+            .sort((left, right) => left.createdAt - right.createdAt);
+        for (let index = 0; index < overflow; index++) {
+            const entry = sorted[index];
+            if (!entry) continue;
+            this.taskReplayCache.delete(entry.taskId);
+        }
+    }
+
+    private makeRequestFingerprint(request: ReturnType<typeof TaskRequest.parse>): string {
+        return stableStringify({
+            id: request.id,
+            from: request.from,
+            target: request.target || '',
+            priority: request.priority,
+            task: request.task,
+            context: request.context || {},
+            constraints: request.constraints || []
+        });
+    }
+
+    private cloneExecutionResult(execution: OpenClawBotExecution): OpenClawBotExecution {
+        return {
+            mode: execution.mode,
+            status: execution.status,
+            output: execution.output,
+            metrics: { ...(execution.metrics || {}) },
+            artifacts: Array.isArray(execution.artifacts)
+                ? execution.artifacts.map((artifact) => ({ ...artifact }))
+                : [],
+            followupTasks: Array.isArray(execution.followupTasks)
+                ? execution.followupTasks.map((task) => ({ ...(task || {}) }))
+                : []
+        };
+    }
+
+    private withReplayMetrics(execution: OpenClawBotExecution, cachedAgeMs: number): OpenClawBotExecution {
+        return {
+            ...execution,
+            output: `${execution.output} [duplicate_task_replay]`,
+            metrics: buildMetrics({
+                ...(execution.metrics || {}),
+                duplicateDelivery: 1,
+                replayCacheHit: 1,
+                replayCachedAgeMs: cachedAgeMs
+            }),
+            artifacts: Array.isArray(execution.artifacts)
+                ? execution.artifacts.map((artifact) => ({ ...artifact }))
+                : [],
+            followupTasks: Array.isArray(execution.followupTasks)
+                ? execution.followupTasks.map((task) => ({ ...(task || {}) }))
+                : []
+        };
+    }
+
+    private cacheExecutionResult(
+        taskId: string,
+        fingerprint: string,
+        startedAt: number,
+        execution: OpenClawBotExecution
+    ): void {
+        if (this.taskReplayTtlMs <= 0 || this.maxReplayEntries <= 0) return;
+        const nowMs = safeNow(this.nowFactory);
+        this.pruneReplayCache(nowMs);
+        this.taskReplayCache.set(taskId, {
+            taskId,
+            fingerprint,
+            createdAt: startedAt,
+            expiresAt: nowMs + this.taskReplayTtlMs,
+            execution: this.cloneExecutionResult(execution)
+        });
+        this.pruneReplayCache(nowMs);
+    }
+
+    private shouldDropStaleTask(
+        request: ReturnType<typeof TaskRequest.parse>,
+        context: Record<string, unknown>,
+        nowMs: number
+    ): { drop: boolean; maxAgeMs: number; taskAgeMs: number; } {
+        const allowStaleTask = normalizeOptionalBoolean(context.allowStaleTask) === true;
+        if (allowStaleTask) {
+            return { drop: false, maxAgeMs: 0, taskAgeMs: 0 };
+        }
+
+        const taskMaxAgeMs = normalizeNonNegativeInt(
+            context.maxTaskAgeMs ?? context.taskMaxAgeMs ?? this.maxTaskAgeMs,
+            this.maxTaskAgeMs
+        );
+        if (taskMaxAgeMs <= 0) {
+            return { drop: false, maxAgeMs: taskMaxAgeMs, taskAgeMs: 0 };
+        }
+        const taskAgeMs = Math.max(0, nowMs - request.createdAt);
+        return {
+            drop: taskAgeMs > taskMaxAgeMs,
+            maxAgeMs: taskMaxAgeMs,
+            taskAgeMs
+        };
     }
 
     private getSkillHardeningReport(
@@ -682,13 +844,65 @@ export class OpenClawBot {
         }
 
         const context = isPlainObject(request.context) ? request.context : {};
+        const requestFingerprint = this.makeRequestFingerprint(request);
+        const nowMs = safeNow(this.nowFactory);
+        this.pruneReplayCache(nowMs);
+
+        const cached = this.taskReplayCache.get(request.id);
+        if (cached) {
+            if (cached.fingerprint !== requestFingerprint) {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: `Task execution failed: task id ${request.id} was reused with a different payload`,
+                    metrics: buildMetrics({
+                        durationMs: clampNonNegative(safeNow(this.nowFactory) - startedAt),
+                        duplicateTaskIdConflict: 1
+                    }),
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            if (cached.expiresAt > nowMs) {
+                const cachedAgeMs = clampNonNegative(nowMs - cached.createdAt);
+                return this.withReplayMetrics(
+                    this.cloneExecutionResult(cached.execution),
+                    cachedAgeMs
+                );
+            }
+            this.taskReplayCache.delete(request.id);
+        }
+
+        const freshness = this.shouldDropStaleTask(request, context, nowMs);
+        if (freshness.drop) {
+            const staleResult: OpenClawBotExecution = {
+                mode: 'generic',
+                status: 'partial',
+                output: `Task skipped as stale (age ${freshness.taskAgeMs}ms exceeds max ${freshness.maxAgeMs}ms).`,
+                metrics: buildMetrics({
+                    durationMs: clampNonNegative(safeNow(this.nowFactory) - startedAt),
+                    staleTaskDropped: 1,
+                    taskAgeMs: freshness.taskAgeMs,
+                    taskMaxAgeMs: freshness.maxAgeMs
+                }),
+                artifacts: [],
+                followupTasks: []
+            };
+            this.cacheExecutionResult(request.id, requestFingerprint, startedAt, staleResult);
+            return staleResult;
+        }
+
+        const finalize = (result: OpenClawBotExecution): OpenClawBotExecution => {
+            this.cacheExecutionResult(request.id, requestFingerprint, startedAt, result);
+            return result;
+        };
 
         try {
             const skillId = parseSkillId(context.skillId);
             if (skillId !== null) {
                 if (isSkillExecutionSubtask(context, request.task)) {
                     const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
-                    return {
+                    return finalize({
                         mode: 'skill_action',
                         status: 'success',
                         output: `Skill execution task completed for skill ${skillId}: ${request.task}`,
@@ -704,7 +918,7 @@ export class OpenClawBot {
                             }
                         ],
                         followupTasks: []
-                    };
+                    });
                 }
 
                 const skillBlueprint = isPlainObject(context.skillBlueprint)
@@ -738,7 +952,7 @@ export class OpenClawBot {
                         : `Skill ${skillCode}`;
                     const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
 
-                    return {
+                    return finalize({
                         mode: 'skill_blueprint',
                         status: 'success',
                         output: `Skill blueprint executed for ${skillCode}: ${skillTitle}`,
@@ -754,7 +968,7 @@ export class OpenClawBot {
                             }
                         ],
                         followupTasks: []
-                    };
+                    });
                 }
 
                 if (!implementation) {
@@ -805,7 +1019,7 @@ export class OpenClawBot {
                     const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
                     const reason = hardeningAssessment.reasons[0] || 'Hardening gate failed.';
 
-                    return {
+                    return finalize({
                         mode: 'skill',
                         status: 'partial',
                         output: `Skill ${implementation.skillName} blocked by hardening gate (${hardeningAssessment.source}, policy ${hardeningAssessment.appliedPolicy.policy}, score ${hardeningAssessment.hardeningScore}). ${reason}`,
@@ -833,7 +1047,7 @@ export class OpenClawBot {
                             }
                         ],
                         followupTasks
-                    };
+                    });
                 }
 
                 const execution = executeSkillImplementation(
@@ -851,7 +1065,7 @@ export class OpenClawBot {
                 });
                 const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
 
-                return {
+                return finalize({
                     mode: 'skill',
                     status: 'success',
                     output: `Skill ${execution.skillName} executed with posture ${execution.posture} (overall ${execution.scores.overallScore}, hardening ${hardeningAssessment.appliedPolicy.policy}:${hardeningAssessment.hardeningScore}).`,
@@ -891,7 +1105,7 @@ export class OpenClawBot {
                         }
                     ],
                     followupTasks
-                };
+                });
             }
 
             const capabilityId = parseCapabilityId(context.capabilityId);
@@ -930,7 +1144,7 @@ export class OpenClawBot {
                         : 'unknown';
                     const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
 
-                    return {
+                    return finalize({
                         mode: 'capability',
                         status: 'success',
                         output: `Capability ${capabilityId} evaluated with posture ${posture} and ${recommendationCount} recommendations.`,
@@ -955,7 +1169,7 @@ export class OpenClawBot {
                             }
                         ],
                         followupTasks
-                    };
+                    });
                 }
 
                 if (typeof context.recommendationType === 'string' && context.recommendationType.trim()) {
@@ -965,7 +1179,7 @@ export class OpenClawBot {
                         : 'global';
                     const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
 
-                    return {
+                    return finalize({
                         mode: 'capability_action',
                         status: 'success',
                         output: `Capability action ${recommendationType} executed for ${capabilityId} (${entityId}).`,
@@ -984,29 +1198,29 @@ export class OpenClawBot {
                             }
                         ],
                         followupTasks: []
-                    };
+                    });
                 }
             }
 
             const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
-            return {
+            return finalize({
                 mode: 'generic',
                 status: 'success',
                 output: `Generic task completed: ${request.task}`,
                 metrics: { durationMs },
                 artifacts: [],
                 followupTasks: []
-            };
+            });
         } catch (error) {
             const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
-            return {
+            return finalize({
                 mode: 'generic',
                 status: 'failure',
                 output: `Task execution failed: ${error.message}`,
                 metrics: { durationMs },
                 artifacts: [],
                 followupTasks: []
-            };
+            });
         }
     }
 }
