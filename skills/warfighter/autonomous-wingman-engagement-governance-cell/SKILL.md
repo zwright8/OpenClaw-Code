@@ -60,6 +60,9 @@ Primary products for this skill: human-machine authority matrix, engagement gove
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+- Restrict output to governance, assurance, and supervisory control recommendations; do not produce autonomous lethal execution logic or engagement sequencing instructions.
+- Require positive human authorization checkpoints for autonomy mode transitions, effects release, and contingency overrides.
+- If confidence, comms integrity, or identification certainty drops below threshold, direct fallback to advisory-only posture with human-on-the-loop control.
 
 ## Tool Protocol Playbooks
 
@@ -144,4 +147,3 @@ Primary products for this skill: human-machine authority matrix, engagement gove
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-

@@ -68,6 +68,9 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+- Focus on standards governance and quality control; do not provide strike package construction, aimpoint optimization, or attack geometry instructions.
+- Require no-strike/restricted target reconciliation evidence before releasing any recommendation with projected effects.
+- If CDE inputs are stale, incomplete, or disputed, mark recommendations as `provisional`, downgrade to advisory-only, and require command/legal review.
 
 ## Tool Protocol Playbooks
 
