@@ -224,6 +224,8 @@ export class TaskOrchestrator {
         circuitBreakerCooldownMs = 15_000,
         circuitBreakerHalfOpenProbeCooldownMs = 250,
         bulkheadMaxInFlightPerTarget = 8,
+        bulkheadMaxInFlightGlobal = Number.POSITIVE_INFINITY,
+        bulkheadGlobalHighPriorityReserve = 0,
         bulkheadRetryDelayMs = 250,
         deadLetterMaxEntries = DEFAULT_DEAD_LETTER_MAX_ENTRIES,
         adaptiveTimeoutEnabled = true,
@@ -305,6 +307,20 @@ export class TaskOrchestrator {
             bulkheadMaxInFlightPerTarget,
             8
         );
+        this.bulkheadMaxInFlightGlobal = normalizeBulkheadLimit(
+            bulkheadMaxInFlightGlobal,
+            Number.POSITIVE_INFINITY
+        );
+        const requestedGlobalReserve = normalizeNonNegativeInt(
+            bulkheadGlobalHighPriorityReserve,
+            0
+        );
+        this.bulkheadGlobalHighPriorityReserve = Number.isFinite(this.bulkheadMaxInFlightGlobal)
+            ? Math.max(
+                0,
+                Math.min(this.bulkheadMaxInFlightGlobal, requestedGlobalReserve)
+            )
+            : requestedGlobalReserve;
         this.bulkheadRetryDelayMs = Math.max(
             1,
             Math.floor(clampPositiveNumber(bulkheadRetryDelayMs, 250))
@@ -845,6 +861,69 @@ export class TaskOrchestrator {
             inFlight++;
         }
         return inFlight;
+    }
+
+    _countGlobalInFlight({
+        excludeTaskId = null
+    } = {}) {
+        let inFlight = 0;
+        for (const record of this.tasks.values()) {
+            if (!record) continue;
+            if (excludeTaskId && record.taskId === excludeTaskId) continue;
+            if (record._sending === true) {
+                inFlight++;
+                continue;
+            }
+            if (!IN_FLIGHT_STATUSES.has(record.status)) continue;
+            inFlight++;
+        }
+        return inFlight;
+    }
+
+    _globalLowPriorityLimit() {
+        if (!Number.isFinite(this.bulkheadMaxInFlightGlobal)) {
+            return Number.POSITIVE_INFINITY;
+        }
+        return Math.max(
+            0,
+            this.bulkheadMaxInFlightGlobal - this.bulkheadGlobalHighPriorityReserve
+        );
+    }
+
+    _allowGlobalBulkheadSend(taskId, priority = 'normal') {
+        if (!Number.isFinite(this.bulkheadMaxInFlightGlobal)) {
+            return {
+                allowed: true,
+                inFlight: 0,
+                limit: Number.POSITIVE_INFINITY,
+                lowPriorityLimit: Number.POSITIVE_INFINITY,
+                reservedForHighPriority: this.bulkheadGlobalHighPriorityReserve,
+                retryAfterMs: 0,
+                saturationReason: null
+            };
+        }
+
+        const normalizedPriority = typeof priority === 'string'
+            ? priority
+            : 'normal';
+        const highPriority = HIGH_PRIORITY_TASKS.has(normalizedPriority);
+        const inFlight = this._countGlobalInFlight({ excludeTaskId: taskId });
+        const lowPriorityLimit = this._globalLowPriorityLimit();
+        const allowed = highPriority
+            ? inFlight < this.bulkheadMaxInFlightGlobal
+            : inFlight < lowPriorityLimit;
+
+        return {
+            allowed,
+            inFlight,
+            limit: this.bulkheadMaxInFlightGlobal,
+            lowPriorityLimit,
+            reservedForHighPriority: this.bulkheadGlobalHighPriorityReserve,
+            retryAfterMs: allowed ? 0 : this.bulkheadRetryDelayMs,
+            saturationReason: allowed
+                ? null
+                : (highPriority ? 'global_limit' : 'reserved_for_high_priority')
+        };
     }
 
     _allowTargetBulkheadSend(target, taskId) {
@@ -1824,6 +1903,34 @@ export class TaskOrchestrator {
                     return this.getTask(record.taskId);
                 }
             }
+            if (error instanceof TaskOrchestratorError && error.code === 'GLOBAL_BACKPRESSURE') {
+                if (this._canRetry(record, dispatchAt)) {
+                    this._scheduleRetry(record, dispatchAt, {
+                        reason: 'global_backpressure_on_dispatch',
+                        event: 'dispatch_deferred_global_backpressure',
+                        hintMs: Number.isFinite(error?.details?.retryAfterMs)
+                            ? Number(error.details.retryAfterMs)
+                            : this.bulkheadRetryDelayMs,
+                        auditEvent: 'task_dispatch_deferred_global_backpressure',
+                        metadata: {
+                            inFlight: Number.isFinite(error?.details?.inFlight)
+                                ? Number(error.details.inFlight)
+                                : null,
+                            inFlightLimit: Number.isFinite(error?.details?.limit)
+                                ? Number(error.details.limit)
+                                : null,
+                            lowPriorityLimit: Number.isFinite(error?.details?.lowPriorityLimit)
+                                ? Number(error.details.lowPriorityLimit)
+                                : null,
+                            reservedForHighPriority: Number.isFinite(error?.details?.reservedForHighPriority)
+                                ? Number(error.details.reservedForHighPriority)
+                                : null,
+                            saturationReason: error?.details?.saturationReason || null
+                        }
+                    });
+                    return this.getTask(record.taskId);
+                }
+            }
 
             this.tasks.delete(record.taskId);
             this._deleteRecord(record.taskId);
@@ -1934,6 +2041,54 @@ export class TaskOrchestrator {
 
     async _sendTask(record, reason) {
         const sendAt = safeNow(this.now);
+        const globalBulkheadGate = this._allowGlobalBulkheadSend(
+            record.taskId,
+            record.request?.priority
+        );
+        if (!globalBulkheadGate.allowed) {
+            record.updatedAt = sendAt;
+            record.history.push({
+                at: sendAt,
+                event: 'send_blocked_global_backpressure',
+                reason,
+                priority: record.request?.priority || 'normal',
+                inFlight: globalBulkheadGate.inFlight,
+                inFlightLimit: globalBulkheadGate.limit,
+                lowPriorityLimit: globalBulkheadGate.lowPriorityLimit,
+                reservedForHighPriority: globalBulkheadGate.reservedForHighPriority,
+                saturationReason: globalBulkheadGate.saturationReason,
+                retryAfterMs: globalBulkheadGate.retryAfterMs
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_send_blocked_global_backpressure', {
+                taskId: record.taskId,
+                target: record.target,
+                reason,
+                priority: record.request?.priority || 'normal',
+                inFlight: globalBulkheadGate.inFlight,
+                inFlightLimit: globalBulkheadGate.limit,
+                lowPriorityLimit: globalBulkheadGate.lowPriorityLimit,
+                reservedForHighPriority: globalBulkheadGate.reservedForHighPriority,
+                saturationReason: globalBulkheadGate.saturationReason,
+                retryAfterMs: globalBulkheadGate.retryAfterMs
+            }, sendAt);
+            throw new TaskOrchestratorError(
+                'GLOBAL_BACKPRESSURE',
+                `Global in-flight limit reached (${globalBulkheadGate.inFlight}/${globalBulkheadGate.limit})`,
+                {
+                    taskId: record.taskId,
+                    target: record.target,
+                    priority: record.request?.priority || 'normal',
+                    inFlight: globalBulkheadGate.inFlight,
+                    limit: globalBulkheadGate.limit,
+                    lowPriorityLimit: globalBulkheadGate.lowPriorityLimit,
+                    reservedForHighPriority: globalBulkheadGate.reservedForHighPriority,
+                    saturationReason: globalBulkheadGate.saturationReason,
+                    retryAfterMs: globalBulkheadGate.retryAfterMs
+                }
+            );
+        }
+
         const bulkheadGate = this._allowTargetBulkheadSend(record.target, record.taskId);
         if (!bulkheadGate.allowed) {
             record.updatedAt = sendAt;
@@ -2295,6 +2450,37 @@ export class TaskOrchestrator {
                     }
                     continue;
                 }
+                if (error instanceof TaskOrchestratorError && error.code === 'GLOBAL_BACKPRESSURE') {
+                    const scheduled = this._scheduleRetry(record, nowMs, {
+                        reason: 'global_backpressure',
+                        event: 'retry_deferred_global_backpressure',
+                        hintMs: Number.isFinite(error?.details?.retryAfterMs)
+                            ? Number(error.details.retryAfterMs)
+                            : this.bulkheadRetryDelayMs,
+                        auditEvent: 'task_retry_deferred_global_backpressure',
+                        metadata: {
+                            inFlight: Number.isFinite(error?.details?.inFlight)
+                                ? Number(error.details.inFlight)
+                                : null,
+                            inFlightLimit: Number.isFinite(error?.details?.limit)
+                                ? Number(error.details.limit)
+                                : null,
+                            lowPriorityLimit: Number.isFinite(error?.details?.lowPriorityLimit)
+                                ? Number(error.details.lowPriorityLimit)
+                                : null,
+                            reservedForHighPriority: Number.isFinite(error?.details?.reservedForHighPriority)
+                                ? Number(error.details.reservedForHighPriority)
+                                : null,
+                            saturationReason: error?.details?.saturationReason || null
+                        }
+                    });
+                    if (scheduled) {
+                        summary.scheduledRetries++;
+                    } else {
+                        summary.transportFailures++;
+                    }
+                    continue;
+                }
                 if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
                     const failovered = this._maybeFailoverRecordTarget(
                         record,
@@ -2590,6 +2776,16 @@ export class TaskOrchestrator {
                     maxInFlightPerTarget: Number.isFinite(this.bulkheadMaxInFlightPerTarget)
                         ? this.bulkheadMaxInFlightPerTarget
                         : null,
+                    maxInFlightGlobal: Number.isFinite(this.bulkheadMaxInFlightGlobal)
+                        ? this.bulkheadMaxInFlightGlobal
+                        : null,
+                    globalHighPriorityReserve: this.bulkheadGlobalHighPriorityReserve,
+                    globalInFlight: 0,
+                    lowPriorityLimit: Number.isFinite(this.bulkheadMaxInFlightGlobal)
+                        ? this._globalLowPriorityLimit()
+                        : null,
+                    saturated: false,
+                    lowPrioritySaturated: false,
                     retryDelayMs: this.bulkheadRetryDelayMs,
                     activeTargets: 0,
                     targets: {}
@@ -2738,6 +2934,14 @@ export class TaskOrchestrator {
             };
         }
         metrics.retry.bulkhead.activeTargets = inFlightByTarget.size;
+        const globalInFlight = this._countGlobalInFlight();
+        metrics.retry.bulkhead.globalInFlight = globalInFlight;
+        metrics.retry.bulkhead.saturated = Number.isFinite(this.bulkheadMaxInFlightGlobal)
+            ? globalInFlight >= this.bulkheadMaxInFlightGlobal
+            : false;
+        metrics.retry.bulkhead.lowPrioritySaturated = Number.isFinite(this.bulkheadMaxInFlightGlobal)
+            ? globalInFlight >= this._globalLowPriorityLimit()
+            : false;
 
         metrics.avgAttempts = this.tasks.size > 0
             ? Number((attemptsTotal / this.tasks.size).toFixed(2))

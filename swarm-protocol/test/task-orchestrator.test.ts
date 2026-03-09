@@ -855,6 +855,99 @@ test('metrics expose bulkhead in-flight state per target', async () => {
     await dispatchPromise;
 });
 
+test('global bulkhead reserves capacity for high-priority dispatch', async () => {
+    const clock = createClock(27_000);
+    let sendCount = 0;
+    let releaseFirstSend = null;
+    const firstSendGate = new Promise((resolve) => {
+        releaseFirstSend = resolve;
+    });
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount === 1) {
+                    await firstSendGate;
+                }
+            }
+        },
+        now: clock.now,
+        bulkheadMaxInFlightGlobal: 2,
+        bulkheadGlobalHighPriorityReserve: 1,
+        bulkheadRetryDelayMs: 150
+    });
+
+    const firstDispatchPromise = orchestrator.dispatchTask({
+        target: 'agent:worker-global-1',
+        task: 'Occupy a global in-flight slot',
+        priority: 'normal'
+    });
+
+    await Promise.resolve();
+
+    const lowPriorityDeferred = await orchestrator.dispatchTask({
+        target: 'agent:worker-global-2',
+        task: 'Low priority should defer while reserve is protected',
+        priority: 'normal'
+    });
+    assert.equal(lowPriorityDeferred.status, 'retry_scheduled');
+    assert.equal(lowPriorityDeferred.attempts, 0);
+    assert.equal(lowPriorityDeferred.nextRetryAt, clock.now() + 150);
+
+    const highPriorityDispatched = await orchestrator.dispatchTask({
+        target: 'agent:worker-global-3',
+        task: 'High priority should use reserved global capacity',
+        priority: 'high'
+    });
+    assert.equal(highPriorityDispatched.status, 'dispatched');
+    assert.equal(highPriorityDispatched.attempts, 1);
+    assert.equal(sendCount, 2);
+
+    releaseFirstSend();
+    await firstDispatchPromise;
+});
+
+test('metrics expose global bulkhead pressure and reservation', async () => {
+    const clock = createClock(28_000);
+    let releaseSend = null;
+    const sendGate = new Promise((resolve) => {
+        releaseSend = resolve;
+    });
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                await sendGate;
+            }
+        },
+        now: clock.now,
+        bulkheadMaxInFlightGlobal: 2,
+        bulkheadGlobalHighPriorityReserve: 1,
+        bulkheadRetryDelayMs: 120
+    });
+
+    const dispatchPromise = orchestrator.dispatchTask({
+        target: 'agent:worker-global-metrics',
+        task: 'Hold one slot to expose global pressure',
+        priority: 'normal'
+    });
+
+    await Promise.resolve();
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.bulkhead.maxInFlightGlobal, 2);
+    assert.equal(metrics.retry.bulkhead.globalHighPriorityReserve, 1);
+    assert.equal(metrics.retry.bulkhead.globalInFlight, 1);
+    assert.equal(metrics.retry.bulkhead.lowPriorityLimit, 1);
+    assert.equal(metrics.retry.bulkhead.saturated, false);
+    assert.equal(metrics.retry.bulkhead.lowPrioritySaturated, true);
+
+    releaseSend();
+    await dispatchPromise;
+});
+
 test('circuit breaker defers dispatch when target is open', async () => {
     const clock = createClock(30_000);
     let sends = 0;
