@@ -4,8 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 654
-- Total warfighter skills in this repo: 941
+- Total warfighter skills in this repo: 957
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -597,3 +596,41 @@ Every skill output should include:
 - Biometrics degraded-mode access control + counterintelligence insider-threat + denied watchlist synchronization
 - Kill-chain clock synchronization + denied-PNT timing assurance + GNSS outage fusion
 - FARP under drone threat + fuel convoy signature suppression + counter-targeting pattern-of-life obfuscation
+
+## New Expansion Wave (2026-03-09, Deep Sustainment and Model Integrity)
+
+- joint-littoral-hydrogen-fuel-cell-sustainment-assurance-cell
+- theater-directed-energy-air-defense-power-management-cell
+- joint-quantum-sensing-submarine-tracking-countermeasure-cell
+- joint-denied-environment-medevac-blood-substitute-allocation-cell
+- strategic-microelectronics-radiation-hardening-and-spare-policy-cell
+- joint-cyber-electromagnetic-deception-targeting-cell
+- theater-expeditionary-droneport-dispersal-and-recovery-cell
+- joint-space-ground-laser-communications-weather-gating-cell
+- coalition-joint-fires-voice-fallback-and-brevity-code-assurance-cell
+- contested-additive-explosive-propellant-quality-surveillance-cell
+- strategic-rare-earth-magnet-recycling-surge-cell
+- joint-forward-arming-rearming-point-water-fuel-hazard-cell
+- joint-mission-model-poisoning-detection-and-recovery-cell
+- theater-mission-ledger-zero-trust-disconnected-audit-cell
+- joint-subsea-geothermal-sensor-power-denial-cell
+- strategic-deployment-medical-oxygen-plant-resilience-cell
+
+## Updated Pairings (2026-03-09, Deep Sustainment and Model Integrity)
+
+- Littoral hydrogen sustainment + expeditionary fuel contamination response + maritime chokepoint logistics continuity
+- Directed-energy power management + integrated air and missile defense shot doctrine + operational energy resilience and microgrid
+- Quantum submarine countermeasure fusion + ASW support + undersea sensor mesh reconstitution
+- Denied medevac blood substitute allocation + casualty regulation + contested blood cold-chain continuity
+- Radiation-hard microelectronics policy + strategic autonomous component security + industrial mobilization readiness
+- Cyber-electromagnetic deception targeting + electronic signature survivability scorecard + tactical deception rehearsal
+- Expeditionary droneport dispersal + UAS traffic management + counter-UAS kill-chain integration
+- Laser comms weather gating + SATCOM anti-jam reconstitution + mission network failover
+- Coalition fires voice fallback assurance + coalition fires digital clearance latency reduction + legal targeting assurance
+- Additive propellant quality surveillance + additive munitions microfactory control + ammo lot reliability governance
+- Rare-earth magnet recycling surge + rare-earth industrial assurance + strategic supply-shock mitigation
+- FARP water/fuel hazard control + FARP under drone threat + force protection and base defense
+- Mission model poisoning recovery + AI model governance and mission assurance + autonomy safety incident governance
+- Mission ledger disconnected audit + battle-network key continuity + disconnected mission-data replication
+- Subsea geothermal power denial response + undersea communication resilience + underwater autonomy traffic deconfliction
+- Medical oxygen plant resilience + forward medical oxygen generation assurance + casualty evacuation network continuity

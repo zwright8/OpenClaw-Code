@@ -149,3 +149,11 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain-Specific Tool and Protocol Baseline
+
+- Default `tool_suite_id`: `ts-cjadc2-fabric-resilience-v1` with cross-check from `ts-denied-lob-triangulation-v1`.
+- Default `protocol_stack_id`: `ps-cjadc2-fabric-resilience-stack-v1` with degraded fallback to `ps-denied-lob-triangulation-stack-v1`.
+- Recommended external tools: base access-control logs, perimeter ISR event streams, counter-UAS telemetry, and facility power status monitoring.
+- Required protocol families: `USMTF`, `CoT`, `Link 16 J-series`, and `STIX/TAXII`.
+- Required packet fields for each high-consequence recommendation: `packet_id`, `tool_suite_id`, `protocol_stack_id`, `authority_tier`, `approval_role`, and `ack_chain_status`.

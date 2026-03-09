@@ -154,3 +154,11 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain-Specific Tool and Protocol Baseline
+
+- Default `tool_suite_id`: `ts-mission-ledger-disconnected-audit-v1` with resilience cross-check from `ts-cjadc2-fabric-resilience-v1`.
+- Default `protocol_stack_id`: `ps-mission-ledger-disconnected-audit-stack-v1` with degraded fallback to `ps-cjadc2-fabric-resilience-stack-v1`.
+- Recommended external tools: edge Kubernetes or k3s control planes, signed container registry attestations, message-bus lag telemetry, and identity governance audit logs.
+- Required protocol families: `REST JSON over mTLS`, `OpenID Connect`, `SCIM`, `CBOR/COSE`, and `STIX/TAXII`.
+- Required packet fields for edge reconfiguration recommendations: `baseline_digest`, `rollback_bundle_id`, `credential_scope`, `sync_window_utc`, `approval_role`, and `audit_record_id`.
