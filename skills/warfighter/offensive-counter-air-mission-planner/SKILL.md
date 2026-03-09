@@ -158,3 +158,6 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+- For tanker and strategic mobility disruptions affecting OCA package persistence, prioritize `ts-contested-tanker-airbridge-v1` with `ps-contested-tanker-airbridge-stack-v1`.
+- For emergency civil-military air corridor closures during swarm pressure, include `ts-swarmsafe-air-corridor-v1` with `ps-swarmsafe-air-corridor-stack-v1`.
+- For degraded navigation transitions in navwar conditions, include `ts-pnt-transition-terrain-nav-v1` with `ps-pnt-transition-terrain-nav-stack-v1`.

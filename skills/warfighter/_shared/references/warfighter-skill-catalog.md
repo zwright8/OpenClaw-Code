@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 941
+
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -610,3 +610,33 @@ Every skill output should include:
 - Biometrics degraded-mode access control + counterintelligence insider-threat + denied watchlist synchronization
 - Kill-chain clock synchronization + denied-PNT timing assurance + GNSS outage fusion
 - FARP under drone threat + fuel convoy signature suppression + counter-targeting pattern-of-life obfuscation
+
+## New Expansion Wave (2026-03-09, Strategic Continuity, Mobility, and Aid Access Denial)
+
+- joint-nuclear-command-post-relocation-and-emcon-cell
+- theater-strategic-tanker-airbridge-contested-replan-cell
+- joint-maritime-telemedicine-and-hospital-ship-load-balancing-cell
+- tactical-swarmsafe-civil-air-corridor-emergency-shutdown-cell
+- theater-adversary-drone-factory-disruption-prioritization-cell
+- coalition-humanitarian-aid-denial-campaign-attribution-cell
+- strategic-semiconductor-radiation-hardened-chip-allocation-cell
+- joint-space-ground-laser-dazzle-attribution-and-recovery-cell
+- theater-contested-pnt-terrain-referenced-navigation-transition-cell
+- expeditionary-cold-chain-vaccine-integrity-under-grid-loss-cell
+- joint-ammunition-dud-rate-anomaly-and-lot-quarantine-cell
+- tactical-ship-to-shore-energy-cable-emplacement-protection-cell
+
+## Updated Pairings (2026-03-09, Strategic Continuity, Mobility, and Aid Access Denial)
+
+- NC3 relocation and EMCON + hardened-fiber NC3 failover + kill-chain time coherence
+- Contested tanker airbridge replanning + airbase dispersal/reconstitution + FARP under drone threat
+- Maritime telemedicine load balancing + contested medevac airbridge prioritization + submarine rescue coordination
+- Swarm-safe civil air corridor shutdown + tactical UAS traffic management + air and missile defense shot doctrine
+- Drone factory disruption prioritization + sanctions disruption + loitering munition counter-swarm attrition
+- Humanitarian aid denial attribution + humanitarian corridor assurance + civil defense mass evacuation
+- Radiation-hardened chip allocation + strategic industrial mobilization + mission-assured software factory support
+- Space-ground laser dazzle attribution + defensive space control + orbital spectrum conflict resolution
+- Contested PNT terrain-nav transition + denied-space PNT alternatives + hardened time distribution over fiber
+- Vaccine cold-chain under grid loss + forward medical oxygen assurance + water distribution continuity
+- Ammunition dud-rate quarantine + theater ammunition interoperability + explosive demil safety
+- Ship-to-shore energy cable protection + coastal hazard protection + undersea critical infrastructure repair convoy

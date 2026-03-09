@@ -3508,3 +3508,139 @@ external_binding:
 - Messaging: USMTF timing advisories + Link 16 J-series + API/JSON timing integrity events.
 - Transport: resilient timing distribution mesh + mission network replication + holdover fallback mode.
 - Security: cryptographic time-source attestations + timing anomaly audit chain + authority-tier release checks.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Strategic Continuity, Mobility, and Humanitarian Denial)
+
+### `ts-nc3-relocation-emcon-v1`
+- Use for: strategic command-post relocation sequencing under emission control and continuity constraints.
+- Primary tools: NC3 continuity monitor, RF emissions compliance analyzer, relocation movement board.
+- Cross-check tools: independent acknowledgment ledger and alternate emissions verification cell.
+- Typical products: relocation branch ladder, EMCON compliance scorecard, continuity handoff sequence.
+
+### `ts-contested-tanker-airbridge-v1`
+- Use for: tanker and strategic airbridge replanning under missile/EW disruption and airfield attrition.
+- Primary tools: air mobility scheduler, tanker orbit optimizer, threat-aware airfield status board.
+- Cross-check tools: independent sortie-generation risk model and alternate route feasibility board.
+- Typical products: tanker reroute matrix, sortie sustainment timeline, branch trigger table.
+
+### `ts-maritime-telemed-load-balance-v1`
+- Use for: afloat telemedicine triage and distributed hospital-ship load balancing.
+- Primary tools: telemedicine triage broker, afloat bed-status federation, maritime medevac planner.
+- Cross-check tools: independent clinical severity review queue and alternate patient flow board.
+- Typical products: patient balancing ladder, escalation queue, care-capacity projection.
+
+### `ts-swarmsafe-air-corridor-v1`
+- Use for: emergency shutdown and recovery of mixed civil-military air corridors during swarm attacks.
+- Primary tools: air corridor operations board, counter-UAS warning feed, civil ATC deconfliction portal.
+- Cross-check tools: independent civilian traffic safety mirror and alternate corridor risk monitor.
+- Typical products: shutdown/reopen matrix, air corridor risk map, deconfliction decision log.
+
+### `ts-drone-factory-disruption-v1`
+- Use for: prioritizing disruption against adversary drone factories and component assembly networks.
+- Primary tools: supply-chain network mapper, ISR production-activity tracker, sanctions/interdiction board.
+- Cross-check tools: independent battle damage indicator ledger and alternate effects verification board.
+- Typical products: disruption priority board, effect confidence brief, campaign branch map.
+
+### `ts-aid-denial-attribution-v1`
+- Use for: attribution and response planning for coordinated humanitarian-aid denial campaigns.
+- Primary tools: convoy incident repository, humanitarian access tracker, influence-network analytics.
+- Cross-check tools: independent NGO incident corroboration board and alternate media-forensics cell.
+- Typical products: attribution confidence packet, aid corridor risk matrix, restoration trigger set.
+
+### `ts-radhard-chip-allocation-v1`
+- Use for: strategic allocation of radiation-hardened semiconductor supply under constrained production.
+- Primary tools: strategic chip inventory ledger, mission dependency graph, logistics allocation board.
+- Cross-check tools: independent demand reconciler and alternate production recovery estimator.
+- Typical products: allocation matrix, mission impact risk register, reconstitution options.
+
+### `ts-laser-dazzle-attribution-v1`
+- Use for: attributing space-ground laser dazzle incidents and coordinating payload recovery.
+- Primary tools: optical anomaly fusion service, payload health telemetry board, source-geometry estimator.
+- Cross-check tools: independent sensor corroboration chain and alternate legal-attribution review board.
+- Typical products: dazzle attribution packet, recovery timeline, recurrence-risk forecast.
+
+### `ts-pnt-transition-terrain-nav-v1`
+- Use for: transitioning formations from GNSS to terrain-referenced/inertial navigation in navwar conditions.
+- Primary tools: terrain-reference route planner, inertial integrity monitor, map-confidence management board.
+- Cross-check tools: independent navigation error estimator and alternate route assurance cell.
+- Typical products: PNT transition card, route confidence ladder, commander risk prompts.
+
+### `ts-coldchain-gridloss-v1`
+- Use for: preserving vaccine and biologic cold chain during expeditionary grid loss and transport disruption.
+- Primary tools: cold-chain telemetry platform, generator and fuel readiness board, med-log allocator.
+- Cross-check tools: independent temperature sample chain and alternate spoilage estimation board.
+- Typical products: cold-chain continuity plan, spoilage risk timeline, redistribution queue.
+
+### `ts-ammo-dud-quarantine-v1`
+- Use for: detecting ammunition dud-rate anomalies and orchestrating lot quarantine and revalidation.
+- Primary tools: dud telemetry analytics, lot traceability system, explosives safety workflow board.
+- Cross-check tools: independent test-range verification service and alternate lot-release control board.
+- Typical products: anomaly confidence report, quarantine matrix, lot-release recovery sequence.
+
+### `ts-shipshore-energy-cable-protect-v1`
+- Use for: ship-to-shore expeditionary energy cable emplacement and threat-aware protection.
+- Primary tools: seabed route survey planner, cable lay control board, littoral security COP.
+- Cross-check tools: independent cable integrity monitor and alternate patrol coverage validator.
+- Typical products: cable emplacement sequence, protection posture map, restoration branch card.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Strategic Continuity, Mobility, and Humanitarian Denial)
+
+### `ps-nc3-relocation-emcon-stack-v1`
+- Messaging: USMTF + signed continuity event packets + API/JSON relocation updates.
+- Transport: protected command bus + relocation movement network + constrained-bandwidth fallback.
+- Security: cryptographic message attestation + dual-control relocation release + acknowledgment integrity chain.
+
+### `ps-contested-tanker-airbridge-stack-v1`
+- Messaging: AIXM/FIXM + Link 16 J-series + USMTF mobility advisories.
+- Transport: air mobility command exchange + tanker mission data bus + voice/readback fallback.
+- Security: signed routing deltas + authority-gated retask approvals + immutable sortie-change audit.
+
+### `ps-maritime-telemed-load-balance-stack-v1`
+- Messaging: HL7/FHIR + USMTF + API/JSON triage and transfer updates.
+- Transport: maritime medical federation + telemedicine relay path + delayed-sync fallback.
+- Security: medical-role authorization + patient data minimization + signed transfer acknowledgments.
+
+### `ps-swarmsafe-air-corridor-stack-v1`
+- Messaging: AIXM/FIXM + CoT + USMTF emergency corridor status updates.
+- Transport: civil-military ATC exchange + counter-UAS warning fabric + manual broadcast fallback.
+- Security: signed closure/reopen orders + dual-approval gating + immutable incident chronology.
+
+### `ps-drone-factory-disruption-stack-v1`
+- Messaging: STIX/TAXII + USMTF + API/JSON supply-chain disruption events.
+- Transport: ISR exploitation fabric + interdiction workflow exchange + delayed-sync planning channel.
+- Security: source confidence provenance tags + releasability controls + signed effect assessments.
+
+### `ps-aid-denial-attribution-stack-v1`
+- Messaging: NIMS/ICS + API/JSON + USMTF humanitarian corridor advisories.
+- Transport: aid convoy reporting network + coalition coordination portal + low-bandwidth fallback reports.
+- Security: signed incident evidence packets + attribution confidence chain + role-scoped disclosure controls.
+
+### `ps-radhard-chip-allocation-stack-v1`
+- Messaging: API/JSON + XML inventory records + USMTF strategic sustainment advisories.
+- Transport: strategic logistics exchange + industrial status bus + manual reconciliation fallback.
+- Security: signed lot provenance + mission-priority authority gates + immutable allocation audit trail.
+
+### `ps-laser-dazzle-attribution-stack-v1`
+- Messaging: CCSDS + USMTF + API/JSON optical anomaly updates.
+- Transport: space event fusion bus + payload telemetry exchange + delayed-sync legal review path.
+- Security: signed sensor provenance + dual-source corroboration checks + attribution approval gates.
+
+### `ps-pnt-transition-terrain-nav-stack-v1`
+- Messaging: CoT + VMF + USMTF navwar transition advisories.
+- Transport: tactical route planning mesh + mission command network + HF/manual fallback updates.
+- Security: signed navigation confidence metadata + source integrity scoring + command release checkpoint.
+
+### `ps-coldchain-gridloss-stack-v1`
+- Messaging: HL7/FHIR + API/JSON cold-chain telemetry + USMTF medical sustainment updates.
+- Transport: med-log exchange + generator status network + intermittent-sync contingency path.
+- Security: signed temperature chain records + medical authority release gate + immutable spoilage incident log.
+
+### `ps-ammo-dud-quarantine-stack-v1`
+- Messaging: USMTF + Link 16 J-series safety advisories + API/JSON lot events.
+- Transport: munitions readiness exchange + range telemetry bus + disconnected report courier fallback.
+- Security: signed anomaly evidence + dual-approval quarantine gate + lot release audit chain.
+
+### `ps-shipshore-energy-cable-protect-stack-v1`
+- Messaging: AIS/NMEA + USMTF + API/JSON emplacement status updates.
+- Transport: maritime engineering control network + littoral security command bus + readback fallback.
+- Security: signed emplacement actions + protection authority gate + cable integrity event ledger.

@@ -149,3 +149,6 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+- For drone-swarm disruption around mixed-use airspace, prioritize `ts-swarmsafe-air-corridor-v1` with `ps-swarmsafe-air-corridor-stack-v1`.
+- For base medical continuity under prolonged outage, prioritize `ts-coldchain-gridloss-v1` with `ps-coldchain-gridloss-stack-v1`.
+- For contested base energy links to littoral support nodes, consider `ts-shipshore-energy-cable-protect-v1` with `ps-shipshore-energy-cable-protect-stack-v1`.

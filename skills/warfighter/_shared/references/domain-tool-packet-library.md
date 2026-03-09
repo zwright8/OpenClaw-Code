@@ -3620,3 +3620,135 @@ validation_gates:
 - output_schema: timing confidence report, sync-recovery sequence, decision-impact timeline
 - protocol_profile: USMTF + Link 16 J-series + API/JSON
 - validation_gates: time-source trust pass, sync drift threshold check, commander risk acceptance confirmation
+
+### packet_id: DPL-NC3-RELOC-EMCON-001
+- domain: joint nuclear command post relocation and EMCON control
+- objective: preserve command continuity while relocating command nodes under emissions and threat constraints
+- primary_tools: NC3 continuity monitor, emissions compliance analyzer, movement control board
+- alternate_tools: manual continuity card and acknowledgment roll-call ledger
+- degraded_mode: minimum-essential command message set with strict readback checks
+- input_requirements: threat warning timeline, relocation candidates, emissions constraints, authority matrix
+- output_schema: relocation ladder, EMCON posture by phase, continuity handoff checklist
+- protocol_profile: USMTF + API/JSON + signed continuity events
+- validation_gates: authority confirmation, continuity integrity pass, acknowledgment chain complete
+
+### packet_id: DPL-TANKER-AIRBRIDGE-001
+- domain: theater strategic tanker and airbridge contested replanning
+- objective: sustain sortie and mobility throughput under airbase attrition and EW threat
+- primary_tools: air mobility scheduler, tanker orbit planner, airfield threat dashboard
+- alternate_tools: manual route board and tanker priority worksheet
+- degraded_mode: essential mission and casualty movement lanes only
+- input_requirements: lift demands, tanker availability, airfield status, threat map
+- output_schema: reroute matrix, tanker assignment plan, sustainment risk timeline
+- protocol_profile: AIXM/FIXM + Link 16 J-series + USMTF
+- validation_gates: deconfliction pass, fuel feasibility check, command release approval
+
+### packet_id: DPL-MAR-TELEMED-001
+- domain: maritime telemedicine and hospital-ship load balancing
+- objective: balance afloat care capacity while preserving triage quality and medevac timing
+- primary_tools: telemedicine broker, bed-status federation, maritime medevac planner
+- alternate_tools: manual patient balancing board and voice-bridge coordination log
+- degraded_mode: life-threatening triage categories only
+- input_requirements: patient acuity list, bed capacity, medevac routes, specialist availability
+- output_schema: transfer queue, afloat load plan, escalation triggers
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: medical authority confirmation, transfer acknowledgment chain, theater deconfliction pass
+
+### packet_id: DPL-SWARMSAFE-CORRIDOR-001
+- domain: civil-military air corridor emergency shutdown under swarm threat
+- objective: close and reopen mixed-use corridors safely with minimal mission and civilian disruption
+- primary_tools: corridor operations board, counter-UAS warning feed, civil ATC portal
+- alternate_tools: manual closure checklist and pilot NOTAM readback matrix
+- degraded_mode: corridor closure until dual-source threat clearance
+- input_requirements: threat detections, corridor traffic load, available alternates, timing windows
+- output_schema: shutdown/reopen matrix, traffic reroute plan, risk acceptance prompts
+- protocol_profile: AIXM/FIXM + CoT + USMTF
+- validation_gates: civil aviation coordination pass, threat confidence threshold, commander approval
+
+### packet_id: DPL-DRONE-FACTORY-001
+- domain: adversary drone factory disruption prioritization
+- objective: rank disruption actions by mission impact, legal constraints, and verification confidence
+- primary_tools: supply-chain mapper, ISR production tracker, sanctions/interdiction board
+- alternate_tools: manual target-system worksheet and campaign effects review board
+- degraded_mode: monitor-only attribution posture with non-kinetic options
+- input_requirements: factory nodes, component dependencies, legal caveats, desired effects
+- output_schema: disruption priority board, branch options, effects confidence ladder
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: source corroboration pass, legal authority check, effect verification plan
+
+### packet_id: DPL-AID-DENIAL-ATTRIB-001
+- domain: coalition humanitarian aid denial campaign attribution
+- objective: attribute denial patterns and restore aid throughput with protected corridor controls
+- primary_tools: convoy incident repository, aid corridor tracker, influence-network analytics
+- alternate_tools: NGO incident rollup ledger and media authenticity worksheet
+- degraded_mode: humanitarian pause advisory with elevated verification gates
+- input_requirements: denial incidents, corridor status, actor hypotheses, coalition caveats
+- output_schema: attribution confidence brief, corridor risk map, restoration triggers
+- protocol_profile: NIMS/ICS + API/JSON + USMTF
+- validation_gates: multi-source corroboration, humanitarian authority concurrence, disclosure approval
+
+### packet_id: DPL-RADHARD-CHIP-ALLOC-001
+- domain: strategic radiation-hardened semiconductor allocation
+- objective: allocate constrained chip supply across priority missions with transparent risk tradeoffs
+- primary_tools: strategic chip inventory ledger, mission dependency graph, allocation board
+- alternate_tools: manual demand workbook and production recovery queue
+- degraded_mode: top-priority mission sustainment only
+- input_requirements: available lots, mission demand, recovery forecasts, authority tiers
+- output_schema: allocation matrix, mission impact risk register, reconstitution plan
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: lot provenance pass, authority approval chain, dependency sanity check
+
+### packet_id: DPL-LASER-DAZZLE-001
+- domain: space-ground laser dazzle attribution and recovery
+- objective: attribute dazzle sources and coordinate payload recovery actions with confidence bounds
+- primary_tools: optical anomaly fusion, payload health telemetry board, source-geometry estimator
+- alternate_tools: manual anomaly timeline and legal-attribution review worksheet
+- degraded_mode: restricted payload operation with frequent reassessment
+- input_requirements: anomaly events, sensor provenance, payload state, orbital and ground context
+- output_schema: attribution packet, recovery options, recurrence-risk timeline
+- protocol_profile: CCSDS + API/JSON + USMTF
+- validation_gates: dual-source corroboration, payload safety pass, authority release decision
+
+### packet_id: DPL-PNT-TERRAIN-TRANSITION-001
+- domain: contested PNT terrain-referenced navigation transition
+- objective: move forces from GNSS-dependent nav to terrain/inertial fallback while preserving tempo
+- primary_tools: terrain-route planner, inertial monitor, map-confidence board
+- alternate_tools: manual map-and-compass fallback card and route error worksheet
+- degraded_mode: reduced-tempo movement corridors only
+- input_requirements: route objectives, navwar indicators, terrain references, platform nav capabilities
+- output_schema: transition execution card, route confidence ladder, decision prompts
+- protocol_profile: CoT + VMF + USMTF
+- validation_gates: nav confidence threshold, fratricide risk pass, command acceptance gate
+
+### packet_id: DPL-COLDCHAIN-GRIDLOSS-001
+- domain: expeditionary vaccine cold-chain continuity under grid loss
+- objective: preserve biologic integrity and prioritize redistribution before spoilage thresholds
+- primary_tools: cold-chain telemetry platform, generator/fuel board, med-log allocator
+- alternate_tools: manual temperature ledger and emergency cooler allocation worksheet
+- degraded_mode: essential vaccination and prophylaxis stock only
+- input_requirements: temperature logs, inventory status, power/fuel posture, movement constraints
+- output_schema: continuity plan, spoilage risk queue, redistribution matrix
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: temperature threshold pass, medical authority approval, handoff acknowledgment
+
+### packet_id: DPL-AMMO-DUD-QUAR-001
+- domain: joint ammunition dud-rate anomaly and lot quarantine
+- objective: detect dud-rate anomalies and apply lot quarantine/release controls without mission collapse
+- primary_tools: dud analytics service, lot traceability platform, safety investigation board
+- alternate_tools: manual lot board and range test confirmation worksheet
+- degraded_mode: restricted use profiles pending revalidation
+- input_requirements: dud event telemetry, lot lineage, mission demand profile, safety constraints
+- output_schema: anomaly confidence report, quarantine matrix, lot release timeline
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: anomaly confidence floor, safety authority concurrence, release approval chain
+
+### packet_id: DPL-SHIPSHORE-ENERGY-CABLE-001
+- domain: tactical ship-to-shore energy cable emplacement protection
+- objective: establish and protect expeditionary energy cable links in contested littoral zones
+- primary_tools: seabed survey planner, cable-lay control board, littoral security COP
+- alternate_tools: manual emplacement sequence card and patrol sector worksheet
+- degraded_mode: phased emplacement windows with elevated protective escort
+- input_requirements: route survey, threat overlay, cable and vessel readiness, security assets
+- output_schema: emplacement plan, protection posture matrix, restoration branch card
+- protocol_profile: AIS/NMEA + API/JSON + USMTF
+- validation_gates: route feasibility pass, security coverage threshold, command release approval
