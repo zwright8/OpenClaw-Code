@@ -2938,3 +2938,117 @@ external_binding:
 - Messaging: CCSDS + API/JSON + USMTF range-status advisories.
 - Transport: range control networks + mission enclave links + resilient queue-based fallback path.
 - Security: signed range safety chains + launch authority dual-approval + immutable hold/release ledger.
+
+## Tool and Protocol Catalog (2026-03-09 Domain Expansion - Reentry, Desal Defense, Fiber Restoration, Bridge Load Rating)
+
+### `ts-orbital-reentry-consequence-v1`
+- Use for: hazardous orbital debris reentry prediction, warning dissemination, and consequence management for defended assets.
+- Primary tools: reentry covariance estimator, protected-asset impact mapper, warning dissemination orchestrator.
+- Cross-check tools: independent orbit determination board and alternate civil reentry alert feed.
+- Typical products: reentry risk timeline, shelter/hold recommendation matrix, authority-gated warning packet.
+
+### `ts-littoral-desal-cyber-physical-defense-v1`
+- Use for: coalition littoral desalination cyber-physical defense, contamination isolation, and throughput continuity.
+- Primary tools: plant OT anomaly monitor, water quality telemetry board, coalition demand allocator.
+- Cross-check tools: independent lab-chain verifier and alternate utility coordination ledger.
+- Typical products: plant defense posture, contamination containment sequence, coalition water continuity plan.
+
+### `ts-underground-fiber-restoration-v1`
+- Use for: contested underground fiber cut triage, forensic preservation, and mission-network restoration.
+- Primary tools: route outage analytics, repair force protection scheduler, tactical traffic reroute planner.
+- Cross-check tools: independent route custody tracker and alternate mesh link status board.
+- Typical products: route restoration priority list, protected repair window matrix, mission traffic reroute order.
+
+### `ts-autonomous-bridge-load-rating-v1`
+- Use for: autonomous bridge damage inspection, military load class estimation, and crossing sequence governance.
+- Primary tools: robotic inspection feed fusion, structural confidence model, crossing demand allocator.
+- Cross-check tools: independent engineer validation board and alternate manual load-rating worksheet.
+- Typical products: bridge confidence map, crossing authorization ladder, repair-versus-bypass decision packet.
+
+### `ts-advanced-packaging-semiconductor-assurance-v1`
+- Use for: strategic advanced-packaging microelectronics continuity under sabotage, material shortage, and quality drift.
+- Primary tools: packaging line telemetry dashboard, material dependency graph, secure QA drift monitor.
+- Cross-check tools: independent supplier attestation ledger and alternate yield-adjudication board.
+- Typical products: packaging continuity forecast, feedstock allocation matrix, mission-priority release plan.
+
+### `ts-precision-navigation-spoofing-adjudication-v1`
+- Use for: joint PNT spoofing adjudication, confidence recovery, and fallback navigation synchronization.
+- Primary tools: timing-integrity anomaly engine, multi-sensor nav confidence fusion, fallback route orchestrator.
+- Cross-check tools: independent inertial/terrain corroboration board and alternate geolocation trust ledger.
+- Typical products: spoofing confidence ladder, fallback navigation decision tree, commander release prompt set.
+
+### `ts-military-rail-yard-sabotage-recovery-v1`
+- Use for: operational military rail yard sabotage recovery, hazardous cargo isolation, and throughput restoration.
+- Primary tools: rail-yard damage telemetry board, switch/signal restoration planner, hazardous cargo risk tracker.
+- Cross-check tools: independent rail safety certification log and alternate movement control mirror.
+- Typical products: sabotage isolation sequence, re-marshaling timeline, movement-priority throughput plan.
+
+### `ts-disaster-relief-airdrop-corridor-assurance-v1`
+- Use for: coalition disaster-relief airdrop corridor deconfliction, drop-zone assurance, and humanitarian throughput continuity.
+- Primary tools: air corridor conflict monitor, drop-zone integrity board, coalition relief flow tracker.
+- Cross-check tools: independent weather/hazard feed and alternate partner acknowledgment ledger.
+- Typical products: corridor assurance matrix, drop-zone confidence ranking, relief throughput branch plan.
+
+### `ts-foundry-water-power-continuity-v1`
+- Use for: homeland defense microelectronics foundry utility continuity under water and power disruption.
+- Primary tools: foundry utility telemetry fusion, ultrapure water resiliency planner, production priority scheduler.
+- Cross-check tools: independent grid-state estimator and alternate water purity audit chain.
+- Typical products: foundry continuity matrix, load and water allocation sequence, production risk forecast.
+
+### `ts-expeditionary-cold-chain-biologics-integrity-v1`
+- Use for: expeditionary biologics cold-chain integrity, excursion response, and medical sustainment continuity.
+- Primary tools: cold-chain telemetry monitor, biologics custody ledger, med-log demand prioritizer.
+- Cross-check tools: independent temperature evidence validator and alternate medical authority review board.
+- Typical products: excursion triage board, reroute and stabilization sequence, restricted-use release recommendation.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Reentry, Desal Defense, Fiber Restoration, Bridge Load Rating)
+
+### `ps-orbital-reentry-consequence-stack-v1`
+- Messaging: CCSDS + USMTF + API/JSON risk advisories.
+- Transport: space-domain operations links + mission warning bus + delayed-sync resilience channel.
+- Security: signed track custody chain + timing integrity checks + acknowledgment ledger.
+
+### `ps-littoral-desal-cyber-physical-defense-stack-v1`
+- Messaging: API/JSON + NIMS/ICS + USMTF sustainment updates.
+- Transport: OT telemetry gateway + coalition utility exchange + fallback voice/readback path.
+- Security: zero-trust OT segmentation + sample-custody signatures + dual-approval command gates.
+
+### `ps-underground-fiber-restoration-stack-v1`
+- Messaging: USMTF + CoT + API/JSON outage and repair packets.
+- Transport: tactical network control bus + engineer mission-data fabric + courier fallback workflow.
+- Security: route-custody hashes + repair-order authorization chain + immutable restoration log.
+
+### `ps-autonomous-bridge-load-rating-stack-v1`
+- Messaging: VMF + API/JSON + OGC structural overlays.
+- Transport: edge robotics mesh + engineer coordination network + degraded manual report path.
+- Security: sensor-trust attestation + structural confidence signing + commander approval chain.
+
+### `ps-advanced-packaging-semiconductor-assurance-stack-v1`
+- Messaging: API/JSON + XML quality payloads + USMTF readiness summaries.
+- Transport: industrial telemetry gateways + secure supplier exchange + offline reconciliation channel.
+- Security: signed supplier attestations + lot genealogy integrity checks + approval-role traceability.
+
+### `ps-precision-navigation-spoofing-adjudication-stack-v1`
+- Messaging: Link 16 J-series + CoT + API/JSON confidence advisories.
+- Transport: tactical data links + mission edge fusion nodes + degraded low-bandwidth sync path.
+- Security: anti-spoof confidence attestation + timing trust checks + command acknowledgment chain.
+
+### `ps-military-rail-yard-sabotage-recovery-stack-v1`
+- Messaging: USMTF + NATO APP-11/ADatP-3 + API/JSON movement updates.
+- Transport: military rail ops network + movement-control data fabric + manual dispatch fallback.
+- Security: hazardous-cargo custody signatures + rail safety dual-auth + tamper-evident movement log.
+
+### `ps-disaster-relief-airdrop-corridor-assurance-stack-v1`
+- Messaging: ATO/ACO extracts + USMTF + API/JSON corridor packets.
+- Transport: coalition airspace coordination bus + mission weather feeds + delayed partner-sync fallback.
+- Security: federation trust assertions + releasability tagging + partner acknowledgment ledger.
+
+### `ps-foundry-water-power-continuity-stack-v1`
+- Messaging: API/JSON + ICS utility records + USMTF strategic readiness advisories.
+- Transport: utility telemetry fabric + strategic industrial coordination network + offline continuity scripts.
+- Security: utility command dual-control + water quality evidence signing + audit immutability.
+
+### `ps-expeditionary-cold-chain-biologics-integrity-stack-v1`
+- Messaging: HL7/FHIR + USMTF + API/JSON medical logistics packets.
+- Transport: med-log exchange network + cold-chain sensor gateways + constrained-bandwidth sync fallback.
+- Security: custody-chain integrity checks + role-scoped medical authority gates + immutable excursion ledger.

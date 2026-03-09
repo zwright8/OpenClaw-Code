@@ -173,3 +173,9 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Prioritize `tool_suite_id=ts-spectrum-sensor-deception-attribution-v1` with `protocol_stack_id=ps-spectrum-sensor-deception-attribution-stack-v1` when adversary sensor-deception activity degrades emitter confidence for SEAD/DEAD targeting.
 - Use packet `DPL-SPECTRUM-SENSOR-DECEPTION-ATTRIBUTION-001` to bind attribution confidence, retask timing, and commander decision checkpoints.
 - If independent corroboration or command authority validation fails, downgrade to advisory-only recommendations and require explicit package commander review.
+
+## Domain Toolchain Override (2026-03-09, Precision Navigation Spoofing Adjudication)
+
+- Prioritize `tool_suite_id=ts-precision-navigation-spoofing-adjudication-v1` with `protocol_stack_id=ps-precision-navigation-spoofing-adjudication-stack-v1` when spoofing or timing drift threatens SEAD ingress/egress geometry.
+- Use packet `DPL-PRECISION-NAVIGATION-SPOOFING-ADJUDICATION-001` to bind navigation-confidence bands, fallback path timing, and package commander release checkpoints.
+- If timing integrity or cross-sensor confidence is incomplete, downgrade to constrained-tempo recommendations and require explicit commander concurrence.
