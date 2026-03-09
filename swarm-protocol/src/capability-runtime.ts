@@ -144,6 +144,10 @@ export function resolveCapabilityModuleSpecifier(capabilityId: string): string {
 export type CapabilityExecutionOptions = {
     evaluateOptions?: Record<string, unknown>;
     toTasksOptions?: Record<string, unknown>;
+    abortSignal?: {
+        aborted: boolean;
+        reason?: unknown;
+    };
 };
 
 export type CapabilityExecutionResult = {
@@ -155,6 +159,63 @@ export type CapabilityExecutionResult = {
     followupTasks: unknown[];
 };
 
+function isAbortSignalLike(value: unknown): value is { aborted: boolean; reason?: unknown; } {
+    if (!value || typeof value !== 'object') return false;
+    return typeof (value as { aborted?: unknown; }).aborted === 'boolean';
+}
+
+function toAbortError(signal: { aborted: boolean; reason?: unknown; } | null): Error {
+    const reason = signal?.reason;
+    if (reason instanceof Error) {
+        return reason;
+    }
+    const error = new Error('Capability execution aborted.');
+    (error as Error & { name: string; }).name = 'AbortError';
+    return error;
+}
+
+function throwIfAborted(signal: { aborted: boolean; reason?: unknown; } | null): void {
+    if (!signal || !signal.aborted) return;
+    throw toAbortError(signal);
+}
+
+function resolveAbortSignal(options: CapabilityExecutionOptions): { aborted: boolean; reason?: unknown; } | null {
+    if (isAbortSignalLike(options.abortSignal)) {
+        return options.abortSignal;
+    }
+    if (isAbortSignalLike(options.evaluateOptions?.abortSignal)) {
+        return options.evaluateOptions.abortSignal;
+    }
+    if (isAbortSignalLike(options.evaluateOptions?.signal)) {
+        return options.evaluateOptions.signal;
+    }
+    if (isAbortSignalLike(options.toTasksOptions?.abortSignal)) {
+        return options.toTasksOptions.abortSignal;
+    }
+    if (isAbortSignalLike(options.toTasksOptions?.signal)) {
+        return options.toTasksOptions.signal;
+    }
+    return null;
+}
+
+function mergeOptionsWithAbortSignal(
+    options: Record<string, unknown> | undefined,
+    abortSignal: { aborted: boolean; reason?: unknown; } | null
+): Record<string, unknown> {
+    if (!abortSignal) {
+        return options || {};
+    }
+    const base = options || {};
+    if (base.abortSignal || base.signal) {
+        return base;
+    }
+    return {
+        ...base,
+        abortSignal,
+        signal: abortSignal
+    };
+}
+
 export async function executeCapabilityById(
     capabilityId: string,
     inputPayload: Record<string, unknown> = {},
@@ -164,6 +225,8 @@ export async function executeCapabilityById(
     if (!normalizedCapabilityId) {
         throw new Error('capabilityId is required');
     }
+    const abortSignal = resolveAbortSignal(options);
+    throwIfAborted(abortSignal);
 
     const moduleSpecifier = resolveCapabilityModuleSpecifier(normalizedCapabilityId);
 
@@ -186,15 +249,20 @@ export async function executeCapabilityById(
         throw new Error(`Capability ${normalizedCapabilityId} evaluate export ${evaluateExportName} is not callable`);
     }
 
-    const report = await evaluateFn(inputPayload, options.evaluateOptions || {});
+    const report = await evaluateFn(
+        inputPayload,
+        mergeOptionsWithAbortSignal(options.evaluateOptions, abortSignal)
+    );
+    throwIfAborted(abortSignal);
 
     const toTasksExportName = selectToTasksExportName(modulePayload);
     const followupTasks = toTasksExportName
         ? await (modulePayload[toTasksExportName] as (
             reportPayload: unknown,
             options?: Record<string, unknown>
-        ) => unknown[])(report, options.toTasksOptions || {})
+        ) => unknown[])(report, mergeOptionsWithAbortSignal(options.toTasksOptions, abortSignal))
         : [];
+    throwIfAborted(abortSignal);
 
     return {
         capabilityId: normalizedCapabilityId,

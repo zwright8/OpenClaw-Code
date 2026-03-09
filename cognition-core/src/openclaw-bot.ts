@@ -853,23 +853,26 @@ export class OpenClawBot {
     }
 
     private async withExecutionDeadline<T>(
-        operation: () => Promise<T>,
+        operation: (abortSignal: AbortSignal | null) => Promise<T>,
         deadlineAtMs: number | null
     ): Promise<T> {
         if (deadlineAtMs === null) {
-            return operation();
+            return operation(null);
         }
         const nowMs = safeNow(this.nowFactory);
         this.ensureExecutionBudget(deadlineAtMs, nowMs);
         const remainingMs = Math.max(0, deadlineAtMs - nowMs);
 
+        const abortController = new AbortController();
         let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
         try {
             return await Promise.race([
-                operation(),
+                operation(abortController.signal),
                 new Promise<T>((_, reject) => {
                     timeoutHandle = setTimeout(() => {
-                        reject(this.buildDeadlineExceededError(deadlineAtMs, safeNow(this.nowFactory)));
+                        const deadlineError = this.buildDeadlineExceededError(deadlineAtMs, safeNow(this.nowFactory));
+                        abortController.abort(deadlineError);
+                        reject(deadlineError);
                     }, remainingMs);
                 })
             ]);
@@ -1333,13 +1336,15 @@ export class OpenClawBot {
                 if (hasCapabilityInput(context)) {
                     const capabilityInput = extractCapabilityInput(context, request.task);
                     const capabilityExecution = await this.withExecutionDeadline(
-                        () => executeCapabilityById(
+                        (abortSignal) => executeCapabilityById(
                             capabilityId,
                             capabilityInput,
                             {
+                                abortSignal: abortSignal ?? undefined,
                                 toTasksOptions: {
                                     fromAgentId: this.agentId,
-                                    defaultTarget: request.target || 'agent:ops'
+                                    defaultTarget: request.target || 'agent:ops',
+                                    abortSignal: abortSignal ?? undefined
                                 }
                             }
                         ),

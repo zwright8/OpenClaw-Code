@@ -55,3 +55,17 @@ test('executeCapabilityById throws for unknown capabilities', async () => {
         /Unable to load capability module/
     );
 });
+
+test('executeCapabilityById fails fast when abort signal is already aborted', async () => {
+    const controller = new AbortController();
+    controller.abort(new Error('cancelled-by-test'));
+
+    await assert.rejects(
+        executeCapabilityById('truth_engine', {
+            hypotheses: []
+        }, {
+            abortSignal: controller.signal
+        }),
+        /cancelled-by-test/
+    );
+});
