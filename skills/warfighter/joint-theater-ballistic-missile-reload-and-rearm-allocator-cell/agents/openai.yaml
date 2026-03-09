@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Theater Ballistic Missile Reload and Rearm Allocator Cell"
+  short_description: "Allocate finite munitions and reload windows by risk"
