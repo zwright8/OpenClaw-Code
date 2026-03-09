@@ -100,3 +100,9 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Prioritize `tool_suite_id=ts-air-bridge-customs-fraud-disruption-v1` with `protocol_stack_id=ps-air-bridge-customs-fraud-disruption-stack-v1` when contaminated fuel replacement or additives move through contested coalition air bridges.
 - Use packet `DPL-AIR-BRIDGE-CUSTOMS-FRAUD-DISRUPTION-001` to synchronize fraud-risk screening, release controls, and fuel continuity actions.
 - If fraud evidence confidence or coalition caveat validation is incomplete, downgrade to constrained-throughput recommendations and require movement-control plus commander approval.
+
+## Domain Toolchain Override (2026-03-09, Littoral Desal and Cold-Chain Sustainment Coupling)
+
+- Prioritize `tool_suite_id=ts-littoral-desal-cyber-physical-defense-v1` with `protocol_stack_id=ps-littoral-desal-cyber-physical-defense-stack-v1` when fuel contamination coincides with contested expeditionary water production risk.
+- Use packet `DPL-LITTORAL-DESAL-CYBER-PHYSICAL-DEFENSE-001` to synchronize contamination isolation, throughput preservation, and sustainment reroute decisions.
+- If plant telemetry trust, sample custody, or coalition acknowledgment is incomplete, issue constrained-output recommendations and require commander plus host-nation utility authority approval.
