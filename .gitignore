@@ -1,8 +1,0 @@
-node_modules/
-*/node_modules/
-
-*.log
-
-cognition-core/reports/
-cognition-core/memory-graph.dot
-swarm-protocol/state/
