@@ -428,6 +428,101 @@ test('target-scoped retry throttling isolates budgets by target', async () => {
     assert.ok(metrics.retry.throttling.activeTargetBuckets >= 2);
 });
 
+test('dispatchTask schedules retry when target circuit is open', async () => {
+    const clock = createClock(30_000);
+    let failSends = true;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                if (failSends) {
+                    throw new Error('upstream unavailable');
+                }
+            }
+        },
+        now: clock.now,
+        retryDelayMs: 10,
+        circuitBreaker: {
+            failureThreshold: 1,
+            cooldownMs: 100
+        }
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:circuit-worker',
+            task: 'Warm up breaker'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'SEND_FAILED');
+            return true;
+        }
+    );
+
+    const deferred = await orchestrator.dispatchTask({
+        target: 'agent:circuit-worker',
+        task: 'Should defer while open'
+    });
+
+    assert.equal(deferred.status, 'retry_scheduled');
+    assert.equal(deferred.history.at(-1)?.event, 'initial_dispatch_circuit_open_retry_scheduled');
+    assert.equal(deferred.nextRetryAt, clock.now() + 100);
+
+    failSends = false;
+});
+
+test('target circuit transitions from open to half-open and closes on success', async () => {
+    const clock = createClock(40_000);
+    let failSends = true;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                if (failSends) {
+                    throw new Error('worker unreachable');
+                }
+            }
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 5,
+        circuitBreaker: {
+            failureThreshold: 1,
+            cooldownMs: 50,
+            halfOpenMaxAttempts: 1,
+            successThreshold: 1
+        }
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:circuit-recover',
+            task: 'Open breaker'
+        }),
+        /worker unreachable/
+    );
+
+    const queued = await orchestrator.dispatchTask({
+        target: 'agent:circuit-recover',
+        task: 'Defer while breaker open'
+    });
+    assert.equal(queued.status, 'retry_scheduled');
+
+    clock.advance(50);
+    failSends = false;
+
+    const summary = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(queued.taskId);
+    assert.equal(summary.retried, 1);
+    assert.equal(current.status, 'dispatched');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.circuitBreaker.targets.open, 0);
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({

@@ -329,6 +329,12 @@ const orchestrator = new TaskOrchestrator({
     transportRetryCost: 2,
     threshold: 10
   },
+  circuitBreaker: {
+    failureThreshold: 3,
+    cooldownMs: 30_000,
+    halfOpenMaxAttempts: 1,
+    successThreshold: 1
+  },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -352,6 +358,8 @@ orchestrator.ingestResult(resultMessage);
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
 ```
+
+`circuitBreaker` prevents repeated dispatch attempts to an unhealthy target by opening per-target circuits after consecutive send failures and only probing again after cooldown.
 
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`).
 
