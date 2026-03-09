@@ -403,3 +403,60 @@ test('OpenClawBot drops stale tasks when maxTaskAgeMs is configured', async () =
     assert.equal(result.metrics.taskAgeMs, 3_000);
     assert.equal(result.metrics.taskMaxAgeMs, 1_000);
 });
+
+test('OpenClawBot skips tasks with expired execution deadlines', async () => {
+    const bot = new OpenClawBot({
+        repoRoot: REPO_ROOT,
+        nowFactory: () => 100_000
+    });
+
+    const task = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000912',
+        from: 'agent:main',
+        target: 'agent:ops',
+        task: 'Deadline-expired task',
+        context: {
+            taskDeadlineAt: 99_000
+        },
+        createdAt: 99_500
+    });
+
+    const result = await bot.executeTask(task);
+
+    assert.equal(result.mode, 'generic');
+    assert.equal(result.status, 'partial');
+    assert.equal(result.metrics.taskDeadlineExceeded, 1);
+    assert.equal(result.metrics.taskDeadlineAtMs, 99_000);
+    assert.match(result.output, /expired deadline/);
+});
+
+test('OpenClawBot propagates task deadlines to generated follow-up tasks', async () => {
+    const bot = new OpenClawBot({
+        repoRoot: REPO_ROOT,
+        nowFactory: () => 200_000
+    });
+
+    const task = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000913',
+        from: 'agent:main',
+        target: 'agent:skills-runtime',
+        task: 'Run skill runtime for id 1 with deadline',
+        context: {
+            skillId: 1,
+            taskDeadlineAt: 260_000
+        },
+        createdAt: 199_900
+    });
+
+    const result = await bot.executeTask(task);
+
+    assert.equal(result.mode, 'skill');
+    assert.equal(result.status, 'success');
+    assert.ok(result.followupTasks.length > 0);
+    for (const followup of result.followupTasks) {
+        assert.equal(
+            (followup as { context?: { taskDeadlineAt?: number; }; }).context?.taskDeadlineAt,
+            260_000
+        );
+    }
+});

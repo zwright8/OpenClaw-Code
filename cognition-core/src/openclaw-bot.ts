@@ -79,6 +79,17 @@ type CachedTaskExecution = {
     execution: OpenClawBotExecution;
 };
 
+type ExecutionDeadline = {
+    deadlineAtMs: number | null;
+    timeoutMs: number;
+};
+
+type DeadlineExceededError = Error & {
+    code: 'TASK_DEADLINE_EXCEEDED';
+    deadlineAtMs: number;
+    elapsedMs: number;
+};
+
 function isPlainObject(value: unknown): value is Record<string, unknown> {
     return !!value && typeof value === 'object' && !Array.isArray(value);
 }
@@ -141,6 +152,29 @@ function normalizeOptionalBoolean(value: unknown): boolean | undefined {
         if (normalized === 'false' || normalized === '0' || normalized === 'no') return false;
     }
     return undefined;
+}
+
+function parseDeadlineTimestampMs(value: unknown): number | null {
+    if (value === null || value === undefined) return null;
+
+    if (typeof value === 'number') {
+        return Number.isFinite(value) && value > 0 ? Math.floor(value) : null;
+    }
+
+    if (typeof value === 'string') {
+        const trimmed = value.trim();
+        if (!trimmed) return null;
+        const asNumber = Number(trimmed);
+        if (Number.isFinite(asNumber) && asNumber > 0) {
+            return Math.floor(asNumber);
+        }
+        const parsed = Date.parse(trimmed);
+        if (Number.isFinite(parsed) && parsed > 0) {
+            return Math.floor(parsed);
+        }
+    }
+
+    return null;
 }
 
 function stableStringify(value: unknown): string {
@@ -374,11 +408,13 @@ function normalizeFollowupTasks(
     {
         nowFactory,
         defaultFrom,
-        defaultTarget
+        defaultTarget,
+        inheritedDeadlineAtMs = null
     }: {
         nowFactory: () => number;
         defaultFrom: string;
         defaultTarget: string;
+        inheritedDeadlineAtMs?: number | null;
     }
 ): Record<string, unknown>[] {
     if (!Array.isArray(tasks) || tasks.length === 0) return [];
@@ -401,6 +437,12 @@ function normalizeFollowupTasks(
         const context = isPlainObject(task.context) ? { ...task.context } : {};
         if (typeof context.planner !== 'string' || !context.planner.trim()) {
             context.planner = 'cognition-core/openclaw-bot';
+        }
+        if (
+            inheritedDeadlineAtMs !== null
+            && parseDeadlineTimestampMs(context.deadlineAt ?? context.taskDeadlineAt) === null
+        ) {
+            context.taskDeadlineAt = inheritedDeadlineAtMs;
         }
         const constraints = asStringArray(task.constraints);
 
@@ -464,6 +506,7 @@ export type OpenClawBotOptions = {
     taskReplayTtlMs?: number;
     maxReplayEntries?: number;
     maxTaskAgeMs?: number;
+    defaultTaskTimeoutMs?: number;
 };
 
 function isSkillExecutionSubtask(context: Record<string, unknown>, taskText: string): boolean {
@@ -568,6 +611,7 @@ export class OpenClawBot {
     taskReplayTtlMs: number;
     maxReplayEntries: number;
     maxTaskAgeMs: number;
+    defaultTaskTimeoutMs: number;
 
     constructor({
         agentId = 'agent:openclaw-bot',
@@ -579,7 +623,8 @@ export class OpenClawBot {
         skillHardeningProfilePath = null,
         taskReplayTtlMs = DEFAULT_TASK_REPLAY_TTL_MS,
         maxReplayEntries = DEFAULT_MAX_REPLAY_ENTRIES,
-        maxTaskAgeMs = 0
+        maxTaskAgeMs = 0,
+        defaultTaskTimeoutMs = 0
     }: OpenClawBotOptions = {}) {
         this.agentId = agentId;
         this.repoRoot = path.resolve(repoRoot);
@@ -608,6 +653,7 @@ export class OpenClawBot {
         this.taskReplayTtlMs = normalizeNonNegativeInt(taskReplayTtlMs, DEFAULT_TASK_REPLAY_TTL_MS);
         this.maxReplayEntries = normalizePositiveInt(maxReplayEntries, DEFAULT_MAX_REPLAY_ENTRIES);
         this.maxTaskAgeMs = normalizeNonNegativeInt(maxTaskAgeMs, 0);
+        this.defaultTaskTimeoutMs = normalizeNonNegativeInt(defaultTaskTimeoutMs, 0);
     }
 
     private pruneReplayCache(nowMs: number): void {
@@ -718,6 +764,79 @@ export class OpenClawBot {
             maxAgeMs: taskMaxAgeMs,
             taskAgeMs
         };
+    }
+
+    private resolveExecutionDeadline(
+        context: Record<string, unknown>,
+        startedAtMs: number
+    ): ExecutionDeadline {
+        const contextDeadlineAtMs = parseDeadlineTimestampMs(
+            context.deadlineAt ?? context.taskDeadlineAt ?? context.executionDeadlineAt
+        );
+        const contextTimeoutMs = normalizeNonNegativeInt(
+            context.taskTimeoutMs ?? context.executionTimeoutMs ?? this.defaultTaskTimeoutMs,
+            this.defaultTaskTimeoutMs
+        );
+        const timeoutDeadlineAtMs = contextTimeoutMs > 0
+            ? startedAtMs + contextTimeoutMs
+            : null;
+
+        let deadlineAtMs: number | null = null;
+        if (contextDeadlineAtMs !== null && timeoutDeadlineAtMs !== null) {
+            deadlineAtMs = Math.min(contextDeadlineAtMs, timeoutDeadlineAtMs);
+        } else if (contextDeadlineAtMs !== null) {
+            deadlineAtMs = contextDeadlineAtMs;
+        } else if (timeoutDeadlineAtMs !== null) {
+            deadlineAtMs = timeoutDeadlineAtMs;
+        }
+
+        return {
+            deadlineAtMs,
+            timeoutMs: contextTimeoutMs
+        };
+    }
+
+    private buildDeadlineExceededError(deadlineAtMs: number, nowMs: number): DeadlineExceededError {
+        const error = new Error(`Task deadline exceeded at ${new Date(deadlineAtMs).toISOString()}`) as DeadlineExceededError;
+        error.code = 'TASK_DEADLINE_EXCEEDED';
+        error.deadlineAtMs = deadlineAtMs;
+        error.elapsedMs = Math.max(0, nowMs - deadlineAtMs);
+        return error;
+    }
+
+    private ensureExecutionBudget(deadlineAtMs: number | null, nowMs: number): void {
+        if (deadlineAtMs === null) return;
+        if (nowMs > deadlineAtMs) {
+            throw this.buildDeadlineExceededError(deadlineAtMs, nowMs);
+        }
+    }
+
+    private async withExecutionDeadline<T>(
+        operation: () => Promise<T>,
+        deadlineAtMs: number | null
+    ): Promise<T> {
+        if (deadlineAtMs === null) {
+            return operation();
+        }
+        const nowMs = safeNow(this.nowFactory);
+        this.ensureExecutionBudget(deadlineAtMs, nowMs);
+        const remainingMs = Math.max(0, deadlineAtMs - nowMs);
+
+        let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+        try {
+            return await Promise.race([
+                operation(),
+                new Promise<T>((_, reject) => {
+                    timeoutHandle = setTimeout(() => {
+                        reject(this.buildDeadlineExceededError(deadlineAtMs, safeNow(this.nowFactory)));
+                    }, remainingMs);
+                })
+            ]);
+        } finally {
+            if (timeoutHandle) {
+                clearTimeout(timeoutHandle);
+            }
+        }
     }
 
     private getSkillHardeningReport(
@@ -892,6 +1011,25 @@ export class OpenClawBot {
             return staleResult;
         }
 
+        const executionDeadline = this.resolveExecutionDeadline(context, startedAt);
+        if (executionDeadline.deadlineAtMs !== null && nowMs > executionDeadline.deadlineAtMs) {
+            const deadlineResult: OpenClawBotExecution = {
+                mode: 'generic',
+                status: 'partial',
+                output: `Task skipped due to expired deadline (${new Date(executionDeadline.deadlineAtMs).toISOString()}).`,
+                metrics: buildMetrics({
+                    durationMs: clampNonNegative(safeNow(this.nowFactory) - startedAt),
+                    taskDeadlineExceeded: 1,
+                    taskDeadlineAtMs: executionDeadline.deadlineAtMs,
+                    taskTimeoutMs: executionDeadline.timeoutMs
+                }),
+                artifacts: [],
+                followupTasks: []
+            };
+            this.cacheExecutionResult(request.id, requestFingerprint, startedAt, deadlineResult);
+            return deadlineResult;
+        }
+
         const finalize = (result: OpenClawBotExecution): OpenClawBotExecution => {
             this.cacheExecutionResult(request.id, requestFingerprint, startedAt, result);
             return result;
@@ -1014,7 +1152,8 @@ export class OpenClawBot {
                     const followupTasks = normalizeFollowupTasks(generatedHardeningTasks, {
                         nowFactory: this.nowFactory,
                         defaultFrom: this.agentId,
-                        defaultTarget: 'agent:human-oversight'
+                        defaultTarget: 'agent:human-oversight',
+                        inheritedDeadlineAtMs: executionDeadline.deadlineAtMs
                     });
                     const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
                     const reason = hardeningAssessment.reasons[0] || 'Hardening gate failed.';
@@ -1061,7 +1200,8 @@ export class OpenClawBot {
                 const followupTasks = normalizeFollowupTasks(generatedTasks, {
                     nowFactory: this.nowFactory,
                     defaultFrom: this.agentId,
-                    defaultTarget: request.target || `agent:${execution.domainSlug}-swarm`
+                    defaultTarget: request.target || `agent:${execution.domainSlug}-swarm`,
+                    inheritedDeadlineAtMs: executionDeadline.deadlineAtMs
                 });
                 const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
 
@@ -1112,15 +1252,18 @@ export class OpenClawBot {
             if (capabilityId) {
                 if (hasCapabilityInput(context)) {
                     const capabilityInput = extractCapabilityInput(context, request.task);
-                    const capabilityExecution = await executeCapabilityById(
-                        capabilityId,
-                        capabilityInput,
-                        {
-                            toTasksOptions: {
-                                fromAgentId: this.agentId,
-                                defaultTarget: request.target || 'agent:ops'
+                    const capabilityExecution = await this.withExecutionDeadline(
+                        () => executeCapabilityById(
+                            capabilityId,
+                            capabilityInput,
+                            {
+                                toTasksOptions: {
+                                    fromAgentId: this.agentId,
+                                    defaultTarget: request.target || 'agent:ops'
+                                }
                             }
-                        }
+                        ),
+                        executionDeadline.deadlineAtMs
                     );
                     const report = isPlainObject(capabilityExecution.report)
                         ? capabilityExecution.report
@@ -1137,7 +1280,8 @@ export class OpenClawBot {
                     const followupTasks = normalizeFollowupTasks(capabilityExecution.followupTasks, {
                         nowFactory: this.nowFactory,
                         defaultFrom: this.agentId,
-                        defaultTarget: request.target || 'agent:ops'
+                        defaultTarget: request.target || 'agent:ops',
+                        inheritedDeadlineAtMs: executionDeadline.deadlineAtMs
                     });
                     const posture = typeof summary.posture === 'string'
                         ? summary.posture
@@ -1213,6 +1357,22 @@ export class OpenClawBot {
             });
         } catch (error) {
             const durationMs = clampNonNegative(safeNow(this.nowFactory) - startedAt);
+            const maybeDeadlineError = error as Partial<DeadlineExceededError>;
+            if (maybeDeadlineError && maybeDeadlineError.code === 'TASK_DEADLINE_EXCEEDED') {
+                return finalize({
+                    mode: 'generic',
+                    status: 'partial',
+                    output: `Task execution deadline exceeded at ${new Date(maybeDeadlineError.deadlineAtMs || safeNow(this.nowFactory)).toISOString()}.`,
+                    metrics: buildMetrics({
+                        durationMs,
+                        taskDeadlineExceeded: 1,
+                        taskDeadlineAtMs: maybeDeadlineError.deadlineAtMs,
+                        taskDeadlineExceededByMs: maybeDeadlineError.elapsedMs
+                    }),
+                    artifacts: [],
+                    followupTasks: []
+                });
+            }
             return finalize({
                 mode: 'generic',
                 status: 'failure',
