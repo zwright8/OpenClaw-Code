@@ -187,3 +187,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-electronic-signature-survivability-v1` + `protocol_stack_id=ps-electronic-signature-survivability-stack-v1` when risk posture depends on adversary sensing pressure.
 - Add `tool_suite_id=ts-multi-cloud-mission-data-integrity-v1` + `protocol_stack_id=ps-multi-cloud-mission-data-integrity-stack-v1` when branch viability depends on cross-cloud data trust.
 - Add `packet_id=DPL-PRIORITY-OF-LIFE-ROUTING-001` when force protection and civil continuity tradeoffs affect commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-09, Solar Storm and Counterfeit Supply Addendum)
+
+- Add `tool_suite_id=ts-space-weather-solar-storm-mission-assurance-v1` + `protocol_stack_id=ps-space-weather-solar-storm-mission-assurance-stack-v1` when mission risk depends on timing, SATCOM, or grid fragility during geomagnetic disturbance.
+- Add `tool_suite_id=ts-homeland-microelectronics-counterfeit-quarantine-v1` + `protocol_stack_id=ps-homeland-microelectronics-counterfeit-quarantine-stack-v1` when recommendation confidence depends on trusted military microelectronics pedigree.
+- Add `packet_id=DPL-SPACE-WEATHER-SOLAR-STORM-MISSION-ASSURANCE-001` and `packet_id=DPL-HOMELAND-MICROELECTRONICS-COUNTERFEIT-QUARANTINE-001` for risk branches that change commander acceptance thresholds.
