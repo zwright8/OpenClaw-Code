@@ -94,3 +94,9 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Prioritize `tool_suite_id=ts-port-digital-twin-sabotage-v1` with `protocol_stack_id=ps-port-digital-twin-sabotage-stack-v1` when bulk-fuel contamination events coincide with port throughput disruption or suspected sabotage.
 - Use packet `DPL-PORT-DIGITAL-TWIN-SABOTAGE-001` to connect berth/cargo constraints, contamination isolation actions, and sustainment reroute decisions in one decision cycle.
 - If sabotage attribution confidence remains low, issue advisory-only reroute recommendations and require commander plus movement-control approval before execution.
+
+## Domain Toolchain Override (2026-03-09, Air-Bridge Customs Fraud Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-air-bridge-customs-fraud-disruption-v1` with `protocol_stack_id=ps-air-bridge-customs-fraud-disruption-stack-v1` when contaminated fuel replacement or additives move through contested coalition air bridges.
+- Use packet `DPL-AIR-BRIDGE-CUSTOMS-FRAUD-DISRUPTION-001` to synchronize fraud-risk screening, release controls, and fuel continuity actions.
+- If fraud evidence confidence or coalition caveat validation is incomplete, downgrade to constrained-throughput recommendations and require movement-control plus commander approval.
