@@ -4284,3 +4284,117 @@ external_binding:
 - Messaging: USMTF + API/JSON power-state telemetry + XML safety and maintenance records.
 - Transport: weapons power management exchange + mission command bus + delayed-sync fallback.
 - Security: signed charging state updates + dual-approval engagement readiness gates + immutable power allocation ledger.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Airspace Trust, Industrial Safety, and Human Resilience)
+
+### `ts-civil-air-gps-spoof-deconfliction-v1`
+- Use for: civil-military airspace deconfliction when GPS spoofing or navigation integrity attacks disrupt flight operations.
+- Primary tools: navigation integrity monitor, civil-military air corridor manager, approach/reroute decision board.
+- Cross-check tools: independent ADS-B anomaly validator and alternate PNT confidence ledger.
+- Typical products: spoofing impact matrix, alternate nav corridor ladder, emergency deconfliction branch plan.
+
+### `ts-ammo-plant-cyber-physical-safety-v1`
+- Use for: protecting ammunition plants during blended cyber-physical incidents while preserving safe output.
+- Primary tools: industrial safety gate tracker, OT intrusion monitor, blast-zone and process-state board.
+- Cross-check tools: independent process integrity assessor and alternate contamination adjudication queue.
+- Typical products: safety hold-point matrix, output restoration sequence, cyber-physical risk register.
+
+### `ts-littoral-fuel-bladder-security-v1`
+- Use for: coalition littoral fuel bladder hardening, redistribution, and sabotage-risk control.
+- Primary tools: fuel farm posture dashboard, littoral movement planner, fuel quality telemetry board.
+- Cross-check tools: independent leak/contamination validator and alternate convoy integrity monitor.
+- Typical products: fuel bladder security plan, redistribution timeline, contamination decision trigger board.
+
+### `ts-drone-jammer-evac-route-bubble-v1`
+- Use for: tactical evacuation routing with mobile drone-jammer bubbles in contested urban terrain.
+- Primary tools: jammer coverage planner, route-threat fusion map, evacuation movement sequencer.
+- Cross-check tools: independent RF fratricide checker and alternate safe-haven readiness board.
+- Typical products: jammer bubble geometry card, route viability matrix, evac branch trigger map.
+
+### `ts-telemetry-supply-chain-anti-tamper-v1`
+- Use for: anti-tamper assurance of telemetry hardware and firmware supply chains.
+- Primary tools: component provenance ledger, firmware attestation verifier, telemetry trust analytics board.
+- Cross-check tools: independent silicon/fuse-state validator and alternate supplier anomaly monitor.
+- Typical products: anti-tamper confidence ladder, provenance exception tracker, trust restoration plan.
+
+### `ts-battlefield-dialect-translation-risk-v1`
+- Use for: language and dialect ambiguity risk management in partnered operations and civilian protection.
+- Primary tools: translation confidence service, interpreter tasking board, phrase-risk adjudication ledger.
+- Cross-check tools: independent linguist review queue and alternate local-source attestation tracker.
+- Typical products: dialect confidence heatmap, mistranslation mitigation matrix, partner communication guardrails.
+
+### `ts-reservist-family-retention-readiness-v1`
+- Use for: reserve-component family readiness and retention stabilization during sustained deployments.
+- Primary tools: readiness stress telemetry board, family support workload tracker, retention risk model.
+- Cross-check tools: independent unit climate monitor and alternate attrition early-warning ledger.
+- Typical products: stress-risk ladder, support allocation matrix, retention stabilization branch plan.
+
+### `ts-pow-camp-outbreak-riot-containment-v1`
+- Use for: detainee/POW facility outbreak control and riot containment under legal and humanitarian constraints.
+- Primary tools: custody continuity dashboard, outbreak spread model, facility incident command board.
+- Cross-check tools: independent medical surveillance validator and alternate custody audit queue.
+- Typical products: containment timeline, escalation matrix, custody continuity assurance packet.
+
+### `ts-additive-drone-airworthiness-inspection-v1`
+- Use for: airworthiness inspection and release control for additive-manufactured drone components.
+- Primary tools: additive QA release board, non-destructive inspection telemetry, flight risk acceptance tracker.
+- Cross-check tools: independent materials certification queue and alternate sortie safety monitor.
+- Typical products: airworthiness release ladder, inspection evidence packet, sortie risk board.
+
+### `ts-satcom-ground-blackout-restoration-v1`
+- Use for: homeland SATCOM ground station blackout restoration and continuity-of-control assurance.
+- Primary tools: ground station outage board, power/telemetry reconstitution planner, comm-path failover manager.
+- Cross-check tools: independent timing integrity monitor and alternate mission-priority restoration ledger.
+- Typical products: blackout recovery matrix, failover branch ladder, restoration authority checklist.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Airspace Trust, Industrial Safety, and Human Resilience)
+
+### `ps-civil-air-gps-spoof-deconfliction-stack-v1`
+- Messaging: USMTF + AIXM/FIXM routing state updates + API/JSON navigation integrity events.
+- Transport: civil-military airspace exchange + ATC liaison gateway + voice/readback fallback.
+- Security: signed nav-integrity alerts + dual-source spoofing confirmation + immutable deconfliction acknowledgment chain.
+
+### `ps-ammo-plant-cyber-physical-safety-stack-v1`
+- Messaging: USMTF + API/JSON OT intrusion events + XML industrial safety records.
+- Transport: defense-industrial operations bus + cyber incident exchange + disconnected report fallback.
+- Security: signed process-state transitions + dual-approval safety gates + immutable incident chronology ledger.
+
+### `ps-littoral-fuel-bladder-security-stack-v1`
+- Messaging: USMTF + API/JSON fuel posture telemetry + XML contamination and custody records.
+- Transport: maritime sustainment exchange + coalition logistics portal + delayed-sync fallback.
+- Security: signed fuel transfer approvals + role-scoped quality controls + immutable custody audit chain.
+
+### `ps-drone-jammer-evac-route-bubble-stack-v1`
+- Messaging: USMTF + OGC route overlays + API/JSON jammer-state events.
+- Transport: tactical movement network + civil-support coordination portal + local mesh fallback.
+- Security: signed route releases + dual-operator jammer authorization + immutable evacuation action ledger.
+
+### `ps-telemetry-supply-chain-anti-tamper-stack-v1`
+- Messaging: USMTF + API/JSON attestation confidence events + XML component provenance records.
+- Transport: strategic sustainment exchange + mission assurance bus + delayed-sync fallback.
+- Security: signed attestation bundles + hardware-root validation gates + immutable provenance adjudication audit.
+
+### `ps-battlefield-dialect-translation-risk-stack-v1`
+- Messaging: USMTF + NIEM partner communication records + API/JSON translation-confidence events.
+- Transport: coalition mission network + interpreter coordination portal + disconnected workbook fallback.
+- Security: signed translation confidence updates + role-scoped identity protections + immutable adjudication chronology.
+
+### `ps-reservist-family-retention-readiness-stack-v1`
+- Messaging: USMTF + NIEM readiness support records + API/JSON stress and retention telemetry.
+- Transport: reserve readiness network + family support coordination exchange + delayed-sync fallback.
+- Security: signed readiness status updates + privacy-scoped personnel controls + immutable support action audit chain.
+
+### `ps-pow-camp-outbreak-riot-containment-stack-v1`
+- Messaging: USMTF + NIEM custody records + API/JSON outbreak and disturbance events.
+- Transport: detention operations exchange + medical surveillance gateway + voice/readback fallback.
+- Security: signed custody and medical status updates + dual-approval force posture gates + immutable incident ledger.
+
+### `ps-additive-drone-airworthiness-inspection-stack-v1`
+- Messaging: USMTF + API/JSON inspection-state events + XML flight release records.
+- Transport: expeditionary manufacturing exchange + aviation safety bus + delayed-sync fallback.
+- Security: signed inspection packets + dual-approval release gates + immutable airworthiness evidence chain.
+
+### `ps-satcom-ground-blackout-restoration-stack-v1`
+- Messaging: USMTF + API/JSON restoration-state telemetry + CCSDS ground-link health events.
+- Transport: SATCOM mission assurance exchange + homeland defense network + low-bandwidth fallback.
+- Security: signed restoration checkpoints + dual-authorization comm-path transitions + immutable blackout recovery audit.

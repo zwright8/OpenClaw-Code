@@ -176,3 +176,6 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For contested polar communications recovery paths supporting long-range OCA coordination, include `ts-under-ice-cable-break-repair-priority-v1` with `ps-under-ice-cable-break-repair-priority-stack-v1`.
 - For Arctic SAR support demands competing for OCA support sorties, include `ts-arctic-sar-satcom-degraded-v1` with `ps-arctic-sar-satcom-degraded-stack-v1`.
 - For electromagnetic launch-system power deconfliction impacts in theater fires planning, include `ts-railgun-power-budget-v1` with `ps-railgun-power-budget-stack-v1`.
+- For civil air traffic conflict when adversaries spoof navigation signals, include `ts-civil-air-gps-spoof-deconfliction-v1` with `ps-civil-air-gps-spoof-deconfliction-stack-v1`.
+- For additive-manufactured UAS component release decisions affecting escort and ISR packages, include `ts-additive-drone-airworthiness-inspection-v1` with `ps-additive-drone-airworthiness-inspection-stack-v1`.
+- For homeland SATCOM ground-station blackout impacts on long-range command-and-control links, include `ts-satcom-ground-blackout-restoration-v1` with `ps-satcom-ground-blackout-restoration-stack-v1`.

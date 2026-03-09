@@ -171,3 +171,6 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For expeditionary manufacturing data assurance when recycled feedstock is used, include `ts-additive-feedstock-recycling-certification-v1` with `ps-additive-feedstock-recycling-certification-stack-v1`.
 - For coalition hospital cyber outage synchronization and protected patient-routing data exchange, include `ts-coalition-hospital-cyber-evac-v1` with `ps-coalition-hospital-cyber-evac-stack-v1`.
 - For strategic cold-storage sustainment telemetry under long-duration grid denial, include `ts-food-cold-storage-grid-denial-v1` with `ps-food-cold-storage-grid-denial-stack-v1`.
+- For mission edge translation confidence services in multilingual partnered operations, include `ts-battlefield-dialect-translation-risk-v1` with `ps-battlefield-dialect-translation-risk-stack-v1`.
+- For telemetry hardware and firmware provenance assurance in distributed edge nodes, include `ts-telemetry-supply-chain-anti-tamper-v1` with `ps-telemetry-supply-chain-anti-tamper-stack-v1`.
+- For reserve-component support analytics that drive mobilization readiness decisions, include `ts-reservist-family-retention-readiness-v1` with `ps-reservist-family-retention-readiness-stack-v1`.

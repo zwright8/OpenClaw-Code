@@ -788,3 +788,29 @@ Every skill output should include:
 - Additive propellant QA + expeditionary-fabrication-and-battle-damage-repair + strategic-ordnance-production-gridload-and-energy-priority-cell + rapid-prototyping-and-fielding-accelerator
 - Food cold storage continuity + contested-logistics-sustainment + theater-food-security-and-civil-stability-cell + medical-logistics-and-blood-supply-coordination
 - Railgun power budgeting + fires-and-effects-synchronizer + integrated-air-and-missile-defense-cell + electromagnetic-battle-management-cell
+
+## New Expansion Wave (2026-03-09, Airspace Integrity, Industrial Safety, and Human Continuity)
+
+- joint-civil-air-gps-spoofing-deconfliction-cell
+- theater-ammunition-plant-cyber-physical-safety-cell
+- coalition-littoral-fuel-bladder-security-and-distribution-cell
+- tactical-drone-jammer-evacuation-route-bubble-cell
+- strategic-telemetry-supply-chain-anti-tamper-cell
+- joint-battlefield-dialect-translation-risk-cell
+- theater-reservist-family-readiness-and-retention-cell
+- joint-pow-camp-outbreak-and-riot-containment-cell
+- expeditionary-additive-drone-airworthiness-inspection-cell
+- homeland-satcom-ground-station-blackout-restoration-cell
+
+## Updated Pairings (2026-03-09, Airspace Integrity, Industrial Safety, and Human Continuity)
+
+- Civil-air GPS spoofing deconfliction + tactical airspace control and deconfliction + denied space PNT alternative navigation
+- Ammunition plant cyber-physical safety + strategic industrial mobilization readiness + munitions precursor diversion detection
+- Littoral fuel bladder security and distribution + operational energy resilience and microgrid + contested maritime logistics protection
+- Drone-jammer evacuation route bubbles + urban mass-casualty drone resupply coordination + force protection and base defense
+- Telemetry supply-chain anti-tamper + mission-assured software factory support + strategic autonomous systems component security
+- Battlefield dialect translation risk + civil affairs stability ops + information integrity and attribution
+- Reservist family readiness and retention + multi-domain reserve mobilization readiness + human performance and combat stress risk
+- POW camp outbreak and riot containment + detainee operations and law-of-war compliance + coalition joint personnel accounting and repatriation
+- Additive drone airworthiness inspection + contested additive metallurgy quality assurance + expeditionary fabrication and battle damage repair
+- SATCOM ground station blackout restoration + theater mission network failover + strategic hardened fiber NC3 failover assurance

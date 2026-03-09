@@ -167,3 +167,6 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For coalition identity sharing under privacy and legal constraints, include `ts-privacy-preserving-biometrics-federation-v1` with `ps-privacy-preserving-biometrics-federation-stack-v1`.
 - For civil warning authentication during adversary information attacks near installations, include `ts-civil-alert-authenticity-v1` with `ps-civil-alert-authenticity-stack-v1`.
 - For expeditionary power survivability with low-signature generation, include `ts-solar-microgrid-signature-control-v1` with `ps-solar-microgrid-signature-control-stack-v1`.
+- For jammer-protected evacuation and casualty movement in dense terrain, include `ts-drone-jammer-evac-route-bubble-v1` with `ps-drone-jammer-evac-route-bubble-stack-v1`.
+- For coalition littoral fuel cache defense around expeditionary bases, include `ts-littoral-fuel-bladder-security-v1` with `ps-littoral-fuel-bladder-security-stack-v1`.
+- For detainee facility outbreak and riot risk near joint bases, include `ts-pow-camp-outbreak-riot-containment-v1` with `ps-pow-camp-outbreak-riot-containment-stack-v1`.
