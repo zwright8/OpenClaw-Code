@@ -124,3 +124,4 @@
 - Verified `f9822b0a8a..bba703aaa4`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
 - Verified `bba703aaa4..6ffd981d9c`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
 - Verified `6ffd981d9c..b7c9f44abd`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
+- Verified `b7c9f44abd..717db95203`: no new root/`cognition-core`/`swarm-protocol` npm script deltas requiring command-map updates.
