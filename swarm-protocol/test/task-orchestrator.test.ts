@@ -948,6 +948,74 @@ test('circuit breaker closes after half-open probe succeeds', async () => {
     assert.equal(sends, 2);
 });
 
+test('dispatchTask fails over to alternate route candidate after send failure', async () => {
+    const attempts = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        routeTask: async () => ({
+            candidateTargets: ['agent:bad', 'agent:good']
+        }),
+        transport: {
+            async send(target) {
+                attempts.push(target);
+                if (target === 'agent:bad') {
+                    throw new Error('target unavailable');
+                }
+            }
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        task: 'Route with failover candidate'
+    });
+
+    assert.equal(task.status, 'dispatched');
+    assert.equal(task.target, 'agent:good');
+    assert.equal(task.attempts, 2);
+    assert.deepEqual(attempts, ['agent:bad', 'agent:good']);
+    assert.equal(task.history.some((entry) => entry.event === 'target_failover'), true);
+});
+
+test('outlier ejection avoids repeatedly selecting unhealthy route candidates', async () => {
+    const clock = createClock(200_000);
+    const attempts = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        now: clock.now,
+        routeTask: async () => ({
+            candidateTargets: ['agent:bad', 'agent:good']
+        }),
+        transport: {
+            async send(target) {
+                attempts.push(target);
+                if (target === 'agent:bad') {
+                    throw new Error('still unhealthy');
+                }
+            }
+        },
+        targetOutlierFailureThreshold: 1,
+        targetOutlierBaseEjectionMs: 10_000,
+        targetOutlierMaxEjectionMs: 10_000
+    });
+
+    const first = await orchestrator.dispatchTask({
+        task: 'First task should fail over'
+    });
+    assert.equal(first.target, 'agent:good');
+    assert.deepEqual(attempts, ['agent:bad', 'agent:good']);
+
+    const second = await orchestrator.dispatchTask({
+        task: 'Second task should skip ejected target'
+    });
+    assert.equal(second.target, 'agent:good');
+    assert.deepEqual(attempts, ['agent:bad', 'agent:good', 'agent:good']);
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.outlierDetection.ejectedTargets, 1);
+    assert.equal(metrics.retry.outlierDetection.targets['agent:bad'].consecutiveFailures, 1);
+    assert.ok(metrics.retry.outlierDetection.targets['agent:bad'].ejectedUntil > clock.now());
+});
+
 test('failed results are captured in dead-letter metrics and listing', async () => {
     const clock = createClock(35_000);
     const orchestrator = new TaskOrchestrator({

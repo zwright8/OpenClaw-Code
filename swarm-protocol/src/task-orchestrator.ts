@@ -41,6 +41,10 @@ const TRANSIENT_REJECTION_MARKERS = [
 const DEFAULT_DEAD_LETTER_MAX_ENTRIES = 250;
 const DEFAULT_ADAPTIVE_TIMEOUT_ALPHA = 0.125;
 const DEFAULT_ADAPTIVE_TIMEOUT_BETA = 0.25;
+const DEFAULT_TARGET_SELECTION_CHOICES = 2;
+const DEFAULT_TARGET_OUTLIER_FAILURE_THRESHOLD = 3;
+const DEFAULT_TARGET_OUTLIER_BASE_EJECTION_MS = 30_000;
+const DEFAULT_TARGET_OUTLIER_MAX_EJECTION_MS = 5 * 60_000;
 const IN_FLIGHT_STATUSES = new Set(['dispatched', 'acknowledged']);
 const HIGH_PRIORITY_TASKS = new Set(['critical', 'high']);
 const PRIORITY_RANK = {
@@ -116,6 +120,12 @@ function normalizeNonNegativeInt(value, fallback) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric) || numeric < 0) return fallback;
     return Math.floor(numeric);
+}
+
+function normalizeNonEmptyString(value) {
+    if (typeof value !== 'string') return null;
+    const normalized = value.trim();
+    return normalized ? normalized : null;
 }
 
 export function buildTaskRequest({
@@ -222,6 +232,10 @@ export class TaskOrchestrator {
         adaptiveTimeoutSafetyMarginMs = 100,
         adaptiveTimeoutAlpha = DEFAULT_ADAPTIVE_TIMEOUT_ALPHA,
         adaptiveTimeoutBeta = DEFAULT_ADAPTIVE_TIMEOUT_BETA,
+        targetSelectionChoices = DEFAULT_TARGET_SELECTION_CHOICES,
+        targetOutlierFailureThreshold = DEFAULT_TARGET_OUTLIER_FAILURE_THRESHOLD,
+        targetOutlierBaseEjectionMs = DEFAULT_TARGET_OUTLIER_BASE_EJECTION_MS,
+        targetOutlierMaxEjectionMs = DEFAULT_TARGET_OUTLIER_MAX_EJECTION_MS,
         maintenanceRetryBatchLimit = Number.POSITIVE_INFINITY,
         maintenanceHighPriorityShare = 2,
         retryBudgetRatio = 0.2,
@@ -314,6 +328,37 @@ export class TaskOrchestrator {
         );
         this.adaptiveTimeoutAlpha = clampRatio(adaptiveTimeoutAlpha, DEFAULT_ADAPTIVE_TIMEOUT_ALPHA);
         this.adaptiveTimeoutBeta = clampRatio(adaptiveTimeoutBeta, DEFAULT_ADAPTIVE_TIMEOUT_BETA);
+        this.targetSelectionChoices = Math.max(
+            1,
+            Math.floor(clampPositiveNumber(targetSelectionChoices, DEFAULT_TARGET_SELECTION_CHOICES))
+        );
+        this.targetOutlierFailureThreshold = Math.max(
+            1,
+            Math.floor(
+                clampPositiveNumber(
+                    targetOutlierFailureThreshold,
+                    DEFAULT_TARGET_OUTLIER_FAILURE_THRESHOLD
+                )
+            )
+        );
+        this.targetOutlierBaseEjectionMs = Math.max(
+            1,
+            Math.floor(
+                clampPositiveNumber(
+                    targetOutlierBaseEjectionMs,
+                    DEFAULT_TARGET_OUTLIER_BASE_EJECTION_MS
+                )
+            )
+        );
+        this.targetOutlierMaxEjectionMs = Math.max(
+            this.targetOutlierBaseEjectionMs,
+            Math.floor(
+                clampPositiveNumber(
+                    targetOutlierMaxEjectionMs,
+                    DEFAULT_TARGET_OUTLIER_MAX_EJECTION_MS
+                )
+            )
+        );
         this.maintenanceRetryBatchLimit = normalizePositiveIntOrInfinity(
             maintenanceRetryBatchLimit,
             Number.POSITIVE_INFINITY
@@ -336,6 +381,7 @@ export class TaskOrchestrator {
             : normalizeNonNegativeInt(maxRetryElapsedMs, 0);
         this.retryWindowExhaustedCount = 0;
         this.targetLatencyStats = new Map();
+        this.targetOutlierStats = new Map();
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
@@ -419,7 +465,7 @@ export class TaskOrchestrator {
     }
 
     _getTargetLatencyState(target) {
-        const key = typeof target === 'string' ? target.trim() : '';
+        const key = normalizeNonEmptyString(target) || '';
         if (!key) return null;
         const existing = this.targetLatencyStats.get(key);
         if (existing) return existing;
@@ -472,6 +518,211 @@ export class TaskOrchestrator {
         state.lastUpdatedAt = at;
         state.timeoutMs = this._computeAdaptiveTimeoutMs(state);
         return state.timeoutMs;
+    }
+
+    _getTargetOutlierState(target) {
+        const key = normalizeNonEmptyString(target);
+        if (!key) return null;
+        const existing = this.targetOutlierStats.get(key);
+        if (existing) return existing;
+        const baseline = {
+            target: key,
+            consecutiveFailures: 0,
+            totalFailures: 0,
+            totalSuccesses: 0,
+            ejectionCount: 0,
+            ejectedUntil: null,
+            lastFailureAt: null,
+            lastSuccessAt: null
+        };
+        this.targetOutlierStats.set(key, baseline);
+        return baseline;
+    }
+
+    _isTargetOutlierEjected(target, nowMs = safeNow(this.now)) {
+        const state = this._getTargetOutlierState(target);
+        if (!state) return false;
+        if (!Number.isFinite(state.ejectedUntil)) return false;
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        if (at >= state.ejectedUntil) {
+            state.ejectedUntil = null;
+            return false;
+        }
+        return true;
+    }
+
+    _recordTargetOutlierSuccess(target, nowMs = safeNow(this.now)) {
+        const state = this._getTargetOutlierState(target);
+        if (!state) return;
+        state.totalSuccesses += 1;
+        state.consecutiveFailures = 0;
+        state.lastSuccessAt = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        state.ejectedUntil = null;
+    }
+
+    _recordTargetOutlierFailure(target, nowMs = safeNow(this.now)) {
+        const state = this._getTargetOutlierState(target);
+        if (!state) return;
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        state.totalFailures += 1;
+        state.consecutiveFailures += 1;
+        state.lastFailureAt = at;
+        if (state.consecutiveFailures < this.targetOutlierFailureThreshold) {
+            return;
+        }
+        state.ejectionCount += 1;
+        const multiplier = Math.max(1, state.ejectionCount);
+        const rawEjectionMs = this.targetOutlierBaseEjectionMs * multiplier;
+        const ejectionMs = Math.min(this.targetOutlierMaxEjectionMs, rawEjectionMs);
+        state.ejectedUntil = at + ejectionMs;
+    }
+
+    _normalizeCandidateTargets(...values) {
+        const output = [];
+        const seen = new Set();
+        for (const value of values) {
+            if (Array.isArray(value)) {
+                for (const entry of value) {
+                    const normalized = normalizeNonEmptyString(entry);
+                    if (!normalized || seen.has(normalized)) continue;
+                    output.push(normalized);
+                    seen.add(normalized);
+                }
+                continue;
+            }
+            const normalized = normalizeNonEmptyString(value);
+            if (!normalized || seen.has(normalized)) continue;
+            output.push(normalized);
+            seen.add(normalized);
+        }
+        return output;
+    }
+
+    _rankTargetsByLoadAndHealth(targets, nowMs = safeNow(this.now), {
+        exclude = null
+    } = {}) {
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        const excluded = exclude instanceof Set ? exclude : new Set();
+        const candidates = [];
+        for (const target of this._normalizeCandidateTargets(targets)) {
+            if (excluded.has(target)) continue;
+            const outlier = this._getTargetOutlierState(target);
+            const inFlight = this._countTargetInFlight(target);
+            candidates.push({
+                target,
+                inFlight,
+                ejected: this._isTargetOutlierEjected(target, at),
+                consecutiveFailures: Number(outlier?.consecutiveFailures || 0),
+                ejectionCount: Number(outlier?.ejectionCount || 0),
+                lastSuccessAt: Number.isFinite(outlier?.lastSuccessAt)
+                    ? Number(outlier.lastSuccessAt)
+                    : null
+            });
+        }
+
+        candidates.sort((a, b) => {
+            if (a.ejected !== b.ejected) return a.ejected ? 1 : -1;
+            if (a.inFlight !== b.inFlight) return a.inFlight - b.inFlight;
+            if (a.consecutiveFailures !== b.consecutiveFailures) {
+                return a.consecutiveFailures - b.consecutiveFailures;
+            }
+            if (a.ejectionCount !== b.ejectionCount) return a.ejectionCount - b.ejectionCount;
+            const successA = Number.isFinite(a.lastSuccessAt) ? Number(a.lastSuccessAt) : -1;
+            const successB = Number.isFinite(b.lastSuccessAt) ? Number(b.lastSuccessAt) : -1;
+            if (successA !== successB) return successB - successA;
+            return a.target.localeCompare(b.target);
+        });
+        return candidates;
+    }
+
+    _selectDispatchTarget(targets, nowMs = safeNow(this.now), {
+        exclude = null
+    } = {}) {
+        const ranked = this._rankTargetsByLoadAndHealth(targets, nowMs, { exclude });
+        if (ranked.length === 0) return null;
+        const eligible = ranked.filter((candidate) => !candidate.ejected);
+        const pool = eligible.length > 0 ? eligible : ranked;
+        const choiceCount = Math.max(1, Math.min(pool.length, this.targetSelectionChoices));
+        if (choiceCount >= pool.length) {
+            return pool[0].target;
+        }
+
+        // Sample a bounded subset, then pick the best-ranked within that subset.
+        const sampledIndexes = new Set();
+        while (sampledIndexes.size < choiceCount) {
+            const sample = Number(this.random());
+            const randomValue = Number.isFinite(sample) ? sample : Math.random();
+            const index = Math.min(
+                pool.length - 1,
+                Math.max(0, Math.floor(randomValue * pool.length))
+            );
+            sampledIndexes.add(index);
+        }
+
+        let bestIndex = null;
+        for (const index of sampledIndexes) {
+            if (bestIndex === null || index < bestIndex) {
+                bestIndex = index;
+            }
+        }
+        return pool[bestIndex ?? 0].target;
+    }
+
+    _retargetRecord(record, nextTarget, nowMs, reason = 'target_failover') {
+        const normalized = normalizeNonEmptyString(nextTarget);
+        if (!normalized || !record || normalized === record.target) return false;
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        const previousTarget = record.target;
+        record.target = normalized;
+        record.request = buildTaskRequest({
+            ...record.request,
+            target: normalized,
+            id: record.request.id,
+            from: record.request.from,
+            createdAt: record.request.createdAt
+        });
+        if (!record.routing || typeof record.routing !== 'object') {
+            record.routing = {
+                candidates: [normalized],
+                failovers: 0
+            };
+        }
+        record.routing.candidates = this._normalizeCandidateTargets(
+            record.routing.candidates,
+            normalized
+        );
+        record.routing.failovers = Number(record.routing.failovers || 0) + 1;
+        record.updatedAt = at;
+        record.history.push({
+            at,
+            event: 'target_failover',
+            reason,
+            previousTarget,
+            target: normalized
+        });
+        this._persistRecord(record);
+        this._emitAudit('task_target_failover', {
+            taskId: record.taskId,
+            previousTarget,
+            target: normalized,
+            reason
+        }, at);
+        return true;
+    }
+
+    _maybeFailoverRecordTarget(record, nowMs, reason = 'send_failed', {
+        excludeCurrent = true
+    } = {}) {
+        if (!record || !record.routing || !Array.isArray(record.routing.candidates)) return false;
+        const excluded = new Set();
+        if (excludeCurrent && normalizeNonEmptyString(record.target)) {
+            excluded.add(record.target);
+        }
+        const nextTarget = this._selectDispatchTarget(record.routing.candidates, nowMs, {
+            exclude: excluded
+        });
+        if (!nextTarget || nextTarget === record.target) return false;
+        return this._retargetRecord(record, nextTarget, nowMs, reason);
     }
 
     _resolveTimeoutMs(target) {
@@ -736,6 +987,7 @@ export class TaskOrchestrator {
             this.idempotencyCache.clear();
             this.idempotencyTaskIndex.clear();
             this.targetLatencyStats.clear();
+            this.targetOutlierStats.clear();
         }
 
         const hydratedAt = safeNow(this.now);
@@ -1319,6 +1571,7 @@ export class TaskOrchestrator {
         });
 
         let resolvedTarget = target;
+        let candidateTargets = [];
         if (!resolvedTarget && this.routeTask) {
             const routed = await this.routeTask(routingDraft);
             if (typeof routed === 'string' && routed.trim()) {
@@ -1330,6 +1583,14 @@ export class TaskOrchestrator {
                     resolvedTarget = routed.selectedAgentId;
                 } else if (typeof routed.taskRequest?.target === 'string' && routed.taskRequest.target.trim()) {
                     resolvedTarget = routed.taskRequest.target;
+                }
+                candidateTargets = this._normalizeCandidateTargets(
+                    routed.candidateTargets,
+                    routed.targets,
+                    routed.candidates
+                );
+                if (!resolvedTarget && candidateTargets.length > 0) {
+                    resolvedTarget = candidateTargets[0];
                 }
             }
         }
@@ -1351,6 +1612,18 @@ export class TaskOrchestrator {
             id,
             createdAt
         });
+
+        candidateTargets = this._normalizeCandidateTargets(candidateTargets, request.target);
+        const selectedTarget = this._selectDispatchTarget(candidateTargets, dispatchAt);
+        if (selectedTarget && selectedTarget !== request.target) {
+            request = buildTaskRequest({
+                ...request,
+                target: selectedTarget,
+                id: request.id,
+                from: request.from,
+                createdAt: request.createdAt
+            });
+        }
 
         let policyDecision = null;
         if (this.dispatchPolicy) {
@@ -1435,6 +1708,10 @@ export class TaskOrchestrator {
             history: [
                 { at: request.createdAt, event: 'created' }
             ],
+            routing: {
+                candidates: candidateTargets,
+                failovers: 0
+            },
             deadLetter: null,
             idempotency: normalizedIdempotencyKey
                 ? {
@@ -1502,6 +1779,14 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'initial_dispatch');
         } catch (error) {
+            if (
+                error instanceof TaskOrchestratorError
+                && ['SEND_FAILED', 'CIRCUIT_OPEN', 'TARGET_BACKPRESSURE'].includes(error.code)
+                && this._maybeFailoverRecordTarget(record, dispatchAt, `initial_dispatch_${error.code.toLowerCase()}`)
+            ) {
+                await this._sendTask(record, 'initial_dispatch_failover');
+                return this.getTask(record.taskId);
+            }
             if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
                 if (this._canRetry(record, dispatchAt)) {
                     this._scheduleRetry(record, dispatchAt, {
@@ -1605,6 +1890,14 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'approval_release');
         } catch (error) {
+            if (
+                error instanceof TaskOrchestratorError
+                && ['SEND_FAILED', 'CIRCUIT_OPEN', 'TARGET_BACKPRESSURE'].includes(error.code)
+                && this._maybeFailoverRecordTarget(record, reviewedAt, `approval_release_${error.code.toLowerCase()}`)
+            ) {
+                await this._sendTask(record, 'approval_release_failover');
+                return this.getTask(taskId);
+            }
             if (this._canRetry(record, reviewedAt)) {
                 this._scheduleRetry(record, reviewedAt, {
                     reason: 'approval_release_failed',
@@ -1737,6 +2030,7 @@ export class TaskOrchestrator {
                 attempt: record.attempts
             });
             this._recordCircuitSendSuccess(record.target, record.updatedAt);
+            this._recordTargetOutlierSuccess(record.target, record.updatedAt);
             this._persistRecord(record);
             this._emitAudit('task_send_success', {
                 taskId: record.taskId,
@@ -1755,6 +2049,7 @@ export class TaskOrchestrator {
                 error: message
             });
             this._recordCircuitSendFailure(record.target, record.updatedAt);
+            this._recordTargetOutlierFailure(record.target, record.updatedAt);
             this._persistRecord(record);
             this._emitAudit('task_send_failed', {
                 taskId: record.taskId,
@@ -1966,6 +2261,17 @@ export class TaskOrchestrator {
                 summary.retried++;
             } catch (error) {
                 if (error instanceof TaskOrchestratorError && error.code === 'TARGET_BACKPRESSURE') {
+                    const failovered = this._maybeFailoverRecordTarget(
+                        record,
+                        nowMs,
+                        'maintenance_target_backpressure'
+                    );
+                    if (failovered) {
+                        const sentAfterFailover = await this._attemptImmediateFailoverSend(record, nowMs, summary);
+                        if (sentAfterFailover) {
+                            continue;
+                        }
+                    }
                     const scheduled = this._scheduleRetry(record, nowMs, {
                         reason: 'target_backpressure',
                         event: 'retry_deferred_target_backpressure',
@@ -1990,6 +2296,17 @@ export class TaskOrchestrator {
                     continue;
                 }
                 if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
+                    const failovered = this._maybeFailoverRecordTarget(
+                        record,
+                        nowMs,
+                        'maintenance_circuit_open'
+                    );
+                    if (failovered) {
+                        const sentAfterFailover = await this._attemptImmediateFailoverSend(record, nowMs, summary);
+                        if (sentAfterFailover) {
+                            continue;
+                        }
+                    }
                     const scheduled = this._scheduleRetry(record, nowMs, {
                         reason: 'circuit_open',
                         event: 'retry_deferred_circuit_open',
@@ -2013,6 +2330,20 @@ export class TaskOrchestrator {
                 this.logger.warn?.(
                     `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
                 );
+                if (error instanceof TaskOrchestratorError && error.code === 'SEND_FAILED') {
+                    const failovered = this._maybeFailoverRecordTarget(
+                        record,
+                        nowMs,
+                        'maintenance_send_failed'
+                    );
+                    if (failovered) {
+                        const sentAfterFailover = await this._attemptImmediateFailoverSend(record, nowMs, summary);
+                        if (sentAfterFailover) {
+                            summary.transportFailures = Math.max(0, summary.transportFailures - 1);
+                            continue;
+                        }
+                    }
+                }
 
                 const retryEligibility = this._retryEligibility(record, nowMs);
                 if (!retryEligibility.allowed) {
@@ -2209,6 +2540,21 @@ export class TaskOrchestrator {
         return this.getTask(taskId);
     }
 
+    async _attemptImmediateFailoverSend(record, nowMs, summary) {
+        try {
+            await this._sendTask(record, 'target_failover_retry');
+            if (summary && typeof summary === 'object') {
+                summary.retried = Number(summary.retried || 0) + 1;
+            }
+            return true;
+        } catch (retryError) {
+            this.logger.warn?.(
+                `[Swarm] Failover send failed for task ${record.taskId}: ${retryError.message}`
+            );
+            return false;
+        }
+    }
+
     getMetrics() {
         const metrics = {
             total: this.tasks.size,
@@ -2257,6 +2603,17 @@ export class TaskOrchestrator {
                     alpha: this.adaptiveTimeoutAlpha,
                     beta: this.adaptiveTimeoutBeta,
                     targetCount: this.targetLatencyStats.size,
+                    targets: {}
+                },
+                targetSelection: {
+                    choices: this.targetSelectionChoices,
+                    targetStats: this.targetOutlierStats.size
+                },
+                outlierDetection: {
+                    failureThreshold: this.targetOutlierFailureThreshold,
+                    baseEjectionMs: this.targetOutlierBaseEjectionMs,
+                    maxEjectionMs: this.targetOutlierMaxEjectionMs,
+                    ejectedTargets: 0,
                     targets: {}
                 },
                 maintenance: {
@@ -2344,6 +2701,22 @@ export class TaskOrchestrator {
                     ? Number(state.lastSampleMs.toFixed(2))
                     : null,
                 lastUpdatedAt: Number.isFinite(state.lastUpdatedAt) ? state.lastUpdatedAt : null
+            };
+        }
+        const metricNowMs = safeNow(this.now);
+        for (const [target, state] of this.targetOutlierStats.entries()) {
+            const ejected = this._isTargetOutlierEjected(target, metricNowMs);
+            if (ejected) {
+                metrics.retry.outlierDetection.ejectedTargets += 1;
+            }
+            metrics.retry.outlierDetection.targets[target] = {
+                consecutiveFailures: state.consecutiveFailures,
+                totalFailures: state.totalFailures,
+                totalSuccesses: state.totalSuccesses,
+                ejectionCount: state.ejectionCount,
+                ejectedUntil: Number.isFinite(state.ejectedUntil) ? state.ejectedUntil : null,
+                lastFailureAt: Number.isFinite(state.lastFailureAt) ? state.lastFailureAt : null,
+                lastSuccessAt: Number.isFinite(state.lastSuccessAt) ? state.lastSuccessAt : null
             };
         }
         const inFlightByTarget = new Map();
