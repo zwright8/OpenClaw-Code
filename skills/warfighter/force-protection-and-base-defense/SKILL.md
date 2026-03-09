@@ -155,3 +155,6 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For heat and climate force-protection degradation, include `ts-heat-climate-force-risk-v1` with `ps-heat-climate-force-risk-stack-v1`.
 - For sabotage or strike-driven rail resupply loss to base clusters, include `ts-rail-sabotage-recovery-v1` with `ps-rail-sabotage-recovery-stack-v1`.
 - For hazardous-material surge from strike damage, include `ts-battlefield-hazmat-control-v1` with `ps-battlefield-hazmat-control-stack-v1`.
+- For civil-grid instability that drives force-protection risk, include `ts-grid-loadshedding-military-support-v1` with `ps-grid-loadshedding-military-support-stack-v1`.
+- For urban mass-casualty sustainment where ground routes are denied, include `ts-urban-mascas-drone-resupply-v1` with `ps-urban-mascas-drone-resupply-stack-v1`.
+- For command network disruption from cable landing station threats, include `ts-cable-landing-hardening-v1` with `ps-cable-landing-hardening-stack-v1`.

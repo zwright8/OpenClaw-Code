@@ -164,3 +164,6 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For polar and high-latitude SATCOM blackout contingencies affecting command links, include `ts-polar-satcom-reversion-v1` with `ps-polar-satcom-reversion-stack-v1`.
 - For ISR persistence loss from aerostat disruption and EW pressure, include `ts-aerostat-isr-resilience-v1` with `ps-aerostat-isr-resilience-stack-v1`.
 - For offshore energy platform defense dependencies that affect maritime OCA staging, include `ts-offshore-energy-platform-defense-v1` with `ps-offshore-energy-platform-defense-stack-v1`.
+- For joint PNT denial requiring theater-wide fallback, include `ts-astroinertial-reversion-v1` with `ps-astroinertial-reversion-stack-v1`.
+- For contested EOB freshness and emitter-ID drift that affects suppression planning, include `ts-eob-drift-detection-v1` with `ps-eob-drift-detection-stack-v1`.
+- For disconnected strike-assessment imagery prioritization, include `ts-disconnected-uas-bda-triage-v1` with `ps-disconnected-uas-bda-triage-stack-v1`.

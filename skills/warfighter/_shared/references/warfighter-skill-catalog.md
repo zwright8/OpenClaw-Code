@@ -670,3 +670,33 @@ Every skill output should include:
 - Polar SATCOM blackout procedural reversion + denied comms triangulation + kill-chain clock synchronization
 - Ordnance demil and disposal surge + ammunition dud-rate quarantine + theater-level ammo interoperability
 - Disputed fishing fleet gray-zone response + maritime interdiction support + coalition legal attribution operations
+
+## New Expansion Wave (2026-03-09, Crypto Transition, Infrastructure Continuity, and Medical Surge Brokerage)
+
+- joint-quantum-resistant-tactical-key-rollover-cell
+- theater-civil-power-grid-load-shedding-military-support-cell
+- coalition-denied-terrain-bridge-classification-and-heavy-lift-routing-cell
+- strategic-reserve-component-medical-readiness-surge-cell
+- joint-maritime-cable-landing-station-hardening-and-reroute-cell
+- tactical-disconnected-uas-battle-damage-imagery-triage-cell
+- theater-precision-navigation-astroinertial-reversion-cell
+- joint-civilian-port-labor-disruption-contingency-cell
+- coalition-forward-burn-care-bed-matching-and-evac-priority-cell
+- strategic-defense-fuel-refinery-cyber-physical-restart-cell
+- joint-electronic-order-of-battle-drift-detection-cell
+- tactical-urban-mass-casualty-drone-resupply-coordination-cell
+
+## Updated Pairings (2026-03-09, Crypto Transition, Infrastructure Continuity, and Medical Surge Brokerage)
+
+- Quantum-resistant key rollover + battle-network key material continuity + coalition identity federation and access bridging
+- Civil grid load-shedding support + strategic energy grid cyber-physical deterrence + joint infrastructure resilience priority-of-life restoration
+- Denied-terrain bridge classification and heavy-lift routing + contested bridge and gap crossing + deployment and distribution optimization
+- Reserve medical readiness surge + contested medevac airbridge prioritization + coalition denied-environment casualty-data synchronization
+- Cable landing hardening and reroute + undersea cable protection and restoration + theater mission network failover
+- Disconnected UAS BDA imagery triage + battle damage assessment fusion + tactical disconnected mission-data replication
+- Astro-inertial navigation reversion + denied-PNT time transfer assurance + kill-chain clock synchronization
+- Port labor disruption contingency + strategic mobility port/rail chokepoint wargaming + port opening and JLOTS synchronization
+- Burn-care bed matching and evacuation priority + austere burn-care network operations + maritime telemedicine hospital-ship load balancing
+- Refinery cyber-physical restart + fuel-convoy signature suppression + strategic industrial mobilization readiness
+- Electronic order-of-battle drift detection + contested electronic signature intelligence fusion + spectrum interference resolution
+- Urban mass-casualty drone resupply + joint counter-UAS urban rooftop defense + casualty evacuation and medical regulation

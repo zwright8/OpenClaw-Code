@@ -160,3 +160,6 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For underground terrestrial transport restoration and fiber-route hardening, include `ts-underground-fiber-restoration-v1` with `ps-underground-fiber-restoration-stack-v1`.
 - For disconnected autonomous convoy signature governance feeds, include `ts-autonomous-convoy-signature-discipline-v1` with `ps-autonomous-convoy-signature-discipline-stack-v1`.
 - For deployed medical counterfeit screening and logistics trust, include `ts-denied-pharma-counterfeit-detection-v1` with `ps-denied-pharma-counterfeit-detection-stack-v1`.
+- For cryptographic modernization across mixed tactical enclaves, include `ts-quantum-key-rollover-v1` with `ps-quantum-key-rollover-stack-v1`.
+- For cable landing station compromise and rapid backhaul reroute, include `ts-cable-landing-hardening-v1` with `ps-cable-landing-hardening-stack-v1`.
+- For cross-domain emitter identity drift that degrades edge analytics trust, include `ts-eob-drift-detection-v1` with `ps-eob-drift-detection-stack-v1`.

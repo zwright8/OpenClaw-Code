@@ -3780,3 +3780,139 @@ external_binding:
 - Messaging: AIS/NMEA + NIMS/ICS incident notifications + USMTF coalition advisories.
 - Transport: maritime domain awareness exchange + coalition coordination portal + low-bandwidth fallback reports.
 - Security: signed attribution evidence + role-scoped disclosure controls + escalation approval audit chain.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Crypto Agility, Infrastructure Continuity, and Medical Surge)
+
+### `ts-quantum-key-rollover-v1`
+- Use for: coordinated tactical key rollover across mixed legacy and post-quantum enclaves.
+- Primary tools: key management orchestrator, COMSEC account ledger, link-compatibility validator.
+- Cross-check tools: independent key-state monitor and alternate acknowledgement-chain board.
+- Typical products: rollover sequence card, incompatibility exception ladder, continuity risk brief.
+
+### `ts-grid-loadshedding-military-support-v1`
+- Use for: military support to civil grid load shedding and blackstart restoration.
+- Primary tools: grid telemetry COP, critical-service dependency mapper, blackstart coordination board.
+- Cross-check tools: independent utility outage monitor and alternate mission-load reconciler.
+- Typical products: load-shed matrix, blackstart branch plan, life-safety restoration timeline.
+
+### `ts-bridge-heavylift-routing-v1`
+- Use for: bridge class confidence and heavy-lift routing under denied terrain and uncertain surveys.
+- Primary tools: engineer route COP, bridge-load estimator, heavy-lift movement scheduler.
+- Cross-check tools: independent route survivability model and alternate crossing feasibility board.
+- Typical products: bridge confidence map, heavy-lift route ladder, crossing trigger matrix.
+
+### `ts-reserve-medical-surge-v1`
+- Use for: Reserve and Guard medical readiness surge with credential and deployment phasing controls.
+- Primary tools: readiness roster federation, clinical credential verifier, med force packaging board.
+- Cross-check tools: independent credential exception queue and alternate mobilization tracker.
+- Typical products: surge sourcing roster, credential exception ladder, deployment timeline.
+
+### `ts-cable-landing-hardening-v1`
+- Use for: protection and reroute of cable landing stations supporting joint mission networks.
+- Primary tools: cable-landing telemetry monitor, backhaul route planner, hardening task board.
+- Cross-check tools: independent route integrity monitor and alternate repair dispatch ledger.
+- Typical products: hardening posture card, reroute matrix, restoration trigger table.
+
+### `ts-disconnected-uas-bda-triage-v1`
+- Use for: disconnected UAS imagery triage and transfer prioritization for battle damage assessment.
+- Primary tools: imagery triage queue manager, mission-priority scorer, constrained-uplink scheduler.
+- Cross-check tools: independent analyst confidence board and alternate imagery validation tracker.
+- Typical products: transfer priority queue, confidence-weighted BDA snapshot, retask recommendation set.
+
+### `ts-astroinertial-reversion-v1`
+- Use for: theater transition to astro-inertial navigation and timing continuity under GNSS denial.
+- Primary tools: nav confidence engine, timing integrity monitor, platform fallback planner.
+- Cross-check tools: independent route error estimator and alternate time-transfer confidence board.
+- Typical products: reversion ladder, timing assurance matrix, movement confidence map.
+
+### `ts-port-labor-disruption-contingency-v1`
+- Use for: military throughput protection during port labor disruption, strike, or coercive shutdown.
+- Primary tools: port throughput dashboard, cargo reprioritization board, diversion route planner.
+- Cross-check tools: independent berth availability monitor and alternate workforce status board.
+- Typical products: disruption contingency card, cargo priority matrix, diversion timeline.
+
+### `ts-burn-care-bed-broker-v1`
+- Use for: coalition burn-care bed matching and evacuation prioritization under surge conditions.
+- Primary tools: specialty-bed status board, burn triage broker, medevac route-risk planner.
+- Cross-check tools: independent coalition capacity mirror and alternate transport feasibility board.
+- Typical products: burn-bed match board, evac ladder, continuity-of-care branch plan.
+
+### `ts-refinery-cyber-physical-restart-v1`
+- Use for: safe restart of defense-critical refineries after cyber-physical disruption.
+- Primary tools: ICS integrity monitor, refinery process safety board, fuel continuity scheduler.
+- Cross-check tools: independent process-state verifier and alternate demand-reconciliation dashboard.
+- Typical products: restart sequence packet, process safety gate map, fuel risk register.
+
+### `ts-eob-drift-detection-v1`
+- Use for: detection and adjudication of electronic order-of-battle drift and emitter identity shifts.
+- Primary tools: EOB baseline manager, emitter anomaly detector, drift confidence analytics board.
+- Cross-check tools: independent geolocation verifier and alternate emitter-ID ledger.
+- Typical products: EOB drift alert board, confidence ladder, collection retask matrix.
+
+### `ts-urban-mascas-drone-resupply-v1`
+- Use for: drone resupply coordination for urban mass-casualty treatment nodes under denied routes.
+- Primary tools: drone fleet controller, payload-priority allocator, urban air corridor scheduler.
+- Cross-check tools: independent delivery confirmation board and alternate ground handoff monitor.
+- Typical products: resupply wave plan, payload prioritization matrix, corridor risk timeline.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Crypto Agility, Infrastructure Continuity, and Medical Surge)
+
+### `ps-quantum-key-rollover-stack-v1`
+- Messaging: USMTF + API/JSON key-state updates + XML COMSEC account events.
+- Transport: COMSEC distribution network + mission network control bus + delayed-sync fallback.
+- Security: signed rollover directives + dual-control key release + immutable acknowledgment chain.
+
+### `ps-grid-loadshedding-military-support-stack-v1`
+- Messaging: NIMS/ICS + USMTF support advisories + API/JSON grid telemetry.
+- Transport: utility coordination portal + mission support exchange + voice/readback fallback.
+- Security: signed load-shed directives + authority-tier release gates + incident chronology ledger.
+
+### `ps-bridge-heavylift-routing-stack-v1`
+- Messaging: USMTF + OGC route overlays + API/JSON engineer status events.
+- Transport: engineer mission network + movement control exchange + low-bandwidth fallback.
+- Security: signed bridge classification records + route approval gates + immutable reroute log.
+
+### `ps-reserve-medical-surge-stack-v1`
+- Messaging: HL7/FHIR + USMTF medical readiness advisories + API/JSON staffing events.
+- Transport: reserve mobilization network + med-log exchange + delayed-sync fallback.
+- Security: role-scoped clinical data controls + signed credential decisions + audit-ready assignment chain.
+
+### `ps-cable-landing-hardening-stack-v1`
+- Messaging: USMTF + API/JSON restoration workflow events + XML network inventory updates.
+- Transport: cable landing operations exchange + cyber-defense monitor bus + intermittent-sync fallback.
+- Security: signed hardening orders + dual-approval reroute gates + immutable route-change audit chain.
+
+### `ps-disconnected-uas-bda-triage-stack-v1`
+- Messaging: CoT + VMF + API/JSON imagery triage metadata.
+- Transport: tactical ISR mesh + constrained uplink channel + courier media fallback.
+- Security: signed imagery provenance + analyst confidence annotations + release authority gate.
+
+### `ps-astroinertial-reversion-stack-v1`
+- Messaging: USMTF + Link 16 J-series + API/JSON timing-integrity events.
+- Transport: mission nav network + timing distribution bus + manual reversion readback fallback.
+- Security: signed reversion posture updates + dual-source timing validation + acknowledgment integrity ledger.
+
+### `ps-port-labor-disruption-contingency-stack-v1`
+- Messaging: USMTF + NIMS/ICS incident updates + API/JSON cargo status events.
+- Transport: port operations exchange + strategic mobility network + manual manifest fallback.
+- Security: signed cargo reprioritization actions + role-scoped disclosure + immutable diversion audit.
+
+### `ps-burn-care-bed-broker-stack-v1`
+- Messaging: HL7/FHIR + USMTF patient movement updates + API/JSON capacity events.
+- Transport: coalition medical coordination portal + medevac command bus + low-bandwidth fallback.
+- Security: role-scoped medical privacy controls + signed bed-allocation decisions + chain-of-care acknowledgments.
+
+### `ps-refinery-cyber-physical-restart-stack-v1`
+- Messaging: API/JSON ICS integrity events + USMTF fuel continuity advisories + XML process states.
+- Transport: industrial control ops bus + fuel logistics exchange + disconnected report fallback.
+- Security: signed restart checkpoints + dual-authorization process transitions + immutable safety audit chain.
+
+### `ps-eob-drift-detection-stack-v1`
+- Messaging: STIX/TAXII + USMTF EW advisories + API/JSON emitter drift events.
+- Transport: EW fusion exchange + intelligence analytics bus + delayed-sync fallback.
+- Security: signed emitter provenance + source-confidence gates + acknowledgment-chain tracking.
+
+### `ps-urban-mascas-drone-resupply-stack-v1`
+- Messaging: CoT + HL7/FHIR + USMTF emergency resupply updates.
+- Transport: urban drone control mesh + medical operations exchange + voice/readback fallback.
+- Security: signed payload custody records + medical authority release gates + immutable delivery audit.
