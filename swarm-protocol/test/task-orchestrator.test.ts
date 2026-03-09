@@ -212,6 +212,68 @@ test('transient rejection honors Retry-After HTTP-date hint', async () => {
     assert.equal(current.nextRetryAt, clock.now() + 2_000);
 });
 
+test('transient rejection honors X-RateLimit-Reset Unix epoch seconds hint', async () => {
+    const clock = createClock(1_700_000_000_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-ratelimit-epoch-seconds',
+        task: 'Respect X-RateLimit-Reset epoch seconds'
+    });
+
+    const retryAtEpochSeconds = Math.floor((clock.now() + 2_500) / 1_000);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-ratelimit-epoch-seconds',
+        accepted: false,
+        reason: `service_unavailable x-ratelimit-reset: ${retryAtEpochSeconds}`,
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, (retryAtEpochSeconds * 1_000));
+});
+
+test('transient rejection honors X-RateLimit-Reset Unix epoch milliseconds hint', async () => {
+    const clock = createClock(25_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-ratelimit-epoch-millis',
+        task: 'Respect X-RateLimit-Reset epoch milliseconds'
+    });
+
+    const retryAtEpochMs = clock.now() + 2_000;
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-ratelimit-epoch-millis',
+        accepted: false,
+        reason: `service_unavailable x-ratelimit-reset=${retryAtEpochMs}`,
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, retryAtEpochMs);
+});
+
 test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
     const clock = createClock(9_000);
     let sendCount = 0;

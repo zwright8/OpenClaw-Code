@@ -73,6 +73,22 @@ function clampPositiveNumber(value, fallback) {
         : fallback;
 }
 
+function parseRateLimitResetDelayMs(rawValue, nowMs) {
+    if (!Number.isFinite(rawValue) || rawValue < 0) {
+        return null;
+    }
+
+    const numeric = Number(rawValue);
+    // APIs vary: some send delta-seconds, others send absolute Unix timestamps.
+    if (numeric >= 1_000_000_000_000) {
+        return Math.max(0, Math.floor(numeric - nowMs));
+    }
+    if (numeric >= 1_000_000_000) {
+        return Math.max(0, Math.floor((numeric * 1_000) - nowMs));
+    }
+    return Math.floor(numeric * 1_000);
+}
+
 function resolveRetryThrottling(value) {
     if (!value || typeof value !== 'object') {
         return {
@@ -525,12 +541,25 @@ export class TaskOrchestrator {
         }
 
         const retryAfterMatch = reason.match(
-            /\b(?:retry[-_\s]?after|x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]?\s*(\d{1,10})\b/i
+            /\bretry[-_\s]?after\b\s*[:=]?\s*(\d{1,10})\b/i
         );
         if (retryAfterMatch) {
             const seconds = Number(retryAfterMatch[1]);
             if (Number.isFinite(seconds) && seconds >= 0) {
                 return seconds * 1_000;
+            }
+        }
+
+        const rateLimitResetNumericMatch = reason.match(
+            /\b(?:x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]?\s*(\d{1,16})\b/i
+        );
+        if (rateLimitResetNumericMatch) {
+            const parsed = parseRateLimitResetDelayMs(
+                Number(rateLimitResetNumericMatch[1]),
+                safeNow(this.now)
+            );
+            if (parsed !== null) {
+                return parsed;
             }
         }
 
@@ -543,6 +572,23 @@ export class TaskOrchestrator {
             const retryAt = Date.parse(rawValue);
             if (Number.isFinite(retryAt)) {
                 return Math.max(0, retryAt - safeNow(this.now));
+            }
+        }
+
+        const rateLimitResetHeaderMatch = reason.match(
+            /\b(?:x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]\s*([^\n;]+)/i
+        );
+        if (rateLimitResetHeaderMatch) {
+            const rawValue = rateLimitResetHeaderMatch[1].trim();
+            if (/^\d{1,16}$/.test(rawValue)) {
+                const parsed = parseRateLimitResetDelayMs(Number(rawValue), safeNow(this.now));
+                if (parsed !== null) {
+                    return parsed;
+                }
+            }
+            const resetAt = Date.parse(rawValue);
+            if (Number.isFinite(resetAt)) {
+                return Math.max(0, resetAt - safeNow(this.now));
             }
         }
 
