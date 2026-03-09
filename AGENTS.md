@@ -34,6 +34,7 @@
 - `npm run ops -- status` - inspect operator status.
 - `npm run ops -- queue --limit 10` - inspect queued tasks with a bounded view.
 - `npm run ops -- tail --limit 20` - tail recent lifecycle events.
+- `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
 - Verified `147359bd7b..22aee8f278`: `package.json` script-map diff is blocked in this checkout because root/`cognition-core`/`swarm-protocol` package manifests are absent; re-run script verification once manifests are present.
