@@ -178,3 +178,6 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For compromised cable segment isolation and controlled mission-path reroute, include `ts-subsea-cable-segment-isolation-v1` with `ps-subsea-cable-segment-isolation-stack-v1`.
 - For laboratory custody-chain continuity of edge-ingested bioforensics data, include `ts-lab-chain-custody-continuity-v1` with `ps-lab-chain-custody-continuity-stack-v1`.
 - For mission-priority compute readiness decisions driven by high-value part cannibalization constraints, include `ts-component-cannibalization-readiness-v1` with `ps-component-cannibalization-readiness-stack-v1`.
+- For denied-environment agent trust calibration of autonomous C2 assistants, include `ts-denied-c2-agent-trust-v1` with `ps-denied-c2-agent-trust-stack-v1`.
+- For battlefield medical telemetry continuity under electromagnetic disruption, include `ts-em-battlefield-med-telemetry-v1` with `ps-em-battlefield-med-telemetry-stack-v1`.
+- For coalition legal attribution of contested electromagnetic events, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.

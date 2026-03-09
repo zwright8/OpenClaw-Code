@@ -183,3 +183,6 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For rapid runway recertification under sustained sortie pressure, include `ts-expeditionary-runway-rapid-certification-v1` with `ps-expeditionary-runway-rapid-certification-stack-v1`.
 - For denied weather-radar conditions affecting launch and recovery risk, include `ts-denied-weather-radar-gap-fusion-v1` with `ps-denied-weather-radar-gap-fusion-stack-v1`.
 - For multi-sensor nowcast fallback when primary weather coverage is degraded, include `ts-multi-sensor-nowcast-fallback-v1` with `ps-multi-sensor-nowcast-fallback-stack-v1`.
+- For military GPS ground-segment disruption impacts on OCA mission timing, include `ts-gps-ground-segment-restoration-v1` with `ps-gps-ground-segment-restoration-stack-v1`.
+- For rail-air-defense crossing prioritization that protects munitions and sortie support corridors, include `ts-rail-air-defense-crossing-priority-v1` with `ps-rail-air-defense-crossing-priority-stack-v1`.
+- For cislunar launch support dependencies affecting global strike posture, include `ts-cislunar-logistics-spaceport-defense-v1` with `ps-cislunar-logistics-spaceport-defense-stack-v1`.

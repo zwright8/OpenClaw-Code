@@ -174,3 +174,6 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For mission-priority feeder shedding during prolonged grid disruption, include `ts-grid-feeder-priority-shed-v1` with `ps-grid-feeder-priority-shed-stack-v1`.
 - For detention transfer operations where custody and evidence integrity can be contested, include `ts-prisoner-transfer-evidence-chain-v1` with `ps-prisoner-transfer-evidence-chain-stack-v1`.
 - For verified handoff tracking across detainee movements, include `ts-custody-handshake-ledger-v1` with `ps-custody-handshake-ledger-stack-v1`.
+- For forward operating base water network sabotage and attribution, include `ts-forward-water-sabotage-attribution-v1` with `ps-forward-water-sabotage-attribution-stack-v1`.
+- For transformer convoy escort and emplacement during homeland defense power restoration, include `ts-grid-transformer-escort-install-v1` with `ps-grid-transformer-escort-install-stack-v1`.
+- For coalition electromagnetic incident legal framing at defended installations, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.
