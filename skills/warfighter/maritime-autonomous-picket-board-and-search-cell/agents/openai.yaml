@@ -1,0 +1,3 @@
+interface:
+  display_name: "Maritime Autonomous Picket Board and Search Cell"
+  short_description: "Synchronize autonomous picket sensing with compliant board-and-search operations in contested sea lanes."

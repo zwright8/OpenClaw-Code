@@ -1,0 +1,3 @@
+interface:
+  display_name: "Homeland Spaceport GNSS Interference Emergency Cell"
+  short_description: "Coordinate launch safety and range continuity during GNSS jamming, spoofing, and timing instability events."
