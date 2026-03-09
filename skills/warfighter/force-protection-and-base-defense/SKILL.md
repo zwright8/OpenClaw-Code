@@ -152,3 +152,6 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For drone-swarm disruption around mixed-use airspace, prioritize `ts-swarmsafe-air-corridor-v1` with `ps-swarmsafe-air-corridor-stack-v1`.
 - For base medical continuity under prolonged outage, prioritize `ts-coldchain-gridloss-v1` with `ps-coldchain-gridloss-stack-v1`.
 - For contested base energy links to littoral support nodes, consider `ts-shipshore-energy-cable-protect-v1` with `ps-shipshore-energy-cable-protect-stack-v1`.
+- For heat and climate force-protection degradation, include `ts-heat-climate-force-risk-v1` with `ps-heat-climate-force-risk-stack-v1`.
+- For sabotage or strike-driven rail resupply loss to base clusters, include `ts-rail-sabotage-recovery-v1` with `ps-rail-sabotage-recovery-stack-v1`.
+- For hazardous-material surge from strike damage, include `ts-battlefield-hazmat-control-v1` with `ps-battlefield-hazmat-control-stack-v1`.

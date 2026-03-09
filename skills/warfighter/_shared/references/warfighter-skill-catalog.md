@@ -640,3 +640,33 @@ Every skill output should include:
 - Vaccine cold-chain under grid loss + forward medical oxygen assurance + water distribution continuity
 - Ammunition dud-rate quarantine + theater ammunition interoperability + explosive demil safety
 - Ship-to-shore energy cable protection + coastal hazard protection + undersea critical infrastructure repair convoy
+
+## New Expansion Wave (2026-03-09, Infrastructure Recovery, Climate Stress, and Gray-Zone Maritime Competition)
+
+- joint-theater-balloon-and-aerostat-surveillance-resilience-cell
+- strategic-military-rail-network-sabotage-recovery-cell
+- joint-civilian-mariner-mobilization-and-credentialing-cell
+- theater-battlefield-waste-and-hazardous-material-control-cell
+- joint-heat-injury-and-climate-operational-risk-cell
+- coalition-offshore-energy-platform-defense-integration-cell
+- tactical-underground-fiber-rapid-restoration-cell
+- joint-autonomous-convoy-electronic-signature-discipline-cell
+- theater-denied-pharmaceutical-counterfeit-detection-cell
+- joint-polar-satcom-blackout-procedural-reversion-cell
+- strategic-ordnance-demil-and-safe-disposal-surge-cell
+- coalition-disputed-fishing-fleet-gray-zone-response-cell
+
+## Updated Pairings (2026-03-09, Infrastructure Recovery, Climate Stress, and Gray-Zone Maritime Competition)
+
+- Aerostat ISR resilience + tactical airborne relay bridge + theater mission network failover
+- Rail sabotage recovery + strategic mobility chokepoint wargaming + joint deployment/distribution optimizer
+- Civilian mariner mobilization + strategic sealift and prepositioning + port opening/JLOTS synchronization
+- Battlefield hazmat control + CBRN robotic reconnaissance + preventive medicine and force-health protection
+- Heat/climate operational risk + expeditionary water assurance + contested medevac prioritization
+- Offshore platform defense integration + maritime chokepoint control + anti-ship missile defense coordination
+- Underground fiber rapid restoration + battle-network key continuity + disconnected mission-data replication
+- Autonomous convoy signature discipline + fuel convoy signature suppression + counter-targeting pattern-of-life obfuscation
+- Denied pharmaceutical counterfeit detection + med-log and blood continuity + cold-chain integrity under grid loss
+- Polar SATCOM blackout procedural reversion + denied comms triangulation + kill-chain clock synchronization
+- Ordnance demil and disposal surge + ammunition dud-rate quarantine + theater-level ammo interoperability
+- Disputed fishing fleet gray-zone response + maritime interdiction support + coalition legal attribution operations

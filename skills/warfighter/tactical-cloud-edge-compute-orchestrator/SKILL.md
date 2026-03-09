@@ -157,3 +157,6 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For strategic relocation and emission-control continuity dependencies, prioritize `ts-nc3-relocation-emcon-v1` with `ps-nc3-relocation-emcon-stack-v1`.
 - For cross-domain humanitarian corridor resilience telemetry, include `ts-aid-denial-attribution-v1` with `ps-aid-denial-attribution-stack-v1`.
 - For mission-critical supply chain compute prioritization, include `ts-radhard-chip-allocation-v1` with `ps-radhard-chip-allocation-stack-v1`.
+- For underground terrestrial transport restoration and fiber-route hardening, include `ts-underground-fiber-restoration-v1` with `ps-underground-fiber-restoration-stack-v1`.
+- For disconnected autonomous convoy signature governance feeds, include `ts-autonomous-convoy-signature-discipline-v1` with `ps-autonomous-convoy-signature-discipline-stack-v1`.
+- For deployed medical counterfeit screening and logistics trust, include `ts-denied-pharma-counterfeit-detection-v1` with `ps-denied-pharma-counterfeit-detection-stack-v1`.

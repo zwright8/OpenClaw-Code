@@ -161,3 +161,6 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For tanker and strategic mobility disruptions affecting OCA package persistence, prioritize `ts-contested-tanker-airbridge-v1` with `ps-contested-tanker-airbridge-stack-v1`.
 - For emergency civil-military air corridor closures during swarm pressure, include `ts-swarmsafe-air-corridor-v1` with `ps-swarmsafe-air-corridor-stack-v1`.
 - For degraded navigation transitions in navwar conditions, include `ts-pnt-transition-terrain-nav-v1` with `ps-pnt-transition-terrain-nav-stack-v1`.
+- For polar and high-latitude SATCOM blackout contingencies affecting command links, include `ts-polar-satcom-reversion-v1` with `ps-polar-satcom-reversion-stack-v1`.
+- For ISR persistence loss from aerostat disruption and EW pressure, include `ts-aerostat-isr-resilience-v1` with `ps-aerostat-isr-resilience-stack-v1`.
+- For offshore energy platform defense dependencies that affect maritime OCA staging, include `ts-offshore-energy-platform-defense-v1` with `ps-offshore-energy-platform-defense-stack-v1`.
