@@ -161,3 +161,5 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For distributed radiological/nuclear warning coverage resilience, include `ts-portable-nuclear-detector-resilience-v1` with `ps-portable-nuclear-detector-resilience-stack-v1`.
 - For rapid floodwave warning after dam strike or sabotage, include `ts-rapid-dam-floodwave-warning-v1` with `ps-rapid-dam-floodwave-warning-stack-v1`.
 - For synthetic voice spoofing against guard-force command nets, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.
+- For strategic port water assurance under prolonged disruption, include `ts-port-desalination-brine-output-assurance-v1` with `ps-port-desalination-brine-output-assurance-stack-v1`.
+- For coalition identity sharing under privacy and legal constraints, include `ts-privacy-preserving-biometrics-federation-v1` with `ps-privacy-preserving-biometrics-federation-stack-v1`.

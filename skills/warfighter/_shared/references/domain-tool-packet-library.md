@@ -4126,3 +4126,69 @@ validation_gates:
 - output_schema: spoofing threat board, trust posture card, containment and re-authentication plan
 - protocol_profile: USMTF + API/JSON + STIX/TAXII
 - validation_gates: authenticity score threshold, callback confirmation pass, command authority release
+
+### packet_id: DPL-CONTESTED-SPACE-LAUNCH-RECONSTITUTION-001
+- domain: joint contested space launch window reconstitution
+- objective: recover assured military access-to-orbit timelines after launch infrastructure, telemetry, or orbital-risk disruption
+- primary_tools: launch schedule recovery board, range status federation, telemetry integrity monitor
+- alternate_tools: manual launch reprioritization worksheet and range-risk review board
+- degraded_mode: mission-essential payloads only with widened launch confidence intervals
+- input_requirements: launch window status, payload priorities, range constraints, orbital risk indicators
+- output_schema: launch recovery matrix, payload reprioritization ladder, risk and decision trigger map
+- protocol_profile: USMTF + CCSDS + API/JSON
+- validation_gates: launch readiness confidence floor, dual-source risk confirmation, command authority release
+
+### packet_id: DPL-RARE-EARTH-PLANT-PROTECT-RESTART-001
+- domain: theater rare-earth separation plant protection and restart
+- objective: preserve defense-industrial rare-earth output and restart safely after sabotage or cyber-physical compromise
+- primary_tools: plant process integrity monitor, mineral throughput optimizer, industrial safety gate tracker
+- alternate_tools: manual contamination and process-state checklist plus output allocation board
+- degraded_mode: critical defense output lines only with strict safety hold points
+- input_requirements: process integrity evidence, contamination indicators, output demand priorities, safety constraints
+- output_schema: protection and restart sequence, output priority board, safety hold-point log
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: process integrity pass, contamination threshold check, dual-authorization release
+
+### packet_id: DPL-UNDER-ICE-CABLE-BREAK-REPAIR-PRIORITY-001
+- domain: coalition under-ice cable break localization and repair priority
+- objective: localize under-ice cable breaks and sequence constrained repair assets to restore mission-critical communications
+- primary_tools: subsea fault localization service, under-ice route risk model, repair asset assignment board
+- alternate_tools: manual break confidence worksheet and repair surge allocation board
+- degraded_mode: command-essential links only with interval-based restoration updates
+- input_requirements: cable topology, fault indicators, available repair assets, comms criticality map
+- output_schema: break-confidence map, repair queue, continuity branch matrix
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: localization confidence floor, repair feasibility check, coalition authority release
+
+### packet_id: DPL-PRIVACY-PRESERVING-BIOMETRICS-FEDERATION-001
+- domain: tactical biometrics privacy-preserving watchlist federation
+- objective: deconflict coalition watchlists with privacy-preserving identity matching and auditable legal-policy compliance
+- primary_tools: privacy-preserving match broker, watchlist synchronization board, identity confidence monitor
+- alternate_tools: manual watchlist reconciliation board and human adjudication review queue
+- degraded_mode: high-risk subjects only with expanded human review and reduced automation
+- input_requirements: watchlist sources, identity confidence thresholds, legal policy constraints, coalition caveats
+- output_schema: federation policy matrix, confidence ladder, deconfliction action tracker
+- protocol_profile: NIEM + API/JSON + STIX/TAXII
+- validation_gates: false-match threshold pass, privacy policy compliance check, authority release gate
+
+### packet_id: DPL-PORT-DESALINATION-BRINE-OUTPUT-ASSURANCE-001
+- domain: strategic water port desalination brine compliance and output assurance
+- objective: sustain mission-critical water output while preserving environmental and host-nation compliance
+- primary_tools: desal output telemetry board, brine discharge compliance monitor, mission water-priority planner
+- alternate_tools: manual output tracking board and compliance exception log
+- degraded_mode: life-safety and command-essential water loads only with constrained production cadence
+- input_requirements: desal plant status, water demand priorities, discharge limits, maintenance constraints
+- output_schema: output assurance dashboard, compliance risk board, emergency continuity branch plan
+- protocol_profile: NIMS/ICS + API/JSON + XML
+- validation_gates: output reliability threshold, compliance pass, command and legal concurrence
+
+### packet_id: DPL-ADDITIVE-FEEDSTOCK-RECYCLING-CERTIFICATION-001
+- domain: joint battlefield additive feedstock recycling and certification
+- objective: recycle and certify additive feedstock safely to sustain expeditionary manufacturing under denied resupply
+- primary_tools: feedstock recovery analytics, blend-certification planner, additive quality release board
+- alternate_tools: manual blend worksheet and part safety adjudication board
+- degraded_mode: non-flight-critical and non-safety-critical parts only pending full certification
+- input_requirements: feedstock inventory state, contamination indicators, blend recipes, part criticality classes
+- output_schema: recycling and blend plan, certification confidence ladder, production-risk timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: feedstock provenance check, certification confidence floor, release authority approval

@@ -4030,3 +4030,73 @@ external_binding:
 - Messaging: USMTF + API/JSON voice authenticity scores + STIX/TAXII threat indicators.
 - Transport: command voice network + cyber defense exchange + manual callback fallback.
 - Security: signed authenticity attestations + dual-channel command confirmation + immutable spoofing incident ledger.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Strategic Industrial Continuity, Polar Repair, and Identity Trust)
+
+### `ts-contested-space-launch-reconstitution-v1`
+- Use for: reconstituting military launch windows after range, telemetry, or orbital-risk disruption.
+- Primary tools: launch schedule recovery board, range status federation, telemetry integrity monitor.
+- Cross-check tools: independent orbital-risk validator and alternate payload readiness ledger.
+- Typical products: launch recovery matrix, payload reprioritization ladder, range assurance timeline.
+
+### `ts-rare-earth-plant-protect-restart-v1`
+- Use for: protecting and restarting rare-earth separation facilities critical to defense-industrial output.
+- Primary tools: plant process integrity monitor, mineral throughput optimizer, industrial safety gate tracker.
+- Cross-check tools: independent contamination assay queue and alternate supply substitution model.
+- Typical products: protection and restart sequence, output priority board, safety hold-point ledger.
+
+### `ts-under-ice-cable-break-repair-priority-v1`
+- Use for: localizing under-ice cable breaks and prioritizing constrained coalition repair assets.
+- Primary tools: subsea fault localization service, under-ice route risk model, repair asset assignment board.
+- Cross-check tools: independent acoustic confirmation board and alternate comms continuity monitor.
+- Typical products: break-confidence map, repair queue, continuity branch matrix.
+
+### `ts-privacy-preserving-biometrics-federation-v1`
+- Use for: coalition biometric watchlist federation with privacy-preserving identity matching and auditability.
+- Primary tools: privacy-preserving match broker, watchlist synchronization board, identity confidence monitor.
+- Cross-check tools: independent false-match review queue and alternate partner identity reconciliation ledger.
+- Typical products: federation policy matrix, confidence ladder, deconfliction action tracker.
+
+### `ts-port-desalination-brine-output-assurance-v1`
+- Use for: sustaining strategic port desalination output while enforcing brine-discharge compliance.
+- Primary tools: desal output telemetry board, brine discharge compliance monitor, mission water-priority planner.
+- Cross-check tools: independent water-quality assay queue and alternate emergency water continuity tracker.
+- Typical products: output assurance dashboard, compliance risk board, contingency water timeline.
+
+### `ts-additive-feedstock-recycling-certification-v1`
+- Use for: recycling additive feedstock and certifying mission-safe reuse under contested logistics.
+- Primary tools: feedstock recovery analytics, blend-certification planner, additive quality release board.
+- Cross-check tools: independent metallurgical validation queue and alternate part-risk adjudication monitor.
+- Typical products: recycling and blend plan, certification ladder, production-risk timeline.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Strategic Industrial Continuity, Polar Repair, and Identity Trust)
+
+### `ps-contested-space-launch-reconstitution-stack-v1`
+- Messaging: USMTF + CCSDS telemetry-state updates + API/JSON launch-recovery events.
+- Transport: range operations exchange + space mission assurance bus + delayed-sync fallback.
+- Security: signed launch-window updates + dual-approval payload reprioritization gates + immutable release chronology.
+
+### `ps-rare-earth-plant-protect-restart-stack-v1`
+- Messaging: USMTF + API/JSON process-integrity events + XML industrial safety records.
+- Transport: defense-industrial operations bus + strategic sustainment exchange + disconnected report fallback.
+- Security: signed restart checkpoints + dual-authorization process transitions + immutable contamination audit chain.
+
+### `ps-under-ice-cable-break-repair-priority-stack-v1`
+- Messaging: USMTF + API/JSON subsea fault events + OGC geospatial repair overlays.
+- Transport: coalition maritime infrastructure portal + polar comms exchange + low-bandwidth fallback.
+- Security: signed break-localization packets + role-scoped repair authorization + immutable continuity restoration ledger.
+
+### `ps-privacy-preserving-biometrics-federation-stack-v1`
+- Messaging: NIEM + API/JSON privacy-match confidence events + STIX/TAXII threat indicators.
+- Transport: coalition identity federation exchange + law-enforcement liaison bus + delayed-sync fallback.
+- Security: signed identity attestations + role-scoped disclosure controls + immutable query and decision audit.
+
+### `ps-port-desalination-brine-output-assurance-stack-v1`
+- Messaging: NIMS/ICS + API/JSON desalination output telemetry + XML environmental compliance records.
+- Transport: installation utility operations bus + civil infrastructure portal + voice/readback fallback.
+- Security: signed output status updates + dual-approval compliance exceptions + immutable discharge audit chain.
+
+### `ps-additive-feedstock-recycling-certification-stack-v1`
+- Messaging: USMTF + API/JSON feedstock quality events + XML certification records.
+- Transport: expeditionary manufacturing exchange + quality governance bus + delayed-sync fallback.
+- Security: signed feedstock provenance + dual-approval certification release + immutable part-risk adjudication ledger.

@@ -170,3 +170,5 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For austere airfield sortie risk from wildlife surges, include `ts-forward-airstrip-bird-strike-suppression-v1` with `ps-forward-airstrip-bird-strike-suppression-stack-v1`.
 - For severe bandwidth limits impacting ISR video feeds, include `ts-spectrum-frugal-video-prioritization-v1` with `ps-spectrum-frugal-video-prioritization-stack-v1`.
 - For cellular priority-service restoration that affects civil-military airbase coordination, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
+- For disrupted national-security launch cadence affecting air-space integration windows, include `ts-contested-space-launch-reconstitution-v1` with `ps-contested-space-launch-reconstitution-stack-v1`.
+- For contested polar communications recovery paths supporting long-range OCA coordination, include `ts-under-ice-cable-break-repair-priority-v1` with `ps-under-ice-cable-break-repair-priority-stack-v1`.
