@@ -72,6 +72,12 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Require no-strike/restricted target reconciliation evidence before releasing any recommendation with projected effects.
 - If CDE inputs are stale, incomplete, or disputed, mark recommendations as `provisional`, downgrade to advisory-only, and require command/legal review.
 
+## Targeting Governance Authority Gate
+
+- Require command/legal verification tokens for all high-consequence recommendations: `authority_tier`, `legal_review_id`, `no_strike_sync_utc`, `cde_method_version`, and `approval_role`.
+- If target identity confidence, CDE method traceability, or no-strike synchronization is not current, output only a blocked status with remediation actions and suspense.
+- Never emit content that can be interpreted as target execution direction; keep outputs limited to governance assurance, quality control, and risk communication.
+
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.

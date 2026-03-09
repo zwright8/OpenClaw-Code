@@ -1,0 +1,3 @@
+interface:
+  display_name: "Space Launch Reconstitution and Range Conflict Cell"
+  short_description: "Reconstitute launch timelines and deconflict range/orbital constraints"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Port Radiological Screening and Containment Cell"
+  short_description: "Screen port radiological threats while maintaining throughput"

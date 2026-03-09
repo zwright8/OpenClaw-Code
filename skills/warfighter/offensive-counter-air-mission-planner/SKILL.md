@@ -63,6 +63,12 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Require explicit human command approval (`requires_human_approval: true`) before any recommendation that could change engagement posture or escalation risk.
 - Include a civilian-risk mitigation note and no-strike validation status for each high-consequence recommendation.
 
+## Escalation and Release Control
+
+- For each recommendation with potential kinetic or escalation impact, include: `authority_tier`, `approval_role`, `approval_timestamp_utc`, `roe_reference`, and `audit_record_id`.
+- If tanker support, IFF confidence, airspace deconfliction, or legal/ROE status is stale, conflicting, or unavailable, force `advisory_only: true` and generate a constrained branch with required validation tasks.
+- Restrict outputs to planning-level COA comparison and risk controls; do not provide launch/attack sequencing directives.
+
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
