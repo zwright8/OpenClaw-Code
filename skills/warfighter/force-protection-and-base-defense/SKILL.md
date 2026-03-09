@@ -163,3 +163,5 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For synthetic voice spoofing against guard-force command nets, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.
 - For theater-wide UXO risk before civilian re-entry near installations, include `ts-uxo-civilian-return-corridor-v1` with `ps-uxo-civilian-return-corridor-stack-v1`.
 - For orbital debris reentry force-protection warning impacts, include `ts-orbital-reentry-population-risk-v1` with `ps-orbital-reentry-population-risk-stack-v1`.
+- For strategic port water assurance under prolonged disruption, include `ts-port-desalination-brine-output-assurance-v1` with `ps-port-desalination-brine-output-assurance-stack-v1`.
+- For coalition identity sharing under privacy and legal constraints, include `ts-privacy-preserving-biometrics-federation-v1` with `ps-privacy-preserving-biometrics-federation-stack-v1`.

@@ -744,3 +744,21 @@ Every skill output should include:
 - Spare-engine allocation under sanctions + strategic mobility planner + supply-chain risk and industrial base monitor
 - Microgrid ammonia blackstart + operational energy resilience and microgrid + contested austere water production assurance
 - Maritime salvage insurance adjudication + coalition maritime insurance risk and reconstitution + port opening and throughput restoration
+
+## New Expansion Wave (2026-03-09, Strategic Industrial Continuity, Polar Repair, and Identity Trust)
+
+- joint-contested-space-launch-window-reconstitution-cell
+- theater-rare-earth-separation-plant-protection-and-restart-cell
+- coalition-under-ice-cable-break-localization-and-repair-priority-cell
+- tactical-biometrics-privacy-preserving-watchlist-federation-cell
+- strategic-water-port-desalination-brine-compliance-and-output-assurance-cell
+- joint-battlefield-additive-feedstock-recycling-and-certification-cell
+
+## Updated Pairings (2026-03-09, Strategic Industrial Continuity, Polar Repair, and Identity Trust)
+
+- Contested space-launch reconstitution + defensive space control counterspace + orbital debris reentry population risk mitigation
+- Rare-earth separation plant protection/restart + strategic defense fuel refinery cyber-physical restart + supply-chain risk and industrial base monitor
+- Under-ice cable break repair priority + undersea cable protection and restoration + polar SATCOM procedural reversion
+- Privacy-preserving biometrics federation + coalition refugee screening and biometrics deconfliction + denied biometric exfiltration support
+- Port desalination brine and output assurance + contested austere water production assurance + offshore energy platform defense integration
+- Additive feedstock recycling certification + contested additive metallurgy quality assurance + expeditionary fabrication and battle damage repair
