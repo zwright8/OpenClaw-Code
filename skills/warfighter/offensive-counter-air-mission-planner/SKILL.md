@@ -179,3 +179,7 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For civil air traffic conflict when adversaries spoof navigation signals, include `ts-civil-air-gps-spoof-deconfliction-v1` with `ps-civil-air-gps-spoof-deconfliction-stack-v1`.
 - For additive-manufactured UAS component release decisions affecting escort and ISR packages, include `ts-additive-drone-airworthiness-inspection-v1` with `ps-additive-drone-airworthiness-inspection-stack-v1`.
 - For homeland SATCOM ground-station blackout impacts on long-range command-and-control links, include `ts-satcom-ground-blackout-restoration-v1` with `ps-satcom-ground-blackout-restoration-stack-v1`.
+- For austere runway sortie recovery after FOD and drone-debris events, include `ts-austere-runway-fod-drone-debris-v1` with `ps-austere-runway-fod-drone-debris-stack-v1`.
+- For rapid runway recertification under sustained sortie pressure, include `ts-expeditionary-runway-rapid-certification-v1` with `ps-expeditionary-runway-rapid-certification-stack-v1`.
+- For denied weather-radar conditions affecting launch and recovery risk, include `ts-denied-weather-radar-gap-fusion-v1` with `ps-denied-weather-radar-gap-fusion-stack-v1`.
+- For multi-sensor nowcast fallback when primary weather coverage is degraded, include `ts-multi-sensor-nowcast-fallback-v1` with `ps-multi-sensor-nowcast-fallback-stack-v1`.

@@ -174,3 +174,7 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For mission edge translation confidence services in multilingual partnered operations, include `ts-battlefield-dialect-translation-risk-v1` with `ps-battlefield-dialect-translation-risk-stack-v1`.
 - For telemetry hardware and firmware provenance assurance in distributed edge nodes, include `ts-telemetry-supply-chain-anti-tamper-v1` with `ps-telemetry-supply-chain-anti-tamper-stack-v1`.
 - For reserve-component support analytics that drive mobilization readiness decisions, include `ts-reservist-family-retention-readiness-v1` with `ps-reservist-family-retention-readiness-stack-v1`.
+- For undersea cable interception detection impacting theater edge backhaul trust, include `ts-undersea-fiber-tap-attribution-v1` with `ps-undersea-fiber-tap-attribution-stack-v1`.
+- For compromised cable segment isolation and controlled mission-path reroute, include `ts-subsea-cable-segment-isolation-v1` with `ps-subsea-cable-segment-isolation-stack-v1`.
+- For laboratory custody-chain continuity of edge-ingested bioforensics data, include `ts-lab-chain-custody-continuity-v1` with `ps-lab-chain-custody-continuity-stack-v1`.
+- For mission-priority compute readiness decisions driven by high-value part cannibalization constraints, include `ts-component-cannibalization-readiness-v1` with `ps-component-cannibalization-readiness-stack-v1`.

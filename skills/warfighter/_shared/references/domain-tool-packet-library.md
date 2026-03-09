@@ -4478,3 +4478,179 @@ validation_gates:
 - output_schema: recovery matrix, failover ladder, authority checklist
 - protocol_profile: USMTF + CCSDS + API/JSON
 - validation_gates: timing integrity pass, comm restoration threshold, authority release confirmation
+
+### packet_id: DPL-AUTONOMOUS-MINESWEEPER-RETASK-001
+- domain: joint maritime autonomous minesweeper retasking
+- objective: retask autonomous mine countermeasure systems as threat and lane priorities shift
+- primary_tools: autonomous mine-countermeasure task board, lane threat fusion map, sortie endurance planner
+- alternate_tools: manual lane-priority board and patrol retask worksheet
+- degraded_mode: strategic and life-safety lanes only with widened confidence thresholds
+- input_requirements: lane priorities, contact confidence, asset health, mission timeline constraints
+- output_schema: retask matrix, safe-lane clearance ladder, escalation trigger board
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: contact confidence threshold, lane criticality check, authority release gate
+
+### packet_id: DPL-LITTORAL-MCM-PRIORITY-LANE-001
+- domain: coalition littoral mine-countermeasure priority lanes
+- objective: prioritize coalition lane clearance and sustainment corridors under constrained MCM capacity
+- primary_tools: lane criticality ranker, coalition route utilization board, minefield uncertainty tracker
+- alternate_tools: manual logistics lane worksheet and coalition planner board
+- degraded_mode: command-essential lanes only with daily reprioritization
+- input_requirements: coalition route demand, mine threat estimates, escort availability, timing windows
+- output_schema: priority lane board, risk-adjusted crossing windows, tasking sequence card
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: coalition concurrence, risk threshold pass, authority confirmation
+
+### packet_id: DPL-UNDERSEA-FIBER-TAP-ATTRIBUTION-001
+- domain: theater undersea fiber tap attribution
+- objective: identify and attribute hostile subsea interception activity with legal and operational traceability
+- primary_tools: cable anomaly correlator, vessel behavior board, attribution confidence engine
+- alternate_tools: manual anomaly timeline and legal evidence worksheet
+- degraded_mode: high-impact segments only with conservative attribution confidence labels
+- input_requirements: cable telemetry anomalies, vessel tracks, maintenance windows, legal evidentiary constraints
+- output_schema: attribution confidence ladder, suspected segment map, escalation recommendation board
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: anomaly confidence floor, legal sufficiency check, command approval gate
+
+### packet_id: DPL-SUBSEA-CABLE-SEGMENT-ISOLATION-001
+- domain: subsea cable segment isolation and mission reroute
+- objective: isolate compromised cable segments and preserve mission-network continuity
+- primary_tools: cable segment switch planner, mission dependency graph, reroute performance monitor
+- alternate_tools: manual circuit patch worksheet and continuity board
+- degraded_mode: mission-critical command links only with reduced bandwidth
+- input_requirements: segment status, dependency priorities, reroute path capacity, timing constraints
+- output_schema: isolation sequence, continuity branch plan, restoration timeline
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: continuity threshold pass, reroute integrity check, authority release confirmation
+
+### packet_id: DPL-BIOFORENSICS-RAPID-ATTRIBUTION-001
+- domain: strategic bioforensics rapid attribution
+- objective: accelerate biologic incident attribution for commander decision support and response alignment
+- primary_tools: genomic marker triage board, sample provenance validator, attribution fusion engine
+- alternate_tools: manual lab adjudication board and epidemiology worksheet
+- degraded_mode: highest-confidence source hypotheses only with expanded uncertainty annotations
+- input_requirements: sample metadata, genomic analysis outputs, incident timeline, intelligence context
+- output_schema: attribution confidence matrix, source hypothesis ladder, decision timeline
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: sample integrity pass, multi-source corroboration threshold, authority release gate
+
+### packet_id: DPL-LAB-CHAIN-CUSTODY-CONTINUITY-001
+- domain: contested lab chain-of-custody continuity
+- objective: preserve evidentiary integrity for biologic samples during contested transport and network disruption
+- primary_tools: custody transfer ledger, sample integrity board, handoff scheduler
+- alternate_tools: signed paper custody packet and manual seal-check log
+- degraded_mode: mission-critical samples only with mandatory dual-witness handoff
+- input_requirements: custody records, transport status, sample condition data, handling authorities
+- output_schema: custody continuity report, transfer exception queue, remediation actions
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: seal integrity check, custody completeness threshold, legal concurrence
+
+### packet_id: DPL-URBAN-SUBSTATION-ISLANDING-001
+- domain: tactical urban substation hardening and islanding
+- objective: maintain mission-essential and life-safety power through controlled substation islanding
+- primary_tools: feeder resilience planner, substation islanding orchestrator, critical-load continuity board
+- alternate_tools: manual switching runbook and restoration worksheet
+- degraded_mode: command-and-life-safety circuits only with strict load shedding controls
+- input_requirements: feeder topology, load priorities, relay states, threat and damage indicators
+- output_schema: islanding sequence matrix, sustainment ladder, restoration branch map
+- protocol_profile: USMTF + API/JSON + IEC CIM
+- validation_gates: relay integrity check, continuity floor, authority approval gate
+
+### packet_id: DPL-GRID-FEEDER-PRIORITY-SHED-001
+- domain: mission-priority feeder shedding and restoration
+- objective: sequence feeder shedding and restoration to preserve military-critical functions with minimal civil harm
+- primary_tools: feeder shed policy board, load criticality index, restoration tracker
+- alternate_tools: manual dispatcher ledger and priority card set
+- degraded_mode: predefined priority tiers only with manual updates each operational period
+- input_requirements: feeder load data, mission criticality tiers, restoration resource status, civil impact estimates
+- output_schema: feeder shed plan, restoration timeline, impact balance summary
+- protocol_profile: NIMS/ICS + API/JSON + XML
+- validation_gates: critical-load preservation threshold, civil impact gate, command concurrence
+
+### packet_id: DPL-AUSTERE-RUNWAY-FOD-DRONE-DEBRIS-001
+- domain: coalition austere runway FOD and drone debris clearance
+- objective: clear runways and restore safe sortie operations after drone strikes or debris contamination
+- primary_tools: debris detection board, sweep sequencing planner, sortie risk gate tracker
+- alternate_tools: manual FOD walkdown checklist and launch safety worksheet
+- degraded_mode: emergency-only launch profile with restrictive payload and weather constraints
+- input_requirements: runway condition imagery, debris characterization, sortie demand, engineering resource state
+- output_schema: clearance timeline, runway confidence board, launch decision matrix
+- protocol_profile: USMTF + API/JSON + AIXM
+- validation_gates: debris clearance threshold, surface safety check, release authority approval
+
+### packet_id: DPL-EXPEDITIONARY-RUNWAY-RAPID-CERTIFICATION-001
+- domain: expeditionary runway rapid recertification
+- objective: recertify runway operating status quickly with auditable engineering evidence
+- primary_tools: runway condition assessor, bearing strength estimator, certification checklist board
+- alternate_tools: manual engineering release card and field test worksheet
+- degraded_mode: day/VFR mission windows only until full certification confidence restored
+- input_requirements: pavement and surface metrics, damage assessments, aircraft class demands, authority constraints
+- output_schema: recertification packet, operating limits matrix, risk acceptance ladder
+- protocol_profile: USMTF + AIXM + API/JSON
+- validation_gates: engineering confidence floor, safety compliance pass, authority release gate
+
+### packet_id: DPL-DENIED-WEATHER-RADAR-GAP-FUSION-001
+- domain: denied weather radar gap fusion
+- objective: produce reliable weather risk guidance when radar inputs are degraded or denied
+- primary_tools: alternate sensor ingest broker, nowcast confidence fusion board, hazard trigger monitor
+- alternate_tools: manual observer board and forecast cross-check worksheet
+- degraded_mode: high-confidence severe weather hazards only with conservative margins
+- input_requirements: satellite and surface sensors, radar outage map, mission schedule, hazard thresholds
+- output_schema: radar-gap hazard map, confidence timeline, branch trigger matrix
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: source health threshold, forecast confidence gate, command concurrence
+
+### packet_id: DPL-MULTI-SENSOR-NOWCAST-FALLBACK-001
+- domain: multi-sensor nowcast fallback
+- objective: sustain mission-relevant short-term weather predictions under sensor attrition
+- primary_tools: satellite and surface fusion board, local effects modeler, confidence scorer
+- alternate_tools: climatology baseline sheet and manual nowcast board
+- degraded_mode: mission-critical windows only with expanded uncertainty bands
+- input_requirements: available sensor feeds, terrain context, mission timing, acceptable risk thresholds
+- output_schema: fallback nowcast packet, confidence degradation ladder, decision card
+- protocol_profile: USMTF + WXXM + API/JSON
+- validation_gates: fusion consistency check, confidence threshold pass, release authority confirmation
+
+### packet_id: DPL-PRISONER-TRANSFER-EVIDENCE-CHAIN-001
+- domain: theater contested prisoner transfer and evidence chain
+- objective: synchronize lawful prisoner transfers while preserving evidence integrity under contested movement constraints
+- primary_tools: transfer coordination board, evidence tracker, legal handoff compliance monitor
+- alternate_tools: signed transfer manifest and manual evidence custody log
+- degraded_mode: high-priority transfers only with enhanced legal/command oversight
+- input_requirements: detainee status, transfer routes, evidence inventory, legal constraints
+- output_schema: transfer sequence matrix, evidence continuity packet, legal risk board
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: custody continuity pass, legal compliance check, authority approval
+
+### packet_id: DPL-CUSTODY-HANDSHAKE-LEDGER-001
+- domain: verified custody handshake ledger
+- objective: record and validate each custody handoff with auditable acknowledgments
+- primary_tools: custody acknowledgment ledger, identity verification board, discrepancy detector
+- alternate_tools: secure voice readback log and manual witness ledger
+- degraded_mode: life-safety and legal-essential records only with immediate reconciliation requirement
+- input_requirements: handoff identities, timestamps, location and route data, witness records
+- output_schema: handshake chronology, discrepancy queue, custody assurance report
+- protocol_profile: USMTF + API/JSON + NIEM
+- validation_gates: identity verification threshold, acknowledgment completeness pass, legal concurrence
+
+### packet_id: DPL-COMPONENT-CANNIBALIZATION-READINESS-001
+- domain: joint high-value component cannibalization readiness
+- objective: optimize component cannibalization decisions while preserving near-term fleet readiness
+- primary_tools: readiness impact model, compatibility matrix, cannibalization approval board
+- alternate_tools: manual readiness tradeoff worksheet and maintenance board
+- degraded_mode: mission-essential platforms only with accelerated reconstitution planning
+- input_requirements: fleet readiness baseline, part inventory, compatibility rules, sortie and mission demand
+- output_schema: cannibalization decision matrix, readiness tradeoff ladder, reconstitution timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: readiness floor pass, compatibility confidence check, authority gate
+
+### packet_id: DPL-CROSS-PLATFORM-PART-SUBSTITUTION-RISK-001
+- domain: cross-platform part substitution risk
+- objective: assess substitution risk and release conditions for non-standard component usage
+- primary_tools: substitution fit/function assessor, safety margin tracker, mission impact calculator
+- alternate_tools: manual engineering adjudication checklist and fallback part allocation board
+- degraded_mode: non-critical mission sets only with narrowed operating envelopes
+- input_requirements: part specifications, platform constraints, safety limits, mission criticality and timeline
+- output_schema: substitution risk board, release condition matrix, rollback and recovery plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: engineering conformity pass, safety threshold check, release authority approval

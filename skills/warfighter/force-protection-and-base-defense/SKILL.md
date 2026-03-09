@@ -170,3 +170,7 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For jammer-protected evacuation and casualty movement in dense terrain, include `ts-drone-jammer-evac-route-bubble-v1` with `ps-drone-jammer-evac-route-bubble-stack-v1`.
 - For coalition littoral fuel cache defense around expeditionary bases, include `ts-littoral-fuel-bladder-security-v1` with `ps-littoral-fuel-bladder-security-stack-v1`.
 - For detainee facility outbreak and riot risk near joint bases, include `ts-pow-camp-outbreak-riot-containment-v1` with `ps-pow-camp-outbreak-riot-containment-stack-v1`.
+- For urban power-substation attack and cascading outage risk at defended installations, include `ts-urban-substation-islanding-v1` with `ps-urban-substation-islanding-stack-v1`.
+- For mission-priority feeder shedding during prolonged grid disruption, include `ts-grid-feeder-priority-shed-v1` with `ps-grid-feeder-priority-shed-stack-v1`.
+- For detention transfer operations where custody and evidence integrity can be contested, include `ts-prisoner-transfer-evidence-chain-v1` with `ps-prisoner-transfer-evidence-chain-stack-v1`.
+- For verified handoff tracking across detainee movements, include `ts-custody-handshake-ledger-v1` with `ps-custody-handshake-ledger-stack-v1`.

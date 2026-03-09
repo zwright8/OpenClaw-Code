@@ -814,3 +814,25 @@ Every skill output should include:
 - POW camp outbreak and riot containment + detainee operations and law-of-war compliance + coalition joint personnel accounting and repatriation
 - Additive drone airworthiness inspection + contested additive metallurgy quality assurance + expeditionary fabrication and battle damage repair
 - SATCOM ground station blackout restoration + theater mission network failover + strategic hardened fiber NC3 failover assurance
+
+## New Expansion Wave (2026-03-09, Maritime Integrity and Urban Resilience Continuity)
+
+- joint-maritime-autonomous-minesweeper-retasking-cell
+- theater-undersea-fiber-tap-attribution-and-isolation-cell
+- strategic-bioforensics-rapid-attribution-cell
+- tactical-urban-substation-hardening-and-islanding-cell
+- coalition-austere-runway-fod-and-drone-debris-clearance-cell
+- joint-denied-weather-radar-gap-fusion-cell
+- theater-contested-prisoner-transfer-and-evidence-chain-cell
+- joint-high-value-component-cannibalization-readiness-cell
+
+## Updated Pairings (2026-03-09, Maritime Integrity and Urban Resilience Continuity)
+
+- Autonomous minesweeper retasking + naval mine warfare planner + contested maritime logistics protection + littoral anti-ship denial planning
+- Undersea fiber tap attribution + naval undersea cable protection and restoration + tactical cloud edge compute orchestration + mission network failover
+- Strategic bioforensics rapid attribution + expeditionary waterborne disease forecast and force protection + information integrity and attribution + legal/ROE compliance checker
+- Urban substation hardening/islanding + homeland grid blackstart military support + cyber-physical infrastructure defense + force protection/base defense
+- Austere runway FOD and drone debris clearance + expeditionary runway repair and airfield recovery + tactical UAS traffic management + offensive counter-air mission planner
+- Denied weather radar gap fusion + weather-space-weather effects forecast cell + arctic maritime air corridor deconfliction + close air support digital integration
+- Contested prisoner transfer and evidence chain + detainee accountability and custody transfer + coalition joint personnel accounting and repatriation + legal-ROE compliance checker
+- High-value component cannibalization readiness + maintenance readiness manager + strategic aviation spare engines allocation under sanctions + supply-chain risk and industrial base monitor

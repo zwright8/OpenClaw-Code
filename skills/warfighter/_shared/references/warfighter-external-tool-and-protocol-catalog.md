@@ -4398,3 +4398,183 @@ external_binding:
 - Messaging: USMTF + API/JSON restoration-state telemetry + CCSDS ground-link health events.
 - Transport: SATCOM mission assurance exchange + homeland defense network + low-bandwidth fallback.
 - Security: signed restoration checkpoints + dual-authorization comm-path transitions + immutable blackout recovery audit.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Maritime Integrity, Infrastructure Resilience, and Custody Assurance)
+
+### `ts-autonomous-minesweeper-retask-v1`
+- Use for: autonomous maritime minesweeper retasking when threats, lanes, and mission priorities shift rapidly.
+- Primary tools: autonomous mine-countermeasure task board, lane threat fusion map, sortie energy endurance planner.
+- Cross-check tools: independent sonar contact confidence monitor and alternate manual lane-risk worksheet.
+- Typical products: retask priority matrix, safe-lane clearance ladder, fallback patrol branch plan.
+
+### `ts-littoral-mcm-priority-lane-v1`
+- Use for: coalition littoral mine-countermeasure lane prioritization during surge logistics and amphibious operations.
+- Primary tools: lane criticality ranker, coalition route utilization board, minefield uncertainty tracker.
+- Cross-check tools: independent logistics corridor validator and alternate engineering lane review sheet.
+- Typical products: priority lane board, risk-adjusted crossing windows, escort/clearance synchronizer.
+
+### `ts-undersea-fiber-tap-attribution-v1`
+- Use for: attribution of suspected undersea fiber tapping and adversary interception behavior.
+- Primary tools: cable signal anomaly correlator, subsea access vessel behavior board, attribution confidence engine.
+- Cross-check tools: independent traffic-baseline drift validator and alternate legal evidence worksheet.
+- Typical products: tap-attribution confidence ladder, segment isolation triggers, escalation recommendation board.
+
+### `ts-subsea-cable-segment-isolation-v1`
+- Use for: rapid subsea cable segment isolation and reroute while preserving mission command continuity.
+- Primary tools: cable segment switch planner, mission network dependency graph, reroute performance monitor.
+- Cross-check tools: independent latency/error assurance board and alternate manual circuit restoration checklist.
+- Typical products: segment isolation sequence, continuity-of-control branch plan, restoration timing matrix.
+
+### `ts-bioforensics-rapid-attribution-v1`
+- Use for: strategic bioforensics attribution under high-tempo biological incident response.
+- Primary tools: genomic marker triage board, sample provenance validator, multi-source attribution fusion engine.
+- Cross-check tools: independent laboratory confidence audit and alternate epidemiology anomaly worksheet.
+- Typical products: attribution confidence matrix, source hypothesis ladder, decision support timeline.
+
+### `ts-lab-chain-custody-continuity-v1`
+- Use for: maintaining laboratory chain-of-custody continuity across contested logistics and degraded networks.
+- Primary tools: custody transfer ledger, sample integrity status board, evidence handoff scheduler.
+- Cross-check tools: independent seal-integrity verification queue and alternate signed paper custody packet.
+- Typical products: custody continuity report, transfer exception queue, evidentiary assurance packet.
+
+### `ts-urban-substation-islanding-v1`
+- Use for: urban power substation hardening and islanding to sustain mission-essential loads.
+- Primary tools: feeder resilience planner, substation islanding orchestrator, critical-load continuity board.
+- Cross-check tools: independent relay-setting integrity checker and alternate manual switching worksheet.
+- Typical products: islanding sequence matrix, prioritized load sustainment ladder, restoration branch map.
+
+### `ts-grid-feeder-priority-shed-v1`
+- Use for: mission-priority feeder shedding and load restoration during urban grid degradation.
+- Primary tools: feeder shedding policy board, mission load criticality index, restoration readiness tracker.
+- Cross-check tools: independent civil-impact monitor and alternate manual feeder dispatch log.
+- Typical products: feeder shed plan, restoration timeline, civil-military impact balance sheet.
+
+### `ts-austere-runway-fod-drone-debris-v1`
+- Use for: austere runway foreign-object and drone-debris clearance with sortie safety controls.
+- Primary tools: runway debris detection board, sweep-and-clear sequencing planner, sortie risk gate tracker.
+- Cross-check tools: independent airfield safety validator and alternate manual FOD inspection sheet.
+- Typical products: clearance timeline, runway condition confidence board, launch-go/no-go matrix.
+
+### `ts-expeditionary-runway-rapid-certification-v1`
+- Use for: rapid runway recertification after debris strikes or drone impacts.
+- Primary tools: runway condition assessment engine, bearing-strength estimator, certification checklist board.
+- Cross-check tools: independent engineer recertification queue and alternate paper release card.
+- Typical products: recertification packet, temporary operating limits matrix, risk acceptance ladder.
+
+### `ts-denied-weather-radar-gap-fusion-v1`
+- Use for: weather-risk fusion when radar coverage is degraded or denied.
+- Primary tools: alternate sensor ingest broker, nowcast confidence fusion board, weather hazard trigger monitor.
+- Cross-check tools: independent forecast bias tracker and alternate observer report worksheet.
+- Typical products: radar-gap hazard map, confidence-tiered weather timeline, branch trigger matrix.
+
+### `ts-multi-sensor-nowcast-fallback-v1`
+- Use for: multi-sensor nowcasting fallback for mission planning under weather sensor attrition.
+- Primary tools: satellite and surface sensor fusion board, local effects modeler, forecast confidence scorer.
+- Cross-check tools: independent climatology baseline monitor and alternate manual weather board.
+- Typical products: fallback nowcast packet, confidence degradation ladder, mission weather decision card.
+
+### `ts-prisoner-transfer-evidence-chain-v1`
+- Use for: contested prisoner transfer planning with legal evidence-chain integrity.
+- Primary tools: transfer coordination board, evidentiary material tracker, legal handoff compliance monitor.
+- Cross-check tools: independent custody audit queue and alternate signed transfer manifest workflow.
+- Typical products: transfer sequence matrix, evidence continuity packet, legal risk branch plan.
+
+### `ts-custody-handshake-ledger-v1`
+- Use for: verified custody handshake logging across multi-node prisoner movements.
+- Primary tools: custody acknowledgment ledger, identity verification board, handoff discrepancy detector.
+- Cross-check tools: independent witness attestation queue and alternate secure voice readback log.
+- Typical products: handshake chronology, discrepancy escalation board, custody assurance report.
+
+### `ts-component-cannibalization-readiness-v1`
+- Use for: readiness-aware component cannibalization decisions under supply denial.
+- Primary tools: platform readiness impact model, component compatibility matrix, cannibalization approval board.
+- Cross-check tools: independent fleet sustainment risk monitor and alternate maintenance adjudication worksheet.
+- Typical products: cannibalization decision matrix, readiness tradeoff ladder, reconstitution timeline.
+
+### `ts-cross-platform-part-substitution-risk-v1`
+- Use for: cross-platform part substitution risk analysis and release decisions.
+- Primary tools: substitution fit-and-function assessor, safety margin tracker, mission impact calculator.
+- Cross-check tools: independent engineering certification queue and alternate manual substitution checklist.
+- Typical products: substitution risk board, release conditions matrix, rollback and recovery plan.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Maritime Integrity, Infrastructure Resilience, and Custody Assurance)
+
+### `ps-autonomous-minesweeper-retask-stack-v1`
+- Messaging: USMTF + API/JSON MCM-task state events + OGC maritime lane overlays.
+- Transport: maritime mission exchange + coalition MCM coordination portal + low-bandwidth fallback.
+- Security: signed retask directives + dual-source lane-threat validation + immutable clearance acknowledgment chain.
+
+### `ps-littoral-mcm-priority-lane-stack-v1`
+- Messaging: USMTF + OGC lane-priority overlays + API/JSON route criticality events.
+- Transport: coalition littoral operations bus + naval logistics portal + delayed-sync fallback.
+- Security: signed lane-priority updates + role-scoped coalition visibility controls + immutable prioritization ledger.
+
+### `ps-undersea-fiber-tap-attribution-stack-v1`
+- Messaging: USMTF + API/JSON anomaly confidence events + XML legal evidence metadata.
+- Transport: subsea infrastructure assurance bus + cyber-defense exchange + disconnected evidence fallback.
+- Security: signed attribution assessments + dual-approval escalation gates + immutable forensic chronology.
+
+### `ps-subsea-cable-segment-isolation-stack-v1`
+- Messaging: USMTF + API/JSON segment-state telemetry + OGC cable route overlays.
+- Transport: mission network operations exchange + maritime infrastructure portal + manual failover worksheet fallback.
+- Security: signed reroute actions + dual-authorization segment isolation commands + immutable continuity audit chain.
+
+### `ps-bioforensics-rapid-attribution-stack-v1`
+- Messaging: USMTF + HL7/FHIR lab-event updates + API/JSON attribution confidence events.
+- Transport: strategic bioforensics exchange + public-health defense gateway + delayed-sync fallback.
+- Security: signed sample provenance records + dual-lab confirmation gates + immutable attribution evidence chain.
+
+### `ps-lab-chain-custody-continuity-stack-v1`
+- Messaging: USMTF + NIEM custody records + API/JSON transfer-state events.
+- Transport: lab operations exchange + evidentiary governance bus + paper-to-digital reconciliation fallback.
+- Security: signed custody transitions + role-scoped handling privileges + immutable custody ledger.
+
+### `ps-urban-substation-islanding-stack-v1`
+- Messaging: USMTF + API/JSON feeder-state telemetry + IEC CIM profile payloads.
+- Transport: urban grid operations exchange + defense support coordination portal + voice/readback fallback.
+- Security: signed switching directives + dual-operator confirmation + immutable islanding chronology ledger.
+
+### `ps-grid-feeder-priority-shed-stack-v1`
+- Messaging: NIMS/ICS + API/JSON feeder-priority events + XML restoration records.
+- Transport: civil power restoration network + military support coordination exchange + delayed-sync fallback.
+- Security: signed feeder shed actions + priority-level role controls + immutable load restoration audit trail.
+
+### `ps-austere-runway-fod-drone-debris-stack-v1`
+- Messaging: USMTF + API/JSON runway debris-state events + AIXM runway-condition updates.
+- Transport: expeditionary airfield operations bus + coalition flight safety portal + local mesh fallback.
+- Security: signed runway status updates + dual-approval launch gates + immutable clearance action ledger.
+
+### `ps-expeditionary-runway-rapid-certification-stack-v1`
+- Messaging: USMTF + AIXM operational status updates + API/JSON certification checkpoints.
+- Transport: airbase engineering exchange + sortie planning network + manual certification fallback.
+- Security: signed recertification packets + engineering-authority approval gates + immutable release ledger.
+
+### `ps-denied-weather-radar-gap-fusion-stack-v1`
+- Messaging: USMTF + API/JSON nowcast confidence events + OGC weather hazard overlays.
+- Transport: theater weather mission bus + mission planning exchange + low-bandwidth fallback.
+- Security: signed weather confidence updates + dual-source hazard confirmation + immutable forecast audit chain.
+
+### `ps-multi-sensor-nowcast-fallback-stack-v1`
+- Messaging: USMTF + API/JSON sensor fusion events + WXXM weather data payloads.
+- Transport: joint meteorology exchange + distributed sensor gateway + delayed-sync fallback.
+- Security: signed fusion-state updates + source trust scoring controls + immutable fallback chronology.
+
+### `ps-prisoner-transfer-evidence-chain-stack-v1`
+- Messaging: USMTF + NIEM detainee transfer records + API/JSON evidence-state events.
+- Transport: detention operations exchange + legal coordination portal + secure voice fallback.
+- Security: signed transfer approvals + dual-approval custody transitions + immutable evidence-chain audit.
+
+### `ps-custody-handshake-ledger-stack-v1`
+- Messaging: USMTF + API/JSON custody acknowledgment events + NIEM identity records.
+- Transport: custody assurance bus + coalition detention gateway + readback fallback.
+- Security: signed handoff acknowledgments + role-scoped identity checks + immutable handshake chronology.
+
+### `ps-component-cannibalization-readiness-stack-v1`
+- Messaging: USMTF + API/JSON readiness impact events + XML maintenance release records.
+- Transport: fleet sustainment exchange + depot maintenance portal + delayed-sync fallback.
+- Security: signed cannibalization decisions + dual-maintainer release gates + immutable readiness impact ledger.
+
+### `ps-cross-platform-part-substitution-risk-stack-v1`
+- Messaging: USMTF + API/JSON substitution risk events + XML engineering conformance records.
+- Transport: engineering assurance network + sustainment operations bus + manual adjudication fallback.
+- Security: signed substitution approvals + authority-scoped safety controls + immutable substitution audit chain.
