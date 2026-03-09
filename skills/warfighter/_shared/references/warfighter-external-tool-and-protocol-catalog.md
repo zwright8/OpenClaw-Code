@@ -4030,3 +4030,73 @@ external_binding:
 - Messaging: USMTF + API/JSON voice authenticity scores + STIX/TAXII threat indicators.
 - Transport: command voice network + cyber defense exchange + manual callback fallback.
 - Security: signed authenticity attestations + dual-channel command confirmation + immutable spoofing incident ledger.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Debris Reentry, Humanitarian Dignity, and Sustainment Friction)
+
+### `ts-orbital-reentry-population-risk-v1`
+- Use for: uncertainty-bounded orbital debris reentry risk mitigation for military and civilian populations.
+- Primary tools: reentry prediction fusion service, population exposure mapper, warning dissemination board.
+- Cross-check tools: independent orbital fit validator and alternate shelter trigger monitor.
+- Typical products: reentry corridor map, protective action timeline, risk communication branch card.
+
+### `ts-expeditionary-morgue-overflow-v1`
+- Use for: expeditionary morgue overflow management with dignified remains handling and legal traceability.
+- Primary tools: remains capacity tracker, temporary facility planner, chain-of-custody ledger.
+- Cross-check tools: independent identity reconciliation board and alternate repatriation timeline monitor.
+- Typical products: overflow disposition matrix, capacity expansion plan, custody assurance tracker.
+
+### `ts-uxo-civilian-return-corridor-v1`
+- Use for: unexploded ordnance clearance prioritization and civilian return corridor certification.
+- Primary tools: clearance mission scheduler, UXO risk map service, route certification board.
+- Cross-check tools: independent EOD confidence review and alternate civilian movement risk monitor.
+- Typical products: corridor certification board, clearance sequence plan, return-risk communication card.
+
+### `ts-aviation-engine-allocation-sanctions-v1`
+- Use for: strategic allocation of spare aviation engines under sanctions and supply interdiction pressure.
+- Primary tools: fleet readiness optimizer, spare engine inventory broker, sanctions compliance monitor.
+- Cross-check tools: independent mission-capable status mirror and alternate sourcing risk board.
+- Typical products: allocation matrix, mission-capable risk ladder, constrained sourcing branch plan.
+
+### `ts-microgrid-ammonia-blackstart-v1`
+- Use for: blackstart planning using fuel-cell and ammonia conversion pathways at expeditionary installations.
+- Primary tools: microgrid restart simulator, fuel-cell conversion planner, mission-load prioritization board.
+- Cross-check tools: independent safety constraints validator and alternate fuel continuity monitor.
+- Typical products: blackstart option matrix, conversion sequence card, power restoration timeline.
+
+### `ts-maritime-salvage-insurance-adjudication-v1`
+- Use for: maritime salvage recovery when insurance and liability disputes threaten operational timelines.
+- Primary tools: salvage operations board, liability evidence manager, recovery milestone tracker.
+- Cross-check tools: independent legal adjudication monitor and alternate throughput-impact board.
+- Typical products: dispute decision matrix, evidence packet checklist, recovery deconfliction timeline.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Debris Reentry, Humanitarian Dignity, and Sustainment Friction)
+
+### `ps-orbital-reentry-population-risk-stack-v1`
+- Messaging: USMTF + API/JSON reentry-state events + CAP public warning payloads.
+- Transport: space warning exchange + civil-military emergency portal + low-bandwidth fallback.
+- Security: signed reentry confidence updates + dual-source trajectory confirmation + immutable warning acknowledgment chain.
+
+### `ps-expeditionary-morgue-overflow-stack-v1`
+- Messaging: USMTF + API/JSON capacity status + XML remains chain records.
+- Transport: mortuary affairs network + medical logistics exchange + disconnected report fallback.
+- Security: signed custody transitions + role-scoped privacy controls + immutable identity reconciliation ledger.
+
+### `ps-uxo-civilian-return-corridor-stack-v1`
+- Messaging: USMTF + OGC geospatial clearance overlays + API/JSON corridor status events.
+- Transport: EOD mission exchange + civil protection coordination portal + voice/readback fallback.
+- Security: signed route certification packets + dual-approval release gates + immutable clearance audit chain.
+
+### `ps-aviation-engine-allocation-sanctions-stack-v1`
+- Messaging: USMTF + API/JSON readiness states + XML logistics compliance records.
+- Transport: strategic mobility network + fleet sustainment exchange + delayed-sync fallback.
+- Security: signed allocation decisions + sanctions compliance attestations + immutable allocation chronology ledger.
+
+### `ps-microgrid-ammonia-blackstart-stack-v1`
+- Messaging: USMTF + API/JSON microgrid restart telemetry + XML safety test records.
+- Transport: installation energy ops bus + engineering support exchange + local manual fallback.
+- Security: signed restart checkpoints + dual-authorization safety gates + immutable blackstart execution log.
+
+### `ps-maritime-salvage-insurance-adjudication-stack-v1`
+- Messaging: USMTF + NIMS/ICS incident updates + API/JSON liability evidence events.
+- Transport: maritime recovery exchange + coalition legal coordination portal + disconnected dossier fallback.
+- Security: signed evidence provenance + role-scoped disclosure controls + immutable dispute decision audit.

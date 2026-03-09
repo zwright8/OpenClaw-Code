@@ -726,3 +726,21 @@ Every skill output should include:
 - Contested additive metallurgy QA + additive quality attestation + expeditionary fabrication and BDR
 - Civilian cellular priority restoration + mission network failover + host-nation grid/cyber restoration
 - Deepfake voice spoofing detection + information integrity attribution + coalition cyber legal attribution
+
+## New Expansion Wave (2026-03-09, Debris Reentry, Humanitarian Dignity, and Sustainment Friction)
+
+- joint-orbital-debris-reentry-population-risk-mitigation-cell
+- coalition-expeditionary-morgue-overflow-management-cell
+- theater-unexploded-ordnance-civilian-return-corridor-cell
+- strategic-aviation-spare-engines-allocation-under-sanctions-cell
+- joint-microgrid-blackstart-fuel-cell-ammonia-conversion-cell
+- coalition-maritime-salvage-insurance-dispute-adjudication-cell
+
+## Updated Pairings (2026-03-09, Debris Reentry, Humanitarian Dignity, and Sustainment Friction)
+
+- Orbital debris reentry risk mitigation + space weather GNSS outage fusion + civil defense mass evacuation shelter planning
+- Expeditionary morgue overflow management + mortuary affairs and personnel accountability + coalition medical oxygen continuity
+- UXO civilian return corridor certification + combat engineering obstacle intelligence + civil-affairs stability operations
+- Spare-engine allocation under sanctions + strategic mobility planner + supply-chain risk and industrial base monitor
+- Microgrid ammonia blackstart + operational energy resilience and microgrid + contested austere water production assurance
+- Maritime salvage insurance adjudication + coalition maritime insurance risk and reconstitution + port opening and throughput restoration

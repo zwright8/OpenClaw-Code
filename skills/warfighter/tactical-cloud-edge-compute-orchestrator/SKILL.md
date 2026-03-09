@@ -166,3 +166,4 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For command trust disruption from synthetic voice spoofing, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.
 - For lifecycle safety controls on forward battery storage and transport, include `ts-battery-thermal-runaway-containment-v1` with `ps-battery-thermal-runaway-containment-stack-v1`.
 - For civil emergency comms dependency restoration in contested cities, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
+- For low-bandwidth ISR clip triage feeding edge analytics workflows, include `ts-spectrum-frugal-video-prioritization-v1` with `ps-spectrum-frugal-video-prioritization-stack-v1`.

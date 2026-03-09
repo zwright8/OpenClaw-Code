@@ -4126,3 +4126,69 @@ validation_gates:
 - output_schema: spoofing threat board, trust posture card, containment and re-authentication plan
 - protocol_profile: USMTF + API/JSON + STIX/TAXII
 - validation_gates: authenticity score threshold, callback confirmation pass, command authority release
+
+### packet_id: DPL-ORBITAL-REENTRY-POPULATION-RISK-001
+- domain: joint orbital debris reentry population risk mitigation
+- objective: synchronize warning and protective actions under uncertain debris reentry tracks
+- primary_tools: reentry prediction fusion service, population exposure mapper, warning dissemination board
+- alternate_tools: manual impact corridor worksheet and shelter trigger card
+- degraded_mode: priority-population warning only with widened confidence bounds
+- input_requirements: orbital state vectors, confidence intervals, exposure map, shelter capacity
+- output_schema: risk corridor map, warning ladder, protective posture branch plan
+- protocol_profile: USMTF + API/JSON + CAP
+- validation_gates: trajectory confidence floor, warning acknowledgment threshold, authority release gate
+
+### packet_id: DPL-EXPEDITIONARY-MORGUE-OVERFLOW-001
+- domain: coalition expeditionary morgue overflow management
+- objective: preserve dignified remains handling and legal custody integrity during capacity overflow
+- primary_tools: remains capacity tracker, temporary facility planner, chain-of-custody ledger
+- alternate_tools: manual remains accountability roster and temporary holding checklist
+- degraded_mode: high-priority identification and custody chain only with delayed transfer windows
+- input_requirements: current capacity, casualty influx projection, identity status, transport availability
+- output_schema: overflow disposition matrix, capacity expansion plan, custody assurance tracker
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: custody chain completeness, identity reconciliation pass, command/legal concurrence
+
+### packet_id: DPL-UXO-CIVILIAN-RETURN-CORRIDOR-001
+- domain: theater unexploded ordnance civilian return corridor
+- objective: certify civilian return corridors only after sufficient UXO risk reduction and route assurance
+- primary_tools: clearance mission scheduler, UXO risk map service, route certification board
+- alternate_tools: manual corridor risk log and EOD readiness worksheet
+- degraded_mode: controlled humanitarian movement windows only with continuous route monitoring
+- input_requirements: UXO reports, clearance progress, civilian movement priorities, route conditions
+- output_schema: corridor certification board, clearance priority schedule, risk communication card
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: clearance confidence threshold, route certification pass, authority release gate
+
+### packet_id: DPL-AVIATION-ENGINE-ALLOCATION-SANCTIONS-001
+- domain: strategic aviation spare engines allocation under sanctions
+- objective: maximize mission-capable rates while preserving legal compliance under constrained supply
+- primary_tools: fleet readiness optimizer, spare engine inventory broker, sanctions compliance monitor
+- alternate_tools: manual fleet triage board and sourcing risk worksheet
+- degraded_mode: mission-essential fleets only with deferred noncritical maintenance actions
+- input_requirements: fleet status, engine inventory, sanctions constraints, theater priority list
+- output_schema: allocation priority matrix, readiness risk ladder, constrained sourcing branch plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: compliance pass, readiness floor check, command approval
+
+### packet_id: DPL-MICROGRID-AMMONIA-BLACKSTART-001
+- domain: joint microgrid blackstart fuel-cell ammonia conversion
+- objective: restore mission-essential power through fuel-cell and ammonia conversion pathways after grid loss
+- primary_tools: microgrid restart simulator, conversion planner, mission-load prioritization board
+- alternate_tools: manual blackstart checklist and emergency load-shedding worksheet
+- degraded_mode: life-safety and command-essential loads only with staged restart intervals
+- input_requirements: generation assets, fuel/ammonia availability, load priorities, safety constraints
+- output_schema: blackstart option matrix, conversion sequence card, restoration timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: safety interlock pass, restart feasibility threshold, command release approval
+
+### packet_id: DPL-MARITIME-SALVAGE-INSURANCE-ADJUDICATION-001
+- domain: coalition maritime salvage insurance dispute adjudication
+- objective: keep maritime recovery timelines intact despite liability and insurance disputes
+- primary_tools: salvage operations board, liability evidence manager, recovery milestone tracker
+- alternate_tools: manual dispute issue log and throughput-impact estimation worksheet
+- degraded_mode: minimum viable recovery actions pending formal dispute resolution
+- input_requirements: salvage status, ownership/liability claims, legal constraints, throughput priorities
+- output_schema: dispute decision matrix, evidence packet checklist, recovery deconfliction timeline
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: evidence provenance pass, legal concurrence, command release gate
