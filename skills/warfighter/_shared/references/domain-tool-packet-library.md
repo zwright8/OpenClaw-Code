@@ -3064,3 +3064,115 @@ validation_gates:
 - output_schema: continuity matrix, hold/release recommendation set, recovery timeline
 - protocol_profile: CCSDS + API/JSON + USMTF
 - validation_gates: range safety chain integrity, hazard threshold check, launch authority approval
+
+## Domain Packet Library (2026-03-09 Domain Expansion - Reentry, Desal Defense, Fiber Restoration, Bridge Load Rating)
+
+### packet_id: DPL-ORBITAL-REENTRY-CONSEQUENCE-001
+- domain: joint orbital debris reentry contingency
+- objective: synchronize warning, protective action, and consequence management for uncertain hazardous reentry events
+- primary_tools: reentry covariance estimator, asset impact mapper, warning dissemination orchestrator
+- alternate_tools: manual impact ellipse board and civil alert feed corroboration workflow
+- degraded_mode: advisory-only hazard windows with conservative shelter and hold criteria
+- input_requirements: track covariance, asset registry, mission timeline constraints, warning chain status
+- output_schema: reentry risk timeline, protective action matrix, authority release decision ladder
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: dual-source track confirmation, warning acknowledgment integrity, command authority approval
+
+### packet_id: DPL-LITTORAL-DESAL-CYBER-PHYSICAL-DEFENSE-001
+- domain: coalition littoral desal plant cyber-physical defense
+- objective: isolate cyber-physical compromise while preserving water throughput and coalition sustainment
+- primary_tools: OT anomaly monitor, water telemetry board, coalition demand allocator
+- alternate_tools: manual plant status board and host-nation utility coordination log
+- degraded_mode: reduced-output operation with strict contamination hold gates
+- input_requirements: OT alerts, sample-chain results, demand forecast, partner caveats
+- output_schema: contamination containment sequence, throughput continuity plan, partner notification timeline
+- protocol_profile: API/JSON + NIMS/ICS + USMTF
+- validation_gates: sample custody verification, host-nation concurrence, commander approval for mode changes
+
+### packet_id: DPL-UNDERGROUND-FIBER-RESTORATION-001
+- domain: tactical underground fiber cut restoration
+- objective: restore critical routes while preserving forensic evidence and protecting repair forces
+- primary_tools: outage analytics, repair window scheduler, mission traffic reroute planner
+- alternate_tools: manual route triage sheet and engineer dispatch call tree
+- degraded_mode: priority-mission traffic only over alternate mesh with delayed repairs
+- input_requirements: route topology, outage telemetry, threat overlays, mission traffic priorities
+- output_schema: restoration priority board, repair protection matrix, reroute execution order
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: route custody evidence check, repair-team security validation, command release gate
+
+### packet_id: DPL-AUTONOMOUS-BRIDGE-LOAD-RATING-001
+- domain: theater autonomous bridge inspection and load rating
+- objective: produce rapid confidence-banded load ratings and synchronize safe crossing decisions
+- primary_tools: robotic inspection fusion, structural confidence model, crossing allocator
+- alternate_tools: manual engineer inspection worksheet and conservative crossing matrix
+- degraded_mode: light-load only crossings pending manual engineer confirmation
+- input_requirements: bridge sensor captures, structural model outputs, crossing demand, repair resource status
+- output_schema: load confidence map, crossing sequence table, repair or bypass recommendation
+- protocol_profile: VMF + API/JSON + OGC
+- validation_gates: structural confidence floor, independent engineer corroboration, command crossing approval
+
+### packet_id: DPL-ADVANCED-PACKAGING-SEMICONDUCTOR-ASSURANCE-001
+- domain: strategic advanced packaging semiconductor assurance
+- objective: sustain secure chip packaging throughput under disruption and quality drift risk
+- primary_tools: packaging telemetry dashboard, dependency graph, QA drift monitor
+- alternate_tools: supplier risk workbook and manual lot adjudication board
+- degraded_mode: constrained mission-priority production with deferred low-priority lines
+- input_requirements: feedstock status, line yields, defect trends, mission demand priorities
+- output_schema: continuity forecast, allocation matrix, release and rework ladder
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: supplier attestation check, QA completeness, strategic authority signoff
+
+### packet_id: DPL-PRECISION-NAVIGATION-SPOOFING-ADJUDICATION-001
+- domain: joint precision navigation spoofing adjudication
+- objective: classify spoofing confidence and activate safe fallback navigation branches
+- primary_tools: timing anomaly engine, nav confidence fusion, fallback route orchestrator
+- alternate_tools: manual nav confidence board and inertial-terrain cross-check workflow
+- degraded_mode: advisory-only routing with conservative maneuver envelopes
+- input_requirements: timing alarms, cross-sensor confidence, route hazards, mission timing constraints
+- output_schema: spoofing confidence ladder, fallback mode matrix, commander decision prompts
+- protocol_profile: Link 16 J-series + CoT + API/JSON
+- validation_gates: dual-source timing validation, anti-spoof confidence floor, command approval checkpoint
+
+### packet_id: DPL-MILITARY-RAIL-YARD-SABOTAGE-RECOVERY-001
+- domain: operational military rail yard sabotage recovery
+- objective: isolate hazards and restore movement throughput after sabotage events
+- primary_tools: yard damage board, switch restoration planner, hazardous cargo tracker
+- alternate_tools: manual marshaling worksheet and rail safety call tree
+- degraded_mode: limited throughput with hazardous-cargo hold until recertification
+- input_requirements: damage reports, switch/signal status, cargo hazard profile, movement priorities
+- output_schema: sabotage isolation sequence, recovery timeline, movement-priority release board
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: rail safety certification, custody-chain completeness, commander and movement-control approval
+
+### packet_id: DPL-DISASTER-RELIEF-AIRDROP-CORRIDOR-ASSURANCE-001
+- domain: coalition disaster relief airdrop corridor assurance
+- objective: maintain safe, deconflicted corridor flow for humanitarian relief under operational stress
+- primary_tools: corridor conflict monitor, drop-zone integrity board, coalition flow tracker
+- alternate_tools: manual corridor board and liaison-based partner deconfliction log
+- degraded_mode: priority-relief-only sorties in reduced corridor windows
+- input_requirements: sortie demand, airspace conflicts, DZ confidence, partner restrictions
+- output_schema: corridor assurance matrix, DZ priority list, throughput branch plan
+- protocol_profile: ATO/ACO extracts + USMTF + API/JSON
+- validation_gates: airspace deconfliction pass, partner acknowledgment integrity, air commander approval
+
+### packet_id: DPL-FOUNDRY-WATER-POWER-CONTINUITY-001
+- domain: homeland microelectronics foundry water and power continuity
+- objective: preserve defense-critical foundry output during utility instability and infrastructure disruption
+- primary_tools: utility telemetry fusion, ultrapure water planner, production scheduler
+- alternate_tools: manual critical-load board and water quality audit worksheet
+- degraded_mode: mission-priority fabrication only with strict utility gating
+- input_requirements: utility state, water purity status, production queue, restoration options
+- output_schema: utility continuity matrix, load allocation order, production risk forecast
+- protocol_profile: API/JSON + ICS + USMTF
+- validation_gates: utility command validation, water purity confirmation, strategic industrial approval
+
+### packet_id: DPL-EXPEDITIONARY-COLD-CHAIN-BIOLOGICS-INTEGRITY-001
+- domain: expeditionary cold-chain biologics integrity
+- objective: maintain biologics potency and custody integrity under contested logistics pressure
+- primary_tools: cold-chain telemetry monitor, custody ledger, med-log demand prioritizer
+- alternate_tools: manual excursion log and medical release board
+- degraded_mode: restricted-use issue policy with accelerated verification checkpoints
+- input_requirements: temperature excursions, custody records, route status, treatment demand
+- output_schema: excursion triage list, reroute and stabilization actions, restricted-use recommendations
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: temperature evidence completeness, custody integrity, senior medical authority approval
