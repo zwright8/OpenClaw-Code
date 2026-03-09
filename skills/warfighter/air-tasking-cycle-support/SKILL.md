@@ -145,8 +145,12 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
 
-## Domain Toolchain Override (2026-03-09, Fires-Weather and Space ISR Arbitration Addendum)
+- Prioritize `tool_suite_id=ts-personnel-recovery-beacon-deception-counter-v1` + `protocol_stack_id=ps-personnel-recovery-beacon-deception-counter-stack-v1` when CSAR tasking depends on contested survivor authentication.
+- Prioritize `tool_suite_id=ts-expeditionary-runway-fod-autonomy-v1` + `protocol_stack_id=ps-expeditionary-runway-fod-autonomy-stack-v1` when sortie generation risk is constrained by runway foreign object debris volatility.
+- Add `packet_id=DPL-PERSONNEL-RECOVERY-BEACON-DECEPTION-COUNTER-001` and `packet_id=DPL-EXPEDITIONARY-RUNWAY-FOD-AUTONOMY-001` for ATO branch decisions that alter rescue timelines or launch windows.
 
-- Prioritize `tool_suite_id=ts-joint-fires-weather-coupling-v1` + `protocol_stack_id=ps-joint-fires-weather-coupling-stack-v1` when weather volatility can shift release windows, effects confidence, or collateral constraints.
-- Prioritize `tool_suite_id=ts-space-isr-priority-arbitration-v1` + `protocol_stack_id=ps-space-isr-priority-arbitration-stack-v1` when ATO sequencing depends on contested ISR collection tradeoffs.
-- Add `packet_id=DPL-JOINT-FIRES-WX-COUPLING-001` and `packet_id=DPL-SPACE-ISR-PRIORITY-ARB-001` for branches that alter mission timing, target servicing, or collection synchronization.
+## Domain Toolchain Override (2026-03-09, Urban Lift and Spaceport GNSS Addendum)
+
+- Prioritize `tool_suite_id=ts-urban-vtol-lz-auth-v1` + `protocol_stack_id=ps-urban-vtol-lz-auth-stack-v1` when urban vertical-lift landing zones face spoofing, decoy, or civilian congestion risk.
+- Prioritize `tool_suite_id=ts-spaceport-gnss-emergency-v1` + `protocol_stack_id=ps-spaceport-gnss-emergency-stack-v1` when ATO timing, launch windows, or range safety are sensitive to GNSS degradation.
+- Add `packet_id=DPL-VTOL-LZ-001` and `packet_id=DPL-SPACEPORT-GNSS-001` for ATO branches that re-sequence air mobility, personnel recovery, or strategic launch support.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Operational Disconnected AI Model Rollback and Assurance Cell"
+  short_description: "Control disconnected AI model deployments with signed rollback, drift triage, and mission-safe baselines."
