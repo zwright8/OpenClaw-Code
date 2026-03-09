@@ -33,6 +33,12 @@ Deliver results in this order:
 
 Primary products for this skill: base defense improvement plan, vulnerability-priority list, response drill plan.
 
+## U.S. Warfighter Employment Notes
+
+- Prioritize layered defense for U.S. installations against drone ISR/strike, insider threat, and cyber-physical disruption.
+- Include resilient base-operating posture recommendations for degraded power, timing, and network conditions.
+- Require alerting thresholds that clearly tie surveillance indicators to commander decision and response escalation gates.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
@@ -143,4 +149,15 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
+- For drone-swarm disruption around mixed-use airspace, prioritize `ts-swarmsafe-air-corridor-v1` with `ps-swarmsafe-air-corridor-stack-v1`.
+- For base medical continuity under prolonged outage, prioritize `ts-coldchain-gridloss-v1` with `ps-coldchain-gridloss-stack-v1`.
+- For contested base energy links to littoral support nodes, consider `ts-shipshore-energy-cable-protect-v1` with `ps-shipshore-energy-cable-protect-stack-v1`.
+- For heat and climate force-protection degradation, include `ts-heat-climate-force-risk-v1` with `ps-heat-climate-force-risk-stack-v1`.
+- For sabotage or strike-driven rail resupply loss to base clusters, include `ts-rail-sabotage-recovery-v1` with `ps-rail-sabotage-recovery-stack-v1`.
+- For hazardous-material surge from strike damage, include `ts-battlefield-hazmat-control-v1` with `ps-battlefield-hazmat-control-stack-v1`.
+- For civil-grid instability that drives force-protection risk, include `ts-grid-loadshedding-military-support-v1` with `ps-grid-loadshedding-military-support-stack-v1`.
+- For urban mass-casualty sustainment where ground routes are denied, include `ts-urban-mascas-drone-resupply-v1` with `ps-urban-mascas-drone-resupply-stack-v1`.
+- For command network disruption from cable landing station threats, include `ts-cable-landing-hardening-v1` with `ps-cable-landing-hardening-stack-v1`.
+- For distributed radiological/nuclear warning coverage resilience, include `ts-portable-nuclear-detector-resilience-v1` with `ps-portable-nuclear-detector-resilience-stack-v1`.
+- For rapid floodwave warning after dam strike or sabotage, include `ts-rapid-dam-floodwave-warning-v1` with `ps-rapid-dam-floodwave-warning-stack-v1`.
+- For synthetic voice spoofing against guard-force command nets, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.

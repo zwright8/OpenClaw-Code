@@ -33,6 +33,12 @@ Deliver results in this order:
 
 Primary products for this skill: edge node placement plan, data replication policy, disconnected-operations runbook.
 
+## U.S. Warfighter Employment Notes
+
+- Prioritize continuity for U.S. joint kill-web and mission-partner data paths before non-critical analytics traffic.
+- Include explicit disconnected and low-bandwidth operating profiles for expeditionary and maritime edge nodes.
+- Require rollback-ready deployment branches with signed baselines for each recommended edge-compute change.
+
 ## Domain Tool Stack
 
 Use these tool categories as the default stack for this skill: edge cluster orchestrators, mission data fabrics, container registries, telemetry observability stacks.
@@ -148,4 +154,15 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
+- For strategic relocation and emission-control continuity dependencies, prioritize `ts-nc3-relocation-emcon-v1` with `ps-nc3-relocation-emcon-stack-v1`.
+- For cross-domain humanitarian corridor resilience telemetry, include `ts-aid-denial-attribution-v1` with `ps-aid-denial-attribution-stack-v1`.
+- For mission-critical supply chain compute prioritization, include `ts-radhard-chip-allocation-v1` with `ps-radhard-chip-allocation-stack-v1`.
+- For underground terrestrial transport restoration and fiber-route hardening, include `ts-underground-fiber-restoration-v1` with `ps-underground-fiber-restoration-stack-v1`.
+- For disconnected autonomous convoy signature governance feeds, include `ts-autonomous-convoy-signature-discipline-v1` with `ps-autonomous-convoy-signature-discipline-stack-v1`.
+- For deployed medical counterfeit screening and logistics trust, include `ts-denied-pharma-counterfeit-detection-v1` with `ps-denied-pharma-counterfeit-detection-stack-v1`.
+- For cryptographic modernization across mixed tactical enclaves, include `ts-quantum-key-rollover-v1` with `ps-quantum-key-rollover-stack-v1`.
+- For cable landing station compromise and rapid backhaul reroute, include `ts-cable-landing-hardening-v1` with `ps-cable-landing-hardening-stack-v1`.
+- For cross-domain emitter identity drift that degrades edge analytics trust, include `ts-eob-drift-detection-v1` with `ps-eob-drift-detection-stack-v1`.
+- For command trust disruption from synthetic voice spoofing, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.
+- For lifecycle safety controls on forward battery storage and transport, include `ts-battery-thermal-runaway-containment-v1` with `ps-battery-thermal-runaway-containment-stack-v1`.
+- For civil emergency comms dependency restoration in contested cities, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.

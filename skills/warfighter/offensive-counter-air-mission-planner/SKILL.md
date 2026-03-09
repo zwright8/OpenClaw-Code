@@ -33,6 +33,12 @@ Deliver results in this order:
 
 Primary products for this skill: OCA sortie plan, threat suppression phasing, escort allocation matrix.
 
+## U.S. Warfighter Employment Notes
+
+- Prioritize USAF, USN, and USMC datalink/common operational picture interoperability assumptions in every COA.
+- Include tanker and FARP fragility branches so sortie generation risk is explicit under anti-access pressure.
+- Add minimum kill-chain timing and data-freshness thresholds before recommending any high-tempo option.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
@@ -59,6 +65,15 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+- Provide decision-support framing only; do not generate platform-specific weapon employment instructions, weaponeering parameters, or target-coordinate execution packets.
+- Require explicit human command approval (`requires_human_approval: true`) before any recommendation that could change engagement posture or escalation risk.
+- Include a civilian-risk mitigation note and no-strike validation status for each high-consequence recommendation.
+
+## Escalation and Release Control
+
+- For each recommendation with potential kinetic or escalation impact, include: `authority_tier`, `approval_role`, `approval_timestamp_utc`, `roe_reference`, and `audit_record_id`.
+- If tanker support, IFF confidence, airspace deconfliction, or legal/ROE status is stale, conflicting, or unavailable, force `advisory_only: true` and generate a constrained branch with required validation tasks.
+- Restrict outputs to planning-level COA comparison and risk controls; do not provide launch/attack sequencing directives.
 
 ## Tool Protocol Playbooks
 
@@ -143,4 +158,15 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
+- For tanker and strategic mobility disruptions affecting OCA package persistence, prioritize `ts-contested-tanker-airbridge-v1` with `ps-contested-tanker-airbridge-stack-v1`.
+- For emergency civil-military air corridor closures during swarm pressure, include `ts-swarmsafe-air-corridor-v1` with `ps-swarmsafe-air-corridor-stack-v1`.
+- For degraded navigation transitions in navwar conditions, include `ts-pnt-transition-terrain-nav-v1` with `ps-pnt-transition-terrain-nav-stack-v1`.
+- For polar and high-latitude SATCOM blackout contingencies affecting command links, include `ts-polar-satcom-reversion-v1` with `ps-polar-satcom-reversion-stack-v1`.
+- For ISR persistence loss from aerostat disruption and EW pressure, include `ts-aerostat-isr-resilience-v1` with `ps-aerostat-isr-resilience-stack-v1`.
+- For offshore energy platform defense dependencies that affect maritime OCA staging, include `ts-offshore-energy-platform-defense-v1` with `ps-offshore-energy-platform-defense-stack-v1`.
+- For joint PNT denial requiring theater-wide fallback, include `ts-astroinertial-reversion-v1` with `ps-astroinertial-reversion-stack-v1`.
+- For contested EOB freshness and emitter-ID drift that affects suppression planning, include `ts-eob-drift-detection-v1` with `ps-eob-drift-detection-stack-v1`.
+- For disconnected strike-assessment imagery prioritization, include `ts-disconnected-uas-bda-triage-v1` with `ps-disconnected-uas-bda-triage-stack-v1`.
+- For austere airfield sortie risk from wildlife surges, include `ts-forward-airstrip-bird-strike-suppression-v1` with `ps-forward-airstrip-bird-strike-suppression-stack-v1`.
+- For severe bandwidth limits impacting ISR video feeds, include `ts-spectrum-frugal-video-prioritization-v1` with `ps-spectrum-frugal-video-prioritization-stack-v1`.
+- For cellular priority-service restoration that affects civil-military airbase coordination, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
