@@ -149,3 +149,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-personnel-recovery-beacon-deception-counter-v1` + `protocol_stack_id=ps-personnel-recovery-beacon-deception-counter-stack-v1` when CSAR tasking depends on contested survivor authentication.
 - Prioritize `tool_suite_id=ts-expeditionary-runway-fod-autonomy-v1` + `protocol_stack_id=ps-expeditionary-runway-fod-autonomy-stack-v1` when sortie generation risk is constrained by runway foreign object debris volatility.
 - Add `packet_id=DPL-PERSONNEL-RECOVERY-BEACON-DECEPTION-COUNTER-001` and `packet_id=DPL-EXPEDITIONARY-RUNWAY-FOD-AUTONOMY-001` for ATO branch decisions that alter rescue timelines or launch windows.
+
+## Domain Toolchain Override (2026-03-09, Urban Lift and Spaceport GNSS Addendum)
+
+- Prioritize `tool_suite_id=ts-urban-vtol-lz-auth-v1` + `protocol_stack_id=ps-urban-vtol-lz-auth-stack-v1` when urban vertical-lift landing zones face spoofing, decoy, or civilian congestion risk.
+- Prioritize `tool_suite_id=ts-spaceport-gnss-emergency-v1` + `protocol_stack_id=ps-spaceport-gnss-emergency-stack-v1` when ATO timing, launch windows, or range safety are sensitive to GNSS degradation.
+- Add `packet_id=DPL-VTOL-LZ-001` and `packet_id=DPL-SPACEPORT-GNSS-001` for ATO branches that re-sequence air mobility, personnel recovery, or strategic launch support.

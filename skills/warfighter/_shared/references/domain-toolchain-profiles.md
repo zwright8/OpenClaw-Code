@@ -162,3 +162,29 @@ For every critical recommendation, include:
 - Cross-check systems: offline hash-chain ledger, independent divergence verifier
 - Protocol binding: API/JSON + mTLS + USMTF command summary
 - Fallback path: read-only trusted snapshot mode with delayed write reconciliation
+
+## New Toolchain Wave (2026-03-09, Waterway Defense and Continuity Brokerage)
+
+### `TC-WATERWAY-LOCK-017`
+
+- Domain: dam and lock critical-waterway defense plus restoration sequencing
+- Primary systems: hydrology risk engine, lock control telemetry, engineer mission planner
+- Cross-check systems: independent floodplain model and civil waterway status mirror
+- Protocol binding: NIMS/ICS + API/JSON + USMTF
+- Fallback path: manual waterway status board with two-hour command synchronization
+
+### `TC-NC3-FIBER-018`
+
+- Domain: hardened fiber continuity and NC3-adjacent failover assurance
+- Primary systems: protected route monitor, emergency message integrity validator, continuity orchestrator
+- Cross-check systems: independent acknowledgment-chain ledger and alternate latency verifier
+- Protocol binding: USMTF + signed continuity event stream + API/JSON
+- Fallback path: minimum-essential continuity message loop with strict acknowledgment polling
+
+### `TC-AEROMED-BROKER-019`
+
+- Domain: multi-theater aeromedical evacuation priority brokerage
+- Primary systems: patient regulation broker, theater lift optimizer, blood-inventory stress dashboard
+- Cross-check systems: casualty severity adjudication cell and federated bed-status mirror
+- Protocol binding: HL7/FHIR + USMTF + API/JSON
+- Fallback path: category-1 and category-2 evacuation prioritization only with risk acceptance log

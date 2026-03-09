@@ -1,0 +1,3 @@
+interface:
+  display_name: "Strategic Hardened Fiber NC3 Failover Assurance Cell"
+  short_description: "Harden NC3 continuity with authenticated fiber failover routes and emergency message integrity checks."
