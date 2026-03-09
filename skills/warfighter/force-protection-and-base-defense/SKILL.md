@@ -163,3 +163,6 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For synthetic voice spoofing against guard-force command nets, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.
 - For strategic port water assurance under prolonged disruption, include `ts-port-desalination-brine-output-assurance-v1` with `ps-port-desalination-brine-output-assurance-stack-v1`.
 - For coalition identity sharing under privacy and legal constraints, include `ts-privacy-preserving-biometrics-federation-v1` with `ps-privacy-preserving-biometrics-federation-stack-v1`.
+- For forward operating base water network sabotage and attribution, include `ts-forward-water-sabotage-attribution-v1` with `ps-forward-water-sabotage-attribution-stack-v1`.
+- For transformer convoy escort and emplacement during homeland defense power restoration, include `ts-grid-transformer-escort-install-v1` with `ps-grid-transformer-escort-install-stack-v1`.
+- For coalition electromagnetic incident legal framing at defended installations, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.

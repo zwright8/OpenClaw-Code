@@ -744,3 +744,29 @@ Every skill output should include:
 - Privacy-preserving biometrics federation + coalition refugee screening and biometrics deconfliction + denied biometric exfiltration support
 - Port desalination brine and output assurance + contested austere water production assurance + offshore energy platform defense integration
 - Additive feedstock recycling certification + contested additive metallurgy quality assurance + expeditionary fabrication and battle damage repair
+
+## New Expansion Wave (2026-03-09, Space Continuity, Infrastructure Defense, and Trust-Calibrated C2)
+
+- joint-cislunar-logistics-and-spaceport-defense-cell
+- theater-electromagnetic-battlefield-medicine-telemetry-continuity-cell
+- coalition-contested-arctic-undersea-infrastructure-repair-cell
+- joint-hardened-military-gps-ground-segment-restoration-cell
+- strategic-expeditionary-ammunition-energetics-substitution-cell
+- tactical-forward-water-network-sabotage-attribution-cell
+- joint-denied-environment-c2-agent-trust-calibration-cell
+- theater-railway-air-defense-crossing-prioritization-cell
+- coalition-battlefield-spectrum-legal-attribution-cell
+- homeland-defense-grid-transformer-escort-and-install-cell
+
+## Updated Pairings (2026-03-09, Space Continuity, Infrastructure Defense, and Trust-Calibrated C2)
+
+- Cislunar logistics and spaceport defense + contested space launch and satellite reconstitution + strategic mobility port/rail chokepoint wargame
+- EM battlefield medicine telemetry continuity + casualty evacuation and medical regulation + coalition denied-environment casualty-data synchronization
+- Arctic undersea infrastructure repair + undersea cable protection and restoration + maritime under-ice cable break localization and repair prioritization
+- Hardened military GPS ground segment restoration + denied-PNT time transfer assurance + precision navigation astroinertial reversion
+- Ammunition energetics substitution + munitions stockpile and expenditure manager + additive munitions microfactory control
+- Forward water sabotage attribution + tactical portable desalination compliance + strategic water port desalination output assurance
+- Denied-environment C2 agent trust calibration + AI-enabled commander critical information briefing + tactical cloud edge compute orchestrator
+- Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
+- Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
+- Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration

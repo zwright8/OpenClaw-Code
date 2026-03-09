@@ -168,3 +168,6 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For civil emergency comms dependency restoration in contested cities, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
 - For launch-operations telemetry and schedule resilience data feeds, include `ts-contested-space-launch-reconstitution-v1` with `ps-contested-space-launch-reconstitution-stack-v1`.
 - For expeditionary manufacturing data assurance when recycled feedstock is used, include `ts-additive-feedstock-recycling-certification-v1` with `ps-additive-feedstock-recycling-certification-stack-v1`.
+- For denied-environment agent trust calibration of autonomous C2 assistants, include `ts-denied-c2-agent-trust-v1` with `ps-denied-c2-agent-trust-stack-v1`.
+- For battlefield medical telemetry continuity under electromagnetic disruption, include `ts-em-battlefield-med-telemetry-v1` with `ps-em-battlefield-med-telemetry-stack-v1`.
+- For coalition legal attribution of contested electromagnetic events, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.

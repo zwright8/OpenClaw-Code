@@ -172,3 +172,6 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For cellular priority-service restoration that affects civil-military airbase coordination, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
 - For disrupted national-security launch cadence affecting air-space integration windows, include `ts-contested-space-launch-reconstitution-v1` with `ps-contested-space-launch-reconstitution-stack-v1`.
 - For contested polar communications recovery paths supporting long-range OCA coordination, include `ts-under-ice-cable-break-repair-priority-v1` with `ps-under-ice-cable-break-repair-priority-stack-v1`.
+- For military GPS ground-segment disruption impacts on OCA mission timing, include `ts-gps-ground-segment-restoration-v1` with `ps-gps-ground-segment-restoration-stack-v1`.
+- For rail-air-defense crossing prioritization that protects munitions and sortie support corridors, include `ts-rail-air-defense-crossing-priority-v1` with `ps-rail-air-defense-crossing-priority-stack-v1`.
+- For cislunar launch support dependencies affecting global strike posture, include `ts-cislunar-logistics-spaceport-defense-v1` with `ps-cislunar-logistics-spaceport-defense-stack-v1`.
